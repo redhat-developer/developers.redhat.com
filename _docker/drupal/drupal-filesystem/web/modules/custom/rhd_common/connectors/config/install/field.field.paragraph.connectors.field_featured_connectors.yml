@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_connectors
+    - paragraphs.paragraphs_type.connectors
+id: paragraph.connectors.field_featured_connectors
+field_name: field_featured_connectors
+entity_type: paragraph
+bundle: connectors
+label: 'Featured Connectors'
+description: 'A comma separated list of featured connector names (e.g. camel-twitter,camel-facebook,camel-fuse)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_tags
+    - node.type.topic
+id: node.topic.field_data_tags
+field_name: field_data_tags
+entity_type: node
+bundle: topic
+label: 'Data Tags'
+description: 'A comma separated list of tags to use for adding additional white cards at the bottom'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

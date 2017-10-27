@@ -1,0 +1,23 @@
+uuid: e34e5bcc-ca35-4375-af83-9246f5739fb2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_search
+    - node.type.promotion_page
+id: node.promotion_page.field_exclude_from_search
+field_name: field_exclude_from_search
+entity_type: node
+bundle: promotion_page
+label: 'Exclude from search'
+description: 'Select to exclude this page from the Search page results.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

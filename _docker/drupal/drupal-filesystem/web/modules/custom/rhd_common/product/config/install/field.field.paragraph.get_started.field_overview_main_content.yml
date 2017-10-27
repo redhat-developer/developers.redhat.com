@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_main_content
+    - paragraphs.paragraphs_type.get_started
+  module:
+    - text
+id: paragraph.get_started.field_overview_main_content
+field_name: field_overview_main_content
+entity_type: paragraph
+bundle: get_started
+label: 'Alternate Getting Started Text'
+description: 'Optional alternate text, which will suppress the display of tabs and blue sections'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

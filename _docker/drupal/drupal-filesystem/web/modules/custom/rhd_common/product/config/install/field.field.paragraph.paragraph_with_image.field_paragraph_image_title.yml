@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_image_title
+    - paragraphs.paragraphs_type.paragraph_with_image
+id: paragraph.paragraph_with_image.field_paragraph_image_title
+field_name: field_paragraph_image_title
+entity_type: paragraph
+bundle: paragraph_with_image
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

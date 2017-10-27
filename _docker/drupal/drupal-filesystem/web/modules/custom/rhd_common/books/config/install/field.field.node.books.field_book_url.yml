@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_book_url
+    - node.type.books
+  module:
+    - link
+id: node.books.field_book_url
+field_name: field_book_url
+entity_type: node
+bundle: books
+label: 'Book URL'
+description: 'The URL to the book''s homepage (or purchase page)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_name
+    - node.type.article
+id: node.article.field_author_name
+field_name: field_author_name
+entity_type: node
+bundle: article
+label: 'Content Author Name'
+description: 'Name of the original author'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

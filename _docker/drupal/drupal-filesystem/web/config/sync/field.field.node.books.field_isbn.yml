@@ -1,10 +1,12 @@
-uuid: 784d54be-49c4-47c2-8cf4-09c265b5daa6
+uuid: 0dcc9cbc-8754-4a3f-b7fb-6ca6481b208d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_isbn
     - node.type.books
+_core:
+  default_config_hash: T9SCVkG1BIwBJlEFKsvCu-NVP3KpnvX9WadzgaIKu9A
 id: node.books.field_isbn
 field_name: field_isbn
 entity_type: node

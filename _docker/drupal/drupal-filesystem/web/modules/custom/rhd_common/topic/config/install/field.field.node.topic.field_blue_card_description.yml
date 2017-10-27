@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blue_card_description
+    - node.type.topic
+  module:
+    - text
+id: node.topic.field_blue_card_description
+field_name: field_blue_card_description
+entity_type: node
+bundle: topic
+label: 'Blue Card Description'
+description: 'Small summary to be displayed. This is the main text for the card.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

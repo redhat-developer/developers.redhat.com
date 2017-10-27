@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_hide_get_started
+    - paragraphs.paragraphs_type.community
+id: paragraph.community.field_overview_hide_get_started
+field_name: field_overview_hide_get_started
+entity_type: paragraph
+bundle: community
+label: 'Hide Get Started'
+description: 'Hide Get Started block on this page.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Hide Get Started'
+  off_label: 'Off'
+field_type: boolean

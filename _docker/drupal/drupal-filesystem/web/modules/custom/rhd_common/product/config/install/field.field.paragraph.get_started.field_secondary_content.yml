@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_secondary_content
+    - paragraphs.paragraphs_type.get_started
+  module:
+    - text
+id: paragraph.get_started.field_secondary_content
+field_name: field_secondary_content
+entity_type: paragraph
+bundle: get_started
+label: 'Additional Content'
+description: 'Additional text that will appear beneath the steps. This would typically be for Troubleshooting or FAQs.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

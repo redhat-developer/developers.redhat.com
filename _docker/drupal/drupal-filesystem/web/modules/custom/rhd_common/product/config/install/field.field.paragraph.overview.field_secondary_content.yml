@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_secondary_content
+    - paragraphs.paragraphs_type.overview
+  module:
+    - text
+id: paragraph.overview.field_secondary_content
+field_name: field_secondary_content
+entity_type: paragraph
+bundle: overview
+label: 'Additional Content'
+description: 'Any additional content below the three columns'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

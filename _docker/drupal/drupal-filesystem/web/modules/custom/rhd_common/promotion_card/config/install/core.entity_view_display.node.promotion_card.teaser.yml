@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.promotion_card.field_container_external_link
+    - field.field.node.promotion_card.field_container_tags
+    - field.field.node.promotion_card.field_containers_short_summary
+    - node.type.promotion_card
+  module:
+    - link
+    - text
+    - user
+id: node.promotion_card.teaser
+targetEntityType: node
+bundle: promotion_card
+mode: teaser
+content:
+  field_container_external_link:
+    type: link
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      target: _blank
+      url_only: false
+      url_plain: false
+      rel: '0'
+    third_party_settings: {  }
+  field_container_tags:
+    type: entity_reference_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_containers_short_summary:
+    type: text_default
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  links: true

@@ -1,10 +1,12 @@
-uuid: 10480693-b3fe-4dda-b3d6-ca98c6bd7c0c
+uuid: 5499ca95-9343-4e13-83fe-dc0dc414bba7
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.archived
     - workbench_moderation.moderation_state.published
+  enforced:
+    config: null
 _core:
   default_config_hash: n1R8yl6YLhQY2aPEXy5LQCU77k6ZfU2nRhHS3POl1fA
 id: published_archived

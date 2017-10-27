@@ -1,10 +1,12 @@
-uuid: 5cb6d902-7ae8-4171-b561-cb6cb0ae71b6
+uuid: 69d095ec-5df6-4832-8133-e8d66ca5eb78
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_minutes_to_complete
     - paragraphs.paragraphs_type.getting_started_section
+_core:
+  default_config_hash: 1ynMjjXRrCKBE4GU2eqKSh05oMKfQy3VXV7CpaA4JSQ
 id: paragraph.getting_started_section.field_minutes_to_complete
 field_name: field_minutes_to_complete
 entity_type: paragraph

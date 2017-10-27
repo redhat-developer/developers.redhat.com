@@ -1,10 +1,12 @@
-uuid: 8899d778-35d4-441f-aa8c-949e7fa88547
+uuid: 3eace5e6-8f35-44bd-8bb5-a325b5f95bf1
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_overview_url
     - paragraphs.paragraphs_type.download
+_core:
+  default_config_hash: yhHf1o8MdwgPAaNxBElWdn-HOXfYbUxCyjRXNl4h3I8
 id: paragraph.download.field_overview_url
 field_name: field_overview_url
 entity_type: paragraph

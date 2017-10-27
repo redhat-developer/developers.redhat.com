@@ -1,4 +1,4 @@
-uuid: 79e30c33-fbbc-44a1-818a-3389ff1874b4
+uuid: d76bfee7-9067-43d7-aa72-0ef12c7eb0b1
 langcode: en
 status: true
 dependencies:
@@ -10,8 +10,9 @@ dependencies:
   module:
     - path
     - text
+    - workbench_moderation
 _core:
-  default_config_hash: N1G4YpU-OJJAhmbC38nBhHuoLJ5hSX5qGTgotRsPTeo
+  default_config_hash: qm1Wiq5PN5keMPqvN3b1DQjravPxpYrX4aEHjd-0lWs
 id: node.rhd_solution_overview.default
 targetEntityType: node
 bundle: rhd_solution_overview
@@ -19,7 +20,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
@@ -28,29 +29,13 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_solution_name:
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_solution_tag_line:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   path:
     type: path
-    weight: 4
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -58,19 +43,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 4
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 5
     third_party_settings: {  }
     region: content
   title:
     type: string_textfield
-    weight: 0
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -78,11 +70,13 @@ content:
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_solution_name: true
+  field_solution_tag_line: true

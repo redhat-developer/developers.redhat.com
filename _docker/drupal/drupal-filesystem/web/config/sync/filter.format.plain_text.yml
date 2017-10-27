@@ -1,14 +1,12 @@
-uuid: e68c16e4-9b3b-4412-bf1a-b8f56ddfae86
+uuid: 4e0bd8bf-a6e7-4ce1-88f0-98dc5fc34862
 langcode: en
 status: true
-dependencies:
-  module:
-    - token_filter
+dependencies: {  }
 _core:
   default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
 name: 'Plain text'
 format: plain_text
-weight: -6
+weight: 10
 filters:
   filter_html_escape:
     id: filter_html_escape
@@ -26,12 +24,6 @@ filters:
   filter_autop:
     id: filter_autop
     provider: filter
-    status: true
-    weight: 0
-    settings: {  }
-  token_filter:
-    id: token_filter
-    provider: token_filter
     status: true
     weight: 0
     settings: {  }

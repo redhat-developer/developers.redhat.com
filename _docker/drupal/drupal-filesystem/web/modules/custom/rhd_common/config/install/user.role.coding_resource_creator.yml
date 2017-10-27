@@ -1,0 +1,27 @@
+uuid: e6d71506-9951-4b7c-bf12-2b9b9cf99db7
+langcode: en
+status: true
+dependencies: {  }
+id: coding_resource_creator
+label: 'Coding Resource creator'
+weight: -3
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'create coding_resource content'
+  - 'create url aliases'
+  - 'edit any coding_resource content'
+  - 'edit own coding_resource content'
+  - 'restful get entity:node'
+  - 'restful patch entity:node'
+  - 'restful post entity:node'
+  - 'use draft_draft transition'
+  - 'use draft_needs_review transition'
+  - 'use needs_review_needs_review transition'
+  - 'use text format as_is_html'
+  - 'use text format full_html'
+  - 'use text format rich_text'
+  - 'view any unpublished content'
+  - 'view coding_resource revisions'
+  - 'view latest version'
+  - 'view own unpublished content'

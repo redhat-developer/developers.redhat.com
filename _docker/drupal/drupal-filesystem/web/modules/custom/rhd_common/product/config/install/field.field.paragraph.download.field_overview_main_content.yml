@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_main_content
+    - paragraphs.paragraphs_type.download
+  module:
+    - text
+id: paragraph.download.field_overview_main_content
+field_name: field_overview_main_content
+entity_type: paragraph
+bundle: download
+label: 'Main Content'
+description: 'Content that will beneath the title of the page and before the download table (if one exists).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

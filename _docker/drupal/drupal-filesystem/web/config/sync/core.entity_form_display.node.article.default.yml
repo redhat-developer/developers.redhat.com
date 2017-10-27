@@ -1,10 +1,9 @@
-uuid: 1e28ed58-95af-4d4a-b322-5df899e19e45
+uuid: b8ac900b-43d7-4cfd-a3e7-c551adf446c4
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.article.body
-    - field.field.node.article.comment
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
@@ -12,13 +11,12 @@ dependencies:
     - field.field.node.article.field_tags
     - node.type.article
   module:
-    - comment
     - metatag
     - path
     - text
     - workbench_moderation
 _core:
-  default_config_hash: 7CvVDwPYotAZFBa36mcpMKZOfVRRp_iGuPHpHaavI6E
+  default_config_hash: O9-fUiX8SoHaVWfm388Qnry-b5_w23TZhgowE4PLRBo
 id: node.article.default
 targetEntityType: node
 bundle: article
@@ -31,12 +29,6 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
-    third_party_settings: {  }
-    region: content
-  comment:
-    type: comment_default
-    weight: 8
-    settings: {  }
     third_party_settings: {  }
     region: content
   created:
@@ -79,6 +71,13 @@ content:
     settings:
       display_label: true
     weight: 6
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:

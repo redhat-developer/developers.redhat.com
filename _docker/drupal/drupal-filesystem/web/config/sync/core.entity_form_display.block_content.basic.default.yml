@@ -1,4 +1,4 @@
-uuid: 05b3bfbc-5cb4-40ff-a1b9-c88a0b813bd3
+uuid: f234cc27-0a64-4531-9a3f-09d9e2a28d40
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,9 @@ dependencies:
     - field.field.block_content.basic.body
   module:
     - text
+    - workbench_moderation
 _core:
-  default_config_hash: kv6gwb6PJ8DcMSj5kgsd52qCIHl1xkxBDL5_AMm-g8k
+  default_config_hash: S0f54eS7by2OoFl_NrvBK9UGTPx51cktxKhvwMy0Jls
 id: block_content.basic.default
 targetEntityType: block_content
 bundle: basic
@@ -16,7 +17,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: -4
+    weight: 0
     settings:
       rows: 9
       summary_rows: 3

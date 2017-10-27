@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.help.field_overview_hide_get_started
+    - field.field.paragraph.help.field_overview_url
+    - field.field.paragraph.help.field_page_description
+    - field.field.paragraph.help.field_product_forum_link
+    - field.field.paragraph.help.field_show_stack_overflow
+    - paragraphs.paragraphs_type.help
+  module:
+    - link
+id: paragraph.help.default
+targetEntityType: paragraph
+bundle: help
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_page_description:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_forum_link:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_show_stack_overflow:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+hidden:
+  created: true
+  field_overview_url: true
+  status: true
+  uid: true

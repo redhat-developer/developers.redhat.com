@@ -1,4 +1,4 @@
-uuid: e4a18a84-8b36-4b3b-a24e-9240c946e31a
+uuid: e51182a2-3d1e-418e-9eb5-677cc4615126
 langcode: en
 status: true
 dependencies:
@@ -22,6 +22,8 @@ dependencies:
     - path
     - text
     - workbench_moderation
+_core:
+  default_config_hash: 0Wd1Zcfm8wzSJi23BRSe-NJZa11B3ykczVFt1rAzmW8
 id: node.coding_resource.default
 targetEntityType: node
 bundle: coding_resource
@@ -126,6 +128,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0

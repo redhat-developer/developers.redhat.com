@@ -1,4 +1,4 @@
-uuid: 0b3ee211-a104-4e12-806e-8c9e3aa61eee
+uuid: cf1fcc8b-ab58-488f-97a3-a4e9fa4377bf
 langcode: en
 status: true
 dependencies:
@@ -13,8 +13,8 @@ field_name: field_tags
 entity_type: node
 bundle: topic
 label: 'Blue Card Tags'
-description: 'Taxonomy cards to be displayed on the card.'
-required: false
+description: ''
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
@@ -26,5 +26,4 @@ settings:
     sort:
       field: _none
     auto_create: true
-    auto_create_bundle: ''
 field_type: entity_reference

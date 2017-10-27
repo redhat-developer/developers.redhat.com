@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.document_details.field_document_description
+    - field.field.paragraph.document_details.field_document_title
+    - field.field.paragraph.document_details.field_formats
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - text
+id: paragraph.document_details.default
+targetEntityType: paragraph
+bundle: document_details
+mode: default
+content:
+  field_document_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_document_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_formats:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,10 +1,12 @@
-uuid: 20c3acdc-b00b-4e25-93e0-c841cc6195ed
+uuid: cf160e91-64bc-4d63-a0a1-ff02b2f4f136
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_contributors
     - node.type.coding_resource
+_core:
+  default_config_hash: CH2vN7uncyuHxiOOjALkioEos0lZDHID7yXqjq-YWjg
 id: node.coding_resource.field_contributors
 field_name: field_contributors
 entity_type: node

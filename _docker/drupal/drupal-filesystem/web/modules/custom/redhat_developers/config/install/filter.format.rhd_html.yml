@@ -3,34 +3,87 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
+    - linkit
+    - token_filter
 name: 'Red Hat Developers Approved HTML'
 format: rhd_html
-weight: 0
+weight: -10
 filters:
   filter_html:
     id: filter_html
     provider: filter
     status: true
-    weight: -10
+    weight: -49
     settings:
-      allowed_html: '<a href hreflang class> <em class> <strong class> <cite class> <blockquote cite class> <code class> <ul type class> <ol start type class> <li class> <dl class> <dt class> <dd class> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <p class> <br class> <span class> <img class src alt height width data-*> <div class id data-*> <h1 class> <pre class> <u class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class> <td class> <tr class>'
-      filter_html_help: false
-      filter_html_nofollow: false
+      allowed_html: '<a href hreflang class data-* aria-* ng-*> <em class> <strong class> <cite class> <blockquote cite class> <code class data-*> <ul id type class data-* aria-*> <ol start type class id data-* aria-*> <li class data-* aria-*> <dl class data-* aria-*> <dt class data-* aria-*> <dd class data-* aria-*> <h2 id class data-* aria-*> <h3 id class data-* aria-*> <h4 id class data-* aria-*> <h5 id class data-* aria-*> <h6 id class aria-* data-*> <p class data-* aria-*> <br class> <span class data-* aria-*> <img class src alt height width data-* aria-*> <div class id data-* aria-* ng-*> <h1 class data-* aria-* id> <pre class data-* aria-*> <u class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class> <td class> <tr class> <i class data-* aria-*> <select id class value label disabled data-* aria-* name size ng-*> <option id class aria-* data-* dir label lang name selected title value> <hr class> <drupal-entity data-*>'
+      filter_html_help: true
+      filter_html_nofollow: true
   filter_align:
     id: filter_align
     provider: filter
     status: true
-    weight: 7
+    weight: -46
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: true
-    weight: 8
+    weight: -45
     settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
     status: true
-    weight: 11
+    weight: -44
+    settings: {  }
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: -50
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -39
+    settings: {  }
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -43
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -40
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: false
+    weight: -41
+    settings:
+      filter_url_length: 72
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: -48
+    settings:
+      title: true
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 0
     settings: {  }

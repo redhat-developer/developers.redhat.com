@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_green_card
+    - node.type.promotion_card
+    - node.type.topic
+id: node.topic.field_green_card
+field_name: field_green_card
+entity_type: node
+bundle: topic
+label: 'Green Card'
+description: 'A small content card on the left side of the page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

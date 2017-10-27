@@ -1,10 +1,12 @@
-uuid: 60ea703c-1b6b-4c2b-b44f-7a04819e6e29
+uuid: 4c571ebb-d165-41d2-818d-3e12e7ec56d0
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_featured_connectors
     - paragraphs.paragraphs_type.connectors
+_core:
+  default_config_hash: _oIvC7UL0JhijzjGunbjOoJNm6mmyEZpPaNk2UuGe0Y
 id: paragraph.connectors.field_featured_connectors
 field_name: field_featured_connectors
 entity_type: paragraph

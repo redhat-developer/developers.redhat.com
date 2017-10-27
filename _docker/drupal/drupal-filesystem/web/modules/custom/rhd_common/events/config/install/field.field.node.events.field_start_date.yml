@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_date
+    - node.type.events
+  module:
+    - datetime
+id: node.events.field_start_date
+field_name: field_start_date
+entity_type: node
+bundle: events
+label: 'Start Date'
+description: 'The Start date of the event (time is converted to UTC).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

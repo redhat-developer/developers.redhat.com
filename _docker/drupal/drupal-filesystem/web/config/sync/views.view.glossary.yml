@@ -1,4 +1,4 @@
-uuid: 49fd6dac-e464-4ab7-88cc-3949c7538edb
+uuid: 40471cdd-1da0-4ab6-b2f8-86ba05c803ff
 langcode: en
 status: false
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: '-pCFOVfbt__jaohFffTLnVavh4OBC6CjREAnchiRomQ'
+  default_config_hash: _12Vkw1VGBz_s0_W_LLVCrBPpioNSnB6zcd1lUAQubM
 id: glossary
 label: Glossary
 module: node
@@ -353,6 +353,7 @@ display:
           entity_field: langcode
       display_extenders: {  }
     cache_metadata:
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -360,7 +361,6 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: 0
       tags: {  }
   attachment_1:
     id: attachment_1
@@ -421,6 +421,7 @@ display:
       inherit_arguments: false
       display_extenders: {  }
     cache_metadata:
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -428,7 +429,6 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: 0
       tags: {  }
   page_1:
     id: page_1
@@ -448,6 +448,7 @@ display:
         parent: ''
       display_extenders: {  }
     cache_metadata:
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -455,5 +456,4 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: 0
       tags: {  }

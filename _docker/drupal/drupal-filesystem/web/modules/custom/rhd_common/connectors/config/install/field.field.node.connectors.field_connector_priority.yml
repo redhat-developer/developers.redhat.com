@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_priority
+    - node.type.connectors
+id: node.connectors.field_connector_priority
+field_name: field_connector_priority
+entity_type: node
+bundle: connectors
+label: 'Connector Priority'
+description: 'Input must be a number between 1 and 100 (i.e. 10, 20, 30, 50).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer

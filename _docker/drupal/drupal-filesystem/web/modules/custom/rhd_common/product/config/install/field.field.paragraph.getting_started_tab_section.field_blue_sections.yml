@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blue_sections
+    - paragraphs.paragraphs_type.getting_started_section
+    - paragraphs.paragraphs_type.getting_started_tab_section
+  module:
+    - entity_reference_revisions
+id: paragraph.getting_started_tab_section.field_blue_sections
+field_name: field_blue_sections
+entity_type: paragraph
+bundle: getting_started_tab_section
+label: 'Blue Sections'
+description: 'Blue sections for a Getting Started page. Make sure the total number of blue sections is a factor of 24, ideally no more than 4.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      getting_started_section: getting_started_section
+    target_bundles_drag_drop:
+      buzz:
+        weight: 16
+        enabled: false
+      community:
+        weight: 17
+        enabled: false
+      connectors:
+        weight: 18
+        enabled: false
+      docs_and_apis:
+        weight: 19
+        enabled: false
+      document_details:
+        weight: 20
+        enabled: false
+      download:
+        weight: 21
+        enabled: false
+      get_started:
+        weight: 22
+        enabled: false
+      getting_started_section:
+        enabled: true
+        weight: 23
+      getting_started_tab_section:
+        weight: 24
+        enabled: false
+      help:
+        weight: 25
+        enabled: false
+      learn:
+        weight: 26
+        enabled: false
+      main_content:
+        weight: 27
+        enabled: false
+      overview:
+        weight: 28
+        enabled: false
+      resources:
+        weight: 29
+        enabled: false
+      updates:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

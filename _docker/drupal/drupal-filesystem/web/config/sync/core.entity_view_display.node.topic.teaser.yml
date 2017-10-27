@@ -1,4 +1,4 @@
-uuid: a5a32a17-193b-4fd0-8a54-844962aefd35
+uuid: 876c1572-902d-4efe-aaba-d99bcf89a060
 langcode: en
 status: true
 dependencies:
@@ -9,8 +9,10 @@ dependencies:
     - field.field.node.topic.field_blue_card_title
     - field.field.node.topic.field_bottom_left_white_card
     - field.field.node.topic.field_bottom_right_white_card
+    - field.field.node.topic.field_data_tags
     - field.field.node.topic.field_green_card
     - field.field.node.topic.field_grey_card
+    - field.field.node.topic.field_meta_tags
     - field.field.node.topic.field_orange_card
     - field.field.node.topic.field_tags
     - field.field.node.topic.field_top_left_white_card
@@ -20,7 +22,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: iUsAIF5T1LQYKmX3AcQ9r5F46BEMyDaF-U71NIBkpwE
+  default_config_hash: TVj7WvJraqKX0j4Y6stDTA__bytz2keMQ7L7RsQjhSk
 id: node.topic.teaser
 targetEntityType: node
 bundle: topic
@@ -41,6 +43,7 @@ hidden:
   field_data_tags: true
   field_green_card: true
   field_grey_card: true
+  field_meta_tags: true
   field_orange_card: true
   field_sub_title: true
   field_tags: true

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_resource_tags
+    - node.type.video_resource
+    - taxonomy.vocabulary.tags
+id: node.video_resource.field_video_resource_tags
+field_name: field_video_resource_tags
+entity_type: node
+bundle: video_resource
+label: Tags
+description: 'Taxonomy tags used to classify the video'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

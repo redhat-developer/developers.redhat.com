@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.getting_started_tab_section.field_blue_sections
+    - field.field.paragraph.getting_started_tab_section.field_body
+    - field.field.paragraph.getting_started_tab_section.field_title
+    - paragraphs.paragraphs_type.getting_started_tab_section
+  module:
+    - paragraphs
+    - text
+id: paragraph.getting_started_tab_section.default
+targetEntityType: paragraph
+bundle: getting_started_tab_section
+mode: default
+content:
+  field_blue_sections:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    region: content
+  field_body:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

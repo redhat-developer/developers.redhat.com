@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cheat_sheet_download_url
+    - node.type.cheat_sheet
+  module:
+    - link
+id: node.cheat_sheet.field_cheat_sheet_download_url
+field_name: field_cheat_sheet_download_url
+entity_type: node
+bundle: cheat_sheet
+label: 'Cheat sheet download url'
+description: 'Cheat sheet download link that will be used in main CTA.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

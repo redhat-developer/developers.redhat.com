@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_details_url
+    - node.type.connectors
+  module:
+    - link
+id: node.connectors.field_connector_details_url
+field_name: field_connector_details_url
+entity_type: node
+bundle: connectors
+label: 'Connector Details URL'
+description: 'The link to the connectors documentation'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

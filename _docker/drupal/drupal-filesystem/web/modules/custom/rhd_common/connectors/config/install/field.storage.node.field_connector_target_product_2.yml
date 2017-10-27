@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_connector_target_product_2
+field_name: field_connector_target_product_2
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: fuse
+      label: fuse
+    -
+      value: fsw
+      label: fsw
+    -
+      value: datavirt
+      label: datavirt
+    -
+      value: amq
+      label: amq
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

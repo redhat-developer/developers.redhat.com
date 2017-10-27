@@ -1,0 +1,33 @@
+uuid: bd450750-a6a8-4041-82bc-23da35ad3f5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning
+third_party_settings:
+  lightning:
+    bundled: true
+_core:
+  default_config_hash: FINNLf2pkhqumdQngtjMqoiVaOgXv2cHfnLPCCbB4n0
+id: layout_manager
+label: 'Layout manager'
+weight: -7
+is_admin: false
+permissions:
+  - 'administer node display'
+  - 'administer panelizer'
+  - 'administer panelizer node article defaults'
+  - 'administer panelizer node books defaults'
+  - 'administer panelizer node cheat_sheet defaults'
+  - 'administer panelizer node coding_resource defaults'
+  - 'administer panelizer node connectors defaults'
+  - 'administer panelizer node events defaults'
+  - 'administer panelizer node landing_page defaults'
+  - 'administer panelizer node page defaults'
+  - 'administer panelizer node product defaults'
+  - 'administer panelizer node promotion_card defaults'
+  - 'administer panelizer node promotion_page defaults'
+  - 'administer panelizer node rhd_microsite defaults'
+  - 'administer panelizer node rhd_solution_overview defaults'
+  - 'administer panelizer node topic defaults'
+  - 'administer panelizer node video_resource defaults'

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_book_excerpt
+    - node.type.books
+  module:
+    - text
+id: node.books.field_book_excerpt
+field_name: field_book_excerpt
+entity_type: node
+bundle: books
+label: 'Book Excerpt'
+description: 'A small excerpt from the book to give the readers a taste'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

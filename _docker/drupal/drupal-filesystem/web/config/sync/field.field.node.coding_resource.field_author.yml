@@ -1,10 +1,12 @@
-uuid: 4ea6d34c-0579-41a1-878a-9b2f2daa9ca4
+uuid: dd276513-bb58-4099-98d7-f9ee3b48061b
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_author
     - node.type.coding_resource
+_core:
+  default_config_hash: DAIp2rh4Z9krPgkmIw6g2Ff3SjP5T0hLh4a6Fa83VVA
 id: node.coding_resource.field_author
 field_name: field_author
 entity_type: node

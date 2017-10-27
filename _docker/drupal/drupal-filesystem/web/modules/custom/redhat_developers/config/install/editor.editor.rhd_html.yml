@@ -30,31 +30,43 @@ settings:
         -
           name: Media
           items:
-            - Blockquote
-            - DrupalImage
+            - media_browser
+            - node
         -
           name: 'Block Formatting'
           items:
+            - Blockquote
             - Format
+            - Styles
         -
           name: Tools
           items:
-            - AddLayout
-            - Table
-            - Styles
             - Source
             - Maximize
         -
           name: Layout
           items:
-            - ShowBlocks
+            - AddLayout
+            - Table
             - JustifyLeft
             - JustifyCenter
             - JustifyRight
             - JustifyBlock
   plugins:
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: default
+    language:
+      language_list: un
     stylescombo:
-      styles: ''
+      styles: "a.button|Button\r\ndiv.box.callout|Callout Box"
+    video_embed:
+      defaults:
+        children:
+          autoplay: false
+          responsive: true
+          width: '854'
+          height: '480'
 image_upload:
   status: true
   scheme: public

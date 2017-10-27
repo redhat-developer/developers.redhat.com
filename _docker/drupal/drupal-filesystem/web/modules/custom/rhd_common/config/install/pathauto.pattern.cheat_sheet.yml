@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: cheat_sheet
+label: cheat-sheet
+type: 'canonical_entities:node'
+pattern: '/cheat-sheets/[node:title]'
+selection_criteria:
+  0028b237-fa67-4910-890b-9fa7f175600d:
+    id: node_type
+    bundles:
+      cheat_sheet: cheat_sheet
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 0028b237-fa67-4910-890b-9fa7f175600d
+selection_logic: and
+weight: -5
+relationships: {  }

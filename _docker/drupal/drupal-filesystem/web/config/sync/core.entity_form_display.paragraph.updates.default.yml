@@ -1,4 +1,4 @@
-uuid: 232d3f4c-6814-4870-aec8-7ed6e2cb41e7
+uuid: f7183b5f-63b7-4c8f-817d-7757127bec8c
 langcode: en
 status: true
 dependencies:
@@ -10,6 +10,9 @@ dependencies:
     - paragraphs.paragraphs_type.updates
   module:
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: 0Tr_1G2yLJR2f7ELeQbWtD1gJWoOlXFujGbwI2eb2Fc
 id: paragraph.updates.default
 targetEntityType: paragraph
 bundle: updates

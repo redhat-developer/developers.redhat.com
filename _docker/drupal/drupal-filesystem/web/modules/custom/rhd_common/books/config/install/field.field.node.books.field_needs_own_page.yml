@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_needs_own_page
+    - node.type.books
+id: node.books.field_needs_own_page
+field_name: field_needs_own_page
+entity_type: node
+bundle: books
+label: 'Needs Own Page'
+description: 'Check this to have Drupal generate a page for this book. Leave it off to generate no page. PDF Link and an excerpt are required.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

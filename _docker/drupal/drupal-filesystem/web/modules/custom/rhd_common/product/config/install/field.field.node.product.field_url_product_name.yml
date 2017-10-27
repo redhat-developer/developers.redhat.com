@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_url_product_name
+    - node.type.product
+id: node.product.field_url_product_name
+field_name: field_url_product_name
+entity_type: node
+bundle: product
+label: 'URL Product Name'
+description: 'The URLized product name. It is the part in the URL between /product/ and the sub page (e.g. /products/eap/overview "eap" would go here)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,4 +1,4 @@
-uuid: 33b9000c-ed0e-42d1-800e-6bc20d15afff
+uuid: dcb6944d-a206-4175-9cc0-6a63e0429e88
 langcode: en
 status: true
 dependencies:
@@ -11,6 +11,9 @@ dependencies:
     - paragraphs.paragraphs_type.community
   module:
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: giGOVZtzjXT6xwCOgEe2uVJPqmo58ZLagjz67o5FF28
 id: paragraph.community.default
 targetEntityType: paragraph
 bundle: community

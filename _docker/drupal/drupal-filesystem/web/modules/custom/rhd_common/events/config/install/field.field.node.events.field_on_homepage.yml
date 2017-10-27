@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_on_homepage
+    - node.type.events
+id: node.events.field_on_homepage
+field_name: field_on_homepage
+entity_type: node
+bundle: events
+label: 'Show On Homepage'
+description: 'This is only required if the event card should be displayed on the homepage of www.jboss.org or not.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Show on Homepage'
+  off_label: Hide
+field_type: boolean

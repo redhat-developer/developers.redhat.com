@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_page_description
+    - paragraphs.paragraphs_type.resources
+id: paragraph.resources.field_page_description
+field_name: field_page_description
+entity_type: paragraph
+bundle: resources
+label: 'Page Description'
+description: 'Description text of the page. This will be used for things like twitter cards, Google Search descriptions and Facebook posts.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

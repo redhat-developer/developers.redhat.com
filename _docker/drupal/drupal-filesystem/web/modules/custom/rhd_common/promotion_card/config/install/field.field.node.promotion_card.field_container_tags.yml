@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_container_tags
+    - node.type.promotion_card
+    - taxonomy.vocabulary.tags
+  content:
+    - 'taxonomy_term:tags:cd77c78d-fb7f-4b46-a000-a7fff0bee6b2'
+id: node.promotion_card.field_container_tags
+field_name: field_container_tags
+entity_type: node
+bundle: promotion_card
+label: tags
+description: ''
+required: false
+translatable: false
+default_value: {}
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: _none
+    auto_create: true
+field_type: entity_reference

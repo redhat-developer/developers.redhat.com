@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains promotion_card.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function promotion_card_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the promotion_card module.
+    case 'help.page.promotion_card':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP promotion_card Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

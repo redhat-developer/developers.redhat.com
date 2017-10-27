@@ -1,10 +1,12 @@
-uuid: ee24128f-eccc-4a0a-8f35-abae9c833d81
+uuid: f05bf2ba-cf06-4204-a5f8-633188b0060d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_video_thumbnail_url
     - node.type.video_resource
+_core:
+  default_config_hash: SPE8t-Mn9Hdoap2Re48O3lLCkaU5bVvjbC_RwRKcX4w
 id: node.video_resource.field_video_thumbnail_url
 field_name: field_video_thumbnail_url
 entity_type: node

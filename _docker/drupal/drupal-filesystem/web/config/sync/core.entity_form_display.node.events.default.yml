@@ -1,4 +1,4 @@
-uuid: 2991edda-99f4-4b03-ae9f-217077ea02c6
+uuid: dd6ebddb-eccb-42b0-935c-201356390d40
 langcode: en
 status: true
 dependencies:
@@ -25,6 +25,9 @@ dependencies:
     - image
     - link
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: GGP4WPf7fQzefk1CREJvQ0AQ0fL2jddPAwQ2_EEAbBk
 id: node.events.default
 targetEntityType: node
 bundle: events
@@ -128,6 +131,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
     region: content
   title:
     type: string_textfield

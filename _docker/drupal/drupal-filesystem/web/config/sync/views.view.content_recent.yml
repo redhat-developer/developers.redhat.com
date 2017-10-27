@@ -1,4 +1,4 @@
-uuid: 6edaac27-87d5-41b6-81cd-97c0499b802a
+uuid: ed860346-5826-4cc5-8fba-cd0be37b66c5
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: tDcmzGfShE0XJbfwJzyA6lJTUYC6X4iVu887dgoFfDg
+  default_config_hash: sqwEJaSgef4rCaRMf-JdNAdV_kCICU1SfQh5Wl2sUrc
 id: content_recent
 label: 'Recent content'
 module: node
@@ -293,13 +293,13 @@ display:
       link_url: ''
       link_display: '0'
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - user
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }
   block_1:
     display_plugin: block
@@ -309,11 +309,11 @@ display:
     display_options:
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - user
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }

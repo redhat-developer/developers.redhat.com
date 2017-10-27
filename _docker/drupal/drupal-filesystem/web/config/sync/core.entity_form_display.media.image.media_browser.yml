@@ -1,4 +1,4 @@
-uuid: b35f7a16-2694-4c7d-a42c-4bdf3b1967f6
+uuid: a46d77b8-94c2-453f-8ac2-2cbad45fe1a8
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,12 @@ dependencies:
     - image.style.medium
     - media_entity.bundle.image
   module:
-    - image
+    - image_widget_crop
+    - lightning_media
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: Q-Ja_RlnM_4JPLfqKzFnNkCupTr8URQX77MhTLHaOAU
 id: media.image.media_browser
 targetEntityType: media
 bundle: image
@@ -23,12 +28,21 @@ content:
     third_party_settings: {  }
     region: content
   image:
-    type: image_immutable
+    type: image_widget_crop
     weight: 0
     settings:
       preview_image_style: medium
       progress_indicator: throbber
-    third_party_settings: {  }
+      crop_list:
+        - freeform
+      show_crop_area: true
+      crop_preview_image_style: crop_thumbnail
+      show_default_crop: true
+      warn_multiple_usages: false
+    third_party_settings:
+      lightning_media:
+        file_links: false
+        remove_button: false
     region: content
   name:
     type: string_textfield
@@ -38,7 +52,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
-  field_library_image: true
   uid: true

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_containers_short_summary
+    - node.type.promotion_card
+  module:
+    - text
+id: node.promotion_card.field_containers_short_summary
+field_name: field_containers_short_summary
+entity_type: node
+bundle: promotion_card
+label: 'Short Summary'
+description: 'Summary of the content being promoted.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

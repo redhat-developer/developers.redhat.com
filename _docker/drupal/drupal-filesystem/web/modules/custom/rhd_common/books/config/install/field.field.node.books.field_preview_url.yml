@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_preview_url
+    - node.type.books
+  module:
+    - link
+id: node.books.field_preview_url
+field_name: field_preview_url
+entity_type: node
+bundle: books
+label: 'Preview URL'
+description: 'A preview of the book online. Could be Amazon, Google Books, etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

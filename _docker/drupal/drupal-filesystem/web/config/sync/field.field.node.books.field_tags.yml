@@ -1,4 +1,4 @@
-uuid: d0a1d625-f741-45de-96a0-16037be9e4b6
+uuid: b731d8ca-d3f1-4c72-be1f-e309f002ce50
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_tags
     - node.type.books
     - taxonomy.vocabulary.tags
+_core:
+  default_config_hash: KZC9XltSUWmr_1zYSN7T6ioH68YyqysScdBHxyBRbuY
 id: node.books.field_tags
 field_name: field_tags
 entity_type: node

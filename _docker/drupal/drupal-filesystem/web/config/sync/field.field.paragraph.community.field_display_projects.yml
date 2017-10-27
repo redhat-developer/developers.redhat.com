@@ -1,10 +1,12 @@
-uuid: ad3f198f-e376-4abe-a109-d281f979ea3f
+uuid: 9b4635a7-90c6-46e0-ac6a-df49509cce97
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_display_projects
     - paragraphs.paragraphs_type.community
+_core:
+  default_config_hash: aLmv1V7ZvJjIS3UUbxQ5bhxkpCjRekd66XtjpLXB2sM
 id: paragraph.community.field_display_projects
 field_name: field_display_projects
 entity_type: paragraph

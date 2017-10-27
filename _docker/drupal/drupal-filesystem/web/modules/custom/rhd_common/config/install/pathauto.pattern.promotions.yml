@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: promotions
+label: promotions
+type: 'canonical_entities:node'
+pattern: '/promotions/[node:title]'
+selection_criteria:
+  f7881601-e28b-441a-b68f-c77608a34f3f:
+    id: node_type
+    bundles:
+      promotion_card: promotion_card
+    negate: false
+    context_mapping:
+      node: node
+    uuid: f7881601-e28b-441a-b68f-c77608a34f3f
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,10 +1,12 @@
-uuid: cd4d633b-9b62-429e-92f2-3e4a2f89b8b3
+uuid: 8ea87bd6-083e-47bd-8495-c702e43dda10
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_overview_hide_get_started
     - paragraphs.paragraphs_type.overview
+_core:
+  default_config_hash: lxgym-op0j8xtqMOQw7Pd01Hn6vy8aq1RCkzv1tQyX4
 id: paragraph.overview.field_overview_hide_get_started
 field_name: field_overview_hide_get_started
 entity_type: paragraph

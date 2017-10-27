@@ -1,4 +1,4 @@
-uuid: 8e9d0d26-4e91-48f7-87de-23c400be8aa9
+uuid: 1661e07b-1af1-48e6-8cab-f69c8fcb6311
 langcode: en
 status: true
 dependencies:
@@ -29,6 +29,8 @@ dependencies:
     - path
     - text
     - workbench_moderation
+_core:
+  default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
 id: node.books.default
 targetEntityType: node
 bundle: books
@@ -188,6 +190,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0

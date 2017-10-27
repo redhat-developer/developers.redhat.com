@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_url
+    - paragraphs.paragraphs_type.connectors
+id: paragraph.connectors.field_overview_url
+field_name: field_overview_url
+entity_type: paragraph
+bundle: connectors
+label: Url
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Connectors
+default_value_callback: ''
+settings: {  }
+field_type: string

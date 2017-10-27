@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cheat_sheet_tags
+    - node.type.cheat_sheet
+    - taxonomy.vocabulary.tags
+id: node.cheat_sheet.field_cheat_sheet_tags
+field_name: field_cheat_sheet_tags
+entity_type: node
+bundle: cheat_sheet
+label: 'Cheat Sheet Tags'
+description: 'Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

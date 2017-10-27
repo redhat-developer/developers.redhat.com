@@ -1,19 +1,12 @@
-uuid: 82e3dfe0-6dbc-4db9-af95-7e77839ab7d2
+uuid: a9c17f9b-6022-4107-8def-39a09ad5abd4
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.draft
     - workbench_moderation.moderation_state.published
-  module:
-    - workbench_email
   enforced:
-    config:
-      - workbench_email.workbench_email_template.published
-third_party_settings:
-  workbench_email:
-    workbench_email_templates:
-      published: published
+    config: null
 _core:
   default_config_hash: qTergiISOB-CWMTXkWxPk2qgmA2r9iviwM0iw93UmlU
 id: draft_published

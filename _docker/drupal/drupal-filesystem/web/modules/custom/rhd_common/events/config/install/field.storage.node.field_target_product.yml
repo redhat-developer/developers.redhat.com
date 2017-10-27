@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_target_product
+field_name: field_target_product
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: amq
+      label: amq
+    -
+      value: bpmsuite
+      label: bpmsuite
+    -
+      value: brms
+      label: brms
+    -
+      value: cdk
+      label: cdk
+    -
+      value: datagrid
+      label: datagrid
+    -
+      value: datavirt
+      label: datavirt
+    -
+      value: developertoolset
+      label: developertoolset
+    -
+      value: devstudio
+      label: devstudio
+    -
+      value: devsuite
+      label: devsuite
+    -
+      value: dotnet
+      label: dotnet
+    -
+      value: eap
+      label: eap
+    -
+      value: fuse
+      label: fuse
+    -
+      value: mobileplatform
+      label: mobileplatform
+    -
+      value: openjdk
+      label: openjdk
+    -
+      value: openshift
+      label: openshift
+    -
+      value: rhel
+      label: rhel
+    -
+      value: softwarecollections
+      label: softwarecollections
+    -
+      value: webserver
+      label: webserver
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

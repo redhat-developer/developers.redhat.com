@@ -1,0 +1,94 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_pages
+    - node.type.product
+    - paragraphs.paragraphs_type.buzz
+    - paragraphs.paragraphs_type.community
+    - paragraphs.paragraphs_type.connectors
+    - paragraphs.paragraphs_type.docs_and_apis
+    - paragraphs.paragraphs_type.download
+    - paragraphs.paragraphs_type.get_started
+    - paragraphs.paragraphs_type.help
+    - paragraphs.paragraphs_type.learn
+    - paragraphs.paragraphs_type.overview
+    - paragraphs.paragraphs_type.resources
+    - paragraphs.paragraphs_type.updates
+  module:
+    - entity_reference_revisions
+id: node.product.field_product_pages
+field_name: field_product_pages
+entity_type: node
+bundle: product
+label: 'Product Pages'
+description: 'The set of subpages this product uses'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      overview: overview
+      download: download
+      get_started: get_started
+      docs_and_apis: docs_and_apis
+      help: help
+      connectors: connectors
+      learn: learn
+      community: community
+      updates: updates
+      resources: resources
+      buzz: buzz
+    target_bundles_drag_drop:
+      overview:
+        enabled: true
+        weight: -33
+      download:
+        enabled: true
+        weight: -32
+      get_started:
+        enabled: true
+        weight: -31
+      docs_and_apis:
+        enabled: true
+        weight: -30
+      help:
+        enabled: true
+        weight: -29
+      connectors:
+        enabled: true
+        weight: -28
+      learn:
+        enabled: true
+        weight: -27
+      community:
+        enabled: true
+        weight: -26
+      updates:
+        enabled: true
+        weight: -25
+      resources:
+        enabled: true
+        weight: -24
+      buzz:
+        enabled: true
+        weight: -23
+      document_details:
+        weight: -22
+        enabled: false
+      main_content:
+        weight: -21
+        enabled: false
+      getting_started_section:
+        weight: -20
+        enabled: false
+      getting_started_tab_section:
+        weight: -19
+        enabled: false
+      paragraph_with_image:
+        weight: -18
+        enabled: false
+field_type: entity_reference_revisions

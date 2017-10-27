@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_overview_video
+    - paragraphs.paragraphs_type.overview
+  module:
+    - video_embed_field
+id: paragraph.overview.field_product_overview_video
+field_name: field_product_overview_video
+entity_type: paragraph
+bundle: overview
+label: Video
+description: 'Featured video about the product. Shown on the right of the page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    vimeo: vimeo
+    youtube: youtube
+    youtube_playlist: '0'
+field_type: video_embed_field

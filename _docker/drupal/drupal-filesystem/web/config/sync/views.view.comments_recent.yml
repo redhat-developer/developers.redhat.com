@@ -1,13 +1,12 @@
-uuid: 8f510e6d-6291-472a-99ed-d493341749a2
+uuid: aa3c01b3-b561-4583-9566-b664618bc008
 langcode: en
 status: true
 dependencies:
   module:
     - comment
-    - node
     - user
 _core:
-  default_config_hash: jmfZ73IDUpneecqVXUK3whGzTcvwLBBll9U3ZTCzndo
+  default_config_hash: HacS-nsDH7uyoKhQHNyV_MNRClmPVuhU_fWZgNuEyIs
 id: comments_recent
 label: 'Recent comments'
 module: views
@@ -51,10 +50,6 @@ display:
         type: fields
         options:
           default_field_elements: true
-          inline:
-            subject: subject
-            changed: changed
-          separator: ' '
           hide_empty: false
       relationships:
         node:
@@ -241,11 +236,11 @@ display:
           plugin_id: text_custom
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - user.permissions
-      max-age: -1
       tags: {  }
   block_1:
     display_plugin: block
@@ -259,9 +254,9 @@ display:
         items_per_page: true
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - user.permissions
-      max-age: -1
       tags: {  }

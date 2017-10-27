@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.video_resource
+  module:
+    - text
+id: node.video_resource.body
+field_name: body
+entity_type: node
+bundle: video_resource
+label: Description
+description: 'Optional description of the video.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

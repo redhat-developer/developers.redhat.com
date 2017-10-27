@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cheat_sheet_author
+    - node.type.cheat_sheet
+id: node.cheat_sheet.field_cheat_sheet_author
+field_name: field_cheat_sheet_author
+entity_type: node
+bundle: cheat_sheet
+label: 'Cheat Sheet Author'
+description: 'Name of the author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_solution_type
+field_name: field_solution_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: containers
+      label: containers
+    -
+      value: devops
+      label: devops
+    -
+      value: dotnet
+      label: dotnet
+    -
+      value: enterprise-java
+      label: enterprise-java
+    -
+      value: iot
+      label: iot
+    -
+      value: mobile
+      label: mobile
+    -
+      value: web-and-api-development
+      label: web-and-api-development
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

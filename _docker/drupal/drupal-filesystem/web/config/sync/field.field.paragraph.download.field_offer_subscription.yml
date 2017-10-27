@@ -1,10 +1,12 @@
-uuid: fc28b295-5eb8-481a-8064-f1b4d906e164
+uuid: 4782e401-92ef-4083-afc1-fec9f90460db
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_offer_subscription
     - paragraphs.paragraphs_type.download
+_core:
+  default_config_hash: rPyysfoBBnh0UmqsZegylULTGz9NR38vsKkmCAK_ijc
 id: paragraph.download.field_offer_subscription
 field_name: field_offer_subscription
 entity_type: paragraph

@@ -1,14 +1,18 @@
-uuid: ab7de3be-b5f3-45ef-98ec-44ff1ac4058f
+uuid: a3e68e71-1634-461e-871d-6ee59b51c061
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.paragraph.getting_started_section.field_body
     - field.field.paragraph.getting_started_section.field_minutes_to_complete
+    - field.field.paragraph.getting_started_section.field_support_progress
     - field.field.paragraph.getting_started_section.field_title
     - paragraphs.paragraphs_type.getting_started_section
   module:
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: HAJm5o7cRHTgTEQJ4VoID80LfSZPJW_rx6OcIkMFGjU
 id: paragraph.getting_started_section.default
 targetEntityType: paragraph
 bundle: getting_started_section

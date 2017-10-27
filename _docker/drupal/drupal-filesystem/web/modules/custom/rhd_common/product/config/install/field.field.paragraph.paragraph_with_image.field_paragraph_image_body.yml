@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_image_body
+    - paragraphs.paragraphs_type.paragraph_with_image
+  module:
+    - text
+id: paragraph.paragraph_with_image.field_paragraph_image_body
+field_name: field_paragraph_image_body
+entity_type: paragraph
+bundle: paragraph_with_image
+label: Body
+description: 'Main text for the paragraph.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

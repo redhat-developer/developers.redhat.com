@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: coding_resource
+label: 'Coding Resource'
+type: 'canonical_entities:node'
+pattern: '/[node:field_resource_type:value]s/[node:title]'
+selection_criteria:
+  e9f0ade9-3ac7-4d94-882b-cf2035188fcb:
+    id: node_type
+    bundles:
+      coding_resource: coding_resource
+    negate: false
+    context_mapping:
+      node: node
+    uuid: e9f0ade9-3ac7-4d94-882b-cf2035188fcb
+selection_logic: and
+weight: -5
+relationships: {  }

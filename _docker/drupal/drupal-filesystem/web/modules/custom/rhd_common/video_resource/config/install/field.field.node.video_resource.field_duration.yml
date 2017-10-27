@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_duration
+    - node.type.video_resource
+  module:
+    - interval
+id: node.video_resource.field_duration
+field_name: field_duration
+entity_type: node
+bundle: video_resource
+label: Duration
+description: 'Duration of the video (please set in order of seconds, minutes, hours)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: interval

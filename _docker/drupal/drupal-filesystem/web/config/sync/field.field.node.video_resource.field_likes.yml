@@ -1,10 +1,12 @@
-uuid: e8369fde-d735-4b77-a4a8-12bda0ca17d1
+uuid: c24cedf8-a783-45cf-b7aa-34702d271215
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_likes
     - node.type.video_resource
+_core:
+  default_config_hash: QhnERZv5csPyhWiDpxeLNMy1ZupH4vXPSaXfAPH-rtU
 id: node.video_resource.field_likes
 field_name: field_likes
 entity_type: node

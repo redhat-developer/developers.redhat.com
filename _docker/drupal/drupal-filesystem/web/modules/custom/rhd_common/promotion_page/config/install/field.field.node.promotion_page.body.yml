@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.promotion_page
+  module:
+    - text
+id: node.promotion_page.body
+field_name: body
+entity_type: node
+bundle: promotion_page
+label: Body
+description: 'The main content of the promotion page.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

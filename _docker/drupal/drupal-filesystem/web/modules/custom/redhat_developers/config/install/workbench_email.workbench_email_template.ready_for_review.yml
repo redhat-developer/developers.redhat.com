@@ -1,0 +1,33 @@
+uuid: 5d2e8d52-f437-4c2b-9e47-017924201c08
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.events
+    - node.type.product
+    - node.type.promotion_card
+    - node.type.promotion_page
+    - node.type.rhd_microsite
+    - node.type.rhd_solution_overview
+    - node.type.topic
+    - user.role.content_team
+id: ready_for_review
+label: 'Ready For Review'
+subject: '[node:title] ready for review'
+roles:
+  content_team: content_team
+bundles:
+  'node:article': 'node:article'
+  'node:events': 'node:events'
+  'node:product': 'node:product'
+  'node:promotion_card': 'node:promotion_card'
+  'node:promotion_page': 'node:promotion_page'
+  'node:rhd_microsite': 'node:rhd_microsite'
+  'node:rhd_solution_overview': 'node:rhd_solution_overview'
+  'node:topic': 'node:topic'
+fields: {  }
+author: false
+body:
+  value: 'Content on the developers.redhat.com website is now ready for review, it was added by [node:initiator]. You can review/edit at [node:edit-url].'
+  format: plain_text

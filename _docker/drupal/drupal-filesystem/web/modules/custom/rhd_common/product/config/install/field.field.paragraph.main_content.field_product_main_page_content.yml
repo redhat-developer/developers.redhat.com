@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_main_page_content
+    - paragraphs.paragraphs_type.main_content
+  module:
+    - text
+id: paragraph.main_content.field_product_main_page_content
+field_name: field_product_main_page_content
+entity_type: paragraph
+bundle: main_content
+label: 'Main Page Content'
+description: 'The main body of the subpage.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cheat_sheet_excerpt
+    - node.type.cheat_sheet
+  module:
+    - text
+id: node.cheat_sheet.field_cheat_sheet_excerpt
+field_name: field_cheat_sheet_excerpt
+entity_type: node
+bundle: cheat_sheet
+label: 'Cheat Sheet Excerpt'
+description: 'Excerpt of the cheat sheet that will be displayed with the option to download the full cheat sheet.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

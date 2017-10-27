@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_site
+    - node.type.events
+  module:
+    - options
+id: node.events.field_site
+field_name: field_site
+entity_type: node
+bundle: events
+label: Site
+description: 'Denotes whether or not the event card should be displayed on both RHD and www.jboss.org.'
+required: false
+translatable: false
+default_value:
+  -
+    value: RHD_AND_JBD
+default_value_callback: ''
+settings: {  }
+field_type: list_string

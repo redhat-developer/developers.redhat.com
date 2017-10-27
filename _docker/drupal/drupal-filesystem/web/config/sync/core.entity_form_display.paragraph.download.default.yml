@@ -1,4 +1,4 @@
-uuid: ea57ea02-d5df-4594-9519-d88d4d4174d3
+uuid: 5990d3ae-59c6-4a51-a7bb-e63a68260781
 langcode: en
 status: true
 dependencies:
@@ -15,6 +15,9 @@ dependencies:
   module:
     - link
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: 8kDVZ69EfUirNdqE8bWKgUaD4FPJInhl-cl9kjXiulc
 id: paragraph.download.default
 targetEntityType: paragraph
 bundle: download

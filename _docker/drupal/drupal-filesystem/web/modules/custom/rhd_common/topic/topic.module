@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains topic.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function topic_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the topic module.
+    case 'help.page.topic':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP topic Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

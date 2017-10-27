@@ -1,0 +1,22 @@
+uuid: 640da71f-ddc5-4733-8b3d-bf1cc2a8d1fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact_storage
+third_party_settings:
+  contact_storage:
+    submit_text: Send
+    show_preview: false
+    disabled_form_message: 'This contact form has been disabled.'
+    maximum_submissions_user: 0
+_core:
+  default_config_hash: Z46ux9EOlHDSAvrhCO0L1-QcdeSiAQnQDA1eeK9yqwA
+id: sitewide
+label: 'Contact Form'
+recipients:
+  - ''
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''
