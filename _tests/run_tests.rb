@@ -77,9 +77,7 @@ class RunTest
 
     if test_configuration[:e2e]
       unless test_configuration[:browserstack]
-        # scale docker nodes
         @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:docker_node]}")
-        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale #{test_configuration[:docker_node]}=#{test_configuration[:browser_count]}")
       end
     end
 
