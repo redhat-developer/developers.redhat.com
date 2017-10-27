@@ -53,7 +53,7 @@ class RHDPThankyou extends HTMLElement {
                         <div class="large-24 medium-16 small-24 columns thankyou">
                                 <h2>Thank you for downloading the:</h2>
                                 <h2>${name}</h2>
-    
+                            <iframe src="${directLink}"></iframe>
                         </div>
                         <div class="large-24 medium-16 small-24 columns">
                             <div class="thankyou-button">
