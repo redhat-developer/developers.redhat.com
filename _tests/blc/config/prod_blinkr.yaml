@@ -40,6 +40,7 @@ skips:
   - https://developers.redhat.com/quickstarts/fuse/cxf
   - https://developers.redhat.com/quickstarts/wfk
   - https://developers.redhat.com/quickstarts/unifiedpush
+  - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
 
 ignores:
   - code: 202
