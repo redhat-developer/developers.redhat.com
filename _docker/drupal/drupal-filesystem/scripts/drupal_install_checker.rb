@@ -134,7 +134,7 @@ class DrupalInstallChecker
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim))
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
   end
 end

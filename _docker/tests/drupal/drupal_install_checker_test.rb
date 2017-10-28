@@ -218,7 +218,7 @@ class DrupalInstallCheckerTest < Minitest::Test
 
   def test_config_import
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
+                                       %w(--root=/var/www/drupal/web -y cim)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
                                        %w(--root=/var/www/drupal/web cr)]
 
