@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ba64051cdf4da5db39af7e656e2bf28",
+    "content-hash": "7793ef6f49755fd9ed6488e83813b72c",
     "packages": [
         {
             "name": "acquia/lightning",
-            "version": "2.2.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "52c4b8f6bbe1c95a02433cbcfef0d21a46de5faf"
+                "reference": "3888e6f6795d8deae5e7121a3635ceac00be69f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/52c4b8f6bbe1c95a02433cbcfef0d21a46de5faf",
-                "reference": "52c4b8f6bbe1c95a02433cbcfef0d21a46de5faf",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/3888e6f6795d8deae5e7121a3635ceac00be69f2",
+                "reference": "3888e6f6795d8deae5e7121a3635ceac00be69f2",
                 "shasum": ""
             },
             "require": {
@@ -32,20 +32,20 @@
                 "drupal/crop": "1.2.0",
                 "drupal/ctools": "^3.0",
                 "drupal/diff": "^1.0",
-                "drupal/dropzonejs": "1.0.0-alpha8",
+                "drupal/dropzonejs": "1.0.0-alpha7",
                 "drupal/embed": "^1.0",
                 "drupal/entity_block": "1.0.0-alpha2",
-                "drupal/entity_browser": "2.0.0-alpha1",
+                "drupal/entity_browser": "1.3.0",
                 "drupal/entity_embed": "1.0.0-beta2",
                 "drupal/features": "^3.0",
                 "drupal/image_widget_crop": "^2.0",
                 "drupal/inline_entity_form": "^1.0",
                 "drupal/jsonapi": "^1.1",
-                "drupal/media_entity": "1.6.0",
+                "drupal/media_entity": "^1.0",
                 "drupal/media_entity_document": "^1.0",
                 "drupal/media_entity_image": "^1.0",
-                "drupal/media_entity_instagram": "2.0.0-alpha1",
-                "drupal/media_entity_twitter": "2.0.0-alpha2",
+                "drupal/media_entity_instagram": "^1.0",
+                "drupal/media_entity_twitter": "^1.3",
                 "drupal/metatag": "^1.0",
                 "drupal/openapi": "1.0-alpha1",
                 "drupal/panelizer": "4.0.0",
@@ -55,7 +55,7 @@
                 "drupal/search_api": "^1.0",
                 "drupal/simple_oauth": "^3.0",
                 "drupal/token": "^1.0",
-                "drupal/video_embed_field": "2.0.0-alpha1",
+                "drupal/video_embed_field": "^1.0",
                 "drupal/views_infinite_scroll": "^1.1",
                 "drupal/workbench_moderation": "1.2.0",
                 "oomphinc/composer-installers-extender": "^1.1"
@@ -70,7 +70,6 @@
                 "drupal/console": "1.0.1",
                 "drupal/devel": "^1.0",
                 "drupal/drupal-extension": "~3.3.0",
-                "drupal/media_entity_generic": "1.x-dev",
                 "drush/drush": "^9.0",
                 "grasmash/yaml-cli": "^1.0",
                 "jakoch/phantomjs-installer": "1.9.8",
@@ -116,9 +115,7 @@
                         "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                         "2880445 - Config sync should not throw a warning when not being writable": "https://www.drupal.org/files/issues/2880445-remove-config-write-warning-2.patch",
                         "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
-                        "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
-                        "2883813 - Move File/Image media type into Standard once Media is stable": "https://www.drupal.org/files/issues/2883813-27.patch",
-                        "2877383 - Add action support to Media module": "https://www.drupal.org/files/issues/2877383-23.patch"
+                        "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch"
                     },
                     "drupal/entity_embed": {
                         "2832504 - Send the CKEditor instance ID to the embed.preview route": "https://www.drupal.org/files/issues/2832504-2.patch"
@@ -142,15 +139,6 @@
                     },
                     "drupal/crop": {
                         "2904514 - Crop API causes an error when adding a media bundle": "https://www.drupal.org/files/issues/2904514-2.patch"
-                    },
-                    "drupal/media_entity": {
-                        "Reset D.O packaging information so subsequent patches apply": "https://www.drupal.org/files/issues/media_entity-reset-packaging.patch",
-                        "2880334 - Add update path of media_entity config changes from 1.x to core media module": "https://www.drupal.org/files/issues/media-entity-1.6--c564fc4.diff",
-                        "2918172 - Media Entity upgrade -> core fails on absent column revision_uid": "https://www.drupal.org/files/issues/2918172-5.patch",
-                        "2918166 - Media Entity should uninstall itself after migration to core Media is complete": "https://www.drupal.org/files/issues/2918166-7.patch"
-                    },
-                    "drupal/media_entity_instagram": {
-                        "2917454 - Field formatter test is broken": "https://www.drupal.org/files/issues/2917454-2.patch"
                     }
                 }
             },
@@ -165,7 +153,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-10-25T19:47:34+00:00"
+            "time": "2017-10-04T20:29:31+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1581,9 +1569,7 @@
                     "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                     "2880445 - Config sync should not throw a warning when not being writable": "https://www.drupal.org/files/issues/2880445-remove-config-write-warning-2.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
-                    "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
-                    "2883813 - Move File/Image media type into Standard once Media is stable": "https://www.drupal.org/files/issues/2883813-27.patch",
-                    "2877383 - Add action support to Media module": "https://www.drupal.org/files/issues/2877383-23.patch"
+                    "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch"
                 }
             },
             "autoload": {
@@ -1636,7 +1622,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.2",
-                    "datestamp": "1491032884",
+                    "datestamp": "1509015245",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1917,17 +1903,17 @@
         },
         {
             "name": "drupal/dropzonejs",
-            "version": "1.0.0-alpha8",
+            "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/dropzonejs",
-                "reference": "8.x-1.0-alpha8"
+                "reference": "8.x-1.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha8.zip",
-                "reference": "8.x-1.0-alpha8",
-                "shasum": "646c389e339f8d6e52d2c1eb1e8fd65e4bb45d9a"
+                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha7.zip",
+                "reference": "8.x-1.0-alpha7",
+                "shasum": "62fc6d46cee1d5fa9885bab3e65b3638172311f6"
             },
             "require": {
                 "drupal/core": "*"
@@ -1944,7 +1930,7 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha8",
+                    "version": "8.x-1.0-alpha7",
                     "datestamp": "1508835844",
                     "security-coverage": {
                         "status": "not-covered",
@@ -2242,17 +2228,17 @@
         },
         {
             "name": "drupal/entity_browser",
-            "version": "2.0.0-alpha1",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity_browser",
-                "reference": "8.x-2.0-alpha1"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.0-alpha1.zip",
-                "reference": "8.x-2.0-alpha1",
-                "shasum": "f9053d4ab947a4870dcf90946e730b2a3a1e22d4"
+                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "4bd931f5245dc1f2c6f22db7146212c0265ba612"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2260,21 +2246,22 @@
             "require-dev": {
                 "drupal/ctools": "*",
                 "drupal/inline_entity_form": "*",
+                "drupal/media_entity": "*",
                 "drupal/paragraphs": "*",
                 "drupal/token": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev",
+                    "dev-1.x": "1.x-dev",
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1",
-                    "datestamp": "1507712945",
+                    "version": "8.x-1.3",
+                    "datestamp": "1505838844",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 },
                 "patches_applied": {
@@ -3058,12 +3045,6 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "Reset D.O packaging information so subsequent patches apply": "https://www.drupal.org/files/issues/media_entity-reset-packaging.patch",
-                    "2880334 - Add update path of media_entity config changes from 1.x to core media module": "https://www.drupal.org/files/issues/media-entity-1.6--c564fc4.diff",
-                    "2918172 - Media Entity upgrade -> core fails on absent column revision_uid": "https://www.drupal.org/files/issues/2918172-5.patch",
-                    "2918166 - Media Entity should uninstall itself after migration to core Media is complete": "https://www.drupal.org/files/issues/2918166-7.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3256,36 +3237,34 @@
         },
         {
             "name": "drupal/media_entity_instagram",
-            "version": "2.0.0-alpha1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_instagram",
-                "reference": "8.x-2.0-alpha1"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-8.x-2.0-alpha1.zip",
-                "reference": "8.x-2.0-alpha1",
-                "shasum": "602d84d2e385ce2f3b0562f7cf50d1e084f92658"
+                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "2b69b90417f3c458b4db3ba890813c313d381f0e"
             },
             "require": {
-                "drupal/core": "^8.4.0"
+                "drupal/core": "~8.0",
+                "drupal/media_entity": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1",
-                    "datestamp": "1506671645",
+                    "version": "8.x-1.4",
+                    "datestamp": "1495556283",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "2917454 - Field formatter test is broken": "https://www.drupal.org/files/issues/2917454-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3322,33 +3301,34 @@
         },
         {
             "name": "drupal/media_entity_twitter",
-            "version": "2.0.0-alpha2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_twitter",
-                "reference": "8.x-2.0-alpha2"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-2.0-alpha2.zip",
-                "reference": "8.x-2.0-alpha2",
-                "shasum": "21925e1e1b02bbbcd6d8e9730bc587669edc0e5c"
+                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "280406ba63e2c00befa9bb1434ad2d4d3113b239"
             },
             "require": {
-                "drupal/core": "^8.4",
+                "drupal/core": "~8.0",
+                "drupal/media_entity": "*",
                 "j7mbo/twitter-api-php": "~1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha2",
-                    "datestamp": "1507907344",
+                    "version": "8.x-1.3",
+                    "datestamp": "1478549339",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -4484,17 +4464,17 @@
         },
         {
             "name": "drupal/video_embed_field",
-            "version": "2.0.0-alpha1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/video_embed_field",
-                "reference": "8.x-2.0-alpha1"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.0-alpha1.zip",
-                "reference": "8.x-2.0-alpha1",
-                "shasum": "4ce3d9f0b01a9c9351d7eba453384ca8da6935f6"
+                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "f54d470ef7f863604e51e6ae98cd40ef25de5f79"
             },
             "require": {
                 "drupal/core": "*"
@@ -4507,14 +4487,14 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
                     "version": "8.x-1.x",
-                    "datestamp": "1506684843",
+                    "datestamp": "1493246342",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     },
                     "package": "Field types"
                 },
