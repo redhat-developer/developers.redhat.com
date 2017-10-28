@@ -2,6 +2,8 @@
   "name": "developers.redhat.com",
   "version": "1.0.0",
   "description": "developers.redhat.com build",
+
+
   "main": "Gulpfile.js",
   "scripts": {
     "test": "karma start _tests/unit/config/karma.conf.js",
@@ -11,28 +13,28 @@
   "author": "Red Hat Inc.",
   "license": "",
   "devDependencies": {
-    "concurrently": "3.4.0",
-    "del": "2.2.0",
-    "gulp": "3.9.0",
-    "gulp-concat": "2.6.0",
-    "gulp-debug": "2.1.2",
+    "concurrently": "3.5.0",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "gulp-concat": "2.6.1",
+    "gulp-debug": "3.1.0",
     "gulp-inject-string": "1.1.0",
-    "gulp-load-plugins": "0.8.0",
-    "gulp-notify": "2.2.0",
-    "gulp-plumber": "1.0.1",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-notify": "3.0.0",
+    "gulp-plumber": "1.1.0",
     "gulp-rename": "1.2.2",
-    "gulp-sass": "2.1.1",
-    "gulp-sourcemaps": "1.6.0",
-    "jasmine-core": "2.6.2",
-    "karma": "1.7.0",
-    "karma-chrome-launcher": "2.1.1",
+    "gulp-sass": "3.1.0",
+    "gulp-sourcemaps": "2.6.1",
+    "jasmine-core": "2.8.0",
+    "karma": "1.7.1",
+    "karma-chrome-launcher": "2.2.0",
     "karma-htmlfile-reporter": "^0.3.5",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-ajax": "0.1.13",
     "karma-jasmine-html-reporter": "0.2.2",
     "karma-spec-reporter": "0.0.31",
-    "node-sass": "3.4.2",
+    "node-sass": "4.5.3",
     "node-sass-utils": "1.1.2",
-    "typescript": "2.3.4"
+    "typescript": "2.5.3"
   }
 }
