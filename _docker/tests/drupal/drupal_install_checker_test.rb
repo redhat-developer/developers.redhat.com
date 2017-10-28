@@ -210,7 +210,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
                                        %w(-y --root=/var/www/drupal/web --entity-updates updb)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web cr all)]
+                                       %w(--root=/var/www/drupal/web cr)]
 
     @install_checker.update_db
     @process_exec.verify
@@ -220,7 +220,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
                                        %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web cr all)]
+                                       %w(--root=/var/www/drupal/web cr)]
 
     @install_checker.import_config
     @process_exec.verify
