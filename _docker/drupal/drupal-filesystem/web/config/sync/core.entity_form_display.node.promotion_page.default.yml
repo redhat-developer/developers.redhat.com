@@ -49,6 +49,13 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_exclude_from_search:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_mail_to_link:
     weight: 10
     settings:
@@ -96,7 +103,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 121
+    weight: 11
     third_party_settings: {  }
     region: content
   sticky:
@@ -123,5 +130,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden:
-  field_exclude_from_search: true
+hidden: {  }
