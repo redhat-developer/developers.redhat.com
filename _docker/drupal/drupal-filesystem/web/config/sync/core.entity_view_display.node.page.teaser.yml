@@ -1,16 +1,19 @@
-uuid: d9066be9-231c-4051-99d8-7db2d928c8a7
+uuid: 641f1493-fe75-4b8a-9315-e08c75499508
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
+    - field.field.node.page.field_meta_tags
+    - field.field.node.page.panelizer
+    - field.field.node.page.scheduled_update
     - node.type.page
   module:
     - text
     - user
 _core:
-  default_config_hash: rN2zrScZAJ9xB16hm_Deb9QJKy6JXnn0PdI2n5Z3KRs
+  default_config_hash: 5LgpWwg6HIBQ1CW3MZaz81YFkqmyQEc2RakDWut74EY
 id: node.page.teaser
 targetEntityType: node
 bundle: page
@@ -27,4 +30,10 @@ content:
   links:
     weight: 101
     region: content
-hidden: {  }
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_meta_tags: true
+  panelizer: true
+  scheduled_update: true

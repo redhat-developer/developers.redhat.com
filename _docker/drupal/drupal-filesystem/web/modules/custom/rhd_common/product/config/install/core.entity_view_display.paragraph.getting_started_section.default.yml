@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.getting_started_section.field_body
+    - field.field.paragraph.getting_started_section.field_minutes_to_complete
+    - field.field.paragraph.getting_started_section.field_title
+    - paragraphs.paragraphs_type.getting_started_section
+  module:
+    - text
+id: paragraph.getting_started_section.default
+targetEntityType: paragraph
+bundle: getting_started_section
+mode: default
+content:
+  field_body:
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_minutes_to_complete:
+    weight: 2
+    label: visually_hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_title:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  created: true
+  field_support_progress: true
+  uid: true

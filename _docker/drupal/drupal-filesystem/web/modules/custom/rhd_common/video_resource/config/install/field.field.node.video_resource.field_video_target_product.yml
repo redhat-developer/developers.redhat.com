@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_target_product
+    - node.type.product
+    - node.type.video_resource
+id: node.video_resource.field_video_target_product
+field_name: field_video_target_product
+entity_type: node
+bundle: video_resource
+label: 'Target Product'
+description: 'The related target product of the video.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

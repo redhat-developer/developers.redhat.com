@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_formats
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - options
+id: paragraph.document_details.field_formats
+field_name: field_formats
+entity_type: paragraph
+bundle: document_details
+label: Formats
+description: 'Available formats of the document'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

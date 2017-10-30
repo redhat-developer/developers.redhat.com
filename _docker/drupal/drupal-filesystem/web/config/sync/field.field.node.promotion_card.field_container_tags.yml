@@ -1,4 +1,4 @@
-uuid: 1659967b-cb52-4f1b-bb02-2b64e7a680cc
+uuid: 4af2905e-ab7b-4a62-9def-fc1961d3f4f6
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,13 @@ dependencies:
     - node.type.promotion_card
     - taxonomy.vocabulary.tags
 _core:
-  default_config_hash: CtGHKb9Zz3Dz9FF3GzH5f3oaf-9trc5x30Y_LaIquuc
+  default_config_hash: ZqY9HR6Dp5BQqsVDC5xdtH0etywoW7bkU7-WMnMHKsw
 id: node.promotion_card.field_container_tags
 field_name: field_container_tags
 entity_type: node
 bundle: promotion_card
 label: tags
-description: 'Taxonomy tags for this card'
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -26,5 +26,4 @@ settings:
     sort:
       field: _none
     auto_create: true
-    auto_create_bundle: ''
 field_type: entity_reference

@@ -1,10 +1,12 @@
-uuid: 2bab1eaa-f995-4c20-83ff-5969744f5af1
+uuid: e78dd645-85d2-4989-afa6-987805f76398
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_speakers
     - node.type.video_resource
+_core:
+  default_config_hash: '-sJ89kZcxFc_AjjkEdcZVqy4DlzkZZCU2CIV-InDk5s'
 id: node.video_resource.field_speakers
 field_name: field_speakers
 entity_type: node

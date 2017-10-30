@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_format
+    - node.type.events
+  module:
+    - options
+id: node.events.field_event_format
+field_name: field_event_format
+entity_type: node
+bundle: events
+label: 'Event Format'
+description: 'Format of event (webinar, workshop, conference, usergroup)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

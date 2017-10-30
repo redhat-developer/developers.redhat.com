@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contributors
+    - node.type.coding_resource
+id: node.coding_resource.field_contributors
+field_name: field_contributors
+entity_type: node
+bundle: coding_resource
+label: Contributors
+description: 'People who contributed to this resource'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

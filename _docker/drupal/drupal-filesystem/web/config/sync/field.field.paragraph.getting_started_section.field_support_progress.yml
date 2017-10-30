@@ -1,10 +1,12 @@
-uuid: 31467aa8-497f-47ea-b8f7-5a9aa8988bea
+uuid: fb592c86-e074-48e7-8313-fcd918674372
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_support_progress
     - paragraphs.paragraphs_type.getting_started_section
+_core:
+  default_config_hash: Xv0kp3MJ4jp75JdEdJQJYrwdyvaw9okj85v13At7HfE
 id: paragraph.getting_started_section.field_support_progress
 field_name: field_support_progress
 entity_type: paragraph

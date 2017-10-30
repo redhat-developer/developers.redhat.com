@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.main_content.field_product_main_page_content
+    - paragraphs.paragraphs_type.main_content
+  module:
+    - text
+id: paragraph.main_content.default
+targetEntityType: paragraph
+bundle: main_content
+mode: default
+content:
+  field_product_main_page_content:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  uid: true

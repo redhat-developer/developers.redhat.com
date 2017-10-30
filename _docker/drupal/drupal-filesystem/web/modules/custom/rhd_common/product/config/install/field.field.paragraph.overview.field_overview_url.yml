@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_url
+    - paragraphs.paragraphs_type.overview
+id: paragraph.overview.field_overview_url
+field_name: field_overview_url
+entity_type: paragraph
+bundle: overview
+label: Url
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: Overview
+default_value_callback: ''
+settings: {  }
+field_type: string

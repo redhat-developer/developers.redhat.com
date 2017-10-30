@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_solution_overview.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_solution_overview_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_solution_overview module.
+    case 'help.page.rhd_solution_overview':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP rhd_solution_overview Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

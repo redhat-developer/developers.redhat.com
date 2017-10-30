@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains console_export_test.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function article_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the console_export_test module.
+    case 'help.page.console_export_test':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Red Hat Developers Article content type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

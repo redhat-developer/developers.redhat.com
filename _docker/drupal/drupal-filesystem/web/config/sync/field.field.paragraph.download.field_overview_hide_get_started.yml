@@ -1,10 +1,12 @@
-uuid: c4b8930f-82b2-4c50-927a-c4e542ebb94a
+uuid: d80c403f-8df9-4f87-a449-e66e955b8f28
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_overview_hide_get_started
     - paragraphs.paragraphs_type.download
+_core:
+  default_config_hash: XSEq_gzB-BMrxB6T4rFfYL4PnQ3hZfPRwNMyi9Ivcng
 id: paragraph.download.field_overview_hide_get_started
 field_name: field_overview_hide_get_started
 entity_type: paragraph

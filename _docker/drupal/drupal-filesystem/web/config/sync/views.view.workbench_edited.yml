@@ -1,4 +1,4 @@
-uuid: b745dd07-0364-417c-9d52-a6b1ae36dbe5
+uuid: 70d6bcdd-2b3e-4793-b054-921772c9a651
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: SXrttH-7wyQL_xO-gTx7SYPQ6kC8VOLEYxTQjC1z9Q0
+  default_config_hash: S6Q66WBoJh-XbhV3sOnfwifYJByE7tkQ1tMPcDeY3ZE
 id: workbench_edited
 label: 'Workbench: Edits by user'
 module: views
@@ -456,71 +456,6 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-        moderation_state:
-          id: moderation_state
-          table: node_field_data
-          field: moderation_state
-          relationship: vid
-          group_type: group
-          admin_label: ''
-          label: 'Moderation state'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: moderation_state
-          plugin_id: field
       filters:
         uid_current:
           id: uid_current
@@ -798,8 +733,8 @@ display:
         groups:
           1: AND
       use_ajax: false
-      link_url: ''
-      link_display: page_1
+      link_url: /admin
+      link_display: '0'
     cache_metadata:
       max-age: 0
       contexts:
@@ -814,15 +749,31 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: Block
+    display_title: 'Overview block'
     position: 2
     display_options:
       display_extenders: {  }
       pager:
-        type: some
+        type: full
         options:
           items_per_page: 5
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
       defaults:
         pager: false
         header: false
@@ -832,6 +783,9 @@ display:
         use_more: false
         use_more_always: false
         use_more_text: false
+        link_display: true
+        link_url: true
+        use_ajax: false
       header:
         area:
           id: area
@@ -928,9 +882,12 @@ display:
         groups:
           1: AND
       footer: {  }
-      use_more: true
+      use_more: false
       use_more_always: false
       use_more_text: 'view all'
+      link_display: /admin/workbench/content/edited
+      display_description: 'The five most recent edits by this user'
+      use_ajax: true
     cache_metadata:
       max-age: 0
       contexts:
@@ -941,23 +898,14 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
-    position: 1
+  embed_1:
+    display_plugin: embed
+    id: embed_1
+    display_title: 'Page Embed'
+    position: 3
     display_options:
       display_extenders: {  }
-      path: admin/workbench/content/edited
-      menu:
-        type: none
-        title: 'My edits'
-        description: ''
-        expanded: false
-        parent: workbench.content
-        weight: 1
-        context: '0'
-        menu_name: admin
+      display_description: 'The embedded view for use on a landing page'
     cache_metadata:
       max-age: 0
       contexts:

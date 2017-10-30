@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.main_content.field_product_main_page_content
+    - paragraphs.paragraphs_type.main_content
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_product_pages:
+      children:
+        - field_product_page_title
+        - field_product_page_url
+      parent_name: ''
+      weight: 6
+      label: 'Product Pages'
+      format_type: fieldset
+      format_settings:
+        label: 'Product Pages'
+        required_fields: true
+        id: ''
+        classes: ''
+id: paragraph.main_content.default
+targetEntityType: paragraph
+bundle: main_content
+mode: default
+content:
+  field_product_main_page_content:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

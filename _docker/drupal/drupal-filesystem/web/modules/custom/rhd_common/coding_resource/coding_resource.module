@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains coding_resource.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function coding_resource_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the coding_resource module.
+    case 'help.page.coding_resource':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP Coding Resource Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

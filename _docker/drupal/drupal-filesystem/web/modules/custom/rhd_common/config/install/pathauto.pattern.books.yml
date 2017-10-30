@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: books
+label: books
+type: 'canonical_entities:node'
+pattern: '/books/[node:title]'
+selection_criteria:
+  01f72e1e-5453-4c60-abeb-f939db996e4c:
+    id: node_type
+    bundles:
+      books: books
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 01f72e1e-5453-4c60-abeb-f939db996e4c
+selection_logic: and
+weight: -5
+relationships: {  }

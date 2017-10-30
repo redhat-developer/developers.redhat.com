@@ -1,15 +1,11 @@
-uuid: 722e4f18-037d-4a17-91e1-71297970115e
+uuid: 1a5c7eb9-b241-46d0-91b2-96da8d32e611
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.user.user_picture
-    - image.style.thumbnail
   module:
-    - image
     - user
 _core:
-  default_config_hash: DMqddHv9GTTfLc_VN4W5Ga0qwUcuD9qowUrp9J8u5eU
+  default_config_hash: x0E2jGoxP9eHkfDCa_squULlpvddE5h3gln_1oKeViY
 id: workbench_current_user
 label: 'Workbench: Current user'
 module: views
@@ -125,70 +121,6 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: uid
-          plugin_id: field
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: '<a href="/user"><img src="/modules/workbench/images/profile_default.png" /></a>'
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image
-          settings:
-            image_style: thumbnail
-            image_link: content
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           plugin_id: field
         name:
           id: name
@@ -504,15 +436,15 @@ display:
         - 'languages:language_interface'
         - user
         - user.permissions
-      tags:
-        - 'config:field.storage.user.user_picture'
+      tags: {  }
   block_1:
     display_plugin: block
     id: block_1
-    display_title: Block
+    display_title: 'Overview block'
     position: 1
     display_options:
       display_extenders: {  }
+      display_description: 'Displays information about the current user.'
     cache_metadata:
       max-age: -1
       contexts:
@@ -520,5 +452,4 @@ display:
         - 'languages:language_interface'
         - user
         - user.permissions
-      tags:
-        - 'config:field.storage.user.user_picture'
+      tags: {  }

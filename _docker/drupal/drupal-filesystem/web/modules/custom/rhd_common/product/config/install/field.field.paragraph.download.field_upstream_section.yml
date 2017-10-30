@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_upstream_section
+    - paragraphs.paragraphs_type.download
+  module:
+    - text
+id: paragraph.download.field_upstream_section
+field_name: field_upstream_section
+entity_type: paragraph
+bundle: download
+label: 'Upstream Section'
+description: 'Information about upstream projects and links'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

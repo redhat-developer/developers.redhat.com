@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdf_link
+    - node.type.books
+  module:
+    - link
+id: node.books.field_pdf_link
+field_name: field_pdf_link
+entity_type: node
+bundle: books
+label: 'PDF Link'
+description: 'Link the PDF version of the book'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

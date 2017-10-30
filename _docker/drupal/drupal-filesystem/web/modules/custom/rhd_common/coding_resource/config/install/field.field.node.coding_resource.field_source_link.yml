@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_link
+    - node.type.coding_resource
+  module:
+    - link
+id: node.coding_resource.field_source_link
+field_name: field_source_link
+entity_type: node
+bundle: coding_resource
+label: 'Source Link'
+description: 'URL for the source of the resource (GitHub repository for example)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

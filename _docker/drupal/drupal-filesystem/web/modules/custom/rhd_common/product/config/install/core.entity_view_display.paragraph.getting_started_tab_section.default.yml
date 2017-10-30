@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.getting_started_tab_section.field_blue_sections
+    - field.field.paragraph.getting_started_tab_section.field_body
+    - field.field.paragraph.getting_started_tab_section.field_title
+    - paragraphs.paragraphs_type.getting_started_tab_section
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.getting_started_tab_section.default
+targetEntityType: paragraph
+bundle: getting_started_tab_section
+mode: default
+content:
+  field_blue_sections:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_body:
+    weight: 1
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  created: true
+  uid: true

@@ -1,5 +1,5 @@
 <?php
-use Drupal\Console\Utils\NestedArray;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;

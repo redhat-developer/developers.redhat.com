@@ -1,10 +1,12 @@
-uuid: 5a8c1a26-a55d-48ae-9751-6017dc893603
+uuid: 21bbd97e-b622-4ac6-83d8-402979a29e5d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_title
     - paragraphs.paragraphs_type.getting_started_tab_section
+_core:
+  default_config_hash: m2em0h0jLvut48iGGuMfzGTQhtF6D8RQmkHfmN6nIlw
 id: paragraph.getting_started_tab_section.field_title
 field_name: field_title
 entity_type: paragraph

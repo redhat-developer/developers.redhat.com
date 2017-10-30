@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_likes
+    - node.type.video_resource
+id: node.video_resource.field_likes
+field_name: field_likes
+entity_type: node
+bundle: video_resource
+label: Likes
+description: 'The number of likes or stars of the video. Should come from the provider.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

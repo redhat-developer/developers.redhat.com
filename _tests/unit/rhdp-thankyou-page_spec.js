@@ -20,7 +20,7 @@ describe('Media thank you page', function () {
             url = 'http://www.test-download.com/?p=thing&tcDownloadURL=http://www.testing.com';
             mediaName = 'Media: Test Download';
             directLink = 'http://www.test-download.com';
-        });
+            });
 
         it('should update url, media-name and direct-link', function () {
             wc.url = url;

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_display_projects
+    - paragraphs.paragraphs_type.community
+id: paragraph.community.field_display_projects
+field_name: field_display_projects
+entity_type: paragraph
+bundle: community
+label: 'Display Projects'
+description: 'Check to determine if upstream projects should be found and displayed'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

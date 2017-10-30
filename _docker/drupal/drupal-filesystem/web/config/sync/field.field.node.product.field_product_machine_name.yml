@@ -1,10 +1,12 @@
-uuid: f1ad4eec-91bc-47ea-9829-e3995d3b2ca9
+uuid: fca07d3d-509f-4a15-9ec7-8d4326e0fc5f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_product_machine_name
     - node.type.product
+_core:
+  default_config_hash: 3a8j-1RguJSV2eX8kyf7UgAL5mAPhRNSIIgqblq-tr4
 id: node.product.field_product_machine_name
 field_name: field_product_machine_name
 entity_type: node

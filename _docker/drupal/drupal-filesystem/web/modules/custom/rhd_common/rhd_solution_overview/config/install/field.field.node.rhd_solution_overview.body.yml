@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.rhd_solution_overview
+  module:
+    - text
+id: node.rhd_solution_overview.body
+field_name: body
+entity_type: node
+bundle: rhd_solution_overview
+label: Body
+description: 'Main content of the technology page'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

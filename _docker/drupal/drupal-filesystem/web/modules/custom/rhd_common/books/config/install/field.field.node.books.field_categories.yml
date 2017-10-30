@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_categories
+    - node.type.books
+id: node.books.field_categories
+field_name: field_categories
+entity_type: node
+bundle: books
+label: Categories
+description: 'A comma separated list of categories related to the book topic'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

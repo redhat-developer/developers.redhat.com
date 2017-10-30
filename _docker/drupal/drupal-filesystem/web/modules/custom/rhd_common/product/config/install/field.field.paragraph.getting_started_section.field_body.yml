@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.getting_started_section
+  module:
+    - text
+id: paragraph.getting_started_section.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: getting_started_section
+label: Body
+description: 'Body text of the step section'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

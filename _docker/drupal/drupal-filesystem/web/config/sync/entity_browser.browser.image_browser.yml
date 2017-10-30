@@ -1,10 +1,14 @@
-uuid: 1fa7add7-f7ef-4c5b-bd2b-cc0a04b4dffb
+uuid: 5c2f1a87-35b4-4f48-b1ee-b5cf6a3f10f9
 langcode: en
 status: true
 dependencies:
+  config:
+    - views.view.media
   module:
     - lightning_media
     - views
+_core:
+  default_config_hash: 7TN81G7zJTqyagUrJkyt6C0NIYw4yeKlrnOoX_OfAuE
 name: image_browser
 label: 'Image Browser'
 display: modal
@@ -21,8 +25,8 @@ widgets:
   44d52e51-9627-43b5-a637-3b0462041d1c:
     settings:
       submit_text: Select
-      return_file: true
       form_mode: media_browser
+      return_file: true
     uuid: 44d52e51-9627-43b5-a637-3b0462041d1c
     weight: -9
     label: Upload
@@ -30,7 +34,7 @@ widgets:
   58383135-0f34-4a4a-85fc-5cf9b5de2fdd:
     settings:
       view: media
-      view_display: image_browser
+      view_display: entity_browser_2
       submit_text: Select
       auto_select: false
     uuid: 58383135-0f34-4a4a-85fc-5cf9b5de2fdd

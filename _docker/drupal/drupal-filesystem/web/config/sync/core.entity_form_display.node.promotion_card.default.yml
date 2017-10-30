@@ -1,4 +1,4 @@
-uuid: 0718a7e0-6be9-49ba-af00-bf0646a8d00c
+uuid: 81e9596c-39c5-411a-98f7-8e8285fc434d
 langcode: en
 status: true
 dependencies:
@@ -11,8 +11,9 @@ dependencies:
     - link
     - path
     - text
+    - workbench_moderation
 _core:
-  default_config_hash: URrOpXkhrwO4lfLe__yKx7olpjpYDUyaFtyGIts-KQM
+  default_config_hash: WlUkit8ZmwD59VFmt2jGDl54Ty1abjf-K61pnhGos8w
 id: node.promotion_card.default
 targetEntityType: node
 bundle: promotion_card
@@ -60,6 +61,13 @@ content:
     settings:
       display_label: true
     weight: 15
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:

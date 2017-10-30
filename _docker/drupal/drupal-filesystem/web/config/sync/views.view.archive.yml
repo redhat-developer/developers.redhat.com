@@ -1,4 +1,4 @@
-uuid: 8e261460-f2bf-4c17-9d9c-a52c0e4b3ae9
+uuid: 6ef59c02-7e2b-4e73-92f5-faac07a9f29c
 langcode: en
 status: false
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: Ea3cxQo9FjYVScZDVackg-6ID_GgTkdKORm_APgV-5I
+  default_config_hash: SRH1EhxAiIRj01P9xYv0h_LfIfWxjll0Yq-eDfjziFI
 id: archive
 label: Archive
 module: node
@@ -174,13 +174,13 @@ display:
       fields: {  }
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }
   block_1:
     id: block_1
@@ -213,13 +213,13 @@ display:
           entity_type: node
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }
   page_1:
     id: page_1
@@ -233,11 +233,11 @@ display:
       path: archive
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }

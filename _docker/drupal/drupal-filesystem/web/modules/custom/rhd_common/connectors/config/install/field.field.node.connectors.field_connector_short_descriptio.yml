@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_short_descriptio
+    - node.type.connectors
+  module:
+    - text
+id: node.connectors.field_connector_short_descriptio
+field_name: field_connector_short_descriptio
+entity_type: node
+bundle: connectors
+label: 'Connector Short Description'
+description: 'Connector short description will be displayed directly under the Connector title.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,4 +1,4 @@
-uuid: 802be165-15c7-4c23-a5aa-9d5307ca9018
+uuid: 3f780281-e18f-430d-82a0-c1f48295a05b
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_related_product
     - node.type.books
     - node.type.product
+_core:
+  default_config_hash: Z98fmMlFXt1pni6zYaiidQumKGp147gX1Uk8NHP4vFA
 id: node.books.field_related_product
 field_name: field_related_product
 entity_type: node

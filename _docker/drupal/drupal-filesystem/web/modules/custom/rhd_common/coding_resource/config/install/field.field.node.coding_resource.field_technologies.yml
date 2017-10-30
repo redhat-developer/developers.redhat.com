@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_technologies
+    - node.type.coding_resource
+id: node.coding_resource.field_technologies
+field_name: field_technologies
+entity_type: node
+bundle: coding_resource
+label: 'Technologies Used'
+description: 'List of technologies used in the resource.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

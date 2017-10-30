@@ -1,9 +1,11 @@
-uuid: 2bcbefaa-e929-4a5a-8cbf-b3559899b90d
+uuid: 727d7a4f-27c5-4cd5-99a5-6fc8ff18134b
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.draft
+  enforced:
+    config: null
 _core:
   default_config_hash: PlP9tjzxwj2pY25wmi8m3UGiipeTRn8m93sBBqFoK8o
 id: draft_draft

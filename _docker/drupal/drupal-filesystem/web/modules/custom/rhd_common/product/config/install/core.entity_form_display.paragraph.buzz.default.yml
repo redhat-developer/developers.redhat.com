@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.buzz.field_buzz_tags
+    - field.field.paragraph.buzz.field_overview_hide_get_started
+    - field.field.paragraph.buzz.field_overview_main_content
+    - field.field.paragraph.buzz.field_overview_url
+    - field.field.paragraph.buzz.field_page_description
+    - paragraphs.paragraphs_type.buzz
+  module:
+    - text
+id: paragraph.buzz.default
+targetEntityType: paragraph
+bundle: buzz
+mode: default
+content:
+  field_buzz_tags:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_overview_hide_get_started:
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_main_content:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_page_description:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  field_overview_url: true
+  status: true
+  uid: true

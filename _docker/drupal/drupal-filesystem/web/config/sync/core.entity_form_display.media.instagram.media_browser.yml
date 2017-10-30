@@ -1,0 +1,49 @@
+uuid: 8704f948-ecee-4fa4-af8e-f7e20813a1fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.instagram.embed_code
+    - field.field.media.instagram.field_media_in_library
+    - media_entity.bundle.instagram
+  module:
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: 5ggOWgWk_25WHPWDiy4XB57vQskcHID3n6XHykNk6vU
+id: media.instagram.media_browser
+targetEntityType: media
+bundle: instagram
+mode: media_browser
+content:
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  preview:
+    weight: null
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  embed_code: true
+  uid: true

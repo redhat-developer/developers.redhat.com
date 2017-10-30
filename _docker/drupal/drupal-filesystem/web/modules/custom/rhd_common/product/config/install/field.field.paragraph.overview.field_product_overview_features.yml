@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_overview_features
+    - paragraphs.paragraphs_type.overview
+    - paragraphs.paragraphs_type.paragraph_with_image
+  module:
+    - entity_reference_revisions
+id: paragraph.overview.field_product_overview_features
+field_name: field_product_overview_features
+entity_type: paragraph
+bundle: overview
+label: 'Product Feature Image and Text'
+description: 'Product features in three small columns. One image and corresponding text per.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      paragraph_with_image: paragraph_with_image
+    target_bundles_drag_drop:
+      buzz:
+        weight: 17
+        enabled: false
+      community:
+        weight: 18
+        enabled: false
+      connectors:
+        weight: 19
+        enabled: false
+      docs_and_apis:
+        weight: 20
+        enabled: false
+      document_details:
+        weight: 21
+        enabled: false
+      download:
+        weight: 22
+        enabled: false
+      get_started:
+        weight: 23
+        enabled: false
+      getting_started_section:
+        weight: 24
+        enabled: false
+      getting_started_tab_section:
+        weight: 25
+        enabled: false
+      help:
+        weight: 26
+        enabled: false
+      learn:
+        weight: 27
+        enabled: false
+      main_content:
+        weight: 28
+        enabled: false
+      overview:
+        weight: 29
+        enabled: false
+      paragraph_with_image:
+        enabled: true
+        weight: 30
+      resources:
+        weight: 31
+        enabled: false
+      updates:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions

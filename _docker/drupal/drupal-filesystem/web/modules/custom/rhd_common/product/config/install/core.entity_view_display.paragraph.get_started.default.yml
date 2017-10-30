@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.get_started.field_overview_hide_get_started
+    - field.field.paragraph.get_started.field_overview_main_content
+    - field.field.paragraph.get_started.field_overview_url
+    - field.field.paragraph.get_started.field_page_description
+    - field.field.paragraph.get_started.field_secondary_content
+    - field.field.paragraph.get_started.field_tabs
+    - paragraphs.paragraphs_type.get_started
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.get_started.default
+targetEntityType: paragraph
+bundle: get_started
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 6
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_overview_main_content:
+    weight: 5
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_overview_url:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_page_description:
+    weight: 8
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_secondary_content:
+    weight: 9
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_tabs:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  uid: true

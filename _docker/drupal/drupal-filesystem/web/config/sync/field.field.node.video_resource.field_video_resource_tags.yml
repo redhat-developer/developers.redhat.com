@@ -1,4 +1,4 @@
-uuid: 973f89c0-4d0a-48ca-9bcc-60488b02a496
+uuid: e5c2a4b7-cc5e-4ec1-84bc-5a4f568e8a0f
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_video_resource_tags
     - node.type.video_resource
     - taxonomy.vocabulary.tags
+_core:
+  default_config_hash: yO19oSy-9kcLG5Ug5S1PvufSBLs0ak0FWhylyCKM_Cw
 id: node.video_resource.field_video_resource_tags
 field_name: field_video_resource_tags
 entity_type: node

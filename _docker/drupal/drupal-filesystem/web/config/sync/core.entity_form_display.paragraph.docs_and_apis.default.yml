@@ -1,4 +1,4 @@
-uuid: 6a9712a2-c69f-458a-a2e2-183b75de1fd4
+uuid: c9818ae4-cdad-4f9d-a082-680463ce553c
 langcode: en
 status: true
 dependencies:
@@ -12,6 +12,9 @@ dependencies:
     - paragraphs.paragraphs_type.docs_and_apis
   module:
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: wCsng-TO0C-TDkObTxYjn0FTXw_9xyrvMg89kPMNhqk
 id: paragraph.docs_and_apis.default
 targetEntityType: paragraph
 bundle: docs_and_apis

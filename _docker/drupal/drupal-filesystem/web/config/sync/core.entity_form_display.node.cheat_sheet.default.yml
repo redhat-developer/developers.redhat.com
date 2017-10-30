@@ -1,4 +1,4 @@
-uuid: b18f2ff9-6b2a-477f-98a3-9ae529fc0ce6
+uuid: 759c4c5b-f742-404e-97bb-cba4b045b4c5
 langcode: en
 status: true
 dependencies:
@@ -14,6 +14,8 @@ dependencies:
     - path
     - text
     - workbench_moderation
+_core:
+  default_config_hash: hK6VqyuwHGWREmF7Yh7eR1qaswdJJrxpzxWQSNUlHkw
 id: node.cheat_sheet.default
 targetEntityType: node
 bundle: cheat_sheet
@@ -78,6 +80,13 @@ content:
     settings:
       display_label: true
     weight: 8
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:

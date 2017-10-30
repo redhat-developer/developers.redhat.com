@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_thumbnail_url
+    - node.type.video_resource
+id: node.video_resource.field_video_thumbnail_url
+field_name: field_video_thumbnail_url
+entity_type: node
+bundle: video_resource
+label: 'Video Thumbnail URL'
+description: 'Video thumbnail URL, should come from the provider'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

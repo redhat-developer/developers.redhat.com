@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.overview.field_overview_hide_get_started
+    - field.field.paragraph.overview.field_overview_main_content
+    - field.field.paragraph.overview.field_overview_url
+    - field.field.paragraph.overview.field_page_description
+    - field.field.paragraph.overview.field_product_overview_features
+    - field.field.paragraph.overview.field_product_overview_video
+    - field.field.paragraph.overview.field_secondary_content
+    - paragraphs.paragraphs_type.overview
+  module:
+    - paragraphs
+    - text
+    - video_embed_field
+id: paragraph.overview.default
+targetEntityType: paragraph
+bundle: overview
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_main_content:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_page_description:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_overview_features:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: 'Feature Image with Text'
+      title_plural: 'Feature Images with Text'
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+    region: content
+  field_product_overview_video:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: video_embed_field_textfield
+    region: content
+  field_secondary_content:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  field_overview_url: true
+  status: true
+  uid: true

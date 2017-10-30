@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bottom_right_white_card
+    - node.type.promotion_card
+    - node.type.topic
+id: node.topic.field_bottom_right_white_card
+field_name: field_bottom_right_white_card
+entity_type: node
+bundle: topic
+label: 'Bottom Right White Card'
+description: 'Small content card'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

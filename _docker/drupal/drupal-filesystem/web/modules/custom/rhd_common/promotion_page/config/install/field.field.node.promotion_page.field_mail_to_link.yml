@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mail_to_link
+    - node.type.promotion_page
+  module:
+    - link
+id: node.promotion_page.field_mail_to_link
+field_name: field_mail_to_link
+entity_type: node
+bundle: promotion_page
+label: 'Mail-to Link'
+description: "Example value for the URL field: \r\n\r\nmailto:?subject=this is the subject content&body=Here is an interesting link http://www.developers.redhat.com"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

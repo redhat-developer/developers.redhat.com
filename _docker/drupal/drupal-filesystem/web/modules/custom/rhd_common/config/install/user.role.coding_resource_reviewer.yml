@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies: {  }
+id: coding_resource_reviewer
+label: 'Coding Resource reviewer'
+weight: -2
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'delete any coding_resource content'
+  - 'edit any coding_resource content'
+  - 'use draft_published transition'
+  - 'use needs_review_draft transition'
+  - 'use needs_review_published transition'
+  - 'use published_archived transition'
+  - 'use published_published transition'
+  - 'view moderation states'

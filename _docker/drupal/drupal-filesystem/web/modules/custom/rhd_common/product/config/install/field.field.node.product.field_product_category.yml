@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_category
+    - node.type.product
+  module:
+    - options
+id: node.product.field_product_category
+field_name: field_product_category
+entity_type: node
+bundle: product
+label: 'Product BU Category'
+description: 'Business Unit Category for the product'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

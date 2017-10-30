@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author
+    - node.type.coding_resource
+id: node.coding_resource.field_author
+field_name: field_author
+entity_type: node
+bundle: coding_resource
+label: 'Original Author'
+description: 'Name of the original author(s) of this resource'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

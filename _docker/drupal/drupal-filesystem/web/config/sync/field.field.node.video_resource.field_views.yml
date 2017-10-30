@@ -1,10 +1,12 @@
-uuid: 87265970-ac76-45e6-be74-2ccb7d2ff1fd
+uuid: f783c83e-f8da-49e7-9432-8fb409ee297d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_views
     - node.type.video_resource
+_core:
+  default_config_hash: X6Yv4PmWu4pjjul4juiSuVJA_AVFH_U66wBSmIx07eo
 id: node.video_resource.field_views
 field_name: field_views
 entity_type: node

@@ -1,19 +1,12 @@
-uuid: 2322dfaf-2534-49a1-a00f-637c52de2e49
+uuid: 59061b9f-c7ed-40ae-9fdf-177429c22a73
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.draft
     - workbench_moderation.moderation_state.needs_review
-  module:
-    - workbench_email
   enforced:
-    config:
-      - workbench_email.workbench_email_template.back_to_draft
-third_party_settings:
-  workbench_email:
-    workbench_email_templates:
-      back_to_draft: back_to_draft
+    config: null
 _core:
   default_config_hash: 6J1nDF4mkj8uqQ4LzNb_hLoV0b-wIfjdJx3QQmjAMVg
 id: needs_review_draft

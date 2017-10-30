@@ -1,4 +1,4 @@
-uuid: fd0c9cdb-0307-4a45-bd5c-ed4098178a79
+uuid: db4fca91-c5e2-476d-923a-ef039b694bff
 langcode: en
 status: true
 dependencies:
@@ -11,6 +11,9 @@ dependencies:
     - paragraphs.paragraphs_type.buzz
   module:
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: vSastTuANoQaPM3LnF3tP2mX9rrueCSkv6kPdGXzWT0
 id: paragraph.buzz.default
 targetEntityType: paragraph
 bundle: buzz

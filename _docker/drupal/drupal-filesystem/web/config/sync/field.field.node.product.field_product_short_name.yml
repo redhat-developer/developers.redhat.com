@@ -1,10 +1,12 @@
-uuid: 5a4c81d5-8d3b-4819-8ab3-afee86599747
+uuid: 32b6e21a-5e1a-4e5c-8408-f28d7464d3b1
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_product_short_name
     - node.type.product
+_core:
+  default_config_hash: PTXBzEt0FCBP3NnDyPxVRhddck0j0ljjK-2TTlyRxqE
 id: node.product.field_product_short_name
 field_name: field_product_short_name
 entity_type: node

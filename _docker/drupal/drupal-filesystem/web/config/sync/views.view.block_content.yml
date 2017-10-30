@@ -1,4 +1,4 @@
-uuid: 43ad5703-de47-43a9-8a56-e88c8d07a82b
+uuid: 8a8bd0cd-f6b7-4c83-84ad-d897533c89aa
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - block_content
     - user
 _core:
-  default_config_hash: tp4wP6wVrEPZfApiCfkpoCxUzN-B1ceGcGv5sEzQ2Sg
+  default_config_hash: msYnighLW1IbiBfyQbwbQwb2cU-5LECiFryt60k0Nfk
 id: block_content
 label: 'Custom block library'
 module: views
@@ -395,7 +395,7 @@ display:
           plugin_id: string
         type:
           id: type
-          table: block_content
+          table: block_content_field_data
           field: type
           relationship: none
           group_type: group
@@ -465,13 +465,13 @@ display:
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
-      max-age: 0
       tags: {  }
   page_1:
     display_plugin: page
@@ -490,11 +490,11 @@ display:
         context: '0'
         menu_name: admin
     cache_metadata:
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
-      max-age: 0
       tags: {  }

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_id
+    - node.type.connectors
+id: node.connectors.field_connector_id
+field_name: field_connector_id
+entity_type: node
+bundle: connectors
+label: 'Connector ID'
+description: 'Enter a unique ID for the connector. Once entered, it shouldn''t be changed or reused.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

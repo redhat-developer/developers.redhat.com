@@ -1,0 +1,80 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.download.field_offer_subscription
+    - field.field.paragraph.download.field_overview_hide_get_started
+    - field.field.paragraph.download.field_overview_main_content
+    - field.field.paragraph.download.field_overview_url
+    - field.field.paragraph.download.field_page_description
+    - field.field.paragraph.download.field_subscription_link
+    - field.field.paragraph.download.field_upstream_section
+    - field.field.paragraph.download.field_xpaas_link
+    - paragraphs.paragraphs_type.download
+  module:
+    - link
+    - text
+id: paragraph.download.default
+targetEntityType: paragraph
+bundle: download
+mode: default
+content:
+  field_offer_subscription:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_hide_get_started:
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_main_content:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_page_description:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_subscription_link:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_upstream_section:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_xpaas_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+hidden:
+  created: true
+  field_overview_url: true
+  status: true
+  uid: true

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic_sub_title
+    - node.type.topic
+id: node.topic.field_topic_sub_title
+field_name: field_topic_sub_title
+entity_type: node
+bundle: topic
+label: 'Topic Sub Title'
+description: 'Smaller, description title of the topic.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

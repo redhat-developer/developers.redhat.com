@@ -1,4 +1,3 @@
-uuid: 3474b1ed-dcb4-43ac-b048-ef65705167b6
 langcode: en
 status: true
 dependencies:
@@ -8,12 +7,10 @@ dependencies:
   module:
     - node
     - user
-_core:
-  default_config_hash: rwRoOr3DiobxwoWSmtUcna1LQz5_HxHvS7H5dl7_-Uo
 id: frontpage
 label: Frontpage
 module: node
-description: 'All content promoted to the front page.'
+description: 'All content promoted to frontpage'
 tag: default
 base_table: node_field_data
 base_field: nid
@@ -30,16 +27,16 @@ display:
         options: {  }
       empty:
         area_text_custom:
-          admin_label: ''
-          content: 'No front page content has been created yet.'
-          empty: true
-          field: area_text_custom
-          group_type: group
           id: area_text_custom
-          label: ''
-          relationship: none
           table: views
-          tokenize: false
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content: '<p>Welcome to [site:name]. No front page content has been created yet.</p><p>Would you like to <a href="profiles/contrib/lightning/README.md">view the README</a>?</p>'
+          label: ''
           plugin_id: text_custom
         node_listing_empty:
           admin_label: ''
@@ -119,7 +116,7 @@ display:
           group: 1
           id: status
           table: node_field_data
-          value: '1'
+          value: 'true'
           plugin_id: boolean
           entity_type: node
           entity_field: status
@@ -245,12 +242,12 @@ display:
     id: default
     position: 0
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }
   feed_1:
     display_plugin: feed
@@ -281,11 +278,11 @@ display:
           view_mode: rss
       display_extenders: {  }
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }
   page_1:
     display_options:
@@ -296,10 +293,10 @@ display:
     id: page_1
     position: 1
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
       tags: {  }

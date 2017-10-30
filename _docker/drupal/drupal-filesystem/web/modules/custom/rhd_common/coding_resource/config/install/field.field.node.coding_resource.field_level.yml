@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_level
+    - node.type.coding_resource
+  module:
+    - options
+id: node.coding_resource.field_level
+field_name: field_level
+entity_type: node
+bundle: coding_resource
+label: 'Difficultly Level'
+description: 'Level of difficulty for this quickstart (Beginner, Intermediate, Advanced)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

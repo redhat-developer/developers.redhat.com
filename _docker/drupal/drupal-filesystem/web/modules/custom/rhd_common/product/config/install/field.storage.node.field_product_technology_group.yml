@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_product_technology_group
+field_name: field_product_technology_group
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: accelerated-development-and-management
+      label: 'Accelerated Development And Management'
+    -
+      value: developer-tools
+      label: 'Developer Tools'
+    -
+      value: infrastructure
+      label: Infrastructure
+    -
+      value: integration-and-automation
+      label: 'Integration And Automation'
+    -
+      value: mobile
+      label: Mobile
+    -
+      value: cloud
+      label: Cloud
+    -
+      value: runtimes
+      label: Runtimes
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

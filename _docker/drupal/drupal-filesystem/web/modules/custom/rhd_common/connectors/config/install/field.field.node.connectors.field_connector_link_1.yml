@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_link_1
+    - node.type.connectors
+  module:
+    - link
+id: node.connectors.field_connector_link_1
+field_name: field_connector_link_1
+entity_type: node
+bundle: connectors
+label: 'Connector Link 1'
+description: 'This optional link is part of the Connector content in the overlay.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

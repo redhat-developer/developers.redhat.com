@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_book_description
+    - node.type.books
+  module:
+    - text
+id: node.books.field_book_description
+field_name: field_book_description
+entity_type: node
+bundle: books
+label: 'Book Description'
+description: 'Description of the book often found on the back cover or inside cover of the book.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary
