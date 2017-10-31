@@ -10,8 +10,15 @@ dependencies:
     - node.type.promotion_card
   module:
     - link
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: 4Dlmw1416kLOK5ONyTDTzuDaHW42rlINIOq4XAU-pEo
 id: node.promotion_card.teaser
@@ -21,7 +28,7 @@ mode: teaser
 content:
   field_container_external_link:
     type: link
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -31,24 +38,18 @@ content:
       rel: '0'
     third_party_settings: {  }
     region: content
-  field_container_tags:
-    type: entity_reference_entity_view
-    weight: 2
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
   field_containers_short_summary:
     type: text_default
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     region: content
   workbench_moderation_control:
-    weight: -20
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  field_container_tags: true
   links: true
