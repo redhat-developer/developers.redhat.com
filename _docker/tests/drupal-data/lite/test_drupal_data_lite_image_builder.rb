@@ -8,7 +8,8 @@ class TestDrupalDataLiteImageBuilder < MiniTest::Test
 
  def setup
     @process_runner = mock()
-    @drupal_data_image_builder = DrupalDataLiteImageBuilder.new('/tmp', @process_runner)
+    @working_directory = '/tmp'
+    @drupal_data_image_builder = DrupalDataLiteImageBuilder.new(@working_directory, @process_runner)
  end
 
  def test_should_correctly_build_image
