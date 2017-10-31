@@ -1,7 +1,7 @@
 // When the page is ready
 $(document).ready(function () {
 
-    $("input[type='radio']").click(function (event) {
+    $("input[type='radio']").on("click", function (event) {
 
             //Q1 A and Q2 A   
             if (($('input[type="radio"][name="Q1"]:checked').attr("value") == "q1a1") && ($('input[type="radio"][name="Q2"]:checked').attr("value") == "q2a1")) {
