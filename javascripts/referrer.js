@@ -62,7 +62,7 @@
           break;
       }
       
-      $('#referral-alert .close').click(function() {
+      $('#referral-alert .close').on("click", function() {
         $('#referral-alert').addClass('hide');
       });
     }

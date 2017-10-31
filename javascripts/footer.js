@@ -1,5 +1,5 @@
 $(function() {
-  $(".collapsible-section").click(function(){
+  $(".collapsible-section").on("click", function(){
     $(this).toggleClass("collapsed");
   })
 });
@@ -18,4 +18,4 @@ function checkWidth() {
 
 checkWidth();
 
-$(window).resize(checkWidth);
+$(window).on("resize", checkWidth);

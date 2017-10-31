@@ -9,9 +9,9 @@ $(document).ready(function() {
       if (this.href.indexOf(ignoredDomains[i]) != -1) { return true; }
     }
     if (this.href.indexOf(location.hostname) == -1) {
-      $(this).click(function() { return true; });
+      $(this).on("click", function() { return true; });
       $(this).attr({ target: "_blank" });
-      $(this).click();
+      $(this).trigger("click");
     }
   })
 });

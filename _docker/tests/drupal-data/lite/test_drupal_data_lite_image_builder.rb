@@ -16,7 +16,7 @@ class TestDrupalDataLiteImageBuilder < MiniTest::Test
     @process_runner.expects(:execute!).with('rm -rf /tmp/work')
     @process_runner.expects(:execute!).with('mkdir /tmp/work')
     @process_runner.expects(:execute!).with('docker pull redhatdeveloper/drupal-data:latest')
-    @process_runner.expects(:execute!).with("docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"gzip -d -c /docker-entrypoint-initdb.d/drupal-db.sql.gz > /work/drupal-db.sql &&  awk '!/INSERT INTO \\`node_revision__body\\`/ && !/INSERT INTO \\`lightning_node_revision__body\\`/' /work/drupal-db.sql | gzip > /work/drupal-db.sql.gz && rm -f /work/drupal-db.sql && chmod 777 /work/drupal-db.sql.gz\"")
+    @process_runner.expects(:execute!).with("docker run --rm -v #{@working_diroctory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"zcat /docker-entrypoint-initdb.d/drupal-db.sql.gz | awk '!/INSERT INTO \\`node_revision__body\\`/' | awk '!/INSERT INTO \\`lightning_node_revision__body\\`/' | gzip > /work/drupal-db.sql.gz && chmod 777 /work/drupal-db.sql.gz\"")
     @process_runner.expects(:execute!).with('cd /tmp && docker build -t redhatdeveloper/drupal-data-lite:latest -f Dockerfile.lite .')
     @process_runner.expects(:execute!).with('docker push redhatdeveloper/drupal-data-lite:latest')
     @process_runner.expects(:execute!).with('rm -rf /tmp/work')
