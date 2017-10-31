@@ -12,6 +12,6 @@ COPY drupal-db.sql.gz /docker-entrypoint-initdb.d
 ADD drupal-filesystem.tar.gz /drupal-data
 RUN rm -rf /drupal-data/files/css /drupal-data/files/js /drupal-data/files/php
 
-RUN cp -r /drupal-data/config/* /var/www/drupal/web/config/active
+RUN cp -r /drupal-data/config/lightning/* /var/www/drupal/web/config/active
 RUN cp -r /drupal-data/files/* /var/www/drupal/web/sites/default/files
 CMD true
