@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7793ef6f49755fd9ed6488e83813b72c",
+    "content-hash": "b20f56927ca1bd6f9d2cc0c90f9d80c5",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1564,7 +1564,6 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": "https://www.drupal.org/files/issues/2663638-2_0.patch",
                     "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/1356276-360.patch",
                     "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                     "2880445 - Config sync should not throw a warning when not being writable": "https://www.drupal.org/files/issues/2880445-remove-config-write-warning-2.patch",
@@ -4497,9 +4496,6 @@
                         "message": "Covered by Drupal's security advisory policy"
                     },
                     "package": "Field types"
-                },
-                "patches_applied": {
-                    "2849478 - Support for Youtube and Youtube playlist provider default media name": "https://www.drupal.org/files/issues/support_for_youtube-2849478-6.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
