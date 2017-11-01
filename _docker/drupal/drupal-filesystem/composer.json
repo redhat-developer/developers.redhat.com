@@ -110,12 +110,6 @@
         },
         "enable-patching": true,
         "patches": {
-          "drupal/core": {
-            "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": "https://www.drupal.org/files/issues/2663638-2_0.patch"
-          },
-          "drupal/video_embed_field": {
-            "2849478 - Support for Youtube and Youtube playlist provider default media name":"https://www.drupal.org/files/issues/support_for_youtube-2849478-6.patch"
-          },
           "drupal/asciidoc": {
             "Removing reference to String": "https://www.drupal.org/files/issues/issue-2916620.patch"
           }
