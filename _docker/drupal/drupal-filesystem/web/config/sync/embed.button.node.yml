@@ -13,5 +13,10 @@ type_id: entity
 type_settings:
   entity_type: node
   bundles: {  }
-  display_plugins: {  }
+  display_plugins:
+    - 'view_mode:node.full'
+    - 'view_mode:node.teaser'
+  entity_browser: ''
+  entity_browser_settings:
+    display_review: false
 icon_uuid: null
