@@ -40,8 +40,11 @@ skips:
   - https://developers.redhat.com/quickstarts/fuse/cxf
   - https://developers.redhat.com/quickstarts/wfk
   - https://developers.redhat.com/quickstarts/unifiedpush
+  - https://developers.redhat.com/quickstarts/unifiedpush/push-helloworld-android
+  - http://vimeo.com/ericschabell/bpms-hr-employee-rewards-demo-run
+  - https://pubs.vmware.com/workstation-12/index.jsp#com.vmware.ws.using.doc/GUID-0CE1AE01-7E79-41BB-9EA8-4F839BE40E1A.html
   - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
-
+  
 ignores:
   - code: 202
   - code: 203

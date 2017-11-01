@@ -1,9 +1,9 @@
-const searchPage = require("../../support/pages/search.page");
-const HomePage = require("../../support/pages/home.page");
-//const searchPage = new SearchPage;
-const homePage = new HomePage;
+import {searchPage} from '../../support/pages/Search.page';
+import {homePage} from '../../support/pages/Home.page';
+import {siteNav} from "../../support/sections/NavigationBar.section";
 
-module.exports = function () {
+
+const searchSteps = function () {
 
     let resultCount;
 
@@ -11,8 +11,17 @@ module.exports = function () {
         searchPage.open();
     });
 
-    this.Then(/^the search page is displayed$/, function () {
-        expect(searchPage.isOnSearchPage(), 'Search Page was not displayed').to.be.true;
+    this.Given(/^I navigate directly to search page with "([^"]*)"$/, function (searchTerm) {
+        const openUrl = `/search/?t=${searchTerm}`;
+        browser.url(process.env.RHD_BASE_URL + openUrl);
+    });
+
+    this.When(/^the search page is displayed$/, function () {
+        searchPage.awaitSearchPage();
+    });
+
+    this.Then(/^search results are displayed$/, function () {
+        searchPage.waitForResultsLoaded()
     });
 
     this.When(/^I enter "([^"]*)" into the search bar$/, function (searchTerm) {
@@ -20,7 +29,7 @@ module.exports = function () {
     });
 
     this.When(/^click on the search-button$/, function () {
-        searchPage.searchButton.click()
+        searchPage.clickSearchBtn()
     });
 
     this.Then(/^the search field should contain "([^"]*)"$/, function (searchTerm) {
@@ -29,8 +38,7 @@ module.exports = function () {
     });
 
     this.Then(/^the search field should not be displayed within the site header$/, function () {
-        let searchField = searchPage.searchBar;
-        expect(searchField.isVisible(), 'Site-wide search bar was displayed on Search page').to.be.false;
+        expect(siteNav.searchBarDisplayed(), 'Site-wide search bar was displayed on Search page').to.be.false;
     });
 
     this.When(/^I search for "(.*)"$/, function (searchTerm) {
@@ -59,34 +67,37 @@ module.exports = function () {
 
     this.When(/^there are 10 or less results available$/, function () {
         browser.execute(function () {
-            document.querySelector('rhdp-search-query').results = {
-                hits: {
-                    hits: [{
-                        fields: {sys_type: ['stackoverflow_thread'], sys_content_plaintext: ['Test Title']},
-                        highlight: {sys_title: ['Test Title 1']}
-                    }],
-                    total: 1
-                }
-            }
+            return document.body.dispatchEvent(new CustomEvent('search-complete', {
+                detail: {
+                    results: {
+                        hits: {
+                            hits: [{
+                                fields: {
+                                    sys_type: ['stackoverflow_thread'],
+                                    sys_content_plaintext: ['Test Title']
+                                }, highlight: {sys_title: ['Test Title 1']}
+                            }], total: 1
+                        }
+                    }
+                }, bubbles: true
+            }));
         });
-        browser.pause(1000)
     });
 
     this.Then(/^I (should|should not) see a Load More link$/, function (negate) {
-        searchPage.waitForResultsLoaded();
         if (negate === 'should') {
-            searchPage.loadMoreButton().waitForVisible(30000);
+            expect(searchPage.loadMoreButtonIsDisplayed()).to.eq(true);
         } else {
-            searchPage.loadMoreButton().waitForVisible(30000, true);
+            expect(searchPage.loadMoreButtonIsDisplayed()).to.eq(false);
         }
     });
 
-    this.Then(/^I (should|should not) see some text that says "- End of Results -"$/, function (negate) {
-        searchPage.waitForResultsLoaded();
+    this.Then(/^I (should|should not) see some text that says "(.*)"$/, function (negate, text) {
         if (negate === 'should') {
-            searchPage.endOfResults().waitForVisible(30000);
+            let endOfResults = searchPage.endOfResultsText().indexOf(text) > -1;
+            expect(endOfResults).to.eq(true);
         } else {
-            searchPage.endOfResults().waitForVisible(30000, true);
+            expect(searchPage.endOfResults.isVisible()).to.eq(false);
         }
     });
 
@@ -96,11 +107,10 @@ module.exports = function () {
     });
 
     this.Then(/^the results should contain "([^"]*)"$/, function (searchTerm) {
-        searchPage.waitForResultsLoaded();
-        sR = searchPage.searchResults();
+        let sR = searchPage.searchResults();
         let result;
-        for (let i = 1; i < sR.length; i++) {
-            title = searchPage.searchResultTitle(i);
+        for (let i = 1; i < sR.value.length; i++) {
+            let title = searchPage.searchResultTitle(i);
             if (title.getText() === searchTerm) {
                 result = true;
                 break;
@@ -112,7 +122,6 @@ module.exports = function () {
     });
 
     this.Then(/^the related topic page for "([^"]*)" should be the first result$/, function (topicUrl) {
-        searchPage.waitForResultsLoaded();
         let title = searchPage.searchResultTitle(1);
         expect(title.getAttribute('href')).to.include("/topics/" + topicUrl)
     });
@@ -130,14 +139,10 @@ module.exports = function () {
         expect(title.getAttribute('href')).to.include(`/products/${product}/overview`)
     });
 
-
-    this.Then(/^search results are displayed$/, function () {
-        searchPage.waitForResultsLoaded()
-    });
-
     this.Given(/^I have searched for "([^"]*)"$/, function (searchTerm) {
         homePage.open();
-        homePage.searchFor(searchTerm);
+        siteNav.searchFor(searchTerm);
+        searchPage.awaitSearchPage();
         searchPage.waitForResultsLoaded();
         resultCount = searchPage.resultCount();
     });
@@ -146,26 +151,12 @@ module.exports = function () {
         searchPage.chooseFilter(filterType, filterOption);
     });
 
-    this.Then(/^I should see a tag for "([^"]*)"$/, function (filterOption) {
-        let activeFilters = searchPage.activeFilters();
-        expect(activeFilters.getText(), `Result did not include a tag for ${filterOption}`).to.include(filterOption);
-    });
-
-    this.Then(/^the results should be updated and contain a "([^"]*)" label$/, function (filter) {
-        searchPage.waitForUpdatedResults(resultCount);
-        let label = searchPage.resultInfo(1).getText();
-        if (filter === 'Get Started') {
-            expect(label.toLowerCase()).to.include('demo');
-        } else {
-            expect(label.toLowerCase()).to.include(filter.toLowerCase())
-        }
-    });
-
     this.Then(/^the results should be updated and contain "([^"]*)"$/, function (search) {
         searchPage.waitForUpdatedResults(resultCount);
         let sR = searchPage.searchResults();
         let result;
-        for (let i = 1; i < sR.length; i++) {
+        let res;
+        for (let i = 1; i < sR.value.length; i++) {
             res = searchPage.searchResult(i).getText();
             if (res.includes(search)) {
                 result = true;
@@ -177,6 +168,10 @@ module.exports = function () {
         expect(result, `None of the ${sR.length} results contained ${search}`).to.be.true
     });
 
+    this.Then(/^the results should be updated and contain a "([^"]*)" tag/, function (filter) {
+        searchPage.awaitLoadingSpinner();
+        expect(searchPage.activeFilter(), `Result did not include a tag for ${filter}`).to.include(filter);
+    });
 
     this.Then(/^I (should|should not) see an alert$/, function (negate) {
         let alert = searchPage.hasAlert();
@@ -185,11 +180,6 @@ module.exports = function () {
         } else {
             expect(alert, 'Warning! Alert was visible').to.be.false
         }
-    });
-
-    this.Given(/^I navigate directly to search page with "(.*)"$/, function (searchUrl) {
-        searchPage.open(searchUrl);
-        expect(searchPage.isOnSearchPage(), 'Search page was not displayed').to.be.true
     });
 
     this.Then(/^I (should|should not) see a OneBox for "(.*)" at the top of the results$/, function (negate, product) {
@@ -203,18 +193,19 @@ module.exports = function () {
     this.Then(/^I am provided with a "(.*)" OneBox$/, function (product) {
         searchPage.open();
         searchPage.searchFor(product.toString());
+        searchPage.awaitSearchResultsFor(product)
     });
 
     this.Then(/^I select the OneBox Title$/, function () {
-        searchPage.oneBox.click();
+        searchPage.clickOneBoxTitle();
     });
 
     this.Then(/^I select the View Downloads button$/, function () {
-        searchPage.oneBoxDownLoadBtn.click();
+        searchPage.clickOneBoxDownLoadBtn();
     });
 
     this.Then(/^I should see the "(.*)" (Download|Overview|Hello-world|Docs-and-apis|Help) page$/, function (productTitle, pageType) {
-        expect(browser.getTitle(), `${pageType} page for ${productTitle} was not displayed`).to.includes(`${productTitle} ${pageType}`)
+        siteNav.waitForTitle(productTitle);
     });
 
     this.Then(/^I select the oneBox "(.*)" link$/, function (link) {
@@ -222,8 +213,9 @@ module.exports = function () {
     });
 
     this.Then(/^I should see a message that no search term was entered$/, function () {
-        let noSearchText = searchPage.emptySearch.getText();
-        expect(noSearchText).to.includes('Well, this is awkward. No search term was entered yet')
+        expect(searchPage.noResultsDisplayed()).to.includes('Well, this is awkward. No search term was entered yet')
     });
 
 };
+
+module.exports = searchSteps;
