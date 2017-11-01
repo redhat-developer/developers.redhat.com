@@ -77,17 +77,17 @@
             "speaker_intro": "Justin Holmes is a passionate consultant who helps teams deliver better software products, faster. He is a fan of methods that lead delivery teams toward shared understanding and technologies that capture that understanding in software. Justin is active in the Behavior Driven Development, Domain Driven Design, and Lean Product Development communities. You can also find him helping customers accelerate their innovative ideas in Red Hat&reg; <a href=\"https://www.redhat.com/en/open-innovation-labs\">Open Innovation Labs</a>."
         },
         {
-            "title": "Continuous Deployment at Scale",
+            "title": "Why you’re going to fail running Java on Docker",
             "date": "11/2/2017 12:00 PM EDT",
             "confirmed": true,
             "youtube_id": "tI2l8yThKK4",
             "offer_id": "701f2000000thXmAAI",
             "eloqua": { "showAdditionalFields": [], "hideStandardFields": [ "First Name", "Last Name", "Work Phone", "Company", "Department", "Job Role", "Country" ], "CustomQuestions": [], "offer_id": "701f2000000thXmAAI", "language": "en", "FormIntro": "Register now for the DevNation Live Tech Talk: Continuous Deployment at Scale", "NameOrder": "western", "FormCallToAction": "Register Now ", "ThanksTitle": "You are now registered. ", "ThanksText": "You have successfully registered for DevNation Live Tech Talk : Domain Driven Design for Mere Mortals", "ShowThanksButton": "false", "leadActivity": 1, "disableVisitorContactLookups": false },
             "register": true,
-            "abstract": "How do you manage CI/CD across hundreds of projects simultaneously? In this session, we will delve into a real-world example of a cloud-hosted SaaS based on hundreds of independent microservices, leveraging CI/CD and DevOps for a continuous flow to production.",
-            "speaker": "James Rawlings",
-            "twitter_handle": "jdrawlings",
-            "speaker_intro": ""
+            "abstract": "<p>Running Java&trade; on Docker is easy, right? Just create a Dockerfile, run a Docker build and then you&rsquo;re ready to go. This way of thinking is the easiest path to complete failure when running Docker containers in production.</p><p>The JVM knows how to auto-tune itself to achieve the best possible performance in the environment in which it&rsquo;s running. So far, that environment has been a single physical or virtual machine. But containers change everything&mdash;you need to know how containers manages their own resources, and you need to apply this knowledge when running and optimizing your JVM running in a container.</p><p>In this session, you&rsquo;ll learn:</p><ul><li>The best way to run Java on Docker in production.</li><li>A lot about JVM and containers to avoid the highway to debugging hell.</li><li>Simple tips &amp; tricks to save you many hours logging and debugging container problems.</li></ul>",
+            "speaker": "Rafael Benevides",
+            "twitter_handle": "rafabene",
+            "speaker_intro": "Rafael Benevides, Red Hat director of Developer Experience, has many years of experience in several fields of the IT industry. He helps developers and companies all over the world be more effective in software development. Rafael considers himself a problem solver who has a big love for sharing. He is a member of Apache DeltaSpike PMC—a Duke’s Choice Award winner project, and he’s a speaker in conferences like JavaOne, Devoxx, TDC, DevNexus, and many others."
         },
         {
             "title": "Update your Database Schema with Zero Downtime Migrations",
