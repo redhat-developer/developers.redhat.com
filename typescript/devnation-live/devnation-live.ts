@@ -93,7 +93,7 @@ class DevNationLiveApp extends HTMLElement {
                     ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
                     <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
                     ` : `
-                    <iframe class="session-reg" src="${this.form}?id=${next.offer_id}"></iframe>
+                    <iframe class="session-reg" src="${this.form}?sc_cid=${next.offer_id}"></iframe>
                     `}
                 </div>
             </div>
@@ -134,7 +134,7 @@ class DevNationLiveApp extends HTMLElement {
                         <div class="large-16 medium-10 small-24 columns align-center">
                         ${this.getCookie('dn_live_'+sess.offer_id) ? `
                             <div class="button disabled">You are Registered</div>` 
-                            : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
+                            : `<iframe class="session-reg" src="${this.form}?sc_cid=${sess.offer_id}"></iframe>
                             </div>`
                         }` 
                         : ''
