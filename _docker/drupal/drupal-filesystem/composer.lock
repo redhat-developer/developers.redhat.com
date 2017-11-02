@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b20f56927ca1bd6f9d2cc0c90f9d80c5",
+    "content-hash": "cdac32180cb1dbe06848e1290c95b444",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1112,17 +1112,11 @@
         },
         {
             "name": "drupal/admin_toolbar",
-            "version": "1.20.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/admin_toolbar",
-                "reference": "8.x-1.20"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-1.20.zip",
-                "reference": "8.x-1.20",
-                "shasum": "ebeb6b630c0c614b36263ac4a024b269113b6a99"
+                "reference": "fdf0b1fcaed42627e4713dc65c2dd77ab2b07cf7"
             },
             "require": {
                 "drupal/core": "*"
@@ -1133,11 +1127,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.20",
-                    "datestamp": "1505199844",
+                    "version": "8.x-1.20+24-dev",
+                    "datestamp": "1509385384",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -1180,7 +1174,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
-            }
+            },
+            "time": "2017-11-02T15:11:44+00:00"
         },
         {
             "name": "drupal/asciidoc",
@@ -12063,6 +12058,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/admin_toolbar": 20,
         "drupal/field_collection": 20,
         "drupal/field_group": 20,
         "drupal/paragraphs": 20,
