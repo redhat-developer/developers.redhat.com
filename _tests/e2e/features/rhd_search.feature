@@ -121,12 +121,10 @@ Feature: Search Page
       | %3Cscript%3Ealert                                      |
       | %3Cimg%20src%3Dx%20onerror%3Dalert(/OPENBUGBOUNTY/)%3E |
 
-
   Scenario: User can re-search using different search term and results are updated.
     Given I am on the Home page
     When I search for "Hello World" via the site-nav search bar
     Then the search page is displayed
-    And the results should contain "Hello World"
     When I search for "Java"
     Then the results should be updated and contain "Java"
 
