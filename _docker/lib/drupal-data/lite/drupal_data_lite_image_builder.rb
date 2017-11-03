@@ -55,12 +55,10 @@ class DrupalDataLiteImageBuilder
   # Builds the new version of the "lite" data image and tags it as redhatdeveloper/drupal-data-lite:latest
   #
   def build_lite_data_image
-    @process_runner.execute!("cd #{@working_directory}")
+    @process_runner.execute!("cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/config/active /work/config && chmod -R 777 /work/config\"")
+    @process_runner.execute!("cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/sites/default/files /work/files && chmod -R 777 /work/files\"")
 
-    @process_runner.execute!("docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/config/active /work/config && chmod -R 777 /work/config\"")
-    @process_runner.execute!("docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/sites/default/files /work/files && chmod -R 777 /work/files\"")
-
-    @process_runner.execute!('docker build -t redhatdeveloper/drupal-data-lite:latest -f Dockerfile.lite .')
+    @process_runner.execute!("cd #{@working_directory} && docker build -t redhatdeveloper/drupal-data-lite:latest -f Dockerfile.lite .")
   end
 
   #
