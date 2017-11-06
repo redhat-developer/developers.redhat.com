@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdac32180cb1dbe06848e1290c95b444",
+    "content-hash": "b20f56927ca1bd6f9d2cc0c90f9d80c5",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1112,11 +1112,17 @@
         },
         {
             "name": "drupal/admin_toolbar",
-            "version": "dev-1.x",
+            "version": "1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/admin_toolbar",
-                "reference": "fdf0b1fcaed42627e4713dc65c2dd77ab2b07cf7"
+                "reference": "8.x-1.20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-1.20.zip",
+                "reference": "8.x-1.20",
+                "shasum": "ebeb6b630c0c614b36263ac4a024b269113b6a99"
             },
             "require": {
                 "drupal/core": "*"
@@ -1127,11 +1133,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.20+24-dev",
-                    "datestamp": "1509385384",
+                    "version": "8.x-1.20",
+                    "datestamp": "1505199844",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -1174,8 +1180,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
-            },
-            "time": "2017-11-02T15:11:44+00:00"
+            }
         },
         {
             "name": "drupal/asciidoc",
@@ -1395,16 +1400,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.4.0",
+            "version": "8.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7"
+                "reference": "68d25c07b7306340900abc4020c38683a817f0eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d4be8e12d9e8b4db82ece760c632213247f56fa7",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7",
+                "url": "https://api.github.com/repos/drupal/core/zipball/68d25c07b7306340900abc4020c38683a817f0eb",
+                "reference": "68d25c07b7306340900abc4020c38683a817f0eb",
                 "shasum": ""
             },
             "require": {
@@ -1467,6 +1472,7 @@
                 "drupal/core-annotation": "self.version",
                 "drupal/core-assertion": "self.version",
                 "drupal/core-bridge": "self.version",
+                "drupal/core-class-finder": "self.version",
                 "drupal/core-datetime": "self.version",
                 "drupal/core-dependency-injection": "self.version",
                 "drupal/core-diff": "self.version",
@@ -1559,7 +1565,6 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/1356276-360.patch",
                     "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                     "2880445 - Config sync should not throw a warning when not being writable": "https://www.drupal.org/files/issues/2880445-remove-config-write-warning-2.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
@@ -1587,7 +1592,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-10-04T19:25:32+00:00"
+            "time": "2017-11-03T13:20:16+00:00"
         },
         {
             "name": "drupal/crop",
@@ -9832,16 +9837,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08131e7ff29de6bb9f12275c7d35df71f25f4d89",
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89",
                 "shasum": ""
             },
             "require": {
@@ -9879,7 +9884,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-09-02T17:10:46+00:00"
+            "time": "2017-11-04T11:48:34+00:00"
         },
         {
             "name": "pear/console_table",
@@ -10666,16 +10671,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.13",
+            "version": "v0.8.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d"
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/91e53c16560bdb8b9592544bb38429ae00d6baee",
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee",
                 "shasum": ""
             },
             "require": {
@@ -10735,7 +10740,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-10-19T06:13:20+00:00"
+            "time": "2017-11-04T16:06:49+00:00"
         },
         {
             "name": "se/selenium-server-standalone",
@@ -12058,7 +12063,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/admin_toolbar": 20,
         "drupal/field_collection": 20,
         "drupal/field_group": 20,
         "drupal/paragraphs": 20,
