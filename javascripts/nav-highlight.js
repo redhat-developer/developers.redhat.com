@@ -2,7 +2,7 @@ jQuery(function() {
 
     var href = window.location.href.split('#')[0];
 
-    var topicPages = ['/containers', '/devops', '/enterprise-java', '/iot', '/microservices', '/mobile', '/web-and-api-development', '/dotnet'];
+    var topicPages = ['/containers', '/devops', '/enterprise-java', '/iot', '/microservices', '/mobile', '/web-and-api-development', '/dotnet', '/security/'];
     var communityPages = ['/blog', '/events', '/projects', '/community/contributor'];
     var helpPages = ['/stack-overflow', '/forums', '/resources'];
 
