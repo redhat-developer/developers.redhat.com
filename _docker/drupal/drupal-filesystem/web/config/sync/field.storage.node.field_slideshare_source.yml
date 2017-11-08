@@ -1,0 +1,19 @@
+uuid: ec8b8124-241e-49f5-94a7-95ab6010f81f
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_slideshare_source
+field_name: field_slideshare_source
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
