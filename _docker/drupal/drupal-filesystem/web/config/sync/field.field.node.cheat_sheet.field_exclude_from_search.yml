@@ -1,0 +1,23 @@
+uuid: 0015097b-c35f-4f64-bfea-51ab0c99c690
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_search
+    - node.type.cheat_sheet
+id: node.cheat_sheet.field_exclude_from_search
+field_name: field_exclude_from_search
+entity_type: node
+bundle: cheat_sheet
+label: 'Exclude from search'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
