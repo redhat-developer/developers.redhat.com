@@ -1,16 +1,27 @@
 "use strict";
 
 describe('OS detection component', function () {
-    var wc,
-        productCode,
-        platformType,
-        downloadURL,
-        url;
+    var productCode,
+    productName,
+    platformType,
+    downloadURL,
+    url,
+    rhelURL,
+    macURL,
+    winURL,
+    version,
+    displayOS,
+    wc;
 
     beforeEach(function () {
         wc = document.createElement('rhdp-os-download');
+        productName = "Test product";
+        rhelURL = "http://www.rhel-url-download.com/";
+        macURL = "http://www.mac-url-download.com/";
+        winURL ="http://www.win-url-download.com/";
+        version = "7.0.0";
+        displayOS = "true";
         url = 'https://testdownload.com/products/testproduct/download/';
-        platformType = 'MacOS';
         downloadURL = 'https://testdownload.com/products/testproduct/download/';
         productCode = 'testproduct';
 
@@ -23,20 +34,32 @@ describe('OS detection component', function () {
     describe('properties', function () {
 
         beforeEach(function () {
-            wc.url = url;
             wc.productCode = productCode;
-            wc.platformType = platformType;
+            wc.productName = productName;
             wc.downloadURL = downloadURL;
+            wc.url = url;
+            wc.rhelURL = rhelURL;
+            wc.macURL = macURL;
+            wc.winURL = winURL;
+            wc.version = version;
+            wc.displayOS = displayOS;
 
         });
 
-        it('should update url, productcode, platform-type and downloadurl', function () {
+        it('should update all properties with appropriate values', function () {
+
             expect(wc.getAttribute('url')).toEqual(url);
             expect(wc.getAttribute('product-code')).toEqual(productCode);
-            expect(wc.getAttribute('platform-type')).toEqual(platformType);
             expect(wc.getAttribute('download-url')).toEqual(downloadURL);
+            expect(wc.getAttribute('rhel-download')).toEqual(rhelURL);
+            expect(wc.getAttribute('mac-download')).toEqual(macURL);
+            expect(wc.getAttribute('windows-download')).toEqual(winURL);
+            expect(wc.getAttribute('name')).toEqual(productName);
+            expect(wc.getAttribute('version')).toEqual(version);
+            expect(wc.getAttribute('display-os')).toEqual(displayOS);
         });
     });
+
     describe('logic methods', function () {
 
         beforeEach(function () {
@@ -44,16 +67,12 @@ describe('OS detection component', function () {
             wc.productCode = productCode;
             wc.platformType = platformType;
             wc.downloadURL = downloadURL;
-            document.body.insertBefore(wc, document.body.firstChild);
 
 
         });
 
-        it('should extract productCode from getProductFromURL', function () {
-            var testValue = wc.getProductFromURL();
-            expect(testValue).toEqual(productCode);
-        });
         it('should set platformType based on User-Agent', function () {
+            document.body.insertBefore(wc, document.body.firstChild);
             var OSName = "Windows";
             if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
             if (navigator.appVersion.indexOf("Linux")!=-1) OSName="RHEL";
@@ -61,23 +80,51 @@ describe('OS detection component', function () {
             expect(wc.platformType).toEqual(OSName);
 
         });
+        it('should set platformType based on User-Agent', function () {
+            document.body.insertBefore(wc, document.body.firstChild);
+            var OSName = "Windows";
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="RHEL";
+
+            expect(wc.platformType).toEqual(OSName);
+
+        });
+
+
     });
     describe('with valid data', function () {
 
         beforeEach(function () {
-            wc.url = url;
             wc.productCode = productCode;
-            wc.platformType = platformType;
+            wc.productName = productName;
             wc.downloadURL = downloadURL;
+            wc.url = url;
+            wc.rhelURL = rhelURL;
+            wc.macURL = macURL;
+            wc.winURL = winURL;
+            wc.version = version;
+            wc.displayOS = false;
+
+        });
+
+        it('should update the link with the appropriate download url', function () {
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('.button.heavy-cta').href).toEqual(wc.downloadURL);
+        });
+        it('should display the full name with version and platform', function () {
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('.version-name').innerText).toEqual(productName + ' ' + version +' for ' + wc.platformType);
+        });
+        it('should NOT display the platform when platform urls do not exist', function () {
+            wc.rhelURL = "";
+            wc.macURL = "";
+            wc.winURL = "";
             document.body.insertBefore(wc, document.body.firstChild);
 
-
-        });
-
-        it('should update url, productcode, platform-type and downloadurl', function () {
-            expect(wc.getAttribute('product-code')).toEqual(productCode);
+            expect(wc.querySelector('.version-name').innerText).toEqual(productName + ' ' + version);
         });
     });
+
 
 });
 

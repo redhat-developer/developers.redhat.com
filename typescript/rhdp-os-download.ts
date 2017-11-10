@@ -5,12 +5,11 @@ class RHDPOSDownload extends HTMLElement {
     private _platformType;
     private _downloadURL;
     private _url;
-    private _rhelURL;
-    private _macURL;
-    private _winURL;
+    private _rhelURL = "";
+    private _macURL = "";
+    private _winURL = "";
     private _version;
     private _displayOS;
-
 
     get url() {
         return this._url;
@@ -19,6 +18,8 @@ class RHDPOSDownload extends HTMLElement {
     set url(value) {
         if (this._url === value) return;
         this._url = value;
+        this.setAttribute('url', this._url);
+
     }
 
     get productCode() {
@@ -113,6 +114,7 @@ class RHDPOSDownload extends HTMLElement {
     set displayOS(value) {
         if (this._displayOS === value) return;
         this._displayOS = value;
+        this.setAttribute('display-os', this._displayOS);
     }
 
     constructor() {
@@ -144,15 +146,6 @@ class RHDPOSDownload extends HTMLElement {
         this[name] = newVal;
     }
 
-    // getProductFromURL(){
-    //     // returns the target product that will be used for the JSON reference
-    //     this.url = this.url ? this.url : window.location.href;
-    //     var regex = new RegExp("[^/.]+(?=\/download)"),
-    //         results = regex.exec(this.url);
-    //     if (!results) return null;
-    //     return results[0];
-    //
-    // }
     getUserAgent(){
         let OSName = "Windows";
         if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";

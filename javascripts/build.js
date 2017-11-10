@@ -111,6 +111,9 @@ var RHDPOSDownload = (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
         var _this = _super.call(this) || this;
+        _this._rhelURL = "";
+        _this._macURL = "";
+        _this._winURL = "";
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
         };
@@ -124,6 +127,7 @@ var RHDPOSDownload = (function (_super) {
             if (this._url === value)
                 return;
             this._url = value;
+            this.setAttribute('url', this._url);
         },
         enumerable: true,
         configurable: true
@@ -240,6 +244,7 @@ var RHDPOSDownload = (function (_super) {
             if (this._displayOS === value)
                 return;
             this._displayOS = value;
+            this.setAttribute('display-os', this._displayOS);
         },
         enumerable: true,
         configurable: true
