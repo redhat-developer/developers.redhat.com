@@ -131,9 +131,7 @@ other methods (such as node.delete) will result in an exception.
             <strong>Tags:</strong> {{ content.field_tags }}
         {% endif %}
         {% if content.field_related_product|render|striptags|trim is not empty %}
-            <div class="white-card large-24 columns">
-                {{ content.field_related_product }}
-            </div>
+            {{ content.field_related_product }}
         {% endif %}
     </div>
   </div>
