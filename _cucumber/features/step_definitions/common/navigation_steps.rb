@@ -33,34 +33,8 @@ When(/^I click the Logout link$/) do
   @current_page.click_logout
 end
 
-Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
-  if menu_item.eql?('Menu')
-    @current_page.toggle_menu
-  else
-    @current_page.toggle_menu_and_tap(menu_item.downcase)
-  end
-end
-
 When(/^I go back$/) do
   @browser.back
-end
-
-Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
-  table.raw.each do |row|
-    menu_item = row.first
-    expect(@current_page.menu_item_present?(menu_item.downcase)).to be true
-  end
-end
-
-When(/^I click on the ([^"]*) menu item$/) do |menu_item|
-  @current_page.click_on_nav_menu(menu_item)
-end
-
-Then(/^I should see the following "(Topics|Technologies|Community|Help)" sub\-menu items:$/) do |tab, table|
-  table.raw.each do |row|
-    sub_items = row.first
-    expect(@current_page.sub_menu_items(tab.downcase)).to include(sub_items), "#{sub_items} was not found!"
-  end
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do

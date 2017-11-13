@@ -22,7 +22,7 @@ class FooterSection extends BasePage {
         this.scrollIntoView(this.footer);
         let footerCollapsed = this.isDisplayed(`//*[@id="collapseFooter"]/div[${i}][contains(@class,'collapsed')]`.toString());
         if (footerCollapsed === true) {
-            return this.clickOn(this.footerDropdownItems(i));
+            return BasePage.clickOn(this.footerDropdownItems(i));
         }
     }
 }

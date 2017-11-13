@@ -106,29 +106,21 @@ Feature: Search Page
     Then the results should be updated and contain a "Boss BPM Suite" tag
 
   Scenario: User can filter results by: Topic.
-    Given I have searched for "Containers"
-    When I filter results by "DevOps" from "Topic"
-    Then the results should be updated and contain a "DevOps" tag
+    Given I have searched for "Java"
+    When I filter results by "Containers" from "Topic"
+    Then the results should be updated and contain a "Containers" tag
 
-  Scenario Outline: Cross Site Scripting (XSS): Navigating directly to search page with url that contains malicious scripts
-    Given I navigate directly to search page with "<script>"
+  Scenario: Cross Site Scripting (XSS): Navigating directly to search page with url that contains malicious scripts
+    Given I navigate directly to search page with "%3Cscript%3Ealert"
     Then the search page is displayed
     And I should not see an alert
 
-    Examples: Script alert
-      | script                                                 |
-      | Richfaces%205%20-%20Javascript                         |
-      | %3Cscript%3Ealert                                      |
-      | %3Cimg%20src%3Dx%20onerror%3Dalert(/OPENBUGBOUNTY/)%3E |
-
-
   Scenario: User can re-search using different search term and results are updated.
     Given I am on the Home page
-    When I search for "Hello World" via the site-nav search bar
+    When I search for "RHEL" via the site-nav search bar
     Then the search page is displayed
-    And the results should contain "Hello World"
     When I search for "Java"
-    Then the results should be updated and contain "Java"
+    Then the results should contain "Java"
 
   Scenario: User searches for a string that is associated with a Product OneBox
     Given I am on the Home page
@@ -138,37 +130,37 @@ Feature: Search Page
 
   Scenario: User selects the Title of the product on a Product OneBox
     Given I am provided with a "containers" OneBox
-    When I select the OneBox Title
+    When I select the "oneBox Title" within the product OneBox
     Then I should see the "Red Hat Container Development Kit" Overview page
 
   Scenario: User selects the View Downloads button on a Product OneBox
     Given I am provided with a "containers" OneBox
-    When I select the View Downloads button
+    When I select the "View Downloads Button" within the product OneBox
     Then I should see the "Red Hat Container Development Kit" Download page
 
   @desktop
   Scenario: User selects the Hello World! molecule (icon and/or text) on a Product OneBox
     Given I am provided with a "containers" OneBox
-    When I select the oneBox "Hello World!" link
+    When I select the "Hello World Link" within the product OneBox
     Then I should see the "Red Hat Container Development Kit" Hello-world page
 
   @desktop
   Scenario: User selects the Docs and APIs molecule (icon and/or text) on a Product OneBox
     Given I am provided with a "containers" OneBox
-    When I select the oneBox "Docs and APIs" link
+    When I select the "Docs And APIs Link" within the product OneBox
     Then I should see the "Red Hat Container Development Kit" Docs-and-apis page
 
   @desktop
   Scenario: User selects the Help molecule (icon and/or text) on a Product OneBox
     Given I am provided with a "containers" OneBox
-    When I select the oneBox "Help" link
+    When I select the "Help Link" within the product OneBox
     Then I should see the "Red Hat Container Development Kit" Help page
 
   Scenario: User searches for a term that does not have a corresponding OneBox
     Given I am on the Home page
     When I search for "Red Hat Container Development Kit" via the site-nav search bar
     Then the search page is displayed
-    Then I should not see a OneBox for "Red Hat Container Development Kit" at the top of the results
+    Then I should not see a product OneBox for at the top of the results
 
   Scenario: User sees the end of the returned search results
     Given I am on the Search page

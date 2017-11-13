@@ -1,58 +1,47 @@
 import {BasePage} from "../pages/Base.page";
+import {driver} from "../../config/DriverHelper"
 
 class NavigationBarSection extends BasePage {
 
     constructor() {
         super();
-    }
 
-    get mobileNavToggle() {
-        return browser.element('.nav-toggle')
-    }
-
-    get searchBar() {
-        return browser.element('.search-wrapper');
-    }
-
-    get searchField() {
-        return browser.element('.user-search');
-    }
-
-    get searchButton() {
-        return browser.element('#search-button');
-    }
-
-    get navToggle() {
-        return browser.element('body > div.site-wrapper > header > div > div > a');
+        this.addSelectors({
+            mobileNavToggle: '.nav-toggle',
+            navToggle: 'body > div.site-wrapper > header > div > div > a',
+            searchBar: '.search-wrapper',
+            searchField: '.user-search',
+            searchButton: '#search-button'
+        });
     }
 
     isMobile() {
-        if (this.mobileNavToggle.isVisible()) {
-            this.clickOn(this.navToggle);
+        if (driver.isDisplayed(this.getSelector('mobileNavToggle'))) {
+            this.clickOn(this.getSelector('navToggle'));
         }
     }
 
     enterSearch(searchTerm) {
         this.isMobile();
-        this.type(this.searchField, searchTerm);
+        return driver.type(this.getSelector('searchField'), searchTerm);
     }
 
     triggerSearch(searchTrigger = 'search-button') {
         if (searchTrigger === 'search-button') {
-            this.clickOn(this.searchButton);
+            driver.clickOn(this.getSelector('searchButton'));
         } else {
-            browser.keys('Enter')
+            driver.key('Enter')
         }
     }
 
     searchFor(searchTerm) {
         this.isMobile();
-        this.type(this.searchField, searchTerm);
-        this.clickOn(this.searchButton);
+        driver.type(this.getSelector('searchField'), searchTerm);
+        driver.clickOn(this.getSelector('searchButton'));
     }
 
     searchBarDisplayed() {
-        return this.isDisplayed(this.searchBar);
+        return driver.isDisplayed(this.getSelector('searchBar'));
     }
 
 }
