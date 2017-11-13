@@ -7,22 +7,28 @@ class NavigationBarSection extends BasePage {
         super();
 
         this.addSelectors({
-            mobileNavToggle: '.nav-toggle',
+            mobileNavToggle: '.nav-toggle > .fa-angle-down',
             navToggle: 'body > div.site-wrapper > header > div > div > a',
+            navOpen: '.nav-open',
             searchBar: '.search-wrapper',
             searchField: '.user-search',
             searchButton: '#search-button'
         });
     }
 
-    isMobile() {
-        if (driver.isDisplayed(this.getSelector('mobileNavToggle'))) {
-            this.clickOn(this.getSelector('navToggle'));
+    toggleMobileNav() {
+        let mobileNavToggle;
+        mobileNavToggle = driver.isDisplayed(this.getSelector('mobileNavToggle'));
+        if (mobileNavToggle === true) {
+            driver.clickOn(this.getSelector('navToggle'));
+            driver.awaitIsVisible(this.getSelector('navOpen'));
+            // wait for modal to completely open
+            browser.pause(1000)
         }
     }
 
     enterSearch(searchTerm) {
-        this.isMobile();
+        this.toggleMobileNav();
         return driver.type(this.getSelector('searchField'), searchTerm);
     }
 
@@ -35,7 +41,7 @@ class NavigationBarSection extends BasePage {
     }
 
     searchFor(searchTerm) {
-        this.isMobile();
+        this.toggleMobileNav();
         driver.type(this.getSelector('searchField'), searchTerm);
         driver.clickOn(this.getSelector('searchButton'));
     }

@@ -27,7 +27,7 @@ class SearchPage extends BasePage {
     }
 
     awaitSearchPage() {
-        driver.awaitIsVisible(this.getSelector('searchPage'));
+        driver.awaitExists(this.getSelector('searchPage'));
         return this.searchResults.awaitLoadingSpinner()
     }
 

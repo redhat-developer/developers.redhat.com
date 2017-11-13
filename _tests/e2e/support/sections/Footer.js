@@ -1,4 +1,5 @@
 import {BasePage} from "../pages/Base.page";
+import {driver} from "../../config/DriverHelper";
 
 class FooterSection extends BasePage {
 
@@ -6,23 +7,21 @@ class FooterSection extends BasePage {
         super();
     }
 
-    get footer() {
-        return browser.element('.bottom')
-    }
-
     footerDropdownItems(i) {
-        return browser.element(`//*[@id="collapseFooter"]/div[${i}]/h3`);
+        return driver.element(`//*[@id="collapseFooter"]/div[${i}]//*[@class='toggle-icon']`);
     }
 
     sectionContent(i) {
-        return this.textOf(`//*[@id="collapseFooter"]/div[${i}]/div`);
+        return driver.textOf(`//*[@id="collapseFooter"]/div[${i}]/div`);
     }
 
     collapseFooter(i) {
-        this.scrollIntoView(this.footer);
-        let footerCollapsed = this.isDisplayed(`//*[@id="collapseFooter"]/div[${i}][contains(@class,'collapsed')]`.toString());
+        let footer = `//*[@id="collapseFooter"]/div[${i}][contains(@class,'collapsed')]`.toString();
+        let footerCollapsed = driver.awaitExists(footer);
         if (footerCollapsed === true) {
-            return BasePage.clickOn(this.footerDropdownItems(i));
+            return driver.clickOn(this.footerDropdownItems(i));
+            // Give it 1 second for the dropdown to open
+            browser.pause(1000)
         }
     }
 }

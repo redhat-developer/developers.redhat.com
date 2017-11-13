@@ -12,7 +12,7 @@ function checkDirectorySync(directory) {
 if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 } else {
-    process.env.RHD_BASE_URL = 'https://developers.redhat.com';
+    process.env.RHD_BASE_URL = 'https://developers-pr.stage.redhat.com/pr/2110/export';
     console.log('No base url set, defaulting to staging');
     baseUrl = process.env.RHD_BASE_URL
 }
@@ -21,12 +21,6 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'verbose';
 } else {
     logLevel = 'silent';
-}
-
-if (process.env.RHD_VERBOSE_OUTPUT) {
-    logLevel = 'verbose';
-} else {
-    logLevel = 'commands';
 }
 
 checkDirectorySync(path.resolve('report'));
@@ -40,8 +34,17 @@ if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
 if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
     process.env.RHD_JS_DRIVER = 'chrome';
 }
-const BrowserManager = require('./BrowserManager');
-const browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
+
+const BrowserManager = require('./BrowserManager.js');
+
+if (process.env.RHD_JS_DRIVER === 'chrome') {
+    browserCaps = BrowserManager.createBrowser('chrome');
+} else {
+    // Check that the device being used for emulation is supported by chrome
+    capability = require('./chromium_devices.json')[process.env.RHD_JS_DRIVER];
+    let device = capability['device']['name'];
+    browserCaps = BrowserManager.createBrowser(device.toString());
+}
 
 if (process.env.RHD_CHIMP_TAGS) {
     cucumberTags = process.env.RHD_CHIMP_TAGS;
@@ -84,5 +87,37 @@ module.exports = {
     jsonFile: `./report/${testProfile}/cucumber-${testProfile}.json`,
     output: `./report/${testProfile}/cucumber-${testProfile}.html`,
     reportSuiteAsScenarios: true,
-    launchReport: false
+    launchReport: false,
+
+
+    // - - - - SELENIUM-STANDALONE
+    seleniumStandaloneOptions: {
+        // check for more recent versions of selenium here:
+        // http://selenium-release.storage.googleapis.com/index.html
+        version: '3.0.1',
+        baseURL: 'https://selenium-release.storage.googleapis.com',
+        drivers: {
+            chrome: {
+                // check for more recent versions of chrome driver here:
+                // http://chromedriver.storage.googleapis.com/index.html
+                version: '2.30',
+                arch: process.arch,
+                baseURL: 'https://chromedriver.storage.googleapis.com'
+            },
+            ie: {
+                // check for more recent versions of internet explorer driver here:
+                // http://selenium-release.storage.googleapis.com/index.html
+                version: '3.0.0',
+                arch: 'ia32',
+                baseURL: 'https://selenium-release.storage.googleapis.com'
+            },
+            firefox: {
+                // check for more recent versions of gecko  driver here:
+                // https://github.com/mozilla/geckodriver/releases
+                version: '0.13.0',
+                arch: process.arch,
+                baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
+            }
+        }
+    }
 };

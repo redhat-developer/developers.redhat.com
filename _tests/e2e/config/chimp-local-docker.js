@@ -4,7 +4,7 @@ const path = require('path');
 function checkDirectorySync(directory) {
     try {
         fs.statSync(directory);
-    } catch(e) {
+    } catch (e) {
         fs.mkdirSync(directory);
     }
 }
@@ -31,11 +31,22 @@ if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
     testProfile = 'desktop';
 }
 
-if (process.env.RHD_JS_DRIVER === 'undefined') {
+if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
     process.env.RHD_JS_DRIVER = 'chrome';
 }
-const BrowserManager = require('./BrowserManager');
-const browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
+
+const BrowserManager = require('./BrowserManager.js');
+
+let rhdDriver = process.env.RHD_JS_DRIVER;
+
+if (rhdDriver === 'chrome') {
+    browserCaps = BrowserManager.createBrowser('chrome');
+} else {
+    // Check that the device being used for emulation is supported by chrome
+    capability = require('./chromium_devices.json')[process.env.RHD_JS_DRIVER];
+    let device = capability['device']['name'];
+    browserCaps = BrowserManager.createBrowser(device.toString());
+}
 
 if (process.env.RHD_CHIMP_TAGS) {
     cucumberTags = process.env.RHD_CHIMP_TAGS;
@@ -43,30 +54,16 @@ if (process.env.RHD_CHIMP_TAGS) {
     cucumberTags = '~@ignore'
 }
 
-let browserstackBrowser = require("./remote_browsers.json");
-let browserstackBrowserCaps = browserstackBrowser[process.env.RHD_JS_DRIVER];
-
 module.exports = {
 
-    user: process.env.RHD_BS_AUTHKEY,
-    key: process.env.RHD_BS_USERNAME,
-    port: 80,
-    host: "hub-cloud.browserstack.com",
+    host: 'localhost',
+    port: 4444,
     browser: browserCaps['browserName'],
 
     // - - - - WEBDRIVER-IO  - - - -
     webdriverio: {
         browser: browserCaps['browserName'],
-        desiredCapabilities: [{
-            'acceptSslCerts': 'true',
-            project: 'RHD e2e Tests',
-            browserName: browserstackBrowserCaps['browserName'],
-            browser_version: browserstackBrowserCaps['browser_version'],
-            os: browserstackBrowserCaps['os'],
-            os_version: browserstackBrowserCaps['os_version'],
-            resolution: browserstackBrowserCaps['resolution'],
-            'browserstack.local': true
-        }],
+        desiredCapabilities: browserCaps,
         baseUrl: baseUrl,
         logLevel: logLevel,
         sync: true,
@@ -76,7 +73,6 @@ module.exports = {
         connectionRetryCount: 3,
 
     },
-
 
     // - - - - CHIMP SETTINGS - - - -
     chai: true,
