@@ -65,6 +65,13 @@ other methods (such as node.delete) will result in an exception.
 * @ingroup themeable
 */
 #}
+{% if node.field_exclude_from_search.value == '1' %}
+  <noscript>
+    <meta name="DCP:WebpageSearchExclude" content="true">
+  </noscript>
+{% endif %}
+
+
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-cheat-sheet") }}>
   <div class="row">
     <div class="large-24 medium-24 columns">

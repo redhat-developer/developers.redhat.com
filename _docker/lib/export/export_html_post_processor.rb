@@ -24,6 +24,7 @@ class ExportHtmlPostProcessor
     @log = DefaultLogger.logger
     @process_runner = process_runner
     @static_file_directory = static_file_directory
+    @documentation_link_suffixes = %w(.html .pdf .epub)
   end
 
   #
@@ -181,9 +182,11 @@ class ExportHtmlPostProcessor
         uri = URI(link.attributes['href'].value)
 
         #
-        # Only perform processing on the link if it doesn't already link to a .html file
+        # Only perform processing on the link if it doesn't already link to an allowed
+        # documentation suffix e.g. .html, .pdf or .epub
         #
-        unless uri.path.to_s.end_with?('.html')
+        allowed_link_suffix = @documentation_link_suffixes.any? { | suffix | uri.path.to_s.end_with?(suffix)}
+        unless allowed_link_suffix
           new_path = uri.path.end_with?('/') ? "#{uri.path}index.html" : "#{uri.path}/index.html"
           uri.path = new_path
           new_href = uri.to_s
