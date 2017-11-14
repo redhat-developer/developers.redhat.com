@@ -141,15 +141,16 @@ class RHDPDownloadsProducts extends HTMLElement {
         }, {
             "productName": "Red Hat OpenShift Container Platform",
             "groupHeading": "CLOUD",
+            "productCode": "openshift",
             "featured": false,
             "dataFallbackUrl": "https://access.redhat.com/downloads/content/290/",
-            "downloadLink": "https://access.redhat.com/downloads/content/290/",
+            "downloadLink": "",
             "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/openshift/overview/"
         }, {
             "productName": "OpenJDK",
-            "groupHeading": "RUNTIMES",
+            "groupHeading": "LANGUAGES AND COMPILERS",
             "productCode": "openjdk",
             "featured": false,
             "dataFallbackUrl": "https://developers.redhat.com/products/openjdk/overview/",
@@ -157,16 +158,6 @@ class RHDPDownloadsProducts extends HTMLElement {
             "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/openjdk/overview/"
-        }, {
-            "productName": ".NET Core for Red Hat Enterprise Linux",
-            "groupHeading": "RUNTIMES",
-            "productCode": "dotnet",
-            "featured": false,
-            "dataFallbackUrl": "https://access.redhat.com/downloads",
-            "downloadLink": "",
-            "description": "Build and run cross-platform .NET applications on the world’s number one Enterprise-ready Linux Distribution, Red Hat Enterprise Linux",
-            "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/dotnet/overview/"
         }]
     };
 

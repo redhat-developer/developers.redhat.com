@@ -117,6 +117,9 @@ var RHDPOSDownload = (function (_super) {
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
         };
+        _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
+            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
+        };
         return _this;
     }
     Object.defineProperty(RHDPOSDownload.prototype, "url", {
@@ -265,15 +268,6 @@ var RHDPOSDownload = (function (_super) {
     RHDPOSDownload.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
         this[name] = newVal;
     };
-    // getProductFromURL(){
-    //     // returns the target product that will be used for the JSON reference
-    //     this.url = this.url ? this.url : window.location.href;
-    //     var regex = new RegExp("[^/.]+(?=\/download)"),
-    //         results = regex.exec(this.url);
-    //     if (!results) return null;
-    //     return results[0];
-    //
-    // }
     RHDPOSDownload.prototype.getUserAgent = function () {
         var OSName = "Windows";
         if (navigator.appVersion.indexOf("Mac") != -1)
@@ -879,8 +873,12 @@ var RHDPDownloadsAllItem = (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
-        _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version) {
-            return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
+        _this.productDownloads = {
+            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+        };
+        _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
+            return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
         };
         return _this;
     }
@@ -969,9 +967,44 @@ var RHDPDownloadsAllItem = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RHDPDownloadsAllItem.prototype, "platform", {
+        get: function () {
+            return this._platform;
+        },
+        set: function (value) {
+            this._platform = value;
+            this.setAttribute('platform', this._platform);
+        },
+        enumerable: true,
+        configurable: true
+    });
     RHDPDownloadsAllItem.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version));
-        var _a;
+        if (this.productId === 'devsuite' || this.productId === 'cdk') {
+            this.osVersionExtract(this.productId);
+            this.innerHTML = (_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform));
+        }
+        else {
+            this.innerHTML = (_b = ["", "", "", "", "", "", "", "", ""], _b.raw = ["", "", "", "", "", "", "", "", ""], this.template(_b, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null));
+        }
+        var _a, _b;
+    };
+    RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
+        var osPlatform = new RHDPOSDownload();
+        osPlatform.platformType = osPlatform.getUserAgent();
+        switch (productId) {
+            case 'devsuite':
+                osPlatform.winURL = this.productDownloads.devsuite.windowsUrl;
+                osPlatform.macURL = this.productDownloads.devsuite.macUrl;
+                osPlatform.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                break;
+            case 'cdk':
+                osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
+                osPlatform.macURL = this.productDownloads.cdk.macUrl;
+                osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+        }
+        osPlatform.setDownloadURLByPlatform();
+        this.downloadUrl = osPlatform.downloadURL;
+        this.platform = osPlatform.platformType;
     };
     Object.defineProperty(RHDPDownloadsAllItem, "observedAttributes", {
         get: function () {
@@ -1101,7 +1134,7 @@ var RHDPDownloadsApp = (function (_super) {
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('integration_and_automation', 'INTEGRATION AND AUTOMATION', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile', 'MOBILE', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud', 'CLOUD', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'RUNTIMES', productList));
+        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'LANGUAGES AND COMPILERS', productList));
     };
     RHDPDownloadsApp.prototype.setPopularProducts = function (productList) {
         this.popularProduct.productList = productList.products;
@@ -1404,15 +1437,16 @@ var RHDPDownloadsProducts = (function (_super) {
                 }, {
                     "productName": "Red Hat OpenShift Container Platform",
                     "groupHeading": "CLOUD",
+                    "productCode": "openshift",
                     "featured": false,
                     "dataFallbackUrl": "https://access.redhat.com/downloads/content/290/",
-                    "downloadLink": "https://access.redhat.com/downloads/content/290/",
+                    "downloadLink": "",
                     "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
                     "version": "",
                     "learnMoreLink": "https://developers.redhat.com/products/openshift/overview/"
                 }, {
                     "productName": "OpenJDK",
-                    "groupHeading": "RUNTIMES",
+                    "groupHeading": "LANGUAGES AND COMPILERS",
                     "productCode": "openjdk",
                     "featured": false,
                     "dataFallbackUrl": "https://developers.redhat.com/products/openjdk/overview/",
@@ -1420,16 +1454,6 @@ var RHDPDownloadsProducts = (function (_super) {
                     "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
                     "version": "",
                     "learnMoreLink": "https://developers.redhat.com/products/openjdk/overview/"
-                }, {
-                    "productName": ".NET Core for Red Hat Enterprise Linux",
-                    "groupHeading": "RUNTIMES",
-                    "productCode": "dotnet",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads",
-                    "downloadLink": "",
-                    "description": "Build and run cross-platform .NET applications on the world’s number one Enterprise-ready Linux Distribution, Red Hat Enterprise Linux",
-                    "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/dotnet/overview/"
                 }]
         };
         return _this;

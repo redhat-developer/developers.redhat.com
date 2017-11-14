@@ -129,6 +129,14 @@ class RHDPOSDownload extends HTMLElement {
                 </div>
                 `;
     };
+    downloadsTemplate = (strings, product, downloadUrl, platform, version) => {
+        return `<div class="large-8 columns download-link">
+                    <a class="button heavy-cta" href="${downloadUrl}">
+                        <i class="fa fa-download"></i> Download</a>
+                    <div class="version-name">${product} ${version} ${this.displayOS ? `for ${platform}` : ''}</div>
+                </div>
+                `;
+    };
 
     connectedCallback() {
         this.platformType = this.getUserAgent();
