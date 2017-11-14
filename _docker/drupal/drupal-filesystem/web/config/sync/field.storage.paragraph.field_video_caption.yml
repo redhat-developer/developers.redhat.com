@@ -1,0 +1,19 @@
+uuid: a0b555a4-fa8e-4fcb-9911-01e575fdf20c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_video_caption
+field_name: field_video_caption
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

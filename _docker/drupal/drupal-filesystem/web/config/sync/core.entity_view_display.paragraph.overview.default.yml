@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.overview.field_product_overview_features
     - field.field.paragraph.overview.field_product_overview_video
     - field.field.paragraph.overview.field_secondary_content
+    - field.field.paragraph.overview.field_video_caption
     - paragraphs.paragraphs_type.overview
   module:
     - entity_reference_revisions
@@ -78,6 +79,13 @@ content:
   field_secondary_content:
     weight: 5
     label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_video_caption:
+    weight: 8
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
