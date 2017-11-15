@@ -159,6 +159,7 @@ class RHDPDownloadsAllItem extends HTMLElement {
                 osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
                 osPlatform.macURL = this.productDownloads.cdk.macUrl;
                 osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
             default:
                 osPlatform.winURL = this.downloadUrl;
                 osPlatform.macURL = this.downloadUrl;

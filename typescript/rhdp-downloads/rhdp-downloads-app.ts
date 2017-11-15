@@ -77,7 +77,13 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     setProductsDownloadData(url) {
-        fetch(url, {headers : 'application/json'})
+        let fInit : RequestInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: 'cors',
+            cache: 'default'
+        };
+            fetch(url, fInit)
             .then((resp) => resp.json())
             .then((data) => {
                 this.products.data = data;

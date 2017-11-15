@@ -1009,6 +1009,7 @@ var RHDPDownloadsAllItem = (function (_super) {
                 osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
                 osPlatform.macURL = this.productDownloads.cdk.macUrl;
                 osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
             default:
                 osPlatform.winURL = this.downloadUrl;
                 osPlatform.macURL = this.downloadUrl;
@@ -1161,7 +1162,13 @@ var RHDPDownloadsApp = (function (_super) {
     };
     RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
         var _this = this;
-        fetch(url, { headers: 'application/json' })
+        var fInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: 'cors',
+            cache: 'default'
+        };
+        fetch(url, fInit)
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.products.data = data;
