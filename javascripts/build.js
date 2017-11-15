@@ -874,8 +874,16 @@ var RHDPDownloadsAllItem = (function (_super) {
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
         _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+            "devsuite": {
+                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+                "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"
+            },
+            "cdk": {
+                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+                "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"
+            }
         };
         _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
             return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
@@ -1001,6 +1009,10 @@ var RHDPDownloadsAllItem = (function (_super) {
                 osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
                 osPlatform.macURL = this.productDownloads.cdk.macUrl;
                 osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+            default:
+                osPlatform.winURL = this.downloadUrl;
+                osPlatform.macURL = this.downloadUrl;
+                osPlatform.rhelURL = this.downloadUrl;
         }
         osPlatform.setDownloadURLByPlatform();
         this.downloadUrl = osPlatform.downloadURL;

@@ -11,8 +11,16 @@ class RHDPDownloadsAllItem extends HTMLElement {
     private _platform;
 
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
+        "devsuite": {
+            "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+            "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+            "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"
+        },
+        "cdk": {
+            "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+            "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+            "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"
+        }
     };
 
     constructor() {
@@ -134,6 +142,7 @@ class RHDPDownloadsAllItem extends HTMLElement {
         }
         else {
             this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}${null}`;
+
         }
     }
 
@@ -150,6 +159,11 @@ class RHDPDownloadsAllItem extends HTMLElement {
                 osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
                 osPlatform.macURL = this.productDownloads.cdk.macUrl;
                 osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+            default:
+                osPlatform.winURL = this.downloadUrl;
+                osPlatform.macURL = this.downloadUrl;
+                osPlatform.rhelURL = this.downloadUrl;
+
 
         }
         osPlatform.setDownloadURLByPlatform();
