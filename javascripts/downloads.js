@@ -84,15 +84,37 @@ app.downloads.createDownloadLink = function(data) {
   if (data[0].productCode === "rhoar") {
     return "";
   }
-  if(!data[0].featuredArtifact) {
+  else if (data[0].productCode === "devsuite") {
+    data[0].featuredWindowsArtifact = app.products.downloads.devsuite.windowsUrl;
+    data[0].featuredMacArtifact = app.products.downloads.devsuite.macUrl;
+    data[0].featuredRhelArtifact = app.products.downloads.devsuite.rhelUrl;
+  }
+  else if (data[0].productCode === "cdk") {
+    data[0].featuredWindowsArtifact = app.products.downloads.cdk.windowsUrl;
+    data[0].featuredMacArtifact = app.products.downloads.cdk.macUrl;
+    data[0].featuredRhelArtifact = app.products.downloads.cdk.rhelUrl;
+ }
+
+  else if(!data[0].featuredArtifact) {
     return "";
   }
+
+  else {
+      data[0].featuredWindowsArtifact = "";
+      data[0].featuredMacArtifact = "";
+      data[0].featuredRhelArtifact = "";
+
+  }
+  var $downloadLink = new RHDPOSDownload();
+      $downloadLink.productCode  = data[0].productCode;
+      $downloadLink.downloadURL  = data[0].featuredArtifact.url;
+      $downloadLink.winURL       = data[0].featuredWindowsArtifact;
+      $downloadLink.macURL       = data[0].featuredMacArtifact;
+      $downloadLink.rhelURL      = data[0].featuredRhelArtifact;
+      $downloadLink.productName  = data[0].name;
+      $downloadLink.version      = data[0].featuredArtifact.versionName;
+
   // Pull the first one from the sorted array
-  var icn = '<i class="fa fa-download"></i>',
-      lnk = '<a class="button heavy-cta" href="'+data[0].featuredArtifact.url+'">'+icn+' Download</a>',
-      ver = '<div class="version-name">'+data[0].name + ' ' + data[0].featuredArtifact.versionName+'</div>',
-      $downloadLink = $('<div class="large-8 columns download-link">'+lnk+ver+'</div>');
-      
   return $downloadLink;
 }
 

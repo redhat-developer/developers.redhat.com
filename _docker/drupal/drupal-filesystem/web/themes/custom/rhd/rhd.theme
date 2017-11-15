@@ -312,11 +312,28 @@ function redhat_www_ddo_default($node) {
  * Adding our css modifications to the video_embed_field type. Had to modify some things mostly due to
  * our site css so we could get the responsive video to work.
  *
+ * Adding another edit for embedded products.
+ *
  * @param $variables
  * @param $hook
  */
 function rhd_preprocess_field(&$variables, $hook) {
     if ($variables['field_type'] === 'video_embed_field') {
         $variables['items'][0]['content']['#attached']['library'][] = 'rhd/video_embed_field.responsive-video';
+    }
+
+    if ($variables['field_name'] === 'field_related_product') {
+      $node = $variables['items'][0]['content']['#node'];
+      $variables['product_name'] = $node->getTitle();
+      $variables['product_short_name'] = $node->field_product_short_name->value;
+
+      $product_code = $node->field_product_machine_name->value;
+      $overview_url = $node->field_product_pages->referencedEntities()[0]->field_overview_url->value;
+      $url_string = str_replace(' ', '-', strtolower($overview_url));
+      $url = Url::fromRoute('rhd_common.main_page_controller', array(
+        'product_code' => $product_code,
+        'sub_page' => $url_string,
+      ), array('absolute' => TRUE))->toString();
+      $variables['overview_url'] = $url;
     }
 }
