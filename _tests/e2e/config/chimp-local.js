@@ -12,7 +12,7 @@ function checkDirectorySync(directory) {
 if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 } else {
-    process.env.RHD_BASE_URL = 'https://developers-pr.stage.redhat.com/pr/2110/export';
+    process.env.RHD_BASE_URL = 'https://developers.stage.redhat.com';
     console.log('No base url set, defaulting to staging');
     baseUrl = process.env.RHD_BASE_URL
 }
