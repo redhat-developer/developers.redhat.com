@@ -6,7 +6,13 @@ dependencies:
     - workbench_moderation.moderation_state.draft
     - workbench_moderation.moderation_state.published
   enforced:
-    config: null
+    config:
+      - workbench_email.workbench_email_template.published
+  module:
+    - workbench_email
+third_party_settings:
+  workbench_email:
+    workbench_email_templates: {  }
 _core:
   default_config_hash: qTergiISOB-CWMTXkWxPk2qgmA2r9iviwM0iw93UmlU
 id: draft_published

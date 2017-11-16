@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - node.type.article
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.connectors
     - node.type.events
     - node.type.product
     - node.type.promotion_card
@@ -11,6 +14,7 @@ dependencies:
     - node.type.rhd_microsite
     - node.type.rhd_solution_overview
     - node.type.topic
+    - node.type.video_resource
     - user.role.content_team
 id: ready_for_review
 label: 'Ready For Review'
@@ -19,6 +23,9 @@ roles:
   content_team: content_team
 bundles:
   'node:article': 'node:article'
+  'node:books': 'node:books'
+  'node:cheat_sheet': 'node:cheat_sheet'
+  'node:connectors': 'node:connectors'
   'node:events': 'node:events'
   'node:product': 'node:product'
   'node:promotion_card': 'node:promotion_card'
@@ -26,6 +33,7 @@ bundles:
   'node:rhd_microsite': 'node:rhd_microsite'
   'node:rhd_solution_overview': 'node:rhd_solution_overview'
   'node:topic': 'node:topic'
+  'node:video_resource': 'node:video_resource'
 fields: {  }
 author: false
 body:

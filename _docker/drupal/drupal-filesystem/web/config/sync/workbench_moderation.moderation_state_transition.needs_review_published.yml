@@ -6,7 +6,14 @@ dependencies:
     - workbench_moderation.moderation_state.needs_review
     - workbench_moderation.moderation_state.published
   enforced:
-    config: null
+    config:
+      - workbench_email.workbench_email_template.published
+  module:
+    - workbench_email
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      published: published
 _core:
   default_config_hash: VXyoFvRkXMLJtm0BpblTlBBrGiznxeDSoycaEEYsBVM
 id: needs_review_published
