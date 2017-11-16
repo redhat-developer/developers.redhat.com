@@ -4,7 +4,7 @@ const path = require('path');
 function checkDirectorySync(directory) {
     try {
         fs.statSync(directory);
-    } catch(e) {
+    } catch (e) {
         fs.mkdirSync(directory);
     }
 }
@@ -23,18 +23,16 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'silent';
 }
 
-if (process.env.RHD_VERBOSE_OUTPUT) {
-    logLevel = 'verbose';
-} else {
-    logLevel = 'commands';
-}
-
 checkDirectorySync(path.resolve('report'));
 
 if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
     testProfile = process.env.RHD_TEST_PROFILE
 } else {
     testProfile = 'desktop';
+}
+
+if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
+    process.env.RHD_JS_DRIVER = 'chrome';
 }
 
 if (process.env.RHD_JS_DRIVER === 'undefined') {

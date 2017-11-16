@@ -1,4 +1,4 @@
-Feature: Site footer menu
+Feature:  Site footer menu
 
   Scenario Outline: Footer contains a "Related Sites" section
     Given I am on the <page> page

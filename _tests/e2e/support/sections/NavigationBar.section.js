@@ -1,58 +1,53 @@
 import {BasePage} from "../pages/Base.page";
+import {driver} from "../../config/DriverHelper"
 
 class NavigationBarSection extends BasePage {
 
     constructor() {
         super();
+
+        this.addSelectors({
+            mobileNavToggle: '.nav-toggle > .fa-angle-down',
+            navToggle: 'body > div.site-wrapper > header > div > div > a',
+            navOpen: '.nav-open',
+            searchBar: '.search-wrapper',
+            searchField: '.user-search',
+            searchButton: '#search-button'
+        });
     }
 
-    get mobileNavToggle() {
-        return browser.element('.nav-toggle')
-    }
-
-    get searchBar() {
-        return browser.element('.search-wrapper');
-    }
-
-    get searchField() {
-        return browser.element('.user-search');
-    }
-
-    get searchButton() {
-        return browser.element('#search-button');
-    }
-
-    get navToggle() {
-        return browser.element('body > div.site-wrapper > header > div > div > a');
-    }
-
-    isMobile() {
-        if (this.mobileNavToggle.isVisible()) {
-            this.clickOn(this.navToggle);
+    toggleMobileNav() {
+        let mobileNavToggle;
+        mobileNavToggle = driver.isDisplayed(this.getSelector('mobileNavToggle'));
+        if (mobileNavToggle === true) {
+            driver.clickOn(this.getSelector('navToggle'));
+            driver.awaitIsVisible(this.getSelector('navOpen'));
+            // wait for modal to completely open
+            browser.pause(1000)
         }
     }
 
     enterSearch(searchTerm) {
-        this.isMobile();
-        this.type(this.searchField, searchTerm);
+        this.toggleMobileNav();
+        return driver.type(this.getSelector('searchField'), searchTerm);
     }
 
     triggerSearch(searchTrigger = 'search-button') {
         if (searchTrigger === 'search-button') {
-            this.clickOn(this.searchButton);
+            driver.clickOn(this.getSelector('searchButton'));
         } else {
-            browser.keys('Enter')
+            driver.key('Enter')
         }
     }
 
     searchFor(searchTerm) {
-        this.isMobile();
-        this.type(this.searchField, searchTerm);
-        this.clickOn(this.searchButton);
+        this.toggleMobileNav();
+        driver.type(this.getSelector('searchField'), searchTerm);
+        driver.clickOn(this.getSelector('searchButton'));
     }
 
     searchBarDisplayed() {
-        return this.isDisplayed(this.searchBar);
+        return driver.isDisplayed(this.getSelector('searchBar'));
     }
 
 }
