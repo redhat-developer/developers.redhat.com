@@ -8,6 +8,20 @@ class RHDPDownloadsAllItem extends HTMLElement {
     private _description;
     private _learnMore;
     private _version;
+    private _platform;
+
+    productDownloads = {
+        "devsuite": {
+            "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+            "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+            "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"
+        },
+        "cdk": {
+            "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+            "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+            "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"
+        }
+    };
 
     constructor() {
         super();
@@ -83,7 +97,16 @@ class RHDPDownloadsAllItem extends HTMLElement {
         this.setAttribute('version', this._version);
     }
 
-    template = (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version) => {
+    get platform() {
+        return this._platform;
+    }
+
+    set platform(value) {
+        this._platform = value;
+        this.setAttribute('platform', this._platform);
+    }
+
+    template = (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) => {
         return `
             <div class="row">
                 <hr>
@@ -101,7 +124,7 @@ class RHDPDownloadsAllItem extends HTMLElement {
             
                 <div class="large-9 center columns">
                 
-                  ${version ? `<p data-download-id-version="${productId}">Version: ${version}</p>` : `<p data-download-id-version="${productId}">&nbsp;</p>`}  
+                  ${version ? `<p data-download-id-version="${productId}">Version: ${version} ${this.platform ? `for ${platform}` : ''}</p>` : `<p data-download-id-version="${productId}">&nbsp;</p>`}  
                 </div>
             
                 <div class="large-5 columns"><a class="button medium-cta blue" data-download-id="${productId}"
@@ -112,7 +135,42 @@ class RHDPDownloadsAllItem extends HTMLElement {
     };
 
     connectedCallback() {
-        this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}`;
+        if(this.productId === 'devsuite' || this.productId === 'cdk'){
+            this.osVersionExtract(this.productId);
+            this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}${this.platform}`;
+
+        }
+        else {
+            this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}${null}`;
+
+        }
+    }
+
+    osVersionExtract(productId){
+        let osPlatform = new RHDPOSDownload();
+        osPlatform.platformType = osPlatform.getUserAgent();
+        switch(productId){
+            case 'devsuite':
+                osPlatform.winURL = this.productDownloads.devsuite.windowsUrl;
+                osPlatform.macURL = this.productDownloads.devsuite.macUrl;
+                osPlatform.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                break;
+            case 'cdk':
+                osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
+                osPlatform.macURL = this.productDownloads.cdk.macUrl;
+                osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
+            default:
+                osPlatform.winURL = this.downloadUrl;
+                osPlatform.macURL = this.downloadUrl;
+                osPlatform.rhelURL = this.downloadUrl;
+
+
+        }
+        osPlatform.setDownloadURLByPlatform();
+        this.downloadUrl = osPlatform.downloadURL;
+        this.platform = osPlatform.platformType
+
     }
 
     static get observedAttributes() {

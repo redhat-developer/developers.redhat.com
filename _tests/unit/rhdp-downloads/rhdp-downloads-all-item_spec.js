@@ -13,8 +13,7 @@ describe('Downloads All Product Items', function () {
         wc.description = 'This is a description for a solid test product';
         wc.learnMore = 'http://www.testproduct.com/learnmore';
         wc.version = '1.0.0';
-
-        document.body.insertBefore(wc, document.body.firstChild);
+        wc.platformType = 'Windows';
 
     });
 
@@ -23,6 +22,11 @@ describe('Downloads All Product Items', function () {
     });
 
     describe('properties', function () {
+
+        beforeEach(function () {
+            document.body.insertBefore(wc, document.body.firstChild);
+
+        });
 
         it('should update the name property', function () {
             expect(wc.name).toEqual('Test Product');
@@ -59,10 +63,61 @@ describe('Downloads All Product Items', function () {
 
 
         });
+        it('should update the platform property', function () {
+            expect(wc.platformType).toEqual('Windows');
+
+
+        });
+
+    });
+    describe('logic', function () {
+        var OSName = "Windows";
+
+        beforeEach(function () {
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="RHEL";
+
+
+        });
+
+        it('should update the osVersion', function () {
+
+            wc.osVersionExtract('');
+            expect(wc.downloadUrl).toEqual('http://www.downloadtestproduct.com');
+            expect(wc.platform).toEqual(OSName);
+
+        });
+        it('should update the platform with the appropriate text for devsuite', function () {
+            wc.productId = 'devsuite';
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('.large-9.center.columns p').innerText.trim()).toEqual('Version: 1.0.0 for ' + OSName);
+        });
+        it('should update the downloadURL with the appropriate text for devsuite', function () {
+            wc.productId = 'devsuite';
+            wc.platformType = OSName;
+            document.body.insertBefore(wc, document.body.firstChild);
+            var productDownloadURL = '';
+            switch(wc.platformType){
+                case 'Windows':
+                    productDownloadURL = "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe";
+                    break;
+                case 'MacOS':
+                    productDownloadURL = "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip";
+                    break;
+                case "RHEL" :
+                    productDownloadURL = "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel";
+
+            }
+            expect(wc.querySelector('.large-5.columns a').href).toEqual(productDownloadURL);
+        });
 
     });
     describe('with valid data', function () {
 
+        beforeEach(function () {
+            document.body.insertBefore(wc, document.body.firstChild);
+
+        });
 
         it('should update the heading', function () {
             expect(wc.querySelector('.row .large-24.column').innerText.trim()).toEqual('Test Product');

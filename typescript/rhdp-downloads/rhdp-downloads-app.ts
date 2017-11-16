@@ -57,7 +57,7 @@ class RHDPDownloadsApp extends HTMLElement {
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('integration_and_automation','INTEGRATION AND AUTOMATION', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile','MOBILE', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud','CLOUD', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes','RUNTIMES', productList));
+        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes','LANGUAGES AND COMPILERS', productList));
 
     }
 
@@ -77,7 +77,13 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     setProductsDownloadData(url) {
-        fetch(url, {headers : 'application/json'})
+        let fInit : RequestInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: 'cors',
+            cache: 'default'
+        };
+            fetch(url, fInit)
             .then((resp) => resp.json())
             .then((data) => {
                 this.products.data = data;
