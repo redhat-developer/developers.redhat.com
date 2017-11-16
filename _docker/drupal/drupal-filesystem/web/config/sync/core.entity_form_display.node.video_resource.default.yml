@@ -30,7 +30,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 4
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -38,20 +38,21 @@ content:
     third_party_settings: {  }
     region: content
   field_duration:
-    weight: 32
-    settings: {  }
+    weight: 10
+    settings:
+      allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_likes:
-    weight: 29
+    weight: 7
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_speakers:
-    weight: 27
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -59,19 +60,19 @@ content:
     type: string_textfield
     region: content
   field_video_publish_date:
-    weight: 33
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_video_resource:
-    weight: 3
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: video_embed_field_textfield
     region: content
   field_video_resource_tags:
-    weight: 26
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -80,7 +81,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_video_target_product:
-    weight: 30
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -89,7 +90,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_video_thumbnail_url:
-    weight: 31
+    weight: 9
     settings:
       size: 60
       placeholder: ''
@@ -97,7 +98,7 @@ content:
     type: string_textfield
     region: content
   field_views:
-    weight: 28
+    weight: 6
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -105,20 +106,13 @@ content:
     region: content
   path:
     type: path
-    weight: 2
+    weight: 1
     settings: {  }
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
     third_party_settings: {  }
     region: content
   title:
     type: string_textfield
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -127,5 +121,6 @@ content:
 hidden:
   created: true
   promote: true
+  status: true
   sticky: true
   uid: true

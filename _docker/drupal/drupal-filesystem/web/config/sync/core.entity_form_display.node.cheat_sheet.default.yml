@@ -71,7 +71,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_exclude_from_search:
-    weight: 122
+    weight: 11
     settings:
       display_label: true
     third_party_settings: {  }
@@ -88,13 +88,6 @@ content:
     settings:
       display_label: true
     weight: 8
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
     third_party_settings: {  }
     region: content
   sticky:
@@ -121,4 +114,5 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  status: true

@@ -46,7 +46,7 @@ content:
     type: string_textfield
     region: content
   field_meta_tags:
-    weight: 26
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -62,7 +62,7 @@ content:
     region: content
   path:
     type: path
-    weight: 9
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -71,13 +71,6 @@ content:
     settings:
       display_label: true
     weight: 6
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
     third_party_settings: {  }
     region: content
   sticky:
@@ -107,3 +100,4 @@ content:
 hidden:
   field_author_name: true
   field_image: true
+  status: true

@@ -14,7 +14,6 @@ dependencies:
   module:
     - field_group
     - paragraphs
-    - text
     - workbench_moderation
 third_party_settings:
   field_group:
@@ -36,7 +35,7 @@ third_party_settings:
       children:
         - group_sub_pages
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: tabs
       format_settings:
         id: ''
@@ -50,20 +49,14 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 8
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_product_category:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_product_machine_name:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -79,6 +72,7 @@ content:
       edit_mode: closed
       add_mode: select
       form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
     region: content
   field_product_short_name:
@@ -92,31 +86,24 @@ content:
   field_product_summary:
     weight: 2
     settings:
-      rows: 5
       placeholder: ''
+      size: 60
     third_party_settings: {  }
-    type: text_textarea
+    type: string_textfield
     region: content
   field_product_technology_group:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_url_product_name:
-    weight: 5
+    weight: 6
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
-    third_party_settings: {  }
     region: content
   title:
     type: string_textfield
@@ -126,16 +113,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-  uid:
-    type: entity_reference_autocomplete
-    weight: 7
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
 hidden:
+  created: true
   path: true
   promote: true
+  status: true
   sticky: true
+  uid: true
