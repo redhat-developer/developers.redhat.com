@@ -1,7 +1,7 @@
 verbose: true
 
 skips:
- - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
+  - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
 
 ignores:
   - code: 202
@@ -16,7 +16,7 @@ ignores:
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
 
- environments:
+environments:
   - http://developer-drupal.web.prod.ext.phx2.redhat.com
   - https://developer-drupal.web.prod.ext.phx2.redhat.com
 
