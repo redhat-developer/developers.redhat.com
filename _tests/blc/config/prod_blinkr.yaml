@@ -35,15 +35,10 @@ skips:
   - !ruby/regexp /^http:\/\/vimeo\.com\/ericschabell\/bpmsuite\-fuse\-integraiton\-demo\-run$/
   - !ruby/regexp /^https:\/\/github\.com\/jboss\-dockerfiles\/hawkular\/blob\/master\/hawkular\-aio\/README.md$/
   - http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction
-  - https://developers.redhat.com/quickstarts/datagrid
-  - https://developers.redhat.com/quickstarts/fuse
-  - https://developers.redhat.com/quickstarts/fuse/cxf
-  - https://developers.redhat.com/quickstarts/wfk
-  - https://developers.redhat.com/quickstarts/unifiedpush
-  - https://developers.redhat.com/quickstarts/unifiedpush/push-helloworld-android
   - http://vimeo.com/ericschabell/bpms-hr-employee-rewards-demo-run
   - https://pubs.vmware.com/workstation-12/index.jsp#com.vmware.ws.using.doc/GUID-0CE1AE01-7E79-41BB-9EA8-4F839BE40E1A.html
   - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
+  - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
   
 ignores:
   - code: 202
@@ -61,5 +56,5 @@ max_page_retys: 5
 max_retrys: 5
 browser: phantomjs
 ignore_fragments: true
-phantomjs_threads: 10
+phantomjs_threads: 8
 report: blinkr.html
