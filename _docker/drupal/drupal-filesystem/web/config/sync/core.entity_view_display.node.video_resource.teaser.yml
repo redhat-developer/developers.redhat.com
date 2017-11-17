@@ -1,11 +1,11 @@
-uuid: a502ea5c-a47e-4be9-af13-0a04ab6a6c54
+uuid: e47edf15-c650-498a-9a35-d1dcaa736be8
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.video_resource.body
     - field.field.node.video_resource.field_duration
-    - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
     - field.field.node.video_resource.field_slideshare_source
@@ -22,7 +22,6 @@ dependencies:
   module:
     - datetime
     - interval
-    - options
     - link
     - panelizer
     - text
@@ -36,10 +35,10 @@ third_party_settings:
     default: default
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
-id: node.video_resource.default
+id: node.video_resource.teaser
 targetEntityType: node
 bundle: video_resource
-mode: default
+mode: teaser
 content:
   body:
     label: visually_hidden
@@ -47,13 +46,6 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_difficulty:
-    weight: 10
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
   field_duration:
     weight: 9

@@ -1,21 +1,18 @@
-uuid: e46336db-58dc-4446-b543-7deba07ef5b3
+uuid: e02ebd73-8e92-4c0c-8625-007ead228751
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
-    - field.field.node.article.field_difficulty
-    - field.field.node.article.field_read_time
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_tags
     - node.type.article
   module:
-    - interval
     - metatag
-    - options
     - panelizer
     - text
     - user
@@ -27,10 +24,10 @@ third_party_settings:
     default: default
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
-id: node.article.default
+id: node.article.teaser
 targetEntityType: node
 bundle: article
-mode: default
+mode: teaser
 content:
   body:
     type: text_default
@@ -47,26 +44,12 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_difficulty:
-    weight: 103
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_meta_tags:
     weight: 102
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
-    region: content
-  field_read_time:
-    weight: 104
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: interval_default
     region: content
   field_tags:
     type: entity_reference_label
