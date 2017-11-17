@@ -6,17 +6,21 @@ dependencies:
     - field.field.node.video_resource.body
     - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_publish_date
+    - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
     - datetime
     - interval
+    - link
     - path
     - text
     - video_embed_field
@@ -51,6 +55,14 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  field_slideshare_source:
+    weight: 29
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_speakers:
     weight: 5
     settings:
@@ -64,6 +76,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_video_related_links:
+    weight: 30
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_video_resource:
     weight: 2
@@ -97,6 +117,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_video_transcript:
+    weight: 27
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_views:
     weight: 6
     settings:
@@ -108,6 +136,13 @@ content:
     type: path
     weight: 1
     settings: {  }
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 13
     third_party_settings: {  }
     region: content
   title:

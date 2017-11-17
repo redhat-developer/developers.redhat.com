@@ -1,0 +1,23 @@
+uuid: 07b9a902-7a01-4f5c-9314-7af21504e55f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_related_links
+    - node.type.video_resource
+  module:
+    - link
+id: node.video_resource.field_video_related_links
+field_name: field_video_related_links
+entity_type: node
+bundle: video_resource
+label: 'Video Related Links'
+description: 'Links related to the video, (example: <i>See the Code</i> or <i>Learn More About Event</i>).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
