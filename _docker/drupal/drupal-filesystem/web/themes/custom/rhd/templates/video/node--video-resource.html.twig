@@ -1,29 +1,70 @@
-<header class="row">
-    <div class="large-18 columns">
+<header class="row video-page">
+    <div class="large-24 columns">
+        <h4 class="content-type-label">Video</h4>
         <h2>{{ label }}</h2>
         <p class="video-stats"></p>
-        {% include '@rhd/share.html.twig' %}
     </div>
 </header>
 
-<div class="row content">
-    <div class="large-18 columns">
-        {{ elements.field_video_resource }}
-        <br>
-        {{ elements.body }}
+<div class="row content video-page">
+    <div class="video-slides">
+        <div class="large-15 columns video-container">
+            {{ elements.field_video_resource }}
+        </div>
+        {% if content.field_slideshare_source|render|striptags|trim is not empty %}
+            <div class="large-9 columns slides">
+                <iframe src="//www.slideshare.net{{content.field_slideshare_source.0['#url']}}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen> </iframe>
+                <small>Note: Slides do not auto-advance</small>
+            </div>
+        {% endif %}
     </div>
-    <div class="large-6 columns">
-        <div class="row">
-            <div class="large-24 columns">
-                {{ elements.field_video_resource_tags }}
+    <div class="large-24 columns page-info-bar ">
+        <ul>
+            <li>
+                {% if elements.field_speakers|render|striptags|trim is not empty %}
+                    <strong {{ author_attributes }}>By {{elements.field_speakers}} </strong>
+                {% endif %}
+            </li>
+            <li>
+                <small>{{ elements.field_views }} Views</small>
+            </li>
+            <li>
+                <small>Published: {{ date }}</small>
+            </li>
+            <li class="right share-sm">
+                {% include '@rhd/share.html.twig' %}
+            </li>
+        </ul>
+    </div>
+    <div class="large-17 medium-17 columns">
+        {% if elements.body|render|striptags|trim is not empty %}
+              <div class="show-more-text video-description" data-ccount="400">
+                {{elements.body}}
+                {% if content.field_video_resource_tags|render|striptags|trim is not empty %}
+                    {{ content.field_video_resource_tags }}
+                {% endif %}
             </div>
-        </div>
-        <div class="row">
-            <div class="large-24 columns">
-                <br>
-                {{ elements.field_speakers }}
+              <a class="show-more" onclick="return false;">
+                <span class="more">Show More</span>
+                <span class="less">Show Less</span>
+              </a>
+        {% endif %}
+        {% if elements.field_video_transcript|render|striptags|trim is not empty %}
+            <div class="video-transcript">
+                <h5>Transcript</h5>
+                {{elements.field_video_transcript}}
             </div>
-        </div>
+        {% endif %}
+    </div>
+    <div class="large-6 large-offset-1 medium-7 columns">
+        {% if content.field_video_related_links|render|striptags|trim is not empty %}
+            {{ content.field_video_related_links }}
+        {% endif %}
+        {% if content.field_video_target_product|render|striptags|trim is not empty %}
+            <div class="related-product-card large-24 columns">
+                {{ content.field_video_target_product }}
+            </div>
+        {% endif %}
     </div>
 </div>
 <noscript>
