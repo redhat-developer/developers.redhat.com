@@ -1,4 +1,8 @@
 verbose: true
+
+skips:
+ - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
+
 ignores:
   - code: 202
   - code: 203
@@ -12,11 +16,9 @@ ignores:
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
 
-environments:
+ environments:
   - http://developer-drupal.web.prod.ext.phx2.redhat.com
   - https://developer-drupal.web.prod.ext.phx2.redhat.com
-  - https://developers.redhat.com
-  - http://developers.redhat.com
 
 ignore_external: true
 
@@ -25,5 +27,5 @@ max_page_retys: 5
 max_retrys: 5
 browser: phantomjs
 ignore_fragments: true
-phantomjs_threads: 10
+phantomjs_threads: 8
 report: blinkr.html
