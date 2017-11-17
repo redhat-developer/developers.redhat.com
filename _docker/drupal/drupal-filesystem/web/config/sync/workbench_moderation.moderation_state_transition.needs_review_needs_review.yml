@@ -5,7 +5,14 @@ dependencies:
   config:
     - workbench_moderation.moderation_state.needs_review
   enforced:
-    config: null
+    config:
+      - workbench_email.workbench_email_template.ready_for_review
+  module:
+    - workbench_email
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      ready_for_review: ready_for_review
 _core:
   default_config_hash: 2ZwHY8f7BOw10JPCAwIB5uLRa9Vc6sQcO5XxAMij_n0
 id: needs_review_needs_review
