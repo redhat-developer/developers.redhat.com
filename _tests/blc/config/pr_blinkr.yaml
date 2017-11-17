@@ -1,7 +1,7 @@
 verbose: true
 
 skips:
-  - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
+  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/quickstarts\.*\/.*/
 
 ignores:
   - code: 202

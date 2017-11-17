@@ -4,7 +4,7 @@ ignore_external: true
 ignore_ssl: true
 
 skips:
- - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
+ - !ruby/regexp /^https:\/\/developers\.stage\.redhat\.com\/quickstarts\.*\/.*/
 
 ignores:
   - code: 202
