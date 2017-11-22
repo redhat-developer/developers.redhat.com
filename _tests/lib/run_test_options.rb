@@ -2,6 +2,7 @@ require 'optparse'
 require 'json'
 require_relative '../../_docker/lib/default_logger'
 require_relative 'e2e_test_options'
+require_relative '../blc/generate_critical_link_sitemap'
 
 #
 # Class implementation that parses the options supplied to the
@@ -228,7 +229,12 @@ class RunTestOptions
     run_tests_command += ' --ignore-external' if test_configuration[:ignore_external]
     run_tests_command += ' --ignore-ssl' if test_configuration[:ignore_ssl]
     run_tests_command += ' -v' if test_configuration[:verbose]
-    test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
+
+    if test_configuration[:config].include?('critical_links_blinkr.yaml')
+      test_configuration[:run_tests_command] = "ruby generate_critical_link_sitemap.rb && bundle exec blinkr#{run_tests_command}"
+    else
+      test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
+    end
   end
 
 end
