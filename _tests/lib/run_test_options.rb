@@ -2,6 +2,7 @@ require 'optparse'
 require 'json'
 require_relative '../../_docker/lib/default_logger'
 require_relative 'e2e_test_options'
+require_relative '../blc/generate_critical_link_sitemap'
 
 #
 # Class implementation that parses the options supplied to the
