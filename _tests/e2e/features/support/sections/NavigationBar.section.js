@@ -61,6 +61,7 @@ class NavigationBarSection extends BasePage {
     }
 
     clickMenuItem(menuItem) {
+        this.toggleMobileNav();
         driver.clickOn(this.getSelector(`${menuItem}`))
     }
 
