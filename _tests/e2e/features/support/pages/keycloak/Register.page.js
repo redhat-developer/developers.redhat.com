@@ -1,3 +1,4 @@
+import {driver} from "../../../../config/browsers/DriverHelper";
 import {BasePage} from "../Base.page";
 
 class RegisterPage extends BasePage {
@@ -7,12 +8,15 @@ class RegisterPage extends BasePage {
             path: '/register',
             selector: '#kc-register-form'
         });
+
+        this.addSelectors({
+            registerForm: '#kc-register-form'
+        });
     }
 
     kcRegisterFormDispalyed() {
-        let el = browser.element('#kc-register-form');
-        this.awaitElement(el);
-        return this.isDisplayed(el)
+        let el = browser.element(this.getSelector('registerForm'));
+        return driver.isDisplayed(el)
     }
 
     emailError() {
