@@ -234,7 +234,7 @@ class RunTestOptions
     run_tests_command += ' -v' if test_configuration[:verbose]
 
     if test_configuration[:config].include?('critical_links_blinkr.yaml')
-      test_configuration[:run_tests_command] = "ruby generate_critical_link_sitemap.rb && bundle exec blinkr#{run_tests_command}"
+      test_configuration[:run_tests_command] = "ruby #{@test_dir}/blc/generate_critical_link_sitemap.rb #{test_configuration[:base_url]} && bundle exec blinkr#{run_tests_command}"
     else
       test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
     end
