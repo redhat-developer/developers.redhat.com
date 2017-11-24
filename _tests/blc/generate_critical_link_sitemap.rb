@@ -3,7 +3,8 @@ require 'builder'
 # This class is used to generate a local sitemap.xml containing RHDP critical links
 class SiteMapGenerator
 
-  def initialize
+  def initialize(host_to_test)
+    @host_to_test = host_to_test
     @critical_links = []
     File.open('critical-links.txt', 'r').each_line do |line|
       temp = line.chop.split("\t")
@@ -20,7 +21,7 @@ class SiteMapGenerator
     builder.urlset(:xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9') {
       @critical_links.each do |url|
         builder.url {
-          builder.loc(url)
+          builder.loc("#{@host_to_test}/#{url}")
           builder.lastmod(time.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
         }
       end
@@ -44,6 +45,11 @@ def execute(sitemap_generator)
 end
 
 if $PROGRAM_NAME == __FILE__
-  generate_sitemap = SiteMapGenerator.new
+  host_to_test = ARGV[0]
+  if host_to_test.nil? || host_to_test.empty?
+    puts 'Please specify the host to test as the first argument to this script e.g. ruby generate_criitical_link_sitemap.rb https://developers.redhat.com'
+    Kernel.exit(1)
+  end
+  generate_sitemap = SiteMapGenerator.new(host_to_test)
   execute(generate_sitemap)
 end
