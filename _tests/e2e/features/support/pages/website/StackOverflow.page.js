@@ -87,31 +87,31 @@ class StackOverflowPage extends BasePage {
     }
 
     findQuestionWithAnswer() {
-        let result;
+        let element;
         let count = 0;
         do {
-            result = this._clickThroughResults('with');
+            element = this._clickThroughResults('with');
             count++;
             if (count === 10) {
                 throw new Error('None of the results contained an answer')
             }
         }
-        while (result === 'undefined' && count < 10);
-        return result;
+        while (typeof element === 'undefined' && count < 10);
+        return element;
     }
 
     findQuestionWithoutAnswer() {
-        let result;
+        let element;
         let count = 0;
         do {
-            result = this._clickThroughResults('without');
+            element = this._clickThroughResults('without');
             count++;
             if (count === 10) {
                 throw new Error('All of the results had answers')
             }
         }
-        while (result === 'undefined' && count < 10);
-        return result;
+        while (typeof element === 'undefined' && count < 10);
+        return element;
     }
 
     clickReadFullQuestion(el) {
