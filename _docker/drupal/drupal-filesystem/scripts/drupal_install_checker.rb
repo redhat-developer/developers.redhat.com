@@ -46,7 +46,7 @@ class DrupalInstallChecker
 
   def tables_exists?
     begin
-      tables_to_check = %w(node comment node__body taxonomy_index)
+      tables_to_check = %w(lightning_node lightning_comment lightning_node__body lightning_taxonomy_index)
       tables = process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
                                                 "--port=#{@opts['database']['port']}",
                                                 "--user=#{@opts['database']['username']}",

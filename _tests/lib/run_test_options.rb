@@ -75,6 +75,10 @@ class RunTestOptions
         test_configuration[:cucumber_tags] = cucumber_tags
       end
 
+      opts.on('--kc', 'Run the KeyCloak e2e tests') do
+        test_configuration[:keycloak] = true
+      end
+
       #
       # Broken link checking commandline options
       #
@@ -199,7 +203,6 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
-
     bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]

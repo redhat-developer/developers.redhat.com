@@ -13,8 +13,6 @@ require_relative './_lib/github'
 require_relative './_lib/jenkins'
 require_relative './_lib/jira'
 
-load './_cucumber/cucumber.rake'
-
 $github_org = "redhat-developer"
 $github_repo = "developers.redhat.com"
 $resources = ['stylesheets', 'javascripts', 'images']

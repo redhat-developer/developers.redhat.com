@@ -10,7 +10,7 @@ if (process.env.RHD_TEST_CONFIG === 'docker') {
 } else if (process.env.RHD_TEST_CONFIG === 'browserstack') {
     options = require('./config/chimp-browserstack.js');
 } else {
-    options = require('./config/chimp-local.js');
+    options = require('./config/chimp-docker.js');
 }
 
 let nodeModulePath;
