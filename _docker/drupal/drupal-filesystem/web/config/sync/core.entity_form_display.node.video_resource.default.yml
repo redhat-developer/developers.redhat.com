@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.video_resource.body
     - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_learning_path_difficulty
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_publish_date
@@ -43,6 +44,12 @@ content:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
+    region: content
+  field_learning_path_difficulty:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_likes:
     weight: 7

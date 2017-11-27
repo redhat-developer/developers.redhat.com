@@ -1,0 +1,21 @@
+uuid: 89798d62-b4c4-423a-9cd5-258668d36db4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_path_difficulty
+    - node.type.books
+  module:
+    - options
+id: node.books.field_learning_path_difficulty
+field_name: field_learning_path_difficulty
+entity_type: node
+bundle: books
+label: 'Learning Path Difficulty'
+description: 'Difficulty of item within a Learning Path'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

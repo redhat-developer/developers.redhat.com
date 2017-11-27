@@ -1,0 +1,21 @@
+uuid: e2f67701-e23a-4d19-83b4-f0a58b028663
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_path_difficulty
+    - node.type.cheat_sheet
+  module:
+    - options
+id: node.cheat_sheet.field_learning_path_difficulty
+field_name: field_learning_path_difficulty
+entity_type: node
+bundle: cheat_sheet
+label: 'Learning Path Difficulty'
+description: 'Difficulty of item within a Learning Path'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
