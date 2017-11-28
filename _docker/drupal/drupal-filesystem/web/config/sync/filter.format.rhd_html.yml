@@ -7,6 +7,7 @@ dependencies:
     - entity_embed
     - linkit
     - token_filter
+    - video_embed_wysiwyg
 _core:
   default_config_hash: yyad6GwvcsV4GA40hfH69iIuPlA71YXJ_Cr2oqi-V_Q
 name: 'Red Hat Developers Approved HTML'
@@ -87,6 +88,12 @@ filters:
   entity_embed:
     id: entity_embed
     provider: entity_embed
+    status: true
+    weight: 0
+    settings: {  }
+  video_embed_wysiwyg:
+    id: video_embed_wysiwyg
+    provider: video_embed_wysiwyg
     status: true
     weight: 0
     settings: {  }
