@@ -37,9 +37,12 @@ function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
     // Require a revision log message
     if (isset($form['revision_log'])) {
+      unset($form['revision_log']['#group']);
+
       $form['revision_log']['widget']['#required'] = TRUE;
       $form['revision_log']['widget'][0]['#required'] = TRUE;
       $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+
     }
 }
 
