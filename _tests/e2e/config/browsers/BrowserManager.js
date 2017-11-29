@@ -39,9 +39,10 @@ class BrowserManager {
             console.log(`e2e tests running using Chrome ${browser} browser`);
             caps = {
                 browserName: 'chrome',
-                "acceptInsecureCerts": true,
+                acceptInsecureCerts: true,
                 chromeOptions: {
-                    prefs: {'download.default_directory': path.resolve('tmp/chromeDownloads')}
+                    prefs: {'download.default_directory': path.resolve('tmp/chromeDownloads')},
+                    args: ["start-fullscreen"],
                 }
             }
         } else {
