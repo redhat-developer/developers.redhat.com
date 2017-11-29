@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_learning_path_read_time
+    - field.storage.node.field_read_time
     - node.type.article
   module:
     - interval
-id: node.article.field_learning_path_read_time
-field_name: field_learning_path_read_time
+id: node.article.field_read_time
+field_name: field_read_time
 entity_type: node
 bundle: article
-label: 'Learning Path Read Time'
-description: 'The estimated amount of time to read/complete this item in a Learning Path'
+label: 'Read Time'
+description: 'The estimated amount of time to read/complete this item'
 required: false
 translatable: false
 default_value: {  }

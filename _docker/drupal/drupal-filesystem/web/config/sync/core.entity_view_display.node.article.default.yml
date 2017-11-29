@@ -7,8 +7,8 @@ dependencies:
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
-    - field.field.node.article.field_learning_path_difficulty
-    - field.field.node.article.field_learning_path_read_time
+    - field.field.node.article.field_difficulty
+    - field.field.node.article.field_read_time
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_tags
     - node.type.article
@@ -40,14 +40,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_learning_path_difficulty:
+  field_difficulty:
     weight: 103
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_learning_path_read_time:
+  field_read_time:
     weight: 104
     label: above
     settings: {  }

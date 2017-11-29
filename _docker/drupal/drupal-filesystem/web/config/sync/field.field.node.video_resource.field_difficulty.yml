@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_learning_path_difficulty
+    - field.storage.node.field_difficulty
     - node.type.video_resource
   module:
     - options
-id: node.video_resource.field_learning_path_difficulty
-field_name: field_learning_path_difficulty
+id: node.video_resource.field_difficulty
+field_name: field_difficulty
 entity_type: node
 bundle: video_resource
-label: 'Learning Path Difficulty'
-description: 'Difficulty of item within a Learning Path'
+label: 'Difficulty Level'
+description: 'General level difficulty to indicate how complicated this content is for a typical developer.'
 required: false
 translatable: true
 default_value: {  }

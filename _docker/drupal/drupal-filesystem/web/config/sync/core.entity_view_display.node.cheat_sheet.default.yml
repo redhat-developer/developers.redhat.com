@@ -9,8 +9,8 @@ dependencies:
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
     - field.field.node.cheat_sheet.field_exclude_from_search
-    - field.field.node.cheat_sheet.field_learning_path_difficulty
-    - field.field.node.cheat_sheet.field_learning_path_read_time
+    - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
     - interval
@@ -77,14 +77,14 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
-  field_learning_path_difficulty:
+  field_difficulty:
     weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_learning_path_read_time:
+  field_read_time:
     weight: 8
     label: above
     settings: {  }
