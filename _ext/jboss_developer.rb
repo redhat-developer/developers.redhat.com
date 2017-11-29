@@ -376,6 +376,10 @@ module Aweplug
       # Returns the Faraday::Response
       def send_page(page, content)
         path = create_path page
+        # Skip push if quickstart, bom, demo or ticket-monster
+        if path.include?("quickstart") || path.include?("demo") || path.include?("bom") || path.include?("archetype") || path.include?("ticket-monster")
+          return
+        end
         if exists?(page) && !@drupal_pages["/#{path}"].nil?
           # We know the page exists, but if the content in drupal is newer than the mtime on the page, don't update it
           #update_page page, content if page.input_mtime.to_datetime > @drupal_pages["/#{path}"]
