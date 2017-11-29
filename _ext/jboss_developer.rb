@@ -377,6 +377,7 @@ module Aweplug
       def send_page(page, content)
         path = create_path page
         # Skip push if quickstart, bom, demo or ticket-monster
+        # Nasty hack
         if path.include?("quickstart") || path.include?("demo") || path.include?("bom") || path.include?("archetype") || path.include?("ticket-monster")
           return
         end
