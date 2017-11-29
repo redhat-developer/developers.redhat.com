@@ -177,7 +177,7 @@ class DevNationLiveApp extends HTMLElement {
         </div>
     </div>
     <div id="devnationLive-microsite">
-        ${this.nextSession`${next}`}
+        ${next ? `${this.nextSession`${next}`}` : ''}
         <section>
             <div class="row">
                 ${upcoming.length > 0 ? `
