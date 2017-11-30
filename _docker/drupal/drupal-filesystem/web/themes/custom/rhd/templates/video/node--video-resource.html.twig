@@ -14,7 +14,7 @@
         {% if content.field_slideshare_source|render|striptags|trim is not empty %}
             <div class="large-9 columns slides">
                 <iframe src="//www.slideshare.net{{content.field_slideshare_source.0['#url']}}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen> </iframe>
-                <small>Note: Slides do not auto-advance</small>
+                <small class="slide-note">Note: Slides do not auto-advance</small>
             </div>
         {% endif %}
     </div>
@@ -24,9 +24,6 @@
                 {% if elements.field_speakers|render|striptags|trim is not empty %}
                     <strong {{ author_attributes }}>By {{elements.field_speakers}} </strong>
                 {% endif %}
-            </li>
-            <li>
-                <small>{{ elements.field_views }} Views</small>
             </li>
             <li>
                 <small>Published: {{ date }}</small>
@@ -67,6 +64,15 @@
         {% endif %}
     </div>
 </div>
+<section>
+    <div class="row">
+        {{ dump(_context|keys) }}
+        <div class="large-24 columns">
+            <h4>MORE LIKE THESE</h4>
+            {{content.field_related_video}}
+        </div>
+    </div>
+</section>
 <noscript>
     <meta name="DCP:WebpageSearchExclude" content="true">
 </noscript>
