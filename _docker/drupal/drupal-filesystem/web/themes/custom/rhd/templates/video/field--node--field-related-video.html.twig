@@ -49,15 +49,11 @@
 label_display == 'visually_hidden' ? 'visually-hidden',
 ] %}
 
-
 <div{{ attributes.addClass(classes, 'field__items') }}>
   {% for item in items %}
     <div{{ attributes.addClass(['field__item', 'large-6 columns', 'related-product-card', 'tertiary-promo']) }}>
         <h6>Related Video</h6>
-        <h4> {{ field_video_resource }} </h4>
-        <p class="description">
-         <a href="">Watch Now &#x25B8;</a>
-       </p>
+        {{ item }}
     </div>
   {% endfor %}
 </div>
