@@ -1,4 +1,5 @@
 import {BasePage} from "../Base.page";
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class HomePage extends BasePage {
     constructor() {
@@ -6,6 +7,10 @@ class HomePage extends BasePage {
             path: '/',
             selector: '.home'
         });
+    }
+
+    waitForResourcesLoaded() {
+        driver.awaitIsVisible('.homepage-resources-latest', 30000)
     }
 }
 

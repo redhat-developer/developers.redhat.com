@@ -6,16 +6,16 @@ class Driver {
         browser.url(url)
     }
 
-    waitForTitle(title) {
+    waitForTitle(title, timeout = wdioTimeout) {
         browser.waitUntil(function () {
             return browser.getTitle().indexOf(title) > -1
-        }, wdioTimeout, `Timed out after ${wdioTimeout} seconds waiting for page title to contain ${title}`);
+        }, timeout, `Timed out after ${wdioTimeout} seconds waiting for page title to contain ${title}`);
     }
 
-    waitForUrlContaining(string) {
+    waitForUrlContaining(string, timeout = wdioTimeout) {
         browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1
-        }, wdioTimeout, `Timed out after ${wdioTimeout} seconds waiting for url to contain ${string}`);
+        }, timeout, `Timed out after ${wdioTimeout} seconds waiting for url to contain ${string}`);
     }
 
     element(selector) {
@@ -58,7 +58,6 @@ class Driver {
 
     type(selector, input) {
         this.awaitExists(selector);
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             return browser.setValue(selector, input)
         } else {
@@ -68,7 +67,6 @@ class Driver {
 
     clickOn(selector) {
         this.awaitExists(selector);
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             return browser.click(selector)
         } else {
@@ -77,7 +75,6 @@ class Driver {
     }
 
     isSelected(selector) {
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             return browser.isSelected(selector);
         } else {
@@ -86,7 +83,6 @@ class Driver {
     }
 
     getValue(selector) {
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             return browser.getValue(selector);
 
@@ -97,7 +93,6 @@ class Driver {
 
     selectByValue(selector, value) {
         this.awaitExists(selector);
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             browser.selectByValue(selector, value);
         } else {
@@ -107,7 +102,6 @@ class Driver {
 
     selectByText(selector, value) {
         this.awaitExists(selector);
-        this.scrollIntoView(selector);
         if (typeof selector === 'string') {
             browser.selectByVisibleText(selector, value);
         } else {
@@ -118,7 +112,6 @@ class Driver {
     textOf(selector) {
         let text;
         this.awaitExists(selector);
-        this.scrollIntoView(selector);
         let i = 0;
         do {
             if (typeof selector === 'string') {

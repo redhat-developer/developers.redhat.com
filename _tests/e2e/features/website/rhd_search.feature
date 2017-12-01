@@ -10,12 +10,6 @@ Feature: Search Page
     And I trigger the search via the search-button
     Then the search page is displayed
 
-  Scenario: Site-nav search can be triggered by enter key
-    Given I am on the Home page
-    When I enter "Hello world" into the site-nav search bar
-    And I trigger the search via the enter-key
-    Then the search page is displayed
-
   Scenario: Search field is hidden within the site header on search page.
     Given I am on the Home page
     When I search for "Hello World" via the site-nav search bar
@@ -30,12 +24,6 @@ Feature: Search Page
     Given I am on the Search page
     When I enter "Hello world" into the search bar
     And click on the search-button
-    Then the search page is displayed
-
-  Scenario: Search can be triggered by enter key
-    Given I am on the Search page
-    When I enter "Hello world" into the search bar
-    And I trigger the search via the enter-key
     Then the search page is displayed
 
   Scenario: Default result sorting should be 'Relevance'

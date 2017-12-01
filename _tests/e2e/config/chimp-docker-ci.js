@@ -8,7 +8,7 @@ if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 }
 
-if (process.env.RHD_BASE_URL.includes('pr.stage.redhat.com/pr')) {
+if (process.env.RHD_BASE_URL.includes('pr.stage.redhat.com/pr/')) {
     let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
     let getPullRequestNumber = parsedUrl.pathname.split('/')[2];
     process.env.RHD_DRUPAL_INSTANCE = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000) + (getPullRequestNumber - 0)}`;
@@ -46,14 +46,17 @@ if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
     tagsArray[tagsArray.length] = '~@ignore';
     cucumberTags = tagsArray;
 } else {
-    cucumberTags = ['~@ignore', '~@kc', '~@mobile']
+    cucumberTags = ['~@ignore', '~@kc']
 }
 
 process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});
 
-console.log('USING LOCAL CHIMP CONFIG');
+console.log('USING CI DOCKER CHIMP CONFIG');
+
 module.exports = {
 
+    host: process.env.NODE_SELENIUM_HOST,
+    port: 4444,
     browser: browserCaps['browserName'],
 
     // - - - - WEBDRIVER-IO  - - - -
@@ -73,23 +76,22 @@ module.exports = {
     // - - - - CHIMP SETTINGS - - - -
     chai: true,
     timeout: 6000,
-    port: 4455,
 
     // - - - - CUCUMBER SETTINGS - - - -
     path: 'features',
     format: 'pretty',
     tags: cucumberTags,
-    jsonOutput: './' + outputFolder + `/cucumber-${testProfile}.json`,
+    jsonOutput: './' + outputFolder + `/${testProfile}/cucumber-${testProfile}.json`,
     screenshotsOnError: true,
-    screenshotsPath: './' + outputFolder + `${testProfile}-screenshots`,
+    screenshotsPath: './' + outputFolder + `/${testProfile}-screenshots`,
     saveScreenshotsToDisk: true,
     saveScreenshotsToReport: true,
 
     // - - - - REPORTER SETTINGS - - - -
     reportPath: './' + outputFolder,
     theme: 'bootstrap',
-    jsonFile: './' + outputFolder + `/cucumber-${testProfile}.json`,
-    output: './' + outputFolder +  `/cucumber-${testProfile}.html`,
+    jsonFile: './' + outputFolder + `/${testProfile}/cucumber-${testProfile}.json`,
+    output: './' + outputFolder +  `/${testProfile}/cucumber-${testProfile}.html`,
     reportSuiteAsScenarios: true,
     launchReport: false,
 
@@ -124,5 +126,3 @@ module.exports = {
         }
     },
 };
-
-module.exports.outputFolder = outputFolder;

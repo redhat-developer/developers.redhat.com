@@ -5,6 +5,13 @@ class FooterSection extends BasePage {
 
     constructor() {
         super();
+        this.addSelectors({
+            footer: '#collapseFooter'
+        });
+    }
+
+    scrollToFooter() {
+        return driver.scrollIntoView(this.getSelector('footer'))
     }
 
     footerDropdownItems(i) {
@@ -16,13 +23,7 @@ class FooterSection extends BasePage {
     }
 
     collapseFooter(i) {
-        let footer = `//*[@id="collapseFooter"]/div[${i}][contains(@class,'collapsed')]`.toString();
-        let footerCollapsed = driver.awaitExists(footer);
-        if (footerCollapsed === true) {
-            return driver.clickOn(this.footerDropdownItems(i));
-            // Give it 1 second for the dropdown to open
-            browser.pause(1000)
-        }
+        return driver.clickOn(this.footerDropdownItems(i));
     }
 }
 

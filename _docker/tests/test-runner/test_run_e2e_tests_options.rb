@@ -113,12 +113,12 @@ class TestRunTestOptions < MiniTest::Test
 
   def test_docker_execution_specifying_mobile_device
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --browser=iphone_6))
+    test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --browser=iphone_8))
 
     assert(test_configuration[:docker])
-    assert_equal('iphone_6', test_configuration[:browser])
+    assert_equal('iphone_8', test_configuration[:browser])
     assert_equal('npm test -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
-    assert_equal('iPhone 6', ENV['RHD_JS_DRIVER'])
+    assert_equal('iphone_8', ENV['RHD_JS_DRIVER'])
     assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
@@ -149,7 +149,6 @@ class TestRunTestOptions < MiniTest::Test
     assert_equal('bs_ie_11', test_configuration[:browser])
     assert_equal('npm test -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
     assert_equal('bs_ie_11', ENV['RHD_JS_DRIVER'])
-    assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal('12345', ENV['RHD_BS_AUTHKEY'])
