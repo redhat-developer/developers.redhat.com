@@ -23,7 +23,7 @@ skips:
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 verbose: true
-max_page_retys: 5
+max_page_retrys: 5
 max_retrys: 5
 browser: phantomjs
 ignore_fragments: true
