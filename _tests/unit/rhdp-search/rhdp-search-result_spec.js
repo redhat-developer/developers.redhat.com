@@ -74,21 +74,35 @@ describe('Search Result', function() {
     });
 
     describe('Description', function() {
+        var tempDiv = document.createElement("div");
+
         it('should match highlights.sys_description if present', function() {
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.highlight.sys_description[0]);
+
+            tempDiv.innerHTML = testResult.highlight.sys_description[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
 
         it('should match highlights.sys_plaintext if present without h.sys_description', function() {
             delete testResult.highlight.sys_description;
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.highlight.sys_content_plaintext[0]);
+
+            tempDiv.innerHTML = testResult.highlight.sys_content_plaintext[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
 
         it('should match fields.sys_description by default', function() {
             delete testResult.highlight.sys_content_plaintext;
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.fields.sys_description[0]);
+
+            tempDiv.innerHTML = testResult.fields.sys_description[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
     });
 
