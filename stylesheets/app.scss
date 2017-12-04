@@ -884,7 +884,8 @@ body.mobile {
   margin-bottom: 15px;
 }
 
-.related-product-card {
+.related-product-card,
+.related-video-content-card {
   background-color: $white;
   padding: 20px;
   border: 2px solid $grey-3;
@@ -901,6 +902,18 @@ body.mobile {
     margin: 5px 0;
     font-size: 1em;
     font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 65px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    @include tablet-landscape-and-down {
+      max-height: 95px;
+      -webkit-line-clamp: 3;
+    }
   }
 }
 

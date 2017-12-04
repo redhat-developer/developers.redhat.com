@@ -34,12 +34,12 @@
         </ul>
     </div>
     <div class="large-17 medium-17 columns">
-        {% if elements.body|render|striptags|trim is not empty %}
+        {% if content.body|render|striptags|trim is not empty %}
               <div class="show-more-text video-description" data-ccount="400">
-                {{elements.body}}
-                {% if content.field_video_resource_tags|render|striptags|trim is not empty %}
+                {{content.body}}
+                {# {% if content.field_video_resource_tags|render|striptags|trim is not empty %} #}
                     {{ content.field_video_resource_tags }}
-                {% endif %}
+                {# {% endif %} #}
             </div>
               <a class="show-more" onclick="return false;">
                 <span class="more">Show More</span>
@@ -53,7 +53,7 @@
             </div>
         {% endif %}
     </div>
-    <div class="large-6 large-offset-1 medium-7 columns">
+    <div class="large-6 large-offset-1 medium-7 columns right">
         {% if content.field_video_related_links|render|striptags|trim is not empty %}
             {{ content.field_video_related_links }}
         {% endif %}
@@ -64,14 +64,23 @@
         {% endif %}
     </div>
 </div>
-<section>
-    <div class="row">
-        <div class="large-24 columns">
-            <h4>MORE LIKE THESE</h4>
-            {{content.field_related_video}}
+
+{% if ( elements.field_video_resource_tags|render|striptags|trim is not empty ) or ( content.field_related_video|render|striptags|trim is not empty ) %}
+    {{ dump(elements.field_video_resource_tags["#items"][0] | keys)}}
+    {{ dump(_context | keys)}}
+    
+    {% set values = elements.field_video_resource_tags["#items"]["#context"]["value"]|split(',')|json_encode|replace('\"','\'')%}
+    
+    <section class="video-page related-content">
+        <div class="row">
+            <div id ="video-related-cont" class="large-24 columns" data-tags="['eap',' rhel']">
+                <h4>MORE LIKE THESE</h4>
+                {{content.field_related_video}}
+                <div class="video-related-content video-related-content-list"></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+{% endif %}
 <noscript>
     <meta name="DCP:WebpageSearchExclude" content="true">
 </noscript>

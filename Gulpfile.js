@@ -87,7 +87,8 @@ var globs = {
         'javascripts/vendor/url-polyfill.min.js',
         'javascripts/vendor/rh-datetime.min.js',
         'javascripts/pdf-links.js',
-        'javascripts/show-more.js'
+        'javascripts/show-more.js',
+        'javascripts/related-content.js'
     ],
     "styles": ['stylesheets/*.scss']
 };
