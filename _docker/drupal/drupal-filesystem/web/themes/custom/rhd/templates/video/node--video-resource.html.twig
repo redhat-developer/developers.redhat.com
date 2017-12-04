@@ -66,14 +66,10 @@
 </div>
 
 {% if ( elements.field_video_resource_tags|render|striptags|trim is not empty ) or ( content.field_related_video|render|striptags|trim is not empty ) %}
-    {{ dump(elements.field_video_resource_tags["#items"][0] | keys)}}
-    {{ dump(_context | keys)}}
-    
-    {% set values = elements.field_video_resource_tags["#items"]["#context"]["value"]|split(',')|json_encode|replace('\"','\'')%}
-    
+    {{ dump(_context|keys) }}
     <section class="video-page related-content">
         <div class="row">
-            <div id ="video-related-cont" class="large-24 columns" data-tags="['eap',' rhel']">
+            <div id ="video-related-cont" class="large-24 columns" data-tags="{{ video_tags|json_encode|replace('\"', '\'') }}">
                 <h4>MORE LIKE THESE</h4>
                 {{content.field_related_video}}
                 <div class="video-related-content video-related-content-list"></div>
