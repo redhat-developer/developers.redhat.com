@@ -37,9 +37,9 @@
         {% if content.body|render|striptags|trim is not empty %}
               <div class="show-more-text video-description" data-ccount="400">
                 {{content.body}}
-                {# {% if content.field_video_resource_tags|render|striptags|trim is not empty %} #}
+                {% if content.field_video_resource_tags|render|striptags|trim is not empty %}
                     {{ content.field_video_resource_tags }}
-                {# {% endif %} #}
+                {% endif %}
             </div>
               <a class="show-more" onclick="return false;">
                 <span class="more">Show More</span>

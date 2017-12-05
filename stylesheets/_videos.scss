@@ -15,6 +15,9 @@
   .video-description {
     border-bottom: 1px solid #8c8f91;
     margin-bottom: 1em;
+    .field--name-field-video-resource-tags .field__item:not(:only-child):not(:last-child) {
+      &:after { content: ','; }
+    }
   }
   .video-transcript {
     h5 {

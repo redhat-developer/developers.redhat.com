@@ -13,9 +13,7 @@ app.relatedContent.fetch = function() {
   
   var contentCount = $('#video-related-cont').find('.field--name-field-related-video .related-video-content-card').length;
   contentCount = 4 - contentCount;
-  console.log(contentCount);
   var tags = ($('#video-related-cont').data('tags') || "")
-  console.log(tags);
   // var tags = container.data('tags') || "";
     try {
       tags = JSON.parse(tags.replace(/'/g, "\""));
