@@ -447,7 +447,13 @@ function searchCtrlFunc($scope, $window, searchService) {
         $scope.params.product = product;
 
         var tags = app.products[product]['stackoverflow'];
-        params.tag = tags.slice();
+          if(tags.AND){
+              params.tag = tags.AND.tag_set_one.slice();
+              params.tags_and_logic = tags.AND.tag_set_two.slice();
+          }
+          else{
+              params.tag = tags.slice();
+          }
       }
       
       else {
@@ -456,7 +462,13 @@ function searchCtrlFunc($scope, $window, searchService) {
         if (params.product !== "") {
           product = params.product;
           var tags = app.products[product]['stackoverflow'];
-          params.tag = tags.slice();
+          if(tags.AND){
+              params.tag = tags.AND.tag_set_one.slice();
+              params.tags_and_logic = tags.AND.tag_set_two.slice();
+          }
+          else{
+              params.tag = tags.slice();
+          }
         }
         window.location.hash = "#!q=" + params.product;
       }

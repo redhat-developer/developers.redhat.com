@@ -13,6 +13,10 @@ function rhd_common_token_info() {
     'name' => 'initiator',
     'description' => 'User who initiated the change.'
   ];
+  $tokens['related_product_code'] = [
+    'name' => 'related_product_code',
+    'description' => 'Product code for the associated product'
+  ];
 
   return [
     'types' => $types,
@@ -26,10 +30,6 @@ function rhd_common_token_info() {
 function rhd_common_tokens($type, $tokens, array $data, array $options,
   \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
   $replacements = [];
-  
-  if (!array_key_exists('initiator', $tokens)) {
-    return $replacements;
-  }
 
   if (empty($data['node']) && empty($data['entity'])) {
     return $replacements;
@@ -41,6 +41,12 @@ function rhd_common_tokens($type, $tokens, array $data, array $options,
   array_walk($tokens, function ($val, $key) use (&$replacements, $node) {
     if ($key === 'initiator') {
       $replacements[$val] = $node->getRevisionUser()->getDisplayName();
+    }
+
+    if ($key === 'related_product_code') {
+      /** @var \Drupal\node\Entity\Node $product */
+      $product = $node->field_related_product->referencedEntities()[0];
+      $replacements[$val] = $product->field_url_product_name->value;
     }
   });
 

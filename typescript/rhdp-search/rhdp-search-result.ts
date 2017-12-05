@@ -173,6 +173,11 @@ class RHDPSearchResult extends HTMLElement {
             description = result.fields.sys_content_plaintext[0];
         }
 
+        // Removes all HTML tags from description
+        var tempDiv = document.createElement("div");
+        tempDiv.innerHTML = description;
+        description = tempDiv.innerText;
+
         this.description = description;
     }
     computeURL(result) {

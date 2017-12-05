@@ -13,5 +13,6 @@ Feature: White Card Count
       | iot                     |
       | microservices           |
       | mobile                  |
+      | security                |
       | web-and-api-development |
       | dotnet                  |

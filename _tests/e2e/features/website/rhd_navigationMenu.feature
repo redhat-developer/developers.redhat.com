@@ -57,6 +57,7 @@ Feature: Site navigation menu
       | Internet of Things      |
       | Microservices           |
       | Mobile                  |
+      | Secure Programming      |
       | Web and API Development |
       | .NET Core               |
 
@@ -71,6 +72,7 @@ Feature: Site navigation menu
       | Internet of Things      |
       | Microservices           |
       | Mobile                  |
+      | Secure Programming      |
       | Web and API Development |
       | .NET Core               |
 
