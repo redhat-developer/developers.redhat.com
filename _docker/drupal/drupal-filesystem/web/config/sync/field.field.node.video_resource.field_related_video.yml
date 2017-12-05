@@ -1,0 +1,27 @@
+uuid: 449e02b3-7d01-4fd4-94b0-0ea517d5854d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_video
+    - node.type.video_resource
+id: node.video_resource.field_related_video
+field_name: field_related_video
+entity_type: node
+bundle: video_resource
+label: 'Related Video'
+description: 'Enter any related videos, already on RHDP.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      video_resource: video_resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
