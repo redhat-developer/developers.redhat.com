@@ -1,5 +1,6 @@
 verbose: true
 base_url: https://developers.redhat.com
+hard_fail: false
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
