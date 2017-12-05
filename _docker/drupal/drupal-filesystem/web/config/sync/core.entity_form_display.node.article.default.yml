@@ -6,10 +6,10 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
-    - field.field.node.article.field_image
     - field.field.node.article.field_difficulty
-    - field.field.node.article.field_read_time
+    - field.field.node.article.field_image
     - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
     - field.field.node.article.field_tags
     - node.type.article
   module:
@@ -49,23 +49,23 @@ content:
     type: string_textfield
     region: content
   field_difficulty:
-    weight: 26
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_meta_tags:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_read_time:
-    weight: 27
+    weight: 9
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: content
-  field_meta_tags:
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
-    type: metatag_firehose
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags

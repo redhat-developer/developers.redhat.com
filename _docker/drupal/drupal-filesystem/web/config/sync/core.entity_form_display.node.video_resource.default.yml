@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
-    - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_difficulty
+    - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_publish_date
@@ -38,21 +38,21 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  field_difficulty:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_duration:
-    weight: 10
+    weight: 11
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
-  field_difficulty:
-    weight: 26
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_likes:
-    weight: 7
+    weight: 9
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -67,7 +67,7 @@ content:
     type: string_textfield
     region: content
   field_video_publish_date:
-    weight: 11
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -88,7 +88,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_video_target_product:
-    weight: 8
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -97,7 +97,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_video_thumbnail_url:
-    weight: 9
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -105,7 +105,7 @@ content:
     type: string_textfield
     region: content
   field_views:
-    weight: 6
+    weight: 8
     settings:
       placeholder: ''
     third_party_settings: {  }
