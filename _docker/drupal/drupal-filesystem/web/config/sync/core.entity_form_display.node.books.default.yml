@@ -9,10 +9,9 @@ dependencies:
     - field.field.node.books.field_book_excerpt
     - field.field.node.books.field_book_url
     - field.field.node.books.field_categories
+    - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
-    - field.field.node.books.field_difficulty
-    - field.field.node.books.field_read_time
     - field.field.node.books.field_mobi_link
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
@@ -20,6 +19,7 @@ dependencies:
     - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
@@ -47,14 +47,8 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_average_rating:
-    weight: 18
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_book_description:
-    weight: 5
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -63,7 +57,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_book_excerpt:
-    weight: 6
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -71,20 +65,18 @@ content:
     type: text_textarea
     region: content
   field_book_url:
-    weight: 4
+    weight: 17
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_categories:
-    weight: 17
-    settings:
-      size: 60
-      placeholder: ''
+  field_difficulty:
+    weight: 16
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: options_select
     region: content
   field_epub:
     weight: 12
@@ -101,19 +93,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_difficulty:
-    weight: 27
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_read_time:
-    weight: 26
-    settings:
-      allowed_periods: {  }
-    third_party_settings: {  }
-    type: interval_default
     region: content
   field_mobi_link:
     weight: 11
@@ -138,36 +117,29 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_preview_url:
-    weight: 16
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   field_published_date:
-    weight: 8
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_publisher:
-    weight: 7
+    weight: 6
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_pull_from_google:
-    weight: 19
-    settings: {  }
+  field_read_time:
+    weight: 15
+    settings:
+      allowed_periods: {  }
     third_party_settings: {  }
-    type: options_select
+    type: interval_default
     region: content
   field_related_product:
-    weight: 9
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -176,7 +148,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_tags:
-    weight: 13
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -185,15 +157,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_thumbnail_url:
-    weight: 14
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_web_reader_url:
-    weight: 15
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -202,7 +166,7 @@ content:
     region: content
   path:
     type: path
-    weight: 20
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -216,6 +180,11 @@ content:
     region: content
 hidden:
   created: true
+  field_average_rating: true
+  field_categories: true
+  field_preview_url: true
+  field_pull_from_google: true
+  field_web_reader_url: true
   promote: true
   status: true
   sticky: true

@@ -36,19 +36,19 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_duration:
-    weight: 8
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: interval_default
-    region: content
   field_difficulty:
     weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_duration:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
     region: content
   field_likes:
     weight: 5

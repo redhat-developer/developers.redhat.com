@@ -47,19 +47,19 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
-  field_read_time:
-    weight: 104
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: interval_default
-    region: content
   field_meta_tags:
     weight: 102
     label: above
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
+    region: content
+  field_read_time:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
     region: content
   field_tags:
     type: entity_reference_label

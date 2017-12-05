@@ -88,6 +88,13 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_difficulty:
+    weight: 20
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_epub:
     weight: 17
     label: visually_hidden
@@ -107,20 +114,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_difficulty:
-    weight: 20
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_read_time:
-    weight: 19
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: interval_default
     region: content
   field_mobi_link:
     weight: 16
@@ -191,6 +184,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_read_time:
+    weight: 19
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
     region: content
   field_related_product:
     weight: 14

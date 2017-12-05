@@ -38,18 +38,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  field_difficulty:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_duration:
     weight: 10
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: content
-  field_difficulty:
-    weight: 26
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_likes:
     weight: 7

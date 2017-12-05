@@ -54,18 +54,18 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_meta_tags:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_read_time:
     weight: 27
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: content
-  field_meta_tags:
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
-    type: metatag_firehose
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags
