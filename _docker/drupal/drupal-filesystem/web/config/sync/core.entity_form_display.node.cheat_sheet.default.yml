@@ -73,12 +73,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_difficulty:
-    weight: 27
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_exclude_from_search:
     weight: 11
     settings:
@@ -86,8 +80,14 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_difficulty:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_read_time:
-    weight: 26
+    weight: 12
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
