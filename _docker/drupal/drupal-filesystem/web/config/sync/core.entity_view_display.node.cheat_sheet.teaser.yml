@@ -1,21 +1,18 @@
-uuid: 90f932e6-bdb1-40b7-a743-dbcdfd6666d6
+uuid: 14f469a1-e9f7-4d8e-aff7-befc6e6a28c1
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.cheat_sheet.body
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
     - field.field.node.cheat_sheet.field_exclude_from_search
-    - field.field.node.cheat_sheet.field_difficulty
-    - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
-    - interval
     - link
-    - options
     - panelizer
     - text
     - user
@@ -27,10 +24,10 @@ third_party_settings:
     default: default
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
-id: node.cheat_sheet.default
+id: node.cheat_sheet.teaser
 targetEntityType: node
 bundle: cheat_sheet
-mode: default
+mode: teaser
 content:
   body:
     label: hidden
@@ -49,7 +46,7 @@ content:
     region: content
   field_cheat_sheet_download_url:
     weight: 3
-    label: above
+    label: visually_hidden
     settings:
       trim_length: null
       url_only: false
@@ -74,29 +71,15 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_difficulty:
-    weight: 9
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_exclude_from_search:
     weight: 7
-    label: above
+    label: visually_hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
-    region: content
-  field_read_time:
-    weight: 8
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: interval_default
     region: content
   links:
     weight: 6
