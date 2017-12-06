@@ -1,0 +1,19 @@
+uuid: 4116fbde-12b3-458b-867b-76a24b3dbbd4
+langcode: en
+status: true
+dependencies:
+  module:
+    - interval
+    - node
+id: node.field_read_time
+field_name: field_read_time
+entity_type: node
+type: interval
+settings: {  }
+module: interval
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

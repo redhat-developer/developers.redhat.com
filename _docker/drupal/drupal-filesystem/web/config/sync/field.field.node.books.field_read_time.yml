@@ -1,0 +1,21 @@
+uuid: 3482130a-1ec4-491e-b313-137f247bd1cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_read_time
+    - node.type.books
+  module:
+    - interval
+id: node.books.field_read_time
+field_name: field_read_time
+entity_type: node
+bundle: books
+label: 'Read Time'
+description: 'How long it takes to read the content. The number should be based on the average reading time for an adult (approximately 250 WPM).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: interval

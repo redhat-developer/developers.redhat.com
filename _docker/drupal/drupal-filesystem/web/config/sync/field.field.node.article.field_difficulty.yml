@@ -1,0 +1,21 @@
+uuid: 00e583cd-d964-484e-bcf1-e763ea76f299
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_difficulty
+    - node.type.article
+  module:
+    - options
+id: node.article.field_difficulty
+field_name: field_difficulty
+entity_type: node
+bundle: article
+label: 'Difficulty Level'
+description: 'General level difficulty to indicate how complicated this content is for a typical developer.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

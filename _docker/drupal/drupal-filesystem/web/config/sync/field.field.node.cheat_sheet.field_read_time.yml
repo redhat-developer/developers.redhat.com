@@ -1,0 +1,21 @@
+uuid: 4213655a-5647-4176-a2e2-5e3600a3ea64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_read_time
+    - node.type.cheat_sheet
+  module:
+    - interval
+id: node.cheat_sheet.field_read_time
+field_name: field_read_time
+entity_type: node
+bundle: cheat_sheet
+label: 'Read Time'
+description: 'How long it takes to read the content. The number should be based on the average reading time for an adult (approximately 250 WPM).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: interval
