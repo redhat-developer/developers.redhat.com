@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
@@ -68,6 +69,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_stackoverflow_product_refe:
+    weight: 113
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_url_product_name:
     weight: 111
