@@ -40,10 +40,10 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 {% if show_stack_overflow %}
                     <div class="large-{{ column_size }} columns top-qa">
                         <h4 class="caps">Top Q&amp;A&nbsp;<i class="fa fa-stack-overflow"></i></h4>
-                        <span id="stackOverflowProduct" data-product="{{ product_machine_name }}"></span>
+                        <span id="stackOverflowProduct" data-product="{{ product_stackoverflow_code }}"></span>
                         <div ng-app="search">
                             <div ng-controller="SearchController">
-                                <div class="stackoverflow-results-container" data-product="{{ product_machine_name }}"
+                                <div class="stackoverflow-results-container" data-product="{{ product_stackoverflow_code }}"
                                      ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0"
                                      id="stackContainer">
                                     <div ng-repeat="result in results | limitTo:{{ column_size == 24 ? '8' : '4' }}"

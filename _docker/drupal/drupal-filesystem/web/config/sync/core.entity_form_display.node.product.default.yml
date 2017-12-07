@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
@@ -35,7 +36,7 @@ third_party_settings:
       children:
         - group_sub_pages
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: tabs
       format_settings:
         id: ''
@@ -97,8 +98,16 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_url_product_name:
+  field_stackoverflow_product_refe:
     weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_url_product_name:
+    weight: 7
     settings:
       size: 60
       placeholder: ''
