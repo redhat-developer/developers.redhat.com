@@ -687,7 +687,7 @@ var DevNationLiveApp = (function (_super) {
         _this.pastSession = function (strings, sess) {
             return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
                 : '') + "\n                        </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://youtu.be/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
                 : '');
         };
         _this.template = function (strings, next, upcoming, past) {
@@ -2532,7 +2532,7 @@ var RHDPSearchQuery = (function (_super) {
                 this.from = 0;
                 this.search();
                 break;
-            case 'filter-item-change':
+            case 'filter-item-change'://detail.facet
                 if (e.detail && e.detail.facet) {
                     this._setFilters(e.detail.facet);
                 }
@@ -2540,14 +2540,14 @@ var RHDPSearchQuery = (function (_super) {
                 this.search();
                 // Wait for params-ready event
                 break;
-            case 'sort-change':
+            case 'sort-change':// detail.sort
                 if (e.detail && e.detail.sort) {
                     this.sort = e.detail.sort;
                 }
                 this.from = 0;
                 this.search();
                 break;
-            case 'load-more':
+            case 'load-more':// detail.qty
                 this.search();
                 break;
             case 'clear-filters':
@@ -3314,9 +3314,9 @@ var RHDPSearchURL = (function (_super) {
                 this.uri.searchParams.delete('f');
                 this.filters = {};
                 break;
-            case 'load-more':
+            case 'load-more':// detail.qty
                 break;
-            case 'search-complete':
+            case 'search-complete':// build querystring params
                 // Term Change
                 if (e.detail && typeof e.detail.term !== 'undefined' && e.detail.term.length > 0) {
                     this.term = e.detail.term;
