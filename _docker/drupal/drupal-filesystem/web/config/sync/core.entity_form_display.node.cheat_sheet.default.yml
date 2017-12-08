@@ -8,8 +8,8 @@ dependencies:
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
-    - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
@@ -73,18 +73,18 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_difficulty:
-    weight: 13
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_exclude_from_search:
     weight: 11
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_difficulty:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_read_time:
     weight: 12

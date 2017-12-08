@@ -10,7 +10,8 @@ describe('Search Result', function() {
         stackoverflow_thread: "Stack Overflow",
         quickstart: "Quickstart",
         webpage: "Web Page",
-        video: "Video"
+        video: "Video",
+        book: "Book"
     };
     var testResult = {
         fields: {
@@ -58,6 +59,12 @@ describe('Search Result', function() {
         setTimeout(function() {
             expect(wc.querySelector('rh-datetime').innerHTML).toEqual('February 3, 2001');
         }, 500);
+    });
+
+    it('should have a sys_url_view', function() {
+        wc.result = testResult;
+
+        expect(wc.url).toEqual(testResult.fields.sys_url_view);
     });
 
     describe('Title', function() {
@@ -225,6 +232,37 @@ describe('Search Result', function() {
                 wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
+        });
+
+        describe('should have "Book" for the corresponding result types', function () {
+            it('all books', function () {
+                var typeTxt = 'Book',
+                    typeReturn = ['book'],
+                    len = typeReturn.length,
+                    i;
+                for (i = 0; i < len; i++) {
+                    testResult.fields.sys_type = [typeReturn[i]];
+                    wc.result = testResult;
+                    expect(wc.kind).toEqual(typeTxt);
+                }
+            });
+
+            it('externally hosted books', function () {
+                var typeTxt = 'foo bar';
+                testResult.fields.sys_type = 'book';
+
+                testResult.fields.field_book_url = typeTxt;
+                wc.result = testResult;
+                expect(wc.url).toEqual(typeTxt);
+            });
+
+            it('book with an empty field_book_url', function () {
+                testResult.fields.sys_type = 'book';
+
+                testResult.fields.field_book_url = '';
+                wc.result = testResult;
+                expect(wc.url).toEqual(testResult.fields.sys_url_view);
+            });
         });
     });
 });
