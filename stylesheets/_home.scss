@@ -16,13 +16,14 @@
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    padding: 0 21% 0 21%;
+    // padding: 0 21% 0 21%;
     padding-top: 40px;
     color: $white;
-    text-align: center;
+    text-align: left;
     margin: 0 auto;
     h2 {
       font-size: 2em;
+      font-weight: 800;
       color: $app-development;
       text-transform: uppercase;
       line-height: 1.1;
@@ -43,6 +44,9 @@
       background-color: $app-development;
     }
   }
+.homepage-cta-img {
+  text-align: center;
+}
   img {
     // height: 205px;
     width: 75%;
@@ -244,7 +248,11 @@ ul.homepage-resources {
     }
     .homepage-cta-img, .homepage-cta {
       margin: 0 15%;
+      padding-top: 0;
     }
+  }
+  img {
+    width: auto;
   }
   span.type-icon { display: none !important; }
   a.spotlight-item {
