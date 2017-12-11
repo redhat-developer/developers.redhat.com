@@ -1,6 +1,6 @@
 $(function() {
   $(".collapsible-section h3").on("click", function(){
-    var windowsize = $window.width();
+    var windowsize = document.body.clientWidth;
     if (windowsize <= 1170) {
       $(this).parent().toggleClass("collapsed");
     } else {
@@ -12,7 +12,7 @@ $(function() {
 var $window = $(window);
 
 function checkWidth() {
-    var windowsize = $window.width();
+    var windowsize = document.body.clientWidth;;
 
     if (windowsize <= 1170) {
       $(".collapsible-section").addClass("collapsed");
