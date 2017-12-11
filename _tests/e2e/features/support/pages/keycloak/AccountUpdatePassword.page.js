@@ -1,4 +1,5 @@
 import {BasePage} from "../Base.page"
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class UpdatePasswordPage extends BasePage {
 
@@ -7,34 +8,21 @@ class UpdatePasswordPage extends BasePage {
             path: '/auth/realms/rhd/account/password',
             selector: '.password'
         });
-    }
-
-    get currentPassword() {
-        return browser.element('#password')
-    }
-
-    get newPassword() {
-        return browser.element('#password-new')
-    }
-
-    get newPasswordConfirm() {
-        return browser.element('#password-confirm')
-    }
-
-    get saveNewPasswordBtn() {
-        return browser.element("//*[@value='Save']")
-    }
-
-    get updateSuccess() {
-        return browser.element('.alert-success')
+        this.addSelectors({
+            currentPassword: '#password',
+            newPassword: '#password-new',
+            newPasswordConfirm: '#password-confirm',
+            saveNewPasswordBtn: "//*[@value='Save']",
+            updateSuccess: '.alert-success'
+        });
     }
 
     updatePassword(user, newPassword) {
-        this.type(this.currentPassword, user['password']);
-        this.type(this.newPassword, newPassword);
-        this.type(this.newPasswordConfirm, newPassword);
-        this.clickOn(this.saveNewPasswordBtn);
-        return this.updateSuccess.waitForVisible()
+        driver.type(this.getSelector('currentPassword'), user['password']);
+        driver.type(this.getSelector('newPassword'), newPassword);
+        driver.type(this.getSelector('newPasswordConfirm'), newPassword);
+        driver.clickOn(this.getSelector('saveNewPasswordBtn'));
+        return driver.awaitExists(this.getSelector('updateSuccess'))
     }
 }
 

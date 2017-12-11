@@ -26,10 +26,9 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
 }
 
 if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
-    process.env.RHD_JS_DRIVER = 'firefox';
+    process.env.RHD_JS_DRIVER = 'chrome';
 }
 
-const seleniumStandaloneOptions = require('../config/browsers/selenium-standalone-defaults.json');
 const BrowserManager = require('../config/browsers/BrowserManager');
 const browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
@@ -53,40 +52,38 @@ module.exports = {
         deprecationWarnings: false,
     },
 
-    // - - - - CHIMP SETTINGS - - - -
     chai: true,
-    timeout: 6000,
-    port: 4444,
 
     // - - - - SELENIUM-STANDALONE
     seleniumStandaloneOptions: {
         // check for more recent versions of selenium here:
         // http://selenium-release.storage.googleapis.com/index.html
-        version: seleniumStandaloneOptions['selenium-standalone']['version'],
-        baseURL: seleniumStandaloneOptions['selenium-standalone']['baseURL'],
+        version: '3.0.1',
+        baseURL: 'https://selenium-release.storage.googleapis.com',
         drivers: {
             chrome: {
                 // check for more recent versions of chrome driver here:
                 // http://chromedriver.storage.googleapis.com/index.html
-                version: seleniumStandaloneOptions['chrome']['version'],
+                version: '2.33',
                 arch: process.arch,
-                baseURL: seleniumStandaloneOptions['chrome']['baseURL']
+                baseURL: 'https://chromedriver.storage.googleapis.com'
             },
             ie: {
                 // check for more recent versions of internet explorer driver here:
                 // http://selenium-release.storage.googleapis.com/index.html
-                version: seleniumStandaloneOptions['ie']['version'],
+                version: '3.0.0',
                 arch: 'ia32',
-                baseURL: seleniumStandaloneOptions['ie']['baseURL']
+                baseURL: 'https://selenium-release.storage.googleapis.com'
             },
             firefox: {
                 // check for more recent versions of gecko  driver here:
                 // https://github.com/mozilla/geckodriver/releases
-                version: seleniumStandaloneOptions['firefox']['version'],
+                version: '0.13.0',
                 arch: process.arch,
-                baseURL: seleniumStandaloneOptions['firefox']['baseURL']
+                baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
             }
         }
     },
+
 
 };

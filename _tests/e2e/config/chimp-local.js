@@ -34,7 +34,7 @@ if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
 const outputFolder = 'report';
 
 if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
-    process.env.RHD_JS_DRIVER = 'chrome';
+    process.env.RHD_JS_DRIVER = 'firefox';
 }
 
 const seleniumStandaloneOptions = require('../config/browsers/selenium-standalone-defaults.json');

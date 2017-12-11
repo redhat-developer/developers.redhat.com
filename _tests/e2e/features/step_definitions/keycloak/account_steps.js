@@ -3,7 +3,6 @@ import {accountPage} from "../../support/pages/keycloak/Account.page"
 import {socialAccountPage} from "../../support/pages/keycloak/AccountSocialLogin.page"
 import {updatePasswordPage} from "../../support/pages/keycloak/AccountUpdatePassword.page"
 import {siteUser} from "../../support/rest/keycloak/Site.user"
-import {itAdmin} from "../../support/rest/keycloak/IT.admin"
 const qs = require('querystring');
 
 const editAccountSteps = function () {
@@ -27,7 +26,8 @@ const editAccountSteps = function () {
     });
 
     this.Then(/^my details should be updated$/, function () {
-        accountPage.updateSuccess.waitForValue(9000);
+        let successMessageVisible = accountPage.successMessage();
+        expect(successMessageVisible).to.eq(true)
     });
 
     this.Then(/^the customer portal should be updated$/, function () {
@@ -36,21 +36,17 @@ const editAccountSteps = function () {
     });
 
     this.When(/^I (link|unlink) my social account$/, function (option) {
-        if (option === 'unlink') {
-            socialAccountPage.removeGithubBtn.click();
-        } else {
-            socialAccountPage.addGitHub.click()
-        }
+        socialAccountPage.clickGitHubBtn(option)
     });
 
     this.Then(/^I should not have any social accounts associated with me$/, function () {
-        socialAccountPage.addGitHub.waitForVisible();
+        socialAccountPage.awaitGitHubBtn('link');
         let linkedSocialAccounts = siteUser.getSocialLogins(siteUserDetails['email']);
         expect(linkedSocialAccounts.length, 'User account still contains social login in KeyCloak Admin').to.eq(0)
     });
 
     this.Then(/^my account should be linked$/, function () {
-        socialAccountPage.removeGithubBtn.waitForVisible();
+        socialAccountPage.awaitGitHubBtn('unlink');
         let linkedSocialAccounts = siteUser.getSocialLogins(siteUserDetails['email']);
         expect(linkedSocialAccounts.length, 'User account does not contain a social login in KeyCloak Admin').to.be > 0;
     });

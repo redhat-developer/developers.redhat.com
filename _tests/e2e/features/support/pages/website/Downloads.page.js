@@ -11,7 +11,9 @@ class DownloadsPage extends BasePage {
 
         this.addSelectors({
             downloadsPage: '.alert-box',
-            loadingSpinner: '#downloads .fa-refresh'
+            loadingSpinner: '#downloads .fa-refresh',
+            cdkOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[2]/div/div[3]',
+            devsuiteOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[3]/div/div[3]'
         });
     }
 
@@ -20,11 +22,25 @@ class DownloadsPage extends BasePage {
         return driver.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000)
     }
 
-    clickToDownload(url) {
-        let downloadBtn = browser.element(`//*[@id='downloads']//a[@href='${url}']`);
-        let location = browser.getLocationInView(`//*[@id='downloads']//a[@href='${url}']`);
+    clickToDownload(product, url) {
+        let downloadBtn;
+        if (product.includes('Container Development Kit')) {
+            downloadBtn = browser.element(`//*[@id='downloads']//rhdp-downloads-all-item[2]//a[@href='${url}']`);
+        } else if (product.includes('Development Suite')) {
+            downloadBtn = browser.element(`//*[@id='downloads']//rhdp-downloads-all-item[3]//a[@href='${url}']`);
+        } else {
+            downloadBtn = browser.element(`//*[@id='downloads']//a[@href='${url}']`);
+        }
+        let location = downloadBtn.getLocationInView();
         downloadBtn.scroll(location['x'], location['y']);
-        return downloadBtn.click()
+        return driver.clickOn(downloadBtn)
+    }
+
+    osSpecificDownload(productCode) {
+        let osType = driver.element(this.getSelector(`${productCode}OSVersion`));
+        let location = osType.getLocationInView();
+        osType.scroll(location['x'], location['y']);
+        return osType.getText()
     }
 
 }

@@ -1,31 +1,40 @@
 import {DownloadManager} from '../support/rest/Download.Manager';
 import {downloadsPage} from '../support/pages/website/Downloads.page';
-import {getStartedPage} from '../support/pages/website/GetStarted.page';
-
+import {GetStartedPage} from '../support/pages/website/GetStarted.page';
 const path = require('path');
 const fs = require('fs');
 
 const downloadsSteps = function () {
 
-    let productID;
+     global.productCode = "";
 
     this.Given(/^I am on the Downloads page$/, function () {
         downloadsPage.open();
+        downloadsPage.awaitDownloadsPage()
     });
 
     this.Given(/^I am taken to the Downloads page$/, function () {
         downloadsPage.awaitDownloadsPage();
     });
 
+    this.Then(/^I should see "([^"]*)" download field should contain version and operating system$/, function (product) {
+        let dm = new DownloadManager(process.env.RHD_BASE_URL);
+        let downloadData = dm.featuredDownloadFor(product);
+        let expectedDlVersion = `Version: ${downloadData[1]} for ${operatingSystem}`.toLowerCase();
+        let actualDlVersion = downloadsPage.osSpecificDownload(downloadData[0]).toLowerCase();
+        expect(expectedDlVersion).to.equal(actualDlVersion)
+    });
+
     this.When(/^I click to download "(.*)"$/, function (product) {
         let dm = new DownloadManager(process.env.RHD_BASE_URL);
         let downloadData = dm.featuredDownloadFor(product);
-        productID = downloadData[0];
-        downloadsPage.clickToDownload(downloadData[2]);
+        productCode = downloadData[0];
+        downloadsPage.clickToDownload(product, downloadData[2]);
     });
 
     this.Then(/^a single download should initiate on the (.*) Hello-World overview page$/, function (product) {
-        getStartedPage.waitForGetStartedPage(productID);
+        let getStartedPage = new GetStartedPage(productCode);
+        getStartedPage.waitForGetStartedPage();
         global.downloadStarted = true;
 
         let downloadCount = 0;
@@ -47,11 +56,6 @@ const downloadsSteps = function () {
 
     });
 
-    this.Then(/^I should see a list of products available for download$/, function () {
-        let productNames = downloadsPage.drupalProducts()[0];
-        console.log(productNames)
-
-    });
 };
 
 module.exports = downloadsSteps;

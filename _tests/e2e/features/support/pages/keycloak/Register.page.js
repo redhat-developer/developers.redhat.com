@@ -10,107 +10,73 @@ class RegisterPage extends BasePage {
         });
 
         this.addSelectors({
-            registerForm: '#kc-register-form'
+            registerForm: '#kc-register-form',
+            emailError: '#email-error',
+            firstNameField: '#firstName',
+            lastNameField: '#lastName',
+            emailField: '#email',
+            passwordField: '#password',
+            companyField: '//*[@id="user.attributes.company"]',
+            phoneNumberField: '//*[@id="user.attributes.phoneNumber"]',
+            addressLineOneField: '//*[@id="user.attributes.addressLine1"]',
+            cityField: '//*[@id="user.attributes.addressCity"]',
+            stateSelect: '//*[@id="user.attributes.addressState"]',
+            countrySelect: '//*[@id="user.attributes.country"]',
+            postalCodeField: '//*[@id="user.attributes.addressPostalCode"]',
+            fullUserTtac: '.fulluser-ttac',
+            tacCheckall: '#tac-checkall',
+            createAccountBtn: '.button',
         });
     }
 
+    awaitRegisterPage() {
+        driver.awaitExists(this.getSelector('registerForm'), 30000);
+        return driver.isDisplayed(this.getSelector('tacCheckall'))
+    }
+
     kcRegisterFormDispalyed() {
-        let el = browser.element(this.getSelector('registerForm'));
+        let el = driver.awaitExists(this.getSelector('registerForm'), 30000);
         return driver.isDisplayed(el)
     }
 
-    emailError() {
-        return this.textOf("#email-error")
-    }
-
-    get firstName() {
-        return browser.element('#firstName')
-    }
-
-    get lastName() {
-        return browser.element('#lastName')
-    }
-
-    get email() {
-        return browser.element('#email')
-    }
-
-    get password() {
-        return browser.element('#password')
-    }
-
-    get company() {
-        return browser.element('//*[@id="user.attributes.company"]')
-    }
-
-    get phoneNumber() {
-        return browser.element('//*[@id="user.attributes.phoneNumber"]')
-    }
-
-    get addressLineOne() {
-        return browser.element('//*[@id="user.attributes.addressLine1"]')
-    }
-
-    get city() {
-        return browser.element('//*[@id="user.attributes.addressCity"]')
-    }
-
-    selectState(state) {
-        browser.selectByValue('//*[@id="user.attributes.addressState"]', state);
-        browser.pause(3000)
-    }
-
-    selectCountry(country) {
-        browser.selectByValue('//*[@id="user.attributes.country"]', country);
-        browser.pause(3000)
-    }
-
-    get postalCode() {
-        return browser.element('//*[@id="user.attributes.addressPostalCode"]')
-    }
-
-    get tacBtn() {
-        return browser.element('.fulluser-ttac')
-    }
-
-    get tacCheckall() {
-        return browser.element('#tac-checkall')
-    }
-
-    get createAccountBtn() {
-        return browser.element('.button')
+    feedback(field) {
+        return driver.textOf(this.getSelector(`${field}Error`))
     }
 
     simpleRegister(user) {
-        this.email.setValue(user['email']);
-        this.password.setValue(user['password']);
-        this.tacBtn.click();
-        this.createAccountBtn.click()
+        driver.type(this.getSelector('emailField'), user['email']);
+        driver.type(this.getSelector('passwordField'), user['password']);
+        driver.clickOn(this.getSelector('fullUserTtac'));
+        return driver.clickOn(this.getSelector('createAccountBtn'))
     }
 
-    extendedRegister(user) {
-        console.log(user['countryCode'] + user['state']);
-        this.kcRegisterForm.waitForVisible(12000);
-        this.firstName.setValue(user['firstName']);
-        this.lastName.setValue(user['lastName']);
-        this.email.setValue(user['email']);
-        this.password.setValue(user['password']);
-        this.company.setValue(user['company']);
-        this.phoneNumber.setValue(user['phoneNumber']);
-        this.selectCountry(user['countryCode']);
-        this.addressLineOne.setValue('123 ' + user['addressLineOne']);
-        this.city.setValue(user['city']);
-
-        if (user['state'] !== null) {
-            this.selectState(user['state']);
-        }
-        this.postalCode.setValue(user['postalCode']);
-
-        let location = this.tacCheckall.getLocationInView();
-        this.tacCheckall.scroll(location['x'], location['y']);
-        this.tacCheckall.click();
-        this.createAccountBtn.click()
+    awaitVerifyEmail() {
+        return driver.waitForTitle('Email address verification', 30000)
     }
+
+    // extendedRegister(user) {
+    //     console.log(user['countryCode'] + user['state']);
+    //     this.kcRegisterForm.waitForVisible(12000);
+    //     this.firstName.setValue(user['firstName']);
+    //     this.lastName.setValue(user['lastName']);
+    //     this.email.setValue(user['email']);
+    //     this.password.setValue(user['password']);
+    //     this.company.setValue(user['company']);
+    //     this.phoneNumber.setValue(user['phoneNumber']);
+    //     this.selectCountry(user['countryCode']);
+    //     this.addressLineOne.setValue('123 ' + user['addressLineOne']);
+    //     this.city.setValue(user['city']);
+    //
+    //     if (user['state'] !== null) {
+    //         this.selectState(user['state']);
+    //     }
+    //     this.postalCode.setValue(user['postalCode']);
+    //
+    //     let location = this.tacCheckall.getLocationInView();
+    //     this.tacCheckall.scroll(location['x'], location['y']);
+    //     this.tacCheckall.click();
+    //     this.createAccountBtn.click()
+    // }
 }
 
 const registerPage = new RegisterPage();

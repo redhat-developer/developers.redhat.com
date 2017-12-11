@@ -16,7 +16,7 @@ class BasePage {
         driver.visit(openUrl);
 
         if (this.selector) {
-            driver.awaitIsVisible(this.selector);
+            driver.awaitIsVisible(this.selector, 30000);
         }
     }
 
