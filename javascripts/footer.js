@@ -1,6 +1,11 @@
 $(function() {
   $(".collapsible-section").on("click", function(){
-    $(this).toggleClass("collapsed");
+    var windowsize = $window.width();
+    if (windowsize <= 1170) {
+      $(this).toggleClass("collapsed");
+    } else {
+      return false;
+    }
   })
 });
 
