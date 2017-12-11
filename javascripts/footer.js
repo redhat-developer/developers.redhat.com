@@ -1,8 +1,8 @@
 $(function() {
-  $(".collapsible-section").on("click", function(){
+  $(".collapsible-section h3").on("click", function(){
     var windowsize = $window.width();
     if (windowsize <= 1170) {
-      $(this).toggleClass("collapsed");
+      $(this).parent().toggleClass("collapsed");
     } else {
       return false;
     }
