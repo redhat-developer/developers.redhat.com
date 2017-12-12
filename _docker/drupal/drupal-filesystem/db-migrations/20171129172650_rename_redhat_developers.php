@@ -14,6 +14,8 @@ class RenameRedhatDevelopers extends AbstractMigration
         $this->execute('UPDATE lightning_node__field_content_author SET field_content_author_value = REPLACE(field_content_author_value, "Red Hat Developers", "Red Hat Developer Program")');
         $this->execute('UPDATE lightning_paragraph__field_body SET field_body_value = REPLACE(field_body_value, "Red Hat Developers", "Red Hat Developer Program")');
         $this->execute('UPDATE lightning_paragraph__field_overview_main_content SET field_overview_main_content_value = REPLACE(field_overview_main_content_value, "Red Hat Developers", "Red Hat Developer Program")');
+        $this->execute('UPDATE lightning_paragraph_revision__field_body SET field_body_value = REPLACE(field_body_value, "Red Hat Developers", "Red Hat Developer Program")');
+        $this->execute('UPDATE lightning_paragraph_revision__field_overview_main_content SET field_overview_main_content_value = REPLACE(field_overview_main_content_value, "Red Hat Developers", "Red Hat Developer Program")');
 
     }
 
