@@ -1,8 +1,8 @@
 FROM centos:7.3.1611
 MAINTAINER ihamilto@redhat.com
 
-RUN yum clean all && yum install -y  epel-release gcc gcc-c++ git libcurl-devel libffi-devel libtool libxml2 libxml2-devel libxslt \
-    libxslt-devel libyaml-devel openssl-devel patch readline-devel ruby-devel tar which wget make
+RUN yum install -y  epel-release gcc gcc-c++ git libcurl-devel libffi-devel libtool libxml2 libxml2-devel libxslt \
+    libxslt-devel libyaml-devel openssl-devel patch readline-devel ruby-devel tar which wget make && yum clean all
 
 # install nodejs
 RUN curl --silent --location https://rpm.nodesource.com/setup |bash - \
