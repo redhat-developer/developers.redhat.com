@@ -35,7 +35,6 @@ var globs = {
         'javascripts/mobile.js',
         'javascripts/vendor/jquery.resize.js',
         'javascripts/vendor/jquery.timeago.js',
-        'javascripts/vendor/socialite.min.js',
         'javascripts/vendor/jquery.paging.min.js',
         'javascripts/vendor/ytembed.js',
         'javascripts/terms-and-conditions.js',

@@ -15,29 +15,19 @@
             <p><!=sys_description!></p>
         </div>
         <div class="update-meta">
-            <div class="share-this">
-                <p><i class="fa fa-share">Share This</i></p>
-                <ul class="share-this-buttons social-buttons cf">
-                    <li><a href="https://twitter.com/share" class="socialite twitter-share" data-text="<!=sys_title!>"
-                           data-url="<!=sys_url_view!>" rel="noopener noreferrer nofollow" target="_blank"><span
-                                    class="vhidden">Tweet</span></a></li>
-                    <li><a href="http://www.facebook.com/sharer.php?u=<!=sys_url_view!>&t=<!=sys_title!>"
-                           class="socialite facebook-share" data-href="<!=sys_url_view!>" data-send="false"
-                           data-type="button_count"
-                           data-width="60" data-show-faces="false" rel="noopener noreferrer nofollow" target="_blank"><span class="vhidden">Share on Facebook</span></a>
-                    </li>
-                    <li><a href="https://plus.google.com/share?url=<!=sys_url_view!>" class="socialite googleplus-one"
-                           data-size="tall"
-                           data-annotation="inline" data-width="60" data-href="<!=sys_url_view!>" rel="noopener noreferrer nofollow"
-                           target="_blank"><span
-                                    class="vhidden">Share on Google+</span></a></li>
-                    <li>
-                        <a href="http://www.linkedin.com/shareArticle?mini=true&url=<!=sys_url_view!>&title=<!=sys_title!>"
-                           class="socialite linkedin-share" data-url="<!=sys_url_view!>" data-counter="right"
-                           rel="noopener noreferrer nofollow"
-                           target="_blank"><span class="vhidden">Share on LinkedIn</span></a></li>
-                </ul>
+            {# <!-- AddToAny BEGIN --> #}
+            <div class="a2a_kit a2a_kit_size_24 a2a_default_style">
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_facebook a2a_counter"></a>
+                <a class="a2a_button_linkedin a2a_counter"></a>
+                <a class="a2a_button_google_plusone" data-size="standard" style="width:85px"></a>
             </div>
+            <script>
+                var a2a_config = a2a_config || {};
+                a2a_config.num_services = 6;
+            </script>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            {# <!-- AddToAny END --> #}
         </div>
     </div>
 </div>
