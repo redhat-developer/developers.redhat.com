@@ -18,6 +18,7 @@ class RenameRedhatDevelopers extends AbstractMigration
         $this->execute('UPDATE lightning_paragraph_revision__field_overview_main_content SET field_overview_main_content_value = REPLACE(field_overview_main_content_value, "Red Hat Developers", "Red Hat Developer Program")');
         $this->execute("UPDATE lightning_node_field_revision SET moderation_state = 'published', status = 1 WHERE (moderation_state = 'draft' OR moderation_state IS NULL) AND UPPER(title) LIKE '%BOM%'");
         $this->execute("UPDATE lightning_node_field_data SET moderation_state = 'published', status = 1 WHERE moderation_state IS NULL AND UPPER(title) LIKE '%BOM%'");
+        $this->execute("UPDATE lightning_node_field_data SET moderation_state = 'published', status = 1 WHERE moderation_state IS NULL AND UPPER(title) LIKE '%BOM%'");
     }
 
     public function down() {
