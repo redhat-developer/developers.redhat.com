@@ -110,8 +110,8 @@ profiles:
 
   drupal_staging:
     <<: *profile
-    base_url: http://developer-drupal.web.stage.ext.phx2.redhat.com/
-    drupal_base_url: http://developer-drupal.web.stage.ext.phx2.redhat.com/
+    base_url: http://developer-rhdp-drupal.web.stage.ext.phx2.redhat.com/
+    drupal_base_url: http://developer-rhdp-drupal.web.stage.ext.phx2.redhat.com/
     download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     dcp_base_url: https://dcp.stage.jboss.org/
