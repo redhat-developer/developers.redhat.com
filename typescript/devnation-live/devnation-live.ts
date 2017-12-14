@@ -284,6 +284,4 @@ class DevNationLiveApp extends HTMLElement {
     }
 }
 
-window.addEventListener('WebComponentsReady', function() {
-    customElements.define('devnation-live-app', DevNationLiveApp);
-});
+customElements.define('devnation-live-app', DevNationLiveApp);
