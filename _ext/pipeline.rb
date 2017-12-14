@@ -71,7 +71,7 @@ Awestruct::Extensions::Pipeline.new do
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/eap',
                                                           excludes: ['_eap-quickstarts/template'],
-                                                          push_to_searchisko: site.push_to_searchisko,
+                                                          push_to_searchisko: false,
                                                           product: 'eap')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_brms-quickstarts',
