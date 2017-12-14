@@ -42,12 +42,8 @@ class NavigationBarSection extends BasePage {
         return driver.type(this.getSelector('searchField'), searchTerm);
     }
 
-    triggerSearch(searchTrigger = 'search-button') {
-        if (searchTrigger === 'search-button') {
-            driver.clickOn(this.getSelector('searchButton'));
-        } else {
-            driver.key('Enter')
-        }
+    triggerSearch() {
+        driver.clickOn(this.getSelector('searchButton'));
     }
 
     searchFor(searchTerm) {
@@ -72,9 +68,8 @@ class NavigationBarSection extends BasePage {
     }
 
     moveToMegaMenuItem(item) {
-        let el = driver.element(`//a[text()='${item}']`);
-        driver.awaitIsVisible(el);
-        return el.moveToObject();
+        driver.clickOn(`//a[text()='${item}']`);
+        return browser.pause(1000)
     }
 
     clickMegaMenuItem(item) {
@@ -90,13 +85,12 @@ class NavigationBarSection extends BasePage {
     }
 
     getSubNavLinks(item) {
-       let el = driver.elements(this.getSelector(`subNav${item}Links`));
-       return el.getAttribute('href')
+        let el = driver.elements(this.getSelector(`subNav${item}Links`));
+        return el.getAttribute('href')
     }
 
     alertBoxDisplayed() {
         let el = driver.element(this.getSelector('alertBox'));
-        driver.awaitIsVisible(el);
         return driver.isDisplayed(el)
     }
 

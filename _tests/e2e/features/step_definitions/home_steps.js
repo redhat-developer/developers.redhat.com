@@ -4,6 +4,7 @@ const homepageSteps = function () {
 
     this.Given(/^I am on the Home page$/, function () {
         homePage.open('/');
+        homePage.waitForResourcesLoaded()
     })
 
 };

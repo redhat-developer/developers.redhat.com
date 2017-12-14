@@ -16,12 +16,22 @@ const navigationMenuSteps = function () {
         siteNav.enterSearch(searchTerm);
     });
 
-    this.When(/^I trigger the search via the (search-button|enter-key)$/, function (searchTrigger) {
-        siteNav.triggerSearch(searchTrigger)
+    this.When(/^I trigger the search via the search-button$/, function () {
+        siteNav.triggerSearch()
+    });
+
+    this.Given(/^I scroll to the footer section$/, function () {
+        footerMenu.scrollToFooter();
+    });
+
+    this.Given(/^I collapse the footer section$/, function () {
+        for (let i = 1; i < 4; i++) {
+            footerMenu.collapseFooter(i);
+            browser.pause(1000);
+        }
     });
 
     this.Then(/^the footer Related Sites section should contain the following links:$/, function (dataTable) {
-        footerMenu.collapseFooter(1);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
             expect(footerMenu.sectionContent(1)).to.contain(data[i]);
@@ -29,7 +39,6 @@ const navigationMenuSteps = function () {
     });
 
     this.Then(/^the footer Services section should contain the following links:$/, function (dataTable) {
-        footerMenu.collapseFooter(2);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
             expect(footerMenu.sectionContent(2)).to.contain(data[i]);
@@ -37,16 +46,14 @@ const navigationMenuSteps = function () {
     });
 
     this.Then(/^the footer Communication section should contain the following links:$/, function (dataTable) {
-        footerMenu.collapseFooter(3);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
             expect(footerMenu.sectionContent(3)).to.contain(data[i]);
         }
     });
 
-
     this.Given(/^I am on a JBOSS referred page as "([^"]*)"$/, function (url) {
-        browser.url(`${process.env.RHD_BASE_URL}/${url}?referrer=jbd`)
+        browser.url(`${process.env.RHD_BASE_URL}/${url}/?referrer=jbd`)
     });
 
     this.Then(/^I should see a "([^"]*)" alert$/, function (arg1) {

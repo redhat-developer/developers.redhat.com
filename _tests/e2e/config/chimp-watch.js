@@ -1,5 +1,3 @@
-const faker = require('faker');
-
 if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 } else {
@@ -8,15 +6,17 @@ if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 }
 
-if (process.env.RHD_BASE_URL.includes('pr.stage.redhat.com/pr')) {
+if (process.env.RHD_BASE_URL.includes('pr.stage.redhat.com/pr/')) {
     let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
     let getPullRequestNumber = parsedUrl.pathname.split('/')[2];
     process.env.RHD_DRUPAL_INSTANCE = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000) + (getPullRequestNumber - 0)}`;
     console.log(process.env.RHD_DRUPAL_INSTANCE)
 } else if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
-    process.env.RHD_DRUPAL_INSTANCE = 'http://developer-drupal.web.stage.ext.phx2.redhat.com'
+    process.env.RHD_DRUPAL_INSTANCE = 'http://developer-drupal.web.stage.ext.phx2.redhat.com';
+    console.log(process.env.RHD_DRUPAL_INSTANCE)
 } else {
-    process.env.RHD_DRUPAL_INSTANCE = 'http://developer-drupal.web.prod.ext.phx2.redhat.com'
+    process.env.RHD_DRUPAL_INSTANCE = 'http://developer-drupal.web.prod.ext.phx2.redhat.com';
+    console.log(process.env.RHD_DRUPAL_INSTANCE)
 }
 
 if (process.env.RHD_VERBOSE_OUTPUT) {
@@ -25,33 +25,16 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'silent';
 }
 
-if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
-    testProfile = process.env.RHD_TEST_PROFILE
-} else {
-    testProfile = 'desktop';
-}
-
-const outputFolder = 'report';
-
 if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
-    process.env.RHD_JS_DRIVER = 'chrome';
+    process.env.RHD_JS_DRIVER = 'firefox';
 }
 
 const seleniumStandaloneOptions = require('../config/browsers/selenium-standalone-defaults.json');
 const BrowserManager = require('../config/browsers/BrowserManager');
 const browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
-if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
-    tagsArray = process.env.RHD_CHIMP_TAGS.split(',');
-    tagsArray[tagsArray.length] = '~@ignore';
-    cucumberTags = tagsArray;
-} else {
-    cucumberTags = ['~@ignore', '~@kc', '~@mobile']
-}
+console.log('USING WATCH CONFIG');
 
-process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});
-
-console.log('USING LOCAL CHIMP CONFIG');
 module.exports = {
 
     browser: browserCaps['browserName'],
@@ -73,25 +56,7 @@ module.exports = {
     // - - - - CHIMP SETTINGS - - - -
     chai: true,
     timeout: 6000,
-    port: 4455,
-
-    // - - - - CUCUMBER SETTINGS - - - -
-    path: 'features',
-    format: 'pretty',
-    tags: cucumberTags,
-    jsonOutput: './' + outputFolder + `/cucumber-${testProfile}.json`,
-    screenshotsOnError: true,
-    screenshotsPath: './' + outputFolder + `${testProfile}-screenshots`,
-    saveScreenshotsToDisk: true,
-    saveScreenshotsToReport: true,
-
-    // - - - - REPORTER SETTINGS - - - -
-    reportPath: './' + outputFolder,
-    theme: 'bootstrap',
-    jsonFile: './' + outputFolder + `/cucumber-${testProfile}.json`,
-    output: './' + outputFolder +  `/cucumber-${testProfile}.html`,
-    reportSuiteAsScenarios: true,
-    launchReport: false,
+    port: 4444,
 
     // - - - - SELENIUM-STANDALONE
     seleniumStandaloneOptions: {
@@ -123,6 +88,5 @@ module.exports = {
             }
         }
     },
-};
 
-module.exports.outputFolder = outputFolder;
+};

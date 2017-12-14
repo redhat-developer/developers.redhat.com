@@ -10,8 +10,6 @@ Feature: JBoss redirect to RHD
       | products/fuse/overview    |
       | downloads                 |
       | topics/devops             |
-      | topics/dotnet             |
-      | about                     |
       | community/contributor     |
       | events                    |
       | articles/no-cost-rhel-faq |

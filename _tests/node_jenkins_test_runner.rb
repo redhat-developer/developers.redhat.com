@@ -116,9 +116,14 @@ class NodeJenkinsTestRunner
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
+    rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --kc' if @test_type == 'kc_e2e'
-    command += ' --browser=iphone_6' if profile == 'mobile'
+    if profile == 'mobile'
+      command += ' --browser=iphone_6'
+    else
+      command += " --browser=#{rhd_js_driver}"
+    end
     command += " --profile=#{profile}"
     if cucumber_tags.nil?
       if profile == 'desktop'
