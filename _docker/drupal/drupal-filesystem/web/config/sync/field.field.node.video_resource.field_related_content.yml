@@ -4,9 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_related_content
-    - node.type.article
-    - node.type.books
-    - node.type.cheat_sheet
     - node.type.video_resource
 id: node.video_resource.field_related_content
 field_name: field_related_content
@@ -19,15 +16,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:node'
+  handler: views
   handler_settings:
-    target_bundles:
-      article: article
-      books: books
-      cheat_sheet: cheat_sheet
-      video_resource: video_resource
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: article
+    view:
+      view_name: entity_type_view
+      display_name: entity_reference_1
+      arguments: {  }
 field_type: entity_reference
