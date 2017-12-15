@@ -185,6 +185,5 @@ Awestruct::Extensions::Pipeline.new do
 
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
-  transformer(JBoss::Developer::DrupalTransformer.new(site)) if site.drupal_base_url
 end
 
