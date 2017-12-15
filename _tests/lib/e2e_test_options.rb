@@ -18,19 +18,29 @@ module E2ETestOptionsHelper
   def bind_browser_environment_variables(run_in_docker, browser, test_configuration)
     chromium_devices = File.read('_tests/e2e/config/browsers/chromium_devices.json')
     available_mobile_devices = JSON.parse(chromium_devices)
-
-    remote_browsers = File.read('_tests/e2e/config/browsers/remote_browsers.json')
-
-    if available_mobile_devices.include?(browser)
-      # return mobile device name, for example iPhone 6
-      test_configuration[:docker_node] = 'chrome' if run_in_docker
-      bind_environment_variable('RHD_JS_DRIVER', available_mobile_devices[browser]['device']['name'])
-    elsif remote_browsers.include?(browser)
-      # set browser environment variable, and docker node to chrome
-      test_configuration[:docker_node] = 'chrome' if run_in_docker
+    if browser == 'chrome'
+      if run_in_docker
+        test_configuration[:docker_node] = 'chrome'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
+      end
+      bind_environment_variable('RHD_JS_DRIVER', 'chrome')
+    elsif browser == 'firefox'
+      if run_in_docker
+        test_configuration[:docker_node] = 'firefox'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'firefox')
+      end
+      bind_environment_variable('RHD_JS_DRIVER', 'firefox')
+    elsif available_mobile_devices.include?(browser)
+      # return mobile device name, for example iPhone 8
+      if run_in_docker
+        test_configuration[:docker_node] = 'chrome'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
+      end
       bind_environment_variable('RHD_JS_DRIVER', browser)
     else
-      test_configuration[:docker_node] = browser if run_in_docker
+      if run_in_docker
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
+      end
       bind_environment_variable('RHD_JS_DRIVER', browser)
     end
   end

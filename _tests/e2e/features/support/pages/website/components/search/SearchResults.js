@@ -22,7 +22,7 @@ class SearchResults extends BasePage {
     }
 
     awaitResultsFor(searchTerm) {
-        driver.waitForUrlContaining(searchTerm);
+        driver.waitForUrlContaining(searchTerm, 30000);
         return this.awaitLoadingSpinner();
     }
 

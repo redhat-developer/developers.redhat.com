@@ -2,8 +2,6 @@ const faker = require('faker');
 import {KeyCloakAdmin} from "./Keycloak.admin"
 import {ItAdmin} from "./IT.admin"
 import {gmail} from "./Gmail"
-let keyCloakAdmin = new KeyCloakAdmin();
-let itAdmin = new ItAdmin();
 
 class SiteUser {
 
@@ -13,6 +11,7 @@ class SiteUser {
 
     createRHDSiteUser() {
         let user = this.generate();
+        let keyCloakAdmin = new KeyCloakAdmin();
         user['rhUserId'] = keyCloakAdmin.registerNewUser(user);
         console.log(`Registered new RHD site user with email: ${user['email']} and password: ${user['password']}`);
         // return registered user details, and rhd User ID
@@ -43,6 +42,7 @@ class SiteUser {
 
     createOpenshiftUser() {
         let user = this.generate();
+        let itAdmin = new ItAdmin();
         itAdmin.createSimpleUser(user);
         console.log(`Registered new OpenShift site user with email: ${user['email']} and password: ${user['password']}`);
         // return registered user details
@@ -51,6 +51,7 @@ class SiteUser {
 
     createCustomerPortalAccount() {
         let user = this.generate();
+        let itAdmin = new ItAdmin();
         itAdmin.createFullUser(user);
         console.log(`Registered new Customer Portal site user with email: ${user['email']} and password: ${user['password']}`);
         // return registered user details
@@ -58,6 +59,7 @@ class SiteUser {
     }
 
     disableCustomerPortalAccount(user) {
+        let itAdmin = new ItAdmin();
         return itAdmin.disableUser(user);
     }
 
@@ -67,6 +69,7 @@ class SiteUser {
 
     createUserWithLinkedSocialAccount() {
         let user = this.generate();
+        let keyCloakAdmin = new KeyCloakAdmin();
         keyCloakAdmin.registerNewUser(user);
         user['gitHubUsername'] = 'rhdsociallogin';
         user['gitHubPassword'] = 'P@$$word01';
@@ -77,6 +80,7 @@ class SiteUser {
 
     createUserWithUnLinkedSocialAccount() {
         let user = this.generate();
+        let keyCloakAdmin = new KeyCloakAdmin();
         keyCloakAdmin.registerNewUser(user);
         user['gitHubUsername'] = 'rhdsociallogin';
         user['gitHubPassword'] = 'P@$$word01';
@@ -109,10 +113,12 @@ class SiteUser {
     }
 
     getUserAttribute(email, attribute) {
+        let keyCloakAdmin = new KeyCloakAdmin();
         return keyCloakAdmin.getUserAttribute(email, attribute)
     }
 
     getSocialLogins(email) {
+        let keyCloakAdmin = new KeyCloakAdmin();
         return keyCloakAdmin.getSocialLogins(email);
     }
 

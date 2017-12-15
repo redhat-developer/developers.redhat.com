@@ -15,7 +15,8 @@ services:
       - github_status_sha1
       - RHD_BS_AUTHKEY
       - RHD_BS_USERNAME
-      - NODE_SELENIUM_HOST=chrome
+      - RHD_DOCKER_DRIVER
+      - NODE_SELENIUM_HOST=${RHD_DOCKER_DRIVER}
       - RHD_JS_DRIVER
       - RHD_VERBOSE_OUTPUT
       - RHD_CHIMP_TAGS
@@ -24,10 +25,18 @@ services:
       - RHD_TEST_PROFILE
 
   chrome:
-    image: selenium/standalone-chrome:3.4.0-einsteinium
+    image: selenium/standalone-chrome:3.8.1-aluminum
     volumes:
       - /dev/shm:/dev/shm
     ports:
       - "5900"
     links:
       - rhd_e2e_testing
+
+  firefox:
+    image: selenium/standalone-firefox:3.8.1-aluminum
+    ports:
+      - "5901"
+    links:
+      - rhd_e2e_testing
+    shm_size: 2g

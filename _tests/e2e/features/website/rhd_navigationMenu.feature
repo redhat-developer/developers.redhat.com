@@ -10,42 +10,6 @@ Feature: Site navigation menu
     When I click on the "Register" link within the primary nav bar
     Then the Register page is displayed
 
-  Scenario Outline: Footer contains a "Related Sites" section
-    Given I am on the <page> page
-    Then the footer Related Sites section should contain the following links:
-      | Red Hat OpenShift.io     |
-      | Red Hat OpenShift Online |
-      | Red Hat Store            |
-      | Red Hat Jobs             |
-
-    Examples: pages
-      | page   |
-      | Home   |
-      | Search |
-
-  Scenario Outline: Footer contains a "Services" section
-    Given I am on the <page> page
-    Then the footer Services section should contain the following links:
-      | Customer Portal                      |
-      | Developer Training and Certification |
-      | Consulting Services                  |
-
-    Examples: pages
-      | page   |
-      | Home   |
-      | Search |
-
-  Scenario Outline: Footer contains a "Communication" section
-    Given I am on the <page> page
-    Then the footer Communication section should contain the following links:
-      | Report a website issue    |
-      | Report a security problem |
-
-    Examples: pages
-      | page   |
-      | Home   |
-      | Search |
-
   @desktop
   Scenario: TOPICS sub-menu items should link to retrospective pages
     Given I am on the Home page
@@ -89,21 +53,6 @@ Feature: Site navigation menu
       | INTEGRATION AND AUTOMATION             |
       | DEVELOPER TOOLS                        |
       | LANGUAGES AND COMPILERS                |
-    And the sub-menu should include a list of available technologies that link to a retrospective product overview page
-
-  @mobile
-  Scenario: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional technologies
-    Given I am on the Home page
-    When I tap on the "Technologies" menu item
-    Then I should see the following "Technologies" sub-menu items:
-      | INFRASTRUCTURE                         |
-      | CLOUD                                  |
-      | MOBILE                                 |
-      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
-      | INTEGRATION AND AUTOMATION             |
-      | DEVELOPER TOOLS                        |
-      | LANGUAGES AND COMPILERS                |
-    And the sub-menu should not include a list of available technologies
 
   @desktop
   Scenario: COMMUNITIES sub-menu items should link to retrospective pages
@@ -161,3 +110,39 @@ Feature: Site navigation menu
     Given I am on the Home page
     When I tap on the "Downloads " menu item
     Then I am taken to the Downloads page
+
+  @desktop
+  Scenario: Footer contains a Additional links without dropdown links
+    Given I am on the Home page
+    When I scroll to the footer section
+    Then the footer Related Sites section should contain the following links:
+      | Red Hat OpenShift.io     |
+      | Red Hat OpenShift Online |
+      | Red Hat Store            |
+      | Red Hat Jobs             |
+    And the footer Services section should contain the following links:
+      | Customer Portal                      |
+      | Developer Training and Certification |
+      | Consulting Services                  |
+    And the footer Communication section should contain the following links:
+      | Report a website issue    |
+      | Report a security problem |
+
+  @mobile
+  Scenario: Footer contains a Additional links with dropdown links
+    Given I am on the Home page
+    When I scroll to the footer section
+    And I collapse the footer section
+    Then the footer Related Sites section should contain the following links:
+      | Red Hat OpenShift.io     |
+      | Red Hat OpenShift Online |
+      | Red Hat Store            |
+      | Red Hat Jobs             |
+    And the footer Services section should contain the following links:
+      | Customer Portal                      |
+      | Developer Training and Certification |
+      | Consulting Services                  |
+    And the footer Communication section should contain the following links:
+      | Report a website issue    |
+      | Report a security problem |
+
