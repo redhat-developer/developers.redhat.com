@@ -90,7 +90,7 @@ app.relatedContent.render = function(materials) {
       }
 
       var title = material.fields.sys_title[0];
-      title = title.replace("| Red Hat Developers", "");
+      title = title.replace("| Red Hat Developer Program", "");
 
       var item = [
         '<div class="large-6 columns related-content-card">',

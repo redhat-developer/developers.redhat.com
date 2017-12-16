@@ -12,4 +12,4 @@ Feature: JBoss redirect to RHD
       | topics/devops             |
       | community/contributor     |
       | events                    |
-      | articles/no-cost-rhel-faq |
+      | articles/frequently-asked-questions-no-cost-red-hat-enterprise-linux-developer-subscription |
