@@ -46,7 +46,7 @@ if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
     tagsArray[tagsArray.length] = '~@ignore';
     cucumberTags = tagsArray;
 } else {
-    cucumberTags = ['~@ignore', '~@kc']
+    cucumberTags = ['~@ignore', '~@kc', '~dm']
 }
 
 process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});

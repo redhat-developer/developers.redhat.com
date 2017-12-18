@@ -1,5 +1,5 @@
 @desktop
-@ignore
+@dm
 Feature: Download page
 
   Scenario: OS detection for Red Hat Development Suite
@@ -35,46 +35,34 @@ Feature: Download page
     When I click to register a new account
     Then I should see the registration form with terms and conditions
 
-  @dm
-  Scenario: Registered site visitor navigates to the Download page and clicks on download latest product, upgrades account, and accepts Redhat T&C's should initiate the product download.
-    Given I am a RHD registered site visitor
-    And I am on the Downloads page
-    When I click to download "Red Hat Container Development Kit (CDK)"
-    And I log in with my email address
-    And I complete the additional action required page, and proceed
-    Then a single download should initiate on the Red Hat Container Development Kit (CDK) Hello-World overview page
-
-  @dm
   Scenario: Site visitor navigates to the Download page and clicks on download latest product, and registers a new account, the download should initiate.
     Given I am on the Downloads page
-    And I click to download "Red Hat Container Development Kit (CDK)"
+    And I click to download "Enterprise Application Platform"
     When I register a new account
     And I verify my email address
-    Then a single download should initiate on the Red Hat Container Development Kit (CDK) Hello-World overview page
+    Then a single download should initiate on the Enterprise Application Platform Hello-World overview page
 
-  @dm
   Scenario: User starts download and login with active OpenShift.com account (simple user account) which is not in RHD yet. User is asked to fill in first name, last name, company and country, to accept RHD T&C, then download starts
     Given I am an OpenShift registered site visitor
     And I am on the Downloads page
-    When I click to download "Red Hat Container Development Kit (CDK)"
+    When I click to download "Enterprise Application Platform"
     And I log in with my email address
     And I complete the additional action required page, accept terms and proceed
-    Then a single download should initiate on the Red Hat Container Development Kit (CDK) Hello-World overview page
+    Then a single download should initiate on the Enterprise Application Platform Hello-World overview page
 
-  @dm
-  Scenario: User starts download and login with active Red Hat Customer Portal account (full user account)
+  Scenario: User starts download and login with active Red Hat Customer Portal account (full user account) should provide additional information
     Given I have an active Customer portal account
     And I am on the Downloads page
-    When I click to download "Red Hat Container Development Kit (CDK)"
+    When I click to download "Enterprise Application Platform"
     And I log in with my email address
     And I complete the additional action required page, accept terms and proceed
-    Then a single download should initiate on the Red Hat Container Development Kit (CDK) Hello-World overview page
+    Then a single download should initiate on the Enterprise Application Platform Hello-World overview page
 
-  @dm
   Scenario: User starts download and logs in using Social login providers which provides all mandatory information (first name, last name, email, email is unique in RHD so new account is created directly). User is asked to fill in company and country together with RHD T&C acceptance, then download starts
     Given I have a GitHub account
     And I am on the Downloads page
-    When I click to download "Red Hat Container Development Kit (CDK)"
+    When I click to download "Enterprise Application Platform"
     And I log in using my Github account
     And I complete the additional action required page, accept terms and proceed
-    Then a single download should initiate on the Red Hat Container Development Kit (CDK) Hello-World overview page
+    And I verify my email address
+    Then a single download should initiate on the Enterprise Application Platform Hello-World overview page

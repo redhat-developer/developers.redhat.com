@@ -1,3 +1,4 @@
+import {KeyCloakAdmin} from '../support/rest/keycloak/Keycloak.admin'
 const fs = require('fs-extra');
 const path = require('path');
 const qs = require('querystring');
@@ -20,6 +21,7 @@ const hooks = function () {
     let desktopBrowsers = ['chrome', 'firefox'];
 
     this.Before(function () {
+        browser.deleteCookie();
         global.operatingSystem = getOperatingSystem();
         if (getOs !== 'darwin') {
             // resize does not work on Mac OS
@@ -51,6 +53,13 @@ const hooks = function () {
                 fs.emptyDir(pathToChromeDownloads)
             }
         }
+
+        if (typeof socialAccountHolder !== 'undefined') {
+            let keycloakAdmin = new KeyCloakAdmin();
+            keycloakAdmin.deleteUser(siteUserDetails['email'])
+        }
+
+        browser.deleteCookie();
         driver.execute('window.localStorage.clear();');
     });
 

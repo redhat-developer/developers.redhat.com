@@ -46,7 +46,6 @@ class DownloadManager {
         let request_header = {"Content-Type": "application/json"};
         let response = request('GET', `${this.baseUrl}/download-manager/rest/available/${downloads.get(productName)}?nv=1`, {headers: request_header});
         let downloadData = JSON.parse(response.getBody().toString('utf8'));
-
         let productCode = downloadData[0]['productCode'];
         let downloadVersion = downloadData[0]['featuredArtifact']['versionName'];
         let downloadUrl = downloadData[0]['featuredArtifact']['url'];

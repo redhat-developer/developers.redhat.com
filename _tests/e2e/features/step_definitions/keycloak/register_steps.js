@@ -34,7 +34,8 @@ const registerSteps = function () {
 
     this.When(/^I register a new account$/, function () {
         siteUserDetails = siteUser.generate();
-        loginPage.registerBtn.click();
+        loginPage.clickRegisterBtn();
+        registerPage.awaitRegisterPage();
         registerPage.extendedRegister(siteUserDetails);
     });
 

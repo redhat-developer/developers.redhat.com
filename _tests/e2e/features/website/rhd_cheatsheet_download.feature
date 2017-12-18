@@ -1,5 +1,4 @@
 @dm
-@ignore
 
 Feature: User can download promotional cheat sheets
 

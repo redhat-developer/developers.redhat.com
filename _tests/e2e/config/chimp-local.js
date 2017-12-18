@@ -34,7 +34,7 @@ if (typeof process.env.RHD_TEST_PROFILE !== 'undefined') {
 const outputFolder = 'report';
 
 if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
-    process.env.RHD_JS_DRIVER = 'firefox';
+    process.env.RHD_JS_DRIVER = 'chrome';
 }
 
 const seleniumStandaloneOptions = require('../config/browsers/selenium-standalone-defaults.json');
@@ -46,7 +46,7 @@ if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
     tagsArray[tagsArray.length] = '~@ignore';
     cucumberTags = tagsArray;
 } else {
-    cucumberTags = ['~@ignore', '~@kc', '~@mobile']
+    cucumberTags = ['~@ignore', '~@mobile', '~@kc', '~dm']
 }
 
 process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});

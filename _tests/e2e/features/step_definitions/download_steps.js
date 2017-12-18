@@ -1,12 +1,13 @@
 import {DownloadManager} from '../support/rest/Download.Manager';
 import {downloadsPage} from '../support/pages/website/Downloads.page';
 import {GetStartedPage} from '../support/pages/website/GetStarted.page';
+
 const path = require('path');
 const fs = require('fs');
 
 const downloadsSteps = function () {
 
-     global.productCode = "";
+    global.productCode = "";
 
     this.Given(/^I am on the Downloads page$/, function () {
         downloadsPage.open();
@@ -34,7 +35,7 @@ const downloadsSteps = function () {
 
     this.Then(/^a single download should initiate on the (.*) Hello-World overview page$/, function (product) {
         let getStartedPage = new GetStartedPage(productCode);
-        getStartedPage.waitForGetStartedPage();
+        getStartedPage.awaitGetStartedPage();
         global.downloadStarted = true;
 
         let downloadCount = 0;
@@ -44,17 +45,22 @@ const downloadsSteps = function () {
         do {
             fs.readdirSync(testFolder).forEach(file => {
                 console.log('waiting for download . . . ');
+                sleep(1000);
                 fileName.push(file);
                 dirSize.push(file);
                 downloadCount++;
             });
         }
         while (dirSize.length === 0 && downloadCount < 60);
-
+        browser.pause(3000);
         assert(dirSize.length === 1, `Expected 1 download, but got ${dirSize.length}`);
         assert(fileName[0].includes('crdownload'), `${fileName[0]} did not include 'crdownload'`)
-
     });
+
+    function sleep(delay) {
+        let start = new Date().getTime();
+        while (new Date().getTime() < start + delay) ;
+    }
 
 };
 

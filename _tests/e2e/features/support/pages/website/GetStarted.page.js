@@ -13,8 +13,8 @@ class GetStartedPage extends BasePage {
         });
     }
 
-    waitForGetStartedPage() {
-        return driver.awaitExists(this.getSelector('downloadThankYou'), 30000);
+    awaitGetStartedPage() {
+        return driver.awaitExists(this.getSelector('downloadThankYou'), 60000);
     }
 
 }

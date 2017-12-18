@@ -147,7 +147,6 @@ class Driver {
             return browser.scroll(location['x'], location['y'])
         } else {
             location = selector.getLocationInView();
-            console.log(location);
             return selector.scroll(location['x'], location['y']);
         }
     }

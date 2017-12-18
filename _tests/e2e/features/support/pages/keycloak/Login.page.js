@@ -15,9 +15,9 @@ class LoginPage extends BasePage {
             passwordField: '#password',
             loginButton: '#kc-login',
             gitHubBtn: '#social-github',
-            forgotPasswordLink: '*=Forgot Password?',
+            forgotPasswordLink: '//*[@id="kc-form-login"]//a[contains(text(), "Forgot your password?")]',
             kcFeedback: '#kc-feedback',
-            registerButton: '=REGISTER'
+            registerButton: '#kc-form-wrapper > div > div:nth-child(2) > div > div > a'
         });
     }
 
@@ -46,6 +46,10 @@ class LoginPage extends BasePage {
 
     clickGithubBtn() {
         return driver.clickOn(this.getSelector('gitHubBtn'))
+    }
+
+    clickForgotPasswordLink() {
+        return driver.clickOn(this.getSelector('forgotPasswordLink'))
     }
 }
 

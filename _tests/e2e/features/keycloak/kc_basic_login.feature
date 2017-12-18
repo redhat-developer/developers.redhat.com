@@ -23,7 +23,7 @@ Feature: Log in using my RHD registered details.
     When I attempt to log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-#  # email is taking ~1 hour to be sent. Not possible to test the full flow at the moment
+  # email is taking ~1 hour to be sent. Not possible to test the full flow at the moment
 #  @ignore
 #  Scenario: A customer can successfully reset their password
 #    Given I am a RHD registered site visitor

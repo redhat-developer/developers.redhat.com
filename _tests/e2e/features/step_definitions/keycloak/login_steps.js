@@ -1,5 +1,5 @@
 import {loginPage} from "../../support/pages/keycloak/Login.page"
-import {forgotPasswordPage} from "../../support/pages/keycloak/ForgotPassword.page"
+import {ForgotPassword} from "../../support/pages/keycloak/ForgotPassword.page"
 import {additionalActionPage} from "../../support/pages/keycloak/AdditionalAction.page"
 import {gitHubLoginPage} from "../../support/pages/keycloak/GitHubLogin.page"
 import {siteUser} from "../../support/rest/keycloak/Site.user"
@@ -70,28 +70,24 @@ const loginSteps = function () {
     });
 
     this.When(/^I request a password reset$/, function () {
-        loginPage.forgotPasswordLink.click();
-        let emailForm = forgotPasswordPage.forgotPasswordForm;
-        emailForm.waitForVisible(9000);
-        forgotPasswordPage.resetPassword(siteUser['email']);
-        let confirmationMessage = loginPage.kcFeedbackText;
-        confirmationMessage.waitForVisible();
+        loginPage.clickForgotPasswordLink();
+        let forgotPasswordPage = new ForgotPassword();
+        forgotPasswordPage.resetPassword(siteUserDetails['email']);
     });
 
     this.When(/^I navigate to the password reset link$/, function () {
-        let passwordResetLink = gmail.process(siteUser['email']);
+        let passwordResetLink = gmail.process(siteUserDetails['email']);
         browser.url(passwordResetLink)
     });
 
-    // this.Then(/^I should be asked to agree to the Red Hat Developer Program Terms & Conditions$/, function () {
-    //     let additionalAction = additionalActionPage.fulluserTac;
-    //     additionalAction.waitForVisible();
-    // });
+    this.Then(/^I should be asked to agree to the Red Hat Developer Program Terms & Conditions$/, function () {
+        additionalActionPage.awaitAditionalActionPage();
+    });
 
-    // this.Then(/^I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed$/, function () {
-    //     additionalActionPage.fulluserTac.click();
-    //     additionalActionPage.submitBtn.click()
-    // });
+    this.Then(/^I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed$/, function () {
+        additionalActionPage.selectFulluserTac();
+        additionalActionPage.clickSubmitBtn()
+    });
 
     this.When(/^I log in with an account that is already linked to my Github account$/, function () {
         siteUserDetails = siteUser.createUserWithLinkedSocialAccount();
@@ -106,10 +102,11 @@ const loginSteps = function () {
 
     this.Given(/^I have a GitHub account$/, function () {
         siteUserDetails = siteUser.gitHubAccountUser();
+        global.socialAccountHolder = true
     });
 
     this.When(/^I log in using my Github account$/, function () {
-        loginPage.socialGithubBtn.click();
+        loginPage.clickGithubBtn();
         gitHubLoginPage.login(siteUserDetails['gitHubUsername'], siteUserDetails['gitHubPassword']);
     });
 

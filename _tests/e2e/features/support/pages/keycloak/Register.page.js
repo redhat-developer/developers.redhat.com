@@ -18,11 +18,8 @@ class RegisterPage extends BasePage {
             passwordField: '#password',
             companyField: '//*[@id="user.attributes.company"]',
             phoneNumberField: '//*[@id="user.attributes.phoneNumber"]',
-            addressLineOneField: '//*[@id="user.attributes.addressLine1"]',
-            cityField: '//*[@id="user.attributes.addressCity"]',
             stateSelect: '//*[@id="user.attributes.addressState"]',
             countrySelect: '//*[@id="user.attributes.country"]',
-            postalCodeField: '//*[@id="user.attributes.addressPostalCode"]',
             fullUserTtac: '.fulluser-ttac',
             tacCheckall: '#tac-checkall',
             createAccountBtn: '.button',
@@ -35,8 +32,7 @@ class RegisterPage extends BasePage {
     }
 
     kcRegisterFormDispalyed() {
-        let el = driver.awaitExists(this.getSelector('registerForm'), 30000);
-        return driver.isDisplayed(el)
+        return driver.isDisplayed(this.getSelector('registerForm'), 30000);
     }
 
     feedback(field) {
@@ -54,29 +50,24 @@ class RegisterPage extends BasePage {
         return driver.waitForTitle('Email address verification', 30000)
     }
 
-    // extendedRegister(user) {
-    //     console.log(user['countryCode'] + user['state']);
-    //     this.kcRegisterForm.waitForVisible(12000);
-    //     this.firstName.setValue(user['firstName']);
-    //     this.lastName.setValue(user['lastName']);
-    //     this.email.setValue(user['email']);
-    //     this.password.setValue(user['password']);
-    //     this.company.setValue(user['company']);
-    //     this.phoneNumber.setValue(user['phoneNumber']);
-    //     this.selectCountry(user['countryCode']);
-    //     this.addressLineOne.setValue('123 ' + user['addressLineOne']);
-    //     this.city.setValue(user['city']);
-    //
-    //     if (user['state'] !== null) {
-    //         this.selectState(user['state']);
-    //     }
-    //     this.postalCode.setValue(user['postalCode']);
-    //
-    //     let location = this.tacCheckall.getLocationInView();
-    //     this.tacCheckall.scroll(location['x'], location['y']);
-    //     this.tacCheckall.click();
-    //     this.createAccountBtn.click()
-    // }
+    extendedRegister(user) {
+        driver.type(this.getSelector('firstNameField'), user['firstName']);
+        driver.type(this.getSelector('lastNameField'), user['lastName']);
+        driver.type(this.getSelector('emailField'), user['email']);
+        driver.type(this.getSelector('passwordField'), user['password']);
+        driver.type(this.getSelector('companyField'), user['company']);
+        driver.type(this.getSelector('phoneNumberField'), user['phoneNumber']);
+        driver.selectByValue(this.getSelector('countrySelect'), user['countryCode']);
+
+        if (user['state'] !== null) {
+            driver.selectByValue(this.getSelector('stateSelect'), user['state']);
+        }
+
+        let el = driver.element(this.getSelector('tacCheckall'));
+        driver.scrollIntoView(el);
+        driver.clickOn(el);
+        return driver.clickOn(this.getSelector('createAccountBtn'))
+    }
 }
 
 const registerPage = new RegisterPage();
