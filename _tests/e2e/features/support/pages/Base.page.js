@@ -3,12 +3,13 @@ import {driver} from "../../../config/browsers/DriverHelper";
 class BasePage {
     constructor({
                     path = '/',
-                    selector
+                    selector,
                 } = {}) {
         this.urlBase = process.env.RHD_BASE_URL;
         this.path = path;
         this.selector = selector;
         this.selectors = {};
+
     }
 
     open() {
@@ -16,7 +17,7 @@ class BasePage {
         driver.visit(openUrl);
 
         if (this.selector) {
-            driver.awaitIsVisible(this.selector);
+            driver.awaitIsVisible(this.selector, 30000);
         }
     }
 

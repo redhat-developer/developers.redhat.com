@@ -72,10 +72,10 @@ class ItAdmin {
                         "siteType": 'MARKETING',
 
                         "address": {
-                            "address1": 'Science Central, Bath Ln',
-                            "countryCode": 'GB',
-                            "postalCode": 'NE4 5TF',
-                            "city": 'Newcastle upon Tyne',
+                            "address1": '100 E. Davie Street',
+                            "countryCode": 'US',
+                            "postalCode": '27601',
+                            "city": 'Raleigh',
                             "poBox": false
                         }
                     },

@@ -1,5 +1,5 @@
 import {loginPage} from "../../support/pages/keycloak/Login.page"
-import {forgotPasswordPage} from "../../support/pages/keycloak/ForgotPassword.page"
+import {ForgotPassword} from "../../support/pages/keycloak/ForgotPassword.page"
 import {additionalActionPage} from "../../support/pages/keycloak/AdditionalAction.page"
 import {gitHubLoginPage} from "../../support/pages/keycloak/GitHubLogin.page"
 import {siteUser} from "../../support/rest/keycloak/Site.user"
@@ -43,6 +43,17 @@ const loginSteps = function () {
         return expect(rhUserIdCookie['value'], `RH user: ${rhUserId} was not successfully logged in`).to.eq(rhUserId)
     });
 
+    this.Then(/^I should be registered and logged in$/, function () {
+        browser.waitUntil(function () {
+            return browser.getUrl() === `${process.env.RHD_BASE_URL}/confirmation/`
+        }, 30000, `User was not redirected to ${process.env.RHD_BASE_URL} after 30 seconds`);
+
+        let rhUserId = siteUser.getUserAttribute(siteUserDetails['email'], 'rhUserId');
+
+        let rhUserIdCookie = browser.getCookie('rh_user_id');
+        return expect(rhUserIdCookie['value'], `RH user: ${rhUserId} was not successfully logged in`).to.eq(rhUserId)
+    });
+
     this.Given(/^I attempt to log in with an incorrect password$/, function () {
         siteUserDetails['password'] = 'incorrect';
         loginPage.login(siteUserDetails)
@@ -54,51 +65,48 @@ const loginSteps = function () {
     });
 
     this.Then(/^the following error message should be displayed: (.*)$/, function (message) {
-        loginPage.kcFeedback.waitForVisible();
-        let errorMessage = loginPage.kcFeedback.getText();
+        let errorMessage = loginPage.feedback();
         expect(errorMessage).to.include(message)
     });
 
     this.When(/^I request a password reset$/, function () {
-        loginPage.forgotPasswordLink.click();
-        let emailForm = forgotPasswordPage.forgotPasswordForm;
-        emailForm.waitForVisible(9000);
-        forgotPasswordPage.resetPassword(siteUser['email']);
-        let confirmationMessage = loginPage.kcFeedbackText;
-        confirmationMessage.waitForVisible();
+        loginPage.clickForgotPasswordLink();
+        let forgotPasswordPage = new ForgotPassword();
+        forgotPasswordPage.resetPassword(siteUserDetails['email']);
     });
 
     this.When(/^I navigate to the password reset link$/, function () {
-        let passwordResetLink = gmail.process(siteUser['email']);
+        let passwordResetLink = gmail.process(siteUserDetails['email']);
         browser.url(passwordResetLink)
     });
 
     this.Then(/^I should be asked to agree to the Red Hat Developer Program Terms & Conditions$/, function () {
-        let additionalAction = additionalActionPage.fulluserTac;
-        additionalAction.waitForVisible();
+        additionalActionPage.awaitAditionalActionPage();
     });
 
     this.Then(/^I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed$/, function () {
-        additionalActionPage.fulluserTac.click();
-        additionalActionPage.submitBtn.click()
+        additionalActionPage.selectFulluserTac();
+        additionalActionPage.clickSubmitBtn()
     });
 
     this.When(/^I log in with an account that is already linked to my Github account$/, function () {
         siteUserDetails = siteUser.createUserWithLinkedSocialAccount();
-        loginPage.socialGithubBtn.click();
+        loginPage.clickGithubBtn();
         gitHubLoginPage.login(siteUserDetails['gitHubUsername'], siteUserDetails['gitHubPassword'])
     });
 
-    this.When(/^click to register a new account$/, function () {
-        loginPage.registerBtn.click();
+    this.When(/^I click to register a new account$/, function () {
+        loginPage.awaitLoginPage();
+        loginPage.clickRegisterBtn();
     });
 
     this.Given(/^I have a GitHub account$/, function () {
         siteUserDetails = siteUser.gitHubAccountUser();
+        global.socialAccountHolder = true
     });
 
     this.When(/^I log in using my Github account$/, function () {
-        loginPage.socialGithubBtn.click();
+        loginPage.clickGithubBtn();
         gitHubLoginPage.login(siteUserDetails['gitHubUsername'], siteUserDetails['gitHubPassword']);
     });
 

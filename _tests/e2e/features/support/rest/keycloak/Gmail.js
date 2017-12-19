@@ -69,7 +69,7 @@ class GetMail {
             console.log('waiting for email . . .');
             checkCount++;
         }
-        while (email === null && checkCount < 60);
+        while (email === null && checkCount < 70);
 
         return email;
     }

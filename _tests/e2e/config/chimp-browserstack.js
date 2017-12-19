@@ -49,7 +49,7 @@ if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
     tagsArray[tagsArray.length] = browserstackBrowserCaps['tag'];
     cucumberTags = tagsArray;
 } else {
-    cucumberTags = ['~@ignore', '~@kc', browserstackBrowserCaps['tag']]
+    cucumberTags = ['~@ignore', '~@kc', '~dm', browserstackBrowserCaps['tag']]
 }
 
 process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});

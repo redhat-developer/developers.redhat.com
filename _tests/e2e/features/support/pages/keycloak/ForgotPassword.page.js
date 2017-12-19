@@ -1,24 +1,27 @@
 import {BasePage} from "../Base.page"
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class ForgotPassword extends BasePage {
 
-    get forgotPasswordForm() {
-        return browser.element('#kc-reset-password-form')
-    }
+    constructor() {
+        super({
+            selector: '#kc-reset-password-form',
+        });
 
-    get submitBtn() {
-        return browser.element('#kc-form-buttons .button')
+        this.addSelectors({
+            submitBtn: '#kc-form-buttons .button',
+            usernameField: '#username',
+        });
+
     }
 
     resetPassword(email) {
-        this.type(this.usernameField, email);
-        return this.clickOn(this.submitBtn)
+        driver.type(this.getSelector('usernameField'), email);
+        return driver.clickOn(this.getSelector('submitBtn'))
     }
 
 }
 
-const forgotPasswordPage = new ForgotPassword();
-
 export {
-    forgotPasswordPage
+    ForgotPassword
 };

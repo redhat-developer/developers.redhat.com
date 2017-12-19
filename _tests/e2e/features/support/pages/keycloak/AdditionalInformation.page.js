@@ -1,77 +1,58 @@
 import {BasePage} from "../Base.page"
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class AdditionalInformation extends BasePage {
 
-    get additionalInformationForm() {
-        return browser.element('#kc-update-profile-form')
-    }
+    constructor() {
+        super({
+            selector: '#kc-update-profile-form'
+        });
 
-    get firstNameField() {
-        return browser.element('#firstName')
-    }
-
-    get lastNameField() {
-        return browser.element('#lastName')
-    }
-
-    get companyField() {
-        return browser.element('//*[@id="user.attributes.company"]')
-    }
-
-    get phoneNumberField() {
-        return browser.element('//*[@id="user.attributes.phoneNumber"]')
-    }
-
-    get addressLineOneField() {
-        return browser.element('//*[@id="user.attributes.addressLine1"]')
-    }
-
-    get cityField() {
-        return browser.element('//*[@id="user.attributes.addressCity"]')
-    }
-
-    get postalCodeField() {
-        return browser.element('//*[@id="user.attributes.addressPostalCode"]')
-    }
-
-    selectState(state) {
-        browser.selectByValue('//*[@id="user.attributes.addressState"]', state)
-    }
-
-    selectCountry(country) {
-        browser.selectByValue('//*[@id="user.attributes.country"]', country)
-    }
-
-    get acceptTerms() {
-        return browser.element('#tac-checkall')
-    }
-
-    get submitBtn() {
-        return browser.element('.button')
+        this.addSelectors({
+            emailField: '#email',
+            passwordField: '//*[@id="user.attributes.pwd"]',
+            firstNameField: '#firstName',
+            lastNameField: '#lastName',
+            companyField: '//*[@id="user.attributes.company"]',
+            phoneNumberField: '//*[@id="user.attributes.phoneNumber"]',
+            countrySelect: '//*[@id="user.attributes.country"]',
+            stateSelect: '//*[@id="user.attributes.addressState"]',
+            addressLineOneField: '//*[@id="user.attributes.addressLine1"]',
+            cityField: '//*[@id="user.attributes.addressCity"]',
+            postalCodeField: '//*[@id="user.attributes.addressPostalCode"]',
+            fullUserTtac: '.fulluser-ttac',
+            tacCheckall: '#tac-checkall',
+            createAccountBtn: '.button',
+        });
     }
 
     completeAdditionalInformation(user, acceptTerms = false) {
-        this.additionalInformationForm.waitForVisible(30000);
-        this.firstNameField.setValue(user['firstName']);
-        this.lastNameField.setValue(user['lastName']);
-        this.companyField.setValue(user['company']);
-        this.companyField.setValue(user['company']);
-        this.phoneNumberField.setValue(user['phoneNumber']);
-        this.selectCountry(user['country']);
-        this.addressLineOneField.setValue(user['addressLineOne']);
-        this.phoneNumberField.setValue(user['phoneNumber']);
+        driver.type(this.getSelector('firstNameField'), user['firstName']);
+        driver.type(this.getSelector('lastNameField'), user['lastName']);
+        driver.type(this.getSelector('companyField'), user['company']);
+        driver.type(this.getSelector('phoneNumberField'), user['phoneNumber']);
+        driver.selectByValue(this.getSelector('countrySelect'), user['countryCode']);
+
         if (user['state'] !== null) {
-            this.selectState(user['state']);
+            driver.selectByValue(this.getSelector('stateSelect'), user['state']);
         }
-        this.cityField.setValue(user['city']);
-        this.postalCodeField.setValue(user['postalCode']);
+
+        if (driver.isDisplayed(this.getSelector('emailField'))) {
+            driver.type(this.getSelector('emailField'), user['email']);
+        }
+
+        if (driver.isDisplayed(this.getSelector('passwordField'))) {
+            driver.type(this.getSelector('passwordField'), user['password']);
+        }
 
         if (acceptTerms === true) {
-            if (this.acceptTerms.isSelected() === false) {
-                this.acceptTerms.click()
+            let el = driver.element(this.getSelector('tacCheckall'));
+            driver.scrollIntoView(el);
+            if (el.isSelected() === false) {
+                driver.clickOn(el);
             }
         }
-        return this.submitBtn.click()
+        return driver.clickOn(this.getSelector('createAccountBtn'))
     }
 
 }
