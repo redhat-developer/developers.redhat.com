@@ -39,6 +39,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     template = `<div class="row">
+    <span class="search-outage-msg"></span>
     <div class="large-24 medium-24 small-24 columns searchpage-middle">
         <div class="row">
             <div class="large-24 medium-24 small-24 columns">
