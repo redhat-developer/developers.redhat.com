@@ -26,6 +26,7 @@ class RHDPDownloadsApp extends HTMLElement {
                         </div>
                     </div>
                 </div>
+                <span class="dl-outage-msg"></span>
                 <div class="most-popular-downloads">
                     <div class="row">
                         <div class="large-24 column">

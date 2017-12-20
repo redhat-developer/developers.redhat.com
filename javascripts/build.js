@@ -1118,7 +1118,7 @@ var RHDPDownloadsApp = (function (_super) {
         var _this = _super.call(this) || this;
         _this.popularProduct = new RHDPDownloadsPopularProducts();
         _this.products = new RHDPDownloadsProducts();
-        _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
+        _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <span class=\"dl-outage-msg\"></span>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
         return _this;
     }
     Object.defineProperty(RHDPDownloadsApp.prototype, "url", {
@@ -2528,7 +2528,7 @@ var RHDPSearchQuery = (function (_super) {
                 this.from = 0;
                 this.search();
                 break;
-            case 'filter-item-change'://detail.facet
+            case 'filter-item-change':
                 if (e.detail && e.detail.facet) {
                     this._setFilters(e.detail.facet);
                 }
@@ -2536,14 +2536,14 @@ var RHDPSearchQuery = (function (_super) {
                 this.search();
                 // Wait for params-ready event
                 break;
-            case 'sort-change':// detail.sort
+            case 'sort-change':
                 if (e.detail && e.detail.sort) {
                     this.sort = e.detail.sort;
                 }
                 this.from = 0;
                 this.search();
                 break;
-            case 'load-more':// detail.qty
+            case 'load-more':
                 this.search();
                 break;
             case 'clear-filters':
@@ -3310,9 +3310,9 @@ var RHDPSearchURL = (function (_super) {
                 this.uri.searchParams.delete('f');
                 this.filters = {};
                 break;
-            case 'load-more':// detail.qty
+            case 'load-more':
                 break;
-            case 'search-complete':// build querystring params
+            case 'search-complete':
                 // Term Change
                 if (e.detail && typeof e.detail.term !== 'undefined' && e.detail.term.length > 0) {
                     this.term = e.detail.term;
@@ -3359,7 +3359,7 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
-        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
+        _this.template = "<div class=\"row\">\n    <span class=\"search-outage-msg\"></span>\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
         _this.urlEle = new RHDPSearchURL();
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();
