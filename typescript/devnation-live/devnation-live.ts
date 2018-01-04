@@ -99,13 +99,9 @@ class DevNationLiveApp extends HTMLElement {
             </div>
             <div class="row">
                 <div class="large-24 columns divider">
-                    <p>Speaker: <strong>${next.speaker}</strong> 
-                    ${next.twitter_handle ? `
-                    (<a href="https://twitter.com/${next.twitter_handle}" target="_blank" class="external-link"> @${next.twitter_handle}</a>)` 
-                    : ''}
-                    </p>
-                    <p>${next.abstract}</p>
-                    ${next.speaker_intro ? `<p>${next.speaker_intro}</p>` : ''}
+                <p>Speaker(s): ${next.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
+                <p>${next.abstract}</p>
+                ${next.speakers.map(speaker => this.speakerIntroTemplate`${speaker}`).join('')}
                 </div>
             </div>
         </section>`;
@@ -118,15 +114,7 @@ class DevNationLiveApp extends HTMLElement {
                 <div class="row">
                     <div class="large-24 columns">
                         <h4 class="caps">${sess.title}</h4>
-                        ${sess.speaker ? `
-                            <p>Speaker: <strong>${sess.speaker}</strong>
-                                ${sess.twitter_handle ? `
-                                    (<a href="https://twitter.com/${sess.twitter_handle}" target="_blank" class="external-link"> @${sess.twitter_handle}</a>)` 
-                                    : ''
-                                }
-                            </p>` 
-                            : ''
-                        }
+                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
@@ -143,6 +131,15 @@ class DevNationLiveApp extends HTMLElement {
             </li>`
         : ''}`
     }
+    
+    speakerShortTemplate = (strings, speaker:DevNationLiveSpeaker) => {
+        return ` <strong>${speaker.name}</strong>
+            ${speaker.twitter ? `(<a href="https://twitter.com/${speaker.twitter}" target="_blank" class="external-link">@${speaker.twitter}</a>)` : ''}`;
+    }
+
+    speakerIntroTemplate = (strings, speaker:DevNationLiveSpeaker) => {
+        return `${speaker.intro ? `<p>${speaker.intro}</p>` : ''}`;
+    }
 
     pastSession = (strings, sess:DevNationLiveSession) => {
         return `
@@ -151,13 +148,7 @@ class DevNationLiveApp extends HTMLElement {
                 <div class="row">
                     <div class="large-24 columns">
                         <h4 class="caps">${sess.title}</h4>
-                        ${sess.speaker ? `
-                        <p>Speaker: <strong>${sess.speaker}</strong>
-                            ${sess.twitter_handle ? `
-                            (<a href="https://twitter.com/${sess.twitter_handle}" target="_blank" class="external-link"> @${sess.twitter_handle}</a>)` 
-                            :''}
-                        </p>` 
-                        : ''}
+                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                         <a href="https://developers.redhat.com/video/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>

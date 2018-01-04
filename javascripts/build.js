@@ -509,9 +509,6 @@ var DevNationLiveSession = (function () {
         this._title = '';
         this._date = '';
         this._youtube_id = '';
-        this._speaker = '';
-        this._speaker_intro = '';
-        this._twitter_handle = '';
         this._offer_id = '';
         this._abstract = '';
         this._confirmed = false;
@@ -579,38 +576,14 @@ var DevNationLiveSession = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DevNationLiveSession.prototype, "speaker", {
+    Object.defineProperty(DevNationLiveSession.prototype, "speakers", {
         get: function () {
-            return this._speaker;
+            return this._speakers;
         },
         set: function (val) {
-            if (this._speaker === val)
+            if (this._speakers === val)
                 return;
-            this._speaker = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "speaker_intro", {
-        get: function () {
-            return this._speaker_intro;
-        },
-        set: function (val) {
-            if (this._speaker_intro === val)
-                return;
-            this._speaker_intro = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "twitter_handle", {
-        get: function () {
-            return this._twitter_handle;
-        },
-        set: function (val) {
-            if (this._twitter_handle === val)
-                return;
-            this._twitter_handle = val;
+            this._speakers = val;
         },
         enumerable: true,
         configurable: true
@@ -665,6 +638,54 @@ var DevNationLiveSession = (function () {
     });
     return DevNationLiveSession;
 }());
+var DevNationLiveSpeaker = (function () {
+    function DevNationLiveSpeaker(obj) {
+        var _this = this;
+        this._name = '';
+        this._intro = '';
+        this._twitter = '';
+        Object.keys(obj).map(function (key) {
+            _this[key] = obj[key];
+        });
+    }
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (val) {
+            if (this._name === val)
+                return;
+            this._name = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "intro", {
+        get: function () {
+            return this._intro;
+        },
+        set: function (val) {
+            if (this._intro === val)
+                return;
+            this._intro = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "twitter", {
+        get: function () {
+            return this._twitter;
+        },
+        set: function (val) {
+            if (this._twitter === val)
+                return;
+            this._twitter = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DevNationLiveSpeaker;
+}());
 var DevNationLiveApp = (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
@@ -673,21 +694,34 @@ var DevNationLiveApp = (function (_super) {
         _this._form = '../rhdp-apps/devnationlive/';
         _this._mode = 'cors';
         _this.nextSession = function (strings, next) {
-            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
-                : '') + "\n                    </p>\n                    <p>" + next.abstract + "</p>\n                    " + (next.speaker_intro ? "<p>" + next.speaker_intro + "</p>" : '') + "\n                </div>\n            </div>\n        </section>";
+            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                <p>Speaker(s): " + next.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                <p>" + next.abstract + "</p>\n                " + next.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerIntroTemplate(_a, speaker));
+                var _a;
+            }).join('') + "\n                </div>\n            </div>\n        </section>";
         };
         _this.upcomingSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                            <p>Speaker: <strong>" + sess.speaker + "</strong>\n                                " + (sess.twitter_handle ? "\n                                    (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
-                : '') + "\n                            </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
                 : "<iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.offer_id + "\"></iframe>\n                            </div>")
                 : '') + "\n                </div>\n            </li>"
                 : '');
         };
+        _this.speakerShortTemplate = function (strings, speaker) {
+            return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '');
+        };
+        _this.speakerIntroTemplate = function (strings, speaker) {
+            return "" + (speaker.intro ? "<p>" + speaker.intro + "</p>" : '');
+        };
         _this.pastSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
-                : '') + "\n                        </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
                 : '');
         };
         _this.template = function (strings, next, upcoming, past) {
