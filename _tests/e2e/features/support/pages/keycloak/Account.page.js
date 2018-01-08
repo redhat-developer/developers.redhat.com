@@ -1,4 +1,5 @@
 import {BasePage} from "../Base.page"
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class AccountPage extends BasePage {
 
@@ -7,38 +8,32 @@ class AccountPage extends BasePage {
             path: '/auth/realms/rhd/account/',
             selector: '.user'
         });
-    }
 
-    get account() {
-        return browser.element('.user')
-    }
-
-    get firstName() {
-        return browser.element('#firstName')
-    }
-
-    get lastName() {
-        return browser.element('#lastName')
-    }
-
-    get company() {
-        return browser.element("//*[@id='user.attributes.company']")
-    }
-
-    clickSaveBtn() {
-        return this.clickOn("//*[@value='Save']")
-    }
-
-    get updateSuccess() {
-        return browser.element(".alert-success")
+        this.addSelectors({
+            account: '.user',
+            firstName: '#firstName',
+            lastName: '#lastName',
+            company: "//*[@id='user.attributes.company']",
+            saveBtn: "//*[@value='Save']",
+            updateSuccess: ".alert-success"
+        });
     }
 
     editProfile(user) {
-        this.type(this.firstName, user['firstName']);
-        this.type(this.lastName, user['lastName']);
-        this.type(this.company, user['company']);
-        return this.clickSaveBtn()
+        driver.type(this.getSelector('firstName'), user['firstName']);
+        driver.type(this.getSelector('lastName'), user['lastName']);
+        driver.type(this.getSelector('company'), user['company']);
+        return this.clickSaveBtn();
     }
+
+    clickSaveBtn() {
+        return driver.clickOn(this.getSelector('saveBtn'))
+    }
+
+    successMessage() {
+        return driver.isDisplayed(this.getSelector('updateSuccess'))
+    }
+
 }
 
 const accountPage = new AccountPage();

@@ -1,19 +1,24 @@
 import {BasePage} from '../Base.page';
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class GetStartedPage extends BasePage {
 
-    waitForGetStartedPage(productID) {
-        let pageId = browser.element(`.products${productID}hello-world`.toString());
-        let thankYouSelector = browser.element('#downloadthankyou');
-        this.awaitElement(pageId);
-        return this.awaitElement(thankYouSelector)
+    constructor(productID) {
+        super({
+            selector: `.products${productID}hello-world`.toString(),
+        });
+
+        this.addSelectors({
+            downloadThankYou: '#downloadthankyou',
+        });
+    }
+
+    awaitGetStartedPage() {
+        return driver.awaitExists(this.getSelector('downloadThankYou'), 60000);
     }
 
 }
 
-const getStartedPage = new GetStartedPage();
-
 export {
-    getStartedPage
+    GetStartedPage
 };
-

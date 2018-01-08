@@ -1,29 +1,27 @@
 import {BasePage} from "../Base.page";
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class GitHubLoginPage extends BasePage {
 
-    get githubLogin() {
-        return browser.element('#login')
-    }
+    constructor() {
+        super({
+            selector: '#login'
+        });
 
-    get usernameField() {
-        return browser.element('#login_field')
-    }
+        this.addSelectors({
+            usernameField: '#login_field',
+            passwordField: '#password',
+            loginBtn: '.btn'
 
-    get passwordField() {
-        return browser.element('#password')
-    }
-
-    get loginBtn() {
-        return browser.element('.btn')
+        });
     }
 
     login(username, password) {
-        this.awaitElement(this.githubLogin);
-        this.type(this.usernameField, username);
-        this.type(this.passwordField, password);
-        return this.clickOn(this.loginBtn)
+        driver.type(this.getSelector('usernameField'), username);
+        driver.type(this.getSelector('passwordField'), password);
+        return driver.clickOn(this.getSelector('loginBtn'))
     }
+
 }
 
 

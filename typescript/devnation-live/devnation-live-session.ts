@@ -2,9 +2,7 @@ class DevNationLiveSession {
     _title = '';
     _date = '';
     _youtube_id = '';
-    _speaker = '';
-    _speaker_intro = '';
-    _twitter_handle = '';
+    _speakers: DevNationLiveSpeaker[];
     _offer_id = '';
     _abstract = '';
     _confirmed = false;
@@ -49,26 +47,12 @@ class DevNationLiveSession {
         if (this._youtube_id === val) return;
         this._youtube_id = val;
     }
-    get speaker() {
-        return this._speaker;
+    get speakers() {
+        return this._speakers;
     }
-    set speaker(val) {
-        if (this._speaker === val) return;
-        this._speaker = val;
-    }
-    get speaker_intro(){
-        return this._speaker_intro;
-    }
-    set speaker_intro(val) {
-        if (this._speaker_intro === val) return;
-        this._speaker_intro = val;
-    }
-    get twitter_handle() {
-        return this._twitter_handle;
-    }
-    set twitter_handle(val) {
-        if (this._twitter_handle === val) return;
-        this._twitter_handle = val;
+    set speakers(val) {
+        if (this._speakers === val) return;
+        this._speakers = val;
     }
     get abstract() {
         return this._abstract;

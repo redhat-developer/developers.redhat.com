@@ -10,21 +10,40 @@ class DownloadsPage extends BasePage {
         });
 
         this.addSelectors({
-            downloadsPage: '.alert-box',
-            loadingSpinner: '#downloads .fa-refresh'
+            downloadsPage: '#downloads',
+            loadingSpinner: '#downloads .fa-refresh',
+            cdkOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[2]/div/div[3]',
+            devsuiteOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[3]/div/div[3]'
         });
     }
 
     awaitDownloadsPage() {
-        driver.awaitExists(this.getSelector('downloadsPage'));
+        driver.awaitExists(this.getSelector('downloadsPage'), 30000);
         return driver.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000)
     }
 
-    clickToDownload(url) {
-        let downloadBtn = browser.element(`//*[@id='downloads']//a[@href='${url}']`);
-        let location = browser.getLocationInView(`//*[@id='downloads']//a[@href='${url}']`);
+    clickToDownload(product, url) {
+        let downloadBtn;
+        if (product.includes('Container Development Kit')) {
+            let el = `//*[@id='downloads']//rhdp-downloads-all-item[2]//a[@href='${url}']`;
+            downloadBtn = driver.element(el);
+        } else if (product.includes('Development Suite')) {
+            let el = `//*[@id='downloads']//rhdp-downloads-all-item[3]//a[@href='${url}']`;
+            downloadBtn = driver.element(el);
+        } else {
+            let el = `//*[@id='downloads']//rhdp-downloads-all-item//a[@href='${url}']`;
+            downloadBtn = driver.element(el);
+        }
+        let location = downloadBtn.getLocationInView();
         downloadBtn.scroll(location['x'], location['y']);
-        return downloadBtn.click()
+        return driver.clickOn(downloadBtn)
+    }
+
+    osSpecificDownload(productCode) {
+        let osType = driver.element(this.getSelector(`${productCode}OSVersion`));
+        let location = osType.getLocationInView();
+        osType.scroll(location['x'], location['y']);
+        return osType.getText()
     }
 
 }

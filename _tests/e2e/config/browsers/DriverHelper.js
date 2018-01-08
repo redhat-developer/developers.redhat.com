@@ -151,12 +151,12 @@ class Driver {
         }
     }
 
-    awaitExists(selector) {
+    awaitExists(selector, timeout=6000) {
         try {
             if (typeof selector === 'string') {
-                return browser.waitForExist(selector, 1000);
+                return browser.waitForExist(selector, timeout);
             } else {
-                return selector.waitForExist(1000);
+                return selector.waitForExist(timeout);
             }
         } catch (e) {
             return false

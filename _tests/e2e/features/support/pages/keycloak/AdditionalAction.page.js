@@ -1,13 +1,29 @@
 import {BasePage} from "../Base.page"
+import {driver} from "../../../../config/browsers/DriverHelper";
 
 class AdditionalActionPage extends BasePage {
 
-    get fulluserTac() {
-        return browser.element('.fulluser-ttac')
+    constructor() {
+        super({
+            selector: '.fulluser-ttac'
+        });
+
+        this.addSelectors({
+            fulluserTac: '.fulluser-ttac',
+            submitBtn: '.button',
+        });
     }
 
-    get submitBtn() {
-        return browser.element('.button')
+    awaitAditionalActionPage() {
+        return driver.awaitExists(this.getSelector('fulluserTac'))
+    }
+
+    get selectFulluserTac() {
+        return driver.clickOn(this.getSelector('fulluserTac'))
+    }
+
+    get clickSubmitBtn() {
+        return driver.clickOn(this.getSelector('submitBtn'))
     }
 
 }

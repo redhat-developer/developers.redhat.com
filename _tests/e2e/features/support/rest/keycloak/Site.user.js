@@ -91,12 +91,14 @@ class SiteUser {
     gitHubAccountUser() {
         let details;
 
+        let emailAddress = `redhat-developers-testers+sid_${process.env.SESSION_ID}_${faker.random.number()}@redhat.com`.toString();
+
         details = {
             title: this._selectRandom(['Mr', 'Mrs']),
-            firstName: 'Keycloak',
-            lastName: 'Test-User',
-            email: 'uk.redhat.test01.user@gmail.com',
-            username: 'todo',
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            email: emailAddress,
+            username: emailAddress.replace('@redhat.com', ''),
             password: 'P@$$word01',
             company: 'Red Hat',
             phoneNumber: '019197544950',
