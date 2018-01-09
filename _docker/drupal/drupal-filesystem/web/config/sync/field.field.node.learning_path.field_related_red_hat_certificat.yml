@@ -1,0 +1,22 @@
+uuid: fc95300e-2520-4ad6-b893-426ba6f717b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_red_hat_certificat
+    - node.type.learning_path
+  module:
+    - text
+id: node.learning_path.field_related_red_hat_certificat
+field_name: field_related_red_hat_certificat
+entity_type: node
+bundle: learning_path
+label: 'Related Red Hat Certification'
+description: 'You should include a title, description and learn more link'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

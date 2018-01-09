@@ -1,0 +1,28 @@
+uuid: a915bb5c-b18e-4ce3-9ae1-c24f4ad13550
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_product_s_
+    - node.type.learning_path
+    - node.type.product
+id: node.learning_path.field_related_product_s_
+field_name: field_related_product_s_
+entity_type: node
+bundle: learning_path
+label: 'Related Product(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

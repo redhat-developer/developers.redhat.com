@@ -1,0 +1,27 @@
+uuid: 1a0887bd-34f7-4033-a2f3-72c2a599ccd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_learning_path_s_
+    - node.type.learning_path
+id: node.learning_path.field_related_learning_path_s_
+field_name: field_related_learning_path_s_
+entity_type: node
+bundle: learning_path
+label: 'Related Learning Path(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      learning_path: learning_path
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

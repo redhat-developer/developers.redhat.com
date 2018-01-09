@@ -1,0 +1,26 @@
+uuid: 4e13c1fb-5ea9-415c-b28d-2813d4a39626
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_requirements_an_or_pre_req
+    - node.type.learning_path
+  module:
+    - text
+id: node.learning_path.field_requirements_an_or_pre_req
+field_name: field_requirements_an_or_pre_req
+entity_type: node
+bundle: learning_path
+label: 'Requirements an/or pre-requisites'
+description: 'Include anything that would need to be completed prior to going through this path. e.g. You should know Linux terms. Use “None” if there are no requirements or pre-requisites. '
+required: true
+translatable: true
+default_value:
+  -
+    summary: ''
+    value: "<p>None</p>\r\n"
+    format: rhd_html
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

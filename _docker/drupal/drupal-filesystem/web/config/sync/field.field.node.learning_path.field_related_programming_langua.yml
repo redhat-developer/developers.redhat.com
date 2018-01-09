@@ -1,0 +1,21 @@
+uuid: 7f55e5ab-63d8-474a-8cff-c4799e99ff70
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_programming_langua
+    - node.type.learning_path
+  module:
+    - options
+id: node.learning_path.field_related_programming_langua
+field_name: field_related_programming_langua
+entity_type: node
+bundle: learning_path
+label: 'Related Programming Language(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

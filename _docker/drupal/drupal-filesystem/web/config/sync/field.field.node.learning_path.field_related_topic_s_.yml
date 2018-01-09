@@ -1,0 +1,28 @@
+uuid: 68c4f37c-8678-43fd-9c5a-5cbef6f8e205
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_topic_s_
+    - node.type.learning_path
+    - node.type.topic
+id: node.learning_path.field_related_topic_s_
+field_name: field_related_topic_s_
+entity_type: node
+bundle: learning_path
+label: 'Related Topic(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      topic: topic
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

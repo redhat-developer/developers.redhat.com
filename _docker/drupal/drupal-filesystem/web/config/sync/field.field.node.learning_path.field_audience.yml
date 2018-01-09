@@ -1,0 +1,21 @@
+uuid: c2af90a1-e3d0-4b4a-bd5b-95af410d1200
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_audience
+    - node.type.learning_path
+  module:
+    - options
+id: node.learning_path.field_audience
+field_name: field_audience
+entity_type: node
+bundle: learning_path
+label: Audience
+description: 'Select the types of people that would benefit the most from this Learning Path. '
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

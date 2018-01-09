@@ -1,0 +1,22 @@
+uuid: 38a19190-f149-424d-a7df-efefcc41b348
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.learning_path
+  module:
+    - text
+id: node.learning_path.body
+field_name: body
+entity_type: node
+bundle: learning_path
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

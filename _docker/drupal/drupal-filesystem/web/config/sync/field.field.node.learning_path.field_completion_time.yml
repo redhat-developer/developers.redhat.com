@@ -1,0 +1,21 @@
+uuid: 6d0d1319-001f-48a1-816f-7f68a86b023e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_completion_time
+    - node.type.learning_path
+  module:
+    - interval
+id: node.learning_path.field_completion_time
+field_name: field_completion_time
+entity_type: node
+bundle: learning_path
+label: 'Completion Time'
+description: 'Estimated amount of time that it takes to complete all the content in this learning path. '
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: interval
