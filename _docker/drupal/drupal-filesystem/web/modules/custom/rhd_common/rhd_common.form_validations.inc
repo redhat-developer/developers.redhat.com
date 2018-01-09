@@ -157,6 +157,44 @@ function add_connectors_validations(array &$form, FormStateInterface $form_state
   }
 }
 
+function rhd_common_form_node_learning_path_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['#validate'][] = 'add_learning_path_validations';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * @param $form array
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param string $form_id
+ */
+function rhd_common_form_node_learning_path_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['#validate'][] = 'add_learning_path_validations';
+}
+
+/**
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function add_learning_path_validations(array &$form, FormStateInterface $form_state)
+{
+    $short_description = $form_state->getValue('field_short_description')[0]['value'];
+
+    if (strlen($short_description) > 140)
+    {
+        $form_state->setErrorByName('field_short_description', t('The short description must be less than 140 characters!'));
+    }
+
+  // Check that Short Description is between 50 and 150 characters long
+    $long_description = $form_state->getValue('field_long_description')[0]['value'];
+
+    if (strlen($long_description) > 500)
+    {
+        $form_state->setErrorByName('field_long_description', t('The long description must be less than 500 characters!'));
+    }
+}
+
 
 /**
  * Custom form validator.
