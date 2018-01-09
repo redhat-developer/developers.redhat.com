@@ -9,11 +9,22 @@ dependencies:
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
     - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
+    - interval
     - link
+    - options
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
 id: node.cheat_sheet.default
@@ -63,6 +74,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_difficulty:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_exclude_from_search:
     weight: 7
     label: above
@@ -73,14 +91,21 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
+  field_read_time:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
+    region: content
   links:
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   workbench_moderation_control:
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

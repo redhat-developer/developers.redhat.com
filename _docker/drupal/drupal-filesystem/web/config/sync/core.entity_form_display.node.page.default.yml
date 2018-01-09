@@ -39,7 +39,7 @@ content:
   field_meta_tags:
     type: metatag_firehose
     region: content
-    weight: 122
+    weight: 8
     settings: {  }
     third_party_settings: {  }
   path:
@@ -65,14 +65,7 @@ content:
       allow_existing: false
       match_operator: CONTAINS
       form_mode: default
-    weight: 121
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 123
+    weight: 7
     third_party_settings: {  }
     region: content
   sticky:
@@ -101,3 +94,4 @@ content:
     region: content
 hidden:
   panelizer: true
+  status: true

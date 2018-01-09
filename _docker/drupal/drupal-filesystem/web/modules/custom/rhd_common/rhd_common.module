@@ -34,6 +34,31 @@ function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
             }
         }
     }
+
+    // Require a revision log message
+    if (isset($form['revision_log'])) {
+      unset($form['revision_log']['#group']);
+
+      $form['revision_log']['widget']['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+
+    }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the revision overview form for better ease of use.
+ *
+ * @param $form render array for form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state state of the form elements
+ * @param $form_id name of form
+ */
+function rhd_common_form_revision_overview_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['node_revisions_table']['#header']['select_column_two'] = 'Right Side';
+  $form['node_revisions_table']['#header']['select_column_one'] = 'Left Side';
+  $form['submit']['#weight'] = -100;
 }
 
 /**
@@ -155,7 +180,18 @@ function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDi
     }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_node(&$variables) {
+  // For videos, we need tags to send to DCP
+  if ($variables['node']->getType() === 'video_resource') {
+    video_tags($variables);
+  }
+}
+
 include_once 'rhd_common.product_related.inc';
 include_once 'rhd_common.form_validations.inc';
 include_once 'rhd_common.sitemap.inc';
 include_once 'rhd_common.tokens.inc';
+include_once 'rhd_common.video.inc';

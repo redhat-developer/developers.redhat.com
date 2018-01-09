@@ -7,10 +7,13 @@ dependencies:
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
+    - field.field.node.article.field_difficulty
+    - field.field.node.article.field_read_time
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_tags
     - node.type.article
   module:
+    - interval
     - metatag
     - path
     - text
@@ -45,8 +48,21 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_difficulty:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_read_time:
+    weight: 9
+    settings:
+      allowed_periods: {  }
+    third_party_settings: {  }
+    type: interval_default
+    region: content
   field_meta_tags:
-    weight: 26
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -62,7 +78,7 @@ content:
     region: content
   path:
     type: path
-    weight: 9
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -71,13 +87,6 @@ content:
     settings:
       display_label: true
     weight: 6
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
     third_party_settings: {  }
     region: content
   sticky:
@@ -107,3 +116,4 @@ content:
 hidden:
   field_author_name: true
   field_image: true
+  status: true

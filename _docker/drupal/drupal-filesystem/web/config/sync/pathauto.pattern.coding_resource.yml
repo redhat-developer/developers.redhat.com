@@ -7,16 +7,16 @@ dependencies:
 id: coding_resource
 label: 'Coding Resource'
 type: 'canonical_entities:node'
-pattern: '/[node:field_resource_type:value]s/[node:title]'
+pattern: '/[node:field_resource_type:value]s/[node:related_product_code]/[node:title]'
 selection_criteria:
-  e9f0ade9-3ac7-4d94-882b-cf2035188fcb:
+  2668284b-0ab7-464c-907e-54b0d43d4a04:
     id: node_type
     bundles:
       coding_resource: coding_resource
     negate: false
     context_mapping:
       node: node
-    uuid: e9f0ade9-3ac7-4d94-882b-cf2035188fcb
+    uuid: 2668284b-0ab7-464c-907e-54b0d43d4a04
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -1040,18 +1040,58 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
+        path:
+          id: path
+          table: node
+          field: path
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          absolute: false
           entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-          group: 1
+          plugin_id: node_path
+      filters:
         type:
           id: type
           table: node_field_data
@@ -1061,15 +1101,15 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        _deleted:
-          id: _deleted
+        status:
+          id: status
           table: node_field_revision
-          field: _deleted
+          field: status
           relationship: none
           group_type: group
           admin_label: ''
           operator: '='
-          value: ''
+          value: '1'
           group: 1
           exposed: false
           expose:
@@ -1097,7 +1137,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           entity_type: node
-          entity_field: _deleted
+          entity_field: status
           plugin_id: boolean
       sorts:
         created:

@@ -1,5 +1,5 @@
 require_relative '../_docker/lib/process_runner'
-
+require 'fileutils'
 #
 # This class wraps a number of calls to _docker/control.rb to allow us to run the e2e tests with a number of profiles
 # or broken-link checks, and then amalgamate the result into a generalised fail or pass.
@@ -18,13 +18,11 @@ class NodeJenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    if @test_type == 'e2e'
-      # Run the tests for each of our test profiles
+    if @test_type == 'e2e' || @test_type == 'kc_e2e'
       %w(desktop mobile).each do |profile|
         tests_passed &= execute_e2e(profile)
       end
     else
-      # Run broken-link-checks
       tests_passed &= execute_blc
     end
     tests_passed
@@ -38,20 +36,28 @@ class NodeJenkinsTestRunner
   def execute_e2e(profile)
     success = true
     test_execution_command = build_e2e_run_tests_command(profile)
-
     begin
       @process_runner.execute!(test_execution_command)
     rescue
       puts "Run of test profile '#{profile}' failed."
       success = false
     end
+    clear_download_dir
     success
   end
 
+  def clear_download_dir
+    FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp/chromeDownloads")
+  end
+
   #
-  # Execute the blc tests for the given profile
+  # Execute the blc checks, if critical link checks fail it will bail and fail build
   #
   def execute_blc
+    if @host_to_test.to_s.include?('pr.stage')
+      result = execute_critical_link_checks
+      raise('Critical link checks failed, bailing . . .') unless result.eql?(true)
+    end
     success = true
     test_execution_command = build_blc_run_tests_command
     begin
@@ -61,6 +67,37 @@ class NodeJenkinsTestRunner
       success = false
     end
     success
+  end
+
+  #
+  # Generate critical links sitemap.xml
+  #
+  def generate_critical_link_sitemap
+    success = true
+    cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
+    begin
+      @process_runner.execute!(cmd)
+    rescue
+      puts 'Failed to generate critical link sitemap.xml'
+      success = false
+    end
+    success
+  end
+
+  #
+  # Execute the critical link checks
+  #
+  def execute_critical_link_checks
+    generate_critical_link_sitemap
+    result = true
+    test_execution_command = build_blc_run_tests_command('config/critical_links_blinkr.yaml')
+    begin
+      @process_runner.execute!(test_execution_command)
+    rescue
+      puts 'Critical link checks failed.'
+      result = false
+    end
+    result
   end
 
   #
@@ -78,13 +115,28 @@ class NodeJenkinsTestRunner
   def build_e2e_run_tests_command(profile)
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('ghprbActualCommit')
+    cucumber_tags = read_env_variable('CUCUMBER_TAGS')
+    rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
-    command += ' --browser=iphone_6' if profile == 'mobile'
-    command += " --profile=#{profile}"
-    if profile == 'desktop'
-      command += ' --cucumber-tags=~@mobile'
+    command += ' --kc' if @test_type == 'kc_e2e'
+    if profile == 'mobile'
+      command += ' --browser=iphone_6'
     else
-      command += ' --cucumber-tags=~@desktop'
+      command += " --browser=#{rhd_js_driver}"
+    end
+    command += " --profile=#{profile}"
+    if cucumber_tags.nil?
+      if profile == 'desktop'
+        command += ' --cucumber-tags=~@mobile'
+      else
+        command += ' --cucumber-tags=~@desktop'
+      end
+    else
+      if profile == 'desktop'
+        command += " --cucumber-tags=~@mobile,#{cucumber_tags}"
+      else
+        command += " --cucumber-tags=~@desktop,#{cucumber_tags}"
+      end
     end
     command
   end
@@ -93,9 +145,9 @@ class NodeJenkinsTestRunner
   # Builds the command to use to execute the broken-link checks, including whether or not
   # we should send updates to GitHub
   #
-  def build_blc_run_tests_command
+  def build_blc_run_tests_command(*_config)
     github_sha1 = read_env_variable('ghprbActualCommit')
-    config = read_env_variable('CONFIG')
+    config = _config[0] ? _config[0] : read_env_variable('CONFIG')
     command = "ruby _tests/run_tests.rb --blc -c #{config} --base-url=#{@host_to_test}"
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --use-docker'
@@ -113,7 +165,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w[blc e2e]
+  available_test_types = %w[blc e2e kc_e2e]
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"

@@ -38,7 +38,7 @@ content:
   field_meta_tags:
     type: metatag_firehose
     region: content
-    weight: 121
+    weight: 6
     settings: {  }
     third_party_settings: {  }
   panelizer:
@@ -51,13 +51,6 @@ content:
     type: path
     weight: 4
     settings: {  }
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 122
     third_party_settings: {  }
     region: content
   title:
@@ -79,4 +72,5 @@ content:
     region: content
 hidden:
   promote: true
+  status: true
   sticky: true

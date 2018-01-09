@@ -11,6 +11,8 @@ dependencies:
     - field.field.node.books.field_categories
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
+    - field.field.node.books.field_difficulty
+    - field.field.node.books.field_read_time
     - field.field.node.books.field_mobi_link
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
@@ -25,10 +27,18 @@ dependencies:
     - node.type.books
   module:
     - datetime
+    - interval
     - link
     - options
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: 6xYjc_xUKetNHubcZQ-HCVjelYp7JE6bmEGVhegbJT4
 id: node.books.default
@@ -84,6 +94,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_difficulty:
+    weight: 20
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_epub:
     weight: 17
@@ -174,6 +191,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_read_time:
+    weight: 19
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
     region: content
   field_related_product:
     weight: 14

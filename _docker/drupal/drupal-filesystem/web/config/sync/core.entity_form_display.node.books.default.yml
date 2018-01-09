@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.books.field_book_excerpt
     - field.field.node.books.field_book_url
     - field.field.node.books.field_categories
+    - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
     - field.field.node.books.field_mobi_link
@@ -18,6 +19,7 @@ dependencies:
     - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
@@ -25,6 +27,7 @@ dependencies:
     - node.type.books
   module:
     - datetime
+    - interval
     - link
     - path
     - text
@@ -37,18 +40,12 @@ bundle: books
 mode: default
 content:
   field_author:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_average_rating:
-    weight: 18
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_book_description:
     weight: 5
@@ -68,23 +65,21 @@ content:
     type: text_textarea
     region: content
   field_book_url:
-    weight: 4
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_categories:
+  field_difficulty:
     weight: 17
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: options_select
     region: content
   field_epub:
-    weight: 12
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -92,7 +87,7 @@ content:
     type: link_default
     region: content
   field_isbn:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -100,7 +95,7 @@ content:
     type: string_textfield
     region: content
   field_mobi_link:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -108,22 +103,14 @@ content:
     type: link_default
     region: content
   field_needs_own_page:
-    weight: 1
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_pdf_link:
-    weight: 10
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_preview_url:
-    weight: 16
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -144,11 +131,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_pull_from_google:
-    weight: 19
-    settings: {  }
+  field_read_time:
+    weight: 16
+    settings:
+      allowed_periods: {  }
     third_party_settings: {  }
-    type: options_select
+    type: interval_default
     region: content
   field_related_product:
     weight: 9
@@ -160,7 +148,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_tags:
-    weight: 13
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -176,27 +164,12 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_web_reader_url:
-    weight: 15
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   path:
     type: path
-    weight: 20
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
-    third_party_settings: {  }
-    region: content
   title:
     type: string_textfield
     weight: 0
@@ -207,6 +180,12 @@ content:
     region: content
 hidden:
   created: true
+  field_average_rating: true
+  field_categories: true
+  field_preview_url: true
+  field_pull_from_google: true
+  field_web_reader_url: true
   promote: true
+  status: true
   sticky: true
   uid: true

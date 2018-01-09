@@ -115,7 +115,7 @@ app.products = {
   "cdk": {"upstream": null,"stackoverflow": "redhat-containers", "buzz_tags": ["containers"]},
   "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "redhat-datagrid", "buzz_tags": ["datagrid","jboss data grid"]},
   "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "redhat-datavirt", "buzz_tags": ["datavirt","jboss datavirt"]},
-  "developertoolset": {"upstream": null,"stackoverflow": "redhat-dts", "buzz_tags": ["developertoolset"]},
+  "developertoolset": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat-dts","gcc"], "tag_set_two" :["redhat-dts","redhat","rhel","red hat"]}}, "buzz_tags": ["developertoolset"]},
   "devstudio": {"upstream": ["jbosstools"],"stackoverflow": "jboss-developer-studio", "buzz_tags": ["jbds","JBoss DevStudio"]},
   "devsuite": {"upstream": null,"stackoverflow": "_none", "buzz_tags": "devsuite"},
   "dotnet": {"upstream": null,"stackoverflow": "rhel.net", "buzz_tags": "dotnet"},
@@ -129,6 +129,7 @@ app.products = {
   "softwarecollections": {"upstream": null,"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["software collections"]},
   "webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"], "buzz_tags": ["webserver"]},
   "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["redhat-rhamt"],"buzz_tags": ["mobileplatform","mobile"]},
+  "clang-llvm-go-rust": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat","red hat","rhel"], "tag_set_two" :["go","golang","rust","llvm","clang"]}},"buzz_tags": ["rhel","rhel7"]},
   "migrationtoolkit": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
 };
 

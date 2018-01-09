@@ -1,0 +1,94 @@
+uuid: 14f469a1-e9f7-4d8e-aff7-befc6e6a28c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_exclude_from_search
+    - node.type.cheat_sheet
+  module:
+    - link
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+_core:
+  default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
+id: node.cheat_sheet.teaser
+targetEntityType: node
+bundle: cheat_sheet
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_cheat_sheet_author:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_cheat_sheet_download_url:
+    weight: 3
+    label: visually_hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_cheat_sheet_excerpt:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_cheat_sheet_tags:
+    weight: 5
+    label: visually_hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_exclude_from_search:
+    weight: 7
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  links:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

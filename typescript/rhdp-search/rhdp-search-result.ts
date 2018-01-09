@@ -173,15 +173,19 @@ class RHDPSearchResult extends HTMLElement {
             description = result.fields.sys_content_plaintext[0];
         }
 
+        // Removes all HTML tags from description
+        var tempDiv = document.createElement("div");
+        tempDiv.innerHTML = description;
+        description = tempDiv.innerText;
+
         this.description = description;
     }
     computeURL(result) {
-        var url = ['',''];
-        if(result.fields && result.fields.sys_url_view) {
-            url[0] = `<a href="${result.fields.sys_url_view}">`;
-            url[1] = '</a>';
+        if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
+            this.url = result.fields.field_book_url;
+        } else {
+            this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
         }
-        this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
     }
 
     computePremium(result) {

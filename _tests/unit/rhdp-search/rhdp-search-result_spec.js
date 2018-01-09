@@ -10,7 +10,8 @@ describe('Search Result', function() {
         stackoverflow_thread: "Stack Overflow",
         quickstart: "Quickstart",
         webpage: "Web Page",
-        video: "Video"
+        video: "Video",
+        book: "Book"
     };
     var testResult = {
         fields: {
@@ -60,6 +61,12 @@ describe('Search Result', function() {
         }, 500);
     });
 
+    it('should have a sys_url_view', function() {
+        wc.result = testResult;
+
+        expect(wc.url).toEqual(testResult.fields.sys_url_view);
+    });
+
     describe('Title', function() {
         it('should match highlight.sys_title if present', function() {
             wc.result = testResult;
@@ -74,21 +81,35 @@ describe('Search Result', function() {
     });
 
     describe('Description', function() {
+        var tempDiv = document.createElement("div");
+
         it('should match highlights.sys_description if present', function() {
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.highlight.sys_description[0]);
+
+            tempDiv.innerHTML = testResult.highlight.sys_description[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
 
         it('should match highlights.sys_plaintext if present without h.sys_description', function() {
             delete testResult.highlight.sys_description;
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.highlight.sys_content_plaintext[0]);
+
+            tempDiv.innerHTML = testResult.highlight.sys_content_plaintext[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
 
         it('should match fields.sys_description by default', function() {
             delete testResult.highlight.sys_content_plaintext;
             wc.result = testResult;
-            expect(wc.description).toEqual(testResult.fields.sys_description[0]);
+
+            tempDiv.innerHTML = testResult.fields.sys_description[0];
+            var sanitizedDescription = tempDiv.innerText;
+
+            expect(wc.description).toEqual(sanitizedDescription);
         });
     });
 
@@ -211,6 +232,37 @@ describe('Search Result', function() {
                 wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
+        });
+
+        describe('should have "Book" for the corresponding result types', function () {
+            it('all books', function () {
+                var typeTxt = 'Book',
+                    typeReturn = ['book'],
+                    len = typeReturn.length,
+                    i;
+                for (i = 0; i < len; i++) {
+                    testResult.fields.sys_type = [typeReturn[i]];
+                    wc.result = testResult;
+                    expect(wc.kind).toEqual(typeTxt);
+                }
+            });
+
+            it('externally hosted books', function () {
+                var typeTxt = 'foo bar';
+                testResult.fields.sys_type = 'book';
+
+                testResult.fields.field_book_url = typeTxt;
+                wc.result = testResult;
+                expect(wc.url).toEqual(typeTxt);
+            });
+
+            it('book with an empty field_book_url', function () {
+                testResult.fields.sys_type = 'book';
+
+                testResult.fields.field_book_url = '';
+                wc.result = testResult;
+                expect(wc.url).toEqual(testResult.fields.sys_url_view);
+            });
         });
     });
 });

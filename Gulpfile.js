@@ -35,7 +35,6 @@ var globs = {
         'javascripts/mobile.js',
         'javascripts/vendor/jquery.resize.js',
         'javascripts/vendor/jquery.timeago.js',
-        'javascripts/vendor/socialite.min.js',
         'javascripts/vendor/jquery.paging.min.js',
         'javascripts/vendor/ytembed.js',
         'javascripts/terms-and-conditions.js',
@@ -86,7 +85,9 @@ var globs = {
         'javascripts/footer.js',
         'javascripts/vendor/url-polyfill.min.js',
         'javascripts/vendor/rh-datetime.min.js',
-        'javascripts/pdf-links.js'
+        'javascripts/pdf-links.js',
+        'javascripts/show-more.js',
+        'javascripts/related-content.js'
     ],
     "styles": ['stylesheets/*.scss']
 };

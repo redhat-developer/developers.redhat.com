@@ -2,6 +2,7 @@ require 'optparse'
 require 'json'
 require_relative '../../_docker/lib/default_logger'
 require_relative 'e2e_test_options'
+require_relative '../blc/generate_critical_link_sitemap'
 
 #
 # Class implementation that parses the options supplied to the
@@ -63,16 +64,12 @@ class RunTestOptions
         test_configuration[:browserstack] = true
       end
 
-      opts.on('--browser-count BROWSER_COUNT', String, 'The number of browsers to launch when running the tests with Docker [default=2]') do |browser_count|
-        test_configuration[:browser_count] = browser_count.to_i
-      end
-
-      opts.on('--reporters REPORT', String, 'Type of report you wish to generate. Will mostly be used for Jenkins config, i.e. junit report') do |report|
-        test_configuration[:report] = report
-      end
-
       opts.on('--cucumber-tags CUCUMBER_TAGS', String, 'The cucumber tags to use') do |cucumber_tags|
         test_configuration[:cucumber_tags] = cucumber_tags
+      end
+
+      opts.on('--kc', 'Run the KeyCloak e2e tests') do
+        test_configuration[:keycloak] = true
       end
 
       #
@@ -199,7 +196,6 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
-
     bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
@@ -207,9 +203,11 @@ class RunTestOptions
 
     run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
     if test_configuration[:docker]
-      # for running tests inside of docker
-      test_configuration[:browser_count] = 1 if test_configuration[:browser_count].nil?
-      test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
+      if test_configuration[:browserstack]
+        test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
+      else
+        test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
+      end
     else
       # run tests via a local browser
       test_configuration[:run_tests_command] = "cd #{@test_dir}/e2e && npm test -- #{run_tests_command}"

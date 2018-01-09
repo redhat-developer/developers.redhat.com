@@ -1,0 +1,19 @@
+uuid: 6a4756c1-d1e1-42d0-8152-17ff9c01b6c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stackoverflow_product_refe
+    - node.type.product
+id: node.product.field_stackoverflow_product_refe
+field_name: field_stackoverflow_product_refe
+entity_type: node
+bundle: product
+label: 'Stackoverflow Product Reference'
+description: 'Use this field for the stackoverflow reference code if it is different from the product code.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

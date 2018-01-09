@@ -117,6 +117,9 @@ var RHDPOSDownload = (function (_super) {
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
         };
+        _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
+            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
+        };
         return _this;
     }
     Object.defineProperty(RHDPOSDownload.prototype, "url", {
@@ -265,15 +268,6 @@ var RHDPOSDownload = (function (_super) {
     RHDPOSDownload.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
         this[name] = newVal;
     };
-    // getProductFromURL(){
-    //     // returns the target product that will be used for the JSON reference
-    //     this.url = this.url ? this.url : window.location.href;
-    //     var regex = new RegExp("[^/.]+(?=\/download)"),
-    //         results = regex.exec(this.url);
-    //     if (!results) return null;
-    //     return results[0];
-    //
-    // }
     RHDPOSDownload.prototype.getUserAgent = function () {
         var OSName = "Windows";
         if (navigator.appVersion.indexOf("Mac") != -1)
@@ -515,9 +509,6 @@ var DevNationLiveSession = (function () {
         this._title = '';
         this._date = '';
         this._youtube_id = '';
-        this._speaker = '';
-        this._speaker_intro = '';
-        this._twitter_handle = '';
         this._offer_id = '';
         this._abstract = '';
         this._confirmed = false;
@@ -585,38 +576,14 @@ var DevNationLiveSession = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DevNationLiveSession.prototype, "speaker", {
+    Object.defineProperty(DevNationLiveSession.prototype, "speakers", {
         get: function () {
-            return this._speaker;
+            return this._speakers;
         },
         set: function (val) {
-            if (this._speaker === val)
+            if (this._speakers === val)
                 return;
-            this._speaker = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "speaker_intro", {
-        get: function () {
-            return this._speaker_intro;
-        },
-        set: function (val) {
-            if (this._speaker_intro === val)
-                return;
-            this._speaker_intro = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "twitter_handle", {
-        get: function () {
-            return this._twitter_handle;
-        },
-        set: function (val) {
-            if (this._twitter_handle === val)
-                return;
-            this._twitter_handle = val;
+            this._speakers = val;
         },
         enumerable: true,
         configurable: true
@@ -671,6 +638,54 @@ var DevNationLiveSession = (function () {
     });
     return DevNationLiveSession;
 }());
+var DevNationLiveSpeaker = (function () {
+    function DevNationLiveSpeaker(obj) {
+        var _this = this;
+        this._name = '';
+        this._intro = '';
+        this._twitter = '';
+        Object.keys(obj).map(function (key) {
+            _this[key] = obj[key];
+        });
+    }
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (val) {
+            if (this._name === val)
+                return;
+            this._name = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "intro", {
+        get: function () {
+            return this._intro;
+        },
+        set: function (val) {
+            if (this._intro === val)
+                return;
+            this._intro = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "twitter", {
+        get: function () {
+            return this._twitter;
+        },
+        set: function (val) {
+            if (this._twitter === val)
+                return;
+            this._twitter = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DevNationLiveSpeaker;
+}());
 var DevNationLiveApp = (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
@@ -679,25 +694,38 @@ var DevNationLiveApp = (function (_super) {
         _this._form = '../rhdp-apps/devnationlive/';
         _this._mode = 'cors';
         _this.nextSession = function (strings, next) {
-            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
-                : '') + "\n                    </p>\n                    <p>" + next.abstract + "</p>\n                    " + (next.speaker_intro ? "<p>" + next.speaker_intro + "</p>" : '') + "\n                </div>\n            </div>\n        </section>";
+            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                <p>Speaker(s): " + next.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                <p>" + next.abstract + "</p>\n                " + next.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerIntroTemplate(_a, speaker));
+                var _a;
+            }).join('') + "\n                </div>\n            </div>\n        </section>";
         };
         _this.upcomingSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                            <p>Speaker: <strong>" + sess.speaker + "</strong>\n                                " + (sess.twitter_handle ? "\n                                    (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
-                : '') + "\n                            </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
                 : "<iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.offer_id + "\"></iframe>\n                            </div>")
                 : '') + "\n                </div>\n            </li>"
                 : '');
         };
+        _this.speakerShortTemplate = function (strings, speaker) {
+            return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '');
+        };
+        _this.speakerIntroTemplate = function (strings, speaker) {
+            return "" + (speaker.intro ? "<p>" + speaker.intro + "</p>" : '');
+        };
         _this.pastSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
-                : '') + "\n                        </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://youtu.be/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+                var _a;
+            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
                 : '');
         };
         _this.template = function (strings, next, upcoming, past) {
-            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (_a = ["", ""], _a.raw = ["", ""], _this.nextSession(_a, next)) + "\n        <section>\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) {
+            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "" + (_a = ["", ""], _a.raw = ["", ""], _this.nextSession(_a, next)) : '') + "\n        <section>\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) {
                 return (_a = ["", ""], _a.raw = ["", ""], _this.upcomingSession(_a, sess));
                 var _a;
             }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) {
@@ -872,15 +900,25 @@ var DevNationLiveApp = (function (_super) {
     };
     return DevNationLiveApp;
 }(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('devnation-live-app', DevNationLiveApp);
-});
+customElements.define('devnation-live-app', DevNationLiveApp);
 var RHDPDownloadsAllItem = (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
-        _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version) {
-            return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
+        _this.productDownloads = {
+            "devsuite": {
+                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+                "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"
+            },
+            "cdk": {
+                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
+                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
+                "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"
+            }
+        };
+        _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
+            return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
         };
         return _this;
     }
@@ -969,9 +1007,49 @@ var RHDPDownloadsAllItem = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RHDPDownloadsAllItem.prototype, "platform", {
+        get: function () {
+            return this._platform;
+        },
+        set: function (value) {
+            this._platform = value;
+            this.setAttribute('platform', this._platform);
+        },
+        enumerable: true,
+        configurable: true
+    });
     RHDPDownloadsAllItem.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version));
-        var _a;
+        if (this.productId === 'devsuite' || this.productId === 'cdk') {
+            this.osVersionExtract(this.productId);
+            this.innerHTML = (_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform));
+        }
+        else {
+            this.innerHTML = (_b = ["", "", "", "", "", "", "", "", ""], _b.raw = ["", "", "", "", "", "", "", "", ""], this.template(_b, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null));
+        }
+        var _a, _b;
+    };
+    RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
+        var osPlatform = new RHDPOSDownload();
+        osPlatform.platformType = osPlatform.getUserAgent();
+        switch (productId) {
+            case 'devsuite':
+                osPlatform.winURL = this.productDownloads.devsuite.windowsUrl;
+                osPlatform.macURL = this.productDownloads.devsuite.macUrl;
+                osPlatform.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                break;
+            case 'cdk':
+                osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
+                osPlatform.macURL = this.productDownloads.cdk.macUrl;
+                osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
+            default:
+                osPlatform.winURL = this.downloadUrl;
+                osPlatform.macURL = this.downloadUrl;
+                osPlatform.rhelURL = this.downloadUrl;
+        }
+        osPlatform.setDownloadURLByPlatform();
+        this.downloadUrl = osPlatform.downloadURL;
+        this.platform = osPlatform.platformType;
     };
     Object.defineProperty(RHDPDownloadsAllItem, "observedAttributes", {
         get: function () {
@@ -1074,7 +1152,7 @@ var RHDPDownloadsApp = (function (_super) {
         var _this = _super.call(this) || this;
         _this.popularProduct = new RHDPDownloadsPopularProducts();
         _this.products = new RHDPDownloadsProducts();
-        _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
+        _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <span class=\"dl-outage-msg\"></span>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
         return _this;
     }
     Object.defineProperty(RHDPDownloadsApp.prototype, "url", {
@@ -1101,7 +1179,7 @@ var RHDPDownloadsApp = (function (_super) {
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('integration_and_automation', 'INTEGRATION AND AUTOMATION', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile', 'MOBILE', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud', 'CLOUD', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'RUNTIMES', productList));
+        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'LANGUAGES AND COMPILERS', productList));
     };
     RHDPDownloadsApp.prototype.setPopularProducts = function (productList) {
         this.popularProduct.productList = productList.products;
@@ -1116,7 +1194,13 @@ var RHDPDownloadsApp = (function (_super) {
     };
     RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
         var _this = this;
-        fetch(url, { headers: 'application/json' })
+        var fInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: 'cors',
+            cache: 'default'
+        };
+        fetch(url, fInit)
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.products.data = data;
@@ -1404,15 +1488,16 @@ var RHDPDownloadsProducts = (function (_super) {
                 }, {
                     "productName": "Red Hat OpenShift Container Platform",
                     "groupHeading": "CLOUD",
+                    "productCode": "openshift",
                     "featured": false,
                     "dataFallbackUrl": "https://access.redhat.com/downloads/content/290/",
-                    "downloadLink": "https://access.redhat.com/downloads/content/290/",
+                    "downloadLink": "",
                     "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
                     "version": "",
                     "learnMoreLink": "https://developers.redhat.com/products/openshift/overview/"
                 }, {
                     "productName": "OpenJDK",
-                    "groupHeading": "RUNTIMES",
+                    "groupHeading": "LANGUAGES AND COMPILERS",
                     "productCode": "openjdk",
                     "featured": false,
                     "dataFallbackUrl": "https://developers.redhat.com/products/openjdk/overview/",
@@ -1420,16 +1505,6 @@ var RHDPDownloadsProducts = (function (_super) {
                     "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
                     "version": "",
                     "learnMoreLink": "https://developers.redhat.com/products/openjdk/overview/"
-                }, {
-                    "productName": ".NET Core for Red Hat Enterprise Linux",
-                    "groupHeading": "RUNTIMES",
-                    "productCode": "dotnet",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads",
-                    "downloadLink": "",
-                    "description": "Build and run cross-platform .NET applications on the world’s number one Enterprise-ready Linux Distribution, Red Hat Enterprise Linux",
-                    "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/dotnet/overview/"
                 }]
         };
         return _this;
@@ -1494,14 +1569,12 @@ var RHDPDownloadsProducts = (function (_super) {
     };
     return RHDPDownloadsProducts;
 }(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
-    customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
-    customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
-    customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
-    customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
-    customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
-});
+customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
+customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
+customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
+customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
+customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
+customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
 var RHDPSearchBox = (function (_super) {
     __extends(RHDPSearchBox, _super);
     function RHDPSearchBox() {
@@ -2863,15 +2936,19 @@ var RHDPSearchResult = (function (_super) {
         else {
             description = result.fields.sys_content_plaintext[0];
         }
+        // Removes all HTML tags from description
+        var tempDiv = document.createElement("div");
+        tempDiv.innerHTML = description;
+        description = tempDiv.innerText;
         this.description = description;
     };
     RHDPSearchResult.prototype.computeURL = function (result) {
-        var url = ['', ''];
-        if (result.fields && result.fields.sys_url_view) {
-            url[0] = "<a href=\"" + result.fields.sys_url_view + "\">";
-            url[1] = '</a>';
+        if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
+            this.url = result.fields.field_book_url;
         }
-        this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
+        else {
+            this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
+        }
     };
     RHDPSearchResult.prototype.computePremium = function (result) {
         var premium = false;
@@ -3316,7 +3393,7 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
-        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
+        _this.template = "<div class=\"row\">\n    <span class=\"search-outage-msg\"></span>\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
         _this.urlEle = new RHDPSearchURL();
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();

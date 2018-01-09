@@ -1,0 +1,21 @@
+uuid: 6623d2bb-f443-409b-9cda-5872b91d1116
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_caption
+    - paragraphs.paragraphs_type.overview
+  module:
+    - text
+id: paragraph.overview.field_video_caption
+field_name: field_video_caption
+entity_type: paragraph
+bundle: overview
+label: 'Video Caption'
+description: 'Optional caption to display beneath the video'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

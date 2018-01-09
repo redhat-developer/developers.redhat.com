@@ -28,21 +28,15 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 6
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
     region: content
-  created:
-    type: datetime_timestamp
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_call_to_action_link:
-    weight: 9
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -51,13 +45,13 @@ content:
     region: content
   field_exclude_from_search:
     type: boolean_checkbox
-    weight: 12
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_mail_to_link:
-    weight: 10
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -66,7 +60,7 @@ content:
     region: content
   field_media_asset:
     type: entity_browser_entity_reference
-    weight: 8
+    weight: 4
     settings:
       entity_browser: media_browser
       field_widget_display: rendered_entity
@@ -79,7 +73,7 @@ content:
     third_party_settings: {  }
     region: content
   field_promotion_page_left_image:
-    weight: 7
+    weight: 3
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -88,29 +82,8 @@ content:
     region: content
   path:
     type: path
-    weight: 5
+    weight: 1
     settings: {  }
-    third_party_settings: {  }
-    region: content
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 11
-    third_party_settings: {  }
-    region: content
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
     third_party_settings: {  }
     region: content
   title:
@@ -121,13 +94,9 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-  uid:
-    type: entity_reference_autocomplete
-    weight: 1
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
-hidden: {  }
+hidden:
+  created: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

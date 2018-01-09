@@ -1,0 +1,31 @@
+<% sitemap_loc = "#{File.dirname(File.expand_path('.', __FILE__))}/critical-links-sitemap.xml" %>
+base_url: https://developers.redhat.com
+custom_sitemap: <%= sitemap_loc %>
+ignore_ssl: true
+skips:
+  - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
+  - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
+  - http://10.1.2.2:8000/
+  - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
+  - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
+  - !ruby/regexp /(.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
+  - !ruby/regexp /^http:\/\/logout@127.0.0.1:8080\/.*/
+  - !ruby/regexp /^mailto:/
+  - !ruby/regexp /^irc:/
+  - !ruby/regexp /^https?:\/\/(www\.)?linkedin\.com\/shareArticle.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?linkedin\.com\/.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/sharer\.php.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*\?rel=author$/
+  - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Unsolicted\+Responses+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/projects\/issues.jboss.org\/browse\/WINDUP+/
+  - !ruby/regexp /^https:\/\/devstudio.jboss.com\/central\/install\?connectors=org.jboss.tools.aerogear.hybrid+/
+  - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
+  - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
+verbose: true
+max_page_retrys: 5
+max_retrys: 5
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 8
+report: blinkr.html

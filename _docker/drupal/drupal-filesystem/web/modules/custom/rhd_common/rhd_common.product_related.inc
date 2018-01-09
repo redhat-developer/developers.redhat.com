@@ -22,6 +22,13 @@ function rhd_common_preprocess_paragraph(&$variables)
       // Same thing for the name of the product
       $variables['product_name'] = $entity->label();
     }
+    if ($entity->hasField('field_stackoverflow_product_refe')) {
+        if(empty($entity->field_stackoverflow_product_refe->value)){
+            $variables['product_stackoverflow_code'] = $entity->field_product_machine_name->value;
+        }else{
+            $variables['product_stackoverflow_code'] = $entity->field_stackoverflow_product_refe->value;
+        }
+    }
 
     // Same thing for the short name, but if there isn't one, use the long name
     if ($entity->hasField('field_product_short_name')) {

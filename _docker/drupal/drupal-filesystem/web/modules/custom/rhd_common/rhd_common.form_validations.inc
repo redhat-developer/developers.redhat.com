@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
  */
 function rhd_common_form_node_events_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_events_validations($form, $form_state);
+  $form['#validate'][] = 'add_events_validations';
 }
 
 /**
@@ -21,7 +21,7 @@ function rhd_common_form_node_events_form_alter(&$form, FormStateInterface $form
  */
 function rhd_common_form_node_events_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_events_validations($form, $form_state);
+  $form['#validate'][] = 'add_events_validations';
 }
 
 /**
@@ -30,37 +30,26 @@ function rhd_common_form_node_events_edit_form_alter(&$form, FormStateInterface 
  */
 function add_events_validations(array &$form, FormStateInterface $form_state)
 {
-  // Simple closure to test that the end date is after the start date
-  $end_date_validator = function (array &$element, FormStateInterface $form_state) {
-    // Basic date comparison
-    $end_before_start = $form_state->getValue('field_end_date')[0]['value'] < $form_state->getValue('field_start_date')[0]['value']['object'];
-    if ($end_before_start === TRUE)
-    {
-      $form_state->setError($element, t('End Date must be after Start Date')); // Create the error
-    }
-  };
-  // Add all validation closure to the element
-  $form['field_end_date']['#element_validate'][] = $end_date_validator;
+  // Basic date comparison
+  $end_before_start = $form_state->getValue('field_end_date')[0]['value'] < $form_state->getValue('field_start_date')[0]['value']['object'];
+  if ($end_before_start === TRUE)
+  {
+    $form_state->setErrorByName('field_end_date', t('End Date must be after Start Date')); // Create the error
+  }
 
-  $title_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
-    $title = $form_state->getValue('title')[0]['value'];
+  $title = $form_state->getValue('title')[0]['value'];
 
-    if (strlen($title) < 5 || strlen($title) > 45)
-    {
-      $form_state->setError($element, t('Title must be greater than 5 characters and less than 45'));
-    }
-  };
-  $form['field_title']['#element_validate'][] = $title_length_validator;
+  if (strlen($title) < 5 || strlen($title) > 45)
+  {
+    $form_state->setErrorByName('title', t('Title must be greater than 5 characters and less than 45'));
+  }
 
-  $desc_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
-    $desc = $form_state->getValue('field_description')[0]['value'];
+  $desc = $form_state->getValue('field_description')[0]['value'];
 
-    if (strlen($desc) < 50 || strlen($desc) > 400)
-    {
-      $form_state->setError($element, t('Description must be greater than 50 characters and less than 400'));
-    }
-  };
-  $form['field_description']['#element_validate'][] = $desc_length_validator;
+  if (strlen($desc) < 50 || strlen($desc) > 400)
+  {
+    $form_state->setErrorByName('field_description', t('Description must be greater than 50 characters and less than 400'));
+  }
 }
 
 /**
@@ -70,7 +59,7 @@ function add_events_validations(array &$form, FormStateInterface $form_state)
  */
 function rhd_common_form_node_books_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_books_validations($form, $form_state);
+  $form['#validate'][] = 'add_books_validations';
 }
 
 /**
@@ -81,7 +70,7 @@ function rhd_common_form_node_books_form_alter(&$form, FormStateInterface $form_
  */
 function rhd_common_form_node_books_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_books_validations($form, $form_state);
+  $form['#validate'][] = 'add_books_validations';
 }
 
 /**
@@ -90,39 +79,30 @@ function rhd_common_form_node_books_edit_form_alter(&$form, FormStateInterface $
  */
 function add_books_validations(array &$form, FormStateInterface $form_state)
 {
-  // Simple closure to test that the end date is after the start date
-  $isbn_validator = function (array &$element, FormStateInterface $form_state) {
-    // Basic date comparison
-    $isbn_number = $form_state->getValue('field_isbn')[0]['value'];
-    if (!is_numeric($isbn_number) && !empty($isbn_number))
-    {
-      $form_state->setError($element, t('The ISBN field must be a number!')); // Create the error
-    }
-    if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number))
-    {
-      $form_state->setError($element, t('The ISBN field must be a valid 10 or 13 digit number!')); // Create the error
-    }
-
-  };
-  // Add all validation closure to the element
-  $form['field_isbn']['#element_validate'][] = $isbn_validator;
+  // Simple validation to test that the end date is after the start date
+  $isbn_number = $form_state->getValue('field_isbn')[0]['value'];
+  if (!is_numeric($isbn_number) && !empty($isbn_number))
+  {
+    $form_state->setErrorByName('field_isbn', t('The ISBN field must be a number!')); // Create the error
+  }
+  if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number))
+  {
+    $form_state->setErrorByName('field_isbn', t('The ISBN field must be a valid 10 or 13 digit number!')); // Create the error
+  }
 
   // Checks for books that need pages
+  $needs_own_page_value = (bool) $form_state->getValue('field_needs_own_page')['value'];
 
-  $needs_own_page_validator = function (array &$element, FormStateInterface $form_state) {
-    $needs_own_page_value = (bool) $form_state->getValue('field_needs_own_page')['value'];
-    
-    if ($needs_own_page_value === TRUE) {
-      if (empty($form_state->getValue('field_book_excerpt')[0]['value'])) {
-        $form_state->setErrorByName('field_book_excerpt', t('Book excerpt is required'));
-      }
-      if (empty($form_state->getValue('field_pdf_link')[0]['uri'])) {
-        $form_state->setErrorByName('field_pdf_link', t('PDF link is required'));
-      }
+  if ($needs_own_page_value === TRUE) {
+    if (empty($form_state->getValue('field_book_excerpt')[0]['value'])) {
+      $form_state->setErrorByName('field_book_excerpt',
+        t('Book excerpt is required'));
     }
-  };
-
-  $form['field_needs_own_page']['#element_validate'][] = $needs_own_page_validator;
+    if (empty($form_state->getValue('field_pdf_link')[0]['uri'])) {
+      $form_state->setErrorByName('field_pdf_link',
+        t('PDF link is required'));
+    }
+  }
 }
 
 /**
@@ -133,7 +113,7 @@ function add_books_validations(array &$form, FormStateInterface $form_state)
  */
 function rhd_common_form_node_connectors_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_connectors_validations($form, $form_state);
+  $form['#validate'][] = 'add_connectors_validations';
 }
 
 /**
@@ -144,7 +124,7 @@ function rhd_common_form_node_connectors_form_alter(&$form, FormStateInterface $
  */
 function rhd_common_form_node_connectors_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-  add_connectors_validations($form, $form_state);
+  $form['#validate'][] = 'add_connectors_validations';
 }
 
 /**
@@ -153,39 +133,28 @@ function rhd_common_form_node_connectors_edit_form_alter(&$form, FormStateInterf
  */
 function add_connectors_validations(array &$form, FormStateInterface $form_state)
 {
+  $title = $form_state->getValue('title')[0]['value'];
 
-  $title_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
-    $title = $form_state->getValue('title')[0]['value'];
-
-    if (strlen($title) < 1 || strlen($title) > 50)
-    {
-      $form_state->setError($element, t('Title must be greater than 1 character and less than 50'));
-    }
-  };
-  $form['title']['#element_validate'][] = $title_length_validator;
-
+  if (strlen($title) < 1 || strlen($title) > 50)
+  {
+    $form_state->setErrorByName('title', t('Title must be greater than 1 character and less than 50'));
+  }
 
   // Check that Short Description is between 50 and 150 characters long
-  $short_description_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
-    $short_description = $form_state->getValue('field_connector_short_descriptio')[0]['value'];
+  $short_description = $form_state->getValue('field_connector_short_descriptio')[0]['value'];
 
-    if (strlen($short_description) < 50 || strlen($short_description) > 150)
-    {
-      $form_state->setError($element, t('Short description must be greater than 50 characters and less than 150'));
-    }
-  };
-  $form['field_connector_short_descriptio']['#element_validate'][] = $short_description_length_validator;
+  if (strlen($short_description) < 50 || strlen($short_description) > 150)
+  {
+    $form_state->setErrorByName('field_connector_short_descriptio', t('Short description must be greater than 50 characters and less than 150'));
+  }
 
   // Check that Long Description is between 50 and 150 characters long
-  $long_description_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
-    $long_description = $form_state->getValue('field_connector_long_description')[0]['value'];
+  $long_description = $form_state->getValue('field_connector_long_description')[0]['value'];
 
-    if (strlen($long_description) < 100 || strlen($long_description) > 500)
-    {
-      $form_state->setError($element, t('Long description must be greater than 100 characters and less than 500'));
-    }
-  };
-  $form['field_connector_long_description']['#element_validate'][] = $long_description_length_validator;
+  if (strlen($long_description) < 100 || strlen($long_description) > 500)
+  {
+    $form_state->setErrorByName('field_connector_long_description', t('Long description must be greater than 100 characters and less than 500'));
+  }
 }
 
 

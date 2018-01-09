@@ -19,14 +19,8 @@ targetEntityType: node
 bundle: promotion_card
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_container_external_link:
-    weight: 33
+    weight: 3
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -34,7 +28,7 @@ content:
     type: link_default
     region: content
   field_container_tags:
-    weight: 32
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -43,7 +37,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_containers_short_summary:
-    weight: 34
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -52,46 +46,21 @@ content:
     region: content
   path:
     type: path
-    weight: 30
+    weight: 1
     settings: {  }
-    third_party_settings: {  }
-    region: content
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 15
-    third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
-    third_party_settings: {  }
-    region: content
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 16
     third_party_settings: {  }
     region: content
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     region: content
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
-hidden: {  }
+hidden:
+  created: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

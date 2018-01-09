@@ -1,0 +1,23 @@
+uuid: b7c9495a-8ba9-422f-a3a4-d62375c10c67
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slideshare_source
+    - node.type.video_resource
+  module:
+    - link
+id: node.video_resource.field_slideshare_source
+field_name: field_slideshare_source
+entity_type: node
+bundle: video_resource
+label: 'SlideShare Source'
+description: 'Src attribute content from the embed code provided by SlideShare. For a more detailed explanation on where to get this link, <a href="https://url.corp.redhat.com/slideshare-embed" target="_blank">see this doc</a>.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

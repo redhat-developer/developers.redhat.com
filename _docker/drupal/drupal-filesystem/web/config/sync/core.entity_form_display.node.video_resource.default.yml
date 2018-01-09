@@ -5,18 +5,24 @@ dependencies:
   config:
     - field.field.node.video_resource.body
     - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_publish_date
+    - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
     - datetime
     - interval
+    - link
     - path
     - text
     - video_embed_field
@@ -30,28 +36,52 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 4
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
     region: content
-  field_duration:
-    weight: 32
+  field_difficulty:
+    weight: 12
     settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_duration:
+    weight: 11
+    settings:
+      allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_likes:
-    weight: 29
+    weight: 8
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
+  field_related_content:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_slideshare_source:
+    weight: 15
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_speakers:
-    weight: 27
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -59,19 +89,27 @@ content:
     type: string_textfield
     region: content
   field_video_publish_date:
-    weight: 33
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_video_related_links:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_video_resource:
-    weight: 3
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: video_embed_field_textfield
     region: content
   field_video_resource_tags:
-    weight: 26
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -80,7 +118,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_video_target_product:
-    weight: 30
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -89,15 +127,23 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_video_thumbnail_url:
-    weight: 31
+    weight: 10
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_video_transcript:
+    weight: 14
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_views:
-    weight: 28
+    weight: 7
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -105,7 +151,7 @@ content:
     region: content
   path:
     type: path
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -113,12 +159,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 121
+    weight: 13
     third_party_settings: {  }
     region: content
   title:
     type: string_textfield
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
