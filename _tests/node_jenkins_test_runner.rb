@@ -23,9 +23,17 @@ class NodeJenkinsTestRunner
         tests_passed &= execute_e2e(profile)
       end
     else
-      tests_passed &= execute_blc
+      if @host_to_test.to_s.include?('pr.stage')
+        generate_critical_link_sitemap
+        ['config/critical_links_blinkr.yaml', "#{read_env_variable('CONFIG')}"].each do |config|
+          tests_passed &= execute_blc(config)
+          break unless tests_passed
+        end
+      else
+        tests_passed &= execute_blc(read_env_variable('CONFIG'))
+      end
+      tests_passed
     end
-    tests_passed
   end
 
   private
@@ -53,13 +61,9 @@ class NodeJenkinsTestRunner
   #
   # Execute the blc checks, if critical link checks fail it will bail and fail build
   #
-  def execute_blc
-    if @host_to_test.to_s.include?('pr.stage')
-      result = execute_critical_link_checks
-      raise('Critical link checks failed, bailing . . .') unless result.eql?(true)
-    end
+  def execute_blc(config)
     success = true
-    test_execution_command = build_blc_run_tests_command
+    test_execution_command = build_blc_run_tests_command(config)
     begin
       @process_runner.execute!(test_execution_command)
     rescue
@@ -82,22 +86,6 @@ class NodeJenkinsTestRunner
       success = false
     end
     success
-  end
-
-  #
-  # Execute the critical link checks
-  #
-  def execute_critical_link_checks
-    generate_critical_link_sitemap
-    result = true
-    test_execution_command = build_blc_run_tests_command('config/critical_links_blinkr.yaml')
-    begin
-      @process_runner.execute!(test_execution_command)
-    rescue
-      puts 'Critical link checks failed.'
-      result = false
-    end
-    result
   end
 
   #
@@ -145,9 +133,8 @@ class NodeJenkinsTestRunner
   # Builds the command to use to execute the broken-link checks, including whether or not
   # we should send updates to GitHub
   #
-  def build_blc_run_tests_command(*_config)
+  def build_blc_run_tests_command(config)
     github_sha1 = read_env_variable('ghprbActualCommit')
-    config = _config[0] ? _config[0] : read_env_variable('CONFIG')
     command = "ruby _tests/run_tests.rb --blc -c #{config} --base-url=#{@host_to_test}"
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --use-docker'
