@@ -135,13 +135,6 @@ content:
     weight: 14
     region: content
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 17
-    region: content
-    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
@@ -168,3 +161,4 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  status: true
