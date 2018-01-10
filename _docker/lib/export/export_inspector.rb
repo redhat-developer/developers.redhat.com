@@ -1,4 +1,5 @@
 require 'uri/http'
+require_relative '../default_logger'
 
 #
 # The purpose of this class is to inspect an export directory to ensure that all pages that should be there, are in fact there.
@@ -11,6 +12,11 @@ require 'uri/http'
 # @author rblake@redhat.com
 #
 class ExportInspector
+
+  def initialize(critical_links_file = "#{File.dirname(__FILE__)}/critical-pages.txt")
+    @critical_links_file = critical_links_file
+    @log = DefaultLogger.logger
+  end
 
   #
   # Determines the filesystem path at which the .html page export should exist
@@ -45,9 +51,35 @@ class ExportInspector
     expected_path = File.join export_directory, expected_file_path
     exists = File.exist?(expected_path)
     unless exists
-      puts "WARNING: Cannot locate export of '#{url}' at expected path: '#{expected_path}'"
+      puts("WARNING: Cannot locate export of '#{url}' at expected path: '#{expected_path}'")
     end
     exists
+  end
+
+  #
+  # ensures that critical pages are in the URL list to be exported
+  #
+  def verify_all_critical_pages!(links_file)
+
+    @log.info('Checking all critical pages are present in sitemap.xml and export...')
+    critical_pages = []
+    File.open(@critical_links_file, 'r').each_line do |line|
+      critical_pages << line.chomp
+      @log.info("\tChecking for presence of critical page '#{critical_pages.last}'...")
+    end
+
+    File.open(links_file, 'r').each_line do |line|
+      critical_pages.delete_if do |critical_link|
+        line.chomp.end_with?(critical_link)
+      end
+    end
+
+    if critical_pages.size > 0
+      raise StandardError, "The export list or sitemap.xml did not contain all critical pages. Missing critical pages  are #{critical_pages}. Failing export process."
+    end
+
+    @log.info('All critical links are present in sitemap.xml and export.')
+
   end
 
   #
@@ -60,8 +92,8 @@ class ExportInspector
     total_pages = 0
     missing_pages = 0
 
-    File.open(url_list,'r') do | file |
-      file.each_line do | line |
+    File.open(url_list, 'r') do |file|
+      file.each_line do |line|
 
         url = line.strip
         expected_file_system_path = determine_expected_filesystem_path(url)
@@ -78,10 +110,11 @@ class ExportInspector
       puts "WARNING: Of '#{total_pages}' pages, '#{missing_pages}' are not found in the export."
 
       if should_fail_on_missing_content
-        raise StandardError.new("There are '#{missing_pages}' pages missing from the site export (see warnings for missing content). Failing export process.")
+        raise StandardError, "There are '#{missing_pages}' pages missing from the site export (see warnings for missing content). Failing export process."
       end
 
     end
+
 
   end
 

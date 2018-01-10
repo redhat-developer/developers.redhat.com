@@ -3,6 +3,7 @@ require_relative '../../lib/export/export_inspector'
 require 'fileutils'
 
 class TestExportInspector < MiniTest::Test
+
   def setup
     @export_directory = Dir.mktmpdir
     @url_list = File.new(File.join(@export_directory, 'url-list.txt'), 'w+')
@@ -17,12 +18,24 @@ EOD
 
     @url_list.write links
     @url_list.flush
-    @inspector = ExportInspector.new
+    @inspector = ExportInspector.new("#{File.dirname(__FILE__)}/test-critical-links.txt")
   end
 
   def teardown
     FileUtils.remove_entry_secure @export_directory
     ENV['drupal.export.fail_on_missing'] = nil
+  end
+
+  def test_should_not_fail_when_all_critical_links_present
+    @inspector.verify_all_critical_pages!(@url_list)
+  end
+
+  def test_should_fail_if_there_are_missing_critical_links
+    @inspector = ExportInspector.new("#{File.dirname(__FILE__)}/test-missing-critical-links.txt")
+
+    assert_raises(StandardError, "The export list or sitemap.xml did not contain all critical pages. Missing critical pages  are [/products/the-null]. Failing export process.") {
+      @inspector.verify_all_critical_pages!(@url_list)
+    }
   end
 
   def test_all_pages_present_in_export

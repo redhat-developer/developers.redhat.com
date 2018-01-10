@@ -28,6 +28,8 @@ class HttrackExportStrategy
   #
   def export!(links_file, drupal_host, export_directory)
 
+    @export_inspector.verify_all_critical_pages!(links_file)
+
     cache_updates = check_and_roll_over_cache(export_directory, drupal_host)
 
     if check_if_update_to_existing_export(export_directory)
