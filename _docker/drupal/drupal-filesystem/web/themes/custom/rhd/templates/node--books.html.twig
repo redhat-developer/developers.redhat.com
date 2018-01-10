@@ -109,7 +109,7 @@ other methods (such as node.delete) will result in an exception.
             <strong>Want to see more? Get the entire book.</strong>
         </div>
         <a class="button hidden-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Log in to download</a>
-        <div>
+        <div class="other-book-formats">
             <p>
                 {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
                     Other available formats:&nbsp;

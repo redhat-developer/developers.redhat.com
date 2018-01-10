@@ -9,7 +9,7 @@
   background-position: center center;
   height: 310px;
   background-repeat: repeat-x;
-  background-color: #0068ba;
+  background-color: $black;
   & > .row {
     @include flexbox;
     @include align-items(center);
