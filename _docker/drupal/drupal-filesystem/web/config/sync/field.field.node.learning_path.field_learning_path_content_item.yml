@@ -1,0 +1,59 @@
+uuid: 03c0ad01-3cd0-49f5-9ff8-0a6605d04f32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_path_content_item
+    - node.type.article
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.coding_resource
+    - node.type.connectors
+    - node.type.events
+    - node.type.landing_page
+    - node.type.learning_path
+    - node.type.page
+    - node.type.product
+    - node.type.promotion_card
+    - node.type.promotion_page
+    - node.type.rh_training_class
+    - node.type.rhd_microsite
+    - node.type.rhd_solution_overview
+    - node.type.topic
+    - node.type.video_resource
+id: node.learning_path.field_learning_path_content_item
+field_name: field_learning_path_content_item
+entity_type: node
+bundle: learning_path
+label: 'Learning Path Content Items'
+description: 'Content item to be included in the Learning Path.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+      page: page
+      books: books
+      cheat_sheet: cheat_sheet
+      coding_resource: coding_resource
+      connectors: connectors
+      events: events
+      landing_page: landing_page
+      learning_path: learning_path
+      rhd_microsite: rhd_microsite
+      product: product
+      promotion_card: promotion_card
+      promotion_page: promotion_page
+      rh_training_class: rh_training_class
+      rhd_solution_overview: rhd_solution_overview
+      topic: topic
+      video_resource: video_resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: article
+field_type: entity_reference
