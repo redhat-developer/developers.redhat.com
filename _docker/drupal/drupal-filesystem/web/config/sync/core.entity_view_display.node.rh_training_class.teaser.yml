@@ -1,0 +1,31 @@
+uuid: 402432e9-68b9-4794-8481-dba945e8909b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rh_training_class.field_completion_time
+    - field.field.node.rh_training_class.field_level
+    - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_short_description
+    - field.field.node.rh_training_class.field_source_link
+    - node.type.rh_training_class
+  module:
+    - user
+id: node.rh_training_class.teaser
+targetEntityType: node
+bundle: rh_training_class
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_completion_time: true
+  field_level: true
+  field_long_description: true
+  field_short_description: true
+  field_source_link: true

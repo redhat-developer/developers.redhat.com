@@ -1,0 +1,48 @@
+uuid: cf485c56-7f68-4462-ba72-be28845add71
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_audience
+field_name: field_audience
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Architect
+      label: Architect
+    -
+      value: 'Full-stack web developer'
+      label: 'Full-stack web developer'
+    -
+      value: 'Front-end web developer'
+      label: 'Front-end web developer'
+    -
+      value: 'Back-end web developer'
+      label: 'Back-end web developer'
+    -
+      value: 'Mobile app designer'
+      label: 'Mobile app designer'
+    -
+      value: DevOps
+      label: DevOps
+    -
+      value: 'Data scientist/engineer'
+      label: 'Data scientist/engineer'
+    -
+      value: 'UX designer'
+      label: 'UX designer'
+    -
+      value: 'Enterprise Developer'
+      label: 'Enterprise Developer'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

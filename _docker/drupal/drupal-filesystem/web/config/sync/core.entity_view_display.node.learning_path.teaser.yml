@@ -1,0 +1,42 @@
+uuid: ef061918-475e-4c12-ae03-d20926cbddeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.learning_path.body
+    - node.type.learning_path
+  module:
+    - text
+    - user
+id: node.learning_path.teaser
+targetEntityType: node
+bundle: learning_path
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_audience: true
+  field_completion_time: true
+  field_long_description: true
+  field_related_learning_path_s_: true
+  field_related_product_s_: true
+  field_related_programming_langua: true
+  field_related_red_hat_certificat: true
+  field_related_topic_s_: true
+  field_requirements_an_or_pre_req: true
+  field_short_description: true
+  field_value_proposition: true

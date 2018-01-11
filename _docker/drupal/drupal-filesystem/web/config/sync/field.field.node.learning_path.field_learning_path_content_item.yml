@@ -1,0 +1,25 @@
+uuid: 03c0ad01-3cd0-49f5-9ff8-0a6605d04f32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_path_content_item
+    - node.type.learning_path
+id: node.learning_path.field_learning_path_content_item
+field_name: field_learning_path_content_item
+entity_type: node
+bundle: learning_path
+label: 'Learning Path Content Items'
+description: 'Content item to be included in the Learning Path.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_type_view
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

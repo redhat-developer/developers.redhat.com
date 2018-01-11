@@ -1,0 +1,45 @@
+uuid: 8e724067-24ef-4ce0-aaee-a704e7d0b266
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_related_programming_langua
+field_name: field_related_programming_langua
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: C++
+      label: C++
+    -
+      value: HTML/CSS
+      label: HTML/CSS
+    -
+      value: Java
+      label: Java
+    -
+      value: Node.js
+      label: Node.js
+    -
+      value: Perl
+      label: Perl
+    -
+      value: PHP
+      label: PHP
+    -
+      value: Python
+      label: Python
+    -
+      value: Ruby
+      label: Ruby
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

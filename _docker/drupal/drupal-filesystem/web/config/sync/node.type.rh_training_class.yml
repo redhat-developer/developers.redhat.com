@@ -1,0 +1,27 @@
+uuid: 5d792411-2de8-4ad4-8571-7360d9945ccf
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: 'RH Training Class'
+type: rh_training_class
+description: 'Paid training from RH Training site'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

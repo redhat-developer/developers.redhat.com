@@ -1,0 +1,19 @@
+uuid: 60e1d816-08d9-4e31-9d18-8b846eb93214
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_related_learning_path_s_
+field_name: field_related_learning_path_s_
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

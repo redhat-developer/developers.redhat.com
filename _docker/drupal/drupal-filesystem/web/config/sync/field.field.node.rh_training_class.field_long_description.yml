@@ -1,0 +1,22 @@
+uuid: f2aeb7d1-399c-48ca-8cfb-eca0fb85a0a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_long_description
+    - node.type.rh_training_class
+  module:
+    - text
+id: node.rh_training_class.field_long_description
+field_name: field_long_description
+entity_type: node
+bundle: rh_training_class
+label: 'Long Description'
+description: 'Describe the learning path in 500 characters or less'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

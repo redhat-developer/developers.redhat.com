@@ -1,0 +1,19 @@
+uuid: bfec8830-3e37-4fe4-87b4-e1490f6c1bd1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_learning_path_content_item
+field_name: field_learning_path_content_item
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,69 @@
+uuid: 873f8ce5-56bd-4fd2-bfff-69d050262ff6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rh_training_class.field_completion_time
+    - field.field.node.rh_training_class.field_level
+    - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_short_description
+    - field.field.node.rh_training_class.field_source_link
+    - node.type.rh_training_class
+  module:
+    - interval
+    - link
+    - options
+    - text
+    - user
+id: node.rh_training_class.default
+targetEntityType: node
+bundle: rh_training_class
+mode: default
+content:
+  field_completion_time:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
+    region: content
+  field_level:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_long_description:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_short_description:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_source_link:
+    weight: 104
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden: {  }

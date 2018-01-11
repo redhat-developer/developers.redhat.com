@@ -1,0 +1,25 @@
+uuid: a915bb5c-b18e-4ce3-9ae1-c24f4ad13550
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_product_s_
+    - node.type.learning_path
+id: node.learning_path.field_related_product_s_
+field_name: field_related_product_s_
+entity_type: node
+bundle: learning_path
+label: 'Related Product(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_type_view
+      display_name: entity_reference_2
+      arguments: {  }
+field_type: entity_reference
