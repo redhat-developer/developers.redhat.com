@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_related_product_s_
     - node.type.learning_path
-    - node.type.product
 id: node.learning_path.field_related_product_s_
 field_name: field_related_product_s_
 entity_type: node
@@ -17,12 +16,10 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:node'
+  handler: views
   handler_settings:
-    target_bundles:
-      product: product
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    view:
+      view_name: entity_type_view
+      display_name: entity_reference_2
+      arguments: {  }
 field_type: entity_reference
