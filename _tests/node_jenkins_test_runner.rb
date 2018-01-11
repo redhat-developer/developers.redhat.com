@@ -23,17 +23,9 @@ class NodeJenkinsTestRunner
         tests_passed &= execute_e2e(profile)
       end
     else
-      if @host_to_test.to_s.include?('pr.stage')
-        generate_critical_link_sitemap
-        ['config/critical_links_blinkr.yaml', "#{read_env_variable('CONFIG')}"].each do |config|
-          tests_passed &= execute_blc(config)
-          break unless tests_passed
-        end
-      else
-        tests_passed &= execute_blc(read_env_variable('CONFIG'))
-      end
-      tests_passed
+      tests_passed &= execute_blc
     end
+    tests_passed
   end
 
   private
@@ -61,28 +53,13 @@ class NodeJenkinsTestRunner
   #
   # Execute the blc checks, if critical link checks fail it will bail and fail build
   #
-  def execute_blc(config)
+  def execute_blc
     success = true
-    test_execution_command = build_blc_run_tests_command(config)
+    test_execution_command = build_blc_run_tests_command
     begin
       @process_runner.execute!(test_execution_command)
     rescue
       puts 'Run of blc failed.'
-      success = false
-    end
-    success
-  end
-
-  #
-  # Generate critical links sitemap.xml
-  #
-  def generate_critical_link_sitemap
-    success = true
-    cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
-    begin
-      @process_runner.execute!(cmd)
-    rescue
-      puts 'Failed to generate critical link sitemap.xml'
       success = false
     end
     success
@@ -133,8 +110,9 @@ class NodeJenkinsTestRunner
   # Builds the command to use to execute the broken-link checks, including whether or not
   # we should send updates to GitHub
   #
-  def build_blc_run_tests_command(config)
+  def build_blc_run_tests_command
     github_sha1 = read_env_variable('ghprbActualCommit')
+    config = read_env_variable('CONFIG')
     command = "ruby _tests/run_tests.rb --blc -c #{config} --base-url=#{@host_to_test}"
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --use-docker'
