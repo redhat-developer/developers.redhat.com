@@ -128,7 +128,7 @@ app.products = {
   "rhoar": {"stackoverflow": ["redhat-rhoar"]},
   "softwarecollections": {"upstream": null,"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["software collections"]},
   "webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"], "buzz_tags": ["webserver"]},
-  "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["redhat-rhamt"],"buzz_tags": ["mobileplatform","mobile"]},
+  "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["rhmap"],"buzz_tags": ["mobileplatform","mobile"]},
   "clang-llvm-go-rust": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat","red hat","rhel"], "tag_set_two" :["go","golang","rust","llvm","clang"]}},"buzz_tags": ["rhel","rhel7"]},
   "migrationtoolkit": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
 };
