@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.learning_path.body
     - field.field.node.learning_path.field_audience
     - field.field.node.learning_path.field_completion_time
+    - field.field.node.learning_path.field_learning_path_content_item
     - field.field.node.learning_path.field_long_description
     - field.field.node.learning_path.field_related_learning_path_s_
     - field.field.node.learning_path.field_related_product_s_
@@ -28,7 +29,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -45,6 +46,15 @@ content:
     third_party_settings: {  }
     type: interval_default
     region: content
+  field_learning_path_content_item:
+    type: entity_reference_autocomplete
+    weight: 12
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_long_description:
     weight: 2
     settings:
@@ -124,7 +134,7 @@ content:
     region: content
   path:
     type: path
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -132,14 +142,14 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 14
+    weight: 15
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 16
     region: content
     third_party_settings: {  }
   title:
@@ -152,7 +162,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
