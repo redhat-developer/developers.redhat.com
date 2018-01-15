@@ -41,6 +41,14 @@
  * @ingroup themeable
  */
 #}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in',
+    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+    node_type ? 'page-node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+  ]
+%}
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
@@ -285,7 +293,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-lite.js"></script>
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
-<body class="{{ body_classes()|join(' ') }}">
+<body {{ attributes.addClass(body_classes) }}>
  {% if (rhd_environment == 'prod') %}
     <script type="text/javascript">
       dataLayer = [{'channel' : 'developer'}];
