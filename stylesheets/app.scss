@@ -117,6 +117,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "middleware";
 @import "thank-you";
 @import "keycloak-pages";
+@import "learning-paths";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -140,6 +141,18 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
       &:last-child {
         padding-right: 0;
       }
+    }
+  }
+  &.full-width{ 
+    width: 100%; 
+    max-width: 100%!important; //might be needded depending on your settings
+    &>.column:first-child,
+    &>.columns:first-child{ 
+        padding-left: 0; 
+    }
+    &>.column:last-child,
+    &>.columns:last-child{ 
+        padding-right: 0; 
     }
   }
 }
