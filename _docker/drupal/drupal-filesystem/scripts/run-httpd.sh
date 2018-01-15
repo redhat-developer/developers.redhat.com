@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+trap "apachectl -k graceful-stop" TERM INT
+
 cd /var/www/drupal
 
 # This sleep seems to be required for certain Docker/OS combos as the bind mounts may not be fully ready
@@ -21,4 +23,25 @@ rm -rf /run/httpd/*
 chown -R apache:apache /var/www/drupal/web/sites
 chown -R apache:apache /var/www/drupal/web/config/active # just to make sure we can write changes to active
 
-exec /usr/sbin/apachectl -D FOREGROUND
+# Launch Apache as a child-process of this script so we can 'wait' on it
+/usr/sbin/httpd -D FOREGROUND &
+
+# Wait for the Apache pid file to be populated
+until [ -e '/etc/httpd/run/httpd.pid' ]; do
+  sleep 5
+  echo "Waiting for Drupal PID file at '/etc/httpd/run/httpd.pid'"
+done
+
+# Read the pid that Apache is running as
+PID=$(cat /etc/httpd/run/httpd.pid)
+echo "Success: Drupal is running as PID '$PID'"
+
+# We now wait for as long as Apache is running
+wait $PID
+
+# We've been sent an interrupt, remove our traps and make sure we wait for Apache to fully close
+trap - TERM INT
+wait $PID
+
+# Exit with the status code of the Apache process
+exit $?
