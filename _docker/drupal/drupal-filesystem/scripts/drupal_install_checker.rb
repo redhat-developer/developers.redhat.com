@@ -21,148 +21,107 @@ class DrupalInstallChecker
     @opts = opts
   end
 
-  def settings_exists?
-    File.exists? File.join drupal_site, 'settings.php'
+  def prepare_drupal_for_boot
+
+    wait_for_database_to_boot
+    check_all_required_drupal_configuration!
+
+    drush_clear_cache
+    drush_import_config
+    drush_update_db
   end
 
-  def rhd_settings_exists?
-    File.exists? File.join drupal_site, 'rhd.settings.php'
+  private
+
+  def ensure_file_exists!(file_name)
+    expected_file = File.join(@drupal_site, file_name)
+    puts "Checking for presence of required Drupal configuration file '#{expected_file}'..."
+
+    raise StandardError "Required Drupal configuration file '#{expected_file}' is missing. Aborting Drupal boot process." unless File.exists?(expected_file)
+
+    puts "\tFound Drupal configuration file '#{expected_file}.'"
   end
 
-  def mysql_connect?
+  def settings_exists!
+    ensure_file_exists!('settings.php')
+  end
+
+  def rhd_settings_exists!
+    ensure_file_exists!('rhd.settings.php')
+  end
+
+  def wait_for_database_to_boot
+    sleep (5) until database_connect?
+  end
+
+  def database_connect?
+
+    puts "Checking connectivity to database '#{@opts['database']['host']}:#{@opts['database']['port']}'..."
+
     begin
       process_executor.exec! 'mysql', ["--host=#{@opts['database']['host']}",
-                                       "--port=#{@opts['database']['port']}",
-                                       "--user=#{@opts['database']['username']}",
-                                       "--password=#{@opts['database']['password']}",
-                                       '--connect-timeout=20',
-                                       "#{@opts['database']['name']}"]
+      "--port=#{@opts['database']['port']}",
+      "--user=#{@opts['database']['username']}",
+      "--password=#{@opts['database']['password']}",
+      '--connect-timeout=20',
+      "#{@opts['database']['name']}"]
+
+      puts "\tSuccessful connection to database '#{@opts['database']['host']}:#{@opts['database']['port']}'."
       true
     rescue => e
-      puts "ERROR: #{e.message}"
+      puts "Failed to make connection to database '#{@opts['database']['host']}:#{@opts['database']['port']}', reason: #{e.message}"
       false
     end
   end
 
-  def tables_exists?
-    begin
-      tables_to_check = %w(lightning_node lightning_node__body lightning_taxonomy_index)
-      tables = process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
-                                                "--port=#{@opts['database']['port']}",
-                                                "--user=#{@opts['database']['username']}",
-                                                "--password=#{@opts['database']['password']}",
-                                                '--execute=show tables', "#{@opts['database']['name']}"]).split("\n")[1..-1]
-      return false if tables.nil? || tables.empty?
-      (tables_to_check.uniq.sort - tables.uniq.sort).empty?
-    rescue => e
-      puts "ERROR: #{e.message}"
-      false
+  def database_tables_exists!
+    required_tables = %w(lightning_node lightning_node__body lightning_taxonomy_index)
+    puts "Checking for required database tables '#{required_tables}' in Drupal database..."
+
+    tables_in_db = process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
+                                                    "--port=#{@opts['database']['port']}",
+                                                    "--user=#{@opts['database']['username']}",
+                                                    "--password=#{@opts['database']['password']}",
+                                                    '--execute=show tables', "#{@opts['database']['name']}"])
+
+    tables_in_db.split("\n").each do | existing_table |
+      required_tables.delete_if do | required_table |
+        required_table == existing_table.chomp
+      end
     end
+
+    raise StandardError, "Not all required database tables are present. The missing tables are '#{required_tables}'. Aborting boot." unless required_tables.empty?
+    puts "\tAll required database tables are present."
+
   end
 
-  #
-  # This works-around a bug in the workspace module install in staging and production environments. We need to set the
-  # initial id of the row inserted into the workspace table to 1 from 9. In environments where this does not occur e.g
-  # drupal-dev, drupal-pull-request, this method is essentially a null-op
-  #
-  def workaround_workspace_bug
-    process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
-                                     "--port=#{@opts['database']['port']}",
-                                     "--user=#{@opts['database']['username']}",
-                                     "--password=#{@opts['database']['password']}",
-                                     '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"])
+  def check_all_required_drupal_configuration!
+    settings_exists!
+    rhd_settings_exists!
+    database_tables_exists!
   end
 
-  def installed?
-    settings_exists? && rhd_settings_exists? && mysql_connect? && tables_exists?
+  def drush_clear_cache
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
   end
 
-  #
-  # Installs custom configuration for anything 3rd party module that is installed.
-  #
-  def install_module_configuration
-    %w(simple_sitemap).each do | module_name |
-      puts "Installing settings for module #{module_name}..."
-      process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web','config:import:single',"#{module_name}.settings","/var/www/drupal/config/#{module_name}.settings"])
-    end
-  end
-
-  def install_theme
-    puts 'Installing Drupal theme...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(--root=web theme:install --set-default rhd))
-  end
-
-  def install_modules
-    puts 'Installing Drupal modules...'
-    module_install_args = ['--root=web', 'module:install', 'serialization', 'basic_auth', 'basewidget', 'rest',
-                           'layoutmanager', 'hal', 'redhat_developers', 'syslog', 'diff', 'entity',
-                           'entity_storage_migrate', 'key_value', 'multiversion', 'token', 'metatag',
-                           'metatag_google_plus', 'metatag_open_graph', 'metatag_twitter_cards',
-                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools', 'simple_sitemap']
-
-    if @opts['environment'] == 'dev'
-      module_install_args.push(*%w(devel kint))
-    end
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', module_install_args)
-  end
-
-  #
-  # This sets the cron key to a known value for the Drupal instance so that we can invoke cron remotely
-  #
-  def set_cron_key
-    puts 'Setting the cron key...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(--root=web state:override system.cron_key rhd))
-  end
-
-  def install_drupal
-    puts 'Installing Drupal, please wait...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush',
-                           ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
-                            "--db-url=mysql://#{@opts['database']['username']}:#{@opts['database']['password']}@#{@opts['database']['host']}:#{@opts['database']['port']}/#{@opts['database']['name']}",
-                            '--site-name=Red Hat Developers', '--site-mail=test@example.com',
-                            "--account-name=#{@opts['drupal']['admin']['name']}",
-                            "--account-pass=#{@opts['drupal']['admin']['password']}",
-                            "--account-mail=#{@opts['drupal']['admin']['mail']}",
-                            '--config-dir=/var/www/drupal/web/config/sync',
-                            '-y'])
-  end
-
-  def update_db
-    puts 'Executing drush dbup'
+  def drush_update_db
+    puts 'Executing drush dbup...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
+    drush_clear_cache
   end
 
-  def import_config
+  def drush_import_config
+    puts 'Importing latest Drupal configuration...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim))
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
+    drush_clear_cache
   end
+
 end
 
 if $0 == __FILE__
   drupal_site_dir = '/var/www/drupal/web/sites/default'
   opts = YAML.load_file(File.join(drupal_site_dir, 'rhd.settings.yml'))
   checker = DrupalInstallChecker.new(drupal_site_dir, ProcessExecutor.new, opts)
-
-  puts 'Waiting for mysql to boot up...'
-  mysql_up = false
-
-  until mysql_up
-    mysql_up = checker.mysql_connect?
-    sleep(3)
-  end
-
-  if checker.installed?
-    puts 'Updating configuration...'
-    checker.update_db
-    checker.import_config
-  else
-    checker.install_drupal
-    # checker.install_theme
-    # checker.install_modules
-    # checker.install_module_configuration
-    checker.set_cron_key
-    # checker.import_config
-    checker.workaround_workspace_bug
-  end
+  checker.prepare_drupal_for_boot
 end
