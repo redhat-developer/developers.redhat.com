@@ -24,10 +24,7 @@ skips:
   - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/boms\/eap\/jboss-javaee\-(.*)/
 
   # the below pages need to be ignored in the PR environment due to missing re-directs in the PR environment
-  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/openshift\//
-  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/fuse\//
-  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/softwarecollections\//
-  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/devstudio\//
+  - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/(.*)\//
 
 ignores:
   - code: 202
