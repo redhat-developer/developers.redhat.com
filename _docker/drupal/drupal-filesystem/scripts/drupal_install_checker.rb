@@ -24,7 +24,7 @@ class DrupalInstallChecker
   def prepare_drupal_for_boot
 
     wait_for_database_to_boot
-    check_all_required_drupal_configuration!
+    check_all_required_drupal_configuration
 
     drush_cache_rebuild
     drush_config_import
@@ -95,7 +95,7 @@ class DrupalInstallChecker
 
   end
 
-  def check_all_required_drupal_configuration!
+  def check_all_required_drupal_configuration
     settings_exists
     rhd_settings_exists
     database_tables_exists
