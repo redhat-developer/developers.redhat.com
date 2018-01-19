@@ -40,6 +40,7 @@ skips:
   - https://pubs.vmware.com/workstation-12/index.jsp#com.vmware.ws.using.doc/GUID-0CE1AE01-7E79-41BB-9EA8-4F839BE40E1A.html
   - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
   - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
+  - !ruby/regexp /^https:\/\/developers\.redhat\.com\/download-manager\/file\/(.*)/
   
 ignores:
   - code: 202
@@ -52,6 +53,11 @@ ignores:
   - url: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
   - url: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
+  - url: https://xx.x.x.x:8443
+  # Blinkr can't follow the redirect on the below pages for some reason - will be fixed in a future release of blinkr
+  - url: https://www-admin.corp.redhat.com/en/about/press-releases/red-hat-delivers-latest-stable-developer-tools-newest-installment-red-hat-software-collections
+  - url: https://developers.redhat.com/register
+  - url: https://developers.redhat.com/login
 
 max_page_retys: 5
 max_retrys: 5

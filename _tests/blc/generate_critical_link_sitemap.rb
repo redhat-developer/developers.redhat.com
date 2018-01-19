@@ -7,7 +7,7 @@ class SiteMapGenerator
     @host_to_test = host_to_test
     @test_dir = test_dir
     @critical_links = []
-    File.open("#{@test_dir}/critical-links.txt", 'r').each_line do |line|
+    File.open("#{@test_dir}/../../_docker/lib/export/critical-pages.txt", 'r').each_line do |line|
       temp = line.chop.split("\t")
       @critical_links << temp[0]
     end
@@ -23,6 +23,14 @@ class SiteMapGenerator
       @critical_links.each do |url|
         builder.url {
           builder.loc("#{@host_to_test}/#{url}")
+          builder.lastmod(time.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
+        }
+      end
+      # we need to check the two links on http://jboss.org
+      jboss_links = %w(https://developer.jboss.org https://developers.redhat.com/middleware/?referrer=jbd)
+      jboss_links.each do |url|
+        builder.url {
+          builder.loc(url)
           builder.lastmod(time.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
         }
       end
