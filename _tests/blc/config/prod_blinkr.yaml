@@ -53,6 +53,11 @@ ignores:
   - url: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
   - url: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
+  - url: https://xx.x.x.x:8443
+  # Blinkr can't follow the redirect on the below pages for some reason - will be fixed in a future release of blinkr
+  - url: https://www-admin.corp.redhat.com/en/about/press-releases/red-hat-delivers-latest-stable-developer-tools-newest-installment-red-hat-software-collections
+  - url: https://developers.redhat.com/register
+  - url: https://developers.redhat.com/login
 
 max_page_retys: 5
 max_retrys: 5
