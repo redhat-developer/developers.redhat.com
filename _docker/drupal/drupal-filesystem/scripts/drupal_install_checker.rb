@@ -33,7 +33,7 @@ class DrupalInstallChecker
 
   private
 
-  def ensure_file_exists!(file_name)
+  def ensure_file_exists(file_name)
     expected_file = File.join(@drupal_site, file_name)
     puts "Checking for presence of required Drupal configuration file '#{expected_file}'..."
 
@@ -42,12 +42,12 @@ class DrupalInstallChecker
     puts "\tFound Drupal configuration file '#{expected_file}.'"
   end
 
-  def settings_exists!
-    ensure_file_exists!('settings.php')
+  def settings_exists
+    ensure_file_exists('settings.php')
   end
 
-  def rhd_settings_exists!
-    ensure_file_exists!('rhd.settings.php')
+  def rhd_settings_exists
+    ensure_file_exists('rhd.settings.php')
   end
 
   def wait_for_database_to_boot
@@ -74,7 +74,7 @@ class DrupalInstallChecker
     end
   end
 
-  def database_tables_exists!
+  def database_tables_exists
     required_tables = %w(lightning_node lightning_node__body lightning_taxonomy_index)
     puts "Checking for required database tables '#{required_tables}' in Drupal database..."
 
@@ -96,9 +96,9 @@ class DrupalInstallChecker
   end
 
   def check_all_required_drupal_configuration!
-    settings_exists!
-    rhd_settings_exists!
-    database_tables_exists!
+    settings_exists
+    rhd_settings_exists
+    database_tables_exists
   end
 
   def drush_clear_cache
