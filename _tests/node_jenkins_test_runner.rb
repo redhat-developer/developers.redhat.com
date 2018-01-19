@@ -1,5 +1,7 @@
 require_relative '../_docker/lib/process_runner'
+require_relative '../_docker/lib/default_logger'
 require 'fileutils'
+
 #
 # This class wraps a number of calls to _docker/control.rb to allow us to run the e2e tests with a number of profiles
 # or broken-link checks, and then amalgamate the result into a generalised fail or pass.
@@ -11,6 +13,7 @@ class NodeJenkinsTestRunner
     @host_to_test = host_to_test
     @control_script_directory = control_script_directory
     @process_runner = process_runner
+    @log = DefaultLogger.logger
   end
 
   #
@@ -22,8 +25,12 @@ class NodeJenkinsTestRunner
       %w(desktop mobile).each do |profile|
         tests_passed &= execute_e2e(profile)
       end
-    else
+    elsif @test_type == 'blc'
       tests_passed &= execute_blc
+    elsif @test_type == 'sanity'
+      tests_passed &= execute_critical_page_checks
+    else
+      raise(StandardError, "#{@test_type} is not a recognised test type, please check and try again")
     end
     tests_passed
   end
@@ -54,10 +61,6 @@ class NodeJenkinsTestRunner
   # Execute the blc checks, if critical link checks fail it will bail and fail build
   #
   def execute_blc
-    if @host_to_test.to_s.include?('pr.stage')
-      result = execute_critical_link_checks
-      raise('Critical link checks failed, bailing . . .') unless result.eql?(true)
-    end
     success = true
     test_execution_command = build_blc_run_tests_command
     begin
@@ -70,9 +73,25 @@ class NodeJenkinsTestRunner
   end
 
   #
-  # Generate critical links sitemap.xml
+  # Execute the critical page checks
   #
-  def generate_critical_link_sitemap
+  def execute_critical_page_checks
+    generate_critical_page_sitemap
+    result = true
+    test_execution_command = build_blc_run_tests_command
+    begin
+      @process_runner.execute!(test_execution_command)
+    rescue
+      puts 'Critical page link checks failed.'
+      result = false
+    end
+    result
+  end
+
+  #
+  # Generate critical pages sitemap.xml
+  #
+  def generate_critical_page_sitemap
     success = true
     cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
     begin
@@ -82,22 +101,6 @@ class NodeJenkinsTestRunner
       success = false
     end
     success
-  end
-
-  #
-  # Execute the critical link checks
-  #
-  def execute_critical_link_checks
-    generate_critical_link_sitemap
-    result = true
-    test_execution_command = build_blc_run_tests_command('config/critical_links_blinkr.yaml')
-    begin
-      @process_runner.execute!(test_execution_command)
-    rescue
-      puts 'Critical link checks failed.'
-      result = false
-    end
-    result
   end
 
   #
@@ -145,9 +148,9 @@ class NodeJenkinsTestRunner
   # Builds the command to use to execute the broken-link checks, including whether or not
   # we should send updates to GitHub
   #
-  def build_blc_run_tests_command(*_config)
+  def build_blc_run_tests_command
     github_sha1 = read_env_variable('ghprbActualCommit')
-    config = _config[0] ? _config[0] : read_env_variable('CONFIG')
+    config = read_env_variable('CONFIG')
     command = "ruby _tests/run_tests.rb --blc -c #{config} --base-url=#{@host_to_test}"
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --use-docker'
@@ -165,7 +168,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w[blc e2e kc_e2e]
+  available_test_types = %w[blc e2e kc_e2e sanity]
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"
