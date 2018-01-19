@@ -26,9 +26,9 @@ class DrupalInstallChecker
     wait_for_database_to_boot
     check_all_required_drupal_configuration!
 
-    drush_clear_cache
-    drush_import_config
-    drush_update_db
+    drush_cache_rebuild
+    drush_config_import
+    drush_updb
   end
 
   private
@@ -101,20 +101,20 @@ class DrupalInstallChecker
     database_tables_exists
   end
 
-  def drush_clear_cache
+  def drush_cache_rebuild
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
   end
 
-  def drush_update_db
-    puts 'Executing drush dbup...'
+  def drush_updb
+    puts 'Executing drush updb...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
-    drush_clear_cache
+    drush_cache_rebuild
   end
 
-  def drush_import_config
+  def drush_config_import
     puts 'Importing latest Drupal configuration...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim))
-    drush_clear_cache
+    drush_cache_rebuild
   end
 
 end
