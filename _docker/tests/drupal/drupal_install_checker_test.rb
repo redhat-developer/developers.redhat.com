@@ -9,221 +9,92 @@ class DrupalInstallCheckerTest < Minitest::Test
     @process_exec = MiniTest::Mock.new
     @opts = yaml_opts_prod
     @install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, @opts)
+
+    FileUtils.touch File.join @drupal_site, 'settings.php'
+    FileUtils.touch File.join @drupal_site, 'rhd.settings.php'
+
   end
 
   def teardown
     FileUtils.remove_entry_secure @drupal_site
   end
 
-  def test_settings_exists_when_true
-    settings_file = File.join @drupal_site, 'settings.php'
+  def test_should_fail_if_settings_php_missing
 
-    FileUtils.touch settings_file
-    assert @install_checker.settings_exists?
-  end
-
-  def test_settings_exists_when_false
-    refute @install_checker.settings_exists?
-  end
-
-  def test_rhd_settings_exists_when_true
-    settings_file = File.join @drupal_site, 'rhd.settings.php'
-
-    FileUtils.touch settings_file
-    assert @install_checker.rhd_settings_exists?
-  end
-
-  def test_workaround_workspace_bug
     @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
                                                   "--port=#{@opts['database']['port']}",
                                                   "--user=#{@opts['database']['username']}",
                                                   "--password=#{@opts['database']['password']}",
-                                                  '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"]]
+                                                  '--connect-timeout=20', "#{@opts['database']['name']}"]]
+    expected_file = File.join @drupal_site, 'settings.php'
+    FileUtils.rm_rf expected_file
 
-    assert @install_checker.workaround_workspace_bug
+    assert_raises(StandardError, "Required Drupal configuration file '#{expected_file}' is missing. Aborting Drupal boot process.") {
+      @install_checker.prepare_drupal_for_boot
+    }
+
   end
 
-  def test_rhd_settings_exists_when_false
-    refute @install_checker.rhd_settings_exists?
+  def test_should_fail_if_rhd_settings_missing
+    @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
+                                                  "--port=#{@opts['database']['port']}",
+                                                  "--user=#{@opts['database']['username']}",
+                                                  "--password=#{@opts['database']['password']}",
+                                                  '--connect-timeout=20', "#{@opts['database']['name']}"]]
+    expected_file = File.join @drupal_site, 'rhd.settings.php'
+    FileUtils.rm_rf expected_file
+
+    assert_raises(StandardError, "Required Drupal configuration file '#{expected_file}' is missing. Aborting Drupal boot process.") {
+      @install_checker.prepare_drupal_for_boot
+    }
+
   end
 
-  def test_mysql_connect_when_true
+  def test_should_fail_if_db_table_missing
 
     @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
-                                                 "--port=#{@opts['database']['port']}",
-                                                 "--user=#{@opts['database']['username']}",
-                                                 "--password=#{@opts['database']['password']}",
-                                                 '--connect-timeout=20', "#{@opts['database']['name']}"]]
-    assert @install_checker.mysql_connect?
-    assert @process_exec.verify
+                                                  "--port=#{@opts['database']['port']}",
+                                                  "--user=#{@opts['database']['username']}",
+                                                  "--password=#{@opts['database']['password']}",
+                                                  '--connect-timeout=20', "#{@opts['database']['name']}"]]
+
+    found_db_tables = "Tables_in_drupal\nlightning_node\nlightning_taxonomy_index"
+    @process_exec.expect :exec!, found_db_tables, ['mysql', ["--host=#{@opts['database']['host']}",
+                                                              "--port=#{@opts['database']['port']}",
+                                                              "--user=#{@opts['database']['username']}",
+                                                              "--password=#{@opts['database']['password']}",
+                                                              '--execute=show tables', "#{@opts['database']['name']}"]]
+
+    assert_raises(StandardError, "Not all required database tables are present. The missing tables are '[\"lightning_node__body\"]'. Aborting boot.") {
+      @install_checker.prepare_drupal_for_boot
+    }
   end
 
-  def test_mysql_connect_when_false
-    @process_exec.expect(:exec!, false) do |db, args|
-      raise 'Cannot connect to db'
-    end
+  def test_should_fully_prepare_drupal_for_boot
+    @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
+                                                  "--port=#{@opts['database']['port']}",
+                                                  "--user=#{@opts['database']['username']}",
+                                                  "--password=#{@opts['database']['password']}",
+                                                  '--connect-timeout=20', "#{@opts['database']['name']}"]]
 
-    assert_output("ERROR: Cannot connect to db\n", '') do
-      refute @install_checker.mysql_connect?
-      assert @process_exec.verify
-    end
-  end
+    found_db_tables = "Tables_in_drupal\nlightning_node\nlightning_node__body\nlightning_taxonomy_index"
 
-  def test_tables_exists_when_true
-    tables_to_expect = "Tables_in_drupal\nbatch\nblock_content\nblock_content__body\nblock_content_field_data\nblock_content_field_revision\nblock_content_revision\nblock_content_revision__body\ncache_bootstrap\ncache_config\ncache_container\ncache_data\ncache_default\ncache_discovery\ncache_dynamic_page_cache\ncache_entity\ncache_menu\ncache_render\ncache_rest\ncache_toolbar\ncachetags\nlightning_comment\ncomment__comment_body\ncomment_entity_statistics\ncomment_field_data\nconfig\nfile_managed\nfile_usage\nflood\nhistory\nkey_value\nkey_value_expire\nmenu_link_content\nmenu_link_content_data\nmenu_tree\nlightning_node\nlightning_node__body\nnode__comment\nnode__field_blue_card_description\nnode__field_blue_card_links\nnode__field_blue_card_title\nnode__field_bottom_left_white_card\nnode__field_bottom_right_white_card\nnode__field_container_external_link\nnode__field_container_tags\nnode__field_containers_short_summary\nnode__field_description\nnode__field_green_card\nnode__field_grey_card\nnode__field_id\nnode__field_image\nnode__field_orange_card\nnode__field_solution_name\nnode__field_solution_tag_line\nnode__field_tags\nnode__field_top_left_white_card\nnode__field_top_right_white_card\nnode__field_topic_sub_title\nnode_access\nnode_field_data\nnode_field_revision\nnode_revision\nnode_revision__body\nnode_revision__comment\nnode_revision__field_blue_card_description\nnode_revision__field_blue_card_links\nnode_revision__field_blue_card_title\nnode_revision__field_bottom_left_white_card\nnode_revision__field_bottom_right_white_card\nnode_revision__field_container_external_link\nnode_revision__field_container_tags\nnode_revision__field_containers_short_summary\nnode_revision__field_description\nnode_revision__field_green_card\nnode_revision__field_grey_card\nnode_revision__field_id\nnode_revision__field_image\nnode_revision__field_orange_card\nnode_revision__field_solution_name\nnode_revision__field_solution_tag_line\nnode_revision__field_tags\nnode_revision__field_top_left_white_card\nnode_revision__field_top_right_white_card\nnode_revision__field_topic_sub_title\nqueue\nrouter\nsearch_dataset\nsearch_index\nsearch_total\nsemaphore\nsequences\nsessions\nshortcut\nshortcut_field_data\nshortcut_set_users\nlightning_taxonomy_index\ntaxonomy_term_data\ntaxonomy_term_field_data\ntaxonomy_term_hierarchy\nurl_alias\nuser__roles\nuser__user_picture\nusers\nusers_data\nusers_field_data\nwatchdog\n"
-
-    @process_exec.expect :exec!, tables_to_expect, ['mysql', ["--host=#{@opts['database']['host']}",
+    @process_exec.expect :exec!, found_db_tables, ['mysql', ["--host=#{@opts['database']['host']}",
                                                              "--port=#{@opts['database']['port']}",
                                                              "--user=#{@opts['database']['username']}",
                                                              "--password=#{@opts['database']['password']}",
                                                              '--execute=show tables', "#{@opts['database']['name']}"]]
-    assert @install_checker.tables_exists?
-    assert @process_exec.verify
-  end
-
-  def test_tables_exists_when_false
-
-    @process_exec.expect :exec!, '', ['mysql', ["--host=#{@opts['database']['host']}",
-                                               "--port=#{@opts['database']['port']}",
-                                               "--user=#{@opts['database']['username']}",
-                                               "--password=#{@opts['database']['password']}",
-                                               '--execute=show tables', "#{@opts['database']['name']}"]]
-    refute @install_checker.tables_exists?
-    assert @process_exec.verify
-  end
-
-  def test_installed_when_true
-
-    tables_to_expect = "Tables_in_drupal\nbatch\nblock_content\nblock_content__body\nblock_content_field_data\nblock_content_field_revision\nblock_content_revision\nblock_content_revision__body\ncache_bootstrap\ncache_config\ncache_container\ncache_data\ncache_default\ncache_discovery\ncache_dynamic_page_cache\ncache_entity\ncache_menu\ncache_render\ncache_rest\ncache_toolbar\ncachetags\nlightning_comment\ncomment__comment_body\ncomment_entity_statistics\ncomment_field_data\nconfig\nfile_managed\nfile_usage\nflood\nhistory\nkey_value\nkey_value_expire\nmenu_link_content\nmenu_link_content_data\nmenu_tree\nlightning_node\nlightning_node__body\nnode__comment\nnode__field_blue_card_description\nnode__field_blue_card_links\nnode__field_blue_card_title\nnode__field_bottom_left_white_card\nnode__field_bottom_right_white_card\nnode__field_container_external_link\nnode__field_container_tags\nnode__field_containers_short_summary\nnode__field_description\nnode__field_green_card\nnode__field_grey_card\nnode__field_id\nnode__field_image\nnode__field_orange_card\nnode__field_solution_name\nnode__field_solution_tag_line\nnode__field_tags\nnode__field_top_left_white_card\nnode__field_top_right_white_card\nnode__field_topic_sub_title\nnode_access\nnode_field_data\nnode_field_revision\nnode_revision\nnode_revision__body\nnode_revision__comment\nnode_revision__field_blue_card_description\nnode_revision__field_blue_card_links\nnode_revision__field_blue_card_title\nnode_revision__field_bottom_left_white_card\nnode_revision__field_bottom_right_white_card\nnode_revision__field_container_external_link\nnode_revision__field_container_tags\nnode_revision__field_containers_short_summary\nnode_revision__field_description\nnode_revision__field_green_card\nnode_revision__field_grey_card\nnode_revision__field_id\nnode_revision__field_image\nnode_revision__field_orange_card\nnode_revision__field_solution_name\nnode_revision__field_solution_tag_line\nnode_revision__field_tags\nnode_revision__field_top_left_white_card\nnode_revision__field_top_right_white_card\nnode_revision__field_topic_sub_title\nqueue\nrouter\nsearch_dataset\nsearch_index\nsearch_total\nsemaphore\nsequences\nsessions\nshortcut\nshortcut_field_data\nshortcut_set_users\nlightning_taxonomy_index\ntaxonomy_term_data\ntaxonomy_term_field_data\ntaxonomy_term_hierarchy\nurl_alias\nuser__roles\nuser__user_picture\nusers\nusers_data\nusers_field_data\nwatchdog\n"
-    @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
-                                                 "--port=#{@opts['database']['port']}",
-                                                 "--user=#{@opts['database']['username']}",
-                                                 "--password=#{@opts['database']['password']}",
-                                                 '--connect-timeout=20', "#{@opts['database']['name']}"]]
-    @process_exec.expect :exec!, tables_to_expect, ['mysql', ["--host=#{@opts['database']['host']}",
-                                                   "--port=#{@opts['database']['port']}",
-                                                   "--user=#{@opts['database']['username']}",
-                                                   "--password=#{@opts['database']['password']}",
-                                                   '--execute=show tables', "#{@opts['database']['name']}"]]
-
-    settings_file = File.join @drupal_site, 'settings.php'
-    rhd_settings_file = File.join @drupal_site, 'rhd.settings.php'
-
-    FileUtils.touch settings_file
-    FileUtils.touch rhd_settings_file
-
-    assert @install_checker.installed?
-    assert @process_exec.verify
-
-  end
-
-  def test_set_cron_key
-    @process_exec.expect(:exec!, nil,['/var/www/drupal/vendor/bin/drupal',%w(--root=web state:override system.cron_key rhd)])
-    @install_checker.set_cron_key
-  end
-
-  def test_install_theme
-    @process_exec.expect(:exec!, nil,['/var/www/drupal/vendor/bin/drupal',%w(--root=web theme:install --set-default rhd)])
-    @install_checker.install_theme
-  end
-
-  def test_install_modules_for_dev
-
-    opts = yaml_opts_dev
-    install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
-
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install',
-                                                                             'serialization', 'basic_auth',
-                                                                             'basewidget', 'rest', 'layoutmanager',
-                                                                             'hal', 'redhat_developers', 'syslog',
-                                                                             'diff', 'entity',
-                                                                             'entity_storage_migrate', 'key_value',
-                                                                             'multiversion', 'token', 'metatag',
-                                                                             'metatag_google_plus',
-                                                                             'metatag_open_graph',
-                                                                             'metatag_twitter_cards',
-                                                                             'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap',
-                                                                              'devel', 'kint']]
 
 
-    install_checker.install_modules
-  end
+    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
+    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web -y cim)]
+    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
+    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(-y --root=/var/www/drupal/web --entity-updates updb)]
+    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
 
-  def test_install_modules_for_prod
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install',
-                                                                            'serialization', 'basic_auth',
-                                                                            'basewidget', 'rest', 'layoutmanager',
-                                                                            'hal', 'redhat_developers', 'syslog',
-                                                                            'diff', 'entity',
-                                                                            'entity_storage_migrate', 'key_value',
-                                                                            'multiversion', 'token', 'metatag',
-                                                                            'metatag_google_plus',
-                                                                            'metatag_open_graph',
-                                                                            'metatag_twitter_cards',
-                                                                            'metatag_verification', 'admin_toolbar',
-                                                                            'admin_toolbar_tools','simple_sitemap']]
+    @install_checker.prepare_drupal_for_boot
 
-    @install_checker.install_modules
-  end
 
-  def test_install_module_configuration
-    @process_exec.expect(:exec!, nil,['/var/www/drupal/vendor/bin/drupal',%w(--root=web config:import:single simple_sitemap.settings /var/www/drupal/config/simple_sitemap.settings)])
-    @install_checker.install_module_configuration
-  end
-
-  def test_installing_for_dev
-
-      opts = yaml_opts_dev
-      install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
-
-      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                         ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
-                                          "--db-url=mysql://#{opts['database']['username']}:#{opts['database']['password']}@#{opts['database']['host']}:#{opts['database']['port']}/#{opts['database']['name']}",
-                                          '--site-name=Red Hat Developers', '--site-mail=test@example.com',
-                                          "--account-name=#{opts['drupal']['admin']['name']}",
-                                          "--account-pass=#{opts['drupal']['admin']['password']}",
-                                          "--account-mail=#{opts['drupal']['admin']['mail']}",
-                                          '--config-dir=/var/www/drupal/web/config/sync',
-                                          '-y']]
-      install_checker.install_drupal
-  end
-
-  def test_installing_for_prod
-    opts = yaml_opts_prod
-    install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
-
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
-                                        "--db-url=mysql://#{opts['database']['username']}:#{opts['database']['password']}@#{opts['database']['host']}:#{opts['database']['port']}/#{opts['database']['name']}",
-                                        '--site-name=Red Hat Developers', '--site-mail=test@example.com',
-                                        "--account-name=#{opts['drupal']['admin']['name']}",
-                                        "--account-pass=#{opts['drupal']['admin']['password']}",
-                                        "--account-mail=#{opts['drupal']['admin']['mail']}",
-                                        '--config-dir=/var/www/drupal/web/config/sync',
-                                        '-y']]
-
-    install_checker.install_drupal
-  end
-
-  def test_update_db
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(-y --root=/var/www/drupal/web --entity-updates updb)]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web cr)]
-
-    @install_checker.update_db
-    @process_exec.verify
-  end
-
-  def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web -y cim)]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web cr)]
-
-    @install_checker.import_config
-    @process_exec.verify
   end
 
   def yaml_opts_prod
@@ -244,23 +115,5 @@ yml
     YAML.load opts
   end
 
-  def yaml_opts_dev
-    opts = <<yml
-environment: dev
-database:
-  host:  dev.example.com
-  port: '3306'
-  username: 'test'
-  password: 'password'
-  name: 'drupal-dev'
-drupal:
-  admin:
-    name: 'admin'
-    password: 'admin'
-    mail: 'admin@example.com'
-yml
-    YAML.load opts
-  end
-
-  private :yaml_opts_prod, :yaml_opts_dev
+  private :yaml_opts_prod
 end
