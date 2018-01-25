@@ -1,0 +1,21 @@
+uuid: 2737fb85-981e-45c8-8c06-d9aa87bb989e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_para_download_imp_info
+    - paragraphs.paragraphs_type.download
+  module:
+    - text
+id: paragraph.download.field_para_download_imp_info
+field_name: field_para_download_imp_info
+entity_type: paragraph
+bundle: download
+label: 'Important Information'
+description: 'Text entered here will appear ABOVE the "Try It" section in the web page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

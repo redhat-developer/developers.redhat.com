@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.download.field_overview_main_content
     - field.field.paragraph.download.field_overview_url
     - field.field.paragraph.download.field_page_description
+    - field.field.paragraph.download.field_para_download_imp_info
     - field.field.paragraph.download.field_subscription_link
     - field.field.paragraph.download.field_upstream_section
     - field.field.paragraph.download.field_xpaas_link
@@ -24,7 +25,7 @@ bundle: download
 mode: default
 content:
   field_offer_subscription:
-    weight: 3
+    weight: 4
     settings:
       display_label: true
     third_party_settings: {  }
@@ -38,7 +39,7 @@ content:
     type: boolean_checkbox
     region: content
   field_overview_main_content:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -53,8 +54,16 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_para_download_imp_info:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_subscription_link:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -62,7 +71,7 @@ content:
     type: link_default
     region: content
   field_upstream_section:
-    weight: 5
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
@@ -70,7 +79,7 @@ content:
     type: text_textarea
     region: content
   field_xpaas_link:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
