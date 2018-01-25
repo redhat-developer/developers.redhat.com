@@ -1,0 +1,20 @@
+uuid: 0ed7de2f-dd4f-4384-b68a-0b9b8fd914e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rh_certification_exam.field_completion_time
+    - node.type.rh_certification_exam
+  module:
+    - user
+id: node.rh_certification_exam.teaser
+targetEntityType: node
+bundle: rh_certification_exam
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_completion_time: true

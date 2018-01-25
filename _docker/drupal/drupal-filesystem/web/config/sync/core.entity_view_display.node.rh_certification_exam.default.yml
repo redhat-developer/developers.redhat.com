@@ -1,15 +1,15 @@
-uuid: 873f8ce5-56bd-4fd2-bfff-69d050262ff6
+uuid: ddf7600b-00e2-4067-8875-cb19b6cb844c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.rh_training_class.field_completion_time
-    - field.field.node.rh_training_class.field_exclude_from_search
-    - field.field.node.rh_training_class.field_level
-    - field.field.node.rh_training_class.field_long_description
-    - field.field.node.rh_training_class.field_short_description
-    - field.field.node.rh_training_class.field_source_link
-    - node.type.rh_training_class
+    - field.field.node.rh_certification_exam.field_completion_time
+    - field.field.node.rh_certification_exam.field_exclude_from_search
+    - field.field.node.rh_certification_exam.field_level
+    - field.field.node.rh_certification_exam.field_long_description
+    - field.field.node.rh_certification_exam.field_short_description
+    - field.field.node.rh_certification_exam.field_source_link
+    - node.type.rh_certification_exam
   module:
     - interval
     - link
@@ -23,13 +23,13 @@ third_party_settings:
     custom: false
     allow: false
     default: default
-id: node.rh_training_class.default
+id: node.rh_certification_exam.default
 targetEntityType: node
-bundle: rh_training_class
+bundle: rh_certification_exam
 mode: default
 content:
   field_completion_time:
-    weight: 106
+    weight: 102
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -46,28 +46,28 @@ content:
     type: boolean
     region: content
   field_level:
-    weight: 105
+    weight: 103
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_long_description:
-    weight: 103
+    weight: 104
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_short_description:
-    weight: 102
+    weight: 105
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_source_link:
-    weight: 104
+    weight: 106
     label: hidden
     settings:
       trim_length: 80

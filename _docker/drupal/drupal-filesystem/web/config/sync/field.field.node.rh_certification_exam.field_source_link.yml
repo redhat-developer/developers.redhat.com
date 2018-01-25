@@ -1,0 +1,23 @@
+uuid: 30e1a385-d897-4211-a21b-e095cfca85e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_link
+    - node.type.rh_certification_exam
+  module:
+    - link
+id: node.rh_certification_exam.field_source_link
+field_name: field_source_link
+entity_type: node
+bundle: rh_certification_exam
+label: URL
+description: 'Link to the certification exam on redhat.com'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

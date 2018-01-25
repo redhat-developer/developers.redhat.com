@@ -1,0 +1,23 @@
+uuid: 579c5112-c8f8-4d1f-9c0b-e31ff96c6dba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_search
+    - node.type.rh_training_class
+id: node.rh_training_class.field_exclude_from_search
+field_name: field_exclude_from_search
+entity_type: node
+bundle: rh_training_class
+label: 'Exclude from search'
+description: 'Select to exclude this page from the Search page results.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

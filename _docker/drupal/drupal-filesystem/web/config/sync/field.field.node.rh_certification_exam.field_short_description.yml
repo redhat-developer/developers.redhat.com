@@ -1,0 +1,19 @@
+uuid: 9c860776-48e0-4d51-a508-a11ad8e6be9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.rh_certification_exam
+id: node.rh_certification_exam.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: rh_certification_exam
+label: 'Short Description'
+description: 'Describe the learning path in 140 characters or less'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
