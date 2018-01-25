@@ -227,7 +227,7 @@ $(function() {
 
   if($productDownloads && productCode) {
     $.getJSON(app.downloads.url + productCode,function(data) {
-      if(!data.length) {
+      if(!data.length || !data[0].productVersions.length || !data[0].featuredArtifact) {
         $("div.download-loading").removeClass('loading');
         $('.no-download').show();
         return;
