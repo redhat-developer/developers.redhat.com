@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var RHDPAlert = (function (_super) {
+var RHDPAlert = /** @class */ (function (_super) {
     __extends(RHDPAlert, _super);
     function RHDPAlert() {
         var _this = _super.call(this) || this;
@@ -107,7 +107,7 @@ var RHDPAlert = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-alert', RHDPAlert);
 });
-var RHDPOSDownload = (function (_super) {
+var RHDPOSDownload = /** @class */ (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
         var _this = _super.call(this) || this;
@@ -300,7 +300,7 @@ var RHDPOSDownload = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-os-download', RHDPOSDownload);
 });
-var RHDPThankyou = (function (_super) {
+var RHDPThankyou = /** @class */ (function (_super) {
     __extends(RHDPThankyou, _super);
     function RHDPThankyou() {
         var _this = _super.call(this) || this;
@@ -384,7 +384,7 @@ var RHDPThankyou = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-thankyou', RHDPThankyou);
 });
-var RHDPTryItNow = (function (_super) {
+var RHDPTryItNow = /** @class */ (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
         var _this = _super.call(this) || this;
@@ -503,7 +503,7 @@ var RHDPTryItNow = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-tryitnow', RHDPTryItNow);
 });
-var DevNationLiveSession = (function () {
+var DevNationLiveSession = /** @class */ (function () {
     function DevNationLiveSession(obj) {
         var _this = this;
         this._title = '';
@@ -638,7 +638,7 @@ var DevNationLiveSession = (function () {
     });
     return DevNationLiveSession;
 }());
-var DevNationLiveSpeaker = (function () {
+var DevNationLiveSpeaker = /** @class */ (function () {
     function DevNationLiveSpeaker(obj) {
         var _this = this;
         this._name = '';
@@ -686,7 +686,7 @@ var DevNationLiveSpeaker = (function () {
     });
     return DevNationLiveSpeaker;
 }());
-var DevNationLiveApp = (function (_super) {
+var DevNationLiveApp = /** @class */ (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
         var _this = _super.call(this) || this;
@@ -901,7 +901,7 @@ var DevNationLiveApp = (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-var RHDPDownloadsAllItem = (function (_super) {
+var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
@@ -1063,7 +1063,7 @@ var RHDPDownloadsAllItem = (function (_super) {
     };
     return RHDPDownloadsAllItem;
 }(HTMLElement));
-var RHDPDownloadsAll = (function (_super) {
+var RHDPDownloadsAll = /** @class */ (function (_super) {
     __extends(RHDPDownloadsAll, _super);
     function RHDPDownloadsAll() {
         var _this = _super.call(this) || this;
@@ -1146,7 +1146,7 @@ var RHDPDownloadsAll = (function (_super) {
     };
     return RHDPDownloadsAll;
 }(HTMLElement));
-var RHDPDownloadsApp = (function (_super) {
+var RHDPDownloadsApp = /** @class */ (function (_super) {
     __extends(RHDPDownloadsApp, _super);
     function RHDPDownloadsApp() {
         var _this = _super.call(this) || this;
@@ -1220,7 +1220,7 @@ var RHDPDownloadsApp = (function (_super) {
     };
     return RHDPDownloadsApp;
 }(HTMLElement));
-var RHDPDownloadsPopularProduct = (function (_super) {
+var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
     __extends(RHDPDownloadsPopularProduct, _super);
     function RHDPDownloadsPopularProduct() {
         var _this = _super.call(this) || this;
@@ -1297,7 +1297,7 @@ var RHDPDownloadsPopularProduct = (function (_super) {
     };
     return RHDPDownloadsPopularProduct;
 }(HTMLElement));
-var RHDPDownloadsPopularProducts = (function (_super) {
+var RHDPDownloadsPopularProducts = /** @class */ (function (_super) {
     __extends(RHDPDownloadsPopularProducts, _super);
     function RHDPDownloadsPopularProducts() {
         return _super.call(this) || this;
@@ -1343,7 +1343,7 @@ var RHDPDownloadsPopularProducts = (function (_super) {
     };
     return RHDPDownloadsPopularProducts;
 }(HTMLElement));
-var RHDPDownloadsProducts = (function (_super) {
+var RHDPDownloadsProducts = /** @class */ (function (_super) {
     __extends(RHDPDownloadsProducts, _super);
     function RHDPDownloadsProducts() {
         var _this = _super.call(this) || this;
@@ -1575,7 +1575,807 @@ customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProd
 customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
 customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
 customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
-var RHDPSearchBox = (function (_super) {
+var RHDPProjectFilterBox = /** @class */ (function (_super) {
+    __extends(RHDPProjectFilterBox, _super);
+    function RHDPProjectFilterBox() {
+        var _this = _super.call(this) || this;
+        _this._term = '';
+        _this._filter = '';
+        _this.template = function (strings, project) {
+            return "\n        <form action=\"\" class=\"project-filters\" method=\"GET\" data-drupal-form-fields=\"\">\n            <h4>Filters<a class=\"project-filters-clear\" href=\"#\">Clear All Filters</a></h4>\n            <input name=\"filter-text\" placeholder=\"Filter by keyword\" type=\"text\" value=\"" + project.term + "\">\n            <div class=\"filter-block\">\n                <h5>Included In</h5>\n        \n                <div class=\"styled-select\" ><select name=\"filter-products\" id=\"upstream-project-selection\">\n                    <option value=\"\">Select Product...</option>\n                    <option value=\"amq\">Red Hat JBoss AMQ</option>\n                    <option value=\"bpmsuite\">Red Hat JBoss BPM Suite</option>\n                    <option value=\"brms\">Red Hat JBoss BRMS</option>\n                    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n                    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n                    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n                    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n                    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n                    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n                    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n                </select></div>\n            </div>\n        </form>\n";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPProjectFilterBox.prototype, "filter", {
+        get: function () {
+            return this._filter;
+        },
+        set: function (value) {
+            this._filter = decodeURI(value);
+            var filterAttrib = this.querySelector('select[name="filter-products"]');
+            if (value === "") {
+                filterAttrib.selectedIndex = 0;
+            }
+            else {
+                filterAttrib.setAttribute('value', this.filter);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectFilterBox.prototype, "term", {
+        get: function () {
+            return this._term;
+        },
+        set: function (value) {
+            this._term = decodeURI(value);
+            this.querySelector('input').value = this.term;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectFilterBox.prototype.connectedCallback = function () {
+        var _this = this;
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.addEventListener('submit', function (e) {
+            e.preventDefault();
+            _this._filterChange(e);
+        });
+        this.querySelector('select[name="filter-products"]').addEventListener('change', function (e) {
+            e.preventDefault();
+            _this._filterChange(e);
+        });
+        this.querySelector('.project-filters-clear').addEventListener('click', function (e) {
+            e.preventDefault();
+            _this._clearFilters(e);
+        });
+        var _a;
+    };
+    RHDPProjectFilterBox.prototype._clearFilters = function (e) {
+        e.preventDefault();
+        this.filter = "";
+        this.term = "";
+        this._updateProjectFilters();
+    };
+    RHDPProjectFilterBox.prototype._filterChange = function (e) {
+        if (e.currentTarget.id == "upstream-project-selection") {
+            this.filter = e.currentTarget.value;
+        }
+        this.term = this.querySelector('input').value;
+        this._updateProjectFilters();
+    };
+    RHDPProjectFilterBox.prototype._updateProjectFilters = function () {
+        this.dispatchEvent(new CustomEvent('project-filter-change', {
+            detail: {
+                filter: this.filter,
+                term: this.term
+            },
+            bubbles: true
+        }));
+    };
+    Object.defineProperty(RHDPProjectFilterBox, "observedAttributes", {
+        get: function () {
+            return ['loading'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectFilterBox.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPProjectFilterBox;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-project-filter-box', RHDPProjectFilterBox);
+});
+var RHDPProjectItem = /** @class */ (function (_super) {
+    __extends(RHDPProjectItem, _super);
+    function RHDPProjectItem() {
+        var _this = _super.call(this) || this;
+        _this.template = function (strings, project) {
+            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n        \n            </p>\n            <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img\n                        src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    <p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>\n                    <p>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">Visit home page</a>" : '') + "\n                    </p>\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\"><h3><a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>\n                </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPProjectItem.prototype, "userForumLink", {
+        get: function () {
+            return this._userForumLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._userForumLink === value)
+                return;
+            this._userForumLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "devForumLink", {
+        get: function () {
+            return this._devForumLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._devForumLink === value)
+                return;
+            this._devForumLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "mailingListLink", {
+        get: function () {
+            return this._mailingListLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._mailingListLink === value)
+                return;
+            this._mailingListLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "chatLink", {
+        get: function () {
+            return this._chatLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._chatLink === value)
+                return;
+            this._chatLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "blogLink", {
+        get: function () {
+            return this._blogLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._blogLink === value)
+                return;
+            this._blogLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "jiraLink", {
+        get: function () {
+            return this._jiraLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._jiraLink === value)
+                return;
+            this._jiraLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "srcLink", {
+        get: function () {
+            return this._srcLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._srcLink === value)
+                return;
+            this._srcLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "anonymousLink", {
+        get: function () {
+            return this._anonymousLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._anonymousLink === value)
+                return;
+            this._anonymousLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "commiterLink", {
+        get: function () {
+            return this._commiterLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._commiterLink === value)
+                return;
+            this._commiterLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "fisheyeLink", {
+        get: function () {
+            return this._fisheyeLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._fisheyeLink === value)
+                return;
+            this._fisheyeLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "viewvcLink", {
+        get: function () {
+            return this._viewvcLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._viewvcLink === value)
+                return;
+            this._viewvcLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "committerGitLink", {
+        get: function () {
+            return this._committerGitLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._committerGitLink === value)
+                return;
+            this._committerGitLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "buildLink", {
+        get: function () {
+            return this._buildLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._buildLink === value)
+                return;
+            this._buildLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "hudsonLink", {
+        get: function () {
+            return this._hudsonLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._hudsonLink === value)
+                return;
+            this._hudsonLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "knowledgebaseLink", {
+        get: function () {
+            return this._knowledgebaseLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._knowledgebaseLink === value)
+                return;
+            this._knowledgebaseLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "communityLink", {
+        get: function () {
+            return this._communityLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._communityLink === value)
+                return;
+            this._communityLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "imageUrl", {
+        get: function () {
+            return this._imageUrl;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._imageUrl === value)
+                return;
+            this._imageUrl = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "projectName", {
+        get: function () {
+            return this._projectName;
+        },
+        set: function (value) {
+            if (this._projectName === value)
+                return;
+            this._projectName = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "downloadsLink", {
+        get: function () {
+            return this._downloadsLink;
+        },
+        set: function (value) {
+            this.getCorrectUrl(value);
+            if (this._downloadsLink === value)
+                return;
+            this._downloadsLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "sys_url_view", {
+        get: function () {
+            return this._sys_url_view;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._sys_url_view === value)
+                return;
+            this._sys_url_view = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "twitterLink", {
+        get: function () {
+            return this._twitterLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._twitterLink === value)
+                return;
+            this._twitterLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "descriptions", {
+        get: function () {
+            return this._descriptions;
+        },
+        set: function (value) {
+            if (this._descriptions === value)
+                return;
+            this._descriptions = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "docsLink", {
+        get: function () {
+            return this._docsLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._docsLink === value)
+                return;
+            this._docsLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "issueTracker", {
+        get: function () {
+            return this._issueTracker;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._issueTracker === value)
+                return;
+            this._issueTracker = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectItem.prototype, "githubLink", {
+        get: function () {
+            return this._githubLink;
+        },
+        set: function (value) {
+            value = this.getCorrectUrl(value);
+            if (this._githubLink === value)
+                return;
+            this._githubLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectItem.prototype.getCorrectUrl = function (url) {
+        if (url == null)
+            return;
+        if (url.constructor === Array && url.length > 0) {
+            url = url[0];
+        }
+        if (url.indexOf("/") > 0) {
+            return url;
+        }
+        else {
+            return "https://developers.redhat.com" + url;
+        }
+    };
+    RHDPProjectItem.prototype.connectedCallback = function () {
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        var _a;
+    };
+    RHDPProjectItem.prototype.getTemplateHTML = function () {
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        return this.innerHTML;
+        var _a;
+    };
+    RHDPProjectItem.prototype.generateViewLink = function (viewLink) {
+        return viewLink.replace(/https?:\/\//, '');
+    };
+    Object.defineProperty(RHDPProjectItem, "observedAttributes", {
+        get: function () {
+            return ['type', 'size', 'heading', 'text'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        var _a;
+    };
+    return RHDPProjectItem;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-project-item', RHDPProjectItem);
+});
+var RHDPProjectQuery = /** @class */ (function (_super) {
+    __extends(RHDPProjectQuery, _super);
+    function RHDPProjectQuery() {
+        var _this = _super.call(this) || this;
+        _this._dcpUrl = 'https://dcp2.jboss.org/v2/rest/search/suggest_project_name_ngram_more_fields?sort=sys_title&query=';
+        _this._term = '';
+        // Mock data should be used for unit testing
+        _this._mockData = false;
+        // TODO: Fix this ugly hack. Add upstream projects to products once Drupal REST endpoints are exposed.
+        _this.productData = {
+            "amq": { "upstream": ["activemq", "fabric8"] },
+            "bpmsuite": { "upstream": ["drools", "guvnor", "optaplanner", "jbpm"] },
+            "brms": { "upstream": ["optaplanner", "drools", "guvnor"] },
+            "datagrid": { "upstream": ["infinispan", "jgroups", "hibernate_subprojects_search"] },
+            "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"] },
+            "devstudio": { "upstream": ["jbosstools"] },
+            "eap": { "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"] },
+            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "fabric8", "switchyard", "hawtio"] },
+            "rhel": { "upstream": ["fedora"] },
+            "webserver": { "upstream": ["tomcat", "httpd", "mod_cluster"] },
+        };
+        _this._filterChange = _this._filterChange.bind(_this);
+        return _this;
+    }
+    Object.defineProperty(RHDPProjectQuery.prototype, "mockData", {
+        get: function () {
+            return this._mockData;
+        },
+        set: function (value) {
+            this._mockData = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectQuery.prototype, "term", {
+        get: function () {
+            return this._term;
+        },
+        set: function (value) {
+            this._term = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectQuery.prototype, "filter", {
+        get: function () {
+            return this._filter;
+        },
+        set: function (value) {
+            this._filter = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectQuery.prototype, "dcpUrl", {
+        get: function () {
+            return this._dcpUrl;
+        },
+        set: function (value) {
+            this._dcpUrl = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectQuery.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (value) {
+            this._data = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectQuery.prototype.connectedCallback = function () {
+        top.addEventListener('project-filter-change', this._filterChange);
+        this.doSearch();
+    };
+    RHDPProjectQuery.prototype.doSearch = function () {
+        var _this = this;
+        var qUrl = new URL(this.dcpUrl);
+        qUrl.searchParams.set('sort', 'sys_title');
+        qUrl.searchParams.set('query', this.term);
+        if (this.filter) {
+            var upstreamProjects = this.productData[this.filter]['upstream'];
+            for (var i = 0; i < upstreamProjects.length; i++) {
+                qUrl.searchParams.append('project', upstreamProjects[i]);
+            }
+        }
+        if (!this.mockData) {
+            fetch(qUrl.toString())
+                .then(function (resp) { return resp.json(); })
+                .then(function (data) {
+                _this.data = data;
+                _this.dispatchEvent(new CustomEvent('data-results-complete', {
+                    detail: {
+                        data: _this.data,
+                        term: _this.term,
+                        filter: _this.filter
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    };
+    RHDPProjectQuery.prototype._filterChange = function (e) {
+        if (e.detail) {
+            this.filter = e.detail.filter ? e.detail.filter : '';
+            this.term = e.detail.term ? e.detail.term : '';
+        }
+        this.doSearch();
+    };
+    Object.defineProperty(RHDPProjectQuery, "observedAttributes", {
+        get: function () {
+            return ['loading'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectQuery.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPProjectQuery;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-project-query', RHDPProjectQuery);
+});
+var RHDPProjectURL = /** @class */ (function (_super) {
+    __extends(RHDPProjectURL, _super);
+    function RHDPProjectURL() {
+        var _this = _super.call(this) || this;
+        _this._uri = new URL(window.location.href);
+        _this._updateURI = _this._updateURI.bind(_this);
+        return _this;
+    }
+    Object.defineProperty(RHDPProjectURL.prototype, "uri", {
+        get: function () {
+            return this._uri;
+        },
+        set: function (value) {
+            this._uri = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectURL.prototype, "term", {
+        get: function () {
+            return this._term;
+        },
+        set: function (value) {
+            if (value.length > 0) {
+                this.uri.searchParams.set('filter-text', value);
+            }
+            else {
+                this.uri.searchParams.delete('filter-text');
+            }
+            this._term = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjectURL.prototype, "filters", {
+        get: function () {
+            return this._filters;
+        },
+        set: function (value) {
+            if (value.length > 0) {
+                this.uri.searchParams.set('filter-product', value);
+            }
+            else {
+                this.uri.searchParams.delete('filter-product');
+            }
+            this._filters = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectURL.prototype.connectedCallback = function () {
+        top.addEventListener('data-results-complete', this._updateURI);
+    };
+    RHDPProjectURL.prototype._updateURI = function (e) {
+        if (e.detail) {
+            this.term = e.detail.term ? e.detail.term : '';
+            this.filters = e.detail.filter ? e.detail.filter : '';
+            history.pushState({}, 'RHDP Projects:', "" + this.uri.pathname + (this.uri.searchParams ? "#!" + this.uri.searchParams : ''));
+        }
+    };
+    Object.defineProperty(RHDPProjectURL, "observedAttributes", {
+        get: function () {
+            return ['loading'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjectURL.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPProjectURL;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-project-url', RHDPProjectURL);
+});
+var RHDPProjects = /** @class */ (function (_super) {
+    __extends(RHDPProjects, _super);
+    function RHDPProjects() {
+        var _this = _super.call(this) || this;
+        _this._loading = true;
+        _this._dcpUrl = '';
+        _this.template = function (strings, project) {
+            return "\n\n        <ul class=\"small-block-grid-2 large-block-grid-4 medium-block-grid-3 results\"></ul>\n        \n        ";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPProjects.prototype, "dcpUrl", {
+        get: function () {
+            return this.getAttribute('dcp-url') ? this.getAttribute('dcp-url') : this._dcpUrl;
+        },
+        set: function (value) {
+            if (this._dcpUrl === value)
+                return;
+            this._dcpUrl = value;
+            this.setAttribute('dcp-url', this._dcpUrl);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjects.prototype, "loading", {
+        get: function () {
+            return this._loading;
+        },
+        set: function (value) {
+            // Set the css for the loading symbol
+            if (value == false) {
+                this.querySelector('ul.results').classList.remove('loading');
+            }
+            else {
+                this.querySelector('ul.results').classList.add('loading');
+            }
+            this._loading = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPProjects.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (value) {
+            this._data = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjects.prototype.connectedCallback = function () {
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.addEventListener('data-results-complete', this._loadDataResult);
+        var query = new RHDPProjectQuery();
+        query.dcpUrl = this.dcpUrl;
+        var url = new RHDPProjectURL();
+        this.appendChild(query);
+        this.appendChild(url);
+        var _a;
+    };
+    RHDPProjects.prototype.removeAllProjects = function () {
+        var childNodes = this.querySelector('ul.results');
+        while (childNodes.firstChild) {
+            childNodes.removeChild(childNodes.firstChild);
+        }
+    };
+    RHDPProjects.prototype._loadDataResult = function (e) {
+        this.removeAllProjects();
+        this.loading = true;
+        if (e.detail && e.detail.data) {
+            var hits = void 0;
+            if (e.detail.data.responses) {
+                hits = e.detail.data.responses[0].hits.hits;
+            }
+            else {
+                hits = e.detail.data.hits.hits;
+            }
+            for (var i = 0; i < hits.length; i++) {
+                var project = new RHDPProjectItem();
+                var props = hits[i].fields;
+                var thumbnailSize = "200x150";
+                project.imageUrl = "https://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
+                project.downloadsLink = props.downloadsLink;
+                project.projectName = props.sys_project_name;
+                project.sys_url_view = props.sys_url_view;
+                project.descriptions = props.description;
+                project.docsLink = props.docsLink;
+                project.communityLink = props.communityLink;
+                project.knowledgebaseLink = props.knowledgeBaseLink;
+                project.userForumLink = props.userForumLink;
+                project.devForumLink = props.devForumLink;
+                project.mailingListLink = props.mailingListLink;
+                project.chatLink = props.chatLink;
+                project.blogLink = props.blogLink;
+                project.issueTracker = props.issueTrackerLink;
+                project.jiraLink = props.jiraLink;
+                project.srcLink = props.srcLink;
+                project.anonymousLink = props.anonymousLink;
+                project.commiterLink = props.commiterLink;
+                project.fisheyeLink = props.fisheyeLink;
+                project.viewvcLink = props.viewvcLink;
+                project.githubLink = props.githubLink;
+                project.committerGitLink = props.committerGitLink;
+                project.buildLink = props.buildLink;
+                project.hudsonLink = props.hudsonLink;
+                var listItem = document.createElement('li');
+                listItem.setAttribute('class', 'upstream');
+                listItem.appendChild(project);
+                this.querySelector('ul.results').appendChild(listItem);
+            }
+            this.loading = false;
+        }
+    };
+    Object.defineProperty(RHDPProjects, "observedAttributes", {
+        get: function () {
+            return [''];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPProjects.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        var _a;
+    };
+    return RHDPProjects;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-projects', RHDPProjects);
+});
+var RHDPSearchBox = /** @class */ (function (_super) {
     __extends(RHDPSearchBox, _super);
     function RHDPSearchBox() {
         var _this = _super.call(this) || this;
@@ -1642,7 +2442,7 @@ var RHDPSearchBox = (function (_super) {
     return RHDPSearchBox;
 }(HTMLElement));
 customElements.define('rhdp-search-box', RHDPSearchBox);
-var RHDPSearchFilterGroup = (function (_super) {
+var RHDPSearchFilterGroup = /** @class */ (function (_super) {
     __extends(RHDPSearchFilterGroup, _super);
     function RHDPSearchFilterGroup() {
         var _this = _super.call(this) || this;
@@ -1744,7 +2544,7 @@ var RHDPSearchFilterGroup = (function (_super) {
     return RHDPSearchFilterGroup;
 }(HTMLElement));
 customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
-var RHDPSearchFilterItem = (function (_super) {
+var RHDPSearchFilterItem = /** @class */ (function (_super) {
     __extends(RHDPSearchFilterItem, _super);
     function RHDPSearchFilterItem() {
         var _this = _super.call(this) || this;
@@ -1972,7 +2772,7 @@ var RHDPSearchFilterItem = (function (_super) {
 customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);
 // import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchFilters = (function (_super) {
+var RHDPSearchFilters = /** @class */ (function (_super) {
     __extends(RHDPSearchFilters, _super);
     function RHDPSearchFilters() {
         var _this = _super.call(this) || this;
@@ -2198,7 +2998,7 @@ var RHDPSearchFilters = (function (_super) {
     return RHDPSearchFilters;
 }(HTMLElement));
 customElements.define('rhdp-search-filters', RHDPSearchFilters);
-var RHDPSearchOneBox = (function (_super) {
+var RHDPSearchOneBox = /** @class */ (function (_super) {
     __extends(RHDPSearchOneBox, _super);
     function RHDPSearchOneBox() {
         var _this = _super.call(this) || this;
@@ -2352,7 +3152,7 @@ var RHDPSearchOneBox = (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchQuery = (function (_super) {
+var RHDPSearchQuery = /** @class */ (function (_super) {
     __extends(RHDPSearchQuery, _super);
     function RHDPSearchQuery() {
         var _this = _super.call(this) || this;
@@ -2562,7 +3362,7 @@ var RHDPSearchQuery = (function (_super) {
                 this.from = 0;
                 this.search();
                 break;
-            case 'filter-item-change':
+            case 'filter-item-change'://detail.facet
                 if (e.detail && e.detail.facet) {
                     this._setFilters(e.detail.facet);
                 }
@@ -2570,14 +3370,14 @@ var RHDPSearchQuery = (function (_super) {
                 this.search();
                 // Wait for params-ready event
                 break;
-            case 'sort-change':
+            case 'sort-change':// detail.sort
                 if (e.detail && e.detail.sort) {
                     this.sort = e.detail.sort;
                 }
                 this.from = 0;
                 this.search();
                 break;
-            case 'load-more':
+            case 'load-more':// detail.qty
                 this.search();
                 break;
             case 'clear-filters':
@@ -2648,7 +3448,7 @@ var RHDPSearchQuery = (function (_super) {
     return RHDPSearchQuery;
 }(HTMLElement));
 customElements.define('rhdp-search-query', RHDPSearchQuery);
-var RHDPSearchResultCount = (function (_super) {
+var RHDPSearchResultCount = /** @class */ (function (_super) {
     __extends(RHDPSearchResultCount, _super);
     function RHDPSearchResultCount() {
         var _this = _super.call(this) || this;
@@ -2752,7 +3552,7 @@ var RHDPSearchResultCount = (function (_super) {
     return RHDPSearchResultCount;
 }(HTMLElement));
 customElements.define('rhdp-search-result-count', RHDPSearchResultCount);
-var RHDPSearchResult = (function (_super) {
+var RHDPSearchResult = /** @class */ (function (_super) {
     __extends(RHDPSearchResult, _super);
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
@@ -2961,7 +3761,7 @@ var RHDPSearchResult = (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-result', RHDPSearchResult);
 // import {RHDPSearchResult} from './rhdp-search-result';
-var RHDPSearchResults = (function (_super) {
+var RHDPSearchResults = /** @class */ (function (_super) {
     __extends(RHDPSearchResults, _super);
     function RHDPSearchResults() {
         var _this = _super.call(this) || this;
@@ -3136,7 +3936,7 @@ var RHDPSearchResults = (function (_super) {
     return RHDPSearchResults;
 }(HTMLElement));
 customElements.define('rhdp-search-results', RHDPSearchResults);
-var RHDPSearchSortPage = (function (_super) {
+var RHDPSearchSortPage = /** @class */ (function (_super) {
     __extends(RHDPSearchSortPage, _super);
     function RHDPSearchSortPage() {
         var _this = _super.call(this) || this;
@@ -3192,7 +3992,7 @@ var RHDPSearchSortPage = (function (_super) {
     return RHDPSearchSortPage;
 }(HTMLElement));
 customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
-var RHDPSearchURL = (function (_super) {
+var RHDPSearchURL = /** @class */ (function (_super) {
     __extends(RHDPSearchURL, _super);
     //history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${decodeURIComponent(this.term).replace(' ', '+')}`);
     function RHDPSearchURL() {
@@ -3344,9 +4144,9 @@ var RHDPSearchURL = (function (_super) {
                 this.uri.searchParams.delete('f');
                 this.filters = {};
                 break;
-            case 'load-more':
+            case 'load-more':// detail.qty
                 break;
-            case 'search-complete':
+            case 'search-complete':// build querystring params
                 // Term Change
                 if (e.detail && typeof e.detail.term !== 'undefined' && e.detail.term.length > 0) {
                     this.term = e.detail.term;
@@ -3388,7 +4188,7 @@ customElements.define('rhdp-search-url', RHDPSearchURL);
 // import {RHDPSearchOneBox} from './rhdp-search-onebox';
 // import {RHDPSearchResults} from './rhdp-search-results';
 // import {RHDPSearchSortPage} from './rhdp-search-sort-page';
-var RHDPSearchApp = (function (_super) {
+var RHDPSearchApp = /** @class */ (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
