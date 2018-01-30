@@ -696,12 +696,12 @@ display:
     display_title: 'REST export'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
       path: drupal/cheat-sheets
       pager:
-        type: some
+        type: none
         options:
-          items_per_page: 10
           offset: 0
       style:
         type: serializer
