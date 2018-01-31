@@ -5,12 +5,14 @@ dependencies:
   config:
     - field.field.node.rh_training_class.field_completion_time
     - field.field.node.rh_training_class.field_exclude_from_search
+    - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - node.type.rh_training_class
   module:
+    - image
     - interval
     - link
     - options
@@ -44,6 +46,15 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_image:
+    weight: 108
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
     region: content
   field_level:
     weight: 105

@@ -16,5 +16,13 @@ content:
   links:
     weight: 100
     region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_completion_time: true
+  field_exclude_from_search: true
+  field_level: true
+  field_long_description: true
+  field_short_description: true
+  field_source_link: true

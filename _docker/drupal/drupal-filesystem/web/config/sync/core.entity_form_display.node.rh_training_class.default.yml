@@ -5,12 +5,15 @@ dependencies:
   config:
     - field.field.node.rh_training_class.field_completion_time
     - field.field.node.rh_training_class.field_exclude_from_search
+    - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
+    - image.style.thumbnail
     - node.type.rh_training_class
   module:
+    - image
     - interval
     - link
     - path
@@ -41,6 +44,19 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_image:
+    type: entity_browser_file
+    weight: 27
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_level:
     weight: 4
     settings: {  }
