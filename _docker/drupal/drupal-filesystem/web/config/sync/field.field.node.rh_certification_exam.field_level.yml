@@ -1,0 +1,21 @@
+uuid: 98bfee81-e7bb-450e-a007-c8e0d9de3b9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_level
+    - node.type.rh_certification_exam
+  module:
+    - options
+id: node.rh_certification_exam.field_level
+field_name: field_level
+entity_type: node
+bundle: rh_certification_exam
+label: 'Difficultly Level'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

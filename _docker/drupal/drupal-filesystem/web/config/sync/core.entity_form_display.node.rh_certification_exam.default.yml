@@ -1,17 +1,17 @@
-uuid: 93050856-c82c-4505-9d51-9e711b715714
+uuid: b4e9d505-d161-4924-9b24-c5a3e1cafb80
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.rh_training_class.field_completion_time
-    - field.field.node.rh_training_class.field_exclude_from_search
-    - field.field.node.rh_training_class.field_image
-    - field.field.node.rh_training_class.field_level
-    - field.field.node.rh_training_class.field_long_description
-    - field.field.node.rh_training_class.field_short_description
-    - field.field.node.rh_training_class.field_source_link
+    - field.field.node.rh_certification_exam.field_completion_time
+    - field.field.node.rh_certification_exam.field_exclude_from_search
+    - field.field.node.rh_certification_exam.field_image
+    - field.field.node.rh_certification_exam.field_level
+    - field.field.node.rh_certification_exam.field_long_description
+    - field.field.node.rh_certification_exam.field_short_description
+    - field.field.node.rh_certification_exam.field_source_link
     - image.style.thumbnail
-    - node.type.rh_training_class
+    - node.type.rh_certification_exam
   module:
     - image
     - interval
@@ -19,9 +19,9 @@ dependencies:
     - path
     - text
     - workbench_moderation
-id: node.rh_training_class.default
+id: node.rh_certification_exam.default
 targetEntityType: node
-bundle: rh_training_class
+bundle: rh_certification_exam
 mode: default
 content:
   created:
@@ -119,11 +119,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 7
-    region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+    region: content
     third_party_settings: {  }
 hidden:
   status: true
