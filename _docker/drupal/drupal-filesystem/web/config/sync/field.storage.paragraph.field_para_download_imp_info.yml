@@ -1,0 +1,19 @@
+uuid: 97a8dd7c-5e34-4ac5-b569-6f2e846b1194
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_para_download_imp_info
+field_name: field_para_download_imp_info
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

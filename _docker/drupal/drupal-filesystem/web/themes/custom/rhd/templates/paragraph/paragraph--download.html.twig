@@ -6,6 +6,10 @@
             <h2 class="subpage-name" id="download-development-use">Download {{ product_short_name }} for Development Use</h2>
             <div class="row">
                 <div class="large-24 columns">
+                    {% if content.field_para_download_imp_info|render|striptags|trim is not empty %}
+                        <h4 class="caps">Important Information</h4>
+                        {{ content.field_para_download_imp_info }}
+                    {% endif %}
                     <h4 class="caps">Try It</h4>
                 </div>
                 <div class="large-16 columns">
@@ -21,14 +25,12 @@
         </div>
     </div>
 </div>
-{% if content.field_overview_main_content|render|striptags|trim is not empty %}
-    <div class="row">
-        <div class="large-16 small-24 columns">
-                {{ content.field_overview_main_content }}
-        </div>
-    </div>
-{% endif %}
 <div class="row">
+    {% if content.field_overview_main_content|render|striptags|trim is not empty %}
+        <div class="large-16 small-24 columns">
+            {{ content.field_overview_main_content }}
+        </div>
+    {% endif %}
     {% if offer_subscription %}
         <div class="large-16 small-24 columns"><br>
             <h4 id="ready-production-use">Ready to use {{ product_short_name }} in Production?</h4>

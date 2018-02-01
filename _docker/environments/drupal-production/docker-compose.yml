@@ -41,7 +41,7 @@ services:
       - "80:80"
     volumes:
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
-      - /credentials/drupal/rhd.settings-lightning.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
       - /data/drupal-logs/lightning:/var/log/httpd
@@ -77,7 +77,7 @@ services:
      args:
        http_proxy: proxy01.util.phx2.redhat.com:8080
        https_proxy: proxy01.util.phx2.redhat.com:8080
-    entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.prod.ext.phx2.redhat.com"
+    entrypoint: "ruby _docker/lib/export/export.rb rhdp-drupal.redhat.com"
     volumes:
       - /data/drupal-export:/export
       - /credentials/rsync:/home/jenkins_developer/.ssh
