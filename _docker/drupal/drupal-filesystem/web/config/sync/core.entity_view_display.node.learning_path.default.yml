@@ -20,8 +20,15 @@ dependencies:
   module:
     - interval
     - options
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.learning_path.default
 targetEntityType: node
 bundle: learning_path
@@ -36,14 +43,14 @@ content:
     region: content
   field_audience:
     weight: 102
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_completion_time:
     weight: 103
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: interval_default
@@ -58,7 +65,7 @@ content:
     region: content
   field_long_description:
     weight: 104
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
@@ -88,7 +95,7 @@ content:
     region: content
   field_related_red_hat_certificat:
     weight: 108
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
@@ -103,14 +110,14 @@ content:
     region: content
   field_requirements_an_or_pre_req:
     weight: 110
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_short_description:
     weight: 111
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
@@ -125,7 +132,11 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

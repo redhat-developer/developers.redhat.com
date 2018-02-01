@@ -1,0 +1,209 @@
+body.page-node-type-learning-path {
+  .wrapper { padding-bottom: 0; }
+}
+
+#rhd-learning-path {
+  padding: 0;
+  .lp-info {
+    border: 1px solid #CCC;
+    padding: 30px;
+    margin: 30px 15px;
+    h2, h6 { margin-top: 15px; }
+    h2 { 
+      font-size: 36px;
+      ~ p { margin-bottom: 30px; }
+    }
+    h4 {
+      text-transform: uppercase;
+      color: $grey-6;
+      display: inline-block;
+    }
+    .lp-time {
+      float: right;
+      .interval-value{
+        color: #999;
+        font-size: 16px;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+    }
+    .certification {
+      margin-top: 15px;
+      span {
+        display: inline;
+        &.icon {
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .lp-cards-container {
+    background-color: $grey-1;
+    min-height: 300px;
+    height: auto;
+    padding: 30px 30px 0 30px;
+    min-height: 1030px;
+  }
+}
+
+@include desktop-and-down {
+  body.page-node-type-learning-path {
+    .content-wrapper { padding: 0 0 0 0; }
+  }
+}
+@include tablet-landscape-and-down {
+  
+  #rhd-learning-path {
+    .lp-info {
+      padding: 15px;
+      margin: 15px 0;
+      h2 {font-size: 32px; }
+      h4 { font-size: 14px; }
+      .lp-time .interval-value { margin-top: 0; }
+    }
+    .lp-cards-container { padding: 15px 15px 0 15px; }
+  }
+}
+
+@include tablet-portrait-and-down {
+  #rhd-learning-path {
+    .lp-info {
+      border: none;
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+// CONTENT CARD STYLES
+.dp-content-card {
+  border: 1px solid #D5D5D5;
+  padding: 30px;
+  background-color: #FFF;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(153,153,153,1);
+  -moz-box-shadow: 2px 2px 4px 0px rgba(153,153,153,1);
+  box-shadow: 2px 2px 4px 0px rgba(153,153,153,1);
+
+  &.free-content {
+    border-left: 10px solid #3F9C35;
+    div.img dp-access-level { background-color: rgba(63, 156, 53, .5); }
+  }
+  &.member-content {
+    border-left: 10px solid #007A87;
+    div.img dp-access-level { background-color: rgba(0, 122, 135, 0.5); }
+  }
+  &.training-content {
+    border-left: 10px solid #00B9E4;
+    div.img dp-access-level { background-color: rgba(0, 185, 228, 0.5); }
+  }
+
+  div.img {
+    background-color: #ccc;
+    float: left;
+    height: 300px;
+    width: 220px;
+    margin: -30px 30px -30px -30px;
+    position: relative;
+
+    dp-access-level {
+      position: absolute;
+      bottom: 25px;
+      width: 90%;
+      padding: 3px 10px;
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .dp-content-type {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    &.video { color: #3F9C35; }
+    &.article { color: #3F9C35; }
+    &.book { color: #007A87; }
+    &.cheat-sheet { color: #007A87; }
+    &.traning-video { color: #007A87; }
+    &.traning-class { color: #00B9E4; }
+    &.certification-exam { color: #00B9E4; }
+  }
+  .card-info {
+    float: right;
+    color: #808080;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+  h4 {
+    font-size: 23px;
+    font-weight: 600px;
+    margin: 15px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 64px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  slot {
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 70px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  span rh-datetime, span dp-author {
+    color: #CCC;
+    font-family: Overpass;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 15px;
+    padding: 15px 15px 30px 15px;
+    div.img {
+      height: 285px;
+      width: 220px;
+      margin: -15px 15px -15px -15px;
+      position: relative;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    slot { display: none; }
+    dp-level { display: none; }
+    h4 {
+      font-size: 18px;
+      line-height: 28px;
+    }
+    div.img {
+      height: 176px;
+      width: 150px;
+    }
+  }
+  @media (max-width: 320px) {
+    div.img {
+      display: block;
+      width: calc(100% + 30px);
+      height: 130px;
+      margin: -15px 0 15px -15px;
+    }
+  }
+  @media screen and (max-width: 323px) and (min-width: 320px) {
+    div.img { 
+      height: 200px;
+    }
+  }
+}
+
