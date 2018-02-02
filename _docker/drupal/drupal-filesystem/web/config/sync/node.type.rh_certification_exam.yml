@@ -1,0 +1,27 @@
+uuid: b42d6f87-93fa-4986-9675-df01c4f5a806
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: 'RH Certification Exam'
+type: rh_certification_exam
+description: 'Paid exam from RH Training site'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

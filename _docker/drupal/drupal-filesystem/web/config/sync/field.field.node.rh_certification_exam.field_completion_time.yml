@@ -1,0 +1,21 @@
+uuid: cfd64035-5c44-4837-886b-1ec8f44ba38e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_completion_time
+    - node.type.rh_certification_exam
+  module:
+    - interval
+id: node.rh_certification_exam.field_completion_time
+field_name: field_completion_time
+entity_type: node
+bundle: rh_certification_exam
+label: 'Completion Time'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: interval

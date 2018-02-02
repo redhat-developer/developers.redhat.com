@@ -1,0 +1,22 @@
+uuid: 1c2ebec4-2a2e-4905-b826-210f261d99e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_long_description
+    - node.type.rh_certification_exam
+  module:
+    - text
+id: node.rh_certification_exam.field_long_description
+field_name: field_long_description
+entity_type: node
+bundle: rh_certification_exam
+label: 'Long Description'
+description: 'Describe the learning path in 500 characters or less'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary
