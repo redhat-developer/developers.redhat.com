@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var RHDPAlert = /** @class */ (function (_super) {
+var RHDPAlert = (function (_super) {
     __extends(RHDPAlert, _super);
     function RHDPAlert() {
         var _this = _super.call(this) || this;
@@ -107,7 +107,7 @@ var RHDPAlert = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-alert', RHDPAlert);
 });
-var RHDPOSDownload = /** @class */ (function (_super) {
+var RHDPOSDownload = (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
         var _this = _super.call(this) || this;
@@ -300,7 +300,7 @@ var RHDPOSDownload = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-os-download', RHDPOSDownload);
 });
-var RHDPThankyou = /** @class */ (function (_super) {
+var RHDPThankyou = (function (_super) {
     __extends(RHDPThankyou, _super);
     function RHDPThankyou() {
         var _this = _super.call(this) || this;
@@ -384,7 +384,7 @@ var RHDPThankyou = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-thankyou', RHDPThankyou);
 });
-var RHDPTryItNow = /** @class */ (function (_super) {
+var RHDPTryItNow = (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
         var _this = _super.call(this) || this;
@@ -503,7 +503,7 @@ var RHDPTryItNow = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-tryitnow', RHDPTryItNow);
 });
-var DevNationLiveSession = /** @class */ (function () {
+var DevNationLiveSession = (function () {
     function DevNationLiveSession(obj) {
         var _this = this;
         this._title = '';
@@ -638,7 +638,7 @@ var DevNationLiveSession = /** @class */ (function () {
     });
     return DevNationLiveSession;
 }());
-var DevNationLiveSpeaker = /** @class */ (function () {
+var DevNationLiveSpeaker = (function () {
     function DevNationLiveSpeaker(obj) {
         var _this = this;
         this._name = '';
@@ -686,7 +686,7 @@ var DevNationLiveSpeaker = /** @class */ (function () {
     });
     return DevNationLiveSpeaker;
 }());
-var DevNationLiveApp = /** @class */ (function (_super) {
+var DevNationLiveApp = (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
         var _this = _super.call(this) || this;
@@ -901,21 +901,13 @@ var DevNationLiveApp = /** @class */ (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-var RHDPDownloadsAllItem = /** @class */ (function (_super) {
+var RHDPDownloadsAllItem = (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
         _this.productDownloads = {
-            "devsuite": {
-                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
-                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
-                "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"
-            },
-            "cdk": {
-                "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe",
-                "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip",
-                "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"
-            }
+            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
         };
         _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
             return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
@@ -1063,7 +1055,7 @@ var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     };
     return RHDPDownloadsAllItem;
 }(HTMLElement));
-var RHDPDownloadsAll = /** @class */ (function (_super) {
+var RHDPDownloadsAll = (function (_super) {
     __extends(RHDPDownloadsAll, _super);
     function RHDPDownloadsAll() {
         var _this = _super.call(this) || this;
@@ -1146,7 +1138,7 @@ var RHDPDownloadsAll = /** @class */ (function (_super) {
     };
     return RHDPDownloadsAll;
 }(HTMLElement));
-var RHDPDownloadsApp = /** @class */ (function (_super) {
+var RHDPDownloadsApp = (function (_super) {
     __extends(RHDPDownloadsApp, _super);
     function RHDPDownloadsApp() {
         var _this = _super.call(this) || this;
@@ -1220,7 +1212,7 @@ var RHDPDownloadsApp = /** @class */ (function (_super) {
     };
     return RHDPDownloadsApp;
 }(HTMLElement));
-var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
+var RHDPDownloadsPopularProduct = (function (_super) {
     __extends(RHDPDownloadsPopularProduct, _super);
     function RHDPDownloadsPopularProduct() {
         var _this = _super.call(this) || this;
@@ -1297,7 +1289,7 @@ var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
     };
     return RHDPDownloadsPopularProduct;
 }(HTMLElement));
-var RHDPDownloadsPopularProducts = /** @class */ (function (_super) {
+var RHDPDownloadsPopularProducts = (function (_super) {
     __extends(RHDPDownloadsPopularProducts, _super);
     function RHDPDownloadsPopularProducts() {
         return _super.call(this) || this;
@@ -1343,7 +1335,7 @@ var RHDPDownloadsPopularProducts = /** @class */ (function (_super) {
     };
     return RHDPDownloadsPopularProducts;
 }(HTMLElement));
-var RHDPDownloadsProducts = /** @class */ (function (_super) {
+var RHDPDownloadsProducts = (function (_super) {
     __extends(RHDPDownloadsProducts, _super);
     function RHDPDownloadsProducts() {
         var _this = _super.call(this) || this;
@@ -1575,7 +1567,7 @@ customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProd
 customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
 customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
 customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
-var RHDPProjectFilterBox = /** @class */ (function (_super) {
+var RHDPProjectFilterBox = (function (_super) {
     __extends(RHDPProjectFilterBox, _super);
     function RHDPProjectFilterBox() {
         var _this = _super.call(this) || this;
@@ -1668,7 +1660,7 @@ var RHDPProjectFilterBox = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-filter-box', RHDPProjectFilterBox);
 });
-var RHDPProjectItem = /** @class */ (function (_super) {
+var RHDPProjectItem = (function (_super) {
     __extends(RHDPProjectItem, _super);
     function RHDPProjectItem() {
         var _this = _super.call(this) || this;
@@ -2042,7 +2034,7 @@ var RHDPProjectItem = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-item', RHDPProjectItem);
 });
-var RHDPProjectQuery = /** @class */ (function (_super) {
+var RHDPProjectQuery = (function (_super) {
     __extends(RHDPProjectQuery, _super);
     function RHDPProjectQuery() {
         var _this = _super.call(this) || this;
@@ -2169,7 +2161,7 @@ var RHDPProjectQuery = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-query', RHDPProjectQuery);
 });
-var RHDPProjectURL = /** @class */ (function (_super) {
+var RHDPProjectURL = (function (_super) {
     __extends(RHDPProjectURL, _super);
     function RHDPProjectURL() {
         var _this = _super.call(this) || this;
@@ -2244,7 +2236,7 @@ var RHDPProjectURL = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-url', RHDPProjectURL);
 });
-var RHDPProjects = /** @class */ (function (_super) {
+var RHDPProjects = (function (_super) {
     __extends(RHDPProjects, _super);
     function RHDPProjects() {
         var _this = _super.call(this) || this;
@@ -2375,7 +2367,7 @@ var RHDPProjects = /** @class */ (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-projects', RHDPProjects);
 });
-var RHDPSearchBox = /** @class */ (function (_super) {
+var RHDPSearchBox = (function (_super) {
     __extends(RHDPSearchBox, _super);
     function RHDPSearchBox() {
         var _this = _super.call(this) || this;
@@ -2442,7 +2434,7 @@ var RHDPSearchBox = /** @class */ (function (_super) {
     return RHDPSearchBox;
 }(HTMLElement));
 customElements.define('rhdp-search-box', RHDPSearchBox);
-var RHDPSearchFilterGroup = /** @class */ (function (_super) {
+var RHDPSearchFilterGroup = (function (_super) {
     __extends(RHDPSearchFilterGroup, _super);
     function RHDPSearchFilterGroup() {
         var _this = _super.call(this) || this;
@@ -2544,7 +2536,7 @@ var RHDPSearchFilterGroup = /** @class */ (function (_super) {
     return RHDPSearchFilterGroup;
 }(HTMLElement));
 customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
-var RHDPSearchFilterItem = /** @class */ (function (_super) {
+var RHDPSearchFilterItem = (function (_super) {
     __extends(RHDPSearchFilterItem, _super);
     function RHDPSearchFilterItem() {
         var _this = _super.call(this) || this;
@@ -2772,7 +2764,7 @@ var RHDPSearchFilterItem = /** @class */ (function (_super) {
 customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);
 // import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchFilters = /** @class */ (function (_super) {
+var RHDPSearchFilters = (function (_super) {
     __extends(RHDPSearchFilters, _super);
     function RHDPSearchFilters() {
         var _this = _super.call(this) || this;
@@ -2998,7 +2990,7 @@ var RHDPSearchFilters = /** @class */ (function (_super) {
     return RHDPSearchFilters;
 }(HTMLElement));
 customElements.define('rhdp-search-filters', RHDPSearchFilters);
-var RHDPSearchOneBox = /** @class */ (function (_super) {
+var RHDPSearchOneBox = (function (_super) {
     __extends(RHDPSearchOneBox, _super);
     function RHDPSearchOneBox() {
         var _this = _super.call(this) || this;
@@ -3152,7 +3144,7 @@ var RHDPSearchOneBox = /** @class */ (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchQuery = /** @class */ (function (_super) {
+var RHDPSearchQuery = (function (_super) {
     __extends(RHDPSearchQuery, _super);
     function RHDPSearchQuery() {
         var _this = _super.call(this) || this;
@@ -3448,7 +3440,7 @@ var RHDPSearchQuery = /** @class */ (function (_super) {
     return RHDPSearchQuery;
 }(HTMLElement));
 customElements.define('rhdp-search-query', RHDPSearchQuery);
-var RHDPSearchResultCount = /** @class */ (function (_super) {
+var RHDPSearchResultCount = (function (_super) {
     __extends(RHDPSearchResultCount, _super);
     function RHDPSearchResultCount() {
         var _this = _super.call(this) || this;
@@ -3552,7 +3544,7 @@ var RHDPSearchResultCount = /** @class */ (function (_super) {
     return RHDPSearchResultCount;
 }(HTMLElement));
 customElements.define('rhdp-search-result-count', RHDPSearchResultCount);
-var RHDPSearchResult = /** @class */ (function (_super) {
+var RHDPSearchResult = (function (_super) {
     __extends(RHDPSearchResult, _super);
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
@@ -3761,7 +3753,7 @@ var RHDPSearchResult = /** @class */ (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-result', RHDPSearchResult);
 // import {RHDPSearchResult} from './rhdp-search-result';
-var RHDPSearchResults = /** @class */ (function (_super) {
+var RHDPSearchResults = (function (_super) {
     __extends(RHDPSearchResults, _super);
     function RHDPSearchResults() {
         var _this = _super.call(this) || this;
@@ -3936,7 +3928,7 @@ var RHDPSearchResults = /** @class */ (function (_super) {
     return RHDPSearchResults;
 }(HTMLElement));
 customElements.define('rhdp-search-results', RHDPSearchResults);
-var RHDPSearchSortPage = /** @class */ (function (_super) {
+var RHDPSearchSortPage = (function (_super) {
     __extends(RHDPSearchSortPage, _super);
     function RHDPSearchSortPage() {
         var _this = _super.call(this) || this;
@@ -3992,7 +3984,7 @@ var RHDPSearchSortPage = /** @class */ (function (_super) {
     return RHDPSearchSortPage;
 }(HTMLElement));
 customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
-var RHDPSearchURL = /** @class */ (function (_super) {
+var RHDPSearchURL = (function (_super) {
     __extends(RHDPSearchURL, _super);
     //history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${decodeURIComponent(this.term).replace(' ', '+')}`);
     function RHDPSearchURL() {
@@ -4188,7 +4180,7 @@ customElements.define('rhdp-search-url', RHDPSearchURL);
 // import {RHDPSearchOneBox} from './rhdp-search-onebox';
 // import {RHDPSearchResults} from './rhdp-search-results';
 // import {RHDPSearchSortPage} from './rhdp-search-sort-page';
-var RHDPSearchApp = /** @class */ (function (_super) {
+var RHDPSearchApp = (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
