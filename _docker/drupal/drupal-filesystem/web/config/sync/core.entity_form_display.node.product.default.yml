@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.product.field_card_image
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
@@ -14,6 +15,7 @@ dependencies:
     - node.type.product
   module:
     - field_group
+    - link
     - paragraphs
     - workbench_moderation
 third_party_settings:
@@ -50,6 +52,14 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  field_card_image:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_product_category:
     weight: 4
     settings: {  }
