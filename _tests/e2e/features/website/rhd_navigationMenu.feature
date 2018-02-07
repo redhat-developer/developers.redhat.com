@@ -89,11 +89,9 @@ Feature: Site navigation menu
     Given I am on the Home page
     When I scroll to the "Help" menu item
     Then I should see the following "Help" sub-menu items:
-      | Resources          |
       | Forums             |
       | Stack Overflow Q&A |
     Then each "Help" sub-menu item should contain a link to its retrospective page:
-      | resources      |
       | forums         |
       | stack-overflow |
 
@@ -102,7 +100,6 @@ Feature: Site navigation menu
     Given I am on the Home page
     When I tap on the "Help" menu item
     Then I should see the following "Help" sub-menu items:
-      | Resources          |
       | Forums             |
       | Stack Overflow Q&A |
 
