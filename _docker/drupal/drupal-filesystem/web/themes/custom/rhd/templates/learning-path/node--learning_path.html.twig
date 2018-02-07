@@ -86,7 +86,9 @@ other methods (such as node.delete) will result in an exception.
       </div>
     </div>
   </div>
+  {% if content.field_learning_path_content_item|render|striptags|trim is not empty %}
   <div class="medium-16 columns lp-cards-container">
-
+      {{content.field_learning_path_content_item}}
   </div>
+  {% endif %}
 </div>
