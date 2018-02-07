@@ -215,6 +215,8 @@ ul.homepage-resources {
 }
 
 .register-banner, .contributors-banner {
+  position: relative;
+  bottom: -100px;
   &.inverse { background-color: $grey-7; }
 }
 
@@ -236,6 +238,18 @@ ul.homepage-resources {
   }
 }
 
+@include desktop-and-down {
+  .homepage-main,
+  .spotlights-wrap,
+  .register-banner,
+  .contributors-banner {
+    margin: -15px -15px 0 -15px;
+  }
+
+  .register-banner,
+  .contributors-banner { bottom: -115px; }
+}
+
 @include tablet-landscape-and-down {
   .homepage-main {
     background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_rhoarlaunch_07dec2017.png");
@@ -246,10 +260,7 @@ ul.homepage-resources {
       h2 { font-size: 1.7em; }
       a.button { display: inline-block; }
     }
-    .homepage-cta-img, .homepage-cta {
-      margin: 0 15%;
-      padding-top: 0;
-    }
+    .homepage-cta-img, .homepage-cta { margin: 0 15%; }
   }
   img {
     width: auto;
