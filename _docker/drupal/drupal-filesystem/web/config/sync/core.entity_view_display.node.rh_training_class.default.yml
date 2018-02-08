@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_protected_page
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - node.type.rh_training_class
@@ -69,6 +70,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_protected_page:
+    weight: 109
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_short_description:
     weight: 102

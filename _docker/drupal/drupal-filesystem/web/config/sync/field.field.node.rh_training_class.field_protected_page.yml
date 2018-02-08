@@ -1,0 +1,23 @@
+uuid: 526ba511-cf7c-4c7d-9ced-7eb307a68057
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_protected_page
+    - node.type.rh_training_class
+id: node.rh_training_class.field_protected_page
+field_name: field_protected_page
+entity_type: node
+bundle: rh_training_class
+label: 'Protected Page'
+description: 'Select to protect this page behind the Registration/Log in wall.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

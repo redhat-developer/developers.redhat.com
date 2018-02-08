@@ -4,9 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
-    - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_difficulty
+    - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_protected_page
     - field.field.node.video_resource.field_related_content
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
@@ -62,6 +63,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_protected_page:
+    weight: 27
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_related_content:
     weight: 26

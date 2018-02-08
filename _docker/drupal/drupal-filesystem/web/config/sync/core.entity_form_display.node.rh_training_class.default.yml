@@ -3,17 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.rh_training_class.field_completion_time
     - field.field.node.rh_training_class.field_exclude_from_search
     - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_protected_page
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
-    - image.style.thumbnail
     - node.type.rh_training_class
   module:
-    - image
+    - entity_browser
     - interval
     - link
     - path
@@ -71,6 +72,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_protected_page:
+    weight: 28
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_short_description:
     weight: 1
