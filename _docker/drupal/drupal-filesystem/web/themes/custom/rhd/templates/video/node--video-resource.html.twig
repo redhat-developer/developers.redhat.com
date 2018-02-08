@@ -78,3 +78,7 @@
 <noscript>
     <meta name="DCP:WebpageSearchExclude" content="true">
 </noscript>
+
+{% if node.field_protected_page.value == '1' %}
+  <div class="protected"></div>
+{% endif %}
