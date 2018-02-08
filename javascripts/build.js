@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var RHDPAlert = (function (_super) {
+var RHDPAlert = /** @class */ (function (_super) {
     __extends(RHDPAlert, _super);
     function RHDPAlert() {
         var _this = _super.call(this) || this;
@@ -107,7 +107,7 @@ var RHDPAlert = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-alert', RHDPAlert);
 });
-var RHDPOSDownload = (function (_super) {
+var RHDPOSDownload = /** @class */ (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
         var _this = _super.call(this) || this;
@@ -300,7 +300,7 @@ var RHDPOSDownload = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-os-download', RHDPOSDownload);
 });
-var RHDPThankyou = (function (_super) {
+var RHDPThankyou = /** @class */ (function (_super) {
     __extends(RHDPThankyou, _super);
     function RHDPThankyou() {
         var _this = _super.call(this) || this;
@@ -384,7 +384,7 @@ var RHDPThankyou = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-thankyou', RHDPThankyou);
 });
-var RHDPTryItNow = (function (_super) {
+var RHDPTryItNow = /** @class */ (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
         var _this = _super.call(this) || this;
@@ -503,33 +503,26 @@ var RHDPTryItNow = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-tryitnow', RHDPTryItNow);
 });
-var DevNationLiveSession = (function () {
+var DevNationLiveSession = /** @class */ (function () {
     function DevNationLiveSession(obj) {
         var _this = this;
         this._title = '';
         this._date = '';
         this._youtube_id = '';
-        this._offer_id = '';
+        this._speakers = [];
         this._abstract = '';
         this._confirmed = false;
         this._register = true;
-        this._eloqua = '';
+        this._upcoming = false;
+        this._inxpo = '';
         Object.keys(obj).map(function (key) {
             _this[key] = obj[key];
         });
+        var dt = Date.parse(this.date);
+        if (dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
+            this.upcoming = true;
+        }
     }
-    Object.defineProperty(DevNationLiveSession.prototype, "offer_id", {
-        get: function () {
-            return this._offer_id;
-        },
-        set: function (val) {
-            if (this._offer_id === val)
-                return;
-            this._offer_id = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(DevNationLiveSession.prototype, "title", {
         get: function () {
             return this._title;
@@ -624,26 +617,37 @@ var DevNationLiveSession = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DevNationLiveSession.prototype, "eloqua", {
+    Object.defineProperty(DevNationLiveSession.prototype, "inxpo", {
         get: function () {
-            return this._eloqua;
+            return this._inxpo;
         },
         set: function (val) {
-            if (this._eloqua === val)
+            if (this._inxpo === val)
                 return;
-            this._eloqua = val;
+            this._inxpo = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "upcoming", {
+        get: function () {
+            return this._upcoming;
+        },
+        set: function (val) {
+            this._upcoming = val;
         },
         enumerable: true,
         configurable: true
     });
     return DevNationLiveSession;
 }());
-var DevNationLiveSpeaker = (function () {
+var DevNationLiveSpeaker = /** @class */ (function () {
     function DevNationLiveSpeaker(obj) {
         var _this = this;
         this._name = '';
         this._intro = '';
         this._twitter = '';
+        this._image = '';
         Object.keys(obj).map(function (key) {
             _this[key] = obj[key];
         });
@@ -684,59 +688,99 @@ var DevNationLiveSpeaker = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(DevNationLiveSpeaker.prototype, "image", {
+        get: function () {
+            return this._image;
+        },
+        set: function (val) {
+            if (this._image === val)
+                return;
+            this._image = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return DevNationLiveSpeaker;
 }());
-var DevNationLiveApp = (function (_super) {
+var DevNationLiveApp = /** @class */ (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
         var _this = _super.call(this) || this;
         _this._src = '../rhdp-apps/devnationlive/devnationlive.json';
         _this._form = '../rhdp-apps/devnationlive/';
+        _this._upcoming = [];
+        _this._past = [];
         _this._mode = 'cors';
-        _this.nextSession = function (strings, next) {
-            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                <p>Speaker(s): " + next.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
-                var _a;
-            }).join('') + " </p>\n                <p>" + next.abstract + "</p>\n                " + next.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerIntroTemplate(_a, speaker));
-                var _a;
-            }).join('') + "\n                </div>\n            </div>\n        </section>";
-        };
-        _this.upcomingSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
-                var _a;
-            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
-                : "<iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.offer_id + "\"></iframe>\n                            </div>")
-                : '') + "\n                </div>\n            </li>"
-                : '');
+        _this.speakerLongTemplate = function (strings, speaker) {
+            return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '') + "\n            " + (speaker.intro ? "<p>" + speaker.intro + "</p>" : '');
         };
         _this.speakerShortTemplate = function (strings, speaker) {
             return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '');
         };
-        _this.speakerIntroTemplate = function (strings, speaker) {
-            return "" + (speaker.intro ? "<p>" + speaker.intro + "</p>" : '');
-        };
-        _this.pastSession = function (strings, sess) {
-            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speaker));
+        _this.template = function (strings, next, upcoming, past, speakers) {
+            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "<section class=\"next-session\">\n            <div class=\"row\">\n                <div class=\"large-24\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <div class=\"session-date right\"><i class=\"fa fa-calendar fa-2x\"></i> " + next.date + "</div>\n                    <h4 class=\"caps\">" + next.title + "</h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-14 small-24 columns\">\n                    <h5 class=\"caps session-label\">Session:</h5>\n                    <p class=\"abstract\">" + next.abstract + "</p>\n                    <a href=\"" + next.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>\n                </div>\n                <div class=\"large-10 columns\">\n                    <h5 class=\"caps session-label\">Speaker(s):</h5>\n                    " + next.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerLongTemplate(_a, speakers[speaker]));
                 var _a;
-            }).join('') + " </p>\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
-                : '');
-        };
-        _this.template = function (strings, next, upcoming, past) {
-            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "" + (_a = ["", ""], _a.raw = ["", ""], _this.nextSession(_a, next)) : '') + "\n        <section>\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.upcomingSession(_a, sess));
+            }).join('') + "  \n                </div>\n            </div>\n        </section>" : '') + "\n        <section class=\"session-list\">\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) { return "" + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-24 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speakers[speaker]));
                 var _a;
-            }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.pastSession(_a, sess));
+            }).join('') + " </p>\n                                    <p>" + sess.date + "</p>\n                                    <p>" + sess.abstract + "</p>\n                                    " + (sess.register ? "\n                                    <a href=\"" + sess.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>" : '') + "\n                                </div>\n                            </div>\n                        </li>"
+                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speakers[speaker]));
                 var _a;
-            }).join('') + "\n                        </ul>\n                    </div>"
+            }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
+                : ''); }).join('') + "\n                        </ul>\n                    </div>"
                 : '') + "\n            </div>\n        </section>\n    </div>";
-            var _a;
         };
         return _this;
     }
+    Object.defineProperty(DevNationLiveApp.prototype, "sessions", {
+        get: function () {
+            return this._sessions;
+        },
+        set: function (val) {
+            if (this._sessions === val)
+                return;
+            this._sessions = val;
+            var next = false;
+            for (var i = 0; i < this.sessions.length; i++) {
+                var sess = new DevNationLiveSession(this.sessions[i]);
+                if (sess.confirmed) {
+                    if (sess.upcoming) {
+                        if (next) {
+                            if (sess.inxpo.length > 0) {
+                                this.upcoming.push(sess);
+                            }
+                        }
+                        else {
+                            if (sess.inxpo.length > 0) {
+                                this.next = sess;
+                                next = true;
+                            }
+                        }
+                    }
+                    else {
+                        this.past.push(sess);
+                    }
+                }
+            }
+            this.past.sort(this.sortPastSessions);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "speakers", {
+        get: function () {
+            return this._speakers;
+        },
+        set: function (val) {
+            if (this._speakers === val)
+                return;
+            this._speakers = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DevNationLiveApp.prototype, "next", {
         get: function () {
             return this._next;
@@ -816,10 +860,9 @@ var DevNationLiveApp = (function (_super) {
         set: function (val) {
             if (this._data === val)
                 return;
-            this._data = val['sessions'] ? val['sessions'].sort(this.sortSessions) : [];
-            this.next = this.getNextSession();
-            this.upcoming = this.getUpcoming();
-            this.past = this.getPast();
+            this._data = val;
+            this.sessions = this._data['sessions'] ? this._data['sessions'].sort(this.sortSessions) : [];
+            this.speakers = this._data['speakers'] ? this._data['speakers'] : [];
         },
         enumerable: true,
         configurable: true
@@ -843,12 +886,11 @@ var DevNationLiveApp = (function (_super) {
             mode: this.mode,
             cache: 'default'
         };
-        this.addEventListener('registered', this.setRegistered);
         fetch(this.src, fInit)
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.data = data;
-            _this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], _this.template(_a, _this.next, _this.upcoming, _this.past));
+            _this.innerHTML = (_a = ["", "", "", "", ""], _a.raw = ["", "", "", "", ""], _this.template(_a, _this.next, _this.upcoming, _this.past, _this.speakers));
             var _a;
         });
     };
@@ -856,52 +898,18 @@ var DevNationLiveApp = (function (_super) {
         var re = new RegExp('(?:(?:^|.*;\\s*)' + name + '\\s*\\=\\s*([^;]*).*$)|^.*$');
         return document.cookie.replace(re, "$1");
     };
-    DevNationLiveApp.prototype.setRegistered = function (e) {
-        this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.next, this.upcoming, this.past));
-        var _a;
-    };
     DevNationLiveApp.prototype.sortSessions = function (a, b) {
         var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
         return da - db;
     };
-    DevNationLiveApp.prototype.getNextSession = function () {
-        for (var i = 0; i < this.data.length; i++) {
-            var dt = Date.parse(this.data[i].date);
-            if (dt && dt > Date.now() - 259200000) {
-                return this.data[i];
-            }
-        }
-    };
-    DevNationLiveApp.prototype.getUpcoming = function () {
-        var upcoming = [];
-        var first = true;
-        for (var i = 0; i < this.data.length; i++) {
-            var dt = Date.parse(this.data[i].date);
-            if (dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
-                if (!first && this.data[i].offer_id.length > 0) {
-                    upcoming.push(this.data[i]);
-                }
-                else {
-                    first = false;
-                }
-            }
-        }
-        return upcoming;
-    };
-    DevNationLiveApp.prototype.getPast = function () {
-        var past = [];
-        for (var i = 0; i < this.data.length; i++) {
-            var dt = Date.parse(this.data[i].date);
-            if (dt && dt + 3600000 < Date.now()) {
-                past.push(this.data[i]);
-            }
-        }
-        return past;
+    DevNationLiveApp.prototype.sortPastSessions = function (a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return db - da;
     };
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-var RHDPDownloadsAllItem = (function (_super) {
+var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
@@ -1055,7 +1063,7 @@ var RHDPDownloadsAllItem = (function (_super) {
     };
     return RHDPDownloadsAllItem;
 }(HTMLElement));
-var RHDPDownloadsAll = (function (_super) {
+var RHDPDownloadsAll = /** @class */ (function (_super) {
     __extends(RHDPDownloadsAll, _super);
     function RHDPDownloadsAll() {
         var _this = _super.call(this) || this;
@@ -1138,7 +1146,7 @@ var RHDPDownloadsAll = (function (_super) {
     };
     return RHDPDownloadsAll;
 }(HTMLElement));
-var RHDPDownloadsApp = (function (_super) {
+var RHDPDownloadsApp = /** @class */ (function (_super) {
     __extends(RHDPDownloadsApp, _super);
     function RHDPDownloadsApp() {
         var _this = _super.call(this) || this;
@@ -1212,7 +1220,7 @@ var RHDPDownloadsApp = (function (_super) {
     };
     return RHDPDownloadsApp;
 }(HTMLElement));
-var RHDPDownloadsPopularProduct = (function (_super) {
+var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
     __extends(RHDPDownloadsPopularProduct, _super);
     function RHDPDownloadsPopularProduct() {
         var _this = _super.call(this) || this;
@@ -1289,7 +1297,7 @@ var RHDPDownloadsPopularProduct = (function (_super) {
     };
     return RHDPDownloadsPopularProduct;
 }(HTMLElement));
-var RHDPDownloadsPopularProducts = (function (_super) {
+var RHDPDownloadsPopularProducts = /** @class */ (function (_super) {
     __extends(RHDPDownloadsPopularProducts, _super);
     function RHDPDownloadsPopularProducts() {
         return _super.call(this) || this;
@@ -1335,7 +1343,7 @@ var RHDPDownloadsPopularProducts = (function (_super) {
     };
     return RHDPDownloadsPopularProducts;
 }(HTMLElement));
-var RHDPDownloadsProducts = (function (_super) {
+var RHDPDownloadsProducts = /** @class */ (function (_super) {
     __extends(RHDPDownloadsProducts, _super);
     function RHDPDownloadsProducts() {
         var _this = _super.call(this) || this;
@@ -1567,7 +1575,7 @@ customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProd
 customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
 customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
 customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
-var RHDPProjectFilterBox = (function (_super) {
+var RHDPProjectFilterBox = /** @class */ (function (_super) {
     __extends(RHDPProjectFilterBox, _super);
     function RHDPProjectFilterBox() {
         var _this = _super.call(this) || this;
@@ -1660,7 +1668,7 @@ var RHDPProjectFilterBox = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-filter-box', RHDPProjectFilterBox);
 });
-var RHDPProjectItem = (function (_super) {
+var RHDPProjectItem = /** @class */ (function (_super) {
     __extends(RHDPProjectItem, _super);
     function RHDPProjectItem() {
         var _this = _super.call(this) || this;
@@ -2034,7 +2042,7 @@ var RHDPProjectItem = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-item', RHDPProjectItem);
 });
-var RHDPProjectQuery = (function (_super) {
+var RHDPProjectQuery = /** @class */ (function (_super) {
     __extends(RHDPProjectQuery, _super);
     function RHDPProjectQuery() {
         var _this = _super.call(this) || this;
@@ -2161,7 +2169,7 @@ var RHDPProjectQuery = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-query', RHDPProjectQuery);
 });
-var RHDPProjectURL = (function (_super) {
+var RHDPProjectURL = /** @class */ (function (_super) {
     __extends(RHDPProjectURL, _super);
     function RHDPProjectURL() {
         var _this = _super.call(this) || this;
@@ -2236,7 +2244,7 @@ var RHDPProjectURL = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-project-url', RHDPProjectURL);
 });
-var RHDPProjects = (function (_super) {
+var RHDPProjects = /** @class */ (function (_super) {
     __extends(RHDPProjects, _super);
     function RHDPProjects() {
         var _this = _super.call(this) || this;
@@ -2367,7 +2375,7 @@ var RHDPProjects = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-projects', RHDPProjects);
 });
-var RHDPSearchBox = (function (_super) {
+var RHDPSearchBox = /** @class */ (function (_super) {
     __extends(RHDPSearchBox, _super);
     function RHDPSearchBox() {
         var _this = _super.call(this) || this;
@@ -2434,7 +2442,7 @@ var RHDPSearchBox = (function (_super) {
     return RHDPSearchBox;
 }(HTMLElement));
 customElements.define('rhdp-search-box', RHDPSearchBox);
-var RHDPSearchFilterGroup = (function (_super) {
+var RHDPSearchFilterGroup = /** @class */ (function (_super) {
     __extends(RHDPSearchFilterGroup, _super);
     function RHDPSearchFilterGroup() {
         var _this = _super.call(this) || this;
@@ -2536,7 +2544,7 @@ var RHDPSearchFilterGroup = (function (_super) {
     return RHDPSearchFilterGroup;
 }(HTMLElement));
 customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
-var RHDPSearchFilterItem = (function (_super) {
+var RHDPSearchFilterItem = /** @class */ (function (_super) {
     __extends(RHDPSearchFilterItem, _super);
     function RHDPSearchFilterItem() {
         var _this = _super.call(this) || this;
@@ -2764,7 +2772,7 @@ var RHDPSearchFilterItem = (function (_super) {
 customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);
 // import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchFilters = (function (_super) {
+var RHDPSearchFilters = /** @class */ (function (_super) {
     __extends(RHDPSearchFilters, _super);
     function RHDPSearchFilters() {
         var _this = _super.call(this) || this;
@@ -2990,7 +2998,7 @@ var RHDPSearchFilters = (function (_super) {
     return RHDPSearchFilters;
 }(HTMLElement));
 customElements.define('rhdp-search-filters', RHDPSearchFilters);
-var RHDPSearchOneBox = (function (_super) {
+var RHDPSearchOneBox = /** @class */ (function (_super) {
     __extends(RHDPSearchOneBox, _super);
     function RHDPSearchOneBox() {
         var _this = _super.call(this) || this;
@@ -3144,7 +3152,7 @@ var RHDPSearchOneBox = (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
 // import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-var RHDPSearchQuery = (function (_super) {
+var RHDPSearchQuery = /** @class */ (function (_super) {
     __extends(RHDPSearchQuery, _super);
     function RHDPSearchQuery() {
         var _this = _super.call(this) || this;
@@ -3440,7 +3448,7 @@ var RHDPSearchQuery = (function (_super) {
     return RHDPSearchQuery;
 }(HTMLElement));
 customElements.define('rhdp-search-query', RHDPSearchQuery);
-var RHDPSearchResultCount = (function (_super) {
+var RHDPSearchResultCount = /** @class */ (function (_super) {
     __extends(RHDPSearchResultCount, _super);
     function RHDPSearchResultCount() {
         var _this = _super.call(this) || this;
@@ -3544,7 +3552,7 @@ var RHDPSearchResultCount = (function (_super) {
     return RHDPSearchResultCount;
 }(HTMLElement));
 customElements.define('rhdp-search-result-count', RHDPSearchResultCount);
-var RHDPSearchResult = (function (_super) {
+var RHDPSearchResult = /** @class */ (function (_super) {
     __extends(RHDPSearchResult, _super);
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
@@ -3753,7 +3761,7 @@ var RHDPSearchResult = (function (_super) {
 }(HTMLElement));
 customElements.define('rhdp-search-result', RHDPSearchResult);
 // import {RHDPSearchResult} from './rhdp-search-result';
-var RHDPSearchResults = (function (_super) {
+var RHDPSearchResults = /** @class */ (function (_super) {
     __extends(RHDPSearchResults, _super);
     function RHDPSearchResults() {
         var _this = _super.call(this) || this;
@@ -3928,7 +3936,7 @@ var RHDPSearchResults = (function (_super) {
     return RHDPSearchResults;
 }(HTMLElement));
 customElements.define('rhdp-search-results', RHDPSearchResults);
-var RHDPSearchSortPage = (function (_super) {
+var RHDPSearchSortPage = /** @class */ (function (_super) {
     __extends(RHDPSearchSortPage, _super);
     function RHDPSearchSortPage() {
         var _this = _super.call(this) || this;
@@ -3984,7 +3992,7 @@ var RHDPSearchSortPage = (function (_super) {
     return RHDPSearchSortPage;
 }(HTMLElement));
 customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
-var RHDPSearchURL = (function (_super) {
+var RHDPSearchURL = /** @class */ (function (_super) {
     __extends(RHDPSearchURL, _super);
     //history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${decodeURIComponent(this.term).replace(' ', '+')}`);
     function RHDPSearchURL() {
@@ -4180,7 +4188,7 @@ customElements.define('rhdp-search-url', RHDPSearchURL);
 // import {RHDPSearchOneBox} from './rhdp-search-onebox';
 // import {RHDPSearchResults} from './rhdp-search-results';
 // import {RHDPSearchSortPage} from './rhdp-search-sort-page';
-var RHDPSearchApp = (function (_super) {
+var RHDPSearchApp = /** @class */ (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;

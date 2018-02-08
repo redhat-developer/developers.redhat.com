@@ -3,9 +3,49 @@ class DevNationLiveApp extends HTMLElement {
     _src = '../rhdp-apps/devnationlive/devnationlive.json';
     _form = '../rhdp-apps/devnationlive/';
     _next: DevNationLiveSession;
-    _upcoming: DevNationLiveSession[];
-    _past: DevNationLiveSession[];
+    _upcoming: DevNationLiveSession[] = [];
+    _past: DevNationLiveSession[] = [];
     _mode : RequestMode = 'cors';
+    _sessions : DevNationLiveSession[];
+    _speakers : DevNationLiveSpeaker[];
+
+    get sessions() {
+        return this._sessions;
+    }
+    set sessions(val) {
+        if (this._sessions === val) return;
+        this._sessions = val;
+        let next = false;
+        for(let i=0; i < this.sessions.length; i++) {
+            let sess = new DevNationLiveSession(this.sessions[i]);
+            if(sess.confirmed) {
+                if (sess.upcoming) { 
+                    if (next) {
+                        if (sess.inxpo.length > 0) {
+                            this.upcoming.push(sess);
+                        }
+                    } else { 
+                        if (sess.inxpo.length > 0) {
+                            this.next = sess;
+                            next = true;
+                        }
+                    } 
+                } else {
+                    this.past.push(sess);
+                }
+            }
+        }
+
+        this.past.sort(this.sortPastSessions);
+    }
+
+    get speakers() {
+        return this._speakers;
+    }
+    set speakers(val) {
+        if (this._speakers === val) return;
+        this._speakers = val;
+    }
 
     get next() {
         return this._next;
@@ -61,104 +101,23 @@ class DevNationLiveApp extends HTMLElement {
     }
     set data(val) {
         if (this._data === val) return;
-        this._data = val['sessions'] ? val['sessions'].sort(this.sortSessions) : [];
-        this.next = this.getNextSession();
-        this.upcoming = this.getUpcoming();
-        this.past = this.getPast();
-    }
-
-    nextSession = (strings, next:DevNationLiveSession) => {
-        return `<section>
-            <div class="row">
-                <div class="large-24 columns">
-                    <h5 class="caps session-label">Next Live Session</h5>
-                </div>
-                <div class="large-17 small-24 columns">
-                    <h2 class="caps">${next.title}</h2>
-                </div>
-                <div class="large-7 small-24 columns devnation-live-date" data-tags="${next.date}">
-                    <div class="session-date"><span><i class="fa fa-calendar fa-2x right"></i></span> ${next.date}</div>
-                </div>
-            </div>
-            <div class="row" data-video="${next.youtube_id}">
-                <div class="medium-14 columns event-video">
-                    ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
-                    <div class="flex-video">
-                        <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0&autoplay=1" width="640" height="360" frameborder="0" allowfullscreen></iframe>
-                    </div>` : `
-                    <img width="640" height="360" src="../images/design/devnationlive_herographic_0.jpg" alt="${next.title}">
-                    `}
-                </div>
-                <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
-                    ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
-                    <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
-                    ` : `
-                    <iframe class="session-reg" src="${this.form}?id=${next.offer_id}"></iframe>
-                    `}
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-24 columns divider">
-                <p>Speaker(s): ${next.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
-                <p>${next.abstract}</p>
-                ${next.speakers.map(speaker => this.speakerIntroTemplate`${speaker}`).join('')}
-                </div>
-            </div>
-        </section>`;
-    }
-
-    upcomingSession = (strings, sess:DevNationLiveSession) => {
-        return `
-        ${sess.confirmed ? `
-            <li class="single-event">
-                <div class="row">
-                    <div class="large-24 columns">
-                        <h4 class="caps">${sess.title}</h4>
-                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
-                        <p>${sess.date}</p>
-                        <p>${sess.abstract}</p>
-                    </div>
-                    ${sess.register ? `
-                        <div class="large-16 medium-10 small-24 columns align-center">
-                        ${this.getCookie('dn_live_'+sess.offer_id) ? `
-                            <div class="button disabled">You are Registered</div>` 
-                            : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
-                            </div>`
-                        }` 
-                        : ''
-                    }
-                </div>
-            </li>`
-        : ''}`
+        this._data = val;
+        this.sessions = this._data['sessions'] ? this._data['sessions'].sort(this.sortSessions) : [];
+        this.speakers = this._data['speakers'] ? this._data['speakers'] : [];
     }
     
+    speakerLongTemplate = (strings, speaker:DevNationLiveSpeaker) => {
+        return ` <strong>${speaker.name}</strong>
+            ${speaker.twitter ? `(<a href="https://twitter.com/${speaker.twitter}" target="_blank" class="external-link">@${speaker.twitter}</a>)` : ''}
+            ${speaker.intro ? `<p>${speaker.intro}</p>` : ''}`;
+    }
+
     speakerShortTemplate = (strings, speaker:DevNationLiveSpeaker) => {
         return ` <strong>${speaker.name}</strong>
             ${speaker.twitter ? `(<a href="https://twitter.com/${speaker.twitter}" target="_blank" class="external-link">@${speaker.twitter}</a>)` : ''}`;
     }
 
-    speakerIntroTemplate = (strings, speaker:DevNationLiveSpeaker) => {
-        return `${speaker.intro ? `<p>${speaker.intro}</p>` : ''}`;
-    }
-
-    pastSession = (strings, sess:DevNationLiveSession) => {
-        return `
-        ${sess.confirmed ? `
-            <li class="single-event">
-                <div class="row">
-                    <div class="large-24 columns">
-                        <h4 class="caps">${sess.title}</h4>
-                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speaker}`).join('')} </p>
-                        <p>${sess.date}</p>
-                        <p>${sess.abstract}</p>
-                        <a href="https://developers.redhat.com/video/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>
-                    </div>
-                </div>
-            </li>`
-        : ''}`
-    }
-
-    template  = (strings, next:DevNationLiveSession, upcoming:DevNationLiveSession[], past:DevNationLiveSession[]) => {
+    template  = (strings, next:DevNationLiveSession, upcoming:DevNationLiveSession[], past:DevNationLiveSession[], speakers:DevNationLiveSpeaker[]) => {
     return `<div class="wide wide-hero devnation-live">
         <div class="row">
             <div class="large-24 columns">
@@ -168,15 +127,52 @@ class DevNationLiveApp extends HTMLElement {
         </div>
     </div>
     <div id="devnationLive-microsite">
-        ${next ? `${this.nextSession`${next}`}` : ''}
-        <section>
+        ${next ? `<section class="next-session">
+            <div class="row">
+                <div class="large-24">
+                    <h5 class="caps session-label">Next Live Session</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-24 columns">
+                    <div class="session-date right"><i class="fa fa-calendar fa-2x"></i> ${next.date}</div>
+                    <h4 class="caps">${next.title}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-14 small-24 columns">
+                    <h5 class="caps session-label">Session:</h5>
+                    <p class="abstract">${next.abstract}</p>
+                    <a href="${next.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>
+                </div>
+                <div class="large-10 columns">
+                    <h5 class="caps session-label">Speaker(s):</h5>
+                    ${next.speakers.map(speaker => this.speakerLongTemplate`${speakers[speaker]}`).join('')}  
+                </div>
+            </div>
+        </section>` : ''}
+        <section class="session-list">
             <div class="row">
                 ${upcoming.length > 0 ? `
                 ${past.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
                     <h5 class="caps">Upcoming Sessions</h5>
                     <br>
                     <ul class="events-list">
-                    ${upcoming.map(sess =>  this.upcomingSession`${sess}`).join('')}
+                    ${upcoming.map(sess =>  `${sess.confirmed ? `
+                        <li class="single-event">
+                            <div class="row">
+                                <div class="large-24 columns">
+                                    <h4 class="caps">${sess.title}</h4>
+                                    <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speakers[speaker]}`).join('')} </p>
+                                    <p>${sess.date}</p>
+                                    <p>${sess.abstract}</p>
+                                    ${sess.register ? `
+                                    <a href="${sess.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>` : ''
+                                    }
+                                </div>
+                            </div>
+                        </li>`
+                    : ''}`).join('')}
                     </ul>
                 </div>` : ''}
                 ${past.length > 0 ? `
@@ -184,7 +180,19 @@ class DevNationLiveApp extends HTMLElement {
                     <h5 class="caps">Past Sessions</h5>
                         <br>
                         <ul class="events-list">
-                        ${past.map(sess =>  this.pastSession`${sess}`).join('')}
+                        ${past.map(sess =>  `${sess.confirmed ? `
+                            <li class="single-event">
+                                <div class="row">
+                                    <div class="large-24 columns">
+                                        <h4 class="caps">${sess.title}</h4>
+                                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speakers[speaker]}`).join('')} </p>
+                                        <p>${sess.date}</p>
+                                        <p>${sess.abstract}</p>
+                                        <a href="https://developers.redhat.com/video/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>
+                                    </div>
+                                </div>
+                            </li>`
+                        : ''}`).join('')}
                         </ul>
                     </div>` 
                 : ''}
@@ -213,13 +221,12 @@ class DevNationLiveApp extends HTMLElement {
             mode: this.mode,
             cache: 'default'
         };
-        this.addEventListener('registered', this.setRegistered);
-
+        
         fetch(this.src, fInit)
         .then((resp) => resp.json())
         .then((data) => { 
             this.data = data;
-            this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}`;
+            this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}${this.speakers}`;
         });
     }
 
@@ -228,50 +235,16 @@ class DevNationLiveApp extends HTMLElement {
         return document.cookie.replace(re, "$1");
     }
 
-    setRegistered(e) {
-        this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}`;
-    }
-
     sortSessions(a, b) {
         var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
             db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
         return da - db;
     }
 
-    getNextSession() {
-        for(let i=0; i < this.data.length; i++) {
-            let dt = Date.parse(this.data[i].date);
-            if(dt && dt > Date.now() - 259200000) {
-                return this.data[i];
-            }
-        }
-    }
-
-    getUpcoming() {
-        let upcoming = [];
-        let first = true;
-        for(let i=0; i < this.data.length; i++) {
-            let dt = Date.parse(this.data[i].date);
-            if(dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
-                if (!first && this.data[i].offer_id.length > 0) { 
-                    upcoming.push(this.data[i]) 
-                } else { 
-                    first = false; 
-                }
-            }
-        }
-        return upcoming;
-    }
-
-    getPast() {
-        let past = [];
-        for(let i=0; i < this.data.length; i++) {
-            let dt = Date.parse(this.data[i].date);
-            if(dt && dt + 3600000 < Date.now()) {
-                past.push(this.data[i]);
-            }
-        }
-        return past;
+    sortPastSessions(a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
+            db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return db - da;
     }
 }
 

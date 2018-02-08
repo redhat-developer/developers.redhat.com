@@ -2,8 +2,6 @@
   "name": "developers.redhat.com",
   "version": "1.0.0",
   "description": "developers.redhat.com build",
-
-
   "main": "Gulpfile.js",
   "scripts": {
     "test": "karma start _tests/unit/config/karma.conf.js",
@@ -35,6 +33,9 @@
     "karma-spec-reporter": "0.0.31",
     "node-sass": "4.5.3",
     "node-sass-utils": "1.1.2",
-    "typescript": "2.5.3"
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "gulp-typescript": "^4.0.0"
   }
 }
