@@ -65,9 +65,9 @@
       <i></i> {{item.content['#node'].type.entity.label}}
   </span>
   <div class="card-info">
-    {# <dp-duration>
-        <i></i> XX min
-    </dp-duration> #}
+    <dp-duration>
+        <i></i> {{item.content['#node'].field_minutes_to_complete}}
+    </dp-duration>
     <dp-level>
          {{(item.content['#node'].field_difficulty.value ?? 'unclassified')|capitalize}}
     </dp-level>
