@@ -1,0 +1,23 @@
+uuid: c1085cf7-3e13-4225-bb1d-3fe7f03b3a10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card_image
+    - node.type.books
+  module:
+    - link
+id: node.books.field_card_image
+field_name: field_card_image
+entity_type: node
+bundle: books
+label: 'Card Image'
+description: "Upload the background photo to be used when this content is in card format.\r\n"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

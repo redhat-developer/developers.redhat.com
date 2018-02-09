@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
+    - field.field.node.rh_training_class.field_card_image
     - field.field.node.rh_training_class.field_completion_time
     - field.field.node.rh_training_class.field_exclude_from_search
     - field.field.node.rh_training_class.field_image
@@ -10,10 +12,9 @@ dependencies:
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
-    - image.style.thumbnail
     - node.type.rh_training_class
   module:
-    - image
+    - entity_browser
     - interval
     - link
     - path
@@ -26,10 +27,18 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_card_image:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_completion_time:
     weight: 5
     settings:

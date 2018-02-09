@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.rh_training_class.field_card_image
     - field.field.node.rh_training_class.field_completion_time
     - field.field.node.rh_training_class.field_exclude_from_search
     - field.field.node.rh_training_class.field_image
@@ -30,6 +31,18 @@ targetEntityType: node
 bundle: rh_training_class
 mode: default
 content:
+  field_card_image:
+    weight: 109
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_completion_time:
     weight: 106
     label: hidden

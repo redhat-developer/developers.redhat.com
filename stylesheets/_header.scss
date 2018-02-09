@@ -248,7 +248,7 @@ nav.accounts {
   Logo
  */
 
-h1.logo {
+div.logo {
  float: left;
  width:300px;
  margin: 0;
@@ -271,7 +271,7 @@ nav.accounts {
 @include tablet-portrait-and-down {
   header.main {
     background:black;
-    h1.logo {
+    div.logo {
       margin:0;
       padding-left:0 !important;
     }
@@ -464,7 +464,7 @@ nav.accounts {
 }
 
 @include mobile-landscape-and-down {
-  h1.logo {
+  div.logo {
     max-width:230px;
   }
   .nav-toggle {

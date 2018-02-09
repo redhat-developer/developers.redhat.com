@@ -5,15 +5,17 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.field_author_name
+    - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
-    - field.field.node.article.field_image
     - field.field.node.article.field_difficulty
-    - field.field.node.article.field_read_time
+    - field.field.node.article.field_image
     - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - interval
+    - link
     - metatag
     - path
     - text
@@ -39,6 +41,14 @@ content:
     weight: 5
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_card_image:
+    weight: 12
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_content_author:
     weight: 1

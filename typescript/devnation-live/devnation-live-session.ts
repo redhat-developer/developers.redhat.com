@@ -2,20 +2,13 @@ class DevNationLiveSession {
     _title = '';
     _date = '';
     _youtube_id = '';
-    _speakers: DevNationLiveSpeaker[];
-    _offer_id = '';
+    _speakers = [];
     _abstract = '';
     _confirmed = false;
     _register = true;
-    _eloqua = '';
+    _upcoming = false;
+    _inxpo = '';
 
-    get offer_id() {
-        return this._offer_id;
-    }
-    set offer_id(val) {
-        if (this._offer_id === val) return;
-        this._offer_id = val;
-    }
     get title() {
         return this._title;
     }
@@ -78,16 +71,29 @@ class DevNationLiveSession {
         this._confirmed = val;
     }
 
-    get eloqua() {
-        return this._eloqua;
+    get inxpo() {
+        return this._inxpo;
     }
-    set eloqua(val) {
-        if (this._eloqua === val) return;
-        this._eloqua = val;
+    set inxpo(val) {
+        if (this._inxpo === val) return;
+        this._inxpo = val;
     }
+    
+    get upcoming() {
+        return this._upcoming;
+    }
+    set upcoming(val) {
+        this._upcoming = val;
+    }
+    
     constructor(obj) {
         Object.keys(obj).map( key => {
             this[key] = obj[key];
         });
+
+        let dt = Date.parse(this.date);
+        if(dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
+            this.upcoming = true;
+        }
     }
 }

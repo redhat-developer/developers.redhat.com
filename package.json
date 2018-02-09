@@ -2,8 +2,6 @@
   "name": "developers.redhat.com",
   "version": "1.0.0",
   "description": "developers.redhat.com build",
-
-
   "main": "Gulpfile.js",
   "scripts": {
     "test": "karma start _tests/unit/config/karma.conf.js",
@@ -25,6 +23,7 @@
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",
     "gulp-sourcemaps": "2.6.1",
+    "gulp-typescript": "^4.0.1",
     "jasmine-core": "2.8.0",
     "karma": "1.7.1",
     "karma-chrome-launcher": "2.2.0",
@@ -35,6 +34,6 @@
     "karma-spec-reporter": "0.0.31",
     "node-sass": "4.5.3",
     "node-sass-utils": "1.1.2",
-    "typescript": "2.5.3"
+    "typescript": "^2.7.1"
   }
 }

@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_card_image
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
-    - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
@@ -39,6 +40,14 @@ content:
     weight: 7
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_card_image:
+    weight: 14
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_cheat_sheet_author:
     weight: 1

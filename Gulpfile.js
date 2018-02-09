@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var ts = require('gulp-typescript');
+var tsProject = ts.createProject('tsconfig.json');
 var del = require('del');
 var sass = require("node-sass");
 var sassUtils = require("node-sass-utils")(sass);
@@ -105,6 +107,12 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('_docker/drupal/drupal-filesystem/web/themes/custom/rhd/js/'));
 });
 
+gulp.task('typescript', function() {
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest('.'));
+});
+
 gulp.task('sass', function() {
     gulp.src(globs.styles)
     // Uncomment this if you need source maps
@@ -126,5 +134,5 @@ gulp.task('clean', function() {
               '_docker/drupal/drupal-filesystem/web/web/themes/custom/rhd/js/all.min.js']);
 });
 
-gulp.task('default', ['clean', 'scripts', 'sass']);
+gulp.task('default', ['clean', 'typescript', 'scripts', 'sass']);
 
