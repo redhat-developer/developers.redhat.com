@@ -6,6 +6,7 @@ package: rhd
 core: 8.x
 version: 1.0-dev
 libraries:
+  - rhd/web-components
   - rhd/base-theme
 stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
