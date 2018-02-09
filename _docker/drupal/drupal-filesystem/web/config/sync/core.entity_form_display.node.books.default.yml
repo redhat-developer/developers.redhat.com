@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.books.field_book_description
     - field.field.node.books.field_book_excerpt
     - field.field.node.books.field_book_url
+    - field.field.node.books.field_card_image
     - field.field.node.books.field_categories
     - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
@@ -66,6 +67,14 @@ content:
     region: content
   field_book_url:
     weight: 15
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_card_image:
+    weight: 18
     settings:
       placeholder_url: ''
       placeholder_title: ''

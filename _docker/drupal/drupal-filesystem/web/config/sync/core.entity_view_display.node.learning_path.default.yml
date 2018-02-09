@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.learning_path.body
     - field.field.node.learning_path.field_audience
+    - field.field.node.learning_path.field_card_image
     - field.field.node.learning_path.field_completion_time
     - field.field.node.learning_path.field_learning_path_content_item
     - field.field.node.learning_path.field_long_description
@@ -19,6 +20,7 @@ dependencies:
     - node.type.learning_path
   module:
     - interval
+    - link
     - options
     - panelizer
     - text
@@ -47,6 +49,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_card_image:
+    weight: 114
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_completion_time:
     weight: 103

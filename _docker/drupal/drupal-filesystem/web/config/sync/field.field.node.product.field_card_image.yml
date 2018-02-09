@@ -1,0 +1,23 @@
+uuid: 04a849c1-5d44-4e04-ba2b-cea726f5f46e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card_image
+    - node.type.product
+  module:
+    - link
+id: node.product.field_card_image
+field_name: field_card_image
+entity_type: node
+bundle: product
+label: 'Card Image'
+description: 'Upload the background photo to be used when this content is in card format.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

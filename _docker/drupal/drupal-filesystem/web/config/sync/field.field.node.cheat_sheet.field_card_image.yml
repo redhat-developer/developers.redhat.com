@@ -1,0 +1,23 @@
+uuid: ff99e0ca-0b91-4a38-b76c-363b0966c42d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card_image
+    - node.type.cheat_sheet
+  module:
+    - link
+id: node.cheat_sheet.field_card_image
+field_name: field_card_image
+entity_type: node
+bundle: cheat_sheet
+label: 'Card Image'
+description: 'Upload the background photo to be used when this content is in card format.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,23 @@
+uuid: 8cac926d-bbda-40f8-afbf-b3b5d8647cd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card_image
+    - node.type.rh_training_class
+  module:
+    - link
+id: node.rh_training_class.field_card_image
+field_name: field_card_image
+entity_type: node
+bundle: rh_training_class
+label: 'Card Image'
+description: 'Upload the background photo to be used when this content is in card format.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

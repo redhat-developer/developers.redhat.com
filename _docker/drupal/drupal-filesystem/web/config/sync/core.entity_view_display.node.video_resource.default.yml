@@ -4,8 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
-    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_card_image
     - field.field.node.video_resource.field_difficulty
+    - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
     - field.field.node.video_resource.field_slideshare_source
@@ -22,8 +23,8 @@ dependencies:
   module:
     - datetime
     - interval
-    - options
     - link
+    - options
     - panelizer
     - text
     - user
@@ -47,6 +48,18 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_card_image:
+    weight: 17
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_difficulty:
     weight: 10
