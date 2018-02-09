@@ -46,38 +46,7 @@
 ] %}
 
 {% for item in items %}
-{# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
-<div{{ attributes.addClass(['field__item','dp-content-card', 'free-content']) }} 
-    access="" 
-    duration="" 
-    image="" 
-    level="{{(item.content['#node'].field_difficulty.value ?? 'unclassified')|capitalize}}" 
-    title="{{item.content['#node'].title.value}}" 
-    modified="{{item.content['#node'].changed.value|date('Y-m-d')}}" 
-    author=""
-    uri="{{ item.content['#uri'].path }}">
-  <div class="img" style="background-image: url('/{{ directory }}/images/artem-sapegin-199614.jpg')">
-    {# <dp-access-level>
-        <i></i> Access Level
-    </dp-access-level> #}
-  </div>
-  <span class="dp-content-type certification-form">
-      <i></i> {{item.content['#node'].type.entity.label}}
-  </span>
-  <div class="card-info">
-    <dp-duration>
-        <i></i> {{item.content['#node'].field_minutes_to_complete}}
-    </dp-duration>
-    <dp-level>
-         {{(item.content['#node'].field_difficulty.value ?? 'unclassified')|capitalize}}
-    </dp-level>
-  </div>
-  <h4>{{item.content['#node'].title.value}}</h4>
-  <p>{{ item.content['#node'].body.value|striptags}}</p>
-  <span>
-    <rh-datetime datetime="{{item.content['#node'].created.value|date("c")}}">{{item.content['#node'].created.value|date("Y-m-d")}}</rh-datetime>
-    <dp-author>{{item.content['#node'].author.value}}</dp-author>
-  </span>
-</div>
+
+{{ item }}
 
 {% endfor %}
