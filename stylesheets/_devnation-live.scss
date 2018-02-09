@@ -4,6 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
   min-height: 242px;
+  margin-bottom: 0;
   img {
     display: block;
     margin: 0 auto;
@@ -14,7 +15,6 @@
 }
 
 #devnationLive-microsite {
-  margin-top: 2em;
   @include tablet-portrait-and-down {
     h2 { font-size: 2em; }
   }
@@ -22,6 +22,20 @@
     border-bottom: 1px solid $grey-4;
     padding-bottom: 2em;
     margin-bottom: 2em;
+  }
+  .abstract {  }
+  .next-session { 
+    // background: $gray; 
+    padding: 1em 0 2em 0; 
+    
+    .columns {
+      background: $white;
+      padding-top: 1em;
+    }
+  }
+
+  .session-list {
+    margin-top: 2em;
   }
   .event-video {
     margin-top: 2em;
@@ -43,18 +57,14 @@
     height: 200px;
     width: 100%;
   }
-  .devnation-live-date span{
-    display: inline-block;
+  .session-date{
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #252527;
     i {
       margin-right: 10px;
       position: relative;
-      top: 7px;
     }
-    .session-date{
-      font-size: 1.1em;
-      font-weight: 800;
-      color: #252527;
-    }   
   }
   ul.demo-links {
     margin-bottom: 2em;

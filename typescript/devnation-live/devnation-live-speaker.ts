@@ -2,6 +2,7 @@ class DevNationLiveSpeaker {
     _name = '';
     _intro = '';
     _twitter = '';
+    _image = '';
 
     get name(){
         return this._name;
@@ -24,6 +25,13 @@ class DevNationLiveSpeaker {
     set twitter(val) {
         if (this._twitter === val) return;
         this._twitter = val;
+    }
+    get image() {
+        return this._image;
+    }
+    set image(val) {
+        if (this._image === val) return;
+        this._image = val;
     }
 
     constructor(obj) {
