@@ -8,6 +8,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
 var RHDPAlert = /** @class */ (function (_super) {
     __extends(RHDPAlert, _super);
     function RHDPAlert() {
@@ -82,13 +86,12 @@ var RHDPAlert = /** @class */ (function (_super) {
     });
     RHDPAlert.prototype.connectedCallback = function () {
         var _this = this;
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
         this.addEventListener('click', function (e) {
             if (e.target && e.target['className'] === 'close') {
                 _this.innerHTML = '';
             }
         });
-        var _a;
     };
     Object.defineProperty(RHDPAlert, "observedAttributes", {
         get: function () {
@@ -99,8 +102,7 @@ var RHDPAlert = /** @class */ (function (_super) {
     });
     RHDPAlert.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
         this[name] = newVal;
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
     };
     return RHDPAlert;
 }(HTMLElement));
@@ -255,8 +257,7 @@ var RHDPOSDownload = /** @class */ (function (_super) {
     RHDPOSDownload.prototype.connectedCallback = function () {
         this.platformType = this.getUserAgent();
         this.setDownloadURLByPlatform();
-        this.innerHTML = (_a = ["", "", "", "", ""], _a.raw = ["", "", "", "", ""], this.template(_a, this.productName, this.downloadURL, this.platformType, this.version));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.productName, this.downloadURL, this.platformType, this.version);
     };
     Object.defineProperty(RHDPOSDownload, "observedAttributes", {
         get: function () {
@@ -350,8 +351,7 @@ var RHDPThankyou = /** @class */ (function (_super) {
     RHDPThankyou.prototype.connectedCallback = function () {
         this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
         this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.mediaName, this.directLink));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", "", ""], ["", "", ""]), this.mediaName, this.directLink);
     };
     Object.defineProperty(RHDPThankyou, "observedAttributes", {
         get: function () {
@@ -484,8 +484,7 @@ var RHDPTryItNow = /** @class */ (function (_super) {
         configurable: true
     });
     RHDPTryItNow.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""]), this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid);
     };
     ;
     Object.defineProperty(RHDPTryItNow, "observedAttributes", {
@@ -718,17 +717,8 @@ var DevNationLiveApp = /** @class */ (function (_super) {
             return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '');
         };
         _this.template = function (strings, next, upcoming, past, speakers) {
-            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "<section class=\"next-session\">\n            <div class=\"row\">\n                <div class=\"large-24\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <div class=\"session-date right\"><i class=\"fa fa-calendar fa-2x\"></i> " + next.date + "</div>\n                    <h4 class=\"caps\">" + next.title + "</h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-14 small-24 columns\">\n                    <h5 class=\"caps session-label\">Session:</h5>\n                    <p class=\"abstract\">" + next.abstract + "</p>\n                    <a href=\"" + next.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>\n                </div>\n                <div class=\"large-10 columns\">\n                    <h5 class=\"caps session-label\">Speaker(s):</h5>\n                    " + next.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerLongTemplate(_a, speakers[speaker]));
-                var _a;
-            }).join('') + "  \n                </div>\n            </div>\n        </section>" : '') + "\n        <section class=\"session-list\">\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) { return "" + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-24 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    <p>Speaker(s): " + sess.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speakers[speaker]));
-                var _a;
-            }).join('') + " </p>\n                                    <p>" + sess.date + "</p>\n                                    <p>" + sess.abstract + "</p>\n                                    " + (sess.register ? "\n                                    <a href=\"" + sess.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>" : '') + "\n                                </div>\n                            </div>\n                        </li>"
-                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) {
-                return (_a = ["", ""], _a.raw = ["", ""], _this.speakerShortTemplate(_a, speakers[speaker]));
-                var _a;
-            }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
+            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "<section class=\"next-session\">\n            <div class=\"row\">\n                <div class=\"large-24\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <div class=\"session-date right\"><i class=\"fa fa-calendar fa-2x\"></i> " + next.date + "</div>\n                    <h4 class=\"caps\">" + next.title + "</h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-14 small-24 columns\">\n                    <h5 class=\"caps session-label\">Session:</h5>\n                    <p class=\"abstract\">" + next.abstract + "</p>\n                    <a href=\"" + next.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>\n                </div>\n                <div class=\"large-10 columns\">\n                    <h5 class=\"caps session-label\">Speaker(s):</h5>\n                    " + next.speakers.map(function (speaker) { return _this.speakerLongTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + "  \n                </div>\n            </div>\n        </section>" : '') + "\n        <section class=\"session-list\">\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) { return "" + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-24 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                    <p>" + sess.date + "</p>\n                                    <p>" + sess.abstract + "</p>\n                                    " + (sess.register ? "\n                                    <a href=\"" + sess.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>" : '') + "\n                                </div>\n                            </div>\n                        </li>"
+                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
                 : ''); }).join('') + "\n                        </ul>\n                    </div>"
                 : '') + "\n            </div>\n        </section>\n    </div>";
         };
@@ -890,8 +880,7 @@ var DevNationLiveApp = /** @class */ (function (_super) {
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.data = data;
-            _this.innerHTML = (_a = ["", "", "", "", ""], _a.raw = ["", "", "", "", ""], _this.template(_a, _this.next, _this.upcoming, _this.past, _this.speakers));
-            var _a;
+            _this.innerHTML = _this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), _this.next, _this.upcoming, _this.past, _this.speakers);
         });
     };
     DevNationLiveApp.prototype.getCookie = function (name) {
@@ -1021,12 +1010,11 @@ var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     RHDPDownloadsAllItem.prototype.connectedCallback = function () {
         if (this.productId === 'devsuite' || this.productId === 'cdk') {
             this.osVersionExtract(this.productId);
-            this.innerHTML = (_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform));
+            this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform);
         }
         else {
-            this.innerHTML = (_b = ["", "", "", "", "", "", "", "", ""], _b.raw = ["", "", "", "", "", "", "", "", ""], this.template(_b, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null));
+            this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null);
         }
-        var _a, _b;
     };
     RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
         var osPlatform = new RHDPOSDownload();
@@ -1111,9 +1099,8 @@ var RHDPDownloadsAll = /** @class */ (function (_super) {
         configurable: true
     });
     RHDPDownloadsAll.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.id, this.heading));
+        this.innerHTML = this.template(__makeTemplateObject(["", "", ""], ["", "", ""]), this.id, this.heading);
         this.getProductsWithTargetHeading(this.products);
-        var _a;
     };
     RHDPDownloadsAll.prototype.getProductsWithTargetHeading = function (productList) {
         if (productList.products) {
@@ -1282,8 +1269,7 @@ var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
         configurable: true
     });
     RHDPDownloadsPopularProduct.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", ""], _a.raw = ["", "", "", "", ""], this.template(_a, this.name, this.productId, this.dataFallbackUrl, this.downloadUrl));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl);
     };
     Object.defineProperty(RHDPDownloadsPopularProduct, "observedAttributes", {
         get: function () {
@@ -1616,7 +1602,7 @@ var RHDPProjectFilterBox = /** @class */ (function (_super) {
     });
     RHDPProjectFilterBox.prototype.connectedCallback = function () {
         var _this = this;
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
         this.addEventListener('submit', function (e) {
             e.preventDefault();
             _this._filterChange(e);
@@ -1629,7 +1615,6 @@ var RHDPProjectFilterBox = /** @class */ (function (_super) {
             e.preventDefault();
             _this._clearFilters(e);
         });
-        var _a;
     };
     RHDPProjectFilterBox.prototype._clearFilters = function (e) {
         e.preventDefault();
@@ -2014,13 +1999,11 @@ var RHDPProjectItem = /** @class */ (function (_super) {
         }
     };
     RHDPProjectItem.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
     };
     RHDPProjectItem.prototype.getTemplateHTML = function () {
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
         return this.innerHTML;
-        var _a;
     };
     RHDPProjectItem.prototype.generateViewLink = function (viewLink) {
         return viewLink.replace(/https?:\/\//, '');
@@ -2034,8 +2017,7 @@ var RHDPProjectItem = /** @class */ (function (_super) {
     });
     RHDPProjectItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
         this[name] = newVal;
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
     };
     return RHDPProjectItem;
 }(HTMLElement));
@@ -2296,14 +2278,13 @@ var RHDPProjects = /** @class */ (function (_super) {
         configurable: true
     });
     RHDPProjects.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
         this.addEventListener('data-results-complete', this._loadDataResult);
         var query = new RHDPProjectQuery();
         query.dcpUrl = this.dcpUrl;
         var url = new RHDPProjectURL();
         this.appendChild(query);
         this.appendChild(url);
-        var _a;
     };
     RHDPProjects.prototype.removeAllProjects = function () {
         var childNodes = this.querySelector('ul.results');
@@ -2367,8 +2348,7 @@ var RHDPProjects = /** @class */ (function (_super) {
     });
     RHDPProjects.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
         this[name] = newVal;
-        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this);
     };
     return RHDPProjects;
 }(HTMLElement));
@@ -2405,7 +2385,7 @@ var RHDPSearchBox = /** @class */ (function (_super) {
         top.addEventListener('params-ready', this._checkTerm);
         //top.window.addEventListener('popstate', e => { this.term = null; });
         top.addEventListener('term-change', this._checkTerm);
-        this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.name, this.term));
+        this.innerHTML = this.template(__makeTemplateObject(["", "", ""], ["", "", ""]), this.name, this.term);
         this.addEventListener('submit', function (e) {
             e.preventDefault();
             _this._termChange();
@@ -2413,7 +2393,6 @@ var RHDPSearchBox = /** @class */ (function (_super) {
         });
         this.querySelector('#search-btn').addEventListener('click', function (e) {
         });
-        var _a;
     };
     Object.defineProperty(RHDPSearchBox, "observedAttributes", {
         get: function () {
@@ -2451,9 +2430,8 @@ var RHDPSearchFilterGroup = /** @class */ (function (_super) {
         _this.template = function (strings, name) {
             return "<h6 class=\"showFilters heading\"><span class=\"group-name\">" + name + "</span><span class=\"toggle\"><i class='fa fa-chevron-right' aria-hidden='true'></i></span></h6>\n        <div class=\"group hide\">\n            <div class=\"primary\"></div>\n            <div class=\"secondary hide\"></div>\n            <a href=\"#\" class=\"more\">Show More</a>\n        </div>";
         };
-        _this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], _this.template(_a, _this.name));
+        _this.innerHTML = _this.template(__makeTemplateObject(["", ""], ["", ""]), _this.name);
         return _this;
-        var _a;
     }
     Object.defineProperty(RHDPSearchFilterGroup.prototype, "key", {
         get: function () {
@@ -2632,12 +2610,11 @@ var RHDPSearchFilterItem = /** @class */ (function (_super) {
                     chkbox.checked = this._active;
                 }
                 if (this.inline) {
-                    this.innerHTML = this._active ? (_a = ["", "", ""], _a.raw = ["", "", ""], this.inlineTemplate(_a, this.name, this._active)) : '';
+                    this.innerHTML = this._active ? this.inlineTemplate(__makeTemplateObject(["", "", ""], ["", "", ""]), this.name, this._active) : '';
                 }
                 this.dispatchEvent(new CustomEvent('filter-item-change', { detail: { facet: this }, bubbles: this.bubble }));
                 this.bubble = true;
             }
-            var _a;
         },
         enumerable: true,
         configurable: true
@@ -2663,8 +2640,7 @@ var RHDPSearchFilterItem = /** @class */ (function (_super) {
             if (this._inline === val)
                 return;
             this._inline = val;
-            this.innerHTML = !this._inline ? (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.name, this.key, this.active)) : (_b = ["", "", ""], _b.raw = ["", "", ""], this.inlineTemplate(_b, this.name, this.active));
-            var _a, _b;
+            this.innerHTML = !this._inline ? this.template(__makeTemplateObject(["", "", "", ""], ["", "", "", ""]), this.name, this.key, this.active) : this.inlineTemplate(__makeTemplateObject(["", "", ""], ["", "", ""]), this.name, this.active);
         },
         enumerable: true,
         configurable: true
@@ -2694,7 +2670,7 @@ var RHDPSearchFilterItem = /** @class */ (function (_super) {
         configurable: true
     });
     RHDPSearchFilterItem.prototype.connectedCallback = function () {
-        this.innerHTML = !this.inline ? (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.name, this.key, this.active)) : (_b = ["", "", ""], _b.raw = ["", "", ""], this.inlineTemplate(_b, this.name, this.active));
+        this.innerHTML = !this.inline ? this.template(__makeTemplateObject(["", "", "", ""], ["", "", "", ""]), this.name, this.key, this.active) : this.inlineTemplate(__makeTemplateObject(["", "", ""], ["", "", ""]), this.name, this.active);
         if (!this.inline) {
             this.addEventListener('change', this._updateFacet);
         }
@@ -2704,7 +2680,6 @@ var RHDPSearchFilterItem = /** @class */ (function (_super) {
         top.addEventListener('filter-item-change', this._checkChange);
         top.addEventListener('params-ready', this._checkParams);
         top.addEventListener('clear-filters', this._clearFilters);
-        var _a, _b;
         //top.window.addEventListener('popstate', this._clearFilters);
     };
     Object.defineProperty(RHDPSearchFilterItem, "observedAttributes", {
@@ -2855,7 +2830,7 @@ var RHDPSearchFilters = /** @class */ (function (_super) {
     RHDPSearchFilters.prototype.connectedCallback = function () {
         var _this = this;
         if (this.type === 'active') {
-            this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.activeTemplate(_a, this.title));
+            this.innerHTML = this.activeTemplate(__makeTemplateObject(["", ""], ["", ""]), this.title);
             top.addEventListener('filter-item-change', this._checkActive);
             top.addEventListener('filter-item-init', this._checkActive);
             top.addEventListener('search-complete', this._checkActive);
@@ -2864,11 +2839,11 @@ var RHDPSearchFilters = /** @class */ (function (_super) {
             this._addFilters();
         }
         else if (this.type === 'modal') {
-            this.innerHTML = (_b = ["", ""], _b.raw = ["", ""], this.modalTemplate(_b, this.title));
+            this.innerHTML = this.modalTemplate(__makeTemplateObject(["", ""], ["", ""]), this.title);
             this.addGroups();
         }
         else {
-            this.innerHTML = (_c = ["", ""], _c.raw = ["", ""], this.template(_c, this.title));
+            this.innerHTML = this.template(__makeTemplateObject(["", ""], ["", ""]), this.title);
             this.addGroups();
         }
         this.addEventListener('click', function (e) {
@@ -2894,7 +2869,6 @@ var RHDPSearchFilters = /** @class */ (function (_super) {
         });
         //top.addEventListener('clear-filters', this._clearFilters);
         top.addEventListener('toggle-modal', this._toggleModal);
-        var _a, _b, _c;
     };
     Object.defineProperty(RHDPSearchFilters, "observedAttributes", {
         get: function () {
@@ -3009,10 +2983,7 @@ var RHDPSearchOneBox = /** @class */ (function (_super) {
             return "" + (slot && slot.url && slot.text ? "<li><a href=\"" + slot.url + "?onebox=" + id + "\">" + _this.getIcon(slot.icon) + slot.text + "</a></li>" : '');
         };
         _this.template = function (strings, feature) {
-            return "<div>\n            " + (feature.heading && feature.heading.url && feature.heading.text ? "<h4><a href=\"" + feature.heading.url + "\">" + feature.heading.text + "</a></h4>" : '') + "\n            " + (feature.details ? "<p>" + feature.details + "</p>" : '') + "\n            " + (feature.button && feature.button.url && feature.button.text ? "<a href=\"" + feature.button.url + "?onebox=" + feature.id + "\" class=\"button medium-cta blue\">" + feature.button.text + "</a>" : '') + "\n            " + (feature.slots && feature.slots.length > 0 ? "<ul class=\"slots\">\n                " + feature.slots.map(function (slot) {
-                return (_a = ["", "", ""], _a.raw = ["", "", ""], _this.slotTemplate(_a, slot, feature.id));
-                var _a;
-            }).join('') + "\n            </ul>" : '') + "\n        </div>";
+            return "<div>\n            " + (feature.heading && feature.heading.url && feature.heading.text ? "<h4><a href=\"" + feature.heading.url + "\">" + feature.heading.text + "</a></h4>" : '') + "\n            " + (feature.details ? "<p>" + feature.details + "</p>" : '') + "\n            " + (feature.button && feature.button.url && feature.button.text ? "<a href=\"" + feature.button.url + "?onebox=" + feature.id + "\" class=\"button medium-cta blue\">" + feature.button.text + "</a>" : '') + "\n            " + (feature.slots && feature.slots.length > 0 ? "<ul class=\"slots\">\n                " + feature.slots.map(function (slot) { return _this.slotTemplate(__makeTemplateObject(["", "", ""], ["", "", ""]), slot, feature.id); }).join('') + "\n            </ul>" : '') + "\n        </div>";
         };
         _this._termChange = _this._termChange.bind(_this);
         return _this;
@@ -3071,8 +3042,7 @@ var RHDPSearchOneBox = /** @class */ (function (_super) {
             if (this._feature === val)
                 return;
             this._feature = val;
-            this.innerHTML = this.feature ? (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this.feature)) : '';
-            var _a;
+            this.innerHTML = this.feature ? this.template(__makeTemplateObject(["", ""], ["", ""]), this.feature) : '';
         },
         enumerable: true,
         configurable: true
@@ -3679,8 +3649,7 @@ var RHDPSearchResult = /** @class */ (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchResult.prototype.renderResult = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.url, this.title, this.kind, this.created, this.description, this.premium, this.thumbnail));
-        var _a;
+        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", ""]), this.url, this.title, this.kind, this.created, this.description, this.premium, this.thumbnail);
     };
     RHDPSearchResult.prototype.computeThumbnail = function (result) {
         if (result.fields.thumbnail) {
