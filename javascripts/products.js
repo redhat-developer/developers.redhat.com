@@ -25,6 +25,27 @@ function getCookie(cname) {
     return "";
 }
 
+function checkRecentDownload() {
+    // Set storage expiration time to 10 minutes
+    var storageExpiration = 600000;
+    if(window.location.href.indexOf('download-manager')>0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)){
+        if(window.localStorage.getItem('recent-download-url')){
+            var recentDownload,timeOfRefer, currentTime;
+            recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
+            timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+            currentTime = new Date().getTime();
+
+            if(currentTime-timeOfRefer > storageExpiration){
+                window.localStorage.removeItem('recent-download-url');
+            }
+        }else{
+            var referrerDownload = {value: window.location.href, timestamp: new Date().getTime()};
+            localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
+        }
+
+    }
+}
+
 (function () {
     var productApp = angular.module('productApp', []);
 
@@ -49,6 +70,8 @@ function getCookie(cname) {
         }
 
     }
+
+    checkRecentDownload();
 
 }());
 
