@@ -50,6 +50,15 @@ class RHDPDownloadsPopularProduct extends HTMLElement {
         super();
     }
 
+    osVersionExtract(productId){
+        let osPlatform = new RHDPOSDownload();
+        osPlatform.platformType = osPlatform.getUserAgent();
+        osPlatform.downloadURL = this.downloadUrl;
+        osPlatform.setOSURL(productId);
+        osPlatform.setDownloadURLByPlatform();
+        this.downloadUrl = osPlatform.downloadURL;
+    }
+
     template = (strings, name, id, dataFallbackUrl, url) => {
         return `
         <div class="large-6 column">
@@ -61,6 +70,7 @@ class RHDPDownloadsPopularProduct extends HTMLElement {
     };
 
     connectedCallback() {
+        this.osVersionExtract(this.productId);
         this.innerHTML = this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}`;
     }
 

@@ -10,11 +10,6 @@ class RHDPDownloadsAllItem extends HTMLElement {
     private _version;
     private _platform;
 
-    productDownloads = {
-        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
-    };
-
     constructor() {
         super();
     }
@@ -141,27 +136,11 @@ class RHDPDownloadsAllItem extends HTMLElement {
     osVersionExtract(productId){
         let osPlatform = new RHDPOSDownload();
         osPlatform.platformType = osPlatform.getUserAgent();
-        switch(productId){
-            case 'devsuite':
-                osPlatform.winURL = this.productDownloads.devsuite.windowsUrl;
-                osPlatform.macURL = this.productDownloads.devsuite.macUrl;
-                osPlatform.rhelURL = this.productDownloads.devsuite.rhelUrl;
-                break;
-            case 'cdk':
-                osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
-                osPlatform.macURL = this.productDownloads.cdk.macUrl;
-                osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
-                break;
-            default:
-                osPlatform.winURL = this.downloadUrl;
-                osPlatform.macURL = this.downloadUrl;
-                osPlatform.rhelURL = this.downloadUrl;
-
-
-        }
+        osPlatform.downloadURL = this.downloadUrl;
+        osPlatform.setOSURL(productId);
         osPlatform.setDownloadURLByPlatform();
         this.downloadUrl = osPlatform.downloadURL;
-        this.platform = osPlatform.platformType
+        this.platform = osPlatform.platformType;
 
     }
 
