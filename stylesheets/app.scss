@@ -12,7 +12,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "foundation/components/block-grid";
 @import "foundation/components/type";
 @import "foundation/components/buttons";
-@import "foundation/components/forms"; // *requires components/buttons 
+@import "foundation/components/forms"; // *requires components/buttons
 
 @import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
@@ -118,6 +118,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "thank-you";
 @import "keycloak-pages";
 @import "learning-paths";
+@import "assembly";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -143,16 +144,16 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
       }
     }
   }
-  &.full-width{ 
-    width: 100%; 
+  &.full-width{
+    width: 100%;
     max-width: 100%!important; //might be needded depending on your settings
     &>.column:first-child,
-    &>.columns:first-child{ 
-        padding-left: 0; 
+    &>.columns:first-child{
+        padding-left: 0;
     }
     &>.column:last-child,
-    &>.columns:last-child{ 
-        padding-right: 0; 
+    &>.columns:last-child{
+        padding-right: 0;
     }
   }
 }
@@ -2469,7 +2470,7 @@ a#scroll-to-top {
 }
 
 .show-more-text {
-  overflow: hidden; 
+  overflow: hidden;
   max-height: 75px;
   &.open { max-height: 100% !important; }
 }

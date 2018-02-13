@@ -1,0 +1,32 @@
+uuid: 624b864f-18fd-463e-b863-fdce2b79c76e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.rich_text
+    - field.storage.node.field_sections
+    - node.type.assembly_page
+  module:
+    - entity_reference_revisions
+id: node.assembly_page.field_sections
+field_name: field_sections
+entity_type: node
+bundle: assembly_page
+label: Sections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      content_with_image: content_with_image
+      rich_text: rich_text
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: content_with_image
+field_type: entity_reference_revisions
