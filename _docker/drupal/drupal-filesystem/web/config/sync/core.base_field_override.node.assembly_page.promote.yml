@@ -1,0 +1,22 @@
+uuid: 0c57af3b-5dee-417a-a7da-15e3138f7652
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.assembly_page
+id: node.assembly_page.promote
+field_name: promote
+entity_type: node
+bundle: assembly_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

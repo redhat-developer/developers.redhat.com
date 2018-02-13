@@ -1,0 +1,21 @@
+uuid: fc6d7452-bd91-422c-b17a-d3ed920b52e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.content_with_image.field_content
+field_name: field_content
+entity_type: assembly
+bundle: content_with_image
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

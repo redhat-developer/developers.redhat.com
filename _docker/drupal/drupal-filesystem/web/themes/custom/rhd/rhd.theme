@@ -9,6 +9,8 @@ use Drupal\Core\Url;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Link;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 
 
 function rhd_theme_suggestions_page_alter(array &$suggestions, array $variables) {
@@ -232,12 +234,12 @@ function redhat_www_ddo_default($node) {
             $errorType = "404";
             $errorMessage = "404-error";
         }
-        
+
         $ddo_language = $node->langcode->value;
         $ddo_pageID = $node->nid->value;
         $ddo_title = $node->title->value;
     }
-    
+
 
     $ddo = array(
         'page' => array(
@@ -339,4 +341,22 @@ function rhd_preprocess_field(&$variables, $hook) {
       ), array('absolute' => TRUE))->toString();
       $variables['overview_url'] = $url;
     }
+}
+
+function rhd_preprocess_assembly(&$variables) {
+    $assembly = $variables['elements']['#assembly'];
+    $type = $assembly->bundle();
+    $variables['background_image_url'] = FALSE;
+
+    // kint(($assembly->hasField('field_background_image') ? 'has' : 'does not have') . ' background image');
+    if ($assembly->hasField('field_background_image')) {
+      $image_value = $assembly->get('field_background_image')->getValue();
+      if ($image_value) {
+        $file_id = $image_value[0]['target_id'];
+        $uri = File::load($file_id)->getFileUri();
+        $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+        $variables['attributes']->addClass('has-background');
+      }
+    }
+
 }

@@ -1,0 +1,35 @@
+uuid: cadce123-381b-4fd7-98d7-2e6244a516a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.rich_text
+    - field.field.assembly.rich_text.field_background_image
+    - field.field.assembly.rich_text.field_content
+    - field.field.assembly.rich_text.field_title
+  module:
+    - text
+id: assembly.rich_text.default
+targetEntityType: assembly
+bundle: rich_text
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_background_image: true
+  name: true
+  user_id: true
