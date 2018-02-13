@@ -11,7 +11,7 @@ class SearchPage extends BasePage {
     constructor() {
         super({
             path: '/search/',
-            selector: '.search',
+            selector: '//rhdp-search-results',
         });
 
         this.addSelectors({
