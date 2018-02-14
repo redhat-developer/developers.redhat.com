@@ -29,15 +29,15 @@
       </div>
       {% if node.field_completion_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock"></i> {{node.field_completion_time.value}}
+          <i class="fa fa-clock-o"></i> {{node.field_completion_time.value}}
       </div>
-      {% endif %}
-      {% if node.field_completion_time.value and node.field_difficulty.value %}
-      &nbsp;|&nbsp;
       {% endif %}
       {% if node.field_difficulty.value %}
       <div class="dp-level">
-          {{node.field_difficulty.value|capitalize}}
+        {% if node.field_completion_time.value %}
+        &nbsp;|&nbsp;
+        {% endif %}
+        {{node.field_difficulty.value|capitalize}}
       </div>
       {% endif %}
     </div>

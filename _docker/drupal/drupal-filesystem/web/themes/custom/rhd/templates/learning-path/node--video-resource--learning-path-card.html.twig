@@ -29,18 +29,18 @@
       </div>
       {% if node.field_duration %}
       <div class="dp-duration">
-          <i class="fa fa-clock"></i> 
+          <i class="fa fa-clock-o"></i> 
           {% for intvl in node.field_duration|reverse %}
           {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
           {% endfor %}
       </div>
       {% endif %}
-      {% if node.field_duration and node.field_difficulty.value %}
-      &nbsp;|&nbsp;
-      {% endif %}
       {% if node.field_difficulty.value %}
       <div class="dp-level">
-          {{node.field_difficulty.value|capitalize}}
+        {% if node.field_duration %}
+        &nbsp;|&nbsp;
+        {% endif %}
+        {{node.field_difficulty.value|capitalize}}
       </div>
       {% endif %}
     </div>

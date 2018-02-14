@@ -29,18 +29,18 @@
       </div>
       {% if node.field_read_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock"></i> 
+          <i class="fa fa-clock-o"></i> 
           {% for intvl in node.field_read_time|reverse %}
           {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
           {% endfor %}
       </div>
       {% endif %}
-      {% if node.field_read_time.value and node.field_difficulty.value %}
-      &nbsp;|&nbsp;
-      {% endif %}
       {% if node.field_difficulty.value %}
       <div class="dp-level">
-          {{node.field_difficulty.value|capitalize}}
+        {% if node.field_read_time.value %}
+        &nbsp;|&nbsp;
+        {% endif %}
+        {{node.field_difficulty.value|capitalize}}
       </div>
       {% endif %}
     </div>
@@ -48,10 +48,10 @@
     <p>{{ node.field_book_description.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
+      <div class="dp-author">
       {% if node.field_published_date.value|date("c") and node.field_author.value %}
       &nbsp;&mdash;&nbsp;
       {% endif %}
-      <div class="dp-author">
       {{node.field_author.value}}
       </div>
     </div>
