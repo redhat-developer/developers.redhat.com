@@ -6,7 +6,6 @@ class TopicsPage extends BasePage {
     constructor(topic) {
         super({
             path: `/topics/${topic}/`,
-            selector: `.topics${topic}`.toLowerCase(),
         });
 
         this.addSelectors({

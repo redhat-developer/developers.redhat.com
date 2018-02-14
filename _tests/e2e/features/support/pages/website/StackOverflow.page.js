@@ -6,7 +6,6 @@ class StackOverflowPage extends BasePage {
     constructor() {
         super({
             path: '/stack-overflow/',
-            selector: '.stack-overflow',
         });
 
         this.addSelectors({
