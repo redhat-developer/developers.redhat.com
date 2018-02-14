@@ -11,6 +11,12 @@ class RHDPOSDownload extends HTMLElement {
     private _version;
     private _displayOS;
 
+
+    productDownloads = {
+        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
+        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
+    };
+
     get url() {
         return this._url;
     }
@@ -162,6 +168,30 @@ class RHDPOSDownload extends HTMLElement {
         return OSName;
 
     }
+
+
+    setOSURL(productId){
+
+        switch(productId){
+            case 'devsuite':
+                this.winURL = this.productDownloads.devsuite.windowsUrl;
+                this.macURL = this.productDownloads.devsuite.macUrl;
+                this.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                break;
+            case 'cdk':
+                this.winURL = this.productDownloads.cdk.windowsUrl;
+                this.macURL = this.productDownloads.cdk.macUrl;
+                this.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
+            default:
+                this.winURL = this.downloadURL;
+                this.macURL = this.downloadURL;
+                this.rhelURL = this.downloadURL;
+        }
+
+
+    }
+
     setDownloadURLByPlatform(){
         if (this.winURL.length <=0 || this.macURL.length <=0 || this.rhelURL.length <=0){
             return;
