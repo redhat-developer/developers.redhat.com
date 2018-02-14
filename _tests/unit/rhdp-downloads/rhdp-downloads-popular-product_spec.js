@@ -13,7 +13,6 @@ describe('Downloads Popular Product Item', function() {
 
     describe('properties', function() {
 
-
         beforeEach(function() {
             wc.name = "Test Name";
             wc.productId = "testproduct";
@@ -48,6 +47,12 @@ describe('Downloads Popular Product Item', function() {
             wc.downloadUrl = "http://www.downloadtestproduct.com";
 
             document.body.insertBefore(wc, document.body.firstChild);
+
+        });
+        it('should update the osVersion', function () {
+
+            wc.osVersionExtract('');
+            expect(wc.downloadUrl).toEqual('http://www.downloadtestproduct.com');
 
         });
 

@@ -7,7 +7,6 @@ class TechnologiesPage extends BasePage {
     constructor() {
         super({
             path: '/products/',
-            selector: '.products',
         });
     }
 

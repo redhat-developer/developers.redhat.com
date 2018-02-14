@@ -6,7 +6,6 @@ class DownloadsPage extends BasePage {
     constructor() {
         super({
             path: '/downloads',
-            selector: '.downloads',
         });
 
         this.addSelectors({
