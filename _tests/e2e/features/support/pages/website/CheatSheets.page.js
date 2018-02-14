@@ -6,7 +6,6 @@ class CheatSheetsPage extends BasePage {
     constructor(cheatSheet) {
         super({
             path: `/cheat-sheets/${cheatSheet}/`.toString(),
-            selector: `.cheat-sheets${cheatSheet}`,
         });
 
         this.addSelectors({
