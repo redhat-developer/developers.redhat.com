@@ -83,13 +83,20 @@
 {%
   set title_tag = page ? 'h1' : 'h2'
 %}
+{%
+  set has_sidebar = content.field_sidebar|render ? true : false
+%}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   {% if content.field_hero|render %}
   {{ content.field_hero }}
   {% endif %}
+  {% if has_sidebar %}
+  <div class="row">
+    <div class="medium-16 left">
+  {% endif %}
   {{ title_prefix }}
-  <{{ title_tag }} {{ title_attributes.addClass('row') }}>
+  <{{ title_tag }} {{ title_attributes.addClass(has_sidebar ? '' : 'row' ) }}>
     {% if not page %}<a href="{{ url }}" rel="bookmark">{% endif %}{{ label }}{% if not page %}</a>{% endif %}
   </{{ title_tag }}>
   {{ title_suffix }}
@@ -104,10 +111,17 @@
     </footer>
   {% endif %}
 
-  <div{{ content_attributes.addClass('node__content row') }}>
-    {{ content|without('field_sections', 'field_hero') }}
+  <div{{ content_attributes.addClass('node__content ' ~ (has_sidebar ? '' : 'row')) }}>
+    {{ content|without('field_sections', 'field_hero', 'field_sidebar') }}
   </div>
 
+  {% if content.field_sidebar|render %}
+    </div>
+    <div class="medium-8 left">
+      {{ content.field_sidebar }}
+    </div>
+  </div>
+  {% endif %}
   {{ content.field_sections }}
 
 </article>

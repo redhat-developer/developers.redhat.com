@@ -1,0 +1,34 @@
+uuid: e317fee1-e9ed-4356-980f-7e52fed962e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.webform
+    - field.field.assembly.webform.field_title
+    - field.field.assembly.webform.field_webform
+  module:
+    - webform
+id: assembly.webform.default
+targetEntityType: assembly
+bundle: webform
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_webform:
+    weight: 1
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    type: webform_entity_reference_entity_view
+    region: content
+hidden:
+  name: true
+  user_id: true

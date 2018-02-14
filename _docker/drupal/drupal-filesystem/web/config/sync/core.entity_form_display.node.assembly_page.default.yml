@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.assembly_page.body
     - field.field.node.assembly_page.field_hero
     - field.field.node.assembly_page.field_sections
+    - field.field.node.assembly_page.field_sidebar
     - node.type.assembly_page
   module:
     - entity_browser_entity_form
@@ -51,12 +52,29 @@ content:
     type: inline_entity_form_complex
     region: content
   field_sections:
-    weight: 9
+    weight: 10
     settings:
       form_mode: default
       override_labels: true
       label_singular: section
       label_plural: sections
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_sidebar:
+    weight: 9
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: sidebar
+      label_plural: sidebars
       allow_new: true
       allow_existing: true
       match_operator: CONTAINS
