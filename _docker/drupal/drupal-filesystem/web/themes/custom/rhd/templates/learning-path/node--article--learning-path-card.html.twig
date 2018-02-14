@@ -1,17 +1,17 @@
-{% set access = 'training-content' %}
+{% set access = 'free-content' %}
 
 {# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
 <div{{ attributes.addClass(['dp-content-card', access ]) }} 
     access="member" 
     duration="{{node.field_read_time.value}}" 
-    image="{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1500015139098-84b51c349a60?ixlib=rb-0.3.5&s=6d04d38ac0d81eb2414819cdea385912&auto=format&fit=crop&w=1050&q=80') }}" 
+    image="{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-0.3.5&s=968ae8186ef28dfb0c53da8e9708fe32&auto=format&fit=crop&w=800&q=80') }}" 
     level="{{(node.field_difficulty.value ?? 'unclassified')|capitalize}}" 
     title="{{node.title.value}}" 
     modified="{{node.changed.value|date('Y-m-d')}}" 
     author="{{node.field_author.value}}"
-    uri="{{ node.field_source_link.0.value.uri }}" 
-    onclick="window.location = '{{ node.field_source_link.0.value.uri }}';">
-  <div class="img" style="background-image: url('{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1500015139098-84b51c349a60?ixlib=rb-0.3.5&s=6d04d38ac0d81eb2414819cdea385912&auto=format&fit=crop&w=1050&q=80') }}')">
+    uri="{{ node.path.alias }}" 
+    onclick="window.location = '{{ node.path.alias }}';">
+  <div class="img" style="background-image: url('{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-0.3.5&s=968ae8186ef28dfb0c53da8e9708fe32&auto=format&fit=crop&w=800&q=80') }}')">
     {% if access != 'free-content' %}
     <div class="dp-access-level">
       {% if access == 'member-content' %}
@@ -25,14 +25,14 @@
   <div class="card-info">
     <div class="card-details">
       <div class="dp-content-type {{ node.type.entity.get('type') }}">
-          <i class="fa fa-group"></i> {{node.type.entity.label}}
+          <i class="fa fa-file-text-o"></i> {{node.type.entity.label}}
       </div>
-      {% if node.field_completion_time.value %}
+      {% if node.field_read_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock"></i> {{node.field_completion_time.value}}
+          <i class="fa fa-clock"></i> {{node.field_read_time.value}}
       </div>
       {% endif %}
-      {% if node.field_completion_time.value and node.field_difficulty.value %}
+      {% if node.field_read_time.value and node.field_difficulty.value %}
       &nbsp;|&nbsp;
       {% endif %}
       {% if node.field_difficulty.value %}
@@ -42,10 +42,13 @@
       {% endif %}
     </div>
     <h4>{{ node.title.value }}</h4>
-    <p>{{ node.field_short_description.value|striptags }}</p>
+    <p>{{ node.field_book_description.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
-      <div class="dp-author">{{node.field_author.value}}</div>
+      <div class="dp-author">
+      {% if node.field_published_date.value and node.field_author.value %} - {% endif %}
+      {{node.field_author.value}}
+      </div>
     </div>
   </div>
 </div>
