@@ -67,26 +67,30 @@ other methods (such as node.delete) will result in an exception.
 #}
 
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-learning-path") }}>
-  <div class="medium-8 columns">
-    <div class="lp-info">
-      <h4>Learning Paths</h4>
-      <span class="lp-time">{{ content.field_completion_time }}</span>
-      {{ title_prefix }}
-        <h2>{{ label }}</h2>
-      {{ title_suffix }}
-      <div class="" data-count="500" data-max-width="768">
-        {{ content.field_long_description }}
-        <h6>{{ content.field_requirements_an_or_pre_req['#title'] }}</h6>
-        {{ content.field_requirements_an_or_pre_req }}
-        <h6>{{ content.field_audience['#title'] }}</h6>
-        {{content.field_audience}}
-        <div class="certification">
-          {{content.field_related_red_hat_certificat}}
-        </div>
+  <div class="lp-info">
+    <h4>Learning Paths</h4>
+    <div class="lp-time">{{ content.field_completion_time }}</div>
+    {{ title_prefix }}
+      <h2>{{ label }}</h2>
+    {{ title_suffix }}
+    <div class="show-more-text auto-open" data-count="500" data-max-width="768">
+      {{ content.field_long_description }}
+      <h6>{{ content.field_requirements_an_or_pre_req['#title'] }}</h6>
+      {{ content.field_requirements_an_or_pre_req }}
+      <h6>{{ content.field_audience['#title'] }}</h6>
+      {{content.field_audience}}
+      <div class="certification">
+        {{content.field_related_red_hat_certificat}}
       </div>
     </div>
+    <a class="show-more" onclick="return false;">
+      <span class="more">Show More</span>
+      <span class="less">Show Less</span>
+    </a>
   </div>
-  <div class="medium-16 columns lp-cards-container">
-
+  {% if content.field_learning_path_content_item|render|striptags|trim is not empty %}
+  <div class="lp-cards-container">
+      {{content.field_learning_path_content_item}}
   </div>
+  {% endif %}
 </div>
