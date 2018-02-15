@@ -1281,10 +1281,7 @@ var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
         this.downloadUrl = osPlatform.downloadURL;
     };
     RHDPDownloadsPopularProduct.prototype.connectedCallback = function () {
-<<<<<<< HEAD
-=======
         this.osVersionExtract(this.productId);
->>>>>>> 237f65f2f7cc6ee9100ab18d2562d4062b1f2ca6
         this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl);
     };
     Object.defineProperty(RHDPDownloadsPopularProduct, "observedAttributes", {
