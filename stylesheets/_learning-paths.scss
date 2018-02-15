@@ -18,6 +18,7 @@ body.page-node-type-learning-path {
 
   .lp-info {
     flex-grow: 1;
+    flex-shrink: 1;
     margin: 30px 15px;
     border: 1px solid #CCC;
     padding: 30px;
@@ -65,6 +66,7 @@ body.page-node-type-learning-path {
   .lp-cards-container {
     background-color: #EEE;
     flex-grow: 2;
+    flex-shrink: .5;
     margin: 0 15px;
     display: flex;
     flex-direction: column;

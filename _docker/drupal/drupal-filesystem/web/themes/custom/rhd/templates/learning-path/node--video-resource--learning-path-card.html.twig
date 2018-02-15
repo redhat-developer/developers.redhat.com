@@ -49,8 +49,10 @@
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
       <div class="dp-author">
-      {% if node.field_published_date.value and node.field_author.value %} - {% endif %}
-      {{node.field_author.value}}
+      {% if node.field_published_date.value|date("c") and node.field_speakers.value %}
+      &nbsp;&mdash;&nbsp;
+      {% endif %}
+      {{node.field_speakers.value}}
       </div>
     </div>
   </div>

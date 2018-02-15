@@ -5,7 +5,7 @@ class HomePage extends BasePage {
     constructor() {
         super({
             path: '/',
-            selector: '.home'
+            selector: '.homepage-resources'
         });
     }
 

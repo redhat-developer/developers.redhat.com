@@ -116,6 +116,10 @@ var RHDPOSDownload = /** @class */ (function (_super) {
         _this._rhelURL = "";
         _this._macURL = "";
         _this._winURL = "";
+        _this.productDownloads = {
+            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+        };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
         };
@@ -276,6 +280,24 @@ var RHDPOSDownload = /** @class */ (function (_super) {
         if (navigator.appVersion.indexOf("Linux") != -1)
             OSName = "RHEL";
         return OSName;
+    };
+    RHDPOSDownload.prototype.setOSURL = function (productId) {
+        switch (productId) {
+            case 'devsuite':
+                this.winURL = this.productDownloads.devsuite.windowsUrl;
+                this.macURL = this.productDownloads.devsuite.macUrl;
+                this.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                break;
+            case 'cdk':
+                this.winURL = this.productDownloads.cdk.windowsUrl;
+                this.macURL = this.productDownloads.cdk.macUrl;
+                this.rhelURL = this.productDownloads.cdk.rhelUrl;
+                break;
+            default:
+                this.winURL = this.downloadURL;
+                this.macURL = this.downloadURL;
+                this.rhelURL = this.downloadURL;
+        }
     };
     RHDPOSDownload.prototype.setDownloadURLByPlatform = function () {
         if (this.winURL.length <= 0 || this.macURL.length <= 0 || this.rhelURL.length <= 0) {
@@ -902,10 +924,6 @@ var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {
         var _this = _super.call(this) || this;
-        _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
-        };
         _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
             return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
         };
@@ -1019,22 +1037,8 @@ var RHDPDownloadsAllItem = /** @class */ (function (_super) {
     RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
         var osPlatform = new RHDPOSDownload();
         osPlatform.platformType = osPlatform.getUserAgent();
-        switch (productId) {
-            case 'devsuite':
-                osPlatform.winURL = this.productDownloads.devsuite.windowsUrl;
-                osPlatform.macURL = this.productDownloads.devsuite.macUrl;
-                osPlatform.rhelURL = this.productDownloads.devsuite.rhelUrl;
-                break;
-            case 'cdk':
-                osPlatform.winURL = this.productDownloads.cdk.windowsUrl;
-                osPlatform.macURL = this.productDownloads.cdk.macUrl;
-                osPlatform.rhelURL = this.productDownloads.cdk.rhelUrl;
-                break;
-            default:
-                osPlatform.winURL = this.downloadUrl;
-                osPlatform.macURL = this.downloadUrl;
-                osPlatform.rhelURL = this.downloadUrl;
-        }
+        osPlatform.downloadURL = this.downloadUrl;
+        osPlatform.setOSURL(productId);
         osPlatform.setDownloadURLByPlatform();
         this.downloadUrl = osPlatform.downloadURL;
         this.platform = osPlatform.platformType;
@@ -1268,7 +1272,19 @@ var RHDPDownloadsPopularProduct = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    RHDPDownloadsPopularProduct.prototype.osVersionExtract = function (productId) {
+        var osPlatform = new RHDPOSDownload();
+        osPlatform.platformType = osPlatform.getUserAgent();
+        osPlatform.downloadURL = this.downloadUrl;
+        osPlatform.setOSURL(productId);
+        osPlatform.setDownloadURLByPlatform();
+        this.downloadUrl = osPlatform.downloadURL;
+    };
     RHDPDownloadsPopularProduct.prototype.connectedCallback = function () {
+<<<<<<< HEAD
+=======
+        this.osVersionExtract(this.productId);
+>>>>>>> 237f65f2f7cc6ee9100ab18d2562d4062b1f2ca6
         this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl);
     };
     Object.defineProperty(RHDPDownloadsPopularProduct, "observedAttributes", {
