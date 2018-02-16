@@ -98,7 +98,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "about";
 @import "articles";
 @import "msbuild";
-@import "font-awesome";
+@import "fontawesome/font-awesome";
 @import "devoxxfrance";
 @import "gids";
 @import "stackoverflow";
@@ -313,6 +313,7 @@ button, .button {
   }
 }
 
+a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
 .heavy-cta a[href$=".pdf"]:after,

@@ -112,6 +112,7 @@ class ExportHtmlPostProcessor
       hide_drupal = remove_drupal_host_identifying_markup?(html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
       rewrite_access_links = rewrite_access_redhat_com_links(html_doc, html_file)
+      rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
 
       if hide_drupal || rewrite_forms || rewrite_access_links
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
@@ -170,6 +171,20 @@ class ExportHtmlPostProcessor
   end
 
   #
+  # The src of keycloak is being rewritten somewhere, not really sure where or how, this fixes it
+  #
+  def rewrite_keycloak_src(html_doc, html_file_name)
+    src_to_modify = html_doc.css('script[src*=keycloak]')
+    modified = false
+    src_to_modify.each do |src|
+      @log.info("\tModifying keycloak link #{src_to_modify.attr('src')} to '/auth/js/keycloak.js'")
+      src.attributes['src'].value = '/auth/js/keycloak.js'
+      modified = true
+    end
+    modified
+  end
+
+  #
   # access.redhat.com links are broken when we strip off the trailing "/index.html" to fix the site export structure.
   # This fixes that.
   #
@@ -202,7 +217,11 @@ class ExportHtmlPostProcessor
   end
 
 
-  private :final_base_url_location, :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls?, :relocate_index_html, :remove_drupal_host_identifying_markup?, :post_process_html_dom
+  private :final_base_url_location, :locate_index_link_href,
+          :rewrite_links_for_trailing_slash_url_structure,
+          :rewrite_form_target_urls?, :relocate_index_html,
+          :remove_drupal_host_identifying_markup?,
+          :post_process_html_dom, :rewrite_keycloak_src
 
 end
 

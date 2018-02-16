@@ -75,6 +75,9 @@
       }
     }
   }
+  .cs-tags .field__item:not(:only-child):not(:last-child) {
+    &:after { content: ','; }
+  }
   .cs-social .googleplus-one, .book-social .googleplus-one {
     max-width: 55px;
 

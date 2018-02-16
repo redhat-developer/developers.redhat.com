@@ -83,6 +83,14 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     assert_equal('../../',get_link_href(containers_adoption_html, 'home-link'))
   end
 
+  def test_should_not_rewrite_keycloak_src
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+    homepage_html = get_html_document("#{@export_directory}/homepage/index.html")
+
+    keycloak_include = homepage_html.css('script#keycloak')
+    assert_equal(keycloak_include.attr('src').text, '/auth/js/keycloak.js')
+  end
+
   def test_should_rewrite_404_error_page_to_user_supplied_value_if_present
     ENV['drupal.export.final_base_url'] = 'https://developers.stage.redhat.com'
     @export_post_processor.post_process_html_export('docker', @export_directory)
