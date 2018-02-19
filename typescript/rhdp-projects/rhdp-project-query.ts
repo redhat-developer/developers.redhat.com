@@ -10,7 +10,7 @@ class RHDPProjectQuery extends HTMLElement {
     productData = {
         "amq": {"upstream": ["activemq","fabric8"]},
         "bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"]},
-        "brms": {"upstream": ["optaplanner","drools","guvnor"]},
+        "decisionmanager": {"upstream": ["optaplanner","drools","guvnor"]},
         "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"]},
         "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"]},
         "devstudio": {"upstream": ["jbosstools"]},

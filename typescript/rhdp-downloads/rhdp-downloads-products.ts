@@ -91,15 +91,15 @@ class RHDPDownloadsProducts extends HTMLElement {
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/amq/overview/"
         }, {
-            "productName": "Red Hat JBoss BRMS",
+            "productName": "Red Hat Decision Manager",
             "groupHeading": "INTEGRATION AND AUTOMATION",
-            "productCode": "brms",
+            "productCode": "decisionmanager",
             "featured": false,
-            "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=brms&downloadType=distributions",
+            "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=decisionmanager&downloadType=distributions",
             "downloadLink": "",
             "description": "A programming platform to easily capture and maintain rules for business changes, without impacting static applications.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/brms/overview/"
+            "learnMoreLink": "https://developers.redhat.com/products/decisionmanager/overview/"
         }, {
             "productName": "Red Hat JBoss BPM Suite",
             "groupHeading": "INTEGRATION AND AUTOMATION",
