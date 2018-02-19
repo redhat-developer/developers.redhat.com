@@ -11,6 +11,7 @@ class RegisterPage extends BasePage {
 
         this.addSelectors({
             registerForm: '#kc-register-form',
+            usernameField: '#username',
             emailError: '#email-error',
             firstNameField: '#firstName',
             lastNameField: '#lastName',
@@ -18,10 +19,14 @@ class RegisterPage extends BasePage {
             passwordField: '#password',
             companyField: '//*[@id="user.attributes.company"]',
             phoneNumberField: '//*[@id="user.attributes.phoneNumber"]',
+            addressLineOneField: '//*[@id="user.attributes.addressLine1"]',
+            cityField: '//*[@id="user.attributes.addressCity"]',
+            postcodeField: '//*[@id="user.attributes.addressPostalCode"]',
             stateSelect: '//*[@id="user.attributes.addressState"]',
             countrySelect: '//*[@id="user.attributes.country"]',
             fullUserTtac: '.fulluser-ttac',
             tacCheckall: '#tac-checkall',
+            receiveNewsletter: '//*[@id="user.attributes.newsletter]',
             createAccountBtn: '.button',
         });
     }
@@ -40,27 +45,35 @@ class RegisterPage extends BasePage {
     }
 
     simpleRegister(user) {
-        driver.type(this.getSelector('emailField'), user['email']);
-        driver.type(this.getSelector('passwordField'), user['password']);
+        driver.type(user['username'], this.getSelector('usernameField'));
+        driver.type(user['email'], this.getSelector('emailField'));
+        driver.type(user['password'], this.getSelector('passwordField'));
         driver.clickOn(this.getSelector('fullUserTtac'));
         return driver.clickOn(this.getSelector('createAccountBtn'))
     }
 
     awaitVerifyEmail() {
-        return driver.waitForTitle('Email address verification', 30000)
+        return driver.waitForTitle('Email address verification', 50000)
     }
 
-    extendedRegister(user) {
-        driver.type(this.getSelector('firstNameField'), user['firstName']);
-        driver.type(this.getSelector('lastNameField'), user['lastName']);
-        driver.type(this.getSelector('emailField'), user['email']);
-        driver.type(this.getSelector('passwordField'), user['password']);
-        driver.type(this.getSelector('companyField'), user['company']);
-        driver.type(this.getSelector('phoneNumberField'), user['phoneNumber']);
+    extendedRegister(termsModel, user) {
+        driver.type(user['username'], this.getSelector('usernameField'));
+        driver.type(user['firstName'], this.getSelector('firstNameField'));
+        driver.type(user['lastName'], this.getSelector('lastNameField'));
+        driver.type(user['email'], this.getSelector('emailField'));
+        driver.type(user['password'], this.getSelector('passwordField'),);
+        driver.type(user['company'], this.getSelector('companyField'));
+        driver.type(user['phoneNumber'], this.getSelector('phoneNumberField'));
         driver.selectByValue(this.getSelector('countrySelect'), user['countryCode']);
 
         if (user['state'] !== null) {
             driver.selectByValue(this.getSelector('stateSelect'), user['state']);
+        }
+
+        if (termsModel === 'RHD supportable user profile') {
+            driver.type(user['addressLineOne'], this.getSelector('addressLineOneField'));
+            driver.type(user['city'], this.getSelector('cityField'));
+            driver.type(user['postalCode'], this.getSelector('postcodeField'));
         }
 
         let el = driver.element(this.getSelector('tacCheckall'));

@@ -34,6 +34,12 @@ class BasePage {
         return selector.trim();
     }
 
+    isLoggedIn(siteUser) {
+        let loggedInName = driver.textOf('.logged-in-name');
+        return loggedInName === `${siteUser['firstName']} ${siteUser['lastName']}`.toUpperCase()
+    }
+
+
 }
 
 export {

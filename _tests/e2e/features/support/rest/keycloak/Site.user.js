@@ -91,7 +91,7 @@ class SiteUser {
     gitHubAccountUser() {
         let details;
 
-        let emailAddress = `redhat-developers-testers+sid_${process.env.SESSION_ID}_${faker.random.number()}@redhat.com`.toString();
+        let emailAddress = `redhat-developers-testers+sid_${faker.random.number()}@redhat.com`.toString();
 
         details = {
             title: this._selectRandom(['Mr', 'Mrs']),
@@ -136,17 +136,17 @@ class SiteUser {
     _generateCustomerCredentials() {
         let details;
 
-        let emailAddress = `redhat-developers-testers+sid_${process.env.SESSION_ID}_${faker.random.number()}@redhat.com`.toString();
+        let emailAddress = `redhat-developers-testers+${faker.random.number()}@redhat.com`;
 
         details = {
-            title: this._selectRandom(['Mr', 'Mrs']),
+            username: `rhdtest_${faker.random.number()}`,
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: emailAddress,
-            username: emailAddress.replace('@redhat.com', ''),
             password: 'P@$$word01',
             company: 'Red Hat',
             phoneNumber: '019197544950',
+            title: this._selectRandom(['Mr', 'Mrs']),
             country: 'US',
             addressLineOne: '100 E Davie St',
             city: 'Raleigh',

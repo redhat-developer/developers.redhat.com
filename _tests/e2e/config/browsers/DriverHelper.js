@@ -18,6 +18,12 @@ class Driver {
         }, timeout, `Timed out after ${wdioTimeout} seconds waiting for url to contain ${string}`);
     }
 
+    waitForSelectorContainingText(selector, string, timeout = wdioTimeout) {
+        browser.waitUntil(function () {
+            return browser.getText(selector).indexOf(string) > -1
+        }, timeout, `Timed out after ${wdioTimeout} seconds waiting for selector to contain ${string}`);
+    }
+
     element(selector) {
         let element = browser.element(selector);
         this.awaitExists(element);
@@ -56,7 +62,7 @@ class Driver {
         }
     }
 
-    type(selector, input) {
+    type(input, selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.setValue(selector, input)
@@ -151,7 +157,7 @@ class Driver {
         }
     }
 
-    awaitExists(selector, timeout=6000) {
+    awaitExists(selector, timeout = 6000) {
         try {
             if (typeof selector === 'string') {
                 return browser.waitForExist(selector, timeout);
