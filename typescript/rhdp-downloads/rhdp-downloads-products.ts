@@ -26,16 +26,17 @@ class RHDPDownloadsProducts extends HTMLElement {
             "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
             "featured": false,
             "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
-            "downloadLink": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
+            "downloadLink": "https://developers.redhat.com/products/webserver/download/",
             "description": "Apache httpd, Tomcat, etc. to provide a single solution for large-scale websites and light-weight Java web applications.",
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/webserver/overview/"
         }, {
             "productName": "Red Hat Application Migration Toolkit",
             "groupHeading": "DEVELOPER TOOLS",
+            "productCode": "migrationtoolkit",
             "featured": false,
             "dataFallbackUrl": "https://access.redhat.com/downloads",
-            "downloadLink": "https://access.redhat.com/downloads",
+            "downloadLink": "",
             "description": "Red Hat Application Migration Toolkit is an assembly of open source tools that enables large-scale application migrations and modernizations. The tooling consists of multiple individual components that provide support for each phase of a migration process.",
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/rhamt/overview/"
@@ -134,7 +135,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "groupHeading": "MOBILE",
             "featured": true,
             "dataFallbackUrl": "https://access.redhat.com/downloads/content/316/",
-            "downloadLink": "https://access.redhat.com/downloads/content/316/",
+            "downloadLink": "https://developers.redhat.com/products/mobileplatform/download/",
             "description": "Develop and deploy mobile apps in an agile and flexible manner.",
             "version": "",
             "learnMoreLink": "https://developers.redhat.com/products/mobileplatform/overview/"
