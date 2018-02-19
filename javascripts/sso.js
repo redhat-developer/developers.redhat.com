@@ -15,7 +15,7 @@ app.sso = function () {
             keycloak.updateToken().success(function () {
                 saveTokens();
 
-                var logged_in_user = keycloak.tokenParsed.name;
+                var logged_in_user = keycloak.tokenParsed.name || "My Account";
 
                 // show username instead of full name if full name is empty or blank (only space character)
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
