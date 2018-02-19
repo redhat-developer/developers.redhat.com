@@ -11,6 +11,12 @@ Feature: Log in using my RHD registered details.
     When I log in with my email address
     Then I should be logged in
 
+  Scenario: A customer whom has the correct login credentials can log in using their username
+    Given I am a RHD registered site visitor
+    And I am on the Login page
+    When I log in with my username address
+    Then I should be logged in
+
   Scenario: A customer has incorrect login credentials (the password is incorrect)
     Given I am a RHD registered site visitor
     And I am on the Login page
@@ -23,14 +29,13 @@ Feature: Log in using my RHD registered details.
     When I attempt to log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  # email is taking ~1 hour to be sent. Not possible to test the full flow at the moment
-#  @ignore
-#  Scenario: A customer can successfully reset their password
-#    Given I am a RHD registered site visitor
-#    And I am on the Login page
-#    When I request a password reset
-#    And I navigate to the password reset link
-#    Then I should be logged in
+  Scenario: A customer can successfully reset their password
+    Given I am a RHD registered site visitor
+    And I am on the Login page
+    When I request a password reset
+    And I navigate to the password reset link
+    And I add a new password
+    Then I should be logged in
 
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am an OpenShift registered site visitor
@@ -48,9 +53,8 @@ Feature: Log in using my RHD registered details.
     And I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed
     Then I should be logged in
 
-#  # returns 500 error from I.T backend
-#  @ignore
-#  Scenario: User can't login with deactivated Red Hat Customer Portal account (full user account)
+#   returns 500 error from I.T backend
+#   Scenario: User can't login with deactivated Red Hat Customer Portal account (full user account)
 #    Given I am on the Login page
 #    And I have an deactivated Customer portal account
 #    When I log in with Customer portal account

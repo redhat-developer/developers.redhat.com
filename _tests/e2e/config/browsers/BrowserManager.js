@@ -1,5 +1,6 @@
 "use strict";
 const path = require('path');
+const FirefoxProfile = require('firefox-profile');
 
 class BrowserManager {
 
@@ -11,7 +12,8 @@ class BrowserManager {
             return this.firefoxBrowser();
         } else if (browser.indexOf('bs_') > -1) {
             return this.browserstackBrowser(browser);
-        } else {// browser was not listed, must be mobile device
+        } else {
+            // browser was not listed, must be mobile device
             // Check that the device being used for emulation is supported by chrome
             let capability = require('../browsers/chromium_devices.json')[browser];
             let device = capability['name'];
@@ -21,8 +23,12 @@ class BrowserManager {
 
     firefoxBrowser() {
         console.log('e2e tests running using Firefox browser');
+        const myProfile = new FirefoxProfile();
+        myProfile.setPreference("general.useragent.override", "Red Hat Developers Testing");
+
         return {
             browserName: 'firefox',
+            firefox_profile: myProfile,
             acceptInsecureCerts: true,
         }
     }
@@ -34,8 +40,18 @@ class BrowserManager {
             caps = {
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
+
                 chromeOptions: {
-                    prefs: {'download.default_directory': path.resolve('tmp/chromeDownloads')}
+                    args: ['start-fullscreen', 'disable-web-security'],
+                    prefs: {
+                        "download": {
+                            "default_directory": path.resolve('tmp/chromeDownloads'),
+                            "prompt_for_download": false
+                        },
+                    profile: {
+                            "default_content_setting_values": {"automatic_downloads": 1}
+                        }
+                    }
                 }
             }
         } else {
@@ -43,7 +59,19 @@ class BrowserManager {
             caps = {
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
-                chromeOptions: {mobileEmulation: {deviceName: browser}}
+                chromeOptions: {
+                    mobileEmulation: {deviceName: browser},
+                    args: ['disable-web-security'],
+                    prefs: {
+                        "download": {
+                            "default_directory": path.resolve('tmp/chromeDownloads'),
+                            "prompt_for_download": false
+                        },
+                        profile: {
+                            "default_content_setting_values": {"automatic_downloads": 1}
+                        },
+                    }
+                }
             }
         }
         return caps;
@@ -69,4 +97,5 @@ class BrowserManager {
     }
 }
 
-module.exports = new BrowserManager;
+module
+    .exports = new BrowserManager;

@@ -10,7 +10,8 @@ class AdditionalActionPage extends BasePage {
 
         this.addSelectors({
             fulluserTac: '.fulluser-ttac',
-            submitBtn: '.button',
+            newPasswordField: '//*[@id="user.attributes.pwd"]',
+            submitBtn: '.button'
         });
     }
 
@@ -18,12 +19,17 @@ class AdditionalActionPage extends BasePage {
         return driver.awaitExists(this.getSelector('fulluserTac'))
     }
 
-    get selectFulluserTac() {
+    selectFulluserTac() {
         return driver.clickOn(this.getSelector('fulluserTac'))
     }
 
-    get clickSubmitBtn() {
+    clickSubmitBtn() {
         return driver.clickOn(this.getSelector('submitBtn'))
+    }
+
+    updatePassword() {
+        driver.type('password01', this.getSelector('newPasswordField'));
+        driver.clickOn(this.getSelector('submitBtn'))
     }
 
 }

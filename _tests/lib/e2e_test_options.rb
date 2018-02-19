@@ -72,7 +72,6 @@ module E2ETestOptionsHelper
     default_configuration[:browser] = 'chrome'
     default_configuration[:docker] = false
     default_configuration[:browserstack] = false
-    default_configuration[:keycloak] = false
     default_configuration[:profile] = 'desktop'
     default_configuration
   end

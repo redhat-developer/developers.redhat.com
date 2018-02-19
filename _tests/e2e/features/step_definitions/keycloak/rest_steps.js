@@ -3,7 +3,11 @@ import {siteUser} from "../../support/rest/keycloak/Site.user"
 const restSteps = function () {
 
     this.Given(/^I am a RHD registered site visitor$/, function () {
-        siteUserDetails = siteUser.createRHDSiteUser();
+        if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
+            siteUserDetails = siteUser.createRHDSiteUser();
+        } else {
+            siteUserDetails = siteUser.productionSiteUser();
+        }
     });
 
     this.Given(/^I am an OpenShift registered site visitor$/, function () {
@@ -12,10 +16,6 @@ const restSteps = function () {
 
     this.Given(/^I have an active Customer portal account$/, function () {
         siteUserDetails = siteUser.createCustomerPortalAccount();
-    });
-
-    this.Given(/^I am a Developers.redhat.com registered site visitor$/, function () {
-        siteUserDetails = siteUser.productionSiteUser();
     });
 
     this.Given(/^I have an deactivated Customer portal account$/, function () {
