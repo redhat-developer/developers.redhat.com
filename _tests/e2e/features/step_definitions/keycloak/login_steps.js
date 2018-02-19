@@ -15,13 +15,14 @@ const loginSteps = function () {
         expect(loginPage.loginPageDisplayed(), 'Login page was not displayed').to.eq(true);
     });
 
-    this.When(/^I log in with my email address$/, function () {
-        loginPage.login(siteUserDetails);
+    this.When(/^I log in with my (email|username) address$/, function (loginType) {
+        loginPage.loginWith(siteUserDetails, loginType);
     });
 
     this.When(/^I have logged into my account$/, function () {
         loginPage.open();
         loginPage.login(siteUserDetails);
+        expect(loginPage.isLoggedIn(siteUserDetails), 'User was not logged in').to.eq(true)
     });
 
     this.When(/^I log using my OpenShift account$/, function () {

@@ -56,7 +56,7 @@ class Driver {
         }
     }
 
-    type(selector, input) {
+    type(input, selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.setValue(selector, input)
@@ -151,7 +151,7 @@ class Driver {
         }
     }
 
-    awaitExists(selector, timeout=6000) {
+    awaitExists(selector, timeout = 6000) {
         try {
             if (typeof selector === 'string') {
                 return browser.waitForExist(selector, timeout);

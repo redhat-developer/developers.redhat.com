@@ -20,9 +20,9 @@ class AccountPage extends BasePage {
     }
 
     editProfile(user) {
-        driver.type(this.getSelector('firstName'), user['firstName']);
-        driver.type(this.getSelector('lastName'), user['lastName']);
-        driver.type(this.getSelector('company'), user['company']);
+        driver.type(user['firstName'], this.getSelector('firstName'),);
+        driver.type(user['lastName'], this.getSelector('lastName'), );
+        driver.type(user['company'], this.getSelector('company'));
         return this.clickSaveBtn();
     }
 

@@ -18,28 +18,28 @@ const downloadsSteps = function () {
         downloadsPage.awaitDownloadsPage();
     });
 
-    this.Then(/^I should see "([^"]*)" download field should contain version and operating system$/, function (product) {
+    this.Then(/^I should see "(.*)" download field should contain version and operating system$/, function (product) {
         let dm = new DownloadManager(process.env.RHD_BASE_URL);
         let downloadData = dm.featuredDownloadFor(product);
         let expectedDlVersion = `Version: ${downloadData[1]} for ${operatingSystem}`.toLowerCase();
         let actualDlVersion = downloadsPage.osSpecificDownload(downloadData[0]).toLowerCase();
-        expect(expectedDlVersion).to.equal(actualDlVersion)
+        expect(actualDlVersion).to.equal(expectedDlVersion)
     });
 
     this.When(/^I click to download "(.*)"$/, function (product) {
-        let dm = new DownloadManager(process.env.RHD_BASE_URL);
-        let downloadData = dm.featuredDownloadFor(product);
-        productCode = downloadData[0];
-        downloadsPage.clickToDownload(product, downloadData[2]);
+        downloadsPage.clickToDownload(product)
     });
 
-    this.Then(/^a single download should initiate on the (.*) Hello-World overview page$/, function (product) {
+    this.Then(/^I should see the "(.*)" Hello\-World overview page$/, function (productCode) {
         let getStartedPage = new GetStartedPage(productCode);
         getStartedPage.awaitGetStartedPage();
-        global.downloadStarted = true;
+    });
 
+    this.Then(/^a single download should initiate$/, function () {
+        global.downloadStarted = true;
         let downloadCount = 0;
         let testFolder = path.resolve('tmp/chromeDownloads');
+
         let fileName = [];
         let dirSize = [];
         do {
@@ -54,7 +54,6 @@ const downloadsSteps = function () {
         while (dirSize.length === 0 && downloadCount < 60);
         browser.pause(3000);
         assert(dirSize.length === 1, `Expected 1 download, but got ${dirSize.length}`);
-        assert(fileName[0].includes('crdownload'), `${fileName[0]} did not include 'crdownload'`)
     });
 
     function sleep(delay) {

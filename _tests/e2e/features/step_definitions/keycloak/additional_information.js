@@ -1,4 +1,5 @@
 import {additionalInformation} from "../../support/pages/keycloak/AdditionalInformation.page"
+import {additionalActionPage} from "../../support/pages/keycloak/AdditionalAction.page"
 
 const additionalInformationSteps = function () {
 
@@ -10,6 +11,13 @@ const additionalInformationSteps = function () {
         }
     });
 
+    this.When(/^I confirm my details, and proceed$/, function () {
+        additionalActionPage.clickSubmitBtn()
+    });
+
+    this.When(/^I add a new password$/, function () {
+        additionalActionPage.updatePassword();
+    });
 };
 
 module.exports = additionalInformationSteps;

@@ -4,19 +4,22 @@ import {driver} from "../../../../config/browsers/DriverHelper";
 class ForgotPassword extends BasePage {
 
     constructor() {
-        super({
-            selector: '#kc-reset-password-form',
-        });
-
+        super();
         this.addSelectors({
+            forgotPasswordPage: '#kc-reset-password-form',
             submitBtn: '#kc-form-buttons .button',
             usernameField: '#username',
         });
-
     }
 
+    awaitPassowrdResetForm() {
+        driver.awaitIsVisible(this.getSelector('forgotPasswordPage'))
+    }
+
+
     resetPassword(email) {
-        driver.type(this.getSelector('usernameField'), email);
+        this.awaitPassowrdResetForm();
+        driver.type(email, this.getSelector('usernameField'));
         return driver.clickOn(this.getSelector('submitBtn'))
     }
 

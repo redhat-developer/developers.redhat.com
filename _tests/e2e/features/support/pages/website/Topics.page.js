@@ -6,11 +6,12 @@ class TopicsPage extends BasePage {
     constructor(topic) {
         super({
             path: `/topics/${topic}/`,
+            selector: '.page-topics-containers'
         });
 
         this.addSelectors({
-            loadingSpinner: '.loading',
             topicsHeader: '.topics-header',
+            topicResources: 'topic-resources',
             tertiaryPromo: '.tertiary-promo',
             whiteCards: '#topic-resources > ul > a > li'
         });
@@ -18,10 +19,7 @@ class TopicsPage extends BasePage {
     }
 
     awaitTopicsPage() {
-        driver.awaitExists(this.getSelector('topicsHeader'));
-        if (driver.isDisplayed(this.getSelector('loadingSpinner'))) {
-            return driver.awaitIsNotVisible(this.getSelector('loadingSpinner'))
-        }
+        driver.awaitExists(this.getSelector('topicResources'), 30000);
     }
 
     getTertiaryCards() {
