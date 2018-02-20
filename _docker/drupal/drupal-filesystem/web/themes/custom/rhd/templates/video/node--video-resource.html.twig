@@ -27,7 +27,7 @@
         </div>
         {% if content.field_slideshare_source|render|striptags|trim is not empty %}
             <div class="large-9 columns slides">
-                <iframe src="//www.slideshare.net{{content.field_slideshare_source.0['#url']}}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen> </iframe>
+                <iframe src="https://www.slideshare.net{{content.field_slideshare_source.0['#url']}}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen> </iframe>
                 <small class="slide-note">Note: Slides do not auto-advance</small>
             </div>
         {% endif %}
