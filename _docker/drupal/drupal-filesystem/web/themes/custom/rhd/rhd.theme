@@ -94,6 +94,7 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 }
 
 function rhd_preprocess_html(array &$variables) {
+    $current_path = \Drupal::service('path.current')->getPath();
     $environment = \Drupal::config('redhat_developers')->get('environment');
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
     $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
@@ -111,6 +112,7 @@ function rhd_preprocess_html(array &$variables) {
     $variables['rhd_sentry_code'] = $sentry_code;
     $variables['rhd_base_url'] = $rhd_base_url;
     $variables['rhd_final_base_url'] = $rhd_final_base_url;
+    $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
     if ($environment != 'prod') {
         $referrer = [
