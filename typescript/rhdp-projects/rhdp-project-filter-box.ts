@@ -94,7 +94,7 @@ class RHDPProjectFilterBox extends HTMLElement {
                     <option value="">Select Product...</option>
                     <option value="amq">Red Hat JBoss AMQ</option>
                     <option value="bpmsuite">Red Hat JBoss BPM Suite</option>
-                    <option value="brms">Red Hat JBoss BRMS</option>
+                    <option value="brms">Red Hat Decision Manager</option>
                     <option value="datagrid">Red Hat JBoss Data Grid</option>
                     <option value="datavirt">Red Hat JBoss Data Virtualization</option>
                     <option value="devstudio">Red Hat JBoss Developer Studio</option>

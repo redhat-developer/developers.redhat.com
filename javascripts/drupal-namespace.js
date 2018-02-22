@@ -111,7 +111,7 @@ app.dcp.thumbnails = {
 app.products = {
   "amq": {"upstream": ["activemq","fabric8"],"stackoverflow": ["jbossamq", "amq"], "buzz_tags": ["amq","JBoss A-MQ"]},
   "bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite","jBPM"]},
-  "brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": "redhat-brms", "buzz_tags": ["brms","JBoss BRMS"]},
+  "brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": ["redhat-brms","decision manager","red hat decision manager"], "buzz_tags": ["brms","JBoss BRMS"]},
   "cdk": {"upstream": null,"stackoverflow": "redhat-containers", "buzz_tags": ["containers"]},
   "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "redhat-datagrid", "buzz_tags": ["datagrid","jboss data grid"]},
   "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "redhat-datavirt", "buzz_tags": ["datavirt","jboss datavirt"]},
