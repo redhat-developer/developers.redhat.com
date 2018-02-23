@@ -4,11 +4,11 @@
     
     .qtn-stats {
       padding-top: 5px;
-      span {
+      div {
         display: inline-block;
         text-align: center;
-        margin-right: 5px;
-        width: 31%;
+        margin-right: 4px;
+        width: 30%;
         min-height: 80px;
         max-width: 80px;
         max-height: 80;
@@ -39,8 +39,11 @@
     .so-author {
       float: right;
     }
-    a h5.qtn-title, a {
+    a.qtn-title {
       color: $link;
+      font-weight: 600;
+      font-size: 1.4375rem;
+      margin-bottom: 8px;
     }
     p.qtn-content {
       overflow: hidden;
@@ -50,6 +53,7 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       margin-bottom: 10px !important;
+      margin-top: 8px;
     }
     span.qtn-answer {
       display: block;
@@ -149,8 +153,12 @@
   margin-bottom: 10px !important;
 }
 
-span.so-tags{
+div.so-tags{
   margin-top: 5px;
+}
+
+div.so-tags > *:nth-last-child(2) {
+  &:after { content: ''; }
 }
 
 strong.tag-label, .qtn-answer strong {
@@ -158,6 +166,7 @@ strong.tag-label, .qtn-answer strong {
 }
 
 @include tablet-landscape-and-down {
+  .hero.stackoverflow-main { padding: 40px 30px; }
   .stackoverflow-main{
     img {
       max-width: 500px;
@@ -167,17 +176,13 @@ strong.tag-label, .qtn-answer strong {
   .stack-help {
     margin: 0 -15px 25px -15px;
     padding: 20px 15px;
-    h3 {
-      text-align: left;
-    }
+    h3 { text-align: left; }
   }
-  .qtn-stats {
-    margin-bottom: 15px;
-  }
+  .qtn-stats { margin-bottom: 15px; }
 }
 
 @include mobile-landscape-and-down {
-  .stackoverflow-container .stackoverflow-update .update span.so-author{
+  .stackoverflow-results-container .stackoverflow-update .update span.so-author {
     float: none;
     margin-top: 5px;
     display: block;
