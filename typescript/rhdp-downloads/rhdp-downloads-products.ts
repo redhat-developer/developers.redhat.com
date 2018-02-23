@@ -10,7 +10,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/datagrid/overview/"
+            "learnMoreLink": "/products/datagrid/overview/"
         }, {
             "productName": "Red Hat JBoss Enterprise Application Platform",
             "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
@@ -20,16 +20,16 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/eap/overview/"
+            "learnMoreLink": "/products/eap/overview/"
         }, {
             "productName": "Red Hat JBoss Web Server",
             "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
             "featured": false,
             "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
-            "downloadLink": "https://developers.redhat.com/products/webserver/download/",
+            "downloadLink": "/products/webserver/download/",
             "description": "Apache httpd, Tomcat, etc. to provide a single solution for large-scale websites and light-weight Java web applications.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/webserver/overview/"
+            "learnMoreLink": "/products/webserver/overview/"
         }, {
             "productName": "Red Hat Application Migration Toolkit",
             "groupHeading": "DEVELOPER TOOLS",
@@ -39,7 +39,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "Red Hat Application Migration Toolkit is an assembly of open source tools that enables large-scale application migrations and modernizations. The tooling consists of multiple individual components that provide support for each phase of a migration process.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/rhamt/overview/"
+            "learnMoreLink": "/products/rhamt/overview/"
         }, {
             "productName": "Red Hat Container Development Kit",
             "groupHeading": "DEVELOPER TOOLS",
@@ -49,7 +49,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "For container development, includes RHEL and OpenShift 3.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/cdk/overview/"
+            "learnMoreLink": "/products/cdk/overview/"
         }, {
             "productName": "Red Hat Development Suite",
             "groupHeading": "DEVELOPER TOOLS",
@@ -59,7 +59,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A fully integrated development environment for modern enterprise development.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/devsuite/overview/"
+            "learnMoreLink": "/products/devsuite/overview/"
         }, {
             "productName": "Red Hat JBoss Developer Studio",
             "groupHeading": "DEVELOPER TOOLS",
@@ -69,7 +69,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/devstudio/overview/"
+            "learnMoreLink": "/products/devstudio/overview/"
         }, {
             "productName": "Red Hat Enterprise Linux",
             "groupHeading": "INFRASTRUCTURE",
@@ -79,7 +79,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "For traditional development, includes Software Collections and Developer Toolset.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/rhel/overview/"
+            "learnMoreLink": "/products/rhel/overview/"
         }, {
             "productName": "Red Hat JBoss AMQ",
             "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -89,7 +89,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/amq/overview/"
+            "learnMoreLink": "/products/amq/overview/"
         }, {
             "productName": "Red Hat Decision Manager",
             "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -99,7 +99,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A programming platform to easily capture and maintain rules for business changes, without impacting static applications.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/red-hat-decision-manager/overview/"
+            "learnMoreLink": "/products/red-hat-decision-manager/overview/"
         }, {
             "productName": "Red Hat JBoss BPM Suite",
             "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -109,7 +109,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A platform that combines business rules and process management (BPM), and complex event processing.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/bpmsuite/overview/"
+            "learnMoreLink": "/products/bpmsuite/overview/"
         }, {
             "productName": "Red Hat JBoss Data Virtualization",
             "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -119,7 +119,7 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/datavirt/overview/"
+            "learnMoreLink": "/products/datavirt/overview/"
         }, {
             "productName": "Red Hat JBoss Fuse",
             "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -129,16 +129,16 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "A small-footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/fuse/overview/"
+            "learnMoreLink": "/products/fuse/overview/"
         }, {
             "productName": "Red Hat Mobile Application Platform",
             "groupHeading": "MOBILE",
             "featured": true,
             "dataFallbackUrl": "https://access.redhat.com/downloads/content/316/",
-            "downloadLink": "https://developers.redhat.com/products/mobileplatform/download/",
+            "downloadLink": "/products/mobileplatform/download/",
             "description": "Develop and deploy mobile apps in an agile and flexible manner.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/mobileplatform/overview/"
+            "learnMoreLink": "/products/mobileplatform/overview/"
         }, {
             "productName": "Red Hat OpenShift Container Platform",
             "groupHeading": "CLOUD",
@@ -148,17 +148,17 @@ class RHDPDownloadsProducts extends HTMLElement {
             "downloadLink": "",
             "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/openshift/overview/"
+            "learnMoreLink": "/products/openshift/overview/"
         }, {
             "productName": "OpenJDK",
             "groupHeading": "LANGUAGES AND COMPILERS",
             "productCode": "openjdk",
             "featured": false,
-            "dataFallbackUrl": "https://developers.redhat.com/products/openjdk/overview/",
+            "dataFallbackUrl": "/products/openjdk/overview/",
             "downloadLink": "",
             "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
             "version": "",
-            "learnMoreLink": "https://developers.redhat.com/products/openjdk/overview/"
+            "learnMoreLink": "/products/openjdk/overview/"
         }]
     };
 
