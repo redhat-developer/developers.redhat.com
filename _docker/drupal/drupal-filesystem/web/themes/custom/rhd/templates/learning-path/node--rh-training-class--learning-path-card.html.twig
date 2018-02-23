@@ -29,7 +29,10 @@
       </div>
       {% if node.field_completion_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock-o"></i> {{node.field_completion_time.value}}
+          <i class="fa fa-clock-o"></i> 
+          {% for intvl in node.field_completion_time|reverse %}
+          {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+          {% endfor %}
       </div>
       {% endif %}
       {% if node.field_difficulty.value %}
