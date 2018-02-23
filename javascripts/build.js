@@ -117,8 +117,8 @@ var RHDPOSDownload = /** @class */ (function (_super) {
         _this._macURL = "";
         _this._winURL = "";
         _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+            "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/cdk/hello-world/#fndtn-rhel" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -1356,7 +1356,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/datagrid/overview/"
+                    "learnMoreLink": "/products/datagrid/overview/"
                 }, {
                     "productName": "Red Hat JBoss Enterprise Application Platform",
                     "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
@@ -1366,25 +1366,26 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/eap/overview/"
+                    "learnMoreLink": "/products/eap/overview/"
                 }, {
                     "productName": "Red Hat JBoss Web Server",
                     "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
                     "featured": false,
                     "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
-                    "downloadLink": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
+                    "downloadLink": "/products/webserver/download/",
                     "description": "Apache httpd, Tomcat, etc. to provide a single solution for large-scale websites and light-weight Java web applications.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/webserver/overview/"
+                    "learnMoreLink": "/products/webserver/overview/"
                 }, {
                     "productName": "Red Hat Application Migration Toolkit",
                     "groupHeading": "DEVELOPER TOOLS",
+                    "productCode": "migrationtoolkit",
                     "featured": false,
                     "dataFallbackUrl": "https://access.redhat.com/downloads",
-                    "downloadLink": "https://access.redhat.com/downloads",
+                    "downloadLink": "",
                     "description": "Red Hat Application Migration Toolkit is an assembly of open source tools that enables large-scale application migrations and modernizations. The tooling consists of multiple individual components that provide support for each phase of a migration process.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/rhamt/overview/"
+                    "learnMoreLink": "/products/rhamt/overview/"
                 }, {
                     "productName": "Red Hat Container Development Kit",
                     "groupHeading": "DEVELOPER TOOLS",
@@ -1394,7 +1395,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "For container development, includes RHEL and OpenShift 3.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/cdk/overview/"
+                    "learnMoreLink": "/products/cdk/overview/"
                 }, {
                     "productName": "Red Hat Development Suite",
                     "groupHeading": "DEVELOPER TOOLS",
@@ -1404,7 +1405,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A fully integrated development environment for modern enterprise development.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/devsuite/overview/"
+                    "learnMoreLink": "/products/devsuite/overview/"
                 }, {
                     "productName": "Red Hat JBoss Developer Studio",
                     "groupHeading": "DEVELOPER TOOLS",
@@ -1414,7 +1415,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/devstudio/overview/"
+                    "learnMoreLink": "/products/devstudio/overview/"
                 }, {
                     "productName": "Red Hat Enterprise Linux",
                     "groupHeading": "INFRASTRUCTURE",
@@ -1424,7 +1425,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "For traditional development, includes Software Collections and Developer Toolset.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/rhel/overview/"
+                    "learnMoreLink": "/products/rhel/overview/"
                 }, {
                     "productName": "Red Hat JBoss AMQ",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -1434,9 +1435,9 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/amq/overview/"
+                    "learnMoreLink": "/products/amq/overview/"
                 }, {
-                    "productName": "Red Hat JBoss BRMS",
+                    "productName": "Red Hat Decision Manager",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
                     "productCode": "brms",
                     "featured": false,
@@ -1444,7 +1445,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A programming platform to easily capture and maintain rules for business changes, without impacting static applications.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/brms/overview/"
+                    "learnMoreLink": "/products/red-hat-decision-manager/overview/"
                 }, {
                     "productName": "Red Hat JBoss BPM Suite",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -1454,7 +1455,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A platform that combines business rules and process management (BPM), and complex event processing.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/bpmsuite/overview/"
+                    "learnMoreLink": "/products/bpmsuite/overview/"
                 }, {
                     "productName": "Red Hat JBoss Data Virtualization",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -1464,7 +1465,7 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/datavirt/overview/"
+                    "learnMoreLink": "/products/datavirt/overview/"
                 }, {
                     "productName": "Red Hat JBoss Fuse",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -1474,16 +1475,16 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "A small-footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/fuse/overview/"
+                    "learnMoreLink": "/products/fuse/overview/"
                 }, {
                     "productName": "Red Hat Mobile Application Platform",
                     "groupHeading": "MOBILE",
                     "featured": true,
                     "dataFallbackUrl": "https://access.redhat.com/downloads/content/316/",
-                    "downloadLink": "https://access.redhat.com/downloads/content/316/",
+                    "downloadLink": "/products/mobileplatform/download/",
                     "description": "Develop and deploy mobile apps in an agile and flexible manner.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/mobileplatform/overview/"
+                    "learnMoreLink": "/products/mobileplatform/overview/"
                 }, {
                     "productName": "Red Hat OpenShift Container Platform",
                     "groupHeading": "CLOUD",
@@ -1493,17 +1494,17 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
                     "downloadLink": "",
                     "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/openshift/overview/"
+                    "learnMoreLink": "/products/openshift/overview/"
                 }, {
                     "productName": "OpenJDK",
                     "groupHeading": "LANGUAGES AND COMPILERS",
                     "productCode": "openjdk",
                     "featured": false,
-                    "dataFallbackUrl": "https://developers.redhat.com/products/openjdk/overview/",
+                    "dataFallbackUrl": "/products/openjdk/overview/",
                     "downloadLink": "",
                     "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
                     "version": "",
-                    "learnMoreLink": "https://developers.redhat.com/products/openjdk/overview/"
+                    "learnMoreLink": "/products/openjdk/overview/"
                 }]
         };
         return _this;
@@ -1581,7 +1582,7 @@ var RHDPProjectFilterBox = /** @class */ (function (_super) {
         _this._term = '';
         _this._filter = '';
         _this.template = function (strings, project) {
-            return "\n        <form action=\"\" class=\"project-filters\" method=\"GET\" data-drupal-form-fields=\"\">\n            <h4>Filters<a class=\"project-filters-clear\" href=\"#\">Clear All Filters</a></h4>\n            <input name=\"filter-text\" placeholder=\"Filter by keyword\" type=\"text\" value=\"" + project.term + "\">\n            <div class=\"filter-block\">\n                <h5>Included In</h5>\n        \n                <div class=\"styled-select\" ><select name=\"filter-products\" id=\"upstream-project-selection\">\n                    <option value=\"\">Select Product...</option>\n                    <option value=\"amq\">Red Hat JBoss AMQ</option>\n                    <option value=\"bpmsuite\">Red Hat JBoss BPM Suite</option>\n                    <option value=\"brms\">Red Hat JBoss BRMS</option>\n                    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n                    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n                    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n                    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n                    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n                    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n                    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n                </select></div>\n            </div>\n        </form>\n";
+            return "\n        <form action=\"\" class=\"project-filters\" method=\"GET\" data-drupal-form-fields=\"\">\n            <h4>Filters<a class=\"project-filters-clear\" href=\"#\">Clear All Filters</a></h4>\n            <input name=\"filter-text\" placeholder=\"Filter by keyword\" type=\"text\" value=\"" + project.term + "\">\n            <div class=\"filter-block\">\n                <h5>Included In</h5>\n        \n                <div class=\"styled-select\" ><select name=\"filter-products\" id=\"upstream-project-selection\">\n                    <option value=\"\">Select Product...</option>\n                    <option value=\"amq\">Red Hat JBoss AMQ</option>\n                    <option value=\"bpmsuite\">Red Hat JBoss BPM Suite</option>\n                    <option value=\"brms\">Red Hat Decision Manager</option>\n                    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n                    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n                    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n                    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n                    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n                    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n                    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n                </select></div>\n            </div>\n        </form>\n";
         };
         return _this;
     }
@@ -4214,7 +4215,7 @@ var RHDPSearchApp = /** @class */ (function (_super) {
                         { key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
                         { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
                         { key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite'] },
-                        { key: 'brms', name: 'JBoss BRMS', value: ['brms'] },
+                        { key: 'brms', name: 'Red Hat Decision Manager', value: ['brms'] },
                         { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
                         { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
                         { key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio'] },
@@ -4236,7 +4237,7 @@ var RHDPSearchApp = /** @class */ (function (_super) {
                         { key: 'dotnet', name: '.NET', value: ['dotnet', '.net', 'visual studio', 'c#'] },
                         { key: 'containers', name: 'Containers', value: ['atomic', 'cdk', 'containers'] },
                         { key: 'devops', name: 'DevOps', value: ['DevOps', 'CI', 'CD', 'Continuous Delivery'] },
-                        { key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ', 'AMQP', 'apache camel', 'Arquillian', 'Camel', 'CDI', 'CEP', 'CXF', 'datagrid', 'devstudio', 'Drools', 'Eclipse', 'fabric8', 'Forge', 'fuse', 'Hawkular', 'Hawtio', 'Hibernate', 'Hibernate ORM', 'Infinispan', 'iPaas', 'java ee', 'JavaEE', 'JBDS', 'JBoss', 'JBoss BPM Suite', 'JBoss BRMS', 'JBoss Data Grid', 'jboss eap', 'JBoss EAP', ''] },
+                        { key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ', 'AMQP', 'apache camel', 'Arquillian', 'Camel', 'CDI', 'CEP', 'CXF', 'datagrid', 'devstudio', 'Drools', 'Eclipse', 'fabric8', 'Forge', 'fuse', 'Hawkular', 'Hawtio', 'Hibernate', 'Hibernate ORM', 'Infinispan', 'iPaas', 'java ee', 'JavaEE', 'JBDS', 'JBoss', 'JBoss BPM Suite', 'Red Hat Decision Manager', 'JBoss Data Grid', 'jboss eap', 'JBoss EAP', ''] },
                         { key: 'iot', name: 'Internet of Things', value: ['IoT', 'Internet of Things'] },
                         { key: 'microservices', name: 'Microservices', value: ['Microservices', ' WildFly Swarm'] },
                         { key: 'mobile', name: 'Mobile', value: ['Mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },

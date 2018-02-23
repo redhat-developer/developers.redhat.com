@@ -103,7 +103,7 @@
             "title":  "KubeBoot - Spring Boot deployment on Kubernetes has never been so easy",
             "date": "2/15/2018",
             "confirmed": true,
-            "youtube_id": "",
+            "youtube_id": "Cv8_EHQgUZ4",
             "register": true,
             "inxpo": "https://onlinexperiences.com/Launch/QReg/ShowKey=47991",
             "abstract": "Have you ever thought how to deploy Cloud Native Java Applications (Spring Boot) on Kubernetes? Kubernetes has now become a de-facto standard for deploying Cloud Native Applications, but still there is myth that they are not ready for Java workloads. The aim of this session is to break that myth to show Kubernetes is well suited for Cloud Native Java applications. The session starts with a brief history of Microservices; the framework, the libraries, the platform and the tools that have been part of every cloud native applications and how they become deprecated with Cloud Native Java applications deployed to Kubernetes. The session explores the cloud native characteristics such as Discovery, Blue/Green Deployments, Elasticity, Canary Deployments, Resiliency, Pipeline(CI/CD), Authentication etc., becomes implicit characteristics to your Spring Boot Java applications that are deployed on Kubernetes/OpenShift. In this session, we will see how to build, debug, deploy and discover Spring Boot applications on Kubernetes, covering in depth details of the tools, libraries and platform that could be used to make your spring boot deployment smooth and easy.",
@@ -111,14 +111,13 @@
         },
         {
             "title": "Secure Spring Boot Microservices with Keycloak",
-            "date": "Date TBD",
-            "confirmed": false,
-            "youtube_id": "",
-            "offer_id": "",
+            "date": "3/1/2018",
+            "confirmed": true,
+            "youtube_id": "Bdg_DjuoX0A",
             "register": true,
-            "abstract": "Although security and identity management is a crucial aspect for any application, its implementation can be difficult. Worse, it is often neglected, poorly implemented and intrusive in the code. But lately, Identity Management servers has appeared which allow to outsource and delegate all authentication and authorization aspects, such as https://auth0.com/. Of these servers, one of the most promising is Keycloak, open-source, flexible and agnostic of any technology, it is easily deployable / adaptable in its own infrastructure. In this session, I propose you to discover KeyCloak progressively and in an interactive way: 0 slide, 100% live coding.<br/><br/>We will naturally focus on the Spring Boot adapter that Keycloak provides but also see how you can combine Spring Security with Keycloak.",
-            "speakers": "Sebastien Blanc",
-            "speaker_intro": ""
+            "inxpo": "https://onlinexperiences.com/Launch/QReg/ShowKey=#####&AffiliateData=RHDP",
+            "abstract": "<p>Although security and identity management is a crucial aspect for any application, its implementation can be difficult. Worse, it’s often neglected, poorly implemented, and intrusive in the code. Recently, identity management servers have appeared that allow you to outsource and delegate all aspects of authentication and authorization, such as <a href='https://auth0.com/'>https://auth0.com/</a>. Of these servers, one of the most promising is Keycloak—open source, flexible, agnostic of any technology and is easily deployable and adaptable in its own infrastructure.<br/><br/>In this session, we’ll discover KeyCloak progressively and in an interactive way:<br/>No slides, just 100% live coding<br/>Focused on the Spring Boot adapter provided by Keycloak<br/>Showing how to combine Spring Security with Keycloak</p>",
+            "speakers": ["sebastienblanc"]
         },
         {
             "title": "Blue/Green Deployments with OpenShift",
@@ -226,6 +225,12 @@
             "intro":"Kamesh is currently Red Hat's Director of Developer Experience, most part of Kamesh's career was with services industry helping various customers build Java based solutions. Kamesh is the creator of vertx-maven-plugin(https://vmp.fabric8.io) and he has been an active contributor to fabric8 project. Being a OpenSource developer and contributor Kamesh's loves sharing his experience on building and deploying Java Applications on Kubernetes/OpenShift. He still loves to learn new technologies and strongly believe in 'ITS BETTER TO SHARE'.",
             "twitter":"",
             "image":""
-        }
+        },
+        "sebastienblanc": {
+            "name":"Sebastien Blanc",
+            "intro":"Sébastien Blanc is Red Hat principal software engineer with 12 years of experience focusing on the KeyCloak project. In addition to his strong JEE profile of middleware, banking, and insurance products, Sébastien shares his passion at various conferences like Devoxx, JUDCon, JavaOne, and SpringOne.",
+            "twitter":"",
+            "image":""
+        }      
     }
 }
