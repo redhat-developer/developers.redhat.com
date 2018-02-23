@@ -129,7 +129,7 @@ class DevNationLiveApp extends HTMLElement {
     <div id="devnationLive-microsite">
         ${next ? `<section class="next-session">
             <div class="row">
-                <div class="large-24">
+                <div class="large-24 columns">
                     <h5 class="caps session-label">Next Live Session</h5>
                 </div>
             </div>
