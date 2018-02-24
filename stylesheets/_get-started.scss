@@ -261,7 +261,7 @@ ul.toc {
 
 // NEW GET STARTED - BLUE BOXES STYLES
 .multipath-tabs-sm {
-  margin-bottom: 15px;
+  margin: 30px 0 15px 0;
   padding-left: 0;
   padding-bottom: 12px;
   border-bottom: 1px solid #BDBDBD;
@@ -274,17 +274,22 @@ ul.toc {
       display: inline;
       margin-right: 10px;
       padding: 15px 20px 15px 10px;
+      border: 1px solid transparent;
+      border-bottom: 0;
       &.active {
-        border: 1px solid #BDBDBD;
-        border-bottom-color: $white;
+        border-color: #BDBDBD;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        bottom: 1px;
         a {
           padding-bottom: 4px;
           border-bottom: 3px solid $red;
         }
       }
-      a {
-        font-size: 1em;
+      @-moz-document url-prefix() {
+        &.active { bottom: -1px; }
       }
+      a { font-size: 1em; }
     }
   }
 }
@@ -347,7 +352,7 @@ ul.toc {
     -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-    height: 95%;
+    min-height: 165px;
     h4 {
       color: $white;
     }
