@@ -1,0 +1,28 @@
+uuid: 0602f4ca-e600-43ce-a69d-d8161da8b677
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.card_hero
+    - field.field.assembly.card_hero.field_background_media
+    - field.field.assembly.card_hero.field_content_cards
+    - field.field.assembly.card_hero.field_title
+id: assembly.card_hero.default
+targetEntityType: assembly
+bundle: card_hero
+mode: default
+content:
+  field_content_cards:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: hero_card
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  field_background_media: true
+  field_title: true
+  name: true
+  user_id: true

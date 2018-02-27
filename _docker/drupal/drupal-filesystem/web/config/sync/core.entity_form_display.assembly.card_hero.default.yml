@@ -1,0 +1,73 @@
+uuid: 2b47bdd8-787a-422e-8776-b44e5edaea73
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.card_hero
+    - entity_browser.browser.media_browser
+    - field.field.assembly.card_hero.field_background_media
+    - field.field.assembly.card_hero.field_content_cards
+    - field.field.assembly.card_hero.field_title
+  module:
+    - entity_browser
+    - workbench_moderation
+id: assembly.card_hero.default
+targetEntityType: assembly
+bundle: card_hero
+mode: default
+content:
+  field_background_media:
+    type: entity_browser_entity_reference
+    weight: 3
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+    region: content
+    third_party_settings: {  }
+  field_content_cards:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  user_id: true

@@ -1,0 +1,14 @@
+uuid: 47f41610-c5e5-4327-8400-d195c3d2a575
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'Display for a piece of content that will be within a Hero assembly'
+id: node.hero_card
+label: 'Hero Card'
+targetEntityType: node
+cache: true

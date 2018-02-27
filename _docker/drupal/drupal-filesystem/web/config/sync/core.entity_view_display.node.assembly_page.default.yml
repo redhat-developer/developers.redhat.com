@@ -26,12 +26,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_hero:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       view_mode: default
@@ -40,7 +40,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_sections:
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       view_mode: default
@@ -48,9 +48,5 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  links: true

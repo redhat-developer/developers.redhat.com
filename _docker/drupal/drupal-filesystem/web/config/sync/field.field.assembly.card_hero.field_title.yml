@@ -1,0 +1,19 @@
+uuid: 0431b749-53d1-4815-88eb-fb585055445b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.card_hero
+    - field.storage.assembly.field_title
+id: assembly.card_hero.field_title
+field_name: field_title
+entity_type: assembly
+bundle: card_hero
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

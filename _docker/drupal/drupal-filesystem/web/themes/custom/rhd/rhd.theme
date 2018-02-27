@@ -181,6 +181,7 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
  */
 function rhd_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
+  /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
   $nid = $node->id();
   if ($node->getType() == 'product') {
@@ -216,6 +217,12 @@ function rhd_preprocess_node(&$variables) {
       }
     }
     $variables['product_pages'] = $product_pages_url;
+  }
+
+  if ($node->getType() == 'video_resource') {
+    if ($variables['view_mode'] == 'hero_card') {
+      process_node_for_hero_card($node, $variables);
+    }
   }
 }
 
@@ -342,19 +349,35 @@ function rhd_preprocess_field(&$variables, $hook) {
 }
 
 function rhd_preprocess_assembly(&$variables) {
-    $assembly = $variables['elements']['#assembly'];
-    $type = $assembly->bundle();
-    $variables['background_image_url'] = FALSE;
+  /** @var \Drupal\assembly\Entity\Assembly $assembly */
+  $assembly = $variables['elements']['#assembly'];
+  $type = $assembly->bundle();
+  $variables['background_image_url'] = FALSE;
 
-    // kint(($assembly->hasField('field_background_image') ? 'has' : 'does not have') . ' background image');
-    if ($assembly->hasField('field_background_image')) {
-      $image_value = $assembly->get('field_background_image')->getValue();
-      if ($image_value) {
-        $file_id = $image_value[0]['target_id'];
-        $uri = File::load($file_id)->getFileUri();
-        $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-        $variables['attributes']->addClass('has-background');
-      }
+  // kint(($assembly->hasField('field_background_image') ? 'has' : 'does not have') . ' background image');
+  if ($assembly->hasField('field_background_image')) {
+    $image_value = $assembly->get('field_background_image')->getValue();
+    if ($image_value) {
+      $file_id = $image_value[0]['target_id'];
+      $uri = File::load($file_id)->getFileUri();
+      $variables['background_image_url'] = ImageStyle::load('billboard')
+        ->buildUrl($uri);
+      $variables['attributes']->addClass('has-background');
     }
+  }
+
+  // same as above, but for media
+  if ($assembly->hasField('field_background_media')) {
+    $image_value = $assembly->get('field_background_media')->getValue();
+    if ($image_value) {
+      $file_id = $image_value[0]['target_id'];
+      $uri = File::load($file_id)->getFileUri();
+      $variables['background_image_url'] = ImageStyle::load('billboard')
+        ->buildUrl($uri);
+      $variables['attributes']->addClass('has-background');
+    }
+  }
 
 }
+
+include_once 'video_hooks.inc';

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.card_hero
     - assembly.assembly_type.hero
     - field.storage.node.field_hero
     - node.type.assembly_page
@@ -22,9 +23,10 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      card_hero: card_hero
       hero: hero
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: card_hero
 field_type: entity_reference_revisions

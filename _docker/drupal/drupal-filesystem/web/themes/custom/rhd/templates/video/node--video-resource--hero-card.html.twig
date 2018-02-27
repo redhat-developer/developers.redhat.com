@@ -1,0 +1,14 @@
+{#
+ # All standard node context keys available plus:
+ #
+ # video_thumbnail_url: The URL as plain text for the thumbnail image
+#}
+{{ title_prefix }}
+<h4 {{ title_attributes }}>{{ label }}</h4>
+{{ title_suffix }}
+<img src="{{ video_thumbnail_url }}" alt="Video thumbnail" style="float: left">
+Speaker info goes here
+<p {{ content_attributes.addClass('description') }}>
+    {{ elements.body }}
+    <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Watch Now</a>
+</p>

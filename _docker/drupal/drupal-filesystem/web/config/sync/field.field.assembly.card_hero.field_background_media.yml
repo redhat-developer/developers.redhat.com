@@ -1,0 +1,30 @@
+uuid: 3e39b1f2-314f-4d82-8dce-cd6c555b7f85
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.card_hero
+    - field.storage.assembly.field_background_media
+    - media_entity.bundle.image
+    - media_entity.bundle.video
+id: assembly.card_hero.field_background_media
+field_name: field_background_media
+entity_type: assembly
+bundle: card_hero
+label: 'Background Media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      video: video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

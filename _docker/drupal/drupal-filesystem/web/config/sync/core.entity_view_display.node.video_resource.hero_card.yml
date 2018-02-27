@@ -1,0 +1,91 @@
+uuid: 827ca3b9-e756-465e-bf38-c7921019f539
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.hero_card
+    - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_card_image
+    - field.field.node.video_resource.field_difficulty
+    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_slideshare_source
+    - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_video_publish_date
+    - field.field.node.video_resource.field_video_related_links
+    - field.field.node.video_resource.field_video_resource
+    - field.field.node.video_resource.field_video_resource_tags
+    - field.field.node.video_resource.field_video_target_product
+    - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_video_transcript
+    - field.field.node.video_resource.field_views
+    - node.type.video_resource
+  module:
+    - panelizer
+    - text
+    - user
+    - video_embed_field
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+_core:
+  default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
+id: node.video_resource.hero_card
+targetEntityType: node
+bundle: video_resource
+mode: hero_card
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_speakers:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_video_resource:
+    weight: 0
+    label: hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: false
+    third_party_settings: {  }
+    type: video_embed_field_video
+    region: content
+  field_video_thumbnail_url:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_card_image: true
+  field_difficulty: true
+  field_duration: true
+  field_likes: true
+  field_related_content: true
+  field_slideshare_source: true
+  field_video_publish_date: true
+  field_video_related_links: true
+  field_video_resource_tags: true
+  field_video_target_product: true
+  field_video_transcript: true
+  field_views: true
+  links: true
+  workbench_moderation_control: true
