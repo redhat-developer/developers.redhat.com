@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.video_resource.field_related_content
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_speakers_user
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -48,13 +49,22 @@ content:
     third_party_settings: {  }
     region: content
   field_speakers:
-    weight: 2
+    weight: 4
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  field_speakers_user:
+    type: entity_reference_entity_view
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
   field_video_resource:
     weight: 0
     label: hidden
@@ -67,7 +77,7 @@ content:
     type: video_embed_field_video
     region: content
   field_video_thumbnail_url:
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false

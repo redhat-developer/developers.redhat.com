@@ -1,0 +1,34 @@
+uuid: 0f416aa7-1199-47e2-a189-c6014bb1f8e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.speaker_profile.field_biography
+    - field.field.profile.speaker_profile.field_speaker_picture
+    - image.style.medium
+    - profile.type.speaker_profile
+  module:
+    - image
+    - text
+id: profile.speaker_profile.default
+targetEntityType: profile
+bundle: speaker_profile
+mode: default
+content:
+  field_biography:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_speaker_picture:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden: {  }

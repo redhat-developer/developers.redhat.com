@@ -220,6 +220,8 @@ function rhd_preprocess_node(&$variables) {
   }
 
   if ($node->getType() == 'video_resource') {
+    add_speaker_profile($node, $variables);
+
     if ($variables['view_mode'] == 'hero_card') {
       process_node_for_hero_card($node, $variables);
     }

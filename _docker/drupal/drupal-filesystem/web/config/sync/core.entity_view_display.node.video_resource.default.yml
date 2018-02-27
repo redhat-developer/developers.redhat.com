@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.video_resource.field_related_content
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_speakers_user
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -51,7 +52,7 @@ content:
     region: content
   field_card_image:
     weight: 17
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -112,6 +113,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_speakers_user:
+    weight: 18
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_video_publish_date:
     weight: 10

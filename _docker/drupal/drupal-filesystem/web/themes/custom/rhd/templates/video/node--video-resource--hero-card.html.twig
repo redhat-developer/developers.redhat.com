@@ -6,9 +6,17 @@
 {{ title_prefix }}
 <h4 {{ title_attributes }}>{{ label }}</h4>
 {{ title_suffix }}
-<img src="{{ video_thumbnail_url }}" alt="Video thumbnail" style="float: left">
-Speaker info goes here
-<p {{ content_attributes.addClass('description') }}>
-    {{ elements.body }}
-    <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Watch Now</a>
-</p>
+<div class="row">
+    <div class="large-12 columns"><img src="{{ video_thumbnail_url }}" alt="Video thumbnail" style="float: left"></div>
+    <div class="large-12 columns">
+        {% for speaker in speakers %}
+            {{ speaker.profile }}
+        {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <p {{ content_attributes.addClass('description') }}>
+        {{ elements.body }}
+        <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Watch Now</a>
+    </p>
+</div>
