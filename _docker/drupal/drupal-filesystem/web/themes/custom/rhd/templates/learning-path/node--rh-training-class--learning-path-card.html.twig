@@ -3,12 +3,11 @@
 {# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
 <div{{ attributes.addClass(['dp-content-card', access ]) }} 
     access="member" 
-    duration="{{node.field_read_time.value}}" 
+    duration="{{node.field_completion_time.value}}" 
     image="{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1500015139098-84b51c349a60?ixlib=rb-0.3.5&s=6d04d38ac0d81eb2414819cdea385912&auto=format&fit=crop&w=1050&q=80') }}" 
-    level="{{(node.field_difficulty.value ?? 'unclassified')|capitalize}}" 
+    level="{{(node.field_level.value ?? 'unclassified')|capitalize}}" 
     title="{{node.title.value}}" 
     modified="{{node.changed.value|date('Y-m-d')}}" 
-    author="{{node.field_author.value}}"
     uri="{{ node.field_source_link.0.value.uri }}" 
     onclick="window.location = '{{ node.field_source_link.0.value.uri }}';">
   <div class="img" style="background-image: url('{{ node.field_card_image.value|default('https://images.unsplash.com/photo-1500015139098-84b51c349a60?ixlib=rb-0.3.5&s=6d04d38ac0d81eb2414819cdea385912&auto=format&fit=crop&w=1050&q=80') }}')">
@@ -29,15 +28,18 @@
       </div>
       {% if node.field_completion_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock-o"></i> {{node.field_completion_time.value}}
+          <i class="fa fa-clock-o"></i> 
+          {% for intvl in node.field_completion_time|reverse %}
+            {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+          {% endfor %}
       </div>
       {% endif %}
-      {% if node.field_difficulty.value %}
+      {% if node.field_level.value %}
       <div class="dp-level">
         {% if node.field_completion_time.value %}
         &nbsp;|&nbsp;
         {% endif %}
-        {{node.field_difficulty.value|capitalize}}
+        {{node.field_level.value|capitalize}}
       </div>
       {% endif %}
     </div>
@@ -45,7 +47,6 @@
     <p>{{ node.field_short_description.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
-      <div class="dp-author">{{node.field_author.value}}</div>
     </div>
   </div>
 </div>

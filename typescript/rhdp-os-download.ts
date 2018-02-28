@@ -13,8 +13,8 @@ class RHDPOSDownload extends HTMLElement {
 
 
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
+        "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
+        "cdk" : {"windowsUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/cdk/hello-world/#fndtn-rhel"}
     };
 
     get url() {

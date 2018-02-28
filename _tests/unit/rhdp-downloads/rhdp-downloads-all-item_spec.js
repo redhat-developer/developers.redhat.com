@@ -99,16 +99,16 @@ describe('Downloads All Product Items', function () {
             var productDownloadURL = '';
             switch(wc.platformType){
                 case 'Windows':
-                    productDownloadURL = "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer.exe";
+                    productDownloadURL = "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe";
                     break;
                 case 'MacOS':
-                    productDownloadURL = "https://developers.redhat.com/download-manager/file/devsuite-2.1.0-GA-bundle-installer-mac.zip";
+                    productDownloadURL = "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip";
                     break;
                 case "RHEL" :
-                    productDownloadURL = "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel";
+                    productDownloadURL = "/products/devsuite/hello-world/#fndtn-rhel";
 
             }
-            expect(wc.querySelector('.large-5.columns a').href).toEqual(productDownloadURL);
+            expect(wc.querySelector('.large-5.columns a').href).toContain(productDownloadURL);
         });
 
     });
