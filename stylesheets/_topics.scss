@@ -172,13 +172,7 @@
     margin: 16px 0;
     padding: 25px;
     position: relative;
-    &:hover{
-      opacity: .8;
-      
-    }
-    a {
-      color: $white;
-    }
+
     &.dotnet {
       a, a i {
         color: $white;
@@ -218,13 +212,6 @@
     margin: 16px 0;
     padding: 25px;
     position: relative;
-    &:hover{
-      opacity: .8;
-    }
-
-    a {
-      color: $white;
-    }
 
     p, .description {
       line-height: 1.3;
@@ -252,9 +239,7 @@
     border: 2px solid $grey-3;
     position: relative;
 
-    a {
-      color: #424242;
-    }
+    a { color: #424242; }
     h5 {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -286,6 +271,11 @@
         color: $white;
       }
     }
+  }
+
+  .secondary-promo, .tertiary-tall-promo {
+    a, p, h1, h2, h3, h4, h5, h6 { color: $white !important; }
+    &:hover{ opacity: .8; }
   }
 
   .right-side-promo {
