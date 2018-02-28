@@ -6,9 +6,9 @@ ARG https_proxy
 
 LABEL version="dev"
 
-ADD remi-release-6.rpm remi-release-6.rpm
+ADD remi-release-6.rpm /root/
 
-RUN rpm -Uvh remi-release-6.rpm
+RUN rpm -Uvh /root/remi-release-6.rpm
 RUN yum-config-manager --enable remi-php71; \
     yum -y update; \
     yum -y install \
