@@ -9,7 +9,7 @@ LABEL version="dev"
 ADD remi-release-6.rpm remi-release-6.rpm
 
 RUN rpm -Uvh remi-release-6.rpm
-RUN yum-config-manager --enable remi-php70; \
+RUN yum-config-manager --enable remi-php71; \
     yum -y update; \
     yum -y install \
            git \
