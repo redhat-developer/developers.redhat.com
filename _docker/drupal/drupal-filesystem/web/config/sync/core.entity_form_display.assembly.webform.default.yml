@@ -1,0 +1,55 @@
+uuid: 5dad9c96-72a6-41cf-b4c2-45999918c3f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.webform
+    - field.field.assembly.webform.field_title
+    - field.field.assembly.webform.field_webform
+  module:
+    - webform
+    - workbench_moderation
+id: assembly.webform.default
+targetEntityType: assembly
+bundle: webform
+mode: default
+content:
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_webform:
+    weight: 4
+    settings:
+      default_data: true
+    third_party_settings: {  }
+    type: webform_entity_reference_select
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  user_id: true

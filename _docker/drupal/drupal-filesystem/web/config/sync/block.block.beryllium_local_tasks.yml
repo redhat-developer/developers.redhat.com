@@ -1,0 +1,22 @@
+uuid: d82d6519-37e2-4caa-baa1-744d54ca8698
+langcode: en
+status: false
+dependencies:
+  theme:
+    - beryllium
+_core:
+  default_config_hash: BwlDQuOItAR6Pyc-LOzl6zJqIBlp0j4OmP8BRuj1h5U
+id: beryllium_local_tasks
+theme: beryllium
+region: highlighted
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: 425fc6e6-b075-4d87-88fe-770bf72e2f1b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - beryllium
+_core:
+  default_config_hash: mZLS6lSrQaHloPVNeFFfc5gGM6_x49cTAmZcCjDYp50
+id: beryllium_page_title
+theme: beryllium
+region: header
+weight: -7
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

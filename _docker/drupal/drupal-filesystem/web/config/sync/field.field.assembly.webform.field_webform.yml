@@ -1,0 +1,29 @@
+uuid: 4585042f-50ac-4633-af4c-e821b59eba45
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.webform
+    - field.storage.assembly.field_webform
+  module:
+    - webform
+id: assembly.webform.field_webform
+field_name: field_webform
+entity_type: assembly
+bundle: webform
+label: Webform
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  default_data: ''
+  status: open
+  open: ''
+  close: ''
+field_type: webform

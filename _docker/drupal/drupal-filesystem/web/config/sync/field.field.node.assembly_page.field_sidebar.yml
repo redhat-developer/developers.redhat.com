@@ -1,0 +1,32 @@
+uuid: ebc679c9-d6e9-4400-be78-2d3eac501ed7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.webform
+    - field.storage.node.field_sidebar
+    - node.type.assembly_page
+  module:
+    - entity_reference_revisions
+id: node.assembly_page.field_sidebar
+field_name: field_sidebar
+entity_type: node
+bundle: assembly_page
+label: Sidebar
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      rich_text: rich_text
+      webform: webform
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: rich_text
+field_type: entity_reference_revisions

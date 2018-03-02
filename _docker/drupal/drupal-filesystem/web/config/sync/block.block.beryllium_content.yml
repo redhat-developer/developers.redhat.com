@@ -1,0 +1,22 @@
+uuid: 88f841f5-15e1-4aa4-84f2-9d347c9c3642
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: Y8Cx6BOVpDyLBs4Myzy1bJAhIHoDnlnA_0S4CCDBDQc
+id: beryllium_content
+theme: beryllium
+region: content
+weight: -6
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

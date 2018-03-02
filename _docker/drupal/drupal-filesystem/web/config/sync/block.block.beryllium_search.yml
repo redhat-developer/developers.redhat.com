@@ -1,0 +1,22 @@
+uuid: 568027aa-6182-4737-aa9f-763b8aab55b8
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - beryllium
+_core:
+  default_config_hash: pkxMpWAJPJnAY_Iu7ryMhx9AxNWsPCbWOMZhxFBO7do
+id: beryllium_search
+theme: beryllium
+region: sidebar_first
+weight: -1
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }
