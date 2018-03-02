@@ -1,0 +1,28 @@
+uuid: 40461af4-46cf-461c-a4ed-99ea6e319fba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speakers_user
+    - node.type.video_resource
+id: node.video_resource.field_speakers_user
+field_name: field_speakers_user
+entity_type: node
+bundle: video_resource
+label: Speakers
+description: 'A reference to the user account of the speaker'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

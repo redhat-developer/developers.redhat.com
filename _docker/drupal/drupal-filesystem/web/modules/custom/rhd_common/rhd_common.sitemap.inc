@@ -76,7 +76,9 @@ function build_subpage_link_entry($sub_page, $template)
 function found_product_in_sitemap($links, $product_ids)
 {
   return array_filter($links, function ($link) use ($product_ids) {
-    return in_array($link['entity_info']['id'], $product_ids);
+    if (!empty($link['entity_info'])) {
+      return in_array($link['entity_info']['id'], $product_ids);
+    }
   });
 }
 
@@ -124,6 +126,8 @@ function books_node_sitemap_entries(&$links) {
 function found_book_in_sitemap($links, $book_ids)
 {
   return array_filter($links, function ($link) use ($book_ids) {
-    return in_array($link['entity_info']['id'], $book_ids);
+    if (!empty($link['entity_info'])) {
+      return in_array($link['entity_info']['id'], $book_ids);
+    }
   });
 }

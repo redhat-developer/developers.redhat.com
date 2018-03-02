@@ -1,0 +1,47 @@
+uuid: c4034904-ee20-4a83-bda7-87155d9cf574
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - field.field.assembly.content_with_image.field_background_image
+    - field.field.assembly.content_with_image.field_content
+    - field.field.assembly.content_with_image.field_image
+    - field.field.assembly.content_with_image.field_title
+    - image.style.large
+  module:
+    - image
+    - text
+id: assembly.content_with_image.default
+targetEntityType: assembly
+bundle: content_with_image
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_background_image: true
+  name: true
+  user_id: true

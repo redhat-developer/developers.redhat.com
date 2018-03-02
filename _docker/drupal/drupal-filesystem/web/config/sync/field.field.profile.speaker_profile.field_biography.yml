@@ -1,0 +1,21 @@
+uuid: 1502de25-4cc4-4559-b024-bb6c3965d349
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_biography
+    - profile.type.speaker_profile
+  module:
+    - text
+id: profile.speaker_profile.field_biography
+field_name: field_biography
+entity_type: profile
+bundle: speaker_profile
+label: Biography
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

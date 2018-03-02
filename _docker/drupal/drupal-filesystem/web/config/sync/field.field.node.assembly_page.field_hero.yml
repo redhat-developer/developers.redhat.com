@@ -1,0 +1,32 @@
+uuid: c663f3b2-cfe8-4fc5-94a4-1790c5975135
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.card_hero
+    - assembly.assembly_type.hero
+    - field.storage.node.field_hero
+    - node.type.assembly_page
+  module:
+    - entity_reference_revisions
+id: node.assembly_page.field_hero
+field_name: field_hero
+entity_type: node
+bundle: assembly_page
+label: Hero
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      card_hero: card_hero
+      hero: hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: card_hero
+field_type: entity_reference_revisions

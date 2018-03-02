@@ -1,0 +1,40 @@
+uuid: 79707780-d356-4fe9-b670-ee0aa4782900
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.speaker_profile.field_biography
+    - field.field.profile.speaker_profile.field_speaker_picture
+    - image.style.thumbnail
+    - profile.type.speaker_profile
+  module:
+    - image
+    - text
+    - workbench_moderation
+id: profile.speaker_profile.default
+targetEntityType: profile
+bundle: speaker_profile
+mode: default
+content:
+  field_biography:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_speaker_picture:
+    type: entity_browser_file
+    weight: 7
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+hidden: {  }

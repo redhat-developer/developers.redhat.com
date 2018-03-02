@@ -26,15 +26,19 @@
         "cweagans/composer-patches": "^1.6.0",
         "acquia/lightning": "2.2.0",
         "drupal/admin_toolbar": "1.20.0",
+        "drupal/assembly": "1.x-dev",
         "drupal/asciidoc": "1.1.0",
         "drupal/core": "~8.4.0",
         "drupal/editor_advanced_link": "1.4",
+        "drupal/entity_reference_revisions": "^1.4",
         "drupal/field_collection": "3.x-dev",
         "drupal/field_group": "1.x-dev",
+        "drupal/inline_entity_form": "1.x-dev",
         "drupal/interval": "1.0",
         "drupal/linkit": "5.0-beta6",
         "drupal/markdown": "1.2.0",
         "drupal/paragraphs": "1.x-dev",
+        "drupal/profile": "1.0-rc1",
         "drupal/simple_sitemap": "2.9.0",
         "drupal/smtp": "1.0.0-beta3",
         "drupal/subpathauto": "1.0-beta1",
@@ -42,7 +46,7 @@
         "drupal/workbench": "1.x-dev",
         "drupal/workbench_email": "1.0-alpha6",
         "madcoda/php-youtube-api": "1.2.4",
-        "robmorgan/phinx": "0.8.0" 
+        "robmorgan/phinx": "0.8.0"
     },
     "require-dev": {
         "drupal/drupal-extension": "~3.3.0",
@@ -116,6 +120,9 @@
           "drupal/core": {
             "Fix entity reference view": "https://www.drupal.org/files/issues/2174633-174.patch",
             "Fix help text not showing": "https://www.drupal.org/files/issues/2421001-124.patch"
+          },
+          "drupal/inline_entity_form": {
+            "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
           }
         }
     }

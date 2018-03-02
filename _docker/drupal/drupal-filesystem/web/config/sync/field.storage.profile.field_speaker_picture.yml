@@ -1,0 +1,30 @@
+uuid: 60277fbc-0ea8-43e8-9df6-3ad909869b60
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - profile
+id: profile.field_speaker_picture
+field_name: field_speaker_picture
+entity_type: profile
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

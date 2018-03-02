@@ -1,0 +1,52 @@
+uuid: 4b499156-eed2-4470-8663-b3a423d220c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.assembly_page.body
+    - field.field.node.assembly_page.field_hero
+    - field.field.node.assembly_page.field_sections
+    - node.type.assembly_page
+  module:
+    - entity_reference_revisions
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.assembly_page.default
+targetEntityType: node
+bundle: assembly_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_hero:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_sections:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  links: true

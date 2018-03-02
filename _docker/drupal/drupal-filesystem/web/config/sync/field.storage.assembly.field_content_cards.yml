@@ -1,0 +1,20 @@
+uuid: 6a4113c5-d56b-4259-aced-98b2aadbcd00
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_content_cards
+field_name: field_content_cards
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
