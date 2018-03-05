@@ -1,0 +1,61 @@
+.assembly {
+  &.has-background {
+    position: relative;
+    .row {
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .field__item, .field {
+    display: block;
+  }
+  &.assembly-dark {
+    background: #252525;
+    &, h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+  }
+  &.assembly-space {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  &.assembly-center {
+    * {
+      text-align: center;
+    }
+  }
+  .background {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    &:after {
+      background: rgba(0,0,0,0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      content: ' ';
+    }
+  }
+  &.assembly-type-hero {
+    padding: 80px 0;
+    margin-bottom: 80px;
+    .content {
+      max-width: 60rem;
+    }
+    h2 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+    .field--name-field-content p {
+      font-size: 1.5rem;
+    }
+  }
+}
