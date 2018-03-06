@@ -1,0 +1,20 @@
+uuid: d1424492-6ae5-417d-a40d-7d7bd4c41dae
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhdp
+id: rhdp_powered
+theme: rhdp
+region: header
+weight: 10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }
