@@ -201,5 +201,7 @@ function storageAvailable(type) {
 
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
-app.sso();
+if (typeof Keycloak !== 'undefined') {
+    app.sso();
+}
 
