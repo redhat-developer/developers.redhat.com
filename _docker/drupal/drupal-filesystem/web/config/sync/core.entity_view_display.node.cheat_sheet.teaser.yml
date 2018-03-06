@@ -5,23 +5,19 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_card_image
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_read_time
     - node.type.cheat_sheet
   module:
     - link
-    - panelizer
     - text
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
 id: node.cheat_sheet.teaser
@@ -92,5 +88,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_card_image: true
   field_difficulty: true
   field_read_time: true

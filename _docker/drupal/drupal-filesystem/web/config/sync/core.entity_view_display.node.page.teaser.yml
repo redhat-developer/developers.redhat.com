@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
-    - field.field.node.page.panelizer
     - field.field.node.page.scheduled_update
     - node.type.page
   module:
@@ -35,5 +34,4 @@ content:
     region: content
 hidden:
   field_meta_tags: true
-  panelizer: true
   scheduled_update: true

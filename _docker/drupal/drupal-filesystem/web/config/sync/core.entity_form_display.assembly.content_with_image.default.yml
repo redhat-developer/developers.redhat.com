@@ -20,7 +20,7 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 7
+    weight: 3
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -32,7 +32,7 @@ content:
     region: content
     third_party_settings: {  }
   field_content:
-    weight: 6
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -41,7 +41,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 5
+    weight: 4
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -53,7 +53,7 @@ content:
     region: content
     third_party_settings: {  }
   field_title:
-    weight: 4
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -70,14 +70,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -87,7 +87,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

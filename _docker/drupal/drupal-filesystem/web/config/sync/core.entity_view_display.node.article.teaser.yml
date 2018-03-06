@@ -6,22 +6,18 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.field_author_name
+    - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
+    - field.field.node.article.field_difficulty
     - field.field.node.article.field_image
     - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - metatag
-    - panelizer
     - text
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.teaser
@@ -71,6 +67,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_author_name: true
+  field_card_image: true
   field_difficulty: true
   field_image: true
   field_read_time: true
