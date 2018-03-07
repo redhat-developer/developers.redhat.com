@@ -51,7 +51,7 @@ var globs = {
         'javascripts/book-download.js',
         'javascripts/carousel.js',
         'javascripts/video.js',
-        //'javascripts/downloads.js',
+        'javascripts/downloads.js',
         'javascripts/jdfadvise.js',
         'javascripts/vendor/class.create.js',
         'javascripts/vendor/jquery-encoder-0.1.0.js',

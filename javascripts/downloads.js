@@ -238,6 +238,6 @@ $(function() {
 
   }
 
-  app.downloads.populateLinks();
+  //app.downloads.populateLinks();
 
 });
