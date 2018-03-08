@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.assembly_page.body
     - field.field.node.assembly_page.field_hero
     - field.field.node.assembly_page.field_sections
     - node.type.assembly_page
@@ -11,30 +10,20 @@ dependencies:
     - entity_browser_entity_form
     - inline_entity_form
     - path
-    - text
     - workbench_moderation
 id: node.assembly_page.default
 targetEntityType: node
 bundle: assembly_page
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 8
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_hero:
-    weight: 7
+    weight: 4
     settings:
       form_mode: default
       override_labels: true
@@ -51,7 +40,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_sections:
-    weight: 9
+    weight: 5
     settings:
       form_mode: default
       override_labels: true
@@ -69,34 +58,13 @@ content:
     region: content
   path:
     type: path
-    weight: 5
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    region: content
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 6
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
-    region: content
-    third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 3
     region: content
     settings:
       size: 60
@@ -104,11 +72,14 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 0
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  status: true
+  sticky: true
