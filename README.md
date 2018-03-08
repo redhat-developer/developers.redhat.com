@@ -67,14 +67,14 @@ There are some requirements for running Drupal locally: php, and some extensions
 
 Please install the full mysql from Oracle so you can get access to the commandline tools.
 
-      brew install php70 php70-xdebug composer
+      brew install php71 php71-xdebug composer
 
 ##### Linux
 
 All the required dependencies should be able to be installed using your package manager (yum, dnf, apt-get, etc).
 On a Fedora/CentOS machine you will need the following dependencies:
 
-      php70
+      php71
       php_gd
       php_pdo
       php_mysql
@@ -128,7 +128,7 @@ To do this:
 ## Older Setup, required to run unit tests locally
 
 The following is the older development setup.
-You'll need to follow it for running Unit Tests locally, testing a site export, running awestruct, or working on Searchisko.
+You'll need to follow it for running Unit Tests locally, testing a site export, or working on Searchisko.
 
 ### Basic Ruby install
 In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`.
@@ -176,29 +176,6 @@ Linux:
       gem update --system
       gem install bundler
       rbenv rehash
-
-### Secrets File Access
-In order to build the site you must request access to the secrets file (`_config/secrets.yaml.gpg`).
-This is needed so that you can access the various API keys needed to call services used in the site build.
-The secrets file is checked into git (so always contains an up-to-date version of all keys, passwords and usernames).
-The file is encrypted using GPG.
-
-To gain access to the secrets file:
-
-Mac:
-
-1. Install GPGSuite from [here](https://gpgtools.org/gpgsuite.html)
-2. Create a new key-pair in GPGSuite.
-3. Upload the public-key to the key server so that people can access it.
-4. Notify someone on the Red Hat Developers Engineering team that you want your key adding to the vault. Be sure to let them know the email address you associated with the key.
-5. Wait for a Pull Request to be created (by the engineering team) for the secrets file update.
-6. Review the secrets file update by copying the `secrets.yaml.gpg` file from the Pull Request into the `_config/secrets.yaml.gpg` location of your code checkout.
-7. Proceed with the following instructions and comment on the Pull Request when you have confirmed that you can build the site, and thus the secret file update was successful.
-
-Linux and Windows:
-
-Please contact Paul Robinson.
-There are people who have done this, I just don't have the documentation yet.
 
 ### Set up
 
@@ -375,56 +352,6 @@ You could also attempt to use the `drush updatedb` command, though it may not pi
 
 New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
 
-
-## secrets.gpg management (being phased out)
-This sections describes how a member of the Red Hat Developers Engineering team can grant access to the secrets file for new developers.
-
-The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients.
-A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy:
-
-1. Install vim and vim-gnupg e.g. using pathogen
-2. Open the file `_config/secrets.yaml.gpg` using vim
-3. Use the command `:GPGEditRecipients` to open the recipient list
-4. Add the email address for the relevant user to the bottom of the edit area
-5. Write and quit this edit area, and the main file using `:wq` and `:wq`
-6. Commit the updated `_config/secrets.yaml.gpg`
-
-In order to do this, you will need load the user's public key in to your keychain.
-You will need to add the key to your keychain using your preferred tool on your platform.
-For example, we recommend GPGSuite for Mac OS.
-In this case:
-
-1. load `GPG Keychain Access` application
-2. Select `key` -> `Retreive rom key server`
-3. Pass in the ID of the public key you need to add.
-
-Minimally the following list of recipients is required to encrypt the file:
-
-* Pete Muir <pmuir@bleepbleep.org.uk> (ID: 0x6CE6E8FB45FE317D created at Mon 1 Sep 18:29:07 2014
-* Jason Robert Porter (new key) <lightguard.jp@gmail.com> (ID: 0xBEDFCFB30FB72D11 created at Tue 24 Dec 06:51:51 2013)
-* Wes Bos <wesbos@gmail.com> (ID: 0x8C1F9282110E7CA0 created at Tue 2 Sep 17:13:12 2014)
-* Rafael Benevides <benevides@redhat.com> (ID: 0x81C7CA49C57D4F5C created at Thu 2 Aug 20:14:57 2012)
-* Daniel Coughlin <Daniel.coughlin86@gmail.com> (ID: 0x91A225F08D1D811B created at Tue 2 Sep 17:19:02 2014)
-* Paul Robinson <paul.robinson@redhat.com> (ID: 0xBCE89FD63FBB22CF created at Wed 10 Sep 15:08:22 2014)
-* Adela Arreola <aarreola@redhat.com> (ID: 0xC946E35184EBDCF7 created at Tue 7 Oct 15:26:21 2014)
-* Markus Eisele (myfear) <markus@jboss.org> (ID: 0xBE0AACE30C6FAC25 created at Tue 16 Dec 13:11:42 2014)
-* Ray Ploski <ray@redhat.com> (ID: 0x4938A20304FE5450 created at Fri 15 May 21:52:56 2015)
-* James Parenti (Red Hat Developer Site Key) <james@visuale.net> (ID: 0x21BF1DFDC7A143E0 created at Tue 10 Mar 14:33:51 2015)
-* Ryszard Koźmik <rkozmik@redhat.com> (ID: 0x70E45BDE7C68C64D created at Mon 11 May 16:09:19 2015)
-* Lukas Vlcek (Lukas Vlcek) <lvlcek@redhat.com> (ID: 0x3442A3D7BD324826 created at Fri 22 May 11:24:48 2015)
-* Oliver Shaw <oshaw@redhat.com> (ID: 0xD57A952A22E69562 created at Mon 27 Jul 11:10:09 2015)
-* Libor Krzyžanek <libor@krzyzanek.com> (ID: 0x0C3FF1F29223684E created at Thu 22 Oct 10:37:43 2015)
-* Vlastimil Elias <velias@redhat.com> (ID: 0x1104635722CBE84A created at Fri 20 May 08:58:18 2011)
-* Rob Blake <rblake@redhat.com> (ID: 0xD7CE3349F64B3AB5 created at Mon 21 Mar 14:16:17 2016)
-* Rob Terzi <rterzi@redhat.com> (ID: 0x4FBE485C0F7F515F created at Thu 21 Apr 19:22:51 2016)
-* Ian R Hamilton <ian.hamilton@rubygemtsl.co.uk> (ID: 0xA8B212D4D48C38CE created at Mon 25 Apr 07:14:17 2016)
-* Redhat Developers CI (Key for Redhat Developers CI) <redhat-developers-ci@redhat.com> (ID: 0x8C622DEDD25F49F5 created at Wed 25 May 11:27:02 2016)
-* Jim Applebee <japplebe@redhat.com>    (ID: 0xE8DCBAF94F5923D9 created at Fri 22 Jul 2016 11:11:23 AM MDT)
-* Luke Dary <ldary@redhat.com>	 	(ID: 0x90236EFBD2509930 created at Thu 15 Sep 2016 08:32:40 AM MDT)
-
-NOTE: If you add a new recipient to the file, ensure you update the list above.
-
-
 ## Updating the Staging Integration Branch
 developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak.
 The purpose of this environment is to test new versions of the back-end services before they go into production.
@@ -492,12 +419,6 @@ See the following for how to fix: http://superuser.com/questions/433746/is-there
 ### "An error occurred: getaddrinfo: nodename nor servname provided, or not known"
 Same fix as "Too many open files"
 
-### "Unable to decrypt vault (GPGME::Error::BadPassphrase)"
-If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase.
-This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
-To fix, use the instructions in the following url:
-https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
-
 ### "SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed"
 If you get this error, you may be seeing it because your SSL cert file is out of date.
 You can fix this by:
@@ -506,3 +427,4 @@ You can fix this by:
 2. Setting the environment variable SSL_CERT_FILE to the /path/to/file/cacert.pem
 
 Alternatively, see the following for how to fix: http://railsapps.github.io/openssl-certificate-verify-failed.html
+
