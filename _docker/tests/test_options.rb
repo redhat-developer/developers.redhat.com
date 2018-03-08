@@ -63,28 +63,19 @@ class TestOptions < Minitest::Test
   def test_decrypt
 
     tasks = Options.parse (["-b"])
-    assert(tasks[:decrypt])
-
-    tasks = Options.parse (["-p"])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
 
     tasks = Options.parse (["-r"])
-    assert(tasks[:decrypt])
-
-    tasks = Options.parse (["-p"])
-    assert(tasks[:decrypt])
-
-    tasks = Options.parse (["-g"])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
 
     tasks = Options.parse (["--run-the-stack"])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
 
     tasks = Options.parse (['-u'])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
 
     tasks = Options.parse (['-t'])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
   end
 
   def test_backup_with_no_backup_name
@@ -136,39 +127,13 @@ class TestOptions < Minitest::Test
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
-  def test_awestruct_command_drupal_dev
-    tasks = Options.parse ['-e drupal-dev', '-p']
-    # If we're using drupal, we don't need to do a preview in awestruct
-    %w(--rm --service-ports awestruct).each do |commands|
-      assert_includes tasks[:awestruct_command_args], commands
-    end
-
-    tasks = Options.parse ['-e drupal-dev', '-g']
-    %w(--rm --service-ports awestruct).each do |commands|
-      assert_includes tasks[:awestruct_command_args], commands
-    end
-  end
-
-  def test_awestruct_command_drupal_pull_request_environment
-    tasks = Options.parse ['-e drupal-pull-request', '-p']
-    # If we're using drupal, we don't need to do a preview in awestruct
-    %w(--rm --service-ports awestruct).each do |commands|
-      assert_includes tasks[:awestruct_command_args], commands
-    end
-
-    tasks = Options.parse ['-e drupal-pull-request', '-g']
-    ['--rm', '--service-ports', 'awestruct'].each do |commands|
-      assert_includes tasks[:awestruct_command_args], commands
-    end
-  end
-
   def test_run_the_stack_with_no_decrypt
     tasks = Options.parse (['-e drupal-dev', '--run-the-stack', '--no-decrypt'])
     assert(tasks[:kill_all])
     refute(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(%w(--rm --service-ports awestruct), tasks[:awestruct_command_args])
+    assert_nil(tasks[:awestruct_command_args])
   end
 
   def test_run_tests_with_no_decrypt
@@ -182,10 +147,10 @@ class TestOptions < Minitest::Test
   def test_run_the_stack_drupal_dev
     tasks = Options.parse (['-e drupal-dev', "--run-the-stack"])
     assert(tasks[:kill_all])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
+    assert_nil(tasks[:awestruct_command_args])
   end
 
   def test_run_the_stack_drupal_pull_request
@@ -193,16 +158,16 @@ class TestOptions < Minitest::Test
     tasks = Options.parse (['-e drupal-pull-request', "--run-the-stack"])
 
     assert(tasks[:kill_all])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
+    assert_nil(tasks[:awestruct_command_args])
   end
 
   def test_test_task
     tasks = Options.parse(["-t"])
     assert(tasks[:build])
-    assert(tasks[:decrypt])
+    assert_nil(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(nil, tasks[:awestruct_command_args])
   end

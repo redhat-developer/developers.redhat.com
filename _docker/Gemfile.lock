@@ -2,37 +2,33 @@ GEM
   remote: https://rubygems.org/
   specs:
     ansi (1.5.0)
-    builder (3.2.2)
-    docker-api (1.28.0)
-      excon (>= 0.38.0)
-      json
-    excon (0.49.0)
-    gpgme (2.0.12)
-      mini_portile2 (~> 2.1.0)
-    json (1.8.3)
+    builder (3.2.3)
+    docker-api (1.34.1)
+      excon (>= 0.47.0)
+      multi_json
+    excon (0.60.0)
     metaclass (0.0.4)
-    mini_portile2 (2.1.0)
-    minitest (5.9.0)
-    minitest-reporters (1.1.8)
+    minitest (5.11.3)
+    minitest-reporters (1.1.19)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    mocha (1.1.0)
+    mocha (1.3.0)
       metaclass (~> 0.0.1)
-    nokogiri (1.5.11)
-    ruby-progressbar (1.7.5)
+    multi_json (1.13.1)
+    nokogiri (1.8.2)
+    ruby-progressbar (1.9.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   docker-api
-  gpgme (~> 2.0)
   minitest
   minitest-reporters
-  mocha (~> 1.1)
+  mocha
   nokogiri
 
 BUNDLED WITH
-   1.11.2
+   1.13.7

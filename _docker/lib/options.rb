@@ -42,55 +42,36 @@ class Options
       end
 
       opts.on('-r', '--restart', 'Restart the containers') do |r|
-        tasks[:decrypt] = true
         tasks[:kill_all] = true
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:decrypt] = true
         tasks[:build] = true
         tasks[:supporting_services] = []
         tasks[:docker_pull] = false
       end
 
       opts.on('-b', '--build', 'Build the containers') do |b|
-        tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:supporting_services] = []
         tasks[:docker_pull] = false
-      end
-
-      opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
-        tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
-        tasks[:supporting_services] = []
-        tasks[:docker_pull] = false
-      end
-
-      opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
-        tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
-        tasks[:supporting_services] = []
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
-        tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
       end
 
-      opts.on('--no-decrypt','Do not attempt to decrypt the secrets file (secrets are set in the environment)') do
+      opts.on('--no-decrypt','Keeping it so jobs don\'t die') do
         tasks[:decrypt] = false
       end
 
       opts.on('--no-pull','Do not attempt to pull the :latest version of the drupal-data image from Docker Hub') do
         tasks[:docker_pull] = false
       end
-
 
       #
       # Required during the transition to Drupal PR building. As the Drupal PR job is a downstream of the current
