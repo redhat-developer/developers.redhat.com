@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
-    - field.field.node.page.panelizer
     - field.field.node.page.scheduled_update
     - node.type.page
   module:
@@ -42,5 +41,4 @@ content:
     weight: -20
     region: content
 hidden:
-  panelizer: true
   scheduled_update: true

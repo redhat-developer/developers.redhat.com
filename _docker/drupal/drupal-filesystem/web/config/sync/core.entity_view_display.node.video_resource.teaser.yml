@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_card_image
+    - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
@@ -23,16 +25,9 @@ dependencies:
     - datetime
     - interval
     - link
-    - panelizer
     - text
     - user
     - video_embed_field
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
 id: node.video_resource.teaser
@@ -166,6 +161,7 @@ content:
     type: number_integer
     region: content
 hidden:
+  field_card_image: true
   field_difficulty: true
   links: true
   workbench_moderation_control: true
