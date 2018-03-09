@@ -323,7 +323,7 @@ function redhat_www_ddo_default($node) {
  */
 function rhdp_preprocess_field(&$variables, $hook) {
     if ($variables['field_type'] === 'video_embed_field') {
-        $variables['items'][0]['content']['#attached']['library'][] = 'rhd/video_embed_field.responsive-video';
+        $variables['items'][0]['content']['#attached']['library'][] = 'rhdp/video_embed_field.responsive-video';
     }
 
     // This shouldn't be how we display the related product on coding resources (should it be?)
