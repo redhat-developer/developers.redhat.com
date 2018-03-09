@@ -3,7 +3,6 @@
 require 'optparse'
 require 'fileutils'
 require 'tempfile'
-require 'gpgme'
 require 'yaml'
 require 'docker'
 require 'socket'
