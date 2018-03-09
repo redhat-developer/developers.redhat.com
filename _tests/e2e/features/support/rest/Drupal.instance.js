@@ -17,7 +17,7 @@ class DrupalInstance {
             `${process.env.RHD_DRUPAL_INSTANCE}/user/login`,
             {
                 headers: {"content-type": "application/x-www-form-urlencoded"},
-                body: 'name=admin&pass=admin&form_id=user_login_form',
+                body: `name=${process.env.RHD_DRUPAL_ADMIN_USERNAME}&pass=${process.env.RHD_DRUPAL_ADMIN_PASSWORD}&form_id=user_login_form`,
                 followRedirects: false
             });
         let cookieHeader = res.headers['set-cookie'];
