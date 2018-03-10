@@ -4,27 +4,35 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.assembly_page.body
+    - field.field.node.assembly_page.field_hero
+    - field.field.node.assembly_page.field_sections
     - node.type.assembly_page
   module:
-    - text
+    - entity_reference_revisions
     - user
 id: node.assembly_page.teaser
 targetEntityType: node
 bundle: assembly_page
 mode: teaser
 content:
-  body:
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
     label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
     settings:
-      trim_length: 600
+      view_mode: default
+      link: ''
     third_party_settings: {  }
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
-  links:
-    weight: 100
-    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
 hidden:
-  field_hero: true
-  field_sections: true
+  links: true
+  workbench_moderation_control: true
