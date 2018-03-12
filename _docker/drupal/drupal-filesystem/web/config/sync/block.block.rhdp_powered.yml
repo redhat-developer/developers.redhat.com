@@ -1,6 +1,6 @@
 uuid: d1424492-6ae5-417d-a40d-7d7bd4c41dae
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -9,7 +9,7 @@ dependencies:
 id: rhdp_powered
 theme: rhdp
 region: header
-weight: 10
+weight: 2
 provider: null
 plugin: system_powered_by_block
 settings:
