@@ -1,0 +1,20 @@
+uuid: b3e70b3f-e209-42ed-a52d-c03d545d3702
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhdp
+id: rhdp_messages
+theme: rhdp
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

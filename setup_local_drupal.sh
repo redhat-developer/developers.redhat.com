@@ -71,12 +71,18 @@ echo "Adding site/files"
 sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
 sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
 
+echo "Running drush cim"
+${WEB}/../vendor/bin/drush --root=${WEB} cim
+
+echo "Running drush cr"
+${WEB}/../vendor/bin/drush --root=${WEB} cr
+
 # Import config and update the database
 echo "Running drush updb"
 ${WEB}/../vendor/bin/drush --root=${WEB} updb --entity-updates
 
-echo "Running drush cim"
-${WEB}/../vendor/bin/drush --root=${WEB} cim
+echo "Running drush cr"
+${WEB}/../vendor/bin/drush --root=${WEB} cr 
 
 echo "Starting the server"
 ${WEB}/../vendor/bin/drush --root=${WEB} rs
