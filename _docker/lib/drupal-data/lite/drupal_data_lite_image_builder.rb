@@ -46,26 +46,26 @@ class DrupalDataLiteImageBuilder
   # built into a Docker container image by through `docker build`
   #
   def generate_lite_database_dump
-    @process_runner.execute!("mkdir #{@working_directory}/work")
-    @process_runner.execute!('docker pull redhatdeveloper/drupal-data:latest')
-    @process_runner.execute!("docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"zcat /docker-entrypoint-initdb.d/drupal-db.sql.gz | awk '!/INSERT INTO \\`node_revision__body\\`/' | awk '!/INSERT INTO \\`lightning_node_revision__body\\`/' | gzip > /work/drupal-db.sql.gz && chmod 777 /work/drupal-db.sql.gz\"")
+    @process_runner.execute!(%Q[mkdir #{@working_directory}/work])
+    @process_runner.execute!(%q[docker pull redhatdeveloper/drupal-data:latest])
+    @process_runner.execute!(%Q[docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c "zcat /docker-entrypoint-initdb.d/drupal-db.sql.gz | awk '!/INSERT INTO \\`node_revision__body\\`/' | awk '!/INSERT INTO \\`lightning_node_revision__body\\`/' | gzip > /work/drupal-db.sql.gz && chmod 777 /work/drupal-db.sql.gz"])
   end
 
   #
   # Builds the new version of the "lite" data image and tags it as redhatdeveloper/drupal-data-lite:latest
   #
   def build_lite_data_image
-    @process_runner.execute!("cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/config/active /work/config && chmod -R 777 /work/config\"")
-    @process_runner.execute!("cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/sites/default/files /work/files && chmod -R 777 /work/files\"")
+    @process_runner.execute!(%Q[cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/config/active /work/config && chmod -R 777 /work/config\"])
+    @process_runner.execute!(%Q[cd #{@working_directory} && docker run --rm -v #{@working_directory}/work:/work redhatdeveloper/drupal-data:latest /bin/sh -c \"cp -R /var/www/drupal/web/sites/default/files /work/files && chmod -R 777 /work/files\"])
 
-    @process_runner.execute!("cd #{@working_directory} && docker build -t redhatdeveloper/drupal-data-lite:latest -f Dockerfile.lite .")
+    @process_runner.execute!(%Q[cd #{@working_directory} && docker build -t redhatdeveloper/drupal-data-lite:latest -f Dockerfile.lite .])
   end
 
   #
   # Pushes the new version of the redhatdeveloper/drupal-data-lite:latest image up to DockerHub.
   #
   def push_lite_data_image
-    @process_runner.execute!('docker push redhatdeveloper/drupal-data-lite:latest')
+    @process_runner.execute!(%q[docker push redhatdeveloper/drupal-data-lite:latest])
   end
 
 end
