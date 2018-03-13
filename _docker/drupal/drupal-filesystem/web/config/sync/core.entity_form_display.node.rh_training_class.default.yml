@@ -12,9 +12,12 @@ dependencies:
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
+    - field.field.node.rh_training_class.scheduled_update
     - node.type.rh_training_class
   module:
     - entity_browser
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - path
@@ -27,7 +30,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -47,7 +50,7 @@ content:
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 26
+    weight: 12
     settings:
       display_label: true
     third_party_settings: {  }
@@ -55,7 +58,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 27
+    weight: 13
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -97,9 +100,15 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 14
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -107,14 +116,31 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     region: content
     third_party_settings: {  }
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 15
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     region: content
     third_party_settings: {  }
   title:

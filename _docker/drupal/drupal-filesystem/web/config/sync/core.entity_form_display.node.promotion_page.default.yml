@@ -10,11 +10,14 @@ dependencies:
     - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_media_asset
     - field.field.node.promotion_page.field_promotion_page_left_image
+    - field.field.node.promotion_page.scheduled_update
     - image.style.thumbnail
     - node.type.promotion_page
   module:
     - entity_browser
+    - entity_browser_entity_form
     - image
+    - inline_entity_form
     - link
     - path
     - text
@@ -80,11 +83,34 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 8
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 9
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     region: content
   title:
     type: string_textfield

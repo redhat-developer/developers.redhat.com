@@ -12,8 +12,11 @@ dependencies:
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
     - field.field.node.article.field_tags
+    - field.field.node.article.scheduled_update
     - node.type.article
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - metatag
@@ -86,6 +89,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 13
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 8
@@ -98,6 +107,23 @@ content:
       display_label: true
     weight: 6
     third_party_settings: {  }
+    region: content
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 14
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'Scheduled publication date'
+      label_plural: 'Scheduled publication dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     region: content
   sticky:
     type: boolean_checkbox
