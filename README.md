@@ -204,7 +204,7 @@ There are people who have done this, I just don't have the documentation yet.
 
 Request access to the production data dumps first.
 This allows you to have a production-like environment in development.
-To request access, send the Red Hat Developers Engineering team your GitHub ID and request access to the `searchisko-docker` repo in the `redhat-developer` organisation.
+To request access, send the Red Hat Developers Engineering team your GitHub ID and request access to the `searchisko-docker` repo in the `redhat-developer` organization.
 Once you have access:
 
 Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_mysql_data.tar.gz) and copy to `_docker/mysql/searchisko_mysql_data.tar.gz`.
