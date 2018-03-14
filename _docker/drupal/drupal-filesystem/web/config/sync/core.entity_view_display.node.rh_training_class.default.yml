@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
+    - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
     - image
@@ -94,6 +95,14 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_topics:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 100

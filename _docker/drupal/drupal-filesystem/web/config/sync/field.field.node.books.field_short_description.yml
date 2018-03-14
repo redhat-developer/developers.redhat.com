@@ -1,0 +1,19 @@
+uuid: f4e15cb6-4d34-4763-ae77-85b4a93e9074
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.books
+id: node.books.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: books
+label: 'Short Description'
+description: 'Describe the content in 140 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
