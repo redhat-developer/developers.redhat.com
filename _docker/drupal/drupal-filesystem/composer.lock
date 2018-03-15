@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9538e4b563e37b4f048d9f41448eca1",
+    "content-hash": "ab6bb2fa5fd04b9827cf69ca9fd1a973",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -231,7 +231,7 @@
             "version": "v5.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/enyo/dropzone.git",
+                "url": "git@github.com:enyo/dropzone.git",
                 "reference": "7d0792d1346d83a8b0c0d2919121bdd2b8e7fee4"
             },
             "dist": {
@@ -1254,7 +1254,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/assembly",
-                "reference": "30c27ce9fd49f7fcd9c5598287d46bcb30f9eccf"
+                "reference": "34777d0bfca1f31f7dd78771afa42a77d87ccc33"
             },
             "require": {
                 "drupal/core": "*",
@@ -1268,7 +1268,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1518642180",
+                    "datestamp": "1519427280",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1294,7 +1294,7 @@
                 "source": "http://cgit.drupalcode.org/assembly",
                 "issues": "https://www.drupal.org/project/issues/assembly"
             },
-            "time": "2018-02-15T15:45:47+00:00"
+            "time": "2018-03-09T17:47:46+00:00"
         },
         {
             "name": "drupal/config_update",
@@ -8846,6 +8846,12 @@
                 "url": "https://git.drupal.org/project/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klausi/coder/zipball/984c54a7b1e8f27ff1c32348df69712afd86b17f",
+                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f",
+                "shasum": ""
+            },
             "require": {
                 "ext-mbstring": "*",
                 "php": ">=5.4.0",
@@ -12077,12 +12083,12 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/assembly": 20,
         "drupal/field_collection": 20,
         "drupal/field_group": 20,
+        "drupal/inline_entity_form": 20,
         "drupal/paragraphs": 20,
-        "drupal/workbench": 20,
-        "drupal/assembly": 20,
-        "drupal/inline_entity_form": 20
+        "drupal/workbench": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

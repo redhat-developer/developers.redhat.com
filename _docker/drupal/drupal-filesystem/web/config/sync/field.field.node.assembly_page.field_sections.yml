@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.blog_posts
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.rich_text
+    - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.assembly_page
   module:
@@ -23,8 +25,10 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      blog_posts: blog_posts
       content_with_image: content_with_image
       rich_text: rich_text
+      videos: videos
     sort:
       field: _none
     auto_create: false

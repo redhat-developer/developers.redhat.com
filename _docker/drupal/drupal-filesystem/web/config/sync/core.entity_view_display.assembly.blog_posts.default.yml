@@ -1,0 +1,16 @@
+uuid: 4cc901fd-db2c-42fe-a89f-db543575cf62
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.blog_posts
+    - field.field.assembly.blog_posts.field_category_filter
+id: assembly.blog_posts.default
+targetEntityType: assembly
+bundle: blog_posts
+mode: default
+content: {  }
+hidden:
+  field_category_filter: true
+  name: true
+  user_id: true
