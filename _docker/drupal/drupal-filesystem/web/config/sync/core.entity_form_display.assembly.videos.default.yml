@@ -1,0 +1,50 @@
+uuid: 284e6e95-3453-494a-a2a0-c021b2e8e901
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.videos
+    - field.field.assembly.videos.field_tags
+    - field.field.assembly.videos.field_title
+  module:
+    - workbench_moderation
+id: assembly.videos.default
+targetEntityType: assembly
+bundle: videos
+mode: default
+content:
+  field_tags:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  user_id: true
+  visual_styles: true

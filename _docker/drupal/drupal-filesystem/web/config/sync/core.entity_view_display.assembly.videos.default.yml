@@ -1,0 +1,25 @@
+uuid: 7d2328c1-74e4-41f7-a3a8-dd7f3d6e5159
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.videos
+    - field.field.assembly.videos.field_tags
+    - field.field.assembly.videos.field_title
+id: assembly.videos.default
+targetEntityType: assembly
+bundle: videos
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_tags: true
+  name: true
+  user_id: true
