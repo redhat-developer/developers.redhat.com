@@ -1,0 +1,24 @@
+uuid: ab0a0d53-ff75-4085-8258-3d0c7206732a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.topics-menu
+  module:
+    - system
+  theme:
+    - rhdp
+id: topicnavigation
+theme: rhdp
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:topics-menu'
+settings:
+  id: 'system_menu_block:topics-menu'
+  label: 'Topic navigation'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

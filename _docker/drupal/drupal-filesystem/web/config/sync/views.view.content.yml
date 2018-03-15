@@ -2,9 +2,12 @@ uuid: 3218c288-283b-42a9-829c-1a80d2e665bc
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.topics
   module:
     - lightning_workflow
     - node
+    - taxonomy
     - user
 _core:
   default_config_hash: tS8PbpJX90aRFC3-UTgXzdqkq7_2frk2pz4TMijEebM
@@ -531,30 +534,37 @@ display:
           plugin_id: bundle
           entity_type: node
           entity_field: type
-        langcode:
-          id: langcode
-          table: node_field_data
-          field: langcode
+        field_topics_target_id:
+          id: field_topics_target_id
+          table: node__field_topics
+          field: field_topics_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
+          operator: or
           value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: langcode_op
-            label: Language
+            operator_id: field_topics_target_id_op
+            label: 'Topics (field_topics)'
             description: ''
             use_operator: false
-            operator: langcode_op
-            identifier: langcode
+            operator: field_topics_target_id_op
+            identifier: field_topics_target_id
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              media_manager: '0'
+              layout_manager: '0'
+              content_creator: '0'
+              content_team: '0'
+              content_admin: '0'
+              coding_resource_creator: '0'
+              coding_resource_reviewer: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -569,9 +579,13 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: language
-          entity_type: node
-          entity_field: langcode
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: topics
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
         moderation_state:
           id: moderation_state
           table: node_field_data
@@ -657,6 +671,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -688,6 +703,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

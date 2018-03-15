@@ -9,9 +9,12 @@ dependencies:
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
     - field.field.node.article.field_image
+    - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
+    - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
+    - field.field.node.article.field_topics
     - node.type.article
   module:
     - interval
@@ -61,6 +64,13 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  field_long_description:
+    weight: 108
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_meta_tags:
     weight: 102
     label: above
@@ -75,6 +85,13 @@ content:
     third_party_settings: {  }
     type: interval_default
     region: content
+  field_short_description:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 10
@@ -82,6 +99,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+    region: content
+  field_topics:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 100

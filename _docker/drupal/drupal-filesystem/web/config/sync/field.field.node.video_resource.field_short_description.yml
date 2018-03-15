@@ -1,0 +1,19 @@
+uuid: 0820b841-a9b0-47aa-8267-199045223548
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.video_resource
+id: node.video_resource.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: video_resource
+label: 'Short Description'
+description: 'Describe the content in 140 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,29 @@
+uuid: 0f6de505-19d7-41e2-9e29-d51a1627fc0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topics
+    - node.type.cheat_sheet
+    - taxonomy.vocabulary.topics
+id: node.cheat_sheet.field_topics
+field_name: field_topics
+entity_type: node
+bundle: cheat_sheet
+label: Topics
+description: 'Select one or more related topics.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topics: topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

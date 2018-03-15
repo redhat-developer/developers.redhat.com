@@ -1,0 +1,19 @@
+uuid: 5a279713-5b1d-4b7b-a87d-c27be3836add
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.cheat_sheet
+id: node.cheat_sheet.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: cheat_sheet
+label: 'Short Description'
+description: 'Describe the content in 140 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
