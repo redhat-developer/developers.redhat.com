@@ -38,11 +38,21 @@ class BlogPostsBuild extends AssemblyBuildBase implements AssemblyBuildInterface
       $query['categories'] = $categories;
     }
 
-    // retrieve posts
-    $client = \Drupal::httpClient();
-    $request = $client->request('GET', $feed_url, ['query' => $query]);
-    $response = $request->getBody()->getContents();
-    $results = json_decode($response);
+    try {
+      // retrieve posts
+      $client = \Drupal::httpClient();
+      $request = $client->request('GET', $feed_url, ['query' => $query]);
+      $response = $request->getBody()->getContents();
+      $results = json_decode($response);
+    }
+    catch (\Exception $ex) {
+      \Drupal::logger('rhd_assemblies')->error('Error fetching posts for blog assembly. Assembly ID: @id; URL: @feed_url <br />Query: @query <br />Message: @message', [
+        '@feed_url' => $feed_url,
+        '@query' => print_r($query, TRUE),
+        '@id' => $entity->id->value,
+        '@message' => $ex->getMessage(),
+      ]);
+    }
 
     if (!empty($results)) {
       // make list of posts
@@ -60,22 +70,39 @@ class BlogPostsBuild extends AssemblyBuildBase implements AssemblyBuildInterface
         if (!empty($result->categories)) {
           $feed_url = 'https://developers.redhat.com/blog/wp-json/wp/v2/categories';
 
-          $request = $client->request('GET', $feed_url);
-          $response = $request->getBody()->getContents();
-          $categories = json_decode($response);
-
-          $build['posts']['#items'][$result->id]['#categories'] = $categories;
+          try {
+            $request = $client->request('GET', $feed_url);
+            $response = $request->getBody()->getContents();
+            $categories = json_decode($response);
+            $build['posts']['#items'][$result->id]['#categories'] = $categories;
+          }
+          catch (\Exception $ex) {
+            \Drupal::logger('rhd_assemblies')->error('Error fetching categories for blog assembly. Assembly ID: @id; URL: @feed_url <br />Message: @message', [
+              '@feed_url' => $feed_url,
+              '@id' => $entity->id->value,
+              '@message' => $ex->getMessage(),
+            ]);
+          }
         }
 
         // retrieve images
         if ($result->featured_media) {
           $feed_url = 'https://developers.redhat.com/blog/wp-json/wp/v2/media/' . $result->featured_media;
 
-          $request = $client->request('GET', $feed_url);
-          $response = $request->getBody()->getContents();
-          $media = json_decode($response);
+          try {
+            $request = $client->request('GET', $feed_url);
+            $response = $request->getBody()->getContents();
+            $media = json_decode($response);
+            $build['posts']['#items'][$result->id]['#media'] = $media;
+          }
+          catch (\Exception $ex) {
+            \Drupal::logger('rhd_assemblies')->error('Error fetching media for blog assembly. Assembly ID: @id; url: @feed_url <br />Message: @message', [
+              '@feed_url' => $feed_url,
+              '@id' => $entity->id->value,
+              '@message' => $ex->getMessage(),
+            ]);
+          }
 
-          $build['posts']['#items'][$result->id]['#media'] = $media;
         }
       }
     }
