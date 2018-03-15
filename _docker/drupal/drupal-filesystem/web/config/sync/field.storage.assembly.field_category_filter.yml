@@ -1,0 +1,19 @@
+uuid: 4cdd02c2-04e4-43a3-81d7-7b8843d3f797
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - rhd_assemblies
+id: assembly.field_category_filter
+field_name: field_category_filter
+entity_type: assembly
+type: list_wpcategories
+settings: {  }
+module: rhd_assemblies
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

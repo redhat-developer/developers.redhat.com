@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_assemblies.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_assemblies_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_assemblies module.
+    case 'help.page.rhd_assemblies':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom assemblies for RHD') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function rhd_assemblies_theme_registry_alter(&$theme_registry) {
+  $path = drupal_get_path('module', 'rhd_assemblies');
+
+  // Assembly types with a default template
+  // defined in this module
+  $types = [
+    'blog_posts',
+  ];
+
+  foreach ($types as $type) {
+    if (isset($theme_registry['assembly']) && !isset($theme_registry['assembly__' . $type])) {
+      $theme_registry['assembly__' . $type] = $theme_registry['assembly'];
+      $theme_registry['assembly__' . $type]['template'] = 'assembly--' . str_replace('_', '-', $type);
+      $theme_registry['assembly__' . $type]['theme_path'] = $path;
+      $theme_registry['assembly__' . $type]['path'] = $path . '/templates';
+    }
+  }
+}
+
+function rhd_assemblies_theme($existing, $type, $theme, $path) {
+  $theme = [];
+  $theme['wordpress_post_teaser'] = [
+    'template' => 'wordpress-post-teaser',
+    'variables' => [
+      'post' => NULL,
+      'media' => NULL,
+      'categories' => NULL,
+    ],
+  ];
+  return $theme;
+}

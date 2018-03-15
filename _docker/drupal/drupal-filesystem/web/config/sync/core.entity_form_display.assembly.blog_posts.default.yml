@@ -1,0 +1,53 @@
+uuid: 93dc3c67-f44f-4f21-81c2-0e821a31c780
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.blog_posts
+    - field.field.assembly.blog_posts.field_category_filter
+  module:
+    - rhd_assemblies
+    - workbench_moderation
+id: assembly.blog_posts.default
+targetEntityType: assembly
+bundle: blog_posts
+mode: default
+content:
+  field_category_filter:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    type: wpcategories_options_select
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 99
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
