@@ -4,7 +4,7 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     _url;
-
+    staging_download_url = 'https://developers.stage.redhat.com';
     popularProduct = new RHDPDownloadsPopularProducts();
     products = new RHDPDownloadsProducts();
 
@@ -78,6 +78,9 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     setProductsDownloadData(url) {
+        if(window.location.origin.indexOf('developers.redhat.com') == -1){
+            url = this.staging_download_url + url;
+        }
         let fInit : RequestInit = {
             method: 'GET',
             headers: new Headers(),
