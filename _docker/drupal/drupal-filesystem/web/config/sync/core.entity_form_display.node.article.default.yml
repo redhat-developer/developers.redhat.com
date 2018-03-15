@@ -9,10 +9,13 @@ dependencies:
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
     - field.field.node.article.field_image
+    - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
+    - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.scheduled_update
+    - field.field.node.article.field_topics
     - node.type.article
   module:
     - entity_browser_entity_form
@@ -32,7 +35,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 5
     settings:
       rows: 9
       summary_rows: 3
@@ -41,12 +44,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     region: content
   field_card_image:
-    weight: 12
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -54,7 +57,7 @@ content:
     type: link_default
     region: content
   field_content_author:
-    weight: 1
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -62,27 +65,44 @@ content:
     type: string_textfield
     region: content
   field_difficulty:
-    weight: 10
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_long_description:
+    weight: 3
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   field_meta_tags:
-    weight: 11
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_read_time:
-    weight: 9
+    weight: 11
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
+  field_short_description:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_tags:
     type: entity_reference_autocomplete_tags
-    weight: 3
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60
@@ -95,9 +115,15 @@ content:
     settings: {  }
     region: content
     third_party_settings: {  }
+  field_topics:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   path:
     type: path
-    weight: 8
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -105,7 +131,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 8
     third_party_settings: {  }
     region: content
   scheduled_update:
@@ -129,7 +155,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 9
     third_party_settings: {  }
     region: content
   title:
@@ -142,7 +168,7 @@ content:
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60

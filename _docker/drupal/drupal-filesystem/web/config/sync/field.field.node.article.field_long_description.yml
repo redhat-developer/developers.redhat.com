@@ -1,18 +1,18 @@
-uuid: 4aaa7e54-678f-4800-8bd5-1acc87a39826
+uuid: 4445ab82-645b-4e88-a466-6a1685a92df4
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_long_description
-    - node.type.learning_path
+    - node.type.article
   module:
     - text
-id: node.learning_path.field_long_description
+id: node.article.field_long_description
 field_name: field_long_description
 entity_type: node
-bundle: learning_path
+bundle: article
 label: 'Long Description'
-description: "Describe the learning path in 500 characters or less.\r\n"
+description: 'Describe the content in 500 characters or less.'
 required: true
 translatable: true
 default_value: {  }

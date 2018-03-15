@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - field.field.node.rh_training_class.scheduled_update
+    - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
     - entity_browser
@@ -30,12 +31,12 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_card_image:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -43,14 +44,14 @@ content:
     type: link_default
     region: content
   field_completion_time:
-    weight: 5
+    weight: 6
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 12
+    weight: 13
     settings:
       display_label: true
     third_party_settings: {  }
@@ -58,7 +59,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 13
+    weight: 14
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -70,13 +71,13 @@ content:
     region: content
     third_party_settings: {  }
   field_level:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_long_description:
-    weight: 2
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -85,7 +86,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_short_description:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -93,7 +94,7 @@ content:
     type: string_textarea
     region: content
   field_source_link:
-    weight: 3
+    weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -109,6 +110,15 @@ content:
   path:
     type: path
     weight: 11
+  field_topics:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  path:
+    type: path
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -116,7 +126,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     region: content
     third_party_settings: {  }
   scheduled_update:
@@ -140,7 +150,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
+    weight: 11
     region: content
     third_party_settings: {  }
   title:
@@ -153,7 +163,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS

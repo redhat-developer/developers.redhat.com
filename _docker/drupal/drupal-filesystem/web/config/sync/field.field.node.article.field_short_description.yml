@@ -1,0 +1,19 @@
+uuid: a8effd84-f572-4ee6-9c24-d3ee38de7219
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.article
+id: node.article.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: article
+label: 'Short Description'
+description: 'Describe the content in 140 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

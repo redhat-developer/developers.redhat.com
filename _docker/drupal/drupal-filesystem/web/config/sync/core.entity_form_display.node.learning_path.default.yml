@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.learning_path.field_related_topic_s_
     - field.field.node.learning_path.field_requirements_an_or_pre_req
     - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_topics
     - field.field.node.learning_path.field_value_proposition
     - field.field.node.learning_path.scheduled_update
     - node.type.learning_path
@@ -34,18 +35,18 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_audience:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_card_image:
-    weight: 13
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -53,7 +54,7 @@ content:
     type: link_default
     region: content
   field_completion_time:
-    weight: 6
+    weight: 7
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
@@ -61,7 +62,7 @@ content:
     region: content
   field_learning_path_content_item:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -69,57 +70,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_long_description:
-    weight: 2
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
-  field_related_learning_path_s_:
-    weight: 8
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_related_product_s_:
-    weight: 9
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_related_programming_langua:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_related_red_hat_certificat:
-    weight: 7
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
-  field_related_topic_s_:
-    weight: 10
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_requirements_an_or_pre_req:
     weight: 3
     settings:
       rows: 9
@@ -128,16 +78,73 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  field_related_learning_path_s_:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_related_product_s_:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_related_programming_langua:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_related_red_hat_certificat:
+    weight: 8
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_related_topic_s_:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_requirements_an_or_pre_req:
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   field_short_description:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
     region: content
+  field_topics:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_value_proposition:
-    weight: 5
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
@@ -153,7 +160,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -161,7 +168,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 17
     region: content
     third_party_settings: {  }
   scheduled_update:
@@ -185,7 +192,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 17
+    weight: 18
     region: content
     third_party_settings: {  }
   title:
@@ -198,7 +205,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60
