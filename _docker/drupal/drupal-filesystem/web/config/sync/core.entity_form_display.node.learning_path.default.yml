@@ -18,8 +18,11 @@ dependencies:
     - field.field.node.learning_path.field_short_description
     - field.field.node.learning_path.field_topics
     - field.field.node.learning_path.field_value_proposition
+    - field.field.node.learning_path.scheduled_update
     - node.type.learning_path
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - path
@@ -149,6 +152,12 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 19
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 19
@@ -162,6 +171,23 @@ content:
     weight: 17
     region: content
     third_party_settings: {  }
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 20
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    region: content
   sticky:
     type: boolean_checkbox
     settings:

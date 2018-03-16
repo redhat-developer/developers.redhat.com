@@ -14,8 +14,11 @@ dependencies:
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_short_description
     - field.field.node.cheat_sheet.field_topics
+    - field.field.node.cheat_sheet.scheduled_update
     - node.type.cheat_sheet
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - path
@@ -118,6 +121,12 @@ content:
     third_party_settings: {  }
     type: options_buttons
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 17
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 12
@@ -130,6 +139,23 @@ content:
       display_label: true
     weight: 10
     third_party_settings: {  }
+    region: content
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 18
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     region: content
   sticky:
     type: boolean_checkbox

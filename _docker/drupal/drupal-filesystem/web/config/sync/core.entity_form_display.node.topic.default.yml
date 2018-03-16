@@ -17,8 +17,11 @@ dependencies:
     - field.field.node.topic.field_top_left_white_card
     - field.field.node.topic.field_top_right_white_card
     - field.field.node.topic.field_topic_sub_title
+    - field.field.node.topic.scheduled_update
     - node.type.topic
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - link
     - metatag
     - path
@@ -148,11 +151,34 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 16
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 17
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     region: content
   title:
     type: string_textfield

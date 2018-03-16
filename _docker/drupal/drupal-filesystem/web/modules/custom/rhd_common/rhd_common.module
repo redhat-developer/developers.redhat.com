@@ -7,6 +7,7 @@
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\AlertCommand;
 use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\rhd_common\Ajax\CKEditorSetDataCommand;
@@ -187,6 +188,15 @@ function rhd_common_preprocess_node(&$variables) {
   // For videos, we need tags to send to DCP
   if ($variables['node']->getType() === 'video_resource') {
     video_tags($variables);
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function rhd_common_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if (isset($fields['moderation_state'])) {
+    $fields['moderation_state']->setDisplayConfigurable('form', TRUE);
   }
 }
 
