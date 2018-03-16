@@ -19,8 +19,8 @@ dependencies:
     - field.field.node.events.field_start_date
     - field.field.node.events.field_target_product
     - field.field.node.events.field_title
-    - field.field.node.events.scheduled_update
     - field.field.node.events.field_topics
+    - field.field.node.events.scheduled_update
     - image.style.thumbnail
     - node.type.events
   module:
@@ -145,15 +145,21 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_topics:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   moderation_state:
     type: moderation_state_default
-    weight: 16
+    weight: 18
     settings: {  }
     region: content
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 17
+    weight: 19
     settings:
       form_mode: default
       override_labels: true
@@ -167,11 +173,6 @@ content:
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
-  field_topics:
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
     region: content
   title:
     type: string_textfield

@@ -14,8 +14,8 @@ dependencies:
     - field.field.node.article.field_read_time
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
-    - field.field.node.article.scheduled_update
     - field.field.node.article.field_topics
+    - field.field.node.article.scheduled_update
     - node.type.article
   module:
     - entity_browser_entity_form
@@ -109,18 +109,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 13
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   field_topics:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 16
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 10
@@ -136,7 +136,7 @@ content:
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 14
+    weight: 17
     settings:
       form_mode: default
       override_labels: true

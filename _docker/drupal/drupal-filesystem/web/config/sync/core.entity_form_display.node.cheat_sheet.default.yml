@@ -12,9 +12,9 @@ dependencies:
     - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_read_time
-    - field.field.node.cheat_sheet.scheduled_update
     - field.field.node.cheat_sheet.field_short_description
     - field.field.node.cheat_sheet.field_topics
+    - field.field.node.cheat_sheet.scheduled_update
     - node.type.cheat_sheet
   module:
     - entity_browser_entity_form
@@ -107,12 +107,6 @@ content:
     third_party_settings: {  }
     type: interval_default
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 15
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   field_short_description:
     weight: 2
     settings:
@@ -127,6 +121,12 @@ content:
     third_party_settings: {  }
     type: options_buttons
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 17
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 12
@@ -142,7 +142,7 @@ content:
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 16
+    weight: 18
     settings:
       form_mode: default
       override_labels: true

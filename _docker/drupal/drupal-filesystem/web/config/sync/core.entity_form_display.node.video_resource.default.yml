@@ -50,7 +50,7 @@ content:
     third_party_settings: {  }
     region: content
   field_card_image:
-    weight: 19
+    weight: 18
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -78,7 +78,7 @@ content:
     type: number
     region: content
   field_related_content:
-    weight: 20
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60
@@ -95,7 +95,7 @@ content:
     type: string_textarea
     region: content
   field_slideshare_source:
-    weight: 18
+    weight: 17
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -163,7 +163,7 @@ content:
     type: string_textfield
     region: content
   field_video_transcript:
-    weight: 17
+    weight: 16
     settings:
       rows: 5
       placeholder: ''
@@ -179,7 +179,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 18
+    weight: 20
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -191,7 +191,7 @@ content:
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 19
+    weight: 21
     settings:
       form_mode: default
       override_labels: true

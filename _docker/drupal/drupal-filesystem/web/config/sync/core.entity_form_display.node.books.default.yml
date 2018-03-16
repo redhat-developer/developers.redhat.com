@@ -162,7 +162,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_short_description:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -186,18 +186,18 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 19
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   field_topics:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 21
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 15
@@ -206,7 +206,7 @@ content:
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 20
+    weight: 22
     settings:
       form_mode: default
       override_labels: true
