@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.assembly_page.field_hero
     - field.field.node.assembly_page.field_sections
+    - field.field.node.assembly_page.scheduled_update
     - node.type.assembly_page
   module:
     - entity_browser_entity_form
@@ -56,12 +57,35 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 6
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 7
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    region: content
   title:
     type: string_textfield
     weight: 3

@@ -38,8 +38,14 @@ content:
   field_meta_tags:
     type: metatag_firehose
     region: content
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
     weight: 8
     settings: {  }
+    region: content
     third_party_settings: {  }
   path:
     type: path
@@ -64,7 +70,9 @@ content:
       allow_existing: false
       match_operator: CONTAINS
       form_mode: default
-    weight: 7
+      collapsible: false
+      collapsed: false
+    weight: 9
     third_party_settings: {  }
     region: content
   sticky:

@@ -27,9 +27,12 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
+    - field.field.node.books.scheduled_update
     - node.type.books
   module:
     - datetime
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - path
@@ -43,7 +46,7 @@ bundle: books
 mode: default
 content:
   field_author:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -159,7 +162,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_short_description:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -189,12 +192,35 @@ content:
     third_party_settings: {  }
     type: options_buttons
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 21
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 22
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    region: content
   title:
     type: string_textfield
     weight: 0

@@ -21,9 +21,12 @@ dependencies:
     - field.field.node.video_resource.field_video_thumbnail_url
     - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
+    - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
     - datetime
+    - entity_browser_entity_form
+    - inline_entity_form
     - interval
     - link
     - path
@@ -47,7 +50,7 @@ content:
     third_party_settings: {  }
     region: content
   field_card_image:
-    weight: 19
+    weight: 18
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -75,7 +78,7 @@ content:
     type: number
     region: content
   field_related_content:
-    weight: 20
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60
@@ -92,7 +95,7 @@ content:
     type: string_textarea
     region: content
   field_slideshare_source:
-    weight: 18
+    weight: 17
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -160,7 +163,7 @@ content:
     type: string_textfield
     region: content
   field_video_transcript:
-    weight: 17
+    weight: 16
     settings:
       rows: 5
       placeholder: ''
@@ -174,18 +177,34 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 20
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   path:
     type: path
     weight: 4
     settings: {  }
     third_party_settings: {  }
     region: content
-  status:
-    type: boolean_checkbox
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 21
     settings:
-      display_label: true
-    weight: 16
-    third_party_settings: {  }
+      form_mode: default
+      override_labels: true
+      label_singular: 'publishing date'
+      label_plural: 'publishing dates'
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     region: content
   title:
     type: string_textfield
@@ -198,5 +217,6 @@ content:
 hidden:
   created: true
   promote: true
+  status: true
   sticky: true
   uid: true
