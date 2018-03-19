@@ -1,0 +1,19 @@
+uuid: 4151594a-3e09-4142-8328-f1f4477a2abf
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.videos
+    - field.storage.assembly.field_title
+id: assembly.videos.field_title
+field_name: field_title
+entity_type: assembly
+bundle: videos
+label: Title
+description: 'An optional title displayed with this content.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

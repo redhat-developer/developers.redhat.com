@@ -1,0 +1,19 @@
+<article class="wordpress-blog-post-teaser">
+
+  {% if media and media.media_type == 'image' %}
+  <a href="{{ post.link }}">
+    <img src="{{ media.source_url }}" width="500" />
+  </a>
+  {% endif %}
+
+  {% if categories %}
+  <ul class="categories-list">
+    {% for category in categories %}
+    <li><a href="{{ category.link }}">{{ category.name }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h3><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
+  <div class="summary">{{ post.excerpt.rendered|raw }}</div>
+</article>
