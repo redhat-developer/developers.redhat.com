@@ -1,0 +1,20 @@
+uuid: 420c7f15-863c-410e-8d07-93bfe689adb1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_short_bio
+  module:
+    - user
+id: user.user.field_short_bio
+field_name: field_short_bio
+entity_type: user
+bundle: user
+label: 'Short Bio'
+description: 'Bio information in 140 characters or less.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

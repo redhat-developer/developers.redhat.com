@@ -1,0 +1,20 @@
+uuid: 6584a34e-a9b7-4a71-8493-9227f44916f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_title
+  module:
+    - user
+id: user.user.field_user_title
+field_name: field_user_title
+entity_type: user
+bundle: user
+label: 'User Title'
+description: 'User''s job title or role. Max 255 characters. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
