@@ -1,0 +1,105 @@
+uuid: 120115eb-1fda-4162-9cc2-b6d2aec010fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.image_browser
+    - field.field.user.user.field_long_bio
+    - field.field.user.user.field_short_bio
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_title
+  module:
+    - entity_browser
+    - field_group
+    - path
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_user_profile:
+      children:
+        - field_user_title
+        - field_short_bio
+        - field_long_bio
+        - field_user_photo
+        - path
+      parent_name: ''
+      weight: 20
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: open
+        description: ''
+        required_fields: true
+      label: 'User Profile'
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  contact:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_long_bio:
+    weight: 27
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_short_bio:
+    weight: 26
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_user_photo:
+    type: entity_browser_file
+    weight: 28
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_user_title:
+    weight: 25
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  language:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

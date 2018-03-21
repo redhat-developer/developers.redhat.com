@@ -1,0 +1,22 @@
+uuid: 067a5cc9-aa8f-45cc-bbd7-65ac29209182
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_long_bio
+  module:
+    - text
+    - user
+id: user.user.field_long_bio
+field_name: field_long_bio
+entity_type: user
+bundle: user
+label: 'Long Bio'
+description: 'Bio for the user in 500 characters or less.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

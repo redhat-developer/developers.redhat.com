@@ -1,0 +1,53 @@
+uuid: 33bd52f0-076c-4065-90bf-c9029ac70084
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_long_bio
+    - field.field.user.user.field_short_bio
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_title
+  module:
+    - image
+    - text
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_long_bio:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_short_bio:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_user_photo:
+    weight: 8
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_user_title:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  member_for:
+    weight: 5
+    region: content
+hidden: {  }

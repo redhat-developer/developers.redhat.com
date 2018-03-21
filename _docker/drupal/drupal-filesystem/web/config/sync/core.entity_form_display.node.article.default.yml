@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
     - field.field.node.article.field_image
     - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
@@ -44,12 +45,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     region: content
   field_card_image:
-    weight: 14
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -65,11 +66,18 @@ content:
     type: string_textfield
     region: content
   field_difficulty:
-    weight: 12
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_hide_toc:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_long_description:
     weight: 3
     settings:
@@ -80,13 +88,13 @@ content:
     type: text_textarea_with_summary
     region: content
   field_meta_tags:
-    weight: 13
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_read_time:
-    weight: 11
+    weight: 12
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
@@ -102,7 +110,7 @@ content:
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags
-    weight: 15
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
@@ -117,13 +125,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 16
+    weight: 17
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -131,12 +139,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     third_party_settings: {  }
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 17
+    weight: 18
     settings:
       form_mode: default
       override_labels: true
@@ -155,7 +163,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     third_party_settings: {  }
     region: content
   title:
@@ -168,7 +176,7 @@ content:
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
