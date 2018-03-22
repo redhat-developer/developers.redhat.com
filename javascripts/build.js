@@ -116,9 +116,10 @@ var RHDPOSDownload = /** @class */ (function (_super) {
         _this._rhelURL = "";
         _this._macURL = "";
         _this._winURL = "";
+        _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.productDownloads = {
-            "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/cdk/hello-world/#fndtn-rhel" }
+            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -281,22 +282,28 @@ var RHDPOSDownload = /** @class */ (function (_super) {
             OSName = "RHEL";
         return OSName;
     };
+    RHDPOSDownload.prototype.getDownloadOrigin = function (productUrl) {
+        if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
+            productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+        }
+        return productUrl;
+    };
     RHDPOSDownload.prototype.setOSURL = function (productId) {
         switch (productId) {
             case 'devsuite':
-                this.winURL = this.productDownloads.devsuite.windowsUrl;
-                this.macURL = this.productDownloads.devsuite.macUrl;
-                this.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
+                this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
+                this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
                 break;
             case 'cdk':
-                this.winURL = this.productDownloads.cdk.windowsUrl;
-                this.macURL = this.productDownloads.cdk.macUrl;
-                this.rhelURL = this.productDownloads.cdk.rhelUrl;
+                this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
+                this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
+                this.rhelURL = this.getDownloadOrigin(this.productDownloads.cdk.rhelUrl);
                 break;
             default:
-                this.winURL = this.downloadURL;
-                this.macURL = this.downloadURL;
-                this.rhelURL = this.downloadURL;
+                this.winURL = this.getDownloadOrigin(this.downloadURL);
+                this.macURL = this.getDownloadOrigin(this.downloadURL);
+                this.rhelURL = this.getDownloadOrigin(this.downloadURL);
         }
     };
     RHDPOSDownload.prototype.setDownloadURLByPlatform = function () {
@@ -306,16 +313,16 @@ var RHDPOSDownload = /** @class */ (function (_super) {
         this.displayOS = true;
         switch (this.platformType) {
             case "Windows":
-                this.downloadURL = this.winURL;
+                this.downloadURL = this.getDownloadOrigin(this.winURL);
                 break;
             case "MacOS":
-                this.downloadURL = this.macURL;
+                this.downloadURL = this.getDownloadOrigin(this.macURL);
                 break;
             case "RHEL":
-                this.downloadURL = this.rhelURL;
+                this.downloadURL = this.getDownloadOrigin(this.rhelURL);
                 break;
             default:
-                this.downloadURL = this.winURL;
+                this.downloadURL = this.getDownloadOrigin(this.winURL);
         }
     };
     return RHDPOSDownload;
@@ -1187,7 +1194,7 @@ var RHDPDownloadsApp = /** @class */ (function (_super) {
     RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
         var _this = this;
         if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
-            url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+            url = url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
         }
         var fInit = {
             method: 'GET',
@@ -1573,12 +1580,14 @@ var RHDPDownloadsProducts = /** @class */ (function (_super) {
     };
     return RHDPDownloadsProducts;
 }(HTMLElement));
-customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
-customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
-customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
-customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
-customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
-customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
+    customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
+    customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
+    customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
+    customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
+    customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
+});
 var RHDPProjectFilterBox = /** @class */ (function (_super) {
     __extends(RHDPProjectFilterBox, _super);
     function RHDPProjectFilterBox() {
