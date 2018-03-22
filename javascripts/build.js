@@ -1141,7 +1141,7 @@ var RHDPDownloadsApp = /** @class */ (function (_super) {
     __extends(RHDPDownloadsApp, _super);
     function RHDPDownloadsApp() {
         var _this = _super.call(this) || this;
-        _this.download_url = 'https://developers.redhat.com';
+        _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.popularProduct = new RHDPDownloadsPopularProducts();
         _this.products = new RHDPDownloadsProducts();
         _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <span class=\"dl-outage-msg\"></span>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
@@ -1186,8 +1186,8 @@ var RHDPDownloadsApp = /** @class */ (function (_super) {
     };
     RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
         var _this = this;
-        if (window.location.origin.indexOf('developers.stage.redhat.com') == -1) {
-            url = this.download_url + url;
+        if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
+            url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
         }
         var fInit = {
             method: 'GET',

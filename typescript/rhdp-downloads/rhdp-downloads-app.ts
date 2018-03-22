@@ -4,7 +4,7 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     _url;
-    download_url = 'https://developers.redhat.com';
+    stage_download_url = 'https://developers.stage.redhat.com';
     popularProduct = new RHDPDownloadsPopularProducts();
     products = new RHDPDownloadsProducts();
 
@@ -78,8 +78,8 @@ class RHDPDownloadsApp extends HTMLElement {
     }
 
     setProductsDownloadData(url) {
-        if(window.location.origin.indexOf('developers.stage.redhat.com') == -1){
-            url = this.download_url + url;
+        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0){
+            url = url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
         }
         let fInit : RequestInit = {
             method: 'GET',
