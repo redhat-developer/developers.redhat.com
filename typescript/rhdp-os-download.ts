@@ -11,10 +11,10 @@ class RHDPOSDownload extends HTMLElement {
     private _version;
     private _displayOS;
 
-
+    stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/cdk/hello-world/#fndtn-rhel"}
+        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
+        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
     };
 
     get url() {
@@ -170,23 +170,30 @@ class RHDPOSDownload extends HTMLElement {
     }
 
 
-    setOSURL(productId){
+    getDownloadOrigin(productUrl){
+        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0){
+            productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+        }
+        return productUrl;
 
+    }
+
+    setOSURL(productId){
         switch(productId){
             case 'devsuite':
-                this.winURL = this.productDownloads.devsuite.windowsUrl;
-                this.macURL = this.productDownloads.devsuite.macUrl;
-                this.rhelURL = this.productDownloads.devsuite.rhelUrl;
+                this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
+                this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
+                this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
                 break;
             case 'cdk':
-                this.winURL = this.productDownloads.cdk.windowsUrl;
-                this.macURL = this.productDownloads.cdk.macUrl;
-                this.rhelURL = this.productDownloads.cdk.rhelUrl;
+                this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
+                this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
+                this.rhelURL = this.getDownloadOrigin(this.productDownloads.cdk.rhelUrl);
                 break;
             default:
-                this.winURL = this.downloadURL;
-                this.macURL = this.downloadURL;
-                this.rhelURL = this.downloadURL;
+                this.winURL = this.getDownloadOrigin(this.downloadURL);
+                this.macURL = this.getDownloadOrigin(this.downloadURL);
+                this.rhelURL = this.getDownloadOrigin(this.downloadURL);
         }
 
 
@@ -199,16 +206,16 @@ class RHDPOSDownload extends HTMLElement {
         this.displayOS = true;
         switch(this.platformType) {
             case "Windows":
-                this.downloadURL = this.winURL;
+                this.downloadURL = this.getDownloadOrigin(this.winURL);
                 break;
             case "MacOS":
-                this.downloadURL = this.macURL;
+                this.downloadURL = this.getDownloadOrigin(this.macURL);
                 break;
             case "RHEL":
-                this.downloadURL = this.rhelURL;
+                this.downloadURL = this.getDownloadOrigin(this.rhelURL);
                 break;
             default:
-                this.downloadURL = this.winURL
+                this.downloadURL = this.getDownloadOrigin(this.winURL);
         }
     }
 
