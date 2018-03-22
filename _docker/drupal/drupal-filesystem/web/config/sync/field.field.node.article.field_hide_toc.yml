@@ -1,0 +1,23 @@
+uuid: e13668e7-c737-4845-85c6-6be7c55e90d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hide_toc
+    - node.type.article
+id: node.article.field_hide_toc
+field_name: field_hide_toc
+entity_type: node
+bundle: article
+label: 'Hide table of contents'
+description: 'Select this checkbox if you would like to hide the table of contents (ToC).'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'ToC is hidden'
+  off_label: 'ToC is visible'
+field_type: boolean

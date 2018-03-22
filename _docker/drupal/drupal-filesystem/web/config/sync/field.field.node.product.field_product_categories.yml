@@ -1,0 +1,29 @@
+uuid: 009fc64c-5d55-4b08-9aeb-3c563fd6ad51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_categories
+    - node.type.product
+    - taxonomy.vocabulary.product_categories
+id: node.product.field_product_categories
+field_name: field_product_categories
+entity_type: node
+bundle: product
+label: 'Product Categories'
+description: 'Select one or more product categories. This is used to group products on the all products landing page.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_categories: product_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

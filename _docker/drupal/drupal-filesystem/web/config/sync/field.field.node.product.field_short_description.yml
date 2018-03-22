@@ -1,0 +1,19 @@
+uuid: 20cc5f37-3007-41b4-96e5-1215dbdab832
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.product
+id: node.product.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: product
+label: 'Short Description'
+description: 'Describe the product in 140 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
