@@ -1,0 +1,4 @@
+services:
+  rhd_assemblies.wordpress_api:
+    class: Drupal\rhd_assemblies\Service\WordpressApi
+    arguments: ['@http_client']

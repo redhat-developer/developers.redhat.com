@@ -40,7 +40,7 @@ class WppostAutocompleteWidget extends WidgetBase {
       '#autocomplete_route_parameters' => ['field_name' => $this->fieldDefinition->getLabel(), 'count' => 10],
     ];
 
-    if (isset($items[$delta])) {
+    if (!$items[$delta]->isEmpty()) {
       $id = $items[$delta]->getValue()['target_id'];
       $title = $items[$delta]->getValue()['title'];
       $output['value']['#default_value'] = $title . ' (' . $id . ')';
