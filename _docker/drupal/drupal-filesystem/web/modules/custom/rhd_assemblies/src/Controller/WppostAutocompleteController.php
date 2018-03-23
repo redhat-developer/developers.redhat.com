@@ -25,7 +25,7 @@ class WppostAutocompleteController extends ControllerBase {
       $typed_string = Tags::explode($input);
       $typed_string = Unicode::strtolower(array_pop($typed_string));
       if (strlen($typed_string) >= 3) {
-        $results = \Drupal::service('rhd_assemblies.wordpress_api')->getAutocompleteContentOptions($typed_string, 10);
+        $results = \Drupal::service('rhd_assemblies.wordpress_api')->getAutocompleteContentOptions($typed_string, $count);
       }
     }
 

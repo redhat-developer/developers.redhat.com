@@ -20,24 +20,48 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class WppostAutocompleteWidget extends WidgetBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return [
+      'result_count' => 10,
+    ] + parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $elements['result_count'] = [
+      '#type' => 'number',
+      '#title' => t('Number of results'),
+      '#default_value' => $this->getSetting('result_count'),
+      '#required' => TRUE,
+      '#min' => 1
+    ];
+    return $elements;
+  }
+
   /**
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    return [];
+    $summary = [];
+    $summary[] = t('Matches shown: @count', ['@count' => $this->getSetting('result_count')]);
+    return $summary;
   }
 
   /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-
-
     $output['value'] = $element;
     $output['value'] += [
       '#type' => 'textfield',
       '#autocomplete_route_name' => 'rhd_assemblies.wppost_autocomplete',
-      '#autocomplete_route_parameters' => ['field_name' => $this->fieldDefinition->getLabel(), 'count' => 10],
+      '#autocomplete_route_parameters' => ['field_name' => $this->fieldDefinition->getLabel(), 'count' => $this->getSetting('result_count')],
     ];
 
     if (!$items[$delta]->isEmpty()) {
