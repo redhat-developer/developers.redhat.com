@@ -1,0 +1,19 @@
+uuid: ad05f35a-13ac-47af-be94-585278807302
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - rhd_assemblies
+id: assembly.field_post_reference
+field_name: field_post_reference
+entity_type: assembly
+type: wppost
+settings: {  }
+module: rhd_assemblies
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

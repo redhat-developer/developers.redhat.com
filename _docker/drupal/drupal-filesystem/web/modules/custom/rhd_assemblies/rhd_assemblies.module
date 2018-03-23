@@ -5,7 +5,9 @@
  * Contains rhd_assemblies.module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_help().
@@ -53,4 +55,22 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
   return $theme;
+}
+
+function rhd_assemblies_entity_presave(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'assembly' && in_array($entity->bundle(), ['node_reference', 'wordpress_post_reference'])) {
+    if ($entity->bundle() == 'node_reference') {
+      $field = $entity->get('field_node_reference')->getValue();
+      $node_id = reset($field)['target_id'];
+      $node = Node::load($node_id);
+      $title = $node->label();
+      $entity->set('name', $title);
+    }
+
+    if ($entity->bundle() == 'wordpress_post_reference') {
+      $field = $entity->get('field_post_reference')->getValue();
+      $title = reset($field)['title'];
+      $entity->set('name', $title);
+    }
+  }
 }

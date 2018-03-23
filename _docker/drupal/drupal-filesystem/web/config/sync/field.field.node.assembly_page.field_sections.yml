@@ -8,6 +8,7 @@ dependencies:
     - assembly.assembly_type.featured_resources
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.rich_text
+    - assembly.assembly_type.static_content_band
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.assembly_page
@@ -32,6 +33,7 @@ settings:
       featured_resources: featured_resources
       dynamic_content_feed: dynamic_content_feed
       rich_text: rich_text
+      static_content_band: static_content_band
       videos: videos
     sort:
       field: _none
