@@ -185,6 +185,11 @@ function rhd_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
   $nid = $node->id();
+  if ($node->getType() == 'cheat_sheet') {
+      $variables['cheat_sheet_pages'] = array(
+          'card_image_url' => $node->field_card_image->getValue()[0]['uri']
+      );
+  }
   if ($node->getType() == 'product') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
