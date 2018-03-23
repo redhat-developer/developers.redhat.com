@@ -1,0 +1,20 @@
+uuid: 56106cf4-c054-489f-a6b3-820b7f62961d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.field.assembly.dynamic_content_feed.field_category_filter
+    - field.field.assembly.dynamic_content_feed.field_drupal_term_filter
+    - field.field.assembly.dynamic_content_feed.field_number_of_posts
+id: assembly.dynamic_content_feed.default
+targetEntityType: assembly
+bundle: dynamic_content_feed
+mode: default
+content: {  }
+hidden:
+  field_category_filter: true
+  field_drupal_term_filter: true
+  field_number_of_posts: true
+  name: true
+  user_id: true
