@@ -1,0 +1,7 @@
+rhd_assemblies.wppost_autocomplete:
+  path: '/rhd_assemblies/{field_name}/{count}'
+  defaults:
+    _controller: '\Drupal\rhd_assemblies\Controller\WppostAutocompleteController::handleAutocomplete'
+    _format: json
+  requirements:
+    _access: 'TRUE'
