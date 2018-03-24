@@ -44,29 +44,7 @@ class ListWpcategoriesItem extends ListIntegerItem {
    * {@inheritdoc}
    */
   public function getSettableOptions(AccountInterface $account = NULL) {
-    $count = 0;
-    $page = 1;
-    $page_max = 100;
-    $results = [];
-    do {
-      $feed_url = 'https://developers.redhat.com/blog/wp-json/wp/v2/categories?per_page=' . $page_max . '&page=' . $page;
-      $client = \Drupal::httpClient();
-      $request = $client->request('GET', $feed_url, ['query' => ['per_page' => $page_max, 'page' => $page]]);
-      $response = $request->getBody()->getContents();
-      $page_results = json_decode($response);
-      $count = count($page_results);
-      $results = array_merge($page_results, $results);
-      $page++;
-    } while ($count == $page_max);
-
-    // $build['title'] = ['#markup' => '<h2>' . $results->title . '</h2>'];
-    $options = [];
-    if (!empty($results)) {
-      foreach ($results as $category) {
-        $options[$category->id] = $category->name;
-      }
-    }
-    return $options;
+    return \Drupal::service('rhd_assemblies.wordpress_api')->getCategoryOptions();
   }
 
   /**
