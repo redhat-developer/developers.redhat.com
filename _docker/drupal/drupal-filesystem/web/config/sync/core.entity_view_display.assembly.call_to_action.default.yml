@@ -1,0 +1,49 @@
+uuid: bb5a5c43-cd7b-4616-832c-349b6004ec3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.field.assembly.call_to_action.field_background_image
+    - field.field.assembly.call_to_action.field_cta_content
+    - field.field.assembly.call_to_action.field_cta_link
+    - field.field.assembly.call_to_action.field_title
+  module:
+    - link
+    - text
+id: assembly.call_to_action.default
+targetEntityType: assembly
+bundle: call_to_action
+mode: default
+content:
+  field_cta_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_background_image: true
+  name: true
+  user_id: true
