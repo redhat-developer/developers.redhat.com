@@ -39,7 +39,8 @@ class WppostAutocompleteWidget extends WidgetBase {
       '#title' => t('Number of results'),
       '#default_value' => $this->getSetting('result_count'),
       '#required' => TRUE,
-      '#min' => 1
+      '#min' => 1,
+      '#max' => 100
     ];
     return $elements;
   }
