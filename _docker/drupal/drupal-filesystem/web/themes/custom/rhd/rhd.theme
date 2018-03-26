@@ -185,8 +185,8 @@ function rhd_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
   $nid = $node->id();
-  if ($node->getType() == 'cheat_sheet') {
-      $variables['cheat_sheet_pages'] = array(
+  if ($node->hasField('field_card_image')) {
+      $variables['learning_path_card'] = array(
           'card_image_url' => $node->field_card_image->getValue()[0]['uri']
       );
   }
