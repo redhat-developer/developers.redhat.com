@@ -4203,7 +4203,7 @@ var RHDPSearchApp = /** @class */ (function (_super) {
         _this.filterObj = {
             term: '',
             facets: [
-                { name: 'CONTENT TYPE', key: 'sys_type', items: [
+                { name: 'CONTENT TYPE', key: 'type', items: [
                         { key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs'] },
                         { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype'] },
                         { key: 'article', name: 'Article', value: ['article', 'solution'], type: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution'] },
@@ -4223,7 +4223,7 @@ var RHDPSearchApp = /** @class */ (function (_super) {
                 },
                 {
                     name: 'PRODUCT',
-                    key: 'product',
+                    key: 'project',
                     items: [
                         { key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
                         { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
