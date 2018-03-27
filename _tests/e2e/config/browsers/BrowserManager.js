@@ -42,7 +42,7 @@ class BrowserManager {
                 acceptInsecureCerts: true,
 
                 chromeOptions: {
-                    args: ['start-fullscreen', 'user-agent=Red Hat Developers Testing', 'disable-web-security'],
+                    args: ['start-fullscreen', 'disable-web-security'],
                     prefs: {
                         "download": {
                             "default_directory": path.resolve('tmp/chromeDownloads'),
@@ -61,7 +61,7 @@ class BrowserManager {
                 acceptInsecureCerts: true,
                 chromeOptions: {
                     mobileEmulation: {deviceName: browser},
-                    args: ['user-agent=Red Hat Developers Testing', 'disable-web-security'],
+                    args: ['disable-web-security'],
                     prefs: {
                         "download": {
                             "default_directory": path.resolve('tmp/chromeDownloads'),
