@@ -3,10 +3,10 @@ import {siteUser} from "../../support/rest/keycloak/Site.user"
 const restSteps = function () {
 
     this.Given(/^I am a RHD registered site visitor$/, function () {
-        if (process.env.RHD_BASE_URL.includes('pr.stage.redhat.com/pr')) {
-            siteUserDetails = siteUser.productionSiteUser();
-        } else {
+        if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
             siteUserDetails = siteUser.createRHDSiteUser();
+        } else {
+            siteUserDetails = siteUser.productionSiteUser();
         }
     });
 

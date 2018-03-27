@@ -14,7 +14,7 @@ const hooks = function () {
             case 'win32':
                 return 'Windows';
             default:
-                return "Linux";
+                return "RHEL";
         }
     }
 
@@ -60,7 +60,7 @@ const hooks = function () {
         }
 
         browser.deleteCookie();
-        driver.execute('window.localStorage.clear();');
+        browser.execute('window.localStorage.clear();');
     });
 
 };

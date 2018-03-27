@@ -6,12 +6,12 @@ class TopicsPage extends BasePage {
     constructor(topic) {
         super({
             path: `/topics/${topic}/`,
-            selector: '.page-topics-containers'
+            selector: `.page-topics-${topic}`
         });
 
         this.addSelectors({
             topicsHeader: '.topics-header',
-            topicResources: 'topic-resources',
+            topicResources: '#topic-resources',
             tertiaryPromo: '.tertiary-promo',
             whiteCards: '#topic-resources > ul > a > li'
         });
@@ -19,7 +19,12 @@ class TopicsPage extends BasePage {
     }
 
     awaitTopicsPage() {
-        driver.awaitExists(this.getSelector('topicResources'), 30000);
+        browser.waitUntil(function () {
+            let resultCount = browser.execute(function () {
+                return document.querySelectorAll('#topic-resources > ul > a > li').length;
+            });
+            return parseInt(resultCount.value) >= 12;
+        }, 30000, `Topics page was still loading after 30 seconds`);
     }
 
     getTertiaryCards() {

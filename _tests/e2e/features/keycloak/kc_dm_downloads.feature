@@ -3,7 +3,7 @@
 Feature: Download page
 
    # Internal Server Error -> https://developers.stage.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip
-  @dev_suite
+  @stage @dev_suite
   Scenario: Authenticated site user can download OS specific version of Red Hat Development Suite
     Given I am a RHD registered site visitor
     And I have logged into my account
