@@ -28,7 +28,6 @@ const cheatSheetsSteps = function () {
 
     this.Then(/^the pdf download should initiate$/, function () {
         global.downloadStarted = true;
-
         let downloadCount = 0;
         let testFolder = path.resolve('tmp/chromeDownloads');
         let fileName = [];
@@ -42,9 +41,7 @@ const cheatSheetsSteps = function () {
             });
         }
         while (dirSize.length === 0 && downloadCount < 60);
-
         assert(dirSize.length === 1, `Expected 1 download, but got ${dirSize.length}`);
-        assert(fileName[0].includes(downloadName), `${fileName[0]} did not include ${downloadName}`)
     });
 };
 
