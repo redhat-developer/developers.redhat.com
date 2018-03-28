@@ -18,6 +18,12 @@ class Driver {
         }, timeout, `Timed out after ${wdioTimeout} seconds waiting for url to contain ${string}`);
     }
 
+    waitForSelectorContainingText(selector, string, timeout = wdioTimeout) {
+        browser.waitUntil(function () {
+            return browser.getText(selector).indexOf(string) > -1
+        }, timeout, `Timed out after ${wdioTimeout} seconds waiting for selector to contain ${string}`);
+    }
+
     element(selector) {
         let element = browser.element(selector);
         this.awaitExists(element);

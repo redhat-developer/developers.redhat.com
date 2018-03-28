@@ -18,20 +18,8 @@ const hooks = function () {
         }
     }
 
-    let desktopBrowsers = ['chrome', 'firefox'];
-
     this.Before(function () {
         browser.deleteCookie();
-        global.operatingSystem = getOperatingSystem();
-        if (getOs !== 'darwin') {
-            // resize does not work on Mac OS
-            if (desktopBrowsers.includes(process.env.RHD_JS_DRIVER)) {
-                browser.windowHandleSize({
-                    width: 1200,
-                    height: 768
-                });
-            }
-        }
         global.siteUserDetails = "";
     });
 

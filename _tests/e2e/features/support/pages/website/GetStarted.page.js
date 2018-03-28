@@ -5,15 +5,20 @@ class GetStartedPage extends BasePage {
 
     constructor(productCode) {
         super();
-        this.addSelectors({downloadThankYou: '#downloadthankyou',});
+        this.addSelectors({
+            downloadThankYou: '#downloadthankyou'
+        });
         this.productCode = productCode
     }
 
     awaitGetStartedPage() {
-        driver.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 60000);
-        return driver.awaitExists(this.getSelector('downloadThankYou'), 90000);
+        return driver.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 30000);
     }
 
+    awaitDownloadThankYou(downloadThankYouMsg) {
+        this.awaitGetStartedPage();
+        return driver.waitForSelectorContainingText(this.getSelector('downloadThankYou'), downloadThankYouMsg, 30000);
+    }
 }
 
 export {

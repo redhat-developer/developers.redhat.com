@@ -30,9 +30,9 @@ const downloadsSteps = function () {
         downloadsPage.clickToDownload(product)
     });
 
-    this.Then(/^I should see the "(.*)" Hello\-World overview page$/, function (productCode) {
+    this.Then(/^I should see the "(.*)" Hello\-World overview page with Thank you for downloading "(.*)"$/, function (productCode, downloadThankYouMsg) {
         let getStartedPage = new GetStartedPage(productCode);
-        getStartedPage.awaitGetStartedPage();
+        getStartedPage.awaitDownloadThankYou(downloadThankYouMsg);
     });
 
     this.Then(/^a single download should initiate$/, function () {
@@ -51,7 +51,7 @@ const downloadsSteps = function () {
                 downloadCount++;
             });
         }
-        while (dirSize.length === 0 && downloadCount < 60);
+        while (dirSize.length === 0 && downloadCount < 10);
         browser.pause(3000);
         assert(dirSize.length === 1, `Expected 1 download, but got ${dirSize.length}`);
     });
