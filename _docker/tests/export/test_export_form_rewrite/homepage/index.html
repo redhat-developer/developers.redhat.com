@@ -22,7 +22,7 @@
     relURL = window.location.href.replace(/https?:\/\//,'').replace('rhdp-drupal.stage.redhat.com','').replace('developers.stage.redhat.com','').replace(/\/$/,'');
 
   ( function( w, d, dd, undefined ) {
-      var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//,'').replace(/\/$/,'').split('?')[0].split('#')[0].split('/'),
+      var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//),
           primary = '', subs = [],
           pageType = '';
       if (bc.length === 1 && bc[0] === "") {
