@@ -20,6 +20,7 @@ const hooks = function () {
 
     this.Before(function () {
         browser.deleteCookie();
+        global.operatingSystem = getOperatingSystem();
         global.siteUserDetails = "";
     });
 
