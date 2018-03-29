@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on RHDP Front-end Code and Documentation</title>
+    <link>https://redhat-developer.github.io/rhd-frontend/index.xml</link>
+    <description>Recent content in Home on RHDP Front-end Code and Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Aug 2017 10:56:11 -0400</lastBuildDate>
+    <atom:link href="https://redhat-developer.github.io/rhd-frontend/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Home Page Layout</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/layout/home/</link>
+      <pubDate>Wed, 04 Oct 2017 08:06:49 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/layout/home/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;a class=&amp;#34;spotlight-item dotnet-spotlight&amp;#34; href=&amp;#34;https://developers.redhat.com/blog/?p=438176&amp;#34;&amp;gt;.NET Core for RHEL and the OpenShift Container Platform.&amp;lt;/a&amp;gt;
+&amp;lt;a class=&amp;#34;spotlight-item&amp;#34; href=&amp;#34;https://developers.redhat.com/blog/?p=438176&amp;#34;&amp;gt;.NET Core for RHEL and the OpenShift Container Platform.&amp;lt;/a&amp;gt;
+&amp;lt;a class=&amp;#34;spotlight-item&amp;#34; href=&amp;#34;https://developers.redhat.com/blog/?p=438176&amp;#34;&amp;gt;.NET Core for RHEL and the OpenShift Container Platform.&amp;lt;/a&amp;gt;
+&amp;lt;a class=&amp;#34;spotlight-item&amp;#34; href=&amp;#34;https://developers.redhat.com/blog/?p=438176&amp;#34;&amp;gt;.NET Core for RHEL and the OpenShift Container Platform.&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;a class=&#34;spotlight-item dotnet-spotlight&#34; href=&#34;https://developers.redhat.com/blog/?p=438176&#34;&gt;.NET Core for RHEL and the OpenShift Container Platform.&lt;/a&gt;
+&lt;a class=&#34;spotlight-item&#34; href=&#34;https://developers.redhat.com/blog/?p=438176&#34;&gt;.NET Core for RHEL and the OpenShift Container Platform.&lt;/a&gt;
+&lt;a class=&#34;spotlight-item&#34; href=&#34;https://developers.redhat.com/blog/?p=438176&#34;&gt;.NET Core for RHEL and the OpenShift Container Platform.&lt;/a&gt;
+&lt;a class=&#34;spotlight-item&#34; href=&#34;https://developers.redhat.com/blog/?p=438176&#34;&gt;.NET Core for RHEL and the OpenShift Container Platform.&lt;/a&gt;
+
+&lt;/div&gt;
+
+
+</description>
+    </item>
+    
+    <item>
+      <title>Devnationlive</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/components/devnationlive/</link>
+      <pubDate>Wed, 23 Aug 2017 22:56:52 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/components/devnationlive/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;devnation-live-app src=&amp;#34;../../json/devnationlive.json&amp;#34;&amp;gt;&amp;lt;/devnation-live-app&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;devnation-live-app src=&#34;../../json/devnationlive.json&#34;&gt;&lt;/devnation-live-app&gt;
+&lt;/div&gt;
+
+
+</description>
+    </item>
+    
+    <item>
+      <title>Onebox</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/components/onebox/</link>
+      <pubDate>Wed, 23 Aug 2017 22:56:37 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/components/onebox/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-onebox url=&amp;#34;../../json/onebox.json&amp;#34; term=&amp;#34;fuse&amp;#34;&amp;gt;&amp;lt;/rhdp-search-onebox&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;rhdp-search-onebox url=&#34;../../json/onebox.json&#34; term=&#34;fuse&#34;&gt;&lt;/rhdp-search-onebox&gt;
+&lt;/div&gt;
+
+
+</description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/components/search/</link>
+      <pubDate>Wed, 23 Aug 2017 22:25:45 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/components/search/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-app url=&amp;#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&amp;#34;&amp;gt;&amp;lt;/rhdp-search-app&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;rhdp-search-app url=&#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&#34;&gt;&lt;/rhdp-search-app&gt;
+&lt;/div&gt;
+
+
+</description>
+    </item>
+    
+    <item>
+      <title>TS - TypeScript</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/code/ts/</link>
+      <pubDate>Fri, 18 Aug 2017 15:15:45 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/code/ts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML - Hypertext Markup Language</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/code/html/</link>
+      <pubDate>Thu, 03 Aug 2017 15:06:55 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/code/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CSS - Cascading Stylesheets</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/code/css/</link>
+      <pubDate>Thu, 03 Aug 2017 15:06:49 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/code/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JS - JavaScript</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/code/js/</link>
+      <pubDate>Thu, 03 Aug 2017 15:06:41 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/code/js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Accessibility (a11y)</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/a11y/</link>
+      <pubDate>Thu, 03 Aug 2017 15:05:58 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/a11y/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interactive Elements</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/interactive/</link>
+      <pubDate>Thu, 03 Aug 2017 15:05:26 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/interactive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Notifications</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/content/notifications/</link>
+      <pubDate>Thu, 03 Aug 2017 15:04:51 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/content/notifications/</guid>
+      <description>
+
+&lt;h1 id=&#34;alerts&#34;&gt;Alerts&lt;/h1&gt;
+
+&lt;h2 id=&#34;information&#34;&gt;Information&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;alert-box alert-info&amp;#34;&amp;gt;
+&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
+&amp;lt;strong&amp;gt;Info:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;div class=&#34;alert-box alert-info&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Info:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;h2 id=&#34;success&#34;&gt;Success&lt;/h2&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;alert-box alert-success&amp;#34;&amp;gt;
+&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
+&amp;lt;strong&amp;gt;Success:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;div class=&#34;alert-box alert-success&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Success:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/p&gt;
+
+&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;alert-box alert-warning&amp;#34;&amp;gt;
+&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
+&amp;lt;strong&amp;gt;Warning:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;div class=&#34;alert-box alert-warning&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Warning:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/p&gt;
+
+&lt;h2 id=&#34;error&#34;&gt;Error&lt;/h2&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;alert-box alert-error&amp;#34;&amp;gt;
+&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
+&amp;lt;strong&amp;gt;Error:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;div class=&#34;alert-box alert-error&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Error:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/p&gt;
+
+&lt;h2 id=&#34;information-xlarge&#34;&gt;Information XLarge&lt;/h2&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;alert-box alert-xl&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
+&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
+&amp;lt;h3&amp;gt;hello world&amp;lt;/h3&amp;gt;
+&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;a class=&amp;#34;close&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    
+&lt;div class=&#34;alert-box alert-xl&#34;&gt;&lt;div class=&#34;row&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;h3&gt;hello world&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.&lt;/p&gt;
+&lt;/div&gt;
+&lt;a class=&#34;close&#34;&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Style</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/content/style/</link>
+      <pubDate>Thu, 03 Aug 2017 15:04:33 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/content/style/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Handshakes, Log In, and Registration</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/handoffs/</link>
+      <pubDate>Thu, 03 Aug 2017 15:03:56 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/handoffs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/links/</link>
+      <pubDate>Thu, 03 Aug 2017 15:03:17 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/links/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Universal Footer</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/navigation/uni-footer/</link>
+      <pubDate>Thu, 03 Aug 2017 14:58:26 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/navigation/uni-footer/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+Notifications – RHDP Front-end Code and Documentation
+</title>
+    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism-solarizedlight.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>  
+  </head>
+  <body>
+    
+    
+<h1>Notifications</h1>
+
+
+<h1 id="alerts">Alerts</h1>
+
+<h2 id="information">Information</h2>
+
+<pre><code class="language-html">
+&lt;div class=&#34;alert-box alert-info&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Info:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="code-sample">
+    <strong>Sample:</strong>
+    
+<div class="alert-box alert-info">
+<div class="icon"></div>
+<div class="alert-content">
+<strong>Info:</strong><p>Lorem ipsum dolor sit amet, per id case aliquam expetenda.</p>
+</div>
+</div>
+
+</div>
+
+
+
+<h2 id="success">Success</h2>
+
+<p><pre><code class="language-html">
+&lt;div class=&#34;alert-box alert-success&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Success:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="code-sample">
+    <strong>Sample:</strong>
+    
+<div class="alert-box alert-success">
+<div class="icon"></div>
+<div class="alert-content">
+<strong>Success:</strong><p>Lorem ipsum dolor sit amet, per id case aliquam expetenda.</p>
+</div>
+</div>
+
+</div>
+
+</p>
+
+<h2 id="warning">Warning</h2>
+
+<p><pre><code class="language-html">
+&lt;div class=&#34;alert-box alert-warning&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Warning:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="code-sample">
+    <strong>Sample:</strong>
+    
+<div class="alert-box alert-warning">
+<div class="icon"></div>
+<div class="alert-content">
+<strong>Warning:</strong><p>Lorem ipsum dolor sit amet, per id case aliquam expetenda.</p>
+</div>
+</div>
+
+</div>
+
+</p>
+
+<h2 id="error">Error</h2>
+
+<p><pre><code class="language-html">
+&lt;div class=&#34;alert-box alert-error&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;strong&gt;Error:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="code-sample">
+    <strong>Sample:</strong>
+    
+<div class="alert-box alert-error">
+<div class="icon"></div>
+<div class="alert-content">
+<strong>Error:</strong><p>Lorem ipsum dolor sit amet, per id case aliquam expetenda.</p>
+</div>
+</div>
+
+</div>
+
+</p>
+
+<h2 id="information-xlarge">Information XLarge</h2>
+
+<p><pre><code class="language-html">
+&lt;div class=&#34;alert-box alert-xl&#34;&gt;&lt;div class=&#34;row&#34;&gt;
+&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;alert-content&#34;&gt;
+&lt;h3&gt;hello world&lt;/h3&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.&lt;/p&gt;
+&lt;/div&gt;
+&lt;a class=&#34;close&#34;&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+</code></pre>
+<div class="code-sample">
+    <strong>Sample:</strong>
+    
+<div class="alert-box alert-xl"><div class="row">
+<div class="icon"></div>
+<div class="alert-content">
+<h3>hello world</h3>
+<p>Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.</p>
+</div>
+<a class="close"></a>
+</div></div>
+
+</div>
+
+</p>
+
+
+    
+    
+    
+    <script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+  </body>
+</html>
