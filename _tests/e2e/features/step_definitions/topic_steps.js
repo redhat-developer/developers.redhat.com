@@ -6,15 +6,14 @@ const topicsSteps = function () {
     this.Given(/^I am on the "([^"]*)" Topic page$/, function (topic) {
         topicsPage = new TopicsPage(topic);
         topicsPage.open();
-        topicsPage.awaitTopicsPage()
-
+        topicsPage.awaitTopicsPage();
     });
 
     this.Then(/^I should see at least (\d+) Resource Cards$/, function (expectedCards) {
         let tertiaryCards = topicsPage.getTertiaryCards().value.length;
         let whiteCards = topicsPage.getWhiteCards().value.length;
         let actualCards = tertiaryCards + whiteCards;
-        expect(actualCards).to.be.gte(expectedCards)
+        expect(actualCards).to.be.at.least(parseInt(expectedCards));
     });
 
 };

@@ -16,11 +16,11 @@ class SearchBox extends BasePage {
     }
 
     enterSearch(searchTerm) {
-        return driver.type(this.getSelector('searchField'), searchTerm);
+        return driver.type(searchTerm, this.getSelector('searchField'));
     }
 
     searchFor(searchTerm) {
-        driver.type(this.getSelector('searchField'), searchTerm);
+        driver.type(searchTerm, this.getSelector('searchField'));
         driver.clickOn(this.getSelector('searchButton'));
         return this.searchResults.awaitResultsFor(searchTerm)
     }
