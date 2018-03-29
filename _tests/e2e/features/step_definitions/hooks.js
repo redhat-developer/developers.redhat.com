@@ -14,24 +14,13 @@ const hooks = function () {
             case 'win32':
                 return 'Windows';
             default:
-                return "Linux";
+                return "RHEL";
         }
     }
-
-    let desktopBrowsers = ['chrome', 'firefox'];
 
     this.Before(function () {
         browser.deleteCookie();
         global.operatingSystem = getOperatingSystem();
-        if (getOs !== 'darwin') {
-            // resize does not work on Mac OS
-            if (desktopBrowsers.includes(process.env.RHD_JS_DRIVER)) {
-                browser.windowHandleSize({
-                    width: 1200,
-                    height: 768
-                });
-            }
-        }
         global.siteUserDetails = "";
     });
 
@@ -60,7 +49,7 @@ const hooks = function () {
         }
 
         browser.deleteCookie();
-        driver.execute('window.localStorage.clear();');
+        browser.execute('window.localStorage.clear();');
     });
 
 };

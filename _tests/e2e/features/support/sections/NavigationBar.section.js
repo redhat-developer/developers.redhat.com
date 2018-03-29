@@ -39,7 +39,7 @@ class NavigationBarSection extends BasePage {
 
     enterSearch(searchTerm) {
         this.toggleMobileNav();
-        return driver.type(this.getSelector('searchField'), searchTerm);
+        return driver.type(searchTerm, this.getSelector('searchField'));
     }
 
     triggerSearch() {
@@ -48,7 +48,7 @@ class NavigationBarSection extends BasePage {
 
     searchFor(searchTerm) {
         this.toggleMobileNav();
-        driver.type(this.getSelector('searchField'), searchTerm);
+        driver.type(searchTerm, this.getSelector('searchField'));
         driver.clickOn(this.getSelector('searchButton'));
     }
 

@@ -16,8 +16,8 @@ class LoginPage extends BasePage {
             loginButton: '#kc-login',
             gitHubBtn: '#social-github',
             forgotPasswordLink: '//*[@id="kc-form-login"]//a[contains(text(), "Forgot your password?")]',
+            registerLink: '//a[contains(text(), "Create one now.")]',
             kcFeedback: '#kc-feedback',
-            registerButton: '#kc-form-wrapper > div > div:nth-child(2) > div > div > a'
         });
     }
 
@@ -35,13 +35,23 @@ class LoginPage extends BasePage {
     }
 
     login(user) {
-        driver.type(this.getSelector('usernameField'), user['email']);
-        driver.type(this.getSelector('passwordField'), user['password']);
+        driver.type(user['email'], this.getSelector('usernameField'));
+        driver.type(user['password'], this.getSelector('passwordField'));
+        return driver.clickOn(this.getSelector('loginButton'))
+    }
+
+    loginWith(user, loginType) {
+        if (loginType === 'email') {
+            driver.type(user['email'], this.getSelector('usernameField'));
+        } else {
+            driver.type(user['username'], this.getSelector('usernameField'));
+        }
+        driver.type(user['password'], this.getSelector('passwordField'));
         return driver.clickOn(this.getSelector('loginButton'))
     }
 
     clickRegisterBtn() {
-        return driver.clickOn(this.getSelector('registerButton'))
+        return driver.clickOn(this.getSelector('registerLink'))
     }
 
     clickGithubBtn() {
