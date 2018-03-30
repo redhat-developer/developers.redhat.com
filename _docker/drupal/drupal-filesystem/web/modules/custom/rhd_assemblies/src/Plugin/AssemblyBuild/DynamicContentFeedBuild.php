@@ -32,7 +32,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         '#theme' => 'item_list',
         '#list_type' => 'ul',
         '#items' => [],
-        '#attributes' => ['class' => 'content-teaser-list'],
+        '#attributes' => ['class' => 'content-tile-list'],
       ];
       foreach ($items as $item) {
         if (isset($item['post'])) {
@@ -46,7 +46,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         else if (isset($item['node'])) {
           $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
           $storage = \Drupal::entityTypeManager()->getStorage('node');
-          $build['posts']['#items'][] = $view_builder->view($item['node'], 'teaser');
+          $build['posts']['#items'][] = $view_builder->view($item['node'], 'tile');
         }
       }
     }
@@ -116,9 +116,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     }
 
     $valid_node_types = [
-      'video_resource',
-      'cheat_sheet',
-      'article'
+      'video_resource'
     ];
 
     $query = \Drupal::database()->select('node__field_topics', 't');
