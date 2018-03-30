@@ -5,4 +5,5 @@ Feature: User can download promotional cheat sheets
     And I am on the promotion page for the "advanced-linux-commands"
     When I click on the Log in to Download "Advanced Linux Cheatsheet" button
     And I log in with my email address
-    Then the pdf download should initiate
+    Then I should see the thank you for downloading "Advanced Linux Cheatsheet" page
+    And the pdf download should initiate

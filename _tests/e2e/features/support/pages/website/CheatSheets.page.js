@@ -11,12 +11,18 @@ class CheatSheetsPage extends BasePage {
         this.addSelectors({
             cheatSheetPage: '#rhd-cheat-sheet',
             loginToDownloadBtn: '.hidden-after-login',
-            clickToDownloadBtn: '.shown-after-login'
+            clickToDownloadBtn: '.shown-after-login',
+            thankYou: '.thankyou'
         });
     }
 
     awaitLoaded() {
         return driver.awaitIsVisible(this.getSelector('cheatSheetPage'));
+    }
+
+    downloadConfirmation() {
+        driver.waitForUrlContaining('media-download-confirmation', 30000);
+        return driver.textOf(this.getSelector('thankYou'))
     }
 
     clickLoginToDownloadBtn() {

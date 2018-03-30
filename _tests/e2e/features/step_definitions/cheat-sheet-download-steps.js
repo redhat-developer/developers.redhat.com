@@ -27,6 +27,10 @@ const cheatSheetsSteps = function () {
         downloadName = dm.getDownloadFor(`Media: ${cheatSheet}`);
     });
 
+    this.When(/^I should see the thank you for downloading "(.*)" page/, function (cheatSheet) {
+        expect(cheatSheetPage.downloadConfirmation()).to.contain(cheatSheet);
+    });
+
     this.Then(/^the pdf download should initiate$/, function () {
         global.downloadStarted = true;
         let downloadCount = 0;
