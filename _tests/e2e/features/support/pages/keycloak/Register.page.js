@@ -37,6 +37,7 @@ class RegisterPage extends BasePage {
     }
 
     kcRegisterFormDispalyed() {
+        driver.waitForTitle('Register');
         return driver.isDisplayed(this.getSelector('registerForm'), 30000);
     }
 

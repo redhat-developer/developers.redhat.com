@@ -42,7 +42,7 @@ const cheatSheetsSteps = function () {
             });
         }
         while (dirSize.length === 0 && downloadCount < 10);
-        assert(dirSize.length === 1, `Expected 1 download, but got ${dirSize.length}`);
+        expect(dirSize.length).to.be.at.least(1);
     })
 };
 

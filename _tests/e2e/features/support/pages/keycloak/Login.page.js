@@ -26,6 +26,7 @@ class LoginPage extends BasePage {
     }
 
     loginPageDisplayed() {
+        driver.waitForTitle('Log In');
         let el = driver.element(this.getSelector('loginPage'));
         return driver.isDisplayed(el)
     }

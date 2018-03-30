@@ -1,4 +1,5 @@
 import {KeyCloakAdmin} from '../support/rest/keycloak/Keycloak.admin'
+
 const fs = require('fs-extra');
 const path = require('path');
 const qs = require('querystring');
@@ -23,6 +24,14 @@ const hooks = function () {
         global.operatingSystem = getOperatingSystem();
         global.siteUserDetails = "";
         global.downloadDir = 'tmp_downloads';
+        let pathToChromeDownloads = path.resolve(global.downloadDir);
+        let dirSize = [];
+        fs.readdirSync(pathToChromeDownloads).forEach(file => {
+            dirSize.push(file)
+        });
+        if (dirSize.length > 0) {
+            fs.emptyDir(pathToChromeDownloads)
+        }
     });
 
     this.After(function () {
@@ -34,13 +43,12 @@ const hooks = function () {
         }
 
         if (typeof downloadStarted !== 'undefined') {
-            let pathToChromeDownloads = path.resolve(global.downloadDir);
             let dirSize = [];
-            fs.readdirSync(pathToChromeDownloads).forEach(file => {
+            fs.readdirSync(global.downloadDir).forEach(file => {
                 dirSize.push(file)
             });
             if (dirSize.length > 0) {
-                fs.emptyDir(pathToChromeDownloads)
+                fs.emptyDir(global.downloadDir)
             }
         }
 

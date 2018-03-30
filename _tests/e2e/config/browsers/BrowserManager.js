@@ -54,7 +54,7 @@ class BrowserManager {
                             "default_directory": pathToChromeDownloads,
                             "prompt_for_download": false
                         },
-                    profile: {
+                        profile: {
                             "default_content_setting_values": {"automatic_downloads": 1}
                         }
                     }
