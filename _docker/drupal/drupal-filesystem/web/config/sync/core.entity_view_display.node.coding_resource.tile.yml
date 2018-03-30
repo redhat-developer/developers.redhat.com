@@ -1,0 +1,44 @@
+uuid: ba0dc9d0-6411-40c2-ac60-b008dabbdfc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.coding_resource.body
+    - field.field.node.coding_resource.field_author
+    - field.field.node.coding_resource.field_contributors
+    - field.field.node.coding_resource.field_description
+    - field.field.node.coding_resource.field_level
+    - field.field.node.coding_resource.field_published_date
+    - field.field.node.coding_resource.field_related_product
+    - field.field.node.coding_resource.field_resource_type
+    - field.field.node.coding_resource.field_source_link
+    - field.field.node.coding_resource.field_tags
+    - field.field.node.coding_resource.field_technologies
+    - field.field.node.coding_resource.field_version
+    - field.field.node.coding_resource.scheduled_update
+    - node.type.coding_resource
+  module:
+    - user
+_core:
+  default_config_hash: MUBX8_AuOPpetxoN1KE_aD0EdmVebkcUiD0SK-MDMK4
+id: node.coding_resource.tile
+targetEntityType: node
+bundle: coding_resource
+mode: tile
+content: {  }
+hidden:
+  body: true
+  field_author: true
+  field_contributors: true
+  field_description: true
+  field_level: true
+  field_published_date: true
+  field_related_product: true
+  field_resource_type: true
+  field_source_link: true
+  field_tags: true
+  field_technologies: true
+  field_version: true
+  links: true
+  scheduled_update: true

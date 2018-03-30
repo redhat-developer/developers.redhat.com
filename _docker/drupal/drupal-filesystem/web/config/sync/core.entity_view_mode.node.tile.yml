@@ -1,0 +1,14 @@
+uuid: ef6360f6-ad83-4353-a64f-10432887d841
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'For use in certain assemblies.'
+id: node.tile
+label: Tile
+targetEntityType: node
+cache: true

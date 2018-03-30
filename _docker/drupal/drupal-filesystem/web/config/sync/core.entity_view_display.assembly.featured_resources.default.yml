@@ -1,0 +1,39 @@
+uuid: 4a8fb41e-4eec-4d80-9652-dbeead2f3a5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_resources
+    - field.field.assembly.featured_resources.field_links
+    - field.field.assembly.featured_resources.field_resources
+  module:
+    - link
+id: assembly.featured_resources.default
+targetEntityType: assembly
+bundle: featured_resources
+mode: default
+content:
+  field_links:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_resources:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: tile
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  name: true
+  user_id: true
