@@ -1,5 +1,3 @@
-const faker = require('faker');
-
 if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
 } else {
@@ -51,8 +49,6 @@ if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
 } else {
     cucumberTags = ['~@ignore', '~@kc', '~dm', browserstackBrowserCaps['tag']]
 }
-
-process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});
 
 module.exports = {
 

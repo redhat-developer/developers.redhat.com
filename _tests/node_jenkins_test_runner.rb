@@ -21,10 +21,12 @@ class NodeJenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    if @test_type == 'e2e' || @test_type == 'kc_e2e'
+    if @test_type == 'e2e' || @test_type == 'kc'
       %w(desktop mobile).each do |profile|
         tests_passed &= execute_e2e(profile)
       end
+    elsif @test_type == 'dm'
+      tests_passed &= execute_e2e('desktop')
     elsif @test_type == 'blc'
       tests_passed &= execute_blc
     elsif @test_type == 'sanity'
@@ -43,6 +45,7 @@ class NodeJenkinsTestRunner
   def execute_e2e(profile)
     success = true
     test_execution_command = build_e2e_run_tests_command(profile)
+    create_download_dir
     begin
       @process_runner.execute!(test_execution_command)
     rescue
@@ -51,10 +54,6 @@ class NodeJenkinsTestRunner
     end
     clear_download_dir
     success
-  end
-
-  def clear_download_dir
-    FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp/chromeDownloads")
   end
 
   #
@@ -121,7 +120,6 @@ class NodeJenkinsTestRunner
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
-    command += ' --kc' if @test_type == 'kc_e2e'
     if profile == 'mobile'
       command += ' --browser=iphone_6'
     else
@@ -157,6 +155,14 @@ class NodeJenkinsTestRunner
     command
   end
 
+  def create_download_dir
+    FileUtils.mkdir_p("#{@control_script_directory}/e2e/tmp_downloads")
+  end
+
+  def clear_download_dir
+    FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp_downloads")
+  end
+
 end
 
 #
@@ -168,7 +174,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w[blc e2e kc_e2e sanity]
+  available_test_types = %w[blc e2e dm kc sanity]
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"

@@ -52,6 +52,8 @@ Feature: Search Page
     And the search page is displayed
     Then I should see a message "0 results found for bfehwfbhbn"
 
+  # https://issues.jboss.org/browse/DEVELOPER-4839
+  @ignore
   Scenario: Blog posts are searchable
     Given I am on the Home page
     When I search for "Red Hat JBoss Data Grid 7.0 is out" via the site-nav search bar

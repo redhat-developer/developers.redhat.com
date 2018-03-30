@@ -68,10 +68,6 @@ class RunTestOptions
         test_configuration[:cucumber_tags] = cucumber_tags
       end
 
-      opts.on('--kc', 'Run the KeyCloak e2e tests') do
-        test_configuration[:keycloak] = true
-      end
-
       #
       # Broken link checking commandline options
       #
