@@ -1,0 +1,23 @@
+uuid: 90c6327b-6378-4779-aba7-a6e55b861aeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_linkedin
+    - node.type.author
+  module:
+    - link
+id: node.author.field_linkedin
+field_name: field_linkedin
+entity_type: node
+bundle: author
+label: LinkedIn
+description: 'The URL of your LinkedIn profile'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

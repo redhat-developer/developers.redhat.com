@@ -1,0 +1,57 @@
+uuid: 7c540463-2586-44d4-9ad6-19cac6acbd9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_evangelists
+    - field.field.assembly.featured_evangelists.field_cta_link
+    - field.field.assembly.featured_evangelists.field_evangelists
+  module:
+    - link
+id: assembly.featured_evangelists.default
+targetEntityType: assembly
+bundle: featured_evangelists
+mode: default
+content:
+  field_cta_link:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_evangelists:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

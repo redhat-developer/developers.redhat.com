@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.blog_posts
+    - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.rich_text
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
@@ -26,7 +28,9 @@ settings:
   handler_settings:
     target_bundles:
       blog_posts: blog_posts
+      call_to_action: call_to_action
       content_with_image: content_with_image
+      featured_evangelists: featured_evangelists
       rich_text: rich_text
       videos: videos
     sort:

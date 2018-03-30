@@ -1,0 +1,23 @@
+uuid: 008ec395-769f-446b-8454-434347e373fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_youtube
+    - node.type.author
+  module:
+    - link
+id: node.author.field_youtube
+field_name: field_youtube
+entity_type: node
+bundle: author
+label: YouTube
+description: 'The URL of your YouTube channel'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link
