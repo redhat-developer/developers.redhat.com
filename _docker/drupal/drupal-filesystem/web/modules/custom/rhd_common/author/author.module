@@ -22,8 +22,8 @@ function author_preprocess_node(&$variables) {
       if ($value && count($value) && isset($value[0]['uri'])) {
         $value = reset($value)['uri'];
         $variables['content']['social_icons'][] = [
-          'value' => $value,
-          'field' => str_replace('field_', '', $field)
+          'value' => ['#markup' => $value],
+          'field' => ['#markup' => str_replace('field_', '', $field)]
         ];
         unset($variables['content'][$field]);
       }

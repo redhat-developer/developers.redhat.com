@@ -21,7 +21,10 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = $entity->get('field_number_of_posts')->getValue();
     $count = reset($count)['value'];
+    $this->getItems($build, $entity, $count);
+  }
 
+  protected function getItems(&$build, $entity, $count) {
     $posts = $this->getWordpressPosts($entity, $count);
     $nodes = $this->getDrupalNodes($entity, $count);
     $items = $this->orderItems($posts, $nodes);
@@ -50,9 +53,10 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         }
       }
     }
+
   }
 
-  private function orderItems($posts, $nodes) {
+  protected function orderItems($posts, $nodes) {
     $items = [];
 
     // Combine into a single list, ordered by date. Use double array in case
@@ -81,7 +85,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     return $flat_items;
   }
 
-  private function getWordpressPosts(EntityInterface $entity, $count) {
+  protected function getWordpressPosts(EntityInterface $entity, $count) {
     $category_filters = $entity->get('field_category_filter')->getValue();
     if (empty($category_filters)) {
       return [];
@@ -102,7 +106,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     return [];
   }
 
-  private function getDrupalNodes(EntityInterface $entity, $count) {
+  protected function getDrupalNodes(EntityInterface $entity, $count) {
     $term_filters = $entity->get('field_drupal_term_filter')->getValue();
     if (empty($term_filters)) {
       return [];
