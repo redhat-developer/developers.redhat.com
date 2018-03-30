@@ -1,0 +1,27 @@
+uuid: 596ec091-68b5-4e7e-8e92-459cdda2e624
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.node_reference
+    - field.field.assembly.node_reference.field_node_reference
+id: assembly.node_reference.default
+targetEntityType: assembly
+bundle: node_reference
+mode: default
+content:
+  field_node_reference:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  moderation_state: true
+  name: true
+  status: true
+  user_id: true
+  visual_styles: true
