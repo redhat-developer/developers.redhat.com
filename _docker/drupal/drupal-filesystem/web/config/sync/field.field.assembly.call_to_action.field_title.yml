@@ -1,0 +1,19 @@
+uuid: e7327499-2ec3-4d9d-a466-f2b51a2c032e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_title
+id: assembly.call_to_action.field_title
+field_name: field_title
+entity_type: assembly
+bundle: call_to_action
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
