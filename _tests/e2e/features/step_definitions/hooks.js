@@ -1,4 +1,5 @@
 import {KeyCloakAdmin} from '../support/rest/keycloak/Keycloak.admin'
+
 const fs = require('fs-extra');
 const path = require('path');
 const qs = require('querystring');
@@ -14,25 +15,23 @@ const hooks = function () {
             case 'win32':
                 return 'Windows';
             default:
-                return "Linux";
+                return "RHEL";
         }
     }
-
-    let desktopBrowsers = ['chrome', 'firefox'];
 
     this.Before(function () {
         browser.deleteCookie();
         global.operatingSystem = getOperatingSystem();
-        if (getOs !== 'darwin') {
-            // resize does not work on Mac OS
-            if (desktopBrowsers.includes(process.env.RHD_JS_DRIVER)) {
-                browser.windowHandleSize({
-                    width: 1200,
-                    height: 768
-                });
-            }
-        }
         global.siteUserDetails = "";
+        global.downloadDir = 'tmp_downloads';
+        let pathToChromeDownloads = path.resolve(global.downloadDir);
+        let dirSize = [];
+        fs.readdirSync(pathToChromeDownloads).forEach(file => {
+            dirSize.push(file)
+        });
+        if (dirSize.length > 0) {
+            fs.emptyDir(pathToChromeDownloads)
+        }
     });
 
     this.After(function () {
@@ -44,13 +43,12 @@ const hooks = function () {
         }
 
         if (typeof downloadStarted !== 'undefined') {
-            let pathToChromeDownloads = path.resolve('tmp/chromeDownloads');
             let dirSize = [];
-            fs.readdirSync(pathToChromeDownloads).forEach(file => {
+            fs.readdirSync(global.downloadDir).forEach(file => {
                 dirSize.push(file)
             });
             if (dirSize.length > 0) {
-                fs.emptyDir(pathToChromeDownloads)
+                fs.emptyDir(global.downloadDir)
             }
         }
 
@@ -60,7 +58,7 @@ const hooks = function () {
         }
 
         browser.deleteCookie();
-        driver.execute('window.localStorage.clear();');
+        browser.execute('window.localStorage.clear();');
     });
 
 };

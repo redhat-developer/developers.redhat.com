@@ -32,11 +32,15 @@ const registerSteps = function () {
         registerPage.simpleRegister(siteUserDetails);
     });
 
-    this.When(/^I register a new account$/, function () {
+    this.When(/^I register a new account with "(.*)"$/, function (termsModel) {
         siteUserDetails = siteUser.generate();
         loginPage.clickRegisterBtn();
         registerPage.awaitRegisterPage();
-        registerPage.extendedRegister(siteUserDetails);
+        if (termsModel === 'RHD full user profile') {
+            registerPage.simpleRegister(siteUserDetails)
+        } else {
+            registerPage.extendedRegister(termsModel, siteUserDetails);
+        }
     });
 
     this.Then(/^I should be taken to a page informing me that I need to verify my email in order to continue$/, function () {

@@ -69,6 +69,7 @@ const editAccountSteps = function () {
         loginPage.open();
         loginPage.login(siteUserDetails);
     });
+
 };
 
 module.exports = editAccountSteps;

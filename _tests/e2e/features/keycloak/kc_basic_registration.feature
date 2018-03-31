@@ -1,5 +1,5 @@
 @kc
-
+# blocked by DEVELOPER-4770
 Feature: Basic personal registration
 
   As a visitor on the developers.redhat.com website,

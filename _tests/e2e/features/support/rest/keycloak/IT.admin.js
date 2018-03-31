@@ -2,7 +2,7 @@ const request = require('sync-request');
 const qs = require('querystring');
 const wait = require('asyncawait/await');
 
-// We have outdated certs in our staging environment. This allows us to access the staging keycloak admin.
+// We have outdated certs in our staging environment. This allows us to access the staging i.t admin.
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /**

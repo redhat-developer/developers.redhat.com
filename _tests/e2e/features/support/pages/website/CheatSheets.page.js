@@ -5,27 +5,40 @@ class CheatSheetsPage extends BasePage {
 
     constructor(cheatSheet) {
         super({
-            path: `/cheat-sheets/${cheatSheet}/`.toString(),
+            path: `/cheat-sheets/${cheatSheet}/`.toString()
         });
 
         this.addSelectors({
+            cheatSheetPage: '#rhd-cheat-sheet',
             loginToDownloadBtn: '.hidden-after-login',
-            downloadBtn: '//*[@id="rhd-cheat-sheet"]/div[2]//a[2]',
+            clickToDownloadBtn: '.shown-after-login',
+            thankYou: '.thankyou'
         });
     }
 
+    awaitLoaded() {
+        return driver.awaitIsVisible(this.getSelector('cheatSheetPage'));
+    }
+
+    downloadConfirmation() {
+        driver.waitForUrlContaining('media-download-confirmation', 30000);
+        return driver.textOf(this.getSelector('thankYou'))
+    }
+
     clickLoginToDownloadBtn() {
-        return driver.clickOn(this.getSelector('loginToDownloadBtn'))
+        let downloadBtn = driver.element(this.getSelector('loginToDownloadBtn'));
+        let location = downloadBtn.getLocationInView();
+        downloadBtn.scroll(location['x'], location['y']);
+        return driver.clickOn(downloadBtn);
     }
 
-    clickToDownloadBtn() {
-        return driver.clickOn(this.getSelector('downloadBtn'))
+    clickDownloadBtn() {
+        driver.awaitIsVisible(this.getSelector('clickToDownloadBtn'));
+        let downloadBtn = driver.element(this.getSelector('clickToDownloadBtn'));
+        let location = downloadBtn.getLocationInView();
+        downloadBtn.scroll(location['x'], location['y']);
+        return driver.clickOn(downloadBtn);
     }
-
-    clickToDownload(product, url) {
-
-    }
-
 }
 
 export {
