@@ -1,0 +1,35 @@
+<header role="banner">
+    <div class="rh-universal-header">
+        <img class="rh-header-logo" alt="Red Hat Logo" src="/img/rh-logo.png">
+        <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
+            <ul>
+                <li><a href="#">Customer Portal</a></li>
+                <li><a href="#">Developer</a></li>
+                <li><a href="#">OpenShift</a></li>
+                <li><a href="#">OpenShift.io</a></li>
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Store</a></li>
+                <li class="rh-universal-login"><a href="#"><i class="fas fa-user"></i>Log In</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="rhd-header">
+        <img class="rhd-header-logo" alt="Red Hat Developer Logo" src="/img/rhd-logo.png">
+        <nav class="rhd-nav-fixed" aria-label="Static Main Navigation" role="navigation">
+            <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+                <li>Four</li>
+                <li class="rhd-nav-search"><i class="fas fa-search"></i></li>
+            </ul>
+        </nav>
+        <nav class="rhd-nav-dynamic" aria-label="Topic Navigation" role="navigation">
+            <ul>
+                {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+                <li><a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</header>
