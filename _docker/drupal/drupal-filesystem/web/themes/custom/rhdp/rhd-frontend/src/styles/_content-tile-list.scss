@@ -1,0 +1,17 @@
+.item-list .content-tile-list,
+.item-list .content-tile-list>li{
+  list-style-type: none;
+  list-style-image: none;
+}
+
+ul.content-tile-list {
+  display: grid;
+  grid-gap: 10px 10px;
+  grid-template-columns: auto auto auto;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  li {
+
+  }
+}

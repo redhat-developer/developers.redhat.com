@@ -1,0 +1,19 @@
+.node--type-author {
+  &.node--view-mode-teaser {
+
+    .field--name-field-headshot {
+      float: left;
+      max-width: 30%;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    .field--name-body.clearfix {
+      clear: none !important;
+    }
+
+  }
+}

@@ -1,0 +1,36 @@
+.wordpress-blog-post-tile {
+  width: 100%;
+  &>a {
+    display: block;
+  }
+
+  .tile-image {
+    width: 100%;
+    height: 0;
+    padding-top: 66%;
+    position: relative;
+    overflow: hidden;
+  }
+  .image-table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: table;
+    .image-cell {
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+      img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
