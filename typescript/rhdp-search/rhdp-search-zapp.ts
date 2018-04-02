@@ -81,7 +81,7 @@ class RHDPSearchApp extends HTMLElement {
                 {key: 'quickstart', name: "Quickstart", value: ['jbossdeveloper_quickstart'], type: ['jbossdeveloper_quickstart']},
                 {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_question'], type: ['stackoverflow_question']},
                 {key: 'video', name: "Video", value: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
-                {key: 'webpage', name: "Web Page", value: ['rhd_website'], type: ['rhd_website']}
+                {key: 'webpage', name: "Web Page", value: ['rht_website'], type: ['rht_website']}
                 ] 
             },
             {
