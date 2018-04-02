@@ -1,0 +1,33 @@
+.assembly-type-dynamic_content_feed {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  // reset css from classy
+  .item-list ul.content-tile-list,
+  .item-list ul.content-tile-list>li {
+    list-style-type: none;
+    list-style-image: none;
+  }
+
+  .content-tile-list {
+    display: grid;
+    grid-gap: 30px 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    &>li {
+      margin: 0;
+      padding: 0;
+    }
+
+    grid-template-columns: 1fr 1fr;
+    @media (min-width: 768px) {
+      &.count-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      &.count-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+  }
+}

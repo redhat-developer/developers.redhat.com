@@ -35,7 +35,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         '#theme' => 'item_list',
         '#list_type' => 'ul',
         '#items' => [],
-        '#attributes' => ['class' => 'content-tile-list'],
+        '#attributes' => ['class' => 'content-tile-list count-' . $count],
       ];
       foreach ($items as $item) {
         if (isset($item['post'])) {

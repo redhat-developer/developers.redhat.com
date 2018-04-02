@@ -1,9 +1,16 @@
 .assembly-type-static_content_band {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
   .field--name-field-content-list {
     display: grid;
-    grid-gap: 10px 10px;
-    grid-template-columns: auto auto auto;
-    margin-left: 10px;
-    margin-right: 10px;
+    grid-gap: 30px 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    grid-template-columns: 1fr 1fr;
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }
