@@ -25,18 +25,21 @@ services:
       - RHD_TEST_PROFILE
       - RHD_DRUPAL_ADMIN_USERNAME
       - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
 
   chrome:
-    image: selenium/standalone-chrome:3.8.1-aluminum
+    image: selenium/standalone-chrome-debug:3.8.1-aluminum
     volumes:
       - /dev/shm:/dev/shm
+      - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
     ports:
       - "5900"
     links:
       - rhd_e2e_testing
 
   firefox:
-    image: selenium/standalone-firefox:3.8.1-aluminum
+    image: selenium/standalone-firefox-debug:3.8.1-aluminum
     ports:
       - "5901"
     links:

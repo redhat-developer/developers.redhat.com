@@ -22,27 +22,32 @@ class AdditionalInformation extends BasePage {
             postalCodeField: '//*[@id="user.attributes.addressPostalCode"]',
             fullUserTtac: '.fulluser-ttac',
             tacCheckall: '#tac-checkall',
-            createAccountBtn: '.button',
+            submitBtn: '.button',
         });
     }
 
     completeAdditionalInformation(user, acceptTerms = false) {
-        driver.type(this.getSelector('firstNameField'), user['firstName']);
-        driver.type(this.getSelector('lastNameField'), user['lastName']);
-        driver.type(this.getSelector('companyField'), user['company']);
-        driver.type(this.getSelector('phoneNumberField'), user['phoneNumber']);
+        driver.type(user['firstName'], this.getSelector('firstNameField'));
+        driver.type(user['lastName'], this.getSelector('lastNameField'));
+        driver.type(user['company'], this.getSelector('companyField'));
+        driver.type(user['phoneNumber'],this.getSelector('phoneNumberField'));
         driver.selectByValue(this.getSelector('countrySelect'), user['countryCode']);
 
         if (user['state'] !== null) {
             driver.selectByValue(this.getSelector('stateSelect'), user['state']);
         }
 
+        driver.type(user['addressLineOne'], this.getSelector('addressLineOneField'));
+        driver.type(user['city'], this.getSelector('cityField'));
+        driver.type(user['postalCode'], this.getSelector('postalCodeField'));
+
+
         if (driver.isDisplayed(this.getSelector('emailField'))) {
-            driver.type(this.getSelector('emailField'), user['email']);
+            driver.type(user['email'], this.getSelector('emailField'));
         }
 
         if (driver.isDisplayed(this.getSelector('passwordField'))) {
-            driver.type(this.getSelector('passwordField'), user['password']);
+            driver.type(user['password'], this.getSelector('passwordField'));
         }
 
         if (acceptTerms === true) {
@@ -52,7 +57,7 @@ class AdditionalInformation extends BasePage {
                 driver.clickOn(el);
             }
         }
-        return driver.clickOn(this.getSelector('createAccountBtn'))
+        return driver.clickOn(this.getSelector('submitBtn'))
     }
 
 }

@@ -17,8 +17,8 @@ class GitHubLoginPage extends BasePage {
     }
 
     login(username, password) {
-        driver.type(this.getSelector('usernameField'), username);
-        driver.type(this.getSelector('passwordField'), password);
+        driver.type(username, this.getSelector('usernameField'));
+        driver.type(password, this.getSelector('passwordField'));
         return driver.clickOn(this.getSelector('loginBtn'))
     }
 

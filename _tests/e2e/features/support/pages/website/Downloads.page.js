@@ -9,7 +9,7 @@ class DownloadsPage extends BasePage {
         });
 
         this.addSelectors({
-            downloadsPage: '#downloads',
+            downloadsPage: '//rhdp-downloads-all',
             loadingSpinner: '#downloads .fa-refresh',
             cdkOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[2]/div/div[3]',
             devsuiteOSVersion: '//*[@id="developer_tools"]/div/rhdp-downloads-all-item[3]/div/div[3]'
@@ -17,22 +17,11 @@ class DownloadsPage extends BasePage {
     }
 
     awaitDownloadsPage() {
-        driver.awaitExists(this.getSelector('downloadsPage'), 30000);
-        return driver.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000)
+        return driver.awaitIsVisible(this.getSelector('downloadsPage'), 30000);
     }
 
-    clickToDownload(product, url) {
-        let downloadBtn;
-        if (product.includes('Container Development Kit')) {
-            let el = `//*[@id='downloads']//rhdp-downloads-all-item[2]//a[@href='${url}']`;
-            downloadBtn = driver.element(el);
-        } else if (product.includes('Development Suite')) {
-            let el = `//*[@id='downloads']//rhdp-downloads-all-item[3]//a[@href='${url}']`;
-            downloadBtn = driver.element(el);
-        } else {
-            let el = `//*[@id='downloads']//rhdp-downloads-all-item//a[@href='${url}']`;
-            downloadBtn = driver.element(el);
-        }
+    clickToDownload(productName) {
+        let downloadBtn = driver.element(`//rhdp-downloads-all-item[@name='${productName}']//a[contains(text(), 'Download')]`);
         let location = downloadBtn.getLocationInView();
         downloadBtn.scroll(location['x'], location['y']);
         return driver.clickOn(downloadBtn)

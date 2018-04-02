@@ -18,9 +18,9 @@ class UpdatePasswordPage extends BasePage {
     }
 
     updatePassword(user, newPassword) {
-        driver.type(this.getSelector('currentPassword'), user['password']);
-        driver.type(this.getSelector('newPassword'), newPassword);
-        driver.type(this.getSelector('newPasswordConfirm'), newPassword);
+        driver.type(user['password'], this.getSelector('currentPassword'));
+        driver.type(newPassword, this.getSelector('newPassword'));
+        driver.type(newPassword, this.getSelector('newPasswordConfirm'));
         driver.clickOn(this.getSelector('saveNewPasswordBtn'));
         return driver.awaitExists(this.getSelector('updateSuccess'))
     }

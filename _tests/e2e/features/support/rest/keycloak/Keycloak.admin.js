@@ -21,7 +21,7 @@ class KeyCloakAdmin {
      */
     generateAccessToken() {
         let token;
-        let request_body_map = 'username=automated-tests-user@redhat.com&grant_type=password&client_id=admin-cli&password=P@$$word01';
+        let request_body_map = `username=${process.env.RHD_KEYCLOAK_ADMIN_USERNAME}&grant_type=password&client_id=admin-cli&password=${process.env.RHD_KEYCLOAK_ADMIN_PASSWORD}`;
         let request_header = {"content-type": "application/x-www-form-urlencoded"};
         let endpoint = 'https://developers.stage.redhat.com/auth/realms/master/protocol/openid-connect/token';
         try {
@@ -59,7 +59,8 @@ class KeyCloakAdmin {
                         'tcacc-1246': ['y'],
                         'tcacc-1010': ['y'],
                         'tcacc-6': ['y'],
-                        'newsletter': ['y']
+                        'newsletter': ['y'],
+                        'rhdSubscrValid': true
                     },
                     "requiredActions": [],
                     "username": user['username'],
@@ -85,7 +86,7 @@ class KeyCloakAdmin {
         let url = `https://developers.stage.redhat.com/auth/admin/realms/rhd/users?email=${encodedEmail}`;
         try {
             let res = wait(request('GET', url, {
-                headers: {"Authorization": `Bearer ${this.accessCode}`},
+                headers: { "Authorization": `Bearer ${this.accessCode}` },
                 agent: false
             }));
             return JSON.parse(res.getBody().toString('utf8'));

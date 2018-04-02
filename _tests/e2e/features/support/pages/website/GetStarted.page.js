@@ -3,20 +3,22 @@ import {driver} from "../../../../config/browsers/DriverHelper";
 
 class GetStartedPage extends BasePage {
 
-    constructor(productID) {
-        super({
-            selector: `.products${productID}hello-world`.toString(),
-        });
-
+    constructor(productCode) {
+        super();
         this.addSelectors({
-            downloadThankYou: '#downloadthankyou',
+            downloadThankYou: '#downloadthankyou'
         });
+        this.productCode = productCode
     }
 
     awaitGetStartedPage() {
-        return driver.awaitExists(this.getSelector('downloadThankYou'), 60000);
+        return driver.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 30000);
     }
 
+    awaitDownloadThankYou(downloadThankYouMsg) {
+        this.awaitGetStartedPage();
+        return driver.waitForSelectorContainingText(this.getSelector('downloadThankYou'), downloadThankYouMsg, 30000);
+    }
 }
 
 export {
