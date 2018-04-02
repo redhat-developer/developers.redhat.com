@@ -15,7 +15,6 @@ function author_preprocess_node(&$variables) {
   $view_mode = $variables['view_mode'];
   if ($node->getType() === 'author') {
     $variables['content']['social_icons'] = [];
-
     $social_fields = ['field_facebook', 'field_github', 'field_youtube', 'field_twitter', 'field_linkedin'];
     foreach ($social_fields as $field) {
       $value = $node->get($field)->getValue();

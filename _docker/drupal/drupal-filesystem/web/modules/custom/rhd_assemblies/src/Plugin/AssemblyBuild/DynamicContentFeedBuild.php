@@ -40,7 +40,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
       foreach ($items as $item) {
         if (isset($item['post'])) {
           $build['posts']['#items'][] = [
-            '#theme' => 'wordpress_post_teaser',
+            '#theme' => 'wordpress_post_tile',
             '#post' => $item['post']->content,
             '#media' => $item['post']->media,
             '#categories' => $item['post']->categories
