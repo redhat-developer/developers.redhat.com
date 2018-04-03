@@ -20,20 +20,11 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
 
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = 6;
-    $this->getItems($build, $entity, $count);
+    $this->getItems($build, $entity, $count, 'teaser');
     $build['latest_comments'] = $this->getComments();
   }
 
   private function getComments() {
-    $comments = [
-      '#type' => 'container',
-    ];
-    $comments['header'] = [
-      '#markup' => "Latest Comments",
-    ];
-    $comments['disqus'] = [
-      '#markup' => 'disqus comments appear here'
-    ];
     // $query = [
     //   'api_secret' => 'secret_key', // api key
     //   'forum' => 'red-hat-developers-blog', // shortname
@@ -47,7 +38,9 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
     // $response = $request->getBody()->getContents();
     // $results = json_decode($response);
 
-    return $comments;
+    return [
+      '#markup' => 'disqus comments loading...'
+    ];
   }
 
 }

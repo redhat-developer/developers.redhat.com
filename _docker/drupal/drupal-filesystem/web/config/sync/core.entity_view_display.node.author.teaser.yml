@@ -14,6 +14,7 @@ dependencies:
     - image.style.large
     - node.type.author
   module:
+    - fences
     - image
     - link
     - text
@@ -28,8 +29,15 @@ content:
     type: text_summary_or_trimmed
     weight: 1
     settings:
-      trim_length: 600
-    third_party_settings: {  }
+      trim_length: 280
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: bio
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   field_facebook:
     type: link
@@ -63,7 +71,14 @@ content:
     settings:
       image_style: large
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: headshot
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_linkedin:
     type: link
     weight: 4

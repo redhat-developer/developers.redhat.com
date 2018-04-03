@@ -5,13 +5,15 @@ dependencies:
   config:
     - assembly.assembly_type.static_content_band
     - field.field.assembly.static_content_band.field_content_list
+  module:
+    - fences
 id: assembly.static_content_band.default
 targetEntityType: assembly
 bundle: static_content_band
 mode: default
 content:
   field_content_list:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       view_mode: default
@@ -19,6 +21,20 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
-  name: true
   user_id: true

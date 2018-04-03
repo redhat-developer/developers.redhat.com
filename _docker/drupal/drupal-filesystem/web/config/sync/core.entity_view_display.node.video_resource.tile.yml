@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
+    - link
     - user
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
@@ -32,10 +33,36 @@ id: node.video_resource.tile
 targetEntityType: node
 bundle: video_resource
 mode: tile
-content: {  }
+content:
+  field_card_image:
+    type: link
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_video_thumbnail_url:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   body: true
-  field_card_image: true
   field_difficulty: true
   field_duration: true
   field_likes: true
@@ -49,7 +76,6 @@ hidden:
   field_video_resource: true
   field_video_resource_tags: true
   field_video_target_product: true
-  field_video_thumbnail_url: true
   field_video_transcript: true
   field_views: true
   links: true

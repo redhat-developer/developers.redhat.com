@@ -1,9 +1,9 @@
-uuid: ba0dc9d0-6411-40c2-ac60-b008dabbdfc8
+uuid: c79f19f6-d345-4bab-90c1-6cc279a51338
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.tile
+    - core.entity_view_mode.node.card
     - field.field.node.coding_resource.body
     - field.field.node.coding_resource.field_author
     - field.field.node.coding_resource.field_contributors
@@ -22,10 +22,10 @@ dependencies:
     - user
 _core:
   default_config_hash: MUBX8_AuOPpetxoN1KE_aD0EdmVebkcUiD0SK-MDMK4
-id: node.coding_resource.tile
+id: node.coding_resource.card
 targetEntityType: node
 bundle: coding_resource
-mode: tile
+mode: card
 content: {  }
 hidden:
   body: true

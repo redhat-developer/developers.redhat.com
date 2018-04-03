@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.author.field_youtube
     - node.type.author
   module:
+    - fences
     - image
     - text
     - user
@@ -25,7 +26,14 @@ content:
     type: text_default
     weight: 1
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   field_headshot:
     weight: 0

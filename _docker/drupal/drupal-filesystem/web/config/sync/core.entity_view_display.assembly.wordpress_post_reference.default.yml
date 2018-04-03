@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.wordpress_post_reference
     - field.field.assembly.wordpress_post_reference.field_post_reference
   module:
+    - fences
     - rhd_assemblies
 id: assembly.wordpress_post_reference.default
 targetEntityType: assembly
@@ -17,7 +18,14 @@ content:
     label: hidden
     settings:
       view_mode: tile
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: wppost_teaser
     region: content
 hidden:

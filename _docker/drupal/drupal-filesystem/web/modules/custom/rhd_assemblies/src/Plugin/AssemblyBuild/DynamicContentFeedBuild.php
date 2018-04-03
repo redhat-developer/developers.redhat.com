@@ -21,10 +21,10 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = $entity->get('field_number_of_posts')->getValue();
     $count = reset($count)['value'];
-    $this->getItems($build, $entity, $count);
+    $this->getItems($build, $entity, $count, 'tile');
   }
 
-  protected function getItems(&$build, $entity, $count) {
+  protected function getItems(&$build, $entity, $count, $mode) {
     $posts = $this->getWordpressPosts($entity, $count);
     $nodes = $this->getDrupalNodes($entity, $count);
     $items = $this->orderItems($posts, $nodes);
@@ -35,12 +35,12 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         '#theme' => 'item_list',
         '#list_type' => 'ul',
         '#items' => [],
-        '#attributes' => ['class' => 'content-tile-list count-' . $count],
+        '#attributes' => ['class' => 'content-' . $mode . '-list count-' . $count],
       ];
       foreach ($items as $item) {
         if (isset($item['post'])) {
           $build['posts']['#items'][] = [
-            '#theme' => 'wordpress_post_tile',
+            '#theme' => 'wordpress_post_' . $mode,
             '#post' => $item['post']->content,
             '#media' => $item['post']->media,
             '#categories' => $item['post']->categories
@@ -49,7 +49,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         else if (isset($item['node'])) {
           $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
           $storage = \Drupal::entityTypeManager()->getStorage('node');
-          $build['posts']['#items'][] = $view_builder->view($item['node'], 'tile');
+          $build['posts']['#items'][] = $view_builder->view($item['node'], $mode);
         }
       }
     }

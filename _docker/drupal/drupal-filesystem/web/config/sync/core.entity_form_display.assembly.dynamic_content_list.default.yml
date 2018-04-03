@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.dynamic_content_list
     - field.field.assembly.dynamic_content_list.field_category_filter
+    - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
     - field.field.assembly.dynamic_content_list.field_links
   module:
@@ -20,6 +21,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
+    region: content
+  field_cta_link:
+    weight: 27
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_drupal_term_filter:
     weight: 4

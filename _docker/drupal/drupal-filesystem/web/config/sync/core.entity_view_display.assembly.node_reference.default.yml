@@ -5,6 +5,8 @@ dependencies:
   config:
     - assembly.assembly_type.node_reference
     - field.field.assembly.node_reference.field_node_reference
+  module:
+    - fences
 id: assembly.node_reference.default
 targetEntityType: assembly
 bundle: node_reference
@@ -16,7 +18,14 @@ content:
     settings:
       view_mode: tile
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
 hidden:
