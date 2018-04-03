@@ -1,0 +1,117 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="PRAGMA" content="NO-CACHE">
+    <meta http-equiv="EXPIRES" content="0">
+    <meta name="title" content="Email Interest Form | Red Hat Developer Program">
+    <title>Email Interest Form | Red Hat Developer Program</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/bootstrap.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/editorial.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/overpass.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/print.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/style.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://redhat.com/forms/css/redhat/forms.css" media="all" />
+    <style>
+    .rh-logo { display: none;}
+    #GatedFormContainer .form-message { font-size: 14px; padding: 0; margin: 0; }
+    #RespondedToCampaign .form-content { margin: 3px 0; }
+    .form-group { margin-bottom: 3px; }
+    .form-header .form-group { margin-bottom: 0; }
+    .form-footer { display: none; }
+    label { font-size: 14px; }
+    .btn-danger {
+        text-transform: uppercase;
+        background: #c00;
+        text-transform: uppercase;
+        text-decoration: none;
+        border:0;
+        font-size: 16px;
+        font-weight: 600;
+        padding:9px 40px;
+        -webkit-transition: background .2s ease-in 0s;
+        transition:background .2s ease-in 0s;
+        line-height: 1.44;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .btn-danger:hover, .btn-danger:focus {
+        background-color: #8f0000;
+        }
+    .btn-danger, .form-control {
+        border-radius: 0;
+    }
+        </style>
+    <!--<link type="text/css" rel="stylesheet" href="/forms/css/jquery.gatedform.css" media="all" />-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script> 
+    </head>
+    <body>
+        <script>
+        fetch('devnationlive.json')
+            .then(function (resp) { return resp.json(); })
+            .then(function (data) {
+                var id = getQSValue('id','&'+window.location.href.split('?')[1]),
+                    session = getSession(id, data.sessions),
+                    offer_id = session.offer_id,
+                    gated_form = document.createElement('div');
+                
+                gated_form.id = "GatedFormContainer";
+                document.body.appendChild(gated_form);
+                
+                launchGatedForm(session.eloqua);
+                
+                var obj = setInterval(function() {
+                    if(document.getElementById('DynamicFormThankYou')) {
+                        top.document.cookie = 'dn_live_'+offer_id+'=true';
+                        top.document.getElementsByTagName('devnation-live-app')[0].dispatchEvent(new CustomEvent('registered', {
+                            detail: {
+                                id: id
+                            },
+                            bubbles: true
+                        }));
+                        clearInterval(obj);
+                    } 
+                }, 1000);
+            });
+        
+        function getQSValue( name, str ) {
+            var re = new RegExp('(?:(?:^|.*&\\s*)'+name+'\\s*\\=\\s*([^&]*).*$)|^.*$');
+            return str.replace(re, "$1");
+        }
+
+        function getSession(id, sessions) {
+            for(i=0; i < sessions.length; i++ ) {
+                if (sessions[i].offer_id === id) {
+                    return sessions[i];
+                }
+            }
+        }
+
+        function launchGatedForm(config) {
+            var width = $("#" + dynamicForm.options.elqFormContainerId).width();
+            if (config.width !== width) {
+                config.width = width;
+                $.when(dynamicForm.Util.CheckPlugins()).then(function() {
+                    dynamicForm.Start(config);
+                });
+            }
+        }
+        </script>
+    </body>
+</html>

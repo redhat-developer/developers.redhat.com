@@ -4,11 +4,13 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": false,
+        "removeComments": true,
+        "pretty": true,
         "allowJs": false,
         "lib":[
           "dom", "es5", "es6"
         ],
-        "outFile": "rhd.min.js"
+        "outFile": "rhd.js"
     },
     "include": [
         "src/scripts/**/*"

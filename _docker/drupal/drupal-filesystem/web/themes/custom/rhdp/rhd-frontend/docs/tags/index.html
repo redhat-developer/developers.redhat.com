@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        RHDP Front-end Code and Documentation
+        RHD Front-end Code and Documentation
     </title>
-    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism-solarizedlight.min.css">
+    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism-solarizedlight.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
     <script>if (!window.customElements) { document.write('<!--'); }</script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>  
+    <script defer src="https://redhat-developer.github.io/rhd-frontend/js/fontawesome-all.js"></script>
+
   </head>
-  <body>
-    
+  <body data-rhd-grid="normal">
+    <header role="banner">
+    <div class="rh-universal-header"></div>
+    <div class="rhd-header">
+        <img class="rhd-header-logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.png">
+        <nav class="rhd-nav-fixed" aria-label="Static Main Navigation" role="navigation"></nav>
+        <nav class="rhd-nav-dynamic" aria-label="Topic Navigation" role="navigation"></nav>
+    </div>
+</header>
+    <main role="main">
     
 <main>
     <article>
@@ -38,9 +48,24 @@
     </ul>
 </main>
 
+    </main>
     
     
     
-    <script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+    <footer>
+    <div class="rhd-footer">
+        <nav aria-label="Secondary Navigation" role="navigation"></nav>
+        <div class="rhd-footer-sidebar"></div>
+    </div>
+    <div class="rh-universal-footer">
+        <img class="rh-footer-logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.png">
+        <div role="contentinfo"></div>
+        <img class="rh-summit-footer-logo" src="https://redhat-developer.github.io/rhd-frontend/img/summit-logo.png">
+    </div>
+</footer>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+
   </body>
 </html>
