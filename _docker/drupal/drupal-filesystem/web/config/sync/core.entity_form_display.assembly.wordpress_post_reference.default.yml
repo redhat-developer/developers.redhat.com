@@ -1,0 +1,27 @@
+uuid: a91a804a-f1b9-4bfd-810d-e8dc8f2eefc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.wordpress_post_reference
+    - field.field.assembly.wordpress_post_reference.field_post_reference
+  module:
+    - rhd_assemblies
+id: assembly.wordpress_post_reference.default
+targetEntityType: assembly
+bundle: wordpress_post_reference
+mode: default
+content:
+  field_post_reference:
+    weight: 0
+    settings:
+      result_count: 10
+    third_party_settings: {  }
+    type: wppost_autocomplete
+    region: content
+hidden:
+  moderation_state: true
+  name: true
+  status: true
+  user_id: true
+  visual_styles: true

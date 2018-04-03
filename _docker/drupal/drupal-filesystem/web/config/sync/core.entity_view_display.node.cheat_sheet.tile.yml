@@ -1,0 +1,43 @@
+uuid: fe4c4909-0341-4175-a7d3-0c725b1c00b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_card_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_read_time
+    - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_topics
+    - field.field.node.cheat_sheet.scheduled_update
+    - node.type.cheat_sheet
+  module:
+    - user
+_core:
+  default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
+id: node.cheat_sheet.tile
+targetEntityType: node
+bundle: cheat_sheet
+mode: tile
+content: {  }
+hidden:
+  body: true
+  field_card_image: true
+  field_cheat_sheet_author: true
+  field_cheat_sheet_download_url: true
+  field_cheat_sheet_excerpt: true
+  field_cheat_sheet_tags: true
+  field_difficulty: true
+  field_exclude_from_search: true
+  field_read_time: true
+  field_short_description: true
+  field_topics: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true

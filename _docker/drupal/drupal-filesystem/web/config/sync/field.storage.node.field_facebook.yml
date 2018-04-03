@@ -1,0 +1,19 @@
+uuid: 5f3faffa-2d9d-4492-b1ef-0bb7641f9874
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_facebook
+field_name: field_facebook
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

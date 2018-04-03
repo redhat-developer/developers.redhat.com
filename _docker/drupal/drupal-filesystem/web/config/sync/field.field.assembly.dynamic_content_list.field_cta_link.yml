@@ -1,0 +1,23 @@
+uuid: 8749d742-b4fc-42ce-99d3-0d0aea23a018
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.storage.assembly.field_cta_link
+  module:
+    - link
+id: assembly.dynamic_content_list.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+bundle: dynamic_content_list
+label: 'CTA Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

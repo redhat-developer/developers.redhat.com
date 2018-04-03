@@ -1,0 +1,30 @@
+uuid: d17ab1ac-66ab-426c-a06c-5984e52b4fde
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.node_reference
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.assembly.field_content_list
+id: assembly.static_content_band.field_content_list
+field_name: field_content_list
+entity_type: assembly
+bundle: static_content_band
+label: 'Content List'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      node_reference: node_reference
+      wordpress_post_reference: wordpress_post_reference
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: node_reference
+field_type: entity_reference

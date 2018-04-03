@@ -1,0 +1,138 @@
+uuid: 3bd834f8-ce1c-4202-aefd-f39fb87918ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.image_browser
+    - field.field.node.author.body
+    - field.field.node.author.field_facebook
+    - field.field.node.author.field_github
+    - field.field.node.author.field_headshot
+    - field.field.node.author.field_linkedin
+    - field.field.node.author.field_twitter
+    - field.field.node.author.field_youtube
+    - node.type.author
+  module:
+    - entity_browser
+    - link
+    - path
+    - text
+    - workbench_moderation
+id: node.author.default
+targetEntityType: node
+bundle: author
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_facebook:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_github:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_headshot:
+    type: entity_browser_file
+    weight: 13
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_linkedin:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_twitter:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_youtube:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 8
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden:
+  promote: true

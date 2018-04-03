@@ -1,0 +1,49 @@
+uuid: 1e067f11-2088-401f-9408-099f00ea7c0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.learning_path.body
+    - field.field.node.learning_path.field_audience
+    - field.field.node.learning_path.field_card_image
+    - field.field.node.learning_path.field_completion_time
+    - field.field.node.learning_path.field_learning_path_content_item
+    - field.field.node.learning_path.field_long_description
+    - field.field.node.learning_path.field_related_learning_path_s_
+    - field.field.node.learning_path.field_related_product_s_
+    - field.field.node.learning_path.field_related_programming_langua
+    - field.field.node.learning_path.field_related_red_hat_certificat
+    - field.field.node.learning_path.field_related_topic_s_
+    - field.field.node.learning_path.field_requirements_an_or_pre_req
+    - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_topics
+    - field.field.node.learning_path.field_value_proposition
+    - field.field.node.learning_path.scheduled_update
+    - node.type.learning_path
+  module:
+    - user
+id: node.learning_path.tile
+targetEntityType: node
+bundle: learning_path
+mode: tile
+content: {  }
+hidden:
+  body: true
+  field_audience: true
+  field_card_image: true
+  field_completion_time: true
+  field_learning_path_content_item: true
+  field_long_description: true
+  field_related_learning_path_s_: true
+  field_related_product_s_: true
+  field_related_programming_langua: true
+  field_related_red_hat_certificat: true
+  field_related_topic_s_: true
+  field_requirements_an_or_pre_req: true
+  field_short_description: true
+  field_topics: true
+  field_value_proposition: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true

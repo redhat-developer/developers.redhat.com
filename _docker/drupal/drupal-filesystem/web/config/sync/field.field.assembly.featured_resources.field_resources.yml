@@ -1,0 +1,34 @@
+uuid: 0384b99d-eb7f-4782-aa6f-53977c1334c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_resources
+    - field.storage.assembly.field_resources
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.coding_resource
+    - node.type.learning_path
+id: assembly.featured_resources.field_resources
+field_name: field_resources
+entity_type: assembly
+bundle: featured_resources
+label: Resources
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      books: books
+      cheat_sheet: cheat_sheet
+      coding_resource: coding_resource
+      learning_path: learning_path
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: books
+field_type: entity_reference

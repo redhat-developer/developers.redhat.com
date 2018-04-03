@@ -1,0 +1,57 @@
+uuid: 82cea752-9638-4d8f-aab1-7ba2f91a288c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.article.body
+    - field.field.node.article.field_author_name
+    - field.field.node.article.field_card_image
+    - field.field.node.article.field_content_author
+    - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
+    - field.field.node.article.field_image
+    - field.field.node.article.field_long_description
+    - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
+    - field.field.node.article.field_short_description
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_topics
+    - field.field.node.article.scheduled_update
+    - image.style.large
+    - node.type.article
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
+id: node.article.tile
+targetEntityType: node
+bundle: article
+mode: tile
+content:
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_author_name: true
+  field_card_image: true
+  field_content_author: true
+  field_difficulty: true
+  field_hide_toc: true
+  field_long_description: true
+  field_meta_tags: true
+  field_read_time: true
+  field_short_description: true
+  field_tags: true
+  field_topics: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true

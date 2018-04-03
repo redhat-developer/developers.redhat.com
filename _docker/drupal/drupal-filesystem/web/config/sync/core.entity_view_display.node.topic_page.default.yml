@@ -1,0 +1,35 @@
+uuid: 46f8be42-40a7-4c25-a212-92955ba4dff1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic_page.body
+    - field.field.node.topic_page.field_sections
+    - node.type.topic_page
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+id: node.topic_page.default
+targetEntityType: node
+bundle: topic_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_sections:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  links: true

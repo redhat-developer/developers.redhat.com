@@ -5,27 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-Accessibility (a11y) – RHDP Front-end Code and Documentation
+Accessibility (a11y) – RHD Front-end Code and Documentation
 </title>
-    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism-solarizedlight.min.css">
+    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism-solarizedlight.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
     <script>if (!window.customElements) { document.write('<!--'); }</script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>  
+    <script defer src="https://redhat-developer.github.io/rhd-frontend/js/fontawesome-all.js"></script>
+
   </head>
-  <body>
+  <body data-rhd-grid="normal">
+    <header role="banner">
+    <div class="rh-universal-header">
+        <img class="rh-header-logo" alt="Red Hat Logo" src="https://redhat-developer.github.io/rhd-frontend/img/rh-logo.png">
+        <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
+            <ul>
+                <li><a href="#">Customer Portal</a></li>
+                <li><a href="#">Developer</a></li>
+                <li><a href="#">OpenShift</a></li>
+                <li><a href="#">OpenShift.io</a></li>
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Store</a></li>
+                <li class="rh-universal-login"><a href="#"><i class="fas fa-user"></i>Log In</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="rhd-header">
+        <img class="rhd-header-logo" alt="Red Hat Developer Logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.png">
+        <nav class="rhd-nav-fixed" aria-label="Static Main Navigation" role="navigation">
+            <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+                <li>Four</li>
+                <li class="rhd-nav-search"><i class="fas fa-search"></i></li>
+            </ul>
+        </nav>
+        <nav class="rhd-nav-dynamic" aria-label="Topic Navigation" role="navigation">
+            <ul>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/code">code</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/component">component</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/content">content</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/design">design</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/layout">layout</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/misc">misc</a></li>
+                
+                <li><a href="https://redhat-developer.github.io/rhd-frontend/tags/navigation">navigation</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+    <main role="main">
     
-    
-<h1>Accessibility (a11y)</h1>
+<h1>Single Template Accessibility (a11y)</h1>
 
 
+    </main>
     
     
     
-    <script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+    <footer>
+    <div class="rhd-footer">
+        <nav aria-label="Secondary Navigation" role="navigation"></nav>
+        <div class="rhd-footer-sidebar"></div>
+    </div>
+    <div class="rh-universal-footer">
+        <img class="rh-footer-logo" alt="Red Hat Logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.png">
+        <div class="rh-footer-contentinfo" role="contentinfo">&copy;2018</div>
+        <img class="rh-summit-footer-logo" alt="Red Hat Summit Logo" src="https://redhat-developer.github.io/rhd-frontend/img/summit-logo.png">
+    </div>
+</footer>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+
   </body>
 </html>
