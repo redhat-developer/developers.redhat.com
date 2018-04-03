@@ -1,0 +1,23 @@
+.node--view-mode-card {
+  width: 100%;
+  &>a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .card-title {
+    margin: 0;
+  }
+
+  .header-block {
+    background: $blue;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    .card-title,
+    .asset-type {
+      color: #FFF;
+    }
+  }
+
+}

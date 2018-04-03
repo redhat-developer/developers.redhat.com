@@ -1,9 +1,45 @@
 .assembly-type-featured_resources {
-  .field--name-field-resources {
+  padding-top: $gutter;
+  padding-bottom: $gutter;
+
+  .header {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .grid {
+    @include tablet-portrait {
+      display: grid;
+      grid-gap: $gutter $gutter;
+      grid-template-columns: 2fr 1fr;
+    }
+    @include tablet-landscape {
+      grid-template-columns: 3fr 1fr;
+    }
+    @include desktop-small {
+      grid-template-columns: 4fr 1fr;
+    }
+  }
+
+  .content-card-list {
+    padding: 0;
+    margin: 0;
     display: grid;
-    grid-gap: 10px 10px;
-    grid-template-columns: auto auto auto;
-    margin-left: 10px;
-    margin-right: 10px;
+    grid-gap: $gutter $gutter;
+    grid-template-columns: 1fr 1fr;
+    @include tablet-landscape {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .content-link-list {
+    margin: 0;
+    padding: 0;
+    margin-bottom: -1rem;
+
+    a {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
 }

@@ -1,0 +1,16 @@
+<section{{ attributes.addClass('assembly') }}>
+  <div class="container">
+    {{ content.name }}
+    <div class="grid">
+      {{ content.field_evangelists }}
+      {{ content.field_cta_link }}
+    </div>
+
+  {% if content %}
+    {{- content|without('field_evangelists', 'field_cta_link', 'name') -}}
+  {% endif %}
+  </div>
+  {% if background_image_url %}
+    <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section>

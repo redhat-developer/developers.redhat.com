@@ -1,15 +1,17 @@
 .assembly-type-static_content_band {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: $gutter;
+  padding-bottom: $gutter;
+
+  .header {
+    text-align: center;
+    margin-top: 0rem;
+  }
 
   .field--name-field-content-list {
     display: grid;
-    grid-gap: 30px 30px;
-    margin-left: 15px;
-    margin-right: 15px;
-
+    grid-gap: $gutter $gutter;
     grid-template-columns: 1fr 1fr;
-    @media (min-width: 768px) {
+    @include tablet-landscape {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }

@@ -10,21 +10,22 @@
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
+  <div class="grid">
+    {{ content.field_headshot }}
 
-  {{ content.field_headshot }}
-
-  <div{{ content_attributes.addClass('node__content') }}>
-    <h5>{{ label }}</h5>
-    {{ content|without('field_headshot', 'social_icons') }}
-    {% if content.social_icons|length %}
-      <ul class="social-icons">
-        {% for social_icon in content.social_icons %}
-          <li class="social-icon {{ social_icon.field|raw }}">
-            <a href="{{ social_icon.value|raw }}">{{ social_icon.field|raw }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    <div{{ content_attributes.addClass('node__content') }}>
+      <h3 class="name">{{ label }}</h3>
+      {{ content|without('field_headshot', 'social_icons') }}
+      {% if content.social_icons|length %}
+        <ul class="social-icons">
+          {% for social_icon in content.social_icons %}
+            <li class="social-icon {{ social_icon.field|raw }}">
+              <a href="{{ social_icon.value|raw }}">{{ social_icon.field|raw }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
   </div>
 
 </article>

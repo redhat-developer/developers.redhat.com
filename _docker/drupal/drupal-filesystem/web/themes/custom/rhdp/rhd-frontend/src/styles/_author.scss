@@ -1,19 +1,34 @@
 .node--type-author {
   &.node--view-mode-teaser {
-
-    .field--name-field-headshot {
-      float: left;
-      max-width: 30%;
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
+    .grid {
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: 160px 1fr;
     }
 
-    .field--name-body.clearfix {
-      clear: none !important;
+    .name {
+      margin-top: 0;
+      margin-bottom: .5rem;
     }
 
+    .bio p {
+      margin-top: 0;
+    }
+  }
+
+  .headshot {
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .social-icons {
+    padding: 0;
+    list-style-type: none;
+    &>li {
+      display: inline-block;
+    }
   }
 }

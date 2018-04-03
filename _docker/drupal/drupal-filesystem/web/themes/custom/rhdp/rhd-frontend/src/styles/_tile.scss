@@ -1,4 +1,3 @@
-
 .node--view-mode-tile,
 .wordpress-blog-post-tile {
   width: 100%;
@@ -10,7 +9,7 @@
 }
 
 .tile-title {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .tile-image {
@@ -20,6 +19,8 @@
   position: relative;
   overflow: hidden;
   border: 1px solid #F0f0f0;
+  margin-bottom: 1rem;
+
   .image-table {
     position: absolute;
     top: 0;

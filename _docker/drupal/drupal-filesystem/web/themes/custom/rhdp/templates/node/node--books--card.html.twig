@@ -11,13 +11,12 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
-    <div class="tile-image">
-      <div class="image-table">
-        <div class="image-cell">
-          <img src="{{ content.field_video_thumbnail_url }}"/>
-        </div>
-      </div>
+    {% if content.card_image_url %}
+    <div class="card-image">
+      <img src="{{ content.card_image_url }}"/>
     </div>
-    <h3 class="tile-title">{{ label }}</h3>
+    {% endif %}
+    <div class="asset-type">Book</div>
+    <h3 class="card-title">{{ label }}</h3>
   </a>
 </article>

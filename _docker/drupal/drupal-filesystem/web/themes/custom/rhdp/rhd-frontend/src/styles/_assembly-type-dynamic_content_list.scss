@@ -1,0 +1,34 @@
+.assembly-type-dynamic_content_list {
+  padding-top: $gutter;
+  padding-bottom: $gutter;
+
+  .header {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: $gutter $gutter;
+    @include tablet-portrait {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .content-teaser-list {
+    list-style-type: none;
+    &>li {
+      margin: 0;
+    }
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: $gutter $gutter;
+    grid-template-columns: 1fr 1fr;
+
+    @include tablet-portrait {
+      grid-template-columns: 1fr;
+    }
+
+  }
+}
