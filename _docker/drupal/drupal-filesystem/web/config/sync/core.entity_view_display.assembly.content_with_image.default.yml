@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.content_with_image.field_background_image
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
+    - field.field.assembly.content_with_image.field_navigation_title
     - field.field.assembly.content_with_image.field_title
     - image.style.large
   module:
@@ -43,5 +44,6 @@ content:
     region: content
 hidden:
   field_background_image: true
+  field_navigation_title: true
   name: true
   user_id: true
