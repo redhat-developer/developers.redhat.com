@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.blog_posts
     - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.rich_text
     - assembly.assembly_type.videos
@@ -28,6 +29,7 @@ settings:
     target_bundles:
       blog_posts: blog_posts
       content_with_image: content_with_image
+      featured_evangelists: featured_evangelists
       on_page_navigation: on_page_navigation
       rich_text: rich_text
       videos: videos

@@ -1,0 +1,23 @@
+uuid: aff1f028-68fe-4fce-8a3b-679bfac8e9d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_evangelists
+    - field.storage.assembly.field_cta_link
+  module:
+    - link
+id: assembly.featured_evangelists.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+bundle: featured_evangelists
+label: 'CTA Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
