@@ -1,0 +1,14 @@
+<article class="wordpress-blog-post-tile">
+  <a href="{{ post.link }}">
+    {% if media and media.media_type == 'image' %}
+      <div class="tile-image">
+        <div class="image-table">
+          <div class="image-cell">
+            <img src="{{ media.source_url }}"/>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <h3 class="tile-title">{{ post.title.rendered|raw }}</h3>
+  </a>
+</article>

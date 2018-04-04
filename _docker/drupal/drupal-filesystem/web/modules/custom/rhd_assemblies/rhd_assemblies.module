@@ -52,5 +52,12 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
       'categories' => NULL,
     ],
   ];
+  $theme['wordpress_post_tile'] = [
+    'template' => 'wordpress-post-tile',
+    'variables' => [
+      'post' => NULL,
+      'media' => NULL,
+    ],
+  ];
   return $theme;
 }

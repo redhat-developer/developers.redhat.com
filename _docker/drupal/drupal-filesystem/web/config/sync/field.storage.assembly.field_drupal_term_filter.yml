@@ -1,0 +1,20 @@
+uuid: af9cbf93-3bb1-41c7-95b0-ec75692a11eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - taxonomy
+id: assembly.field_drupal_term_filter
+field_name: field_drupal_term_filter
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
