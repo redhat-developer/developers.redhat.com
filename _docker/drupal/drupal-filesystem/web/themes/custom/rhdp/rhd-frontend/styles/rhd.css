@@ -135,6 +135,57 @@
     .container {
       max-width: 1202px; } }
 
+.assembly.has-background {
+  position: relative; }
+  .assembly.has-background .row, .assembly.has-background .container {
+    position: relative;
+    z-index: 1; }
+
+.assembly .field__item, .assembly .field {
+  display: block; }
+
+.assembly.assembly-dark {
+  background: #252525; }
+  .assembly.assembly-dark, .assembly.assembly-dark h1, .assembly.assembly-dark h2, .assembly.assembly-dark h3, .assembly.assembly-dark h4, .assembly.assembly-dark h5, .assembly.assembly-dark h6 {
+    color: white; }
+
+.assembly.assembly-space {
+  padding-top: 80px;
+  padding-bottom: 80px; }
+
+.assembly.assembly-center * {
+  text-align: center; }
+
+.assembly .background {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+  .assembly .background:after {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' '; }
+
+.assembly.assembly-type-hero {
+  padding: 80px 0;
+  margin-bottom: 80px; }
+  .assembly.assembly-type-hero .content {
+    max-width: 60rem; }
+  .assembly.assembly-type-hero h2 {
+    font-size: 4rem;
+    line-height: 1.1; }
+  .assembly.assembly-type-hero .field--name-field-content p {
+    font-size: 1.5rem; }
+
 .node--view-mode-tile,
 .wordpress-blog-post-tile {
   width: 100%; }
