@@ -1,0 +1,21 @@
+uuid: 0680f39b-1c28-453e-9383-fabbb848763d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_description
+  module:
+    - text
+id: assembly.video_hero.field_description
+field_name: field_description
+entity_type: assembly
+bundle: video_hero
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
