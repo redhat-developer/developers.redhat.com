@@ -1,0 +1,18 @@
+.assembly-type-static_content_band {
+  padding-top: $gutter;
+  padding-bottom: $gutter;
+
+  .header {
+    text-align: center;
+    margin-top: 0rem;
+  }
+
+  .field--name-field-content-list {
+    display: grid;
+    grid-gap: $gutter $gutter;
+    grid-template-columns: 1fr 1fr;
+    @include tablet-landscape {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}

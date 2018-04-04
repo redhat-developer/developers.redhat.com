@@ -1,0 +1,28 @@
+uuid: 9edf19bb-3633-4761-a2b6-42a608531c46
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.node_reference
+    - field.storage.assembly.field_node_reference
+    - node.type.video_resource
+id: assembly.node_reference.field_node_reference
+field_name: field_node_reference
+entity_type: assembly
+bundle: node_reference
+label: 'Node Reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      video_resource: video_resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: article
+field_type: entity_reference

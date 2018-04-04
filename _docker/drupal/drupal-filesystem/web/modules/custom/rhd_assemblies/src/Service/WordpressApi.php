@@ -125,7 +125,7 @@ class WordpressApi implements RemoteContentApiInterface {
     $item->media = false;
     $item->categories = false;
 
-    if (isset($content->featured_media)) {
+    if (isset($content->featured_media) && $content->featured_media) {
       $item->media = $this->getContentMedia($content->featured_media);
     }
 

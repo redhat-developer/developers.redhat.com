@@ -1,0 +1,23 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <a href="{{ url }}">
+    <div class="tile-image">
+      <div class="image-table">
+        <div class="image-cell">
+          <img src="{{ content.field_video_thumbnail_url }}"/>
+        </div>
+      </div>
+    </div>
+    <h3 class="tile-title">{{ label }}</h3>
+  </a>
+</article>

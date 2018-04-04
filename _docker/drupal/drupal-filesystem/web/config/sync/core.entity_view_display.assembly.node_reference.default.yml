@@ -1,0 +1,33 @@
+uuid: 1ddeb91f-9e3f-4c4f-a721-2b73844fccae
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.node_reference
+    - field.field.assembly.node_reference.field_node_reference
+  module:
+    - fences
+id: assembly.node_reference.default
+targetEntityType: assembly
+bundle: node_reference
+mode: default
+content:
+  field_node_reference:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: tile
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  name: true
+  user_id: true
