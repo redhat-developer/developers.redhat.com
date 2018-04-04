@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.blog_posts
+    - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.rich_text
@@ -27,6 +28,7 @@ settings:
   handler_settings:
     target_bundles:
       blog_posts: blog_posts
+      call_to_action: call_to_action
       content_with_image: content_with_image
       on_page_navigation: on_page_navigation
       rich_text: rich_text
