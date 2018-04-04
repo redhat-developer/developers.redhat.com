@@ -9,6 +9,7 @@ dependencies:
     - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.rich_text
+    - assembly.assembly_type.static_content_band
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.assembly_page
@@ -34,6 +35,7 @@ settings:
       featured_evangelists: featured_evangelists
       on_page_navigation: on_page_navigation
       rich_text: rich_text
+      static_content_band: static_content_band
       videos: videos
     sort:
       field: _none

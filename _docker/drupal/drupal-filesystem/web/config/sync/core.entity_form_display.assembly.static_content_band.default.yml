@@ -1,0 +1,57 @@
+uuid: 4e34e04c-6302-4294-9e5c-3cd0ab73249d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.static_content_band
+    - field.field.assembly.static_content_band.field_content_list
+  module:
+    - entity_browser_entity_form
+    - inline_entity_form
+id: assembly.static_content_band.default
+targetEntityType: assembly
+bundle: static_content_band
+mode: default
+content:
+  field_content_list:
+    weight: 3
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
