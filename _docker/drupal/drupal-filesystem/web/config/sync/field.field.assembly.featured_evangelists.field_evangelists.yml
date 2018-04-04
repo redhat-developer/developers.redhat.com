@@ -1,0 +1,28 @@
+uuid: 695b3f8d-c091-427e-ba4a-ab88e90f7859
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_evangelists
+    - field.storage.assembly.field_evangelists
+    - node.type.author
+id: assembly.featured_evangelists.field_evangelists
+field_name: field_evangelists
+entity_type: assembly
+bundle: featured_evangelists
+label: Evangelists
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      author: author
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
