@@ -14,13 +14,13 @@ class WordpressApi implements RemoteContentApiInterface {
   private $client;
 
   public function __construct(ClientInterface $client) {
-    $this->apiUrl = 'https://developers.redhat.com/blog/wp-json/wp/v2';
+    $this->apiUrl = 'https://developers.redhat.com/blog';
     $this->client = $client;
   }
 
   public function getContentById($id) {
     try {
-      $feed_url = $this->apiUrl . '/posts/' . $id;
+      $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
       $request = $this->client->request('GET', $feed_url);
       $response = $request->getBody()->getContents();
       $result = json_decode($response);
@@ -34,7 +34,7 @@ class WordpressApi implements RemoteContentApiInterface {
 
   public function getContentByCategory($categories, $count) {
     $items = [];
-    $feed_url = $this->apiUrl . '/posts';
+    $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
     $query['per_page'] = $count;
 
     if (!empty($categories)) {
@@ -57,11 +57,9 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   public function getAutocompleteContentOptions($search, $max_results) {
-    $feed_url = $this->apiUrl . '/posts';
+    $feed_url = $this->apiUrl;
     $query = [
-      'per_page' => $max_results,
-      'page' => 1,
-      'context' => 'embed',
+      'rest_route' => '/rh/v1/posts-by-title',
       'search' => $search
     ];
     $results = [];
@@ -70,10 +68,14 @@ class WordpressApi implements RemoteContentApiInterface {
       $response = $request->getBody()->getContents();
       $api_results = json_decode($response);
       foreach ($api_results as $api_result) {
+        $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')'
         $results[] = [
-          'value' => Html::escape($api_result->title->rendered) . ' (' . $api_result->id . ')',
-          'label' => Html::escape($api_result->title->rendered) . ' (' . $api_result->id . ')'
+          'value' => $label,
+          'label' => $label
         ];
+        if (count($results) >= $max_results) {
+          return $results;
+        }
       }
       return $results;
     }
@@ -84,7 +86,7 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   public function getCategories() {
-    $feed_url = $this->apiUrl . '/categories';
+    $feed_url = $this->apiUrl . '/wp-json/wp/v2/categories';
     $query = [
       'per_page' => 100,
       'page' => 1,
@@ -125,11 +127,11 @@ class WordpressApi implements RemoteContentApiInterface {
     $item->media = false;
     $item->categories = false;
 
-    if (isset($content->featured_media)) {
+    if (isset($content->featured_media) && $content->featured_media) {
       $item->media = $this->getContentMedia($content->featured_media);
     }
 
-    if (isset($content->categories)) {
+    if (isset($content->categories) && count($content->categories)) {
       $item->categories = $this->getContentCategoryLinks($content->categories);
     }
 
@@ -137,7 +139,7 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   private function getContentMedia($id) {
-    $feed_url = $this->apiUrl . '/media/' . $id;
+    $feed_url = $this->apiUrl . '/wp-json/wp/v2/media/' . $id;
     $request = $this->client->request('GET', $feed_url);
     $response = $request->getBody()->getContents();
     return json_decode($response);
