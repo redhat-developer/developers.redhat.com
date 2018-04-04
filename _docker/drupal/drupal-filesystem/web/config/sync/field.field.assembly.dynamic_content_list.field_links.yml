@@ -1,0 +1,23 @@
+uuid: cb04811e-2c5d-4ce3-a547-3ed5ea4d4ab3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.storage.assembly.field_links
+  module:
+    - link
+id: assembly.dynamic_content_list.field_links
+field_name: field_links
+entity_type: assembly
+bundle: dynamic_content_list
+label: 'Related Topics'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
