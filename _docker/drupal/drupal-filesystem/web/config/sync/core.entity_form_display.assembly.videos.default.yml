@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.videos
+    - field.field.assembly.videos.field_navigation_title
     - field.field.assembly.videos.field_tags
     - field.field.assembly.videos.field_title
   module:
@@ -13,8 +14,16 @@ targetEntityType: assembly
 bundle: videos
 mode: default
 content:
-  field_tags:
+  field_navigation_title:
     weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_tags:
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -30,6 +39,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 5
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -40,7 +55,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     region: content
     settings:
       display_label: true

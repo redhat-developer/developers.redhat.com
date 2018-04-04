@@ -1,19 +1,20 @@
 {
   "name": "rhd-frontend",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Front-end assets and documentation for Red Hat Developer site",
   "main": "index.js",
   "scripts": {
-    "start": "hugo serve -D -w -s src/docs",
-    "lint": "npm run eslint",
+    "start": "npm run build && npm run docs",
     "test": "karma start src/tests/config/karma.conf.js",
-    "scripts": "tsc && cpx *.min.js src/docs/static/js",
-    "serve": "npm run docs && browser-sync start -c browser-sync.config.js",
+    "build": "npm run scripts && npm run styles",
+    "scripts": "tsc && uglifyjs rhd.js -c -m -o rhd.min.js",
+    "styles": "node-sass src/styles/ -o styles/ --output-style compressed && postcss -o rhd.min.css styles/rhd.css",
+    "serve": "npm run start && browser-sync start -c browser-sync.config.js",
     "docs": "hugo -D -s src/docs && npm run docs:front",
     "docs:front": "npm run docs:styles && npm run docs:scripts",
-    "docs:styles": "npm run styles && cpx styles/**/*.css src/docs/static/css",
-    "docs:scripts": "npm run scripts && jsdoc -c jsdoc.config.json",
-    "styles": "node-sass src/styles/ -o styles/ --output-style compressed && sassdoc 'src/styles/*.scss' -d 'docs/styling'",
+    "docs:styles": "cpx *.min.css src/docs/themes/rhd/static/css && sassdoc 'src/styles/*.scss' -d 'docs/styling'",
+    "docs:scripts": "cpx *.min.js src/docs/themes/rhd/static/js && jsdoc -c jsdoc.config.json",
+    "hugo": "hugo server -D -w -s src/docs",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
@@ -23,6 +24,7 @@
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "cpx": "^1.5.0",
+    "cssnano": "^3.10.0",
     "eslint": "^4.19.1",
     "hugo-cli": "^0.4.2",
     "jasmine-core": "^2.7.0",
@@ -35,9 +37,11 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-spec-reporter": "^0.0.31",
     "node-sass": "^4.7.2",
+    "postcss-cli": "^5.0.0",
     "sassdoc": "^2.5.0",
     "semantic-release": "^15.1.4",
     "travis-deploy-once": "^4.4.1",
-    "typescript": "^2.8.1"
+    "typescript": "^2.8.1",
+    "uglify-js": "^3.3.16"
   }
 }

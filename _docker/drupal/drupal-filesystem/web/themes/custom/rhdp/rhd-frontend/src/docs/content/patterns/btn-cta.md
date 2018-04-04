@@ -1,13 +1,14 @@
 ---
 title: "Buttons and Calls to Action"
 date: 2017-08-03T10:56:11-04:00
+tags: ["misc"]
 draft: true
 ---
 
 # Buttons
 Style | Sample
 ----- | -------
-Default | {{< code >}}<a href="#" class="button">Button</a>{{< /code >}}
+Default | {{<code>}}<a href="#" class="button">Button</a>{{</code>}}
 Form Submit | {{< code >}}<input type="submit" class="button" value="Submit">{{< /code >}}
 
 # Heavy CTAs

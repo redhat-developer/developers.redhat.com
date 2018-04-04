@@ -1,0 +1,25 @@
+$tablet-portrait: 576px;
+$tablet-landscape: 768px;
+$desktop-small: 992px;
+$desktop-large: 1200px;
+$gutter: 30px;
+@mixin tablet-portrait {
+  @media (min-width: #{$tablet-portrait}) {
+    @content;
+  }
+}
+@mixin tablet-landscape {
+  @media (min-width: #{$tablet-landscape}) {
+    @content;
+  }
+}
+@mixin desktop-small {
+  @media (min-width: #{$desktop-small}) {
+    @content;
+  }
+}
+@mixin desktop-large {
+  @media (min-width: #{$desktop-large}) {
+    @content;
+  }
+}
