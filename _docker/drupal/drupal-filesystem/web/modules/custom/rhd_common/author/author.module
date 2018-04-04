@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Contains console_export_test.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function author_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  $view_mode = $variables['view_mode'];
+  if ($node->getType() === 'author') {
+    $variables['content']['social_icons'] = [];
+    $social_fields = ['field_facebook', 'field_github', 'field_youtube', 'field_twitter', 'field_linkedin'];
+    foreach ($social_fields as $field) {
+      $value = $node->get($field)->getValue();
+      if ($value && count($value) && isset($value[0]['uri'])) {
+        $value = reset($value)['uri'];
+        $variables['content']['social_icons'][] = [
+          'value' => ['#markup' => $value],
+          'field' => ['#markup' => str_replace('field_', '', $field)]
+        ];
+        unset($variables['content'][$field]);
+      }
+    }
+  }
+}
