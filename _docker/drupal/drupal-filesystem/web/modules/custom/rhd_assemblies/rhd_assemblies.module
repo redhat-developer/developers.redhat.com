@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_help().
@@ -60,4 +61,14 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
   return $theme;
+}
+
+function rhd_assemblies_preprocess_assembly(&$variables) {
+  // Make assembly ID match pattern used for on page navigation
+  $parent = $variables['elements']['#parent'];
+  if ($parent) {
+    $id = $variables['elements']['#assembly']->id();
+    $css_id = Html::cleanCssIdentifier('assembly-' . $parent['field_name'] . '-' . $id);
+    $variables['attributes']->offsetSet('id', $css_id);
+  }
 }

@@ -1,0 +1,14 @@
+uuid: 8b16311e-6953-45a1-83c4-14dc37f3782b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.on_page_navigation
+id: assembly.on_page_navigation.default
+targetEntityType: assembly
+bundle: on_page_navigation
+mode: default
+content: {  }
+hidden:
+  name: true
+  user_id: true

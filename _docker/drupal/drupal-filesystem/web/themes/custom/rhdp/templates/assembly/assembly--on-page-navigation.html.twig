@@ -1,0 +1,31 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<section{{ attributes.addClass('assembly') }}>
+
+  <div class="container">
+    <div class="page-nav-wrapper">
+      <h2 class="section-title">Jump to&hellip;</h2>
+      {% if content %}
+        {{- content -}}
+      {% endif %}
+    </div>
+  </div>
+  {% if background_image_url %}
+    <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section>

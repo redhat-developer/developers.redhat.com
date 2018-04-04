@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.videos
+    - field.field.assembly.videos.field_navigation_title
     - field.field.assembly.videos.field_tags
     - field.field.assembly.videos.field_title
 id: assembly.videos.default
@@ -20,6 +21,7 @@ content:
     type: string
     region: content
 hidden:
+  field_navigation_title: true
   field_tags: true
   name: true
   user_id: true

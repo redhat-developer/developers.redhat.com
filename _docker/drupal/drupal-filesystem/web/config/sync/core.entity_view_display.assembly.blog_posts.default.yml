@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.blog_posts
     - field.field.assembly.blog_posts.field_category_filter
+    - field.field.assembly.blog_posts.field_navigation_title
 id: assembly.blog_posts.default
 targetEntityType: assembly
 bundle: blog_posts
@@ -12,5 +13,6 @@ mode: default
 content: {  }
 hidden:
   field_category_filter: true
+  field_navigation_title: true
   name: true
   user_id: true

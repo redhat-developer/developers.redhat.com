@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Misc on RHD Front-end Code and Documentation</title>
+    <link>https://redhat-developer.github.io/rhd-frontend/tags/misc/index.xml</link>
+    <description>Recent content in Misc on RHD Front-end Code and Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Accessibility (a11y)</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/a11y/</link>
+      <pubDate>Thu, 03 Aug 2017 15:05:58 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/a11y/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interactive Elements</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/interactive/</link>
+      <pubDate>Thu, 03 Aug 2017 15:05:26 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/interactive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Handshakes, Log In, and Registration</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/handoffs/</link>
+      <pubDate>Thu, 03 Aug 2017 15:03:56 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/handoffs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/links/</link>
+      <pubDate>Thu, 03 Aug 2017 15:03:17 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/links/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Buttons and Calls to Action</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/btn-cta/</link>
+      <pubDate>Thu, 03 Aug 2017 10:56:11 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/btn-cta/</guid>
+      <description>
+
+&lt;h1 id=&#34;buttons&#34;&gt;Buttons&lt;/h1&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Style&lt;/th&gt;
+&lt;th&gt;Sample&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Default&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button&amp;#34;&amp;gt;Button&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button&#34;&gt;Button&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Form Submit&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;input type=&amp;#34;submit&amp;#34; class=&amp;#34;button&amp;#34; value=&amp;#34;Submit&amp;#34;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;input type=&#34;submit&#34; class=&#34;button&#34; value=&#34;Submit&#34;&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;heavy-ctas&#34;&gt;Heavy CTAs&lt;/h1&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Style&lt;/th&gt;
+&lt;th&gt;Sample&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Default&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button heavy-cta&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button heavy-cta&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;White&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button heavy-cta white&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button heavy-cta white&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Black&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button heavy-cta black&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button heavy-cta black&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Blue&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button heavy-cta blue&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button heavy-cta blue&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;medium-ctas&#34;&gt;Medium CTAs&lt;/h1&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Style&lt;/th&gt;
+&lt;th&gt;Sample&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Default&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button medium-cta&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button medium-cta&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;White&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button medium-cta white&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button medium-cta white&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Black&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button medium-cta black&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button medium-cta black&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Blue&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;button medium-cta blue&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;button medium-cta blue&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;light-ctas&#34;&gt;Light CTAs&lt;/h1&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Style&lt;/th&gt;
+&lt;th&gt;Sample&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Default&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;light-cta&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;light-cta&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;White&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;light-cta white&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;light-cta white&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Black&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;a href=&amp;#34;#&amp;#34; class=&amp;#34;light-cta black&amp;#34;&amp;gt;Some action&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    &lt;strong&gt;Sample:&lt;/strong&gt;
+    &lt;a href=&#34;#&#34; class=&#34;light-cta black&#34;&gt;Some action&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
