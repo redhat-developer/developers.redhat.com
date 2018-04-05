@@ -1,0 +1,68 @@
+uuid: 0c55735e-5466-4ccf-a3bd-343376dd06b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_evangelists
+    - field.field.assembly.featured_evangelists.field_cta_link
+    - field.field.assembly.featured_evangelists.field_evangelists
+  module:
+    - fences
+    - link
+id: assembly.featured_evangelists.default
+targetEntityType: assembly
+bundle: featured_evangelists
+mode: default
+content:
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: content-link-list
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+  field_evangelists:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: ul
+        fences_field_classes: content-teaser-list
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  user_id: true

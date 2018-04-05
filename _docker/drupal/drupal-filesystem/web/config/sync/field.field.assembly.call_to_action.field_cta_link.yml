@@ -1,0 +1,23 @@
+uuid: 995301b5-b824-4f4d-805a-38c074e0110b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_cta_link
+  module:
+    - link
+id: assembly.call_to_action.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+bundle: call_to_action
+label: 'CTA Link'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

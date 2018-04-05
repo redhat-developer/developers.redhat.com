@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.blog_posts
+    - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.rich_text
+    - assembly.assembly_type.static_content_band
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.assembly_page
@@ -28,10 +31,13 @@ settings:
   handler_settings:
     target_bundles:
       blog_posts: blog_posts
+      call_to_action: call_to_action
       content_with_image: content_with_image
       dynamic_content_feed: dynamic_content_feed
+      featured_evangelists: featured_evangelists
       on_page_navigation: on_page_navigation
       rich_text: rich_text
+      static_content_band: static_content_band
       videos: videos
     sort:
       field: _none

@@ -1,0 +1,53 @@
+uuid: 57e8b407-d7d8-45ff-8f79-45163a12266b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.author.body
+    - field.field.node.author.field_facebook
+    - field.field.node.author.field_github
+    - field.field.node.author.field_headshot
+    - field.field.node.author.field_linkedin
+    - field.field.node.author.field_twitter
+    - field.field.node.author.field_youtube
+    - node.type.author
+  module:
+    - fences
+    - image
+    - text
+    - user
+id: node.author.default
+targetEntityType: node
+bundle: author
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    region: content
+  field_headshot:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  field_facebook: true
+  field_github: true
+  field_linkedin: true
+  field_twitter: true
+  field_youtube: true
+  links: true
