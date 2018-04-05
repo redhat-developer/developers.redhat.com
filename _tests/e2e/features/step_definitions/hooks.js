@@ -35,28 +35,39 @@ const hooks = function () {
     });
 
     this.After(function () {
-        let encodedURL = qs.escape(process.env.RHD_BASE_URL);
-        if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
-            browser.url(`https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
-        } else {
-            browser.url(`https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
+        try {
+            let encodedURL = qs.escape(process.env.RHD_BASE_URL);
+            if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
+                browser.url(`https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
+            } else {
+                browser.url(`https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
+            }
+        } catch (e) {
+            console.log(e)
         }
 
         if (typeof downloadStarted !== 'undefined') {
-            let dirSize = [];
-            fs.readdirSync(global.downloadDir).forEach(file => {
-                dirSize.push(file)
-            });
-            if (dirSize.length > 0) {
-                fs.emptyDir(global.downloadDir)
+            try {
+                let dirSize = [];
+                fs.readdirSync(global.downloadDir).forEach(file => {
+                    dirSize.push(file)
+                });
+                if (dirSize.length > 0) {
+                    fs.emptyDir(global.downloadDir)
+                }
+            } catch (e) {
+                console.log(e)
             }
         }
 
         if (typeof socialAccountHolder !== 'undefined') {
-            let keycloakAdmin = new KeyCloakAdmin();
-            keycloakAdmin.deleteUser(siteUserDetails['email'])
+            try {
+                let keycloakAdmin = new KeyCloakAdmin();
+                keycloakAdmin.deleteUser(siteUserDetails['email'])
+            } catch (e) {
+                console.log(e)
+            }
         }
-
         browser.deleteCookie();
         browser.execute('window.localStorage.clear();');
     });

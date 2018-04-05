@@ -1,0 +1,19 @@
+uuid: f9ae8889-1f2d-4850-abef-83e3d020c4f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

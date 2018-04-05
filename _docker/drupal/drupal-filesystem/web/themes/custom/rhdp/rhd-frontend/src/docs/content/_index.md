@@ -17,7 +17,10 @@ draft: true
 
 ## Components
 
-[Search](#)
+* {{<fa "fas fa-search">}} [Search](components/search)
+* {{<fa "fas fa-film">}} [DevNationLive](components/devnationlive)
+* {{<fa "far fa-address-card">}} [OneBox](components/onebox)
+
 
 ## Code
 

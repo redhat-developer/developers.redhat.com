@@ -3,7 +3,7 @@ title: "Home Page Layout"
 date: 2017-10-04T08:06:49-04:00
 type: "pattern"
 description: "Home page layout and elements"
-tags: [""]
+tags: ["layout"]
 draft: true
 ---
 
