@@ -1,0 +1,28 @@
+uuid: 133bcca1-dec5-4eb7-ab3f-52b6d78cb7b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.scheduled_update
+    - node.type.topic_page
+    - scheduled_updates.scheduled_update_type.node__moderation_state
+id: node.topic_page.scheduled_update
+field_name: scheduled_update
+entity_type: node
+bundle: topic_page
+label: 'Scheduled updates'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:scheduled_update'
+  handler_settings:
+    target_bundles:
+      node__moderation_state: node__moderation_state
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
