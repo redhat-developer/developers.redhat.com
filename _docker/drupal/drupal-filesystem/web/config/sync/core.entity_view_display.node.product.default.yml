@@ -3,21 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_image
+    - field.field.node.product.field_product_categories
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
+    - field.field.node.product.scheduled_update
     - node.type.product
   module:
     - entity_reference_revisions
     - link
     - options
-    - text
     - user
 _core:
   default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
@@ -26,8 +30,20 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  field_call_to_action_link:
+    weight: 10
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_card_image:
-    weight: 114
+    weight: 9
     label: above
     settings:
       trim_length: 80
@@ -39,14 +55,14 @@ content:
     type: link
     region: content
   field_product_category:
-    weight: 110
+    weight: 5
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_product_machine_name:
-    weight: 108
+    weight: 3
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -55,7 +71,7 @@ content:
     region: content
   field_product_pages:
     type: entity_reference_revisions_entity_view
-    weight: 107
+    weight: 2
     label: visually_hidden
     settings:
       view_mode: default
@@ -63,7 +79,7 @@ content:
     third_party_settings: {  }
     region: content
   field_product_short_name:
-    weight: 109
+    weight: 4
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -71,21 +87,22 @@ content:
     type: string
     region: content
   field_product_summary:
-    weight: 105
+    weight: 1
     label: visually_hidden
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    type: text_default
+    type: string
     region: content
   field_product_technology_group:
-    weight: 112
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_stackoverflow_product_refe:
-    weight: 113
+    weight: 8
     label: above
     settings:
       link_to_entity: false
@@ -93,7 +110,7 @@ content:
     type: string
     region: content
   field_url_product_name:
-    weight: 111
+    weight: 6
     label: above
     settings:
       link_to_entity: false
@@ -101,7 +118,13 @@ content:
     type: string
     region: content
   workbench_moderation_control:
-    weight: -20
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  field_image: true
+  field_product_categories: true
+  field_short_description: true
   links: true
+  scheduled_update: true
