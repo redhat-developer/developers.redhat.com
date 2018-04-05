@@ -1,8 +1,9 @@
-uuid: 57e8b407-d7d8-45ff-8f79-45163a12266b
+uuid: ac85be30-c620-43d8-ae91-973053ed4d6a
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.short_teaser
     - field.field.node.author.body
     - field.field.node.author.field_facebook
     - field.field.node.author.field_github
@@ -11,49 +12,43 @@ dependencies:
     - field.field.node.author.field_position_title
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
+    - image.style.square_small
     - node.type.author
   module:
     - fences
     - image
-    - text
     - user
-id: node.author.default
+id: node.author.short_teaser
 targetEntityType: node
 bundle: author
-mode: default
+mode: short_teaser
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 1
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    region: content
   field_headshot:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: square_small
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     type: image
     region: content
   field_position_title:
-    weight: 2
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
 hidden:
+  body: true
   field_facebook: true
   field_github: true
   field_linkedin: true

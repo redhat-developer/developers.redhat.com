@@ -34,11 +34,35 @@
       margin-top: 15px;
     }
   }
+  .content {
+    line-height: 1.5;
+  }
   p, ul, ol, h2 {
     margin-top: 0.75em;
     margin-bottom: 0.75em;
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+  .authors {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    @include tablet-landscape {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include desktop-small {
+      grid-template-columns: 1fr 1fr;
+    }
+    > div {
+      margin-top: 10px;
+      @include tablet-landscape {
+        margin-top: 40px;
+      }
+      @include desktop-small {
+        margin-top: 10px;
+      }
     }
   }
 }

@@ -33,6 +33,18 @@ class VideoHeroBuild extends AssemblyBuildBase implements AssemblyBuildInterface
         $output['#weight'] = -100;
         $build['video'] = $output;
       }
+      // Add authors to build
+      if ($node && isset($node->field_video_author)) {
+        $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
+        $output = $viewBuilder->viewField($node->field_video_author, [
+          'label' => 'hidden',
+          'type' => 'entity_reference_entity_view',
+          'settings' => ['view_mode' => 'short_teaser', 'link' => FALSE],
+          ]);
+        $output['#cache']['tags'] = $node->getCacheTags();
+        $output['#weight'] = 100;
+        $build['authors'] = $output;
+      }
     }
   }
 }
