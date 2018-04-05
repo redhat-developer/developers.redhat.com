@@ -175,17 +175,6 @@
     right: 0;
     content: ' '; }
 
-.assembly.assembly-type-hero {
-  padding: 80px 0;
-  margin-bottom: 80px; }
-  .assembly.assembly-type-hero .content {
-    max-width: 60rem; }
-  .assembly.assembly-type-hero h2 {
-    font-size: 4rem;
-    line-height: 1.1; }
-  .assembly.assembly-type-hero .field--name-field-content p {
-    font-size: 1.5rem; }
-
 .node--view-mode-tile,
 .wordpress-blog-post-tile {
   width: 100%; }
@@ -1448,6 +1437,42 @@ body {
     margin-bottom: 0.75em; }
     .assembly-type-video_hero p:last-child, .assembly-type-video_hero ul:last-child, .assembly-type-video_hero ol:last-child, .assembly-type-video_hero h2:last-child {
       margin-bottom: 0; }
+
+.assembly-type-hero {
+  padding: 40px 0; }
+  @media (min-width: 992px) {
+    .assembly-type-hero {
+      padding: 100px 0;
+      padding-bottom: 120px; } }
+  .assembly-type-hero .content {
+    max-width: 60rem; }
+  .assembly-type-hero .background {
+    display: none; }
+    @media (min-width: 992px) {
+      .assembly-type-hero .background {
+        display: block; } }
+    .assembly-type-hero .background:after {
+      display: none; }
+  .assembly-type-hero h2 {
+    font-size: 4rem;
+    line-height: 1.1; }
+  .assembly-type-hero .field--name-field-content p {
+    font-size: 1.5rem; }
+    @media (min-width: 768px) {
+      .assembly-type-hero .field--name-field-content p {
+        font-size: 50px; } }
+  .assembly-type-hero a {
+    color: #0066CC;
+    font-weight: bold;
+    text-decoration: none;
+    background-image: radial-gradient(ellipse, #0066CC 50%, transparent 50%);
+    background-position: 0 1.1em;
+    background-repeat: repeat-x;
+    background-size: 6px 4px; }
+  .assembly-type-hero .content *:first-child {
+    margin-top: 0; }
+  .assembly-type-hero .content *:last-child {
+    margin-bottom: 0; }
 
 * {
   box-sizing: border-box;
