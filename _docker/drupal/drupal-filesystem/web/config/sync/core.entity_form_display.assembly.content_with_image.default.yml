@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.content_with_image.field_background_image
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
+    - field.field.assembly.content_with_image.field_navigation_title
     - field.field.assembly.content_with_image.field_title
   module:
     - entity_browser
@@ -20,7 +21,7 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 3
+    weight: 5
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -32,7 +33,7 @@ content:
     region: content
     third_party_settings: {  }
   field_content:
-    weight: 5
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
@@ -41,7 +42,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 4
+    weight: 6
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -52,6 +53,14 @@ content:
       selection_mode: selection_append
     region: content
     third_party_settings: {  }
+  field_navigation_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_title:
     weight: 1
     settings:
@@ -60,6 +69,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 7
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -70,14 +85,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60

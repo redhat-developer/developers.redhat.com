@@ -21,173 +21,171 @@
         relURL = window.location.href.replace(/https?:\/\//,'').replace('rhdp-drupal.redhat.com','').replace('developers.redhat.com','').replace(/\/$/,'');
 
     ( function( w, d, dd, undefined ) {
-        var categoryObj = getCategories();
-
-        function getCookie( name ) {
-            var value = "; " + document.cookie;
-            var parts = value.split( "; " + name + "=" );
-            if ( parts.length == 2 ) {
-                return parts.pop().split( ";" ).shift();
-            }
-        }
-
-        function deleteCookie(name) {
-            document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        };
-
-        function getPageContentTypes(dd, primary, subs, query) {
-            var pageType = '', contentType = '', contentSubType = '';
-            switch (primary) {
-                case 'home page':
-                    pageType = 'home';
-                    contentType = primary;
-                    break;
-                case 'articles':
-                    pageType = 'article';
-                    contentType = 'article';
-                    break;
-                case 'events':
-                    pageType = subs.length > 0 ? 'event' : 'events';
-                    contentType = subs.length > 0 ? subs[0] : 'event-list';
-                    break;
-                case 'community':
-                    pageType = 'contributor';
-                    break;
-                case 'forums':
-                    pageType = 'forum-list';
-                    contentType = 'forum-list';
-                    break;
-                case 'about':
-                case 'variants':
-                case 'downloads':
-                case 'stack-overflow':
-                case 'ticket-monster':
-                case 'terms-and-conditions':
-                case 'vjbug':
-                    pageType = primary;
-                    break;
-                case 'quickstarts':
-                case 'boms':
-                case 'archetypes':
-                case 'demos':
-                case 'promotions':
-                    pageType = primary.replace(/s$/,'');
-                    break;
-                case 'products':
-                    pageType = primary;
-                    if(subs.length > 0) {
-                        pageType = pageType.replace(/s$/,'');
-                        contentType = subs[0];
-                        contentSubType = subs[1] ? subs[1] : '';
-                    }
-                    break;
-                case 'video':
-                    pageType = primary;
-                    contentType = subs.length > 0 ? subs[0] : '';
-                    break;
-                case 'containers':
-                case 'devops':
-                case 'enterprise-java':
-                case 'iot':
-                case 'microservices':
-                case 'mobile':
-                case 'web-and-api-development':
-                case 'dotnet':
-                    pageType = 'topic';
-                    contentType = primary;
-                    break;
-                case 'search':
-                case 'projects':
-                    pageType = 'search-results';
-                    contentType = primary;
-                    break;
-            }
-
-            dd.page.category.pageType = pageType;
-            dd.page.category.contentType = contentType;
-            dd.page.category.contentSubType = contentSubType;
-
-            return dd;
-        }
-
-        function getQueryParams() {
-            return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
-        }
-
-        function getCategories() {
-            var categories = { primaryCategory: "", subCategories: [] },
-                url = relURL.split('?')[0].split('#')[0].split(/\//);
-            if (relURL === "") {
-                categories.primaryCategory = "home page";
+      var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//),
+          primary = '', subs = [],
+          pageType = '';
+      if (bc.length === 1 && bc[0] === "") {
+        primary = "home page";
+        subs.push('cms');
+        pageType = 'home';
+      } else {
+        switch(bc[0]) {
+          case 'events':
+            if (bc.length > 1) {
+              pageType = 'event';
+              primary = bc[0];
+              subs.push(bc.slice(1));
             } else {
-                for(var i=1, l=url.length; i<l; i++) {
-                    if (i !== 1 && i <= 3) {
-                        categories.subCategories.push(url[i]);
-                    }
-
-                    if (i === 1) {
-                        categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
-                    }
-                }
+              pageType = 'events';
+              primary = 'event-list';
             }
-
-            return categories;
+            break;
+          case 'community':
+            pageType = 'contributor';
+            primary = bc[0];
+            if (bc.length > 1) {
+              subs.push(bc.slice(1));
+            }
+            break;
+          case 'forums':
+            pageType = 'forum-list';
+            primary = 'forum-list';
+            break;
+          case 'about':
+            pageType = bc[0];
+            primary = 'about_us';
+            break;
+          case 'stack-overflow':
+            pageType = bc[0];
+            primary = 'stack-overflow-qa';
+            break;
+          case 'vjbug':
+          case 'devnationlive':
+            pageType = 'webinar';
+            primary = 'webinar';
+            subs.push(bc[0]);
+            break;
+          case 'articles':
+          case 'quickstarts':
+          case 'boms':
+          case 'archetypes':
+          case 'demos':
+          case 'promotions':
+            pageType = bc[0].replace(/s$/,'');
+            primary = bc[0].replace(/s$/,'');
+            if (bc.length > 1) {
+              subs.push(bc.slice(1));
+            }
+            break;
+          case 'products':
+            pageType = bc[0];
+            if (bc.length > 1) {
+              primary = bc[0];
+              subs.push(bc.slice(1));
+            } else {
+              primary = 'product-list';
+            }
+          case 'video':
+          case 'topics':
+          case 'search':
+          case 'projects':
+          case 'variants':
+          case 'downloads':
+          case 'ticket-monster':
+          case 'terms-and-conditions':
+          default:
+            pageType = bc[0];
+            primary = bc[0];
+            if (bc.length > 1) {
+              subs.push(bc.slice(1));
+            }
         }
+      }
 
-        function getPageName() {
-            var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
-                page = splitURL.pop();
-            return page.length > 0 ? page : 'home page';
-        }
+      dd.page.attributes.queryParameters = window.location.href.split('?')[1] ? window.location.href.split('?')[1].replace(/=/g,':').split('&') : "";
+      dd.page.category = { primaryCategory: primary, subCategories: subs };
+      dd.page.pageInfo.destinationURL = window.location.href;
+      dd.page.pageInfo.pageName = bc.length === 1 && bc[0] === "" ? 'home page' : bc[0];
+      dd.page.pageInfo.breadCrumbs = [dd.page.category.primaryCategory, dd.page.category.subCategories[0] || ""];
+      dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+      
+      var registered = getCookie("rhd_member");
+      dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
 
-        dd.page.attributes.queryParameters = getQueryParams();
-        dd.page.category.primaryCategory = categoryObj.primaryCategory;
-        dd.page.category.subCategories = categoryObj.subCategories;
-        dd.page.pageInfo.destinationURL = window.location.href;
-        dd.page.pageInfo.pageName = getPageName();
-        dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
-        dd = getPageContentTypes(dd, dd.page.category.primaryCategory, dd.page.category.subCategories, dd.page.attributes.queryParameters);
+      if ( d.referrer ) {
+        var a = d.createElement( "a" );
+        a.href = d.referrer;
 
-        var registered = getCookie("rhd_member");
-        dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
+        dd.page.pageInfo.referringDomain = a.hostname;
+        dd.page.pageInfo.referringURL = a.href;
+      }
 
-        if ( d.referrer ) {
-            var a = d.createElement( "a" );
-            a.href = d.referrer;
+      var elqGUID = getCookie( "rh_elqCustomerGUID" );
+      if ( elqGUID ) {
+        dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
+      }
 
-            dd.page.pageInfo.referringDomain = a.hostname;
-            dd.page.pageInfo.referringURL = a.href;
-        }
+      var slc = getCookie("rhd-slink-add");
+      if(slc){
+        sendSocialLinkEvent(slc);
+        deleteCookie('rhd-slink-add');
+      }
 
-        dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+      function sendSocialLinkEvent(sprov){
+        var ddSocialLinkEvent = {
+          eventInfo: {
+            eventAction: 'link',
+            eventName: 'social account link',
+            socialAccount: sprov,
+            socialAccountsLinked: dd.user[0].profile[0].profileInfo.socialAccountsLinked,
+            timeStamp: new Date(),
+            processed: {
+              adobeAnalytics: false
+            }
+          }
+        };
+        dd.event.push(ddSocialLinkEvent);
+        sendCustomEvent('socialLinkEvent', ddSocialLinkEvent);
+      }
 
-        var elqGUID = getCookie( "rh_elqCustomerGUID" );
-        if ( elqGUID ) {
-            dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
-        }
-
-        var slc = getCookie("rhd-slink-add");
-        if(slc){
-            sendSocialLinkEvent(slc);
-            deleteCookie('rhd-slink-add');
-        }
-
-        function sendSocialLinkEvent(sprov){
-            var ddSocialLinkEvent = {
-                eventInfo: {
-                    eventAction: 'link',
-                    eventName: 'social account link',
-                    socialAccount: sprov,
-                    socialAccountsLinked: dd.user[0].profile[0].profileInfo.socialAccountsLinked,
-                    timeStamp: new Date(),
-                    processed: {
-                        adobeAnalytics: false
-                    }
+      document.addEventListener('search-complete', function(e) {
+        if (typeof e.detail.invalid === 'undefined') {
+          var ddSearchEvent = {
+              eventInfo: {
+                eventName: 'internal search',
+                eventAction: 'search',
+                listing: {
+                  browseFilter:  e.detail.filterStr || "internal search",
+                  query: e.detail.term,
+                  queryMethod: "system generated",
+                  resultCount: e.detail.results.hits.total,
+                  resultsShown: e.detail.from,
+                  searchType: digitalData.page.category.primaryCategory || "",
+                  refinement: []
+                },
+                timeStamp: new Date(),
+                processed: {
+                  adobeAnalytics: false
                 }
+              }
             };
-            dd.event.push(ddSocialLinkEvent);
-            sendCustomEvent('socialLinkEvent', ddSocialLinkEvent);
+          digitalData.event.push(ddSearchEvent);
+          digitalData.page.listing = ddSearchEvent.eventInfo.listing;
+          sendCustomEvent('ajaxSearch');
         }
+      });
+
+      function getCookie( name ) {
+        var value = "; " + document.cookie;
+        var parts = value.split( "; " + name + "=" );
+        if ( parts.length == 2 ) {
+          return parts.pop().split( ";" ).shift();
+        }
+      }
+
+      function deleteCookie(name) {
+        document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      };
 
     } )( window, document, digitalData );
 </script><script id="adobe_dtm" src="https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js"></script><!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline--><meta charset="utf-8">

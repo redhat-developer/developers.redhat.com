@@ -1,0 +1,21 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <a href="{{ url }}">
+    <div class="header-block">
+      <div class="asset-type">Learning Path</div>
+      <h3 class="card-title">{{ label }}</h3>
+    </div>
+    {{ content }}
+    <div class="more">More Lessons</div>
+  </a>
+</article>

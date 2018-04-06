@@ -1,0 +1,33 @@
+uuid: 635d73fa-5092-46b5-8455-dc142dda5d1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.wordpress_post_reference
+    - field.field.assembly.wordpress_post_reference.field_post_reference
+  module:
+    - fences
+    - rhd_assemblies
+id: assembly.wordpress_post_reference.default
+targetEntityType: assembly
+bundle: wordpress_post_reference
+mode: default
+content:
+  field_post_reference:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: tile
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: wppost_teaser
+    region: content
+hidden:
+  name: true
+  user_id: true

@@ -1,0 +1,21 @@
+uuid: 6708d37e-743b-4834-9d75-e56bcbdea974
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_cta_content
+  module:
+    - text
+id: assembly.call_to_action.field_cta_content
+field_name: field_cta_content
+entity_type: assembly
+bundle: call_to_action
+label: 'CTA Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

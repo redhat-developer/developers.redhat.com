@@ -71,133 +71,97 @@
     }
   }
   {% if (rhd_dtm_code) %}
-  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
-    relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/\/$/,'');
-
+  var digitalData = {{ rhd_dtm_script|json_encode()|raw }};
+    
   ( function( w, d, dd, undefined ) {
-      var categoryObj = getCategories();
-
-      function getCookie( name ) {
-        var value = "; " + document.cookie;
-        var parts = value.split( "; " + name + "=" );
-        if ( parts.length == 2 ) {
-          return parts.pop().split( ";" ).shift();
-        }
-      }
-
-      function deleteCookie(name) {
-        document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      };
-
-      function getPageContentTypes(dd, primary, subs, query) {
-        var pageType = '', contentType = '', contentSubType = '';
-        switch (primary) {
-          case 'home page':
-            pageType = 'home';
-            contentType = primary;
-            break;
-          case 'articles':
-            pageType = 'article';
-            contentType = 'article';
-            break;
+      var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//),
+          primary = '', subs = [],
+          pageType = '';
+      if (bc.length === 1 && bc[0] === "") {
+        primary = "home page";
+        subs.push('cms');
+        pageType = 'home';
+      } else {
+        switch(bc[0]) {
           case 'events':
-            pageType = subs.length > 0 ? 'event' : 'events';
-            contentType = subs.length > 0 ? subs[0] : 'event-list';
+            if (bc.length > 1) {
+              pageType = 'event';
+              primary = bc[0];
+              subs = bc.slice(1);
+            } else {
+              pageType = 'events';
+              primary = 'event-list';
+            }
             break;
           case 'community':
             pageType = 'contributor';
+            primary = bc[0];
+            if (bc.length > 1) {
+              subs = bc.slice(1);
+            }
             break;
           case 'forums':
             pageType = 'forum-list';
-            contentType = 'forum-list';
+            primary = 'forum-list';
             break;
           case 'about':
-          case 'variants':
-          case 'downloads':
-          case 'stack-overflow':
-          case 'ticket-monster':
-          case 'terms-and-conditions':
-          case 'vjbug':
-            pageType = primary;
+            pageType = bc[0];
+            primary = 'about_us';
             break;
+          case 'stack-overflow':
+            pageType = bc[0];
+            primary = 'stack-overflow-qa';
+            break;
+          case 'vjbug':
+          case 'devnationlive':
+            pageType = 'webinar';
+            primary = 'webinar';
+            subs.push(bc[0]);
+            break;
+          case 'articles':
           case 'quickstarts':
           case 'boms':
           case 'archetypes':
           case 'demos':
           case 'promotions':
-            pageType = primary.replace(/s$/,'');
+            pageType = bc[0].replace(/s$/,'');
+            primary = bc[0].replace(/s$/,'');
+            if (bc.length > 1) {
+              subs = bc.slice(1);
+            }
             break;
           case 'products':
-            pageType = primary;
-            if(subs.length > 0) {
-              pageType = pageType.replace(/s$/,'');
-              contentType = subs[0];
-              contentSubType = subs[1] ? subs[1] : '';
+            pageType = bc[0];
+            if (bc.length > 1) {
+              primary = bc[0];
+              subs = bc.slice(1);
+            } else {
+              primary = 'product-list';
             }
-            break;
           case 'video':
-            pageType = primary;
-            contentType = subs.length > 0 ? subs[0] : '';
-            break;
           case 'topics':
-            pageType = primary;
-            if(subs.length > 0) {
-              pageType = pageType.replace(/s$/,'');
-              contentType = subs[0];
-            }
-            break;
           case 'search':
           case 'projects':
-            pageType = 'search-results';
-            contentType = primary;
-            break;
-        }
-
-        dd.page.category.pageType = pageType;
-        dd.page.category.contentType = contentType;
-        dd.page.category.contentSubType = contentSubType;
-
-        return dd;
-      }
-
-      function getQueryParams() {
-        return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
-      }
-
-      function getCategories() {
-        var categories = { primaryCategory: "", subCategories: [] },
-          url = relURL.split('?')[0].split('#')[0].split(/\//);
-        if (relURL === "") {
-          categories.primaryCategory = "home page";
-        } else {
-          for(var i=1, l=url.length; i<l; i++) {
-            if (i !== 1 && i <= 3) {
-              categories.subCategories.push(url[i]);
+          case 'variants':
+          case 'downloads':
+          case 'ticket-monster':
+          case 'terms-and-conditions':
+          default:
+            pageType = bc[0];
+            primary = bc[0];
+            if (bc.length > 1) {
+              subs = bc.slice(1);
             }
-
-            if (i === 1) {
-              categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
-            }
-          }
         }
-
-        return categories;
       }
 
-      function getPageName() {
-        var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
-          page = splitURL.pop();
-        return page.length > 0 ? page : 'home page';
-      }
-
-      dd.page.attributes.queryParameters = getQueryParams();
-      dd.page.category.primaryCategory = categoryObj.primaryCategory;
-      dd.page.category.subCategories = categoryObj.subCategories;
+      dd.page.attributes.queryParameters = window.location.href.split('?')[1] ? window.location.href.split('?')[1].replace(/=/g,':').split('&') : "";
+      dd.page.category = { primaryCategory: primary, subCategories: subs };
       dd.page.pageInfo.destinationURL = window.location.href;
-      dd.page.pageInfo.pageName = getPageName();
-      dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
-      dd = getPageContentTypes(dd, dd.page.category.primaryCategory, dd.page.category.subCategories, dd.page.attributes.queryParameters);
-
+      dd.page.pageInfo.pageName = bc.length === 1 && bc[0] === "" ? 'home page' : bc[0];
+      dd.page.pageInfo.breadCrumbs = [dd.page.category.primaryCategory, dd.page.category.subCategories[0] || ""];
+      dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+      
       var registered = getCookie("rhd_member");
       dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
 
@@ -208,8 +172,6 @@
         dd.page.pageInfo.referringDomain = a.hostname;
         dd.page.pageInfo.referringURL = a.href;
       }
-
-      dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
 
       var elqGUID = getCookie( "rh_elqCustomerGUID" );
       if ( elqGUID ) {
@@ -266,11 +228,23 @@
         }
       });
 
+      function getCookie( name ) {
+        var value = "; " + document.cookie;
+        var parts = value.split( "; " + name + "=" );
+        if ( parts.length == 2 ) {
+          return parts.pop().split( ";" ).shift();
+        }
+      }
+
+      function deleteCookie(name) {
+        document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      };
+
     } )( window, document, digitalData );
     {% endif %}
   </script>
   {% if (rhd_dtm_code) %}
-  <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
+  <script id="dpal" src="{{rhd_dtm_code}}"></script>
   {% endif %}
 
   <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->
@@ -281,7 +255,7 @@
   <title>{{ head_title|safe_join(' | ')}}</title>
   <css-placeholder token="{{ placeholder_token|raw }}">
   {% if (rhd_sentry_track) %}
-  <script src="{{ rhd_sentry_script }}"></script>
+  <script src="{{ rhd_sentry_script }}" crossorigin="anonymous"></script>
   <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
   {% endif %}
   <js-placeholder token="{{ placeholder_token|raw }}">

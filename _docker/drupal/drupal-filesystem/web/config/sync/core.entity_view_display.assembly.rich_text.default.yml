@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.rich_text
     - field.field.assembly.rich_text.field_background_image
     - field.field.assembly.rich_text.field_content
+    - field.field.assembly.rich_text.field_navigation_title
     - field.field.assembly.rich_text.field_title
   module:
     - text
@@ -31,5 +32,6 @@ content:
     region: content
 hidden:
   field_background_image: true
+  field_navigation_title: true
   name: true
   user_id: true

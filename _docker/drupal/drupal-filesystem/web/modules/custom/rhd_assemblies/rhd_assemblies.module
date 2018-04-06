@@ -5,7 +5,10 @@
  * Contains rhd_assemblies.module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_help().
@@ -52,5 +55,40 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
       'categories' => NULL,
     ],
   ];
+  $theme['wordpress_post_tile'] = [
+    'template' => 'wordpress-post-tile',
+    'variables' => [
+      'post' => NULL,
+      'media' => NULL,
+    ],
+  ];
   return $theme;
+}
+
+function rhd_assemblies_entity_presave(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'assembly' && in_array($entity->bundle(), ['node_reference', 'wordpress_post_reference'])) {
+    if ($entity->bundle() == 'node_reference') {
+      $field = $entity->get('field_node_reference')->getValue();
+      $node_id = reset($field)['target_id'];
+      $node = Node::load($node_id);
+      $title = $node->label();
+      $entity->set('name', $title);
+    }
+
+    if ($entity->bundle() == 'wordpress_post_reference') {
+      $field = $entity->get('field_post_reference')->getValue();
+      $title = reset($field)['title'];
+      $entity->set('name', $title);
+    }
+  }
+}
+
+function rhd_assemblies_preprocess_assembly(&$variables) {
+  // Make assembly ID match pattern used for on page navigation
+  $parent = $variables['elements']['#parent'];
+  if ($parent) {
+    $id = $variables['elements']['#assembly']->id();
+    $css_id = Html::cleanCssIdentifier('assembly-' . $parent['field_name'] . '-' . $id);
+    $variables['attributes']->offsetSet('id', $css_id);
+  }
 }
