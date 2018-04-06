@@ -8,7 +8,7 @@ dependencies:
     - field.field.assembly.featured_resources.field_resources
   module:
     - fences
-    - link
+    - rhd_assemblies
 id: assembly.featured_resources.default
 targetEntityType: assembly
 bundle: featured_resources
@@ -18,11 +18,12 @@ content:
     weight: 2
     label: hidden
     settings:
-      trim_length: null
+      trim_length: ''
+      class: 'button medium-cta'
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
+      rel: 0
+      target: 0
     third_party_settings:
       fences:
         fences_field_tag: div
@@ -31,7 +32,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: link
+    type: link_class
     region: content
   field_resources:
     weight: 1

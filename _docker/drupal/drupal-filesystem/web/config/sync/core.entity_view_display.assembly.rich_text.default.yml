@@ -9,6 +9,7 @@ dependencies:
     - field.field.assembly.rich_text.field_navigation_title
     - field.field.assembly.rich_text.field_title
   module:
+    - fences
     - text
 id: assembly.rich_text.default
 targetEntityType: assembly
@@ -27,7 +28,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:

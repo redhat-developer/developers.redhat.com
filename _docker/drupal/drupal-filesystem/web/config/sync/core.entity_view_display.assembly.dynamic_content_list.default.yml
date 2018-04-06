@@ -8,10 +8,10 @@ dependencies:
     - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
     - field.field.assembly.dynamic_content_list.field_links
-    - field.field.assembly.dynamic_content_list.field_title
   module:
     - fences
     - link
+    - rhd_assemblies
 id: assembly.dynamic_content_list.default
 targetEntityType: assembly
 bundle: dynamic_content_list
@@ -21,11 +21,12 @@ content:
     weight: 2
     label: hidden
     settings:
-      trim_length: 80
+      trim_length: ''
+      class: 'button medium-cta'
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
+      rel: 0
+      target: 0
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -34,7 +35,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: link
+    type: link_class
     region: content
   field_links:
     type: link
@@ -55,23 +56,22 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-  field_title:
+  name:
+    type: string
     weight: 0
+    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: h2
-        fences_field_item_classes: header
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: string
-    region: content
 hidden:
   field_category_filter: true
   field_drupal_term_filter: true
-  name: true
   user_id: true
