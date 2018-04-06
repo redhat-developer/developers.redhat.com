@@ -1,0 +1,23 @@
+uuid: b5433cd6-f3b7-4141-be89-ac77fee589b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_resources
+    - field.storage.assembly.field_links
+  module:
+    - link
+id: assembly.featured_resources.field_links
+field_name: field_links
+entity_type: assembly
+bundle: featured_resources
+label: Links
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

@@ -1,0 +1,70 @@
+uuid: a543e194-620e-4014-9a3a-c657a9823612
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.field.assembly.dynamic_content_feed.field_category_filter
+    - field.field.assembly.dynamic_content_feed.field_cta_link
+    - field.field.assembly.dynamic_content_feed.field_drupal_term_filter
+    - field.field.assembly.dynamic_content_feed.field_number_of_posts
+  module:
+    - link
+    - rhd_assemblies
+id: assembly.dynamic_content_feed.default
+targetEntityType: assembly
+bundle: dynamic_content_feed
+mode: default
+content:
+  field_category_filter:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: wpcategories_options_select
+    region: content
+  field_cta_link:
+    weight: 27
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_drupal_term_filter:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_number_of_posts:
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

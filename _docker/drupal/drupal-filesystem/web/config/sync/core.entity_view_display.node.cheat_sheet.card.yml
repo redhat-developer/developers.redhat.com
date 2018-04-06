@@ -1,0 +1,63 @@
+uuid: 9aef01b4-b457-447a-922b-116545ff226b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_card_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_read_time
+    - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_topics
+    - field.field.node.cheat_sheet.scheduled_update
+    - node.type.cheat_sheet
+  module:
+    - fences
+    - link
+    - user
+_core:
+  default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
+id: node.cheat_sheet.card
+targetEntityType: node
+bundle: cheat_sheet
+mode: card
+content:
+  field_card_image:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: true
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+hidden:
+  body: true
+  field_cheat_sheet_author: true
+  field_cheat_sheet_download_url: true
+  field_cheat_sheet_excerpt: true
+  field_cheat_sheet_tags: true
+  field_difficulty: true
+  field_exclude_from_search: true
+  field_read_time: true
+  field_short_description: true
+  field_topics: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true

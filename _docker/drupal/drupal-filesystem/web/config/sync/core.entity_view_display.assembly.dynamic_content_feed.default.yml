@@ -1,0 +1,57 @@
+uuid: 56106cf4-c054-489f-a6b3-820b7f62961d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.field.assembly.dynamic_content_feed.field_category_filter
+    - field.field.assembly.dynamic_content_feed.field_cta_link
+    - field.field.assembly.dynamic_content_feed.field_drupal_term_filter
+    - field.field.assembly.dynamic_content_feed.field_number_of_posts
+  module:
+    - fences
+    - link
+id: assembly.dynamic_content_feed.default
+targetEntityType: assembly
+bundle: dynamic_content_feed
+mode: default
+content:
+  field_cta_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: cta-link
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  field_category_filter: true
+  field_drupal_term_filter: true
+  field_number_of_posts: true
+  user_id: true
