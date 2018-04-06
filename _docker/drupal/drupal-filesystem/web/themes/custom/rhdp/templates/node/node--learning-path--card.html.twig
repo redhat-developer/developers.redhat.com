@@ -8,14 +8,17 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
     <div class="header-block">
-      <div class="asset-type">Learning Path</div>
+      <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %}Learning Path</div>
       <h3 class="card-title">{{ label }}</h3>
     </div>
-    {{ content }}
-    <div class="more">More Lessons</div>
+    <div class="content-block">
+      {{ content }}
+      <div class="more">More Lessons <span class="fas fa-caret-right"></span></div>
+    </div>
   </a>
 </article>
