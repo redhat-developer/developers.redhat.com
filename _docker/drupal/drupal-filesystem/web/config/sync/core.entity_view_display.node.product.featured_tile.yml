@@ -1,0 +1,97 @@
+uuid: 56ae7d5f-b385-4b10-ab7f-9699af4b1254
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.featured_tile
+    - field.field.node.product.field_call_to_action_link
+    - field.field.node.product.field_card_image
+    - field.field.node.product.field_image
+    - field.field.node.product.field_product_categories
+    - field.field.node.product.field_product_category
+    - field.field.node.product.field_product_machine_name
+    - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
+    - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_short_description
+    - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_url_product_name
+    - field.field.node.product.scheduled_update
+    - image.style.large
+    - node.type.product
+  module:
+    - fences
+    - image
+    - link
+    - user
+_core:
+  default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
+id: node.product.featured_tile
+targetEntityType: node
+bundle: product
+mode: featured_tile
+content:
+  field_call_to_action_link:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: logo
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: description
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  field_card_image: true
+  field_product_categories: true
+  field_product_category: true
+  field_product_machine_name: true
+  field_product_pages: true
+  field_product_short_name: true
+  field_product_summary: true
+  field_product_technology_group: true
+  field_stackoverflow_product_refe: true
+  field_url_product_name: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true

@@ -1,0 +1,19 @@
+uuid: 05010b92-8be3-475d-af40-ad8e15f9695f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.storage.assembly.field_title
+id: assembly.featured_products.field_title
+field_name: field_title
+entity_type: assembly
+bundle: featured_products
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

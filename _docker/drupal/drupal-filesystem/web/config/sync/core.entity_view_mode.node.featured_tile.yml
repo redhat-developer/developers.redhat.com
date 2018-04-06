@@ -1,0 +1,14 @@
+uuid: f21fb1d6-5ed5-4784-a1d7-f41df2e9acec
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: ''
+id: node.featured_tile
+label: 'Featured Tile'
+targetEntityType: node
+cache: true
