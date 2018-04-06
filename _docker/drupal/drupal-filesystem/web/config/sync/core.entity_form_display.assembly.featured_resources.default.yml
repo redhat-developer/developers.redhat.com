@@ -1,0 +1,57 @@
+uuid: 9000a735-1f19-4d39-8785-9589d6d6e451
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_resources
+    - field.field.assembly.featured_resources.field_links
+    - field.field.assembly.featured_resources.field_resources
+  module:
+    - link
+id: assembly.featured_resources.default
+targetEntityType: assembly
+bundle: featured_resources
+mode: default
+content:
+  field_links:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_resources:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

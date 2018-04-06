@@ -1,0 +1,89 @@
+uuid: caecdf91-d163-415e-88da-ec20d967899f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.books.field_author
+    - field.field.node.books.field_average_rating
+    - field.field.node.books.field_book_description
+    - field.field.node.books.field_book_excerpt
+    - field.field.node.books.field_book_url
+    - field.field.node.books.field_card_image
+    - field.field.node.books.field_categories
+    - field.field.node.books.field_difficulty
+    - field.field.node.books.field_epub
+    - field.field.node.books.field_isbn
+    - field.field.node.books.field_mobi_link
+    - field.field.node.books.field_needs_own_page
+    - field.field.node.books.field_pdf_link
+    - field.field.node.books.field_preview_url
+    - field.field.node.books.field_published_date
+    - field.field.node.books.field_publisher
+    - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_read_time
+    - field.field.node.books.field_related_product
+    - field.field.node.books.field_short_description
+    - field.field.node.books.field_tags
+    - field.field.node.books.field_thumbnail_url
+    - field.field.node.books.field_topics
+    - field.field.node.books.field_web_reader_url
+    - field.field.node.books.scheduled_update
+    - node.type.books
+  module:
+    - fences
+    - link
+    - user
+_core:
+  default_config_hash: 6xYjc_xUKetNHubcZQ-HCVjelYp7JE6bmEGVhegbJT4
+id: node.books.card
+targetEntityType: node
+bundle: books
+mode: card
+content:
+  field_card_image:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: true
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+hidden:
+  field_author: true
+  field_average_rating: true
+  field_book_description: true
+  field_book_excerpt: true
+  field_book_url: true
+  field_categories: true
+  field_difficulty: true
+  field_epub: true
+  field_isbn: true
+  field_mobi_link: true
+  field_needs_own_page: true
+  field_pdf_link: true
+  field_preview_url: true
+  field_published_date: true
+  field_publisher: true
+  field_pull_from_google: true
+  field_read_time: true
+  field_related_product: true
+  field_short_description: true
+  field_tags: true
+  field_thumbnail_url: true
+  field_topics: true
+  field_web_reader_url: true
+  links: true
+  scheduled_update: true
+  workbench_moderation_control: true
