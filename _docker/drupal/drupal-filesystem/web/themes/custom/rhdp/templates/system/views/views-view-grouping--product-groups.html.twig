@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override to display a single views grouping.
+ *
+ * Available variables:
+ * - view: The view object.
+ * - grouping: The grouping instruction.
+ * - grouping_level: A number indicating the hierarchical level of the grouping.
+ * - title: The group heading.
+ * - content: The content to be grouped.
+ * - rows: The rows returned from the view.
+ *
+ * @see template_preprocess_views_view_grouping()
+ */
+#}
+{% set header = title|split('||') %}
+<dp-category name="{{ header.0 }}" image="{{ header.1 }}">
+  <dp-category-item-list>
+    {{ content }}
+  </dp-category-item-list>
+</dp-category>

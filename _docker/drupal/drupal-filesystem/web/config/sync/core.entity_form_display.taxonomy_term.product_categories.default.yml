@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.media_browser
     - field.field.taxonomy_term.product_categories.field_product_category_image
     - taxonomy.vocabulary.product_categories
   module:
+    - entity_browser
     - path
     - text
 id: taxonomy_term.product_categories.default
@@ -14,21 +16,25 @@ bundle: product_categories
 mode: default
 content:
   description:
-    type: text_textfield
+    type: text_textarea
     weight: 0
     region: content
     settings:
-      size: 60
       placeholder: ''
+      rows: 5
     third_party_settings: {  }
   field_product_category_image:
     weight: 31
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      entity_browser: media_browser
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      open: false
+      field_widget_display_settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_browser_entity_reference
     region: content
   name:
     type: string_textfield
