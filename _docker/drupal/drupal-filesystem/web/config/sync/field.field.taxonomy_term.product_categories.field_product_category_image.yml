@@ -1,0 +1,29 @@
+uuid: 2e471847-73f2-4753-9818-84b718017a9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_product_category_image
+    - media_entity.bundle.image
+    - taxonomy.vocabulary.product_categories
+id: taxonomy_term.product_categories.field_product_category_image
+field_name: field_product_category_image
+entity_type: taxonomy_term
+bundle: product_categories
+label: 'Product Category Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,4 +1,4 @@
-uuid: ef6d8b09-e100-45a3-9110-20712ac27110
+uuid: 231d9406-d5bf-4db8-b676-6e704585f163
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,9 @@ dependencies:
     - workbench_moderation
 third_party_settings:
   menu_ui:
-    available_menus: {  }
-    parent: ''
+    available_menus:
+      - main
+    parent: 'main:'
   workbench_moderation:
     enabled: true
     allowed_moderation_states:
@@ -17,12 +18,10 @@ third_party_settings:
       - draft
       - needs_review
     default_moderation_state: draft
-_core:
-  default_config_hash: MgVh0-aL08L1QpvfWdpDEn8R_Z6zmrMYmBdbem_ctz0
-name: 'Topic Page (Deprecated)'
-type: topic
+name: 'Topic Page'
+type: topic_page
 description: ''
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 1
 display_submitted: false

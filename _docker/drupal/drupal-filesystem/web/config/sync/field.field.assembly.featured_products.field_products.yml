@@ -1,0 +1,28 @@
+uuid: ab78001e-9b73-4fb2-ab6e-f98a884ef00c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.storage.assembly.field_products
+    - node.type.product
+id: assembly.featured_products.field_products
+field_name: field_products
+entity_type: assembly
+bundle: featured_products
+label: Products
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

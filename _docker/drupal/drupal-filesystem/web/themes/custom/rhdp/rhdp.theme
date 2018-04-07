@@ -11,6 +11,7 @@ use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Link;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\views\ViewExecutable;
 
 
 function rhdp_theme_suggestions_page_alter(array &$suggestions, array $variables) {

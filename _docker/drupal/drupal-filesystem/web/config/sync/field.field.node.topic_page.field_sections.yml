@@ -1,4 +1,4 @@
-uuid: 624b864f-18fd-463e-b863-fdce2b79c76e
+uuid: cb0ce5f9-b6f5-4c8b-bc79-5161cf177255
 langcode: en
 status: true
 dependencies:
@@ -6,26 +6,23 @@ dependencies:
     - assembly.assembly_type.blog_posts
     - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
-    - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.featured_evangelists
-    - assembly.assembly_type.featured_products
     - assembly.assembly_type.on_page_navigation
-    - assembly.assembly_type.featured_resources
     - assembly.assembly_type.rich_text
     - assembly.assembly_type.static_content_band
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
-    - node.type.assembly_page
+    - node.type.topic_page
   module:
     - entity_reference_revisions
-id: node.assembly_page.field_sections
+id: node.topic_page.field_sections
 field_name: field_sections
 entity_type: node
-bundle: assembly_page
+bundle: topic_page
 label: Sections
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -35,16 +32,13 @@ settings:
       blog_posts: blog_posts
       call_to_action: call_to_action
       content_with_image: content_with_image
-      dynamic_content_feed: dynamic_content_feed
-      featured_evangelists: featured_evangelists
-      featured_products: featured_products
-      on_page_navigation: on_page_navigation
-      featured_resources: featured_resources
-      rich_text: rich_text
       static_content_band: static_content_band
+      featured_evangelists: featured_evangelists
+      on_page_navigation: on_page_navigation
+      rich_text: rich_text
       videos: videos
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: content_with_image
+    auto_create_bundle: blog_posts
 field_type: entity_reference_revisions
