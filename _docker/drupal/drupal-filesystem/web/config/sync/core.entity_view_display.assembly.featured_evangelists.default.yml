@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.featured_evangelists
     - field.field.assembly.featured_evangelists.field_cta_link
     - field.field.assembly.featured_evangelists.field_evangelists
+    - field.field.assembly.featured_evangelists.field_title
   module:
     - fences
     - link
@@ -49,20 +50,21 @@ content:
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
-  name:
-    type: string
+  field_title:
     weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h2
-        fences_field_classes: header
-        fences_field_item_tag: none
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
+    type: string
+    region: content
 hidden:
+  name: true
   user_id: true
