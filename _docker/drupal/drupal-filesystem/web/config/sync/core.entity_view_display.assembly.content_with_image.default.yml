@@ -11,6 +11,7 @@ dependencies:
     - field.field.assembly.content_with_image.field_title
     - image.style.large
   module:
+    - fences
     - image
     - text
 id: assembly.content_with_image.default
@@ -39,7 +40,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: header
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:
