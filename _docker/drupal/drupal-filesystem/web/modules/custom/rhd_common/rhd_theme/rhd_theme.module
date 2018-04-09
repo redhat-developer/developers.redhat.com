@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_theme.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_theme_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_theme module.
+    case 'help.page.rhd_theme':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a theme negotiator to activate the new theme for applicable nodes') . '</p>';
+      return $output;
+
+    default:
+  }
+}

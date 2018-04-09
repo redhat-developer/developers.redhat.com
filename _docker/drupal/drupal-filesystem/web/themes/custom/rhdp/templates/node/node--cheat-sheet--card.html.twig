@@ -16,7 +16,9 @@
       <img src="{{ content.card_image_url }}"/>
     </div>
     {% endif %}
-    <div class="asset-type">Book</div>
-    <h3 class="card-title">{{ label }}</h3>
+    <div class="content-block">
+      <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %} PDF</div>
+      <h3 class="card-title">{{ label }}</h3>
+    </div>
   </a>
 </article>
