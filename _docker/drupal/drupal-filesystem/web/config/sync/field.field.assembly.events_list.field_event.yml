@@ -1,0 +1,28 @@
+uuid: c3112a64-993a-40b6-ad70-bb011f6525df
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_list
+    - field.storage.assembly.field_event
+    - node.type.events
+id: assembly.events_list.field_event
+field_name: field_event
+entity_type: assembly
+bundle: events_list
+label: Event
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      events: events
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -9,9 +9,11 @@ dependencies:
     - field.field.node.events.field_event_background_image
     - field.field.node.events.field_event_format
     - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
@@ -38,12 +40,6 @@ targetEntityType: node
 bundle: events
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_data_tags:
     weight: 16
     settings:
@@ -86,8 +82,8 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_event_type:
-    weight: 8
+  field_event_location:
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -106,6 +102,15 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_presenter_s_:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_region:
     weight: 10
@@ -183,6 +188,8 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  created: true
+  field_event_type: true
   field_title: true
   path: true
   promote: true

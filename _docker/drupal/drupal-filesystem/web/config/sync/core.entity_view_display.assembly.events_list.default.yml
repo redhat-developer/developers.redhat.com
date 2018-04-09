@@ -1,0 +1,38 @@
+uuid: b5258f1f-30e0-4db7-bbb7-bd1e2ed937fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_list
+    - field.field.assembly.events_list.field_event
+  module:
+    - user
+id: assembly.events_list.default
+targetEntityType: assembly
+bundle: events_list
+mode: default
+content:
+  field_event:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
