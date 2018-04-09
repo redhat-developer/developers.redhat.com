@@ -221,6 +221,7 @@ function rhdp_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 
+  // Add card image in usable format
   if ($node->hasField('field_card_image') && $variables['view_mode'] == 'card') {
     $card_image_field = $node->get('field_card_image')->getValue();
     if (count($card_image_field)) {
@@ -230,6 +231,23 @@ function rhdp_preprocess_node(&$variables) {
       unset($variables['content']['field_card_image']);
     }
   }
+
+  // Add icon for 'login required' resources
+  if ($variables['view_mode'] == 'card') {
+    $variables['login_req'] = false;
+    foreach (['field_book_url', 'field_cheat_sheet_download_url', 'field_source_link'] as $field) {
+      if ($node->hasField($field)) {
+        $ext_url = $node->get($field)->getValue();
+        if (count($ext_url)) {
+          $ext_url_uri = reset($ext_url)['uri'];
+          if (strpos($ext_url_uri, 'developers.redhat.com/download-manager/') >= 0) {
+            $variables['login_req'] = true;
+          }
+        }
+      }
+    }
+  }
+
 }
 
 function redhat_www_ddo_default($node) {
