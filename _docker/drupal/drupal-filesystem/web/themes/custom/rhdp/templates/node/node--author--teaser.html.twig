@@ -19,8 +19,8 @@
       {% if content.social_icons|length %}
         <ul class="social-icons">
           {% for social_icon in content.social_icons %}
-            <li class="social-icon {{ social_icon.field|raw }}">
-              <a href="{{ social_icon.value|raw }}">{{ social_icon.field|raw }}</a>
+            <li class="author-social-icon-{{ social_icon.icon|raw }}">
+              <a href="{{ social_icon.value|raw }}"><span class="fab fa-{{ social_icon.icon|raw }}"></span></a>
             </li>
           {% endfor %}
         </ul>

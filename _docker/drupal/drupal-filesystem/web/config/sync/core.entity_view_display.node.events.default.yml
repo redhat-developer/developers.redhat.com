@@ -9,9 +9,11 @@ dependencies:
     - field.field.node.events.field_event_background_image
     - field.field.node.events.field_event_format
     - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
@@ -20,6 +22,7 @@ dependencies:
     - field.field.node.events.field_target_product
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
+    - field.field.node.events.scheduled_update
     - node.type.events
   module:
     - datetime
@@ -81,6 +84,13 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  field_event_location:
+    weight: 127
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_event_type:
     weight: 113
     label: above
@@ -102,6 +112,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_presenter_s_:
+    weight: 126
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_region:
     weight: 121

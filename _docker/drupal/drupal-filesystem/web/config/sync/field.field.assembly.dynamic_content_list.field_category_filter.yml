@@ -1,0 +1,21 @@
+uuid: f2f4e025-9ea4-4b57-99f4-85c348526d1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.storage.assembly.field_category_filter
+  module:
+    - rhd_assemblies
+id: assembly.dynamic_content_list.field_category_filter
+field_name: field_category_filter
+entity_type: assembly
+bundle: dynamic_content_list
+label: 'Wordpress Categories Filter'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_wpcategories
