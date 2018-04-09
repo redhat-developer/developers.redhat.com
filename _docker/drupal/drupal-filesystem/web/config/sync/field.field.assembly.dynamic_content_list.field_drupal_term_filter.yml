@@ -1,0 +1,29 @@
+uuid: 5b402e24-2acd-4717-b53b-ebc813e4a0b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.storage.assembly.field_drupal_term_filter
+    - taxonomy.vocabulary.topics
+id: assembly.dynamic_content_list.field_drupal_term_filter
+field_name: field_drupal_term_filter
+entity_type: assembly
+bundle: dynamic_content_list
+label: 'Drupal Term Filter'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topics: topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

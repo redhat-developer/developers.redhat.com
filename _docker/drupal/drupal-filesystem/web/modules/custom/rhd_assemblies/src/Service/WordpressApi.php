@@ -68,7 +68,7 @@ class WordpressApi implements RemoteContentApiInterface {
       $response = $request->getBody()->getContents();
       $api_results = json_decode($response);
       foreach ($api_results as $api_result) {
-        $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')'
+        $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')';
         $results[] = [
           'value' => $label,
           'label' => $label
@@ -139,10 +139,16 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   private function getContentMedia($id) {
-    $feed_url = $this->apiUrl . '/wp-json/wp/v2/media/' . $id;
-    $request = $this->client->request('GET', $feed_url);
-    $response = $request->getBody()->getContents();
-    return json_decode($response);
+    try {
+      $feed_url = $this->apiUrl . '/wp-json/wp/v2/media/' . $id;
+      $request = $this->client->request('GET', $feed_url);
+      $response = $request->getBody()->getContents();
+      return json_decode($response);
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('rhd_assemblies')->error("Exception while calling Wordpress API: " . $e->getMessage());
+      return [];
+    }
   }
 
   private function getContentCategoryLinks($categories) {

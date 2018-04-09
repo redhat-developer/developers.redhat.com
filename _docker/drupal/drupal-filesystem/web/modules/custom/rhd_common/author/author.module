@@ -15,14 +15,27 @@ function author_preprocess_node(&$variables) {
   $view_mode = $variables['view_mode'];
   if ($node->getType() === 'author') {
     $variables['content']['social_icons'] = [];
-    $social_fields = ['field_facebook', 'field_github', 'field_youtube', 'field_twitter', 'field_linkedin'];
+    $social_fields = [
+      'field_twitter',
+      'field_youtube',
+      'field_linkedin',
+      'field_github',
+      'field_facebook',
+    ];
     foreach ($social_fields as $field) {
       $value = $node->get($field)->getValue();
       if ($value && count($value) && isset($value[0]['uri'])) {
         $value = reset($value)['uri'];
+        $icon = str_replace('field_', '', $field);
+
+        // special overrides
+        if ($value == 'facebook') {
+          $icon = 'facebook-square';
+        }
+
         $variables['content']['social_icons'][] = [
           'value' => ['#markup' => $value],
-          'field' => ['#markup' => str_replace('field_', '', $field)]
+          'icon' => ['#markup' => $icon]
         ];
         unset($variables['content'][$field]);
       }

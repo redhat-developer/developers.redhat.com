@@ -1,0 +1,75 @@
+uuid: 5f864565-dbda-45b3-b5b2-0206c2a15730
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.field.assembly.dynamic_content_list.field_category_filter
+    - field.field.assembly.dynamic_content_list.field_cta_link
+    - field.field.assembly.dynamic_content_list.field_drupal_term_filter
+    - field.field.assembly.dynamic_content_list.field_links
+  module:
+    - fences
+    - link
+id: assembly.dynamic_content_list.default
+targetEntityType: assembly
+bundle: dynamic_content_list
+mode: default
+content:
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+  field_links:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: content-link-list
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  field_category_filter: true
+  field_drupal_term_filter: true
+  user_id: true
