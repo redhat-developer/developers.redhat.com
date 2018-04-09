@@ -186,6 +186,48 @@
     height: auto;
     box-shadow: -2px 2px 11px 0 rgba(0, 0, 0, 0.5); }
 
+.node--type-author.node--view-mode-teaser .grid {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 160px 1fr; }
+
+.node--type-author.node--view-mode-teaser .name {
+  margin-top: 0;
+  margin-bottom: .5rem; }
+
+.node--type-author.node--view-mode-teaser .bio p {
+  margin-top: 0; }
+
+.node--type-author .headshot img {
+  max-width: 100%;
+  height: auto;
+  display: block; }
+
+.node--type-author .social-icons {
+  padding: 0;
+  list-style-type: none; }
+
+.author-social-icon-facebook, .author-social-icon-twitter, .author-social-icon-youtube, .author-social-icon-linkedin, .author-social-icon-github {
+  text-decoration: none;
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 10px; }
+
+.author-social-icon-facebook svg {
+  color: #3b5998; }
+
+.author-social-icon-twitter svg {
+  color: #00aced; }
+
+.author-social-icon-youtube svg {
+  color: #ff0000; }
+
+.author-social-icon-linkedin svg {
+  color: #0077B5; }
+
+.author-social-icon-github svg {
+  color: #000000; }
+
 .assembly-type-on_page_navigation {
   background-color: #0066CC;
   color: #FFF;
