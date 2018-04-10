@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
     - field.field.assembly.dynamic_content_list.field_links
+    - field.field.assembly.dynamic_content_list.field_title
   module:
     - fences
     - link
@@ -54,22 +55,23 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-  name:
-    type: string
+  field_title:
     weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h2
-        fences_field_classes: header
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: header
         fences_label_tag: none
         fences_label_classes: ''
+    type: string
+    region: content
 hidden:
   field_category_filter: true
   field_drupal_term_filter: true
+  name: true
   user_id: true

@@ -1,0 +1,5 @@
+services:
+    theme.negotiator.rhd_theme:
+        class: Drupal\rhd_theme\Theme\RhdThemeNegotiator
+        tags:
+          - { name: theme_negotiator, priority: -50 }

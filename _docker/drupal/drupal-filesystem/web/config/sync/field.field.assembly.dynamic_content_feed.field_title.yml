@@ -1,0 +1,19 @@
+uuid: 3dd9a4c0-ff00-480a-95fd-86c2c54c0ad5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.storage.assembly.field_title
+id: assembly.dynamic_content_feed.field_title
+field_name: field_title
+entity_type: assembly
+bundle: dynamic_content_feed
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

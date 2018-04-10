@@ -1,0 +1,19 @@
+uuid: fbd50a39-2815-4ae0-9ede-edefcf37c44a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_evangelists
+    - field.storage.assembly.field_title
+id: assembly.featured_evangelists.field_title
+field_name: field_title
+entity_type: assembly
+bundle: featured_evangelists
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
