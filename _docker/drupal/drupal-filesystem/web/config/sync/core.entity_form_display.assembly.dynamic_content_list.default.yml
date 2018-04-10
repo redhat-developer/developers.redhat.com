@@ -1,0 +1,80 @@
+uuid: 17726e0a-9caf-4fd9-9b6a-251283506b1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.field.assembly.dynamic_content_list.field_category_filter
+    - field.field.assembly.dynamic_content_list.field_cta_link
+    - field.field.assembly.dynamic_content_list.field_drupal_term_filter
+    - field.field.assembly.dynamic_content_list.field_links
+    - field.field.assembly.dynamic_content_list.field_title
+  module:
+    - link
+    - rhd_assemblies
+id: assembly.dynamic_content_list.default
+targetEntityType: assembly
+bundle: dynamic_content_list
+mode: default
+content:
+  field_category_filter:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: wpcategories_options_select
+    region: content
+  field_cta_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_drupal_term_filter:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_links:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

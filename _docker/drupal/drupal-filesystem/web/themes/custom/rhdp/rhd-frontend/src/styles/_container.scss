@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: $gutter/2;
+  padding-right: $gutter/2;
+  @include tablet-landscape {
+    max-width: 690px + $gutter;
+  }
+  @include desktop-small {
+    max-width: 931px + $gutter;
+  }
+  @include desktop-large {
+    max-width: 1172px + $gutter;
+  }
+}

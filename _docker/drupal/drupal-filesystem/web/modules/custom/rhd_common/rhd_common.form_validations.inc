@@ -31,7 +31,7 @@ function rhd_common_form_node_events_edit_form_alter(&$form, FormStateInterface 
 function add_events_validations(array &$form, FormStateInterface $form_state)
 {
   // Basic date comparison
-  $end_before_start = $form_state->getValue('field_end_date')[0]['value'] < $form_state->getValue('field_start_date')[0]['value']['object'];
+  $end_before_start = $form_state->getValue('field_end_date')[0]['value']->getTimeStamp() < $form_state->getValue('field_start_date')[0]['value']->getTimeStamp();
   if ($end_before_start === TRUE)
   {
     $form_state->setErrorByName('field_end_date', t('End Date must be after Start Date')); // Create the error

@@ -1,0 +1,21 @@
+uuid: 1a907ec2-eab0-4b7b-80d7-579c574530c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.assembly.field_post_reference
+  module:
+    - rhd_assemblies
+id: assembly.wordpress_post_reference.field_post_reference
+field_name: field_post_reference
+entity_type: assembly
+bundle: wordpress_post_reference
+label: 'Post Reference'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: wppost

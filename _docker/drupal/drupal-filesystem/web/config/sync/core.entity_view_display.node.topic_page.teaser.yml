@@ -1,0 +1,24 @@
+uuid: 2f8ffadc-5f6e-492a-ba4b-ee651808a157
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.topic_page.field_sections
+    - node.type.topic_page
+  module:
+    - user
+id: node.topic_page.teaser
+targetEntityType: node
+bundle: topic_page
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_sections: true
+  scheduled_update: true

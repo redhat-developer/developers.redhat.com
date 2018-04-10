@@ -1,0 +1,38 @@
+uuid: a65b3c66-cac3-435c-a2be-7ffac24de2f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.all_products_listing
+    - field.field.assembly.all_products_listing.field_content
+  module:
+    - text
+    - user
+id: assembly.all_products_listing.default
+targetEntityType: assembly
+bundle: all_products_listing
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

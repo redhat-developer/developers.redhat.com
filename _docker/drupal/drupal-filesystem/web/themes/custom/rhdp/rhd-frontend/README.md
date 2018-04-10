@@ -1,25 +1,65 @@
-# RHDP Front-end Code and Documentation
+# RHD Front-end Code and Documentation
 
-[Live Documentation Site](https://redhat-developer.github.io/rhdp-frontend/)
+[Live Documentation Site](https://redhat-developer.github.io/rhd-frontend/)
 
-## Documentation installation and updates
+## Installation, Scripts, and Contributing
 
-* Install [Hugo](https://gohugo.io/getting-started/installing/) in a globally-available path
-* Add new files by running ```hugo new path/to/file.md```
-* Update Markdown files located in ```/docs-src/content```
-* Generate docs (run in ```/docs-src```)
-    * Served [locally](http://localhost:1313/) run ```hugo server -D```
-    * Create HTML in ```/docs``` run ```hugo```
-* If changes have been made to ```/docs``` commit the changes and submit a Pull Request
+* ```npm install``` to install all dependencies locally
+* NPM Scripts (```npm start```, ```npm test```, ```npm run {name}```)
+    * ```start``` - runs ```build``` and ```docs```
+    * ```test``` - runs Karma test runner using Jasmine
+    * ```build``` - runs ```scripts``` and ```styles```
+    * ```scripts``` - runs tsc and uglify
+    * ```styles``` - runs node-sass and postcss
+    * ```serve``` - runs ```start``` and browser-sync of docs folder
+    * ```docs``` - runs Hugo and ```docs:front```
+    * ```docs:front``` - runs ```docs:styles``` and ```docs:scripts```
+    * ```docs:styles``` - copies minified css to docs and runs sassdoc
+    * ```docs:scripts``` - copies minified JS to docs and runs jsdoc
+    * ```hugo``` - runs Hugo live server with file watch (useful for seeing locally hosted styles correctly)
+
+* Main Documentation update
+    * Install Hugo [optional]
+    * Navigate to ```src/docs```
+    * Add new files by running ```hugo new path/to/file.md``` (or copy an existing file and change the frontmatter at the top)
+    * Update Markdown files located in ```src/docs/content```
+    * Generate docs and view changes (run in ```npm start && npm run hugo```)
+    * Served [locally](http://localhost:1313/rhd-frontend/)
+
+* Script Update
+    * Edit files in ```src/scripts```
+    * Run ```npm start```
+    * Commit
+
+* Style Update
+    * Edit files in ```src/styles```
+    * Run ```npm start```
+    * Commit
+
 
 ## Popular Patterns
 
-[Typography](https://redhat-developer.github.io/rhdp-frontend/patterns/typography)
+[Typography](https://redhat-developer.github.io/rhd-frontend/patterns/typography)
 
-[Buttons and CTAs](https://redhat-developer.github.io/rhdp-frontend/patterns/btn-cta/)
+[Buttons and CTAs](https://redhat-developer.github.io/rhd-frontend/patterns/btn-cta/)
 
-[Alerts and Notifications](https://redhat-developer.github.io/rhdp-frontend/patterns/content/notifications)
+[Alerts and Notifications](https://redhat-developer.github.io/rhd-frontend/patterns/content/notifications)
 
-## Components
+## Credits
 
-[Search](#)
+* NodeJS
+* [Hugo](https://gohugo.io/)
+* JSDoc
+* SASSDoc
+* TypeScript
+* ESLint
+* Karma
+* Jasmine
+* Node-Sass
+* Semantic-Release
+* Browser-Sync
+* PostCSS
+* CSSNano
+* UglifyJS
+* FontAwesome
+* TravisCI

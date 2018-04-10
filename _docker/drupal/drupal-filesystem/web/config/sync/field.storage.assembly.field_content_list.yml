@@ -1,0 +1,19 @@
+uuid: c76d5d9e-04c6-407f-a49a-88ec7d597167
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_content_list
+field_name: field_content_list
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: assembly
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

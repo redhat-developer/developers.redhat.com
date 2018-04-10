@@ -1,0 +1,22 @@
+uuid: 56904dd7-9717-4330-a1fd-0b5893e56768
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.author
+  module:
+    - text
+id: node.author.body
+field_name: body
+entity_type: node
+bundle: author
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

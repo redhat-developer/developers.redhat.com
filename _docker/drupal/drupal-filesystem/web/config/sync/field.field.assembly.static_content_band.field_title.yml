@@ -1,0 +1,19 @@
+uuid: 7c1475b2-8a4d-4740-9a78-cafcd1e39a26
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.static_content_band
+    - field.storage.assembly.field_title
+id: assembly.static_content_band.field_title
+field_name: field_title
+entity_type: assembly
+bundle: static_content_band
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

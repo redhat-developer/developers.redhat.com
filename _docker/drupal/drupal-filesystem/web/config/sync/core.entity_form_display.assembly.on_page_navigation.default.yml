@@ -1,0 +1,44 @@
+uuid: 0b0500f2-a0e4-4f99-b8aa-333dd56287e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.on_page_navigation
+id: assembly.on_page_navigation.default
+targetEntityType: assembly
+bundle: on_page_navigation
+mode: default
+content:
+  moderation_state:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  user_id: true

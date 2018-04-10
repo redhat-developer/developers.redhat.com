@@ -1,0 +1,38 @@
+uuid: 579f5ed8-3dc8-44d9-bc66-a4bfaf03bf1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic_page.field_sections
+    - field.field.node.topic_page.scheduled_update
+    - node.type.topic_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.topic_page.default
+targetEntityType: node
+bundle: topic_page
+mode: default
+content:
+  field_sections:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  scheduled_update:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  links: true

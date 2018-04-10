@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab6bb2fa5fd04b9827cf69ca9fd1a973",
+    "content-hash": "a314f185ddcd571416aa3420dc79d37c",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -231,7 +231,7 @@
             "version": "v5.1.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:enyo/dropzone.git",
+                "url": "https://github.com/enyo/dropzone.git",
                 "reference": "7d0792d1346d83a8b0c0d2919121bdd2b8e7fee4"
             },
             "dist": {
@@ -1254,7 +1254,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/assembly",
-                "reference": "34777d0bfca1f31f7dd78771afa42a77d87ccc33"
+                "reference": "c379428bd2a3b55c7a188a4aaf6ec805bff4e88d"
             },
             "require": {
                 "drupal/core": "*",
@@ -1268,7 +1268,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1519427280",
+                    "datestamp": "1520617680",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1294,7 +1294,7 @@
                 "source": "http://cgit.drupalcode.org/assembly",
                 "issues": "https://www.drupal.org/project/issues/assembly"
             },
-            "time": "2018-03-09T17:47:46+00:00"
+            "time": "2018-03-26T16:16:48+00:00"
         },
         {
             "name": "drupal/config_update",
@@ -2574,6 +2574,73 @@
             "homepage": "https://www.drupal.org/project/features",
             "support": {
                 "source": "http://cgit.drupalcode.org/features"
+            }
+        },
+        {
+            "name": "drupal/fences",
+            "version": "2.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/fences",
+                "reference": "8.x-2.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/fences-8.x-2.0-alpha1.zip",
+                "reference": "8.x-2.0-alpha1",
+                "shasum": "e5a38172b492db2f3aace6d18c7ca646c33a570d"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha1",
+                    "datestamp": "1464678839",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "CrashTest_",
+                    "homepage": "https://www.drupal.org/user/261457"
+                },
+                {
+                    "name": "JohnAlbin",
+                    "homepage": "https://www.drupal.org/user/32095"
+                },
+                {
+                    "name": "Sam152",
+                    "homepage": "https://www.drupal.org/user/1485048"
+                },
+                {
+                    "name": "gleroux02",
+                    "homepage": "https://www.drupal.org/user/282323"
+                },
+                {
+                    "name": "jensimmons",
+                    "homepage": "https://www.drupal.org/user/140882"
+                },
+                {
+                    "name": "stevector",
+                    "homepage": "https://www.drupal.org/user/179805"
+                }
+            ],
+            "description": "Alter wrapping markup of fields.",
+            "homepage": "https://www.drupal.org/project/fences",
+            "support": {
+                "source": "http://cgit.drupalcode.org/fences"
             }
         },
         {
@@ -12088,7 +12155,8 @@
         "drupal/field_group": 20,
         "drupal/inline_entity_form": 20,
         "drupal/paragraphs": 20,
-        "drupal/workbench": 20
+        "drupal/workbench": 20,
+        "drupal/fences": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

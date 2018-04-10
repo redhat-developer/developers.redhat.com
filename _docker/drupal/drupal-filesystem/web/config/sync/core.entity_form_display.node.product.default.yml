@@ -3,7 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
+    - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_image
     - field.field.node.product.field_product_categories
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
@@ -17,6 +20,7 @@ dependencies:
     - field.field.node.product.scheduled_update
     - node.type.product
   module:
+    - entity_browser
     - entity_browser_entity_form
     - field_group
     - inline_entity_form
@@ -57,6 +61,14 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  field_call_to_action_link:
+    weight: 27
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_card_image:
     weight: 11
     settings:
@@ -65,11 +77,24 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_image:
+    type: entity_browser_file
+    weight: 26
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_product_categories:
     type: options_buttons
     weight: 2
     region: content
-    settings: { }
+    settings: {  }
     third_party_settings: {  }
   field_product_category:
     weight: 6

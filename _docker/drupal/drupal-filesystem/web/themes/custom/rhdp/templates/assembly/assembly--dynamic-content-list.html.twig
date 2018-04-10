@@ -1,0 +1,39 @@
+<section{{ attributes.addClass('assembly') }}>
+  <div class="container">
+    {{ content.field_title }}
+    <div class="grid">
+
+      {% if content %}
+        <div>
+          {{- content|without('name', 'latest_comments', 'field_links', 'field_cta_link') -}}
+        </div>
+      {% endif %}
+
+      {% if (content.latest_comments or content.field_links) %}
+        <aside>
+          {% if content.latest_comments %}
+          <div class="disqus">
+            <h4>Latest Comments</h4>
+            {{ content.latest_comments }}
+          </div>
+          {% endif %}
+
+          {% if content.field_links %}
+          <div class="related-topics">
+            <h5>Related Topics</h5>
+            {{ content.field_links }}
+          </div>
+          {% endif %}
+        </aside>
+      {% endif %}
+    </div>
+
+    <div class="cta-link">
+      {{ content.field_cta_link }}
+    </div>
+
+  </div>
+  {% if background_image_url %}
+    <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section>

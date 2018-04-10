@@ -1,0 +1,24 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <a href="{{ url }}">
+    {% if content.card_image_url %}
+    <div class="card-image">
+      <img src="{{ content.card_image_url }}"/>
+    </div>
+    {% endif %}
+    <div class="content-block">
+      <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %}E-Book</div>
+      <h3 class="card-title">{{ label }}</h3>
+    </div>
+  </a>
+</article>

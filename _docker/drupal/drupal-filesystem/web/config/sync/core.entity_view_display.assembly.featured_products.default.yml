@@ -1,0 +1,42 @@
+uuid: 506f616f-8e63-4bd1-aceb-3d2f7b855ef1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.field.assembly.featured_products.field_products
+    - field.field.assembly.featured_products.field_title
+  module:
+    - fences
+id: assembly.featured_products.default
+targetEntityType: assembly
+bundle: featured_products
+mode: default
+content:
+  field_products:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: featured_tile
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  name: true
+  user_id: true

@@ -1,0 +1,39 @@
+.assembly-type-featured_evangelists {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .header {
+    text-align: center;
+    margin-top: 0rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 30px 30px;
+    @include tablet-portrait {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .content-teaser-list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 30px 30px;
+    @include desktop-small {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .content-link-list {
+    margin: 0;
+    padding: 0;
+    margin-bottom: -1rem;
+
+    a {
+      display: block;
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+  }
+}

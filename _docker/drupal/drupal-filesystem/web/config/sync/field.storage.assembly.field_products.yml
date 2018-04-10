@@ -1,0 +1,20 @@
+uuid: e0ce8ba1-0ad0-4db9-85e2-47fb19f00286
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_products
+field_name: field_products
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

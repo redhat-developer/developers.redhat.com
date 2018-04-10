@@ -1,0 +1,27 @@
+uuid: 231d9406-d5bf-4db8-b676-6e704585f163
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: 'Topic Page'
+type: topic_page
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

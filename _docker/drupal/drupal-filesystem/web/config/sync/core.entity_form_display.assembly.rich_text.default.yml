@@ -7,6 +7,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.assembly.rich_text.field_background_image
     - field.field.assembly.rich_text.field_content
+    - field.field.assembly.rich_text.field_navigation_title
     - field.field.assembly.rich_text.field_title
   module:
     - entity_browser
@@ -19,7 +20,7 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 4
+    weight: 6
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -31,12 +32,20 @@ content:
     region: content
     third_party_settings: {  }
   field_content:
-    weight: 3
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_navigation_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_title:
     weight: 1
@@ -46,6 +55,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 8
+    settings: {  }
+    region: content
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -56,14 +71,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
