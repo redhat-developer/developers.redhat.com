@@ -1,0 +1,21 @@
+uuid: 302b1c56-25ee-4ae4-8eff-2e976e00a1fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.all_products_listing
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.all_products_listing.field_content
+field_name: field_content
+entity_type: assembly
+bundle: all_products_listing
+label: Content
+description: 'Text to be displayed beneath the title of this section'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
