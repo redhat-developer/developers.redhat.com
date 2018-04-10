@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.dynamic_content_feed.field_cta_link
     - field.field.assembly.dynamic_content_feed.field_drupal_term_filter
     - field.field.assembly.dynamic_content_feed.field_number_of_posts
+    - field.field.assembly.dynamic_content_feed.field_title
   module:
     - link
     - rhd_assemblies
@@ -23,7 +24,7 @@ content:
     type: wpcategories_options_select
     region: content
   field_cta_link:
-    weight: 27
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -31,7 +32,7 @@ content:
     type: link_default
     region: content
   field_drupal_term_filter:
-    weight: 26
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -43,6 +44,14 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  field_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -53,7 +62,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 7
     region: content
     settings:
       display_label: true
