@@ -338,11 +338,6 @@ function rhd_preprocess_field(&$variables, $hook) {
         $variables['items'][0]['content']['#attached']['library'][] = 'rhd/video_embed_field.responsive-video';
     }
 
-//    $field_event = $variables['field_name'];
-    if($variables['field_name'] == 'field_event'){
-        //Create a for each to extract the information from the field_events
-        $variables['field_events'] = $variables['items'];
-    }
     // This shouldn't be how we display the related product on coding resources (should it be?)
     if ($variables['field_name'] === 'field_related_product' && isset($variables['items'][0]['content']['#node'])) {
       $node = $variables['items'][0]['content']['#node'];
@@ -374,12 +369,6 @@ function rhd_preprocess_assembly(&$variables) {
         $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
         $variables['attributes']->addClass('has-background');
       }
-    }
-    $dan = $type=="events_list";
-    if($type=="events_list"){
-        $imageStuff = $assembly->get('field_event')->referencedEntities();
-        $variables['cool_url'] = "dan";
-
     }
 
 }
