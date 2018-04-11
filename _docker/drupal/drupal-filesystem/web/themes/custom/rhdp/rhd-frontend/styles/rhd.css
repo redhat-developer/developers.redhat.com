@@ -1569,6 +1569,93 @@ body {
 .author-social-icon-github svg {
   color: #000000; }
 
+.rh-universal-header {
+  background-color: #000000; }
+
+.rh-nav-universal {
+  max-width: 73.125rem;
+  margin: 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 150px 1fr 100px;
+  align-items: center;
+  justify-items: center;
+  min-height: 50px; }
+
+.rh-logo-wrapper {
+  justify-self: start; }
+
+.rh-nav-universal-list {
+  list-style: none;
+  justify-self: start;
+  padding-left: 0; }
+  .rh-nav-universal-list li {
+    display: inline;
+    margin-right: 30px; }
+
+.rh-nav-universal-link {
+  color: #999999;
+  text-transform: uppercase; }
+  .rh-nav-universal-link:active, .rh-nav-universal-link:hover, .rh-nav-universal-link:focus {
+    color: #FFFFFF; }
+
+.rh-header-logo {
+  max-width: 100px;
+  padding: 5px; }
+
+.rh-universal-login {
+  grid-column-end: -1; }
+  .rh-universal-login-link {
+    font-size: 16px;
+    text-transform: none;
+    color: #FFFFFF;
+    font-weight: 400; }
+    .rh-universal-login-link:active, .rh-universal-login-link:hover, .rh-universal-login-link:focus {
+      color: #FFFFFF; }
+
+.rh-universal-login .fa-user {
+  margin-right: 10px; }
+
+@media screen and (max-width: 1024px) {
+  .rh-nav-universal-list {
+    display: none; } }
+
+@media screen and (max-width: 480px) {
+  .rh-universal-header {
+    display: none; } }
+
+.rhd-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #242424;
+  max-width: 73.125rem;
+  margin: 0 auto; }
+
+.rhd-header-logo {
+  max-width: 250px;
+  justify-self: start; }
+
+.rhd-nav-fixed {
+  justify-self: end; }
+  .rhd-nav-fixed ul {
+    list-style: none; }
+    .rhd-nav-fixed ul li {
+      display: inline;
+      margin-right: 3em; }
+    .rhd-nav-fixed ul li.rhd-nav-search {
+      margin-right: 0; }
+
+.rhd-header-link, .rhd-nav-search {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #656565; }
+  .rhd-header-link:active, .rhd-header-link:hover, .rhd-header-link:focus, .rhd-nav-search:active, .rhd-nav-search:hover, .rhd-nav-search:focus {
+    color: #656565; }
+
 * {
   box-sizing: border-box;
   font-family: overpass, "Open Sans", Helvetica, sans-serif; }
@@ -1593,7 +1680,7 @@ body > footer {
   display: flex;
   flex-direction: column; }
 
-.rh-universal-header, .rh-universal-footer {
+.rh-universal-footer {
   background-color: #1A1A1A;
   flex: 0 0 50px;
   display: flex;
@@ -1601,59 +1688,20 @@ body > footer {
   justify-content: space-between;
   align-items: center;
   color: #5e6a71; }
-  .rh-universal-header .rh-header-logo, .rh-universal-header .rh-footer-logo, .rh-universal-header .rh-summit-footer-logo, .rh-universal-footer .rh-header-logo, .rh-universal-footer .rh-footer-logo, .rh-universal-footer .rh-summit-footer-logo {
+  .rh-universal-footer .rh-footer-logo, .rh-universal-footer .rh-summit-footer-logo {
     flex: 0 0 300px; }
-  .rh-universal-header .contentinfo, .rh-universal-footer .contentinfo {
+  .rh-universal-footer .contentinfo {
     flex: 1 1 auto; }
-  .rh-universal-header .rh-nav-universal, .rh-universal-footer .rh-nav-universal {
-    flex: 1 1 auto; }
-  .rh-universal-header ul, .rh-universal-footer ul {
+  .rh-universal-footer ul {
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center; }
-    .rh-universal-header ul li, .rh-universal-footer ul li {
+    .rh-universal-footer ul li {
       display: inline-block;
       flex: 0 0 auto;
       margin-right: 3em; }
-      .rh-universal-header ul li.rh-universal-login, .rh-universal-footer ul li.rh-universal-login {
-        color: #FFFFFF;
-        align-self: flex-end;
-        flex: 1 1 auto;
-        margin-right: 0;
-        text-align: right; }
-
-.rhd-header {
-  flex: 1 1 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr; }
-
-.rhd-header-logo {
-  grid-row: 1;
-  grid-column: 1;
-  height: 75px;
-  width: 300px; }
-
-.rhd-nav-fixed {
-  grid-row: 1;
-  grid-column: 2;
-  align-items: right; }
-  .rhd-nav-fixed ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100%; }
-    .rhd-nav-fixed ul li {
-      display: inline-block;
-      flex: 0 0 auto;
-      margin-right: 3em; }
-      .rhd-nav-fixed ul li.rhd-nav-search {
-        margin-right: 0; }
 
 .rhd-nav-dynamic {
   grid-row: 2;
