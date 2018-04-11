@@ -127,7 +127,6 @@ body.page-node-type-learning-path {
         flex-shrink: 0;
         flex-basis: 220px;
         background-color: #ccc;
-        height: 300px;
         position: relative;
         background-size: cover;
 
@@ -213,13 +212,17 @@ body.page-node-type-learning-path {
   }
 
   @media screen and (max-width: 1175px) {
-    .lp-info {
-      margin: 0;
-    }
+    .lp-info { margin: 0; }
     
     .lp-cards-container {
-      margin: 0 0 0 15px;
+      margin: -15px 0 0 15px;
+      padding: 15px;
     }
+  }
+
+  @media screen and (max-width: 1175px) and (min-width: 1171px) {
+    .lp-info { margin-top: 15px; }
+    .lp-cards-container { margin-top: 0; }
   }
 
   @media screen and (max-width: 1150px) {
@@ -240,7 +243,7 @@ body.page-node-type-learning-path {
     }
 
     .lp-cards-container { 
-      padding: 0; 
+      padding: 15px; 
 
       .dp-content-card {
         margin-bottom: 15px;
@@ -248,7 +251,6 @@ body.page-node-type-learning-path {
           padding: 15px;
         }
         div.img {
-          height: 285px;
           width: 220px;
           position: relative;
         }
@@ -308,10 +310,7 @@ body.page-node-type-learning-path {
           font-size: 18px;
           line-height: 28px;
         }
-        div.img {
-          height: 176px;
-          width: auto;
-        }
+        div.img { width: auto; }
       }
     }
   }
@@ -324,10 +323,7 @@ body.page-node-type-learning-path {
   @media (max-width: 320px) {
     .lp-cards-container {
       .dp-content-card {
-        div.img {
-          display: block;
-          height: 130px;
-        }
+        div.img { display: block; }
       }
     }
   }
