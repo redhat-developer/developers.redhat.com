@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.hero
+    - assembly.assembly_type.video_hero
     - field.storage.node.field_hero
     - node.type.assembly_page
   module:
@@ -23,8 +24,9 @@ settings:
   handler_settings:
     target_bundles:
       hero: hero
+      video_hero: video_hero
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: hero
 field_type: entity_reference_revisions

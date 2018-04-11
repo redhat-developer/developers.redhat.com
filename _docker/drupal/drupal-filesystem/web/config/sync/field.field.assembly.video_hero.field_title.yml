@@ -1,0 +1,19 @@
+uuid: fc46ea23-f79d-4592-94a4-50e90f55af58
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_title
+id: assembly.video_hero.field_title
+field_name: field_title
+entity_type: assembly
+bundle: video_hero
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

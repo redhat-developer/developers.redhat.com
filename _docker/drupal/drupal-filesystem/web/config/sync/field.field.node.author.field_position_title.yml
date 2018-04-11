@@ -1,0 +1,19 @@
+uuid: 0a43b102-27d7-47a9-a272-99001fb5c214
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_position_title
+    - node.type.author
+id: node.author.field_position_title
+field_name: field_position_title
+entity_type: node
+bundle: author
+label: Position/Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
