@@ -15,7 +15,13 @@
  * @ingroup themeable
  */
 #}
-<section{{ attributes.addClass('assembly') }}>
+{%
+  set classes = [
+    'assembly',
+    content.field_links|render ? 'has-links' : 'no-links'
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
   <div class="container">
     {{ content.field_title }}
     <div class="grid">

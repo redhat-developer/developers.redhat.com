@@ -58,7 +58,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-  name:
+  field_title:
     type: string
     weight: 0
     region: content
@@ -67,15 +67,15 @@ content:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h2
-        fences_field_classes: header
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: header
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
   field_category_filter: true
   field_drupal_term_filter: true
   field_navigation_title: true
-  field_title: true
+  name: true
   user_id: true
