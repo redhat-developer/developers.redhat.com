@@ -1,0 +1,19 @@
+uuid: 140e2ce3-b20c-40e0-83f0-5df99c887306
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - text
+id: assembly.field_description
+field_name: field_description
+entity_type: assembly
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

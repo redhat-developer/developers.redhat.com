@@ -1,0 +1,52 @@
+uuid: e4aedb5c-bb44-412d-8ad3-1c102a390f78
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.field.assembly.video_hero.field_background_image
+    - field.field.assembly.video_hero.field_description
+    - field.field.assembly.video_hero.field_title
+    - field.field.assembly.video_hero.field_video_resource
+  module:
+    - fences
+    - text
+id: assembly.video_hero.default
+targetEntityType: assembly
+bundle: video_hero
+mode: default
+content:
+  field_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: section-title
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+hidden:
+  field_background_image: true
+  field_video_resource: true
+  name: true
+  user_id: true

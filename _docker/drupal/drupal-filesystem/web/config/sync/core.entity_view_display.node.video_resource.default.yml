@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_topics
+    - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -21,6 +22,7 @@ dependencies:
     - field.field.node.video_resource.field_video_thumbnail_url
     - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
+    - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
     - datetime
@@ -122,6 +124,22 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_video_author:
+    weight: 20
+    label: hidden
+    settings:
+      view_mode: short_teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: authors
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
   field_video_publish_date:
     weight: 10

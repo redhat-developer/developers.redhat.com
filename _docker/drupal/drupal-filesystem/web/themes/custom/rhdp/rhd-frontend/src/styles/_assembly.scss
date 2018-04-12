@@ -1,7 +1,7 @@
 .assembly {
   &.has-background {
     position: relative;
-    .row {
+    .row, .container {
       position: relative;
       z-index: 1;
     }
@@ -42,20 +42,6 @@
       bottom: 0;
       right: 0;
       content: ' ';
-    }
-  }
-  &.assembly-type-hero {
-    padding: 80px 0;
-    margin-bottom: 80px;
-    .content {
-      max-width: 60rem;
-    }
-    h2 {
-      font-size: 4rem;
-      line-height: 1.1;
-    }
-    .field--name-field-content p {
-      font-size: 1.5rem;
     }
   }
 }

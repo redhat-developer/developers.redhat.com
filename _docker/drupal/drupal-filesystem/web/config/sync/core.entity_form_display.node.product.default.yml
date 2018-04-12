@@ -47,7 +47,7 @@ third_party_settings:
       children:
         - group_sub_pages
       parent_name: ''
-      weight: 10
+      weight: 13
       format_type: tabs
       format_settings:
         id: ''
@@ -62,7 +62,7 @@ bundle: product
 mode: default
 content:
   field_call_to_action_link:
-    weight: 27
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -70,7 +70,7 @@ content:
     type: link_default
     region: content
   field_card_image:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -79,7 +79,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 26
+    weight: 1
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -92,18 +92,18 @@ content:
     third_party_settings: {  }
   field_product_categories:
     type: options_buttons
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_product_category:
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_product_machine_name:
-    weight: 7
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -123,7 +123,7 @@ content:
     third_party_settings: {  }
     region: content
   field_product_short_name:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -131,7 +131,7 @@ content:
     type: string_textfield
     region: content
   field_product_summary:
-    weight: 3
+    weight: 4
     settings:
       placeholder: ''
       size: 60
@@ -139,21 +139,21 @@ content:
     type: string_textfield
     region: content
   field_product_technology_group:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_short_description:
     type: string_textarea
-    weight: 1
+    weight: 2
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_stackoverflow_product_refe:
-    weight: 8
+    weight: 9
     settings:
       size: 60
       placeholder: ''
@@ -161,7 +161,7 @@ content:
     type: string_textfield
     region: content
   field_url_product_name:
-    weight: 9
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -170,13 +170,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 12
+    weight: 14
     settings: {  }
     region: content
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 13
+    weight: 15
     settings:
       form_mode: default
       override_labels: true

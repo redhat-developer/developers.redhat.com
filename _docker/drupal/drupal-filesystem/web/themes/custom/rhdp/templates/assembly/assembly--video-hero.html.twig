@@ -18,11 +18,14 @@
 <section{{ attributes.addClass('assembly') }}>
 
   <div class="container">
-  {% if content %}
-    <div class="content">
-      {{- content -}}
+    <div class="video">
+      {{ content.video }}
     </div>
-  {% endif %}
+    {% if content|without('video')|render %}
+    <div class="content">
+      {{- content|without('video') -}}
+    </div>
+    {% endif %}
   </div>
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
