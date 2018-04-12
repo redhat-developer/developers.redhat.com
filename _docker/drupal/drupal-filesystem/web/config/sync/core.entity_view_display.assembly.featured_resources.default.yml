@@ -5,7 +5,9 @@ dependencies:
   config:
     - assembly.assembly_type.featured_resources
     - field.field.assembly.featured_resources.field_links
+    - field.field.assembly.featured_resources.field_navigation_title
     - field.field.assembly.featured_resources.field_resources
+    - field.field.assembly.featured_resources.field_title
   module:
     - fences
     - rhd_assemblies
@@ -50,20 +52,22 @@ content:
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
-  name:
-    type: string
+  field_title:
     weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h2
-        fences_field_classes: header
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: header
         fences_label_tag: none
         fences_label_classes: ''
+    type: string
+    region: content
 hidden:
+  field_navigation_title: true
+  name: true
   user_id: true
