@@ -13,7 +13,7 @@ bundle: events_list
 mode: default
 content:
   field_event:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       view_mode: teaser
@@ -28,13 +28,6 @@ content:
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
-  name:
-    label: hidden
-    type: string
-    weight: 0
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
+  name: true
   user_id: true
