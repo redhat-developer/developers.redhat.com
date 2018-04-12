@@ -17,10 +17,10 @@
 #}
 <section{{ attributes.addClass('assembly') }}>
   <div class="container">
-    {{ content.name }}
+    {{ content.field_title }}
     <div class="grid">
       {% if content %}
-        {{- content|without('name') -}}
+        {{- content|without('field_title') -}}
       {% endif %}
     </div>
   </div>
