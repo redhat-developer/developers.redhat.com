@@ -1,0 +1,114 @@
+// Universal Header
+.rh-universal-header {
+  background-color: $black;
+}
+
+.rh-nav-universal {
+  max-width: 73.125rem;
+  margin: 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 150px 1fr 100px;
+  align-items: center;
+  justify-items: center;
+  min-height: 50px;
+}
+
+.rh-logo-wrapper{
+  justify-self: start;
+}
+
+.rh-nav-universal-list {
+  list-style: none;
+  justify-self: start;
+  padding-left: 0;
+
+  li {
+    display: inline;
+    margin-right: 30px;
+  }
+}
+
+.rh-nav-universal-link {
+  color: #999999;
+  text-transform: uppercase;
+  &:active, &:hover, &:focus {
+    color: $white;
+  }
+}
+
+.rh-header-logo {
+  max-width: 100px;
+  padding: 5px;
+}
+
+.rh-universal-login {
+  grid-column-end: -1;
+  &-link {
+    font-size: 16px;
+    text-transform: none;
+    color: $white;
+    font-weight: 400;
+
+    &:active, &:hover, &:focus {
+      color: $white;
+    }
+  }
+}
+.rh-universal-login .fa-user {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .rh-nav-universal-list {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .rh-universal-header {
+    display: none;
+  }
+}
+
+// Red Hat Developer Header
+
+.rhd-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid $grey-8;
+  max-width: 73.125rem;
+  margin: 0 auto;
+}
+
+.rhd-header-logo {
+  max-width: 250px;
+  justify-self: start;
+}
+
+.rhd-nav-fixed {
+  justify-self: end;
+  ul {
+    list-style: none;
+    li {
+      display: inline;
+      margin-right: 3em;
+    }
+    li.rhd-nav-search {
+      margin-right: 0;
+    }
+  }
+}
+
+.rhd-header-link, .rhd-nav-search {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: $grey-5;
+  &:active, &:hover, &:focus {
+    color: $grey-5;
+  }
+}
