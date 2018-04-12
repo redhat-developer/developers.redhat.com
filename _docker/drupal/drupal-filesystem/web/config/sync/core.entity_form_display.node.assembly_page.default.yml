@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.assembly_page.field_hero
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.scheduled_update
     - node.type.assembly_page
@@ -23,23 +22,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_hero:
-    weight: 4
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: hero
-      label_plural: heroes
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
-    type: inline_entity_form_complex
-    region: content
   field_sections:
     weight: 5
     settings:

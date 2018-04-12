@@ -1,0 +1,22 @@
+uuid: 0970b79b-3e3f-466f-a945-b5855c07dbca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.topic_page
+  module:
+    - text
+id: node.topic_page.body
+field_name: body
+entity_type: node
+bundle: topic_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

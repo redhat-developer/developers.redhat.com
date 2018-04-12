@@ -12,9 +12,11 @@ dependencies:
     - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.featured_products
     - assembly.assembly_type.featured_resources
+    - assembly.assembly_type.hero
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.rich_text
     - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.video_hero
     - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.topic_page
@@ -43,9 +45,11 @@ settings:
       featured_evangelists: featured_evangelists
       featured_products: featured_products
       featured_resources: featured_resources
+      hero: hero
       on_page_navigation: on_page_navigation
       rich_text: rich_text
       content_with_image: content_with_image
+      video_hero: video_hero
       videos: videos
     sort:
       field: _none
