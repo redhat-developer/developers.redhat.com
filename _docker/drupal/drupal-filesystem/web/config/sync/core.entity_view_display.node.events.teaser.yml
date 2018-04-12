@@ -1,8 +1,9 @@
-uuid: 28e50992-6c19-4eea-9432-c3575ef19958
+uuid: 16947474-ae33-4e65-951e-4160c31cf7d2
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.events.field_data_tags
     - field.field.node.events.field_description
     - field.field.node.events.field_end_date
@@ -26,7 +27,6 @@ dependencies:
     - node.type.events
   module:
     - datetime
-    - fences
     - image
     - link
     - options
@@ -34,10 +34,10 @@ dependencies:
     - user
 _core:
   default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
-id: node.events.default
+id: node.events.teaser
 targetEntityType: node
 bundle: events
-mode: default
+mode: teaser
 content:
   field_data_tags:
     weight: 119
@@ -58,10 +58,10 @@ content:
     weight: 104
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_custom
     region: content
   field_event_background_image:
     weight: 122
@@ -126,17 +126,16 @@ content:
     weight: 126
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      link: true
     third_party_settings:
       fences:
         fences_field_tag: none
         fences_field_classes: ''
-        fences_field_item_tag: div
+        fences_field_item_tag: none
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: entity_reference_entity_view
+    type: entity_reference_label
     region: content
   field_region:
     weight: 121
@@ -170,10 +169,10 @@ content:
     weight: 103
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_custom
     region: content
   field_target_product:
     weight: 123
