@@ -41,7 +41,7 @@ body > footer {
     flex-direction: column;
 }
 
-.rh-universal-footer {
+.rh-universal-header, .rh-universal-footer {
     background-color: #1A1A1A;
     flex: 0 0 50px;
     display: flex;
@@ -67,23 +67,6 @@ body > footer {
             display: inline-block;
             flex: 0 0 auto;
             margin-right: 3em;
-        }
-    }
-}
-
-.rhd-nav-dynamic {
-    grid-row: 2;
-    grid-column: span 2;
-
-    ul {
-        margin: 0; padding: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        li {
-            display: inline-block;
-            flex: 0 0 auto;
         }
     }
 }
@@ -224,14 +207,17 @@ button, .button {
   line-height: 1.44;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  cursor: pointer;
 
   &:hover, &:focus {
     background-color: $dark-red;
     color: $white;
+    outline: 0;
   }
   &:active {
     background-color: $darker-red;
     color: $white;
+    outline: 0;
   }
 
   &.heavy-cta {
@@ -325,6 +311,25 @@ button, .button {
   &.external-link:after { display: none; }
 }
 
+.menu-trigger {
+  background: #FFF;
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #000;
+  font-size: 16px;
+  font-weight: 600;
+  padding:9px 40px;
+  -webkit-transition: background .2s ease-in 0s;
+  transition:background .2s ease-in 0s;
+  line-height: 1.44;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  &:hover, &:active, &:focus {
+    background-color: #000;
+  }
+}
+
 a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
@@ -360,4 +365,62 @@ a.light-cta{
   color: $dark-gray;
   font-size: 57px;
   line-height: 71px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rhd-search-wrapper {
+  .user-search {
+    color: #000;
+    font-size: 14px;
+    line-height: 1;
+    padding: 4px 10px;
+    padding-right: 40px;
+    display: block;
+    width: 100%;
+    &::-webkit-input-placeholder {
+      color: #000;
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      color: #000;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: #000;
+      opacity: 1;
+    }
+    &:-moz-placeholder {
+      color: #000;
+      opacity: 1;
+    }
+    &::placeholder {
+      color: #000;
+      opacity: 1;
+    }
+  }
+  .search-bar {
+    position: relative;
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 10px;
+    color: #424242;
+    border: none;
+    background-color: transparent;
+    &:hover, &:active, &:focus {
+      background-color: transparent;
+    }
+  }
+}
+
+.rhd-search-toggle {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
 }

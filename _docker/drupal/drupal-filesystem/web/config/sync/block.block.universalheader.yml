@@ -1,0 +1,24 @@
+uuid: 8db2947e-3399-49bb-8100-57742e86e4c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.universal-header
+  module:
+    - system
+  theme:
+    - rhdp
+id: universalheader
+theme: rhdp
+region: rh_universal_header
+weight: 0
+provider: null
+plugin: 'system_menu_block:universal-header'
+settings:
+  id: 'system_menu_block:universal-header'
+  label: 'Universal Header'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

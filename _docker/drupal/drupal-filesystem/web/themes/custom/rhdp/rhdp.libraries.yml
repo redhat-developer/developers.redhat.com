@@ -17,6 +17,8 @@ base-theme:
     https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
     /auth/js/keycloak.js: { type: external, minified: false  }
     js/all.min.js: {}
+    rhd-frontend/rhd.min.js: {}
+    rhd-frontend/src/scripts/javascript/menu.js: {}
     rhd-frontend/docs/js/fontawesome-all.js: {}
   dependencies:
     - core/jquery
