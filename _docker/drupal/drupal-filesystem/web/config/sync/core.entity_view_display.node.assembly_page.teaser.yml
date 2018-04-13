@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.assembly_page.field_hero
     - field.field.node.assembly_page.field_sections
+    - field.field.node.assembly_page.scheduled_update
     - node.type.assembly_page
   module:
     - entity_reference_revisions
@@ -15,15 +15,6 @@ targetEntityType: node
 bundle: assembly_page
 mode: teaser
 content:
-  field_hero:
-    type: entity_reference_revisions_entity_view
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   field_sections:
     type: entity_reference_revisions_entity_view
     weight: 1

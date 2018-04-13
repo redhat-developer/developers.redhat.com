@@ -30,9 +30,6 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
     $comments = [
       '#type' => 'container',
     ];
-    $comments['header'] = [
-      '#markup' => "Latest Comments",
-    ];
     $comments['disqus'] = [
       '#markup' => 'disqus comments appear here'
     ];

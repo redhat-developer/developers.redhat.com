@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.static_content_band
     - field.field.assembly.static_content_band.field_content_list
+    - field.field.assembly.static_content_band.field_navigation_title
     - field.field.assembly.static_content_band.field_title
   module:
     - entity_browser_entity_form
@@ -31,6 +32,14 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
+  field_navigation_title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_title:
     weight: 2
     settings:
@@ -49,7 +58,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true

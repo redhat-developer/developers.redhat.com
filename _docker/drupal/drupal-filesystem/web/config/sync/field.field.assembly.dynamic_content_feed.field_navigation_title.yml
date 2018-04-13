@@ -1,0 +1,19 @@
+uuid: adcb4713-7802-4761-bec6-c1f23b9c1b89
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.storage.assembly.field_navigation_title
+id: assembly.dynamic_content_feed.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: dynamic_content_feed
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

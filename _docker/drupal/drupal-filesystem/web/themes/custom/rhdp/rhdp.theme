@@ -186,6 +186,9 @@ function rhdp_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
   $nid = $node->id();
+  if ($node->getType() == 'events') {
+    $variables['event_title'] = $node->getTitle();
+  }
   if ($node->getType() == 'product') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
