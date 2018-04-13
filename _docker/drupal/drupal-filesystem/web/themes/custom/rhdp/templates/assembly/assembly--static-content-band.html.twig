@@ -1,8 +1,7 @@
 <section{{ attributes.addClass('assembly') }}>
   <div class="container">
-  {{ content.field_title }}
   {% if content %}
-    {{- content|without('name') -}}
+    {{- content -}}
   {% endif %}
   </div>
   {% if background_image_url %}

@@ -20,75 +20,75 @@
 }
 
 .node--type-author {
-&.node--view-mode-teaser {
-.grid {
-display: grid;
-grid-gap: 15px;
-grid-template-columns: 160px 1fr;
-}
+  &.node--view-mode-teaser {
+    .grid {
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: 160px 1fr;
+    }
 
-.name {
-margin-top: 0;
-margin-bottom: .5rem;
-}
+    .name {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
 
-.bio p {
-margin-top: 0;
-}
-}
+    .bio p {
+      margin-top: 0;
+    }
+  }
 
-.headshot {
-img {
-max-width: 100%;
-height: auto;
-display: block;
-}
-}
+  .headshot {
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
 
-.social-icons {
-padding: 0;
-list-style-type: none;
-}
+  .social-icons {
+    padding: 0;
+    list-style-type: none;
+  }
 }
 
 %author-social-icon {
-text-decoration: none;
-font-size: 20px;
-display: inline-block;
-margin-right: 10px;
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
 }
 
 .author-social-icon-facebook {
-@extend %author-social-icon;
-svg {
-color: #3b5998;
-}
+  @extend %author-social-icon;
+  svg {
+    color: #3b5998;
+  }
 }
 
 .author-social-icon-twitter {
-@extend %author-social-icon;
-svg {
-color: #00aced;
-}
+  @extend %author-social-icon;
+  svg {
+    color: #00aced;
+  }
 }
 
 .author-social-icon-youtube {
-@extend %author-social-icon;
-svg {
-color: #ff0000;
-}
+  @extend %author-social-icon;
+  svg {
+    color: #ff0000;
+  }
 }
 
 .author-social-icon-linkedin {
-@extend %author-social-icon;
-svg {
-color: #0077B5;
-}
+  @extend %author-social-icon;
+  svg {
+    color: #0077B5;
+  }
 }
 
 .author-social-icon-github {
-@extend %author-social-icon;
-svg {
-color: #000000;
-}
+  @extend %author-social-icon;
+  svg {
+    color: #000000;
+  }
 }

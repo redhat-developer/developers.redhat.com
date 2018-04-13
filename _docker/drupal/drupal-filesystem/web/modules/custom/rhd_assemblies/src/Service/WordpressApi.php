@@ -129,6 +129,8 @@ class WordpressApi implements RemoteContentApiInterface {
 
     if (isset($content->featured_media) && $content->featured_media) {
       $item->media = $this->getContentMedia($content->featured_media);
+      $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
+      $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
     }
 
     if (isset($content->categories) && count($content->categories)) {

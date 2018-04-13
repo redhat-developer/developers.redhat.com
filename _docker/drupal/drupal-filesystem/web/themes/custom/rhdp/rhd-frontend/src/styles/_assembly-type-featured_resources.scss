@@ -1,6 +1,11 @@
 .assembly-type-featured_resources {
   padding-top: $gutter;
   padding-bottom: $gutter;
+  background: #E5E5E5;
+  background-image: url(../docs/img/gray_diamond_background.png);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
 
   .header {
     text-align: center;
@@ -8,9 +13,9 @@
   }
 
   .grid {
+    display: grid;
+    grid-gap: $gutter $gutter;
     @include tablet-portrait {
-      display: grid;
-      grid-gap: $gutter $gutter;
       grid-template-columns: 2fr 1fr;
     }
     @include tablet-landscape {
