@@ -1,14 +1,21 @@
 p {
-    color: $grey-7;
+  color: $grey-7;
+  font-size: 14px;
+  line-height: 1.5;
+  @include tablet-landscape {
     font-size: 16px;
-    line-height: 24px;
-    &.sm {
+  }
+  &.sm {
+    font-size: 12px;
+    @include tablet-landscape {
       font-size: 14px;
-      line-height: 21px;
-    }
-    &.lg {
-      color: $dark-gray;
-      font-size: 20px;
-      line-height: 30px;
     }
   }
+  &.lg {
+    color: $dark-gray;
+    font-size: 16px;
+    @include tablet-landscape {
+      font-size: 20px;
+    }
+  }
+}
