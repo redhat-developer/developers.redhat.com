@@ -23,3 +23,9 @@ $gutter: 30px;
     @content;
   }
 }
+
+* {
+  box-sizing: border-box;
+  font-family: overpass, "Open Sans", Helvetica, sans-serif;
+}
+body { margin: 0; padding: 0; }

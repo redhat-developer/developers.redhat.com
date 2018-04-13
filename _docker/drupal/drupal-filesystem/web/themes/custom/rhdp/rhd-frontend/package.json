@@ -1,6 +1,6 @@
 {
   "name": "rhd-frontend",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Front-end assets and documentation for Red Hat Developer site",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "serve": "npm run start && browser-sync start -c browser-sync.config.js",
     "docs": "hugo -D -s src/docs && npm run docs:front",
     "docs:front": "npm run docs:styles && npm run docs:scripts",
-    "docs:styles": "cpx *.min.css src/docs/themes/rhd/static/css && sassdoc 'src/styles/*.scss' -d 'docs/styling'",
+    "docs:styles": "cpx styles/*.css src/docs/themes/rhd/static/css && sassdoc 'src/styles/**/*.scss' -d 'docs/styling'",
     "docs:scripts": "cpx *.min.js src/docs/themes/rhd/static/js && jsdoc -c jsdoc.config.json",
     "hugo": "hugo server -D -w -s src/docs",
     "travis-deploy-once": "travis-deploy-once",

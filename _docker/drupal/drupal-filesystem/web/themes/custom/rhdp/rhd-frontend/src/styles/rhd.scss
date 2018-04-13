@@ -2,43 +2,27 @@
 @import "colors";
 @import "global";
 @import "container";
-@import "assembly";
-@import "buttons";
-@import "tile";
-@import "card";
-@import "teaser";
-@import "author";
-@import "assembly";
-@import "assembly-on-page-nav";
-@import "assembly-type-dynamic_content_feed";
-@import "assembly-type-dynamic_content_list";
-@import "assembly-type-featured_evangelists";
-@import "assembly-type-featured_resources";
-@import "assembly-type-static_content_band";
-@import "assembly-type-call_to_action";
-@import "assembly-type-rich_text";
-@import "alerts";
-@import "foundation/global";
-@import "foundation/grid";
-@import "foundation/functions";
-@import "assembly-video-hero";
-@import "assembly-hero";
-@import "author";
+@import "typography/typography";
+@import "patterns/patterns";
+@import "assembly/assembly";
+@import "foundation/foundation";
 @import "navigation";
 
-* {
-  box-sizing: border-box;
-  font-family: overpass, "Open Sans", Helvetica, sans-serif;
-}
-body { margin: 0; padding: 0; }
 
 [data-rhd-grid="normal"] {
     display: flex;
     flex-direction: column;
 
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto repeat(12, 70px) auto;
+    grid-gap: 30px;
+    grid-template-rows: auto;
+
+    
+}
+
+[data-rhd-pos="span12"] {
+  grid-column: 2 / span 12;
 }
 
 body > header,
@@ -114,271 +98,8 @@ body > footer {
     grid-column: span 4;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  color: $dark-gray;
-  font-weight: 600;
-}
-
-h1 {
-  font-size: 50px;
-  line-height: 62px;
-}
-
-h2 {
-  font-size: 38px;
-  line-height: 24px;
-}
-
-h3 {
-  font-size: 32px;
-  line-height: 49px;
-}
-
-h4 {
-  font-size: 27px;
-  line-height: 33px;
-}
-
-h5 {
-  font-size: 18px;
-  line-height: 24px;
-
-  &.alt {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-p {
-  color: $grey-7;
-  font-size: 16px;
-  line-height: 24px;
-  &.sm {
-    font-size: 14px;
-    line-height: 21px;
-  }
-  &.lg {
-    color: $dark-gray;
-    font-size: 20px;
-    line-height: 30px;
-  }
-}
-
-label {
-  color: $black;
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 22px;
-  &.light {
-    color: #828282;
-    font-size: 12px;
-    line-height: 18px;
-  }
-}
-
-a {
-  color:$link;
-  cursor:pointer;
-  text-decoration: none;
-  &:hover, &:focus, &:active { color: $linkhover; }
-
-  &.dark-background{ color: $link-dark-background; }
-  &.link-sm {color: $link-sm; }
-  &.link-sm-dark {color: $link-sm-dark-background; }
-
-  &:focus {
-    outline-offset: 1px;
-    outline-style: dotted;
-    outline-width: 1px;
-    outline-color: color($link);
-  }
-  &[href$=".pdf"]:after,
-  &.pdf:after {
-    content: "\f1c1";
-    font-family: FontAwesome;
-    margin-left: 4px;
-  }
-
-  &.img-link {
-    &[href$=".pdf"]:after,
-    &.pdf:after { display: none; }
-  }
-}
-
-p a:hover { border-bottom: 1px solid #DCDCDC; }
-
-p a.external-link:after { display: none; }
-
-small a,
-.link-sm a { color: $link-sm; }
-
-
-button, .button {
-  background: $red;
-  color: $white;
-  text-transform: uppercase;
-  text-decoration: none;
-  border:0;
-  font-size: 16px;
-  font-weight: 600;
-  padding:9px 40px;
-  -webkit-transition: background .2s ease-in 0s;
-  transition:background .2s ease-in 0s;
-  line-height: 1.44;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  cursor: pointer;
-
-  &:hover, &:focus {
-    background-color: $dark-red;
-    color: $white;
-    outline: 0;
-  }
-  &:active {
-    background-color: $darker-red;
-    color: $white;
-    outline: 0;
-  }
-
-  &.heavy-cta {
-    font-weight: bold;
-    &.white {
-      background-color: $white;
-      color: $red;
-      &:hover, &:focus { background-color: $grey-2; }
-      &:active { background-color: $white; }
-    }
-    &.black {
-      background-color:$black;
-      color:$white;
-    }
-    &.blue {
-      background-color:$blue;
-      color:$white;
-      &:hover, &:focus { background-color: $dark-blue; }
-      &:active { background-color: $darker-blue; }
-    }
-    &.gray {
-      background-color: $grey-5;
-      color:$white;
-      &:hover, &:focus { background-color: $grey-6; }
-      &:active { background-color: $grey-7; }
-    }
-  }
-
-  &.medium-cta {
-    border: 1px solid $red;
-    line-height: 1.44;
-    color: $red;
-    background-color: transparent;
-    padding: 8px 40px;
-    &:hover, &:focus {
-      background-color: $red;
-      color: $white;
-    }
-    &:active {
-        background-color: $dark-red;
-        color: $white;
-    }
-    &.white {
-      border-color:$white;
-      color:$white;
-      &:hover, &:focus {
-        background-color: $grey-2;
-        color: $grey-8;
-      }
-      &:active {
-        background-color: $white;
-        color: $grey-8;
-      }
-    }
-    &.gray {
-      border-color: #72767B;
-      color:$grey-5;
-      &:hover, &:focus {
-        background-color: $grey-6;
-        color: $white;
-      }
-      &:active {
-        background-color: $grey-7;
-        color: $white;
-      }
-    }
-    &.black {
-      border-color:$black;
-      color:$black;
-      &:hover, &:focus {
-        background-color: $black;
-        color: $white;
-      }
-    }
-    &.blue {
-      border-color:$blue;
-      color:$blue;
-      &:hover, &:focus {
-        background-color: $blue;
-        color: $white;
-      }
-      &:active {
-        background-color: $dark-blue;
-        color: $white;
-      }
-    }
-  }
-  &.large { padding: 0.6em 0.9em; }
-  &.long { padding: .6em 5em; }
-  & + button, & + .button { margin-left: 20px; }
-  &.external-link:after { display: none; }
-}
-
-.menu-trigger {
-  background: #FFF;
-  color: #000;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid #000;
-  font-size: 16px;
-  font-weight: 600;
-  padding:9px 40px;
-  -webkit-transition: background .2s ease-in 0s;
-  transition:background .2s ease-in 0s;
-  line-height: 1.44;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  &:hover, &:active, &:focus {
-    background-color: #000;
-  }
-}
-
-a.button[href$=".pdf"]:after,
-a.heavy-cta[href$=".pdf"]:after,
-a.medium-cta[href$=".pdf"]:after,
-.heavy-cta a[href$=".pdf"]:after,
-.madium-cta a[href$=".pdf"]:after{ display: none; }
-
-a.light-cta{
-  color: $link;
-  font-weight: 800;
-  &:after {
-    padding-left:2px;
-    content: "\25B8";
-  }
-  &:hover, &:focus { color: $linkhover; }
-  &.black {
-    color: $black;
-    &:hover, &:focus { color: $link; }
-  }
-  &.white {
-    color: $white;
-    &:hover, &:focus { color: $grey-4; }
-  }
-  &.gray {
-    color: $grey-6;
-    &:hover, &:focus { color: $black; }
-  }
-  &.external-link:after {
-    vertical-align: baseline;
-  }
+.visually-hidden {
+  display: none;
 }
 
 .rhd-marketing-header {
