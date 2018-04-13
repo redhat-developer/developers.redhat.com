@@ -15,15 +15,7 @@
   .grid {
     display: grid;
     grid-gap: $gutter $gutter;
-    @include tablet-portrait {
-      grid-template-columns: 2fr 1fr;
-    }
-    @include tablet-landscape {
-      grid-template-columns: 3fr 1fr;
-    }
-    @include desktop-small {
-      grid-template-columns: 4fr 1fr;
-    }
+    grid-template-columns: 1fr;
   }
 
   .content-card-list {
@@ -33,7 +25,7 @@
     grid-gap: $gutter $gutter;
     grid-template-columns: 1fr 1fr;
     @include tablet-landscape {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 
@@ -45,6 +37,25 @@
     a {
       display: block;
       margin-bottom: 1rem;
+    }
+  }
+
+  &.has-links {
+    .grid {
+      @include tablet-portrait {
+        grid-template-columns: 2fr 1fr;
+      }
+      @include tablet-landscape {
+        grid-template-columns: 3fr 1fr;
+      }
+      @include desktop-small {
+        grid-template-columns: 4fr 1fr;
+      }
+    }
+    .content-card-list {
+      @include tablet-landscape {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
   }
 }

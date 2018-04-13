@@ -2,10 +2,9 @@
   <div class="container">
     {{ content.field_title }}
     <div class="grid">
-
       {% if content %}
         <div>
-          {{- content|without('name', 'latest_comments', 'field_links', 'field_cta_link') -}}
+          {{- content|without('field_title', 'latest_comments', 'field_links', 'field_cta_link') -}}
         </div>
       {% endif %}
 

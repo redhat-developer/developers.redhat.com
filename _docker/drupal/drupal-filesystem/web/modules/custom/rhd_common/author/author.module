@@ -13,7 +13,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 function author_preprocess_node(&$variables) {
   $node = $variables['node'];
   $view_mode = $variables['view_mode'];
-  if ($node->getType() === 'author') {
+  if ($node->getType() === 'author' && $view_mode == 'teaser') {
     $variables['content']['social_icons'] = [];
     $social_fields = [
       'field_twitter',

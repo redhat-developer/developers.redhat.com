@@ -387,6 +387,13 @@ a.light-cta{
   line-height: 71px;
 }
 
+.page-title, .field--name-body, #block-rhdp-local-tasks {
+  @extend .container;
+}
+.field--name-body {
+  margin-bottom: 40px;
+}
+
 img {
   max-width: 100%;
   height: auto;

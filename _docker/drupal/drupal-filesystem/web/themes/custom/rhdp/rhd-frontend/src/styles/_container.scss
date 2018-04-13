@@ -13,4 +13,9 @@
   @include desktop-large {
     max-width: 1172px + $gutter;
   }
+  &.narrow {
+    @include desktop-large {
+      max-width: 931px + $gutter;
+    }
+  }
 }
