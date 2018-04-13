@@ -1,0 +1,132 @@
+.rhd-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-start: 3;
+  grid-column-end: 9;
+  padding: 20px 30px 30px 30px;
+}
+
+.rhd-footer-section-toggle {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  margin: 15px 0 20px 0;
+}
+
+.rhd-footer-list {
+  list-style: none;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+
+.rhd-footer-link {
+  margin-bottom: 10px;
+  a {
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    i {
+      font-size: 13px;
+      margin-left: 5px;
+    }
+    &:active, &:focus, &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
+}
+
+.rhd-footer-sidebar {
+  grid-column-start: 9;
+  grid-column-end: 12;
+  padding: 20px 30px 30px 30px;
+
+  &-title {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    margin: 15px 0 10px 0;
+  }
+
+  &-content, a {
+    color: $white;
+    font-size: 14px;
+  }
+
+  a, a:hover, a:active, a:focus {
+    text-decoration: underline;
+    color: $white;
+  }
+
+  &-subtitle {
+    color: $white;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  &-social {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    display: inline;
+    li {
+      display: inline;
+      margin-left: 16px;
+      float:none;
+      &:first-child { margin-left: 0; }
+      a { font-size: 1.1rem; }
+    }
+  }
+  &-signup {
+    float: right;
+    font-size: 16px;
+    text-decoration: none;
+  }
+}
+
+.rh-universal-footer {
+  padding: 15px 0 10px 0;
+}
+
+.rh-universal-footer-rh-logo {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+.rh-universal-footer-legal {
+  grid-column-start: 5;
+  grid-column-end: 11;
+  margin-top: .6em;
+  padding-left: 0;
+  list-style: none;
+  & > li {
+    margin: 0 0 0 10px;
+    display: inline;
+    a {
+      font-size: 14px;
+      color: #858585;
+      display: inline;
+      &.copyright {
+        width: 220px;
+        cursor: default;
+        text-decoration: none;
+        margin-right: 3em;
+      }
+    }
+  }
+  li:nth-of-type(2), li:nth-of-type(3) {
+    &:after {
+      content: '|';
+      margin: 0 10px;
+      display: inline-block;
+    }
+  }
+}
+
+.rh-universal-footer-summit-logo {
+  grid-column-start: 11;
+  grid-column-end: 12;
+  justify-self: end;
+}

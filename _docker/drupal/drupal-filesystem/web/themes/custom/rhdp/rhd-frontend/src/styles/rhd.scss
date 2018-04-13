@@ -8,6 +8,7 @@
 @import "foundation/foundation";
 @import "navigation";
 @import "mq-mixins";
+@import "rhd-footer";
 
 
 // Stylesheets for microsites
@@ -72,25 +73,15 @@ body > footer {
     align-items: center;
     color: #5e6a71;
 
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
     .rh-footer-logo, .rh-summit-footer-logo {
         flex: 0 0 300px;
     }
 
     .contentinfo {
         flex: 1 1 auto;
-    }
-
-    ul {
-        margin: 0; padding: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        li {
-            display: inline-block;
-            flex: 0 0 auto;
-            margin-right: 3em;
-        }
     }
 }
 
@@ -103,18 +94,15 @@ body > footer {
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 500px;
 }
 
-.rhd-footer :first-child {
+.rhd-footer-nav {
     flex: 1 1 auto;
-    grid-column: span 8;
 }
 
 .rhd-footer-sidebar {
     background-color: $red;
     flex: 0 0 33%;
-    grid-column: span 4;
 }
 
 .visually-hidden {
