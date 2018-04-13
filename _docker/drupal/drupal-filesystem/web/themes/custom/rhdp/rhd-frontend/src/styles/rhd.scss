@@ -372,3 +372,11 @@ a.light-cta{
   font-size: 57px;
   line-height: 71px;
 }
+
+.page-title, .field--name-body, #block-rhdp-local-tasks {
+  @extend .container;
+}
+.field--name-body {
+  margin-bottom: 40px;
+}
+
