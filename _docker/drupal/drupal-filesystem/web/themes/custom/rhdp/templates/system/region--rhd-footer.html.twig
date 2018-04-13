@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# {% if content %}
+  <div{{ attributes.addClass(classes, 'rhd-footer') }}>
+  </div>
+{% endif %} #}
+
+<div class="rhd-footer">
+  <nav class="rhd-footer-nav" aria-label="Secondary Navigation" role="navigation">
+    <div class="collapsible-section">
+      <p class="rhd-footer-section-toggle">
+        <span class="toggle-icon"></span>Featured
+      </p>
+      <ul class="rhd-footer-list">
+        <li class="rhd-footer-link"><a href="/devops">DevOps</a></li>
+        <li class="rhd-footer-link"><a href="/enterprise-java">Enterprise java</a></li>
+        <li class="rhd-footer-link"><a href="/kubernetes">Kubernetes</a></li>
+        <li class="rhd-footer-link"><a href="/linux">Linux</a></li>
+        <li class="rhd-footer-link"><a href="/microservices">Microservices</a></li>
+        <li class="rhd-footer-link"><a href="/secure-programming">Secure programming</a></li>
+        <li class="rhd-footer-link"><a href="/service-mesh">Service Mesh</a></li>
+      </ul>
+    </div>
+    <div class="collapsible-section">
+      <p class="rhd-footer-section-toggle">
+        <span class="toggle-icon"></span>QuickLinks
+      </p>
+      <ul class="rhd-footer-list">
+        <li class="rhd-footer-link"><a href="/blog">Blog</a></li>
+        <li class="rhd-footer-link"><a href="/books">Books</a></li>
+        <li class="rhd-footer-link"><a href="/cheat-sheets">Cheat sheets</a></li>
+        <li class="rhd-footer-link"><a href="/videos">Videos</a></li>
+      </ul>
+    </div>
+    <div class="collapsible-section">
+      <p class="rhd-footer-section-toggle">
+        <span class="toggle-icon"></span>Communicate
+      </p>
+      <ul class="rhd-footer-list">
+        <li class="rhd-footer-link"><a class="report-an-issue" href="#" id="rhdCustomTrigger">Report a website issue</a></li>
+        <li class="rhd-footer-link"><a href="https://access.redhat.com/security/team/contact/" target="_blank" rel="noopener noreferrer">Report a security problem</a></li>
+        <li class="rhd-footer-link"><a href="/about">About us</a></li>
+        <li class="rhd-footer-link"><a href="/contact">Contact us</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="rhd-footer-sidebar">
+    <p class="rhd-footer-sidebar-title">Red Hat Developer</p>
+    <p class="rhd-footer-sidebar-subtitle">Build here. Go anywhere.</p>
+    <p class="rhd-footer-sidebar-content">We serve the builders. The problem solvers who create careers with code.<br/><br/><a href="#">Join us</a> if you’re a developer, software engineer, web designer, front-end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead.</p>
+    <ul class="rhd-footer-sidebar-social">
+      <li>
+        <a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a>
+      </li>
+      <li>
+        <a href="https://twitter.com/rhdevelopers" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
+      </li>
+    </ul>
+    <a class="rhd-footer-sidebar-signup" href="#">Sign Me Up &#x25B8;</a>
+  </div>
+</div>
+<div class="rh-universal-footer">
+  <a class="rh-universal-footer-rh-logo" href="https://redhat.com/"><img alt="Red Hat Logo" src="https://developers.redhat.com/images/branding/RHLogo_white.svg"></a>
+  <ul class="rh-universal-footer-legal">
+    <li>
+      <a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a>
+    </li>
+    <li>
+      <a href="http://www.redhat.com/en/about/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy statement</a>
+    </li>
+    <li>
+      <a href="http://www.redhat.com/en/about/terms-use" target="_blank" rel="noopener noreferrer">Terms of use</a>
+    </li>
+    <li>
+      <a href="http://www.redhat.com/en/about/all-policies-guidelines" target="_blank" rel="noopener noreferrer">All policies and guidelines</a>
+    </li>
+  </ul>
+  <a class="rh-universal-footer-summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer">
+    <img src="/images/design/logo-summit.png" alt="Red Hat Summit">
+  </a>
+</div>
