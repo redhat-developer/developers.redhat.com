@@ -1,0 +1,14 @@
+p {
+    color: $grey-7;
+    font-size: 16px;
+    line-height: 24px;
+    &.sm {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    &.lg {
+      color: $dark-gray;
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
