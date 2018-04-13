@@ -8,6 +8,36 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var RHElement = (function (_super) {
+    __extends(RHElement, _super);
+    function RHElement(id, template) {
+        var _this = _super.call(this) || this;
+        if (ShadyCSS && template) {
+            ShadyCSS.prepareTemplate(template, id);
+        }
+        _this.attachShadow({ mode: "open" });
+        if (template) {
+            _this.shadowRoot.appendChild(template.content.cloneNode(true));
+        }
+        return _this;
+    }
+    RHElement.prototype.connectedCallback = function () {
+        if (ShadyCSS) {
+            ShadyCSS.styleElement(this);
+        }
+    };
+    Object.defineProperty(RHElement, "observedAttributes", {
+        get: function () {
+            return ['url', 'name'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHElement.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHElement;
+}(HTMLElement));
 var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
@@ -917,6 +947,28 @@ var DevNationLiveApp = (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
+var template = document.createElement("template");
+template.innerHTML = "\n    <style>\n    * {\n        background: #f63;    \n    }\n    </style>\n    <h4>Category List</h4>\n    <slot></slot>\n";
+var DPCategoryList = (function (_super) {
+    __extends(DPCategoryList, _super);
+    function DPCategoryList() {
+        return _super.call(this, 'dp-category-list', template) || this;
+    }
+    DPCategoryList.prototype.connectedCallback = function () {
+    };
+    Object.defineProperty(DPCategoryList, "observedAttributes", {
+        get: function () {
+            return ['url', 'name'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DPCategoryList.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return DPCategoryList;
+}(RHElement));
+window.customElements.define('dp-category-list', DPCategoryList);
 var RHDPDownloadsAllItem = (function (_super) {
     __extends(RHDPDownloadsAllItem, _super);
     function RHDPDownloadsAllItem() {

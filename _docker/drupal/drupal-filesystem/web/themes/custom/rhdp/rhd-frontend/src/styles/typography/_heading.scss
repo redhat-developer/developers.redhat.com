@@ -1,0 +1,34 @@
+h1,h2,h3,h4,h5,h6 {
+    color: $dark-gray;
+    font-weight: 600;
+  }
+  
+h1 {
+font-size: 50px;
+line-height: 62px;
+}
+
+h2 {
+font-size: 38px;
+line-height: 24px;
+}
+
+h3 {
+font-size: 32px;
+line-height: 49px;
+}
+
+h4 {
+font-size: 27px;
+line-height: 33px;
+}
+
+h5 {
+font-size: 18px;
+line-height: 24px;
+
+    &.alt {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
