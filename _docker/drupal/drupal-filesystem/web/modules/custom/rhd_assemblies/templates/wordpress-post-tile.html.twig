@@ -1,7 +1,7 @@
 <article class="wordpress-blog-post-tile">
   <a href="{{ post.link }}">
     {% if media and media.media_type == 'image' %}
-      <div class="tile-image">
+      <div class="tile-image {{ media.scale_orientation }}">
         <div class="image-table">
           <div class="image-cell">
             <img src="{{ media.source_url }}"/>

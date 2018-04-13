@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.static_content_band
     - field.field.assembly.static_content_band.field_content_list
+    - field.field.assembly.static_content_band.field_navigation_title
     - field.field.assembly.static_content_band.field_title
   module:
     - fences
@@ -38,5 +39,6 @@ content:
     type: string
     region: content
 hidden:
+  field_navigation_title: true
   name: true
   user_id: true

@@ -7,7 +7,7 @@
     </div>
 
   {% if content %}
-    {{- content|without('field_evangelists', 'field_cta_link', 'name') -}}
+    {{- content|without('field_evangelists', 'field_cta_link', 'field_title') -}}
   {% endif %}
   </div>
   {% if background_image_url %}

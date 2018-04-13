@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.topic_page.body
     - field.field.node.topic_page.field_sections
     - field.field.node.topic_page.scheduled_update
     - node.type.topic_page
@@ -10,20 +11,30 @@ dependencies:
     - entity_browser_entity_form
     - inline_entity_form
     - path
+    - text
     - workbench_moderation
 id: node.topic_page.default
 targetEntityType: node
 bundle: topic_page
 mode: default
 content:
+  body:
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_sections:
-    weight: 6
+    weight: 2
     settings:
       form_mode: default
       override_labels: true
@@ -41,18 +52,18 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 2
+    weight: 3
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   scheduled_update:
-    weight: 26
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -70,7 +81,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60

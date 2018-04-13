@@ -1,6 +1,6 @@
 uuid: 147bfac3-7318-41fb-b26a-f3a916bee795
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - system
@@ -8,8 +8,8 @@ dependencies:
     - rhdp
 id: rhdp_branding
 theme: rhdp
-region: header
-weight: -2
+region: rhd_header
+weight: -5
 provider: null
 plugin: system_branding_block
 settings:
@@ -18,6 +18,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: true
-  use_site_slogan: true
+  use_site_name: false
+  use_site_slogan: false
 visibility: {  }

@@ -1,7 +1,7 @@
 .assembly {
   &.has-background {
     position: relative;
-    .row, .container {
+    .container {
       position: relative;
       z-index: 1;
     }
@@ -34,14 +34,12 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    &:after {
-      background: rgba(0,0,0,0.5);
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      content: ' ';
-    }
+  }
+
+  .field--name-field-title, .header {
+    font-size: 22px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 40px;
   }
 }

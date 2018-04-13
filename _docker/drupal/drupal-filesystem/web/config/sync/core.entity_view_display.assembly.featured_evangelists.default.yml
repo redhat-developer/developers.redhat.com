@@ -6,10 +6,11 @@ dependencies:
     - assembly.assembly_type.featured_evangelists
     - field.field.assembly.featured_evangelists.field_cta_link
     - field.field.assembly.featured_evangelists.field_evangelists
+    - field.field.assembly.featured_evangelists.field_navigation_title
     - field.field.assembly.featured_evangelists.field_title
   module:
     - fences
-    - link
+    - rhd_assemblies
 id: assembly.featured_evangelists.default
 targetEntityType: assembly
 bundle: featured_evangelists
@@ -19,11 +20,12 @@ content:
     weight: 2
     label: hidden
     settings:
-      trim_length: null
+      trim_length: ''
+      class: 'button heavy-cta'
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
+      rel: 0
+      target: 0
     third_party_settings:
       fences:
         fences_field_tag: div
@@ -32,7 +34,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: link
+    type: link_class
     region: content
   field_evangelists:
     weight: 1
@@ -51,7 +53,9 @@ content:
     type: entity_reference_entity_view
     region: content
   field_title:
+    type: string
     weight: 0
+    region: content
     label: hidden
     settings:
       link_to_entity: false
@@ -63,8 +67,7 @@ content:
         fences_field_item_classes: header
         fences_label_tag: none
         fences_label_classes: ''
-    type: string
-    region: content
 hidden:
+  field_navigation_title: true
   name: true
   user_id: true

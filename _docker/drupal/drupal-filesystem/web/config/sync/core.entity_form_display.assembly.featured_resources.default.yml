@@ -5,7 +5,9 @@ dependencies:
   config:
     - assembly.assembly_type.featured_resources
     - field.field.assembly.featured_resources.field_links
+    - field.field.assembly.featured_resources.field_navigation_title
     - field.field.assembly.featured_resources.field_resources
+    - field.field.assembly.featured_resources.field_title
   module:
     - link
 id: assembly.featured_resources.default
@@ -21,6 +23,14 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_navigation_title:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_resources:
     weight: 3
     settings:
@@ -29,6 +39,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield
@@ -40,7 +58,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 6
     region: content
     settings:
       display_label: true

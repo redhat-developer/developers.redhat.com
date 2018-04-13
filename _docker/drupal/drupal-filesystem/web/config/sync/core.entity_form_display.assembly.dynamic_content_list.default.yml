@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
     - field.field.assembly.dynamic_content_list.field_links
+    - field.field.assembly.dynamic_content_list.field_navigation_title
     - field.field.assembly.dynamic_content_list.field_title
   module:
     - link
@@ -45,6 +46,14 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_navigation_title:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_title:
     weight: 2
     settings:
@@ -63,7 +72,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true
