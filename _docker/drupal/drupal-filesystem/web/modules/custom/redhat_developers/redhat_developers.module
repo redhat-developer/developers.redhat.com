@@ -23,3 +23,13 @@ function redhat_developers_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
+function redhat_developers_theme() {
+  $theme = [];
+  $theme['rhd_search_block'] = [
+    'template' => 'rhd-search-block',
+  ];
+  return $theme;
+}

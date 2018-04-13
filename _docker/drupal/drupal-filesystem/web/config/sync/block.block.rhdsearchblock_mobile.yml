@@ -1,0 +1,21 @@
+uuid: b1ae85a6-5b64-405e-b76a-10e4a3edede5
+langcode: en
+status: true
+dependencies:
+  module:
+    - redhat_developers
+  theme:
+    - rhdp
+id: rhdsearchblock_mobile
+theme: rhdp
+region: mobile_tray
+weight: -5
+provider: null
+plugin: rhd_search_block
+settings:
+  id: rhd_search_block
+  label: 'RHD Search Block'
+  provider: redhat_developers
+  label_display: '0'
+  rhd_search_block_settings: null
+visibility: {  }

@@ -159,4 +159,4 @@ services:
     arguments: ['@config.storage.active', '@cache.config']
   config.storage.active:
     class: Drupal\Core\Config\FileStorage
-    factory: Drupal\Core\Config\FileStorageFactory::getActive   
+    factory: Drupal\Core\Config\FileStorageFactory::getActive

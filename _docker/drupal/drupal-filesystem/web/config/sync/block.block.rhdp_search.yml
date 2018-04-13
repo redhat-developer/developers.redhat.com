@@ -8,13 +8,13 @@ dependencies:
     - rhdp
 id: rhdp_search
 theme: rhdp
-region: header
-weight: -6
+region: mobile_tray
+weight: -3
 provider: null
 plugin: search_form_block
 settings:
   id: search_form_block
   label: Search
   provider: search
-  label_display: visible
+  label_display: '0'
 visibility: {  }

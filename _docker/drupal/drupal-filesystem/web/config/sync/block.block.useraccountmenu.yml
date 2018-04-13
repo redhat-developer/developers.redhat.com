@@ -1,4 +1,4 @@
-uuid: 30bf3f93-06ce-4448-93fe-329b8b2165ae
+uuid: df51e615-fc57-4326-bf3c-1f4caadd5194
 langcode: en
 status: true
 dependencies:
@@ -8,10 +8,10 @@ dependencies:
     - system
   theme:
     - rhdp
-id: rhdp_account_menu
+id: useraccountmenu
 theme: rhdp
-region: mobile_tray
-weight: -6
+region: rh_universal_header
+weight: 0
 provider: null
 plugin: 'system_menu_block:account'
 settings:
@@ -20,5 +20,5 @@ settings:
   provider: system
   label_display: '0'
   level: 1
-  depth: 1
+  depth: 0
 visibility: {  }

@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+    'rhd-mobile-tray',
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="rhd-mobile-tray-inner">
+      <button class="menu-toggle">Close<span class="icon"><i class="far fa-times-circle"></i></span></button>
+      {{ content }}
+    </div>
+  </div>
+{% endif %}

@@ -15,7 +15,7 @@
  */
 #}
 {% if content %}
-  <div{{ attributes }}>
+  <div{{ attributes.addClass(classes) }}>
     <div class="rh-universal-header">
       <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
         <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page"><img class="rh-header-logo" alt="Red Hat Logo" src="https://developers.redhat.com/images/branding/RHLogo_white.svg"></a>
@@ -34,16 +34,12 @@
     </div>
 
     <div class="rhd-header">
-        <img class="rhd-header-logo" alt="Red Hat Developer Logo" src="images/design/REPLACE_IMG.png">
-        <nav class="rhd-nav-fixed" aria-label="Static Main Navigation" role="navigation">
-            <ul>
-                <li><a class="rhd-header-link" href="#">Events</a></li>
-                <li><a class="rhd-header-link" href="#">Training</a></li>
-                <li><a class="rhd-header-link" href="#">Help</a></li>
-                <li><a class="rhd-header-link" href="#">Products</a></li>
-                <li class="rhd-nav-search"><i class="fas fa-search"></i></li>
-            </ul>
-        </nav>
+      <img class="rhd-header-logo" alt="Red Hat Developer Logo" src="images/design/REPLACE_IMG.png">
+      {{ content.rhd_navigation }}
     </div>
   </div>
+
+
+  {{ content }}
+
 {% endif %}
