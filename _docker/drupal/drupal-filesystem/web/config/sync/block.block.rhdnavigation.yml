@@ -1,0 +1,24 @@
+uuid: 6f0b0ab4-8731-40c2-9782-227ca568556a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.rhd-navigation
+  module:
+    - system
+  theme:
+    - rhdp
+id: rhdnavigation
+theme: rhdp
+region: rhd_header
+weight: -4
+provider: null
+plugin: 'system_menu_block:rhd-navigation'
+settings:
+  id: 'system_menu_block:rhd-navigation'
+  label: 'RHD Navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

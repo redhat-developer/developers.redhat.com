@@ -1,0 +1,7 @@
+<ul>
+    {% for presenter in items %}
+        <li>
+            <a href="{{ presenter['content']['#url'] }}">{{ presenter['content']['#title'] }}</a>
+        </li>
+    {% endfor %}
+</ul>
