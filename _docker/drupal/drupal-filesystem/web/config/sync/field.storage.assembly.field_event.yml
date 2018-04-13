@@ -1,0 +1,20 @@
+uuid: 565c3476-0ee6-4c65-b3c5-bdee5082ee49
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_event
+field_name: field_event
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

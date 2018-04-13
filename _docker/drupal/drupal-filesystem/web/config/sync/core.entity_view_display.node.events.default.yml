@@ -9,9 +9,11 @@ dependencies:
     - field.field.node.events.field_event_background_image
     - field.field.node.events.field_event_format
     - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
@@ -20,10 +22,13 @@ dependencies:
     - field.field.node.events.field_target_product
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
+    - field.field.node.events.scheduled_update
     - node.type.events
   module:
     - datetime
+    - fences
     - image
+    - link
     - options
     - text
     - user
@@ -36,7 +41,7 @@ mode: default
 content:
   field_data_tags:
     weight: 119
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -44,14 +49,14 @@ content:
     region: content
   field_description:
     weight: 102
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_end_date:
     weight: 104
-    label: above
+    label: hidden
     settings:
       format_type: medium
       timezone_override: ''
@@ -60,7 +65,7 @@ content:
     region: content
   field_event_background_image:
     weight: 122
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
@@ -69,71 +74,101 @@ content:
     region: content
   field_event_format:
     weight: 116
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_event_image:
     weight: 114
-    label: above
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_event_location:
+    weight: 127
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_event_type:
     weight: 113
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_more_details:
     weight: 108
-    label: above
+    label: hidden
     settings:
-      link_to_entity: false
+      trim_length: 80
+      rel: ''
+      target: ''
+      url_only: false
+      url_plain: false
     third_party_settings: {  }
-    type: string
+    type: link_separate
     region: content
   field_on_homepage:
     weight: 117
-    label: above
-    settings: {  }
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    type: list_default
+    type: boolean
+    region: content
+  field_presenter_s_:
+    weight: 126
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
   field_region:
     weight: 121
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_short_description:
     weight: 125
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_site:
     weight: 118
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_solution_type:
     weight: 120
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_start_date:
     weight: 103
-    label: above
+    label: hidden
     settings:
       format_type: medium
       timezone_override: ''
@@ -142,7 +177,7 @@ content:
     region: content
   field_target_product:
     weight: 123
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
@@ -157,7 +192,7 @@ content:
     region: content
   field_topics:
     weight: 124
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -166,8 +201,12 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   scheduled_update: true

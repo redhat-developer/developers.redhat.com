@@ -1,6 +1,6 @@
 uuid: 30bf3f93-06ce-4448-93fe-329b8b2165ae
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.account
@@ -10,8 +10,8 @@ dependencies:
     - rhdp
 id: rhdp_account_menu
 theme: rhdp
-region: header
-weight: 1
+region: mobile_tray
+weight: -6
 provider: null
 plugin: 'system_menu_block:account'
 settings:

@@ -1,0 +1,40 @@
+uuid: b5258f1f-30e0-4db7-bbb7-bd1e2ed937fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_list
+    - field.field.assembly.events_list.field_event
+  module:
+    - fences
+id: assembly.events_list.default
+targetEntityType: assembly
+bundle: events_list
+mode: default
+content:
+  field_event:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  user_id: true

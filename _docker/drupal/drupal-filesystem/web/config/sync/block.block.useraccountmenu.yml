@@ -1,0 +1,24 @@
+uuid: df51e615-fc57-4326-bf3c-1f4caadd5194
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - rhdp
+id: useraccountmenu
+theme: rhdp
+region: rh_universal_header
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }
