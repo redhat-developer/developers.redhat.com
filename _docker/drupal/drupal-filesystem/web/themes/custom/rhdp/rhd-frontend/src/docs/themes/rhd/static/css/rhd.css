@@ -145,30 +145,56 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #242424;
-  font-weight: 600; }
+  font-weight: 500;
+  line-height: 1.5;
+  margin-top: 16px;
+  margin-bottom: 16px; }
+
+.rhd-marketing-header {
+  color: #242424;
+  font-size: 27px;
+  line-height: 1.5; }
+  @media (min-width: 768px) {
+    .rhd-marketing-header {
+      font-size: 57px; } }
 
 h1 {
-  font-size: 50px;
-  line-height: 62px; }
+  font-size: 23px;
+  line-height: 1.24; }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 50px; } }
 
 h2 {
-  font-size: 38px;
-  line-height: 24px; }
+  font-size: 18px;
+  line-height: 1.24; }
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 38px; } }
 
 h3 {
-  font-size: 32px;
-  line-height: 49px; }
+  font-size: 16px;
+  font-weight: bold; }
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 32px; } }
 
 h4 {
-  font-size: 27px;
-  line-height: 33px; }
+  font-size: 15px;
+  font-weight: bold; }
+  @media (min-width: 768px) {
+    h4 {
+      font-size: 27px; } }
 
 h5 {
-  font-size: 18px;
-  line-height: 24px; }
+  font-size: 14px;
+  font-weight: bold; }
+  @media (min-width: 768px) {
+    h5 {
+      font-size: 18px; } }
   h5.alt {
-    font-size: 18px;
-    line-height: 24px; }
+    text-transform: uppercase;
+    letter-spacing: 0.05em; }
 
 a {
   color: #0066CC;
@@ -223,15 +249,22 @@ small a,
 
 p {
   color: #333333;
-  font-size: 16px;
-  line-height: 24px; }
+  font-size: 14px;
+  line-height: 1.5; }
+  @media (min-width: 768px) {
+    p {
+      font-size: 16px; } }
   p.sm {
-    font-size: 14px;
-    line-height: 21px; }
+    font-size: 12px; }
+    @media (min-width: 768px) {
+      p.sm {
+        font-size: 14px; } }
   p.lg {
     color: #242424;
-    font-size: 20px;
-    line-height: 30px; }
+    font-size: 16px; }
+    @media (min-width: 768px) {
+      p.lg {
+        font-size: 20px; } }
 
 label {
   color: #000000;
@@ -2482,11 +2515,6 @@ body > footer {
 
 .visually-hidden {
   display: none; }
-
-.rhd-marketing-header {
-  color: #242424;
-  font-size: 57px;
-  line-height: 71px; }
 
 .field--name-body {
   margin-bottom: 40px; }
