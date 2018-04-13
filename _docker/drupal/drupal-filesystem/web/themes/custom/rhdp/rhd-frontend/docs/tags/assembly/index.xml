@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assembly on RHD Front-end Code and Documentation</title>
+    <link>https://redhat-developer.github.io/rhd-frontend/tags/assembly/index.xml</link>
+    <description>Recent content in Assembly on RHD Front-end Code and Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/assembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>All Product Listing</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/assembly/all-product-listing/</link>
+      <pubDate>Fri, 13 Apr 2018 02:45:06 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/assembly/all-product-listing/</guid>
+      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
+        &lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;div class=&amp;#34;view-content grid all-products-listing&amp;#34; data-rhd-grid=&amp;#34;normal&amp;#34;&amp;gt;
+          &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/dotnet/overview&amp;#34;&amp;gt;.NET Core 2.0&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/devsuite/overview&amp;#34;&amp;gt;Red Hat Development Suite&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/cdk/overview&amp;#34;&amp;gt;Red Hat Container Development Kit&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/devstudio/overview&amp;#34;&amp;gt;Red Hat JBoss Developer Studio&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/openshift/overview&amp;#34;&amp;gt;Red Hat OpenShift Container Platform&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/red-hat-decision-manager/overview&amp;#34;&amp;gt;Red Hat Decision Manager&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/bpmsuite/overview&amp;#34;&amp;gt;Red Hat JBoss BPM Suite&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/amq/overview&amp;#34;&amp;gt;Red Hat AMQ&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/softwarecollections/overview&amp;#34;&amp;gt;Red Hat Software Collections&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/eap/overview&amp;#34;&amp;gt;Red Hat JBoss Enterprise Application Platform&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/datagrid/overview&amp;#34;&amp;gt;Red Hat JBoss Data Grid&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/webserver/overview&amp;#34;&amp;gt;Red Hat JBoss Web Server&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/rhel/overview&amp;#34;&amp;gt;Red Hat Enterprise Linux&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/datavirt/overview&amp;#34;&amp;gt;Red Hat JBoss Data Virtualization&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/fuse/overview&amp;#34;&amp;gt;Red Hat JBoss Fuse&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/mobileplatform/overview&amp;#34;&amp;gt;Red Hat Mobile Application Platform&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/openjdk/overview&amp;#34;&amp;gt;OpenJDK&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/developertoolset/overview&amp;#34;&amp;gt;Red Hat Developer Toolset&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/rhamt/overview&amp;#34;&amp;gt;Red Hat Application Migration Toolkit&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/rhoar/overview&amp;#34;&amp;gt;Red Hat OpenShift Application Runtimes&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/clang-llvm-go-rust/overview&amp;#34;&amp;gt;Compilers: Clang/LLVM, Go, Rust&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;#34;views-row&amp;#34;&amp;gt;
+    &amp;lt;div class=&amp;#34;views-field views-field-title&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;field-content&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;/products/sap/overview&amp;#34;&amp;gt;Red Hat Enterprise Linux for SAP Solutions&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;
+    &lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    
+&lt;div class=&#34;view-content grid all-products-listing&#34; data-rhd-grid=&#34;normal&#34;&gt;
+          &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/dotnet/overview&#34;&gt;.NET Core 2.0&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/devsuite/overview&#34;&gt;Red Hat Development Suite&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/cdk/overview&#34;&gt;Red Hat Container Development Kit&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/devstudio/overview&#34;&gt;Red Hat JBoss Developer Studio&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/openshift/overview&#34;&gt;Red Hat OpenShift Container Platform&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/red-hat-decision-manager/overview&#34;&gt;Red Hat Decision Manager&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/bpmsuite/overview&#34;&gt;Red Hat JBoss BPM Suite&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/amq/overview&#34;&gt;Red Hat AMQ&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/softwarecollections/overview&#34;&gt;Red Hat Software Collections&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/eap/overview&#34;&gt;Red Hat JBoss Enterprise Application Platform&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/datagrid/overview&#34;&gt;Red Hat JBoss Data Grid&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/webserver/overview&#34;&gt;Red Hat JBoss Web Server&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/rhel/overview&#34;&gt;Red Hat Enterprise Linux&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/datavirt/overview&#34;&gt;Red Hat JBoss Data Virtualization&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/fuse/overview&#34;&gt;Red Hat JBoss Fuse&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/mobileplatform/overview&#34;&gt;Red Hat Mobile Application Platform&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/openjdk/overview&#34;&gt;OpenJDK&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/developertoolset/overview&#34;&gt;Red Hat Developer Toolset&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/rhamt/overview&#34;&gt;Red Hat Application Migration Toolkit&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/rhoar/overview&#34;&gt;Red Hat OpenShift Application Runtimes&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/clang-llvm-go-rust/overview&#34;&gt;Compilers: Clang/LLVM, Go, Rust&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+    &lt;div class=&#34;views-row&#34;&gt;
+    &lt;div class=&#34;views-field views-field-title&#34;&gt;&lt;span class=&#34;field-content&#34;&gt;&lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/sap/overview&#34;&gt;Red Hat Enterprise Linux for SAP Solutions&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Featured Products</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/patterns/assembly/featured_products/</link>
+      <pubDate>Fri, 13 Apr 2018 00:18:55 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/patterns/assembly/featured_products/</guid>
+      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
+        &lt;code class=&#34;language-html&#34;&gt;
+&amp;lt;section data-quickedit-entity-id=&amp;#34;assembly/29&amp;#34; id=&amp;#34;assembly-field-sections-29&amp;#34; class=&amp;#34;assembly assembly-type-featured_products&amp;#34; data-quickedit-entity-instance-id=&amp;#34;0&amp;#34;&amp;gt;
+  &amp;lt;h2 data-quickedit-field-id=&amp;#34;assembly/29/field_title/en/default&amp;#34; class=&amp;#34;field field--name-field-title field--type-string field--label-hidden field__item&amp;#34;&amp;gt;Featured Products&amp;lt;/h2&amp;gt;
+
+  &amp;lt;article data-quickedit-entity-id=&amp;#34;node/33805&amp;#34; role=&amp;#34;article&amp;#34; class=&amp;#34;contextual-region node node--type-product node--view-mode-featured-tile&amp;#34; about=&amp;#34;/node/33805&amp;#34; data-quickedit-entity-instance-id=&amp;#34;0&amp;#34;&amp;gt;
+    &amp;lt;h2&amp;gt;
+      &amp;lt;a href=&amp;#34;/node/33805&amp;#34; rel=&amp;#34;bookmark&amp;#34;&amp;gt;&amp;lt;span data-quickedit-field-id=&amp;#34;node/33805/title/en/featured_tile&amp;#34; class=&amp;#34;field field--name-title field--type-string field--label-hidden quickedit-field&amp;#34;&amp;gt;Red Hat OpenShift Container Platform&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&amp;#34;node__content&amp;#34;&amp;gt;
+      &amp;lt;div class=&amp;#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&amp;#34; data-quickedit-field-id=&amp;#34;node/33805/field_short_description/en/featured_tile&amp;#34;&amp;gt;
+        An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/article&amp;gt;
+
+  &amp;lt;article data-quickedit-entity-id=&amp;#34;node/47235&amp;#34; role=&amp;#34;article&amp;#34; class=&amp;#34;contextual-region node node--type-product node--view-mode-featured-tile&amp;#34; about=&amp;#34;/node/47235&amp;#34; data-quickedit-entity-instance-id=&amp;#34;0&amp;#34;&amp;gt;
+    &amp;lt;h2&amp;gt;
+      &amp;lt;a href=&amp;#34;/node/47235&amp;#34; rel=&amp;#34;bookmark&amp;#34;&amp;gt;&amp;lt;span data-quickedit-field-id=&amp;#34;node/47235/title/en/featured_tile&amp;#34; class=&amp;#34;field field--name-title field--type-string field--label-hidden quickedit-field&amp;#34;&amp;gt;Red Hat OpenShift Application Runtimes&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&amp;#34;node__content&amp;#34;&amp;gt;
+      &amp;lt;div class=&amp;#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&amp;#34; data-quickedit-field-id=&amp;#34;node/47235/field_short_description/en/featured_tile&amp;#34;&amp;gt;
+        Cloud native application runtimes optimized for OpenShift.
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/article&amp;gt;
+
+  &amp;lt;article data-quickedit-entity-id=&amp;#34;node/33765&amp;#34; role=&amp;#34;article&amp;#34; class=&amp;#34;contextual-region node node--type-product node--view-mode-featured-tile&amp;#34; about=&amp;#34;/products/devsuite&amp;#34; data-quickedit-entity-instance-id=&amp;#34;0&amp;#34;&amp;gt;
+    &amp;lt;h2&amp;gt;
+      &amp;lt;a href=&amp;#34;/products/devsuite&amp;#34; rel=&amp;#34;bookmark&amp;#34;&amp;gt;&amp;lt;span data-quickedit-field-id=&amp;#34;node/33765/title/en/featured_tile&amp;#34; class=&amp;#34;field field--name-title field--type-string field--label-hidden quickedit-field&amp;#34;&amp;gt;Red Hat Development Suite&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&amp;#34;node__content&amp;#34;&amp;gt;
+      &amp;lt;div class=&amp;#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&amp;#34; data-quickedit-field-id=&amp;#34;node/33765/field_short_description/en/featured_tile&amp;#34;&amp;gt;
+        A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/article&amp;gt;
+&amp;lt;/section&amp;gt;
+&lt;/code&gt;
+    &lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+    
+&lt;section data-quickedit-entity-id=&#34;assembly/29&#34; id=&#34;assembly-field-sections-29&#34; class=&#34;assembly assembly-type-featured_products&#34; data-quickedit-entity-instance-id=&#34;0&#34;&gt;
+  &lt;h2 data-quickedit-field-id=&#34;assembly/29/field_title/en/default&#34; class=&#34;field field--name-field-title field--type-string field--label-hidden field__item&#34;&gt;Featured Products&lt;/h2&gt;
+
+  &lt;article data-quickedit-entity-id=&#34;node/33805&#34; role=&#34;article&#34; class=&#34;contextual-region node node--type-product node--view-mode-featured-tile&#34; about=&#34;/node/33805&#34; data-quickedit-entity-instance-id=&#34;0&#34;&gt;
+    &lt;h2&gt;
+      &lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/node/33805&#34; rel=&#34;bookmark&#34;&gt;&lt;span data-quickedit-field-id=&#34;node/33805/title/en/featured_tile&#34; class=&#34;field field--name-title field--type-string field--label-hidden quickedit-field&#34;&gt;Red Hat OpenShift Container Platform&lt;/span&gt;&lt;/a&gt;
+    &lt;/h2&gt;
+    &lt;div class=&#34;node__content&#34;&gt;
+      &lt;div class=&#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&#34; data-quickedit-field-id=&#34;node/33805/field_short_description/en/featured_tile&#34;&gt;
+        An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;article data-quickedit-entity-id=&#34;node/47235&#34; role=&#34;article&#34; class=&#34;contextual-region node node--type-product node--view-mode-featured-tile&#34; about=&#34;/node/47235&#34; data-quickedit-entity-instance-id=&#34;0&#34;&gt;
+    &lt;h2&gt;
+      &lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/node/47235&#34; rel=&#34;bookmark&#34;&gt;&lt;span data-quickedit-field-id=&#34;node/47235/title/en/featured_tile&#34; class=&#34;field field--name-title field--type-string field--label-hidden quickedit-field&#34;&gt;Red Hat OpenShift Application Runtimes&lt;/span&gt;&lt;/a&gt;
+    &lt;/h2&gt;
+    &lt;div class=&#34;node__content&#34;&gt;
+      &lt;div class=&#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&#34; data-quickedit-field-id=&#34;node/47235/field_short_description/en/featured_tile&#34;&gt;
+        Cloud native application runtimes optimized for OpenShift.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;article data-quickedit-entity-id=&#34;node/33765&#34; role=&#34;article&#34; class=&#34;contextual-region node node--type-product node--view-mode-featured-tile&#34; about=&#34;/products/devsuite&#34; data-quickedit-entity-instance-id=&#34;0&#34;&gt;
+    &lt;h2&gt;
+      &lt;a href=&#34;https://redhat-developer.github.io/rhd-frontend/products/devsuite&#34; rel=&#34;bookmark&#34;&gt;&lt;span data-quickedit-field-id=&#34;node/33765/title/en/featured_tile&#34; class=&#34;field field--name-title field--type-string field--label-hidden quickedit-field&#34;&gt;Red Hat Development Suite&lt;/span&gt;&lt;/a&gt;
+    &lt;/h2&gt;
+    &lt;div class=&#34;node__content&#34;&gt;
+      &lt;div class=&#34;description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field&#34; data-quickedit-field-id=&#34;node/33765/field_short_description/en/featured_tile&#34;&gt;
+        A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

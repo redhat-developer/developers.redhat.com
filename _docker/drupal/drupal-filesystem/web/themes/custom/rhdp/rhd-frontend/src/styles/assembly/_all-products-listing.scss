@@ -1,0 +1,9 @@
+.all-products-listing {
+    .views-row {
+        grid-column: span 4;
+
+        &:first-child, &:nth-child(4) {
+            grid-column: 2 / span 4;
+        }
+    }
+}
