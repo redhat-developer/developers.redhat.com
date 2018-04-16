@@ -2,6 +2,8 @@
 This document covers the various ways that a contribution can be made to Red Hat Developers.
 If you need any help understanding any of the steps, or you want to discuss you contribution, then [contact us](#contact).
 
+# Adding to create a PR
+
 # <a name="contact"></a> Contact the Red Hat Developers Team
 * IRC: `#jboss-developer` room on the `irc.freenode.net` IRC server
 * Mailing list: [Subscribe](https://lists.jboss.org/mailman/listinfo/jbossdeveloper) to the jbossdeveloper@lists.jboss.org mailing list.
