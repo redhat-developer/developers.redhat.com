@@ -12,9 +12,11 @@ dependencies:
     - field.field.node.author.field_position_title
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
+    - field.field.node.author.scheduled_update
     - node.type.author
   module:
     - entity_browser
+    - inline_entity_form
     - link
     - path
     - text
@@ -35,7 +37,7 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -57,7 +59,7 @@ content:
     region: content
   field_headshot:
     type: entity_browser_file
-    weight: 14
+    weight: 12
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -102,28 +104,36 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 9
+    weight: 13
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 12
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 14
     settings:
-      display_label: true
-    weight: 13
-    region: content
+      override_labels: true
+      label_singular: 'Scheduled updates'
+      label_plural: 'Scheduled updatess'
+      allow_new: true
+      match_operator: CONTAINS
+      allow_existing: false
+      form_mode: default
+      collapsible: false
+      collapsed: false
     third_party_settings: {  }
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 10
     region: content
     third_party_settings: {  }
   title:
@@ -145,3 +155,4 @@ content:
     third_party_settings: {  }
 hidden:
   promote: true
+  status: true
