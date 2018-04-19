@@ -13,6 +13,10 @@
 
     }
 
+    i {
+      margin-right: 5px;
+    }
+
     .event-thumbnail {
       max-width: 250px;
       max-height: 185px;
@@ -39,6 +43,10 @@
       margin: 0px 0px;
       grid-auto-flow: column;
       color: #656565;
+
+      span {
+        margin-left:10px;
+      }
 
     }
 

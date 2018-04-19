@@ -1163,6 +1163,8 @@ a.light-cta {
     border-top: 2px dotted #d2d3d4; }
     .event-list li.event-item:last-child {
       border-bottom: 2px dotted #d2d3d4; }
+    .event-list li.event-item i {
+      margin-right: 5px; }
     .event-list li.event-item .event-thumbnail {
       max-width: 250px;
       max-height: 185px;
@@ -1179,6 +1181,8 @@ a.light-cta {
       margin: 0px 0px;
       grid-auto-flow: column;
       color: #656565; }
+      .event-list li.event-item p.event-speaker span {
+        margin-left: 10px; }
     .event-list li.event-item a.event-title {
       font-weight: 700;
       font-size: 18px; }
