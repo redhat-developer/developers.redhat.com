@@ -1153,6 +1153,44 @@ a.light-cta {
   .all-products-listing .views-row:first-child, .all-products-listing .views-row:nth-child(4) {
     grid-column: 2 / span 4; }
 
+.assembly-type-learning_paths {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: #E5E5E5;
+  background-image: url(../docs/img/gray_diamond_background.png);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat; }
+  .assembly-type-learning_paths .header {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0; }
+  .assembly-type-learning_paths .description {
+    text-align: center; }
+    .assembly-type-learning_paths .description p:first-child {
+      margin-top: 0; }
+    .assembly-type-learning_paths .description p:last-child {
+      margin-bottom: 0; }
+  .assembly-type-learning_paths .item-list {
+    margin-top: 2rem; }
+  .assembly-type-learning_paths .cta-link {
+    margin-top: 2rem;
+    text-align: center; }
+    .assembly-type-learning_paths .cta-link a {
+      display: inline-block; }
+  .assembly-type-learning_paths .content-card-list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 30px 30px;
+    grid-template-columns: 1fr 1fr; }
+    .assembly-type-learning_paths .content-card-list > li {
+      list-style-type: none;
+      margin: 0; }
+    @media (min-width: 768px) {
+      .assembly-type-learning_paths .content-card-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr; } }
+
 meta.foundation-version {
   font-family: "/5.4.4/"; }
 
