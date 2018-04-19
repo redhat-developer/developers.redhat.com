@@ -180,6 +180,18 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 }
 
 /**
+ * Implements template_preprocess_page().
+ */
+function rhdp_preprocess_page(&$variables) {
+  if (isset($variables['node'])) {
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$variables['node']->id());
+    if ($alias == '/harmonize/home') {
+      $variables['is_front'] = true;
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_node().
  */
 function rhdp_preprocess_node(&$variables) {
