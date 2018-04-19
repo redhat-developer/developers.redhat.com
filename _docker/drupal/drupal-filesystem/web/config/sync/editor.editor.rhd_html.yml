@@ -57,13 +57,13 @@ settings:
             - JustifyRight
             - JustifyBlock
   plugins:
+    stylescombo:
+      styles: "a.button|Button\r\na.caret-right|Link with right caret\r\ndiv.box.callout|Callout Box"
     drupallink:
       linkit_enabled: true
       linkit_profile: default
     language:
       language_list: un
-    stylescombo:
-      styles: "a.button|Button\r\ndiv.box.callout|Callout Box"
     video_embed:
       defaults:
         children:
