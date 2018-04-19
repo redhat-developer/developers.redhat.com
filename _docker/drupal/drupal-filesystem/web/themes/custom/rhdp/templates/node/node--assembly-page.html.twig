@@ -88,11 +88,6 @@
   {% if content.field_hero|render %}
   {{ content.field_hero }}
   {% endif %}
-  {{ title_prefix }}
-  <{{ title_tag }} {{ title_attributes.addClass('row') }}>
-    {% if not page %}<a href="{{ url }}" rel="bookmark">{% endif %}{{ label }}{% if not page %}</a>{% endif %}
-  </{{ title_tag }}>
-  {{ title_suffix }}
 
   {% if display_submitted %}
     <footer class="node__meta">
