@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.scheduled_update
     - node.type.coding_resource
     - scheduled_updates.scheduled_update_type.node__moderation_state
+    - scheduled_updates.scheduled_update_type.node__moderation_state_1
 id: node.coding_resource.scheduled_update
 field_name: scheduled_update
 entity_type: node
@@ -20,5 +21,6 @@ settings:
   handler_settings:
     target_bundles:
       - node__moderation_state
+      - node__moderation_state_1
   handler: 'default:scheduled_update'
 field_type: entity_reference
