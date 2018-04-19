@@ -1,0 +1,23 @@
+uuid: 5e43ce6d-bb90-46dc-8929-77ae04cb8944
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.learning_paths
+    - field.storage.assembly.field_cta_link
+  module:
+    - link
+id: assembly.learning_paths.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+bundle: learning_paths
+label: 'CTA Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
