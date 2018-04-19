@@ -24,6 +24,7 @@ class NodeJenkinsTestRunner
     if @test_type == 'e2e' || @test_type == 'kc'
       %w(desktop mobile).each do |profile|
         tests_passed &= execute_e2e(profile)
+        tests_passed
       end
     elsif @test_type == 'dm'
       tests_passed &= execute_e2e('desktop')
@@ -52,7 +53,6 @@ class NodeJenkinsTestRunner
       puts "Run of test profile '#{profile}' failed."
       success = false
     end
-    clear_download_dir
     success
   end
 
@@ -117,26 +117,26 @@ class NodeJenkinsTestRunner
   def build_e2e_run_tests_command(profile)
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('ghprbActualCommit')
-    cucumber_tags = read_env_variable('CUCUMBER_TAGS')
+    mocha_tags = read_env_variable('RHD_MOCHA_TAGS')
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
     if profile == 'mobile'
-      command += ' --browser=iphone_6'
+      command += " --browser='iPhone 6'"
     else
       command += " --browser=#{rhd_js_driver}"
     end
     command += " --profile=#{profile}"
-    if cucumber_tags.nil?
+    if mocha_tags.nil?
       if profile == 'desktop'
-        command += ' --cucumber-tags=~@mobile'
+        command += ' --mocha-tags=not:stage'
       else
-        command += ' --cucumber-tags=~@desktop'
+        command += ' --mocha-tags=not:dm'
       end
     else
       if profile == 'desktop'
-        command += " --cucumber-tags=~@mobile,#{cucumber_tags}"
+        command += " --mocha-tags=not:#{mocha_tags}"
       else
-        command += " --cucumber-tags=~@desktop,#{cucumber_tags}"
+        command += " --mocha-tags=not:#{mocha_tags}"
       end
     end
     command

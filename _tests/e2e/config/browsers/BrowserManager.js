@@ -14,11 +14,7 @@ class BrowserManager {
         } else if (browser.indexOf('bs_') > -1) {
             return this.browserstackBrowser(browser);
         } else {
-            // browser was not listed, must be mobile device
-            // Check that the device being used for emulation is supported by chrome
-            let capability = require('../browsers/chromium_devices.json')[browser];
-            let device = capability['name'];
-            return this.chromeBrowser(device)
+            return this.chromeBrowser(browser)
         }
     }
 
@@ -28,6 +24,7 @@ class BrowserManager {
         myProfile.setPreference("general.useragent.override", "Red Hat Developers Testing");
 
         return {
+            maxInstances: 1,
             browserName: 'firefox',
             firefox_profile: myProfile,
             acceptInsecureCerts: true,
@@ -44,11 +41,12 @@ class BrowserManager {
         if (browser === 'desktop') {
             console.log(`e2e tests running using Chrome browser`);
             caps = {
+                maxInstances: 1,
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
 
                 chromeOptions: {
-                    args: ['start-fullscreen', 'disable-web-security'],
+                    args: ['disable-web-security', 'user-agent=Red Hat Developers Testing'],
                     prefs: {
                         "download": {
                             "default_directory": pathToChromeDownloads,
@@ -63,11 +61,12 @@ class BrowserManager {
         } else {
             console.log(`e2e tests running using a Chrome ${browser} emulated browser`);
             caps = {
+                maxInstances: 1,
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
                 chromeOptions: {
                     mobileEmulation: {deviceName: browser},
-                    args: ['disable-web-security'],
+                    args: ['disable-web-security', 'user-agent=Red Hat Developers Testing'],
                     prefs: {
                         "download": {
                             "default_directory": pathToChromeDownloads,

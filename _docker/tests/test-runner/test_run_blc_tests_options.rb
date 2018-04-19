@@ -64,14 +64,6 @@ class TestRunTestOptions < MiniTest::Test
     assert_equal(nil, ENV['github_status_context'])
   end
 
-  def test_default_execution_with_verbose_output
-    test_configuration = @run_tests_options.parse_command_line(%w(--blc -c blinkr.yaml --base-url http://foo.com --verbose))
-    assert_equal('bundle exec blinkr -c blinkr.yaml -u http://foo.com -v',
-                 test_configuration[:run_tests_command])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-  end
-
   def test_default_execution_with_ignore_ssl
     test_configuration = @run_tests_options.parse_command_line(%w(--blc -c blinkr.yaml --base-url http://foo.com --ignore-ssl))
     assert_equal('bundle exec blinkr -c blinkr.yaml -u http://foo.com --ignore-ssl',
