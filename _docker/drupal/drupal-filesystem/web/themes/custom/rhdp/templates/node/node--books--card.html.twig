@@ -11,11 +11,9 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
-    {% if content.card_image_url|trim %}
     <div class="card-image">
-      <img src="{{ content.card_image_url|trim }}"/>
+      {{ content.field_cover_image }}
     </div>
-    {% endif %}
     <div class="content-block">
       <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %}E-Book</div>
       <h3 class="card-title">{{ label }}</h3>

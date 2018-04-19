@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.scheduled_update
     - node.type.page
-    - scheduled_updates.scheduled_update_type.node__moderation_state
     - scheduled_updates.scheduled_update_type.node_embargo
 id: node.page.scheduled_update
 field_name: scheduled_update
@@ -21,6 +20,9 @@ settings:
   handler: 'default:scheduled_update'
   handler_settings:
     target_bundles:
-      - node_embargo
-      - node__moderation_state
+      node_embargo: node_embargo
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: node__moderation_state_1
 field_type: entity_reference
