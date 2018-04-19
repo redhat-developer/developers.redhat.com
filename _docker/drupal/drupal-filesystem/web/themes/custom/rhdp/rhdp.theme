@@ -247,17 +247,6 @@ function rhdp_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 
-  // Add card image in usable format
-  if ($node->hasField('field_card_image') && $variables['view_mode'] == 'card') {
-    $card_image_field = $node->get('field_card_image')->getValue();
-    if (count($card_image_field)) {
-      $variables['content']['card_image_url'] = [
-        '#markup' => reset($card_image_field)['uri']
-      ];
-      unset($variables['content']['field_card_image']);
-    }
-  }
-
   // Add icon for 'login required' resources
   if ($variables['view_mode'] == 'card') {
     $variables['login_req'] = false;

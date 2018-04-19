@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.books.field_author
     - field.field.node.books.field_average_rating
     - field.field.node.books.field_book_description
@@ -10,6 +11,7 @@ dependencies:
     - field.field.node.books.field_book_url
     - field.field.node.books.field_card_image
     - field.field.node.books.field_categories
+    - field.field.node.books.field_cover_image
     - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
@@ -31,6 +33,7 @@ dependencies:
     - node.type.books
   module:
     - datetime
+    - entity_browser
     - entity_browser_entity_form
     - inline_entity_form
     - interval
@@ -86,6 +89,19 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_cover_image:
+    type: entity_browser_file
+    weight: 21
+    settings:
+      entity_browser: image_browser
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      preview_image_style: thumbnail
+      field_widget_edit: true
+      view_mode: default
+    region: content
+    third_party_settings: {  }
   field_difficulty:
     weight: 19
     settings: {  }
@@ -194,7 +210,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 21
+    weight: 22
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -206,7 +222,7 @@ content:
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 22
+    weight: 23
     settings:
       form_mode: default
       override_labels: true
