@@ -1,0 +1,20 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <a href="{{ content.field_url_product_name[0] }}">
+    {% if content.field_image %}
+      {{ content.field_image }}
+    {% endif %}
+    <p class="tile-title">{{ label }}</p>
+  </a>
+  {{ content.field_short_description }}
+  {% if content.field_call_to_action_link[0] %}
+    <a class="button medium-cta" href="{{ content.field_call_to_action_link[0]['#url'] }}">
+      {{ content.field_call_to_action_link[0]['#title'] }}
+    </a>
+  {% endif %}
+</article>

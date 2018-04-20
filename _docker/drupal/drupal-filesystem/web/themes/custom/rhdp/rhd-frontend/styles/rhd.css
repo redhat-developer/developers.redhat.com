@@ -977,17 +977,32 @@ a.light-cta {
       margin-bottom: 1rem; }
 
 .assembly-type-featured_products {
-  display: grid;
-  grid-template-columns: auto repeat(12, 70px) auto;
-  grid-template-rows: auto;
-  grid-gap: 30px; }
-  .assembly-type-featured_products h2 {
-    grid-column: 2 / span 12;
-    justify-self: center; }
+  background-color: #E6E6E6;
+  padding: 6em 0 8em 0; }
+  .assembly-type-featured_products h2.field--name-field-title {
+    font-size: 32px;
+    font-weight: 600; }
+  .assembly-type-featured_products .header {
+    text-align: center;
+    margin-top: 0; }
+  .assembly-type-featured_products .grid {
+    display: grid;
+    grid-gap: 30px 30px;
+    grid-template-columns: repeat(3, 300px);
+    justify-content: center; }
   .assembly-type-featured_products article {
-    grid-column: span 4; }
-  .assembly-type-featured_products article:first-of-type {
-    grid-column: 2 / span 4; }
+    background-color: #F9F9F9;
+    border-top: 6px solid #CC0000;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 14px; }
+    .assembly-type-featured_products article .tile-title {
+      color: #242424;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 15px 0; }
+    .assembly-type-featured_products article .description {
+      margin-bottom: 30px; }
 
 .assembly-type-static_content_band {
   padding-top: 2rem;
@@ -1117,14 +1132,14 @@ a.light-cta {
 .assembly-type-call_to_action {
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background: #444;
-  color: #FFF;
+  background: #00B9E4;
+  color: #242424;
   font-weight: bold; }
   .assembly-type-call_to_action, .assembly-type-call_to_action p {
     font-size: 24px;
     line-height: 1.5; }
   .assembly-type-call_to_action * {
-    color: #fff; }
+    color: #242424; }
   .assembly-type-call_to_action .header {
     font-size: 40px;
     margin-bottom: 24px; }
@@ -1148,10 +1163,30 @@ a.light-cta {
     text-align: left;
     margin-bottom: 0; }
 
-.all-products-listing .views-row {
-  grid-column: span 4; }
-  .all-products-listing .views-row:first-child, .all-products-listing .views-row:nth-child(4) {
-    grid-column: 2 / span 4; }
+.assembly-type-all_products_listing {
+  background-color: #F9F9F9;
+  padding: 6em 0 6em 0; }
+  .assembly-type-all_products_listing header .field__item {
+    font-size: 32px;
+    color: #242424;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1em; }
+  .assembly-type-all_products_listing .all-products-listing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 1.5em; }
+    .assembly-type-all_products_listing .all-products-listing a, .assembly-type-all_products_listing .all-products-listing a:hover, .assembly-type-all_products_listing .all-products-listing a:active, .assembly-type-all_products_listing .all-products-listing a:focus {
+      color: #424242; }
+  .assembly-type-all_products_listing .field--name-field-content {
+    display: grid;
+    grid-template-columns: 70%;
+    justify-content: center;
+    margin-bottom: 2em; }
+    .assembly-type-all_products_listing .field--name-field-content .field__item p {
+      text-align: center;
+      font-size: 20px;
+      color: #242424; }
 
 .assembly-type-rich_text_columns {
   text-align: center;
