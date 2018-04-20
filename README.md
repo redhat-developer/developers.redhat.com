@@ -15,6 +15,7 @@ The following sections cover the steps you need to do in order to setup your env
 
 There are some [Common Issues](#CommonIssues) you may encounter, check them out before seeking help.
 
+
 ### Utilities
 You should be running a bash shell (Linux or Mac) and you will require: git and curl.
 
