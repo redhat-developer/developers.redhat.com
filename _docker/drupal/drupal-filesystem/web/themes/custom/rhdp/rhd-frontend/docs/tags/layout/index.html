@@ -7,55 +7,53 @@
     <title>
         RHD Front-end Code and Documentation
     </title>
-    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism-solarizedlight.min.css">
+    
+    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.min.css">
+    
+    <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/prism-ghcolors.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-    <script>if (!window.customElements) { document.write('<!--'); }</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>  
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system-production.js"></script>
   </head>
   <body>
     <div class="rhd-masthead">
-    <div>
-        <div class="rh-universal-header">
-            <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
-                <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page">
-                    <img class="rh-header-logo" alt="Red Hat Logo" src="https://developers.redhat.com/images/branding/RHLogo_white.svg">
-                </a>            
-                <ul class="rhd-menu rh-nav-universal-list">
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://access.redhat.com/" title="Red Hat Customer Portal">Customer Portal</a>
-                    </li>
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://redhat-developer.github.io/rhd-frontend/" title="Red Hat Developer" data-drupal-link-system-path="<front>">Developer</a>
-                    </li>
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://www.openshift.com/" title="Red Hat OpenShift Container Platform">OpenShift</a>
-                    </li>
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://openshift.io/" title="Red Hat OpenShift.io Development Environment">OpenShift.io</a>
-                    </li>
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://www.redhat.com/en/partners" title="Partner with Red Hat">Partners</a>
-                    </li>
-                    <li class="menu-item rh-nav-universal-link">
-                        <a href="https://www.redhat.com/en/store" title="Red Hat Store">Store</a>
-                    </li>
-                </ul>
-                <ul class="rhd-menu rh-universal-login">
-                    <li class="menu-item">
-                        <span class="icon"><svg class="svg-inline--fa fa-user fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0c88.366 0 160 71.634 160 160s-71.634 160-160 160S96 248.366 96 160 167.634 0 256 0zm183.283 333.821l-71.313-17.828c-74.923 53.89-165.738 41.864-223.94 0l-71.313 17.828C29.981 344.505 0 382.903 0 426.955V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48v-37.045c0-44.052-29.981-82.45-72.717-93.134z"></path></svg></span><a href="https://redhat-developer.github.io/rhd-frontend/user" data-drupal-link-system-path="user">My account</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://redhat-developer.github.io/rhd-frontend/user/logout" data-drupal-link-system-path="user/logout">Log out</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+    <div class="rh-universal-header">
+        <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
+            <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page">
+                <img class="rh-header-logo" alt="Red Hat Logo" src="https://developers.redhat.com/images/branding/RHLogo_white.svg">
+            </a>            
+            <ul class="rhd-menu rh-nav-universal-list">
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://access.redhat.com/" title="Red Hat Customer Portal">Customer Portal</a>
+                </li>
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://redhat-developer.github.io/rhd-frontend/" title="Red Hat Developer" data-drupal-link-system-path="<front>">Developer</a>
+                </li>
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://www.openshift.com/" title="Red Hat OpenShift Container Platform">OpenShift</a>
+                </li>
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://openshift.io/" title="Red Hat OpenShift.io Development Environment">OpenShift.io</a>
+                </li>
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://www.redhat.com/en/partners" title="Partner with Red Hat">Partners</a>
+                </li>
+                <li class="menu-item rh-nav-universal-link">
+                    <a href="https://www.redhat.com/en/store" title="Red Hat Store">Store</a>
+                </li>
+            </ul>
+            <ul class="rhd-menu rh-universal-login">
+                <li class="menu-item">
+                    <span class="icon"><svg class="svg-inline--fa fa-user fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0c88.366 0 160 71.634 160 160s-71.634 160-160 160S96 248.366 96 160 167.634 0 256 0zm183.283 333.821l-71.313-17.828c-74.923 53.89-165.738 41.864-223.94 0l-71.313 17.828C29.981 344.505 0 382.903 0 426.955V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48v-37.045c0-44.052-29.981-82.45-72.717-93.134z"></path></svg></span><a href="https://redhat-developer.github.io/rhd-frontend/user" data-drupal-link-system-path="user">My account</a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://redhat-developer.github.io/rhd-frontend/user/logout" data-drupal-link-system-path="user/logout">Log out</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     <div class="container">
         <div class="rhd-masthead-inner">
@@ -69,37 +67,21 @@
                     <h2 class="visually-hidden" id="block-rhdnavigation-menu">RHD Navigation</h2>
                     <ul class="rhd-menu">
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/assembly">assembly</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/assembly">assembly</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/code">code</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/code">code</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/component">component</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/component">component</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/content">content</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/content">content</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/design">design</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/design">design</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/layout">layout</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/layout">layout</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/misc">misc</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/misc">misc</a></li>
                         
-                        <li class="menu-item rhd-header-link">
-                            <a href="https://redhat-developer.github.io/rhd-frontend/tags/navigation">navigation</a>
-                        </li>
+                        <li class="menu-item rhd-header-link"><a href="https://redhat-developer.github.io/rhd-frontend/tags/navigation">navigation</a></li>
                         
                         <li class="rhd-nav-search">
                             <div class="rhd-search-wrapper">
@@ -191,7 +173,7 @@
         </div>
     </div>
 </div>
-    <main role="main" data-rhd-grid="normal">
+    <main role="main">
     
     <article data-rhd-pos="span12">
         <header>
@@ -227,14 +209,18 @@
         <div class="rhd-footer-sidebar"></div>
     </div>
     <div class="rh-universal-footer">
-        <img class="rh-footer-logo" alt="Red Hat Logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.png">
+        <img class="rh-footer-logo" alt="Red Hat Logo" src="https://redhat-developer.github.io/rhd-frontend/img/rhd-logo.svg">
         <div class="rh-footer-contentinfo" role="contentinfo">&copy;2018</div>
         <img class="rh-summit-footer-logo" alt="Red Hat Summit Logo" src="https://redhat-developer.github.io/rhd-frontend/img/summit-logo.png">
     </div>
 </footer>
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
-<script src="https://redhat-developer.github.io/rhd-frontend/js/rhd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
+
+    
+<script>SystemJS.import("https:\/\/redhat-developer.github.io\/rhd-frontend\/js\/rhd.min.js");</script>
+    
+
 
   </body>
 </html>

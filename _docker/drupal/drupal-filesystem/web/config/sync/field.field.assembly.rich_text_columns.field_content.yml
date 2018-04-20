@@ -1,0 +1,21 @@
+uuid: efadd9dc-af54-41ea-aebe-5c6c290254ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.rich_text_columns
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.rich_text_columns.field_content
+field_name: field_content
+entity_type: assembly
+bundle: rich_text_columns
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

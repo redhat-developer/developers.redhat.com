@@ -1,7 +1,11 @@
+<li class="event-item">
+    <img class="event-thumbnail" src="{{ event_image_url }}">
+    <div class="event-info">
+        <a class="event-title">{{ event_title }}</a>
+        <p class="event-date">{{ content.field_start_date}}</p>
+        <p class="event-desc">{{ event_description | striptags }}</p>
+    </div>
+        {{ content.field_presenter_s_ }}
 
-    <img src="{{ event_image_url }}">
-    <p>{{ event_title }}</p>
-    <p>{{ content.field_start_date }}</p>
-    <p>{{ content.field_description }}</p>
-    {{ content.field_presenter_s_ }}
+</li>
 

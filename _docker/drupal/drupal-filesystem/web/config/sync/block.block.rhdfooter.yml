@@ -1,0 +1,24 @@
+uuid: 60dfb6c1-10a7-43a6-bad0-3a4cef24f938
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.rhd-footer
+  module:
+    - system
+  theme:
+    - rhdp
+id: rhdfooter
+theme: rhdp
+region: rhd_footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:rhd-footer'
+settings:
+  id: 'system_menu_block:rhd-footer'
+  label: 'RHD Footer'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

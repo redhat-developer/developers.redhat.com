@@ -1,0 +1,19 @@
+uuid: 8814d5c0-8ca0-47da-a7bd-2fe48bb7ff3b
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - text
+id: assembly.field_columns
+field_name: field_columns
+entity_type: assembly
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

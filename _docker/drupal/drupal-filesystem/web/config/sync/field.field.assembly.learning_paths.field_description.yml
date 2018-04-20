@@ -1,0 +1,21 @@
+uuid: a6580000-12f4-4c61-aa84-31ff091741c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.learning_paths
+    - field.storage.assembly.field_description
+  module:
+    - text
+id: assembly.learning_paths.field_description
+field_name: field_description
+entity_type: assembly
+bundle: learning_paths
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

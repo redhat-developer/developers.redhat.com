@@ -180,6 +180,18 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 }
 
 /**
+ * Implements template_preprocess_page().
+ */
+function rhdp_preprocess_page(&$variables) {
+  if (isset($variables['node'])) {
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$variables['node']->id());
+    if ($alias == '/harmonize/home') {
+      $variables['is_front'] = true;
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_node().
  */
 function rhdp_preprocess_node(&$variables) {
@@ -188,6 +200,7 @@ function rhdp_preprocess_node(&$variables) {
   $nid = $node->id();
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
+      $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
       // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
       // Note: Also will not work properly without search and replace on export.
       if ($node->hasField('field_event_background_image')) {
@@ -232,17 +245,6 @@ function rhdp_preprocess_node(&$variables) {
       }
     }
     $variables['product_pages'] = $product_pages_url;
-  }
-
-  // Add card image in usable format
-  if ($node->hasField('field_card_image') && $variables['view_mode'] == 'card') {
-    $card_image_field = $node->get('field_card_image')->getValue();
-    if (count($card_image_field)) {
-      $variables['content']['card_image_url'] = [
-        '#markup' => reset($card_image_field)['uri']
-      ];
-      unset($variables['content']['field_card_image']);
-    }
   }
 
   // Add icon for 'login required' resources

@@ -1,0 +1,80 @@
+uuid: 6948445f-eb93-4836-aa49-45be9cc635d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.rich_text_columns
+    - field.field.assembly.rich_text_columns.field_columns
+    - field.field.assembly.rich_text_columns.field_content
+    - field.field.assembly.rich_text_columns.field_navigation_title
+    - field.field.assembly.rich_text_columns.field_title
+  module:
+    - text
+    - workbench_moderation
+id: assembly.rich_text_columns.default
+targetEntityType: assembly
+bundle: rich_text_columns
+mode: default
+content:
+  field_columns:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_content:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_navigation_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 7
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  user_id: true

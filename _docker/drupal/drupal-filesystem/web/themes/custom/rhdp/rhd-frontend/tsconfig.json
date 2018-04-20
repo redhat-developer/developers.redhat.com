@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
-        "module": "none",
+        "module": "system",
+        "moduleResolution": "node",
         "target": "es5",
         "noImplicitAny": false,
+        "allowSyntheticDefaultImports": true,
         "sourceMap": false,
         "removeComments": true,
         "pretty": true,
@@ -14,6 +16,7 @@
     },
     "include": [
         "src/scripts/**/rhelement.ts",
-        "src/scripts/**/*"
+        "src/scripts/typescript/**/*",
+        "node_modules/@fortawesome/**/*"
     ]
 }

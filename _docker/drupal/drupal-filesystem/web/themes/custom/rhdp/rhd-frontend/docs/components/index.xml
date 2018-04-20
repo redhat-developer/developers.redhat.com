@@ -6,8 +6,87 @@
     <description>Recent content in Components on RHD Front-end Code and Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Apr 2018 03:00:54 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 19 Apr 2018 13:22:06 -0400</lastBuildDate>
     <atom:link href="https://redhat-developer.github.io/rhd-frontend/components/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>RHDP Downloads Component</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/components/rhdp-downloads/</link>
+      <pubDate>Thu, 19 Apr 2018 13:22:06 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/components/rhdp-downloads/</guid>
+      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-downlads url=&amp;#34;https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1&amp;#34;&amp;gt;&amp;lt;/rhdp-downloads&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+&lt;rhdp-downlads url=&#34;https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1&#34;&gt;&lt;/rhdp-downloads&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Alerts</title>
+      <link>https://redhat-developer.github.io/rhd-frontend/components/alerts/</link>
+      <pubDate>Tue, 17 Apr 2018 14:39:40 -0400</pubDate>
+      
+      <guid>https://redhat-developer.github.io/rhd-frontend/components/alerts/</guid>
+      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert heading=&amp;#34;Alert with a Heading:&amp;#34;&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;success&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;warning&amp;#34; heading=&amp;#34;Warning Heading:&amp;#34;&amp;gt;This is the warning text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;error&amp;#34; heading=&amp;#34;Error Heading:&amp;#34;&amp;gt;This is the error text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;info&amp;#34; size=&amp;#34;xl&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;code-sample&#34;&gt;
+ &lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
+&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Expandable Groups</title>
@@ -16,8 +95,8 @@
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/expandable-groups/</guid>
       <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
-        &lt;code class=&#34;language-html&#34;&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt;
 &amp;lt;dp-category-list id=&amp;#34;aa69de0dd3269887cf8900368c0b7bcf08a9b91c95abce89bec14462ed7f22c8&amp;#34;&amp;gt;
   &amp;lt;dp-category name=&amp;#34;Application Automation&amp;#34; image=&amp;#34;&amp;#34;&amp;gt;
   &amp;lt;dp-category-item-list&amp;gt;
@@ -214,10 +293,10 @@
 &amp;lt;/dp-category&amp;gt;
 &amp;lt;/dp-category-list&amp;gt;
 &lt;/code&gt;
-    &lt;/pre&gt;
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
-    
+
 &lt;dp-category-list id=&#34;aa69de0dd3269887cf8900368c0b7bcf08a9b91c95abce89bec14462ed7f22c8&#34;&gt;
   &lt;dp-category name=&#34;Application Automation&#34; image=&#34;&#34;&gt;
   &lt;dp-category-item-list&gt;
@@ -425,12 +504,12 @@
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/devnationlive/</guid>
       <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
-        &lt;code class=&#34;language-html&#34;&gt;&amp;lt;devnation-live-app src=&amp;#34;/json/devnationlive.json&amp;#34;&amp;gt;&amp;lt;/devnation-live-app&amp;gt;&lt;/code&gt;
-    &lt;/pre&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;devnation-live-app src=&amp;#34;/json/devnationlive.json&amp;#34;&amp;gt;&amp;lt;/devnation-live-app&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
-    &lt;devnation-live-app src=&#34;https://redhat-developer.github.io/rhd-frontend/json/devnationlive.json&#34;&gt;&lt;/devnation-live-app&gt;
+&lt;devnation-live-app src=&#34;https://redhat-developer.github.io/rhd-frontend/json/devnationlive.json&#34;&gt;&lt;/devnation-live-app&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -442,12 +521,12 @@
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/onebox/</guid>
       <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
-        &lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-onebox url=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34; term=&amp;#34;fuse&amp;#34;&amp;gt;&amp;lt;/rhdp-search-onebox&amp;gt;&lt;/code&gt;
-    &lt;/pre&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-onebox url=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34; term=&amp;#34;fuse&amp;#34;&amp;gt;&amp;lt;/rhdp-search-onebox&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
-    &lt;rhdp-search-onebox url=&#34;/rhd-frontend/json/onebox.json&#34; term=&#34;fuse&#34;&gt;&lt;/rhdp-search-onebox&gt;
+&lt;rhdp-search-onebox url=&#34;/rhd-frontend/json/onebox.json&#34; term=&#34;fuse&#34;&gt;&lt;/rhdp-search-onebox&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -459,12 +538,12 @@
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/search/</guid>
       <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-    &lt;pre style=&#34;grid-column: 2 / span 8; max-height: 10em;&#34;&gt;
-        &lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-app url=&amp;#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&amp;#34;&amp;gt;&amp;lt;/rhdp-search-app&amp;gt;&lt;/code&gt;
-    &lt;/pre&gt;
+&lt;pre data-rhd-pos=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-app url=&amp;#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&amp;#34;&amp;gt;&amp;lt;/rhdp-search-app&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
-    &lt;rhdp-search-app url=&#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&#34;&gt;&lt;/rhdp-search-app&gt;
+&lt;rhdp-search-app url=&#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&#34;&gt;&lt;/rhdp-search-app&gt;
 &lt;/div&gt;
 </description>
     </item>

@@ -1,0 +1,1 @@
+System.import('rhd-app');

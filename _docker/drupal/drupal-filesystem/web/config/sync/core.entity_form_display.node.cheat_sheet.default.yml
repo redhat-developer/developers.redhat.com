@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.cheat_sheet.body
     - field.field.node.cheat_sheet.field_card_image
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
     - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_cover_image
     - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_read_time
@@ -17,6 +19,7 @@ dependencies:
     - field.field.node.cheat_sheet.scheduled_update
     - node.type.cheat_sheet
   module:
+    - entity_browser
     - entity_browser_entity_form
     - inline_entity_form
     - interval
@@ -87,6 +90,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_cover_image:
+    type: entity_browser_file
+    weight: 17
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_difficulty:
     weight: 15
     settings: {  }
@@ -123,7 +139,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 17
+    weight: 18
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -142,7 +158,7 @@ content:
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 18
+    weight: 19
     settings:
       form_mode: default
       override_labels: true
