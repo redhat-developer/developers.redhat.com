@@ -81,6 +81,14 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
+  field_url_product_name:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   field_card_image: true
   field_product_categories: true
@@ -91,7 +99,6 @@ hidden:
   field_product_summary: true
   field_product_technology_group: true
   field_stackoverflow_product_refe: true
-  field_url_product_name: true
   links: true
   scheduled_update: true
   workbench_moderation_control: true
