@@ -35,25 +35,14 @@
     flex-direction: column;
 
     display: grid;
-    grid-template-columns: auto repeat(12, 70px) auto;
+    grid-template-columns: [leftgutter] auto repeat(12, [content-start] 70px) auto [rightgutter];
+    grid-template-rows: minmax(30px, 1fr);
+    grid-auto-flow: column;
     grid-gap: 30px;
-    grid-template-rows: auto;
-
-
 }
 
 [data-rhd-pos="span12"] {
-  grid-column: 2 / span 12;
-}
-
-body > header,
-body > main,
-body > footer {
-    flex: 0 0 auto;
-    grid-column: span 12;
-    grid-row: span 1;
-    display: flex;
-    flex-direction: column;
+  grid-column: content-start / span 12;
 }
 
 .rh-universal-header {
