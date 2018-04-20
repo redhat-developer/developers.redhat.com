@@ -1,0 +1,26 @@
+{%
+set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+]
+%}
+
+{% if content.field_buzz_tags %}
+    {% set buzz_tags = content.field_buzz_tags[0]['#context']['value']|split(',')|json_encode %}
+{% endif %}
+
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    <div{{ title_attributes }}>{{ label }}</div>
+    {{ title_suffix }}
+
+    <div{{ content_attributes }}>
+        <h2 class="subpage-name buzz">Buzz about {{ product_short_name }}</h2>
+        {{ content.field_overview_main_content }}
+
+        {% if buzz_tags %}
+            <div class="product-buzz-container" data-tags="{{ buzz_tags }}"></div>
+        {% endif %}
+    </div>
+</div>
