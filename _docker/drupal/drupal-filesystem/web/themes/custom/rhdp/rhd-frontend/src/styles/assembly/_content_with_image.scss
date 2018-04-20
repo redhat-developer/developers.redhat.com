@@ -1,0 +1,16 @@
+.assembly-type-content_with_image {
+  .assembly-content {
+    grid-column: 2 / 10;
+    align-self: center;
+    .field--name-field-title {
+      font-size: 38px;
+      font-weight: 600;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+  }
+  .assembly-image {
+    grid-column: 10 / 14;
+    align-self: center;
+  }
+}

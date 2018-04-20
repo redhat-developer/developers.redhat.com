@@ -978,7 +978,7 @@ a.light-cta {
 
 .assembly-type-featured_products {
   background-color: #E6E6E6;
-  padding: 6em 0 8em 0; }
+  padding: 5rem 0; }
   .assembly-type-featured_products h2.field--name-field-title {
     font-size: 32px;
     font-weight: 600; }
@@ -1003,6 +1003,12 @@ a.light-cta {
       margin: 15px 0; }
     .assembly-type-featured_products article .description {
       margin-bottom: 30px; }
+  @media screen and (max-width: 1024px) {
+    .assembly-type-featured_products .grid {
+      grid-template-columns: repeat(2, 300px); } }
+  @media screen and (max-width: 768px) {
+    .assembly-type-featured_products .grid {
+      grid-template-columns: repeat(1, 300px); } }
 
 .assembly-type-static_content_band {
   padding-top: 2rem;
@@ -1131,18 +1137,18 @@ a.light-cta {
 
 .assembly-type-call_to_action {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
   background: #00B9E4;
-  color: #242424;
+  color: #FFF;
   font-weight: bold; }
   .assembly-type-call_to_action, .assembly-type-call_to_action p {
     font-size: 24px;
     line-height: 1.5; }
   .assembly-type-call_to_action * {
-    color: #242424; }
+    color: #FFF; }
   .assembly-type-call_to_action .header {
     font-size: 40px;
-    margin-bottom: 24px; }
+    margin-bottom: 0; }
     @media (min-width: 768px) {
       .assembly-type-call_to_action .header {
         font-size: 60px; } }
@@ -1165,7 +1171,7 @@ a.light-cta {
 
 .assembly-type-all_products_listing {
   background-color: #F9F9F9;
-  padding: 6em 0 6em 0; }
+  padding: 5rem 0; }
   .assembly-type-all_products_listing header .field__item {
     font-size: 32px;
     color: #242424;
@@ -1187,6 +1193,12 @@ a.light-cta {
       text-align: center;
       font-size: 20px;
       color: #242424; }
+  @media screen and (max-width: 1024px) {
+    .assembly-type-all_products_listing .all-products-listing {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media screen and (max-width: 768px) {
+    .assembly-type-all_products_listing .all-products-listing {
+      grid-template-columns: repeat(1, 1fr); } }
 
 .assembly-type-rich_text_columns {
   text-align: center;
@@ -1319,6 +1331,19 @@ a.light-cta {
     .event-list li.event-item a.event-title {
       font-weight: 700;
       font-size: 18px; }
+
+.assembly-type-content_with_image .assembly-content {
+  grid-column: 2 / 10;
+  align-self: center; }
+  .assembly-type-content_with_image .assembly-content .field--name-field-title {
+    font-size: 38px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 20px; }
+
+.assembly-type-content_with_image .assembly-image {
+  grid-column: 10 / 14;
+  align-self: center; }
 
 meta.foundation-version {
   font-family: "/5.4.4/"; }

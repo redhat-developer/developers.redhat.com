@@ -1,6 +1,6 @@
 .assembly-type-all_products_listing {
   background-color: $grey-1;
-  padding: 6em 0 6em 0;
+  padding: 5rem 0;
 
   header .field__item {
     font-size: 32px;
@@ -29,6 +29,10 @@
       color: $gray-8;
     }
   }
+  @media screen and (max-width: 1024px) {
+    .all-products-listing { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media screen and (max-width: 768px) {
+    .all-products-listing { grid-template-columns: repeat(1, 1fr); }
+  }
 }
-
-

@@ -1,6 +1,6 @@
 .assembly-type-featured_products {
   background-color: $gray-2;
-  padding: 6em 0 8em 0;
+  padding: 5rem 0;
 
   h2.field--name-field-title {
     font-size: 32px;
@@ -37,5 +37,11 @@
       margin-bottom: 30px;
     }
 
+  }
+  @media screen and (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 300px); }
+  }
+  @media screen and (max-width: 768px) {
+    .grid { grid-template-columns: repeat(1, 300px); }
   }
 }
