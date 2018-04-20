@@ -41,9 +41,6 @@ class LearningPathsBuild extends AssemblyBuildBase implements AssemblyBuildInter
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
         $storage = \Drupal::entityTypeManager()->getStorage('node');
         $build['nodes']['#items'][] = $view_builder->view($item, $mode);
-        $build['nodes']['#items'][] = $view_builder->view($item, $mode);
-        $build['nodes']['#items'][] = $view_builder->view($item, $mode);
-        $build['nodes']['#items'][] = $view_builder->view($item, $mode);
       }
     }
   }
