@@ -3,9 +3,9 @@ web-components:
   js:
     https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js: { type: external, minified: true, browsers: {IE: 'lte IE 11'} }
     https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/custom-elements-es5-adapter.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js: { type: external, minified: true }
 
 base-theme:
   # This should be all of the style sheets broken up according to smaccs
@@ -15,11 +15,12 @@ base-theme:
   js:
     https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
     https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system-production.js: { type: external, minified: true }
     /auth/js/keycloak.js: { type: external, minified: false  }
-    js/all.min.js: {}
     rhd-frontend/rhd.min.js: {}
     rhd-frontend/src/scripts/javascript/menu.js: {}
     rhd-frontend/docs/js/fontawesome-all.js: {}
+    js/init.js: {}
   dependencies:
     - core/jquery
     - core/drupal
