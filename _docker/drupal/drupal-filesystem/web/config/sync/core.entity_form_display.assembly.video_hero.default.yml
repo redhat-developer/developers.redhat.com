@@ -7,6 +7,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.assembly.video_hero.field_background_image
     - field.field.assembly.video_hero.field_description
+    - field.field.assembly.video_hero.field_navigation_title
     - field.field.assembly.video_hero.field_title
     - field.field.assembly.video_hero.field_video_resource
   module:
@@ -39,8 +40,16 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_title:
+  field_navigation_title:
     weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 3
     settings:
       size: 60
       placeholder: ''

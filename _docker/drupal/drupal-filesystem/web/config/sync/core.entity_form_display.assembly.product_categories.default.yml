@@ -1,29 +1,19 @@
-uuid: 438a2470-d2e9-473a-9d86-064d2931949a
+uuid: 788d5585-fb67-4247-b4c0-0b6d5243f9f9
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.events_list
-    - field.field.assembly.events_list.field_event
-    - field.field.assembly.events_list.field_navigation_title
+    - assembly.assembly_type.product_categories
+    - field.field.assembly.product_categories.field_navigation_title
   module:
     - workbench_moderation
-id: assembly.events_list.default
+id: assembly.product_categories.default
 targetEntityType: assembly
-bundle: events_list
+bundle: product_categories
 mode: default
 content:
-  field_event:
-    weight: 6
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_navigation_title:
-    weight: 5
+    weight: 100
     settings:
       size: 60
       placeholder: ''
@@ -32,13 +22,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 3
+    weight: 5
     settings: {  }
     region: content
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: -4
     region: content
     settings:
       size: 60
@@ -46,14 +36,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 99
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60

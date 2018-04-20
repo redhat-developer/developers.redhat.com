@@ -16,7 +16,7 @@ bundle: featured_resources
 mode: default
 content:
   field_links:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -24,7 +24,7 @@ content:
     type: link_default
     region: content
   field_navigation_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -32,7 +32,7 @@ content:
     type: string_textfield
     region: content
   field_resources:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60

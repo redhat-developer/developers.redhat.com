@@ -1,0 +1,19 @@
+uuid: 788f7a30-de4a-4b0c-a6db-95c117dc1027
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_navigation_title
+id: assembly.call_to_action.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: call_to_action
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

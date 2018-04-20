@@ -1,0 +1,19 @@
+uuid: 110648bf-5219-4511-861a-bd745abe156c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_navigation_title
+id: assembly.video_hero.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: video_hero
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,16 @@
+uuid: 5f7872d1-2545-420a-932b-4abe731f8dbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_categories
+    - field.field.assembly.product_categories.field_navigation_title
+id: assembly.product_categories.default
+targetEntityType: assembly
+bundle: product_categories
+mode: default
+content: {  }
+hidden:
+  field_navigation_title: true
+  name: true
+  user_id: true
