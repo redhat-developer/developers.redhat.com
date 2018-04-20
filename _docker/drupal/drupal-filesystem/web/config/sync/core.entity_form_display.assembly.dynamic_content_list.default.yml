@@ -19,13 +19,13 @@ bundle: dynamic_content_list
 mode: default
 content:
   field_category_filter:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
     region: content
   field_cta_link:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -33,13 +33,13 @@ content:
     type: link_default
     region: content
   field_drupal_term_filter:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_links:
-    weight: 5
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -47,7 +47,7 @@ content:
     type: link_default
     region: content
   field_navigation_title:
-    weight: 7
+    weight: 3
     settings:
       size: 60
       placeholder: ''

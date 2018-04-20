@@ -16,7 +16,7 @@ bundle: featured_evangelists
 mode: default
 content:
   field_cta_link:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -24,7 +24,7 @@ content:
     type: link_default
     region: content
   field_evangelists:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -33,7 +33,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_navigation_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''

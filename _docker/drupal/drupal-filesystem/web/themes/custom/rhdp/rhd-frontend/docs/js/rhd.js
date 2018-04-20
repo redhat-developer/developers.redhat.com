@@ -314,7 +314,7 @@ System.register("dp-category-list/dp-category", ["rhelement"], function (exports
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center;  \n}\n:host img { height: 150px; width: 150px; }\n</style>\n" + (el.image ? "<img src=\"" + el.image + "\">" : "<img src=\"\">") + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n    grid-column: span 1; \n}\n:host img { height: 150px; width: 150px; }\n</style>\n" + (el.image ? "<img src=\"" + el.image + "\">" : "<img src=\"\">") + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;

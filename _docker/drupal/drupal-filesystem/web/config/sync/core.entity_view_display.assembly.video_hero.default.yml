@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.video_hero
     - field.field.assembly.video_hero.field_background_image
     - field.field.assembly.video_hero.field_description
+    - field.field.assembly.video_hero.field_navigation_title
     - field.field.assembly.video_hero.field_title
     - field.field.assembly.video_hero.field_video_resource
   module:
@@ -47,6 +48,7 @@ content:
     region: content
 hidden:
   field_background_image: true
+  field_navigation_title: true
   field_video_resource: true
   name: true
   user_id: true

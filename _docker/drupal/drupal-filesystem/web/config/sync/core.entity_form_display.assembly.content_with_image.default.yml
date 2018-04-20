@@ -20,27 +20,6 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 3
-    settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
-      preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-    region: content
-    third_party_settings: {  }
-  field_content:
-    weight: 5
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  field_image:
-    type: entity_browser_file
     weight: 4
     settings:
       entity_browser: image_browser
@@ -52,8 +31,29 @@ content:
       selection_mode: selection_append
     region: content
     third_party_settings: {  }
-  field_navigation_title:
+  field_content:
     weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_image:
+    type: entity_browser_file
+    weight: 5
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_navigation_title:
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -86,7 +86,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
