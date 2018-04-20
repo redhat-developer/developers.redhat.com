@@ -5,9 +5,9 @@ dependencies:
   config:
     - assembly.assembly_type.all_products_listing
     - field.field.assembly.all_products_listing.field_content
+    - field.field.assembly.all_products_listing.field_navigation_title
   module:
     - text
-    - user
 id: assembly.all_products_listing.default
 targetEntityType: assembly
 bundle: all_products_listing
@@ -15,24 +15,19 @@ mode: default
 content:
   field_content:
     weight: 1
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   name:
-    label: above
+    label: hidden
     type: string
-    weight: -4
+    weight: 0
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_navigation_title: true
+  user_id: true

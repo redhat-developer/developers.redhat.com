@@ -1,0 +1,19 @@
+uuid: bbac9423-48c2-4386-ad72-cb3ad5f8589d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.storage.assembly.field_navigation_title
+id: assembly.featured_products.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: featured_products
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

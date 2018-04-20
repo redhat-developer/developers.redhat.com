@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.featured_products
+    - field.field.assembly.featured_products.field_navigation_title
     - field.field.assembly.featured_products.field_products
     - field.field.assembly.featured_products.field_title
   module:
@@ -13,8 +14,16 @@ targetEntityType: assembly
 bundle: featured_products
 mode: default
 content:
-  field_products:
+  field_navigation_title:
     weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_products:
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60

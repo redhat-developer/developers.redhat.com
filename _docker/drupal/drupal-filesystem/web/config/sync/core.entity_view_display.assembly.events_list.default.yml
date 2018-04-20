@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.events_list
     - field.field.assembly.events_list.field_event
+    - field.field.assembly.events_list.field_navigation_title
   module:
     - fences
 id: assembly.events_list.default
@@ -29,5 +30,6 @@ content:
     type: entity_reference_entity_view
     region: content
 hidden:
+  field_navigation_title: true
   name: true
   user_id: true

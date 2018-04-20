@@ -16,7 +16,7 @@ bundle: static_content_band
 mode: default
 content:
   field_content_list:
-    weight: 3
+    weight: 4
     settings:
       form_mode: default
       label_singular: ''
@@ -34,7 +34,7 @@ content:
     region: content
   field_navigation_title:
     type: string_textfield
-    weight: 4
+    weight: 3
     region: content
     settings:
       size: 60

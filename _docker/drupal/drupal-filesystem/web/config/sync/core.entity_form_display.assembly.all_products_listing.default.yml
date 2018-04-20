@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.all_products_listing
     - field.field.assembly.all_products_listing.field_content
+    - field.field.assembly.all_products_listing.field_navigation_title
   module:
     - text
     - workbench_moderation
@@ -20,6 +21,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_navigation_title:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   moderation_state:
     type: moderation_state_default

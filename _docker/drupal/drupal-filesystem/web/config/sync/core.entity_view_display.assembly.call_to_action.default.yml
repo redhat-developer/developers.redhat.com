@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.call_to_action.field_background_image
     - field.field.assembly.call_to_action.field_cta_content
     - field.field.assembly.call_to_action.field_cta_link
+    - field.field.assembly.call_to_action.field_navigation_title
     - field.field.assembly.call_to_action.field_title
   module:
     - fences
@@ -61,5 +62,6 @@ content:
     region: content
 hidden:
   field_background_image: true
+  field_navigation_title: true
   name: true
   user_id: true

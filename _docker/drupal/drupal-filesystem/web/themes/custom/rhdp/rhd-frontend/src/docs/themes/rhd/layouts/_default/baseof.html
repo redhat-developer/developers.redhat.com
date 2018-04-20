@@ -7,20 +7,22 @@
     <title>{{ block "title" . }}
         {{ .Site.Title }}
     {{ end }}</title>
+    {{ if .Site.Params.minify }}
+    <link rel="stylesheet" href="/css/rhd.min.css">
+    {{ else }}
     <link rel="stylesheet" href="/css/rhd.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism-solarizedlight.min.css">
+    {{ end }}
+    <link rel="stylesheet" href="/css/prism-ghcolors.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-    <script>if (!window.customElements) { document.write('<!--'); }</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
-    <!--! do not remove -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>  
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system-production.js"></script>
   </head>
   <body>
     {{ partial "header.html" . }}
-    <main role="main" data-rhd-grid="normal">
+    <main role="main">
     {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->
     {{ end }}
