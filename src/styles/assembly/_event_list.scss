@@ -1,0 +1,58 @@
+.event-list {
+  list-style-type: none;
+
+  li.event-item {
+    padding: 30px 30px;
+    display: grid;
+    grid-template-columns: 255px repeat(4, 1fr);
+    grid-gap: 10px;
+    border-top: 2px dotted #d2d3d4;
+
+    &:last-child {
+      border-bottom: 2px dotted #d2d3d4;
+
+    }
+
+    i {
+      margin-right: 5px;
+    }
+
+    .event-thumbnail {
+      max-width: 250px;
+      max-height: 185px;
+      grid-column: 1;
+    }
+
+    .event-date{
+      color: #656565;
+    }
+
+    .event-info {
+      grid-column: 2 / span 4;
+    }
+
+    p {
+      margin: 10px 0px 10px 0px;
+    }
+
+    p:first-of-type.event-speaker{
+      grid-column: 2;
+    }
+
+    p.event-speaker{
+      margin: 0px 0px;
+      grid-auto-flow: column;
+      color: #656565;
+
+      span {
+        margin-left:10px;
+      }
+
+    }
+
+    a.event-title{
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+}

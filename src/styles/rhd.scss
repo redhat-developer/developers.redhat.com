@@ -7,6 +7,27 @@
 @import "assembly/assembly";
 @import "foundation/foundation";
 @import "navigation";
+@import "mq-mixins";
+@import "rhd-footer";
+@import "slick";
+
+
+// Stylesheets for microsites
+@import "about";
+@import "awards";
+@import "content-contributors";
+@import "devnation-live";
+@import "devnation2015";
+@import "devnation2016";
+@import "devoxx-be";
+@import "devoxx4kids";
+@import "devoxxfrance";
+@import "eclipse";
+@import "forums";
+@import "javaone";
+@import "ticket-monster";
+@import "vjbug";
+
 
 
 [data-rhd-grid="normal"] {
@@ -14,25 +35,14 @@
     flex-direction: column;
 
     display: grid;
-    grid-template-columns: auto repeat(12, 70px) auto;
+    grid-template-columns: [leftgutter] auto repeat(12, [content-start] 70px) auto [rightgutter];
+    grid-template-rows: minmax(30px, 1fr);
+    grid-auto-flow: column;
     grid-gap: 30px;
-    grid-template-rows: auto;
-
-    
 }
 
 [data-rhd-pos="span12"] {
-  grid-column: 2 / span 12;
-}
-
-body > header,
-body > main,
-body > footer {
-    flex: 0 0 auto;
-    grid-column: span 12;
-    grid-row: span 1;
-    display: flex;
-    flex-direction: column;
+  grid-column: content-start / span 12;
 }
 
 .rh-universal-header {
@@ -53,25 +63,15 @@ body > footer {
     align-items: center;
     color: #5e6a71;
 
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
     .rh-footer-logo, .rh-summit-footer-logo {
         flex: 0 0 300px;
     }
 
     .contentinfo {
         flex: 1 1 auto;
-    }
-
-    ul {
-        margin: 0; padding: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        li {
-            display: inline-block;
-            flex: 0 0 auto;
-            margin-right: 3em;
-        }
     }
 }
 
@@ -84,28 +84,19 @@ body > footer {
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 500px;
 }
 
-.rhd-footer :first-child {
+.rhd-footer-nav {
     flex: 1 1 auto;
-    grid-column: span 8;
 }
 
 .rhd-footer-sidebar {
     background-color: $red;
     flex: 0 0 33%;
-    grid-column: span 4;
 }
 
 .visually-hidden {
   display: none;
-}
-
-.rhd-marketing-header {
-  color: $dark-gray;
-  font-size: 57px;
-  line-height: 71px;
 }
 
 .page-title, .field--name-body, #block-rhdp-local-tasks {
@@ -171,4 +162,18 @@ img {
   background-color: transparent;
   color: inherit;
   padding: 0;
+}
+
+.caret-right {
+  &:after {
+    color: inherit;
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z" fill="#0066CC"/></svg>');
+    width: 0.45em;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    position: relative;
+    top: 0.1em;
+  }
 }
