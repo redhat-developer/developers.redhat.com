@@ -1,27 +1,23 @@
 .assembly-type-call_to_action {
   padding-top: 3rem;
-  padding-bottom: 3rem;
-  background: #444;
+  padding-bottom: 5rem;
+  background: $light-blue;
   color: #FFF;
   font-weight: bold;
   &, & p {
     font-size: 24px;
     line-height: 1.5;
   }
-
   * {
-    color: #fff;
+    color: #FFF;
   }
-
   .header {
     font-size: 40px;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     @include tablet-landscape {
       font-size: 60px;
     }
-
   }
-
   &.centered {
     text-align: center;
   }

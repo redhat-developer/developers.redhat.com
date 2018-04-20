@@ -16,15 +16,15 @@
  */
 #}
 <section{{ attributes.addClass('assembly') }}>
-  <div class="row">
-  {% if content %}
-    <div class="medium-16 left">
-    {{- content|without('field_image') -}}
-    </div>
-    <div class="medium-8 left">
-      {{- content.field_image -}}
-    </div>
-  {% endif %}
+  <div data-rhd-grid="normal">
+    {% if content %}
+      <div class="assembly-content">
+      {{- content|without('field_image') -}}
+      </div>
+      <div class="assembly-image">
+        {{- content.field_image -}}
+      </div>
+    {% endif %}
   </div>
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
