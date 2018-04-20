@@ -86,13 +86,16 @@
       margin-left: 16px;
       float:none;
       &:first-child { margin-left: 0; }
-      a { font-size: 1.1rem; }
+      a {
+        font-size: 1.5rem;
+      }
     }
   }
   &-signup {
     float: right;
     font-size: 16px;
     text-decoration: none;
+    margin-top: 10px;
   }
 }
 
