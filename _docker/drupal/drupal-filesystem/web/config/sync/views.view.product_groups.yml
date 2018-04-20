@@ -3,13 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.image
     - field.storage.node.field_short_description
     - field.storage.node.field_url_product_name
-    - image.style.thumbnail
+    - field.storage.taxonomy_term.field_product_group_icon_svg
     - taxonomy.vocabulary.product_categories
   module:
-    - image
+    - file
     - media_entity
     - node
     - taxonomy
@@ -146,11 +145,11 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-        image:
-          id: image
-          table: media__image
-          field: image
-          relationship: field_product_category_image
+        field_product_group_icon_svg:
+          id: field_product_group_icon_svg
+          table: taxonomy_term__field_product_group_icon_svg
+          field: field_product_group_icon_svg
+          relationship: none
           group_type: group
           admin_label: ''
           label: ''
@@ -195,9 +194,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image_url
-          settings:
-            image_style: thumbnail
+          type: file_url_plain
+          settings: {  }
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -220,7 +218,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '{{ name }}||{{ image }}'
+            text: '{{ name }}||{{ field_product_group_icon_svg }}'
             make_link: false
             path: ''
             absolute: false
@@ -253,55 +251,6 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
-        nothing_1:
-          id: nothing_1
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: 'Dummy to fake views grouping'
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: true
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: true
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -541,9 +490,9 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags:
-        - 'config:field.storage.media.image'
         - 'config:field.storage.node.field_short_description'
         - 'config:field.storage.node.field_url_product_name'
+        - 'config:field.storage.taxonomy_term.field_product_group_icon_svg'
   page_1:
     display_plugin: page
     id: page_1
@@ -560,6 +509,6 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags:
-        - 'config:field.storage.media.image'
         - 'config:field.storage.node.field_short_description'
         - 'config:field.storage.node.field_url_product_name'
+        - 'config:field.storage.taxonomy_term.field_product_group_icon_svg'

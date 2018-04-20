@@ -1,0 +1,23 @@
+uuid: a27e82dc-ce57-49fc-a061-ddda4cbe3d93
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - taxonomy
+id: taxonomy_term.field_product_group_icon_svg
+field_name: field_product_group_icon_svg
+entity_type: taxonomy_term
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
