@@ -2,6 +2,6 @@
 {{ .Title }} – {{ .Site.Title }}
 {{ end }}
 {{ define "main" }}
-<h1 data-rhd-pos="span12">{{ .Title }}</h1>
-<section data-rhd-pos="span12">{{ .Content }}</section>
+<h1 data-rhd-grid="normal"><span data-rhd-pos="span12">{{ .Title }}</span></h1>
+<section>{{ .Content }}</section>
 {{ end }}
