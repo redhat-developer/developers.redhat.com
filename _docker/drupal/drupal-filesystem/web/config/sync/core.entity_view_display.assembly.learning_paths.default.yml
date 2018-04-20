@@ -1,0 +1,70 @@
+uuid: c96a3298-85cc-4c99-9424-fcc2bfeebbb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.learning_paths
+    - field.field.assembly.learning_paths.field_cta_link
+    - field.field.assembly.learning_paths.field_description
+    - field.field.assembly.learning_paths.field_title
+  module:
+    - fences
+    - rhd_assemblies
+    - text
+id: assembly.learning_paths.default
+targetEntityType: assembly
+bundle: learning_paths
+mode: default
+content:
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: '80'
+      class: 'button medium-cta blue'
+      url_only: false
+      url_plain: false
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: cta-link
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
+    region: content
+  field_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: description
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: header
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  field_title: true
+  user_id: true

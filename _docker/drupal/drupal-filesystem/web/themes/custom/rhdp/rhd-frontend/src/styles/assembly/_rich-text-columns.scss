@@ -1,0 +1,77 @@
+.assembly-type-rich_text_columns {
+  text-align: center;
+  background-color: #F9F9F9;
+  padding: 40px 0;
+  @include tablet-landscape {
+    padding: 100px;
+  }
+  .caret-right {
+    font-size: 16px;
+  }
+  .field--name-field-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+    @include tablet-landscape {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+  }
+  .field--name-field-content * {
+    font-size: 16px;
+    @include tablet-landscape {
+      font-size: 20px;
+    }
+    *:first-child {
+      margin-top: 0;
+    }
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .field--name-field-columns {
+    @include tablet-landscape {
+      display: grid;
+      grid-column-gap: 30px;
+      grid-row-gap: 70px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 70px;
+    }
+    @include desktop-small {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &:before, &:after {
+      display: none;
+    }
+    > div {
+      margin-top: 40px;
+      @include tablet-landscape {
+        margin-top: 0;
+      }
+      *:first-child {
+        margin-top: 0;
+      }
+      *:last-child {
+        margin-bottom: 0;
+      }
+    }
+    h3 {
+      font-size: 14px;
+      @include tablet-landscape {
+        font-size: 18px;
+        margin-top: 26px;
+      }
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+  &.three-up {
+    .field--name-field-columns {
+      @include desktop-small {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

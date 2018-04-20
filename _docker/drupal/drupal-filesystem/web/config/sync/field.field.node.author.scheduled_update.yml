@@ -1,0 +1,24 @@
+uuid: 6cb39be0-db8f-4735-9067-319901db9b5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.scheduled_update
+    - node.type.author
+    - scheduled_updates.scheduled_update_type.node__moderation_state_1
+id: node.author.scheduled_update
+field_name: scheduled_update
+entity_type: node
+bundle: author
+label: 'Scheduled updates'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    target_bundles:
+      - node__moderation_state_1
+  handler: 'default:scheduled_update'
+field_type: entity_reference
