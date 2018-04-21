@@ -1,0 +1,28 @@
+<div class="large-24 columns developer-materials-header">
+    <h2 class="learn">Learn</h2>
+</div>
+<div class="large-24 columns">
+    <form method="GET" ng-submit="filter.applyFilters()">
+        <div class="row">
+            <div class="large-8 columns">
+                <label class="right inline" for="filter-by">
+                    <strong>Filter By:</strong>
+                </label>
+                <button class="filters-apply filter-toggle">Apply</button>
+                <input class="keyword" id="filter-by" name="filter-text" ng-change="filter.applyFilters()" ng-model="filters.query" ng-model-options="{debounce:300, blur:0}" placeholder="Keyword" type="text"/>
+            </div>
+            <div class="large-8 columns">
+                <select ng-change="filter.applyFilters()" ng-model="filters.sys_type" ng-options="item.value as item.name for item in data.availableFormats">
+                    <option value="">Choose a Format</option>
+                </select>
+            </div>
+            <div class="large-8 columns left date-filter">
+                <label for="publish-date">
+                    <strong>Publish Date</strong>
+                </label>
+                <input id="publish-date" max="4" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" type="range" value="0"/>
+                <span class="skill-display" ng-bind-template="{{ '{{ ' }}data.displayDate || 'All' {{ '}}' }}"></span>
+            </div>
+        </div>
+    </form>
+</div>

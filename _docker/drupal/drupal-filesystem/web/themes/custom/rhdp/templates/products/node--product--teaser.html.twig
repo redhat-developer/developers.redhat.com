@@ -1,0 +1,11 @@
+<div{{ attributes.addClass("") }}>
+    <h6>Related Product</h6>
+    {{ title_prefix }}
+    <h4{{ title_attributes }}>
+        {{ label }}
+    </h4>
+    {{ title_suffix }}
+    <p class="description">
+        <a href="{{ product_pages[0]['url'] }}" {{ content_attributes.addClass('light-cta') }}>Learn more about {{ elements.field_product_short_name[0]|render|striptags }}</a>
+    </p>
+</div>
