@@ -534,22 +534,39 @@ a.light-cta {
     text-decoration: none; }
   .node--view-mode-card .card-title {
     margin: 0;
-    font-size: 18px;
-    line-height: 1.5; }
+    font-size: 14px;
+    line-height: 1.4; }
+    @media (min-width: 768px) {
+      .node--view-mode-card .card-title {
+        font-size: 18px; } }
   .node--view-mode-card .header-block,
   .node--view-mode-card .content-block {
     padding: 1rem; }
+  .node--view-mode-card .content-block {
+    padding-bottom: 15px;
+    padding-top: 15px; }
+    @media (min-width: 768px) {
+      .node--view-mode-card .content-block {
+        padding-bottom: 30px;
+        padding-top: 30px; } }
   .node--view-mode-card .header-block {
-    background: #0066CC; }
+    background: #0066CC;
+    padding-bottom: .5rem; }
     .node--view-mode-card .header-block .card-title,
     .node--view-mode-card .header-block .asset-type {
       color: #FFF; }
+    @media (min-width: 768px) {
+      .node--view-mode-card .header-block .card-title {
+        font-size: 27px; } }
+    .node--view-mode-card .header-block .asset-type {
+      margin-bottom: 0; }
   .node--view-mode-card .asset-type {
     font-size: .8rem;
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: .5rem;
-    color: #0066CC; }
+    color: #0066CC;
+    letter-spacing: 1px; }
   .node--view-mode-card .login-required {
     display: inline-block;
     margin-right: .5rem; }
@@ -561,15 +578,31 @@ a.light-cta {
       margin-left: .5rem;
       font-size: 1.2rem;
       vertical-align: bottom; }
-  .node--view-mode-card .card-image + .content-block {
-    padding-top: 0; }
 
 .card-image {
-  padding: 2rem; }
+  padding-top: 25px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center; }
+  @media (min-width: 768px) {
+    .card-image {
+      padding-top: 50px; } }
+  .card-image .table {
+    display: table;
+    height: 100%;
+    width: 100%; }
+  .card-image .cell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%; }
   .card-image img {
-    max-width: 100%;
-    height: auto;
+    max-height: 160px;
+    width: auto;
     box-shadow: -2px 2px 11px 0 rgba(0, 0, 0, 0.5); }
+    @media (min-width: 768px) {
+      .card-image img {
+        max-height: 205px; } }
 
 .node--type-video-resource.node--view-mode-teaser,
 .wordpress-blog-post-teaser {
@@ -1096,13 +1129,17 @@ a.light-cta {
       display: inline-block; }
 
 .assembly-type-featured_resources {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 38px;
+  padding-bottom: 38px;
   background: #E5E5E5;
   background-image: url(../docs/img/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
+  @media (min-width: 768px) {
+    .assembly-type-featured_resources {
+      padding-top: 85px;
+      padding-bottom: 85px; } }
   .assembly-type-featured_resources .header {
     text-align: center;
     margin-top: 0; }
