@@ -2,16 +2,16 @@
 // Foundation Variables
 //
 
-@import "colours";
+// @import "colours";
 
-$sans-serif : 'Georgia',sans-serif;
+// $sans-serif : 'Georgia',sans-serif;
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
-$base-font-size: 100% !default;
+// $base-font-size: 100% !default;
 
 // $base-line-height is 24px while $base-font-size is 16px
-$base-line-height: 150%;
+// $base-line-height: 150%;
 
 // This is the default html and body font-size for the base em value.
 
@@ -55,8 +55,8 @@ $experimental: true;
 $default-float: left;
 
 // $body-bg: #fff;
-$body-font-color: $grey-7;
-$body-font-family: "overpass","Open Sans",Helvetica,sans-serif;
+// $body-font-color: $grey-7;
+// $body-font-family: "overpass","Open Sans",Helvetica,sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -70,7 +70,7 @@ $body-font-family: "overpass","Open Sans",Helvetica,sans-serif;
 
 // Colors
 
-$primary-color: $dark-blue;
+// $primary-color: $dark-blue;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
@@ -164,7 +164,7 @@ $block-grid-default-spacing: emCalc(20);
 
 // Control header font styles
 
-$header-font-family: "overpass","Open Sans",Helvetica,sans-serif;
+// $header-font-family: "overpass","Open Sans",Helvetica,sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -200,7 +200,7 @@ $header-font-family: "overpass","Open Sans",Helvetica,sans-serif;
 // $paragraph-font-family: inherit;
 // $paragraph-font-weight: normal;
 // $paragraph-font-size: 1em;
-$paragraph-line-height: 1.5;
+// $paragraph-line-height: 1.5;
 // $paragraph-margin-bottom: emCalc(20);
 // $paragraph-aside-font-size: emCalc(14);
 // $paragraph-aside-line-height: 1.35;
@@ -1028,8 +1028,8 @@ $pagination-link-current-font-weight: normal;
 
 // We use these to set padding and hover factor
 
-$section-title-padding: emCalc(25);
-$section-content-padding: emCalc(64);
+// $section-title-padding: emCalc(25);
+// $section-content-padding: emCalc(64);
 // $section-function-factor: 10%;
 
 // These style the titles
@@ -1045,7 +1045,7 @@ $section-content-padding: emCalc(64);
 
 // $section-border-size: 1px;
 // $section-border-style: solid;
-$section-border-color: $grey-3;
+// $section-border-color: $grey-3;
 
 // Font controls
 
@@ -1239,12 +1239,12 @@ $table-line-height: emCalc(22);
 
 // Background color for the top bar
 
-$topbar-bg: #fff;
+// $topbar-bg: #fff;
 
 // Height and margin
 
-$topbar-height: auto;
-$topbar-margin-bottom: emCalc(40);
+// $topbar-height: auto;
+// $topbar-margin-bottom: emCalc(40);
 
 // Control Input height for top bar
 
@@ -1266,13 +1266,13 @@ $topbar-margin-bottom: emCalc(40);
 
 // Set the link colors and styles for top-level nav
 
-$topbar-link-color: inherit;
+// $topbar-link-color: inherit;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-weight: bold;
-$topbar-link-font-size: emCalc(24);
+// $topbar-link-font-size: emCalc(24);
 // $topbar-link-hover-lightness: -30%; // Darken by 30%
-$topbar-link-bg-hover: $dark-blue;
+// $topbar-link-bg-hover: $dark-blue;
 // $topbar-link-bg-active: darken($topbar-bg, 3%);
 
 // $topbar-dropdown-label-color: #555;
@@ -1293,7 +1293,7 @@ $topbar-link-bg-hover: $dark-blue;
 // Transitions and breakpoint styles
 
 // $topbar-transition-speed: 300ms;
-$topbar-breakpoint: emCalc(769); // Change to 9999px for always mobile layout
+// $topbar-breakpoint: emCalc(769); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: #{$topbar-breakpoint})";
 
 // Divider Styles

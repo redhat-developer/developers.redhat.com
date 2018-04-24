@@ -10,6 +10,7 @@
 @import "mq-mixins";
 @import "rhd-footer";
 @import "slick";
+@import "products";
 
 
 // Stylesheets for microsites
@@ -176,4 +177,8 @@ img {
     position: relative;
     top: 0.1em;
   }
+}
+
+.mobile {
+  display: none;
 }
