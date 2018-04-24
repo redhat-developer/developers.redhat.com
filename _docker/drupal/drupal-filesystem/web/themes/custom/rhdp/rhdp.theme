@@ -197,10 +197,16 @@ function rhdp_preprocess_page(&$variables) {
 function rhdp_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
-  $nid = $node->id();
+  if ($node->getType() == 'author') {
+    $variables['author_name'] = $node->getTitle();
+  }
+
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
       $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
+      $toot = $node->get('field_more_details')->getValue()[0]['uri'];
+      $node->hasField('field_more_details') ? $variables['event_url']=$node->get('field_more_details')->getValue()[0]['uri'] : '';
+
       // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
       // Note: Also will not work properly without search and replace on export.
       if ($node->hasField('field_event_background_image')) {

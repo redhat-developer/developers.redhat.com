@@ -1478,13 +1478,18 @@ a.light-cta {
     .event-list li.event-item .event-info {
       grid-column: 2 / span 4; }
     .event-list li.event-item p {
-      margin: 10px 0px 10px 0px; }
+      margin: 10px 10px; }
     .event-list li.event-item p:first-of-type.event-speaker {
       grid-column: 2; }
     .event-list li.event-item p.event-speaker {
-      margin: 0px 0px;
+      display: grid;
+      grid-template-columns: 60px 1fr;
       grid-auto-flow: column;
       color: #656565; }
+      .event-list li.event-item p.event-speaker img {
+        width: auto;
+        height: auto !important;
+        border-radius: 100%; }
       .event-list li.event-item p.event-speaker span {
         margin-left: 10px; }
     .event-list li.event-item a.event-title {
