@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.product_categories.field_product_category_image
+    - field.field.taxonomy_term.product_categories.field_product_group_icon_svg
     - taxonomy.vocabulary.product_categories
   module:
+    - file
     - text
 id: taxonomy_term.product_categories.default
 targetEntityType: taxonomy_term
@@ -19,12 +20,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_product_category_image:
-    weight: 1
-    label: above
-    settings:
-      link: true
+  field_product_group_icon_svg:
+    weight: 2
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_label
+    type: file_url_plain
     region: content
 hidden: {  }
