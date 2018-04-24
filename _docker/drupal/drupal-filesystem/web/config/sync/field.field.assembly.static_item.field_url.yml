@@ -1,0 +1,23 @@
+uuid: 2c35eced-3c4f-4b31-bc84-17b64780e94f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.static_item
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.static_item.field_url
+field_name: field_url
+entity_type: assembly
+bundle: static_item
+label: URL
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link
