@@ -1025,6 +1025,9 @@ a.light-cta {
     @media (min-width: 768px) {
       .assembly-type-static_content_band .field--name-field-content-list {
         grid-template-columns: 1fr 1fr 1fr; } }
+  @media (min-width: 768px) {
+    .assembly-type-static_content_band.four-up .field--name-field-content-list {
+      grid-template-columns: 1fr 1fr 1fr 1fr; } }
 
 .assembly-type-dynamic_content_feed {
   padding-top: 30px;
