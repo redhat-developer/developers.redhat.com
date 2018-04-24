@@ -50,11 +50,11 @@ content:
         fences_label_classes: ''
     type: text_default
     region: content
-  name:
-    label: hidden
+  field_title:
     type: string
     weight: 0
     region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
@@ -66,5 +66,5 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
-  field_title: true
+  name: true
   user_id: true
