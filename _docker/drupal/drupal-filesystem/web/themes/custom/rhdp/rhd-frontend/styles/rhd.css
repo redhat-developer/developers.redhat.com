@@ -573,7 +573,9 @@ a.light-cta {
 
 .node--type-video-resource.node--view-mode-teaser,
 .wordpress-blog-post-teaser {
-  width: 100%; }
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px; }
   .node--type-video-resource.node--view-mode-teaser .teaser-content,
   .wordpress-blog-post-teaser .teaser-content {
     display: none; }
@@ -595,9 +597,10 @@ a.light-cta {
         vertical-align: top; } }
   .node--type-video-resource.node--view-mode-teaser .title,
   .wordpress-blog-post-teaser .title {
-    font-size: 22px;
-    line-height: 1.5;
-    margin-bottom: 14px; }
+    margin-top: 0;
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 8px; }
     .node--type-video-resource.node--view-mode-teaser .title a,
     .wordpress-blog-post-teaser .title a {
       color: #000;
@@ -611,7 +614,11 @@ a.light-cta {
         display: block; } }
     .node--type-video-resource.node--view-mode-teaser .summary p,
     .wordpress-blog-post-teaser .summary p {
+      font-size: 14px;
       margin-top: 0rem; }
+    .node--type-video-resource.node--view-mode-teaser .summary > *:last-child,
+    .wordpress-blog-post-teaser .summary > *:last-child {
+      margin-bottom: 0; }
 
 .node--view-mode-tile,
 .wordpress-blog-post-tile {
@@ -688,6 +695,31 @@ a.light-cta {
     .node--type-video-resource.node--view-mode-tile .play-button {
       padding: 11px 8px 9px 12px;
       font-size: 28px; } }
+
+.latest-disqus-comment .comment-title {
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px; }
+
+.latest-disqus-comment .comment-body {
+  font-style: italic;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333333; }
+
+.latest-disqus-comment .comment-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+  .latest-disqus-comment .comment-footer .date {
+    font-size: 14px;
+    color: #656565; }
+  .latest-disqus-comment .comment-footer .reply {
+    font-size: 14px;
+    text-align: right; }
+
+.latest-disqus-comment + .latest-disqus-comment {
+  margin-top: 30px; }
 
 .assembly.has-background {
   position: relative; }
@@ -1060,12 +1092,17 @@ a.light-cta {
       display: inline-block; }
 
 .assembly-type-dynamic_content_list {
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-  background: #F9F9F9; }
+  background: #F9F9F9;
+  padding-top: 70px;
+  padding-bottom: 35px; }
+  @media (min-width: 576px) {
+    .assembly-type-dynamic_content_list {
+      padding-top: 123px;
+      padding-bottom: 70px; } }
   .assembly-type-dynamic_content_list .header {
     text-align: center;
-    margin-top: 0; }
+    margin-top: 0;
+    margin-bottom: 35px; }
   .assembly-type-dynamic_content_list .grid {
     display: grid;
     grid-gap: 30px 30px; }
@@ -1086,14 +1123,51 @@ a.light-cta {
           border-bottom: 1px dashed #242424; } }
     @media (min-width: 576px) {
       .assembly-type-dynamic_content_list .content-teaser-list {
-        grid-template-columns: 1fr; } }
+        grid-template-columns: 1fr;
+        grid-gap: 0;
+        margin-top: -30px; } }
   .assembly-type-dynamic_content_list .disqus {
     background: #FFF;
-    padding: 2rem 1rem 1rem; }
+    padding: 35px 1rem;
+    position: relative; }
+    .assembly-type-dynamic_content_list .disqus:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      z-index: 2;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%); }
+    .assembly-type-dynamic_content_list .disqus .header {
+      margin-top: 0;
+      font-size: 17px;
+      text-align: left;
+      margin-bottom: 30px; }
+      .assembly-type-dynamic_content_list .disqus .header .fa-comment {
+        font-size: 15px;
+        margin-right: 3px; }
   .assembly-type-dynamic_content_list .cta-link {
     margin-top: 2rem; }
     .assembly-type-dynamic_content_list .cta-link .button {
       display: inline-block; }
+  .assembly-type-dynamic_content_list .related-topics {
+    margin-top: 46px; }
+    .assembly-type-dynamic_content_list .related-topics label {
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: .5px;
+      display: block;
+      margin-bottom: 15px; }
+    .assembly-type-dynamic_content_list .related-topics .content-link-list a {
+      font-weight: bold;
+      color: #333333; }
+      .assembly-type-dynamic_content_list .related-topics .content-link-list a:after {
+        content: ", "; }
+      .assembly-type-dynamic_content_list .related-topics .content-link-list a:last-child:after {
+        content: ""; }
+      .assembly-type-dynamic_content_list .related-topics .content-link-list a:hover {
+        border-bottom: 3px solid #CC0000; }
 
 .assembly-type-featured_resources {
   padding-top: 30px;

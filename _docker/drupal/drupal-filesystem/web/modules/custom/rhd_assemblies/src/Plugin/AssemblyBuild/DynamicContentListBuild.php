@@ -48,9 +48,52 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
       $results = json_decode($response);
 
       // Figure out data structure returned and put it into the build for the template to handle
+      return $comments;
+    }
+    else {
+
+      $results = [
+        [
+          'title' => 'RH Container Developer Kit with Nested KVM',
+          'comment' => 'What\'s the advantage to using the CKD over downloading open-source Minishift straight from GitHub? Even though we have an enterprise subscription that gives us access to the CDK...',
+          'date' => 'March 8, 2018',
+          'reply-url' => '/'
+        ],
+        [
+          'title' => 'Java Class Metadata: A User Guide',
+          'comment' => 'Does it work with Arquillian? How can i test it?',
+          'date' => 'February 22, 2018',
+          'reply-url' => '/'
+        ],
+        [
+          'title' => 'Microservices with Java EE',
+          'comment' => 'Great Presentation',
+          'date' => 'February 6, 2018',
+          'reply-url' => '/'
+        ],
+        [
+          'title' => 'Java Class Metadata: A User Guide',
+          'comment' => 'Does it work with Arquillian? How can i test it?',
+          'date' => 'February 22, 2018',
+          'reply-url' => '/'
+        ]
+      ];
+
+      $comments['disqus'] = [];
+      foreach ($results as $result) {
+        $comments['disqus'][] = [
+          '#theme' => 'latest_disqus_comment',
+          '#title' => $result['title'],
+          '#comment' => $result['comment'],
+          '#date' => $result['date'],
+          '#reply-url' => $result['reply-url']
+        ];
+      }
+      return $comments;
     }
 
-    return $comments;
+    return false;
+
   }
 
 }
