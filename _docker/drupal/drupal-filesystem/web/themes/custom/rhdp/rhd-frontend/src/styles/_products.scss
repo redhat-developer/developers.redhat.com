@@ -40,7 +40,14 @@
     }
   }
   .row {
-    @extend .flex-center;
+    & > [class^=large-] {
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
   }
 }
 .hero.hero-wide.product-header {
@@ -156,7 +163,7 @@ div.mobile.product-color {
 
   h3 {
     font-weight: 600;
-    color: $headline-grey;
+    color: $grey-8;
   }
 }
 
@@ -209,7 +216,6 @@ div.mobile.product-color {
     }
   }
   p {
-    font-family: $sans-serif;
     font-style: italic;
   }
   h4 {
@@ -274,7 +280,14 @@ div.mobile.product-color {
     }
   }
   .hello-world{
-    @extend .flex-center;
+    & > [class^=large-] {
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
     align-items: center;
     margin-bottom: 1em;
     & > div:first-child {
@@ -424,7 +437,7 @@ div.mobile.product-color {
       margin: 0;
       &.active {
         a {
-          color:$headline-grey;
+          color:$grey-8;
           background:white;
           &:after {
             background:$red;
@@ -432,7 +445,7 @@ div.mobile.product-color {
         }
       }
       a {
-        background:$headline-grey;
+        background:$grey-8;
         text-transform: uppercase;
         font-size: 20px;
         padding:15px 15px 24px 15px;
@@ -693,5 +706,89 @@ rhdp-tryitnow {
   @include mobile-landscape-and-down {
     section { margin-top: -10px; }
     rhdp-tryitnow { display: none; }      
+  }
+}
+
+// 3rd level nav on solutions pages 
+// .side-nav css depends on Foundation Side Nav Component
+
+.side-nav {
+  border:0;
+  padding:0;
+  overflow: hidden;
+  margin-top: 1rem;
+  margin-bottom: 20px;
+  background:white;
+  li {
+    margin:0 0 15px 0;
+    a {
+      padding:0 10px 0 0!important;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: emCalc(18);
+      position: relative;
+      color:$grey-8;
+      text-align: right;
+      &:hover {
+        background:none !important;
+      }
+      i.fa-caret-right{
+          color: $grey;
+          margin-left: 5px;
+        }
+    }
+    &.active , &:hover , &.active, &.side-nav-toggle {
+      & > a:first-child, & > a:first-child:not(.button) {
+        color:black;
+        font-weight:600;
+        i.fa-caret-right{
+          color: $red;
+        }
+      }
+    }
+    &.side-nav-toggle {
+      display: none;
+    }
+  }
+}
+@media only screen and (max-width: 768px){
+  .side-nav li.side-nav-toggle a:before {
+    display: none !important;
+  }
+}
+
+
+@include tablet-portrait-and-down {
+
+  .side-nav {
+    li {
+      display: none;
+      &.active {
+        display: none;
+      }
+      &.side-nav-toggle {
+        display: list-item;
+        background:$red;
+        padding:10px;
+        margin: 0;
+        a {
+          color:white !important;
+          &:after {
+            display: inline-block;
+            padding:0 10px;
+            content:'▼';
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    &.side-nav-open {
+      li {
+        display: list-item;
+        &.side-nav-toggle a:after {
+          // @include transform(rotate(-90deg));
+        }
+      }
+    }
   }
 }
