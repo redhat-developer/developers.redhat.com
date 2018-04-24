@@ -3,11 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
-    - field.field.taxonomy_term.product_categories.field_product_category_image
+    - field.field.taxonomy_term.product_categories.field_product_group_icon_svg
     - taxonomy.vocabulary.product_categories
   module:
-    - entity_browser
+    - file
     - path
     - text
 id: taxonomy_term.product_categories.default
@@ -23,18 +22,12 @@ content:
       placeholder: ''
       rows: 5
     third_party_settings: {  }
-  field_product_category_image:
-    weight: 31
+  field_product_group_icon_svg:
+    weight: 32
     settings:
-      entity_browser: media_browser
-      field_widget_display: label
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      open: false
-      field_widget_display_settings: {  }
+      progress_indicator: throbber
     third_party_settings: {  }
-    type: entity_browser_entity_reference
+    type: file_generic
     region: content
   name:
     type: string_textfield

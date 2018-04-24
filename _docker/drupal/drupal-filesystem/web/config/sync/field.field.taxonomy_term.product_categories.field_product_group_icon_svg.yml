@@ -1,0 +1,27 @@
+uuid: cc314642-fd0d-47fd-9a0d-7f0a5917984f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_product_group_icon_svg
+    - taxonomy.vocabulary.product_categories
+  module:
+    - file
+id: taxonomy_term.product_categories.field_product_group_icon_svg
+field_name: field_product_group_icon_svg
+entity_type: taxonomy_term
+bundle: product_categories
+label: 'Product Group Icon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: svg
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
