@@ -1,5 +1,5 @@
 <section{{ attributes.addClass('assembly') }}>
-  <div class="container">
+  <div class="container {% if (content.latest_comments == false and content.field_links|render == false) %}narrow{% endif %}">
     {{ content.field_title }}
     <div class="grid">
       {% if content %}
@@ -8,7 +8,7 @@
         </div>
       {% endif %}
 
-      {% if (content.latest_comments or content.field_links) %}
+      {% if (content.latest_comments or content.field_links|render) %}
         <aside class="sidebar">
           {% if content.latest_comments %}
           <div class="disqus">
