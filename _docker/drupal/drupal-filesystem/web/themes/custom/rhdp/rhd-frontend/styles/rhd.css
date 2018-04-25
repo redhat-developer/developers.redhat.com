@@ -7022,6 +7022,52 @@ h2.large-title#buzz i {
     color: #0066CC;
     font-size: 1.25rem; }
 
+#registration-confirmation .divider {
+  border-bottom: 1px solid #333333;
+  margin-bottom: 25px;
+  padding-bottom: 20px; }
+
+#registration-confirmation .spotlight {
+  background-color: #F9F9F9;
+  min-height: 350px;
+  padding: 1.25rem;
+  position: relative; }
+  #registration-confirmation .spotlight .fa.fa-clock-o:before {
+    margin-right: 5px; }
+  #registration-confirmation .spotlight small i {
+    margin-bottom: 15px; }
+  #registration-confirmation .spotlight a.button {
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1em; }
+
+#registration-confirmation .home-title {
+  margin-top: 3.125rem; }
+
+@media only screen and (max-width: 768px) {
+  #registration-confirmation .spotlight {
+    margin-top: 1.25rem; }
+    #registration-confirmation .spotlight a.button {
+      position: relative;
+      width: 100%; } }
+
+.button.button--solution {
+  background: #6abcd3 url("https://static.jboss.org/rhd/images/stars-texture.png") bottom right no-repeat;
+  padding: 30px 10px 30px 20px;
+  text-align: left;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 1em; }
+  .button.button--solution:hover {
+    background: #43aac7 url("https://static.jboss.org/rhd/images/stars-texture.png") bottom right no-repeat; }
+  .button.button--solution.clear {
+    color: #0088ce;
+    text-align: center;
+    font-size: 20px; }
+    .button.button--solution.clear:hover {
+      background: none; }
+
 .about .wrapper {
   padding-bottom: 0; }
 
