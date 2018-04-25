@@ -22,27 +22,12 @@ dependencies:
     - field.field.node.learning_path.scheduled_update
     - node.type.learning_path
   module:
-    - fences
     - user
 id: node.learning_path.card
 targetEntityType: node
 bundle: learning_path
 mode: card
-content:
-  field_short_description:
-    type: basic_string
-    weight: 0
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: div
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
+content: {  }
 hidden:
   body: true
   field_audience: true
@@ -56,6 +41,7 @@ hidden:
   field_related_red_hat_certificat: true
   field_related_topic_s_: true
   field_requirements_an_or_pre_req: true
+  field_short_description: true
   field_topics: true
   field_value_proposition: true
   links: true

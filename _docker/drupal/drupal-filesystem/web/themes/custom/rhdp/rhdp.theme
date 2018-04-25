@@ -4,13 +4,14 @@
  * @file
  * Functions to support theming in the RHD theme.
  */
-use Drupal\field_collection\Entity\FieldCollectionItem;
-use Drupal\Core\Url;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\field_collection\Entity\FieldCollectionItem;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
 use Drupal\views\ViewExecutable;
 
 
@@ -260,6 +261,19 @@ function rhdp_preprocess_node(&$variables) {
           }
         }
       }
+    }
+  }
+
+  // Massage learning path content
+  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label() ]
+      ];
     }
   }
 

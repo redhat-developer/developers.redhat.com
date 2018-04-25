@@ -17,7 +17,12 @@
       <h3 class="card-title">{{ label }}</h3>
     </div>
     <div class="content-block">
-      {{ content }}
+      {% for lesson in content.lessons %}
+        <div class="lesson">
+          <div class="lesson-label">{{ lesson.label|raw }}</div>
+          <div class="lesson-title">{{ lesson.title|raw }}</div>
+        </div>
+      {% endfor %}
       <div class="more">More Lessons <span class="fas fa-caret-right"></span></div>
     </div>
   </a>
