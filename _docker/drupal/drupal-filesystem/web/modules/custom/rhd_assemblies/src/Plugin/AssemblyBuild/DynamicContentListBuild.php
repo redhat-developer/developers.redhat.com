@@ -23,7 +23,7 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = 6;
     $this->getItems($build, $entity, $count, 'teaser');
-    $build['latest_comments'] = $this->getComments();
+    // $build['latest_comments'] = $this->getComments();
   }
 
   protected function getComments() {
