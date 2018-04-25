@@ -1,5 +1,6 @@
 .event-list {
   list-style-type: none;
+  padding: 0px;
 
   li.event-item {
     padding: 30px 30px;
@@ -7,6 +8,10 @@
     grid-template-columns: 255px repeat(4, 1fr);
     grid-gap: 10px;
     border-top: 2px dotted #d2d3d4;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
 
     &:last-child {
       border-bottom: 2px dotted #d2d3d4;
@@ -29,14 +34,22 @@
 
     .event-info {
       grid-column: 2 / span 4;
+
+      @media screen and (max-width: 768px) {
+        grid-column: 1;
+      }
     }
 
     p {
-      margin: 10px 10px;
+      margin: 10px 0px 10px 0px;
     }
 
     p:first-of-type.event-speaker{
       grid-column: 2;
+      @media screen and (max-width: 768px) {
+        grid-column: 1;
+      }
+
     }
 
     p.event-speaker{
@@ -52,6 +65,10 @@
       span {
         margin-left:10px;
       }
+      @media screen and (max-width: 768px) {
+        grid-column: 1;
+      }
+
 
     }
 
