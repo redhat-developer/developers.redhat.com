@@ -12,7 +12,11 @@
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
     <div class="card-image">
-      {{ content.field_cover_image }}
+      <div class="table">
+        <div class="cell">
+          {{ content.field_cover_image }}
+        </div>
+      </div>
     </div>
     <div class="content-block">
       <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %}E-Book</div>
