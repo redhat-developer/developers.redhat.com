@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.topic_page.body
+    - field.field.node.topic_page.field_meta_tags
     - field.field.node.topic_page.field_sections
+    - field.field.node.topic_page.field_share_image
     - field.field.node.topic_page.scheduled_update
     - node.type.topic_page
   module:
@@ -32,18 +34,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
-  scheduled_update:
-    weight: 3
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   workbench_moderation_control:
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_meta_tags: true
+  field_share_image: true
   links: true
+  scheduled_update: true
