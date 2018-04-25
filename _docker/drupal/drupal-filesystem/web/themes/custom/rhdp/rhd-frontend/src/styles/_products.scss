@@ -256,7 +256,6 @@ div.mobile.product-color {
 
 #hero-try-or-buy {
   margin: 0 auto;
-  padding-top: 15px;
   background-color: rgba(255, 255, 255, 0.9);
 
   &.storage-and-big-data {
@@ -270,13 +269,15 @@ div.mobile.product-color {
   }
   .button {
     width: 100%;
-    margin-bottom: 5px;
     padding: .7rem;
+    display: inline-block;
+    margin: 1.5em 0;
   }
   p {
     margin-bottom: 0;
     &.caps {
       text-transform: uppercase;
+      margin-top: 0;
     }
   }
   .hello-world{
@@ -313,9 +314,14 @@ div.mobile.product-color {
     text-align: left;
     display: block;
     padding: 5px 16px;
+    margin-top: 1em;
     color: $grey-7;
     p {
       color: $link;
+      margin-top: 0;
+      svg {
+        margin-left: 5px;
+      }
     }
     i {
       margin-left: 5px;
@@ -714,40 +720,46 @@ rhdp-tryitnow {
 
 .side-nav {
   border:0;
-  padding:0;
+  padding:0 !important;
   overflow: hidden;
-  margin-top: 1rem;
-  margin-bottom: 20px;
+  margin-top: 1rem !important;
+  margin-bottom: 20px !important;
   background:white;
   li {
-    margin:0 0 15px 0;
+    margin:0 0 15px 0 !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid #BDBDBD;
     a {
-      padding:0 10px 0 0!important;
-      text-transform: uppercase;
-      font-weight: 600;
+      padding:0 10px 0 0 !important;
+      font-weight: 400 !important;
       font-size: emCalc(18);
       position: relative;
-      color:$grey-8;
-      text-align: right;
+      color:$grey-5 !important;
+      text-align: left;
       &:hover {
         background:none !important;
+        color: $black !important; 
       }
-      i.fa-caret-right{
-          color: $grey;
-          margin-left: 5px;
-        }
     }
-    &.active , &:hover , &.active, &.side-nav-toggle {
-      & > a:first-child, & > a:first-child:not(.button) {
-        color:black;
-        font-weight:600;
-        i.fa-caret-right{
-          color: $red;
-        }
-      }
+    &.active, &:active {
+      border-bottom: 2px solid $red;
+    }
+    &.active a,
+    &.active:hover a{
+      font-weight: 600 !important;
+      color: $black !important;
     }
     &.side-nav-toggle {
+      background-color: #424242 !important;
+      margin-bottom: 10px;
       display: none;
+      a {
+        color: $white;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: right;
+        margin-bottom: 4px;
+      }
     }
   }
 }
