@@ -3,6 +3,11 @@
   padding-bottom: 1rem;
   background-color: #f9f9f9;
 
+  @include tablet-portrait {
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+  }
+
   .header {
     text-align: center;
     margin-top: 0rem;
@@ -14,6 +19,14 @@
     grid-template-columns: 1fr 1fr;
     @include tablet-landscape {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &.four-up {
+    .field--name-field-content-list {
+      @include tablet-landscape {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
     }
   }
 }

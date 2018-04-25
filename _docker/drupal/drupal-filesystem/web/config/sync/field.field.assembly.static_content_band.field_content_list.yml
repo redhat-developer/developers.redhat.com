@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.node_reference
     - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.static_item
     - assembly.assembly_type.wordpress_post_reference
     - field.storage.assembly.field_content_list
 id: assembly.static_content_band.field_content_list
@@ -22,6 +23,7 @@ settings:
   handler_settings:
     target_bundles:
       node_reference: node_reference
+      static_item: static_item
       wordpress_post_reference: wordpress_post_reference
     sort:
       field: _none

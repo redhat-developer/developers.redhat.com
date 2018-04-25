@@ -9,7 +9,7 @@
     "build": "npm run scripts && npm run styles",
     "scripts": "tsc && uglifyjs rhd.js -c -m -o rhd.min.js",
     "scripts:copy": "cpx rhd.js src/docs/themes/rhd/static/js && cpx rhd.min.js src/docs/themes/rhd/static/js",
-    "styles": "node-sass src/styles/ -o styles/ && node-sass src/styles/ -o styles/ --output-style compressed && postcss -o rhd.min.css styles/rhd.css",
+    "styles": "node-sass src/styles/ -o styles/ && node-sass src/styles/ -o ./ --output-style compressed && postcss -o rhd.min.css rhd.css",
     "styles:copy": "cpx styles/*.css src/docs/themes/rhd/static/css && cpx *.min.css src/docs/themes/rhd/static/css",
     "serve": "npm run start && browser-sync start -c browser-sync.config.js",
     "docs": "hugo -D -s src/docs && npm run docs:front",

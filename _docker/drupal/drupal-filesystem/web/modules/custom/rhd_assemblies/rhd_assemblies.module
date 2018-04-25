@@ -62,6 +62,15 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
       'media' => NULL,
     ],
   ];
+  $theme['latest_disqus_comment'] = [
+    'template' => 'latest-disqus-comment',
+    'variables' => [
+      'title' => NULL,
+      'comment' => NULL,
+      'date' => NULL,
+      'reply-url' => NULL
+    ]
+  ];
   return $theme;
 }
 

@@ -9,8 +9,11 @@
 
   .card-title {
     margin: 0;
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.4;
+    @include tablet-landscape {
+      font-size: 18px;
+    }
   }
 
   .header-block,
@@ -18,11 +21,29 @@
     padding: 1rem;
   }
 
+  .content-block {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    @include tablet-landscape {
+      padding-bottom: 30px;
+      padding-top: 30px;
+    }
+  }
+
   .header-block {
     background: $blue;
+    padding-bottom: .5rem;
     .card-title,
     .asset-type {
       color: #FFF;
+    }
+    .card-title {
+      @include tablet-landscape {
+        font-size: 27px;
+      }
+    }
+    .asset-type {
+      margin-bottom: 0;
     }
   }
 
@@ -32,6 +53,7 @@
     font-weight: bold;
     margin-bottom: .5rem;
     color: $blue;
+    letter-spacing: 1px;
   }
 
   .login-required {
@@ -49,18 +71,36 @@
       vertical-align: bottom;
     }
   }
-
-  .card-image+.content-block {
-    padding-top: 0;
-  }
-
 }
 
 .card-image {
-  padding: 2rem;
+  padding-top: 25px;
+  @include tablet-landscape {
+    padding-top: 50px;
+  }
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+
+  .table {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+
+  .cell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+  }
+
   img {
-    max-width: 100%;
-    height: auto;
+    max-height: 160px;
+    @include tablet-landscape {
+      max-height: 205px;
+    }
+    width: auto;
     box-shadow: -2px 2px 11px 0 rgba(0,0,0,0.5);
   }
 }

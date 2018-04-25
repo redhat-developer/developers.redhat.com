@@ -1,6 +1,10 @@
 .assembly-type-featured_resources {
-  padding-top: $gutter;
-  padding-bottom: $gutter;
+  padding-top: 38px;
+  padding-bottom: 38px;
+  @include tablet-landscape {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
   background: #E5E5E5;
   background-image: url(../docs/img/gray_diamond_background.png);
   background-position: top center;
