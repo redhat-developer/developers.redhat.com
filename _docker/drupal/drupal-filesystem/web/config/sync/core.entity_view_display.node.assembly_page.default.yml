@@ -3,7 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
+    - field.field.node.assembly_page.field_share_image
     - field.field.node.assembly_page.scheduled_update
     - node.type.assembly_page
   module:
@@ -15,7 +17,7 @@ bundle: assembly_page
 mode: default
 content:
   field_sections:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       view_mode: default
@@ -24,6 +26,8 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
 hidden:
+  field_meta_tags: true
+  field_share_image: true
   links: true
   scheduled_update: true
   workbench_moderation_control: true
