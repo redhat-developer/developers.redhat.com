@@ -5091,6 +5091,178 @@ rhdp-tryitnow .row {
   .side-nav.side-nav-open li {
     display: list-item; } }
 
+.rhd-adaptive-placeholder form {
+  margin: 0;
+  padding: 0; }
+
+.rhd-adaptive-placeholder input[type] {
+  height: 3.2em;
+  padding-top: 1.2em; }
+
+.rhd-adaptive-placeholder select,
+.rhd-adaptive-placeholder textarea,
+.rhd-adaptive-placeholder input {
+  padding: 5px 15px; }
+  .rhd-adaptive-placeholder select:focus,
+  .rhd-adaptive-placeholder textarea:focus,
+  .rhd-adaptive-placeholder input:focus {
+    border: 1px solid #D2D3D4;
+    outline: none; }
+  .rhd-adaptive-placeholder select.filled + label, .rhd-adaptive-placeholder select:focus + label,
+  .rhd-adaptive-placeholder textarea.filled + label,
+  .rhd-adaptive-placeholder textarea:focus + label,
+  .rhd-adaptive-placeholder input.filled + label,
+  .rhd-adaptive-placeholder input:focus + label {
+    bottom: 65px;
+    font-size: 12px;
+    color: #8c8f91; }
+  .rhd-adaptive-placeholder select:-webkit-autofill,
+  .rhd-adaptive-placeholder textarea:-webkit-autofill,
+  .rhd-adaptive-placeholder input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset; }
+
+.rhd-adaptive-placeholder input:-webkit-autofill ~ label {
+  bottom: 65px;
+  font-size: 12px;
+  color: #8c8f91; }
+
+.rhd-adaptive-placeholder input:focus + label[for=password],
+.rhd-adaptive-placeholder input.filled + label[for=password],
+.rhd-adaptive-placeholder input:-webkit-autofill ~ label[for=password] {
+  bottom: 35px; }
+
+.rhd-adaptive-placeholder input:-webkit-autofill ~ label[for=username] {
+  bottom: 65px; }
+
+.rhd-adaptive-placeholder select {
+  background-color: #FFFFFF;
+  padding: 11px 20px;
+  cursor: pointer; }
+
+.rhd-adaptive-placeholder textarea {
+  overflow: auto;
+  padding-top: 2.3em; }
+  .rhd-adaptive-placeholder textarea + label {
+    bottom: 100%;
+    transform: translateY(150%); }
+  .rhd-adaptive-placeholder textarea.filled, .rhd-adaptive-placeholder textarea:focus {
+    background-color: #fff; }
+  .rhd-adaptive-placeholder textarea.filled + label,
+  .rhd-adaptive-placeholder textarea:focus + label {
+    transform: translateY(50%);
+    top: 0;
+    bottom: unset; }
+
+.rhd-adaptive-placeholder label {
+  position: absolute;
+  bottom: 55px;
+  left: 16px;
+  z-index: 10;
+  font-size: 14px;
+  transform: translateY(50%);
+  transition: ease-out .15s;
+  transition-property: bottom, color, transform;
+  cursor: text; }
+
+.rhd-adaptive-placeholder label[for=password] {
+  bottom: 25px; }
+
+.rhd-adaptive-placeholder .field {
+  position: relative;
+  list-style: none; }
+  .rhd-adaptive-placeholder .field + .field {
+    margin-top: 20px; }
+
+.kc-wrapper {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 570px; }
+  .kc-wrapper .kc-card {
+    background-color: #FFFFFF;
+    margin: 30px 0 15px 0;
+    padding: 30px;
+    border-top: 4px solid #CC0000;
+    -webkit-box-shadow: 0px 3px 6px 0px #696769;
+    -moz-box-shadow: 0px 3px 6px 0px #696769;
+    box-shadow: 0px 3px 6px 0px #696769;
+    text-align: center;
+    width: 570px; }
+    .kc-wrapper .kc-card h2 {
+      margin-bottom: 15px; }
+    .kc-wrapper .kc-card p, .kc-wrapper .kc-card input {
+      margin-bottom: 30px; }
+    .kc-wrapper .kc-card input[name=password] {
+      margin-bottom: 0; }
+    .kc-wrapper .kc-card .field {
+      width: 100%; }
+      .kc-wrapper .kc-card .field + .field {
+        margin-top: 0; }
+    .kc-wrapper .kc-card .form-hint {
+      text-align: right;
+      margin: 10px 10px 0 0; }
+    .kc-wrapper .kc-card .heavy-cta {
+      margin-bottom: 0; }
+  .kc-wrapper span.new-account {
+    font-weight: 600; }
+  .kc-wrapper .login-social {
+    margin: 30px 0 15px 0; }
+  .kc-wrapper .kc-provider-login {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    margin: 0 7px 20px 7px; }
+    .kc-wrapper .kc-provider-login a {
+      height: inherit;
+      background-color: #F9F9F9;
+      background-size: contain;
+      background-repeat: no-repeat; }
+      .kc-wrapper .kc-provider-login a.stack-overflow {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_stack_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.linkedin {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_linkedin_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.twitter {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_twitter_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.facebook {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_facebook_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.google-plus {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_googleplus_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.windows {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_microsoft_transparent.png"); }
+      .kc-wrapper .kc-provider-login a.github {
+        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_github_transparent.png"); }
+  @media only screen and (max-width: 768px) {
+    .kc-wrapper .kc-card {
+      width: inherit; } }
+  @media only screen and (max-width: 480px) {
+    .kc-wrapper .kc-wrapper {
+      max-width: none; }
+    .kc-wrapper .kc-card {
+      border: none;
+      box-shadow: none;
+      border-bottom: 1px solid #CCCCCC;
+      margin: 0 -15px 15px -15px;
+      padding: 15px; }
+      .kc-wrapper .kc-card p {
+        margin-bottom: 15px; }
+    .kc-wrapper .login-social {
+      margin-top: 15px; }
+    .kc-wrapper .social-links {
+      max-width: 280px;
+      margin: 0 auto; }
+      .kc-wrapper .social-links .kc-provider-login {
+        width: 40px;
+        height: 40px; }
+        .kc-wrapper .social-links .kc-provider-login a {
+          margin-bottom: 0; } }
+
+.rhdp-login, .rhdp-login .site-wrapper {
+  background-color: #F9F9F9; }
+
+@media only screen and (max-width: 480px) {
+  .rhdp-login .content-wrapper {
+    padding-top: 0; } }
+
 .about .wrapper {
   padding-bottom: 0; }
 
