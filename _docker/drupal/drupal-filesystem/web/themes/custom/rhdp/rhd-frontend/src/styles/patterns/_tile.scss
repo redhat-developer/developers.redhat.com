@@ -10,8 +10,11 @@
 
 .tile-title {
   margin-top: 0rem;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.4;
+  @include tablet-landscape {
+    font-size: 18px;
+  }
 }
 
 .tile-image {
@@ -85,8 +88,10 @@
     padding: 6px 3px 4px 7px;
     font-size: 20px;
     @include tablet-landscape {
-      padding: 11px 8px 9px 12px;
-      font-size: 28px;
+      padding: 10px 9px 9px 12px;
+      font-size: 23px;
+      right: 16px;
+      bottom: 16px;
     }
 
   }

@@ -100,9 +100,12 @@
   display: none;
 }
 
-.page-title, .field--name-body, #block-rhdp-local-tasks {
+.node__content>.field--name-body,
+#block-rhdp-local-tasks {
   @extend .container;
 }
+
+
 .field--name-body {
   margin-bottom: 40px;
 }

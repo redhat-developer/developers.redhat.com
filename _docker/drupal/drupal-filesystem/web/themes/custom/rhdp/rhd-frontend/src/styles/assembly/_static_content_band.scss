@@ -3,6 +3,11 @@
   padding-bottom: 1rem;
   background-color: #f9f9f9;
 
+  @include tablet-portrait {
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+  }
+
   .header {
     text-align: center;
     margin-top: 0rem;
