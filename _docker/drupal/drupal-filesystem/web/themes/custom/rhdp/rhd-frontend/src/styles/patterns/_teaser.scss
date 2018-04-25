@@ -1,6 +1,8 @@
 .node--type-video-resource.node--view-mode-teaser,
 .wordpress-blog-post-teaser {
   width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   .teaser-content {
     display: none;
@@ -26,9 +28,10 @@
   }
 
   .title {
-    font-size: 22px;
-    line-height: 1.5;
-    margin-bottom: 14px;
+    margin-top: 0;
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 8px;
     a {
       color: #000;
       text-decoration: none;
@@ -41,7 +44,12 @@
       display: block;
     }
     p {
+      font-size: 14px;
       margin-top: 0rem;
+    }
+
+    >*:last-child {
+      margin-bottom: 0;
     }
   }
 }
