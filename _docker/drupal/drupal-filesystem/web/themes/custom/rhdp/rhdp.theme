@@ -204,7 +204,6 @@ function rhdp_preprocess_node(&$variables) {
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
       $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
-      $toot = $node->get('field_more_details')->getValue()[0]['uri'];
       $node->hasField('field_more_details') ? $variables['event_url']=$node->get('field_more_details')->getValue()[0]['uri'] : '';
 
       // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
