@@ -56,7 +56,7 @@ $default-float: left;
 
 // $body-bg: #fff;
 // $body-font-color: $grey-7;
-// $body-font-family: "overpass","Open Sans",Helvetica,sans-serif;
+$body-font-family: "overpass","Open Sans",Helvetica,sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -72,7 +72,7 @@ $default-float: left;
 
 // $primary-color: $dark-blue;
 // $secondary-color: #e9e9e9;
-// $alert-color: #c60f13;
+$alert-color: #c60f13;
 // $success-color: #5da423;
 
 // Make sure border radius matches unless we want it different.
@@ -382,8 +382,8 @@ $input-border-radius: 0px;
 
 // We use this to set the default radius used throughout the core.
 
-// $button-radius: $global-radius;
-// $button-round: $global-rounded;
+$button-radius: $global-radius;
+$button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.
 
