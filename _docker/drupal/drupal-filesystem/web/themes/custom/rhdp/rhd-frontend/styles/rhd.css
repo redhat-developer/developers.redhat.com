@@ -1277,7 +1277,8 @@ a.light-cta {
   padding-bottom: 5rem;
   background: #00B9E4;
   color: #FFF;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: center; }
   .assembly-type-call_to_action, .assembly-type-call_to_action p {
     font-size: 24px;
     line-height: 1.5; }
@@ -1289,8 +1290,11 @@ a.light-cta {
     @media (min-width: 768px) {
       .assembly-type-call_to_action .header {
         font-size: 60px; } }
-  .assembly-type-call_to_action.centered {
-    text-align: center; }
+  .assembly-type-call_to_action.left {
+    float: none !important;
+    text-align: left; }
+    .assembly-type-call_to_action.left .header {
+      text-align: left; }
 
 .assembly-type-rich_text {
   padding-top: 3rem;
