@@ -1297,17 +1297,24 @@ a.light-cta {
   color: #FFF;
   font-weight: bold;
   text-align: center; }
-  .assembly-type-call_to_action, .assembly-type-call_to_action p {
-    font-size: 24px;
+  .assembly-type-call_to_action .text-formatted {
+    color: #FFF;
+    font-size: 18px;
     line-height: 1.5; }
-  .assembly-type-call_to_action * {
-    color: #FFF; }
+    @media (min-width: 576px) {
+      .assembly-type-call_to_action .text-formatted {
+        font-size: 24px; } }
   .assembly-type-call_to_action .header {
-    font-size: 40px;
-    margin-bottom: 0; }
+    color: #FFF;
+    font-size: 27px;
+    margin-bottom: 24px;
+    line-height: 1.25; }
+    @media (min-width: 576px) {
+      .assembly-type-call_to_action .header {
+        font-size: 40px; } }
     @media (min-width: 768px) {
       .assembly-type-call_to_action .header {
-        font-size: 60px; } }
+        font-size: 57px; } }
   .assembly-type-call_to_action.left {
     float: none !important;
     text-align: left; }
