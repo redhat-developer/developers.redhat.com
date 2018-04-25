@@ -61,5 +61,7 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         ];
       }
     }
+
+    $build['#cache']['tags'][] = $build['#parent']['entity']->getEntityTypeId() . ":" . $build['#parent']['entity']->id();
   }
 }
