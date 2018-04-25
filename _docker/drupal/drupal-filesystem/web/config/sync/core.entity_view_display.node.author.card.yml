@@ -1,8 +1,9 @@
-uuid: 57e8b407-d7d8-45ff-8f79-45163a12266b
+uuid: b545f947-1ff6-45cb-9c62-656cedd842a8
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.field.node.author.body
     - field.field.node.author.field_facebook
     - field.field.node.author.field_github
@@ -16,18 +17,18 @@ dependencies:
   module:
     - fences
     - image
-    - text
     - user
-id: node.author.default
+id: node.author.card
 targetEntityType: node
 bundle: author
-mode: default
+mode: card
 content:
-  body:
-    label: hidden
-    type: text_default
+  field_headshot:
     weight: 1
-    settings: {  }
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -36,30 +37,30 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    region: content
-  field_headshot:
-    weight: 0
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
     type: image
     region: content
   field_position_title:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   workbench_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   field_facebook: true
   field_github: true
   field_linkedin: true
