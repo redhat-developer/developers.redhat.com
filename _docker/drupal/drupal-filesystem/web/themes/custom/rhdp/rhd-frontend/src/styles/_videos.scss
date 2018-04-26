@@ -44,6 +44,9 @@
       }
     }
   }
+  .field--name-field-speakers {
+    display: inline-block;
+  }
   .field--name-field-speakers .field__items > .field__item:not(:only-child):not(:last-child) {
     &:after { content: ','; }
   }
