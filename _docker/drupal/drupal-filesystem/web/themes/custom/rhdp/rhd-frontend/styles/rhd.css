@@ -1255,23 +1255,25 @@ a.light-cta {
     margin-top: 2rem; }
     .assembly-type-dynamic_content_list .cta-link .button {
       display: inline-block; }
-  .assembly-type-dynamic_content_list .related-topics {
+  .assembly-type-dynamic_content_list .related-topics label {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: .5px;
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: black; }
+  .assembly-type-dynamic_content_list .related-topics .content-link-list a {
+    font-weight: bold;
+    color: #333333; }
+    .assembly-type-dynamic_content_list .related-topics .content-link-list a:after {
+      content: ", "; }
+    .assembly-type-dynamic_content_list .related-topics .content-link-list a:last-child:after {
+      content: ""; }
+    .assembly-type-dynamic_content_list .related-topics .content-link-list a:hover {
+      border-bottom: 3px solid #CC0000; }
+  .assembly-type-dynamic_content_list .disqus + .related-topics {
     margin-top: 46px; }
-    .assembly-type-dynamic_content_list .related-topics label {
-      text-transform: uppercase;
-      font-size: 14px;
-      letter-spacing: .5px;
-      display: block;
-      margin-bottom: 15px; }
-    .assembly-type-dynamic_content_list .related-topics .content-link-list a {
-      font-weight: bold;
-      color: #333333; }
-      .assembly-type-dynamic_content_list .related-topics .content-link-list a:after {
-        content: ", "; }
-      .assembly-type-dynamic_content_list .related-topics .content-link-list a:last-child:after {
-        content: ""; }
-      .assembly-type-dynamic_content_list .related-topics .content-link-list a:hover {
-        border-bottom: 3px solid #CC0000; }
 
 .assembly-type-featured_resources {
   padding-top: 38px;
