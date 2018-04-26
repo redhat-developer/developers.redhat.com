@@ -49,7 +49,7 @@ ul.book-list {
     text-transform: uppercase;
     top:130px;
     opacity:0;
-    @include transition(all 0.3s);
+    // @include transition(all 0.3s);
   }
   &:hover a.book-preview {
     opacity:1;
