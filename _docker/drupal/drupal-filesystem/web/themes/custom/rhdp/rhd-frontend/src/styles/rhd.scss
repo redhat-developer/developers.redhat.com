@@ -196,3 +196,16 @@ img {
 .mobile {
   display: none;
 }
+
+.callout-light {
+  background-color: #f0f0f0;
+  border: 1px solid #efeff0;
+  padding: 20px;
+  margin: 15px 0;
+  p {
+    margin-bottom: 0;
+  }
+  a {
+    color: $link-dark-background;
+  }
+}

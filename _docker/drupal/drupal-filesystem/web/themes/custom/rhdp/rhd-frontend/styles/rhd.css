@@ -181,21 +181,21 @@ h2 {
 
 h3 {
   font-size: 16px;
-  font-weight: bold; }
+  font-weight: 600; }
   @media (min-width: 768px) {
     h3 {
       font-size: 32px; } }
 
 h4 {
   font-size: 15px;
-  font-weight: bold; }
+  font-weight: 600; }
   @media (min-width: 768px) {
     h4 {
       font-size: 27px; } }
 
 h5 {
   font-size: 14px;
-  font-weight: bold; }
+  font-weight: 600; }
   @media (min-width: 768px) {
     h5 {
       font-size: 18px; } }
@@ -8401,7 +8401,7 @@ ul.product-forums.multi-column {
   margin: 30px auto; }
 
 .hero.hero-ticketmonster {
-  background: cdn("../images/ticketmonster/ticket_monster-headerbg.png") repeat-x;
+  background: url("https://static.jboss.org/rhd/images/ticket_monster-headerbg.png") repeat-x;
   border: 0;
   padding: 20px;
   padding-top: 40px;
@@ -8630,3 +8630,13 @@ img {
 
 .mobile {
   display: none; }
+
+.callout-light {
+  background-color: #f0f0f0;
+  border: 1px solid #efeff0;
+  padding: 20px;
+  margin: 15px 0; }
+  .callout-light p {
+    margin-bottom: 0; }
+  .callout-light a {
+    color: #73BCF7; }
