@@ -3,13 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.topic_page.body
+    - field.field.node.topic_page.field_meta_tags
     - field.field.node.topic_page.field_sections
+    - field.field.node.topic_page.field_share_image
     - field.field.node.topic_page.scheduled_update
     - node.type.topic_page
   module:
+    - entity_browser
     - entity_browser_entity_form
     - inline_entity_form
+    - metatag
     - path
     - text
     - workbench_moderation
@@ -33,6 +38,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_meta_tags:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_sections:
     weight: 2
     settings:
@@ -50,20 +61,33 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
+  field_share_image:
+    type: entity_browser_file
+    weight: 7
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 6
+    weight: 5
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   scheduled_update:
-    weight: 7
+    weight: 6
     settings:
       form_mode: default
       label_singular: ''

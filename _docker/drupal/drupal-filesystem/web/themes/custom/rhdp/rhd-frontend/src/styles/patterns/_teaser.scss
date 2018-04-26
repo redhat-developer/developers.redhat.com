@@ -15,21 +15,32 @@
     .tile-image {
       border: none;
     }
-    @include desktop-small {
+    @include tablet-landscape {
       float: right;
-      width: 40%;
+      width: 260px;
       margin-left: 30px;
 
+      .tile-image {
+        background: transparent;
+      }
 
-      .image-cell {
-        vertical-align: top;
+      .image-table {
+        .image-cell {
+          vertical-align: top;
+        }
       }
     }
   }
 
   .title {
     margin-top: 0;
-    font-size: 26px;
+    font-size: 14px;
+    @include tablet-portrait {
+      font-size: 26px;
+    }
+    @include tablet-landscape {
+      padding-right: 290px;
+    }
     line-height: 1.4;
     margin-bottom: 8px;
     a {
@@ -42,6 +53,9 @@
     display: none;
     @include tablet-portrait {
       display: block;
+    }
+    @include tablet-landscape {
+      padding-right: 290px;
     }
     p {
       font-size: 14px;

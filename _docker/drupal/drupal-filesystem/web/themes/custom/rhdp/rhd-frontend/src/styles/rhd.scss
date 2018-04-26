@@ -10,9 +10,19 @@
 @import "mq-mixins";
 @import "rhd-footer";
 @import "slick";
+
+
+// Foundation dependent 
 @import "products";
 @import "adaptive-placeholder";
 @import "keycloak-pages";
+@import "get-started";
+@import "developer-materials";
+@import "buzz";
+@import "confirmation";
+@import "middleware";
+@import "projects";
+@import "thank-you";
 
 
 // Stylesheets for microsites
@@ -185,5 +195,23 @@ img {
 }
 
 .mobile {
+  display: none;
+}
+
+.callout-light {
+  background-color: #f0f0f0;
+  border: 1px solid #efeff0;
+  padding: 20px;
+  margin: 15px 0;
+  p {
+    margin-bottom: 0;
+  }
+  a {
+    color: $link-dark-background;
+  }
+}
+
+// Hides title from Basic Pages
+body.page-node-type-page h1.page-title {
   display: none;
 }

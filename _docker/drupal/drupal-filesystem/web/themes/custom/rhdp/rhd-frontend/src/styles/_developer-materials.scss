@@ -27,7 +27,7 @@
     }
   }
   .row {
-    @extend .flex-center;
+    // @extend .flex-center;
   }
 }
 
@@ -152,7 +152,7 @@ ul.results {
     margin-left: 5px;
   }
   i.fa-star,i.fa-star-half-empty {
-    color:$light-orange;
+    color:#fdcf50;
   }
 
   a.banner {
@@ -327,7 +327,7 @@ table.developer-materials-grid {
         left:50%;
         top:0;
         top: 20px;
-        background:$med-blue;
+        background:#94aebd;
         padding:2px 20px;
         margin-left: -45px;
       }
@@ -347,10 +347,10 @@ table.developer-materials-grid {
         padding-right:10px;
         float: right;
         font-family:'FontAwesome';
-        @include transition(all 0.3s);
+        // @include transition(all 0.3s);
       }
       &.filter-block-open:after {
-        @include transform(rotate(-180deg));
+        // @include transform(rotate(-180deg));
       }
     }
   }
@@ -433,11 +433,11 @@ table.developer-materials-grid {
 .jdfadvise {
   padding: 2em;
   color: $grey-6;
-  background-color: $light-blue;
+  background-color: #e1eef4;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  border: 1px solid $med-blue;
+  border: 1px solid #94aebd;
   margin-bottom: 2em;
 
   .adviseclose {
@@ -472,11 +472,11 @@ table.developer-materials-grid {
 .bomadvise {
   padding: 2em;
   color: $grey-6;
-  background-color: $light-blue;
+  background-color: #e1eef4;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  border: 1px solid $med-blue;
+  border: 1px solid #94aebd;
   margin-bottom: 2em;
   margin-right: 2em;
 

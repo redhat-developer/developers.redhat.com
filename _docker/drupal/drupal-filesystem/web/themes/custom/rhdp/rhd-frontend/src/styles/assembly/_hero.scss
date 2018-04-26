@@ -16,6 +16,17 @@
       display: none;
     }
   }
+  h1 {
+    font-size: 23px;
+    line-height: 2em;
+    @include tablet-portrait {
+      font-size: 45px;
+      line-height: 1.4;
+    }
+    @include tablet-landscape {
+      font-size: 50px;
+    }
+  }
   h2 {
     font-size: 4rem;
     line-height: 1.1;
@@ -44,3 +55,4 @@
     }
   }
 }
+

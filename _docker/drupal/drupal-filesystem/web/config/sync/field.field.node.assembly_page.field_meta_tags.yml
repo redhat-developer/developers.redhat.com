@@ -1,0 +1,23 @@
+uuid: 6a37d4a7-2e25-4137-ad88-468359955fd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.assembly_page
+  module:
+    - metatag
+id: node.assembly_page.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: assembly_page
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag

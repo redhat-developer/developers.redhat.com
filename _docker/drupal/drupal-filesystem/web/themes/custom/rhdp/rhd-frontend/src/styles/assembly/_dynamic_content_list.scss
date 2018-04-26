@@ -22,6 +22,14 @@
     }
   }
 
+  .narrow {
+    .grid {
+      @include tablet-portrait {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
   .content-teaser-list {
     list-style-type: none;
     &>li {
