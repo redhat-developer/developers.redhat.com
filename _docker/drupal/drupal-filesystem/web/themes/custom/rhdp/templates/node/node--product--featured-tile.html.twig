@@ -5,10 +5,12 @@
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
-  {% if content.field_image %}
-    {{ content.field_image }}
-  {% endif %}
-  <p class="tile-title">{{ label }}</p>
+  <a href="{{ logo_link }}">
+    {% if content.field_image %}
+      {{ content.field_image }}
+    {% endif %}
+    <p class="tile-title">{{ label }}</p>
+  </a>
     {{ content.field_short_description }}
     {% if cta_url %}
       <a class="button medium-cta" href="{{ cta_url }}">{{ cta_title }}</a>
