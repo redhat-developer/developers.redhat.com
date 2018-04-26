@@ -253,6 +253,22 @@ function rhdp_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 
+  if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
+    $product_code = $node->get('field_product_machine_name')->getValue();
+    if (count($product_code)) {
+      $product_code = reset($product_code);
+      $variables['logo_link'] = \Drupal::service('path.alias_manager')->getAliasByPath('/product/' . $product_code['value']);
+    }
+    $variables['cta_url'] = false;
+    $variables['cta_title'] = ['#markup' => 'Learn More'];
+    $cta_field = $node->get('field_call_to_action_link')->getValue();
+    if (count($cta_field)) {
+      $cta_field = reset($cta_field);
+      $variables['cta_title']['#markup'] = $cta_field['title'];
+      $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath(Url::fromUri($cta_field['uri'])->toString());
+    }
+  }
+
   // Add icon for 'login required' resources
   if ($variables['view_mode'] == 'card') {
     $variables['login_req'] = false;
