@@ -9980,6 +9980,51 @@ body.page-node-type-promotion-page .author-img {
     padding-left: 20px;
     padding-right: 20px; } }
 
+#rhd-article {
+  padding-top: 2em; }
+  #rhd-article .large-5.medium-5.columns, #rhd-article .large-5.medium-5.developer-materials-sidebar, #rhd-article .large-5.medium-5.developer-materials-main, #rhd-article .large-5.medium-5.microsite-nav {
+    position: absolute;
+    float: right;
+    right: 0; }
+  #rhd-article .article-info {
+    border: none;
+    background: #D5D5D5;
+    padding: 7px 5px;
+    margin-bottom: 2.5em; }
+    #rhd-article .article-info ul {
+      margin-top: 0;
+      padding: 0 5px 5px 5px; }
+      #rhd-article .article-info ul li {
+        width: auto;
+        margin-right: 15px; }
+      #rhd-article .article-info ul .field--name-field-content-author {
+        display: inline-block; }
+  #rhd-article .article-content h2 {
+    border-bottom: 1px solid #d5d5d5;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    font-weight: 100;
+    font-size: 1.9em; }
+  #rhd-article .article-content h3 {
+    border-bottom: none;
+    font-size: 1.7em;
+    padding-bottom: 0;
+    margin-bottom: 10px; }
+  #rhd-article .a2a_kit {
+    margin-bottom: 30px; }
+  #rhd-article .field--name-field-tags {
+    display: inline; }
+    #rhd-article .field--name-field-tags .field__item {
+      display: inline-block;
+      color: #424242; }
+      #rhd-article .field--name-field-tags .field__item a {
+        color: #424242; }
+      #rhd-article .field--name-field-tags .field__item:after {
+        content: ", ";
+        position: relative; }
+      #rhd-article .field--name-field-tags .field__item:last-child:after {
+        display: none; }
+
 .about .wrapper {
   padding-bottom: 0; }
 
@@ -11217,7 +11262,8 @@ body.path-products h1.page-title,
 body.page-node-type-video-resource h1.page-title,
 body.page-node-type-books h1.page-title,
 body.page-node-type-cheat-sheet h1.page-title,
-body.page-node-type-promotion-page h1.page-title {
+body.page-node-type-promotion-page h1.page-title,
+body.page-node-type-article h1.page-title {
   display: none; }
 
 .page-community-contributor .node__content > .text-formatted,

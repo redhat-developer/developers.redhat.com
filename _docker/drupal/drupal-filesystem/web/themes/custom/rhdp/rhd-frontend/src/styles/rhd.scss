@@ -28,6 +28,7 @@
 @import "cheat-sheet";
 @import "videos";
 @import "microsite";
+@import "articles";
 
 
 // Stylesheets for microsites
@@ -69,7 +70,8 @@ body.path-products,
 body.page-node-type-video-resource,
 body.page-node-type-books,
 body.page-node-type-cheat-sheet,
-body.page-node-type-promotion-page {
+body.page-node-type-promotion-page,
+body.page-node-type-article {
   h1.page-title {
     display: none;
   }
