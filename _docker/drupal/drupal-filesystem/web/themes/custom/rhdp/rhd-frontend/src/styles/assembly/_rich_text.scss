@@ -13,4 +13,18 @@
     text-align: left;
     margin-bottom: 0;
   }
+
+  &.assembly-slim {
+    padding-top: 0;
+    background-image: none;
+
+    .text-formatted {
+      p:first-child {
+        margin-top: 0;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
