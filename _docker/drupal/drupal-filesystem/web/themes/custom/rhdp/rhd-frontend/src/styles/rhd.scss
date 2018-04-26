@@ -210,3 +210,8 @@ img {
     color: $link-dark-background;
   }
 }
+
+// Hides title from Basic Pages
+body.page-node-type-page h1.page-title {
+  display: none;
+}

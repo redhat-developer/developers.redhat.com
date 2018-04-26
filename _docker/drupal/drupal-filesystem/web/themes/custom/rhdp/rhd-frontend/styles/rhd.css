@@ -7267,15 +7267,15 @@ ul.project-social {
       padding: 0; } }
 
 .hero.hero-projects {
-  background: cdn("../images/design/RHDev_pageheader_upstream_desktop.png") top center/cover no-repeat;
+  background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_desktop.png") top center/cover no-repeat;
   content: ':4242';
   border: 0;
   min-height: 220px;
   margin-bottom: 0; }
   .hero.hero-projects h2 {
     color: white;
-    font-size: 5em;
-    margin-top: 20px;
+    font-size: 4em;
+    margin-top: .5em;
     text-transform: uppercase;
     font-weight: 600; }
   @media only screen and (max-width: 1024px) {
@@ -7283,20 +7283,17 @@ ul.project-social {
       font-size: 4em; } }
   @media only screen and (max-width: 768px) {
     .hero.hero-projects {
-      background: cdn("../images/design/RHDev_pageheader_upstream_tablet.png") top center/cover no-repeat;
+      background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png") top center/cover no-repeat;
       min-height: auto; }
       .hero.hero-projects h2 {
         margin-top: 10px;
         line-height: 1; } }
   @media only screen and (max-width: 480px) {
     .hero.hero-projects {
-      background: cdn("../images/design/RHDev_pageheader_upstream_mobile.png") top center/cover no-repeat; } }
+      background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_mobile.png") top center/cover no-repeat; } }
   .hero.hero-projects p {
     color: white;
     font-size: 20px; }
-
-.hero.hero-projects {
-  display: none; }
 
 rhdp-thankyou .thankyou {
   border-bottom: 1px solid #d5d5d5;
@@ -7514,7 +7511,12 @@ rhdp-thankyou .thankyou-button {
       margin-right: 15px; }
 
 .wide-hero.awards {
-  background: url("https://static.jboss.org/rhd/images/_images_awards_microsite_hero.jpg"); }
+  background: url("https://static.jboss.org/rhd/images/_images_awards_microsite_hero.jpg");
+  padding: 1em; }
+  .wide-hero.awards h2, .wide-hero.awards p {
+    color: #FFFFFF; }
+  .wide-hero.awards h2 {
+    text-align: right; }
 
 .middlewareAwards .award-section {
   margin-bottom: 40px; }
@@ -7543,11 +7545,11 @@ rhdp-thankyou .thankyou-button {
   padding-bottom: 0; }
 
 .contributors-main {
-  background: cdn("../images/design/RHDev_pageheader_contributors_desktop.png") top center/cover no-repeat; }
+  background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_desktop.png") top center/cover no-repeat; }
   .contributors-main h2, .contributors-main h3, .contributors-main h4, .contributors-main h5, .contributors-main p {
     color: #FFFFFF; }
   .contributors-main .contrubutors-title {
-    padding: 50px 0; }
+    padding: 3em; }
   .contributors-main .contributors-cta {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 50px 30px; }
@@ -7559,11 +7561,11 @@ rhdp-thankyou .thankyou-button {
 
 @media only screen and (max-width: 1024px) {
   .contributors-main {
-    background: cdn("../images/design/RHDev_pageheader_contributors_tablet.png") top center/cover no-repeat; } }
+    background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_tablet.png") top center/cover no-repeat; } }
 
 @media only screen and (max-width: 480px) {
   .contributors-main {
-    background: cdn("../images/design/RHDev_pageheader_contributors_mobile.png") top center/cover no-repeat; } }
+    background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_mobile.png") top center/cover no-repeat; } }
 
 .contributers-sec1 {
   padding: 50px 0; }
@@ -8059,13 +8061,14 @@ ul.ytlist {
       border: none; } }
 
 .wide-hero.devoxx4kids {
-  background: cdn("https://static.jboss.org/rhd/images/_images_devoxx4kids_microsite_hero.jpg") top center no-repeat;
+  background: url("https://static.jboss.org/rhd/images/_images_devoxx4kids_microsite_hero.jpg") top center no-repeat;
   background-size: cover;
   color: white;
   padding: 50px 0;
   margin-bottom: 40px;
   border-bottom: 1px solid #E6E6E6; }
   .wide-hero.devoxx4kids h3 {
+    color: #FFFFFF;
     text-align: left; }
 
 ul.devoxx-list {
@@ -8441,14 +8444,14 @@ ul.product-forums.multi-column {
     max-width: 250px; }
 
 .wide-hero.vjbug {
-  background-image: cdn("../images/design/vjbug_microsite_banner_desktop.png");
+  background-image: url("https://static.jboss.org/rhd/images/vjbug_microsite_banner_desktop.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 242px; }
   @media only screen and (max-width: 768px) {
     .wide-hero.vjbug {
-      background: cdn("../images/design/vjbug_microsite_banner_mobile.png") top center/cover repeat-x;
+      background: url("https://static.jboss.org/rhd/images/vjbug_microsite_banner_mobile.png") top center/cover repeat-x;
       min-height: 115px; } }
 
 #vJBug-microsite {
@@ -8655,3 +8658,6 @@ img {
     margin-bottom: 0; }
   .callout-light a {
     color: #73BCF7; }
+
+body.page-node-type-page h1.page-title {
+  display: none; }
