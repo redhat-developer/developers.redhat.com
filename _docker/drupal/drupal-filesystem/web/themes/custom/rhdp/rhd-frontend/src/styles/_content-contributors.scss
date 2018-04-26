@@ -3,12 +3,12 @@
 }
 
 .contributors-main {
-  background: cdn('../images/design/RHDev_pageheader_contributors_desktop.png') top center / cover no-repeat;
+  background: url('https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_desktop.png') top center / cover no-repeat;
   h2, h3, h4, h5, p {
     color: $white;
   }
   .contrubutors-title {
-    padding: 50px 0;
+    padding: 3em;
   }
   .contributors-cta {
     background-color: rgba(0, 0, 0, 0.5);
@@ -24,12 +24,12 @@
 }
 @include tablet-landscape-and-down {
   .contributors-main {
-    background: cdn('../images/design/RHDev_pageheader_contributors_tablet.png') top center / cover no-repeat;
+    background: url('https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_tablet.png') top center / cover no-repeat;
   }
 }
 @include mobile-landscape-and-down {
   .contributors-main {
-    background: cdn('../images/design/RHDev_pageheader_contributors_mobile.png') top center / cover no-repeat;
+    background: url('https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_mobile.png') top center / cover no-repeat;
   } 
 }
 .contributers-sec1 {
