@@ -377,8 +377,12 @@ div.alert-box {
   font-size: 18px;
   line-height: 1.5; }
 
-.node--type-author.node--view-mode-teaser .bio p {
-  margin-top: 0; }
+.node--type-author.node--view-mode-teaser .bio {
+  margin: 0;
+  padding: 0; }
+  .node--type-author.node--view-mode-teaser .bio p {
+    font-size: 14px;
+    margin-top: 0; }
 
 .node--type-author .headshot img {
   max-width: 100%;
@@ -1090,6 +1094,9 @@ a.light-cta {
     @media (min-width: 576px) {
       .assembly-type-featured_evangelists .grid {
         grid-template-columns: 2fr 1fr; } }
+    @media (min-width: 992px) {
+      .assembly-type-featured_evangelists .grid {
+        grid-template-columns: 3fr 1fr; } }
   .assembly-type-featured_evangelists .content-teaser-list {
     padding: 0;
     margin: 0;
