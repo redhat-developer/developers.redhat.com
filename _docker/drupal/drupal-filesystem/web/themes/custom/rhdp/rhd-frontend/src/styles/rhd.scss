@@ -75,6 +75,17 @@ body.page-node-type-promotion-page {
   }
 }
 
+// Makes Basic Pages full width
+.page-community-contributor,
+.page-ticket-monster,
+.page-middleware {
+  .node__content > .text-formatted {
+    max-width: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+}
+
 .rh-universal-header {
   background-color: #1A1A1A;
   flex: 0 0 50px;
