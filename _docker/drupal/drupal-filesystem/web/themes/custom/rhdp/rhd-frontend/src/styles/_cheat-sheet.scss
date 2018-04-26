@@ -58,12 +58,13 @@
   .cs-info, .book-info {
     border-top: 1px solid $grey-5;
     border-bottom: 1px solid $grey-5;
-    padding: 7px 5px 0 0;
+    padding: 7px 0;
     margin-bottom: 2.5em;
     ul {
       list-style: none;
       margin: 0;
       overflow: hidden;
+      padding-left: 0;
       li {
         width: auto;
         margin-bottom: 1px;
@@ -71,6 +72,9 @@
         display: inline-block;
         &:first-child {
           padding-left: 0;
+        }
+        .field {
+          display: inline-block;
         }
       }
     }
