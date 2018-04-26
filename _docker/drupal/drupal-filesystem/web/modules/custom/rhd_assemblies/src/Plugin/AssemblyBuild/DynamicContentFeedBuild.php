@@ -43,7 +43,8 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
             '#theme' => 'wordpress_post_' . $mode,
             '#post' => $item['post']->content,
             '#media' => $item['post']->media,
-            '#categories' => $item['post']->categories
+            '#categories' => $item['post']->categories,
+            '#date' => $item['post']->date
           ];
         }
         else if (isset($item['node'])) {
