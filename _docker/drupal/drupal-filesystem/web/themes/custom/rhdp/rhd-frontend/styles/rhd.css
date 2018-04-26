@@ -1365,6 +1365,13 @@ a.light-cta {
     line-height: 1.5;
     text-align: left;
     margin-bottom: 0; }
+  .assembly-type-rich_text.assembly-slim {
+    padding-top: 0;
+    background-image: none; }
+    .assembly-type-rich_text.assembly-slim .text-formatted p:first-child {
+      margin-top: 0; }
+    .assembly-type-rich_text.assembly-slim .text-formatted p:last-child {
+      margin-bottom: 0; }
 
 .assembly-type-all_products_listing {
   background-color: #F9F9F9;
