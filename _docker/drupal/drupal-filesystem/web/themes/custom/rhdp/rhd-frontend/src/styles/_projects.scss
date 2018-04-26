@@ -51,6 +51,7 @@ ul.featured-projects-results {
     height: auto;
     float: left;
     padding: 0 0.625em 1.25em;
+    max-width: 268px;
     .defaultprojectimage {
       width:100%;
       border: 0;
@@ -75,10 +76,7 @@ ul.featured-projects-results {
   list-style: none;
   margin: 0;
   padding: 0;
-  // @include column-count(2);
-  // @include column-gap(20px);
   li {
-    // word-wrap: break-word;
     overflow: hidden;
     font-size: emCalc(16);
     a {
@@ -93,6 +91,21 @@ ul.featured-projects-results {
         content :'';
       }
     }
+  }
+}
+
+.project-filters {
+  h4 {
+    font-size: 23px;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .project-filters-clear {
+    font-size: 14px;
+    margin-left: 5px;
   }
 }
 
@@ -162,6 +175,7 @@ ul.project-social {
     font-size: 20px;
   }
   .row {
-    @extend .flex-center;
+    // @extend .flex-center;
   }
 }
+.hero.hero-projects { display: none; }
