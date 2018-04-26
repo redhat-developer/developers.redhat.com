@@ -17,6 +17,9 @@
     @include tablet-portrait {
       grid-template-columns: 2fr 1fr;
     }
+    @include desktop-small {
+      grid-template-columns: 3fr 1fr;
+    }
   }
 
   .content-teaser-list {
