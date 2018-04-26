@@ -1,0 +1,6 @@
+
+{% if content.field_headshot %}
+    <p class="event-speaker">{{ content.field_headshot }}<span>{{ author_name }}</span></p>
+{% else %}
+    <p class="event-speaker"><i class="fas fa-user fa-2x"> </i><span>{{ presenter['content']['#title'] }}</span></p>
+{% endif %}
