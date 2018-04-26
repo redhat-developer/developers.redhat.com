@@ -11,22 +11,29 @@
     }
   }
 
+  @include tablet-landscape {
+    display: flex;
+    .teaser-image {
+      min-width: 180px;
+      max-width: 260px;
+      margin-left: 30px;
+    }
+    .text-content {
+      order: -1;
+    }
+  }
+
   .teaser-image {
     .tile-image {
       border: none;
     }
     @include tablet-landscape {
-      float: right;
-      width: 260px;
-      margin-left: 30px;
-
       .tile-image {
         background: transparent;
-      }
-
-      .image-table {
-        .image-cell {
-          vertical-align: top;
+        .image-table {
+          .image-cell {
+            vertical-align: top;
+          }
         }
       }
     }
@@ -37,9 +44,6 @@
     font-size: 14px;
     @include tablet-portrait {
       font-size: 26px;
-    }
-    @include tablet-landscape {
-      padding-right: 290px;
     }
     line-height: 1.4;
     margin-bottom: 8px;
@@ -53,9 +57,6 @@
     display: none;
     @include tablet-portrait {
       display: block;
-    }
-    @include tablet-landscape {
-      padding-right: 290px;
     }
     p {
       font-size: 14px;
