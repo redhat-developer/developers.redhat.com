@@ -409,11 +409,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-<<<<<<< HEAD
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n    grid-column: span 1; \n}\n:host img { height: 150px; width: 150px; }\n</style>\n" + (el.image ? "<img src=\"" + el.image + "\">" : "<img src=\"\">") + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
-=======
                         tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
->>>>>>> 82bbe317b2d346962ab2ad36206f4ed1f9b54789
                         return tpl;
                     };
                     _this._visible = false;

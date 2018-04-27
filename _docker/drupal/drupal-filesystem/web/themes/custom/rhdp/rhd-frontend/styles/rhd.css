@@ -117,8 +117,6 @@
   font-weight: 900;
   font-style: italic; }
 
-<<<<<<< HEAD
-=======
 :root {
   --rhd-grey-3: #D5D5D5;
   --rhd-gray-3: #D5D5D5;
@@ -127,7 +125,6 @@
   --rhd-linkhover: #004C98;
   --rhd-white: #FFFFFF; }
 
->>>>>>> 82bbe317b2d346962ab2ad36206f4ed1f9b54789
 * {
   box-sizing: border-box;
   font-family: overpass, "Open Sans", Helvetica, sans-serif; }
@@ -11303,8 +11300,6 @@ ul.product-forums.multi-column {
   #videoModal, a.enlarge-video {
     display: none; } }
 
-<<<<<<< HEAD
-=======
 rhdp-search-app {
   display: flex;
   flex-flow: column;
@@ -11921,20 +11916,10 @@ rhdp-search-onebox ul.slots {
   rhdp-search-filter-item #toggle {
     display: block; } }
 
->>>>>>> 82bbe317b2d346962ab2ad36206f4ed1f9b54789
 [data-rhd-grid="normal"] {
   display: flex;
   flex-direction: column;
   display: grid;
-<<<<<<< HEAD
-  grid-template-columns: [leftgutter] auto repeat(12, [content-start] 70px) auto [rightgutter];
-  grid-template-rows: minmax(30px, 1fr);
-  grid-auto-flow: column;
-  grid-gap: 30px; }
-
-[data-rhd-pos="span12"] {
-  grid-column: content-start / span 12; }
-=======
   grid-template-columns: repeat(12, [content-start] 70px) [content-end];
   grid-template-rows: minmax(30px, 1fr) [bottomrow];
   grid-auto-flow: column;
@@ -11970,7 +11955,22 @@ rhdp-search-onebox ul.slots {
 
 [data-rhd-row="bottom"] {
   grid-row: span bottomrow; }
->>>>>>> 82bbe317b2d346962ab2ad36206f4ed1f9b54789
+
+body.page-node-type-page h1.page-title,
+body.path-products h1.page-title,
+body.page-node-type-video-resource h1.page-title,
+body.page-node-type-books h1.page-title,
+body.page-node-type-cheat-sheet h1.page-title,
+body.page-node-type-promotion-page h1.page-title,
+body.page-node-type-article h1.page-title {
+  display: none; }
+
+.page-community-contributor .node__content > .text-formatted,
+.page-ticket-monster .node__content > .text-formatted,
+.page-middleware .node__content > .text-formatted {
+  max-width: none;
+  padding: 0;
+  margin-bottom: 0; }
 
 body.page-node-type-page h1.page-title,
 body.path-products h1.page-title,
