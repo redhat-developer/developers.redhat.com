@@ -11,9 +11,13 @@ Background – RHD Front-end Code and Documentation
     <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.min.css">
     
     <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/prism-ghcolors.css">
+    <script src="https://redhat-developer.github.io/rhd-frontend/js/base.js"></script>>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system-production.js"></script>
@@ -22,7 +26,7 @@ Background – RHD Front-end Code and Documentation
     <div class="rhd-masthead">
     <div class="rh-universal-header">
         <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
-            <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page">
+            <a class="rh-logo-wrapper" id="home-link" href="https://www.redhat.com/" title="Red Hat Home page">
                 <img class="rh-header-logo" alt="Red Hat Logo" src="https://developers.redhat.com/images/branding/RHLogo_white.svg">
             </a>            
             <ul class="rhd-menu rh-nav-universal-list">
@@ -175,7 +179,7 @@ Background – RHD Front-end Code and Documentation
 </div>
     <main role="main">
     
-<h1 data-rhd-grid="normal"><span data-rhd-pos="span12">Background</span></h1>
+<h1 data-rhd-grid="normal"><span data-rhd-col="span12">Background</span></h1>
 <section></section>
 
     </main>

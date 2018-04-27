@@ -19,7 +19,7 @@
     {{ with "js/rhd.js" | absURL }}
     <script>
     SystemJS.import("{{ . }}").then(function() {
-        System.import('rhd-app');
+        System.import('typescript/rhd-app');
     });
     </script>
     {{ end }}

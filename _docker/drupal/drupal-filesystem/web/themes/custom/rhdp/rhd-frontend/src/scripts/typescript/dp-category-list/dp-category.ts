@@ -1,17 +1,21 @@
 import RHElement from '../rhelement';
 
 export default class DPCategory extends RHElement {
-    template = el => {
+    template = (el:DPCategory) => {
         const tpl = document.createElement("template");
         tpl.innerHTML = `
 <style>
 :host { 
     text-align: center; 
-    grid-column: span 1; 
 }
-:host img { height: 150px; width: 150px; }
+img, svg { height: 150px; width: 150px; }
+
+:host(:hover), :host([visible]) {
+    color: var(--rhd-blue);
+    fill: var(--rhd-blue);
+}
 </style>
-${el.image ? `<img src="${el.image}">` : `<img src="">`}
+${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image }
 <h4>${ el.name }</h4>
 <slot></slot>
 `;
@@ -31,18 +35,32 @@ ${el.image ? `<img src="${el.image}">` : `<img src="">`}
     get image() { return this._image; }
     set image(val) {
         if (this._image === val) return;
-        this._image = val;
+        if (!val.match(/\.svg$/)) {
+            this._image = val;
+        } else {
+            this._getSVG(val);
+        }
     }
 
     get visible() { return this._visible; }
     set visible(val) {
+        val = val !== null && val !== false ? true : false;
         if (this._visible === val) return;
         this._visible = val;
-        // this.shadowRoot.querySelector('section').style.display = this._visible ? 'block' : 'none';
-        this.dispatchEvent(new CustomEvent(this._visible ? 'dp-category-selected' : 'dp-category-deselected', {
+        let evt = {
+            detail: {
+                index: this._getIndex(this)
+            },
             bubbles: true,
-            detail: {index: this._getIndex(this), list: this.querySelector( 'dp-category-item-list' ).cloneNode(true) }
-        }));
+            composed: true
+        }
+        this.dispatchEvent(new CustomEvent('dp-category-selected', evt));
+        if ( this._visible ) {
+            this.setAttribute('visible','');
+        } else {
+            this.removeAttribute('visible');
+        }
+        // this.shadowRoot.querySelector('section').style.display = this._visible ? 'block' : 'none';
     }
 
     constructor() {
@@ -62,7 +80,7 @@ ${el.image ? `<img src="${el.image}">` : `<img src="">`}
     }
 
     static get observedAttributes() { 
-        return ['name', 'image']; 
+        return ['name', 'image','visible']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -70,7 +88,6 @@ ${el.image ? `<img src="${el.image}">` : `<img src="">`}
     }
 
     _showList() {
-        console.log('category clicked');
         this.visible = !this.visible;
     }
 
@@ -78,6 +95,13 @@ ${el.image ? `<img src="${el.image}">` : `<img src="">`}
         let i = 1;
         while (node = node.previousElementSibling) { ++i }
         return i;
+    }
+
+    async _getSVG(path) {
+        const resp = await fetch(path);
+        const svg = await resp.text();
+        this.image = svg.substring(svg.indexOf('<svg'));
+        super.render(this.template(this));
     }
 }
 

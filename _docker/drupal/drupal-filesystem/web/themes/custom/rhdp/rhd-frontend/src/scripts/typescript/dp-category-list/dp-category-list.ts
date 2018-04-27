@@ -1,4 +1,5 @@
 import RHElement from '../rhelement';
+import DPCategoryItemList from './dp-category-item-list';
 
 export default class DPCategoryList extends RHElement {
     template = el => {
@@ -6,57 +7,65 @@ export default class DPCategoryList extends RHElement {
         tpl.innerHTML = `
 <style>
     :host {
-        justify-items: center;
         position: relative;
         background-color: #F9F9F9;
         padding: 30px 0;
+        display: block;
     }
     section {
-        grid-column: 2 / span 12;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        grid-gap: 30px;
+        margin: 0 auto;
+        width: 1200px;
+        justify-items: center;
     }
 </style>
-<section data-rhd-pos="span12">
+<section data-rhd-grid="quad">
 <slot></slot>
 </section>
 `;
         return tpl;
     }
+
+    items = [];
+    active = 0;
+
     constructor() {
         super('dp-category-list');
-        
     }
 
     connectedCallback() {
         super.render(this.template(this));
 
-        this.setAttribute('data-rhd-grid', 'normal');
+        let li = this.querySelectorAll('dp-category-item-list');
+        for( let ele in li ) {
+            this.items.push(li[ele]);
+        };
+        //this.setAttribute('data-rhd-grid', 'quad');
 
         this.addEventListener('dp-category-selected', e => {
-            let section = this.querySelector(':scope > dp-category-item-list');
-            if (section) { section.remove(); }
-
             let detail = e['detail'];
-            let len = this.querySelectorAll(':scope > dp-category').length;
+            let len = this.querySelectorAll('dp-category').length;
             let idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
-            let list = detail.list || null;
             let rowEle = this.querySelector(`dp-category:nth-child(${idx})`);
-            list.index = detail.index || 1;
-            list.style.display = 'block';
-            if (idx <= len) {
-                this.insertBefore(list, rowEle);
+            let list = this.items[detail.index-1];
+            if (detail.index === this.active || this.active > 0) {
+                this.removeChild(this.items[this.active-1]);
+                this.active = 0;
             } else {
-                this.appendChild(list);
+                this.active = detail.index;
+                list.index = detail.index || 1;
+                list['style'].display = 'block';
+                if (idx <= len) {
+                    this.insertBefore(list, rowEle);
+                } else {
+                    this.appendChild(list);
+                }
             }
-            
         });
 
-        this.addEventListener('dp-category-deselected', e => {
-            let section = this.querySelector(':scope > dp-category-item-list');
-            if (section) { section.remove(); }
-        });
-
+        this.querySelector('dp-category').setAttribute('visible','');
         
     }
 
@@ -70,16 +79,3 @@ export default class DPCategoryList extends RHElement {
 }
 
 window.customElements.define('dp-category-list', DPCategoryList);
-
-/*
-1 1 5
-2 1 5
-3 1 5
-4 1 5
-5 2 9
-6 2 9
-7 2 9
-8 2 9
-9 3 
-10 3
-*/

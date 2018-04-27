@@ -46,6 +46,7 @@
 @import "javaone";
 @import "ticket-monster";
 @import "vjbug";
+@import "searchapp";
 
 
 
@@ -54,14 +55,72 @@
     flex-direction: column;
 
     display: grid;
-    grid-template-columns: [leftgutter] auto repeat(12, [content-start] 70px) auto [rightgutter];
-    grid-template-rows: minmax(30px, 1fr);
+    grid-template-columns: repeat(12, [content-start] 70px) [content-end];
+    grid-template-rows: minmax(30px, 1fr) [bottomrow];
     grid-auto-flow: column;
     grid-gap: 30px;
+    margin: 0 auto;
+    width: 1200px;
 }
 
-[data-rhd-pos="span12"] {
-  grid-column: content-start / span 12;
+[data-rhd-grid="quad"] {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+[data-rhd-grid="triple"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+[data-rhd-col="span12"] {
+  grid-column: content-start / content-end;
+}
+
+[data-rhd-col="span3"] {
+  grid-column: span 3;
+}
+
+[data-rhd-col="5span9"] {
+  grid-column: 5 / span 9;
+}
+
+[data-rhd-row="span5"] {
+  grid-row: span 5;
+}
+
+[data-rhd-row="bottom"] {
+  grid-row: span bottomrow;
+}
+
+// Hides title from Basic Pages
+body.page-node-type-page,
+body.path-products,
+body.page-node-type-video-resource,
+body.page-node-type-books,
+body.page-node-type-cheat-sheet,
+body.page-node-type-promotion-page,
+body.page-node-type-article {
+  h1.page-title {
+    display: none;
+  }
+}
+
+// Makes Basic Pages full width
+.page-community-contributor,
+.page-ticket-monster,
+.page-middleware {
+  .node__content > .text-formatted {
+    max-width: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
 }
 
 // Hides title from Basic Pages
