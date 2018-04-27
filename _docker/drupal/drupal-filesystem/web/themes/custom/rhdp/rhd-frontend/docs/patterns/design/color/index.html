@@ -201,7 +201,10 @@ Color – RHD Front-end Code and Documentation
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
 
     
-<script>SystemJS.import("https:\/\/redhat-developer.github.io\/rhd-frontend\/js\/rhd.min.js");</script>
+    <script>
+    SystemJS.import("https:\/\/redhat-developer.github.io\/rhd-frontend\/js\/rhd.min.js").then(function() {
+        System.import('typescript/rhd-app');
+    })</script>
     
 
 

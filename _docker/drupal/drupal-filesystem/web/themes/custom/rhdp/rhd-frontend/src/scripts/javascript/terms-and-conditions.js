@@ -60,8 +60,8 @@ app.termsAndConditions = {
 
     if (tcDownloadURL &&
         tcDownloadURL.startsWith('https://access.cdn.redhat.com/') &&
-        tcDownloadURL.contains(tcDownloadFileName)) {
-      tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
+        tcDownloadURL.contains(tcDownloadFileName)) { //  && !window.localStorage.getItem('recent-download-url')
+        tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
 
       $("a#tcDownloadLink").attr("href", tcDownloadURL);
       if (tcDownloadFileName) {

@@ -1,7 +1,7 @@
 (function() {
   $(function() { 
     var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It'+"'"+'s true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"></a></div></div></div></section>');
-    var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It'+"'"+'s true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developers.redhat.com/blog"> Read more about this on our blog.</a></p></div></div></div></section>');
+    var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It'+"'"+'s true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
     if(isReferrer('jbd')) {
       switch (getPrimaryCategory()) {
         case 'products': // before class .mobile.product-header
@@ -62,7 +62,7 @@
           break;
       }
       
-      $('#referral-alert .close').click(function() {
+      $('#referral-alert .close').on("click", function() {
         $('#referral-alert').addClass('hide');
       });
     }

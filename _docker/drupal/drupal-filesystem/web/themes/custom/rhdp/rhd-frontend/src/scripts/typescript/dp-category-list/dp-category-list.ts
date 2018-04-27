@@ -48,12 +48,16 @@ export default class DPCategoryList extends RHElement {
             let detail = e['detail'];
             let len = this.querySelectorAll('dp-category').length;
             let idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
-            let rowEle = this.querySelector(`dp-category:nth-child(${idx})`);
             let list = this.items[detail.index-1];
-            if (detail.index === this.active || this.active > 0) {
+            if (detail.index === this.active) {
                 this.removeChild(this.items[this.active-1]);
                 this.active = 0;
             } else {
+                if (this.active > 0) {
+                    this.removeChild(this.items[this.active-1]);
+                    this.active = 0;
+                }
+                let rowEle = this.querySelector(`dp-category:nth-child(${idx})`)
                 this.active = detail.index;
                 list.index = detail.index || 1;
                 list['style'].display = 'block';

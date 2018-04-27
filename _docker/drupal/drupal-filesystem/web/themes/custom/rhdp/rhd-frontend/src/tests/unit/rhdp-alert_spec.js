@@ -1,4 +1,4 @@
-"use strict";
+
 // Alert component testing
 describe('Alert component', function() {
     var wc, rdy = false;

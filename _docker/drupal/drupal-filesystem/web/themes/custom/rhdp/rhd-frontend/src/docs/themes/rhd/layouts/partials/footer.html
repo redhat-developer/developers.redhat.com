@@ -13,7 +13,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
 {{ if .Site.Params.minify }}
     {{ with "js/rhd.min.js" | absURL }}
-<script>SystemJS.import("{{ . | safeURL }}");</script>
+    <script>
+    SystemJS.import("{{ . }}").then(function() {
+        System.import('typescript/rhd-app');
+    })</script>
     {{ end }}
 {{ else }}
     {{ with "js/rhd.js" | absURL }}

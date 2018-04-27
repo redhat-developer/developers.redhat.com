@@ -93,7 +93,7 @@ ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image
 
     _getIndex(node) {
         let i = 1;
-        while (node = node.previousElementSibling) { ++i }
+        while (node = node.previousElementSibling) { if (node.nodeName === 'DP-CATEGORY') { ++i } }
         return i;
     }
 

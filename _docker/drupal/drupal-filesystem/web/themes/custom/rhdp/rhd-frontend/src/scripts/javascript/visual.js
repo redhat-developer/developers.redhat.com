@@ -80,7 +80,7 @@ app.stickyNav = function(className, headerElement) {
   nav.html(html);
   nav.after(select);
 
-  win.scroll(function() {
+  win.on("scroll", function() {
     if(win.scrollTop() >= (top)) {
       var width = nav.parent().width();
       nav.addClass(className + "-nav-fixed").css('width',width);

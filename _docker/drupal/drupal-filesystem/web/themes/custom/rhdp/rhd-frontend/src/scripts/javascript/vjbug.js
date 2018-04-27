@@ -1,4 +1,4 @@
-'use strict';
+
 
 app.vjbug = {
   processDate: function () {

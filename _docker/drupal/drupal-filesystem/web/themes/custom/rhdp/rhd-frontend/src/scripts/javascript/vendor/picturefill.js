@@ -3,7 +3,7 @@
 (function( w ){
 
 	// Enable strict mode
-	"use strict";
+	
 
 	w.picturefill = function() {
 		var ps = w.document.getElementsByTagName( "span" );

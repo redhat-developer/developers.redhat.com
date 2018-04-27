@@ -123,30 +123,6 @@ body.page-node-type-article {
   }
 }
 
-// Hides title from Basic Pages
-body.page-node-type-page,
-body.path-products,
-body.page-node-type-video-resource,
-body.page-node-type-books,
-body.page-node-type-cheat-sheet,
-body.page-node-type-promotion-page,
-body.page-node-type-article {
-  h1.page-title {
-    display: none;
-  }
-}
-
-// Makes Basic Pages full width
-.page-community-contributor,
-.page-ticket-monster,
-.page-middleware {
-  .node__content > .text-formatted {
-    max-width: none;
-    padding: 0;
-    margin-bottom: 0;
-  }
-}
-
 .rh-universal-header {
   background-color: #1A1A1A;
   flex: 0 0 50px;
