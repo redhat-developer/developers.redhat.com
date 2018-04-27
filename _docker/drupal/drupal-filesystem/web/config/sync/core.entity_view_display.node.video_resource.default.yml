@@ -40,7 +40,7 @@ bundle: video_resource
 mode: default
 content:
   body:
-    label: visually_hidden
+    label: hidden
     type: text_default
     weight: 2
     settings: {  }
@@ -83,7 +83,7 @@ content:
     region: content
   field_related_content:
     weight: 16
-    label: visually_hidden
+    label: hidden
     settings:
       view_mode: teaser
       link: false
@@ -99,7 +99,7 @@ content:
     region: content
   field_slideshare_source:
     weight: 13
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: null
       url_only: false
@@ -111,7 +111,7 @@ content:
     region: content
   field_speakers:
     weight: 4
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -152,7 +152,7 @@ content:
     region: content
   field_video_related_links:
     weight: 14
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -164,7 +164,7 @@ content:
     region: content
   field_video_resource:
     weight: 0
-    label: visually_hidden
+    label: hidden
     settings:
       responsive: true
       width: 854
@@ -183,7 +183,7 @@ content:
     region: content
   field_video_target_product:
     weight: 7
-    label: visually_hidden
+    label: hidden
     settings:
       view_mode: teaser
       link: false
@@ -200,14 +200,14 @@ content:
     region: content
   field_video_transcript:
     weight: 11
-    label: visually_hidden
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_views:
     weight: 5
-    label: visually_hidden
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
