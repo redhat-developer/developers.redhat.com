@@ -48,7 +48,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     return cooked;
 };
 System.register("typescript/rhelement", [], function (exports_1, context_1) {
-    
+    "use strict";
     var __moduleName = context_1 && context_1.id;
     var RHElement;
     return {
@@ -102,7 +102,7 @@ System.register("typescript/rhelement", [], function (exports_1, context_1) {
     };
 });
 System.register("typescript/rhdp-alert", ["typescript/rhelement"], function (exports_2, context_2) {
-    
+    "use strict";
     var __moduleName = context_2 && context_2.id;
     var rhelement_1, RHDPAlert;
     return {
@@ -264,7 +264,7 @@ System.register("typescript/rhdp-alert", ["typescript/rhelement"], function (exp
     };
 });
 System.register("typescript/dp-category-list/dp-category-item-list", ["typescript/rhelement"], function (exports_3, context_3) {
-    
+    "use strict";
     var __moduleName = context_3 && context_3.id;
     var rhelement_2, DPCategoryItemList;
     return {
@@ -320,7 +320,7 @@ System.register("typescript/dp-category-list/dp-category-item-list", ["typescrip
     };
 });
 System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhelement"], function (exports_4, context_4) {
-    
+    "use strict";
     var __moduleName = context_4 && context_4.id;
     var rhelement_3, DPCategoryList;
     return {
@@ -355,26 +355,17 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                         var detail = e['detail'];
                         var len = _this.querySelectorAll('dp-category').length;
                         var idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
-<<<<<<< HEAD
-                        var rowEle = _this.querySelector("dp-category:nth-child(" + idx + ")");
-                        var list = _this.items[detail.index - 1];
-                        if (detail.index === _this.active || _this.active > 0) {
-=======
                         var list = _this.items[detail.index - 1];
                         if (detail.index === _this.active) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             _this.removeChild(_this.items[_this.active - 1]);
                             _this.active = 0;
                         }
                         else {
-<<<<<<< HEAD
-=======
                             if (_this.active > 0) {
                                 _this.removeChild(_this.items[_this.active - 1]);
                                 _this.active = 0;
                             }
                             var rowEle = _this.querySelector("dp-category:nth-child(" + idx + ")");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             _this.active = detail.index;
                             list.index = detail.index || 1;
                             list['style'].display = 'block';
@@ -406,7 +397,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
     };
 });
 System.register("typescript/dp-category-list/dp-category", ["typescript/rhelement"], function (exports_5, context_5) {
-    
+    "use strict";
     var __moduleName = context_5 && context_5.id;
     var rhelement_4, DPCategory;
     return {
@@ -536,7 +527,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
     };
 });
 System.register("typescript/dp-category-list/dp-category-item", ["typescript/rhelement"], function (exports_6, context_6) {
-    
+    "use strict";
     var __moduleName = context_6 && context_6.id;
     var rhelement_5, DPCategoryItem;
     return {
@@ -578,7 +569,7 @@ System.register("typescript/dp-category-list/dp-category-item", ["typescript/rhe
     };
 });
 System.register("typescript/dp-category-list/dp-product-short-teaser", ["typescript/rhelement"], function (exports_7, context_7) {
-    
+    "use strict";
     var __moduleName = context_7 && context_7.id;
     var rhelement_6, DPProductShortTeaser;
     return {
@@ -661,7 +652,7 @@ System.register("typescript/dp-category-list/dp-product-short-teaser", ["typescr
     };
 });
 System.register("typescript/rhd-app", ["typescript/rhdp-alert", "typescript/dp-category-list/dp-category-list", "typescript/dp-category-list/dp-category", "typescript/dp-category-list/dp-category-item-list", "typescript/dp-category-list/dp-category-item", "typescript/dp-category-list/dp-product-short-teaser"], function (exports_8, context_8) {
-    
+    "use strict";
     var __moduleName = context_8 && context_8.id;
     var rhdp_alert_1, dp_category_list_1, dp_category_1, dp_category_item_list_1, dp_category_item_1, dp_product_short_teaser_1, RHDApp;
     return {
@@ -1509,7 +1500,7 @@ var DevNationLiveApp = (function (_super) {
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
 System.register("typescript/dp-stackoverflow/dp-stackoverflow", ["typescript/rhelement"], function (exports_9, context_9) {
-    
+    "use strict";
     var __moduleName = context_9 && context_9.id;
     var rhelement_7, DPStackOverflow;
     return {
@@ -5004,16 +4995,12 @@ app.ssoConfig.logout_url = homeLink.href;
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 (function (factory) {
-<<<<<<< HEAD
-    factory(jQuery);
-=======
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
     }
     else {
         factory(jQuery);
     }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 }(function ($) {
     if ($.support.cors || !$.ajaxTransport || !window.XDomainRequest) {
         return;
@@ -5050,11 +5037,7 @@ app.projects.defaultImage = "/images/design/projects/default_200x150.png";
                         if (userType === 'html' || /text\/html/i.test(xdr.contentType)) {
                             responses.html = xdr.responseText;
                         }
-<<<<<<< HEAD
-                        else if (userType === 'json' || userType !== 'text' && /\/json/i.test(xdr.contentType)) {
-=======
                         else if (userType === 'json' || (userType !== 'text' && /\/json/i.test(xdr.contentType))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             try {
                                 responses.json = $.parseJSON(xdr.responseText);
                             }
@@ -5063,11 +5046,7 @@ app.projects.defaultImage = "/images/design/projects/default_200x150.png";
                                 status.message = 'parseerror';
                             }
                         }
-<<<<<<< HEAD
-                        else if (userType === 'xml' || userType !== 'text' && /\/xml/i.test(xdr.contentType)) {
-=======
                         else if (userType === 'xml' || (userType !== 'text' && /\/xml/i.test(xdr.contentType))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             var doc = new ActiveXObject('Microsoft.XMLDOM');
                             doc.async = false;
                             try {
@@ -5098,11 +5077,7 @@ app.projects.defaultImage = "/images/design/projects/default_200x150.png";
                     });
                 };
                 if (userOptions.data) {
-<<<<<<< HEAD
-                    postData = $.type(userOptions.data) === 'string' ? userOptions.data : $.param(userOptions.data);
-=======
                     postData = ($.type(userOptions.data) === 'string') ? userOptions.data : $.param(userOptions.data);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
                 xdr.open(options.type, options.url);
                 xdr.send(postData);
@@ -5118,11 +5093,7 @@ app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 if (!Array.prototype.includes) {
     Object.defineProperty(Array.prototype, 'includes', {
         value: function (searchElement, fromIndex) {
-<<<<<<< HEAD
-            if (this === null) {
-=======
             if (this == null) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 throw new TypeError('"this" is null or not defined');
             }
             var o = Object(this);
@@ -5136,11 +5107,7 @@ if (!Array.prototype.includes) {
                 if (o[k] === searchElement) {
                     return true;
                 }
-<<<<<<< HEAD
-                k = k + 1;
-=======
                 k++;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             return false;
         }
@@ -5150,13 +5117,9 @@ jQuery.ajaxSettings.traditional = true;
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function (match, number) {
-<<<<<<< HEAD
-        return typeof args[number] !== 'undefined' ? args[number] : match;
-=======
         return typeof args[number] != 'undefined'
             ? args[number]
             : match;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     });
 };
 if (!String.prototype.startsWith) {
@@ -5176,18 +5139,10 @@ if (!String.prototype.contains) {
     };
 }
 Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop, direction) {
-<<<<<<< HEAD
-    if (arguments.length < 1) {
-        throw new Error("sortJsonArrayByProperty requires 1 argument");
-    }
-    var direct = arguments.length > 2 ? arguments[2] : 1;
-    var propPath = prop.constructor === Array ? prop : prop.split(".");
-=======
     if (arguments.length < 1)
         throw new Error("sortJsonArrayByProperty requires 1 argument");
     var direct = arguments.length > 2 ? arguments[2] : 1;
     var propPath = (prop.constructor === Array) ? prop : prop.split(".");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     this.sort(function (a, b) {
         for (var p = 0; p < propPath.length; p++) {
             if (a[propPath[p]] && b[propPath[p]]) {
@@ -5206,51 +5161,28 @@ Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop,
         }
         a = isNaN(Math.floor(a)) ? a.toLowerCase() : a;
         b = isNaN(Math.floor(b)) ? b.toLowerCase() : b;
-<<<<<<< HEAD
-        return a < b ? -1 * Number(direct) : a > b ? 1 * Number(direct) : 0;
-=======
         return ((a < b) ? (-1 * direct) : ((a > b) ? (1 * direct) : 0));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     });
 };
 Array.prototype.unique = function () {
     var o = {}, i, l = this.length, r = [];
-<<<<<<< HEAD
-    for (i = 0; i < l; i += 1) {
-        o[this[i]] = this[i];
-    }
-    for (i in o) {
-        r.push(o[i]);
-    }
-=======
     for (i = 0; i < l; i += 1)
         o[this[i]] = this[i];
     for (i in o)
         r.push(o[i]);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     return r;
 };
 Array.prototype.peek = function () {
     var n = this.length;
-<<<<<<< HEAD
-    if (n > 0) {
-        return this[n - 1];
-    }
-=======
     if (n > 0)
         return this[n - 1];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 };
 (function () {
     var cache = {};
     String.prototype.template = function (data) {
         var fn = !/\W/.test(this) ?
             cache[this] = cache[this] ||
-<<<<<<< HEAD
-                this(document.getElementById(this).innerHTML) :
-=======
                 tmpl(document.getElementById(this).innerHTML) :
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};" +
                 "with(obj){p.push('" +
                 this
@@ -5264,26 +5196,6 @@ Array.prototype.peek = function () {
                 + "');}return p.join('');");
         return data ? fn(data) : fn;
     };
-<<<<<<< HEAD
-}());
-app.utils = {};
-app.utils.getParameterByName = function (name) {
-    name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-};
-app.utils.getFragmentParameterByName = function (name) {
-    name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\!&]" + name + "=([^&?]*)"), results = regex.exec(location.hash);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-};
-app.utils.getParametersFromHash = function () {
-    var match, pl = /\+/g, search = /([^&!#=]+)=?([^&]*)/g, decode = function (s) {
-        return decodeURIComponent(s.replace(pl, " "));
-    }, query = window.location.hash || (window.location.search.match(/\?_escaped_fragment_/gi) ? window.location.search.replace('?_escaped_fragment_=', '#') : ""), urlParams = {};
-    match = search.exec(query);
-    if (match !== null) {
-=======
 })();
 app.utils = {};
 app.utils.getParameterByName = function (name) {
@@ -5301,18 +5213,13 @@ app.utils.getParametersFromHash = function () {
         return decodeURIComponent(s.replace(pl, " "));
     }, query = window.location.hash || (window.location.search.match(/\?_escaped_fragment_/gi) ? window.location.search.replace('?_escaped_fragment_=', '#') : ""), urlParams = {};
     while (match = search.exec(query)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         urlParams[decode(match[1])] = decode(match[2]);
     }
     return urlParams;
 };
 app.utils.convertParametersToHash = function (urlParams) {
     var hashArray = [];
-<<<<<<< HEAD
-    for (var k in urlParams) {
-=======
     for (k in urlParams) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (urlParams[k]) {
             hashArray.push(k + "=" + encodeURIComponent(urlParams[k]));
         }
@@ -5324,22 +5231,13 @@ app.utils.updatePageHash = function (el) {
     var name = el.attr('name');
     urlParams[name] = el.val();
     window.location.hash = "!" + app.utils.convertParametersToHash(urlParams);
-<<<<<<< HEAD
-    if (window.location.search) {
-=======
     if (!!window.location.search) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         window.location = window.location.href.replace(window.location.search, '');
     }
 };
 app.utils.restoreFromHash = function (urlParams) {
-<<<<<<< HEAD
-    urlParams = urlParams || app.utils.getParametersFromHash();
-    for (var k in urlParams) {
-=======
     var urlParams = urlParams || app.utils.getParametersFromHash();
     for (k in urlParams) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         var input = $('[name="' + k + '"]');
         var tagName = input.prop('tagName');
         if (tagName === "SELECT") {
@@ -5353,15 +5251,9 @@ app.utils.restoreFromHash = function (urlParams) {
 app.utils.parseDataAttributes = function () {
     var values = {};
     $('[data-set]').each(function (i, el) {
-<<<<<<< HEAD
-        el = $(this);
-        var data = el.data();
-        for (var key in data) {
-=======
         var el = $(this);
         var data = el.data();
         for (key in data) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             if (key.match(/^set[A-Z]/g)) {
                 var attr = key.replace('set', '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
                 values[attr] = data[key];
@@ -5376,44 +5268,16 @@ app.utils.getQueryVariable = function (variable) {
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
-<<<<<<< HEAD
-        if (decodeURIComponent(pair[0]) === variable) {
-=======
         if (decodeURIComponent(pair[0]) == variable) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return decodeURIComponent(pair[1]);
         }
     }
 };
 app.utils.diplayPagination = function (currentPage, totalPages, pagesToShow) {
-<<<<<<< HEAD
-    var startPage, endPage, diff, display;
-=======
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     if (!pagesToShow) {
         pagesToShow = 4;
     }
     else if (pagesToShow % 2) {
-<<<<<<< HEAD
-        pagesToShow = pagesToShow + 1;
-    }
-    pagesToShow = pagesToShow || 4;
-    startPage = currentPage < 5 ? 1 : currentPage - pagesToShow / 2;
-    endPage = pagesToShow + startPage;
-    endPage = totalPages < endPage ? totalPages : endPage;
-    diff = startPage - endPage + pagesToShow;
-    startPage -= startPage - diff > 0 ? diff : 0;
-    display = [];
-    if (startPage > 1) {
-        display.push(1);
-        display.push("‹¯");
-    }
-    for (var i = startPage; i <= endPage; i++) {
-        display.push(i);
-    }
-    if (endPage < totalPages) {
-        display.push("‹¯");
-=======
         pagesToShow++;
     }
     var pagesToShow = pagesToShow || 4;
@@ -5432,22 +5296,12 @@ app.utils.diplayPagination = function (currentPage, totalPages, pagesToShow) {
     }
     if (endPage < totalPages) {
         display.push("⋯");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         display.push(totalPages);
     }
     return display;
 };
 app.utils.isMobile = {
     Android: function () {
-<<<<<<< HEAD
-        return Boolean(navigator.userAgent.match(/Android/i));
-    },
-    iOS: function () {
-        return Boolean(navigator.userAgent.match(/iPhone|iPad|iPod/i));
-    },
-    any: function () {
-        return app.utils.isMobile.Android() || app.utils.isMobile.iOS();
-=======
         return !!navigator.userAgent.match(/Android/i);
     },
     iOS: function () {
@@ -5455,7 +5309,6 @@ app.utils.isMobile = {
     },
     any: function () {
         return (app.utils.isMobile.Android() || app.utils.isMobile.iOS());
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
 };
 app.utils.getMonth = function (monthNum) {
@@ -5463,13 +5316,8 @@ app.utils.getMonth = function (monthNum) {
     return months[monthNum];
 };
 function roundHalf(num) {
-<<<<<<< HEAD
-    var html = "";
-    num = Math.round(num * 2) / 2;
-=======
     var num = Math.round(num * 2) / 2;
     var html = "";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     for (var i = num; i >= 0; i--) {
         if (i >= 1) {
             html += "<i class='fa fa-star'></i>";
@@ -5478,16 +5326,10 @@ function roundHalf(num) {
             html += "<i class='fa fa-star-half-empty'></i>";
         }
     }
-<<<<<<< HEAD
-    return html;
-}
-if (typeof Object.assign !== 'function') {
-=======
     ;
     return html;
 }
 if (typeof Object.assign != 'function') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     (function () {
         Object.assign = function (target) {
             if (target === undefined || target === null) {
@@ -5506,11 +5348,7 @@ if (typeof Object.assign != 'function') {
             }
             return output;
         };
-<<<<<<< HEAD
-    }());
-=======
     })();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 }
 app.sso = function () {
     function updateUser() {
@@ -5541,19 +5379,11 @@ app.sso = function () {
                 usr.loggedIn = true;
                 usr.keyCloakID = keycloak.tokenParsed.id;
                 usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed.createdTimestamp);
-<<<<<<< HEAD
-                if (typeof Object.keys === "function") {
-                    usr.socialAccountsLinked = Object.keys(keycloak.tokenParsed['user-social-links']);
-                }
-                else {
-                    for (var social in keycloak.tokenParsed['user-social-links']) {
-=======
                 if (typeof Object.keys == "function") {
                     usr.socialAccountsLinked = Object.keys(keycloak.tokenParsed['user-social-links']);
                 }
                 else {
                     for (social in keycloak.tokenParsed['user-social-links']) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                         usr.socialAccountsLinked.push(social);
                     }
                 }
@@ -5630,17 +5460,10 @@ app.sso = function () {
             var ca = document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
-<<<<<<< HEAD
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) === 0) {
-=======
                 while (c.charAt(0) == ' ') {
                     c = c.substring(1);
                 }
                 if (c.indexOf(name) == 0) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     return JSON.parse(atob(c.substring(name.length, c.length)));
                 }
             }
@@ -5700,122 +5523,6 @@ function storageAvailable(type) {
 if (typeof Keycloak !== 'undefined') {
     app.sso();
 }
-app.dcp.getNameFromContributor = function (contributor) {
-    return contributor.substring(0, contributor.lastIndexOf("<") - 1);
-};
-app.dcp.generateContributorSpan = function (tmpl, contributor) {
-    var d = {};
-    d.contributor = contributor;
-    d.contributorName = app.dcp.getNameFromContributor(contributor);
-    return tmpl.template(d);
-};
-app.dcp.authStatus = function () {
-    return $.ajax({
-        type: "GET",
-        url: app.dcp.url.auth_status,
-        xhrFields: { withCredentials: true }
-    });
-};
-app.dcp.resolveContributors = function (sysContributors) {
-<<<<<<< HEAD
-    var contributors;
-    if (!sysContributors) {
-        sysContributors = [];
-=======
-    if (!sysContributors) {
-        var sysContributors = [];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        $('[data-sys-contributor]').each(function (i, el) {
-            var contributor = $(el).data('sys-contributor');
-            if (contributor) {
-                sysContributors.push(contributor);
-            }
-        });
-        sysContributors = $.unique(sysContributors);
-    }
-    contributors = sysContributors.unique();
-    app.dcp.currentRequest = $.ajax({
-        url: app.dcp.url.search,
-        data: {
-            "sys_type": "contributor_profile",
-            "field": ["sys_url_view", "sys_title", "sys_contributors", "accounts"],
-            "contributor": contributors,
-            "size": contributors.length
-        },
-        beforeSend: function () {
-<<<<<<< HEAD
-            if (app.dcp.currentRequest && app.dcp.currentRequest.readyState !== 4) {
-=======
-            if (app.dcp.currentRequest && app.dcp.currentRequest.readyState != 4) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                app.dcp.currentRequest.abort();
-            }
-        }
-    }).done(function (data) {
-        var hits = data.hits.hits;
-        for (var i = 0; i < hits.length; i++) {
-            var accounts = {};
-            if (hits[i].fields.accounts) {
-                for (var j = 0; j < hits[i].fields.accounts.length; j++) {
-                    accounts[hits[i].fields.accounts[j].domain] = hits[i].fields.accounts[j].username;
-                }
-            }
-            $("span.contributor[data-sys-contributor='" + hits[i].fields.sys_contributors + "']").each(function () {
-                var followable = false;
-                $(this).find('a.name').each(function () {
-                    $(this).html(hits[i].fields.sys_title).attr('href', hits[i].fields.sys_url_view);
-                });
-                $(this).find('a.rss').each(function () {
-<<<<<<< HEAD
-                    $(this).hide();
-=======
-                    if (false) {
-                        $(this).attr('href', '');
-                        followable = true;
-                    }
-                    else {
-                        $(this).hide();
-                    }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                });
-                $(this).find('a.facebook').each(function () {
-                    if (accounts['facebook.com']) {
-                        $(this).attr('href', 'http://www.facebook.com/' + accounts['facebook.com']);
-                        followable = true;
-                    }
-                    else {
-                        $(this).hide();
-                    }
-                });
-                $(this).find('a.twitter').each(function () {
-                    if (accounts['twitter.com']) {
-                        $(this).attr('href', 'http://www.twitter.com/' + accounts['twitter.com']);
-                        followable = true;
-                    }
-                    else {
-                        $(this).hide();
-                    }
-                });
-                $(this).find('a.linkedin').each(function () {
-<<<<<<< HEAD
-                    if (accounts.linkedin) {
-=======
-                    if (accounts['linkedin']) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                        $(this).attr('href', 'http://www.linkedin.com/in/' + accounts['linkedin.com']);
-                        followable = true;
-                    }
-                    else {
-                        $(this).hide();
-                    }
-                });
-                if (!followable) {
-                    $(this).find('span.follow').hide();
-                }
-            });
-        }
-    });
-};
 app.buzz = {
     filter: function (tmpl, container, itemCount, append, from, dataIndex, callback) {
         itemCount = itemCount || 8;
@@ -5878,11 +5585,7 @@ app.buzz = {
                 "from": dataIndex
             },
             beforeSend: function () {
-<<<<<<< HEAD
-                if (app.buzz.currentRequest && app.buzz.currentRequest.readyState !== 4) {
-=======
                 if (app.buzz.currentRequest && app.buzz.currentRequest.readyState != 4) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     app.buzz.currentRequest.abort();
                 }
             },
@@ -5906,16 +5609,9 @@ app.buzz = {
                 for (var i = 0; i < hits.length; i++) {
                     var d = hits[i].fields;
                     var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
-<<<<<<< HEAD
-                    var m = pat.exec(d.sys_contributors);
-                    d.authorName = "";
-                    d.authorMail = "";
-                    if (m) {
-=======
                     d.authorName = "";
                     d.authorMail = "";
                     while (m = pat.exec(d.sys_contributors)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                         d.authorName = m[1];
                         d.authorMail = m[2];
                     }
@@ -5966,11 +5662,7 @@ app.buzz = {
                 var scrollBottom = win.scrollTop() + win.height();
                 var scrollTop = win.scrollTop();
                 var buzzBottom = $buzz.position().top + $buzz.height();
-<<<<<<< HEAD
-                if (scrollBottom + offset > buzzBottom && !app.buzz.infiniteScrollCalled && buzzFlag && !app.buzz.noScroll) {
-=======
                 if ((scrollBottom + offset > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag && !app.buzz.noScroll) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     buzzFlag = false;
                     window.setTimeout(function () { buzzFlag = true; }, 1000);
                     app.buzz.infiniteScrollCalled = true;
@@ -6011,11 +5703,6 @@ app.buzz = {
 app.buzz.init();
 (function (deparam) {
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
-<<<<<<< HEAD
-        var jquery = jQuery;
-        module.exports = deparam(jquery);
-    }
-=======
         var jquery = require('jquery');
         module.exports = deparam(jquery);
     }
@@ -6024,16 +5711,11 @@ app.buzz.init();
             return deparam(jquery);
         });
     }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     else {
         var global = (false || eval)('this');
         global.deparam = deparam(jQuery);
     }
-<<<<<<< HEAD
-}(function ($) {
-=======
 })(function ($) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     return function (params, coerce) {
         var obj = {}, coerce_types = { 'true': !0, 'false': !1, 'null': null };
         $.each(params.replace(/\+/g, ' ').split('&'), function (j, v) {
@@ -6049,14 +5731,10 @@ app.buzz.init();
             if (param.length === 2) {
                 val = decodeURIComponent(param[1]);
                 if (coerce) {
-<<<<<<< HEAD
-                    val = val && !isNaN(val) ? Number(val) : val === 'undefined' ? undefined : coerce_types[val] !== undefined ? coerce_types[val] : val;
-=======
                     val = val && !isNaN(val) ? +val
                         : val === 'undefined' ? undefined
                             : coerce_types[val] !== undefined ? coerce_types[val]
                                 : val;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
                 if (keys_last) {
                     for (; i <= keys_last; i++) {
@@ -6086,738 +5764,7 @@ app.buzz.init();
         });
         return obj;
     };
-<<<<<<< HEAD
-}));
-=======
 });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-var dcp = angular.module('dcp', []);
-dcp.config(function ($provide) {
-    $provide.decorator('$browser', function ($delegate) {
-        var superUrl = $delegate.url;
-        $delegate.url = function (url, replace) {
-<<<<<<< HEAD
-            return url !== undefined ? superUrl(url.replace(/%20/g, "+"), replace) : superUrl().replace(/\+/g, "%20");
-=======
-            if (url !== undefined) {
-                return superUrl(url.replace(/\%20/g, "+"), replace);
-            }
-            else {
-                return superUrl().replace(/\+/g, "%20");
-            }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        };
-        return $delegate;
-    });
-});
-dcp.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
-        return {
-            request: function (config) {
-<<<<<<< HEAD
-                if (config.method === 'GET' && config.url.indexOf(app.dcp.url.developer_materials) > -1) {
-=======
-                if (config.method == 'GET' && config.url.indexOf(app.dcp.url.developer_materials) > -1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    $injector.get('$rootScope').$broadcast('_START_REQUEST_');
-                }
-                return config;
-            },
-            requestError: function (rejection) {
-                return $q.reject(rejection);
-            },
-            response: function (response) {
-<<<<<<< HEAD
-                if (response.config.method === 'GET' && response.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
-=======
-                if (response.config.method == 'GET' && response.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    $injector.get('$rootScope').$broadcast('_END_REQUEST_');
-                }
-                return response;
-            },
-            responseError: function (rejection) {
-<<<<<<< HEAD
-                if (rejection.config.method === 'GET' && rejection.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
-=======
-                if (rejection.config.method == 'GET' && rejection.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    $injector.get('$rootScope').$broadcast('_END_REQUEST_');
-                }
-                return $q.reject(rejection);
-            }
-        };
-    }]);
-dcp.config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.interceptors.push('httpInterceptor');
-    }]);
-dcp.service('materialService', function ($http, $q) {
-    this.deferred_ = $q.defer();
-    this.getMaterials = function (params) {
-<<<<<<< HEAD
-        var query = {};
-        params = params || {};
-=======
-        var params = params || {};
-        var query = {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        query.newFirst = true;
-        if (params.project === 'devstudio' && params.sys_type === 'quickstart') {
-            params.project = '';
-        }
-        if (params.query) {
-            query.query = params.query;
-        }
-        if (params.project) {
-            query.project = params.project;
-        }
-        if (params.randomize) {
-            query.randomize = params.randomize;
-        }
-        if (params.size) {
-            query['size' + params.size] = true;
-        }
-        if (params.sys_type &&
-<<<<<<< HEAD
-            ($.isArray(params.sys_type) && params.sys_type.length > 0 ||
-                $.trim(params.sys_type).length > 0)) {
-=======
-            (($.isArray(params.sys_type) && params.sys_type.length > 0) ||
-                ($.trim(params.sys_type).length > 0))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            query.sys_type = params.sys_type;
-        }
-        if (!params.type) {
-            query.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
-        }
-        if (params.publish_date_from) {
-            query.publish_date_from = params.publish_date_from;
-        }
-        if (params.from) {
-            query.from = params.from;
-        }
-<<<<<<< HEAD
-        this.deferred_.resolve(undefined);
-=======
-        if (true) {
-            this.deferred_.resolve(undefined);
-        }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        this.deferred_ = $q.defer();
-        var promise = this.deferred_.promise;
-        var deferred = this.deferred_;
-        $http.get(app.dcp.url.developer_materials, { params: query, timeout: promise })
-            .success(function (data) {
-            deferred.resolve(data);
-        })
-            .error(function () {
-            $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
-        });
-        return promise;
-    };
-});
-dcp.factory('dataFlowService', function ($location) {
-    var service = function () {
-        this.processParams = function (params) {
-            var params_ = params || {};
-            $location.path($.param(params_));
-        };
-    };
-    return new service();
-});
-dcp.factory('helper', function () {
-    var Helper = function () {
-        this.firstIfArray = function (input) {
-            if ($.isArray(input) && input.length > 0) {
-                return input[0];
-            }
-            return input;
-        };
-        this.parsePath = function (path) {
-            var path_ = path || '';
-<<<<<<< HEAD
-            if (path_.indexOf('/') === 0) {
-=======
-            if (path_.indexOf('/') == 0) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                path_ = path_.substr(1);
-            }
-            return deparam(path_);
-        };
-        this.safeParams = function (params) {
-            var p = angular.isObject(params) ? params : {};
-            var obj = {};
-            angular.copy(p, obj);
-            for (var key in obj) {
-<<<<<<< HEAD
-                if (!obj.hasOwnProperty(key)) {
-                    continue;
-                }
-=======
-                if (!obj.hasOwnProperty(key))
-                    continue;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                if (!this.isValidParam_(key)) {
-                    delete obj[key];
-                }
-            }
-            return obj;
-        };
-        this.VALID_URL_PARAMS_ = [
-            "sys_type",
-            "rating",
-            "publish_date_from",
-            "tag",
-            "level",
-            "from",
-            "query",
-            "project",
-            "product",
-            "size"
-        ];
-        this.isValidParam_ = function (key) {
-            return this.VALID_URL_PARAMS_.indexOf(key) >= 0;
-        };
-        this.removeTagItems = function (input) {
-            var indexes = [];
-            if ($.isArray(input) && input.length > 0) {
-                var excludes = app.dcp.excludeResourceTags;
-                angular.forEach(input, function (str) {
-                    var index = excludes.indexOf(str);
-<<<<<<< HEAD
-                    if (index === -1) {
-=======
-                    if (index == -1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                        indexes.push(str);
-                    }
-                });
-            }
-            return indexes.join(',');
-        };
-        this.availableFormats = [
-            { value: "quickstart", "name": "Quickstart", "description": "Single use-case code examples tested with the latest stable product releases" },
-            { value: "video", "name": "Video", "description": "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
-            { value: "demo", "name": "Demo", "description": "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
-            { value: "jbossdeveloper_example", "name": "Tutorial", "description": "Guided content, teaching you how to build complex applications from the ground up" },
-            { value: "jbossdeveloper_archetype", "name": "Archetype", "description": "Maven Archetypes for building Red Hat JBoss Middleware applications" },
-            { value: "jbossdeveloper_bom", "name": "BOM", "description": "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
-            { value: "quickstart_early_access", "name": "Early Access", "description": "Single use-case code examples demonstrating features not yet available in a product release" },
-            { value: "article", "name": "Articles (Premium)", "description": "Technical articles and best practices for Red Hat JBoss Middleware products" },
-            { value: "solution", "name": "Solutions (Premium)", "description": "Answers to questions or issues you may be experiencing" }
-        ];
-    };
-    return new Helper();
-});
-dcp.filter('thumbnailURL', function () {
-    return function (item) {
-<<<<<<< HEAD
-        var thumbnails = app.dcp.thumbnails, ret;
-        if (item.fields.thumbnail && item.fields.thumbnail[0]) {
-            ret = item.fields.thumbnail[0];
-        }
-        else if (item._type) {
-            ret = thumbnails[item._type];
-        }
-        else {
-            ret = thumbnails.rht_knowledgebase_article;
-        }
-        return ret;
-=======
-        var thumbnails = app.dcp.thumbnails;
-        if (item.fields.thumbnail && item.fields.thumbnail[0]) {
-            return item.fields.thumbnail[0];
-        }
-        else if (item._type) {
-            return thumbnails[item._type];
-        }
-        else {
-            return thumbnails["rht_knowledgebase_article"];
-        }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-    };
-});
-dcp.filter('isPremium', ['helper', function (helper) {
-        return function (url) {
-            url = helper.firstIfArray(url);
-<<<<<<< HEAD
-            return url ? Boolean(url.match("access.redhat.com")) : false;
-=======
-            if (url) {
-                return !!url.match("access.redhat.com");
-            }
-            else {
-                return false;
-            }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        };
-    }]);
-dcp.filter('brackets', ['helper', function (helper) {
-        return function (num) {
-            num = helper.firstIfArray(num);
-            if (num > 0) {
-                return "  (" + num + ")";
-            }
-        };
-    }]);
-dcp.filter('truncate', ['helper', function (helper) {
-        return function (str) {
-            str = helper.firstIfArray(str);
-            str = $("<p>").html(str).text();
-            if (str.length <= 150) {
-                return str;
-            }
-<<<<<<< HEAD
-            return str.slice(0, 150) + "€¦";
-=======
-            return str.slice(0, 150) + "…";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        };
-    }]);
-dcp.filter('HHMMSS', ['helper', function (helper) {
-        return function (sec_string) {
-            sec_string = helper.firstIfArray(sec_string);
-            var sec_num = parseInt(sec_string, 10);
-            var hours = Math.floor(sec_num / 3600);
-<<<<<<< HEAD
-            var minutes = Math.floor((sec_num - hours * 3600) / 60);
-            var seconds = sec_num - hours * 3600 - minutes * 60;
-=======
-            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-            var seconds = sec_num - (hours * 3600) - (minutes * 60);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            if (hours < 10) {
-                hours = "0" + hours;
-            }
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-            var time = minutes + ':' + seconds;
-            if (parseInt(hours) > 0) {
-                time = hours + ':' + time;
-            }
-            return time;
-        };
-    }]);
-dcp.filter('timeAgo', ['helper', function (helper) {
-        return function (timestamp) {
-            timestamp = helper.firstIfArray(timestamp);
-<<<<<<< HEAD
-            if (!timestamp) {
-                return;
-            }
-=======
-            if (!timestamp)
-                return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            var date = new Date(timestamp);
-            return $.timeago(date);
-        };
-    }]);
-dcp.filter('firstIfArray', ['helper', function (helper) {
-        return function (input) {
-            return helper.firstIfArray(input);
-        };
-    }]);
-dcp.filter('noURL', function () {
-    return function (str) {
-        var filterArray = [];
-        angular.forEach(str, function (ref) {
-            if (ref.fields.sys_url_view) {
-                filterArray.push(ref);
-            }
-        });
-        return filterArray;
-    };
-});
-dcp.filter('removeExcludedTags', ['helper', function (helper) {
-        return function (input) {
-            return helper.removeTagItems(input);
-        };
-    }]);
-dcp.filter('urlFix', ['helper', function (helper) {
-        return function (str) {
-            str = helper.firstIfArray(str);
-            if (!str.length) {
-                return;
-            }
-            else if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
-                return str;
-            }
-<<<<<<< HEAD
-            return str.replace(/^http(s)?:\/\/(\w|\.|-|:)*(\/pr\/\d+\/build\/\d+)?(\/docker-nightly)?/, app.baseUrl);
-=======
-            else {
-                return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?(\/docker-nightly)?/, app.baseUrl);
-            }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        };
-    }]);
-dcp.filter('trim', ['helper', function (helper) {
-        return function (str) {
-            str = helper.firstIfArray(str);
-            return str.trim();
-        };
-    }]);
-dcp.filter('name', ['helper', function (helper) {
-        return function (str) {
-            str = helper.firstIfArray(str);
-            str = str || "";
-            var pieces = str.split('<');
-            if (pieces.length) {
-                return pieces[0].trim();
-            }
-        };
-    }]);
-dcp.filter('formatName', ['helper', function (helper) {
-        return function (value, scope) {
-            value = helper.firstIfArray(value);
-            for (var f in scope.data.availableFormats) {
-                var format = scope.data.availableFormats[f];
-                if (format.value === value) {
-                    return format.name;
-                }
-            }
-            return value;
-        };
-    }]);
-dcp.filter('safeNumber', ['helper', function (helper) {
-        return function (input) {
-            input = helper.firstIfArray(input);
-            var n = parseInt(input, 10);
-            return isNaN(n) ? 0 : n;
-        };
-    }]);
-dcp.filter('checkInternal', ['helper', '$location', function (helper, $location) {
-        return function (item) {
-            if (!helper.firstIfArray(item.fields.sys_url_view)) {
-                return true;
-            }
-<<<<<<< HEAD
-            else if (helper.firstIfArray(item.fields.sys_url_view).match($location.host())) {
-=======
-            else if (!!helper.firstIfArray(item.fields.sys_url_view).match($location.host())) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                return true;
-            }
-            return false;
-        };
-    }]);
-dcp.controller('developerMaterialsController', ['$scope', 'materialService', '$rootScope', '$location', 'helper', 'dataFlowService',
-    function ($scope, materialService, $rootScope, $location, helper, dataFlowService) {
-        window.scope = $scope;
-        $scope.params = {};
-        $scope.Math = Math;
-        $scope.data = {
-            layout: 'list',
-            dateNumber: 0
-        };
-        $scope.randomize = false;
-        $scope.pagination = { size: 10 };
-        $scope.filters = {};
-        $scope.filter = {};
-        var needsToBeUnregistered = $rootScope.$on('$locationChangeSuccess', function () {
-            $scope.fetchAndUpdate();
-        });
-        $rootScope.$on('$destroy', needsToBeUnregistered);
-        $scope.$on('_START_REQUEST_', function () {
-            $scope.data.loading = true;
-        });
-        $scope.$on('_END_REQUEST_', function () {
-            $scope.data.loading = false;
-        });
-        $scope.data.availableTopics = app.dcp.availableTopics;
-        $scope.data.availableFormats = helper.availableFormats;
-        $scope.fetchAndUpdate = function () {
-            $scope.params = helper.safeParams(helper.parsePath($location.path()));
-            $scope.params.size = $scope.pagination.size;
-            $scope.params.project = $scope.filters.project;
-            materialService.getMaterials($scope.params)
-                .then(function (data) {
-                if (data && data.hits && data.hits.hits) {
-                    $scope.data.materials = data.hits.hits;
-                    $scope.data.total = data.hits.total;
-                    $scope.paginate($scope.paginate.currentPage || 1);
-                }
-                else {
-                    $scope.data.materials = [];
-                    $scope.data.total = 0;
-                }
-            })
-                .then(function () {
-                $scope.filters.query = $scope.params.query;
-                $scope.filters.sys_type = $scope.params.sys_type;
-            });
-        };
-        $scope.paginate = function (page) {
-<<<<<<< HEAD
-            $scope.pagination.size = $scope.pagination.viewall ? 500 : $scope.pagination.size;
-            $scope.pagination.size = parseInt($scope.pagination.size);
-            var startAt = page * $scope.pagination.size - $scope.pagination.size;
-=======
-            $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
-            $scope.pagination.size = parseInt($scope.pagination.size);
-            var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            var endAt = page * $scope.pagination.size;
-            var pages = Math.ceil($scope.data.total / $scope.pagination.size);
-            if (page > pages || page < 1 || typeof page === "string") {
-                return;
-            }
-            $scope.paginate.pages = pages;
-            $scope.paginate.currentPage = page;
-            $scope.data.displayedMaterials = $scope.data.materials;
-            $scope.paginate.pagesArray = app.utils.diplayPagination($scope.paginate.currentPage, pages, 4);
-        };
-        $scope.filters.sys_tags = [];
-        $scope.filters.sys_type = [];
-        $scope.filter.toggleSelection = function toggleSelection(itemName, selectedArray) {
-            if (!$scope.filters[selectedArray]) {
-                $scope.filters[selectedArray] = [];
-            }
-            var idx = $scope.filters[selectedArray].indexOf(itemName);
-            if (idx > -1) {
-                $scope.filters[selectedArray].splice(idx, 1);
-            }
-            else {
-                $scope.filters[selectedArray].push(itemName);
-            }
-        };
-        $scope.filter.updateDate = function () {
-            var n = parseInt($scope.data.dateNumber);
-            var d = new Date();
-            var labels = ["All", "Within 1 Year", "Within 30 days", "Within 7 days", "Within 24hrs"];
-            $scope.data.displayDate = labels[n];
-            switch (n) {
-                case 0:
-                    delete $scope.filters.publish_date_from;
-                    break;
-                case 1:
-                    d.setFullYear(d.getFullYear() - 1);
-                    break;
-                case 2:
-                    d.setDate(d.getDate() - 30);
-                    break;
-                case 3:
-                    d.setDate(d.getDate() - 7);
-                    break;
-                case 4:
-                    d.setDate(d.getDate() - 1);
-                    break;
-            }
-            if (n) {
-                $scope.filters.publish_date_from = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-            }
-        };
-        $scope.filter.clear = function () {
-            $scope.filters.sys_tags = [];
-            $scope.filters.sys_type = [];
-            $scope.data.dateNumber = 0;
-            $scope.data.skillNumber = 0;
-            delete $scope.filters.query;
-            delete $scope.filters.sys_rating_avg;
-            delete $scope.filters.level;
-            delete $scope.filters.publish_date_from;
-            delete localStorage[$scope.data.pageType + '-filters'];
-            $(".chosen").trigger("chosen:updated");
-        };
-        $scope.firstPage = function () {
-            $scope.paginate.currentPage = 1;
-            $scope.processPagination_();
-        };
-        $scope.previousPage = function () {
-            $scope.paginate.currentPage -= 1;
-            $scope.processPagination_();
-        };
-        $scope.nextPage = function () {
-            $scope.paginate.currentPage += 1;
-            $scope.processPagination_();
-        };
-        $scope.lastPage = function () {
-            $scope.paginate.currentPage = $scope.paginate.pages;
-            $scope.processPagination_();
-        };
-        $scope.goToPage = function (page) {
-            if (typeof page !== 'number') {
-                return;
-            }
-            $scope.paginate.currentPage = page;
-            $scope.processPagination_();
-        };
-        $scope.processPagination_ = function () {
-            $scope.filters.from = ($scope.paginate.currentPage - 1) * $scope.pagination.size;
-            $scope.filter.applyFilters();
-        };
-        $scope.filter.applyFilters = function () {
-            $scope.data.displayedMaterials = [];
-            $scope.filter.store();
-            dataFlowService.processParams($scope.filters);
-        };
-        $scope.filter.store = function () {
-<<<<<<< HEAD
-            window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify($scope.filters);
-=======
-            window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify(scope.filters);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] = new Date().getTime();
-        };
-        $scope.filter.restore = function () {
-            $scope.data.skillNumber = 0;
-            $scope.data.dateNumber = 0;
-            if (!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
-                $scope.filter.applyFilters();
-                return;
-            }
-            if ($location.path().length > 0) {
-                var filters = deparam($location.path().slice(1));
-                if (typeof filters.sys_type === "string") {
-                    var filterArr = [];
-                    filterArr.push(filters.sys_type);
-                    filters.sys_type = filterArr;
-                }
-                $scope.filters = filters;
-                if ($scope.filters.level) {
-                    var labels = ["All", "Beginner", "Intermediate", "Advanced"];
-                    var idx = labels.indexOf($scope.filters.level);
-                    if (idx >= 0) {
-                        $scope.data.skillNumber = idx;
-                    }
-                    $scope.filter.updateSkillLevel();
-                }
-                if ($scope.filters.publish_date_from) {
-<<<<<<< HEAD
-                    var parts = $scope.filters.publish_date_from.split('-');
-=======
-                    var parts = scope.filters.publish_date_from.split('-');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    var d = new Date(parts[0], parts[1], parts[2]);
-                    var now = new Date().getTime();
-                    var ago = now - d;
-                    var daysAgo = Math.floor(ago / 1000 / 60 / 60 / 24);
-                    if (daysAgo <= 1) {
-                        $scope.data.dateNumber = 4;
-                    }
-                    else if (daysAgo > 1 && daysAgo <= 7) {
-                        $scope.data.dateNumber = 3;
-                    }
-                    else if (daysAgo > 7 && daysAgo <= 30) {
-                        $scope.data.dateNumber = 2;
-                    }
-                    else {
-                        $scope.data.dateNumber = 1;
-                    }
-                    $scope.filter.updateDate();
-                }
-            }
-            else if (window.localStorage && window.localStorage[$scope.data.pageType + '-filters']) {
-<<<<<<< HEAD
-                now = new Date().getTime();
-                var then = window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] || 0;
-                if (now - then < 7200000) {
-=======
-                var now = new Date().getTime();
-                var then = window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] || 0;
-                if ((now - then) < 7200000) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    $scope.filters = JSON.parse(window.localStorage[$scope.data.pageType + '-filters']);
-                }
-            }
-            $scope.filter.applyFilters();
-            $scope.fetchAndUpdate();
-        };
-        $scope.chosen = function () {
-            $('select.chosen').unbind().chosen().change(function () {
-                var tags = $(this).val();
-                if (tags) {
-                    $scope.filters.sys_tags = tags;
-                }
-                else {
-                    delete $scope.filters.sys_tags;
-                }
-                $scope.$apply();
-                $scope.filter.applyFilters();
-            }).trigger('chosen:updated');
-        };
-        $scope.$watch('data.availableTopics', function () {
-            window.setTimeout(function () {
-                $scope.chosen();
-            }, 0);
-        });
-        $scope.$watch('data.layout', function (newVal, oldVal) {
-            if ($scope.data.layout) {
-                window.localStorage.layout = $scope.data.layout;
-            }
-        });
-    }]);
-$(function () {
-    $('form.dev-mat-filters').on('submit', function (e) {
-        e.preventDefault();
-    });
-    $('.filters-clear').on('click', function (e) {
-        e.preventDefault();
-        app.dm.clearFilters($(this));
-    });
-    $('.filter-block h5').on('click', function () {
-        if (window.innerWidth <= 768) {
-            var el = $(this);
-            el.toggleClass('filter-block-open');
-            el.next('.filter-block-inputs').slideToggle(300);
-        }
-    });
-    $('.filter-toggle').on('click', function () {
-        if (window.innerWidth <= 768) {
-            $('.developer-materials-sidebar').toggleClass('open');
-        }
-    });
-});
-<<<<<<< HEAD
-!function () { var a, AbstractChosen, Chosen, SelectParser, b, c = {}.hasOwnProperty, d = function (a, b) { function d() { this.constructor = a; } for (var e in b) {
-    c.call(b, e) && (a[e] = b[e]);
-} return d.prototype = b.prototype, a.prototype = new d, a.__super__ = b.prototype, a; }; SelectParser = (function () { function SelectParser() { this.options_index = 0, this.parsed = []; } return SelectParser.prototype.add_node = function (a) { return a.nodeName.toUpperCase() === "OPTGROUP" ? this.add_group(a) : this.add_option(a); }, SelectParser.prototype.add_group = function (a) { var b, c, d, e, f, g; for (b = this.parsed.length, this.parsed.push({ array_index: b, group: !0, label: this.escapeExpression(a.label), children: 0, disabled: a.disabled }), f = a.childNodes, g = [], d = 0, e = f.length; e > d; d++) {
-    c = f[d], g.push(this.add_option(c, b, a.disabled));
-} return g; }, SelectParser.prototype.add_option = function (a, b, c) { return a.nodeName.toUpperCase() === "OPTION" ? (a.text !== "" ? (b != null && (this.parsed[b].children += 1), this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, value: a.value, text: a.text, html: a.innerHTML, selected: a.selected, disabled: c === !0 ? c : a.disabled, group_array_index: b, classes: a.className, style: a.style.cssText })) : this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, empty: !0 }), this.options_index += 1) : void 0; }, SelectParser.prototype.escapeExpression = function (a) { var b, c; return a == null || a === !1 ? "" : /[\&\<\>\"\'\`]/.test(a) ? (b = { "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#x27;", "`": "&#x60;" }, c = /&(?!\w+;)|[\<\>\"\'\`]/g, a.replace(c, function (a) { return b[a] || "&amp;"; })) : a; }, SelectParser; }()), SelectParser.select_to_array = function (a) { var b, c, d, e, f; for (c = new SelectParser, f = a.childNodes, d = 0, e = f.length; e > d; d++) {
-    b = f[d], c.add_node(b);
-} return c.parsed; }, AbstractChosen = (function () { function AbstractChosen(a, b) { this.form_field = a, this.options = b != null ? b : {}, AbstractChosen.browser_is_supported() && (this.is_multiple = this.form_field.multiple, this.set_default_text(), this.set_default_values(), this.setup(), this.set_up_html(), this.register_observers()); } return AbstractChosen.prototype.set_default_values = function () { var a = this; return this.click_test_action = function (b) { return a.test_active_click(b); }, this.activate_action = function (b) { return a.activate_field(b); }, this.active_field = !1, this.mouse_on_container = !1, this.results_showing = !1, this.result_highlighted = null, this.allow_single_deselect = this.options.allow_single_deselect != null && this.form_field.options[0] != null && this.form_field.options[0].text === "" ? this.options.allow_single_deselect : !1, this.disable_search_threshold = this.options.disable_search_threshold || 0, this.disable_search = this.options.disable_search || !1, this.enable_split_word_search = this.options.enable_split_word_search != null ? this.options.enable_split_word_search : !0, this.group_search = this.options.group_search != null ? this.options.group_search : !0, this.search_contains = this.options.search_contains || !1, this.single_backstroke_delete = this.options.single_backstroke_delete != null ? this.options.single_backstroke_delete : !0, this.max_selected_options = this.options.max_selected_options || 1 / 0, this.inherit_select_classes = this.options.inherit_select_classes || !1, this.display_selected_options = this.options.display_selected_options != null ? this.options.display_selected_options : !0, this.display_disabled_options = this.options.display_disabled_options != null ? this.options.display_disabled_options : !0; }, AbstractChosen.prototype.set_default_text = function () { return this.default_text = this.form_field.getAttribute("data-placeholder") ? this.form_field.getAttribute("data-placeholder") : this.is_multiple ? this.options.placeholder_text_multiple || this.options.placeholder_text || AbstractChosen.default_multiple_text : this.options.placeholder_text_single || this.options.placeholder_text || AbstractChosen.default_single_text, this.results_none_found = this.form_field.getAttribute("data-no_results_text") || this.options.no_results_text || AbstractChosen.default_no_result_text; }, AbstractChosen.prototype.mouse_enter = function () { return this.mouse_on_container = !0; }, AbstractChosen.prototype.mouse_leave = function () { return this.mouse_on_container = !1; }, AbstractChosen.prototype.input_focus = function () { var a = this; if (this.is_multiple) {
-    if (!this.active_field) {
-        return setTimeout(function () { return a.container_mousedown(); }, 50);
-    }
-}
-else if (!this.active_field) {
-    return this.activate_field();
-} }, AbstractChosen.prototype.input_blur = function () { var a = this; return this.mouse_on_container ? void 0 : (this.active_field = !1, setTimeout(function () { return a.blur_test(); }, 100)); }, AbstractChosen.prototype.results_option_build = function (a) { var b, c, d, e, f; for (b = "", f = this.results_data, d = 0, e = f.length; e > d; d++) {
-    c = f[d], b += c.group ? this.result_add_group(c) : this.result_add_option(c), (a != null ? a.first : void 0) && (c.selected && this.is_multiple ? this.choice_build(c) : c.selected && !this.is_multiple && this.single_set_selected_text(c.text));
-} return b; }, AbstractChosen.prototype.result_add_option = function (a) { var b, c; return a.search_match ? this.include_option_in_results(a) ? (b = [], a.disabled || a.selected && this.is_multiple || b.push("active-result"), !a.disabled || a.selected && this.is_multiple || b.push("disabled-result"), a.selected && b.push("result-selected"), a.group_array_index != null && b.push("group-option"), a.classes !== "" && b.push(a.classes), c = document.createElement("li"), c.className = b.join(" "), c.style.cssText = a.style, c.setAttribute("data-option-array-index", a.array_index), c.innerHTML = a.search_text, this.outerHTML(c)) : "" : ""; }, AbstractChosen.prototype.result_add_group = function (a) { var b; return a.search_match || a.group_match ? a.active_options > 0 ? (b = document.createElement("li"), b.className = "group-result", b.innerHTML = a.search_text, this.outerHTML(b)) : "" : ""; }, AbstractChosen.prototype.results_update_field = function () { return this.set_default_text(), this.is_multiple || this.results_reset_cleanup(), this.result_clear_highlight(), this.results_build(), this.results_showing ? this.winnow_results() : void 0; }, AbstractChosen.prototype.reset_single_select_options = function () { var a, b, c, d, e; for (d = this.results_data, e = [], b = 0, c = d.length; c > b; b++) {
-    a = d[b], a.selected ? e.push(a.selected = !1) : e.push(void 0);
-} return e; }, AbstractChosen.prototype.results_toggle = function () { return this.results_showing ? this.results_hide() : this.results_show(); }, AbstractChosen.prototype.results_search = function () { return this.results_showing ? this.winnow_results() : this.results_show(); }, AbstractChosen.prototype.winnow_results = function () { var a, b, c, d, e, f, g, h, i, j, k, l, m; for (this.no_results_clear(), e = 0, g = this.get_search_text(), a = g.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), d = this.search_contains ? "" : "^", c = new RegExp(d + a, "i"), j = new RegExp(a, "i"), m = this.results_data, k = 0, l = m.length; l > k; k++) {
-    b = m[k], b.search_match = !1, f = null, this.include_option_in_results(b) && (b.group && (b.group_match = !1, b.active_options = 0), b.group_array_index != null && this.results_data[b.group_array_index] && (f = this.results_data[b.group_array_index], f.active_options === 0 && f.search_match && (e += 1), f.active_options += 1), (!b.group || this.group_search) && (b.search_text = b.group ? b.label : b.html, b.search_match = this.search_string_match(b.search_text, c), b.search_match && !b.group && (e += 1), b.search_match ? (g.length && (h = b.search_text.search(j), i = b.search_text.substr(0, h + g.length) + "</em>" + b.search_text.substr(h + g.length), b.search_text = i.substr(0, h) + "<em>" + i.substr(h)), f != null && (f.group_match = !0)) : b.group_array_index != null && this.results_data[b.group_array_index].search_match && (b.search_match = !0)));
-} return this.result_clear_highlight(), e < 1 && g.length ? (this.update_results_content(""), this.no_results(g)) : (this.update_results_content(this.results_option_build()), this.winnow_results_set_highlight()); }, AbstractChosen.prototype.search_string_match = function (a, b) { var c, d, e, f; if (b.test(a)) {
-    return !0;
-} if (this.enable_split_word_search && (a.indexOf(" ") >= 0 || a.indexOf("[") === 0) && (d = a.replace(/\[|\]/g, "").split(" "), d.length)) {
-    for (e = 0, f = d.length; f > e; e++) {
-        if (c = d[e], b.test(c)) {
-            return !0;
-        }
-    }
-} }, AbstractChosen.prototype.choices_count = function () { var a, b, c, d; if (this.selected_option_count != null) {
-    return this.selected_option_count;
-} for (this.selected_option_count = 0, d = this.form_field.options, b = 0, c = d.length; c > b; b++) {
-    a = d[b], a.selected && (this.selected_option_count += 1);
-} return this.selected_option_count; }, AbstractChosen.prototype.choices_click = function (a) { return a.preventDefault(), this.results_showing || this.is_disabled ? void 0 : this.results_show(); }, AbstractChosen.prototype.keyup_checker = function (a) { var b, c; switch (b = (c = a.which) != null ? c : a.keyCode, this.search_field_scale(), b) {
-    case 8:
-        if (this.is_multiple && this.backstroke_length < 1 && this.choices_count() > 0) {
-            return this.keydown_backstroke();
-        }
-        if (!this.pending_backstroke) {
-            return this.result_clear_highlight(), this.results_search();
-        }
-        break;
-    case 13:
-        if (a.preventDefault(), this.results_showing) {
-            return this.result_select(a);
-        }
-=======
 !function () { var a, AbstractChosen, Chosen, SelectParser, b, c = {}.hasOwnProperty, d = function (a, b) { function d() { this.constructor = a; } for (var e in b)
     c.call(b, e) && (a[e] = b[e]); return d.prototype = b.prototype, a.prototype = new d, a.__super__ = b.prototype, a; }; SelectParser = function () { function SelectParser() { this.options_index = 0, this.parsed = []; } return SelectParser.prototype.add_node = function (a) { return "OPTGROUP" === a.nodeName.toUpperCase() ? this.add_group(a) : this.add_option(a); }, SelectParser.prototype.add_group = function (a) { var b, c, d, e, f, g; for (b = this.parsed.length, this.parsed.push({ array_index: b, group: !0, label: this.escapeExpression(a.label), children: 0, disabled: a.disabled }), f = a.childNodes, g = [], d = 0, e = f.length; e > d; d++)
     c = f[d], g.push(this.add_option(c, b, a.disabled)); return g; }, SelectParser.prototype.add_option = function (a, b, c) { return "OPTION" === a.nodeName.toUpperCase() ? ("" !== a.text ? (null != b && (this.parsed[b].children += 1), this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, value: a.value, text: a.text, html: a.innerHTML, selected: a.selected, disabled: c === !0 ? c : a.disabled, group_array_index: b, classes: a.className, style: a.style.cssText })) : this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, empty: !0 }), this.options_index += 1) : void 0; }, SelectParser.prototype.escapeExpression = function (a) { var b, c; return null == a || a === !1 ? "" : /[\&\<\>\"\'\`]/.test(a) ? (b = { "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#x27;", "`": "&#x60;" }, c = /&(?!\w+;)|[\<\>\"\'\`]/g, a.replace(c, function (a) { return b[a] || "&amp;"; })) : a; }, SelectParser; }(), SelectParser.select_to_array = function (a) { var b, c, d, e, f; for (c = new SelectParser, f = a.childNodes, d = 0, e = f.length; e > d; d++)
@@ -6845,7 +5792,6 @@ else if (!this.active_field)
     case 13:
         if (a.preventDefault(), this.results_showing)
             return this.result_select(a);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         break;
     case 27: return this.results_showing && this.results_hide(), !0;
     case 9:
@@ -6855,23 +5801,12 @@ else if (!this.active_field)
     case 91:
     case 17: break;
     default: return this.results_search();
-<<<<<<< HEAD
-} }, AbstractChosen.prototype.clipboard_event_checker = function () { var a = this; return setTimeout(function () { return a.results_search(); }, 50); }, AbstractChosen.prototype.container_width = function () { return this.options.width != null ? this.options.width : String(this.form_field.offsetWidth) + "px"; }, AbstractChosen.prototype.include_option_in_results = function (a) { return this.is_multiple && !this.display_selected_options && a.selected ? !1 : !this.display_disabled_options && a.disabled ? !1 : a.empty ? !1 : !0; }, AbstractChosen.prototype.search_results_touchstart = function (a) { return this.touch_started = !0, this.search_results_mouseover(a); }, AbstractChosen.prototype.search_results_touchmove = function (a) { return this.touch_started = !1, this.search_results_mouseout(a); }, AbstractChosen.prototype.search_results_touchend = function (a) { return this.touch_started ? this.search_results_mouseup(a) : void 0; }, AbstractChosen.prototype.outerHTML = function (a) { var b; return a.outerHTML ? a.outerHTML : (b = document.createElement("div"), b.appendChild(a), b.innerHTML); }, AbstractChosen.browser_is_supported = function () { return window.navigator.appName === "Microsoft Internet Explorer" ? document.documentMode >= 8 : /iP(od|hone)/i.test(window.navigator.userAgent) ? !1 : /Android/i.test(window.navigator.userAgent) && /Mobile/i.test(window.navigator.userAgent) ? !1 : !0; }, AbstractChosen.default_multiple_text = "Select Some Options", AbstractChosen.default_single_text = "Select an Option", AbstractChosen.default_no_result_text = "No results match", AbstractChosen; }()), a = jQuery, a.fn.extend({ chosen: function (b) { return AbstractChosen.browser_is_supported() ? this.each(function () { var c, d; c = a(this), d = c.data("chosen"), b === "destroy" && d ? d.destroy() : d || c.data("chosen", new Chosen(this, b)); }) : this; } }), Chosen = (function (c) { function Chosen() { return b = Chosen.__super__.constructor.apply(this, arguments); } return d(Chosen, c), Chosen.prototype.setup = function () { return this.form_field_jq = a(this.form_field), this.current_selectedIndex = this.form_field.selectedIndex, this.is_rtl = this.form_field_jq.hasClass("chosen-rtl"); }, Chosen.prototype.set_up_html = function () { var b, c; return b = ["chosen-container"], b.push("chosen-container-" + (this.is_multiple ? "multi" : "single")), this.inherit_select_classes && this.form_field.className && b.push(this.form_field.className), this.is_rtl && b.push("chosen-rtl"), c = { "class": b.join(" "), style: "width: " + this.container_width() + ";", title: this.form_field.title }, this.form_field.id.length && (c.id = this.form_field.id.replace(/[^\w]/g, "_") + "_chosen"), this.container = a("<div />", c), this.is_multiple ? this.container.html('<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + this.default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>') : this.container.html('<a class="chosen-single chosen-default" tabindex="-1"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>'), this.form_field_jq.hide().after(this.container), this.dropdown = this.container.find("div.chosen-drop").first(), this.search_field = this.container.find("input").first(), this.search_results = this.container.find("ul.chosen-results").first(), this.search_field_scale(), this.search_no_results = this.container.find("li.no-results").first(), this.is_multiple ? (this.search_choices = this.container.find("ul.chosen-choices").first(), this.search_container = this.container.find("li.search-field").first()) : (this.search_container = this.container.find("div.chosen-search").first(), this.selected_item = this.container.find(".chosen-single").first()), this.results_build(), this.set_tab_index(), this.set_label_behavior(), this.form_field_jq.trigger("chosen:ready", { chosen: this }); }, Chosen.prototype.register_observers = function () { var a = this; return this.container.bind("mousedown.chosen", function (b) { a.container_mousedown(b); }), this.container.bind("mouseup.chosen", function (b) { a.container_mouseup(b); }), this.container.bind("mouseenter.chosen", function (b) { a.mouse_enter(b); }), this.container.bind("mouseleave.chosen", function (b) { a.mouse_leave(b); }), this.search_results.bind("mouseup.chosen", function (b) { a.search_results_mouseup(b); }), this.search_results.bind("mouseover.chosen", function (b) { a.search_results_mouseover(b); }), this.search_results.bind("mouseout.chosen", function (b) { a.search_results_mouseout(b); }), this.search_results.bind("mousewheel.chosen DOMMouseScroll.chosen", function (b) { a.search_results_mousewheel(b); }), this.search_results.bind("touchstart.chosen", function (b) { a.search_results_touchstart(b); }), this.search_results.bind("touchmove.chosen", function (b) { a.search_results_touchmove(b); }), this.search_results.bind("touchend.chosen", function (b) { a.search_results_touchend(b); }), this.form_field_jq.bind("chosen:updated.chosen", function (b) { a.results_update_field(b); }), this.form_field_jq.bind("chosen:activate.chosen", function (b) { a.activate_field(b); }), this.form_field_jq.bind("chosen:open.chosen", function (b) { a.container_mousedown(b); }), this.form_field_jq.bind("chosen:close.chosen", function (b) { a.input_blur(b); }), this.search_field.bind("blur.chosen", function (b) { a.input_blur(b); }), this.search_field.bind("keyup.chosen", function (b) { a.keyup_checker(b); }), this.search_field.bind("keydown.chosen", function (b) { a.keydown_checker(b); }), this.search_field.bind("focus.chosen", function (b) { a.input_focus(b); }), this.search_field.bind("cut.chosen", function (b) { a.clipboard_event_checker(b); }), this.search_field.bind("paste.chosen", function (b) { a.clipboard_event_checker(b); }), this.is_multiple ? this.search_choices.bind("click.chosen", function (b) { a.choices_click(b); }) : this.container.bind("click.chosen", function (a) { a.preventDefault(); }); }, Chosen.prototype.destroy = function () { return a(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action), this.search_field[0].tabIndex && (this.form_field_jq[0].tabIndex = this.search_field[0].tabIndex), this.container.remove(), this.form_field_jq.removeData("chosen"), this.form_field_jq.show(); }, Chosen.prototype.search_field_disabled = function () { return this.is_disabled = this.form_field_jq[0].disabled, this.is_disabled ? (this.container.addClass("chosen-disabled"), this.search_field[0].disabled = !0, this.is_multiple || this.selected_item.unbind("focus.chosen", this.activate_action), this.close_field()) : (this.container.removeClass("chosen-disabled"), this.search_field[0].disabled = !1, this.is_multiple ? void 0 : this.selected_item.bind("focus.chosen", this.activate_action)); }, Chosen.prototype.container_mousedown = function (b) { return this.is_disabled || (b && b.type === "mousedown" && !this.results_showing && b.preventDefault(), b != null && a(b.target).hasClass("search-choice-close")) ? void 0 : (this.active_field ? this.is_multiple || !b || a(b.target)[0] !== this.selected_item[0] && !a(b.target).parents("a.chosen-single").length || (b.preventDefault(), this.results_toggle()) : (this.is_multiple && this.search_field.val(""), a(this.container[0].ownerDocument).bind("click.chosen", this.click_test_action), this.results_show()), this.activate_field()); }, Chosen.prototype.container_mouseup = function (a) { return a.target.nodeName !== "ABBR" || this.is_disabled ? void 0 : this.results_reset(a); }, Chosen.prototype.search_results_mousewheel = function (a) { var b; return a.originalEvent && (b = -a.originalEvent.wheelDelta || a.originalEvent.detail), b != null ? (a.preventDefault(), a.type === "DOMMouseScroll" && (b = 40 * b), this.search_results.scrollTop(b + this.search_results.scrollTop())) : void 0; }, Chosen.prototype.blur_test = function () { return !this.active_field && this.container.hasClass("chosen-container-active") ? this.close_field() : void 0; }, Chosen.prototype.close_field = function () { return a(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action), this.active_field = !1, this.results_hide(), this.container.removeClass("chosen-container-active"), this.clear_backstroke(), this.show_search_field_default(), this.search_field_scale(); }, Chosen.prototype.activate_field = function () { return this.container.addClass("chosen-container-active"), this.active_field = !0, this.search_field.val(this.search_field.val()), this.search_field.focus(); }, Chosen.prototype.test_active_click = function (b) { var c; return c = a(b.target).closest(".chosen-container"), c.length && this.container[0] === c[0] ? this.active_field = !0 : this.close_field(); }, Chosen.prototype.results_build = function () { return this.parsing = !0, this.selected_option_count = null, this.results_data = SelectParser.select_to_array(this.form_field), this.is_multiple ? this.search_choices.find("li.search-choice").remove() : this.is_multiple || (this.single_set_selected_text(), this.disable_search || this.form_field.options.length <= this.disable_search_threshold ? (this.search_field[0].readOnly = !0, this.container.addClass("chosen-container-single-nosearch")) : (this.search_field[0].readOnly = !1, this.container.removeClass("chosen-container-single-nosearch"))), this.update_results_content(this.results_option_build({ first: !0 })), this.search_field_disabled(), this.show_search_field_default(), this.search_field_scale(), this.parsing = !1; }, Chosen.prototype.result_do_highlight = function (a) { var b, c, d, e, f; if (a.length) {
-    if (this.result_clear_highlight(), this.result_highlight = a, this.result_highlight.addClass("highlighted"), d = parseInt(this.search_results.css("maxHeight"), 10), f = this.search_results.scrollTop(), e = d + f, c = this.result_highlight.position().top + this.search_results.scrollTop(), b = c + this.result_highlight.outerHeight(), b >= e) {
-        return this.search_results.scrollTop(b - d > 0 ? b - d : 0);
-    }
-    if (f > c) {
-        return this.search_results.scrollTop(c);
-    }
-} }, Chosen.prototype.result_clear_highlight = function () { return this.result_highlight && this.result_highlight.removeClass("highlighted"), this.result_highlight = null; }, Chosen.prototype.results_show = function () { return this.is_multiple && this.max_selected_options <= this.choices_count() ? (this.form_field_jq.trigger("chosen:maxselected", { chosen: this }), !1) : (this.container.addClass("chosen-with-drop"), this.results_showing = !0, this.search_field.focus(), this.search_field.val(this.search_field.val()), this.winnow_results(), this.form_field_jq.trigger("chosen:showing_dropdown", { chosen: this })); }, Chosen.prototype.update_results_content = function (a) { return this.search_results.html(a); }, Chosen.prototype.results_hide = function () { return this.results_showing && (this.result_clear_highlight(), this.container.removeClass("chosen-with-drop"), this.form_field_jq.trigger("chosen:hiding_dropdown", { chosen: this })), this.results_showing = !1; }, Chosen.prototype.set_tab_index = function () { var a; return this.form_field.tabIndex ? (a = this.form_field.tabIndex, this.form_field.tabIndex = -1, this.search_field[0].tabIndex = a) : void 0; }, Chosen.prototype.set_label_behavior = function () { var b = this; return this.form_field_label = this.form_field_jq.parents("label"), !this.form_field_label.length && this.form_field.id.length && (this.form_field_label = a("label[for='" + this.form_field.id + "']")), this.form_field_label.length > 0 ? this.form_field_label.bind("click.chosen", function (a) { return b.is_multiple ? b.container_mousedown(a) : b.activate_field(); }) : void 0; }, Chosen.prototype.show_search_field_default = function () { return this.is_multiple && this.choices_count() < 1 && !this.active_field ? (this.search_field.val(this.default_text), this.search_field.addClass("default")) : (this.search_field.val(""), this.search_field.removeClass("default")); }, Chosen.prototype.search_results_mouseup = function (b) { var c; return c = a(b.target).hasClass("active-result") ? a(b.target) : a(b.target).parents(".active-result").first(), c.length ? (this.result_highlight = c, this.result_select(b), this.search_field.focus()) : void 0; }, Chosen.prototype.search_results_mouseover = function (b) { var c; return c = a(b.target).hasClass("active-result") ? a(b.target) : a(b.target).parents(".active-result").first(), c ? this.result_do_highlight(c) : void 0; }, Chosen.prototype.search_results_mouseout = function (b) { return a(b.target).hasClass("active-result") ? this.result_clear_highlight() : void 0; }, Chosen.prototype.choice_build = function (b) { var c, d, e = this; return c = a("<li />", { "class": "search-choice" }).html("<span>" + b.html + "</span>"), b.disabled ? c.addClass("search-choice-disabled") : (d = a("<a />", { "class": "search-choice-close", "data-option-array-index": b.array_index }), d.bind("click.chosen", function (a) { return e.choice_destroy_link_click(a); }), c.append(d)), this.search_container.before(c); }, Chosen.prototype.choice_destroy_link_click = function (b) { return b.preventDefault(), b.stopPropagation(), this.is_disabled ? void 0 : this.choice_destroy(a(b.target)); }, Chosen.prototype.choice_destroy = function (a) { return this.result_deselect(a[0].getAttribute("data-option-array-index")) ? (this.show_search_field_default(), this.is_multiple && this.choices_count() > 0 && this.search_field.val().length < 1 && this.results_hide(), a.parents("li").first().remove(), this.search_field_scale()) : void 0; }, Chosen.prototype.results_reset = function () { return this.reset_single_select_options(), this.form_field.options[0].selected = !0, this.single_set_selected_text(), this.show_search_field_default(), this.results_reset_cleanup(), this.form_field_jq.trigger("change"), this.active_field ? this.results_hide() : void 0; }, Chosen.prototype.results_reset_cleanup = function () { return this.current_selectedIndex = this.form_field.selectedIndex, this.selected_item.find("abbr").remove(); }, Chosen.prototype.result_select = function (a) { var b, c; return this.result_highlight ? (b = this.result_highlight, this.result_clear_highlight(), this.is_multiple && this.max_selected_options <= this.choices_count() ? (this.form_field_jq.trigger("chosen:maxselected", { chosen: this }), !1) : (this.is_multiple ? b.removeClass("active-result") : this.reset_single_select_options(), c = this.results_data[b[0].getAttribute("data-option-array-index")], c.selected = !0, this.form_field.options[c.options_index].selected = !0, this.selected_option_count = null, this.is_multiple ? this.choice_build(c) : this.single_set_selected_text(c.text), (a.metaKey || a.ctrlKey) && this.is_multiple || this.results_hide(), this.search_field.val(""), (this.is_multiple || this.form_field.selectedIndex !== this.current_selectedIndex) && this.form_field_jq.trigger("change", { selected: this.form_field.options[c.options_index].value }), this.current_selectedIndex = this.form_field.selectedIndex, this.search_field_scale())) : void 0; }, Chosen.prototype.single_set_selected_text = function (a) { return a == null && (a = this.default_text), a === this.default_text ? this.selected_item.addClass("chosen-default") : (this.single_deselect_control_build(), this.selected_item.removeClass("chosen-default")), this.selected_item.find("span").text(a); }, Chosen.prototype.result_deselect = function (a) { var b; return b = this.results_data[a], this.form_field.options[b.options_index].disabled ? !1 : (b.selected = !1, this.form_field.options[b.options_index].selected = !1, this.selected_option_count = null, this.result_clear_highlight(), this.results_showing && this.winnow_results(), this.form_field_jq.trigger("change", { deselected: this.form_field.options[b.options_index].value }), this.search_field_scale(), !0); }, Chosen.prototype.single_deselect_control_build = function () { return this.allow_single_deselect ? (this.selected_item.find("abbr").length || this.selected_item.find("span").first().after('<abbr class="search-choice-close"></abbr>'), this.selected_item.addClass("chosen-single-with-deselect")) : void 0; }, Chosen.prototype.get_search_text = function () { return this.search_field.val() === this.default_text ? "" : a("<div/>").text(a.trim(this.search_field.val())).html(); }, Chosen.prototype.winnow_results_set_highlight = function () { var a, b; return b = this.is_multiple ? [] : this.search_results.find(".result-selected.active-result"), a = b.length ? b.first() : this.search_results.find(".active-result").first(), a != null ? this.result_do_highlight(a) : void 0; }, Chosen.prototype.no_results = function (b) { var c; return c = a('<li class="no-results">' + this.results_none_found + ' "<span></span>"</li>'), c.find("span").first().html(b), this.search_results.append(c), this.form_field_jq.trigger("chosen:no_results", { chosen: this }); }, Chosen.prototype.no_results_clear = function () { return this.search_results.find(".no-results").remove(); }, Chosen.prototype.keydown_arrow = function () { var a; return this.results_showing && this.result_highlight ? (a = this.result_highlight.nextAll("li.active-result").first()) ? this.result_do_highlight(a) : void 0 : this.results_show(); }, Chosen.prototype.keyup_arrow = function () { var a; return this.results_showing || this.is_multiple ? this.result_highlight ? (a = this.result_highlight.prevAll("li.active-result"), a.length ? this.result_do_highlight(a.first()) : (this.choices_count() > 0 && this.results_hide(), this.result_clear_highlight())) : void 0 : this.results_show(); }, Chosen.prototype.keydown_backstroke = function () { var a; return this.pending_backstroke ? (this.choice_destroy(this.pending_backstroke.find("a").first()), this.clear_backstroke()) : (a = this.search_container.siblings("li.search-choice").last(), a.length && !a.hasClass("search-choice-disabled") ? (this.pending_backstroke = a, this.single_backstroke_delete ? this.keydown_backstroke() : this.pending_backstroke.addClass("search-choice-focus")) : void 0); }, Chosen.prototype.clear_backstroke = function () { return this.pending_backstroke && this.pending_backstroke.removeClass("search-choice-focus"), this.pending_backstroke = null; }, Chosen.prototype.keydown_checker = function (a) { var b, c; switch (b = (c = a.which) != null ? c : a.keyCode, this.search_field_scale(), b !== 8 && this.pending_backstroke && this.clear_backstroke(), b) {
-=======
 } }, AbstractChosen.prototype.clipboard_event_checker = function () { var a = this; return setTimeout(function () { return a.results_search(); }, 50); }, AbstractChosen.prototype.container_width = function () { return null != this.options.width ? this.options.width : "" + this.form_field.offsetWidth + "px"; }, AbstractChosen.prototype.include_option_in_results = function (a) { return this.is_multiple && !this.display_selected_options && a.selected ? !1 : !this.display_disabled_options && a.disabled ? !1 : a.empty ? !1 : !0; }, AbstractChosen.prototype.search_results_touchstart = function (a) { return this.touch_started = !0, this.search_results_mouseover(a); }, AbstractChosen.prototype.search_results_touchmove = function (a) { return this.touch_started = !1, this.search_results_mouseout(a); }, AbstractChosen.prototype.search_results_touchend = function (a) { return this.touch_started ? this.search_results_mouseup(a) : void 0; }, AbstractChosen.prototype.outerHTML = function (a) { var b; return a.outerHTML ? a.outerHTML : (b = document.createElement("div"), b.appendChild(a), b.innerHTML); }, AbstractChosen.browser_is_supported = function () { return "Microsoft Internet Explorer" === window.navigator.appName ? document.documentMode >= 8 : /iP(od|hone)/i.test(window.navigator.userAgent) ? !1 : /Android/i.test(window.navigator.userAgent) && /Mobile/i.test(window.navigator.userAgent) ? !1 : !0; }, AbstractChosen.default_multiple_text = "Select Some Options", AbstractChosen.default_single_text = "Select an Option", AbstractChosen.default_no_result_text = "No results match", AbstractChosen; }(), a = jQuery, a.fn.extend({ chosen: function (b) { return AbstractChosen.browser_is_supported() ? this.each(function () { var c, d; c = a(this), d = c.data("chosen"), "destroy" === b && d ? d.destroy() : d || c.data("chosen", new Chosen(this, b)); }) : this; } }), Chosen = function (c) { function Chosen() { return b = Chosen.__super__.constructor.apply(this, arguments); } return d(Chosen, c), Chosen.prototype.setup = function () { return this.form_field_jq = a(this.form_field), this.current_selectedIndex = this.form_field.selectedIndex, this.is_rtl = this.form_field_jq.hasClass("chosen-rtl"); }, Chosen.prototype.set_up_html = function () { var b, c; return b = ["chosen-container"], b.push("chosen-container-" + (this.is_multiple ? "multi" : "single")), this.inherit_select_classes && this.form_field.className && b.push(this.form_field.className), this.is_rtl && b.push("chosen-rtl"), c = { "class": b.join(" "), style: "width: " + this.container_width() + ";", title: this.form_field.title }, this.form_field.id.length && (c.id = this.form_field.id.replace(/[^\w]/g, "_") + "_chosen"), this.container = a("<div />", c), this.is_multiple ? this.container.html('<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + this.default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>') : this.container.html('<a class="chosen-single chosen-default" tabindex="-1"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>'), this.form_field_jq.hide().after(this.container), this.dropdown = this.container.find("div.chosen-drop").first(), this.search_field = this.container.find("input").first(), this.search_results = this.container.find("ul.chosen-results").first(), this.search_field_scale(), this.search_no_results = this.container.find("li.no-results").first(), this.is_multiple ? (this.search_choices = this.container.find("ul.chosen-choices").first(), this.search_container = this.container.find("li.search-field").first()) : (this.search_container = this.container.find("div.chosen-search").first(), this.selected_item = this.container.find(".chosen-single").first()), this.results_build(), this.set_tab_index(), this.set_label_behavior(), this.form_field_jq.trigger("chosen:ready", { chosen: this }); }, Chosen.prototype.register_observers = function () { var a = this; return this.container.bind("mousedown.chosen", function (b) { a.container_mousedown(b); }), this.container.bind("mouseup.chosen", function (b) { a.container_mouseup(b); }), this.container.bind("mouseenter.chosen", function (b) { a.mouse_enter(b); }), this.container.bind("mouseleave.chosen", function (b) { a.mouse_leave(b); }), this.search_results.bind("mouseup.chosen", function (b) { a.search_results_mouseup(b); }), this.search_results.bind("mouseover.chosen", function (b) { a.search_results_mouseover(b); }), this.search_results.bind("mouseout.chosen", function (b) { a.search_results_mouseout(b); }), this.search_results.bind("mousewheel.chosen DOMMouseScroll.chosen", function (b) { a.search_results_mousewheel(b); }), this.search_results.bind("touchstart.chosen", function (b) { a.search_results_touchstart(b); }), this.search_results.bind("touchmove.chosen", function (b) { a.search_results_touchmove(b); }), this.search_results.bind("touchend.chosen", function (b) { a.search_results_touchend(b); }), this.form_field_jq.bind("chosen:updated.chosen", function (b) { a.results_update_field(b); }), this.form_field_jq.bind("chosen:activate.chosen", function (b) { a.activate_field(b); }), this.form_field_jq.bind("chosen:open.chosen", function (b) { a.container_mousedown(b); }), this.form_field_jq.bind("chosen:close.chosen", function (b) { a.input_blur(b); }), this.search_field.bind("blur.chosen", function (b) { a.input_blur(b); }), this.search_field.bind("keyup.chosen", function (b) { a.keyup_checker(b); }), this.search_field.bind("keydown.chosen", function (b) { a.keydown_checker(b); }), this.search_field.bind("focus.chosen", function (b) { a.input_focus(b); }), this.search_field.bind("cut.chosen", function (b) { a.clipboard_event_checker(b); }), this.search_field.bind("paste.chosen", function (b) { a.clipboard_event_checker(b); }), this.is_multiple ? this.search_choices.bind("click.chosen", function (b) { a.choices_click(b); }) : this.container.bind("click.chosen", function (a) { a.preventDefault(); }); }, Chosen.prototype.destroy = function () { return a(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action), this.search_field[0].tabIndex && (this.form_field_jq[0].tabIndex = this.search_field[0].tabIndex), this.container.remove(), this.form_field_jq.removeData("chosen"), this.form_field_jq.show(); }, Chosen.prototype.search_field_disabled = function () { return this.is_disabled = this.form_field_jq[0].disabled, this.is_disabled ? (this.container.addClass("chosen-disabled"), this.search_field[0].disabled = !0, this.is_multiple || this.selected_item.unbind("focus.chosen", this.activate_action), this.close_field()) : (this.container.removeClass("chosen-disabled"), this.search_field[0].disabled = !1, this.is_multiple ? void 0 : this.selected_item.bind("focus.chosen", this.activate_action)); }, Chosen.prototype.container_mousedown = function (b) { return this.is_disabled || (b && "mousedown" === b.type && !this.results_showing && b.preventDefault(), null != b && a(b.target).hasClass("search-choice-close")) ? void 0 : (this.active_field ? this.is_multiple || !b || a(b.target)[0] !== this.selected_item[0] && !a(b.target).parents("a.chosen-single").length || (b.preventDefault(), this.results_toggle()) : (this.is_multiple && this.search_field.val(""), a(this.container[0].ownerDocument).bind("click.chosen", this.click_test_action), this.results_show()), this.activate_field()); }, Chosen.prototype.container_mouseup = function (a) { return "ABBR" !== a.target.nodeName || this.is_disabled ? void 0 : this.results_reset(a); }, Chosen.prototype.search_results_mousewheel = function (a) { var b; return a.originalEvent && (b = -a.originalEvent.wheelDelta || a.originalEvent.detail), null != b ? (a.preventDefault(), "DOMMouseScroll" === a.type && (b = 40 * b), this.search_results.scrollTop(b + this.search_results.scrollTop())) : void 0; }, Chosen.prototype.blur_test = function () { return !this.active_field && this.container.hasClass("chosen-container-active") ? this.close_field() : void 0; }, Chosen.prototype.close_field = function () { return a(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action), this.active_field = !1, this.results_hide(), this.container.removeClass("chosen-container-active"), this.clear_backstroke(), this.show_search_field_default(), this.search_field_scale(); }, Chosen.prototype.activate_field = function () { return this.container.addClass("chosen-container-active"), this.active_field = !0, this.search_field.val(this.search_field.val()), this.search_field.focus(); }, Chosen.prototype.test_active_click = function (b) { var c; return c = a(b.target).closest(".chosen-container"), c.length && this.container[0] === c[0] ? this.active_field = !0 : this.close_field(); }, Chosen.prototype.results_build = function () { return this.parsing = !0, this.selected_option_count = null, this.results_data = SelectParser.select_to_array(this.form_field), this.is_multiple ? this.search_choices.find("li.search-choice").remove() : this.is_multiple || (this.single_set_selected_text(), this.disable_search || this.form_field.options.length <= this.disable_search_threshold ? (this.search_field[0].readOnly = !0, this.container.addClass("chosen-container-single-nosearch")) : (this.search_field[0].readOnly = !1, this.container.removeClass("chosen-container-single-nosearch"))), this.update_results_content(this.results_option_build({ first: !0 })), this.search_field_disabled(), this.show_search_field_default(), this.search_field_scale(), this.parsing = !1; }, Chosen.prototype.result_do_highlight = function (a) { var b, c, d, e, f; if (a.length) {
     if (this.result_clear_highlight(), this.result_highlight = a, this.result_highlight.addClass("highlighted"), d = parseInt(this.search_results.css("maxHeight"), 10), f = this.search_results.scrollTop(), e = d + f, c = this.result_highlight.position().top + this.search_results.scrollTop(), b = c + this.result_highlight.outerHeight(), b >= e)
         return this.search_results.scrollTop(b - d > 0 ? b - d : 0);
     if (f > c)
         return this.search_results.scrollTop(c);
 } }, Chosen.prototype.result_clear_highlight = function () { return this.result_highlight && this.result_highlight.removeClass("highlighted"), this.result_highlight = null; }, Chosen.prototype.results_show = function () { return this.is_multiple && this.max_selected_options <= this.choices_count() ? (this.form_field_jq.trigger("chosen:maxselected", { chosen: this }), !1) : (this.container.addClass("chosen-with-drop"), this.results_showing = !0, this.search_field.focus(), this.search_field.val(this.search_field.val()), this.winnow_results(), this.form_field_jq.trigger("chosen:showing_dropdown", { chosen: this })); }, Chosen.prototype.update_results_content = function (a) { return this.search_results.html(a); }, Chosen.prototype.results_hide = function () { return this.results_showing && (this.result_clear_highlight(), this.container.removeClass("chosen-with-drop"), this.form_field_jq.trigger("chosen:hiding_dropdown", { chosen: this })), this.results_showing = !1; }, Chosen.prototype.set_tab_index = function () { var a; return this.form_field.tabIndex ? (a = this.form_field.tabIndex, this.form_field.tabIndex = -1, this.search_field[0].tabIndex = a) : void 0; }, Chosen.prototype.set_label_behavior = function () { var b = this; return this.form_field_label = this.form_field_jq.parents("label"), !this.form_field_label.length && this.form_field.id.length && (this.form_field_label = a("label[for='" + this.form_field.id + "']")), this.form_field_label.length > 0 ? this.form_field_label.bind("click.chosen", function (a) { return b.is_multiple ? b.container_mousedown(a) : b.activate_field(); }) : void 0; }, Chosen.prototype.show_search_field_default = function () { return this.is_multiple && this.choices_count() < 1 && !this.active_field ? (this.search_field.val(this.default_text), this.search_field.addClass("default")) : (this.search_field.val(""), this.search_field.removeClass("default")); }, Chosen.prototype.search_results_mouseup = function (b) { var c; return c = a(b.target).hasClass("active-result") ? a(b.target) : a(b.target).parents(".active-result").first(), c.length ? (this.result_highlight = c, this.result_select(b), this.search_field.focus()) : void 0; }, Chosen.prototype.search_results_mouseover = function (b) { var c; return c = a(b.target).hasClass("active-result") ? a(b.target) : a(b.target).parents(".active-result").first(), c ? this.result_do_highlight(c) : void 0; }, Chosen.prototype.search_results_mouseout = function (b) { return a(b.target).hasClass("active-result") ? this.result_clear_highlight() : void 0; }, Chosen.prototype.choice_build = function (b) { var c, d, e = this; return c = a("<li />", { "class": "search-choice" }).html("<span>" + b.html + "</span>"), b.disabled ? c.addClass("search-choice-disabled") : (d = a("<a />", { "class": "search-choice-close", "data-option-array-index": b.array_index }), d.bind("click.chosen", function (a) { return e.choice_destroy_link_click(a); }), c.append(d)), this.search_container.before(c); }, Chosen.prototype.choice_destroy_link_click = function (b) { return b.preventDefault(), b.stopPropagation(), this.is_disabled ? void 0 : this.choice_destroy(a(b.target)); }, Chosen.prototype.choice_destroy = function (a) { return this.result_deselect(a[0].getAttribute("data-option-array-index")) ? (this.show_search_field_default(), this.is_multiple && this.choices_count() > 0 && this.search_field.val().length < 1 && this.results_hide(), a.parents("li").first().remove(), this.search_field_scale()) : void 0; }, Chosen.prototype.results_reset = function () { return this.reset_single_select_options(), this.form_field.options[0].selected = !0, this.single_set_selected_text(), this.show_search_field_default(), this.results_reset_cleanup(), this.form_field_jq.trigger("change"), this.active_field ? this.results_hide() : void 0; }, Chosen.prototype.results_reset_cleanup = function () { return this.current_selectedIndex = this.form_field.selectedIndex, this.selected_item.find("abbr").remove(); }, Chosen.prototype.result_select = function (a) { var b, c; return this.result_highlight ? (b = this.result_highlight, this.result_clear_highlight(), this.is_multiple && this.max_selected_options <= this.choices_count() ? (this.form_field_jq.trigger("chosen:maxselected", { chosen: this }), !1) : (this.is_multiple ? b.removeClass("active-result") : this.reset_single_select_options(), c = this.results_data[b[0].getAttribute("data-option-array-index")], c.selected = !0, this.form_field.options[c.options_index].selected = !0, this.selected_option_count = null, this.is_multiple ? this.choice_build(c) : this.single_set_selected_text(c.text), (a.metaKey || a.ctrlKey) && this.is_multiple || this.results_hide(), this.search_field.val(""), (this.is_multiple || this.form_field.selectedIndex !== this.current_selectedIndex) && this.form_field_jq.trigger("change", { selected: this.form_field.options[c.options_index].value }), this.current_selectedIndex = this.form_field.selectedIndex, this.search_field_scale())) : void 0; }, Chosen.prototype.single_set_selected_text = function (a) { return null == a && (a = this.default_text), a === this.default_text ? this.selected_item.addClass("chosen-default") : (this.single_deselect_control_build(), this.selected_item.removeClass("chosen-default")), this.selected_item.find("span").text(a); }, Chosen.prototype.result_deselect = function (a) { var b; return b = this.results_data[a], this.form_field.options[b.options_index].disabled ? !1 : (b.selected = !1, this.form_field.options[b.options_index].selected = !1, this.selected_option_count = null, this.result_clear_highlight(), this.results_showing && this.winnow_results(), this.form_field_jq.trigger("change", { deselected: this.form_field.options[b.options_index].value }), this.search_field_scale(), !0); }, Chosen.prototype.single_deselect_control_build = function () { return this.allow_single_deselect ? (this.selected_item.find("abbr").length || this.selected_item.find("span").first().after('<abbr class="search-choice-close"></abbr>'), this.selected_item.addClass("chosen-single-with-deselect")) : void 0; }, Chosen.prototype.get_search_text = function () { return this.search_field.val() === this.default_text ? "" : a("<div/>").text(a.trim(this.search_field.val())).html(); }, Chosen.prototype.winnow_results_set_highlight = function () { var a, b; return b = this.is_multiple ? [] : this.search_results.find(".result-selected.active-result"), a = b.length ? b.first() : this.search_results.find(".active-result").first(), null != a ? this.result_do_highlight(a) : void 0; }, Chosen.prototype.no_results = function (b) { var c; return c = a('<li class="no-results">' + this.results_none_found + ' "<span></span>"</li>'), c.find("span").first().html(b), this.search_results.append(c), this.form_field_jq.trigger("chosen:no_results", { chosen: this }); }, Chosen.prototype.no_results_clear = function () { return this.search_results.find(".no-results").remove(); }, Chosen.prototype.keydown_arrow = function () { var a; return this.results_showing && this.result_highlight ? (a = this.result_highlight.nextAll("li.active-result").first()) ? this.result_do_highlight(a) : void 0 : this.results_show(); }, Chosen.prototype.keyup_arrow = function () { var a; return this.results_showing || this.is_multiple ? this.result_highlight ? (a = this.result_highlight.prevAll("li.active-result"), a.length ? this.result_do_highlight(a.first()) : (this.choices_count() > 0 && this.results_hide(), this.result_clear_highlight())) : void 0 : this.results_show(); }, Chosen.prototype.keydown_backstroke = function () { var a; return this.pending_backstroke ? (this.choice_destroy(this.pending_backstroke.find("a").first()), this.clear_backstroke()) : (a = this.search_container.siblings("li.search-choice").last(), a.length && !a.hasClass("search-choice-disabled") ? (this.pending_backstroke = a, this.single_backstroke_delete ? this.keydown_backstroke() : this.pending_backstroke.addClass("search-choice-focus")) : void 0); }, Chosen.prototype.clear_backstroke = function () { return this.pending_backstroke && this.pending_backstroke.removeClass("search-choice-focus"), this.pending_backstroke = null; }, Chosen.prototype.keydown_checker = function (a) { var b, c; switch (b = null != (c = a.which) ? c : a.keyCode, this.search_field_scale(), 8 !== b && this.pending_backstroke && this.clear_backstroke(), b) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     case 8:
         this.backstroke_length = this.search_field.val().length;
         break;
@@ -6886,18 +5821,10 @@ else if (!this.active_field)
         break;
     case 40: a.preventDefault(), this.keydown_arrow();
 } }, Chosen.prototype.search_field_scale = function () { var b, c, d, e, f, g, h, i, j; if (this.is_multiple) {
-<<<<<<< HEAD
-    for (d = 0, h = 0, f = "position:absolute; left: -1000px; top: -1000px; display:none;", g = ["font-size", "font-style", "font-weight", "font-family", "line-height", "text-transform", "letter-spacing"], i = 0, j = g.length; j > i; i++) {
-        e = g[i], f += e + ":" + this.search_field.css(e) + ";";
-    }
-    return b = a("<div />", { style: f }), b.text(this.search_field.val()), a("body").append(b), h = b.width() + 25, b.remove(), c = this.container.outerWidth(), h > c - 10 && (h = c - 10), this.search_field.css({ width: h + "px" });
-} }, Chosen; }(AbstractChosen)); }.call(this);
-=======
     for (d = 0, h = 0, f = "position:absolute; left: -1000px; top: -1000px; display:none;", g = ["font-size", "font-style", "font-weight", "font-family", "line-height", "text-transform", "letter-spacing"], i = 0, j = g.length; j > i; i++)
         e = g[i], f += e + ":" + this.search_field.css(e) + ";";
     return b = a("<div />", { style: f }), b.text(this.search_field.val()), a("body").append(b), h = b.width() + 25, b.remove(), c = this.container.outerWidth(), h > c - 10 && (h = c - 10), this.search_field.css({ width: h + "px" });
 } }, Chosen; }(AbstractChosen); }.call(this);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 $(function () {
     $('ul.results, ul.featured-projects-results').on('click', '.upstream-toggle-more', function (e) {
         e.preventDefault();
@@ -6911,250 +5838,6 @@ $(function () {
         app.overlay.open(html);
     });
 });
-app.books = {
-    supportsLocalStorage: function () {
-        try {
-<<<<<<< HEAD
-            return 'localStorage' in window && window.localStorage !== null;
-=======
-            return 'localStorage' in window && window['localStorage'] !== null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        }
-        catch (e) {
-            return false;
-        }
-    },
-    restoreFilter: function (hashParams) {
-        if (!this.supportsLocalStorage()) {
-            return;
-        }
-        var filterKeys = [
-<<<<<<< HEAD
-            "keyword"
-        ];
-        hashParams = hashParams || app.utils.getParametersFromHash();
-        $.each(filterKeys, function (idx, key) {
-            var formValue = $.isEmptyObject(hashParams) ? window.localStorage.getItem("booksFilter." + key) : hashParams[key];
-=======
-            "keyword",
-        ];
-        var hashParams = hashParams || app.utils.getParametersFromHash();
-        $.each(filterKeys, function (idx, key) {
-            if ($.isEmptyObject(hashParams)) {
-                var formValue = window.localStorage.getItem("booksFilter." + key);
-            }
-            else {
-                var formValue = hashParams[key];
-            }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            if (formValue === 'undefined') {
-                formValue = '';
-            }
-            if (formValue) {
-                switch (key) {
-                    case "keyword":
-                        $('input[name="filter-text"]').val(formValue).trigger('change');
-                        break;
-                }
-            }
-        });
-    },
-    performFilter: function () {
-        var bookTemplate = app.templates.bookTemplate;
-        var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
-            "<a class=\"name link-sm\"><!=normalizedAuthor!></a>" +
-            "</span>";
-<<<<<<< HEAD
-        var filters = typeof filters !== 'undefined' ? filters : {};
-        $('ul.book-list').empty();
-=======
-        $('ul.book-list').empty();
-        filters = typeof filters !== 'undefined' ? filters : {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        if (!maxResults) {
-            var maxResults = 500;
-        }
-        var keyword = $('input[name="filter-text"]').val();
-        $.extend(filters, {
-<<<<<<< HEAD
-            "keyword": keyword
-        });
-        var formValues = {
-            "keyword": keyword
-=======
-            "keyword": keyword,
-        });
-        var formValues = {
-            "keyword": keyword,
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        };
-        if (this.supportsLocalStorage()) {
-            $.each(formValues, function (key, val) {
-                window.localStorage.setItem("booksFilter." + key, val);
-            });
-        }
-        var currentFilters = {};
-        $.each(filters, function (key, val) {
-            if (val.length) {
-                currentFilters[key] = val;
-            }
-        });
-        var query = [];
-<<<<<<< HEAD
-        if (currentFilters.keyword) {
-=======
-        if (currentFilters['keyword']) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            query.push(keyword);
-        }
-        $("ul.book-list").addClass('loading');
-        var data = {
-            "field": ["preview_link", "thumbnail", "sys_title", "sys_contributor", "average_rating", "sys_created", "sys_description", "sys_url_view", "isbn", "authors"],
-            "query": query,
-            "size": maxResults,
-            "sys_type": "book",
-            "sortBy": "new-create"
-        };
-        app.books.currentRequest = $.ajax({
-            dataType: 'json',
-            url: app.dcp.url.search,
-            data: data,
-            beforeSend: function () {
-<<<<<<< HEAD
-                if (app.books.currentRequest && app.books.currentRequest.readyState !== 4) {
-=======
-                if (app.books.currentRequest && app.books.currentRequest.readyState != 4) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                    app.books.currentRequest.abort();
-                }
-            },
-            error: function () {
-                $("ul.book-list").html(app.dcp.error_message);
-            }
-        }).done(function (data) {
-<<<<<<< HEAD
-            var results = data.hits.hits, i, k;
-            for (k = 0; k < results.length; k++) {
-=======
-            var results = data.hits.hits;
-            for (var k = 0; k < results.length; k++) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                var book = results[k].fields;
-                var authors = "";
-                if (!book.sys_url_view) {
-                    book.sys_url_view = "";
-                }
-                if (book.sys_contributor) {
-<<<<<<< HEAD
-                    if (book.sys_contributor.length === 1) {
-=======
-                    if (book.sys_contributor.length == 1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                        authors += "Author: ";
-                    }
-                    else {
-                        authors += "Authors: ";
-                    }
-<<<<<<< HEAD
-                    for (i = 0; i < book.sys_contributor.length; i++) {
-                        authors += contributorTemplate.template({ "author": book.sys_contributor[i], "normalizedAuthor": app.dcp.getNameFromContributor(book.sys_contributor[i]) });
-                        if (i < book.sys_contributor.length - 1) {
-=======
-                    for (var i = 0; i < book.sys_contributor.length; i++) {
-                        authors += contributorTemplate.template({ "author": book.sys_contributor[i], "normalizedAuthor": app.dcp.getNameFromContributor(book.sys_contributor[i]) });
-                        if (i < (book.sys_contributor.length - 1)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                            authors += ", ";
-                        }
-                    }
-                }
-                else if (book.authors) {
-                    var str = "";
-<<<<<<< HEAD
-                    if (book.authors.length === 1) {
-=======
-                    if (book.authors.length == 1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                        authors += "Author: ";
-                    }
-                    else {
-                        authors += "Authors: ";
-                    }
-<<<<<<< HEAD
-                    for (i = 0; i < book.authors.length; i++) {
-                        authors += book.authors[i];
-                        if (i < book.authors.length - 1) {
-=======
-                    for (var i = 0; i < book.authors.length; i++) {
-                        authors += book.authors[i];
-                        if (i < (book.authors.length - 1)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-                            authors += ", ";
-                        }
-                    }
-                }
-                book.authors = authors;
-                book.average_rating = roundHalf(book.average_rating) || "";
-                book.sys_description = book.sys_description || "";
-                if (book.sys_created) {
-                    var published = new Date(book.sys_created);
-                    var now = new Date();
-                    var oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
-                    if (published > oneYearAgo) {
-                        book.published = "Published: " + jQuery.timeago(published);
-                    }
-                    else {
-                        book.published = "Published: " + published.getFullYear() + "-" + published.getMonth() + "-" + published.getDate();
-                    }
-                }
-                else {
-                    book.published = "";
-                }
-                $('ul.book-list').append(bookTemplate.template(book));
-            }
-            $("ul.book-list").removeClass('loading');
-        });
-    }
-};
-(function () {
-    var timeOut;
-    $('form.books-filters').on('change keyup', 'input, select', function (e) {
-        var keys = [37, 38, 39, 40, 9, 91, 92, 18, 17, 16];
-        if (e.type === "keyup" && ($(this).attr('name') !== 'filter-text' || keys.indexOf(e.keyCode) !== -1)) {
-            return;
-        }
-        clearTimeout(timeOut);
-        timeOut = setTimeout(function () {
-            app.books.performFilter();
-        }, 300);
-    });
-    $('form.books-filters').on('submit', function (e) {
-        e.preventDefault();
-    });
-    if ($('[data-set]').length) {
-        app.utils.parseDataAttributes();
-    }
-<<<<<<< HEAD
-    else if (window.location.search && Boolean(window.location.search.match(/_escaped_fragment/))) {
-=======
-    else if (window.location.search && !!window.location.search.match(/_escaped_fragment/)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        var hashParams = app.utils.getParametersFromHash();
-        app.utils.restoreFromHash();
-        app.books.restoreFilter(hashParams);
-    }
-    else if (window.location.hash) {
-        app.utils.restoreFromHash();
-        app.books.restoreFilter();
-    }
-    else if ($('form.books-filters').length) {
-        app.books.restoreFilter();
-    }
-<<<<<<< HEAD
-}());
-=======
-})();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 app.rating = {
     displayYour: function () {
         var num = Math.round(app.rating.your * 2) / 2;
@@ -7229,13 +5912,9 @@ app.rating = {
         if (rating) {
             return roundHalf(rating);
         }
-<<<<<<< HEAD
-        return "";
-=======
         else {
             return "";
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     });
     $('.rating').on('mouseover', function () {
         var elm = $(this), rating = $(this).prop('id').split('-')[1];
@@ -7266,26 +5945,6 @@ app.rating = {
         app.rating.initYour();
         app.rating.initAvg();
     }
-<<<<<<< HEAD
-}());
-window.Modernizr = (function (a, b, c) { function d(a) { r.cssText = a; } function e(a, b) { return typeof a === b; } function f(a, b) { return Boolean(~String(a).indexOf(b)); } function g(a, b) { for (var d in a) {
-    var e = a[d];
-    if (!f(e, "-") && r[e] !== c) {
-        return b == "pfx" ? e : !0;
-    }
-} return !1; } function h(a, b, d) { for (var f in a) {
-    var g = b[a[f]];
-    if (g !== c) {
-        return d === !1 ? a[f] : e(g, "function") ? g.bind(d || b) : g;
-    }
-} return !1; } function i(a, b, c) { var d = a.charAt(0).toUpperCase() + a.slice(1), f = (a + " " + w.join(d + " ") + d).split(" "); return e(b, "string") || e(b, "undefined") ? g(f, b) : (f = (a + " " + x.join(d + " ") + d).split(" "), h(f, b, c)); } function j() { n.input = (function (c) { for (var d = 0, e = c.length; e > d; d++) {
-    A[c[d]] = Boolean(c[d] in s);
-} return A.list && (A.list = !(!b.createElement("datalist") || !a.HTMLDataListElement)), A; }("autocomplete autofocus list placeholder max min multiple pattern required step".split(" "))), n.inputtypes = (function (a) { for (var d, e, f, g = 0, h = a.length; h > g; g++) {
-    s.setAttribute("type", e = a[g]), d = s.type !== "text", d && (s.value = t, s.style.cssText = "position:absolute;visibility:hidden;", /^range$/.test(e) && s.style.WebkitAppearance !== c ? (o.appendChild(s), f = b.defaultView, d = f.getComputedStyle && f.getComputedStyle(s, null).WebkitAppearance !== "textfield" && s.offsetHeight !== 0, o.removeChild(s)) : /^(search|tel)$/.test(e) || (d = /^(url|email)$/.test(e) ? s.checkValidity && s.checkValidity() === !1 : s.value != t)), z[a[g]] = Boolean(d);
-} return z; }("search tel url email datetime date month week time datetime-local number range color".split(" "))); } var k, l, m = "2.7.1", n = {}, o = b.documentElement, p = "modernizr", q = b.createElement(p), r = q.style, s = b.createElement("input"), t = ":)", u = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")), v = "Webkit Moz O ms", w = v.split(" "), x = v.toLowerCase().split(" "), y = {}, z = {}, A = {}, B = [], C = B.slice, D = {}.hasOwnProperty; l = e(D, "undefined") || e(D.call, "undefined") ? function (a, b) { return b in a && e(a.constructor.prototype[b], "undefined"); } : function (a, b) { return D.call(a, b); }, Function.prototype.bind || (Function.prototype.bind = function (a) { var b = this; if (typeof b !== "function") {
-    throw new TypeError;
-} var c = C.call(arguments, 1), d = function () { if (this instanceof d) {
-=======
 })();
 window.Modernizr = function (a, b, c) { function d(a) { r.cssText = a; } function e(a, b) { return typeof a === b; } function f(a, b) { return !!~("" + a).indexOf(b); } function g(a, b) { for (var d in a) {
     var e = a[d];
@@ -7299,44 +5958,11 @@ window.Modernizr = function (a, b, c) { function d(a) { r.cssText = a; } functio
     A[c[d]] = !!(c[d] in s); return A.list && (A.list = !(!b.createElement("datalist") || !a.HTMLDataListElement)), A; }("autocomplete autofocus list placeholder max min multiple pattern required step".split(" ")), n.inputtypes = function (a) { for (var d, e, f, g = 0, h = a.length; h > g; g++)
     s.setAttribute("type", e = a[g]), d = "text" !== s.type, d && (s.value = t, s.style.cssText = "position:absolute;visibility:hidden;", /^range$/.test(e) && s.style.WebkitAppearance !== c ? (o.appendChild(s), f = b.defaultView, d = f.getComputedStyle && "textfield" !== f.getComputedStyle(s, null).WebkitAppearance && 0 !== s.offsetHeight, o.removeChild(s)) : /^(search|tel)$/.test(e) || (d = /^(url|email)$/.test(e) ? s.checkValidity && s.checkValidity() === !1 : s.value != t)), z[a[g]] = !!d; return z; }("search tel url email datetime date month week time datetime-local number range color".split(" ")); } var k, l, m = "2.7.1", n = {}, o = b.documentElement, p = "modernizr", q = b.createElement(p), r = q.style, s = b.createElement("input"), t = ":)", u = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")), v = "Webkit Moz O ms", w = v.split(" "), x = v.toLowerCase().split(" "), y = {}, z = {}, A = {}, B = [], C = B.slice, D = {}.hasOwnProperty; l = e(D, "undefined") || e(D.call, "undefined") ? function (a, b) { return b in a && e(a.constructor.prototype[b], "undefined"); } : function (a, b) { return D.call(a, b); }, Function.prototype.bind || (Function.prototype.bind = function (a) { var b = this; if ("function" != typeof b)
     throw new TypeError; var c = C.call(arguments, 1), d = function () { if (this instanceof d) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var e = function () { };
     e.prototype = b.prototype;
     var f = new e, g = b.apply(f, c.concat(C.call(arguments)));
     return Object(g) === g ? g : f;
 } return b.apply(a, c.concat(C.call(arguments))); }; return d; }), y.canvas = function () { var a = b.createElement("canvas"); return !(!a.getContext || !a.getContext("2d")); }, y.geolocation = function () { return "geolocation" in navigator; }, y.video = function () { var a = b.createElement("video"), c = !1; try {
-<<<<<<< HEAD
-    (c = Boolean(a.canPlayType)) && (c = new Boolean(c), c.ogg = a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ""), c.h264 = a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, ""), c.webm = a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, ""));
-}
-catch (d) { } return c; }, y.audio = function () { var a = b.createElement("audio"), c = !1; try {
-    (c = Boolean(a.canPlayType)) && (c = new Boolean(c), c.ogg = a.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ""), c.mp3 = a.canPlayType("audio/mpeg;").replace(/^no$/, ""), c.wav = a.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ""), c.m4a = (a.canPlayType("audio/x-m4a;") || a.canPlayType("audio/aac;")).replace(/^no$/, ""));
-}
-catch (d) { } return c; }; for (var E in y) {
-    l(y, E) && (k = E.toLowerCase(), n[k] = y[E](), B.push((n[k] ? "" : "no-") + k));
-} return n.input || j(), n.addTest = function (a, b) { if (typeof a === "object") {
-    for (var d in a) {
-        l(a, d) && n.addTest(d, a[d]);
-    }
-}
-else {
-    if (a = a.toLowerCase(), n[a] !== c) {
-        return n;
-    }
-    b = typeof b === "function" ? b() : b, typeof enableClasses !== "undefined" && enableClasses && (o.className += " " + (b ? "" : "no-") + a), n[a] = b;
-} return n; }, d(""), q = s = null, (function (a, b) { function c(a, b) { var c = a.createElement("p"), d = a.getElementsByTagName("head")[0] || a.documentElement; return c.innerHTML = "x<style>" + b + "</style>", d.insertBefore(c.lastChild, d.firstChild); } function d() { var a = s.elements; return typeof a === "string" ? a.split(" ") : a; } function e(a) { var b = r[a[p]]; return b || (b = {}, q++, a[p] = q, r[q] = b), b; } function f(a, c, d) { if (c || (c = b), k) {
-    return c.createElement(a);
-} d || (d = e(c)); var f; return f = d.cache[a] ? d.cache[a].cloneNode() : o.test(a) ? (d.cache[a] = d.createElem(a)).cloneNode() : d.createElem(a), !f.canHaveChildren || n.test(a) || f.tagUrn ? f : d.frag.appendChild(f); } function g(a, c) { if (a || (a = b), k) {
-    return a.createDocumentFragment();
-} c = c || e(a); for (var f = c.frag.cloneNode(), g = 0, h = d(), i = h.length; i > g; g++) {
-    f.createElement(h[g]);
-} return f; } function h(a, b) { b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function (c) { return s.shivMethods ? f(c, a, b) : b.createElem(c); }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + d().join().replace(/[\w\-]+/g, function (a) { return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'; }) + ");return n}")(s, b.frag); } function i(a) { a || (a = b); var d = e(a); return !s.shivCSS || j || d.hasCSS || (d.hasCSS = Boolean(c(a, "article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}"))), k || h(a, d), a; } var j, k, l = "3.7.0", m = a.html5 || {}, n = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i, o = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i, p = "_html5shiv", q = 0, r = {}; !(function () { try {
-    var a = b.createElement("a");
-    a.innerHTML = "<xyz></xyz>", j = "hidden" in a, k = a.childNodes.length == 1 || (function () { b.createElement("a"); var a = b.createDocumentFragment(); return typeof a.cloneNode === "undefined" || typeof a.createDocumentFragment === "undefined" || typeof a.createElement === "undefined"; }());
-}
-catch (c) {
-    j = !0, k = !0;
-} }()); var s = { elements: m.elements || "abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video", version: l, shivCSS: m.shivCSS !== !1, supportsUnknownElements: k, shivMethods: m.shivMethods !== !1, type: "default", shivDocument: i, createElement: f, createDocumentFragment: g }; a.html5 = s, i(b); }(this, b)), n._version = m, n._prefixes = u, n._domPrefixes = x, n._cssomPrefixes = w, n.testProp = function (a) { return g([a]); }, n.testAllProps = i, n.prefixed = function (a, b, c) { return b ? i(a, b, c) : i(a, "pfx"); }, n; }(this, this.document));
-=======
     (c = !!a.canPlayType) && (c = new Boolean(c), c.ogg = a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ""), c.h264 = a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, ""), c.webm = a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, ""));
 }
 catch (d) { } return c; }, y.audio = function () { var a = b.createElement("audio"), c = !1; try {
@@ -7360,23 +5986,14 @@ else {
 catch (c) {
     j = !0, k = !0;
 } }(); var s = { elements: m.elements || "abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video", version: l, shivCSS: m.shivCSS !== !1, supportsUnknownElements: k, shivMethods: m.shivMethods !== !1, type: "default", shivDocument: i, createElement: f, createDocumentFragment: g }; a.html5 = s, i(b); }(this, b), n._version = m, n._prefixes = u, n._domPrefixes = x, n._cssomPrefixes = w, n.testProp = function (a) { return g([a]); }, n.testAllProps = i, n.prefixed = function (a, b, c) { return b ? i(a, b, c) : i(a, "pfx"); }, n; }(this, this.document);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     var header_helpers = function (class_array) {
         var i = class_array.length;
         var head = $('head');
-<<<<<<< HEAD
-        while (i) {
-            if (head.has('.' + class_array[i]).length === 0) {
-                head.append('<meta class="' + class_array[i] + '" />');
-            }
-            i = i - 1;
-=======
         while (i--) {
             if (head.has('.' + class_array[i]).length === 0) {
                 head.append('<meta class="' + class_array[i] + '" />');
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
     };
     header_helpers([
@@ -7400,14 +6017,8 @@ catch (c) {
                 var cont;
                 if (context.jquery) {
                     cont = context[0];
-<<<<<<< HEAD
-                    if (!cont) {
-                        return context;
-                    }
-=======
                     if (!cont)
                         return context;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
                 else {
                     cont = context;
@@ -7420,19 +6031,10 @@ catch (c) {
     };
     var attr_name = function (init) {
         var arr = [];
-<<<<<<< HEAD
-        if (!init) {
-            arr.push('data');
-        }
-        if (this.namespace.length > 0) {
-            arr.push(this.namespace);
-        }
-=======
         if (!init)
             arr.push('data');
         if (this.namespace.length > 0)
             arr.push(this.namespace);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         arr.push(this.name);
         return arr.join('-');
     };
@@ -7456,11 +6058,7 @@ catch (c) {
     var bindings = function (method, options) {
         var self = this, should_bind_events = !S(this).data(this.attr_name(true));
         if (S(this.scope).is('[' + this.attr_name() + ']')) {
-<<<<<<< HEAD
-            S(this.scope).data(this.attr_name(true) + '-init', $.extend({}, this.settings, options || method, this.data_options(S(this.scope))));
-=======
             S(this.scope).data(this.attr_name(true) + '-init', $.extend({}, this.settings, (options || method), this.data_options(S(this.scope))));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             if (should_bind_events) {
                 this.events(this.scope);
             }
@@ -7468,11 +6066,7 @@ catch (c) {
         else {
             S('[' + this.attr_name() + ']', this.scope).each(function () {
                 var should_bind_events = !S(this).data(self.attr_name(true) + '-init');
-<<<<<<< HEAD
-                S(this).data(self.attr_name(true) + '-init', $.extend({}, self.settings, options || method, self.data_options(S(this))));
-=======
                 S(this).data(self.attr_name(true) + '-init', $.extend({}, self.settings, (options || method), self.data_options(S(this))));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 if (should_bind_events) {
                     self.events(this);
                 }
@@ -7523,11 +6117,7 @@ catch (c) {
         };
     }(document));
     (function ($) {
-<<<<<<< HEAD
-        var animating, lastTime = 0, vendors = ['webkit', 'moz'], requestAnimationFrame = window.requestAnimationFrame, cancelAnimationFrame = window.cancelAnimationFrame, jqueryFxAvailable = typeof jQuery.fx !== 'undefined';
-=======
         var animating, lastTime = 0, vendors = ['webkit', 'moz'], requestAnimationFrame = window.requestAnimationFrame, cancelAnimationFrame = window.cancelAnimationFrame, jqueryFxAvailable = 'undefined' !== typeof jQuery.fx;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         for (; lastTime < vendors.length && !requestAnimationFrame; lastTime++) {
             requestAnimationFrame = window[vendors[lastTime] + "RequestAnimationFrame"];
             cancelAnimationFrame = cancelAnimationFrame ||
@@ -7639,19 +6229,11 @@ catch (c) {
             lib.scope = this.scope;
             lib.namespace = this.global.namespace;
             lib.rtl = this.rtl;
-<<<<<<< HEAD
-            lib.data_options = this.utils.data_options;
-            lib.attr_name = attr_name;
-            lib.add_namespace = add_namespace;
-            lib.bindings = bindings;
-            lib.S = this.utils.S;
-=======
             lib['data_options'] = this.utils.data_options;
             lib['attr_name'] = attr_name;
             lib['add_namespace'] = add_namespace;
             lib['bindings'] = bindings;
             lib['S'] = this.utils.S;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         inherit: function (scope, methods) {
             var methods_arr = methods.split(' '), i = methods_arr.length;
@@ -7662,13 +6244,8 @@ catch (c) {
             }
         },
         set_namespace: function () {
-<<<<<<< HEAD
-            var namespace = this.global.namespace === undefined ? $('.foundation-data-attribute-namespace').css('font-family') : this.global.namespace;
-            this.global.namespace = namespace === undefined || /false/i.test(namespace) ? '' : namespace;
-=======
             var namespace = (this.global.namespace === undefined) ? $('.foundation-data-attribute-namespace').css('font-family') : this.global.namespace;
             this.global.namespace = (namespace === undefined || /false/i.test(namespace)) ? '' : namespace;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         libs: {},
         utils: {
@@ -7691,26 +6268,14 @@ catch (c) {
                     var context = this, args = arguments;
                     var later = function () {
                         timeout = null;
-<<<<<<< HEAD
-                        if (!immediate) {
-                            result = func.apply(context, args);
-                        }
-=======
                         if (!immediate)
                             result = func.apply(context, args);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     };
                     var callNow = immediate && !timeout;
                     clearTimeout(timeout);
                     timeout = setTimeout(later, delay);
-<<<<<<< HEAD
-                    if (callNow) {
-                        result = func.apply(context, args);
-                    }
-=======
                     if (callNow)
                         result = func.apply(context, args);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     return result;
                 };
             },
@@ -7733,32 +6298,17 @@ catch (c) {
                     return !isNaN(o - 0) && o !== null && o !== "" && o !== false && o !== true;
                 }
                 function trim(str) {
-<<<<<<< HEAD
-                    if (typeof str === 'string') {
-                        return $.trim(str);
-                    }
-=======
                     if (typeof str === 'string')
                         return $.trim(str);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     return str;
                 }
                 while (ii--) {
                     p = opts_arr[ii].split(':');
                     p = [p[0], p.slice(1).join(':')];
-<<<<<<< HEAD
-                    if (/true/i.test(p[1])) {
-                        p[1] = true;
-                    }
-                    if (/false/i.test(p[1])) {
-                        p[1] = false;
-                    }
-=======
                     if (/true/i.test(p[1]))
                         p[1] = true;
                     if (/false/i.test(p[1]))
                         p[1] = false;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     if (isNumber(p[1])) {
                         if (p[1].indexOf('.') === -1) {
                             p[1] = parseInt(p[1], 10);
@@ -7806,16 +6356,9 @@ catch (c) {
                 });
             },
             random_str: function () {
-<<<<<<< HEAD
-                if (!this.fidx) {
-                    this.fidx = 0;
-                }
-                this.prefix = this.prefix || [this.name || 'F', Number(new Date).toString(36)].join('-');
-=======
                 if (!this.fidx)
                     this.fidx = 0;
                 this.prefix = this.prefix || [(this.name || 'F'), (+new Date).toString(36)].join('-');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 return this.prefix + (this.fidx++).toString(36);
             }
         }
@@ -7828,10 +6371,7 @@ catch (c) {
         });
     };
 }(jQuery, window, window.document));
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     Foundation.libs.tab = {
         name: 'tab',
@@ -8002,10 +6542,7 @@ catch (c) {
         reflow: function () { }
     };
 }(jQuery, window, window.document));
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     Foundation.libs.reveal = {
         name: 'reveal',
@@ -8347,10 +6884,7 @@ catch (c) {
         };
     }
 }(jQuery, window, window.document));
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     Foundation.libs.tooltip = {
         name: 'tooltip',
@@ -8391,17 +6925,10 @@ catch (c) {
             return false;
         },
         medium: function () {
-<<<<<<< HEAD
-            return matchMedia(Foundation.media_queries.medium).matches;
-        },
-        large: function () {
-            return matchMedia(Foundation.media_queries.large).matches;
-=======
             return matchMedia(Foundation.media_queries['medium']).matches;
         },
         large: function () {
             return matchMedia(Foundation.media_queries['large']).matches;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         events: function (instance) {
             var self = this, S = self.S;
@@ -8413,21 +6940,11 @@ catch (c) {
                 if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type) && S(e.target).is('a')) {
                     return false;
                 }
-<<<<<<< HEAD
-                if (/mouse/i.test(e.type) && self.ie_touch(e)) {
-                    return false;
-                }
-                if ($this.hasClass('open')) {
-                    if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
-                        e.preventDefault();
-                    }
-=======
                 if (/mouse/i.test(e.type) && self.ie_touch(e))
                     return false;
                 if ($this.hasClass('open')) {
                     if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type))
                         e.preventDefault();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     self.hide($this);
                 }
                 else {
@@ -8454,14 +6971,8 @@ catch (c) {
                 }
             })
                 .on('mouseleave.fndtn.tooltip touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip', '[' + this.attr_name() + '].open', function (e) {
-<<<<<<< HEAD
-                if (/mouse/i.test(e.type) && self.ie_touch(e)) {
-                    return false;
-                }
-=======
                 if (/mouse/i.test(e.type) && self.ie_touch(e))
                     return false;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 if ($(this).data('tooltip-open-event-type') == 'touch' && e.type == 'mouseleave') {
                     return;
                 }
@@ -8491,29 +7002,17 @@ catch (c) {
             if (selector) {
                 tip = this.S('span[data-selector="' + selector + '"]' + settings.tooltip_class);
             }
-<<<<<<< HEAD
-            return typeof tip === 'object' ? tip : false;
-        },
-        selector: function ($target) {
-            var id = $target.attr('id'), dataSelector = $target.attr(this.attr_name()) || $target.attr('data-selector');
-            if ((id && id.length < 1 || !id) && typeof dataSelector !== 'string') {
-=======
             return (typeof tip === 'object') ? tip : false;
         },
         selector: function ($target) {
             var id = $target.attr('id'), dataSelector = $target.attr(this.attr_name()) || $target.attr('data-selector');
             if ((id && id.length < 1 || !id) && typeof dataSelector != 'string') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 dataSelector = this.random_str(6);
                 $target
                     .attr('data-selector', dataSelector)
                     .attr('aria-describedby', dataSelector);
             }
-<<<<<<< HEAD
-            return id && id.length > 0 ? id : dataSelector;
-=======
             return (id && id.length > 0) ? id : dataSelector;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         create: function ($target) {
             var self = this, settings = $.extend({}, this.settings, this.data_options($target)), tip_template = this.settings.tip_template;
@@ -8541,21 +7040,6 @@ catch (c) {
                 tip.css({ 'width': '100%' });
             }
             else {
-<<<<<<< HEAD
-                tip.css({ 'width': width ? width : 'auto' });
-            }
-            objPos = function (obj, top, right, bottom, left, width) {
-                return obj.css({
-                    'top': top ? top : 'auto',
-                    'bottom': bottom ? bottom : 'auto',
-                    'left': left ? left : 'auto',
-                    'right': right ? right : 'auto'
-                }).end();
-            };
-            objPos(tip, target.offset().top + target.outerHeight() + 10, 'auto', 'auto', target.offset().left);
-            if (this.small()) {
-                objPos(tip, target.offset().top + target.outerHeight() + 10, 'auto', 'auto', 12.5, $(this.scope).width());
-=======
                 tip.css({ 'width': (width) ? width : 'auto' });
             }
             objPos = function (obj, top, right, bottom, left, width) {
@@ -8569,7 +7053,6 @@ catch (c) {
             objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', target.offset().left);
             if (this.small()) {
                 objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', 12.5, $(this.scope).width());
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 tip.addClass('tip-override');
                 objPos(nub, -nubHeight, 'auto', 'auto', target.offset().left);
             }
@@ -8579,19 +7062,6 @@ catch (c) {
                     nub.addClass('rtl');
                     left = target.offset().left + target.outerWidth() - tip.outerWidth();
                 }
-<<<<<<< HEAD
-                objPos(tip, target.offset().top + target.outerHeight() + 10, 'auto', 'auto', left);
-                tip.removeClass('tip-override');
-                if (classes && classes.indexOf('tip-top') > -1) {
-                    if (Foundation.rtl) {
-                        nub.addClass('rtl');
-                    }
-                    objPos(tip, target.offset().top - tip.outerHeight(), 'auto', 'auto', left)
-                        .removeClass('tip-override');
-                }
-                else if (classes && classes.indexOf('tip-left') > -1) {
-                    objPos(tip, target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2, 'auto', 'auto', target.offset().left - tip.outerWidth() - nubHeight)
-=======
                 objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', left);
                 tip.removeClass('tip-override');
                 if (classes && classes.indexOf('tip-top') > -1) {
@@ -8602,16 +7072,11 @@ catch (c) {
                 }
                 else if (classes && classes.indexOf('tip-left') > -1) {
                     objPos(tip, (target.offset().top + (target.outerHeight() / 2) - (tip.outerHeight() / 2)), 'auto', 'auto', (target.offset().left - tip.outerWidth() - nubHeight))
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                         .removeClass('tip-override');
                     nub.removeClass('rtl');
                 }
                 else if (classes && classes.indexOf('tip-right') > -1) {
-<<<<<<< HEAD
-                    objPos(tip, target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2, 'auto', 'auto', target.offset().left + target.outerWidth() + nubHeight)
-=======
                     objPos(tip, (target.offset().top + (target.outerHeight() / 2) - (tip.outerHeight() / 2)), 'auto', 'auto', (target.offset().left + target.outerWidth() + nubHeight))
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                         .removeClass('tip-override');
                     nub.removeClass('rtl');
                 }
@@ -8667,10 +7132,7 @@ catch (c) {
         reflow: function () { }
     };
 }(jQuery, window, window.document));
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     Foundation.libs.dropdown = {
         name: 'dropdown',
@@ -8713,31 +7175,14 @@ catch (c) {
                 if (S(e.target).data(self.data_attr()) && settings.is_hover) {
                     self.closeall.call(self);
                 }
-<<<<<<< HEAD
-                if (settings.is_hover) {
-                    self.open.apply(self, [dropdown, target]);
-                }
-=======
                 if (settings.is_hover)
                     self.open.apply(self, [dropdown, target]);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             })
                 .on('mouseleave.fndtn.dropdown', '[' + this.attr_name() + '], [' + this.attr_name() + '-content]', function (e) {
                 var $this = S(this);
                 self.timeout = setTimeout(function () {
                     if ($this.data(self.data_attr())) {
                         var settings = $this.data(self.data_attr(true) + '-init') || self.settings;
-<<<<<<< HEAD
-                        if (settings.is_hover) {
-                            self.close.call(self, S('#' + $this.data(self.data_attr())));
-                        }
-                    }
-                    else {
-                        var target = S('[' + self.attr_name() + '="' + S(this).attr('id') + '"]'), settings = target.data(self.attr_name(true) + '-init') || self.settings;
-                        if (settings.is_hover) {
-                            self.close.call(self, $this);
-                        }
-=======
                         if (settings.is_hover)
                             self.close.call(self, S('#' + $this.data(self.data_attr())));
                     }
@@ -8745,7 +7190,6 @@ catch (c) {
                         var target = S('[' + self.attr_name() + '="' + S(this).attr('id') + '"]'), settings = target.data(self.attr_name(true) + '-init') || self.settings;
                         if (settings.is_hover)
                             self.close.call(self, $this);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     }
                 }.bind(this), 150);
             })
@@ -8754,11 +7198,7 @@ catch (c) {
                 if (S(e.target).closest('[' + self.attr_name() + ']').length > 0) {
                     return;
                 }
-<<<<<<< HEAD
-                if (!S(e.target).data('revealId') &&
-=======
                 if (!(S(e.target).data('revealId')) &&
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     (parent.length > 0 && (S(e.target).is('[' + self.attr_name() + '-content]') ||
                         $.contains(parent.first()[0], e.target)))) {
                     e.stopPropagation();
@@ -8826,14 +7266,8 @@ catch (c) {
             this.close.call(this, this.S('[' + this.attr_name() + '-content]').not(dropdown));
             if (dropdown.hasClass(this.settings.active_class)) {
                 this.close.call(this, dropdown);
-<<<<<<< HEAD
-                if (dropdown.data('target') !== target.get(0)) {
-                    this.open.call(this, dropdown, target);
-                }
-=======
                 if (dropdown.data('target') !== target.get(0))
                     this.open.call(this, dropdown, target);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             else {
                 this.open.call(this, dropdown, target);
@@ -8910,11 +7344,7 @@ catch (c) {
         adjust_pip: function (dropdown, target, settings, position) {
             var sheet = Foundation.stylesheet, pip_offset_base = 8;
             if (dropdown.hasClass(settings.mega_class)) {
-<<<<<<< HEAD
-                pip_offset_base = position.left + target.outerWidth() / 2 - 8;
-=======
                 pip_offset_base = position.left + (target.outerWidth() / 2) - 8;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             else if (this.small()) {
                 pip_offset_base += position.left - 8;
@@ -8951,10 +7381,7 @@ catch (c) {
         reflow: function () { }
     };
 }(jQuery, window, window.document));
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window, document, undefined) {
     Foundation.libs.equalizer = {
         name: 'equalizer',
@@ -8977,14 +7404,8 @@ catch (c) {
         },
         equalize: function (equalizer) {
             var isStacked = false, vals = equalizer.find('[' + this.attr_name() + '-watch]:visible'), settings = equalizer.data(this.attr_name(true) + '-init');
-<<<<<<< HEAD
-            if (vals.length === 0) {
-                return;
-            }
-=======
             if (vals.length === 0)
                 return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var firstTopOffset = vals.first().offset().top;
             settings.before_height_change();
             equalizer.trigger('before-height-change').trigger('before-height-change.fndth.equalizer');
@@ -8996,17 +7417,10 @@ catch (c) {
                 }
             });
             if (settings.equalize_on_stack === false) {
-<<<<<<< HEAD
-                if (isStacked) {
-                    return;
-                }
-            }
-=======
                 if (isStacked)
                     return;
             }
             ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var heights = vals.map(function () { return $(this).outerHeight(false); }).get();
             if (settings.use_tallest) {
                 var max = Math.max.apply(null, heights);
@@ -9029,15 +7443,9 @@ catch (c) {
             });
         }
     };
-<<<<<<< HEAD
-}(jQuery, window, window.document));
-(function ($, window, document, undefined) {
-=======
 })(jQuery, window, window.document);
 ;
 (function ($, window, document, undefined) {
-    
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     Foundation.libs.accordion = {
         name: 'accordion',
         version: '5.4.4',
@@ -9089,23 +7497,6 @@ function Swipe(container, options) {
     var offloadFn = function (fn) { setTimeout(fn || noop, 0); };
     var paused = false;
     var browser = {
-<<<<<<< HEAD
-        addEventListener: Boolean(window.addEventListener),
-        touch: 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch,
-        transitions: (function (temp) {
-            var props = ['transitionProperty', 'WebkitTransition', 'MozTransition', 'OTransition', 'msTransition'];
-            for (var i in props) {
-                if (temp.style[props[i]] !== undefined) {
-                    return true;
-                }
-            }
-            return false;
-        }(document.createElement('swipe')))
-    };
-    if (!container) {
-        return;
-    }
-=======
         addEventListener: !!window.addEventListener,
         touch: ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
         transitions: (function (temp) {
@@ -9118,7 +7509,6 @@ function Swipe(container, options) {
     };
     if (!container)
         return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var element = container.children[0];
     var slides, slidePos, width, length;
     options = options || {};
@@ -9128,14 +7518,8 @@ function Swipe(container, options) {
     function setup() {
         slides = element.children;
         length = slides.length;
-<<<<<<< HEAD
-        if (slides.length < 2) {
-            options.continuous = false;
-        }
-=======
         if (slides.length < 2)
             options.continuous = false;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (browser.transitions && options.continuous && slides.length < 3) {
             element.appendChild(slides[0].cloneNode(true));
             element.appendChild(element.children[1].cloneNode(true));
@@ -9143,60 +7527,21 @@ function Swipe(container, options) {
         }
         slidePos = new Array(slides.length);
         width = container.getBoundingClientRect().width || container.offsetWidth;
-<<<<<<< HEAD
-        element.style.width = slides.length * width + 'px';
-=======
         element.style.width = (slides.length * width) + 'px';
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         var pos = slides.length;
         while (pos--) {
             var slide = slides[pos];
             slide.style.width = width + 'px';
             slide.setAttribute('data-index', pos);
             if (browser.transitions) {
-<<<<<<< HEAD
-                slide.style.left = pos * -width + 'px';
-                move(pos, index > pos ? -width : index < pos ? width : 0, 0);
-=======
                 slide.style.left = (pos * -width) + 'px';
                 move(pos, index > pos ? -width : (index < pos ? width : 0), 0);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
         }
         if (options.continuous && browser.transitions) {
             move(circle(index - 1), -width, 0);
             move(circle(index + 1), width, 0);
         }
-<<<<<<< HEAD
-        if (!browser.transitions) {
-            element.style.left = index * -width + 'px';
-        }
-        container.style.visibility = 'visible';
-    }
-    function prev() {
-        if (options.continuous) {
-            slide(index - 1);
-        }
-        else if (index) {
-            slide(index - 1);
-        }
-    }
-    function next() {
-        if (options.continuous) {
-            slide(index + 1);
-        }
-        else if (index < slides.length - 1) {
-            slide(index + 1);
-        }
-    }
-    function circle(index) {
-        return (slides.length + index % slides.length) % slides.length;
-    }
-    function slide(to, slideSpeed) {
-        if (index == to) {
-            return;
-        }
-=======
         if (!browser.transitions)
             element.style.left = (index * -width) + 'px';
         container.style.visibility = 'visible';
@@ -9219,28 +7564,11 @@ function Swipe(container, options) {
     function slide(to, slideSpeed) {
         if (index == to)
             return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (browser.transitions) {
             var direction = Math.abs(index - to) / (index - to);
             if (options.continuous) {
                 var natural_direction = direction;
                 direction = -slidePos[circle(to)] / width;
-<<<<<<< HEAD
-                if (direction !== natural_direction) {
-                    to = -direction * slides.length + to;
-                }
-            }
-            var diff = Math.abs(index - to) - 1;
-            while (diff--) {
-                move(circle((to > index ? to : index) - diff - 1), width * direction, 0);
-            }
-            to = circle(to);
-            move(index, width * direction, slideSpeed || speed);
-            move(to, 0, slideSpeed || speed);
-            if (options.continuous) {
-                move(circle(to - direction), -(width * direction), 0);
-            }
-=======
                 if (direction !== natural_direction)
                     to = -direction * slides.length + to;
             }
@@ -9252,7 +7580,6 @@ function Swipe(container, options) {
             move(to, 0, slideSpeed || speed);
             if (options.continuous)
                 move(circle(to - direction), -(width * direction), 0);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         else {
             to = circle(to);
@@ -9268,14 +7595,8 @@ function Swipe(container, options) {
     function translate(index, dist, speed) {
         var slide = slides[index];
         var style = slide && slide.style;
-<<<<<<< HEAD
-        if (!style) {
-            return;
-        }
-=======
         if (!style)
             return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         style.webkitTransitionDuration =
             style.MozTransitionDuration =
                 style.msTransitionDuration =
@@ -9296,23 +7617,13 @@ function Swipe(container, options) {
             var timeElap = new Date().getTime() - start;
             if (timeElap > speed) {
                 element.style.left = to + 'px';
-<<<<<<< HEAD
-                if (!paused && delay) {
-                    begin();
-                }
-=======
                 if (!paused && delay)
                     begin();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 options.transitionEnd && options.transitionEnd.call(event, index, slides[index]);
                 clearInterval(timer);
                 return;
             }
-<<<<<<< HEAD
-            element.style.left = (to - from) * (Math.floor(timeElap / speed * 100) / 100) + from + 'px';
-=======
             element.style.left = (((to - from) * (Math.floor((timeElap / speed) * 100) / 100)) + from) + 'px';
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }, 4);
     }
     var delay = options.auto > 0 ? options.auto : 0;
@@ -9350,14 +7661,8 @@ function Swipe(container, options) {
                     offloadFn(setup.call());
                     break;
             }
-<<<<<<< HEAD
-            if (options.stopPropagation) {
-                event.stopPropagation();
-            }
-=======
             if (options.stopPropagation)
                 event.stopPropagation();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         start: function (event) {
             var touches = event.touches[0];
@@ -9372,31 +7677,17 @@ function Swipe(container, options) {
             element.addEventListener('touchend', this, false);
         },
         move: function (event) {
-<<<<<<< HEAD
-            if (event.touches.length > 1 || event.scale && event.scale !== 1) {
-                return;
-            }
-            if (options.disableScroll) {
-                event.preventDefault();
-            }
-=======
             if (event.touches.length > 1 || event.scale && event.scale !== 1)
                 return;
             if (options.disableScroll)
                 event.preventDefault();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var touches = event.touches[0];
             delta = {
                 x: touches.pageX - start.x,
                 y: touches.pageY - start.y
             };
-<<<<<<< HEAD
-            if (typeof isScrolling === 'undefined') {
-                isScrolling = Boolean(isScrolling || Math.abs(delta.x) < Math.abs(delta.y));
-=======
             if (typeof isScrolling == 'undefined') {
                 isScrolling = !!(isScrolling || Math.abs(delta.x) < Math.abs(delta.y));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             if (!isScrolling) {
                 event.preventDefault();
@@ -9409,18 +7700,10 @@ function Swipe(container, options) {
                 else {
                     delta.x =
                         delta.x /
-<<<<<<< HEAD
-                            (!index && delta.x > 0
-                                || index == slides.length - 1
-                                    && delta.x < 0
-                                ?
-                                    Math.abs(delta.x) / width + 1
-=======
                             ((!index && delta.x > 0
                                 || index == slides.length - 1
                                     && delta.x < 0) ?
                                 (Math.abs(delta.x) / width + 1)
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                                 : 1);
                     translate(index - 1, delta.x + slidePos[index - 1], 0);
                     translate(index, delta.x + slidePos[index], 0);
@@ -9435,14 +7718,8 @@ function Swipe(container, options) {
                 || Math.abs(delta.x) > width / 2;
             var isPastBounds = !index && delta.x > 0
                 || index == slides.length - 1 && delta.x < 0;
-<<<<<<< HEAD
-            if (options.continuous) {
-                isPastBounds = false;
-            }
-=======
             if (options.continuous)
                 isPastBounds = false;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var direction = delta.x < 0;
             if (!isScrolling) {
                 if (isValidSlide && !isPastBounds) {
@@ -9491,34 +7768,18 @@ function Swipe(container, options) {
         transitionEnd: function (event) {
             if (parseInt(event.target.getAttribute('data-index'), 10) == index) {
                 delay = options.auto || 0;
-<<<<<<< HEAD
-                if (!paused && delay) {
-                    begin();
-                }
-=======
                 if (!paused && delay)
                     begin();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 options.transitionEnd && options.transitionEnd.call(event, index, slides[index]);
             }
         }
     };
     setup();
-<<<<<<< HEAD
-    if (delay) {
-        begin();
-    }
-    if (browser.addEventListener) {
-        if (browser.touch) {
-            element.addEventListener('touchstart', events, false);
-        }
-=======
     if (delay)
         begin();
     if (browser.addEventListener) {
         if (browser.touch)
             element.addEventListener('touchstart', events, false);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (browser.transitions) {
             element.addEventListener('webkitTransitionEnd', events, false);
             element.addEventListener('msTransitionEnd', events, false);
@@ -9571,14 +7832,8 @@ function Swipe(container, options) {
                 var slide = slides[pos];
                 slide.style.width = '100%';
                 slide.style.left = 0;
-<<<<<<< HEAD
-                if (browser.transitions) {
-                    translate(pos, 0, 0);
-                }
-=======
                 if (browser.transitions)
                     translate(pos, 0, 0);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             if (browser.addEventListener) {
                 element.removeEventListener('touchstart', events, false);
@@ -9602,11 +7857,7 @@ if (window.jQuery || window.Zepto) {
                 $(this).data('Swipe', new Swipe($(this)[0], params));
             });
         };
-<<<<<<< HEAD
-    }(window.jQuery || window.Zepto));
-=======
     })(window.jQuery || window.Zepto);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 }
 app.createSlider = function ($el) {
     var slider = Swipe($el[0], {
@@ -9619,11 +7870,7 @@ app.createSlider = function ($el) {
     $('.solutions-slider-controls a').on('click', function (e) {
         e.preventDefault();
         var el = $(this);
-<<<<<<< HEAD
-        var direction = el.hasClass('next') ? 'next' : 'prev';
-=======
         var direction = (el.hasClass('next') ? 'next' : 'prev');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         slider[direction]();
     });
     $('span.current-slide').text('1');
@@ -9684,13 +7931,8 @@ app.createSlider = function ($el) {
             });
         }
     }
-<<<<<<< HEAD
-}());
-app.touchSupport = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
-=======
 })();
 app.touchSupport = ('ontouchstart' in window) || (window.DocumentTouch && document instanceof DocumentTouch);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 $('.nav-toggle').on('click', function (e) {
     e.preventDefault();
     $('body').toggleClass('nav-open');
@@ -9706,10 +7948,7 @@ $('a[href*="download-manager"]').on('click', function (e) {
     e.preventDefault();
     window.location.href = e.currentTarget.href;
 });
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function (e, t, n) {
     "$:nomunge";
     function c() { s = t[o](function () { r.each(function () { var t = e(this), n = t.width(), r = t.height(), i = e.data(this, a); if (n !== i.w || r !== i.h) {
@@ -9726,24 +7965,13 @@ $('a[href*="download-manager"]').on('click', function (e) {
             return false;
         } var t = e(this); r = r.not(t); t.removeData(a); if (!r.length) {
             clearTimeout(s);
-<<<<<<< HEAD
-        } }, add: function (t) { function s(t, i, s) { var o = e(this), u = e.data(this, a); u.w = i !== n ? i : o.width(); u.h = s !== n ? s : o.height(); if (typeof r === "function") {
-=======
         } }, add: function (t) { function s(t, i, s) { var o = e(this), u = e.data(this, a); u.w = i !== n ? i : o.width(); u.h = s !== n ? s : o.height(); if (typeof r == "function") {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             r.apply(this, arguments);
         } } if (!i[l] && this[o]) {
             return false;
         } var r; if (e.isFunction(t)) {
             r = t;
             return s;
-<<<<<<< HEAD
-        } r = t.handler; t.handler = s; } };
-}(jQuery, this));
-(function (factory) {
-    factory(jQuery);
-}(function ($) {
-=======
         }
         else {
             r = t.handler;
@@ -9751,7 +7979,6 @@ $('a[href*="download-manager"]').on('click', function (e) {
         } } };
 })(jQuery, this);
 (function ($) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     $.timeago = function (timestamp) {
         if (timestamp instanceof Date) {
             return inWords(timestamp);
@@ -9762,13 +7989,9 @@ $('a[href*="download-manager"]').on('click', function (e) {
         else if (typeof timestamp === "number") {
             return inWords(new Date(timestamp));
         }
-<<<<<<< HEAD
-        return inWords($.timeago.datetime(timestamp));
-=======
         else {
             return inWords($.timeago.datetime(timestamp));
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     };
     var $t = $.timeago;
     $.extend($.timeago, {
@@ -9814,11 +8037,7 @@ $('a[href*="download-manager"]').on('click', function (e) {
             var years = days / 365;
             function substitute(stringOrFunction, number) {
                 var string = $.isFunction(stringOrFunction) ? stringOrFunction(number, distanceMillis) : stringOrFunction;
-<<<<<<< HEAD
-                var value = $l.numbers && $l.numbers[number] || number;
-=======
                 var value = ($l.numbers && $l.numbers[number]) || number;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 return string.replace(/%d/i, value);
             }
             var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
@@ -9843,13 +8062,8 @@ $('a[href*="download-manager"]').on('click', function (e) {
             s = s.replace(/\.\d+/, "");
             s = s.replace(/-/, "/").replace(/-/, "/");
             s = s.replace(/T/, " ").replace(/Z/, " UTC");
-<<<<<<< HEAD
-            s = s.replace(/([+-]\d\d):?(\d\d)/, " $1$2");
-            s = s.replace(/([+-]\d\d)$/, " $100");
-=======
             s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, " $1$2");
             s = s.replace(/([\+\-]\d\d)$/, " $100");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return new Date(s);
         },
         datetime: function (elem) {
@@ -9872,14 +8086,8 @@ $('a[href*="download-manager"]').on('click', function (e) {
         update: function (time) {
             var parsedTime = $t.parse(time);
             $(this).data('timeago', { datetime: parsedTime });
-<<<<<<< HEAD
-            if ($t.settings.localeTitle) {
-                $(this).attr("title", parsedTime.toLocaleString());
-            }
-=======
             if ($t.settings.localeTitle)
                 $(this).attr("title", parsedTime.toLocaleString());
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             refresh.apply(this);
         },
         updateFromDOM: function () {
@@ -9907,11 +8115,7 @@ $('a[href*="download-manager"]').on('click', function (e) {
         var data = prepareData(this);
         var $s = $t.settings;
         if (!isNaN(data.datetime)) {
-<<<<<<< HEAD
-            if ($s.cutoff === 0 || distance(data.datetime) < $s.cutoff) {
-=======
             if ($s.cutoff == 0 || distance(data.datetime) < $s.cutoff) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 $(this).text(inWords(data.datetime));
             }
         }
@@ -9935,40 +8139,23 @@ $('a[href*="download-manager"]').on('click', function (e) {
         return $t.inWords(distance(date));
     }
     function distance(date) {
-<<<<<<< HEAD
-        return new Date().getTime() - date.getTime();
-    }
-    document.createElement("abbr");
-    document.createElement("time");
-}));
-=======
         return (new Date().getTime() - date.getTime());
     }
     document.createElement("abbr");
     document.createElement("time");
 }(jQuery));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function (k, p, n) {
     k.fn.paging = function (v, w) {
         var t = this, s = { setOptions: function (b) {
                 this.a = k.extend(this.a || { lapping: 0, perpage: 10, page: 1, refresh: { interval: 10, url: null }, format: "", onFormat: function () { }, onSelect: function () { return !0; }, onRefresh: function () { } }, b || {});
                 this.a.lapping |= 0;
                 this.a.perpage |= 0;
-<<<<<<< HEAD
-                this.a.page !== null && (this.a.page |= 0);
-                this.a.perpage < 1 && (this.a.perpage = 10);
-                this.k && p.clearInterval(this.k);
-                this.a.refresh.url && (this.k = p.setInterval(function (b) {
-                    k.ajax({ url: b.a.refresh.url, success: function (g) {
-                            if (typeof g === "string") {
-=======
                 null !== this.a.page && (this.a.page |= 0);
                 1 > this.a.perpage && (this.a.perpage = 10);
                 this.k && p.clearInterval(this.k);
                 this.a.refresh.url && (this.k = p.setInterval(function (b) {
                     k.ajax({ url: b.a.refresh.url, success: function (g) {
                             if ("string" === typeof g)
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                                 try {
                                     g =
                                         k.parseJSON(g);
@@ -9976,25 +8163,6 @@ $('a[href*="download-manager"]').on('click', function (e) {
                                 catch (f) {
                                     return;
                                 }
-<<<<<<< HEAD
-                            }
-                            b.a.onRefresh(g);
-                        } });
-                }, 1E3 * this.a.refresh.interval, this));
-                this.l = (function (b) {
-                    for (var g = 0, f = 0, h = 1, d = { e: [], h: 0, g: 0, b: 5, d: 3, j: 0, m: 0 }, a, l = /[*<>pq\[\]().-]|[nc]+!?/g, k = { "[": "first", "]": "last", "<": "prev", ">": "next", q: "left", p: "right", "-": "fill", ".": "leap" }, e = {}; a = l.exec(b);) {
-                        a = String(a);
-                        if (n === k[a]) {
-                            if (a === "(") {
-                                f = ++g;
-                            }
-                            else if (a === ")") {
-                                f = 0;
-                            }
-                            else {
-                                if (h) {
-                                    if (a === "*") {
-=======
                             b.a.onRefresh(g);
                         } });
                 }, 1E3 * this.a.refresh.interval, this));
@@ -10009,51 +8177,21 @@ $('a[href*="download-manager"]').on('click', function (e) {
                             else {
                                 if (h) {
                                     if ("*" === a) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                                         d.h = 1;
                                         d.g = 0;
                                     }
                                     else {
                                         d.h = 0;
-<<<<<<< HEAD
-                                        d.g = a.charAt(a.length - 1) === "!";
-                                        d.b = a.length - d.g;
-                                        if (!(d.d = 1 + a.indexOf("c"))) {
-                                            d.d = 1 + d.b >> 1;
-                                        }
-=======
                                         d.g = "!" === a.charAt(a.length - 1);
                                         d.b = a.length - d.g;
                                         if (!(d.d = 1 + a.indexOf("c")))
                                             d.d = 1 + d.b >> 1;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                                     }
                                     d.e[d.e.length] =
                                         { f: "block", i: 0, c: 0 };
                                     h = 0;
                                 }
                             }
-<<<<<<< HEAD
-                        }
-                        else {
-                            d.e[d.e.length] = { f: k[a], i: f, c: n === e[a] ? e[a] = 1 : ++e[a] };
-                            a === "q" ? ++d.m : a === "p" && ++d.j;
-                        }
-                    }
-                    return d;
-                }(this.a.format));
-                return this;
-            }, setNumber: function (b) { this.o = n === b || b < 0 ? -1 : b; return this; }, setPage: function (b) {
-                function q(b, a, c) { c = String(b.onFormat.call(a, c)); l = a.value ? l + c.replace("<a", '<a data-page="' + a.value + '"') : l + c; }
-                if (n === b) {
-                    if (b = this.a.page, b === null) {
-                        return this;
-                    }
-                }
-                else if (this.a.page == b) {
-                    return this;
-                }
-=======
                         else {
                             d.e[d.e.length] = { f: k[a], i: f, c: n === e[a] ? e[a] = 1 : ++e[a] };
                             "q" === a ? ++d.m : "p" === a && ++d.j;
@@ -10070,16 +8208,11 @@ $('a[href*="download-manager"]').on('click', function (e) {
                 }
                 else if (this.a.page == b)
                     return this;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 this.a.page = b |= 0;
                 var g = this.o, f = this.a, h, d, a, l, r = 1, e = this.l, c, i, j, m, u = e.e.length, o = u;
                 f.perpage <= f.lapping && (f.lapping = f.perpage - 1);
                 m = g <= f.lapping ? 0 : f.lapping | 0;
-<<<<<<< HEAD
-                g < 0 ? (a = g = -1, h = Math.max(1, b - e.d + 1 - m), d = h + e.b) : (a = 1 + Math.ceil((g - f.perpage) / (f.perpage - m)), b = Math.max(1, Math.min(b < 0 ? 1 + a + b : b, a)), e.h ? (h = 1, d = 1 + a, e.d = b, e.b = a) : (h = Math.max(1, Math.min(b - e.d, a - e.b) + 1), d = e.g ? h + e.b : Math.min(h + e.b, 1 + a)));
-=======
                 0 > g ? (a = g = -1, h = Math.max(1, b - e.d + 1 - m), d = h + e.b) : (a = 1 + Math.ceil((g - f.perpage) / (f.perpage - m)), b = Math.max(1, Math.min(0 > b ? 1 + a + b : b, a)), e.h ? (h = 1, d = 1 + a, e.d = b, e.b = a) : (h = Math.max(1, Math.min(b - e.d, a - e.b) + 1), d = e.g ? h + e.b : Math.min(h + e.b, 1 + a)));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 for (; o--;) {
                     i = 0;
                     j = e.e[o];
@@ -10097,11 +8230,7 @@ $('a[href*="download-manager"]').on('click', function (e) {
                             i = e.b < e.d + a - b;
                             break;
                         case "prev":
-<<<<<<< HEAD
-                            i = b > 1;
-=======
                             i = 1 < b;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             break;
                         case "next": i = b < a;
                     }
@@ -10114,14 +8243,8 @@ $('a[href*="download-manager"]').on('click', function (e) {
                     i = r >> j.i & 1;
                     switch (j.f) {
                         case "block":
-<<<<<<< HEAD
-                            for (; h < d; ++h) {
-                                c.value = h, c.pos = 1 + e.b - d + h, c.active = h <= a || g < 0, c.first = h === 1, c.last = h == a && g > 0, q(f, c, j.f);
-                            }
-=======
                             for (; h < d; ++h)
                                 c.value = h, c.pos = 1 + e.b - d + h, c.active = h <= a || 0 > g, c.first = 1 === h, c.last = h == a && 0 < g, q(f, c, j.f);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             continue;
                         case "left":
                             c.value = j.c;
@@ -10133,20 +8256,6 @@ $('a[href*="download-manager"]').on('click', function (e) {
                             break;
                         case "first":
                             c.value = 1;
-<<<<<<< HEAD
-                            c.active = i && b > 1;
-                            break;
-                        case "prev":
-                            c.value = Math.max(1, b - 1);
-                            c.active = i && b > 1;
-                            break;
-                        case "last":
-                            (c.active =
-                                g < 0) ? c.value = 1 + b : (c.value = a, c.active = i && b < a);
-                            break;
-                        case "next":
-                            (c.active = g < 0) ? c.value = 1 + b : (c.value = Math.min(1 + b, a), c.active = i && b < a);
-=======
                             c.active = i && 1 < b;
                             break;
                         case "prev":
@@ -10159,7 +8268,6 @@ $('a[href*="download-manager"]').on('click', function (e) {
                             break;
                         case "next":
                             (c.active = 0 > g) ? c.value = 1 + b : (c.value = Math.min(1 + b, a), c.active = i && b < a);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             break;
                         case "leap":
                         case "fill":
@@ -10172,30 +8280,16 @@ $('a[href*="download-manager"]').on('click', function (e) {
                     c.last = c.first = n;
                     q(f, c, j.f);
                 }
-<<<<<<< HEAD
-                t.length && (k("a", t.html(l)).click(function (a) { a.preventDefault(); a = this; do {
-                    if (a.nodeName.toLowerCase() === "a") {
-                        break;
-                    }
-                } while (a = a.parentNode); s.setPage(k(a).data("page")); if (s.n) {
-                    p.location = a.href;
-                } }), this.n = f.onSelect.call({ number: g, lapping: m, pages: a, slice: c.slice }, b));
-=======
                 t.length && (k("a", t.html(l)).click(function (a) { a.preventDefault(); a = this; do
                     if ("a" === a.nodeName.toLowerCase())
                         break;
                 while (a = a.parentNode); s.setPage(k(a).data("page")); if (s.n)
                     p.location = a.href; }), this.n = f.onSelect.call({ number: g, lapping: m, pages: a, slice: c.slice }, b));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 return this;
             } };
         return s.setNumber(v).setOptions(w).setPage();
     };
-<<<<<<< HEAD
-}(jQuery, this));
-=======
 })(jQuery, this);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 var ytEmbed = {
     ytQuery: 0,
     cl: 0,
@@ -10329,17 +8423,10 @@ var ytEmbed = {
                             var ids = '';
                             for (var i = 0; i < json.items.length; i++) {
                                 if (json.items[i].snippet) {
-<<<<<<< HEAD
-                                    ids += json.items[i].snippet.resourceId.videoId + ", ";
-                                }
-                                else if (json.items[i].id) {
-                                    ids += json.items[i].id.videoId + ", ";
-=======
                                     ids += json.items[i].snippet.resourceId.videoId + ",";
                                 }
                                 else if (json.items[i].id) {
                                     ids += json.items[i].id.videoId + ",";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                                 }
                             }
                             cfg.type = 'videos';
@@ -10394,11 +8481,7 @@ var ytEmbed = {
                     var id = entry.id;
                 }
                 if (id) {
-<<<<<<< HEAD
-                    playlist += id + ", ";
-=======
                     playlist += id + ",";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
                 var li = document.createElement('li');
                 var a = document.createElement('a');
@@ -10428,11 +8511,7 @@ var ytEmbed = {
                 var span = document.createElement('span');
                 a.appendChild(span);
                 var img = document.createElement('img');
-<<<<<<< HEAD
-                img.setAttribute('src', entry.snippet.thumbnails ? entry.snippet.thumbnails.medium.url : '');
-=======
                 img.setAttribute('src', (entry.snippet.thumbnails ? entry.snippet.thumbnails.medium.url : ''));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 span.appendChild(img);
                 var em = document.createElement('em');
                 span.appendChild(em);
@@ -10529,11 +8608,6 @@ var ytEmbed = {
             if (ds.length > 255) {
                 return ds.substr(0, 252) + '...';
             }
-<<<<<<< HEAD
-            return ds;
-        }
-        return "No description available.";
-=======
             else {
                 return ds;
             }
@@ -10541,19 +8615,14 @@ var ytEmbed = {
         else {
             return "No description available.";
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     },
     formatDate: function (dt) {
         if (dt) {
             return dt.substr(0, 10);
         }
-<<<<<<< HEAD
-        return "unknown";
-=======
         else {
             return "unknown";
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     },
     mousOverImage: function (a, b, c) {
     },
@@ -10615,19 +8684,12 @@ var ytPlayerParams = {
 app.termsAndConditions = {
     urlParam: function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-<<<<<<< HEAD
-        if (results) {
-            return results[1] || 0;
-        }
-        return null;
-=======
         if (!!results) {
             return results[1] || 0;
         }
         else {
             return null;
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     },
     download: function () {
         var tcUser = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcUser'));
@@ -10650,11 +8712,7 @@ app.termsAndConditions = {
             $('#download-problems').show();
         }
         if (tcEndsIn) {
-<<<<<<< HEAD
-            if (tcEndsIn === "1") {
-=======
             if (tcEndsIn == "1") {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 $("#tcEndsIn").html("one day ");
             }
             else {
@@ -10711,11 +8769,7 @@ app.termsAndConditions = {
                 var tac = document.createElement('script');
                 tac.type = 'text/javascript';
                 tac.async = true;
-<<<<<<< HEAD
-                tac.src = (document.location.protocol === 'https:' ? 'https://' : 'http://') + 'developer.jboss.org/api/custom/v1/account/info?callback=app.termsAndConditions.callback';
-=======
                 tac.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'developer.jboss.org/api/custom/v1/account/info?callback=app.termsAndConditions.callback';
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(tac, s);
             }
@@ -10729,11 +8783,7 @@ $(function () {
 });
 var search = angular.module('search', ['ngSanitize']), searchRefinement = [];
 function indexOfObjectValueInArray(arr, key, val) {
-<<<<<<< HEAD
-    var idx = -1;
-=======
     idx = -1;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     for (var i = 0, l = arr.length; i < l; i++) {
         if (arr[i][key] && arr[i][key] === val) {
             idx = i;
@@ -10743,25 +8793,6 @@ function indexOfObjectValueInArray(arr, key, val) {
 }
 search.service('searchService', function ($http, $q) {
     this.getSearchResults = function (params) {
-<<<<<<< HEAD
-        var deferred = $q.defer(), search, endpoint;
-        if (/stack-overflow/.test(window.location.href) || /help/.test(window.location.href)) {
-            var isStackOverflow = true;
-        }
-        if (isStackOverflow) {
-            search = Object.assign(params, {
-                field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
-                query_highlight: true
-            });
-            endpoint = app.dcp.url.stackoverflow;
-        }
-        else {
-            search = Object.assign(params, {
-                query_highlight: true,
-                type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
-            });
-            endpoint = app.dcp.url.developer_materials;
-=======
         var deferred = $q.defer();
         if ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
             var isStackOverflow = true;
@@ -10779,7 +8810,6 @@ search.service('searchService', function ($http, $q) {
                 type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
             });
             var endpoint = app.dcp.url.developer_materials;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         $http.get(endpoint, { params: search })
             .success(function (data) {
@@ -10795,32 +8825,17 @@ search.directive('resourceType', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-<<<<<<< HEAD
-            if (attrs.resourceType === 'solution') {
-                element.attr("target", "_blank");
-            }
-            else {
-                element.attr("target", "_self");
-            }
-=======
             if (attrs.resourceType == 'solution')
                 element.attr("target", "_blank");
             else
                 element.attr("target", "_self");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
     };
 });
 search.filter('timeAgo', function () {
     return function (timestamp) {
-<<<<<<< HEAD
-        if (!timestamp) {
-            return;
-        }
-=======
         if (!timestamp)
             return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         var date = new Date(timestamp);
         return $.timeago(date);
     };
@@ -10862,28 +8877,16 @@ search.filter('type', function () {
 });
 search.filter('MDY', function () {
     return function (timestamp) {
-<<<<<<< HEAD
-        if (!timestamp) {
-            return;
-        }
-=======
         if (!timestamp)
             return;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var d = new Date(timestamp);
         var date = new Date([d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()].join('-'));
         window.date = date;
-<<<<<<< HEAD
-        if (window.location.href.match(/\/search/)) {
-            return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-        }
-=======
         if (!!window.location.href.match(/\/search/)) {
             return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
         }
         ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         return months[date.getUTCMonth()] + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear();
     };
 });
@@ -10899,11 +8902,7 @@ search.filter('wordcount', function () {
         var wordCount = 50;
         var peices = description.split(' ');
         peices = peices.slice(0, wordCount);
-<<<<<<< HEAD
-        return peices.join(' ') + (peices.length >= wordCount ? '€¦' : '');
-=======
         return peices.join(' ') + (peices.length >= wordCount ? '…' : '');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     };
 });
 search.filter('icon', function () {
@@ -10935,11 +8934,7 @@ search.filter('broker', function () {
 });
 search.filter('jbossfix', function () {
     return function (url) {
-<<<<<<< HEAD
-        var matcher = new RegExp('http(s)?://(www.)?jboss.org', 'gi');
-=======
         var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org', 'gi');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (url && url.match(matcher)) {
             return url.replace(matcher, 'https://developer.redhat.com');
         }
@@ -10951,14 +8946,8 @@ search.filter('tagGroup', function () {
         var modifiedTags = [];
         var matcher = new RegExp('feed_group_name_.*|feed_name_.*|red hat|redhat');
         angular.forEach(tag, function (value) {
-<<<<<<< HEAD
-            if (!value.match(matcher)) {
-                modifiedTags.push(value);
-            }
-=======
             if (!value.match(matcher))
                 modifiedTags.push(value);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         });
         return modifiedTags;
     };
@@ -11010,23 +8999,14 @@ search.filter('author', function ($sce) {
 });
 search.filter('stackDate', function ($sce) {
     return function (result) {
-<<<<<<< HEAD
-        var time = jQuery.timeago(new Date(result._source.sys_created / 1000 * 1000));
-=======
         var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         return time;
     };
 });
 search.controller('SearchController', ['$scope', '$window', 'searchService', searchCtrlFunc]);
 function searchCtrlFunc($scope, $window, searchService) {
-<<<<<<< HEAD
-    var isStackOverflow = /stack-overflow/.test(window.location.href) || /help/.test(window.location.href);
-    var isSearch = Boolean(window.location.href.match(/\/search/));
-=======
     var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
     var isSearch = !!window.location.href.match(/\/search/);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var searchTerm = window.location.search.split('=');
     var isFirstSearch = true;
     var q = '';
@@ -11047,61 +9027,6 @@ function searchCtrlFunc($scope, $window, searchService) {
         if (newVal === oldVal) {
             return;
         }
-<<<<<<< HEAD
-        if (newVal.project !== oldVal.project) {
-            idx = indexOfObjectValueInArray(searchRefinement, 'refinementType', 'product');
-            if (idx < 0) {
-                searchRefinement.push({ refinementType: 'product', refinementValue: $scope.params.project });
-            }
-            else {
-                if ($scope.params.project.length > 0) {
-                    searchRefinement[idx].refinementValue = $scope.params.project;
-                }
-                else {
-                    searchRefinement = searchRefinement.splice(idx, 1);
-                }
-            }
-        }
-        if (newVal.sortBy !== oldVal.sortBy) {
-            idx = indexOfObjectValueInArray(searchRefinement, 'refinementType', 'sort');
-            if (idx < 0) {
-                searchRefinement.push({ refinementType: 'sort', refinementValue: $scope.params.sortBy });
-            }
-            else {
-                if ($scope.params.sortBy.length > 0) {
-                    searchRefinement[idx].refinementValue = $scope.params.sortBy;
-                }
-                else {
-                    searchRefinement = searchRefinement.splice(idx, 1);
-                }
-            }
-        }
-        if (newVal.publish_date_from !== oldVal.publish_date_from) {
-            idx = indexOfObjectValueInArray(searchRefinement, 'refinementType', 'publish date');
-            if (idx < 0) {
-                searchRefinement.push({ refinementType: 'publish date', refinementValue: $scope.params.publish_date_from });
-            }
-            else {
-                if ($scope.params.publish_date_from.length > 0) {
-                    searchRefinement[idx].refinementValue = $scope.params.publish_date_from;
-                }
-                else {
-                    searchRefinement = searchRefinement.splice(idx, 1);
-                }
-            }
-        }
-        if (newVal.sys_type[0] !== oldVal.sys_type[0]) {
-            idx = indexOfObjectValueInArray(searchRefinement, 'refinementType', 'sys_type');
-            if (idx < 0) {
-                searchRefinement.push({ refinementType: 'sys_type', refinementValue: $scope.params.sys_type[0] });
-            }
-            else {
-                if ($scope.params.sys_type[0].length > 0) {
-                    searchRefinement[idx].refinementValue = $scope.params.sys_type[0];
-                }
-                else {
-                    searchRefinement = searchRefinement.splice(idx, 1);
-=======
         else {
             if (newVal.project !== oldVal.project) {
                 idx = indexOfObjectValueInArray(searchRefinement, 'refinementType', 'product');
@@ -11157,7 +9082,6 @@ function searchCtrlFunc($scope, $window, searchService) {
                     else {
                         searchRefinement = searchRefinement.splice(i, 1);
                     }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
             }
         }
@@ -11202,51 +9126,26 @@ function searchCtrlFunc($scope, $window, searchService) {
             delete params['size' + size];
         });
         params['size' + params.size] = true;
-<<<<<<< HEAD
-        if (isStackOverflow !== true) {
-=======
         if (isStackOverflow != true) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             delete params.size;
         }
         return params;
     };
     $scope.updateSearch = function () {
-<<<<<<< HEAD
-        var product, params, searchPage, tags;
-        $scope.loading = true;
-        $scope.query = $scope.params.query;
-        $scope.tag = $scope.params.tag;
-        params = $scope.cleanParams($scope.params);
-=======
         $scope.loading = true;
         $scope.query = $scope.params.query;
         $scope.tag = $scope.params.tag;
         var params = $scope.cleanParams($scope.params);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (params.sortBy === "relevance") {
             delete params.newFirst;
         }
         if (isSearch) {
-<<<<<<< HEAD
-            searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? ':' + $window.location.port : '') + $window.location.pathname;
-=======
             var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             history.pushState($scope.params, $scope.params.query, searchPage + '?q=' + $scope.params.query);
         }
         if (isStackOverflow) {
             if (/help/.test(window.location.href)) {
                 if ($('#stackOverflowProduct').length) {
-<<<<<<< HEAD
-                    product = $('#stackOverflowProduct').data('product');
-                }
-                else {
-                    product = window.location.href.split("/")[4];
-                }
-                $scope.params.product = product;
-                tags = app.products[product].stackoverflow;
-=======
                     var product = $('#stackOverflowProduct').data('product');
                 }
                 else {
@@ -11254,7 +9153,6 @@ function searchCtrlFunc($scope, $window, searchService) {
                 }
                 $scope.params.product = product;
                 var tags = app.products[product]['stackoverflow'];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 if (tags.AND) {
                     params.tag = tags.AND.tag_set_one.slice();
                     params.tags_and_logic = tags.AND.tag_set_two.slice();
@@ -11264,17 +9162,10 @@ function searchCtrlFunc($scope, $window, searchService) {
                 }
             }
             else {
-<<<<<<< HEAD
-                product = $('select[name="filter-by-product"]').val();
-                if (params.product !== "") {
-                    product = params.product;
-                    tags = app.products[product].stackoverflow;
-=======
                 var product = $('select[name="filter-by-product"]').val();
                 if (params.product !== "") {
                     product = params.product;
                     var tags = app.products[product]['stackoverflow'];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     if (tags.AND) {
                         params.tag = tags.AND.tag_set_one.slice();
                         params.tags_and_logic = tags.AND.tag_set_two.slice();
@@ -11457,11 +9348,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     };
     $scope.buildPagination = function () {
         var page = $scope.paginate.currentPage;
-<<<<<<< HEAD
-        var startAt = page * $scope.totalCount - $scope.params.size;
-=======
         var startAt = (page * $scope.totalCount) - $scope.params.size;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         var endAt = page * $scope.params.size;
         var pages = Math.ceil($scope.totalCount / $scope.params.size);
         var lastVisible = parseFloat($scope.params.size) + $scope.params.from;
@@ -11492,16 +9379,9 @@ function searchCtrlFunc($scope, $window, searchService) {
             default:
                 break;
         }
-<<<<<<< HEAD
-        if (typeof page !== 'number') {
-            return;
-        }
-        $scope.params.from = page * $scope.params.size - $scope.params.size;
-=======
         if (typeof page !== 'number')
             return;
         $scope.params.from = (page * $scope.params.size) - $scope.params.size;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         $scope.paginate.currentPage = page;
         $scope.updateSearch();
     };
@@ -11572,13 +9452,9 @@ app.os = {
         if (navigator.platform.toUpperCase().indexOf('LINUX') !== -1 || navigator.appVersion.indexOf("X11") !== -1) {
             return "linux";
         }
-<<<<<<< HEAD
-        return "other";
-=======
         else {
             return "other";
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     },
     bind: function () {
         $('input[name="os"]').on('change', function () {
@@ -11587,11 +9463,7 @@ app.os = {
             $('dd.os-' + val).show();
         });
         var os = app.os.detectOs();
-<<<<<<< HEAD
-        os = os === "other" ? "linux" : os;
-=======
         (os === "other" ? "linux" : os);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         $('input#' + os).trigger('click').trigger('change');
     }
 };
@@ -11600,8 +9472,6 @@ $(function () {
         app.os.process();
     }
 });
-<<<<<<< HEAD
-=======
 $(function () {
     $('.share-this').on('click mouseover', function () {
         Socialite.load(this);
@@ -11610,7 +9480,6 @@ $(function () {
         Socialite.load(this);
     });
 });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 app.init = function () {
     $(document).foundation();
     $('table.demos a.view-more').on('click', function (e) {
@@ -11649,11 +9518,7 @@ app.stickyNav = function (className, headerElement) {
     nav.html(html);
     nav.after(select);
     win.on("scroll", function () {
-<<<<<<< HEAD
-        if (win.scrollTop() >= top) {
-=======
         if (win.scrollTop() >= (top)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var width = nav.parent().width();
             nav.addClass(className + "-nav-fixed").css('width', width);
         }
@@ -11661,16 +9526,8 @@ app.stickyNav = function (className, headerElement) {
             nav.removeClass(className + "-nav-fixed").css('width', 'auto');
         }
         $('.' + className + ' ' + headerElement).each(function (i, el) {
-<<<<<<< HEAD
-            var top, id;
-            el = $(this);
-            top = el.offset().top;
-            id = el.attr('id');
-            if (win.scrollTop() >= el.offset().top - 15) {
-=======
             var el = $(this), top = el.offset().top, id = el.attr('id');
             if (win.scrollTop() >= (el.offset().top - 15)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 $('a[href="#' + id + '"]').addClass('past-block');
             }
             else {
@@ -11702,15 +9559,9 @@ app.sideNav = function () {
     });
 };
 $(function () {
-<<<<<<< HEAD
-    var stickySections = { 'faq': 'h2', 'gsi': 'h2' };
-    app.init();
-    app.sideNav();
-=======
     app.init();
     app.sideNav();
     stickySections = { 'faq': 'h2', 'gsi': 'h2' };
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     for (var key in stickySections) {
         app.stickyNav(key, stickySections[key]);
     }
@@ -11721,200 +9572,17 @@ $(function () {
     if (microSiteNav.length) {
         $('.microsite-nav li.active a').on('click', function (e) {
             e.preventDefault();
-<<<<<<< HEAD
-            microSiteNav.toggleClass('microsite-nav--open');
-        });
-        $('.microsite-nav li a').not('li.active a').on('click', function (e) {
-=======
             console.log("Micosite nav opened");
             microSiteNav.toggleClass('microsite-nav--open');
         });
         $('.microsite-nav li a').not('li.active a').on('click', function (e) {
             console.log("closing...");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             microSiteNav.removeClass('microsite-nav--open');
         });
     }
     var heroEls = $('.wide-hero > .row > div');
     if (heroEls.length === 2) {
         app.equalizeBottoms(heroEls);
-    }
-});
-app.connectors = {
-    orderBy: {
-        PRIORITY: 'priority',
-        SYS_TITLE: 'sys_title'
-    },
-    open: function (html) {
-        $('.overlay-content').html(html);
-        $('body').addClass('overlay-open');
-    },
-    close: function () {
-        $('body').removeClass('overlay-open');
-        $('.overlay-content').empty();
-    },
-    fallbackImage: function (el) {
-        el.src = "#{cdn( site.base_url + '/images/design/default_connector_200x150.png')}";
-    },
-    hideCodeSnippetIfEmpty: function (snippet_elem) {
-        var snippet_value = snippet_elem.find('.snippet-value');
-        if (!snippet_value.val()) {
-            snippet_elem.hide();
-        }
-    },
-    hideDocsLinkIfEmpty: function (docs_elem) {
-        var docs_link = docs_elem.find('.docs-link');
-        var docs_link_text = docs_elem.find('.docs-link-text');
-        if (!docs_link.attr("href")) {
-            docs_link_text.hide();
-        }
-    },
-    hideExtLinkIfEmpty: function (ext_elem) {
-        var link_1 = ext_elem.find('.link_1');
-        var link_1_text = ext_elem.find('.link_1_text');
-        var link_2 = ext_elem.find('.link_2');
-        var link_2_text = ext_elem.find('.link_2_text');
-        if (!link_1.attr("href")) {
-            link_1_text.hide();
-        }
-        if (!link_2.attr("href")) {
-            link_2_text.hide();
-        }
-    },
-    displayOverlay: function (e) {
-        e.preventDefault();
-        var overlay_content = $(this).parents('li').find('.connector-overlay-content');
-        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
-        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
-        app.connectors.hideDocsLinkIfEmpty(overlay_content);
-        app.connectors.hideExtLinkIfEmpty(overlay_content);
-        app.connectors.open(overlay_content.html());
-    },
-    orderByPriority: function (e) {
-        e.preventDefault();
-        var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
-        $('.connectors-order a').removeClass('active');
-        $('.order-priority').addClass('active');
-    },
-    orderByAlpha: function (e) {
-        e.preventDefault();
-        var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
-        $('.connectors-order a').removeClass('active');
-        $('.order-alpha').addClass('active');
-    },
-    connectorFilter: function (query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp.url.connectors;
-        var request_data = {};
-        if (query) {
-            request_data.query = query;
-        }
-        if (target_product) {
-            request_data.target_product = target_product;
-        }
-<<<<<<< HEAD
-        if (orderBy && orderBy === this.orderBy.SYS_TITLE) {
-=======
-        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            request_data.sortAlpha = true;
-        }
-        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
-            request_data.id = featuredIDs;
-        }
-        $("ul.connector-results").addClass('loading');
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            data: request_data,
-            container: container,
-            thumbnailSize: thumbnailSize,
-            error: function () {
-                $('ul.connector-results').html(app.dcp.error_message);
-            }
-        }).done(function (data) {
-            var container = this.container || $('ul.connector-results');
-            var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
-        });
-    },
-    format: function (data, container, thumbnailSize) {
-<<<<<<< HEAD
-        var hits, html, i, props, connectorTemplate;
-        if (data.responses) {
-            hits = data.responses[0].hits.hits;
-        }
-        else {
-            hits = data.hits.hits;
-        }
-        html = "";
-        for (i = 0; i < hits.length; i++) {
-            props = hits[i]._source;
-=======
-        if (data.responses) {
-            var hits = data.responses[0].hits.hits;
-        }
-        else {
-            var hits = data.hits.hits;
-        }
-        var html = "";
-        for (var i = 0; i < hits.length; i++) {
-            var props = hits[i]._source;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            props.img_path_thumb = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = app.connectors.fallbackImage(this);
-            if (!('sys_content' in props)) {
-                props.sys_content = props.sys_description;
-            }
-            if (props.sys_description.length > 150) {
-                props.sys_description = props.sys_description.slice(0, 146).concat(' ...');
-            }
-            if (!props.code_snippet_1) {
-                props.code_snippet_1 = '';
-            }
-            if (!props.code_snippet_2) {
-                props.code_snippet_2 = '';
-            }
-            if (!props.more_details_url) {
-                props.more_details_url = '';
-            }
-            if (!props.link_1_text || !props.link_1_url) {
-                props.link_1_text = '';
-                props.link_1_url = '';
-            }
-            if (!props.link_2_text || !props.link_2_url) {
-                props.link_2_text = '';
-                props.link_2_url = '';
-            }
-<<<<<<< HEAD
-            connectorTemplate = app.templates.connectorTemplate;
-=======
-            var connectorTemplate = app.templates.connectorTemplate;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            html += connectorTemplate.template(props);
-        }
-        container.html(html).removeClass('loading');
-    }
-};
-$(function () {
-    $('ul.connector-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
-    $('ul.featured-connectors-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
-    $('.link-list').on('click', 'a.order-priority', app.connectors.orderByPriority);
-    $('.link-list').on('click', 'a.order-alpha', app.connectors.orderByAlpha);
-    $('.overlay-close').on('click', app.connectors.close);
-    var targetProductFilter = $('[data-target-product]').data('target-product');
-    var orderBy = $('[data-order-by]').data('order-by');
-    var connectorResults = $('.connector-results');
-    if (connectorResults.length) {
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
-    }
-    var featuredConnectorIds = $('.featured-connector-ids');
-    if (featuredConnectorIds.length) {
-        var featuredIds = JSON.parse(featuredConnectorIds.text());
-        if ($.isArray(featuredIds) && featuredIds.length > 0) {
-            app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
-        }
     }
 });
 app.overlay = {};
@@ -11944,98 +9612,6 @@ $(function () {
         }
     });
 });
-$(function () {
-    var ytThumbs = $('#ytThumbs');
-    if (ytThumbs.length) {
-        ytEmbed.init({ 'block': 'ytThumbs', 'q': 'PLnLQldO10NUMqPvW5loz6aLGL3GrqJEGq', 'type': 'playlist', 'results': 50, 'meta': true, 'player': 'link', 'layout': 'full' });
-    }
-});
-app.bookDownload = {
-    urlParam: function (name) {
-        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-<<<<<<< HEAD
-        if (results) {
-            return results[1] || 0;
-        }
-        return null;
-=======
-        if (!!results) {
-            return results[1] || 0;
-        }
-        else {
-            return null;
-        }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-    },
-    download: function () {
-        var tcDownloadURL = $.encoder.canonicalize(app.bookDownload.urlParam('tcDownloadURL'));
-        var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
-        if (tcDownloadURL &&
-            tcDownloadURL.startsWith('https://access.cdn.redhat.com/')) {
-            tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
-            $('.promotion-header').prepend("<div class='alert-box alert-success'><div class='icon'></div><div class='alert-content'><p><a href='" + tcDownloadURL + "'>Click here</a> if your download does not begin automatically.</p></div></div>");
-            $("a#tcDownloadLink").attr("href", tcDownloadURL);
-            if (!app.utils.isMobile.any()) {
-                $.fileDownload(tcDownloadURL);
-            }
-            var ddDownloadEvent = {
-                eventInfo: {
-                    eventAction: 'book_download',
-                    eventName: 'download',
-                    fileName: tcDownloadFileName,
-                    fileType: 'book',
-                    productDetail: "",
-                    timeStamp: new Date(),
-                    processed: {
-                        adobeAnalytics: false
-                    }
-                }
-            };
-            window.digitalData = window.digitalData || {};
-            digitalData.event = digitalData.event || [];
-            digitalData.event.push(ddDownloadEvent);
-            sendCustomEvent('downloadEvent');
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ 'product_download_file_name': tcDownloadFileName });
-            window.dataLayer.push({ 'event': 'Book Download Requested' });
-        }
-<<<<<<< HEAD
-    }
-=======
-    },
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-};
-$(function () {
-    if ($('#book-download-promotion').length) {
-        app.bookDownload.download();
-    }
-});
-app.carousel = app.carousel || {
-    init: function ($carousel) {
-        $carousel.on('click', '.carousel-pager', function () {
-            app.carousel.slide($carousel, $(this).hasClass('prev'));
-        });
-    },
-    slide: function ($carousel, reverse) {
-        var slides = $carousel.find('li');
-        var $slideWrapper = $carousel.find('ul');
-        var scrollLeft = $slideWrapper.scrollLeft();
-        var $nextItem;
-        var pagerWidth = $carousel.find('a.carousel-pager:first').width();
-        var itemWidth = $carousel.find('li:first').outerWidth(true);
-<<<<<<< HEAD
-        var ammount = reverse ? '+=' + -itemWidth : '+=' + itemWidth;
-=======
-        var ammount = (reverse ? '+=' + (-itemWidth) : '+=' + itemWidth);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-        $slideWrapper.animate({ 'scrollLeft': ammount });
-    }
-};
-$(function () {
-    $('.video-carousel').each(function (i, el) {
-        app.carousel.init($(el));
-    });
-});
 app.video = app.video || {};
 app.video.fetchRelated = function () {
     $('[data-similar-videos]').each(function () {
@@ -12058,17 +9634,10 @@ app.video.fetchRelated = function () {
     });
 };
 app.video.displayRelated = function ($el, videos) {
-<<<<<<< HEAD
-    var html = '', videoUrl, li;
-    html = videos.map(function (video) {
-        videoUrl = video.fields.sys_url_view[0].replace(/^.*\/video/, app.baseUrl + "/video");
-        li = [
-=======
     var html = '';
     var html = videos.map(function (video) {
         var videoUrl = video.fields.sys_url_view[0].replace(/^.*\/video/, app.baseUrl + "/video");
         var li = [
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             '<li>',
             '<a href="' + videoUrl + '">',
             '<img src="' + video.fields.thumbnail[0] + '">',
@@ -12101,15 +9670,9 @@ app.downloads.createDownloadTable = function (products) {
         $.each(product.files, function (j, file) {
             var versionName = product.versionName;
             var date = new Date(product.releaseDate);
-<<<<<<< HEAD
-            var dateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].map(function (int) {
-                return int < 10 ? '0' + int : int;
-            }).join('-');
-=======
             var dateString = ([date.getFullYear(), date.getMonth() + 1, date.getDate()].map(function (int) {
                 return (int < 10 ? '0' + int : int);
             })).join('-');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             if (versionName === lastVersionName) {
                 versionName = '';
                 dateString = '';
@@ -12121,11 +9684,7 @@ app.downloads.createDownloadTable = function (products) {
                 var link = app.downloads.createInstallerLink(file);
                 $(row).find('.download-links').append(link);
             }
-<<<<<<< HEAD
-            if (j + 1 === product.files.length || file.description !== lastDescription || versionName !== '') {
-=======
             if ((j + 1) === product.files.length || file.description !== lastDescription || versionName !== '') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 $table.append(row);
             }
             lastVersionName = product.versionName;
@@ -12136,14 +9695,8 @@ app.downloads.createDownloadTable = function (products) {
 };
 app.downloads.bytesToSize = function (bytes) {
     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-<<<<<<< HEAD
-    if (bytes === 0) {
-        return '0 Byte';
-    }
-=======
     if (bytes == 0)
         return '0 Byte';
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 };
@@ -12193,17 +9746,10 @@ app.downloads.createInstallerLink = function (file) {
 };
 app.downloads.display = function (data) {
     var productArray = data[0].productVersions.sort(function (a, b) {
-<<<<<<< HEAD
-        return a.releaseDate > b.releaseDate ? -1 : 1;
-    });
-    var $downloadLink = app.downloads.createDownloadLink(data);
-    var $toggleLink = $('<a>').text('View Older Downloads –¾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart', function (e) {
-=======
         return (a.releaseDate > b.releaseDate) ? -1 : 1;
     });
     var $downloadLink = app.downloads.createDownloadLink(data);
     var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart', function (e) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         e.preventDefault();
         $(this).next('div').toggle();
     });
@@ -12213,21 +9759,14 @@ app.downloads.display = function (data) {
             break;
         }
     }
-<<<<<<< HEAD
-=======
     ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var end = i + 1;
     var currentDownloads = productArray.slice(0, end);
     var $latestDownloadsTables = $("<div>").addClass('large-24 columns');
     $latestDownloadsTables.append(app.downloads.createDownloadTable(currentDownloads));
     var $allDownloadsTable = $("<div style='display:none;'>").addClass('large-24 columns');
     $allDownloadsTable.append(app.downloads.createDownloadTable(productArray.slice(end)));
-<<<<<<< HEAD
-    var $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable);
-=======
     $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     $('.product-downloads').html($downloads);
     $("div.download-loading").removeClass('loading');
 };
@@ -12277,11 +9816,7 @@ app.jdf = {
     },
     supportsLocalStorage: function () {
         try {
-<<<<<<< HEAD
-            return 'localStorage' in window && window.localStorage !== null;
-=======
             return 'localStorage' in window && window['localStorage'] !== null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         catch (e) {
             return false;
@@ -12315,13 +9850,8 @@ app.jdf.init();
         var prototype = new this();
         initializing = false;
         for (var name in prop) {
-<<<<<<< HEAD
-            prototype[name] = typeof prop[name] === "function" &&
-                typeof _super[name] === "function" && fnTest.test(prop[name]) ?
-=======
             prototype[name] = typeof prop[name] == "function" &&
                 typeof _super[name] == "function" && fnTest.test(prop[name]) ?
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 (function (name, fn) {
                     return function () {
                         var tmp = this._super;
@@ -12330,87 +9860,49 @@ app.jdf.init();
                         this._super = tmp;
                         return ret;
                     };
-<<<<<<< HEAD
-                }(name, prop[name])) :
-                prop[name];
-        }
-        function Class() {
-            if (!initializing && this.init) {
-                this.init.apply(this, arguments);
-            }
-=======
                 })(name, prop[name]) :
                 prop[name];
         }
         function Class() {
             if (!initializing && this.init)
                 this.init.apply(this, arguments);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         Class.prototype = prototype;
         Class.constructor = Class;
         Class.extend = arguments.callee;
         return Class;
     };
-<<<<<<< HEAD
-}());
-=======
 })();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($) {
     var default_immune = { 'js': [',', '.', '_', ' '] };
     var attr_whitelist_classes = { 'default': [',', '.', '-', '_', ' '] };
     var attr_whitelist = { 'width': ['%'], 'height': ['%'] };
     var css_whitelist_classes = { 'default': ['-', ' ', '%'], 'color': ['#', ' ', '(', ')'], 'image': ['(', ')', ':', '/', '?', '&', '-', '.', '"', '=', ' '] };
-<<<<<<< HEAD
-    var css_whitelist = { 'background': ['(', ')', ':', '%', '/', '?', '&', '-', ' ', '.', '"', '=', '#'], 'background-image': css_whitelist_classes.image, 'background-color': css_whitelist_classes.color, 'border-color': css_whitelist_classes.color, 'border-image': css_whitelist_classes.image, 'color': css_whitelist_classes.color, 'icon': css_whitelist_classes.image, 'list-style-image': css_whitelist_classes.image, 'outline-color': css_whitelist_classes.color };
-=======
     var css_whitelist = { 'background': ['(', ')', ':', '%', '/', '?', '&', '-', ' ', '.', '"', '=', '#'], 'background-image': css_whitelist_classes['image'], 'background-color': css_whitelist_classes['color'], 'border-color': css_whitelist_classes['color'], 'border-image': css_whitelist_classes['image'], 'color': css_whitelist_classes['color'], 'icon': css_whitelist_classes['image'], 'list-style-image': css_whitelist_classes['image'], 'outline-color': css_whitelist_classes['color'] };
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var unsafeKeys = { 'attr_name': ['on[a-z]{1,}', 'style', 'href', 'src'], 'attr_val': ['javascript:'], 'css_key': ['behavior', '-moz-behavior', '-ms-behavior'], 'css_val': ['expression'] };
     var options = { blacklist: true };
     var hasBeenInitialized = false;
     var immune;
     $.encoder = { author: 'Chris Schmidt (chris.schmidt@owasp.org)', version: '${project.version}', init: function (opts) {
-<<<<<<< HEAD
-            if (hasBeenInitialized) {
-                throw "jQuery Encoder has already been initialized - cannot set options after initialization";
-            }
-=======
             if (hasBeenInitialized)
                 throw "jQuery Encoder has already been initialized - cannot set options after initialization";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             hasBeenInitialized = true;
             $.extend(options, opts);
         }, encodeForHTML: function (input) { hasBeenInitialized = true; var div = document.createElement('div'); $(div).text(input); return $(div).html(); }, encodeForHTMLAttribute: function (attr, input, omitAttributeName) {
             hasBeenInitialized = true;
             attr = $.encoder.canonicalize(attr).toLowerCase();
             input = $.encoder.canonicalize(input);
-<<<<<<< HEAD
-            if ($.inArray(attr, unsafeKeys.attr_name) >= 0) {
-                throw "Unsafe attribute name used: " + attr;
-            }
-            for (var a = 0; a < unsafeKeys.attr_val; a++) {
-                if (input.toLowerCase().match(unsafeKeys.attr_val[a])) {
-=======
             if ($.inArray(attr, unsafeKeys['attr_name']) >= 0) {
                 throw "Unsafe attribute name used: " + attr;
             }
             for (var a = 0; a < unsafeKeys['attr_val']; a++) {
                 if (input.toLowerCase().match(unsafeKeys['attr_val'][a])) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     throw "Unsafe attribute value used: " + input;
                 }
             }
             immune = attr_whitelist[attr];
-<<<<<<< HEAD
-            if (!immune) {
-                immune = attr_whitelist_classes['default'];
-            }
-=======
             if (!immune)
                 immune = attr_whitelist_classes['default'];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var encoded = '';
             if (!omitAttributeName) {
                 for (var p = 0; p < attr.length; p++) {
@@ -12440,31 +9932,17 @@ app.jdf.init();
             hasBeenInitialized = true;
             propName = $.encoder.canonicalize(propName).toLowerCase();
             input = $.encoder.canonicalize(input);
-<<<<<<< HEAD
-            if ($.inArray(propName, unsafeKeys.css_key) >= 0) {
-                throw "Unsafe property name used: " + propName;
-            }
-            for (var a = 0; a < unsafeKeys.css_val.length; a++) {
-                if (input.toLowerCase().indexOf(unsafeKeys.css_val[a]) >= 0) {
-=======
             if ($.inArray(propName, unsafeKeys['css_key']) >= 0) {
                 throw "Unsafe property name used: " + propName;
             }
             for (var a = 0; a < unsafeKeys['css_val'].length; a++) {
                 if (input.toLowerCase().indexOf(unsafeKeys['css_val'][a]) >= 0) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     throw "Unsafe property value used: " + input;
                 }
             }
             immune = css_whitelist[propName];
-<<<<<<< HEAD
-            if (!immune) {
-                immune = css_whitelist_classes['default'];
-            }
-=======
             if (!immune)
                 immune = css_whitelist_classes['default'];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var encoded = '';
             if (!omitPropertyName) {
                 for (var p = 0; p < propName.length; p++) {
@@ -12480,11 +9958,7 @@ app.jdf.init();
                 var ch = input.charAt(i), cc = input.charCodeAt(i);
                 if (!ch.match(/[a-zA-Z0-9]/) && $.inArray(ch, immune) < 0) {
                     var hex = cc.toString(16);
-<<<<<<< HEAD
-                    var pad = '000000'.substr(hex.length);
-=======
                     var pad = '000000'.substr((hex.length));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     encoded += '\\' + pad + hex;
                 }
                 else {
@@ -12509,14 +9983,8 @@ app.jdf.init();
             return encoded;
         }, encodeForJavascript: function (input) {
             hasBeenInitialized = true;
-<<<<<<< HEAD
-            if (!immune) {
-                immune = default_immune.js;
-            }
-=======
             if (!immune)
                 immune = default_immune['js'];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var encoded = '';
             for (var i = 0; i < input.length; i++) {
                 var ch = input.charAt(i), cc = input.charCodeAt(i);
@@ -12537,14 +10005,8 @@ app.jdf.init();
             return encoded;
         }, canonicalize: function (input, strict) {
             hasBeenInitialized = true;
-<<<<<<< HEAD
-            if (input === null) {
-                return null;
-            }
-=======
             if (input === null)
                 return null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var out = input, cycle_out = input;
             var decodeCount = 0, cycles = 0;
             var codecs = [new HTMLEntityCodec(), new PercentCodec(), new CSSCodec()];
@@ -12586,11 +10048,7 @@ app.jdf.init();
                 work[opts.name] = opts.unsafe;
             }
             for (var k in work) {
-<<<<<<< HEAD
-                if (!(typeof work[k] === 'function') && work.hasOwnProperty(k)) {
-=======
                 if (!(typeof work[k] == 'function') && work.hasOwnProperty(k)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     out[k] = $.encoder.encodeForCSS(k, work[k], true);
                 }
             }
@@ -12605,11 +10063,7 @@ app.jdf.init();
                 work[opts.name] = opts.unsafe;
             }
             for (var k in work) {
-<<<<<<< HEAD
-                if (!(typeof work[k] === 'function') && work.hasOwnProperty(k)) {
-=======
                 if (!(typeof work[k] == 'function') && work.hasOwnProperty(k)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     out[k] = $.encoder.encodeForHTMLAttribute(k, work[k], true);
                 }
             }
@@ -12619,11 +10073,7 @@ app.jdf.init();
         hasBeenInitialized = true;
         var argCount = arguments.length;
         var opts = { 'context': 'html', 'unsafe': null, 'name': null, 'map': null, 'setter': null, 'strict': true };
-<<<<<<< HEAD
-        if (argCount == 1 && typeof arguments[0] === 'object') {
-=======
         if (argCount == 1 && typeof arguments[0] == 'object') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             $.extend(opts, arguments[0]);
         }
         else {
@@ -12652,42 +10102,15 @@ app.jdf.init();
         }
         return opts.setter.call(this, methods[opts.context].call(this, opts));
     };
-<<<<<<< HEAD
-    var PushbackString = Class.extend({ _input: null, _pushback: null, _temp: null, _index: 0, _mark: 0, _hasNext: function () { if (this._input == null) {
-            return false;
-        } if (this._input.length == 0) {
-            return false;
-        } return this._index < this._input.length; }, init: function (input) { this._input = input; }, pushback: function (c) { this._pushback = c; }, index: function () { return this._index; }, hasNext: function () { if (this._pushback != null) {
-            return true;
-        } return this._hasNext(); }, next: function () {
-=======
     var PushbackString = Class.extend({ _input: null, _pushback: null, _temp: null, _index: 0, _mark: 0, _hasNext: function () { if (this._input == null)
             return false; if (this._input.length == 0)
             return false; return this._index < this._input.length; }, init: function (input) { this._input = input; }, pushback: function (c) { this._pushback = c; }, index: function () { return this._index; }, hasNext: function () { if (this._pushback != null)
             return true; return this._hasNext(); }, next: function () {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             if (this._pushback != null) {
                 var save = this._pushback;
                 this._pushback = null;
                 return save;
             }
-<<<<<<< HEAD
-            return this._hasNext() ? this._input.charAt(this._index++) : null;
-        }, nextHex: function () { var c = this.next(); if (c == null) {
-            return null;
-        } if (c.match(/[0-9A-Fa-f]/)) {
-            return c;
-        } return null; }, peek: function (c) {
-            if (c) {
-                if (this._pushback && this._pushback == c) {
-                    return true;
-                }
-                return this._hasNext() ? this._input.charAt(this._index) == c : false;
-            }
-            if (this._pushback) {
-                return this._pushback;
-            }
-=======
             return (this._hasNext()) ? this._input.charAt(this._index++) : null;
         }, nextHex: function () { var c = this.next(); if (c == null)
             return null; if (c.match(/[0-9A-Fa-f]/))
@@ -12699,7 +10122,6 @@ app.jdf.init();
             }
             if (this._pushback)
                 return this._pushback;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return this._hasNext() ? this._input.charAt(this._index) : null;
         }, mark: function () { this._temp = this._pushback; this._mark = this._index; }, reset: function () { this._pushback = this._temp; this._index = this._mark; }, remainder: function () {
             var out = this._input.substr(this._index);
@@ -12736,26 +10158,14 @@ app.jdf.init();
             var c;
             if (second == '#') {
                 c = this._getNumericEntity(input);
-<<<<<<< HEAD
-                if (c != null) {
-                    return c;
-                }
-=======
                 if (c != null)
                     return c;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             else if (second.match(/[A-Za-z]/)) {
                 input.pushback(second);
                 c = this._getNamedEntity(input);
-<<<<<<< HEAD
-                if (c != null) {
-                    return c;
-                }
-=======
                 if (c != null)
                     return c;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             input.reset();
             return null;
@@ -12766,31 +10176,14 @@ app.jdf.init();
                 possible += input.next().toLowerCase();
             }
             entry = ENTITY_TO_CHAR_TRIE.getLongestMatch(possible);
-<<<<<<< HEAD
-            if (entry == null) {
-                return null;
-            }
-=======
             if (entry == null)
                 return null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             input.reset();
             input.next();
             len = entry.getKey().length;
             for (var j = 0; j < len; j++) {
                 input.next();
             }
-<<<<<<< HEAD
-            if (input.peek(';')) {
-                input.next();
-            }
-            return entry.getValue();
-        }, _getNumericEntity: function (input) {
-            var first = input.peek();
-            if (first == null) {
-                return null;
-            }
-=======
             if (input.peek(';'))
                 input.next();
             return entry.getValue();
@@ -12798,7 +10191,6 @@ app.jdf.init();
             var first = input.peek();
             if (first == null)
                 return null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             if (first == 'x' || first == 'X') {
                 input.next();
                 return this._parseHex(input);
@@ -12821,14 +10213,8 @@ app.jdf.init();
                 }
             }
             var i = parseInt(out, 16);
-<<<<<<< HEAD
-            if (!isNaN(i) && isValidCodePoint(i)) {
-                return String.fromCharCode(i);
-            }
-=======
             if (!isNaN(i) && isValidCodePoint(i))
                 return String.fromCharCode(i);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return null;
         }, _parseNumber: function (input) {
             var out = '';
@@ -12847,14 +10233,8 @@ app.jdf.init();
                 }
             }
             var i = parseInt(out, 10);
-<<<<<<< HEAD
-            if (!isNaN(i) && isValidCodePoint(i)) {
-                return String.fromCharCode(i);
-            }
-=======
             if (!isNaN(i) && isValidCodePoint(i))
                 return String.fromCharCode(i);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return null;
         } });
     var PercentCodec = Codec.extend({ decodeCharacter: function (input) {
@@ -12871,17 +10251,6 @@ app.jdf.init();
             var out = '';
             for (var i = 0; i < 2; i++) {
                 var c = input.nextHex();
-<<<<<<< HEAD
-                if (c != null) {
-                    out += c;
-                }
-            }
-            if (out.length == 2) {
-                var p = parseInt(out, 16);
-                if (isValidCodePoint(p)) {
-                    return String.fromCharCode(p);
-                }
-=======
                 if (c != null)
                     out += c;
             }
@@ -12889,7 +10258,6 @@ app.jdf.init();
                 var p = parseInt(out, 16);
                 if (isValidCodePoint(p))
                     return String.fromCharCode(p);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             input.reset();
             return null;
@@ -12932,24 +10300,6 @@ app.jdf.init();
                 }
             }
             var p = parseInt(out, 16);
-<<<<<<< HEAD
-            if (isValidCodePoint(p)) {
-                return String.fromCharCode(p);
-            }
-            return '\ufffd';
-        } });
-    var Trie = Class.extend({ root: null, maxKeyLen: 0, size: 0, init: function () { this.clear(); }, getLongestMatch: function (key) { return this.root == null && key == null ? null : this.root.getLongestMatch(key, 0); }, getMaxKeyLength: function () { return this.maxKeyLen; }, clear: function () { this.root = null, this.maxKeyLen = 0, this.size = 0; }, put: function (key, val) {
-            var len, old;
-            if (this.root == null) {
-                this.root = new Trie.Node();
-            }
-            if ((old = this.root.put(key, 0, val)) != null) {
-                return old;
-            }
-            if ((len = key.length) > this.maxKeyLen) {
-                this.maxKeyLen = key.length;
-            }
-=======
             if (isValidCodePoint(p))
                 return String.fromCharCode(p);
             return '\ufffd';
@@ -12962,7 +10312,6 @@ app.jdf.init();
                 return old;
             if ((len = key.length) > this.maxKeyLen)
                 this.maxKeyLen = key.length;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             this.size++;
             return null;
         } });
@@ -12972,14 +10321,8 @@ app.jdf.init();
             }
             return this._key == other._key && this._value == other._value;
         } });
-<<<<<<< HEAD
-    Trie.Node = Class.extend({ _value: null, _nextMap: null, setValue: function (value) { this._value = value; }, getNextNode: function (ch) { if (!this._nextMap) {
-            return null;
-        } return this._nextMap[ch]; }, put: function (key, pos, value) {
-=======
     Trie.Node = Class.extend({ _value: null, _nextMap: null, setValue: function (value) { this._value = value; }, getNextNode: function (ch) { if (!this._nextMap)
             return null; return this._nextMap[ch]; }, put: function (key, pos, value) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var nextNode, ch, old;
             if (key.length == pos) {
                 old = this._value;
@@ -12999,19 +10342,10 @@ app.jdf.init();
             return nextNode.put(key, pos + 1, value);
         }, get: function (key, pos) {
             var nextNode;
-<<<<<<< HEAD
-            if (key.length <= pos) {
-                return this._value;
-            }
-            if ((nextNode = this.getNextNode(key.charAt(pos))) == null) {
-                return null;
-            }
-=======
             if (key.length <= pos)
                 return this._value;
             if ((nextNode = this.getNextNode(key.charAt(pos))) == null)
                 return null;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return nextNode.get(key, pos + 1);
         }, getLongestMatch: function (key, pos) {
             var nextNode, ret;
@@ -13028,11 +10362,7 @@ app.jdf.init();
         } });
     Trie.Entry.newInstanceIfNeeded = function () {
         var key = arguments[0], value, keyLength;
-<<<<<<< HEAD
-        if (typeof arguments[1] === 'string') {
-=======
         if (typeof arguments[1] == 'string') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             value = arguments[1];
             keyLength = key.length;
         }
@@ -13308,29 +10638,17 @@ app.jdf.init();
         MAP_ENTITY_TO_CHAR["&hearts"] = "9829";
         MAP_ENTITY_TO_CHAR["&diams"] = "9830";
         for (var entity in MAP_ENTITY_TO_CHAR) {
-<<<<<<< HEAD
-            if (!(typeof MAP_ENTITY_TO_CHAR[entity] === 'function') && MAP_ENTITY_TO_CHAR.hasOwnProperty(entity)) {
-=======
             if (!(typeof MAP_ENTITY_TO_CHAR[entity] == 'function') && MAP_ENTITY_TO_CHAR.hasOwnProperty(entity)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 MAP_CHAR_TO_ENTITY[MAP_ENTITY_TO_CHAR[entity]] = entity;
             }
         }
         for (var c in MAP_CHAR_TO_ENTITY) {
-<<<<<<< HEAD
-            if (!(typeof MAP_CHAR_TO_ENTITY[c] === 'function') && MAP_CHAR_TO_ENTITY.hasOwnProperty(c)) {
-=======
             if (!(typeof MAP_CHAR_TO_ENTITY[c] == 'function') && MAP_CHAR_TO_ENTITY.hasOwnProperty(c)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 var ent = MAP_CHAR_TO_ENTITY[c].toLowerCase().substr(1);
                 ENTITY_TO_CHAR_TRIE.put(ent, String.fromCharCode(c));
             }
         }
-<<<<<<< HEAD
-    }());
-=======
     })();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     if (Object.freeze) {
         $.encoder = Object.freeze($.encoder);
         $.fn.encode = Object.freeze($.fn.encode);
@@ -13343,11 +10661,7 @@ app.jdf.init();
         $.encoder = Object.preventExtensions($.encoder);
         $.fn.encode = Object.preventExtensions($.fn.encode);
     }
-<<<<<<< HEAD
-}(jQuery));
-=======
 })(jQuery);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function ($, window) {
     var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
     var htmlSpecialCharsPlaceHolders = {
@@ -13417,10 +10731,7 @@ app.jdf.init();
                     if ($preparingDialog) {
                         $preparingDialog.dialog('close');
                     }
-<<<<<<< HEAD
-=======
                     ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     settings.successCallback(url);
                     deferred.resolve(url);
                 },
@@ -13428,10 +10739,7 @@ app.jdf.init();
                     if ($preparingDialog) {
                         $preparingDialog.dialog('close');
                     }
-<<<<<<< HEAD
-=======
                     ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     if (settings.failMessageHtml) {
                         $("<div>").html(settings.failMessageHtml).dialog(settings.dialogOptions);
                     }
@@ -13512,14 +10820,8 @@ app.jdf.init();
                 if (document.cookie.indexOf(settings.cookieName + "=" + settings.cookieValue) != -1) {
                     internalCallbacks.onSuccess(fileUrl);
                     var cookieData = settings.cookieName + "=; path=" + settings.cookiePath + "; expires=" + new Date(0).toUTCString() + ";";
-<<<<<<< HEAD
-                    if (settings.cookieDomain) {
-                        cookieData += " domain=" + settings.cookieDomain + ";";
-                    }
-=======
                     if (settings.cookieDomain)
                         cookieData += " domain=" + settings.cookieDomain + ";";
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                     document.cookie = cookieData;
                     cleanUp(false);
                     return;
@@ -13594,11 +10896,7 @@ app.jdf.init();
             return deferred.promise();
         }
     });
-<<<<<<< HEAD
-}(jQuery, this));
-=======
 })(jQuery, this);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 var hljs = new function () { function k(v) { return v.replace(/&/gm, "&amp;").replace(/</gm, "&lt;").replace(/>/gm, "&gt;"); } function t(v) { return v.nodeName.toLowerCase(); } function i(w, x) { var v = w && w.exec(x); return v && v.index == 0; } function d(v) { return Array.prototype.map.call(v.childNodes, function (w) { if (w.nodeType == 3) {
     return b.useBR ? w.nodeValue.replace(/\n/g, "") : w.nodeValue;
 } if (t(w) == "br") {
@@ -13625,17 +10923,10 @@ var hljs = new function () { function k(v) { return v.replace(/&/gm, "&amp;").re
             }
         }
     }
-<<<<<<< HEAD
-} return z; }(x, 0)); return v; } function q(w, y, C) { var x = 0; var F = ""; var z = []; function B() { if (!w.length || !y.length) {
-    return w.length ? w : y;
-} if (w[0].offset != y[0].offset) {
-    return w[0].offset < y[0].offset ? w : y;
-=======
 } return z; })(x, 0); return v; } function q(w, y, C) { var x = 0; var F = ""; var z = []; function B() { if (!w.length || !y.length) {
     return w.length ? w : y;
 } if (w[0].offset != y[0].offset) {
     return (w[0].offset < y[0].offset) ? w : y;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 } return y[0].event == "start" ? w : y; } function A(H) { function G(I) { return " " + I.nodeName + '="' + k(I.value) + '"'; } F += "<" + t(H) + Array.prototype.map.call(H.attributes, G).join("") + ">"; } function E(G) { F += "</" + t(G) + ">"; } function v(G) { (G.event == "start" ? A : E)(G.node); } while (w.length || y.length) {
     var D = B();
     F += k(C.substr(x, D[0].offset - x));
@@ -13657,22 +10948,14 @@ var hljs = new function () { function k(v) { return v.replace(/&/gm, "&amp;").re
         }
         v(D.splice(0, 1)[0]);
     }
-<<<<<<< HEAD
-} return F + k(C.substr(x)); } function m(y) { function v(z) { return z && z.source || z; } function w(A, z) { return RegExp(v(A), "m" + (y.cI ? "i" : "") + (z ? "g" : "")); } function x(D, C) { if (D.compiled) {
-=======
 } return F + k(C.substr(x)); } function m(y) { function v(z) { return (z && z.source) || z; } function w(A, z) { return RegExp(v(A), "m" + (y.cI ? "i" : "") + (z ? "g" : "")); } function x(D, C) { if (D.compiled) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     return;
 } D.compiled = true; D.k = D.k || D.bK; if (D.k) {
     var z = {};
     function E(G, F) { if (y.cI) {
         F = F.toLowerCase();
     } F.split(" ").forEach(function (H) { var I = H.split("|"); z[I[0]] = [G, I[1] ? Number(I[1]) : 1]; }); }
-<<<<<<< HEAD
-    if (typeof D.k === "string") {
-=======
     if (typeof D.k == "string") {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         E("keyword", D.k);
     }
     else {
@@ -13810,13 +11093,9 @@ catch (O) {
     if (O.message.indexOf("Illegal") != -1) {
         return { r: 0, value: k(L) };
     }
-<<<<<<< HEAD
-    throw O;
-=======
     else {
         throw O;
     }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 } } function g(y, x) { x = x || b.languages || Object.keys(f); var v = { r: 0, value: k(y) }; var w = v; x.forEach(function (z) { if (!j(z)) {
     return;
 } var A = c(z, y, false); A.language = z; if (A.r > w.r) {
@@ -13845,11 +11124,7 @@ catch (O) {
 } } function j(v) { return f[v] || f[n[v]]; } this.highlight = c; this.highlightAuto = g; this.fixMarkup = h; this.highlightBlock = p; this.configure = s; this.initHighlighting = l; this.initHighlightingOnLoad = a; this.registerLanguage = e; this.getLanguage = j; this.inherit = o; this.IR = "[a-zA-Z][a-zA-Z0-9_]*"; this.UIR = "[a-zA-Z_][a-zA-Z0-9_]*"; this.NR = "\\b\\d+(\\.\\d+)?"; this.CNR = "(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)"; this.BNR = "\\b(0b[01]+)"; this.RSR = "!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~"; this.BE = { b: "\\\\[\\s\\S]", r: 0 }; this.ASM = { cN: "string", b: "'", e: "'", i: "\\n", c: [this.BE] }; this.QSM = { cN: "string", b: '"', e: '"', i: "\\n", c: [this.BE] }; this.CLCM = { cN: "comment", b: "//", e: "$" }; this.CBLCLM = { cN: "comment", b: "/\\*", e: "\\*/" }; this.HCM = { cN: "comment", b: "#", e: "$" }; this.NM = { cN: "number", b: this.NR, r: 0 }; this.CNM = { cN: "number", b: this.CNR, r: 0 }; this.BNM = { cN: "number", b: this.BNR, r: 0 }; this.REGEXP_MODE = { cN: "regexp", b: /\//, e: /\/[gim]*/, i: /\n/, c: [this.BE, { b: /\[/, e: /\]/, r: 0, c: [this.BE] }] }; this.TM = { cN: "title", b: this.IR, r: 0 }; this.UTM = { cN: "title", b: this.UIR, r: 0 }; }();
 hljs.registerLanguage("ruleslanguage", function (a) { return { k: { keyword: "BILL_PERIOD BILL_START BILL_STOP RS_EFFECTIVE_START RS_EFFECTIVE_STOP RS_JURIS_CODE RS_OPCO_CODE INTDADDATTRIBUTE|5 INTDADDVMSG|5 INTDBLOCKOP|5 INTDBLOCKOPNA|5 INTDCLOSE|5 INTDCOUNT|5 INTDCOUNTSTATUSCODE|5 INTDCREATEMASK|5 INTDCREATEDAYMASK|5 INTDCREATEFACTORMASK|5 INTDCREATEHANDLE|5 INTDCREATEOVERRIDEDAYMASK|5 INTDCREATEOVERRIDEMASK|5 INTDCREATESTATUSCODEMASK|5 INTDCREATETOUPERIOD|5 INTDDELETE|5 INTDDIPTEST|5 INTDEXPORT|5 INTDGETERRORCODE|5 INTDGETERRORMESSAGE|5 INTDISEQUAL|5 INTDJOIN|5 INTDLOAD|5 INTDLOADACTUALCUT|5 INTDLOADDATES|5 INTDLOADHIST|5 INTDLOADLIST|5 INTDLOADLISTDATES|5 INTDLOADLISTENERGY|5 INTDLOADLISTHIST|5 INTDLOADRELATEDCHANNEL|5 INTDLOADSP|5 INTDLOADSTAGING|5 INTDLOADUOM|5 INTDLOADUOMDATES|5 INTDLOADUOMHIST|5 INTDLOADVERSION|5 INTDOPEN|5 INTDREADFIRST|5 INTDREADNEXT|5 INTDRECCOUNT|5 INTDRELEASE|5 INTDREPLACE|5 INTDROLLAVG|5 INTDROLLPEAK|5 INTDSCALAROP|5 INTDSCALE|5 INTDSETATTRIBUTE|5 INTDSETDSTPARTICIPANT|5 INTDSETSTRING|5 INTDSETVALUE|5 INTDSETVALUESTATUS|5 INTDSHIFTSTARTTIME|5 INTDSMOOTH|5 INTDSORT|5 INTDSPIKETEST|5 INTDSUBSET|5 INTDTOU|5 INTDTOURELEASE|5 INTDTOUVALUE|5 INTDUPDATESTATS|5 INTDVALUE|5 STDEV INTDDELETEEX|5 INTDLOADEXACTUAL|5 INTDLOADEXCUT|5 INTDLOADEXDATES|5 INTDLOADEX|5 INTDLOADEXRELATEDCHANNEL|5 INTDSAVEEX|5 MVLOAD|5 MVLOADACCT|5 MVLOADACCTDATES|5 MVLOADACCTHIST|5 MVLOADDATES|5 MVLOADHIST|5 MVLOADLIST|5 MVLOADLISTDATES|5 MVLOADLISTHIST|5 IF FOR NEXT DONE SELECT END CALL ABORT CLEAR CHANNEL FACTOR LIST NUMBER OVERRIDE SET WEEK DISTRIBUTIONNODE ELSE WHEN THEN OTHERWISE IENUM CSV INCLUDE LEAVE RIDER SAVE DELETE NOVALUE SECTION WARN SAVE_UPDATE DETERMINANT LABEL REPORT REVENUE EACH IN FROM TOTAL CHARGE BLOCK AND OR CSV_FILE RATE_CODE AUXILIARY_DEMAND UIDACCOUNT RS BILL_PERIOD_SELECT HOURS_PER_MONTH INTD_ERROR_STOP SEASON_SCHEDULE_NAME ACCOUNTFACTOR ARRAYUPPERBOUND CALLSTOREDPROC GETADOCONNECTION GETCONNECT GETDATASOURCE GETQUALIFIER GETUSERID HASVALUE LISTCOUNT LISTOP LISTUPDATE LISTVALUE PRORATEFACTOR RSPRORATE SETBINPATH SETDBMONITOR WQ_OPEN BILLINGHOURS DATE DATEFROMFLOAT DATETIMEFROMSTRING DATETIMETOSTRING DATETOFLOAT DAY DAYDIFF DAYNAME DBDATETIME HOUR MINUTE MONTH MONTHDIFF MONTHHOURS MONTHNAME ROUNDDATE SAMEWEEKDAYLASTYEAR SECOND WEEKDAY WEEKDIFF YEAR YEARDAY YEARSTR COMPSUM HISTCOUNT HISTMAX HISTMIN HISTMINNZ HISTVALUE MAXNRANGE MAXRANGE MINRANGE COMPIKVA COMPKVA COMPKVARFROMKQKW COMPLF IDATTR FLAG LF2KW LF2KWH MAXKW POWERFACTOR READING2USAGE AVGSEASON MAXSEASON MONTHLYMERGE SEASONVALUE SUMSEASON ACCTREADDATES ACCTTABLELOAD CONFIGADD CONFIGGET CREATEOBJECT CREATEREPORT EMAILCLIENT EXPBLKMDMUSAGE EXPMDMUSAGE EXPORT_USAGE FACTORINEFFECT GETUSERSPECIFIEDSTOP INEFFECT ISHOLIDAY RUNRATE SAVE_PROFILE SETREPORTTITLE USEREXIT WATFORRUNRATE TO TABLE ACOS ASIN ATAN ATAN2 BITAND CEIL COS COSECANT COSH COTANGENT DIVQUOT DIVREM EXP FABS FLOOR FMOD FREPM FREXPN LOG LOG10 MAX MAXN MIN MINNZ MODF POW ROUND ROUND2VALUE ROUNDINT SECANT SIN SINH SQROOT TAN TANH FLOAT2STRING FLOAT2STRINGNC INSTR LEFT LEN LTRIM MID RIGHT RTRIM STRING STRINGNC TOLOWER TOUPPER TRIM NUMDAYS READ_DATE STAGING", built_in: "IDENTIFIER OPTIONS XML_ELEMENT XML_OP XML_ELEMENT_OF DOMDOCCREATE DOMDOCLOADFILE DOMDOCLOADXML DOMDOCSAVEFILE DOMDOCGETROOT DOMDOCADDPI DOMNODEGETNAME DOMNODEGETTYPE DOMNODEGETVALUE DOMNODEGETCHILDCT DOMNODEGETFIRSTCHILD DOMNODEGETSIBLING DOMNODECREATECHILDELEMENT DOMNODESETATTRIBUTE DOMNODEGETCHILDELEMENTCT DOMNODEGETFIRSTCHILDELEMENT DOMNODEGETSIBLINGELEMENT DOMNODEGETATTRIBUTECT DOMNODEGETATTRIBUTEI DOMNODEGETATTRIBUTEBYNAME DOMNODEGETBYNAME" }, c: [a.CLCM, a.CBLCLM, a.ASM, a.QSM, a.CNM, { cN: "array", b: "#[a-zA-Z .]+" }] }; });
 hljs.registerLanguage("ruby", function (e) { var h = "[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?"; var g = "and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor"; var a = { cN: "yardoctag", b: "@[A-Za-z]+" }; var i = { cN: "comment", v: [{ b: "#", e: "$", c: [a] }, { b: "^\\=begin", e: "^\\=end", c: [a], r: 10 }, { b: "^__END__", e: "\\n$" }] }; var c = { cN: "subst", b: "#\\{", e: "}", k: g }; var d = { cN: "string", c: [e.BE, c], v: [{ b: /'/, e: /'/ }, { b: /"/, e: /"/ }, { b: "%[qw]?\\(", e: "\\)" }, { b: "%[qw]?\\[", e: "\\]" }, { b: "%[qw]?{", e: "}" }, { b: "%[qw]?<", e: ">", r: 10 }, { b: "%[qw]?/", e: "/", r: 10 }, { b: "%[qw]?%", e: "%", r: 10 }, { b: "%[qw]?-", e: "-", r: 10 }, { b: "%[qw]?\\|", e: "\\|", r: 10 }, { b: /\B\?(\\\d{1,3}|\\x[A-Fa-f0-9]{1,2}|\\u[A-Fa-f0-9]{4}|\\?\S)\b/ }] }; var b = { cN: "params", b: "\\(", e: "\\)", k: g }; var f = [d, i, { cN: "class", bK: "class module", e: "$|;", i: /=/, c: [e.inherit(e.TM, { b: "[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?" }), { cN: "inheritance", b: "<\\s*", c: [{ cN: "parent", b: "(" + e.IR + "::)?" + e.IR }] }, i] }, { cN: "function", bK: "def", e: " |$|;", r: 0, c: [e.inherit(e.TM, { b: h }), b, i] }, { cN: "constant", b: "(::)?(\\b[A-Z]\\w*(::)?)+", r: 0 }, { cN: "symbol", b: ":", c: [d, { b: h }], r: 0 }, { cN: "symbol", b: e.UIR + "(\\!|\\?)?:", r: 0 }, { cN: "number", b: "(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b", r: 0 }, { cN: "variable", b: "(\\$\\W)|((\\$|\\@\\@?)(\\w+))" }, { b: "(" + e.RSR + ")\\s*", c: [i, { cN: "regexp", c: [e.BE, c], i: /\n/, v: [{ b: "/", e: "/[a-z]*" }, { b: "%r{", e: "}[a-z]*" }, { b: "%r\\(", e: "\\)[a-z]*" }, { b: "%r!", e: "![a-z]*" }, { b: "%r\\[", e: "\\][a-z]*" }] }], r: 0 }]; c.c = f; b.c = f; return { k: g, c: f }; });
-<<<<<<< HEAD
-hljs.registerLanguage("haml", function (a) { return { cI: true, c: [{ cN: "doctype", b: "^!!!( (5|1\\.1|Strict|Frameset|Basic|Mobile|RDFa|XML\\b.*))?$", r: 10 }, { cN: "comment", b: "^\\s*(!=#|=#|-#|/).*$", r: 0 }, { b: "^\\s*(-|=|!=)(?!#)", starts: { e: "\\n", sL: "ruby" } }, { cN: "tag", b: "^\\s*%", c: [{ cN: "title", b: "\\w+" }, { cN: "value", b: "[#\\.]\\w+" }, { b: "{\\s*", e: "\\s*}", eE: true, c: [{ b: ":\\w+\\s*=>", e: ",\\s+", rB: true, eW: true, c: [{ cN: "symbol", b: ":\\w+" }, { cN: "string", b: '"', e: '"' }, { cN: "string", b: "'", e: "'" }, { b: "\\w+", r: 0 }] }] }, { b: "\\(\\s*", e: "\\s*\\)", eE: true, c: [{ b: "\\w+\\s*=", e: "\\s+", rB: true, eW: true, c: [{ cN: "attribute", b: "\\w+", r: 0 }, { cN: "string", b: '"', e: '"' }, { cN: "string", b: "'", e: "'" }, { b: "\\w+", r: 0 }] }] }] }, { cN: "bullet", b: "^\\s*[=~]\\s*", r: 0 }, { b: "#{", starts: { e: "}", sL: "ruby" } }] }; });
-=======
 hljs.registerLanguage("haml", function (a) { return { cI: true, c: [{ cN: "doctype", b: "^!!!( (5|1\\.1|Strict|Frameset|Basic|Mobile|RDFa|XML\\b.*))?$", r: 10 }, { cN: "comment", b: "^\\s*(!=#|=#|-#|/).*$", r: 0 }, { b: "^\\s*(-|=|!=)(?!#)", starts: { e: "\\n", sL: "ruby" } }, { cN: "tag", b: "^\\s*%", c: [{ cN: "title", b: "\\w+" }, { cN: "value", b: "[#\\.]\\w+" }, { b: "{\\s*", e: "\\s*}", eE: true, c: [{ b: ":\\w+\\s*=>", e: ",\\s+", rB: true, eW: true, c: [{ cN: "symbol", b: ":\\w+" }, { cN: "string", b: '"', e: '"' }, { cN: "string", b: "'", e: "'" }, { b: "\\w+", r: 0 }] }] }, { b: "\\(\\s*", e: "\\s*\\)", eE: true, c: [{ b: "\\w+\\s*=", e: "\\s+", rB: true, eW: true, c: [{ cN: "attribute", b: "\\w+", r: 0 }, { cN: "string", b: '"', e: '"' }, { cN: "string", b: "'", e: "'" }, { b: "\\w+", r: 0 }] },] }] }, { cN: "bullet", b: "^\\s*[=~]\\s*", r: 0 }, { b: "#{", starts: { e: "}", sL: "ruby" } }] }; });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 hljs.registerLanguage("haskell", function (f) { var g = { cN: "comment", v: [{ b: "--", e: "$" }, { b: "{-", e: "-}", c: ["self"] }] }; var e = { cN: "pragma", b: "{-#", e: "#-}" }; var b = { cN: "preprocessor", b: "^#", e: "$" }; var d = { cN: "type", b: "\\b[A-Z][\\w']*", r: 0 }; var c = { cN: "container", b: "\\(", e: "\\)", i: '"', c: [e, g, b, { cN: "type", b: "\\b[A-Z][\\w]*(\\((\\.\\.|,|\\w+)\\))?" }, f.inherit(f.TM, { b: "[_a-z][\\w']*" })] }; var a = { cN: "container", b: "{", e: "}", c: c.c }; return { k: "let in if then else case of where do module import hiding qualified type data newtype deriving class instance as default infix infixl infixr foreign export ccall stdcall cplusplus jvm dotnet safe unsafe family forall mdo proc rec", c: [{ cN: "module", b: "\\bmodule\\b", e: "where", k: "module where", c: [c, g], i: "\\W\\.|;" }, { cN: "import", b: "\\bimport\\b", e: "$", k: "import|0 qualified as hiding", c: [c, g], i: "\\W\\.|;" }, { cN: "class", b: "^(\\s*)?(class|instance)\\b", e: "where", k: "class family instance where", c: [d, c, g] }, { cN: "typedef", b: "\\b(data|(new)?type)\\b", e: "$", k: "data family type newtype deriving", c: [e, g, d, c, a] }, { cN: "default", bK: "default", e: "$", c: [d, c, g] }, { cN: "infix", bK: "infix infixl infixr", e: "$", c: [f.CNM, g] }, { cN: "foreign", b: "\\bforeign\\b", e: "$", k: "foreign import export ccall stdcall cplusplus jvm dotnet safe unsafe", c: [d, f.QSM, g] }, { cN: "shebang", b: "#!\\/usr\\/bin\\/env runhaskell", e: "$" }, e, g, b, f.QSM, f.CNM, d, f.inherit(f.TM, { b: "^[_a-z][\\w']*" }), { b: "->|<-" }] }; });
 hljs.registerLanguage("xml", function (a) { var c = "[A-Za-z0-9\\._:-]+"; var d = { b: /<\?(php)?(?!\w)/, e: /\?>/, sL: "php", subLanguageMode: "continuous" }; var b = { eW: true, i: /</, r: 0, c: [d, { cN: "attribute", b: c, r: 0 }, { b: "=", r: 0, c: [{ cN: "value", v: [{ b: /"/, e: /"/ }, { b: /'/, e: /'/ }, { b: /[^\s\/>]+/ }] }] }] }; return { aliases: ["html"], cI: true, c: [{ cN: "doctype", b: "<!DOCTYPE", e: ">", r: 10, c: [{ b: "\\[", e: "\\]" }] }, { cN: "comment", b: "<!--", e: "-->", r: 10 }, { cN: "cdata", b: "<\\!\\[CDATA\\[", e: "\\]\\]>", r: 10 }, { cN: "tag", b: "<style(?=\\s|>|$)", e: ">", k: { title: "style" }, c: [b], starts: { e: "</style>", rE: true, sL: "css" } }, { cN: "tag", b: "<script(?=\\s|>|$)", e: ">", k: { title: "script" }, c: [b], starts: { e: "<\/script>", rE: true, sL: "javascript" } }, { b: "<%", e: "%>", sL: "vbscript" }, d, { cN: "pi", b: /<\?\w+/, e: /\?>/, r: 10 }, { cN: "tag", b: "</?", e: "/?>", c: [{ cN: "title", b: "[^ /><]+", r: 0 }, b] }] }; });
 hljs.registerLanguage("django", function (a) { var b = { cN: "filter", b: /\|[A-Za-z]+\:?/, k: "truncatewords removetags linebreaksbr yesno get_digit timesince random striptags filesizeformat escape linebreaks length_is ljust rjust cut urlize fix_ampersands title floatformat capfirst pprint divisibleby add make_list unordered_list urlencode timeuntil urlizetrunc wordcount stringformat linenumbers slice date dictsort dictsortreversed default_if_none pluralize lower join center default truncatewords_html upper length phone2numeric wordwrap time addslashes slugify first escapejs force_escape iriencode last safe safeseq truncatechars localize unlocalize localtime utc timezone", c: [{ cN: "argument", b: /"/, e: /"/ }, { cN: "argument", b: /'/, e: /'/ }] }; return { cI: true, sL: "xml", subLanguageMode: "continuous", c: [{ cN: "template_comment", b: /\{%\s*comment\s*%}/, e: /\{%\s*endcomment\s*%}/ }, { cN: "template_comment", b: /\{#/, e: /#}/ }, { cN: "template_tag", b: /\{%/, e: /%}/, k: "comment endcomment load templatetag ifchanged endifchanged if endif firstof for endfor in ifnotequal endifnotequal widthratio extends include spaceless endspaceless regroup by as ifequal endifequal ssi now with cycle url filter endfilter debug block endblock else autoescape endautoescape csrf_token empty elif endwith static trans blocktrans endblocktrans get_static_prefix get_media_prefix plural get_current_language language get_available_languages get_current_language_bidi get_language_info get_language_info_list localize endlocalize localtime endlocaltime timezone endtimezone get_current_timezone verbatim", c: [b] }, { cN: "variable", b: /\{\{/, e: /}}/, c: [b] }] }; });
@@ -13857,19 +11132,11 @@ hljs.registerLanguage("bash", function (b) { var a = { cN: "variable", v: [{ b: 
 hljs.registerLanguage("ini", function (a) { return { cI: true, i: /\S/, c: [{ cN: "comment", b: ";", e: "$" }, { cN: "title", b: "^\\[", e: "\\]" }, { cN: "setting", b: "^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*", e: "$", c: [{ cN: "value", eW: true, k: "on off true false yes no", c: [a.QSM, a.NM], r: 0 }] }] }; });
 hljs.registerLanguage("objectivec", function (a) { var d = { keyword: "int float while char export sizeof typedef const struct for union unsigned long volatile static bool mutable if do return goto void enum else break extern asm case short default double register explicit signed typename this switch continue wchar_t inline readonly assign self synchronized id nonatomic super unichar IBOutlet IBAction strong weak @private @protected @public @try @property @end @throw @catch @finally @synthesize @dynamic @selector @optional @required", literal: "false true FALSE TRUE nil YES NO NULL", built_in: "NSString NSDictionary CGRect CGPoint UIButton UILabel UITextView UIWebView MKMapView UISegmentedControl NSObject UITableViewDelegate UITableViewDataSource NSThread UIActivityIndicator UITabbar UIToolBar UIBarButtonItem UIImageView NSAutoreleasePool UITableView BOOL NSInteger CGFloat NSException NSLog NSMutableString NSMutableArray NSMutableDictionary NSURL NSIndexPath CGSize UITableViewCell UIView UIViewController UINavigationBar UINavigationController UITabBarController UIPopoverController UIPopoverControllerDelegate UIImage NSNumber UISearchBar NSFetchedResultsController NSFetchedResultsChangeType UIScrollView UIScrollViewDelegate UIEdgeInsets UIColor UIFont UIApplication NSNotFound NSNotificationCenter NSNotification UILocalNotification NSBundle NSFileManager NSTimeInterval NSDate NSCalendar NSUserDefaults UIWindow NSRange NSArray NSError NSURLRequest NSURLConnection UIInterfaceOrientation MPMoviePlayerController dispatch_once_t dispatch_queue_t dispatch_sync dispatch_async dispatch_once" }; var c = /[a-zA-Z@][a-zA-Z0-9_]*/; var b = "@interface @class @protocol @implementation"; return { k: d, l: c, i: "</", c: [a.CLCM, a.CBLCLM, a.CNM, a.QSM, { cN: "string", b: "'", e: "[^\\\\]'", i: "[^\\\\][^']" }, { cN: "preprocessor", b: "#import", e: "$", c: [{ cN: "title", b: '"', e: '"' }, { cN: "title", b: "<", e: ">" }] }, { cN: "preprocessor", b: "#", e: "$" }, { cN: "class", b: "(" + b.split(" ").join("|") + ")\\b", e: "({|$)", k: b, l: c, c: [a.UTM] }, { cN: "variable", b: "\\." + a.UIR, r: 0 }] }; });
 hljs.registerLanguage("scss", function (a) { var c = "[a-zA-Z-][a-zA-Z0-9_-]*"; var d = { cN: "function", b: c + "\\(", e: "\\)", c: ["self", a.NM, a.ASM, a.QSM] }; var b = { cN: "hexcolor", b: "#[0-9A-Fa-f]+" }; var e = { cN: "attribute", b: "[A-Z\\_\\.\\-]+", e: ":", eE: true, i: "[^\\s]", starts: { cN: "value", eW: true, eE: true, c: [d, b, a.NM, a.QSM, a.ASM, a.CBLCLM, { cN: "important", b: "!important" }] } }; return { cI: true, i: "[=/|']", c: [a.CLCM, a.CBLCLM, { cN: "function", b: c + "\\(", e: "\\)", c: ["self", a.NM, a.ASM, a.QSM] }, { cN: "id", b: "\\#[A-Za-z0-9_-]+", r: 0 }, { cN: "class", b: "\\.[A-Za-z0-9_-]+", r: 0 }, { cN: "attr_selector", b: "\\[", e: "\\]", i: "$" }, { cN: "tag", b: "\\b(a|abbr|acronym|address|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|div|dl|dt|em|embed|fieldset|figcaption|figure|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|keygen|label|legend|li|link|map|mark|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|samp|script|section|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video)\\b", r: 0 }, { cN: "pseudo", b: ":(visited|valid|root|right|required|read-write|read-only|out-range|optional|only-of-type|only-child|nth-of-type|nth-last-of-type|nth-last-child|nth-child|not|link|left|last-of-type|last-child|lang|invalid|indeterminate|in-range|hover|focus|first-of-type|first-line|first-letter|first-child|first|enabled|empty|disabled|default|checked|before|after|active)" }, { cN: "pseudo", b: "::(after|before|choices|first-letter|first-line|repeat-index|repeat-item|selection|value)" }, { cN: "attribute", b: "\\b(z-index|word-wrap|word-spacing|word-break|width|widows|white-space|visibility|vertical-align|unicode-bidi|transition-timing-function|transition-property|transition-duration|transition-delay|transition|transform-style|transform-origin|transform|top|text-underline-position|text-transform|text-shadow|text-rendering|text-overflow|text-indent|text-decoration-style|text-decoration-line|text-decoration-color|text-decoration|text-align-last|text-align|tab-size|table-layout|right|resize|quotes|position|pointer-events|perspective-origin|perspective|page-break-inside|page-break-before|page-break-after|padding-top|padding-right|padding-left|padding-bottom|padding|overflow-y|overflow-x|overflow-wrap|overflow|outline-width|outline-style|outline-offset|outline-color|outline|orphans|order|opacity|object-position|object-fit|normal|none|nav-up|nav-right|nav-left|nav-index|nav-down|min-width|min-height|max-width|max-height|mask|marks|margin-top|margin-right|margin-left|margin-bottom|margin|list-style-type|list-style-position|list-style-image|list-style|line-height|letter-spacing|left|justify-content|initial|inherit|ime-mode|image-orientation|image-resolution|image-rendering|icon|hyphens|height|font-weight|font-variant-ligatures|font-variant|font-style|font-stretch|font-size-adjust|font-size|font-language-override|font-kerning|font-feature-settings|font-family|font|float|flex-wrap|flex-shrink|flex-grow|flex-flow|flex-direction|flex-basis|flex|filter|empty-cells|display|direction|cursor|counter-reset|counter-increment|content|column-width|column-span|column-rule-width|column-rule-style|column-rule-color|column-rule|column-gap|column-fill|column-count|columns|color|clip-path|clip|clear|caption-side|break-inside|break-before|break-after|box-sizing|box-shadow|box-decoration-break|bottom|border-width|border-top-width|border-top-style|border-top-right-radius|border-top-left-radius|border-top-color|border-top|border-style|border-spacing|border-right-width|border-right-style|border-right-color|border-right|border-radius|border-left-width|border-left-style|border-left-color|border-left|border-image-width|border-image-source|border-image-slice|border-image-repeat|border-image-outset|border-image|border-color|border-collapse|border-bottom-width|border-bottom-style|border-bottom-right-radius|border-bottom-left-radius|border-bottom-color|border-bottom|border|background-size|background-repeat|background-position|background-origin|background-image|background-color|background-clip|background-attachment|background|backface-visibility|auto|animation-timing-function|animation-play-state|animation-name|animation-iteration-count|animation-fill-mode|animation-duration|animation-direction|animation-delay|animation|align-self|align-items|align-content)\\b", i: "[^\\s]" }, { cN: "value", b: "\\b(whitespace|wait|w-resize|visible|vertical-text|vertical-ideographic|uppercase|upper-roman|upper-alpha|underline|transparent|top|thin|thick|text|text-top|text-bottom|tb-rl|table-header-group|table-footer-group|sw-resize|super|strict|static|square|solid|small-caps|separate|se-resize|scroll|s-resize|rtl|row-resize|ridge|right|repeat|repeat-y|repeat-x|relative|progress|pointer|overline|outside|outset|oblique|nowrap|not-allowed|normal|none|nw-resize|no-repeat|no-drop|newspaper|ne-resize|n-resize|move|middle|medium|ltr|lr-tb|lowercase|lower-roman|lower-alpha|loose|list-item|line|line-through|line-edge|lighter|left|keep-all|justify|italic|inter-word|inter-ideograph|inside|inset|inline|inline-block|inherit|inactive|ideograph-space|ideograph-parenthesis|ideograph-numeric|ideograph-alpha|horizontal|hidden|help|hand|groove|fixed|ellipsis|e-resize|double|dotted|distribute|distribute-space|distribute-letter|distribute-all-lines|disc|disabled|default|decimal|dashed|crosshair|collapse|col-resize|circle|char|center|capitalize|break-word|break-all|bottom|both|bolder|bold|block|bidi-override|below|baseline|auto|always|all-scroll|absolute|table|table-cell)\\b" }, { cN: "value", b: ":", e: ";", c: [b, a.NM, a.QSM, a.ASM, { cN: "important", b: "!important" }] }, { cN: "at_rule", b: "@", e: "[{;]", k: "mixin include extend for if else each while charset import debug media page content font-face namespace warn", c: [d, a.QSM, a.ASM, b, a.NM, { cN: "preprocessor", b: "\\s[A-Za-z0-9_.-]+", r: 0 }] }] }; });
-<<<<<<< HEAD
-hljs.registerLanguage("python", function (a) { var f = { cN: "prompt", b: /^(>>>|\.\.\.) / }; var b = { cN: "string", c: [a.BE], v: [{ b: /(u|b)?r?'''/, e: /'''/, c: [f], r: 10 }, { b: /(u|b)?r?"""/, e: /"""/, c: [f], r: 10 }, { b: /(u|r|ur)'/, e: /'/, r: 10 }, { b: /(u|r|ur)"/, e: /"/, r: 10 }, { b: /(b|br)'/, e: /'/ }, { b: /(b|br)"/, e: /"/ }, a.ASM, a.QSM] }; var d = { cN: "number", r: 0, v: [{ b: a.BNR + "[lLjJ]?" }, { b: "\\b(0o[0-7]+)[lLjJ]?" }, { b: a.CNR + "[lLjJ]?" }] }; var e = { cN: "params", b: /\(/, e: /\)/, c: ["self", f, d, b] }; var c = { e: /:/, i: /[${=;\n]/, c: [a.UTM, e] }; return { k: { keyword: "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10 None True False", built_in: "Ellipsis NotImplemented" }, i: /(<\/|->|\?)/, c: [f, d, b, a.HCM, a.inherit(c, { cN: "function", bK: "def", r: 10 }), a.inherit(c, { cN: "class", bK: "class" }), { cN: "decorator", b: /@/, e: /$/ }, { b: /\b(print|exec)\(/ }] }; });
-hljs.registerLanguage("mel", function (a) { return { k: "int float string vector matrix if else switch case default while do for in break continue global proc return about abs addAttr addAttributeEditorNodeHelp addDynamic addNewShelfTab addPP addPanelCategory addPrefixToName advanceToNextDrivenKey affectedNet affects aimConstraint air alias aliasAttr align alignCtx alignCurve alignSurface allViewFit ambientLight angle angleBetween animCone animCurveEditor animDisplay animView annotate appendStringArray applicationName applyAttrPreset applyTake arcLenDimContext arcLengthDimension arclen arrayMapper art3dPaintCtx artAttrCtx artAttrPaintVertexCtx artAttrSkinPaintCtx artAttrTool artBuildPaintMenu artFluidAttrCtx artPuttyCtx artSelectCtx artSetPaintCtx artUserPaintCtx assignCommand assignInputDevice assignViewportFactories attachCurve attachDeviceAttr attachSurface attrColorSliderGrp attrCompatibility attrControlGrp attrEnumOptionMenu attrEnumOptionMenuGrp attrFieldGrp attrFieldSliderGrp attrNavigationControlGrp attrPresetEditWin attributeExists attributeInfo attributeMenu attributeQuery autoKeyframe autoPlace bakeClip bakeFluidShading bakePartialHistory bakeResults bakeSimulation basename basenameEx batchRender bessel bevel bevelPlus binMembership bindSkin blend2 blendShape blendShapeEditor blendShapePanel blendTwoAttr blindDataType boneLattice boundary boxDollyCtx boxZoomCtx bufferCurve buildBookmarkMenu buildKeyframeMenu button buttonManip CBG cacheFile cacheFileCombine cacheFileMerge cacheFileTrack camera cameraView canCreateManip canvas capitalizeString catch catchQuiet ceil changeSubdivComponentDisplayLevel changeSubdivRegion channelBox character characterMap characterOutlineEditor characterize chdir checkBox checkBoxGrp checkDefaultRenderGlobals choice circle circularFillet clamp clear clearCache clip clipEditor clipEditorCurrentTimeCtx clipSchedule clipSchedulerOutliner clipTrimBefore closeCurve closeSurface cluster cmdFileOutput cmdScrollFieldExecuter cmdScrollFieldReporter cmdShell coarsenSubdivSelectionList collision color colorAtPoint colorEditor colorIndex colorIndexSliderGrp colorSliderButtonGrp colorSliderGrp columnLayout commandEcho commandLine commandPort compactHairSystem componentEditor compositingInterop computePolysetVolume condition cone confirmDialog connectAttr connectControl connectDynamic connectJoint connectionInfo constrain constrainValue constructionHistory container containsMultibyte contextInfo control convertFromOldLayers convertIffToPsd convertLightmap convertSolidTx convertTessellation convertUnit copyArray copyFlexor copyKey copySkinWeights cos cpButton cpCache cpClothSet cpCollision cpConstraint cpConvClothToMesh cpForces cpGetSolverAttr cpPanel cpProperty cpRigidCollisionFilter cpSeam cpSetEdit cpSetSolverAttr cpSolver cpSolverTypes cpTool cpUpdateClothUVs createDisplayLayer createDrawCtx createEditor createLayeredPsdFile createMotionField createNewShelf createNode createRenderLayer createSubdivRegion cross crossProduct ctxAbort ctxCompletion ctxEditMode ctxTraverse currentCtx currentTime currentTimeCtx currentUnit curve curveAddPtCtx curveCVCtx curveEPCtx curveEditorCtx curveIntersect curveMoveEPCtx curveOnSurface curveSketchCtx cutKey cycleCheck cylinder dagPose date defaultLightListCheckBox defaultNavigation defineDataServer defineVirtualDevice deformer deg_to_rad delete deleteAttr deleteShadingGroupsAndMaterials deleteShelfTab deleteUI deleteUnusedBrushes delrandstr detachCurve detachDeviceAttr detachSurface deviceEditor devicePanel dgInfo dgdirty dgeval dgtimer dimWhen directKeyCtx directionalLight dirmap dirname disable disconnectAttr disconnectJoint diskCache displacementToPoly displayAffected displayColor displayCull displayLevelOfDetail displayPref displayRGBColor displaySmoothness displayStats displayString displaySurface distanceDimContext distanceDimension doBlur dolly dollyCtx dopeSheetEditor dot dotProduct doubleProfileBirailSurface drag dragAttrContext draggerContext dropoffLocator duplicate duplicateCurve duplicateSurface dynCache dynControl dynExport dynExpression dynGlobals dynPaintEditor dynParticleCtx dynPref dynRelEdPanel dynRelEditor dynamicLoad editAttrLimits editDisplayLayerGlobals editDisplayLayerMembers editRenderLayerAdjustment editRenderLayerGlobals editRenderLayerMembers editor editorTemplate effector emit emitter enableDevice encodeString endString endsWith env equivalent equivalentTol erf error eval evalDeferred evalEcho event exactWorldBoundingBox exclusiveLightCheckBox exec executeForEachObject exists exp expression expressionEditorListen extendCurve extendSurface extrude fcheck fclose feof fflush fgetline fgetword file fileBrowserDialog fileDialog fileExtension fileInfo filetest filletCurve filter filterCurve filterExpand filterStudioImport findAllIntersections findAnimCurves findKeyframe findMenuItem findRelatedSkinCluster finder firstParentOf fitBspline flexor floatEq floatField floatFieldGrp floatScrollBar floatSlider floatSlider2 floatSliderButtonGrp floatSliderGrp floor flow fluidCacheInfo fluidEmitter fluidVoxelInfo flushUndo fmod fontDialog fopen formLayout format fprint frameLayout fread freeFormFillet frewind fromNativePath fwrite gamma gauss geometryConstraint getApplicationVersionAsFloat getAttr getClassification getDefaultBrush getFileList getFluidAttr getInputDeviceRange getMayaPanelTypes getModifiers getPanel getParticleAttr getPluginResource getenv getpid glRender glRenderEditor globalStitch gmatch goal gotoBindPose grabColor gradientControl gradientControlNoAttr graphDollyCtx graphSelectContext graphTrackCtx gravity grid gridLayout group groupObjectsByName HfAddAttractorToAS HfAssignAS HfBuildEqualMap HfBuildFurFiles HfBuildFurImages HfCancelAFR HfConnectASToHF HfCreateAttractor HfDeleteAS HfEditAS HfPerformCreateAS HfRemoveAttractorFromAS HfSelectAttached HfSelectAttractors HfUnAssignAS hardenPointCurve hardware hardwareRenderPanel headsUpDisplay headsUpMessage help helpLine hermite hide hilite hitTest hotBox hotkey hotkeyCheck hsv_to_rgb hudButton hudSlider hudSliderButton hwReflectionMap hwRender hwRenderLoad hyperGraph hyperPanel hyperShade hypot iconTextButton iconTextCheckBox iconTextRadioButton iconTextRadioCollection iconTextScrollList iconTextStaticLabel ikHandle ikHandleCtx ikHandleDisplayScale ikSolver ikSplineHandleCtx ikSystem ikSystemInfo ikfkDisplayMethod illustratorCurves image imfPlugins inheritTransform insertJoint insertJointCtx insertKeyCtx insertKnotCurve insertKnotSurface instance instanceable instancer intField intFieldGrp intScrollBar intSlider intSliderGrp interToUI internalVar intersect iprEngine isAnimCurve isConnected isDirty isParentOf isSameObject isTrue isValidObjectName isValidString isValidUiName isolateSelect itemFilter itemFilterAttr itemFilterRender itemFilterType joint jointCluster jointCtx jointDisplayScale jointLattice keyTangent keyframe keyframeOutliner keyframeRegionCurrentTimeCtx keyframeRegionDirectKeyCtx keyframeRegionDollyCtx keyframeRegionInsertKeyCtx keyframeRegionMoveKeyCtx keyframeRegionScaleKeyCtx keyframeRegionSelectKeyCtx keyframeRegionSetKeyCtx keyframeRegionTrackCtx keyframeStats lassoContext lattice latticeDeformKeyCtx launch launchImageEditor layerButton layeredShaderPort layeredTexturePort layout layoutDialog lightList lightListEditor lightListPanel lightlink lineIntersection linearPrecision linstep listAnimatable listAttr listCameras listConnections listDeviceAttachments listHistory listInputDeviceAxes listInputDeviceButtons listInputDevices listMenuAnnotation listNodeTypes listPanelCategories listRelatives listSets listTransforms listUnselected listerEditor loadFluid loadNewShelf loadPlugin loadPluginLanguageResources loadPrefObjects localizedPanelLabel lockNode loft log longNameOf lookThru ls lsThroughFilter lsType lsUI Mayatomr mag makeIdentity makeLive makePaintable makeRoll makeSingleSurface makeTubeOn makebot manipMoveContext manipMoveLimitsCtx manipOptions manipRotateContext manipRotateLimitsCtx manipScaleContext manipScaleLimitsCtx marker match max memory menu menuBarLayout menuEditor menuItem menuItemToShelf menuSet menuSetPref messageLine min minimizeApp mirrorJoint modelCurrentTimeCtx modelEditor modelPanel mouse movIn movOut move moveIKtoFK moveKeyCtx moveVertexAlongDirection multiProfileBirailSurface mute nParticle nameCommand nameField namespace namespaceInfo newPanelItems newton nodeCast nodeIconButton nodeOutliner nodePreset nodeType noise nonLinear normalConstraint normalize nurbsBoolean nurbsCopyUVSet nurbsCube nurbsEditUV nurbsPlane nurbsSelect nurbsSquare nurbsToPoly nurbsToPolygonsPref nurbsToSubdiv nurbsToSubdivPref nurbsUVSet nurbsViewDirectionVector objExists objectCenter objectLayer objectType objectTypeUI obsoleteProc oceanNurbsPreviewPlane offsetCurve offsetCurveOnSurface offsetSurface openGLExtension openMayaPref optionMenu optionMenuGrp optionVar orbit orbitCtx orientConstraint outlinerEditor outlinerPanel overrideModifier paintEffectsDisplay pairBlend palettePort paneLayout panel panelConfiguration panelHistory paramDimContext paramDimension paramLocator parent parentConstraint particle particleExists particleInstancer particleRenderInfo partition pasteKey pathAnimation pause pclose percent performanceOptions pfxstrokes pickWalk picture pixelMove planarSrf plane play playbackOptions playblast plugAttr plugNode pluginInfo pluginResourceUtil pointConstraint pointCurveConstraint pointLight pointMatrixMult pointOnCurve pointOnSurface pointPosition poleVectorConstraint polyAppend polyAppendFacetCtx polyAppendVertex polyAutoProjection polyAverageNormal polyAverageVertex polyBevel polyBlendColor polyBlindData polyBoolOp polyBridgeEdge polyCacheMonitor polyCheck polyChipOff polyClipboard polyCloseBorder polyCollapseEdge polyCollapseFacet polyColorBlindData polyColorDel polyColorPerVertex polyColorSet polyCompare polyCone polyCopyUV polyCrease polyCreaseCtx polyCreateFacet polyCreateFacetCtx polyCube polyCut polyCutCtx polyCylinder polyCylindricalProjection polyDelEdge polyDelFacet polyDelVertex polyDuplicateAndConnect polyDuplicateEdge polyEditUV polyEditUVShell polyEvaluate polyExtrudeEdge polyExtrudeFacet polyExtrudeVertex polyFlipEdge polyFlipUV polyForceUV polyGeoSampler polyHelix polyInfo polyInstallAction polyLayoutUV polyListComponentConversion polyMapCut polyMapDel polyMapSew polyMapSewMove polyMergeEdge polyMergeEdgeCtx polyMergeFacet polyMergeFacetCtx polyMergeUV polyMergeVertex polyMirrorFace polyMoveEdge polyMoveFacet polyMoveFacetUV polyMoveUV polyMoveVertex polyNormal polyNormalPerVertex polyNormalizeUV polyOptUvs polyOptions polyOutput polyPipe polyPlanarProjection polyPlane polyPlatonicSolid polyPoke polyPrimitive polyPrism polyProjection polyPyramid polyQuad polyQueryBlindData polyReduce polySelect polySelectConstraint polySelectConstraintMonitor polySelectCtx polySelectEditCtx polySeparate polySetToFaceNormal polySewEdge polyShortestPathCtx polySmooth polySoftEdge polySphere polySphericalProjection polySplit polySplitCtx polySplitEdge polySplitRing polySplitVertex polyStraightenUVBorder polySubdivideEdge polySubdivideFacet polyToSubdiv polyTorus polyTransfer polyTriangulate polyUVSet polyUnite polyWedgeFace popen popupMenu pose pow preloadRefEd print progressBar progressWindow projFileViewer projectCurve projectTangent projectionContext projectionManip promptDialog propModCtx propMove psdChannelOutliner psdEditTextureFile psdExport psdTextureFile putenv pwd python querySubdiv quit rad_to_deg radial radioButton radioButtonGrp radioCollection radioMenuItemCollection rampColorPort rand randomizeFollicles randstate rangeControl readTake rebuildCurve rebuildSurface recordAttr recordDevice redo reference referenceEdit referenceQuery refineSubdivSelectionList refresh refreshAE registerPluginResource rehash reloadImage removeJoint removeMultiInstance removePanelCategory rename renameAttr renameSelectionList renameUI render renderGlobalsNode renderInfo renderLayerButton renderLayerParent renderLayerPostProcess renderLayerUnparent renderManip renderPartition renderQualityNode renderSettings renderThumbnailUpdate renderWindowEditor renderWindowSelectContext renderer reorder reorderDeformers requires reroot resampleFluid resetAE resetPfxToPolyCamera resetTool resolutionNode retarget reverseCurve reverseSurface revolve rgb_to_hsv rigidBody rigidSolver roll rollCtx rootOf rot rotate rotationInterpolation roundConstantRadius rowColumnLayout rowLayout runTimeCommand runup sampleImage saveAllShelves saveAttrPreset saveFluid saveImage saveInitialState saveMenu savePrefObjects savePrefs saveShelf saveToolSettings scale scaleBrushBrightness scaleComponents scaleConstraint scaleKey scaleKeyCtx sceneEditor sceneUIReplacement scmh scriptCtx scriptEditorInfo scriptJob scriptNode scriptTable scriptToShelf scriptedPanel scriptedPanelType scrollField scrollLayout sculpt searchPathArray seed selLoadSettings select selectContext selectCurveCV selectKey selectKeyCtx selectKeyframeRegionCtx selectMode selectPref selectPriority selectType selectedNodes selectionConnection separator setAttr setAttrEnumResource setAttrMapping setAttrNiceNameResource setConstraintRestPosition setDefaultShadingGroup setDrivenKeyframe setDynamic setEditCtx setEditor setFluidAttr setFocus setInfinity setInputDeviceMapping setKeyCtx setKeyPath setKeyframe setKeyframeBlendshapeTargetWts setMenuMode setNodeNiceNameResource setNodeTypeFlag setParent setParticleAttr setPfxToPolyCamera setPluginResource setProject setStampDensity setStartupMessage setState setToolTo setUITemplate setXformManip sets shadingConnection shadingGeometryRelCtx shadingLightRelCtx shadingNetworkCompare shadingNode shapeCompare shelfButton shelfLayout shelfTabLayout shellField shortNameOf showHelp showHidden showManipCtx showSelectionInTitle showShadingGroupAttrEditor showWindow sign simplify sin singleProfileBirailSurface size sizeBytes skinCluster skinPercent smoothCurve smoothTangentSurface smoothstep snap2to2 snapKey snapMode snapTogetherCtx snapshot soft softMod softModCtx sort sound soundControl source spaceLocator sphere sphrand spotLight spotLightPreviewPort spreadSheetEditor spring sqrt squareSurface srtContext stackTrace startString startsWith stitchAndExplodeShell stitchSurface stitchSurfacePoints strcmp stringArrayCatenate stringArrayContains stringArrayCount stringArrayInsertAtIndex stringArrayIntersector stringArrayRemove stringArrayRemoveAtIndex stringArrayRemoveDuplicates stringArrayRemoveExact stringArrayToString stringToStringArray strip stripPrefixFromName stroke subdAutoProjection subdCleanTopology subdCollapse subdDuplicateAndConnect subdEditUV subdListComponentConversion subdMapCut subdMapSewMove subdMatchTopology subdMirror subdToBlind subdToPoly subdTransferUVsToCache subdiv subdivCrease subdivDisplaySmoothness substitute substituteAllString substituteGeometry substring surface surfaceSampler surfaceShaderList swatchDisplayPort switchTable symbolButton symbolCheckBox sysFile system tabLayout tan tangentConstraint texLatticeDeformContext texManipContext texMoveContext texMoveUVShellContext texRotateContext texScaleContext texSelectContext texSelectShortestPathCtx texSmudgeUVContext texWinToolCtx text textCurves textField textFieldButtonGrp textFieldGrp textManip textScrollList textToShelf textureDisplacePlane textureHairColor texturePlacementContext textureWindow threadCount threePointArcCtx timeControl timePort timerX toNativePath toggle toggleAxis toggleWindowVisibility tokenize tokenizeList tolerance tolower toolButton toolCollection toolDropped toolHasOptions toolPropertyWindow torus toupper trace track trackCtx transferAttributes transformCompare transformLimits translator trim trunc truncateFluidCache truncateHairCache tumble tumbleCtx turbulence twoPointArcCtx uiRes uiTemplate unassignInputDevice undo undoInfo ungroup uniform unit unloadPlugin untangleUV untitledFileName untrim upAxis updateAE userCtx uvLink uvSnapshot validateShelfName vectorize view2dToolCtx viewCamera viewClipPlane viewFit viewHeadOn viewLookAt viewManip viewPlace viewSet visor volumeAxis vortex waitCursor warning webBrowser webBrowserPrefs whatIs window windowPref wire wireContext workspace wrinkle wrinkleContext writeTake xbmLangPathList xform", i: "</", c: [a.CNM, a.ASM, a.QSM, { cN: "string", b: "`", e: "`", c: [a.BE] }, { cN: "variable", v: [{ b: "\\$\\d" }, { b: "[\\$\\%\\@](\\^\\w\\b|#\\w+|[^\\s\\w{]|{\\w+}|\\w+)" }, { b: "\\*(\\^\\w\\b|#\\w+|[^\\s\\w{]|{\\w+}|\\w+)", r: 0 }] }, a.CLCM, a.CBLCLM] }; });
-hljs.registerLanguage("dos", function (a) { return { cI: true, k: { flow: "if else goto for in do call exit not exist errorlevel defined equ neq lss leq gtr geq", keyword: "shift cd dir echo setlocal endlocal set pause copy", stream: "prn nul lpt3 lpt2 lpt1 con com4 com3 com2 com1 aux", winutils: "ping net ipconfig taskkill xcopy ren del" }, c: [{ cN: "envvar", b: "%%[^ ]" }, { cN: "envvar", b: "%[^ ]+?%" }, { cN: "envvar", b: "![^ ]+?!" }, { cN: "number", b: "\\b\\d+", r: 0 }, { cN: "comment", b: "@?rem", e: "$" }] }; });
-hljs.registerLanguage("java", function (b) { var a = "false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws"; return { k: a, i: /<\//, c: [{ cN: "javadoc", b: "/\\*\\*", e: "\\*/", c: [{ cN: "javadoctag", b: "(^|\\s)@[A-Za-z]+" }], r: 10 }, b.CLCM, b.CBLCLM, b.ASM, b.QSM, { bK: "protected public private", e: /[{;=]/, k: a, c: [{ cN: "class", bK: "class interface", eW: true, i: /[:"<>]/, c: [{ bK: "extends implements", r: 10 }, b.UTM] }, { b: b.UIR + "\\s*\\(", rB: true, c: [b.UTM] }] }, b.CNM, { cN: "annotation", b: "@[A-Za-z]+" }] }; });
-hljs.registerLanguage("tex", function (a) { var d = { cN: "command", b: "\\\\[a-zA-ZÐ°-ÑÐ-Ñ]+[\\*]?" }; var c = { cN: "command", b: "\\\\[^a-zA-ZÐ°-ÑÐ-Ñ0-9]" }; var b = { cN: "special", b: "[{}\\[\\]\\&#~]", r: 0 }; return { c: [{ b: "\\\\[a-zA-ZÐ°-ÑÐ-Ñ]+[\\*]? *= *-?\\d*\\.?\\d+(pt|pc|mm|cm|in|dd|cc|ex|em)?", rB: true, c: [d, c, { cN: "number", b: " *=", e: "-?\\d*\\.?\\d+(pt|pc|mm|cm|in|dd|cc|ex|em)?", eB: true }], r: 10 }, d, c, b, { cN: "formula", b: "\\$\\$", e: "\\$\\$", c: [d, c, b], r: 0 }, { cN: "formula", b: "\\$", e: "\\$", c: [d, c, b], r: 0 }, { cN: "comment", b: "%", e: "$", r: 0 }] }; });
-=======
 hljs.registerLanguage("python", function (a) { var f = { cN: "prompt", b: /^(>>>|\.\.\.) / }; var b = { cN: "string", c: [a.BE], v: [{ b: /(u|b)?r?'''/, e: /'''/, c: [f], r: 10 }, { b: /(u|b)?r?"""/, e: /"""/, c: [f], r: 10 }, { b: /(u|r|ur)'/, e: /'/, r: 10 }, { b: /(u|r|ur)"/, e: /"/, r: 10 }, { b: /(b|br)'/, e: /'/, }, { b: /(b|br)"/, e: /"/, }, a.ASM, a.QSM] }; var d = { cN: "number", r: 0, v: [{ b: a.BNR + "[lLjJ]?" }, { b: "\\b(0o[0-7]+)[lLjJ]?" }, { b: a.CNR + "[lLjJ]?" }] }; var e = { cN: "params", b: /\(/, e: /\)/, c: ["self", f, d, b] }; var c = { e: /:/, i: /[${=;\n]/, c: [a.UTM, e] }; return { k: { keyword: "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10 None True False", built_in: "Ellipsis NotImplemented" }, i: /(<\/|->|\?)/, c: [f, d, b, a.HCM, a.inherit(c, { cN: "function", bK: "def", r: 10 }), a.inherit(c, { cN: "class", bK: "class" }), { cN: "decorator", b: /@/, e: /$/ }, { b: /\b(print|exec)\(/ }] }; });
 hljs.registerLanguage("mel", function (a) { return { k: "int float string vector matrix if else switch case default while do for in break continue global proc return about abs addAttr addAttributeEditorNodeHelp addDynamic addNewShelfTab addPP addPanelCategory addPrefixToName advanceToNextDrivenKey affectedNet affects aimConstraint air alias aliasAttr align alignCtx alignCurve alignSurface allViewFit ambientLight angle angleBetween animCone animCurveEditor animDisplay animView annotate appendStringArray applicationName applyAttrPreset applyTake arcLenDimContext arcLengthDimension arclen arrayMapper art3dPaintCtx artAttrCtx artAttrPaintVertexCtx artAttrSkinPaintCtx artAttrTool artBuildPaintMenu artFluidAttrCtx artPuttyCtx artSelectCtx artSetPaintCtx artUserPaintCtx assignCommand assignInputDevice assignViewportFactories attachCurve attachDeviceAttr attachSurface attrColorSliderGrp attrCompatibility attrControlGrp attrEnumOptionMenu attrEnumOptionMenuGrp attrFieldGrp attrFieldSliderGrp attrNavigationControlGrp attrPresetEditWin attributeExists attributeInfo attributeMenu attributeQuery autoKeyframe autoPlace bakeClip bakeFluidShading bakePartialHistory bakeResults bakeSimulation basename basenameEx batchRender bessel bevel bevelPlus binMembership bindSkin blend2 blendShape blendShapeEditor blendShapePanel blendTwoAttr blindDataType boneLattice boundary boxDollyCtx boxZoomCtx bufferCurve buildBookmarkMenu buildKeyframeMenu button buttonManip CBG cacheFile cacheFileCombine cacheFileMerge cacheFileTrack camera cameraView canCreateManip canvas capitalizeString catch catchQuiet ceil changeSubdivComponentDisplayLevel changeSubdivRegion channelBox character characterMap characterOutlineEditor characterize chdir checkBox checkBoxGrp checkDefaultRenderGlobals choice circle circularFillet clamp clear clearCache clip clipEditor clipEditorCurrentTimeCtx clipSchedule clipSchedulerOutliner clipTrimBefore closeCurve closeSurface cluster cmdFileOutput cmdScrollFieldExecuter cmdScrollFieldReporter cmdShell coarsenSubdivSelectionList collision color colorAtPoint colorEditor colorIndex colorIndexSliderGrp colorSliderButtonGrp colorSliderGrp columnLayout commandEcho commandLine commandPort compactHairSystem componentEditor compositingInterop computePolysetVolume condition cone confirmDialog connectAttr connectControl connectDynamic connectJoint connectionInfo constrain constrainValue constructionHistory container containsMultibyte contextInfo control convertFromOldLayers convertIffToPsd convertLightmap convertSolidTx convertTessellation convertUnit copyArray copyFlexor copyKey copySkinWeights cos cpButton cpCache cpClothSet cpCollision cpConstraint cpConvClothToMesh cpForces cpGetSolverAttr cpPanel cpProperty cpRigidCollisionFilter cpSeam cpSetEdit cpSetSolverAttr cpSolver cpSolverTypes cpTool cpUpdateClothUVs createDisplayLayer createDrawCtx createEditor createLayeredPsdFile createMotionField createNewShelf createNode createRenderLayer createSubdivRegion cross crossProduct ctxAbort ctxCompletion ctxEditMode ctxTraverse currentCtx currentTime currentTimeCtx currentUnit curve curveAddPtCtx curveCVCtx curveEPCtx curveEditorCtx curveIntersect curveMoveEPCtx curveOnSurface curveSketchCtx cutKey cycleCheck cylinder dagPose date defaultLightListCheckBox defaultNavigation defineDataServer defineVirtualDevice deformer deg_to_rad delete deleteAttr deleteShadingGroupsAndMaterials deleteShelfTab deleteUI deleteUnusedBrushes delrandstr detachCurve detachDeviceAttr detachSurface deviceEditor devicePanel dgInfo dgdirty dgeval dgtimer dimWhen directKeyCtx directionalLight dirmap dirname disable disconnectAttr disconnectJoint diskCache displacementToPoly displayAffected displayColor displayCull displayLevelOfDetail displayPref displayRGBColor displaySmoothness displayStats displayString displaySurface distanceDimContext distanceDimension doBlur dolly dollyCtx dopeSheetEditor dot dotProduct doubleProfileBirailSurface drag dragAttrContext draggerContext dropoffLocator duplicate duplicateCurve duplicateSurface dynCache dynControl dynExport dynExpression dynGlobals dynPaintEditor dynParticleCtx dynPref dynRelEdPanel dynRelEditor dynamicLoad editAttrLimits editDisplayLayerGlobals editDisplayLayerMembers editRenderLayerAdjustment editRenderLayerGlobals editRenderLayerMembers editor editorTemplate effector emit emitter enableDevice encodeString endString endsWith env equivalent equivalentTol erf error eval evalDeferred evalEcho event exactWorldBoundingBox exclusiveLightCheckBox exec executeForEachObject exists exp expression expressionEditorListen extendCurve extendSurface extrude fcheck fclose feof fflush fgetline fgetword file fileBrowserDialog fileDialog fileExtension fileInfo filetest filletCurve filter filterCurve filterExpand filterStudioImport findAllIntersections findAnimCurves findKeyframe findMenuItem findRelatedSkinCluster finder firstParentOf fitBspline flexor floatEq floatField floatFieldGrp floatScrollBar floatSlider floatSlider2 floatSliderButtonGrp floatSliderGrp floor flow fluidCacheInfo fluidEmitter fluidVoxelInfo flushUndo fmod fontDialog fopen formLayout format fprint frameLayout fread freeFormFillet frewind fromNativePath fwrite gamma gauss geometryConstraint getApplicationVersionAsFloat getAttr getClassification getDefaultBrush getFileList getFluidAttr getInputDeviceRange getMayaPanelTypes getModifiers getPanel getParticleAttr getPluginResource getenv getpid glRender glRenderEditor globalStitch gmatch goal gotoBindPose grabColor gradientControl gradientControlNoAttr graphDollyCtx graphSelectContext graphTrackCtx gravity grid gridLayout group groupObjectsByName HfAddAttractorToAS HfAssignAS HfBuildEqualMap HfBuildFurFiles HfBuildFurImages HfCancelAFR HfConnectASToHF HfCreateAttractor HfDeleteAS HfEditAS HfPerformCreateAS HfRemoveAttractorFromAS HfSelectAttached HfSelectAttractors HfUnAssignAS hardenPointCurve hardware hardwareRenderPanel headsUpDisplay headsUpMessage help helpLine hermite hide hilite hitTest hotBox hotkey hotkeyCheck hsv_to_rgb hudButton hudSlider hudSliderButton hwReflectionMap hwRender hwRenderLoad hyperGraph hyperPanel hyperShade hypot iconTextButton iconTextCheckBox iconTextRadioButton iconTextRadioCollection iconTextScrollList iconTextStaticLabel ikHandle ikHandleCtx ikHandleDisplayScale ikSolver ikSplineHandleCtx ikSystem ikSystemInfo ikfkDisplayMethod illustratorCurves image imfPlugins inheritTransform insertJoint insertJointCtx insertKeyCtx insertKnotCurve insertKnotSurface instance instanceable instancer intField intFieldGrp intScrollBar intSlider intSliderGrp interToUI internalVar intersect iprEngine isAnimCurve isConnected isDirty isParentOf isSameObject isTrue isValidObjectName isValidString isValidUiName isolateSelect itemFilter itemFilterAttr itemFilterRender itemFilterType joint jointCluster jointCtx jointDisplayScale jointLattice keyTangent keyframe keyframeOutliner keyframeRegionCurrentTimeCtx keyframeRegionDirectKeyCtx keyframeRegionDollyCtx keyframeRegionInsertKeyCtx keyframeRegionMoveKeyCtx keyframeRegionScaleKeyCtx keyframeRegionSelectKeyCtx keyframeRegionSetKeyCtx keyframeRegionTrackCtx keyframeStats lassoContext lattice latticeDeformKeyCtx launch launchImageEditor layerButton layeredShaderPort layeredTexturePort layout layoutDialog lightList lightListEditor lightListPanel lightlink lineIntersection linearPrecision linstep listAnimatable listAttr listCameras listConnections listDeviceAttachments listHistory listInputDeviceAxes listInputDeviceButtons listInputDevices listMenuAnnotation listNodeTypes listPanelCategories listRelatives listSets listTransforms listUnselected listerEditor loadFluid loadNewShelf loadPlugin loadPluginLanguageResources loadPrefObjects localizedPanelLabel lockNode loft log longNameOf lookThru ls lsThroughFilter lsType lsUI Mayatomr mag makeIdentity makeLive makePaintable makeRoll makeSingleSurface makeTubeOn makebot manipMoveContext manipMoveLimitsCtx manipOptions manipRotateContext manipRotateLimitsCtx manipScaleContext manipScaleLimitsCtx marker match max memory menu menuBarLayout menuEditor menuItem menuItemToShelf menuSet menuSetPref messageLine min minimizeApp mirrorJoint modelCurrentTimeCtx modelEditor modelPanel mouse movIn movOut move moveIKtoFK moveKeyCtx moveVertexAlongDirection multiProfileBirailSurface mute nParticle nameCommand nameField namespace namespaceInfo newPanelItems newton nodeCast nodeIconButton nodeOutliner nodePreset nodeType noise nonLinear normalConstraint normalize nurbsBoolean nurbsCopyUVSet nurbsCube nurbsEditUV nurbsPlane nurbsSelect nurbsSquare nurbsToPoly nurbsToPolygonsPref nurbsToSubdiv nurbsToSubdivPref nurbsUVSet nurbsViewDirectionVector objExists objectCenter objectLayer objectType objectTypeUI obsoleteProc oceanNurbsPreviewPlane offsetCurve offsetCurveOnSurface offsetSurface openGLExtension openMayaPref optionMenu optionMenuGrp optionVar orbit orbitCtx orientConstraint outlinerEditor outlinerPanel overrideModifier paintEffectsDisplay pairBlend palettePort paneLayout panel panelConfiguration panelHistory paramDimContext paramDimension paramLocator parent parentConstraint particle particleExists particleInstancer particleRenderInfo partition pasteKey pathAnimation pause pclose percent performanceOptions pfxstrokes pickWalk picture pixelMove planarSrf plane play playbackOptions playblast plugAttr plugNode pluginInfo pluginResourceUtil pointConstraint pointCurveConstraint pointLight pointMatrixMult pointOnCurve pointOnSurface pointPosition poleVectorConstraint polyAppend polyAppendFacetCtx polyAppendVertex polyAutoProjection polyAverageNormal polyAverageVertex polyBevel polyBlendColor polyBlindData polyBoolOp polyBridgeEdge polyCacheMonitor polyCheck polyChipOff polyClipboard polyCloseBorder polyCollapseEdge polyCollapseFacet polyColorBlindData polyColorDel polyColorPerVertex polyColorSet polyCompare polyCone polyCopyUV polyCrease polyCreaseCtx polyCreateFacet polyCreateFacetCtx polyCube polyCut polyCutCtx polyCylinder polyCylindricalProjection polyDelEdge polyDelFacet polyDelVertex polyDuplicateAndConnect polyDuplicateEdge polyEditUV polyEditUVShell polyEvaluate polyExtrudeEdge polyExtrudeFacet polyExtrudeVertex polyFlipEdge polyFlipUV polyForceUV polyGeoSampler polyHelix polyInfo polyInstallAction polyLayoutUV polyListComponentConversion polyMapCut polyMapDel polyMapSew polyMapSewMove polyMergeEdge polyMergeEdgeCtx polyMergeFacet polyMergeFacetCtx polyMergeUV polyMergeVertex polyMirrorFace polyMoveEdge polyMoveFacet polyMoveFacetUV polyMoveUV polyMoveVertex polyNormal polyNormalPerVertex polyNormalizeUV polyOptUvs polyOptions polyOutput polyPipe polyPlanarProjection polyPlane polyPlatonicSolid polyPoke polyPrimitive polyPrism polyProjection polyPyramid polyQuad polyQueryBlindData polyReduce polySelect polySelectConstraint polySelectConstraintMonitor polySelectCtx polySelectEditCtx polySeparate polySetToFaceNormal polySewEdge polyShortestPathCtx polySmooth polySoftEdge polySphere polySphericalProjection polySplit polySplitCtx polySplitEdge polySplitRing polySplitVertex polyStraightenUVBorder polySubdivideEdge polySubdivideFacet polyToSubdiv polyTorus polyTransfer polyTriangulate polyUVSet polyUnite polyWedgeFace popen popupMenu pose pow preloadRefEd print progressBar progressWindow projFileViewer projectCurve projectTangent projectionContext projectionManip promptDialog propModCtx propMove psdChannelOutliner psdEditTextureFile psdExport psdTextureFile putenv pwd python querySubdiv quit rad_to_deg radial radioButton radioButtonGrp radioCollection radioMenuItemCollection rampColorPort rand randomizeFollicles randstate rangeControl readTake rebuildCurve rebuildSurface recordAttr recordDevice redo reference referenceEdit referenceQuery refineSubdivSelectionList refresh refreshAE registerPluginResource rehash reloadImage removeJoint removeMultiInstance removePanelCategory rename renameAttr renameSelectionList renameUI render renderGlobalsNode renderInfo renderLayerButton renderLayerParent renderLayerPostProcess renderLayerUnparent renderManip renderPartition renderQualityNode renderSettings renderThumbnailUpdate renderWindowEditor renderWindowSelectContext renderer reorder reorderDeformers requires reroot resampleFluid resetAE resetPfxToPolyCamera resetTool resolutionNode retarget reverseCurve reverseSurface revolve rgb_to_hsv rigidBody rigidSolver roll rollCtx rootOf rot rotate rotationInterpolation roundConstantRadius rowColumnLayout rowLayout runTimeCommand runup sampleImage saveAllShelves saveAttrPreset saveFluid saveImage saveInitialState saveMenu savePrefObjects savePrefs saveShelf saveToolSettings scale scaleBrushBrightness scaleComponents scaleConstraint scaleKey scaleKeyCtx sceneEditor sceneUIReplacement scmh scriptCtx scriptEditorInfo scriptJob scriptNode scriptTable scriptToShelf scriptedPanel scriptedPanelType scrollField scrollLayout sculpt searchPathArray seed selLoadSettings select selectContext selectCurveCV selectKey selectKeyCtx selectKeyframeRegionCtx selectMode selectPref selectPriority selectType selectedNodes selectionConnection separator setAttr setAttrEnumResource setAttrMapping setAttrNiceNameResource setConstraintRestPosition setDefaultShadingGroup setDrivenKeyframe setDynamic setEditCtx setEditor setFluidAttr setFocus setInfinity setInputDeviceMapping setKeyCtx setKeyPath setKeyframe setKeyframeBlendshapeTargetWts setMenuMode setNodeNiceNameResource setNodeTypeFlag setParent setParticleAttr setPfxToPolyCamera setPluginResource setProject setStampDensity setStartupMessage setState setToolTo setUITemplate setXformManip sets shadingConnection shadingGeometryRelCtx shadingLightRelCtx shadingNetworkCompare shadingNode shapeCompare shelfButton shelfLayout shelfTabLayout shellField shortNameOf showHelp showHidden showManipCtx showSelectionInTitle showShadingGroupAttrEditor showWindow sign simplify sin singleProfileBirailSurface size sizeBytes skinCluster skinPercent smoothCurve smoothTangentSurface smoothstep snap2to2 snapKey snapMode snapTogetherCtx snapshot soft softMod softModCtx sort sound soundControl source spaceLocator sphere sphrand spotLight spotLightPreviewPort spreadSheetEditor spring sqrt squareSurface srtContext stackTrace startString startsWith stitchAndExplodeShell stitchSurface stitchSurfacePoints strcmp stringArrayCatenate stringArrayContains stringArrayCount stringArrayInsertAtIndex stringArrayIntersector stringArrayRemove stringArrayRemoveAtIndex stringArrayRemoveDuplicates stringArrayRemoveExact stringArrayToString stringToStringArray strip stripPrefixFromName stroke subdAutoProjection subdCleanTopology subdCollapse subdDuplicateAndConnect subdEditUV subdListComponentConversion subdMapCut subdMapSewMove subdMatchTopology subdMirror subdToBlind subdToPoly subdTransferUVsToCache subdiv subdivCrease subdivDisplaySmoothness substitute substituteAllString substituteGeometry substring surface surfaceSampler surfaceShaderList swatchDisplayPort switchTable symbolButton symbolCheckBox sysFile system tabLayout tan tangentConstraint texLatticeDeformContext texManipContext texMoveContext texMoveUVShellContext texRotateContext texScaleContext texSelectContext texSelectShortestPathCtx texSmudgeUVContext texWinToolCtx text textCurves textField textFieldButtonGrp textFieldGrp textManip textScrollList textToShelf textureDisplacePlane textureHairColor texturePlacementContext textureWindow threadCount threePointArcCtx timeControl timePort timerX toNativePath toggle toggleAxis toggleWindowVisibility tokenize tokenizeList tolerance tolower toolButton toolCollection toolDropped toolHasOptions toolPropertyWindow torus toupper trace track trackCtx transferAttributes transformCompare transformLimits translator trim trunc truncateFluidCache truncateHairCache tumble tumbleCtx turbulence twoPointArcCtx uiRes uiTemplate unassignInputDevice undo undoInfo ungroup uniform unit unloadPlugin untangleUV untitledFileName untrim upAxis updateAE userCtx uvLink uvSnapshot validateShelfName vectorize view2dToolCtx viewCamera viewClipPlane viewFit viewHeadOn viewLookAt viewManip viewPlace viewSet visor volumeAxis vortex waitCursor warning webBrowser webBrowserPrefs whatIs window windowPref wire wireContext workspace wrinkle wrinkleContext writeTake xbmLangPathList xform", i: "</", c: [a.CNM, a.ASM, a.QSM, { cN: "string", b: "`", e: "`", c: [a.BE] }, { cN: "variable", v: [{ b: "\\$\\d" }, { b: "[\\$\\%\\@](\\^\\w\\b|#\\w+|[^\\s\\w{]|{\\w+}|\\w+)" }, { b: "\\*(\\^\\w\\b|#\\w+|[^\\s\\w{]|{\\w+}|\\w+)", r: 0 }] }, a.CLCM, a.CBLCLM] }; });
 hljs.registerLanguage("dos", function (a) { return { cI: true, k: { flow: "if else goto for in do call exit not exist errorlevel defined equ neq lss leq gtr geq", keyword: "shift cd dir echo setlocal endlocal set pause copy", stream: "prn nul lpt3 lpt2 lpt1 con com4 com3 com2 com1 aux", winutils: "ping net ipconfig taskkill xcopy ren del" }, c: [{ cN: "envvar", b: "%%[^ ]" }, { cN: "envvar", b: "%[^ ]+?%" }, { cN: "envvar", b: "![^ ]+?!" }, { cN: "number", b: "\\b\\d+", r: 0 }, { cN: "comment", b: "@?rem", e: "$" }] }; });
 hljs.registerLanguage("java", function (b) { var a = "false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws"; return { k: a, i: /<\//, c: [{ cN: "javadoc", b: "/\\*\\*", e: "\\*/", c: [{ cN: "javadoctag", b: "(^|\\s)@[A-Za-z]+" }], r: 10 }, b.CLCM, b.CBLCLM, b.ASM, b.QSM, { bK: "protected public private", e: /[{;=]/, k: a, c: [{ cN: "class", bK: "class interface", eW: true, i: /[:"<>]/, c: [{ bK: "extends implements", r: 10 }, b.UTM] }, { b: b.UIR + "\\s*\\(", rB: true, c: [b.UTM] }] }, b.CNM, { cN: "annotation", b: "@[A-Za-z]+" }] }; });
 hljs.registerLanguage("tex", function (a) { var d = { cN: "command", b: "\\\\[a-zA-Zа-яА-я]+[\\*]?" }; var c = { cN: "command", b: "\\\\[^a-zA-Zа-яА-я0-9]" }; var b = { cN: "special", b: "[{}\\[\\]\\&#~]", r: 0 }; return { c: [{ b: "\\\\[a-zA-Zа-яА-я]+[\\*]? *= *-?\\d*\\.?\\d+(pt|pc|mm|cm|in|dd|cc|ex|em)?", rB: true, c: [d, c, { cN: "number", b: " *=", e: "-?\\d*\\.?\\d+(pt|pc|mm|cm|in|dd|cc|ex|em)?", eB: true }], r: 10 }, d, c, b, { cN: "formula", b: "\\$\\$", e: "\\$\\$", c: [d, c, b], r: 0 }, { cN: "formula", b: "\\$", e: "\\$", c: [d, c, b], r: 0 }, { cN: "comment", b: "%", e: "$", r: 0 }] }; });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 hljs.registerLanguage("glsl", function (a) { return { k: { keyword: "atomic_uint attribute bool break bvec2 bvec3 bvec4 case centroid coherent const continue default discard dmat2 dmat2x2 dmat2x3 dmat2x4 dmat3 dmat3x2 dmat3x3 dmat3x4 dmat4 dmat4x2 dmat4x3 dmat4x4 do double dvec2 dvec3 dvec4 else flat float for highp if iimage1D iimage1DArray iimage2D iimage2DArray iimage2DMS iimage2DMSArray iimage2DRect iimage3D iimageBuffer iimageCube iimageCubeArray image1D image1DArray image2D image2DArray image2DMS image2DMSArray image2DRect image3D imageBuffer imageCube imageCubeArray in inout int invariant isampler1D isampler1DArray isampler2D isampler2DArray isampler2DMS isampler2DMSArray isampler2DRect isampler3D isamplerBuffer isamplerCube isamplerCubeArray ivec2 ivec3 ivec4 layout lowp mat2 mat2x2 mat2x3 mat2x4 mat3 mat3x2 mat3x3 mat3x4 mat4 mat4x2 mat4x3 mat4x4 mediump noperspective out patch precision readonly restrict return sample sampler1D sampler1DArray sampler1DArrayShadow sampler1DShadow sampler2D sampler2DArray sampler2DArrayShadow sampler2DMS sampler2DMSArray sampler2DRect sampler2DRectShadow sampler2DShadow sampler3D samplerBuffer samplerCube samplerCubeArray samplerCubeArrayShadow samplerCubeShadow smooth struct subroutine switch uimage1D uimage1DArray uimage2D uimage2DArray uimage2DMS uimage2DMSArray uimage2DRect uimage3D uimageBuffer uimageCube uimageCubeArray uint uniform usampler1D usampler1DArray usampler2D usampler2DArray usampler2DMS usampler2DMSArray usampler2DRect usampler3D usamplerBuffer usamplerCube usamplerCubeArray uvec2 uvec3 uvec4 varying vec2 vec3 vec4 void volatile while writeonly", built_in: "gl_BackColor gl_BackLightModelProduct gl_BackLightProduct gl_BackMaterial gl_BackSecondaryColor gl_ClipDistance gl_ClipPlane gl_ClipVertex gl_Color gl_DepthRange gl_EyePlaneQ gl_EyePlaneR gl_EyePlaneS gl_EyePlaneT gl_Fog gl_FogCoord gl_FogFragCoord gl_FragColor gl_FragCoord gl_FragData gl_FragDepth gl_FrontColor gl_FrontFacing gl_FrontLightModelProduct gl_FrontLightProduct gl_FrontMaterial gl_FrontSecondaryColor gl_InstanceID gl_InvocationID gl_Layer gl_LightModel gl_LightSource gl_MaxAtomicCounterBindings gl_MaxAtomicCounterBufferSize gl_MaxClipDistances gl_MaxClipPlanes gl_MaxCombinedAtomicCounterBuffers gl_MaxCombinedAtomicCounters gl_MaxCombinedImageUniforms gl_MaxCombinedImageUnitsAndFragmentOutputs gl_MaxCombinedTextureImageUnits gl_MaxDrawBuffers gl_MaxFragmentAtomicCounterBuffers gl_MaxFragmentAtomicCounters gl_MaxFragmentImageUniforms gl_MaxFragmentInputComponents gl_MaxFragmentUniformComponents gl_MaxFragmentUniformVectors gl_MaxGeometryAtomicCounterBuffers gl_MaxGeometryAtomicCounters gl_MaxGeometryImageUniforms gl_MaxGeometryInputComponents gl_MaxGeometryOutputComponents gl_MaxGeometryOutputVertices gl_MaxGeometryTextureImageUnits gl_MaxGeometryTotalOutputComponents gl_MaxGeometryUniformComponents gl_MaxGeometryVaryingComponents gl_MaxImageSamples gl_MaxImageUnits gl_MaxLights gl_MaxPatchVertices gl_MaxProgramTexelOffset gl_MaxTessControlAtomicCounterBuffers gl_MaxTessControlAtomicCounters gl_MaxTessControlImageUniforms gl_MaxTessControlInputComponents gl_MaxTessControlOutputComponents gl_MaxTessControlTextureImageUnits gl_MaxTessControlTotalOutputComponents gl_MaxTessControlUniformComponents gl_MaxTessEvaluationAtomicCounterBuffers gl_MaxTessEvaluationAtomicCounters gl_MaxTessEvaluationImageUniforms gl_MaxTessEvaluationInputComponents gl_MaxTessEvaluationOutputComponents gl_MaxTessEvaluationTextureImageUnits gl_MaxTessEvaluationUniformComponents gl_MaxTessGenLevel gl_MaxTessPatchComponents gl_MaxTextureCoords gl_MaxTextureImageUnits gl_MaxTextureUnits gl_MaxVaryingComponents gl_MaxVaryingFloats gl_MaxVaryingVectors gl_MaxVertexAtomicCounterBuffers gl_MaxVertexAtomicCounters gl_MaxVertexAttribs gl_MaxVertexImageUniforms gl_MaxVertexOutputComponents gl_MaxVertexTextureImageUnits gl_MaxVertexUniformComponents gl_MaxVertexUniformVectors gl_MaxViewports gl_MinProgramTexelOffsetgl_ModelViewMatrix gl_ModelViewMatrixInverse gl_ModelViewMatrixInverseTranspose gl_ModelViewMatrixTranspose gl_ModelViewProjectionMatrix gl_ModelViewProjectionMatrixInverse gl_ModelViewProjectionMatrixInverseTranspose gl_ModelViewProjectionMatrixTranspose gl_MultiTexCoord0 gl_MultiTexCoord1 gl_MultiTexCoord2 gl_MultiTexCoord3 gl_MultiTexCoord4 gl_MultiTexCoord5 gl_MultiTexCoord6 gl_MultiTexCoord7 gl_Normal gl_NormalMatrix gl_NormalScale gl_ObjectPlaneQ gl_ObjectPlaneR gl_ObjectPlaneS gl_ObjectPlaneT gl_PatchVerticesIn gl_PerVertex gl_Point gl_PointCoord gl_PointSize gl_Position gl_PrimitiveID gl_PrimitiveIDIn gl_ProjectionMatrix gl_ProjectionMatrixInverse gl_ProjectionMatrixInverseTranspose gl_ProjectionMatrixTranspose gl_SampleID gl_SampleMask gl_SampleMaskIn gl_SamplePosition gl_SecondaryColor gl_TessCoord gl_TessLevelInner gl_TessLevelOuter gl_TexCoord gl_TextureEnvColor gl_TextureMatrixInverseTranspose gl_TextureMatrixTranspose gl_Vertex gl_VertexID gl_ViewportIndex gl_in gl_out EmitStreamVertex EmitVertex EndPrimitive EndStreamPrimitive abs acos acosh all any asin asinh atan atanh atomicCounter atomicCounterDecrement atomicCounterIncrement barrier bitCount bitfieldExtract bitfieldInsert bitfieldReverse ceil clamp cos cosh cross dFdx dFdy degrees determinant distance dot equal exp exp2 faceforward findLSB findMSB floatBitsToInt floatBitsToUint floor fma fract frexp ftransform fwidth greaterThan greaterThanEqual imageAtomicAdd imageAtomicAnd imageAtomicCompSwap imageAtomicExchange imageAtomicMax imageAtomicMin imageAtomicOr imageAtomicXor imageLoad imageStore imulExtended intBitsToFloat interpolateAtCentroid interpolateAtOffset interpolateAtSample inverse inversesqrt isinf isnan ldexp length lessThan lessThanEqual log log2 matrixCompMult max memoryBarrier min mix mod modf noise1 noise2 noise3 noise4 normalize not notEqual outerProduct packDouble2x32 packHalf2x16 packSnorm2x16 packSnorm4x8 packUnorm2x16 packUnorm4x8 pow radians reflect refract round roundEven shadow1D shadow1DLod shadow1DProj shadow1DProjLod shadow2D shadow2DLod shadow2DProj shadow2DProjLod sign sin sinh smoothstep sqrt step tan tanh texelFetch texelFetchOffset texture texture1D texture1DLod texture1DProj texture1DProjLod texture2D texture2DLod texture2DProj texture2DProjLod texture3D texture3DLod texture3DProj texture3DProjLod textureCube textureCubeLod textureGather textureGatherOffset textureGatherOffsets textureGrad textureGradOffset textureLod textureLodOffset textureOffset textureProj textureProjGrad textureProjGradOffset textureProjLod textureProjLodOffset textureProjOffset textureQueryLod textureSize transpose trunc uaddCarry uintBitsToFloat umulExtended unpackDouble2x32 unpackHalf2x16 unpackSnorm2x16 unpackSnorm4x8 unpackUnorm2x16 unpackUnorm4x8 usubBorrow gl_TextureMatrix gl_TextureMatrixInverse", literal: "true false" }, i: '"', c: [a.CLCM, a.CBLCLM, a.CNM, { cN: "preprocessor", b: "#", e: "$" }] }; });
 hljs.registerLanguage("brainfuck", function (b) { var a = { cN: "literal", b: "[\\+\\-]", r: 0 }; return { c: [{ cN: "comment", b: "[^\\[\\]\\.,\\+\\-<> \r\n]", rE: true, e: "[\\[\\]\\.,\\+\\-<> \r\n]", r: 0 }, { cN: "title", b: "[\\[\\]]", r: 0 }, { cN: "string", b: "[\\.,]", r: 0 }, { b: /\+\+|\-\-/, rB: true, c: [a] }, a] }; });
 hljs.registerLanguage("mathematica", function (a) { return { aliases: ["mma"], l: "(\\$|\\b)" + a.IR + "\\b", k: "AbelianGroup Abort AbortKernels AbortProtect Above Abs Absolute AbsoluteCorrelation AbsoluteCorrelationFunction AbsoluteCurrentValue AbsoluteDashing AbsoluteFileName AbsoluteOptions AbsolutePointSize AbsoluteThickness AbsoluteTime AbsoluteTiming AccountingForm Accumulate Accuracy AccuracyGoal ActionDelay ActionMenu ActionMenuBox ActionMenuBoxOptions Active ActiveItem ActiveStyle AcyclicGraphQ AddOnHelpPath AddTo AdjacencyGraph AdjacencyList AdjacencyMatrix AdjustmentBox AdjustmentBoxOptions AdjustTimeSeriesForecast AffineTransform After AiryAi AiryAiPrime AiryAiZero AiryBi AiryBiPrime AiryBiZero AlgebraicIntegerQ AlgebraicNumber AlgebraicNumberDenominator AlgebraicNumberNorm AlgebraicNumberPolynomial AlgebraicNumberTrace AlgebraicRules AlgebraicRulesData Algebraics AlgebraicUnitQ Alignment AlignmentMarker AlignmentPoint All AllowedDimensions AllowGroupClose AllowInlineCells AllowKernelInitialization AllowReverseGroupClose AllowScriptLevelChange AlphaChannel AlternatingGroup AlternativeHypothesis Alternatives AmbientLight Analytic AnchoredSearch And AndersonDarlingTest AngerJ AngleBracket AngularGauge Animate AnimationCycleOffset AnimationCycleRepetitions AnimationDirection AnimationDisplayTime AnimationRate AnimationRepetitions AnimationRunning Animator AnimatorBox AnimatorBoxOptions AnimatorElements Annotation Annuity AnnuityDue Antialiasing Antisymmetric Apart ApartSquareFree Appearance AppearanceElements AppellF1 Append AppendTo Apply ArcCos ArcCosh ArcCot ArcCoth ArcCsc ArcCsch ArcSec ArcSech ArcSin ArcSinDistribution ArcSinh ArcTan ArcTanh Arg ArgMax ArgMin ArgumentCountQ ARIMAProcess ArithmeticGeometricMean ARMAProcess ARProcess Array ArrayComponents ArrayDepth ArrayFlatten ArrayPad ArrayPlot ArrayQ ArrayReshape ArrayRules Arrays Arrow Arrow3DBox ArrowBox Arrowheads AspectRatio AspectRatioFixed Assert Assuming Assumptions AstronomicalData Asynchronous AsynchronousTaskObject AsynchronousTasks AtomQ Attributes AugmentedSymmetricPolynomial AutoAction AutoDelete AutoEvaluateEvents AutoGeneratedPackage AutoIndent AutoIndentSpacings AutoItalicWords AutoloadPath AutoMatch Automatic AutomaticImageSize AutoMultiplicationSymbol AutoNumberFormatting AutoOpenNotebooks AutoOpenPalettes AutorunSequencing AutoScaling AutoScroll AutoSpacing AutoStyleOptions AutoStyleWords Axes AxesEdge AxesLabel AxesOrigin AxesStyle Axis BabyMonsterGroupB Back Background BackgroundTasksSettings Backslash Backsubstitution Backward Band BandpassFilter BandstopFilter BarabasiAlbertGraphDistribution BarChart BarChart3D BarLegend BarlowProschanImportance BarnesG BarOrigin BarSpacing BartlettHannWindow BartlettWindow BaseForm Baseline BaselinePosition BaseStyle BatesDistribution BattleLemarieWavelet Because BeckmannDistribution Beep Before Begin BeginDialogPacket BeginFrontEndInteractionPacket BeginPackage BellB BellY Below BenfordDistribution BeniniDistribution BenktanderGibratDistribution BenktanderWeibullDistribution BernoulliB BernoulliDistribution BernoulliGraphDistribution BernoulliProcess BernsteinBasis BesselFilterModel BesselI BesselJ BesselJZero BesselK BesselY BesselYZero Beta BetaBinomialDistribution BetaDistribution BetaNegativeBinomialDistribution BetaPrimeDistribution BetaRegularized BetweennessCentrality BezierCurve BezierCurve3DBox BezierCurve3DBoxOptions BezierCurveBox BezierCurveBoxOptions BezierFunction BilateralFilter Binarize BinaryFormat BinaryImageQ BinaryRead BinaryReadList BinaryWrite BinCounts BinLists Binomial BinomialDistribution BinomialProcess BinormalDistribution BiorthogonalSplineWavelet BipartiteGraphQ BirnbaumImportance BirnbaumSaundersDistribution BitAnd BitClear BitGet BitLength BitNot BitOr BitSet BitShiftLeft BitShiftRight BitXor Black BlackmanHarrisWindow BlackmanNuttallWindow BlackmanWindow Blank BlankForm BlankNullSequence BlankSequence Blend Block BlockRandom BlomqvistBeta BlomqvistBetaTest Blue Blur BodePlot BohmanWindow Bold Bookmarks Boole BooleanConsecutiveFunction BooleanConvert BooleanCountingFunction BooleanFunction BooleanGraph BooleanMaxterms BooleanMinimize BooleanMinterms Booleans BooleanTable BooleanVariables BorderDimensions BorelTannerDistribution Bottom BottomHatTransform BoundaryStyle Bounds Box BoxBaselineShift BoxData BoxDimensions Boxed Boxes BoxForm BoxFormFormatTypes BoxFrame BoxID BoxMargins BoxMatrix BoxRatios BoxRotation BoxRotationPoint BoxStyle BoxWhiskerChart Bra BracketingBar BraKet BrayCurtisDistance BreadthFirstScan Break Brown BrownForsytheTest BrownianBridgeProcess BrowserCategory BSplineBasis BSplineCurve BSplineCurve3DBox BSplineCurveBox BSplineCurveBoxOptions BSplineFunction BSplineSurface BSplineSurface3DBox BubbleChart BubbleChart3D BubbleScale BubbleSizes BulletGauge BusinessDayQ ButterflyGraph ButterworthFilterModel Button ButtonBar ButtonBox ButtonBoxOptions ButtonCell ButtonContents ButtonData ButtonEvaluator ButtonExpandable ButtonFrame ButtonFunction ButtonMargins ButtonMinHeight ButtonNote ButtonNotebook ButtonSource ButtonStyle ButtonStyleMenuListing Byte ByteCount ByteOrdering C CachedValue CacheGraphics CalendarData CalendarType CallPacket CanberraDistance Cancel CancelButton CandlestickChart Cap CapForm CapitalDifferentialD CardinalBSplineBasis CarmichaelLambda Cases Cashflow Casoratian Catalan CatalanNumber Catch CauchyDistribution CauchyWindow CayleyGraph CDF CDFDeploy CDFInformation CDFWavelet Ceiling Cell CellAutoOverwrite CellBaseline CellBoundingBox CellBracketOptions CellChangeTimes CellContents CellContext CellDingbat CellDynamicExpression CellEditDuplicate CellElementsBoundingBox CellElementSpacings CellEpilog CellEvaluationDuplicate CellEvaluationFunction CellEventActions CellFrame CellFrameColor CellFrameLabelMargins CellFrameLabels CellFrameMargins CellGroup CellGroupData CellGrouping CellGroupingRules CellHorizontalScrolling CellID CellLabel CellLabelAutoDelete CellLabelMargins CellLabelPositioning CellMargins CellObject CellOpen CellPrint CellProlog Cells CellSize CellStyle CellTags CellularAutomaton CensoredDistribution Censoring Center CenterDot CentralMoment CentralMomentGeneratingFunction CForm ChampernowneNumber ChanVeseBinarize Character CharacterEncoding CharacterEncodingsPath CharacteristicFunction CharacteristicPolynomial CharacterRange Characters ChartBaseStyle ChartElementData ChartElementDataFunction ChartElementFunction ChartElements ChartLabels ChartLayout ChartLegends ChartStyle Chebyshev1FilterModel Chebyshev2FilterModel ChebyshevDistance ChebyshevT ChebyshevU Check CheckAbort CheckAll Checkbox CheckboxBar CheckboxBox CheckboxBoxOptions ChemicalData ChessboardDistance ChiDistribution ChineseRemainder ChiSquareDistribution ChoiceButtons ChoiceDialog CholeskyDecomposition Chop Circle CircleBox CircleDot CircleMinus CirclePlus CircleTimes CirculantGraph CityData Clear ClearAll ClearAttributes ClearSystemCache ClebschGordan ClickPane Clip ClipboardNotebook ClipFill ClippingStyle ClipPlanes ClipRange Clock ClockGauge ClockwiseContourIntegral Close Closed CloseKernels ClosenessCentrality Closing ClosingAutoSave ClosingEvent ClusteringComponents CMYKColor Coarse Coefficient CoefficientArrays CoefficientDomain CoefficientList CoefficientRules CoifletWavelet Collect Colon ColonForm ColorCombine ColorConvert ColorData ColorDataFunction ColorFunction ColorFunctionScaling Colorize ColorNegate ColorOutput ColorProfileData ColorQuantize ColorReplace ColorRules ColorSelectorSettings ColorSeparate ColorSetter ColorSetterBox ColorSetterBoxOptions ColorSlider ColorSpace Column ColumnAlignments ColumnBackgrounds ColumnForm ColumnLines ColumnsEqual ColumnSpacings ColumnWidths CommonDefaultFormatTypes Commonest CommonestFilter CommonUnits CommunityBoundaryStyle CommunityGraphPlot CommunityLabels CommunityRegionStyle CompatibleUnitQ CompilationOptions CompilationTarget Compile Compiled CompiledFunction Complement CompleteGraph CompleteGraphQ CompleteKaryTree CompletionsListPacket Complex Complexes ComplexExpand ComplexInfinity ComplexityFunction ComponentMeasurements ComponentwiseContextMenu Compose ComposeList ComposeSeries Composition CompoundExpression CompoundPoissonDistribution CompoundPoissonProcess CompoundRenewalProcess Compress CompressedData Condition ConditionalExpression Conditioned Cone ConeBox ConfidenceLevel ConfidenceRange ConfidenceTransform ConfigurationPath Congruent Conjugate ConjugateTranspose Conjunction Connect ConnectedComponents ConnectedGraphQ ConnesWindow ConoverTest ConsoleMessage ConsoleMessagePacket ConsolePrint Constant ConstantArray Constants ConstrainedMax ConstrainedMin ContentPadding ContentsBoundingBox ContentSelectable ContentSize Context ContextMenu Contexts ContextToFilename ContextToFileName Continuation Continue ContinuedFraction ContinuedFractionK ContinuousAction ContinuousMarkovProcess ContinuousTimeModelQ ContinuousWaveletData ContinuousWaveletTransform ContourDetect ContourGraphics ContourIntegral ContourLabels ContourLines ContourPlot ContourPlot3D Contours ContourShading ContourSmoothing ContourStyle ContraharmonicMean Control ControlActive ControlAlignment ControllabilityGramian ControllabilityMatrix ControllableDecomposition ControllableModelQ ControllerDuration ControllerInformation ControllerInformationData ControllerLinking ControllerManipulate ControllerMethod ControllerPath ControllerState ControlPlacement ControlsRendering ControlType Convergents ConversionOptions ConversionRules ConvertToBitmapPacket ConvertToPostScript ConvertToPostScriptPacket Convolve ConwayGroupCo1 ConwayGroupCo2 ConwayGroupCo3 CoordinateChartData CoordinatesToolOptions CoordinateTransform CoordinateTransformData CoprimeQ Coproduct CopulaDistribution Copyable CopyDirectory CopyFile CopyTag CopyToClipboard CornerFilter CornerNeighbors Correlation CorrelationDistance CorrelationFunction CorrelationTest Cos Cosh CoshIntegral CosineDistance CosineWindow CosIntegral Cot Coth Count CounterAssignments CounterBox CounterBoxOptions CounterClockwiseContourIntegral CounterEvaluator CounterFunction CounterIncrements CounterStyle CounterStyleMenuListing CountRoots CountryData Covariance CovarianceEstimatorFunction CovarianceFunction CoxianDistribution CoxIngersollRossProcess CoxModel CoxModelFit CramerVonMisesTest CreateArchive CreateDialog CreateDirectory CreateDocument CreateIntermediateDirectories CreatePalette CreatePalettePacket CreateScheduledTask CreateTemporary CreateWindow CriticalityFailureImportance CriticalitySuccessImportance CriticalSection Cross CrossingDetect CrossMatrix Csc Csch CubeRoot Cubics Cuboid CuboidBox Cumulant CumulantGeneratingFunction Cup CupCap Curl CurlyDoubleQuote CurlyQuote CurrentImage CurrentlySpeakingPacket CurrentValue CurvatureFlowFilter CurveClosed Cyan CycleGraph CycleIndexPolynomial Cycles CyclicGroup Cyclotomic Cylinder CylinderBox CylindricalDecomposition D DagumDistribution DamerauLevenshteinDistance DampingFactor Darker Dashed Dashing DataCompression DataDistribution DataRange DataReversed Date DateDelimiters DateDifference DateFunction DateList DateListLogPlot DateListPlot DatePattern DatePlus DateRange DateString DateTicksFormat DaubechiesWavelet DavisDistribution DawsonF DayCount DayCountConvention DayMatchQ DayName DayPlus DayRange DayRound DeBruijnGraph Debug DebugTag Decimal DeclareKnownSymbols DeclarePackage Decompose Decrement DedekindEta Default DefaultAxesStyle DefaultBaseStyle DefaultBoxStyle DefaultButton DefaultColor DefaultControlPlacement DefaultDuplicateCellStyle DefaultDuration DefaultElement DefaultFaceGridsStyle DefaultFieldHintStyle DefaultFont DefaultFontProperties DefaultFormatType DefaultFormatTypeForStyle DefaultFrameStyle DefaultFrameTicksStyle DefaultGridLinesStyle DefaultInlineFormatType DefaultInputFormatType DefaultLabelStyle DefaultMenuStyle DefaultNaturalLanguage DefaultNewCellStyle DefaultNewInlineCellStyle DefaultNotebook DefaultOptions DefaultOutputFormatType DefaultStyle DefaultStyleDefinitions DefaultTextFormatType DefaultTextInlineFormatType DefaultTicksStyle DefaultTooltipStyle DefaultValues Defer DefineExternal DefineInputStreamMethod DefineOutputStreamMethod Definition Degree DegreeCentrality DegreeGraphDistribution DegreeLexicographic DegreeReverseLexicographic Deinitialization Del Deletable Delete DeleteBorderComponents DeleteCases DeleteContents DeleteDirectory DeleteDuplicates DeleteFile DeleteSmallComponents DeleteWithContents DeletionWarning Delimiter DelimiterFlashTime DelimiterMatching Delimiters Denominator DensityGraphics DensityHistogram DensityPlot DependentVariables Deploy Deployed Depth DepthFirstScan Derivative DerivativeFilter DescriptorStateSpace DesignMatrix Det DGaussianWavelet DiacriticalPositioning Diagonal DiagonalMatrix Dialog DialogIndent DialogInput DialogLevel DialogNotebook DialogProlog DialogReturn DialogSymbols Diamond DiamondMatrix DiceDissimilarity DictionaryLookup DifferenceDelta DifferenceOrder DifferenceRoot DifferenceRootReduce Differences DifferentialD DifferentialRoot DifferentialRootReduce DifferentiatorFilter DigitBlock DigitBlockMinimum DigitCharacter DigitCount DigitQ DihedralGroup Dilation Dimensions DiracComb DiracDelta DirectedEdge DirectedEdges DirectedGraph DirectedGraphQ DirectedInfinity Direction Directive Directory DirectoryName DirectoryQ DirectoryStack DirichletCharacter DirichletConvolve DirichletDistribution DirichletL DirichletTransform DirichletWindow DisableConsolePrintPacket DiscreteChirpZTransform DiscreteConvolve DiscreteDelta DiscreteHadamardTransform DiscreteIndicator DiscreteLQEstimatorGains DiscreteLQRegulatorGains DiscreteLyapunovSolve DiscreteMarkovProcess DiscretePlot DiscretePlot3D DiscreteRatio DiscreteRiccatiSolve DiscreteShift DiscreteTimeModelQ DiscreteUniformDistribution DiscreteVariables DiscreteWaveletData DiscreteWaveletPacketTransform DiscreteWaveletTransform Discriminant Disjunction Disk DiskBox DiskMatrix Dispatch DispersionEstimatorFunction Display DisplayAllSteps DisplayEndPacket DisplayFlushImagePacket DisplayForm DisplayFunction DisplayPacket DisplayRules DisplaySetSizePacket DisplayString DisplayTemporary DisplayWith DisplayWithRef DisplayWithVariable DistanceFunction DistanceTransform Distribute Distributed DistributedContexts DistributeDefinitions DistributionChart DistributionDomain DistributionFitTest DistributionParameterAssumptions DistributionParameterQ Dithering Div Divergence Divide DivideBy Dividers Divisible Divisors DivisorSigma DivisorSum DMSList DMSString Do DockedCells DocumentNotebook DominantColors DOSTextFormat Dot DotDashed DotEqual Dotted DoubleBracketingBar DoubleContourIntegral DoubleDownArrow DoubleLeftArrow DoubleLeftRightArrow DoubleLeftTee DoubleLongLeftArrow DoubleLongLeftRightArrow DoubleLongRightArrow DoubleRightArrow DoubleRightTee DoubleUpArrow DoubleUpDownArrow DoubleVerticalBar DoublyInfinite Down DownArrow DownArrowBar DownArrowUpArrow DownLeftRightVector DownLeftTeeVector DownLeftVector DownLeftVectorBar DownRightTeeVector DownRightVector DownRightVectorBar Downsample DownTee DownTeeArrow DownValues DragAndDrop DrawEdges DrawFrontFaces DrawHighlighted Drop DSolve Dt DualLinearProgramming DualSystemsModel DumpGet DumpSave DuplicateFreeQ Dynamic DynamicBox DynamicBoxOptions DynamicEvaluationTimeout DynamicLocation DynamicModule DynamicModuleBox DynamicModuleBoxOptions DynamicModuleParent DynamicModuleValues DynamicName DynamicNamespace DynamicReference DynamicSetting DynamicUpdating DynamicWrapper DynamicWrapperBox DynamicWrapperBoxOptions E EccentricityCentrality EdgeAdd EdgeBetweennessCentrality EdgeCapacity EdgeCapForm EdgeColor EdgeConnectivity EdgeCost EdgeCount EdgeCoverQ EdgeDashing EdgeDelete EdgeDetect EdgeForm EdgeIndex EdgeJoinForm EdgeLabeling EdgeLabels EdgeLabelStyle EdgeList EdgeOpacity EdgeQ EdgeRenderingFunction EdgeRules EdgeShapeFunction EdgeStyle EdgeThickness EdgeWeight Editable EditButtonSettings EditCellTagsSettings EditDistance EffectiveInterest Eigensystem Eigenvalues EigenvectorCentrality Eigenvectors Element ElementData Eliminate EliminationOrder EllipticE EllipticExp EllipticExpPrime EllipticF EllipticFilterModel EllipticK EllipticLog EllipticNomeQ EllipticPi EllipticReducedHalfPeriods EllipticTheta EllipticThetaPrime EmitSound EmphasizeSyntaxErrors EmpiricalDistribution Empty EmptyGraphQ EnableConsolePrintPacket Enabled Encode End EndAdd EndDialogPacket EndFrontEndInteractionPacket EndOfFile EndOfLine EndOfString EndPackage EngineeringForm Enter EnterExpressionPacket EnterTextPacket Entropy EntropyFilter Environment Epilog Equal EqualColumns EqualRows EqualTilde EquatedTo Equilibrium EquirippleFilterKernel Equivalent Erf Erfc Erfi ErlangB ErlangC ErlangDistribution Erosion ErrorBox ErrorBoxOptions ErrorNorm ErrorPacket ErrorsDialogSettings EstimatedDistribution EstimatedProcess EstimatorGains EstimatorRegulator EuclideanDistance EulerE EulerGamma EulerianGraphQ EulerPhi Evaluatable Evaluate Evaluated EvaluatePacket EvaluationCell EvaluationCompletionAction EvaluationElements EvaluationMode EvaluationMonitor EvaluationNotebook EvaluationObject EvaluationOrder Evaluator EvaluatorNames EvenQ EventData EventEvaluator EventHandler EventHandlerTag EventLabels ExactBlackmanWindow ExactNumberQ ExactRootIsolation ExampleData Except ExcludedForms ExcludePods Exclusions ExclusionsStyle Exists Exit ExitDialog Exp Expand ExpandAll ExpandDenominator ExpandFileName ExpandNumerator Expectation ExpectationE ExpectedValue ExpGammaDistribution ExpIntegralE ExpIntegralEi Exponent ExponentFunction ExponentialDistribution ExponentialFamily ExponentialGeneratingFunction ExponentialMovingAverage ExponentialPowerDistribution ExponentPosition ExponentStep Export ExportAutoReplacements ExportPacket ExportString Expression ExpressionCell ExpressionPacket ExpToTrig ExtendedGCD Extension ExtentElementFunction ExtentMarkers ExtentSize ExternalCall ExternalDataCharacterEncoding Extract ExtractArchive ExtremeValueDistribution FaceForm FaceGrids FaceGridsStyle Factor FactorComplete Factorial Factorial2 FactorialMoment FactorialMomentGeneratingFunction FactorialPower FactorInteger FactorList FactorSquareFree FactorSquareFreeList FactorTerms FactorTermsList Fail FailureDistribution False FARIMAProcess FEDisableConsolePrintPacket FeedbackSector FeedbackSectorStyle FeedbackType FEEnableConsolePrintPacket Fibonacci FieldHint FieldHintStyle FieldMasked FieldSize File FileBaseName FileByteCount FileDate FileExistsQ FileExtension FileFormat FileHash FileInformation FileName FileNameDepth FileNameDialogSettings FileNameDrop FileNameJoin FileNames FileNameSetter FileNameSplit FileNameTake FilePrint FileType FilledCurve FilledCurveBox Filling FillingStyle FillingTransform FilterRules FinancialBond FinancialData FinancialDerivative FinancialIndicator Find FindArgMax FindArgMin FindClique FindClusters FindCurvePath FindDistributionParameters FindDivisions FindEdgeCover FindEdgeCut FindEulerianCycle FindFaces FindFile FindFit FindGeneratingFunction FindGeoLocation FindGeometricTransform FindGraphCommunities FindGraphIsomorphism FindGraphPartition FindHamiltonianCycle FindIndependentEdgeSet FindIndependentVertexSet FindInstance FindIntegerNullVector FindKClan FindKClique FindKClub FindKPlex FindLibrary FindLinearRecurrence FindList FindMaximum FindMaximumFlow FindMaxValue FindMinimum FindMinimumCostFlow FindMinimumCut FindMinValue FindPermutation FindPostmanTour FindProcessParameters FindRoot FindSequenceFunction FindSettings FindShortestPath FindShortestTour FindThreshold FindVertexCover FindVertexCut Fine FinishDynamic FiniteAbelianGroupCount FiniteGroupCount FiniteGroupData First FirstPassageTimeDistribution FischerGroupFi22 FischerGroupFi23 FischerGroupFi24Prime FisherHypergeometricDistribution FisherRatioTest FisherZDistribution Fit FitAll FittedModel FixedPoint FixedPointList FlashSelection Flat Flatten FlattenAt FlatTopWindow FlipView Floor FlushPrintOutputPacket Fold FoldList Font FontColor FontFamily FontForm FontName FontOpacity FontPostScriptName FontProperties FontReencoding FontSize FontSlant FontSubstitutions FontTracking FontVariations FontWeight For ForAll Format FormatRules FormatType FormatTypeAutoConvert FormatValues FormBox FormBoxOptions FortranForm Forward ForwardBackward Fourier FourierCoefficient FourierCosCoefficient FourierCosSeries FourierCosTransform FourierDCT FourierDCTFilter FourierDCTMatrix FourierDST FourierDSTMatrix FourierMatrix FourierParameters FourierSequenceTransform FourierSeries FourierSinCoefficient FourierSinSeries FourierSinTransform FourierTransform FourierTrigSeries FractionalBrownianMotionProcess FractionalPart FractionBox FractionBoxOptions FractionLine Frame FrameBox FrameBoxOptions Framed FrameInset FrameLabel Frameless FrameMargins FrameStyle FrameTicks FrameTicksStyle FRatioDistribution FrechetDistribution FreeQ FrequencySamplingFilterKernel FresnelC FresnelS Friday FrobeniusNumber FrobeniusSolve FromCharacterCode FromCoefficientRules FromContinuedFraction FromDate FromDigits FromDMS Front FrontEndDynamicExpression FrontEndEventActions FrontEndExecute FrontEndObject FrontEndResource FrontEndResourceString FrontEndStackSize FrontEndToken FrontEndTokenExecute FrontEndValueCache FrontEndVersion FrontFaceColor FrontFaceOpacity Full FullAxes FullDefinition FullForm FullGraphics FullOptions FullSimplify Function FunctionExpand FunctionInterpolation FunctionSpace FussellVeselyImportance GaborFilter GaborMatrix GaborWavelet GainMargins GainPhaseMargins Gamma GammaDistribution GammaRegularized GapPenalty Gather GatherBy GaugeFaceElementFunction GaugeFaceStyle GaugeFrameElementFunction GaugeFrameSize GaugeFrameStyle GaugeLabels GaugeMarkers GaugeStyle GaussianFilter GaussianIntegers GaussianMatrix GaussianWindow GCD GegenbauerC General GeneralizedLinearModelFit GenerateConditions GeneratedCell GeneratedParameters GeneratingFunction Generic GenericCylindricalDecomposition GenomeData GenomeLookup GeodesicClosing GeodesicDilation GeodesicErosion GeodesicOpening GeoDestination GeodesyData GeoDirection GeoDistance GeoGridPosition GeometricBrownianMotionProcess GeometricDistribution GeometricMean GeometricMeanFilter GeometricTransformation GeometricTransformation3DBox GeometricTransformation3DBoxOptions GeometricTransformationBox GeometricTransformationBoxOptions GeoPosition GeoPositionENU GeoPositionXYZ GeoProjectionData GestureHandler GestureHandlerTag Get GetBoundingBoxSizePacket GetContext GetEnvironment GetFileName GetFrontEndOptionsDataPacket GetLinebreakInformationPacket GetMenusPacket GetPageBreakInformationPacket Glaisher GlobalClusteringCoefficient GlobalPreferences GlobalSession Glow GoldenRatio GompertzMakehamDistribution GoodmanKruskalGamma GoodmanKruskalGammaTest Goto Grad Gradient GradientFilter GradientOrientationFilter Graph GraphAssortativity GraphCenter GraphComplement GraphData GraphDensity GraphDiameter GraphDifference GraphDisjointUnion GraphDistance GraphDistanceMatrix GraphElementData GraphEmbedding GraphHighlight GraphHighlightStyle GraphHub Graphics Graphics3D Graphics3DBox Graphics3DBoxOptions GraphicsArray GraphicsBaseline GraphicsBox GraphicsBoxOptions GraphicsColor GraphicsColumn GraphicsComplex GraphicsComplex3DBox GraphicsComplex3DBoxOptions GraphicsComplexBox GraphicsComplexBoxOptions GraphicsContents GraphicsData GraphicsGrid GraphicsGridBox GraphicsGroup GraphicsGroup3DBox GraphicsGroup3DBoxOptions GraphicsGroupBox GraphicsGroupBoxOptions GraphicsGrouping GraphicsHighlightColor GraphicsRow GraphicsSpacing GraphicsStyle GraphIntersection GraphLayout GraphLinkEfficiency GraphPeriphery GraphPlot GraphPlot3D GraphPower GraphPropertyDistribution GraphQ GraphRadius GraphReciprocity GraphRoot GraphStyle GraphUnion Gray GrayLevel GreatCircleDistance Greater GreaterEqual GreaterEqualLess GreaterFullEqual GreaterGreater GreaterLess GreaterSlantEqual GreaterTilde Green Grid GridBaseline GridBox GridBoxAlignment GridBoxBackground GridBoxDividers GridBoxFrame GridBoxItemSize GridBoxItemStyle GridBoxOptions GridBoxSpacings GridCreationSettings GridDefaultElement GridElementStyleOptions GridFrame GridFrameMargins GridGraph GridLines GridLinesStyle GroebnerBasis GroupActionBase GroupCentralizer GroupElementFromWord GroupElementPosition GroupElementQ GroupElements GroupElementToWord GroupGenerators GroupMultiplicationTable GroupOrbits GroupOrder GroupPageBreakWithin GroupSetwiseStabilizer GroupStabilizer GroupStabilizerChain Gudermannian GumbelDistribution HaarWavelet HadamardMatrix HalfNormalDistribution HamiltonianGraphQ HammingDistance HammingWindow HankelH1 HankelH2 HankelMatrix HannPoissonWindow HannWindow HaradaNortonGroupHN HararyGraph HarmonicMean HarmonicMeanFilter HarmonicNumber Hash HashTable Haversine HazardFunction Head HeadCompose Heads HeavisideLambda HeavisidePi HeavisideTheta HeldGroupHe HeldPart HelpBrowserLookup HelpBrowserNotebook HelpBrowserSettings HermiteDecomposition HermiteH HermitianMatrixQ HessenbergDecomposition Hessian HexadecimalCharacter Hexahedron HexahedronBox HexahedronBoxOptions HiddenSurface HighlightGraph HighlightImage HighpassFilter HigmanSimsGroupHS HilbertFilter HilbertMatrix Histogram Histogram3D HistogramDistribution HistogramList HistogramTransform HistogramTransformInterpolation HitMissTransform HITSCentrality HodgeDual HoeffdingD HoeffdingDTest Hold HoldAll HoldAllComplete HoldComplete HoldFirst HoldForm HoldPattern HoldRest HolidayCalendar HomeDirectory HomePage Horizontal HorizontalForm HorizontalGauge HorizontalScrollPosition HornerForm HotellingTSquareDistribution HoytDistribution HTMLSave Hue HumpDownHump HumpEqual HurwitzLerchPhi HurwitzZeta HyperbolicDistribution HypercubeGraph HyperexponentialDistribution Hyperfactorial Hypergeometric0F1 Hypergeometric0F1Regularized Hypergeometric1F1 Hypergeometric1F1Regularized Hypergeometric2F1 Hypergeometric2F1Regularized HypergeometricDistribution HypergeometricPFQ HypergeometricPFQRegularized HypergeometricU Hyperlink HyperlinkCreationSettings Hyphenation HyphenationOptions HypoexponentialDistribution HypothesisTestData I Identity IdentityMatrix If IgnoreCase Im Image Image3D Image3DSlices ImageAccumulate ImageAdd ImageAdjust ImageAlign ImageApply ImageAspectRatio ImageAssemble ImageCache ImageCacheValid ImageCapture ImageChannels ImageClip ImageColorSpace ImageCompose ImageConvolve ImageCooccurrence ImageCorners ImageCorrelate ImageCorrespondingPoints ImageCrop ImageData ImageDataPacket ImageDeconvolve ImageDemosaic ImageDifference ImageDimensions ImageDistance ImageEffect ImageFeatureTrack ImageFileApply ImageFileFilter ImageFileScan ImageFilter ImageForestingComponents ImageForwardTransformation ImageHistogram ImageKeypoints ImageLevels ImageLines ImageMargins ImageMarkers ImageMeasurements ImageMultiply ImageOffset ImagePad ImagePadding ImagePartition ImagePeriodogram ImagePerspectiveTransformation ImageQ ImageRangeCache ImageReflect ImageRegion ImageResize ImageResolution ImageRotate ImageRotated ImageScaled ImageScan ImageSize ImageSizeAction ImageSizeCache ImageSizeMultipliers ImageSizeRaw ImageSubtract ImageTake ImageTransformation ImageTrim ImageType ImageValue ImageValuePositions Implies Import ImportAutoReplacements ImportString ImprovementImportance In IncidenceGraph IncidenceList IncidenceMatrix IncludeConstantBasis IncludeFileExtension IncludePods IncludeSingularTerm Increment Indent IndentingNewlineSpacings IndentMaxFraction IndependenceTest IndependentEdgeSetQ IndependentUnit IndependentVertexSetQ Indeterminate IndexCreationOptions Indexed IndexGraph IndexTag Inequality InexactNumberQ InexactNumbers Infinity Infix Information Inherited InheritScope Initialization InitializationCell InitializationCellEvaluation InitializationCellWarning InlineCounterAssignments InlineCounterIncrements InlineRules Inner Inpaint Input InputAliases InputAssumptions InputAutoReplacements InputField InputFieldBox InputFieldBoxOptions InputForm InputGrouping InputNamePacket InputNotebook InputPacket InputSettings InputStream InputString InputStringPacket InputToBoxFormPacket Insert InsertionPointObject InsertResults Inset Inset3DBox Inset3DBoxOptions InsetBox InsetBoxOptions Install InstallService InString Integer IntegerDigits IntegerExponent IntegerLength IntegerPart IntegerPartitions IntegerQ Integers IntegerString Integral Integrate Interactive InteractiveTradingChart Interlaced Interleaving InternallyBalancedDecomposition InterpolatingFunction InterpolatingPolynomial Interpolation InterpolationOrder InterpolationPoints InterpolationPrecision Interpretation InterpretationBox InterpretationBoxOptions InterpretationFunction InterpretTemplate InterquartileRange Interrupt InterruptSettings Intersection Interval IntervalIntersection IntervalMemberQ IntervalUnion Inverse InverseBetaRegularized InverseCDF InverseChiSquareDistribution InverseContinuousWaveletTransform InverseDistanceTransform InverseEllipticNomeQ InverseErf InverseErfc InverseFourier InverseFourierCosTransform InverseFourierSequenceTransform InverseFourierSinTransform InverseFourierTransform InverseFunction InverseFunctions InverseGammaDistribution InverseGammaRegularized InverseGaussianDistribution InverseGudermannian InverseHaversine InverseJacobiCD InverseJacobiCN InverseJacobiCS InverseJacobiDC InverseJacobiDN InverseJacobiDS InverseJacobiNC InverseJacobiND InverseJacobiNS InverseJacobiSC InverseJacobiSD InverseJacobiSN InverseLaplaceTransform InversePermutation InverseRadon InverseSeries InverseSurvivalFunction InverseWaveletTransform InverseWeierstrassP InverseZTransform Invisible InvisibleApplication InvisibleTimes IrreduciblePolynomialQ IsolatingInterval IsomorphicGraphQ IsotopeData Italic Item ItemBox ItemBoxOptions ItemSize ItemStyle ItoProcess JaccardDissimilarity JacobiAmplitude Jacobian JacobiCD JacobiCN JacobiCS JacobiDC JacobiDN JacobiDS JacobiNC JacobiND JacobiNS JacobiP JacobiSC JacobiSD JacobiSN JacobiSymbol JacobiZeta JankoGroupJ1 JankoGroupJ2 JankoGroupJ3 JankoGroupJ4 JarqueBeraALMTest JohnsonDistribution Join Joined JoinedCurve JoinedCurveBox JoinForm JordanDecomposition JordanModelDecomposition K KagiChart KaiserBesselWindow KaiserWindow KalmanEstimator KalmanFilter KarhunenLoeveDecomposition KaryTree KatzCentrality KCoreComponents KDistribution KelvinBei KelvinBer KelvinKei KelvinKer KendallTau KendallTauTest KernelExecute KernelMixtureDistribution KernelObject Kernels Ket Khinchin KirchhoffGraph KirchhoffMatrix KleinInvariantJ KnightTourGraph KnotData KnownUnitQ KolmogorovSmirnovTest KroneckerDelta KroneckerModelDecomposition KroneckerProduct KroneckerSymbol KuiperTest KumaraswamyDistribution Kurtosis KuwaharaFilter Label Labeled LabeledSlider LabelingFunction LabelStyle LaguerreL LambdaComponents LambertW LanczosWindow LandauDistribution Language LanguageCategory LaplaceDistribution LaplaceTransform Laplacian LaplacianFilter LaplacianGaussianFilter Large Larger Last Latitude LatitudeLongitude LatticeData LatticeReduce Launch LaunchKernels LayeredGraphPlot LayerSizeFunction LayoutInformation LCM LeafCount LeapYearQ LeastSquares LeastSquaresFilterKernel Left LeftArrow LeftArrowBar LeftArrowRightArrow LeftDownTeeVector LeftDownVector LeftDownVectorBar LeftRightArrow LeftRightVector LeftTee LeftTeeArrow LeftTeeVector LeftTriangle LeftTriangleBar LeftTriangleEqual LeftUpDownVector LeftUpTeeVector LeftUpVector LeftUpVectorBar LeftVector LeftVectorBar LegendAppearance Legended LegendFunction LegendLabel LegendLayout LegendMargins LegendMarkers LegendMarkerSize LegendreP LegendreQ LegendreType Length LengthWhile LerchPhi Less LessEqual LessEqualGreater LessFullEqual LessGreater LessLess LessSlantEqual LessTilde LetterCharacter LetterQ Level LeveneTest LeviCivitaTensor LevyDistribution Lexicographic LibraryFunction LibraryFunctionError LibraryFunctionInformation LibraryFunctionLoad LibraryFunctionUnload LibraryLoad LibraryUnload LicenseID LiftingFilterData LiftingWaveletTransform LightBlue LightBrown LightCyan Lighter LightGray LightGreen Lighting LightingAngle LightMagenta LightOrange LightPink LightPurple LightRed LightSources LightYellow Likelihood Limit LimitsPositioning LimitsPositioningTokens LindleyDistribution Line Line3DBox LinearFilter LinearFractionalTransform LinearModelFit LinearOffsetFunction LinearProgramming LinearRecurrence LinearSolve LinearSolveFunction LineBox LineBreak LinebreakAdjustments LineBreakChart LineBreakWithin LineColor LineForm LineGraph LineIndent LineIndentMaxFraction LineIntegralConvolutionPlot LineIntegralConvolutionScale LineLegend LineOpacity LineSpacing LineWrapParts LinkActivate LinkClose LinkConnect LinkConnectedQ LinkCreate LinkError LinkFlush LinkFunction LinkHost LinkInterrupt LinkLaunch LinkMode LinkObject LinkOpen LinkOptions LinkPatterns LinkProtocol LinkRead LinkReadHeld LinkReadyQ Links LinkWrite LinkWriteHeld LiouvilleLambda List Listable ListAnimate ListContourPlot ListContourPlot3D ListConvolve ListCorrelate ListCurvePathPlot ListDeconvolve ListDensityPlot Listen ListFourierSequenceTransform ListInterpolation ListLineIntegralConvolutionPlot ListLinePlot ListLogLinearPlot ListLogLogPlot ListLogPlot ListPicker ListPickerBox ListPickerBoxBackground ListPickerBoxOptions ListPlay ListPlot ListPlot3D ListPointPlot3D ListPolarPlot ListQ ListStreamDensityPlot ListStreamPlot ListSurfacePlot3D ListVectorDensityPlot ListVectorPlot ListVectorPlot3D ListZTransform Literal LiteralSearch LocalClusteringCoefficient LocalizeVariables LocationEquivalenceTest LocationTest Locator LocatorAutoCreate LocatorBox LocatorBoxOptions LocatorCentering LocatorPane LocatorPaneBox LocatorPaneBoxOptions LocatorRegion Locked Log Log10 Log2 LogBarnesG LogGamma LogGammaDistribution LogicalExpand LogIntegral LogisticDistribution LogitModelFit LogLikelihood LogLinearPlot LogLogisticDistribution LogLogPlot LogMultinormalDistribution LogNormalDistribution LogPlot LogRankTest LogSeriesDistribution LongEqual Longest LongestAscendingSequence LongestCommonSequence LongestCommonSequencePositions LongestCommonSubsequence LongestCommonSubsequencePositions LongestMatch LongForm Longitude LongLeftArrow LongLeftRightArrow LongRightArrow Loopback LoopFreeGraphQ LowerCaseQ LowerLeftArrow LowerRightArrow LowerTriangularize LowpassFilter LQEstimatorGains LQGRegulator LQOutputRegulatorGains LQRegulatorGains LUBackSubstitution LucasL LuccioSamiComponents LUDecomposition LyapunovSolve LyonsGroupLy MachineID MachineName MachineNumberQ MachinePrecision MacintoshSystemPageSetup Magenta Magnification Magnify MainSolve MaintainDynamicCaches Majority MakeBoxes MakeExpression MakeRules MangoldtLambda ManhattanDistance Manipulate Manipulator MannWhitneyTest MantissaExponent Manual Map MapAll MapAt MapIndexed MAProcess MapThread MarcumQ MardiaCombinedTest MardiaKurtosisTest MardiaSkewnessTest MarginalDistribution MarkovProcessProperties Masking MatchingDissimilarity MatchLocalNameQ MatchLocalNames MatchQ Material MathematicaNotation MathieuC MathieuCharacteristicA MathieuCharacteristicB MathieuCharacteristicExponent MathieuCPrime MathieuGroupM11 MathieuGroupM12 MathieuGroupM22 MathieuGroupM23 MathieuGroupM24 MathieuS MathieuSPrime MathMLForm MathMLText Matrices MatrixExp MatrixForm MatrixFunction MatrixLog MatrixPlot MatrixPower MatrixQ MatrixRank Max MaxBend MaxDetect MaxExtraBandwidths MaxExtraConditions MaxFeatures MaxFilter Maximize MaxIterations MaxMemoryUsed MaxMixtureKernels MaxPlotPoints MaxPoints MaxRecursion MaxStableDistribution MaxStepFraction MaxSteps MaxStepSize MaxValue MaxwellDistribution McLaughlinGroupMcL Mean MeanClusteringCoefficient MeanDegreeConnectivity MeanDeviation MeanFilter MeanGraphDistance MeanNeighborDegree MeanShift MeanShiftFilter Median MedianDeviation MedianFilter Medium MeijerG MeixnerDistribution MemberQ MemoryConstrained MemoryInUse Menu MenuAppearance MenuCommandKey MenuEvaluator MenuItem MenuPacket MenuSortingValue MenuStyle MenuView MergeDifferences Mesh MeshFunctions MeshRange MeshShading MeshStyle Message MessageDialog MessageList MessageName MessageOptions MessagePacket Messages MessagesNotebook MetaCharacters MetaInformation Method MethodOptions MexicanHatWavelet MeyerWavelet Min MinDetect MinFilter MinimalPolynomial MinimalStateSpaceModel Minimize Minors MinRecursion MinSize MinStableDistribution Minus MinusPlus MinValue Missing MissingDataMethod MittagLefflerE MixedRadix MixedRadixQuantity MixtureDistribution Mod Modal Mode Modular ModularLambda Module Modulus MoebiusMu Moment Momentary MomentConvert MomentEvaluate MomentGeneratingFunction Monday Monitor MonomialList MonomialOrder MonsterGroupM MorletWavelet MorphologicalBinarize MorphologicalBranchPoints MorphologicalComponents MorphologicalEulerNumber MorphologicalGraph MorphologicalPerimeter MorphologicalTransform Most MouseAnnotation MouseAppearance MouseAppearanceTag MouseButtons Mouseover MousePointerNote MousePosition MovingAverage MovingMedian MoyalDistribution MultiedgeStyle MultilaunchWarning MultiLetterItalics MultiLetterStyle MultilineFunction Multinomial MultinomialDistribution MultinormalDistribution MultiplicativeOrder Multiplicity Multiselection MultivariateHypergeometricDistribution MultivariatePoissonDistribution MultivariateTDistribution N NakagamiDistribution NameQ Names NamespaceBox Nand NArgMax NArgMin NBernoulliB NCache NDSolve NDSolveValue Nearest NearestFunction NeedCurrentFrontEndPackagePacket NeedCurrentFrontEndSymbolsPacket NeedlemanWunschSimilarity Needs Negative NegativeBinomialDistribution NegativeMultinomialDistribution NeighborhoodGraph Nest NestedGreaterGreater NestedLessLess NestedScriptRules NestList NestWhile NestWhileList NevilleThetaC NevilleThetaD NevilleThetaN NevilleThetaS NewPrimitiveStyle NExpectation Next NextPrime NHoldAll NHoldFirst NHoldRest NicholsGridLines NicholsPlot NIntegrate NMaximize NMaxValue NMinimize NMinValue NominalVariables NonAssociative NoncentralBetaDistribution NoncentralChiSquareDistribution NoncentralFRatioDistribution NoncentralStudentTDistribution NonCommutativeMultiply NonConstants None NonlinearModelFit NonlocalMeansFilter NonNegative NonPositive Nor NorlundB Norm Normal NormalDistribution NormalGrouping Normalize NormalizedSquaredEuclideanDistance NormalsFunction NormFunction Not NotCongruent NotCupCap NotDoubleVerticalBar Notebook NotebookApply NotebookAutoSave NotebookClose NotebookConvertSettings NotebookCreate NotebookCreateReturnObject NotebookDefault NotebookDelete NotebookDirectory NotebookDynamicExpression NotebookEvaluate NotebookEventActions NotebookFileName NotebookFind NotebookFindReturnObject NotebookGet NotebookGetLayoutInformationPacket NotebookGetMisspellingsPacket NotebookInformation NotebookInterfaceObject NotebookLocate NotebookObject NotebookOpen NotebookOpenReturnObject NotebookPath NotebookPrint NotebookPut NotebookPutReturnObject NotebookRead NotebookResetGeneratedCells Notebooks NotebookSave NotebookSaveAs NotebookSelection NotebookSetupLayoutInformationPacket NotebooksMenu NotebookWrite NotElement NotEqualTilde NotExists NotGreater NotGreaterEqual NotGreaterFullEqual NotGreaterGreater NotGreaterLess NotGreaterSlantEqual NotGreaterTilde NotHumpDownHump NotHumpEqual NotLeftTriangle NotLeftTriangleBar NotLeftTriangleEqual NotLess NotLessEqual NotLessFullEqual NotLessGreater NotLessLess NotLessSlantEqual NotLessTilde NotNestedGreaterGreater NotNestedLessLess NotPrecedes NotPrecedesEqual NotPrecedesSlantEqual NotPrecedesTilde NotReverseElement NotRightTriangle NotRightTriangleBar NotRightTriangleEqual NotSquareSubset NotSquareSubsetEqual NotSquareSuperset NotSquareSupersetEqual NotSubset NotSubsetEqual NotSucceeds NotSucceedsEqual NotSucceedsSlantEqual NotSucceedsTilde NotSuperset NotSupersetEqual NotTilde NotTildeEqual NotTildeFullEqual NotTildeTilde NotVerticalBar NProbability NProduct NProductFactors NRoots NSolve NSum NSumTerms Null NullRecords NullSpace NullWords Number NumberFieldClassNumber NumberFieldDiscriminant NumberFieldFundamentalUnits NumberFieldIntegralBasis NumberFieldNormRepresentatives NumberFieldRegulator NumberFieldRootsOfUnity NumberFieldSignature NumberForm NumberFormat NumberMarks NumberMultiplier NumberPadding NumberPoint NumberQ NumberSeparator NumberSigns NumberString Numerator NumericFunction NumericQ NuttallWindow NValues NyquistGridLines NyquistPlot O ObservabilityGramian ObservabilityMatrix ObservableDecomposition ObservableModelQ OddQ Off Offset OLEData On ONanGroupON OneIdentity Opacity Open OpenAppend Opener OpenerBox OpenerBoxOptions OpenerView OpenFunctionInspectorPacket Opening OpenRead OpenSpecialOptions OpenTemporary OpenWrite Operate OperatingSystem OptimumFlowData Optional OptionInspectorSettings OptionQ Options OptionsPacket OptionsPattern OptionValue OptionValueBox OptionValueBoxOptions Or Orange Order OrderDistribution OrderedQ Ordering Orderless OrnsteinUhlenbeckProcess Orthogonalize Out Outer OutputAutoOverwrite OutputControllabilityMatrix OutputControllableModelQ OutputForm OutputFormData OutputGrouping OutputMathEditExpression OutputNamePacket OutputResponse OutputSizeLimit OutputStream Over OverBar OverDot Overflow OverHat Overlaps Overlay OverlayBox OverlayBoxOptions Overscript OverscriptBox OverscriptBoxOptions OverTilde OverVector OwenT OwnValues PackingMethod PaddedForm Padding PadeApproximant PadLeft PadRight PageBreakAbove PageBreakBelow PageBreakWithin PageFooterLines PageFooters PageHeaderLines PageHeaders PageHeight PageRankCentrality PageWidth PairedBarChart PairedHistogram PairedSmoothHistogram PairedTTest PairedZTest PaletteNotebook PalettePath Pane PaneBox PaneBoxOptions Panel PanelBox PanelBoxOptions Paneled PaneSelector PaneSelectorBox PaneSelectorBoxOptions PaperWidth ParabolicCylinderD ParagraphIndent ParagraphSpacing ParallelArray ParallelCombine ParallelDo ParallelEvaluate Parallelization Parallelize ParallelMap ParallelNeeds ParallelProduct ParallelSubmit ParallelSum ParallelTable ParallelTry Parameter ParameterEstimator ParameterMixtureDistribution ParameterVariables ParametricFunction ParametricNDSolve ParametricNDSolveValue ParametricPlot ParametricPlot3D ParentConnect ParentDirectory ParentForm Parenthesize ParentList ParetoDistribution Part PartialCorrelationFunction PartialD ParticleData Partition PartitionsP PartitionsQ ParzenWindow PascalDistribution PassEventsDown PassEventsUp Paste PasteBoxFormInlineCells PasteButton Path PathGraph PathGraphQ Pattern PatternSequence PatternTest PauliMatrix PaulWavelet Pause PausedTime PDF PearsonChiSquareTest PearsonCorrelationTest PearsonDistribution PerformanceGoal PeriodicInterpolation Periodogram PeriodogramArray PermutationCycles PermutationCyclesQ PermutationGroup PermutationLength PermutationList PermutationListQ PermutationMax PermutationMin PermutationOrder PermutationPower PermutationProduct PermutationReplace Permutations PermutationSupport Permute PeronaMalikFilter Perpendicular PERTDistribution PetersenGraph PhaseMargins Pi Pick PIDData PIDDerivativeFilter PIDFeedforward PIDTune Piecewise PiecewiseExpand PieChart PieChart3D PillaiTrace PillaiTraceTest Pink Pivoting PixelConstrained PixelValue PixelValuePositions Placed Placeholder PlaceholderReplace Plain PlanarGraphQ Play PlayRange Plot Plot3D Plot3Matrix PlotDivision PlotJoined PlotLabel PlotLayout PlotLegends PlotMarkers PlotPoints PlotRange PlotRangeClipping PlotRangePadding PlotRegion PlotStyle Plus PlusMinus Pochhammer PodStates PodWidth Point Point3DBox PointBox PointFigureChart PointForm PointLegend PointSize PoissonConsulDistribution PoissonDistribution PoissonProcess PoissonWindow PolarAxes PolarAxesOrigin PolarGridLines PolarPlot PolarTicks PoleZeroMarkers PolyaAeppliDistribution PolyGamma Polygon Polygon3DBox Polygon3DBoxOptions PolygonBox PolygonBoxOptions PolygonHoleScale PolygonIntersections PolygonScale PolyhedronData PolyLog PolynomialExtendedGCD PolynomialForm PolynomialGCD PolynomialLCM PolynomialMod PolynomialQ PolynomialQuotient PolynomialQuotientRemainder PolynomialReduce PolynomialRemainder Polynomials PopupMenu PopupMenuBox PopupMenuBoxOptions PopupView PopupWindow Position Positive PositiveDefiniteMatrixQ PossibleZeroQ Postfix PostScript Power PowerDistribution PowerExpand PowerMod PowerModList PowerSpectralDensity PowersRepresentations PowerSymmetricPolynomial Precedence PrecedenceForm Precedes PrecedesEqual PrecedesSlantEqual PrecedesTilde Precision PrecisionGoal PreDecrement PredictionRoot PreemptProtect PreferencesPath Prefix PreIncrement Prepend PrependTo PreserveImageOptions Previous PriceGraphDistribution PrimaryPlaceholder Prime PrimeNu PrimeOmega PrimePi PrimePowerQ PrimeQ Primes PrimeZetaP PrimitiveRoot PrincipalComponents PrincipalValue Print PrintAction PrintForm PrintingCopies PrintingOptions PrintingPageRange PrintingStartingPageNumber PrintingStyleEnvironment PrintPrecision PrintTemporary Prism PrismBox PrismBoxOptions PrivateCellOptions PrivateEvaluationOptions PrivateFontOptions PrivateFrontEndOptions PrivateNotebookOptions PrivatePaths Probability ProbabilityDistribution ProbabilityPlot ProbabilityPr ProbabilityScalePlot ProbitModelFit ProcessEstimator ProcessParameterAssumptions ProcessParameterQ ProcessStateDomain ProcessTimeDomain Product ProductDistribution ProductLog ProgressIndicator ProgressIndicatorBox ProgressIndicatorBoxOptions Projection Prolog PromptForm Properties Property PropertyList PropertyValue Proportion Proportional Protect Protected ProteinData Pruning PseudoInverse Purple Put PutAppend Pyramid PyramidBox PyramidBoxOptions QBinomial QFactorial QGamma QHypergeometricPFQ QPochhammer QPolyGamma QRDecomposition QuadraticIrrationalQ Quantile QuantilePlot Quantity QuantityForm QuantityMagnitude QuantityQ QuantityUnit Quartics QuartileDeviation Quartiles QuartileSkewness QueueingNetworkProcess QueueingProcess QueueProperties Quiet Quit Quotient QuotientRemainder RadialityCentrality RadicalBox RadicalBoxOptions RadioButton RadioButtonBar RadioButtonBox RadioButtonBoxOptions Radon RamanujanTau RamanujanTauL RamanujanTauTheta RamanujanTauZ Random RandomChoice RandomComplex RandomFunction RandomGraph RandomImage RandomInteger RandomPermutation RandomPrime RandomReal RandomSample RandomSeed RandomVariate RandomWalkProcess Range RangeFilter RangeSpecification RankedMax RankedMin Raster Raster3D Raster3DBox Raster3DBoxOptions RasterArray RasterBox RasterBoxOptions Rasterize RasterSize Rational RationalFunctions Rationalize Rationals Ratios Raw RawArray RawBoxes RawData RawMedium RayleighDistribution Re Read ReadList ReadProtected Real RealBlockDiagonalForm RealDigits RealExponent Reals Reap Record RecordLists RecordSeparators Rectangle RectangleBox RectangleBoxOptions RectangleChart RectangleChart3D RecurrenceFilter RecurrenceTable RecurringDigitsForm Red Reduce RefBox ReferenceLineStyle ReferenceMarkers ReferenceMarkerStyle Refine ReflectionMatrix ReflectionTransform Refresh RefreshRate RegionBinarize RegionFunction RegionPlot RegionPlot3D RegularExpression Regularization Reinstall Release ReleaseHold ReliabilityDistribution ReliefImage ReliefPlot Remove RemoveAlphaChannel RemoveAsynchronousTask Removed RemoveInputStreamMethod RemoveOutputStreamMethod RemoveProperty RemoveScheduledTask RenameDirectory RenameFile RenderAll RenderingOptions RenewalProcess RenkoChart Repeated RepeatedNull RepeatedString Replace ReplaceAll ReplaceHeldPart ReplaceImageValue ReplaceList ReplacePart ReplacePixelValue ReplaceRepeated Resampling Rescale RescalingTransform ResetDirectory ResetMenusPacket ResetScheduledTask Residue Resolve Rest Resultant ResumePacket Return ReturnExpressionPacket ReturnInputFormPacket ReturnPacket ReturnTextPacket Reverse ReverseBiorthogonalSplineWavelet ReverseElement ReverseEquilibrium ReverseGraph ReverseUpEquilibrium RevolutionAxis RevolutionPlot3D RGBColor RiccatiSolve RiceDistribution RidgeFilter RiemannR RiemannSiegelTheta RiemannSiegelZ Riffle Right RightArrow RightArrowBar RightArrowLeftArrow RightCosetRepresentative RightDownTeeVector RightDownVector RightDownVectorBar RightTee RightTeeArrow RightTeeVector RightTriangle RightTriangleBar RightTriangleEqual RightUpDownVector RightUpTeeVector RightUpVector RightUpVectorBar RightVector RightVectorBar RiskAchievementImportance RiskReductionImportance RogersTanimotoDissimilarity Root RootApproximant RootIntervals RootLocusPlot RootMeanSquare RootOfUnityQ RootReduce Roots RootSum Rotate RotateLabel RotateLeft RotateRight RotationAction RotationBox RotationBoxOptions RotationMatrix RotationTransform Round RoundImplies RoundingRadius Row RowAlignments RowBackgrounds RowBox RowHeights RowLines RowMinHeight RowReduce RowsEqual RowSpacings RSolve RudvalisGroupRu Rule RuleCondition RuleDelayed RuleForm RulerUnits Run RunScheduledTask RunThrough RuntimeAttributes RuntimeOptions RussellRaoDissimilarity SameQ SameTest SampleDepth SampledSoundFunction SampledSoundList SampleRate SamplingPeriod SARIMAProcess SARMAProcess SatisfiabilityCount SatisfiabilityInstances SatisfiableQ Saturday Save Saveable SaveAutoDelete SaveDefinitions SawtoothWave Scale Scaled ScaleDivisions ScaledMousePosition ScaleOrigin ScalePadding ScaleRanges ScaleRangeStyle ScalingFunctions ScalingMatrix ScalingTransform Scan ScheduledTaskActiveQ ScheduledTaskData ScheduledTaskObject ScheduledTasks SchurDecomposition ScientificForm ScreenRectangle ScreenStyleEnvironment ScriptBaselineShifts ScriptLevel ScriptMinSize ScriptRules ScriptSizeMultipliers Scrollbars ScrollingOptions ScrollPosition Sec Sech SechDistribution SectionGrouping SectorChart SectorChart3D SectorOrigin SectorSpacing SeedRandom Select Selectable SelectComponents SelectedCells SelectedNotebook Selection SelectionAnimate SelectionCell SelectionCellCreateCell SelectionCellDefaultStyle SelectionCellParentStyle SelectionCreateCell SelectionDebuggerTag SelectionDuplicateCell SelectionEvaluate SelectionEvaluateCreateCell SelectionMove SelectionPlaceholder SelectionSetStyle SelectWithContents SelfLoops SelfLoopStyle SemialgebraicComponentInstances SendMail Sequence SequenceAlignment SequenceForm SequenceHold SequenceLimit Series SeriesCoefficient SeriesData SessionTime Set SetAccuracy SetAlphaChannel SetAttributes Setbacks SetBoxFormNamesPacket SetDelayed SetDirectory SetEnvironment SetEvaluationNotebook SetFileDate SetFileLoadingContext SetNotebookStatusLine SetOptions SetOptionsPacket SetPrecision SetProperty SetSelectedNotebook SetSharedFunction SetSharedVariable SetSpeechParametersPacket SetStreamPosition SetSystemOptions Setter SetterBar SetterBox SetterBoxOptions Setting SetValue Shading Shallow ShannonWavelet ShapiroWilkTest Share Sharpen ShearingMatrix ShearingTransform ShenCastanMatrix Short ShortDownArrow Shortest ShortestMatch ShortestPathFunction ShortLeftArrow ShortRightArrow ShortUpArrow Show ShowAutoStyles ShowCellBracket ShowCellLabel ShowCellTags ShowClosedCellArea ShowContents ShowControls ShowCursorTracker ShowGroupOpenCloseIcon ShowGroupOpener ShowInvisibleCharacters ShowPageBreaks ShowPredictiveInterface ShowSelection ShowShortBoxForm ShowSpecialCharacters ShowStringCharacters ShowSyntaxStyles ShrinkingDelay ShrinkWrapBoundingBox SiegelTheta SiegelTukeyTest Sign Signature SignedRankTest SignificanceLevel SignPadding SignTest SimilarityRules SimpleGraph SimpleGraphQ Simplify Sin Sinc SinghMaddalaDistribution SingleEvaluation SingleLetterItalics SingleLetterStyle SingularValueDecomposition SingularValueList SingularValuePlot SingularValues Sinh SinhIntegral SinIntegral SixJSymbol Skeleton SkeletonTransform SkellamDistribution Skewness SkewNormalDistribution Skip SliceDistribution Slider Slider2D Slider2DBox Slider2DBoxOptions SliderBox SliderBoxOptions SlideView Slot SlotSequence Small SmallCircle Smaller SmithDelayCompensator SmithWatermanSimilarity SmoothDensityHistogram SmoothHistogram SmoothHistogram3D SmoothKernelDistribution SocialMediaData Socket SokalSneathDissimilarity Solve SolveAlways SolveDelayed Sort SortBy Sound SoundAndGraphics SoundNote SoundVolume Sow Space SpaceForm Spacer Spacings Span SpanAdjustments SpanCharacterRounding SpanFromAbove SpanFromBoth SpanFromLeft SpanLineThickness SpanMaxSize SpanMinSize SpanningCharacters SpanSymmetric SparseArray SpatialGraphDistribution Speak SpeakTextPacket SpearmanRankTest SpearmanRho Spectrogram SpectrogramArray Specularity SpellingCorrection SpellingDictionaries SpellingDictionariesPath SpellingOptions SpellingSuggestionsPacket Sphere SphereBox SphericalBesselJ SphericalBesselY SphericalHankelH1 SphericalHankelH2 SphericalHarmonicY SphericalPlot3D SphericalRegion SpheroidalEigenvalue SpheroidalJoiningFactor SpheroidalPS SpheroidalPSPrime SpheroidalQS SpheroidalQSPrime SpheroidalRadialFactor SpheroidalS1 SpheroidalS1Prime SpheroidalS2 SpheroidalS2Prime Splice SplicedDistribution SplineClosed SplineDegree SplineKnots SplineWeights Split SplitBy SpokenString Sqrt SqrtBox SqrtBoxOptions Square SquaredEuclideanDistance SquareFreeQ SquareIntersection SquaresR SquareSubset SquareSubsetEqual SquareSuperset SquareSupersetEqual SquareUnion SquareWave StabilityMargins StabilityMarginsStyle StableDistribution Stack StackBegin StackComplete StackInhibit StandardDeviation StandardDeviationFilter StandardForm Standardize StandbyDistribution Star StarGraph StartAsynchronousTask StartingStepSize StartOfLine StartOfString StartScheduledTask StartupSound StateDimensions StateFeedbackGains StateOutputEstimator StateResponse StateSpaceModel StateSpaceRealization StateSpaceTransform StationaryDistribution StationaryWaveletPacketTransform StationaryWaveletTransform StatusArea StatusCentrality StepMonitor StieltjesGamma StirlingS1 StirlingS2 StopAsynchronousTask StopScheduledTask StrataVariables StratonovichProcess StreamColorFunction StreamColorFunctionScaling StreamDensityPlot StreamPlot StreamPoints StreamPosition Streams StreamScale StreamStyle String StringBreak StringByteCount StringCases StringCount StringDrop StringExpression StringForm StringFormat StringFreeQ StringInsert StringJoin StringLength StringMatchQ StringPosition StringQ StringReplace StringReplaceList StringReplacePart StringReverse StringRotateLeft StringRotateRight StringSkeleton StringSplit StringTake StringToStream StringTrim StripBoxes StripOnInput StripWrapperBoxes StrokeForm StructuralImportance StructuredArray StructuredSelection StruveH StruveL Stub StudentTDistribution Style StyleBox StyleBoxAutoDelete StyleBoxOptions StyleData StyleDefinitions StyleForm StyleKeyMapping StyleMenuListing StyleNameDialogSettings StyleNames StylePrint StyleSheetPath Subfactorial Subgraph SubMinus SubPlus SubresultantPolynomialRemainders SubresultantPolynomials Subresultants Subscript SubscriptBox SubscriptBoxOptions Subscripted Subset SubsetEqual Subsets SubStar Subsuperscript SubsuperscriptBox SubsuperscriptBoxOptions Subtract SubtractFrom SubValues Succeeds SucceedsEqual SucceedsSlantEqual SucceedsTilde SuchThat Sum SumConvergence Sunday SuperDagger SuperMinus SuperPlus Superscript SuperscriptBox SuperscriptBoxOptions Superset SupersetEqual SuperStar Surd SurdForm SurfaceColor SurfaceGraphics SurvivalDistribution SurvivalFunction SurvivalModel SurvivalModelFit SuspendPacket SuzukiDistribution SuzukiGroupSuz SwatchLegend Switch Symbol SymbolName SymletWavelet Symmetric SymmetricGroup SymmetricMatrixQ SymmetricPolynomial SymmetricReduction Symmetrize SymmetrizedArray SymmetrizedArrayRules SymmetrizedDependentComponents SymmetrizedIndependentComponents SymmetrizedReplacePart SynchronousInitialization SynchronousUpdating Syntax SyntaxForm SyntaxInformation SyntaxLength SyntaxPacket SyntaxQ SystemDialogInput SystemException SystemHelpPath SystemInformation SystemInformationData SystemOpen SystemOptions SystemsModelDelay SystemsModelDelayApproximate SystemsModelDelete SystemsModelDimensions SystemsModelExtract SystemsModelFeedbackConnect SystemsModelLabels SystemsModelOrder SystemsModelParallelConnect SystemsModelSeriesConnect SystemsModelStateFeedbackConnect SystemStub Tab TabFilling Table TableAlignments TableDepth TableDirections TableForm TableHeadings TableSpacing TableView TableViewBox TabSpacings TabView TabViewBox TabViewBoxOptions TagBox TagBoxNote TagBoxOptions TaggingRules TagSet TagSetDelayed TagStyle TagUnset Take TakeWhile Tally Tan Tanh TargetFunctions TargetUnits TautologyQ TelegraphProcess TemplateBox TemplateBoxOptions TemplateSlotSequence TemporalData Temporary TemporaryVariable TensorContract TensorDimensions TensorExpand TensorProduct TensorQ TensorRank TensorReduce TensorSymmetry TensorTranspose TensorWedge Tetrahedron TetrahedronBox TetrahedronBoxOptions TeXForm TeXSave Text Text3DBox Text3DBoxOptions TextAlignment TextBand TextBoundingBox TextBox TextCell TextClipboardType TextData TextForm TextJustification TextLine TextPacket TextParagraph TextRecognize TextRendering TextStyle Texture TextureCoordinateFunction TextureCoordinateScaling Therefore ThermometerGauge Thick Thickness Thin Thinning ThisLink ThompsonGroupTh Thread ThreeJSymbol Threshold Through Throw Thumbnail Thursday Ticks TicksStyle Tilde TildeEqual TildeFullEqual TildeTilde TimeConstrained TimeConstraint Times TimesBy TimeSeriesForecast TimeSeriesInvertibility TimeUsed TimeValue TimeZone Timing Tiny TitleGrouping TitsGroupT ToBoxes ToCharacterCode ToColor ToContinuousTimeModel ToDate ToDiscreteTimeModel ToeplitzMatrix ToExpression ToFileName Together Toggle ToggleFalse Toggler TogglerBar TogglerBox TogglerBoxOptions ToHeldExpression ToInvertibleTimeSeries TokenWords Tolerance ToLowerCase ToNumberField TooBig Tooltip TooltipBox TooltipBoxOptions TooltipDelay TooltipStyle Top TopHatTransform TopologicalSort ToRadicals ToRules ToString Total TotalHeight TotalVariationFilter TotalWidth TouchscreenAutoZoom TouchscreenControlPlacement ToUpperCase Tr Trace TraceAbove TraceAction TraceBackward TraceDepth TraceDialog TraceForward TraceInternal TraceLevel TraceOff TraceOn TraceOriginal TracePrint TraceScan TrackedSymbols TradingChart TraditionalForm TraditionalFunctionNotation TraditionalNotation TraditionalOrder TransferFunctionCancel TransferFunctionExpand TransferFunctionFactor TransferFunctionModel TransferFunctionPoles TransferFunctionTransform TransferFunctionZeros TransformationFunction TransformationFunctions TransformationMatrix TransformedDistribution TransformedField Translate TranslationTransform TransparentColor Transpose TreeForm TreeGraph TreeGraphQ TreePlot TrendStyle TriangleWave TriangularDistribution Trig TrigExpand TrigFactor TrigFactorList Trigger TrigReduce TrigToExp TrimmedMean True TrueQ TruncatedDistribution TsallisQExponentialDistribution TsallisQGaussianDistribution TTest Tube TubeBezierCurveBox TubeBezierCurveBoxOptions TubeBox TubeBSplineCurveBox TubeBSplineCurveBoxOptions Tuesday TukeyLambdaDistribution TukeyWindow Tuples TuranGraph TuringMachine Transparent UnateQ Uncompress Undefined UnderBar Underflow Underlined Underoverscript UnderoverscriptBox UnderoverscriptBoxOptions Underscript UnderscriptBox UnderscriptBoxOptions UndirectedEdge UndirectedGraph UndirectedGraphQ UndocumentedTestFEParserPacket UndocumentedTestGetSelectionPacket Unequal Unevaluated UniformDistribution UniformGraphDistribution UniformSumDistribution Uninstall Union UnionPlus Unique UnitBox UnitConvert UnitDimensions Unitize UnitRootTest UnitSimplify UnitStep UnitTriangle UnitVector Unprotect UnsameQ UnsavedVariables Unset UnsetShared UntrackedVariables Up UpArrow UpArrowBar UpArrowDownArrow Update UpdateDynamicObjects UpdateDynamicObjectsSynchronous UpdateInterval UpDownArrow UpEquilibrium UpperCaseQ UpperLeftArrow UpperRightArrow UpperTriangularize Upsample UpSet UpSetDelayed UpTee UpTeeArrow UpValues URL URLFetch URLFetchAsynchronous URLSave URLSaveAsynchronous UseGraphicsRange Using UsingFrontEnd V2Get ValidationLength Value ValueBox ValueBoxOptions ValueForm ValueQ ValuesData Variables Variance VarianceEquivalenceTest VarianceEstimatorFunction VarianceGammaDistribution VarianceTest VectorAngle VectorColorFunction VectorColorFunctionScaling VectorDensityPlot VectorGlyphData VectorPlot VectorPlot3D VectorPoints VectorQ Vectors VectorScale VectorStyle Vee Verbatim Verbose VerboseConvertToPostScriptPacket VerifyConvergence VerifySolutions VerifyTestAssumptions Version VersionNumber VertexAdd VertexCapacity VertexColors VertexComponent VertexConnectivity VertexCoordinateRules VertexCoordinates VertexCorrelationSimilarity VertexCosineSimilarity VertexCount VertexCoverQ VertexDataCoordinates VertexDegree VertexDelete VertexDiceSimilarity VertexEccentricity VertexInComponent VertexInDegree VertexIndex VertexJaccardSimilarity VertexLabeling VertexLabels VertexLabelStyle VertexList VertexNormals VertexOutComponent VertexOutDegree VertexQ VertexRenderingFunction VertexReplace VertexShape VertexShapeFunction VertexSize VertexStyle VertexTextureCoordinates VertexWeight Vertical VerticalBar VerticalForm VerticalGauge VerticalSeparator VerticalSlider VerticalTilde ViewAngle ViewCenter ViewMatrix ViewPoint ViewPointSelectorSettings ViewPort ViewRange ViewVector ViewVertical VirtualGroupData Visible VisibleCell VoigtDistribution VonMisesDistribution WaitAll WaitAsynchronousTask WaitNext WaitUntil WakebyDistribution WalleniusHypergeometricDistribution WaringYuleDistribution WatershedComponents WatsonUSquareTest WattsStrogatzGraphDistribution WaveletBestBasis WaveletFilterCoefficients WaveletImagePlot WaveletListPlot WaveletMapIndexed WaveletMatrixPlot WaveletPhi WaveletPsi WaveletScale WaveletScalogram WaveletThreshold WeaklyConnectedComponents WeaklyConnectedGraphQ WeakStationarity WeatherData WeberE Wedge Wednesday WeibullDistribution WeierstrassHalfPeriods WeierstrassInvariants WeierstrassP WeierstrassPPrime WeierstrassSigma WeierstrassZeta WeightedAdjacencyGraph WeightedAdjacencyMatrix WeightedData WeightedGraphQ Weights WelchWindow WheelGraph WhenEvent Which While White Whitespace WhitespaceCharacter WhittakerM WhittakerW WienerFilter WienerProcess WignerD WignerSemicircleDistribution WilksW WilksWTest WindowClickSelect WindowElements WindowFloating WindowFrame WindowFrameElements WindowMargins WindowMovable WindowOpacity WindowSelected WindowSize WindowStatusArea WindowTitle WindowToolbars WindowWidth With WolframAlpha WolframAlphaDate WolframAlphaQuantity WolframAlphaResult Word WordBoundary WordCharacter WordData WordSearch WordSeparators WorkingPrecision Write WriteString Wronskian XMLElement XMLObject Xnor Xor Yellow YuleDissimilarity ZernikeR ZeroSymmetric ZeroTest ZeroWidthTimes Zeta ZetaZero ZipfDistribution ZTest ZTransform $Aborted $ActivationGroupID $ActivationKey $ActivationUserRegistered $AddOnsDirectory $AssertFunction $Assumptions $AsynchronousTask $BaseDirectory $BatchInput $BatchOutput $BoxForms $ByteOrdering $Canceled $CharacterEncoding $CharacterEncodings $CommandLine $CompilationTarget $ConditionHold $ConfiguredKernels $Context $ContextPath $ControlActiveSetting $CreationDate $CurrentLink $DateStringFormat $DefaultFont $DefaultFrontEnd $DefaultImagingDevice $DefaultPath $Display $DisplayFunction $DistributedContexts $DynamicEvaluation $Echo $Epilog $ExportFormats $Failed $FinancialDataSource $FormatType $FrontEnd $FrontEndSession $GeoLocation $HistoryLength $HomeDirectory $HTTPCookies $IgnoreEOF $ImagingDevices $ImportFormats $InitialDirectory $Input $InputFileName $InputStreamMethods $Inspector $InstallationDate $InstallationDirectory $InterfaceEnvironment $IterationLimit $KernelCount $KernelID $Language $LaunchDirectory $LibraryPath $LicenseExpirationDate $LicenseID $LicenseProcesses $LicenseServer $LicenseSubprocesses $LicenseType $Line $Linked $LinkSupported $LoadedFiles $MachineAddresses $MachineDomain $MachineDomains $MachineEpsilon $MachineID $MachineName $MachinePrecision $MachineType $MaxExtraPrecision $MaxLicenseProcesses $MaxLicenseSubprocesses $MaxMachineNumber $MaxNumber $MaxPiecewiseCases $MaxPrecision $MaxRootDegree $MessageGroups $MessageList $MessagePrePrint $Messages $MinMachineNumber $MinNumber $MinorReleaseNumber $MinPrecision $ModuleNumber $NetworkLicense $NewMessage $NewSymbol $Notebooks $NumberMarks $Off $OperatingSystem $Output $OutputForms $OutputSizeLimit $OutputStreamMethods $Packages $ParentLink $ParentProcessID $PasswordFile $PatchLevelID $Path $PathnameSeparator $PerformanceGoal $PipeSupported $Post $Pre $PreferencesDirectory $PrePrint $PreRead $PrintForms $PrintLiteral $ProcessID $ProcessorCount $ProcessorType $ProductInformation $ProgramName $RandomState $RecursionLimit $ReleaseNumber $RootDirectory $ScheduledTask $ScriptCommandLine $SessionID $SetParentLink $SharedFunctions $SharedVariables $SoundDisplay $SoundDisplayFunction $SuppressInputFormHeads $SynchronousEvaluation $SyntaxHandler $System $SystemCharacterEncoding $SystemID $SystemWordLength $TemporaryDirectory $TemporaryPrefix $TextStyle $TimedOut $TimeUnit $TimeZone $TopDirectory $TraceOff $TraceOn $TracePattern $TracePostAction $TracePreAction $Urgent $UserAddOnsDirectory $UserBaseDirectory $UserDocumentsDirectory $UserName $Version $VersionNumber", c: [{ cN: "comment", b: /\(\*/, e: /\*\)/ }, a.ASM, a.QSM, a.CNM, { cN: "list", b: /\{/, e: /\}/, i: /:/ }] }; });
@@ -13878,33 +11145,11 @@ hljs.registerLanguage("http", function (a) { return { i: "\\S", c: [{ cN: "statu
 hljs.registerLanguage("rust", function (b) { var c = { cN: "number", b: "\\b(0[xb][A-Za-z0-9_]+|[0-9_]+(\\.[0-9_]+)?([uif](8|16|32|64)?)?)", r: 0 }; var a = "assert bool break char check claim comm const cont copy dir do drop else enum extern export f32 f64 fail false float fn for i16 i32 i64 i8 if impl int let log loop match mod move mut priv pub pure ref return self static str struct task true trait type u16 u32 u64 u8 uint unsafe use vec while"; return { k: a, i: "</", c: [b.CLCM, b.CBLCLM, b.inherit(b.QSM, { i: null }), b.ASM, c, { cN: "function", bK: "fn", e: "(\\(|<)", c: [b.UTM] }, { cN: "preprocessor", b: "#\\[", e: "\\]" }, { bK: "type", e: "(=|<)", c: [b.UTM], i: "\\S" }, { bK: "trait enum", e: "({|<)", c: [b.UTM], i: "\\S" }] }; });
 hljs.registerLanguage("handlebars", function (b) { var a = "each in with if else unless bindattr action collection debugger log outlet template unbound view yield"; return { cI: true, sL: "xml", subLanguageMode: "continuous", c: [{ cN: "expression", b: "{{", e: "}}", c: [{ cN: "begin-block", b: "#[a-zA-Z- .]+", k: a }, { cN: "string", b: '"', e: '"' }, { cN: "end-block", b: "\\/[a-zA-Z- .]+", k: a }, { cN: "variable", b: "[a-zA-Z-.]+", k: a }] }] }; });
 hljs.registerLanguage("cmake", function (a) { return { cI: true, k: { keyword: "add_custom_command add_custom_target add_definitions add_dependencies add_executable add_library add_subdirectory add_test aux_source_directory break build_command cmake_minimum_required cmake_policy configure_file create_test_sourcelist define_property else elseif enable_language enable_testing endforeach endfunction endif endmacro endwhile execute_process export find_file find_library find_package find_path find_program fltk_wrap_ui foreach function get_cmake_property get_directory_property get_filename_component get_property get_source_file_property get_target_property get_test_property if include include_directories include_external_msproject include_regular_expression install link_directories load_cache load_command macro mark_as_advanced message option output_required_files project qt_wrap_cpp qt_wrap_ui remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string target_link_libraries try_compile try_run unset variable_watch while build_name exec_program export_library_dependencies install_files install_programs install_targets link_libraries make_directory remove subdir_depends subdirs use_mangled_mesa utility_source variable_requires write_file qt5_use_modules qt5_use_package qt5_wrap_cpp on off true false and or", operator: "equal less greater strless strgreater strequal matches" }, c: [{ cN: "envvar", b: "\\${", e: "}" }, a.HCM, a.QSM, a.NM] }; });
-<<<<<<< HEAD
-hljs.registerLanguage("lisp", function (h) { var k = "[a-zA-Z_\\-\\+\\*\\/\\<\\=\\>\\&\\#][a-zA-Z0-9_\\-\\+\\*\\/\\<\\=\\>\\&\\#!]*"; var l = "(\\-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s)(\\+|\\-)?\\d+)?"; var j = { cN: "shebang", b: "^#!", e: "$" }; var b = { cN: "literal", b: "\\b(t{1}|nil)\\b" }; var d = { cN: "number", v: [{ b: l, r: 0 }, { b: "#b[0-1]+(/[0-1]+)?" }, { b: "#o[0-7]+(/[0-7]+)?" }, { b: "#x[0-9a-f]+(/[0-9a-f]+)?" }, { b: "#c\\(" + l + " +" + l, e: "\\)" }] }; var g = h.inherit(h.QSM, { i: null }); var m = { cN: "comment", b: ";", e: "$" }; var f = { cN: "variable", b: "\\*", e: "\\*" }; var n = { cN: "keyword", b: "[:&]" + k }; var c = { b: "\\(", e: "\\)", c: ["self", b, g, d] }; var a = { cN: "quoted", c: [d, g, f, n, c], v: [{ b: "['`]\\(", e: "\\)" }, { b: "\\(quote ", e: "\\)", k: { title: "quote" } }] }; var i = { cN: "list", b: "\\(", e: "\\)" }; var e = { eW: true, r: 0 }; i.c = [{ cN: "title", b: k }, e]; e.c = [a, i, b, d, g, m, f, n]; return { i: /\S/, c: [d, j, b, g, m, a, i] }; });
-=======
 hljs.registerLanguage("lisp", function (h) { var k = "[a-zA-Z_\\-\\+\\*\\/\\<\\=\\>\\&\\#][a-zA-Z0-9_\\-\\+\\*\\/\\<\\=\\>\\&\\#!]*"; var l = "(\\-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s)(\\+|\\-)?\\d+)?"; var j = { cN: "shebang", b: "^#!", e: "$" }; var b = { cN: "literal", b: "\\b(t{1}|nil)\\b" }; var d = { cN: "number", v: [{ b: l, r: 0 }, { b: "#b[0-1]+(/[0-1]+)?" }, { b: "#o[0-7]+(/[0-7]+)?" }, { b: "#x[0-9a-f]+(/[0-9a-f]+)?" }, { b: "#c\\(" + l + " +" + l, e: "\\)" }] }; var g = h.inherit(h.QSM, { i: null }); var m = { cN: "comment", b: ";", e: "$" }; var f = { cN: "variable", b: "\\*", e: "\\*" }; var n = { cN: "keyword", b: "[:&]" + k }; var c = { b: "\\(", e: "\\)", c: ["self", b, g, d] }; var a = { cN: "quoted", c: [d, g, f, n, c], v: [{ b: "['`]\\(", e: "\\)", }, { b: "\\(quote ", e: "\\)", k: { title: "quote" }, }] }; var i = { cN: "list", b: "\\(", e: "\\)" }; var e = { eW: true, r: 0 }; i.c = [{ cN: "title", b: k }, e]; e.c = [a, i, b, d, g, m, f, n]; return { i: /\S/, c: [d, j, b, g, m, a, i] }; });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 hljs.registerLanguage("rib", function (a) { return { k: "ArchiveRecord AreaLightSource Atmosphere Attribute AttributeBegin AttributeEnd Basis Begin Blobby Bound Clipping ClippingPlane Color ColorSamples ConcatTransform Cone CoordinateSystem CoordSysTransform CropWindow Curves Cylinder DepthOfField Detail DetailRange Disk Displacement Display End ErrorHandler Exposure Exterior Format FrameAspectRatio FrameBegin FrameEnd GeneralPolygon GeometricApproximation Geometry Hider Hyperboloid Identity Illuminate Imager Interior LightSource MakeCubeFaceEnvironment MakeLatLongEnvironment MakeShadow MakeTexture Matte MotionBegin MotionEnd NuPatch ObjectBegin ObjectEnd ObjectInstance Opacity Option Orientation Paraboloid Patch PatchMesh Perspective PixelFilter PixelSamples PixelVariance Points PointsGeneralPolygons PointsPolygons Polygon Procedural Projection Quantize ReadArchive RelativeDetail ReverseOrientation Rotate Scale ScreenWindow ShadingInterpolation ShadingRate Shutter Sides Skew SolidBegin SolidEnd Sphere SubdivisionMesh Surface TextureCoordinates Torus Transform TransformBegin TransformEnd TransformPoints Translate TrimCurve WorldBegin WorldEnd", i: "</", c: [a.HCM, a.CNM, a.ASM, a.QSM] }; });
 hljs.registerLanguage("css", function (a) { var b = "[a-zA-Z-][a-zA-Z0-9_-]*"; var c = { cN: "function", b: b + "\\(", e: "\\)", c: ["self", a.NM, a.ASM, a.QSM] }; return { cI: true, i: "[=/|']", c: [a.CBLCLM, { cN: "id", b: "\\#[A-Za-z0-9_-]+" }, { cN: "class", b: "\\.[A-Za-z0-9_-]+", r: 0 }, { cN: "attr_selector", b: "\\[", e: "\\]", i: "$" }, { cN: "pseudo", b: ":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+" }, { cN: "at_rule", b: "@(font-face|page)", l: "[a-z-]+", k: "font-face page" }, { cN: "at_rule", b: "@", e: "[{;]", c: [{ cN: "keyword", b: /\S+/ }, { b: /\s/, eW: true, eE: true, r: 0, c: [c, a.ASM, a.QSM, a.NM] }] }, { cN: "tag", b: b, r: 0 }, { cN: "rules", b: "{", e: "}", i: "[^\\s]", r: 0, c: [a.CBLCLM, { cN: "rule", b: "[^\\s]", rB: true, e: ";", eW: true, c: [{ cN: "attribute", b: "[A-Z\\_\\.\\-]+", e: ":", eE: true, i: "[^\\s]", starts: { cN: "value", eW: true, eE: true, c: [c, a.NM, a.QSM, a.ASM, a.CBLCLM, { cN: "hexcolor", b: "#[0-9A-Fa-f]+" }, { cN: "important", b: "!important" }] } }] }] }] }; });
 hljs.registerLanguage("avrasm", function (a) { return { cI: true, k: { keyword: "adc add adiw and andi asr bclr bld brbc brbs brcc brcs break breq brge brhc brhs brid brie brlo brlt brmi brne brpl brsh brtc brts brvc brvs bset bst call cbi cbr clc clh cli cln clr cls clt clv clz com cp cpc cpi cpse dec eicall eijmp elpm eor fmul fmuls fmulsu icall ijmp in inc jmp ld ldd ldi lds lpm lsl lsr mov movw mul muls mulsu neg nop or ori out pop push rcall ret reti rjmp rol ror sbc sbr sbrc sbrs sec seh sbi sbci sbic sbis sbiw sei sen ser ses set sev sez sleep spm st std sts sub subi swap tst wdr", built_in: "r0 r1 r2 r3 r4 r5 r6 r7 r8 r9 r10 r11 r12 r13 r14 r15 r16 r17 r18 r19 r20 r21 r22 r23 r24 r25 r26 r27 r28 r29 r30 r31 x|0 xh xl y|0 yh yl z|0 zh zl ucsr1c udr1 ucsr1a ucsr1b ubrr1l ubrr1h ucsr0c ubrr0h tccr3c tccr3a tccr3b tcnt3h tcnt3l ocr3ah ocr3al ocr3bh ocr3bl ocr3ch ocr3cl icr3h icr3l etimsk etifr tccr1c ocr1ch ocr1cl twcr twdr twar twsr twbr osccal xmcra xmcrb eicra spmcsr spmcr portg ddrg ping portf ddrf sreg sph spl xdiv rampz eicrb eimsk gimsk gicr eifr gifr timsk tifr mcucr mcucsr tccr0 tcnt0 ocr0 assr tccr1a tccr1b tcnt1h tcnt1l ocr1ah ocr1al ocr1bh ocr1bl icr1h icr1l tccr2 tcnt2 ocr2 ocdr wdtcr sfior eearh eearl eedr eecr porta ddra pina portb ddrb pinb portc ddrc pinc portd ddrd pind spdr spsr spcr udr0 ucsr0a ucsr0b ubrr0l acsr admux adcsr adch adcl porte ddre pine pinf" }, c: [a.CBLCLM, { cN: "comment", b: ";", e: "$", r: 0 }, a.CNM, a.BNM, { cN: "number", b: "\\b(\\$[a-zA-Z0-9]+|0o[0-7]+)" }, a.QSM, { cN: "string", b: "'", e: "[^\\\\]'", i: "[^\\\\][^']" }, { cN: "label", b: "^[A-Za-z0-9_.$]+:" }, { cN: "preprocessor", b: "#", e: "$" }, { cN: "preprocessor", b: "\\.[a-zA-Z]+" }, { cN: "localvars", b: "@[0-9]+" }] }; });
 hljs.registerLanguage("apache", function (a) { var b = { cN: "number", b: "[\\$%]\\d+" }; return { cI: true, c: [a.HCM, { cN: "tag", b: "</?", e: ">" }, { cN: "keyword", b: /\w+/, r: 0, k: { common: "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername" }, starts: { e: /$/, r: 0, k: { literal: "on off all" }, c: [{ cN: "sqbracket", b: "\\s\\[", e: "\\]$" }, { cN: "cbracket", b: "[\\$%]\\{", e: "\\}", c: ["self", b] }, b, a.QSM] } }], i: /\S/ }; });
-<<<<<<< HEAD
-hljs.registerLanguage("1c", function (b) { var f = "[a-zA-ZÐ°-ÑÐ-Ð¯][a-zA-Z0-9_Ð°-ÑÐ-Ð¯]*"; var c = "Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‚ Ð´Ð°Ñ‚Ð° Ð´Ð»Ñ ÐµÑÐ»Ð¸ Ð¸ Ð¸Ð»Ð¸ Ð¸Ð½Ð°Ñ‡Ðµ Ð¸Ð½Ð°Ñ‡ÐµÐµÑÐ»Ð¸ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð½ÐµÑ†ÐµÑÐ»Ð¸ ÐºÐ¾Ð½ÐµÑ†Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ¸ ÐºÐ¾Ð½ÐµÑ†Ð¿Ñ€Ð¾Ñ†ÐµÐ´ÑƒÑ€Ñ‹ ÐºÐ¾Ð½ÐµÑ†Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ¾Ð½ÐµÑ†Ñ†Ð¸ÐºÐ»Ð° ÐºÐ¾Ð½ÑÑ‚Ð°Ð½Ñ‚Ð° Ð½Ðµ Ð¿ÐµÑ€ÐµÐ¹Ñ‚Ð¸ Ð¿ÐµÑ€ÐµÐ¼ Ð¿ÐµÑ€ÐµÑ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾ÐºÐ° Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð¿Ñ€ÐµÑ€Ð²Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¾Ñ†ÐµÐ´ÑƒÑ€Ð° ÑÑ‚Ñ€Ð¾ÐºÐ° Ñ‚Ð¾Ð³Ð´Ð° Ñ„Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ñ†Ð¸ÐºÐ» Ñ‡Ð¸ÑÐ»Ð¾ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚"; var e = "ansitooem oemtoansi Ð²Ð²ÐµÑÑ‚Ð¸Ð²Ð¸Ð´ÑÑƒÐ±ÐºÐ¾Ð½Ñ‚Ð¾ Ð²Ð²ÐµÑÑ‚Ð¸Ð´Ð°Ñ‚Ñƒ Ð²Ð²ÐµÑÑ‚Ð¸Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²Ð²ÐµÑÑ‚Ð¸Ð¿ÐµÑ€ÐµÑ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ðµ Ð²Ð²ÐµÑÑ‚Ð¸Ð¿ÐµÑ€Ð¸Ð¾Ð´ Ð²Ð²ÐµÑÑ‚Ð¸Ð¿Ð»Ð°Ð½ÑÑ‡ÐµÑ‚Ð¾Ð² Ð²Ð²ÐµÑÑ‚Ð¸ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð²Ð²ÐµÑÑ‚Ð¸Ñ‡Ð¸ÑÐ»Ð¾ Ð²Ð¾Ð¿Ñ€Ð¾Ñ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²Ñ€ÐµÐ³ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹Ð¿Ð»Ð°Ð½ÑÑ‡ÐµÑ‚Ð¾Ð² Ð²Ñ‹Ð·Ð²Ð°Ñ‚ÑŒÐ¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð´Ð°Ñ‚Ð°Ð³Ð¾Ð´ Ð´Ð°Ñ‚Ð°Ð¼ÐµÑÑÑ† Ð´Ð°Ñ‚Ð°Ñ‡Ð¸ÑÐ»Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒÐ¼ÐµÑÑÑ† Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚ÑŒÑ€Ð°Ð±Ð¾Ñ‚ÑƒÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾ÐºÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ Ð·Ð°Ð¿Ð¸ÑÑŒÐ¶ÑƒÑ€Ð½Ð°Ð»Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸ Ð·Ð°Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒÐ¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð·Ð°Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒÑ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ²ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ²ÑÑ‚Ñ€Ð¾ÐºÑƒÐ²Ð½ÑƒÑ‚Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ²Ñ„Ð°Ð¹Ð» Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ¸Ð·ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ¸Ð·ÑÑ‚Ñ€Ð¾ÐºÐ¸Ð²Ð½ÑƒÑ‚Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÐµÐ¸Ð·Ñ„Ð°Ð¹Ð»Ð° Ð¸Ð¼ÑÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ð° Ð¸Ð¼ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ…Ñ„Ð°Ð¹Ð»Ð¾Ð² ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð¸Ð± ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ ÐºÐ¾Ð´ÑÐ¸Ð¼Ð² ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ ÐºÐ¾Ð½Ð³Ð¾Ð´Ð° ÐºÐ¾Ð½ÐµÑ†Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð°Ð±Ð¸ ÐºÐ¾Ð½ÐµÑ†Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ð½Ð½Ð¾Ð³Ð¾Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð°Ð±Ð¸ ÐºÐ¾Ð½ÐµÑ†ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ð¾Ð³Ð¾Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð° ÐºÐ¾Ð½ÐºÐ²Ð°Ñ€Ñ‚Ð°Ð»Ð° ÐºÐ¾Ð½Ð¼ÐµÑÑÑ†Ð° ÐºÐ¾Ð½Ð½ÐµÐ´ÐµÐ»Ð¸ Ð»ÐµÐ² Ð»Ð¾Ð³ Ð»Ð¾Ð³10 Ð¼Ð°ÐºÑ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾ÐµÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ÑÑƒÐ±ÐºÐ¾Ð½Ñ‚Ð¾ Ð¼Ð¸Ð½ Ð¼Ð¾Ð½Ð¾Ð¿Ð¾Ð»ÑŒÐ½Ñ‹Ð¹Ñ€ÐµÐ¶Ð¸Ð¼ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÐµÐ¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ° Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÐµÐ½Ð°Ð±Ð¾Ñ€Ð°Ð¿Ñ€Ð°Ð² Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒÐ²Ð¸Ð´ Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒÑÑ‡ÐµÑ‚ Ð½Ð°Ð¹Ñ‚Ð¸ Ð½Ð°Ð¹Ñ‚Ð¸Ð¿Ð¾Ð¼ÐµÑ‡ÐµÐ½Ð½Ñ‹ÐµÐ½Ð°ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¹Ñ‚Ð¸ÑÑÑ‹Ð»ÐºÐ¸ Ð½Ð°Ñ‡Ð°Ð»Ð¾Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð°Ð±Ð¸ Ð½Ð°Ñ‡Ð°Ð»Ð¾ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ð¾Ð³Ð¾Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð° Ð½Ð°Ñ‡Ð°Ñ‚ÑŒÑ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ Ð½Ð°Ñ‡Ð³Ð¾Ð´Ð° Ð½Ð°Ñ‡ÐºÐ²Ð°Ñ€Ñ‚Ð°Ð»Ð° Ð½Ð°Ñ‡Ð¼ÐµÑÑÑ†Ð° Ð½Ð°Ñ‡Ð½ÐµÐ´ÐµÐ»Ð¸ Ð½Ð¾Ð¼ÐµÑ€Ð´Ð½ÑÐ³Ð¾Ð´Ð° Ð½Ð¾Ð¼ÐµÑ€Ð´Ð½ÑÐ½ÐµÐ´ÐµÐ»Ð¸ Ð½Ð¾Ð¼ÐµÑ€Ð½ÐµÐ´ÐµÐ»Ð¸Ð³Ð¾Ð´Ð° Ð½Ñ€ÐµÐ³ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ñ Ð¾ÐºÑ€ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸ÐµÐ¾ÑˆÐ¸Ð±ÐºÐ¸ Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹Ð¶ÑƒÑ€Ð½Ð°Ð»Ñ€Ð°ÑÑ‡ÐµÑ‚Ð¾Ð² Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹Ð¿Ð»Ð°Ð½ÑÑ‡ÐµÑ‚Ð¾Ð² Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ÑÐ·Ñ‹Ðº Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒÑ„Ð¾Ñ€Ð¼Ñƒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒÑ„Ð¾Ñ€Ð¼ÑƒÐ¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾ Ð¾Ñ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒÑ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ Ð¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒÐ¾ÐºÐ½Ð¾ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹ Ð¿ÐµÑ€Ð¸Ð¾Ð´ÑÑ‚Ñ€ Ð¿Ð¾Ð»Ð½Ð¾ÐµÐ¸Ð¼ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ²Ñ€ÐµÐ¼ÑÑ‚Ð° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ´Ð°Ñ‚ÑƒÑ‚Ð° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‚Ð° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑÐ¾Ñ‚Ð±Ð¾Ñ€Ð° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽÑ‚Ð° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÐ¿ÑƒÑÑ‚Ð¾ÐµÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÑ‚Ð° Ð¿Ñ€Ð°Ð² Ð¿Ñ€Ð°Ð²Ð¾Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð¿Ñ€ÐµÐ´ÑƒÐ¿Ñ€ÐµÐ¶Ð´ÐµÐ½Ð¸Ðµ Ð¿Ñ€ÐµÑ„Ð¸ÐºÑÐ°Ð²Ñ‚Ð¾Ð½ÑƒÐ¼ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð¿ÑƒÑÑ‚Ð°ÑÑÑ‚Ñ€Ð¾ÐºÐ° Ð¿ÑƒÑÑ‚Ð¾ÐµÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‡Ð°ÑÐ´Ð°Ñ‚Ñ‚ÑŒÐ¿ÑƒÑÑ‚Ð¾ÐµÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‡Ð°ÑÐ´Ð°Ñ‚Ð° Ñ€Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ñ€Ð°Ð½Ð¸Ñ† Ñ€Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ñ€Ð¾Ðº Ñ€Ð°Ð·Ð¼ Ñ€Ð°Ð·Ð¾Ð±Ñ€Ð°Ñ‚ÑŒÐ¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽÐ´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð° Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒÑ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ñ‹Ð½Ð° Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒÑ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ñ‹Ð¿Ð¾ ÑÐ¸Ð³Ð½Ð°Ð» ÑÐ¸Ð¼Ð² ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‚Ð°Ð±ÑƒÐ»ÑÑ†Ð¸Ð¸ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒÐ¾Ð±ÑŠÐµÐºÑ‚ ÑÐ¾ÐºÑ€Ð» ÑÐ¾ÐºÑ€Ð»Ð¿ ÑÐ¾ÐºÑ€Ð¿ ÑÐ¾Ð¾Ð±Ñ‰Ð¸Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒÐ·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÑ€ÐµÐ´ ÑÑ‚Ð°Ñ‚ÑƒÑÐ²Ð¾Ð·Ð²Ñ€Ð°Ñ‚Ð° ÑÑ‚Ñ€Ð´Ð»Ð¸Ð½Ð° ÑÑ‚Ñ€Ð·Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ÑÑ‚Ñ€Ð¾Ðº ÑÑ‚Ñ€Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒÑÑ‚Ñ€Ð¾ÐºÑƒ  ÑÑ‚Ñ€Ñ‡Ð¸ÑÐ»Ð¾Ð²Ñ…Ð¾Ð¶Ð´ÐµÐ½Ð¸Ð¹ ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒÐ¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽÐ´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð° ÑÑ‡ÐµÑ‚Ð¿Ð¾ÐºÐ¾Ð´Ñƒ Ñ‚ÐµÐºÑƒÑ‰Ð°ÑÐ´Ð°Ñ‚Ð° Ñ‚ÐµÐºÑƒÑ‰ÐµÐµÐ²Ñ€ÐµÐ¼Ñ Ñ‚Ð¸Ð¿Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ñ‚Ð¸Ð¿Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑÑÑ‚Ñ€ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒÐ¾Ð±ÑŠÐµÐºÑ‚Ñ‹ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒÑ‚Ð°Ð½Ð° ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒÑ‚Ð°Ð¿Ð¾ Ñ„Ð¸ÐºÑÑˆÐ°Ð±Ð»Ð¾Ð½ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ñ†ÐµÐ» ÑˆÐ°Ð±Ð»Ð¾Ð½"; var a = { cN: "dquote", b: '""' }; var d = { cN: "string", b: '"', e: '"|$', c: [a] }; var g = { cN: "string", b: "\\|", e: '"|$', c: [a] }; return { cI: true, l: f, k: { keyword: c, built_in: e }, c: [b.CLCM, b.NM, d, g, { cN: "function", b: "(Ð¿Ñ€Ð¾Ñ†ÐµÐ´ÑƒÑ€Ð°|Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ)", e: "$", l: f, k: "Ð¿Ñ€Ð¾Ñ†ÐµÐ´ÑƒÑ€Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ", c: [b.inherit(b.TM, { b: f }), { cN: "tail", eW: true, c: [{ cN: "params", b: "\\(", e: "\\)", l: f, k: "Ð·Ð½Ð°Ñ‡", c: [d, g] }, { cN: "export", b: "ÑÐºÑÐ¿Ð¾Ñ€Ñ‚", eW: true, l: f, k: "ÑÐºÑÐ¿Ð¾Ñ€Ñ‚", c: [b.CLCM] }] }, b.CLCM] }, { cN: "preprocessor", b: "#", e: "$" }, { cN: "date", b: "'\\d{2}\\.\\d{2}\\.(\\d{2}|\\d{4})'" }] }; });
-hljs.registerLanguage("javascript", function (a) { return { aliases: ["js"], k: { keyword: "in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class", literal: "true false null undefined NaN Infinity", built_in: "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require" }, c: [{ cN: "pi", b: /^\s*('|")use strict('|")/, r: 10 }, a.ASM, a.QSM, a.CLCM, a.CBLCLM, a.CNM, { b: "(" + a.RSR + "|\\b(case|return|throw)\\b)\\s*", k: "return throw case", c: [a.CLCM, a.CBLCLM, a.REGEXP_MODE, { b: /</, e: />;/, r: 0, sL: "xml" }], r: 0 }, { cN: "function", bK: "function", e: /\{/, c: [a.inherit(a.TM, { b: /[A-Za-z$_][0-9A-Za-z$_]*/ }), { cN: "params", b: /\(/, e: /\)/, c: [a.CLCM, a.CBLCLM], i: /["'\(]/ }], i: /\[|%/ }, { b: /\$[(.]/ }, { b: "\\." + a.IR, r: 0 }] }; });
-hljs.registerLanguage("vbnet", function (a) { return { cI: true, k: { keyword: "addhandler addressof alias and andalso aggregate ansi as assembly auto binary by byref byval call case catch class compare const continue custom declare default delegate dim distinct do each equals else elseif end enum erase error event exit explicit finally for friend from function get global goto group handles if implements imports in inherits interface into is isfalse isnot istrue join key let lib like loop me mid mod module mustinherit mustoverride mybase myclass namespace narrowing new next not notinheritable notoverridable of off on operator option optional or order orelse overloads overridable overrides paramarray partial preserve private property protected public raiseevent readonly redim rem removehandler resume return select set shadows shared skip static step stop structure strict sub synclock take text then throw to try unicode until using when where while widening with withevents writeonly xor", built_in: "boolean byte cbool cbyte cchar cdate cdec cdbl char cint clng cobj csbyte cshort csng cstr ctype date decimal directcast double gettype getxmlnamespace iif integer long object sbyte short single string trycast typeof uinteger ulong ushort", literal: "true false nothing" }, i: "//|{|}|endif|gosub|variant|wend", c: [a.inherit(a.QSM, { c: [{ b: '""' }] }), { cN: "comment", b: "'", e: "$", rB: true, c: [{ cN: "xmlDocTag", b: "'''|<!--|-->" }, { cN: "xmlDocTag", b: "</?", e: ">" }] }, a.CNM, { cN: "preprocessor", b: "#", e: "$", k: "if else elseif end region externalsource" }] }; });
-hljs.registerLanguage("fsharp", function (a) { return { k: "abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield", c: [{ cN: "string", b: '@"', e: '"', c: [{ b: '""' }] }, { cN: "string", b: '"""', e: '"""' }, { cN: "comment", b: "\\(\\*", e: "\\*\\)" }, { cN: "class", bK: "type", e: "\\(|=|$", c: [a.UTM] }, { cN: "annotation", b: "\\[<", e: ">\\]" }, { cN: "attribute", b: "\\B('[A-Za-z])\\b", c: [a.BE] }, a.CLCM, a.inherit(a.QSM, { i: null }), a.CNM] }; });
-hljs.registerLanguage("matlab", function (a) { var b = [a.CNM, { cN: "string", b: "'", e: "'", c: [a.BE, { b: "''" }] }]; return { k: { keyword: "break case catch classdef continue else elseif end enumerated events for function global if methods otherwise parfor persistent properties return spmd switch try while", built_in: "sin sind sinh asin asind asinh cos cosd cosh acos acosd acosh tan tand tanh atan atand atan2 atanh sec secd sech asec asecd asech csc cscd csch acsc acscd acsch cot cotd coth acot acotd acoth hypot exp expm1 log log1p log10 log2 pow2 realpow reallog realsqrt sqrt nthroot nextpow2 abs angle complex conj imag real unwrap isreal cplxpair fix floor ceil round mod rem sign airy besselj bessely besselh besseli besselk beta betainc betaln ellipj ellipke erf erfc erfcx erfinv expint gamma gammainc gammaln psi legendre cross dot factor isprime primes gcd lcm rat rats perms nchoosek factorial cart2sph cart2pol pol2cart sph2cart hsv2rgb rgb2hsv zeros ones eye repmat rand randn linspace logspace freqspace meshgrid accumarray size length ndims numel disp isempty isequal isequalwithequalnans cat reshape diag blkdiag tril triu fliplr flipud flipdim rot90 find sub2ind ind2sub bsxfun ndgrid permute ipermute shiftdim circshift squeeze isscalar isvector ans eps realmax realmin pi i inf nan isnan isinf isfinite j why compan gallery hadamard hankel hilb invhilb magic pascal rosser toeplitz vander wilkinson" }, i: '(//|"|#|/\\*|\\s+/\\w+)', c: [{ cN: "function", bK: "function", e: "$", c: [a.UTM, { cN: "params", b: "\\(", e: "\\)" }, { cN: "params", b: "\\[", e: "\\]" }] }, { cN: "transposed_variable", b: "[a-zA-Z_][a-zA-Z_0-9]*('+[\\.']*|[\\.']+)", e: "", r: 0 }, { cN: "matrix", b: "\\[", e: "\\]'*[\\.']*", c: b, r: 0 }, { cN: "cell", b: "\\{", e: "\\}'*[\\.']*", c: b, i: /:/ }, { cN: "comment", b: "\\%", e: "$" }].concat(b) }; });
-hljs.registerLanguage("applescript", function (a) { var b = a.inherit(a.QSM, { i: "" }); var d = { cN: "params", b: "\\(", e: "\\)", c: ["self", a.CNM, b] }; var c = [{ cN: "comment", b: "--", e: "$" }, { cN: "comment", b: "\\(\\*", e: "\\*\\)", c: ["self", { b: "--", e: "$" }] }, a.HCM]; return { k: { keyword: "about above after against and around as at back before beginning behind below beneath beside between but by considering contain contains continue copy div does eighth else end equal equals error every exit fifth first for fourth from front get given global if ignoring in into is it its last local me middle mod my ninth not of on onto or over prop property put ref reference repeat returning script second set seventh since sixth some tell tenth that the then third through thru timeout times to transaction try until where while whose with without", constant: "AppleScript false linefeed return pi quote result space tab true", type: "alias application boolean class constant date file integer list number real record string text", command: "activate beep count delay launch log offset read round run say summarize write", property: "character characters contents day frontmost id item length month name paragraph paragraphs rest reverse running time version weekday word words year" }, c: [b, a.CNM, { cN: "type", b: "\\bPOSIX file\\b" }, { cN: "command", b: "\\b(clipboard info|the clipboard|info for|list (disks|folder)|mount volume|path to|(close|open for) access|(get|set) eof|current date|do shell script|get volume settings|random number|set volume|system attribute|system info|time to GMT|(load|run|store) script|scripting components|ASCII (character|number)|localized string|choose (application|color|file|file name|folder|from list|remote application|URL)|display (alert|dialog))\\b|^\\s*return\\b" }, { cN: "constant", b: "\\b(text item delimiters|current application|missing value)\\b" }, { cN: "keyword", b: "\\b(apart from|aside from|instead of|out of|greater than|isn't|(doesn't|does not) (equal|come before|come after|contain)|(greater|less) than( or equal)?|(starts?|ends|begins?) with|contained by|comes (before|after)|a (ref|reference))\\b" }, { cN: "property", b: "\\b(POSIX path|(date|time) string|quoted form)\\b" }, { cN: "function_start", bK: "on", i: "[${=;\\n]", c: [a.UTM, d] }].concat(c), i: "//" }; });
-hljs.registerLanguage("delphi", function (b) { var a = "exports register file shl array record property for mod while set ally label uses raise not stored class safecall var interface or private static exit index inherited to else stdcall override shr asm far resourcestring finalization packed virtual out and protected library do xorwrite goto near function end div overload object unit begin string on inline repeat until destructor write message program with read initialization except default nil if case cdecl in downto threadvar of try pascal const external constructor type public then implementation finally published procedure"; var e = { cN: "comment", v: [{ b: /\{/, e: /\}/, r: 0 }, { b: /\(\*/, e: /\*\)/, r: 10 }] }; var c = { cN: "string", b: /'/, e: /'/, c: [{ b: /''/ }] }; var d = { cN: "string", b: /(#\d+)+/ }; var f = { b: b.IR + "\\s*=\\s*class\\s*\\(", rB: true, c: [b.TM] }; var g = { cN: "function", bK: "function constructor destructor procedure", e: /[:;]/, k: "function constructor|10 destructor|10 procedure|10", c: [b.TM, { cN: "params", b: /\(/, e: /\)/, k: a, c: [c, d] }, e] }; return { cI: true, k: a, i: /("|\$[G-Zg-z]|\/\*|<\/)/, c: [e, b.CLCM, c, d, b.NM, f, g] }; });
-hljs.registerLanguage("cpp", function (a) { var b = { keyword: "false int float while private char catch export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace unsigned long throw volatile static protected bool template mutable if public friend do return goto auto void enum else break new extern using true class asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue wchar_t inline delete alignof char16_t char32_t constexpr decltype noexcept nullptr static_assert thread_local restrict _Bool complex _Complex _Imaginary", built_in: "std string cin cout cerr clog stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf" }; return { aliases: ["c"], k: b, i: "</", c: [a.CLCM, a.CBLCLM, a.QSM, { cN: "string", b: "'\\\\?.", e: "'", i: "." }, { cN: "number", b: "\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)" }, a.CNM, { cN: "preprocessor", b: "#", e: "$", c: [{ b: "include\\s*<", e: ">", i: "\\n" }, a.CLCM] }, { cN: "stl_container", b: "\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<", e: ">", k: b, r: 10, c: ["self"] }] }; });
-hljs.registerLanguage("json", function (a) { var e = { literal: "true false null" }; var d = [a.QSM, a.CNM]; var c = { cN: "value", e: ", ", eW: true, eE: true, c: d, k: e }; var b = { b: "{", e: "}", c: [{ cN: "attribute", b: '\\s*"', e: '"\\s*:\\s*', eB: true, eE: true, c: [a.BE], i: "\\n", starts: c }], i: "\\S" }; var f = { b: "\\[", e: "\\]", c: [a.inherit(c, { cN: null })], i: "\\S" }; d.splice(d.length, 0, b, f); return { c: d, k: e, i: "\\S" }; });
-hljs.registerLanguage("perl", function (c) { var d = "getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when"; var f = { cN: "subst", b: "[$@]\\{", e: "\\}", k: d }; var g = { b: "->{", e: "}" }; var a = { cN: "variable", v: [{ b: /\$\d/ }, { b: /[\$\%\@\*](\^\w\b|#\w+(\:\:\w+)*|{\w+}|\w+(\:\:\w*)*)/ }, { b: /[\$\%\@\*][^\s\w{]/, r: 0 }] }; var e = { cN: "comment", b: "^(__END__|__DATA__)", e: "\\n$", r: 5 }; var h = [c.BE, f, a]; var b = [a, c.HCM, e, { cN: "comment", b: "^\\=\\w", e: "\\=cut", eW: true }, g, { cN: "string", c: h, v: [{ b: "q[qwxr]?\\s*\\(", e: "\\)", r: 5 }, { b: "q[qwxr]?\\s*\\[", e: "\\]", r: 5 }, { b: "q[qwxr]?\\s*\\{", e: "\\}", r: 5 }, { b: "q[qwxr]?\\s*\\|", e: "\\|", r: 5 }, { b: "q[qwxr]?\\s*\\<", e: "\\>", r: 5 }, { b: "qw\\s+q", e: "q", r: 5 }, { b: "'", e: "'", c: [c.BE] }, { b: '"', e: '"' }, { b: "`", e: "`", c: [c.BE] }, { b: "{\\w+}", c: [], r: 0 }, { b: "-?\\w+\\s*\\=\\>", c: [], r: 0 }] }, { cN: "number", b: "(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b", r: 0 }, { b: "(\\/\\/|" + c.RSR + "|\\b(split|return|print|reverse|grep)\\b)\\s*", k: "split return print reverse grep", r: 0, c: [c.HCM, e, { cN: "regexp", b: "(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*", r: 10 }, { cN: "regexp", b: "(m|qr)?/", e: "/[a-z]*", c: [c.BE], r: 0 }] }, { cN: "sub", bK: "sub", e: "(\\s*\\(.*?\\))?[;{]", r: 5 }, { cN: "operator", b: "-\\w\\b", r: 0 }]; f.c = b; g.c = b; return { k: d, c: b }; });
-hljs.registerLanguage("markdown", function (a) { return { c: [{ cN: "header", v: [{ b: "^#{1,6}", e: "$" }, { b: "^.+?\\n[=-]{2,}$" }] }, { b: "<", e: ">", sL: "xml", r: 0 }, { cN: "bullet", b: "^([*+-]|(\\d+\\.))\\s+" }, { cN: "strong", b: "[*_]{2}.+?[*_]{2}" }, { cN: "emphasis", v: [{ b: "\\*.+?\\*" }, { b: "_.+?_", r: 0 }] }, { cN: "blockquote", b: "^>\\s+", e: "$" }, { cN: "code", v: [{ b: "`.+?`" }, { b: "^( {4}|\t)", e: "$", r: 0 }] }, { cN: "horizontal_rule", b: "^[-\\*]{3,}", e: "$" }, { b: "\\[.+?\\][\\(\\[].+?[\\)\\]]", rB: true, c: [{ cN: "link_label", b: "\\[", e: "\\]", eB: true, rE: true, r: 0 }, { cN: "link_url", b: "\\]\\(", e: "\\)", eB: true, eE: true }, { cN: "link_reference", b: "\\]\\[", e: "\\]", eB: true, eE: true }], r: 10 }, { b: "^\\[.+\\]:", e: "$", rB: true, c: [{ cN: "link_reference", b: "\\[", e: "\\]", eB: true, eE: true }, { cN: "link_url", b: "\\s", e: "$" }] }] }; });
-hljs.registerLanguage("ocaml", function (a) { return { k: { keyword: "and as assert asr begin class constraint do done downto else end exception external false for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new object of open or private rec ref sig struct then to true try type val virtual when while with parser value", built_in: "bool char float int list unit array exn option int32 int64 nativeint format4 format6 lazy_t in_channel out_channel string" }, i: /\/\//, c: [{ cN: "string", b: '"""', e: '"""' }, { cN: "comment", b: "\\(\\*", e: "\\*\\)", c: ["self"] }, { cN: "class", bK: "type", e: "\\(|=|$", c: [a.UTM] }, { cN: "annotation", b: "\\[<", e: ">\\]" }, a.CBLCLM, a.inherit(a.ASM, { i: null }), a.inherit(a.QSM, { i: null }), a.CNM] }; });
-hljs.registerLanguage("d", function (x) { var b = { keyword: "abstract alias align asm assert auto body break byte case cast catch class const continue debug default delete deprecated do else enum export extern final finally for foreach foreach_reverse|10 goto if immutable import in inout int interface invariant is lazy macro mixin module new nothrow out override package pragma private protected public pure ref return scope shared static struct super switch synchronized template this throw try typedef typeid typeof union unittest version void volatile while with __FILE__ __LINE__ __gshared|10 __thread __traits __DATE__ __EOF__ __TIME__ __TIMESTAMP__ __VENDOR__ __VERSION__", built_in: "bool cdouble cent cfloat char creal dchar delegate double dstring float function idouble ifloat ireal long real short string ubyte ucent uint ulong ushort wchar wstring", literal: "false null true" }; var c = "(0|[1-9][\\d_]*)", q = "(0|[1-9][\\d_]*|\\d[\\d_]*|[\\d_]+?\\d)", h = "0[bB][01_]+", v = "([\\da-fA-F][\\da-fA-F_]*|_[\\da-fA-F][\\da-fA-F_]*)", y = "0[xX]" + v, p = "([eE][+-]?" + q + ")", o = "(" + q + "(\\.\\d*|" + p + ")|\\d+\\." + q + q + "|\\." + c + p + "?)", k = "(0[xX](" + v + "\\." + v + "|\\.?" + v + ")[pP][+-]?" + q + ")", l = "(" + c + "|" + h + "|" + y + ")", n = "(" + k + "|" + o + ")"; var z = "\\\\(['\"\\?\\\\abfnrtv]|u[\\dA-Fa-f]{4}|[0-7]{1,3}|x[\\dA-Fa-f]{2}|U[\\dA-Fa-f]{8})|&[a-zA-Z\\d]{2,};"; var m = { cN: "number", b: "\\b" + l + "(L|u|U|Lu|LU|uL|UL)?", r: 0 }; var j = { cN: "number", b: "\\b(" + n + "([fF]|L|i|[fF]i|Li)?|" + l + "(i|[fF]i|Li))", r: 0 }; var s = { cN: "string", b: "'(" + z + "|.)", e: "'", i: "." }; var r = { b: z, r: 0 }; var w = { cN: "string", b: '"', c: [r], e: '"[cwd]?' }; var f = { cN: "string", b: '[rq]"', e: '"[cwd]?', r: 5 }; var u = { cN: "string", b: "`", e: "`[cwd]?" }; var i = { cN: "string", b: 'x"[\\da-fA-F\\s\\n\\r]*"[cwd]?', r: 10 }; var t = { cN: "string", b: 'q"\\{', e: '\\}"' }; var e = { cN: "shebang", b: "^#!", e: "$", r: 5 }; var g = { cN: "preprocessor", b: "#(line)", e: "$", r: 5 }; var d = { cN: "keyword", b: "@[a-zA-Z_][a-zA-Z_\\d]*" }; var a = { cN: "comment", b: "\\/\\+", c: ["self"], e: "\\+\\/", r: 10 }; return { l: x.UIR, k: b, c: [x.CLCM, x.CBLCLM, a, i, w, f, u, t, j, m, s, e, g, d] }; });
-hljs.registerLanguage("coffeescript", function (c) { var b = { keyword: "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super then unless until loop of by when and or is isnt not", literal: "true false null undefined yes no on off", reserved: "case default function var void with const let enum export import native __hasProp __extends __slice __bind __indexOf", built_in: "npm require console print module exports global window document" }; var a = "[A-Za-z$_][0-9A-Za-z$_]*"; var f = c.inherit(c.TM, { b: a }); var e = { cN: "subst", b: /#\{/, e: /}/, k: b }; var d = [c.BNM, c.inherit(c.CNM, { starts: { e: "(\\s*/)?", r: 0 } }), { cN: "string", v: [{ b: /'''/, e: /'''/, c: [c.BE] }, { b: /'/, e: /'/, c: [c.BE] }, { b: /"""/, e: /"""/, c: [c.BE, e] }, { b: /"/, e: /"/, c: [c.BE, e] }] }, { cN: "regexp", v: [{ b: "///", e: "///", c: [e, c.HCM] }, { b: "//[gim]*", r: 0 }, { b: "/\\S(\\\\.|[^\\n])*?/[gim]*(?=\\s|\\W|$)" }] }, { cN: "property", b: "@" + a }, { b: "`", e: "`", eB: true, eE: true, sL: "javascript" }]; e.c = d; return { k: b, c: d.concat([{ cN: "comment", b: "###", e: "###" }, c.HCM, { cN: "function", b: "(" + a + "\\s*=\\s*)?(\\(.*\\))?\\s*\\B[-=]>", e: "[-=]>", rB: true, c: [f, { cN: "params", b: "\\(", rB: true, c: [{ b: /\(/, e: /\)/, k: b, c: ["self"].concat(d) }] }] }, { cN: "class", bK: "class", e: "$", i: /[:="\[\]]/, c: [{ bK: "extends", eW: true, i: /[:="\[\]]/, c: [f] }, f] }, { cN: "attribute", b: a + ":", e: ":", rB: true, eE: true, r: 0 }]) }; });
-hljs.registerLanguage("lua", function (b) { var a = "\\[=*\\["; var e = "\\]=*\\]"; var c = { b: a, e: e, c: ["self"] }; var d = [{ cN: "comment", b: "--(?!" + a + ")", e: "$" }, { cN: "comment", b: "--" + a, e: e, c: [c], r: 10 }]; return { l: b.UIR, k: { keyword: "and break do else elseif end false for if in local nil not or repeat return then true until while", built_in: "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table" }, c: d.concat([{ cN: "function", bK: "function", e: "\\)", c: [b.inherit(b.TM, { b: "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*" }), { cN: "params", b: "\\(", eW: true, c: d }].concat(d) }, b.CNM, b.ASM, b.QSM, { cN: "string", b: a, e: e, c: [c], r: 10 }]) }; });
-hljs.registerLanguage("makefile", function (a) { var b = { cN: "variable", b: /\$\(/, e: /\)/, c: [a.BE] }; return { c: [a.HCM, { b: /^\w+\s*\W*=/, rB: true, r: 0, starts: { cN: "constant", e: /\s*\W*=/, eE: true, starts: { e: /$/, r: 0, c: [b] } } }, { cN: "title", b: /^[\w]+:\s*$/ }, { cN: "phony", b: /^\.PHONY:/, e: /$/, k: ".PHONY", l: /[\.\w]+/ }, { b: /^\t+/, e: /$/, c: [a.QSM, b] }] }; });
-=======
 hljs.registerLanguage("1c", function (b) { var f = "[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*"; var c = "возврат дата для если и или иначе иначеесли исключение конецесли конецпопытки конецпроцедуры конецфункции конеццикла константа не перейти перем перечисление по пока попытка прервать продолжить процедура строка тогда фс функция цикл число экспорт"; var e = "ansitooem oemtoansi ввестивидсубконто ввестидату ввестизначение ввестиперечисление ввестипериод ввестиплансчетов ввестистроку ввестичисло вопрос восстановитьзначение врег выбранныйплансчетов вызватьисключение датагод датамесяц датачисло добавитьмесяц завершитьработусистемы заголовоксистемы записьжурналарегистрации запуститьприложение зафиксироватьтранзакцию значениевстроку значениевстрокувнутр значениевфайл значениеизстроки значениеизстрокивнутр значениеизфайла имякомпьютера имяпользователя каталогвременныхфайлов каталогиб каталогпользователя каталогпрограммы кодсимв командасистемы конгода конецпериодаби конецрассчитанногопериодаби конецстандартногоинтервала конквартала конмесяца коннедели лев лог лог10 макс максимальноеколичествосубконто мин монопольныйрежим названиеинтерфейса названиенабораправ назначитьвид назначитьсчет найти найтипомеченныенаудаление найтиссылки началопериодаби началостандартногоинтервала начатьтранзакцию начгода начквартала начмесяца начнедели номерднягода номерднянедели номернеделигода нрег обработкаожидания окр описаниеошибки основнойжурналрасчетов основнойплансчетов основнойязык открытьформу открытьформумодально отменитьтранзакцию очиститьокносообщений периодстр полноеимяпользователя получитьвремята получитьдатута получитьдокументта получитьзначенияотбора получитьпозициюта получитьпустоезначение получитьта прав праводоступа предупреждение префиксавтонумерации пустаястрока пустоезначение рабочаядаттьпустоезначение рабочаядата разделительстраниц разделительстрок разм разобратьпозициюдокумента рассчитатьрегистрына рассчитатьрегистрыпо сигнал симв символтабуляции создатьобъект сокрл сокрлп сокрп сообщить состояние сохранитьзначение сред статусвозврата стрдлина стрзаменить стрколичествострок стрполучитьстроку  стрчисловхождений сформироватьпозициюдокумента счетпокоду текущаядата текущеевремя типзначения типзначениястр удалитьобъекты установитьтана установитьтапо фиксшаблон формат цел шаблон"; var a = { cN: "dquote", b: '""' }; var d = { cN: "string", b: '"', e: '"|$', c: [a] }; var g = { cN: "string", b: "\\|", e: '"|$', c: [a] }; return { cI: true, l: f, k: { keyword: c, built_in: e }, c: [b.CLCM, b.NM, d, g, { cN: "function", b: "(процедура|функция)", e: "$", l: f, k: "процедура функция", c: [b.inherit(b.TM, { b: f }), { cN: "tail", eW: true, c: [{ cN: "params", b: "\\(", e: "\\)", l: f, k: "знач", c: [d, g] }, { cN: "export", b: "экспорт", eW: true, l: f, k: "экспорт", c: [b.CLCM] }] }, b.CLCM] }, { cN: "preprocessor", b: "#", e: "$" }, { cN: "date", b: "'\\d{2}\\.\\d{2}\\.(\\d{2}|\\d{4})'" }] }; });
 hljs.registerLanguage("javascript", function (a) { return { aliases: ["js"], k: { keyword: "in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class", literal: "true false null undefined NaN Infinity", built_in: "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require" }, c: [{ cN: "pi", b: /^\s*('|")use strict('|")/, r: 10 }, a.ASM, a.QSM, a.CLCM, a.CBLCLM, a.CNM, { b: "(" + a.RSR + "|\\b(case|return|throw)\\b)\\s*", k: "return throw case", c: [a.CLCM, a.CBLCLM, a.REGEXP_MODE, { b: /</, e: />;/, r: 0, sL: "xml" }], r: 0 }, { cN: "function", bK: "function", e: /\{/, c: [a.inherit(a.TM, { b: /[A-Za-z$_][0-9A-Za-z$_]*/ }), { cN: "params", b: /\(/, e: /\)/, c: [a.CLCM, a.CBLCLM], i: /["'\(]/ }], i: /\[|%/ }, { b: /\$[(.]/ }, { b: "\\." + a.IR, r: 0 }] }; });
 hljs.registerLanguage("vbnet", function (a) { return { cI: true, k: { keyword: "addhandler addressof alias and andalso aggregate ansi as assembly auto binary by byref byval call case catch class compare const continue custom declare default delegate dim distinct do each equals else elseif end enum erase error event exit explicit finally for friend from function get global goto group handles if implements imports in inherits interface into is isfalse isnot istrue join key let lib like loop me mid mod module mustinherit mustoverride mybase myclass namespace narrowing new next not notinheritable notoverridable of off on operator option optional or order orelse overloads overridable overrides paramarray partial preserve private property protected public raiseevent readonly redim rem removehandler resume return select set shadows shared skip static step stop structure strict sub synclock take text then throw to try unicode until using when where while widening with withevents writeonly xor", built_in: "boolean byte cbool cbyte cchar cdate cdec cdbl char cint clng cobj csbyte cshort csng cstr ctype date decimal directcast double gettype getxmlnamespace iif integer long object sbyte short single string trycast typeof uinteger ulong ushort", literal: "true false nothing" }, i: "//|{|}|endif|gosub|variant|wend", c: [a.inherit(a.QSM, { c: [{ b: '""' }] }), { cN: "comment", b: "'", e: "$", rB: true, c: [{ cN: "xmlDocTag", b: "'''|<!--|-->" }, { cN: "xmlDocTag", b: "</?", e: ">" },] }, a.CNM, { cN: "preprocessor", b: "#", e: "$", k: "if else elseif end region externalsource" },] }; });
@@ -13921,7 +11166,6 @@ hljs.registerLanguage("d", function (x) { var b = { keyword: "abstract alias ali
 hljs.registerLanguage("coffeescript", function (c) { var b = { keyword: "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super then unless until loop of by when and or is isnt not", literal: "true false null undefined yes no on off", reserved: "case default function var void with const let enum export import native __hasProp __extends __slice __bind __indexOf", built_in: "npm require console print module exports global window document" }; var a = "[A-Za-z$_][0-9A-Za-z$_]*"; var f = c.inherit(c.TM, { b: a }); var e = { cN: "subst", b: /#\{/, e: /}/, k: b }; var d = [c.BNM, c.inherit(c.CNM, { starts: { e: "(\\s*/)?", r: 0 } }), { cN: "string", v: [{ b: /'''/, e: /'''/, c: [c.BE] }, { b: /'/, e: /'/, c: [c.BE] }, { b: /"""/, e: /"""/, c: [c.BE, e] }, { b: /"/, e: /"/, c: [c.BE, e] }] }, { cN: "regexp", v: [{ b: "///", e: "///", c: [e, c.HCM] }, { b: "//[gim]*", r: 0 }, { b: "/\\S(\\\\.|[^\\n])*?/[gim]*(?=\\s|\\W|$)" }] }, { cN: "property", b: "@" + a }, { b: "`", e: "`", eB: true, eE: true, sL: "javascript" }]; e.c = d; return { k: b, c: d.concat([{ cN: "comment", b: "###", e: "###" }, c.HCM, { cN: "function", b: "(" + a + "\\s*=\\s*)?(\\(.*\\))?\\s*\\B[-=]>", e: "[-=]>", rB: true, c: [f, { cN: "params", b: "\\(", rB: true, c: [{ b: /\(/, e: /\)/, k: b, c: ["self"].concat(d) }] }] }, { cN: "class", bK: "class", e: "$", i: /[:="\[\]]/, c: [{ bK: "extends", eW: true, i: /[:="\[\]]/, c: [f] }, f] }, { cN: "attribute", b: a + ":", e: ":", rB: true, eE: true, r: 0 }]) }; });
 hljs.registerLanguage("lua", function (b) { var a = "\\[=*\\["; var e = "\\]=*\\]"; var c = { b: a, e: e, c: ["self"] }; var d = [{ cN: "comment", b: "--(?!" + a + ")", e: "$" }, { cN: "comment", b: "--" + a, e: e, c: [c], r: 10 }]; return { l: b.UIR, k: { keyword: "and break do else elseif end false for if in local nil not or repeat return then true until while", built_in: "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table" }, c: d.concat([{ cN: "function", bK: "function", e: "\\)", c: [b.inherit(b.TM, { b: "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*" }), { cN: "params", b: "\\(", eW: true, c: d }].concat(d) }, b.CNM, b.ASM, b.QSM, { cN: "string", b: a, e: e, c: [c], r: 10 }]) }; });
 hljs.registerLanguage("makefile", function (a) { var b = { cN: "variable", b: /\$\(/, e: /\)/, c: [a.BE] }; return { c: [a.HCM, { b: /^\w+\s*\W*=/, rB: true, r: 0, starts: { cN: "constant", e: /\s*\W*=/, eE: true, starts: { e: /$/, r: 0, c: [b], } } }, { cN: "title", b: /^[\w]+:\s*$/ }, { cN: "phony", b: /^\.PHONY:/, e: /$/, k: ".PHONY", l: /[\.\w]+/ }, { b: /^\t+/, e: /$/, c: [a.QSM, b] }] }; });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 hljs.registerLanguage("rsl", function (a) { return { k: { keyword: "float color point normal vector matrix while for if do return else break extern continue", built_in: "abs acos ambient area asin atan atmosphere attribute calculatenormal ceil cellnoise clamp comp concat cos degrees depth Deriv diffuse distance Du Dv environment exp faceforward filterstep floor format fresnel incident length lightsource log match max min mod noise normalize ntransform opposite option phong pnoise pow printf ptlined radians random reflect refract renderinfo round setcomp setxcomp setycomp setzcomp shadow sign sin smoothstep specular specularbrdf spline sqrt step tan texture textureinfo trace transform vtransform xcomp ycomp zcomp" }, i: "</", c: [a.CLCM, a.CBLCLM, a.QSM, a.ASM, a.CNM, { cN: "preprocessor", b: "#", e: "$" }, { cN: "shader", bK: "surface displacement light volume imager", e: "\\(" }, { cN: "shading", bK: "illuminate illuminance gather", e: "\\(" }] }; });
 hljs.registerLanguage("vbscript", function (a) { return { cI: true, k: { keyword: "call class const dim do loop erase execute executeglobal exit for each next function if then else on error option explicit new private property let get public randomize redim rem select case set stop sub while wend with end to elseif is or xor and not class_initialize class_terminate default preserve in me byval byref step resume goto", built_in: "lcase month vartype instrrev ubound setlocale getobject rgb getref string weekdayname rnd dateadd monthname now day minute isarray cbool round formatcurrency conversions csng timevalue second year space abs clng timeserial fixs len asc isempty maths dateserial atn timer isobject filter weekday datevalue ccur isdate instr datediff formatdatetime replace isnull right sgn array snumeric log cdbl hex chr lbound msgbox ucase getlocale cos cdate cbyte rtrim join hour oct typename trim strcomp int createobject loadpicture tan formatnumber mid scriptenginebuildversion scriptengine split scriptengineminorversion cint sin datepart ltrim sqr scriptenginemajorversion time derived eval date formatpercent exp inputbox left ascw chrw regexp server response request cstr err", literal: "true false null nothing empty" }, i: "//", c: [a.inherit(a.QSM, { c: [{ b: '""' }] }), { cN: "comment", b: /'/, e: /$/, r: 0 }, a.CNM] }; });
 hljs.registerLanguage("go", function (a) { var b = { keyword: "break default func interface select case map struct chan else goto package switch const fallthrough if range type continue for import return var go defer", constant: "true false iota nil", typename: "bool byte complex64 complex128 float32 float64 int8 int16 int32 int64 string uint8 uint16 uint32 uint64 int uint uintptr rune", built_in: "append cap close complex copy imag len make new panic print println real recover delete" }; return { aliases: ["golang"], k: b, i: "</", c: [a.CLCM, a.CBLCLM, a.QSM, { cN: "string", b: "'", e: "[^\\\\]'" }, { cN: "string", b: "`", e: "`" }, { cN: "number", b: "[^a-zA-Z_0-9](\\-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s)(\\+|\\-)?\\d+)?", r: 0 }, a.CNM] }; });
@@ -13933,11 +11177,7 @@ hljs.registerLanguage("mizar", function (a) { return { k: ["environ vocabularies
 hljs.registerLanguage("lasso", function (d) { var b = "[a-zA-Z_][a-zA-Z0-9_.]*"; var i = "<\\?(lasso(script)?|=)"; var c = "\\]|\\?>"; var g = { literal: "true false none minimal full all void and or not bw nbw ew new cn ncn lt lte gt gte eq neq rx nrx ft", built_in: "array date decimal duration integer map pair string tag xml null bytes list queue set stack staticarray tie local var variable global data self inherited", keyword: "error_code error_msg error_pop error_push error_reset cache database_names database_schemanames database_tablenames define_tag define_type email_batch encode_set html_comment handle handle_error header if inline iterate ljax_target link link_currentaction link_currentgroup link_currentrecord link_detail link_firstgroup link_firstrecord link_lastgroup link_lastrecord link_nextgroup link_nextrecord link_prevgroup link_prevrecord log loop namespace_using output_none portal private protect records referer referrer repeating resultset rows search_args search_arguments select sort_args sort_arguments thread_atomic value_list while abort case else if_empty if_false if_null if_true loop_abort loop_continue loop_count params params_up return return_value run_children soap_definetag soap_lastrequest soap_lastresponse tag_name ascending average by define descending do equals frozen group handle_failure import in into join let match max min on order parent protected provide public require returnhome skip split_thread sum take thread to trait type where with yield yieldhome" }; var a = { cN: "comment", b: "<!--", e: "-->", r: 0 }; var j = { cN: "preprocessor", b: "\\[noprocess\\]", starts: { cN: "markup", e: "\\[/noprocess\\]", rE: true, c: [a] } }; var e = { cN: "preprocessor", b: "\\[/noprocess|" + i }; var h = { cN: "variable", b: "'" + b + "'" }; var f = [d.CLCM, { cN: "javadoc", b: "/\\*\\*!", e: "\\*/" }, d.CBLCLM, d.inherit(d.CNM, { b: d.CNR + "|-?(infinity|nan)\\b" }), d.inherit(d.ASM, { i: null }), d.inherit(d.QSM, { i: null }), { cN: "string", b: "`", e: "`" }, { cN: "variable", v: [{ b: "[#$]" + b }, { b: "#", e: "\\d+", i: "\\W" }] }, { cN: "tag", b: "::\\s*", e: b, i: "\\W" }, { cN: "attribute", b: "\\.\\.\\.|-" + d.UIR }, { cN: "subst", v: [{ b: "->\\s*", c: [h] }, { b: ":=|/(?!\\w)=?|[-+*%=<>&|!?\\\\]+", r: 0 }] }, { cN: "built_in", b: "\\.\\.?", r: 0, c: [h] }, { cN: "class", bK: "define", rE: true, e: "\\(|=>", c: [d.inherit(d.TM, { b: d.UIR + "(=(?!>))?" })] }]; return { aliases: ["ls", "lassoscript"], cI: true, l: b + "|&[lg]t;", k: g, c: [{ cN: "preprocessor", b: c, r: 0, starts: { cN: "markup", e: "\\[|" + i, rE: true, r: 0, c: [a] } }, j, e, { cN: "preprocessor", b: "\\[no_square_brackets", starts: { e: "\\[/no_square_brackets\\]", l: b + "|&[lg]t;", k: g, c: [{ cN: "preprocessor", b: c, r: 0, starts: { cN: "markup", e: i, rE: true, c: [a] } }, j, e].concat(f) } }, { cN: "preprocessor", b: "\\[", r: 0 }, { cN: "shebang", b: "^#!.+lasso9\\b", r: 10 }].concat(f) }; });
 hljs.registerLanguage("r", function (a) { var b = "([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*"; return { c: [a.HCM, { b: b, l: b, k: { keyword: "function if in break next repeat else for return switch while try tryCatch|10 stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ...|10", literal: "NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10" }, r: 0 }, { cN: "number", b: "0[xX][0-9a-fA-F]+[Li]?\\b", r: 0 }, { cN: "number", b: "\\d+(?:[eE][+\\-]?\\d*)?L\\b", r: 0 }, { cN: "number", b: "\\d+\\.(?!\\d)(?:i\\b)?", r: 0 }, { cN: "number", b: "\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b", r: 0 }, { cN: "number", b: "\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b", r: 0 }, { b: "`", e: "`", r: 0 }, { cN: "string", c: [a.BE], v: [{ b: '"', e: '"' }, { b: "'", e: "'" }] }] }; });
 hljs.registerLanguage("scala", function (a) { var c = { cN: "annotation", b: "@[A-Za-z]+" }; var b = { cN: "string", b: 'u?r?"""', e: '"""', r: 10 }; return { k: "type yield lazy override def with val var false true sealed abstract private trait object null if for while throw finally protected extends import final return else break new catch super class case package default try this match continue throws", c: [{ cN: "javadoc", b: "/\\*\\*", e: "\\*/", c: [{ cN: "javadoctag", b: "@[A-Za-z]+" }], r: 10 }, a.CLCM, a.CBLCLM, b, a.ASM, a.QSM, { cN: "class", b: "((case )?class |object |trait )", e: "({|$)", i: ":", k: "case class trait object", c: [{ bK: "extends with", r: 10 }, a.UTM, { cN: "params", b: "\\(", e: "\\)", c: [a.ASM, a.QSM, b, c] }] }, a.CNM, c] }; });
-<<<<<<< HEAD
-hljs.registerLanguage("livecodeserver", function (a) { var e = { cN: "variable", b: "\\b[gtps][A-Z]+[A-Za-z0-9_\\-]*\\b|\\$_[A-Z]+", r: 0 }; var b = { cN: "comment", e: "$", v: [a.CBLCLM, a.HCM, { b: "--" }, { b: "[^:]//" }] }; var d = a.inherit(a.TM, { v: [{ b: "\\b_*rig[A-Z]+[A-Za-z0-9_\\-]*" }, { b: "\\b_[a-z0-9\\-]+" }] }); var c = a.inherit(a.TM, { b: "\\b([A-Za-z0-9_\\-]+)\\b" }); return { cI: false, k: { keyword: "after byte bytes english the until http forever descending using line real8 with seventh for stdout finally element word fourth before black ninth sixth characters chars stderr uInt1 uInt1s uInt2 uInt2s stdin string lines relative rel any fifth items from middle mid at else of catch then third it file milliseconds seconds second secs sec int1 int1s int4 int4s internet int2 int2s normal text item last long detailed effective uInt4 uInt4s repeat end repeat URL in try into switch to words https token binfile each tenth as ticks tick system real4 by dateItems without char character ascending eighth whole dateTime numeric short first ftp integer abbreviated abbr abbrev private case while if", constant: "SIX TEN FORMFEED NINE ZERO NONE SPACE FOUR FALSE COLON CRLF PI COMMA ENDOFFILE EOF EIGHT FIVE QUOTE EMPTY ONE TRUE RETURN CR LINEFEED RIGHT BACKSLASH NULL SEVEN TAB THREE TWO six ten formfeed nine zero none space four false colon crlf pi comma endoffile eof eight five quote empty one true return cr linefeed right backslash null seven tab three two RIVERSION RISTATE FILE_READ_MODE FILE_WRITE_MODE FILE_WRITE_MODE DIR_WRITE_MODE FILE_READ_UMASK FILE_WRITE_UMASK DIR_READ_UMASK DIR_WRITE_UMASK", operator: "div mod wrap and or bitAnd bitNot bitOr bitXor among not in a an within contains ends with begins the keys of keys", built_in: "put abs acos aliasReference annuity arrayDecode arrayEncode asin atan atan2 average avg base64Decode base64Encode baseConvert binaryDecode binaryEncode byteToNum cachedURL cachedURLs charToNum cipherNames commandNames compound compress constantNames cos date dateFormat decompress directories diskSpace DNSServers exp exp1 exp2 exp10 extents files flushEvents folders format functionNames global globals hasMemory hostAddress hostAddressToName hostName hostNameToAddress isNumber ISOToMac itemOffset keys len length libURLErrorData libUrlFormData libURLftpCommand libURLLastHTTPHeaders libURLLastRHHeaders libUrlMultipartFormAddPart libUrlMultipartFormData libURLVersion lineOffset ln ln1 localNames log log2 log10 longFilePath lower macToISO matchChunk matchText matrixMultiply max md5Digest median merge millisec millisecs millisecond milliseconds min monthNames num number numToByte numToChar offset open openfiles openProcesses openProcessIDs openSockets paramCount param params peerAddress pendingMessages platform processID random randomBytes replaceText result revCreateXMLTree revCreateXMLTreeFromFile revCurrentRecord revCurrentRecordIsFirst revCurrentRecordIsLast revDatabaseColumnCount revDatabaseColumnIsNull revDatabaseColumnLengths revDatabaseColumnNames revDatabaseColumnNamed revDatabaseColumnNumbered revDatabaseColumnTypes revDatabaseConnectResult revDatabaseCursors revDatabaseID revDatabaseTableNames revDatabaseType revDataFromQuery revdb_closeCursor revdb_columnbynumber revdb_columncount revdb_columnisnull revdb_columnlengths revdb_columnnames revdb_columntypes revdb_commit revdb_connect revdb_connections revdb_connectionerr revdb_currentrecord revdb_cursorconnection revdb_cursorerr revdb_cursors revdb_dbtype revdb_disconnect revdb_execute revdb_iseof revdb_isbof revdb_movefirst revdb_movelast revdb_movenext revdb_moveprev revdb_query revdb_querylist revdb_recordcount revdb_rollback revdb_tablenames revGetDatabaseDriverPath revNumberOfRecords revOpenDatabase revOpenDatabases revQueryDatabase revQueryDatabaseBlob revQueryResult revQueryIsAtStart revQueryIsAtEnd revUnixFromMacPath revXMLAttribute revXMLAttributes revXMLAttributeValues revXMLChildContents revXMLChildNames revXMLFirstChild revXMLMatchingNode revXMLNextSibling revXMLNodeContents revXMLNumberOfChildren revXMLParent revXMLPreviousSibling revXMLRootNode revXMLRPC_CreateRequest revXMLRPC_Documents revXMLRPC_Error revXMLRPC_Execute revXMLRPC_GetHost revXMLRPC_GetMethod revXMLRPC_GetParam revXMLText revXMLRPC_GetParamCount revXMLRPC_GetParamNode revXMLRPC_GetParamType revXMLRPC_GetPath revXMLRPC_GetPort revXMLRPC_GetProtocol revXMLRPC_GetRequest revXMLRPC_GetResponse revXMLRPC_GetSocket revXMLTree revXMLTrees revXMLValidateDTD revZipDescribeItem revZipEnumerateItems revZipOpenArchives round sec secs seconds sha1Digest shell shortFilePath sin specialFolderPath sqrt standardDeviation statRound stdDev sum sysError systemVersion tan tempName tick ticks time to toLower toUpper transpose trunc uniDecode uniEncode upper URLDecode URLEncode URLStatus value variableNames version waitDepth weekdayNames wordOffset add breakpoint cancel clear local variable file word line folder directory URL close socket process combine constant convert create new alias folder directory decrypt delete variable word line folder directory URL dispatch divide do encrypt filter get include intersect kill libURLDownloadToFile libURLFollowHttpRedirects libURLftpUpload libURLftpUploadFile libURLresetAll libUrlSetAuthCallback libURLSetCustomHTTPHeaders libUrlSetExpect100 libURLSetFTPListCommand libURLSetFTPMode libURLSetFTPStopTime libURLSetStatusCallback load multiply socket process post seek rel relative read from process rename replace require resetAll revAddXMLNode revAppendXML revCloseCursor revCloseDatabase revCommitDatabase revCopyFile revCopyFolder revCopyXMLNode revDeleteFolder revDeleteXMLNode revDeleteAllXMLTrees revDeleteXMLTree revExecuteSQL revGoURL revInsertXMLNode revMoveFolder revMoveToFirstRecord revMoveToLastRecord revMoveToNextRecord revMoveToPreviousRecord revMoveToRecord revMoveXMLNode revPutIntoXMLNode revRollBackDatabase revSetDatabaseDriverPath revSetXMLAttribute revXMLRPC_AddParam revXMLRPC_DeleteAllDocuments revXMLAddDTD revXMLRPC_Free revXMLRPC_FreeAll revXMLRPC_DeleteDocument revXMLRPC_DeleteParam revXMLRPC_SetHost revXMLRPC_SetMethod revXMLRPC_SetPort revXMLRPC_SetProtocol revXMLRPC_SetSocket revZipAddItemWithData revZipAddItemWithFile revZipAddUncompressedItemWithData revZipAddUncompressedItemWithFile revZipCancel revZipCloseArchive revZipDeleteItem revZipExtractItemToFile revZipExtractItemToVariable revZipSetProgressCallback revZipRenameItem revZipReplaceItemWithData revZipReplaceItemWithFile revZipOpenArchive send set sort split subtract union unload wait write" }, c: [e, { cN: "keyword", b: "\\bend\\sif\\b" }, { cN: "function", bK: "function", e: "$", c: [e, c, a.ASM, a.QSM, a.BNM, a.CNM, d] }, { cN: "function", bK: "end", e: "$", c: [c, d] }, { cN: "command", bK: "command on", e: "$", c: [e, c, a.ASM, a.QSM, a.BNM, a.CNM, d] }, { cN: "command", bK: "end", e: "$", c: [c, d] }, { cN: "preprocessor", b: "<\\?rev|<\\?lc|<\\?livecode", r: 10 }, { cN: "preprocessor", b: "<\\?" }, { cN: "preprocessor", b: "\\?>" }, b, a.ASM, a.QSM, a.BNM, a.CNM, d], i: ";$|^\\[|^=" }; });
-=======
 hljs.registerLanguage("livecodeserver", function (a) { var e = { cN: "variable", b: "\\b[gtps][A-Z]+[A-Za-z0-9_\\-]*\\b|\\$_[A-Z]+", r: 0 }; var b = { cN: "comment", e: "$", v: [a.CBLCLM, a.HCM, { b: "--", }, { b: "[^:]//", }] }; var d = a.inherit(a.TM, { v: [{ b: "\\b_*rig[A-Z]+[A-Za-z0-9_\\-]*" }, { b: "\\b_[a-z0-9\\-]+" }] }); var c = a.inherit(a.TM, { b: "\\b([A-Za-z0-9_\\-]+)\\b" }); return { cI: false, k: { keyword: "after byte bytes english the until http forever descending using line real8 with seventh for stdout finally element word fourth before black ninth sixth characters chars stderr uInt1 uInt1s uInt2 uInt2s stdin string lines relative rel any fifth items from middle mid at else of catch then third it file milliseconds seconds second secs sec int1 int1s int4 int4s internet int2 int2s normal text item last long detailed effective uInt4 uInt4s repeat end repeat URL in try into switch to words https token binfile each tenth as ticks tick system real4 by dateItems without char character ascending eighth whole dateTime numeric short first ftp integer abbreviated abbr abbrev private case while if", constant: "SIX TEN FORMFEED NINE ZERO NONE SPACE FOUR FALSE COLON CRLF PI COMMA ENDOFFILE EOF EIGHT FIVE QUOTE EMPTY ONE TRUE RETURN CR LINEFEED RIGHT BACKSLASH NULL SEVEN TAB THREE TWO six ten formfeed nine zero none space four false colon crlf pi comma endoffile eof eight five quote empty one true return cr linefeed right backslash null seven tab three two RIVERSION RISTATE FILE_READ_MODE FILE_WRITE_MODE FILE_WRITE_MODE DIR_WRITE_MODE FILE_READ_UMASK FILE_WRITE_UMASK DIR_READ_UMASK DIR_WRITE_UMASK", operator: "div mod wrap and or bitAnd bitNot bitOr bitXor among not in a an within contains ends with begins the keys of keys", built_in: "put abs acos aliasReference annuity arrayDecode arrayEncode asin atan atan2 average avg base64Decode base64Encode baseConvert binaryDecode binaryEncode byteToNum cachedURL cachedURLs charToNum cipherNames commandNames compound compress constantNames cos date dateFormat decompress directories diskSpace DNSServers exp exp1 exp2 exp10 extents files flushEvents folders format functionNames global globals hasMemory hostAddress hostAddressToName hostName hostNameToAddress isNumber ISOToMac itemOffset keys len length libURLErrorData libUrlFormData libURLftpCommand libURLLastHTTPHeaders libURLLastRHHeaders libUrlMultipartFormAddPart libUrlMultipartFormData libURLVersion lineOffset ln ln1 localNames log log2 log10 longFilePath lower macToISO matchChunk matchText matrixMultiply max md5Digest median merge millisec millisecs millisecond milliseconds min monthNames num number numToByte numToChar offset open openfiles openProcesses openProcessIDs openSockets paramCount param params peerAddress pendingMessages platform processID random randomBytes replaceText result revCreateXMLTree revCreateXMLTreeFromFile revCurrentRecord revCurrentRecordIsFirst revCurrentRecordIsLast revDatabaseColumnCount revDatabaseColumnIsNull revDatabaseColumnLengths revDatabaseColumnNames revDatabaseColumnNamed revDatabaseColumnNumbered revDatabaseColumnTypes revDatabaseConnectResult revDatabaseCursors revDatabaseID revDatabaseTableNames revDatabaseType revDataFromQuery revdb_closeCursor revdb_columnbynumber revdb_columncount revdb_columnisnull revdb_columnlengths revdb_columnnames revdb_columntypes revdb_commit revdb_connect revdb_connections revdb_connectionerr revdb_currentrecord revdb_cursorconnection revdb_cursorerr revdb_cursors revdb_dbtype revdb_disconnect revdb_execute revdb_iseof revdb_isbof revdb_movefirst revdb_movelast revdb_movenext revdb_moveprev revdb_query revdb_querylist revdb_recordcount revdb_rollback revdb_tablenames revGetDatabaseDriverPath revNumberOfRecords revOpenDatabase revOpenDatabases revQueryDatabase revQueryDatabaseBlob revQueryResult revQueryIsAtStart revQueryIsAtEnd revUnixFromMacPath revXMLAttribute revXMLAttributes revXMLAttributeValues revXMLChildContents revXMLChildNames revXMLFirstChild revXMLMatchingNode revXMLNextSibling revXMLNodeContents revXMLNumberOfChildren revXMLParent revXMLPreviousSibling revXMLRootNode revXMLRPC_CreateRequest revXMLRPC_Documents revXMLRPC_Error revXMLRPC_Execute revXMLRPC_GetHost revXMLRPC_GetMethod revXMLRPC_GetParam revXMLText revXMLRPC_GetParamCount revXMLRPC_GetParamNode revXMLRPC_GetParamType revXMLRPC_GetPath revXMLRPC_GetPort revXMLRPC_GetProtocol revXMLRPC_GetRequest revXMLRPC_GetResponse revXMLRPC_GetSocket revXMLTree revXMLTrees revXMLValidateDTD revZipDescribeItem revZipEnumerateItems revZipOpenArchives round sec secs seconds sha1Digest shell shortFilePath sin specialFolderPath sqrt standardDeviation statRound stdDev sum sysError systemVersion tan tempName tick ticks time to toLower toUpper transpose trunc uniDecode uniEncode upper URLDecode URLEncode URLStatus value variableNames version waitDepth weekdayNames wordOffset add breakpoint cancel clear local variable file word line folder directory URL close socket process combine constant convert create new alias folder directory decrypt delete variable word line folder directory URL dispatch divide do encrypt filter get include intersect kill libURLDownloadToFile libURLFollowHttpRedirects libURLftpUpload libURLftpUploadFile libURLresetAll libUrlSetAuthCallback libURLSetCustomHTTPHeaders libUrlSetExpect100 libURLSetFTPListCommand libURLSetFTPMode libURLSetFTPStopTime libURLSetStatusCallback load multiply socket process post seek rel relative read from process rename replace require resetAll revAddXMLNode revAppendXML revCloseCursor revCloseDatabase revCommitDatabase revCopyFile revCopyFolder revCopyXMLNode revDeleteFolder revDeleteXMLNode revDeleteAllXMLTrees revDeleteXMLTree revExecuteSQL revGoURL revInsertXMLNode revMoveFolder revMoveToFirstRecord revMoveToLastRecord revMoveToNextRecord revMoveToPreviousRecord revMoveToRecord revMoveXMLNode revPutIntoXMLNode revRollBackDatabase revSetDatabaseDriverPath revSetXMLAttribute revXMLRPC_AddParam revXMLRPC_DeleteAllDocuments revXMLAddDTD revXMLRPC_Free revXMLRPC_FreeAll revXMLRPC_DeleteDocument revXMLRPC_DeleteParam revXMLRPC_SetHost revXMLRPC_SetMethod revXMLRPC_SetPort revXMLRPC_SetProtocol revXMLRPC_SetSocket revZipAddItemWithData revZipAddItemWithFile revZipAddUncompressedItemWithData revZipAddUncompressedItemWithFile revZipCancel revZipCloseArchive revZipDeleteItem revZipExtractItemToFile revZipExtractItemToVariable revZipSetProgressCallback revZipRenameItem revZipReplaceItemWithData revZipReplaceItemWithFile revZipOpenArchive send set sort split subtract union unload wait write" }, c: [e, { cN: "keyword", b: "\\bend\\sif\\b" }, { cN: "function", bK: "function", e: "$", c: [e, c, a.ASM, a.QSM, a.BNM, a.CNM, d] }, { cN: "function", bK: "end", e: "$", c: [c, d] }, { cN: "command", bK: "command on", e: "$", c: [e, c, a.ASM, a.QSM, a.BNM, a.CNM, d] }, { cN: "command", bK: "end", e: "$", c: [c, d] }, { cN: "preprocessor", b: "<\\?rev|<\\?lc|<\\?livecode", r: 10 }, { cN: "preprocessor", b: "<\\?" }, { cN: "preprocessor", b: "\\?>" }, b, a.ASM, a.QSM, a.BNM, a.CNM, d], i: ";$|^\\[|^=" }; });
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 hljs.registerLanguage("profile", function (a) { return { c: [a.CNM, { cN: "built_in", b: "{", e: "}$", eB: true, eE: true, c: [a.ASM, a.QSM], r: 0 }, { cN: "filename", b: "[a-zA-Z_][\\da-zA-Z_]+\\.[\\da-zA-Z_]{1,3}", e: ":", eE: true }, { cN: "header", b: "(ncalls|tottime|cumtime)", e: "$", k: "ncalls tottime|10 cumtime|10 filename", r: 10 }, { cN: "summary", b: "function calls", e: "$", c: [a.CNM], r: 10 }, a.ASM, a.QSM, { cN: "function", b: "\\(", e: "\\)$", c: [a.UTM], r: 0 }] }; });
 hljs.registerLanguage("php", function (b) { var e = { cN: "variable", b: "\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*" }; var a = { cN: "preprocessor", b: /<\?(php)?|\?>/ }; var c = { cN: "string", c: [b.BE, a], v: [{ b: 'b"', e: '"' }, { b: "b'", e: "'" }, b.inherit(b.ASM, { i: null }), b.inherit(b.QSM, { i: null })] }; var d = { v: [b.BNM, b.CNM] }; return { cI: true, k: "and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally", c: [b.CLCM, b.HCM, { cN: "comment", b: "/\\*", e: "\\*/", c: [{ cN: "phpdoc", b: "\\s@[A-Za-z]+" }, a] }, { cN: "comment", b: "__halt_compiler.+?;", eW: true, k: "__halt_compiler", l: b.UIR }, { cN: "string", b: "<<<['\"]?\\w+['\"]?$", e: "^\\w+;", c: [b.BE] }, a, e, { cN: "function", bK: "function", e: /[;{]/, i: "\\$|\\[|%", c: [b.UTM, { cN: "params", b: "\\(", e: "\\)", c: ["self", e, b.CBLCLM, c, d] }] }, { cN: "class", bK: "class interface", e: "{", i: /[:\(\$"]/, c: [{ bK: "extends implements", r: 10 }, b.UTM] }, { bK: "namespace", e: ";", i: /[\.']/, c: [b.UTM] }, { bK: "use", e: ";", c: [b.UTM] }, { b: "=>" }, c, d] }; });
 hljs.registerLanguage("parser3", function (a) { return { sL: "xml", r: 0, c: [{ cN: "comment", b: "^#", e: "$" }, { cN: "comment", b: "\\^rem{", e: "}", r: 10, c: [{ b: "{", e: "}", c: ["self"] }] }, { cN: "preprocessor", b: "^@(?:BASE|USE|CLASS|OPTIONS)$", r: 10 }, { cN: "title", b: "@[\\w\\-]+\\[[\\w^;\\-]*\\](?:\\[[\\w^;\\-]*\\])?(?:.*)$" }, { cN: "variable", b: "\\$\\{?[\\w\\-\\.\\:]+\\}?" }, { cN: "keyword", b: "\\^[\\w\\-\\.\\:]+" }, { cN: "number", b: "\\^#[0-9a-fA-F]+" }, a.CNM] }; });
@@ -13951,17 +11191,10 @@ hljs.registerLanguage("clojure", function (l) { var e = { built_in: "def cond ap
 hljs.registerLanguage("oxygene", function (b) { var g = "abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false final finalize finalizer finally flags for forward from function future global group has if implementation implements implies in index inherited inline interface into invariants is iterator join locked locking loop matching method mod module namespace nested new nil not notify nullable of old on operator or order out override parallel params partial pinned private procedure property protected public queryable raise read readonly record reintroduce remove repeat require result reverse sealed select self sequence set shl shr skip static step soft take then to true try tuple type union unit unsafe until uses using var virtual raises volatile where while with write xor yield await mapped deprecated stdcall cdecl pascal register safecall overload library platform reference packed strict published autoreleasepool selector strong weak unretained"; var a = { cN: "comment", b: "{", e: "}", r: 0 }; var e = { cN: "comment", b: "\\(\\*", e: "\\*\\)", r: 10 }; var c = { cN: "string", b: "'", e: "'", c: [{ b: "''" }] }; var d = { cN: "string", b: "(#\\d+)+" }; var f = { cN: "function", bK: "function constructor destructor procedure method", e: "[:;]", k: "function constructor|10 destructor|10 procedure|10 method|10", c: [b.TM, { cN: "params", b: "\\(", e: "\\)", k: g, c: [c, d] }, a, e] }; return { cI: true, k: g, i: '("|\\$[G-Zg-z]|\\/\\*|</)', c: [a, e, b.CLCM, c, d, b.NM, f, { cN: "class", b: "=\\bclass\\b", e: "end;", k: g, c: [c, d, a, e, b.CLCM, f] }] }; });
 hljs.registerLanguage("asciidoc", function (a) { return { c: [{ cN: "comment", b: "^/{4,}\\n", e: "\\n/{4,}$", r: 10 }, { cN: "comment", b: "^//", e: "$", r: 0 }, { cN: "title", b: "^\\.\\w.*$" }, { b: "^[=\\*]{4,}\\n", e: "\\n^[=\\*]{4,}$", r: 10 }, { cN: "header", b: "^(={1,5}) .+?( \\1)?$", r: 10 }, { cN: "header", b: "^[^\\[\\]\\n]+?\\n[=\\-~\\^\\+]{2,}$", r: 10 }, { cN: "attribute", b: "^:.+?:", e: "\\s", eE: true, r: 10 }, { cN: "attribute", b: "^\\[.+?\\]$", r: 0 }, { cN: "blockquote", b: "^_{4,}\\n", e: "\\n_{4,}$", r: 10 }, { cN: "code", b: "^[\\-\\.]{4,}\\n", e: "\\n[\\-\\.]{4,}$", r: 10 }, { b: "^\\+{4,}\\n", e: "\\n\\+{4,}$", c: [{ b: "<", e: ">", sL: "xml", r: 0 }], r: 10 }, { cN: "bullet", b: "^(\\*+|\\-+|\\.+|[^\\n]+?::)\\s+" }, { cN: "label", b: "^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):\\s+", r: 10 }, { cN: "strong", b: "\\B\\*(?![\\*\\s])", e: "(\\n{2}|\\*)", c: [{ b: "\\\\*\\w", r: 0 }] }, { cN: "emphasis", b: "\\B'(?!['\\s])", e: "(\\n{2}|')", c: [{ b: "\\\\'\\w", r: 0 }], r: 0 }, { cN: "emphasis", b: "_(?![_\\s])", e: "(\\n{2}|_)", r: 0 }, { cN: "smartquote", b: "``.+?''", r: 10 }, { cN: "smartquote", b: "`.+?'", r: 10 }, { cN: "code", b: "(`.+?`|\\+.+?\\+)", r: 0 }, { cN: "code", b: "^[ \\t]", e: "$", r: 0 }, { cN: "horizontal_rule", b: "^'{3,}[ \\t]*$", r: 10 }, { b: "(link:)?(http|https|ftp|file|irc|image:?):\\S+\\[.*?\\]", rB: true, c: [{ b: "(link|image:?):", r: 0 }, { cN: "link_url", b: "\\w", e: "[^\\[]+", r: 0 }, { cN: "link_label", b: "\\[", e: "\\]", eB: true, eE: true, r: 0 }], r: 10 }] }; });
 hljs.registerLanguage("erlang-repl", function (a) { return { k: { special_functions: "spawn spawn_link self", reserved: "after and andalso|10 band begin bnot bor bsl bsr bxor case catch cond div end fun if let not of or orelse|10 query receive rem try when xor" }, c: [{ cN: "prompt", b: "^[0-9]+> ", r: 10 }, { cN: "comment", b: "%", e: "$" }, { cN: "number", b: "\\b(\\d+#[a-fA-F0-9]+|\\d+(\\.\\d+)?([eE][-+]?\\d+)?)", r: 0 }, a.ASM, a.QSM, { cN: "constant", b: "\\?(::)?([A-Z]\\w*(::)?)+" }, { cN: "arrow", b: "->" }, { cN: "ok", b: "ok" }, { cN: "exclamation_mark", b: "!" }, { cN: "function_or_atom", b: "(\\b[a-z'][a-zA-Z0-9_']*:[a-z'][a-zA-Z0-9_']*)|(\\b[a-z'][a-zA-Z0-9_']*)", r: 0 }, { cN: "variable", b: "[A-Z][a-zA-Z0-9_']*", r: 0 }] }; });
-<<<<<<< HEAD
-hljs.registerLanguage("autohotkey", function (b) { var d = { cN: "escape", b: "`[\\s\\S]" }; var c = { cN: "comment", b: ";", e: "$", r: 0 }; var a = [{ cN: "built_in", b: "A_[a-zA-Z0-9]+" }, { cN: "built_in", bK: "ComSpec Clipboard ClipboardAll ErrorLevel" }]; return { cI: true, k: { keyword: "Break Continue Else Gosub If Loop Return While", literal: "A true false NOT AND OR" }, c: a.concat([d, b.inherit(b.QSM, { c: [d] }), c, { cN: "number", b: b.NR, r: 0 }, { cN: "var_expand", b: "%", e: "%", i: "\\n", c: [d] }, { cN: "label", c: [d], v: [{ b: '^[^\\n";]+::(?!=)' }, { b: '^[^\\n";]+:(?!=)', r: 0 }] }, { b: ",\\s*, ", r: 10 }]) }; });
-hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b: "'|\"", e: "'|\"", c: [a.BE, { b: "''" }] }]; return { k: { keyword: "abort break case clear catch continue do elseif else endfunction end for functionglobal if pause return resume select try then while%f %F %t %T %pi %eps %inf %nan %e %i %z %s", built_in: "abs and acos asin atan ceil cd chdir clearglobal cosh cos cumprod deff disp errorexec execstr exists exp eye gettext floor fprintf fread fsolve imag isdef isemptyisinfisnan isvector lasterror length load linspace list listfiles log10 log2 logmax min msprintf mclose mopen ones or pathconvert poly printf prod pwd rand realround sinh sin size gsort sprintf sqrt strcat strcmps tring sum system tanh tantype typename warning zeros matrix" }, i: '("|#|/\\*|\\s+/\\w+)', c: [{ cN: "function", bK: "function endfunction", e: "$", k: "function endfunction|10", c: [a.UTM, { cN: "params", b: "\\(", e: "\\)" }] }, { cN: "transposed_variable", b: "[a-zA-Z_][a-zA-Z_0-9]*('+[\\.']*|[\\.']+)", e: "", r: 0 }, { cN: "matrix", b: "\\[", e: "\\]'*[\\.']*", r: 0, c: b }, { cN: "comment", b: "//", e: "$" }].concat(b) }; });
-(function (undefined) {
-    var moment, VERSION = '2.9.0', globalScope = typeof global !== 'undefined' && (typeof window === 'undefined' || window === global.window) ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = typeof module !== 'undefined' && module && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenOffsetMs = /[\+\-]?\d+/, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = 'YYYY-MM-DDTHH:mm:ssZ', isoDates = [
-=======
 hljs.registerLanguage("autohotkey", function (b) { var d = { cN: "escape", b: "`[\\s\\S]" }; var c = { cN: "comment", b: ";", e: "$", r: 0 }; var a = [{ cN: "built_in", b: "A_[a-zA-Z0-9]+" }, { cN: "built_in", bK: "ComSpec Clipboard ClipboardAll ErrorLevel" }]; return { cI: true, k: { keyword: "Break Continue Else Gosub If Loop Return While", literal: "A true false NOT AND OR" }, c: a.concat([d, b.inherit(b.QSM, { c: [d] }), c, { cN: "number", b: b.NR, r: 0 }, { cN: "var_expand", b: "%", e: "%", i: "\\n", c: [d] }, { cN: "label", c: [d], v: [{ b: '^[^\\n";]+::(?!=)' }, { b: '^[^\\n";]+:(?!=)', r: 0 }] }, { b: ",\\s*,", r: 10 }]) }; });
 hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b: "'|\"", e: "'|\"", c: [a.BE, { b: "''" }] }]; return { k: { keyword: "abort break case clear catch continue do elseif else endfunction end for functionglobal if pause return resume select try then while%f %F %t %T %pi %eps %inf %nan %e %i %z %s", built_in: "abs and acos asin atan ceil cd chdir clearglobal cosh cos cumprod deff disp errorexec execstr exists exp eye gettext floor fprintf fread fsolve imag isdef isemptyisinfisnan isvector lasterror length load linspace list listfiles log10 log2 logmax min msprintf mclose mopen ones or pathconvert poly printf prod pwd rand realround sinh sin size gsort sprintf sqrt strcat strcmps tring sum system tanh tantype typename warning zeros matrix" }, i: '("|#|/\\*|\\s+/\\w+)', c: [{ cN: "function", bK: "function endfunction", e: "$", k: "function endfunction|10", c: [a.UTM, { cN: "params", b: "\\(", e: "\\)" },], }, { cN: "transposed_variable", b: "[a-zA-Z_][a-zA-Z_0-9]*('+[\\.']*|[\\.']+)", e: "", r: 0 }, { cN: "matrix", b: "\\[", e: "\\]'*[\\.']*", r: 0, c: b }, { cN: "comment", b: "//", e: "$" }].concat(b) }; });
 (function (undefined) {
     var moment, VERSION = '2.9.0', globalScope = (typeof global !== 'undefined' && (typeof window === 'undefined' || window === global.window)) ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = (typeof module !== 'undefined' && module && module.exports), aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenOffsetMs = /[\+\-]?\d+/, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = 'YYYY-MM-DDTHH:mm:ssZ', isoDates = [
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         ['YYYYYY-MM-DD', /[+-]\d{6}-\d{2}-\d{2}/],
         ['YYYY-MM-DD', /\d{4}-\d{2}-\d{2}/],
         ['GGGG-[W]WW-E', /\d{4}-W\d{2}-\d/],
@@ -14199,11 +11432,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         };
     }
     function monthDiff(a, b) {
-<<<<<<< HEAD
-        var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month()), anchor = a.clone().add(wholeMonthDiff, 'months'), anchor2, adjust;
-=======
         var wholeMonthDiff = ((b.year() - a.year()) * 12) + (b.month() - a.month()), anchor = a.clone().add(wholeMonthDiff, 'months'), anchor2, adjust;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (b - anchor < 0) {
             anchor2 = a.clone().add(wholeMonthDiff - 1, 'months');
             adjust = (b - anchor) / (anchor - anchor2);
@@ -14241,13 +11470,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             }
             return hour;
         }
-<<<<<<< HEAD
-        return hour;
-=======
         else {
             return hour;
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function Locale() {
     }
@@ -14256,11 +11481,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             checkOverflow(config);
         }
         copyConfig(this, config);
-<<<<<<< HEAD
-        this._d = new Date(Number(config._d));
-=======
         this._d = new Date(+config._d);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (updateInProgress === false) {
             updateInProgress = true;
             moment.updateOffset(this);
@@ -14269,15 +11490,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     }
     function Duration(duration) {
         var normalizedInput = normalizeObjectUnits(duration), years = normalizedInput.year || 0, quarters = normalizedInput.quarter || 0, months = normalizedInput.month || 0, weeks = normalizedInput.week || 0, days = normalizedInput.day || 0, hours = normalizedInput.hour || 0, minutes = normalizedInput.minute || 0, seconds = normalizedInput.second || 0, milliseconds = normalizedInput.millisecond || 0;
-<<<<<<< HEAD
-        this._milliseconds = Number(milliseconds) +
-            seconds * 1e3 +
-            minutes * 6e4 +
-            hours * 36e5;
-        this._days = Number(days) +
-            weeks * 7;
-        this._months = Number(months) +
-=======
         this._milliseconds = +milliseconds +
             seconds * 1e3 +
             minutes * 6e4 +
@@ -14285,7 +11497,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         this._days = +days +
             weeks * 7;
         this._months = +months +
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             quarters * 3 +
             years * 12;
         this._data = {};
@@ -14353,16 +11564,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         if (number < 0) {
             return Math.ceil(number);
         }
-<<<<<<< HEAD
-        return Math.floor(number);
-    }
-    function leftZeroFill(number, targetLength, forceSign) {
-        var output = String(Math.abs(number)), sign = number >= 0;
-        while (output.length < targetLength) {
-            output = '0' + output;
-        }
-        return (sign ? forceSign ? '+' : '' : '-') + output;
-=======
         else {
             return Math.floor(number);
         }
@@ -14373,7 +11574,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             output = '0' + output;
         }
         return (sign ? (forceSign ? '+' : '') : '-') + output;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function positiveMomentsDifference(base, other) {
         var res = { milliseconds: 0, months: 0 };
@@ -14382,11 +11582,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         if (base.clone().add(res.months, 'M').isAfter(other)) {
             --res.months;
         }
-<<<<<<< HEAD
-        res.milliseconds = Number(other) - Number(base.clone().add(res.months, 'M'));
-=======
         res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         return res;
     }
     function momentsDifference(base, other) {
@@ -14405,21 +11601,13 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     function createAdder(direction, name) {
         return function (val, period) {
             var dur, tmp;
-<<<<<<< HEAD
-            if (period !== null && !isNaN(Number(period))) {
-=======
             if (period !== null && !isNaN(+period)) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 deprecateSimple(name, 'moment().' + name + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
                 tmp = val;
                 val = period;
                 period = tmp;
             }
-<<<<<<< HEAD
-            val = typeof val === 'string' ? Number(val) : val;
-=======
             val = typeof val === 'string' ? +val : val;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             dur = moment.duration(val, period);
             addOrSubtractDurationFromMoment(this, dur, direction);
             return this;
@@ -14429,11 +11617,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         var milliseconds = duration._milliseconds, days = duration._days, months = duration._months;
         updateOffset = updateOffset == null ? true : updateOffset;
         if (milliseconds) {
-<<<<<<< HEAD
-            mom._d.setTime(Number(mom._d) + milliseconds * isAdding);
-=======
             mom._d.setTime(+mom._d + milliseconds * isAdding);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         if (days) {
             rawSetter(mom, 'Date', rawGetter(mom, 'Date') + days * isAdding);
@@ -14455,13 +11639,8 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     function compareArrays(array1, array2, dontConvert) {
         var len = Math.min(array1.length, array2.length), lengthDiff = Math.abs(array1.length - array2.length), diffs = 0, i;
         for (i = 0; i < len; i++) {
-<<<<<<< HEAD
-            if (dontConvert && array1[i] !== array2[i] ||
-                !dontConvert && toInt(array1[i]) !== toInt(array2[i])) {
-=======
             if ((dontConvert && array1[i] !== array2[i]) ||
                 (!dontConvert && toInt(array1[i]) !== toInt(array2[i]))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 diffs++;
             }
         }
@@ -14512,16 +11691,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             if (index != null) {
                 return getter(index);
             }
-<<<<<<< HEAD
-            for (i = 0; i < count; i++) {
-                results.push(getter(i));
-            }
-            return results;
-        };
-    }
-    function toInt(argumentForCoercion) {
-        var coercedNumber = Number(argumentForCoercion), value = 0;
-=======
             else {
                 for (i = 0; i < count; i++) {
                     results.push(getter(i));
@@ -14532,7 +11701,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     }
     function toInt(argumentForCoercion) {
         var coercedNumber = +argumentForCoercion, value = 0;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (coercedNumber !== 0 && isFinite(coercedNumber)) {
             if (coercedNumber >= 0) {
                 value = Math.floor(coercedNumber);
@@ -14553,11 +11721,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         return isLeapYear(year) ? 366 : 365;
     }
     function isLeapYear(year) {
-<<<<<<< HEAD
-        return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
-=======
         return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function checkOverflow(m) {
         var overflow;
@@ -14566,15 +11730,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 m._a[MONTH] < 0 || m._a[MONTH] > 11 ? MONTH :
                     m._a[DATE] < 1 || m._a[DATE] > daysInMonth(m._a[YEAR], m._a[MONTH]) ? DATE :
                         m._a[HOUR] < 0 || m._a[HOUR] > 24 ||
-<<<<<<< HEAD
-                            m._a[HOUR] === 24 && (m._a[MINUTE] !== 0 ||
-                                m._a[SECOND] !== 0 ||
-                                m._a[MILLISECOND] !== 0) ? HOUR :
-=======
                             (m._a[HOUR] === 24 && (m._a[MINUTE] !== 0 ||
                                 m._a[SECOND] !== 0 ||
                                 m._a[MILLISECOND] !== 0)) ? HOUR :
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                             m._a[MINUTE] < 0 || m._a[MINUTE] > 59 ? MINUTE :
                                 m._a[SECOND] < 0 || m._a[SECOND] > 59 ? SECOND :
                                     m._a[MILLISECOND] < 0 || m._a[MILLISECOND] > 999 ? MILLISECOND :
@@ -14644,14 +11802,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         if (model._isUTC) {
             res = model.clone();
             diff = (moment.isMoment(input) || isDate(input) ?
-<<<<<<< HEAD
-                Number(input) : Number(moment(input))) - Number(res);
-            res._d.setTime(Number(res._d) + diff);
-            moment.updateOffset(res, false);
-            return res;
-        }
-        return moment(input).local();
-=======
                 +input : +moment(input)) - (+res);
             res._d.setTime(+res._d + diff);
             moment.updateOffset(res, false);
@@ -14660,7 +11810,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         else {
             return moment(input).local();
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     extend(Locale.prototype, {
         set: function (config) {
@@ -14759,24 +11908,16 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             return output;
         },
         isPM: function (input) {
-<<<<<<< HEAD
-            return String(input).toLowerCase().charAt(0) === 'p';
-=======
             return ((input + '').toLowerCase().charAt(0) === 'p');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         _meridiemParse: /[ap]\.?m?\.?/i,
         meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'pm' : 'PM';
             }
-<<<<<<< HEAD
-            return isLower ? 'am' : 'AM';
-=======
             else {
                 return isLower ? 'am' : 'AM';
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         _calendar: {
             sameDay: '[Today at] LT',
@@ -14807,11 +11948,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         },
         relativeTime: function (number, withoutSuffix, string, isFuture) {
             var output = this._relativeTime[string];
-<<<<<<< HEAD
-            return typeof output === 'function' ?
-=======
             return (typeof output === 'function') ?
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 output(number, withoutSuffix, string, isFuture) :
                 output.replace(/%d/i, number);
         },
@@ -14982,11 +12119,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     }
     function utcOffsetFromString(string) {
         string = string || '';
-<<<<<<< HEAD
-        var possibleTzMatches = string.match(parseTokenTimezone) || [], tzChunk = possibleTzMatches[possibleTzMatches.length - 1] || [], parts = String(tzChunk).match(parseTimezoneChunker) || ['-', 0, 0], minutes = Number(parts[1] * 60) + toInt(parts[2]);
-=======
         var possibleTzMatches = (string.match(parseTokenTimezone) || []), tzChunk = possibleTzMatches[possibleTzMatches.length - 1] || [], parts = (tzChunk + '').match(parseTimezoneChunker) || ['-', 0, 0], minutes = +(parts[1] * 60) + toInt(parts[2]);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         return parts[0] === '+' ? minutes : -minutes;
     }
     function addTimeToArrayFromToken(token, input, config) {
@@ -15080,11 +12213,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 a = config._locale.weekdaysParse(input);
                 if (a != null) {
                     config._w = config._w || {};
-<<<<<<< HEAD
-                    config._w.d = a;
-=======
                     config._w['d'] = a;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 }
                 else {
                     config._pf.invalidWeekday = input;
@@ -15167,11 +12296,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             config._a[i] = input[i] = currentDate[i];
         }
         for (; i < 7; i++) {
-<<<<<<< HEAD
-            config._a[i] = input[i] = config._a[i] == null ? i === 2 ? 1 : 0 : config._a[i];
-=======
             config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         if (config._a[HOUR] === 24 &&
             config._a[MINUTE] === 0 &&
@@ -15214,13 +12339,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 now.getUTCDate()
             ];
         }
-<<<<<<< HEAD
-        return [now.getFullYear(), now.getMonth(), now.getDate()];
-=======
         else {
             return [now.getFullYear(), now.getMonth(), now.getDate()];
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function makeDateFromStringAndFormat(config) {
         if (config._f === moment.ISO_8601) {
@@ -15229,11 +12350,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         }
         config._a = [];
         config._pf.empty = true;
-<<<<<<< HEAD
-        var string = String(config._i), i, parsedInput, tokens, token, skipped, stringLength = string.length, totalParsedInputLength = 0;
-=======
         var string = '' + config._i, i, parsedInput, tokens, token, skipped, stringLength = string.length, totalParsedInputLength = 0;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
         for (i = 0; i < tokens.length; i++) {
             token = tokens[i];
@@ -15352,17 +12469,10 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             config._d = new Date();
         }
         else if (isDate(input)) {
-<<<<<<< HEAD
-            config._d = new Date(Number(input));
-        }
-        else if ((matched = aspNetJsonRegex.exec(input)) !== null) {
-            config._d = new Date(Number(matched[1]));
-=======
             config._d = new Date(+input);
         }
         else if ((matched = aspNetJsonRegex.exec(input)) !== null) {
             config._d = new Date(+matched[1]);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         else if (typeof input === 'string') {
             makeDateFromString(config);
@@ -15373,17 +12483,10 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             });
             dateFromConfig(config);
         }
-<<<<<<< HEAD
-        else if (typeof input === 'object') {
-            dateFromObject(config);
-        }
-        else if (typeof input === 'number') {
-=======
         else if (typeof (input) === 'object') {
             dateFromObject(config);
         }
         else if (typeof (input) === 'number') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             config._d = new Date(input);
         }
         else {
@@ -15419,11 +12522,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         return input;
     }
     function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
-<<<<<<< HEAD
-        return locale.relativeTime(number || 1, Boolean(withoutSuffix), string, isFuture);
-=======
         return locale.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function relativeTime(posNegDuration, withoutSuffix, locale) {
         var duration = moment.duration(posNegDuration).abs(), seconds = round(duration.as('s')), minutes = round(duration.as('m')), hours = round(duration.as('h')), days = round(duration.as('d')), months = round(duration.as('M')), years = round(duration.as('y')), args = seconds < relativeTimeThresholds.s && ['s', seconds] ||
@@ -15437,11 +12536,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             months < relativeTimeThresholds.M && ['MM', months] ||
             years === 1 && ['y'] || ['yy', years];
         args[2] = withoutSuffix;
-<<<<<<< HEAD
-        args[3] = Number(posNegDuration) > 0;
-=======
         args[3] = +posNegDuration > 0;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         args[4] = locale;
         return substituteTimeAgo.apply({}, args);
     }
@@ -15473,11 +12568,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     function makeMoment(config) {
         var input = config._i, format = config._f, res;
         config._locale = config._locale || moment.localeData(config._l);
-<<<<<<< HEAD
-        if (input === null || format === undefined && input === '') {
-=======
         if (input === null || (format === undefined && input === '')) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return moment.invalid({ nullInput: true });
         }
         if (typeof input === 'string') {
@@ -15506,11 +12597,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     }
     moment = function (input, format, locale, strict) {
         var c;
-<<<<<<< HEAD
-        if (typeof locale === 'boolean') {
-=======
         if (typeof (locale) === 'boolean') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             strict = locale;
             locale = undefined;
         }
@@ -15557,11 +12644,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     };
     moment.utc = function (input, format, locale, strict) {
         var c;
-<<<<<<< HEAD
-        if (typeof locale === 'boolean') {
-=======
         if (typeof (locale) === 'boolean') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             strict = locale;
             locale = undefined;
         }
@@ -15597,13 +12680,8 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 duration.milliseconds = input;
             }
         }
-<<<<<<< HEAD
-        else if (match = aspNetTimeSpanJsonRegex.exec(input)) {
-            sign = match[1] === '-' ? -1 : 1;
-=======
         else if (!!(match = aspNetTimeSpanJsonRegex.exec(input))) {
             sign = (match[1] === '-') ? -1 : 1;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             duration = {
                 y: 0,
                 d: toInt(match[DATE]) * sign,
@@ -15613,13 +12691,8 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 ms: toInt(match[MILLISECOND]) * sign
             };
         }
-<<<<<<< HEAD
-        else if (match = isoDurationRegex.exec(input)) {
-            sign = match[1] === '-' ? -1 : 1;
-=======
         else if (!!(match = isoDurationRegex.exec(input))) {
             sign = (match[1] === '-') ? -1 : 1;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             parseIso = function (inp) {
                 var res = inp && parseFloat(inp.replace(',', '.'));
                 return (isNaN(res) ? 0 : res) * sign;
@@ -15671,11 +12744,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     moment.locale = function (key, values) {
         var data;
         if (key) {
-<<<<<<< HEAD
-            if (typeof values !== 'undefined') {
-=======
             if (typeof (values) !== 'undefined') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 data = moment.defineLocale(key, values);
             }
             else {
@@ -15697,15 +12766,10 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             moment.locale(name);
             return locales[name];
         }
-<<<<<<< HEAD
-        delete locales[name];
-        return null;
-=======
         else {
             delete locales[name];
             return null;
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     };
     moment.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', function (key) {
         return moment.localeData(key);
@@ -15729,11 +12793,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     };
     moment.isMoment = function (obj) {
         return obj instanceof Moment ||
-<<<<<<< HEAD
-            obj != null && hasOwnProp(obj, '_isAMomentObject');
-=======
             (obj != null && hasOwnProp(obj, '_isAMomentObject'));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     };
     moment.isDuration = function (obj) {
         return obj instanceof Duration;
@@ -15766,35 +12826,15 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             return moment(this);
         },
         valueOf: function () {
-<<<<<<< HEAD
-            return Number(this._d) - (this._offset || 0) * 60000;
-        },
-        unix: function () {
-            return Math.floor(Number(this) / 1000);
-=======
             return +this._d - ((this._offset || 0) * 60000);
         },
         unix: function () {
             return Math.floor(+this / 1000);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         toString: function () {
             return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
         },
         toDate: function () {
-<<<<<<< HEAD
-            return this._offset ? new Date(Number(this)) : this._d;
-        },
-        toISOString: function () {
-            var m = moment(this).utc();
-            if (m.year() > 0 && m.year() <= 9999) {
-                if (typeof Date.prototype.toISOString === 'function') {
-                    return this.toDate().toISOString();
-                }
-                return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
-            }
-            return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
-=======
             return this._offset ? new Date(+this) : this._d;
         },
         toISOString: function () {
@@ -15810,7 +12850,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             else {
                 return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         toArray: function () {
             var m = this;
@@ -15900,13 +12939,8 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             return isLeapYear(this.year());
         },
         isDST: function () {
-<<<<<<< HEAD
-            return this.utcOffset() > this.clone().month(0).utcOffset() ||
-                this.utcOffset() > this.clone().month(5).utcOffset();
-=======
             return (this.utcOffset() > this.clone().month(0).utcOffset() ||
                 this.utcOffset() > this.clone().month(5).utcOffset());
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         day: function (input) {
             var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
@@ -15914,13 +12948,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 input = parseWeekday(input, this.localeData());
                 return this.add(input - day, 'd');
             }
-<<<<<<< HEAD
-            return day;
-=======
             else {
                 return day;
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         month: makeAccessor('Month', true),
         startOf: function (units) {
@@ -15958,49 +12988,31 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             if (units === undefined || units === 'millisecond') {
                 return this;
             }
-<<<<<<< HEAD
-            return this.startOf(units).add(1, units === 'isoWeek' ? 'week' : units).subtract(1, 'ms');
-=======
             return this.startOf(units).add(1, (units === 'isoWeek' ? 'week' : units)).subtract(1, 'ms');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         isAfter: function (input, units) {
             var inputMs;
             units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
             if (units === 'millisecond') {
                 input = moment.isMoment(input) ? input : moment(input);
-<<<<<<< HEAD
-                return Number(this) > Number(input);
-            }
-            inputMs = moment.isMoment(input) ? Number(input) : Number(moment(input));
-            return inputMs < Number(this.clone().startOf(units));
-=======
                 return +this > +input;
             }
             else {
                 inputMs = moment.isMoment(input) ? +input : +moment(input);
                 return inputMs < +this.clone().startOf(units);
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         isBefore: function (input, units) {
             var inputMs;
             units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
             if (units === 'millisecond') {
                 input = moment.isMoment(input) ? input : moment(input);
-<<<<<<< HEAD
-                return Number(this) < Number(input);
-            }
-            inputMs = moment.isMoment(input) ? Number(input) : Number(moment(input));
-            return Number(this.clone().endOf(units)) < inputMs;
-=======
                 return +this < +input;
             }
             else {
                 inputMs = moment.isMoment(input) ? +input : +moment(input);
                 return +this.clone().endOf(units) < inputMs;
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         isBetween: function (from, to, units) {
             return this.isAfter(from, units) && this.isBefore(to, units);
@@ -16010,19 +13022,12 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             units = normalizeUnits(units || 'millisecond');
             if (units === 'millisecond') {
                 input = moment.isMoment(input) ? input : moment(input);
-<<<<<<< HEAD
-                return Number(this) === Number(input);
-            }
-            inputMs = Number(moment(input));
-            return Number(this.clone().startOf(units)) <= inputMs && inputMs <= Number(this.clone().endOf(units));
-=======
                 return +this === +input;
             }
             else {
                 inputMs = +moment(input);
                 return +(this.clone().startOf(units)) <= inputMs && inputMs <= +(this.clone().endOf(units));
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         min: deprecate('moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548', function (other) {
             other = moment.apply(null, arguments);
@@ -16041,13 +13046,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 this.utcOffset(input, keepLocalTime);
                 return this;
             }
-<<<<<<< HEAD
-            return -this.utcOffset();
-=======
             else {
                 return -this.utcOffset();
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }),
         utcOffset: function (input, keepLocalTime) {
             var offset = this._offset || 0, localAdjust;
@@ -16078,13 +13079,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 }
                 return this;
             }
-<<<<<<< HEAD
-            return this._isUTC ? offset : this._dateUtcOffset();
-=======
             else {
                 return this._isUTC ? offset : this._dateUtcOffset();
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         isLocal: function () {
             return !this._isUTC;
@@ -16124,30 +13121,18 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         },
         dayOfYear: function (input) {
             var dayOfYear = round((moment(this).startOf('day') - moment(this).startOf('year')) / 864e5) + 1;
-<<<<<<< HEAD
-            return input == null ? dayOfYear : this.add(input - dayOfYear, 'd');
-=======
             return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         quarter: function (input) {
             return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
         },
         weekYear: function (input) {
             var year = weekOfYear(this, this.localeData()._week.dow, this.localeData()._week.doy).year;
-<<<<<<< HEAD
-            return input == null ? year : this.add(input - year, 'y');
-        },
-        isoWeekYear: function (input) {
-            var year = weekOfYear(this, 1, 4).year;
-            return input == null ? year : this.add(input - year, 'y');
-=======
             return input == null ? year : this.add((input - year), 'y');
         },
         isoWeekYear: function (input) {
             var year = weekOfYear(this, 1, 4).year;
             return input == null ? year : this.add((input - year), 'y');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         week: function (input) {
             var week = this.localeData().week(this);
@@ -16195,13 +13180,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
             if (key === undefined) {
                 return this._locale._abbr;
             }
-<<<<<<< HEAD
-            newLocaleData = moment.localeData(key);
-            if (newLocaleData != null) {
-                this._locale = newLocaleData;
-            }
-            return this;
-=======
             else {
                 newLocaleData = moment.localeData(key);
                 if (newLocaleData != null) {
@@ -16209,19 +13187,14 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 }
                 return this;
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         },
         lang: deprecate('moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.', function (key) {
             if (key === undefined) {
                 return this.localeData();
             }
-<<<<<<< HEAD
-            return this.locale(key);
-=======
             else {
                 return this.locale(key);
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }),
         localeData: function () {
             return this._locale;
@@ -16249,13 +13222,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         if (unit === 'Month') {
             return rawMonthSetter(mom, value);
         }
-<<<<<<< HEAD
-        return mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
-=======
         else {
             return mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     function makeAccessor(unit, keepTime) {
         return function (value) {
@@ -16264,13 +13233,9 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 moment.updateOffset(this, keepTime);
                 return this;
             }
-<<<<<<< HEAD
-            return rawGetter(this, unit);
-=======
             else {
                 return rawGetter(this, unit);
             }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         };
     }
     moment.fn.millisecond = moment.fn.milliseconds = makeAccessor('Milliseconds', false);
@@ -16333,21 +13298,13 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         valueOf: function () {
             return this._milliseconds +
                 this._days * 864e5 +
-<<<<<<< HEAD
-                this._months % 12 * 2592e6 +
-=======
                 (this._months % 12) * 2592e6 +
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 toInt(this._months / 12) * 31536e6;
         },
         humanize: function (withSuffix) {
             var output = relativeTime(this, !withSuffix, this.localeData());
             if (withSuffix) {
-<<<<<<< HEAD
-                output = this.localeData().pastFuture(Number(this), output);
-=======
                 output = this.localeData().pastFuture(+this, output);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
             return this.localeData().postformat(output);
         },
@@ -16379,17 +13336,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 months = this._months + daysToYears(days) * 12;
                 return units === 'month' ? months : months / 12;
             }
-<<<<<<< HEAD
-            days = this._days + Math.round(yearsToDays(this._months / 12));
-            switch (units) {
-                case 'week': return days / 7 + this._milliseconds / 6048e5;
-                case 'day': return days + this._milliseconds / 864e5;
-                case 'hour': return days * 24 + this._milliseconds / 36e5;
-                case 'minute': return days * 24 * 60 + this._milliseconds / 6e4;
-                case 'second': return days * 24 * 60 * 60 + this._milliseconds / 1000;
-                case 'millisecond': return Math.floor(days * 24 * 60 * 60 * 1000) + this._milliseconds;
-                default: throw new Error('Unknown unit ' + units);
-=======
             else {
                 days = this._days + Math.round(yearsToDays(this._months / 12));
                 switch (units) {
@@ -16401,7 +13347,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                     case 'millisecond': return Math.floor(days * 24 * 60 * 60 * 1000) + this._milliseconds;
                     default: throw new Error('Unknown unit ' + units);
                 }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
         },
         lang: moment.fn.lang,
@@ -16420,11 +13365,7 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
                 (years ? years + 'Y' : '') +
                 (months ? months + 'M' : '') +
                 (days ? days + 'D' : '') +
-<<<<<<< HEAD
-                (hours || minutes || seconds ? 'T' : '') +
-=======
                 ((hours || minutes || seconds) ? 'T' : '') +
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 (hours ? hours + 'H' : '') +
                 (minutes ? minutes + 'M' : '') +
                 (seconds ? seconds + 'S' : '');
@@ -16474,17 +13415,10 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
     moment.locale('en', {
         ordinalParse: /\d{1,2}(th|st|nd|rd)/,
         ordinal: function (number) {
-<<<<<<< HEAD
-            var b = number % 10, output = toInt(number % 100 / 10) === 1 ? 'th' :
-                b === 1 ? 'st' :
-                    b === 2 ? 'nd' :
-                        b === 3 ? 'rd' : 'th';
-=======
             var b = number % 10, output = (toInt(number % 100 / 10) === 1) ? 'th' :
                 (b === 1) ? 'st' :
                     (b === 2) ? 'nd' :
                         (b === 3) ? 'rd' : 'th';
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return number + output;
         }
     });
@@ -16518,12 +13452,6 @@ hljs.registerLanguage("scilab", function (a) { var b = [a.CNM, { cN: "string", b
         makeGlobal();
     }
 }).call(this);
-<<<<<<< HEAD
-app.topics = {};
-app.topics.fetch = function () {
-    $("ul.topic-resources.topic-resources-list").addClass('loading');
-    var tags = $('#topic-resources').data('tags') || "";
-=======
 /*!
  * pickadate.js v3.4.0, 2014/02/15
  * By Amsul, http://amsul.ca
@@ -17581,7 +14509,6 @@ app.topics = {};
 app.topics.fetch = function () {
     $("ul.topic-resources.topic-resources-list").addClass('loading');
     var tags = ($('#topic-resources').data('tags') || "");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     try {
         tags = JSON.parse(tags.replace(/'/g, "\""));
     }
@@ -17594,11 +14521,7 @@ app.topics.fetch = function () {
             if (i > 0) {
                 tags[i] = "&tag=" + tags[i];
             }
-<<<<<<< HEAD
-            tagsString += tags[i].toLowerCase();
-=======
             tagsString += (tags[i]).toLowerCase();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
     }
     $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&newFirst=true&size15=true&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossorg_blog&tag=' + tagsString, function (data) {
@@ -17615,11 +14538,7 @@ app.topics.render = function (materials) {
         var timeAgo = $.timeago(timeStamp);
         var canDisplay = material.fields.sys_title && material.fields.sys_description && material.fields.sys_description.length > 0;
         if (canDisplay) {
-<<<<<<< HEAD
-            if (material.fields.sys_type[0] === 'blogpost') {
-=======
             if (material.fields.sys_type[0] == 'blogpost') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 if (material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog')) {
                     material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
                 }
@@ -17633,11 +14552,7 @@ app.topics.render = function (materials) {
             }
             var title = material.fields.sys_title[0];
             var tags = material.fields.sys_tags.join(', ').substr(0, 30);
-<<<<<<< HEAD
-            tags = tags.substr(0, Math.min(tags.length, tags.lastIndexOf(", ")));
-=======
             tags = tags.substr(0, Math.min(tags.length, tags.lastIndexOf(",")));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var item = [
                 '<a href="' + material.fields.sys_url_view[0] + '">',
                 '<li class="large-6 columns">',
@@ -17662,11 +14577,7 @@ $(function () {
         app.topics.fetch();
     }
 });
-<<<<<<< HEAD
-=======
-$('.datepicker').pickadate();
 app = window.app || {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 app.latest = {};
 app.latest.fetch = function () {
     $("ul.homepage-resources.homepage-resources-latest").addClass('loading');
@@ -17718,14 +14629,8 @@ dcp.service('helpers', function () {
     this.getKeys = function (obj) {
         var r = [];
         for (var k in obj) {
-<<<<<<< HEAD
-            if (!obj.hasOwnProperty(k)) {
-                continue;
-            }
-=======
             if (!obj.hasOwnProperty(k))
                 continue;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             r.push(Number(k));
         }
         return r;
@@ -17750,23 +14655,16 @@ dcp.service('helpers', function () {
                 }
             }
             catch (ignore) {
-<<<<<<< HEAD
-=======
                 if (console && console.log) {
                     console.log(ignore);
                 }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             }
         }
     };
     this.getAbsoluteMonths_ = function (momentDate) {
         var months = Number(momentDate.format("MM"));
         var years = Number(momentDate.format("YYYY"));
-<<<<<<< HEAD
-        return months + years * 12;
-=======
         return months + (years * 12);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     };
 });
 dcp.controller('eventsController', function ($scope, searchService, helpers) {
@@ -17815,25 +14713,6 @@ dcp.filter('moment', function () {
 });
 $(document).ready(function () {
     $("input[type='radio']").on("click", function (event) {
-<<<<<<< HEAD
-        if ($('input[type="radio"][name="Q1"]:checked').attr("value") === "q1a1" && $('input[type="radio"][name="Q2"]:checked').attr("value") === "q2a1") {
-            $('.result-title').text("Lucky you! You're both a Most Valuable Contributor (MVC) & Developer on the Street (DOTS).");
-            $('.result-text').text("Based upon your selections above, you should sign up to be both a MVC and DOTS.");
-        }
-        if ($('input[type="radio"][name="Q1"]:checked').attr("value") === "q1a1" && $('input[type="radio"][name="Q2"]:checked').attr("value") === "q2a2") {
-            $('.result-title').text("Way to go! You're a match with being a Most Valuable Contributor (MVC).");
-            $('.result-text').text("Based upon your selections above, you should sign up to be a MVC.");
-        }
-        if ($('input[type="radio"][name="Q1"]:checked').attr("value") === "q1a2" && $('input[type="radio"][name="Q2"]:checked').attr("value") === "q2a1") {
-            $('.result-title').text("That€™s awesome! You're both a General Contributor & Developer on the Street (DOTS).");
-            $('.result-text').text("Based upon your selections above, you should sign up to be both a General Contributor and DOTS.");
-        }
-        if ($('input[type="radio"][name="Q1"]:checked').attr("value") === "q1a2" && $('input[type="radio"][name="Q2"]:checked').attr("value") === "q2a2") {
-            $('.result-title').text("You would be great as a General Contributor.");
-            $('.result-text').text("Based upon your selections above, you should sign up to be a General Contributor.");
-        }
-        if ($('input[type="radio"][name="Q1"]').is(':checked') && $('input[type="radio"][name="Q2"]').is(':checked')) {
-=======
         if (($('input[type="radio"][name="Q1"]:checked').attr("value") == "q1a1") && ($('input[type="radio"][name="Q2"]:checked').attr("value") == "q2a1")) {
             $('.result-title').text("Lucky you! You're both a Most Valuable Contributor (MVC) & Developer on the Street (DOTS).");
             $('.result-text').text("Based upon your selections above, you should sign up to be both a MVC and DOTS.");
@@ -17851,7 +14730,6 @@ $(document).ready(function () {
             $('.result-text').text("Based upon your selections above, you should sign up to be a General Contributor.");
         }
         if (($('input[type="radio"][name="Q1"]').is(':checked')) && ($('input[type="radio"][name="Q2"]').is(':checked'))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             $("div.answer-block").show();
         }
     });
@@ -17866,16 +14744,6 @@ if ($('#vJBug-microsite').length) {
 }
 app.vjbug = {
     processDate: function () {
-<<<<<<< HEAD
-        var eventDate = document.getElementById('hiddenDate'), timezone, d, t, currentDate;
-        if (eventDate === null) {
-            return;
-        }
-        eventDate = new Date(eventDate.innerHTML);
-        timezone = String(String(eventDate).split("(")[1]).split(")")[0];
-        d = eventDate.toLocaleDateString();
-        t = eventDate.toLocaleTimeString();
-=======
         var eventDate = document.getElementById('hiddenDate');
         if (eventDate === null)
             return;
@@ -17883,19 +14751,13 @@ app.vjbug = {
         var timezone = (String(String(eventDate).split("(")[1]).split(")")[0]);
         var d = eventDate.toLocaleDateString();
         var t = eventDate.toLocaleTimeString();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         t = t.replace(/\u200E/g, '');
         t = t.replace(/^([^\d]*\d{1,2}:\d{1,2}):\d{1,2}([^\d]*)$/, '$1$2');
         $('.event-day').text(d);
         $('.event-time').text(t);
         $('.event-timezone').text(timezone);
-<<<<<<< HEAD
-        currentDate = new Date();
-        if (currentDate > eventDate.setMinutes(eventDate.getMinutes() + 90)) {
-=======
         var currentDate = new Date();
         if (currentDate > (eventDate.setMinutes(eventDate.getMinutes() + 90))) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             $('.session-label').text('Our Most Recent Session...');
             $('.rsvp-button').hide();
         }
@@ -17913,23 +14775,7 @@ if (tab !== null) {
         this.parentElement.classList.toggle('open');
     });
 }
-<<<<<<< HEAD
-=======
-var app = app || {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-app.abTest = {
-    swap: function (path, selector) {
-        var url = app.baseUrl + '/' + path;
-        $.get(url)
-            .then(function (html) {
-            $(selector).html(html);
-        });
-    }
-};
-<<<<<<< HEAD
-=======
 app = window.app || {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 app.productForums = {};
 app.productForums.fetch = function () {
     var productId = $('.product-forums').data('tags');
@@ -17937,11 +14783,7 @@ app.productForums.fetch = function () {
         if (data.hits && data.hits.hits) {
             app.productForums.render(data.hits.hits);
         }
-<<<<<<< HEAD
-        if (data.hits.total !== 0) {
-=======
         if (data.hits.total != 0) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             document.getElementById("forumsContainer").style.display = "block";
         }
     });
@@ -17997,36 +14839,10 @@ window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
         }
     }
 });
-app.adaptivePlaceholder = {
-    changeFilledState: function () {
-        var input = $(this);
-        var value = input.val();
-<<<<<<< HEAD
-        if (value !== "" && value !== undefined) {
-=======
-        if (value !== "" && value != undefined) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
-            input.addClass('filled');
-        }
-        else {
-            input.removeClass('filled');
-        }
-    }
-};
-$(function () {
-    if ($('.rhd-adaptive-placeholder').length) {
-        $('input, textarea, select').on('blur', app.adaptivePlaceholder.changeFilledState);
-    }
-});
 (function () {
     $(function () {
-<<<<<<< HEAD
-        var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true €” JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"></a></div></div></div></section>');
-        var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It' + "'" + 's true €” JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
-=======
         var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"></a></div></div></div></section>');
         var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (isReferrer('jbd')) {
             switch (getPrimaryCategory()) {
                 case 'products':
@@ -18101,22 +14917,13 @@ $(function () {
             for (var i = 0, o = qsList.length; i < o; i++) {
                 vals[qsList[i].split('=')[0]] = qsList[i].split('=')[1];
             }
-<<<<<<< HEAD
-            referrer = vals.referrer === ref;
-=======
             referrer = vals['referrer'] === ref;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
         return referrer;
     }
     function getPrimaryCategory() {
-<<<<<<< HEAD
-        var prtcl = /https?:\/\//;
-        var category = window.location.href.replace(prtcl, '').replace(drupalSettings.rhd.urls.base_url, '').replace(drupalSettings.rhd.urls.final_base_url, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
-=======
         prtcl = /https?:\/\//;
         category = window.location.href.replace(prtcl, '').replace(drupalSettings.rhd.urls.base_url, '').replace(drupalSettings.rhd.urls.final_base_url, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         return category.length > 1 ? category[1] : category[0];
     }
 }());
@@ -18126,11 +14933,7 @@ function getEventTarget(e) {
 }
 function setCookie(name, value, expireDays) {
     var d = new Date();
-<<<<<<< HEAD
-    d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
-=======
     d.setTime(d.getTime() + (expireDays * 24 * 60 * 60 * 1000));
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
@@ -18139,17 +14942,10 @@ function getCookie(cname) {
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-<<<<<<< HEAD
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-=======
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             return c.substring(name.length, c.length);
         }
     }
@@ -18161,11 +14957,7 @@ function checkRecentDownload() {
         if (window.localStorage.getItem('recent-download-url')) {
             var recentDownload, timeOfRefer, currentTime;
             recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
-<<<<<<< HEAD
-            timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload.timestamp : 0;
-=======
             timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             currentTime = new Date().getTime();
             if (currentTime - timeOfRefer > storageExpiration) {
                 window.localStorage.removeItem('recent-download-url');
@@ -18181,11 +14973,7 @@ function checkRecentDownload() {
     var productApp = angular.module('productApp', []);
     var pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
     if (pathRegex) {
-<<<<<<< HEAD
-        if (window.location.pathname !== getCookie('product_path')) {
-=======
         if (window.location.pathname != getCookie('product_path')) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             setCookie('product_page_cookie', null, 1);
         }
         var tabList = document.querySelectorAll('[role="presentation"]');
@@ -18197,14 +14985,9 @@ function checkRecentDownload() {
                 setCookie('product_page_cookie', target.hash, 1);
             };
         }
-<<<<<<< HEAD
-        var productCookie = getCookie('product_page_cookie');
-        if (productCookie && productCookie !== 'null') {
-=======
         ;
         var productCookie = getCookie('product_page_cookie');
         if (productCookie && productCookie != 'null') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             window.location.hash = productCookie;
         }
     }
@@ -18222,19 +15005,11 @@ $(function () {
 });
 var verifyMemberApp = angular.module('member-verify', []);
 verifyMemberApp.controller('VerifyCtrl', ['$scope', 'validateMember', function VerifyCtrl($scope, validateMember) {
-<<<<<<< HEAD
-        var eChk = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        $scope.isMember = false;
-        $scope.emailChecked = false;
-        $scope.checkMember = function (e) {
-            if (typeof e === 'undefined' || e.keyCode === 13) {
-=======
         var eChk = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         $scope.isMember = false;
         $scope.emailChecked = false;
         $scope.checkMember = function (e) {
             if (typeof e === 'undefined' || e.keyCode == 13) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 $scope.emailChecked = false;
                 $scope.isMember = false;
                 if (eChk.test($scope.email)) {
@@ -18267,25 +15042,6 @@ jQuery(function () {
     var tLength = topicPages.length;
     var cLength = communityPages.length;
     var hLength = helpPages.length;
-<<<<<<< HEAD
-    while (tLength) {
-        if (href.indexOf(topicPages[tLength]) !== -1 && href.indexOf('/products') < 0) {
-            jQuery('.sub-nav-topics').addClass('active');
-        }
-        tLength = tLength - 1;
-    }
-    while (cLength) {
-        if (href.indexOf(communityPages[cLength]) !== -1) {
-            jQuery('.sub-nav-community').addClass('active');
-        }
-        cLength = cLength - 1;
-    }
-    while (hLength) {
-        if (href.indexOf(helpPages[hLength]) !== -1) {
-            jQuery('.sub-nav-help').addClass('active');
-        }
-        hLength = hLength - 1;
-=======
     while (tLength--) {
         if (href.indexOf(topicPages[tLength]) !== -1 && href.indexOf('/products') < 0) {
             jQuery('.sub-nav-topics').addClass('active');
@@ -18300,7 +15056,6 @@ jQuery(function () {
         if (href.indexOf(helpPages[hLength]) !== -1) {
             jQuery('.sub-nav-help').addClass('active');
         }
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     }
     if (href.indexOf('/products') !== -1) {
         jQuery('.sub-nav-products').addClass('active');
@@ -18309,18 +15064,12 @@ jQuery(function () {
         jQuery('.sub-nav-downloads').addClass('active');
     }
 });
-<<<<<<< HEAD
-app.middlewareBlog = {};
-app.middlewareBlog.fetch = function () {
-    $.getJSON(app.dcp.url.search + '/middlewareblogs?newFirst=true&from=0&size=2', function (data) {
-=======
 app = window.app || {};
 app.middlewareBlog = {};
 app.middlewareBlog.fetch = function () {
     console.log("here 2");
     $.getJSON(app.dcp.url.search + '/middlewareblogs?newFirst=true&from=0&size=2', function (data) {
         console.log("here 3");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         if (data.hits && data.hits.hits) {
             app.middlewareBlog.render(data.hits.hits);
         }
@@ -18396,10 +15145,7 @@ $(function () {
 var $window = $(window);
 function checkWidth() {
     var windowsize = document.body.clientWidth;
-<<<<<<< HEAD
-=======
     ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     if (windowsize <= 1170) {
         $(".collapsible-section").addClass("collapsed");
     }
@@ -18407,19 +15153,12 @@ function checkWidth() {
         $(".collapsible-section").removeClass("collapsed");
     }
 }
-<<<<<<< HEAD
-=======
 ;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 checkWidth();
 $(window).on("resize", checkWidth);
 var g = typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : typeof self !== "undefined" ? self : this;
 (function (e) { var t = function () { try {
-<<<<<<< HEAD
-    return Boolean(Symbol.iterator);
-=======
     return !!Symbol.iterator;
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 }
 catch (e) {
     return false;
@@ -18444,11 +15183,7 @@ else if (e instanceof t) {
 }
 else {
     this._entries[e] = [t.toString()];
-<<<<<<< HEAD
-} }; i["delete"] = function (e) { delete this._entries[e]; }; i.get = function (e) { return e in this._entries ? this._entries[e][0] : null; }; i.getAll = function (e) { return e in this._entries ? this._entries[e].slice(0) : []; }; i.has = function (e) { return e in this._entries; }; i.set = function (e, t) { this._entries[e] = [t.toString()]; }; i.forEach = function (e, t) { var n; for (var r in this._entries) {
-=======
 } }; i.delete = function (e) { delete this._entries[e]; }; i.get = function (e) { return e in this._entries ? this._entries[e][0] : null; }; i.getAll = function (e) { return e in this._entries ? this._entries[e].slice(0) : []; }; i.has = function (e) { return e in this._entries; }; i.set = function (e, t) { this._entries[e] = [t.toString()]; }; i.forEach = function (e, t) { var n; for (var r in this._entries) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     if (this._entries.hasOwnProperty(r)) {
         n = this._entries[r];
         for (var i = 0; i < n.length; i++) {
@@ -18457,18 +15192,10 @@ else {
     }
 } }; i.keys = function () { var e = []; this.forEach(function (t, n) { e.push(n); }); return r(e); }; i.values = function () { var e = []; this.forEach(function (t) { e.push(t); }); return r(e); }; i.entries = function () { var e = []; this.forEach(function (t, n) { e.push([n, t]); }); return r(e); }; if (n) {
     i[Symbol.iterator] = i.entries;
-<<<<<<< HEAD
-} i.toString = function () { var e = ""; this.forEach(function (t, n) { if (e.length > 0) {
-    e += "&";
-} e += encodeURIComponent(n) + "=" + encodeURIComponent(t); }); return e; }; e.URLSearchParams = t; }; if (!("URLSearchParams" in e)) {
-    i();
-} }(g));
-=======
 } i.toString = function () { var e = ""; this.forEach(function (t, n) { if (e.length > 0)
     e += "&"; e += encodeURIComponent(n) + "=" + encodeURIComponent(t); }); return e; }; e.URLSearchParams = t; }; if (!("URLSearchParams" in e)) {
     i();
 } })(g);
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 (function (e) { var t = function () { try {
     var e = new URL("b", "http://a");
     e.pathname = "c%20d";
@@ -18476,14 +15203,8 @@ else {
 }
 catch (e) {
     return false;
-<<<<<<< HEAD
-} }; var n = function () { var t = e.URL; var n = function (e, t) { if (typeof e !== "string") {
-    throw new TypeError("Failed to construct 'URL': Invalid URL");
-} var n = document.implementation.createHTMLDocument(""); window.doc = n; if (t) {
-=======
 } }; var n = function () { var t = e.URL; var n = function (e, t) { if (typeof e !== "string")
     throw new TypeError("Failed to construct 'URL': Invalid URL"); var n = document.implementation.createHTMLDocument(""); window.doc = n; if (t) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     var r = n.createElement("base");
     r.href = t;
     n.head.appendChild(r);
@@ -18499,24 +15220,6 @@ catch (e) {
     catch (t) {
         setInterval(function () { e.location.origin = r(); }, 100);
     }
-<<<<<<< HEAD
-} }(g));
-function _classCallCheck(e, t) { if (!(e instanceof t)) {
-    throw new TypeError("Cannot call a class as a function");
-} }
-function _possibleConstructorReturn(e, t) { if (!e) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-} return !t || typeof t !== "object" && typeof t !== "function" ? e : t; }
-function _inherits(e, t) { if (typeof t !== "function" && t !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-} e.prototype = Object.create(t && t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t); }
-var _createClass = (function () { function e(e, t) { for (var n = 0; n < t.length; n++) {
-    var i = t[n];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(e, i.key, i);
-} } return function (t, n, i) { return n && e(t.prototype, n), i && e(t, i), t; }; }()), datetimeTemplate = document.createElement("template");
-datetimeTemplate.innerHTML = "\n  <style>\n    :host {\n      display: inline;\n    }\n  </style>\n  <span></span>\n", window.ShadyCSS && ShadyCSS.prepareTemplate(datetimeTemplate, "rh-datetime");
-var RHDatetime = (function (e) { function t() { _classCallCheck(this, t); var e = _possibleConstructorReturn(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this)); return e.attachShadow({ mode: "open" }), e.shadowRoot.appendChild(datetimeTemplate.content.cloneNode(!0)), e.type = e.getAttribute("type") || "local", e; } return _inherits(t, HTMLElement), _createClass(t, [{ key: "connectedCallback", value: function () { window.ShadyCSS && ShadyCSS.styleElement(this); } }, { key: "attributeChangedCallback", value: function (e, t, n) { this[e] = n; } }, { key: "_getOptions", value: function () { var e = { weekday: { short: "short", long: "long" }, day: { numeric: "numeric", "2-digit": "2-digit" }, month: { short: "short", long: "long" }, year: { numeric: "numeric", "2-digit": "2-digit" }, hour: { numeric: "numeric", "2-digit": "2-digit" }, minute: { numeric: "numeric", "2-digit": "2-digit" }, second: { numeric: "numeric", "2-digit": "2-digit" }, timeZoneName: { short: "short", long: "long" } }, t = {}; for (var n in e) {
-=======
 } })(g);
 function _classCallCheck(e, t) { if (!(e instanceof t))
     throw new TypeError("Cannot call a class as a function"); }
@@ -18530,7 +15233,6 @@ var _createClass = function () { function e(e, t) { for (var n = 0; n < t.length
 } } return function (t, n, i) { return n && e(t.prototype, n), i && e(t, i), t; }; }(), datetimeTemplate = document.createElement("template");
 datetimeTemplate.innerHTML = "\n  <style>\n    :host {\n      display: inline;\n    }\n  </style>\n  <span></span>\n", window.ShadyCSS && ShadyCSS.prepareTemplate(datetimeTemplate, "rh-datetime");
 var RHDatetime = function (e) { function t() { _classCallCheck(this, t); var e = _possibleConstructorReturn(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this)); return e.attachShadow({ mode: "open" }), e.shadowRoot.appendChild(datetimeTemplate.content.cloneNode(!0)), e.type = e.getAttribute("type") || "local", e; } return _inherits(t, HTMLElement), _createClass(t, [{ key: "connectedCallback", value: function () { window.ShadyCSS && ShadyCSS.styleElement(this); } }, { key: "attributeChangedCallback", value: function (e, t, n) { this[e] = n; } }, { key: "_getOptions", value: function () { var e = { weekday: { short: "short", long: "long" }, day: { numeric: "numeric", "2-digit": "2-digit" }, month: { short: "short", long: "long" }, year: { numeric: "numeric", "2-digit": "2-digit" }, hour: { numeric: "numeric", "2-digit": "2-digit" }, minute: { numeric: "numeric", "2-digit": "2-digit" }, second: { numeric: "numeric", "2-digit": "2-digit" }, timeZoneName: { short: "short", long: "long" } }, t = {}; for (var n in e) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             var i = e[n][this.getAttribute(n)];
             i && (t[n] = i);
         } return t; } }, { key: "_getTypeString", value: function () { var e = this._getOptions(), t = this.getAttribute("locale") || navigator.language, n = ""; switch (this.type) {
@@ -18545,30 +15247,17 @@ var RHDatetime = function (e) { function t() { _classCallCheck(this, t); var e =
                 n = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(Date.UTC(i.getFullYear(), i.getMonth(), i.getDate(), i.getHours(), i.getMinutes())));
                 break;
             default: n = this._datetime;
-<<<<<<< HEAD
-        } return n; } }, { key: "_getTimeRelative", value: function (e) { var t = e > 0 ? "until" : "ago", n = "just now", i = Math.round(Math.abs(e) / 1e3), a = Math.round(i / 60), r = Math.round(a / 60), o = Math.round(r / 24), u = Math.round(o / 30), s = Math.round(u / 12); return u >= 18 ? n = s + " years" : u >= 12 ? n = "a year" : o >= 45 ? n = u + " months" : o >= 30 ? n = "a month" : r >= 36 ? n = o + " days" : r >= 24 ? n = "a day" : a >= 90 ? n = r + " hours" : a >= 45 ? n = "an hour" : i >= 90 ? n = a + " minutes" : i >= 45 ? n = "a minute" : i >= 10 && (n = i + " seconds"), n !== "just now" ? n + " " + t : n; } }, { key: "datetime", get: function () { return this._datetime; }, set: function (e) { var t = new Date(e); t && (t && this._datetime === t || (this._datetime = t, this.shadowRoot.querySelector("span").innerText = this._getTypeString())); } }, { key: "type", get: function () { return this._type; }, set: function (e) { this._type !== e && (this._type = e); } }], [{ key: "observedAttributes", get: function () { return ["datetime", "type"]; } }]), t; }());
-=======
         } return n; } }, { key: "_getTimeRelative", value: function (e) { var t = e > 0 ? "until" : "ago", n = "just now", i = Math.round(Math.abs(e) / 1e3), a = Math.round(i / 60), r = Math.round(a / 60), o = Math.round(r / 24), u = Math.round(o / 30), s = Math.round(u / 12); return u >= 18 ? n = s + " years" : u >= 12 ? n = "a year" : o >= 45 ? n = u + " months" : o >= 30 ? n = "a month" : r >= 36 ? n = o + " days" : r >= 24 ? n = "a day" : a >= 90 ? n = r + " hours" : a >= 45 ? n = "an hour" : i >= 90 ? n = a + " minutes" : i >= 45 ? n = "a minute" : i >= 10 && (n = i + " seconds"), "just now" !== n ? n + " " + t : n; } }, { key: "datetime", get: function () { return this._datetime; }, set: function (e) { var t = new Date(e); t && (t && this._datetime === t || (this._datetime = t, this.shadowRoot.querySelector("span").innerText = this._getTypeString())); } }, { key: "type", get: function () { return this._type; }, set: function (e) { this._type !== e && (this._type = e); } }], [{ key: "observedAttributes", get: function () { return ["datetime", "type"]; } }]), t; }();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 window.customElements.define("rh-datetime", RHDatetime);
 $(document).ready(function () {
     $("a[href$='.pdf']").each(function () {
         var ignoredDomains = ['developers.redhat.com/download-manager/', 'jboss.org/download-manager/'];
-<<<<<<< HEAD
-        for (var i = 0; i < ignoredDomains.length; i++) {
-            if (this.href.indexOf(ignoredDomains[i]) !== -1) {
-                return true;
-            }
-        }
-        if (this.href.indexOf(location.hostname) === -1) {
-=======
         for (i = 0; i < ignoredDomains.length; i++) {
             if (this.href.indexOf(ignoredDomains[i]) != -1) {
                 return true;
             }
         }
         if (this.href.indexOf(location.hostname) == -1) {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
             $(this).on("click", function () { return true; });
             $(this).attr({ target: "_blank" });
             $(this).trigger("click");
@@ -18588,20 +15277,13 @@ $('.show-more').on('click', function () {
     $showMoreContent.toggleClass('open');
     return $showMoreBtn.toggle();
 });
-<<<<<<< HEAD
-=======
 app = window.app || {};
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
 app.relatedContent = {};
 app.relatedContent.fetch = function () {
     $("div.video-related-content.video-related-content-list").addClass('loading');
     var contentCount = $('#video-related-cont').find('.field--name-field-related-content .related-content-card').length;
     contentCount = 4 - contentCount;
-<<<<<<< HEAD
-    var tags = $('#video-related-cont').data('tags') || "";
-=======
     var tags = ($('#video-related-cont').data('tags') || "");
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
     try {
         tags = JSON.parse(tags.replace(/'/g, "\""));
     }
@@ -18614,11 +15296,7 @@ app.relatedContent.fetch = function () {
             if (i > 0) {
                 tags[i] = "&tag=" + tags[i];
             }
-<<<<<<< HEAD
-            tagsString += tags[i].toLowerCase();
-=======
             tagsString += (tags[i]).toLowerCase();
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
         }
     }
     $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&filter_out_excluded=true&size10=true&tag=' + tagsString, function (data) {
@@ -18634,11 +15312,7 @@ app.relatedContent.render = function (materials) {
         var type = material.fields.sys_type[0];
         var canDisplay = material.fields.sys_title && material.fields.sys_description && material.fields.sys_description.length > 0;
         if (canDisplay) {
-<<<<<<< HEAD
-            if (material.fields.sys_type[0] === 'blogpost') {
-=======
             if (material.fields.sys_type[0] == 'blogpost') {
->>>>>>> 48d717751b252b757486e9c9a038ff76b25d9ec8
                 if (material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog')) {
                     material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
                 }
