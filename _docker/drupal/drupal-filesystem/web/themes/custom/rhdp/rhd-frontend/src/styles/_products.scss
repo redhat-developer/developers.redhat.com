@@ -686,7 +686,7 @@ rhdp-tryitnow {
       position: relative;
       color:$grey-5 !important;
       text-align: left;
-      &:hover {
+      &:hover, &:focus {
         background:none !important;
         color: $black !important; 
       }
