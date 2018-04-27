@@ -201,6 +201,9 @@ def run_npm_command(cmd, error_message)
 
   puts " -- Running command '#{cmd}'..."
   out, status = Open3.capture2e("#{cmd}")
+  puts " -- #{cmd} output --"
+  puts out
+  puts " -- End #{cmd} output --"
   Kernel.abort("#{error_message}: #{out}") unless status.success?
 end
 
