@@ -265,7 +265,11 @@ function rhdp_preprocess_node(&$variables) {
     if (count($cta_field)) {
       $cta_field = reset($cta_field);
       $variables['cta_title']['#markup'] = $cta_field['title'];
-      $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath(Url::fromUri($cta_field['uri'])->toString());
+      $url = Url::fromUri($cta_field['uri']);
+      $variables['cta_url']['#markup'] = $url->toString();
+      if (!$url->isExternal()) {
+        $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath($url->toString());
+      }
     }
   }
 
