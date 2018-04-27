@@ -1,7 +1,12 @@
 .assembly-type-dynamic_content_feed {
-  padding-top: $gutter;
-  padding-bottom: $gutter;
   background-color: #f9f9f9;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+
+  @include tablet-portrait {
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+  }
 
   .header {
     text-align: center;

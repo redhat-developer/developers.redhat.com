@@ -1,7 +1,7 @@
 $tablet-portrait: 576px;
 $tablet-landscape: 768px;
 $desktop-small: 992px;
-$desktop-large: 1200px;
+$desktop-large: 1240px;
 $gutter: 30px;
 @mixin tablet-portrait {
   @media (min-width: #{$tablet-portrait}) {
@@ -28,4 +28,4 @@ $gutter: 30px;
   box-sizing: border-box;
   font-family: overpass, "Open Sans", Helvetica, sans-serif;
 }
-body { margin: 0; padding: 0; }
+body { margin: 0; padding: 0; color: $grey-7; }

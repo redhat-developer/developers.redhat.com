@@ -1,6 +1,7 @@
 /* Cheat Sheet and books */
 
 #rhd-cheat-sheet, #rhd-book {
+  margin-bottom: 3em;
   .content-type{
     text-transform: uppercase;
     color: $grey-6;
@@ -58,12 +59,13 @@
   .cs-info, .book-info {
     border-top: 1px solid $grey-5;
     border-bottom: 1px solid $grey-5;
-    padding: 7px 5px 0 0;
+    padding: 7px 0;
     margin-bottom: 2.5em;
     ul {
       list-style: none;
       margin: 0;
       overflow: hidden;
+      padding-left: 0;
       li {
         width: auto;
         margin-bottom: 1px;
@@ -72,11 +74,35 @@
         &:first-child {
           padding-left: 0;
         }
+        .field {
+          display: inline-block;
+        }
       }
     }
   }
-  .cs-tags .field__item:not(:only-child):not(:last-child) {
-    &:after { content: ','; }
+
+  .cs-tags,
+  .book-tags {
+    .field--name-field-cheat-sheet-tags,
+    .field--name-field-tags {
+      display: inline;
+      .field__item {
+        display: inline-block;
+        color: $grey-6;
+        a {
+          color: $grey-6;
+        }
+        &:after{
+          content: ", ";
+          position: relative;
+        }
+        &:last-child{
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
   }
   .cs-social .googleplus-one, .book-social .googleplus-one {
     max-width: 55px;

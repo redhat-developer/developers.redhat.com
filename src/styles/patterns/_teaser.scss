@@ -1,6 +1,8 @@
 .node--type-video-resource.node--view-mode-teaser,
 .wordpress-blog-post-teaser {
   width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   .teaser-content {
     display: none;
@@ -9,30 +11,53 @@
     }
   }
 
+  @include tablet-landscape {
+    display: flex;
+    .teaser-image {
+      min-width: 180px;
+      max-width: 260px;
+      margin-left: 30px;
+    }
+    .text-content {
+      order: -1;
+    }
+  }
+
   .teaser-image {
     .tile-image {
       border: none;
     }
-    @include desktop-small {
-      float: right;
-      width: 40%;
-      margin-left: 30px;
-
-
-      .image-cell {
-        vertical-align: top;
+    @include tablet-landscape {
+      .tile-image {
+        background: transparent;
+        .image-table {
+          .image-cell {
+            vertical-align: top;
+          }
+        }
       }
     }
   }
 
   .title {
-    font-size: 22px;
-    line-height: 1.5;
-    margin-bottom: 14px;
+    margin-top: 0;
+    font-size: 14px;
+    @include tablet-portrait {
+      font-size: 26px;
+    }
+    line-height: 1.4;
+    margin-bottom: 8px;
     a {
       color: #000;
       text-decoration: none;
     }
+  }
+
+  .date {
+    color: $gray-7;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
   }
 
   .summary {
@@ -41,7 +66,12 @@
       display: block;
     }
     p {
+      font-size: 14px;
       margin-top: 0rem;
+    }
+
+    >*:last-child {
+      margin-bottom: 0;
     }
   }
 }

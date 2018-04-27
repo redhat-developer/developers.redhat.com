@@ -8,6 +8,22 @@ env:
   serviceworker: true
   amd: true
   node: true
+globals:
+  $: true
+  jQuery: true
+  angular: true
+  sendCustomEvent: true
+  digitalData: true
+  Drupal: true
+  drupalSettings: true
+  ActiveXObject: true
+  Keycloak: true
+  deparam: true
+  FastClick: true
+  DocumentTouch: true
+  moment: true
+  RHDPOSDownload: true
+  Symbol: true
 rules:
   no-extra-parens: 1
   curly:
@@ -22,10 +38,10 @@ rules:
   eqeqeq: 2
   no-else-return: 2
   no-eq-null: 2
-  no-eval: 2
+  no-eval: 1
   no-global-assign: 2
   no-implicit-coercion: 2
-  no-loop-func: 2
+  no-loop-func: 1
   no-magic-numbers: 1
   no-multi-spaces: 2
   no-multi-str: 2

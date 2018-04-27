@@ -10,6 +10,25 @@
 @import "mq-mixins";
 @import "rhd-footer";
 @import "slick";
+@import "learning-paths";
+
+
+// Foundation dependent
+@import "products";
+@import "adaptive-placeholder";
+@import "keycloak-pages";
+@import "get-started";
+@import "developer-materials";
+@import "buzz";
+@import "confirmation";
+@import "middleware";
+@import "projects";
+@import "thank-you";
+@import "books";
+@import "cheat-sheet";
+@import "videos";
+@import "microsite";
+@import "articles";
 
 
 // Stylesheets for microsites
@@ -27,6 +46,7 @@
 @import "javaone";
 @import "ticket-monster";
 @import "vjbug";
+@import "searchapp";
 
 
 
@@ -35,14 +55,72 @@
     flex-direction: column;
 
     display: grid;
-    grid-template-columns: [leftgutter] auto repeat(12, [content-start] 70px) auto [rightgutter];
-    grid-template-rows: minmax(30px, 1fr);
+    grid-template-columns: repeat(12, [content-start] 70px) [content-end];
+    grid-template-rows: minmax(30px, 1fr) [bottomrow];
     grid-auto-flow: column;
     grid-gap: 30px;
+    margin: 0 auto;
+    width: 1200px;
 }
 
-[data-rhd-pos="span12"] {
-  grid-column: content-start / span 12;
+[data-rhd-grid="quad"] {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+[data-rhd-grid="triple"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+[data-rhd-col="span12"] {
+  grid-column: content-start / content-end;
+}
+
+[data-rhd-col="span3"] {
+  grid-column: span 3;
+}
+
+[data-rhd-col="5span9"] {
+  grid-column: 5 / span 9;
+}
+
+[data-rhd-row="span5"] {
+  grid-row: span 5;
+}
+
+[data-rhd-row="bottom"] {
+  grid-row: span bottomrow;
+}
+
+// Hides title from Basic Pages
+body.page-node-type-page,
+body.path-products,
+body.page-node-type-video-resource,
+body.page-node-type-books,
+body.page-node-type-cheat-sheet,
+body.page-node-type-promotion-page,
+body.page-node-type-article {
+  h1.page-title {
+    display: none;
+  }
+}
+
+// Makes Basic Pages full width
+.page-community-contributor,
+.page-ticket-monster,
+.page-middleware {
+  .node__content > .text-formatted {
+    max-width: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
 }
 
 .rh-universal-header {
@@ -99,9 +177,12 @@
   display: none;
 }
 
-.page-title, .field--name-body, #block-rhdp-local-tasks {
+.node__content>.field--name-body,
+#block-rhdp-local-tasks {
   @extend .container;
 }
+
+
 .field--name-body {
   margin-bottom: 40px;
 }
@@ -175,5 +256,122 @@ img {
     margin-left: 0.5em;
     position: relative;
     top: 0.1em;
+  }
+}
+
+.mobile {
+  display: none;
+}
+
+.callout-light {
+  background-color: #f0f0f0;
+  border: 1px solid #efeff0;
+  padding: 20px;
+  margin: 15px 0;
+  p {
+    margin-bottom: 0;
+  }
+  a {
+    color: $link-dark-background;
+  }
+}
+
+.card {
+  padding: 30px 20px;
+  display: block;
+  background: $grey-8;
+  border-left:4px solid $red;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.related-product-card,
+.related-content-card {
+  background-color: $white;
+  padding: 20px;
+  border: 2px solid $grey-3;
+  font-size: .9rem;
+  height: auto;
+  margin: 15px 0;
+  position: relative;
+  h6 {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #8c8f91;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  span {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 65px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    @include tablet-landscape-and-down {
+      max-height: 95px;
+      -webkit-line-clamp: 3;
+    }
+  }
+  p { margin-bottom: 0; }
+}
+
+pre {
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #d5d5d5;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.content-type-label {
+  text-transform: uppercase;
+  color: $grey-6;
+  margin: 1em 0 0 0;
+}
+
+.page-info-bar {
+  border-top: 1px solid $grey-5;
+  border-bottom: 1px solid $grey-5;
+  padding: 7px 0;
+  margin: 1.5em 1em 2.5em 1em;
+  ul {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding-left: 0;
+    li {
+      width: auto;
+      margin: 2px 0;
+      padding: 0 0 0 1em;
+      display: inline-block;
+      &:first-child { padding-left: 0; }
+    }
+  }
+}
+
+.share-sm {
+ margin-top: 2px;
+ .a2a_button_google_plusone {
+   height: 24px;
+ }
+}
+
+@include tablet-landscape-and-down {
+  .page-info-bar{
+      .share-sm {
+        float: none !important;
+        margin-top: 5px;
+        ul li:not(:first-child) { padding-left: 1em; }
+      }
+      ul li {
+        display: block;
+        padding-left: 0;
+      }
   }
 }

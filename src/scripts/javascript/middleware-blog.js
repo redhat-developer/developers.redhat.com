@@ -54,7 +54,6 @@ app.middlewareBlog.render = function(materials) {
 
 $(function() {
   var $middlewareBlogResourceList = $('.middleware-blog-latest');
-  console.log("here");
   // check if we are on a page that needs this to run
   if($middlewareBlogResourceList.length) {
     app.middlewareBlog.fetch();

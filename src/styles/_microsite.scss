@@ -87,7 +87,6 @@
   margin:20px 0;
   h3 {
     text-transform: uppercase;
-    color:$medium-orange;
     font-size: emCalc(32);
   }
   p {
@@ -310,9 +309,9 @@ body.microsite-multi-page, body.microsite {
   }
 }
 
-.distributed-javaee-architecture {
-  margin-top: 3em;
+body.page-node-type-promotion-page {
   .promotion-header {
+    margin-bottom: 4em;
     img {
       max-width: 320px;
     }
@@ -323,6 +322,9 @@ body.microsite-multi-page, body.microsite {
       display: block;
       margin: 17px 0;
       max-width: 320px;
+    }
+    h3 {
+      margin-top: 0;
     }
   }
   .author-img {
@@ -389,12 +391,12 @@ body.microsite-multi-page, body.microsite {
   .microsite-tmpl .button.mailto-btn {
     display: block !important;
     background: $white;
-    border: 2px solid $accent-blue;
-    color: $accent-blue;
+    border: 2px solid #08c0fc;
+    color: #08c0fc;
   }
 
   .field__item.button.mailto-btn a {
-    color: $accent-blue;
+    color: #08c0fc;
     display: block;
   }
 

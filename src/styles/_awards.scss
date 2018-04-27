@@ -1,5 +1,12 @@
 .wide-hero.awards {
   background: url('https://static.jboss.org/rhd/images/_images_awards_microsite_hero.jpg');
+  padding: 1em;
+  h2, p {
+    color: $white;
+  }
+  h2 {
+    text-align: right;
+  }
 }
 
 .middlewareAwards {

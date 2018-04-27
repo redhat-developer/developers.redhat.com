@@ -34,7 +34,7 @@ if ($(".multipath-tabs-sm").length) {
     app.currentTab.set_active_tab($(".current-tabs li").eq(ind));
   }
 
-  $(".current-tabs li").click(function () {
+  $(".current-tabs li").on("click", function () {
     if (localStorage) {
       localStorage[product + page + "-tab"] = $(this).index();
     }
