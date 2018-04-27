@@ -9427,126 +9427,157 @@ p.desc {
   display: none; }
 
 /* Cheat Sheet and books */
-#rhd-cheat-sheet .content-type, #rhd-book .content-type {
-  text-transform: uppercase;
-  color: #424242;
-  margin-bottom: 0; }
-
-#rhd-cheat-sheet .cs-excerpt, #rhd-cheat-sheet .book-excerpt, #rhd-book .cs-excerpt, #rhd-book .book-excerpt {
-  display: block;
-  background-color: #e8fbff;
-  border: 1px solid #b8e3ed;
-  padding: 20px 30px;
-  margin: 40px 0 20px 0; }
-  #rhd-cheat-sheet .cs-excerpt h4, #rhd-cheat-sheet .book-excerpt h4, #rhd-book .cs-excerpt h4, #rhd-book .book-excerpt h4 {
-    margin-bottom: 15px; }
-  #rhd-cheat-sheet .cs-excerpt span, #rhd-cheat-sheet .book-excerpt span, #rhd-book .cs-excerpt span, #rhd-book .book-excerpt span {
-    display: inline-block;
-    width: calc(100% - 60px);
-    font-style: italic; }
-    #rhd-cheat-sheet .cs-excerpt span.open-quote, #rhd-cheat-sheet .book-excerpt span.open-quote, #rhd-book .cs-excerpt span.open-quote, #rhd-book .book-excerpt span.open-quote {
-      font-size: 7em;
-      width: 60px;
-      margin-top: 40px;
-      color: #00b9e4;
-      font-style: normal; }
-    #rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .cs-excerpt span .field--name-field-book-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-book-excerpt, #rhd-book .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .cs-excerpt span .field--name-field-book-excerpt, #rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .book-excerpt span .field--name-field-book-excerpt {
-      width: inherit; }
-  #rhd-cheat-sheet .cs-excerpt .divider, #rhd-cheat-sheet .book-excerpt .divider, #rhd-book .cs-excerpt .divider, #rhd-book .book-excerpt .divider {
-    border-bottom: 1px solid #D5D5D5;
-    padding: 10px 0; }
-    #rhd-cheat-sheet .cs-excerpt .divider:last-of-type, #rhd-cheat-sheet .book-excerpt .divider:last-of-type, #rhd-book .cs-excerpt .divider:last-of-type, #rhd-book .book-excerpt .divider:last-of-type {
-      border-bottom: none;
-      padding-bottom: 0; }
-  #rhd-cheat-sheet .cs-excerpt code, #rhd-cheat-sheet .book-excerpt code, #rhd-book .cs-excerpt code, #rhd-book .book-excerpt code {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-weight: inherit; }
-
-#rhd-cheat-sheet .cta-label, #rhd-book .cta-label {
-  margin-bottom: 15px; }
-
-#rhd-cheat-sheet .cs-info, #rhd-cheat-sheet .book-info, #rhd-book .cs-info, #rhd-book .book-info {
-  border-top: 1px solid #656565;
-  border-bottom: 1px solid #656565;
-  padding: 7px 0;
-  margin-bottom: 2.5em; }
-  #rhd-cheat-sheet .cs-info ul, #rhd-cheat-sheet .book-info ul, #rhd-book .cs-info ul, #rhd-book .book-info ul {
-    list-style: none;
-    margin: 0;
-    overflow: hidden;
-    padding-left: 0; }
-    #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
-      width: auto;
-      margin-bottom: 1px;
-      padding-top: 1px;
-      display: inline-block; }
-      #rhd-cheat-sheet .cs-info ul li:first-child, #rhd-cheat-sheet .book-info ul li:first-child, #rhd-book .cs-info ul li:first-child, #rhd-book .book-info ul li:first-child {
-        padding-left: 0; }
-      #rhd-cheat-sheet .cs-info ul li .field, #rhd-cheat-sheet .book-info ul li .field, #rhd-book .cs-info ul li .field, #rhd-book .book-info ul li .field {
-        display: inline-block; }
-
-#rhd-cheat-sheet .cs-tags .field__item:not(:only-child):not(:last-child):after, #rhd-book .cs-tags .field__item:not(:only-child):not(:last-child):after {
-  content: ','; }
-
-#rhd-cheat-sheet .cs-social .googleplus-one, #rhd-cheat-sheet .book-social .googleplus-one, #rhd-book .cs-social .googleplus-one, #rhd-book .book-social .googleplus-one {
-  max-width: 55px; }
-
-#rhd-cheat-sheet .share-this, #rhd-book .share-this {
-  background: none;
-  padding-top: 0; }
-
-#rhd-cheat-sheet a.button, #rhd-book a.button {
-  margin: 5px 0 20px 0;
-  margin-right: 25px !important; }
-
-#rhd-cheat-sheet .shown-after-login, #rhd-cheat-sheet .hidden-after-login, #rhd-book .shown-after-login, #rhd-book .hidden-after-login {
-  display: none; }
-
-@media only screen and (max-width: 1024px) {
-  #rhd-cheat-sheet .cs-info .cs-social, #rhd-cheat-sheet .cs-info .book-social, #rhd-cheat-sheet .book-info .cs-social, #rhd-cheat-sheet .book-info .book-social, #rhd-book .cs-info .cs-social, #rhd-book .cs-info .book-social, #rhd-book .book-info .cs-social, #rhd-book .book-info .book-social {
-    float: none !important;
-    margin-top: 5px; }
-  #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
-    display: block; }
-  #rhd-cheat-sheet .field--name-field-cheat-sheet-tags, #rhd-cheat-sheet .field--name-field-tags, #rhd-book .field--name-field-cheat-sheet-tags, #rhd-book .field--name-field-tags {
-    margin-bottom: 25px; }
-  #rhd-cheat-sheet a.button, #rhd-book a.button {
-    width: 100%;
-    margin-right: 0; } }
-
-@media only screen and (max-width: 768px) {
-  #rhd-cheat-sheet .cs-tags, #rhd-book .cs-tags {
-    margin-top: 20px; } }
-
-#rhd-cheat-sheet .white-card, #rhd-book .white-card {
-  background-color: #FFFFFF;
-  height: 193px;
-  margin: 16px 0;
-  padding: 15px;
-  border: 2px solid #D5D5D5;
-  position: relative; }
-  #rhd-cheat-sheet .white-card h5, #rhd-book .white-card h5 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    max-height: 50px;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; }
-  #rhd-cheat-sheet .white-card h6, #rhd-book .white-card h6 {
-    text-transform: uppercase; }
-  #rhd-cheat-sheet .white-card p, #rhd-cheat-sheet .white-card .description, #rhd-book .white-card p, #rhd-book .white-card .description {
-    font-size: 1em;
-    line-height: 1.4;
+#rhd-cheat-sheet, #rhd-book {
+  margin-bottom: 3em; }
+  #rhd-cheat-sheet .content-type, #rhd-book .content-type {
+    text-transform: uppercase;
     color: #424242;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    max-height: 43px;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     margin-bottom: 0; }
+  #rhd-cheat-sheet .cs-excerpt, #rhd-cheat-sheet .book-excerpt, #rhd-book .cs-excerpt, #rhd-book .book-excerpt {
+    display: block;
+    background-color: #e8fbff;
+    border: 1px solid #b8e3ed;
+    padding: 20px 30px;
+    margin: 40px 0 20px 0; }
+    #rhd-cheat-sheet .cs-excerpt h4, #rhd-cheat-sheet .book-excerpt h4, #rhd-book .cs-excerpt h4, #rhd-book .book-excerpt h4 {
+      margin-bottom: 15px; }
+    #rhd-cheat-sheet .cs-excerpt span, #rhd-cheat-sheet .book-excerpt span, #rhd-book .cs-excerpt span, #rhd-book .book-excerpt span {
+      display: inline-block;
+      width: calc(100% - 60px);
+      font-style: italic; }
+      #rhd-cheat-sheet .cs-excerpt span.open-quote, #rhd-cheat-sheet .book-excerpt span.open-quote, #rhd-book .cs-excerpt span.open-quote, #rhd-book .book-excerpt span.open-quote {
+        font-size: 7em;
+        width: 60px;
+        margin-top: 40px;
+        color: #00b9e4;
+        font-style: normal; }
+      #rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .cs-excerpt span .field--name-field-book-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-book-excerpt, #rhd-book .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .cs-excerpt span .field--name-field-book-excerpt, #rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .book-excerpt span .field--name-field-book-excerpt {
+        width: inherit; }
+    #rhd-cheat-sheet .cs-excerpt .divider, #rhd-cheat-sheet .book-excerpt .divider, #rhd-book .cs-excerpt .divider, #rhd-book .book-excerpt .divider {
+      border-bottom: 1px solid #D5D5D5;
+      padding: 10px 0; }
+      #rhd-cheat-sheet .cs-excerpt .divider:last-of-type, #rhd-cheat-sheet .book-excerpt .divider:last-of-type, #rhd-book .cs-excerpt .divider:last-of-type, #rhd-book .book-excerpt .divider:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0; }
+    #rhd-cheat-sheet .cs-excerpt code, #rhd-cheat-sheet .book-excerpt code, #rhd-book .cs-excerpt code, #rhd-book .book-excerpt code {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      font-weight: inherit; }
+  #rhd-cheat-sheet .cta-label, #rhd-book .cta-label {
+    margin-bottom: 15px; }
+  #rhd-cheat-sheet .cs-info, #rhd-cheat-sheet .book-info, #rhd-book .cs-info, #rhd-book .book-info {
+    border-top: 1px solid #656565;
+    border-bottom: 1px solid #656565;
+    padding: 7px 0;
+    margin-bottom: 2.5em; }
+    #rhd-cheat-sheet .cs-info ul, #rhd-cheat-sheet .book-info ul, #rhd-book .cs-info ul, #rhd-book .book-info ul {
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding-left: 0; }
+      #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
+        width: auto;
+        margin-bottom: 1px;
+        padding-top: 1px;
+        display: inline-block; }
+        #rhd-cheat-sheet .cs-info ul li:first-child, #rhd-cheat-sheet .book-info ul li:first-child, #rhd-book .cs-info ul li:first-child, #rhd-book .book-info ul li:first-child {
+          padding-left: 0; }
+        #rhd-cheat-sheet .cs-info ul li .field, #rhd-cheat-sheet .book-info ul li .field, #rhd-book .cs-info ul li .field, #rhd-book .book-info ul li .field {
+          display: inline-block; }
+  #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags,
+  #rhd-cheat-sheet .cs-tags .field--name-field-tags,
+  #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags,
+  #rhd-cheat-sheet .book-tags .field--name-field-tags, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags,
+  #rhd-book .cs-tags .field--name-field-tags,
+  #rhd-book .book-tags .field--name-field-cheat-sheet-tags,
+  #rhd-book .book-tags .field--name-field-tags {
+    display: inline; }
+    #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item,
+    #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item,
+    #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item,
+    #rhd-cheat-sheet .book-tags .field--name-field-tags .field__item, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags .field__item,
+    #rhd-book .cs-tags .field--name-field-tags .field__item,
+    #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item,
+    #rhd-book .book-tags .field--name-field-tags .field__item {
+      display: inline-block;
+      color: #424242; }
+      #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item a,
+      #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item a,
+      #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item a,
+      #rhd-cheat-sheet .book-tags .field--name-field-tags .field__item a, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags .field__item a,
+      #rhd-book .cs-tags .field--name-field-tags .field__item a,
+      #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item a,
+      #rhd-book .book-tags .field--name-field-tags .field__item a {
+        color: #424242; }
+      #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:after,
+      #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:after,
+      #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
+      #rhd-cheat-sheet .book-tags .field--name-field-tags .field__item:after, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags .field__item:after,
+      #rhd-book .cs-tags .field--name-field-tags .field__item:after,
+      #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
+      #rhd-book .book-tags .field--name-field-tags .field__item:after {
+        content: ", ";
+        position: relative; }
+      #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+      #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:last-child:after,
+      #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+      #rhd-cheat-sheet .book-tags .field--name-field-tags .field__item:last-child:after, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+      #rhd-book .cs-tags .field--name-field-tags .field__item:last-child:after,
+      #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+      #rhd-book .book-tags .field--name-field-tags .field__item:last-child:after {
+        display: none; }
+  #rhd-cheat-sheet .cs-social .googleplus-one, #rhd-cheat-sheet .book-social .googleplus-one, #rhd-book .cs-social .googleplus-one, #rhd-book .book-social .googleplus-one {
+    max-width: 55px; }
+  #rhd-cheat-sheet .share-this, #rhd-book .share-this {
+    background: none;
+    padding-top: 0; }
+  #rhd-cheat-sheet a.button, #rhd-book a.button {
+    margin: 5px 0 20px 0;
+    margin-right: 25px !important; }
+  #rhd-cheat-sheet .shown-after-login, #rhd-cheat-sheet .hidden-after-login, #rhd-book .shown-after-login, #rhd-book .hidden-after-login {
+    display: none; }
+  @media only screen and (max-width: 1024px) {
+    #rhd-cheat-sheet .cs-info .cs-social, #rhd-cheat-sheet .cs-info .book-social, #rhd-cheat-sheet .book-info .cs-social, #rhd-cheat-sheet .book-info .book-social, #rhd-book .cs-info .cs-social, #rhd-book .cs-info .book-social, #rhd-book .book-info .cs-social, #rhd-book .book-info .book-social {
+      float: none !important;
+      margin-top: 5px; }
+    #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
+      display: block; }
+    #rhd-cheat-sheet .field--name-field-cheat-sheet-tags, #rhd-cheat-sheet .field--name-field-tags, #rhd-book .field--name-field-cheat-sheet-tags, #rhd-book .field--name-field-tags {
+      margin-bottom: 25px; }
+    #rhd-cheat-sheet a.button, #rhd-book a.button {
+      width: 100%;
+      margin-right: 0; } }
+  @media only screen and (max-width: 768px) {
+    #rhd-cheat-sheet .cs-tags, #rhd-book .cs-tags {
+      margin-top: 20px; } }
+  #rhd-cheat-sheet .white-card, #rhd-book .white-card {
+    background-color: #FFFFFF;
+    height: 193px;
+    margin: 16px 0;
+    padding: 15px;
+    border: 2px solid #D5D5D5;
+    position: relative; }
+    #rhd-cheat-sheet .white-card h5, #rhd-book .white-card h5 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 50px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; }
+    #rhd-cheat-sheet .white-card h6, #rhd-book .white-card h6 {
+      text-transform: uppercase; }
+    #rhd-cheat-sheet .white-card p, #rhd-cheat-sheet .white-card .description, #rhd-book .white-card p, #rhd-book .white-card .description {
+      font-size: 1em;
+      line-height: 1.4;
+      color: #424242;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 43px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-bottom: 0; }
 
 .video-page div.video-container:only-child {
   width: 100% !important; }
@@ -9573,8 +9604,18 @@ p.desc {
 
 .video-page .video-description {
   margin-bottom: 1em; }
-  .video-page .video-description .field--name-field-video-resource-tags .field__item:not(:only-child):not(:last-child):after {
-    content: ','; }
+  .video-page .video-description .field--name-field-video-resource-tags {
+    display: inline; }
+    .video-page .video-description .field--name-field-video-resource-tags .field__item {
+      display: inline-block;
+      color: #424242; }
+      .video-page .video-description .field--name-field-video-resource-tags .field__item a {
+        color: #424242; }
+      .video-page .video-description .field--name-field-video-resource-tags .field__item:after {
+        content: ",";
+        position: relative; }
+      .video-page .video-description .field--name-field-video-resource-tags .field__item:last-child:after {
+        display: none; }
 
 .video-page .show-more-text {
   max-height: 73px; }
@@ -9629,9 +9670,7 @@ p.desc {
 
 section.related-content {
   background-color: #F9F9F9;
-  padding: 3em 0;
-  position: relative;
-  top: 113px; }
+  padding: 3em 0; }
 
 @media only screen and (max-width: 1170px) {
   section.related-content {
@@ -9925,6 +9964,8 @@ body.page-node-type-promotion-page .promotion-header {
     display: block;
     margin: 17px 0;
     max-width: 320px; }
+  body.page-node-type-promotion-page .promotion-header h3 {
+    margin-top: 0; }
 
 body.page-node-type-promotion-page .author-img {
   width: 115px;
@@ -11411,7 +11452,9 @@ img {
   .related-content-card h6 {
     font-weight: bold;
     text-transform: uppercase;
-    color: #656565; }
+    color: #8c8f91;
+    font-size: 16px;
+    margin-top: 5px; }
   .related-product-card span,
   .related-content-card span {
     margin: 5px 0;

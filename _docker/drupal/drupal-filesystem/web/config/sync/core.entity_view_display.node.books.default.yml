@@ -46,7 +46,7 @@ mode: default
 content:
   field_author:
     weight: 1
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -54,28 +54,28 @@ content:
     region: content
   field_average_rating:
     weight: 9
-    label: visually_hidden
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_book_description:
     weight: 3
-    label: visually_hidden
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_book_excerpt:
     weight: 13
-    label: visually_hidden
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_book_url:
     weight: 4
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -99,7 +99,7 @@ content:
     region: content
   field_categories:
     weight: 5
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -114,7 +114,7 @@ content:
     region: content
   field_epub:
     weight: 17
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -126,7 +126,7 @@ content:
     region: content
   field_isbn:
     weight: 11
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -134,7 +134,7 @@ content:
     region: content
   field_mobi_link:
     weight: 16
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -146,7 +146,7 @@ content:
     region: content
   field_needs_own_page:
     weight: 18
-    label: visually_hidden
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -156,7 +156,7 @@ content:
     region: content
   field_pdf_link:
     weight: 15
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -168,7 +168,7 @@ content:
     region: content
   field_preview_url:
     weight: 7
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -180,7 +180,7 @@ content:
     region: content
   field_published_date:
     weight: 2
-    label: visually_hidden
+    label: hidden
     settings:
       timezone_override: ''
       format_type: html_date
@@ -189,7 +189,7 @@ content:
     region: content
   field_publisher:
     weight: 8
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -197,7 +197,7 @@ content:
     region: content
   field_pull_from_google:
     weight: 10
-    label: visually_hidden
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
@@ -211,7 +211,7 @@ content:
     region: content
   field_related_product:
     weight: 14
-    label: visually_hidden
+    label: hidden
     settings:
       view_mode: teaser
       link: false
@@ -227,7 +227,7 @@ content:
     region: content
   field_tags:
     weight: 12
-    label: visually_hidden
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -235,7 +235,7 @@ content:
     region: content
   field_thumbnail_url:
     weight: 0
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -255,7 +255,7 @@ content:
     region: content
   field_web_reader_url:
     weight: 6
-    label: visually_hidden
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
