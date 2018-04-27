@@ -4,13 +4,14 @@
  * @file
  * Functions to support theming in the RHD theme.
  */
-use Drupal\field_collection\Entity\FieldCollectionItem;
-use Drupal\Core\Url;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\field_collection\Entity\FieldCollectionItem;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
 use Drupal\views\ViewExecutable;
 
 
@@ -197,10 +198,15 @@ function rhdp_preprocess_page(&$variables) {
 function rhdp_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
-  $nid = $node->id();
+  if ($node->getType() == 'author') {
+    $variables['author_name'] = $node->getTitle();
+  }
+
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
       $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
+      $node->hasField('field_more_details') ? $variables['event_url']=$node->get('field_more_details')->getValue()[0]['uri'] : '';
+
       // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
       // Note: Also will not work properly without search and replace on export.
       if ($node->hasField('field_event_background_image')) {
@@ -247,6 +253,22 @@ function rhdp_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 
+  if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
+    $product_code = $node->get('field_product_machine_name')->getValue();
+    if (count($product_code)) {
+      $product_code = reset($product_code);
+      $variables['logo_link'] = \Drupal::service('path.alias_manager')->getAliasByPath('/product/' . $product_code['value']);
+    }
+    $variables['cta_url'] = false;
+    $variables['cta_title'] = ['#markup' => 'Learn More'];
+    $cta_field = $node->get('field_call_to_action_link')->getValue();
+    if (count($cta_field)) {
+      $cta_field = reset($cta_field);
+      $variables['cta_title']['#markup'] = $cta_field['title'];
+      $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath(Url::fromUri($cta_field['uri'])->toString());
+    }
+  }
+
   // Add icon for 'login required' resources
   if ($variables['view_mode'] == 'card') {
     $variables['login_req'] = false;
@@ -260,6 +282,19 @@ function rhdp_preprocess_node(&$variables) {
           }
         }
       }
+    }
+  }
+
+  // Massage learning path content
+  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label() ]
+      ];
     }
   }
 

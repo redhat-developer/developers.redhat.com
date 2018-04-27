@@ -68,7 +68,7 @@ other methods (such as node.delete) will result in an exception.
 {% set article_classes = (not hide_toc) ? ["large-15", "medium-15", "columns", "gsi", "fetch-toc", "article-content"] : ["large-19", "medium-19", "columns", "gsi", "fetch-toc", "article-content"] %}
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
   <div class="row">
-    <div class="large-19 medium-19 columns">
+    <div class="large-19 medium-24 columns">
         {{ title_prefix }}
         <h2{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h2>
         {{ title_suffix }}
@@ -81,7 +81,7 @@ other methods (such as node.delete) will result in an exception.
             </ul>
         </div>
     </div>
-    <div class="large-5 medium-5 columns">
+    <div class="large-5 medium-24 columns">
         {% include '@rhd/share.html.twig' %}
         <strong>Tags:</strong> {{ content.field_tags }}
     </div>

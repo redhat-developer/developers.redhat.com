@@ -28,11 +28,29 @@
       padding-bottom: 30px;
       padding-top: 30px;
     }
+
+    .lesson {
+      .lesson-label {
+        text-transform: uppercase;
+        color: $gray-5;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .lesson-title {
+        color: $gray-7;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      &+.lesson {
+        margin-top: 1em;
+      }
+    }
   }
 
   .header-block {
     background: $blue;
-    padding-bottom: .5rem;
+    padding: 22px 1rem 9px;
     .card-title,
     .asset-type {
       color: #FFF;
@@ -40,6 +58,7 @@
     .card-title {
       @include tablet-landscape {
         font-size: 27px;
+        margin-top: 4px;
       }
     }
     .asset-type {
@@ -63,7 +82,7 @@
 
   .more {
     color: $blue;
-    margin-top: 1rem;
+    margin-top: 40px;
     .svg-inline--fa {
       display: inline-block;
       margin-left: .5rem;

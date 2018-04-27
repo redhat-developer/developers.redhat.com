@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
     - field.field.node.article.field_image
     - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
@@ -15,6 +16,7 @@ dependencies:
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.field_topics
+    - field.field.node.article.scheduled_update
     - node.type.article
   module:
     - interval
@@ -51,7 +53,7 @@ content:
     region: content
   field_content_author:
     weight: 101
-    label: visually_hidden
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -95,7 +97,7 @@ content:
   field_tags:
     type: entity_reference_label
     weight: 10
-    label: visually_hidden
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -120,5 +122,6 @@ content:
     third_party_settings: {  }
 hidden:
   field_author_name: true
+  field_hide_toc: true
   field_image: true
   scheduled_update: true

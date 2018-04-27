@@ -12,8 +12,10 @@
     </div>
   {% endif %}
 
-  <h3 class="title"><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
-
-  <div class="summary">{{ post.excerpt.rendered|raw }}</div>
+  <div class="text-content">
+    <h3 class="title"><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
+    <div class="date">{{ date }}</div>
+    <div class="summary">{{ post.excerpt.rendered|raw }}</div>
+  </div>
 
 </article>

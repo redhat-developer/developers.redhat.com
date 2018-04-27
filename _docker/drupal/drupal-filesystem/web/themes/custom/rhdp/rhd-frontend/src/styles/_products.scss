@@ -1,55 +1,4 @@
 // Products
-.hero.hero-products {
-  background: cdn('../images/design/RHDev_pageheader_productsoverview_desktop.png') top center / cover no-repeat;
-  content : ':4242';
-  border:0;
-  min-height: 220px;
-  margin-bottom: 0;
-
-  h2 {
-    color:white;
-    font-size: 5em;
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  p {
-    color: white;
-    font-size: 1.1em;
-    margin: 20px 0;
-    max-width: 350px;
-    a, a:active, a:focus, a:hover{
-      color: white;
-    }
-  }
-  @include tablet-landscape-and-down {
-    background: cdn('../images/design/RHDev_pageheader_productsoverview_tablet.png') top center / cover no-repeat;
-    min-height: auto;
-    h2 {
-      margin-top: 10px;
-    }
-    p {
-      margin: 0 15px 20px 15px;
-      max-width: 100%;
-    }
-  }
-  @include mobile-landscape-and-down {
-    background: cdn('../images/design/RHDev_pageheader_productsoverview_mobile.png') top center / cover no-repeat;
-    h2 {
-      font-size: 3em;
-    }
-  }
-  .row {
-    & > [class^=large-] {
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-  }
-}
 .hero.hero-wide.product-header {
     margin-bottom: 0;
 }
@@ -59,67 +8,67 @@
   background-size: cover;
   background-repeat: repeat-x;
 
-  &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
-  &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
-  &.bpmsuite {background-image: cdn('../images/design/products/prod_header_jboss_bpm_suite.png');}
-  &.brms {background-image: cdn('../images/design/products/prod_header_jboss_brms.png');}
-  &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_desktop_cdk.png');}
-  &.datagrid {background-image: cdn('../images/design/products/prod_header_jboss_data_grid.png');}
-  &.datavirt {background-image: cdn('../images/design/products/prod_header_jboss_data_virt.png');}
-  &.developertoolset {background-image: cdn('../images/design/products/prod_header_rh_developer_toolset.png');}
-  &.devstudio {background-image: cdn('../images/design/products/prod_header_jboss_devstudio.png');}
+  &.amq {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_amq.png');}
+  &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rhel_atomic_host.png');}
+  &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_bpm_suite.png');}
+  &.brms {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_brms.png');}
+  &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_desktop_cdk.png');}
+  &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_data_grid.png');}
+  &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_data_virt.png');}
+  &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_developer_toolset.png');}
+  &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_devstudio.png');}
   &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_devsuite.png');}
   &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_dotnetrhel.png');}
-  &.eap {background-image: cdn('../images/design/products/prod_header_jboss_eap.png');}
-  &.fuse {background-image: cdn('../images/design/products/prod_header_jboss_fuse.png');}
-  &.mobileplatform {background-image: cdn('../images/design/products/prod_header_rh_mobile_app_platform.png');}
-  &.openshift {background-image: cdn('../images/design/products/prod_header_openshift_enterprise.png');}
-  &.rhel {background-image: cdn('../images/design/products/prod_header_rhel.png');}
-  &.satellite {background-image: cdn('../images/design/products/prod_header_rh_satellite.png');}
-  &.softwarecollections {background-image: cdn('../images/design/products/prod_header_rh_software_collections.png');}
-  &.webserver {background-image: cdn('../images/design/products/prod_header_jboss_webserver.png');}
+  &.eap {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_eap.png');}
+  &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_fuse.png');}
+  &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_mobile_app_platform.png');}
+  &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_openshift_enterprise.png');}
+  &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rhel.png');}
+  &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_satellite.png');}
+  &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_software_collections.png');}
+  &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_webserver.png');}
 
   @include tablet-portrait-and-down {
-    &.amq {background-image: cdn('../images/design/products/productheader_tablet_jboss_amq.png');}
-    &.atomic {background-image: cdn('../images/design/products/productheader_tablet_rhel_atomic_host.png');}
-    &.bpmsuite {background-image: cdn('../images/design/products/productheader_tablet_jboss_bpm_suite.png');}
-    &.brms {background-image: cdn('../images/design/products/productheader_tablet_jboss_brms.png');}
-    &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_tablet_cdk.png');}
-    &.datagrid {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_grid.png');}
-    &.datavirt {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_virt.png');}
-    &.developertoolset {background-image: cdn('../images/design/products/productheader_tablet_rh_developer_toolset.png');}
-    &.devstudio {background-image: cdn('../images/design/products/productheader_tablet_jboss_devstudio.png');}
+    &.amq {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_amq.png');}
+    &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_bpm_suite.png');}
+    &.brms {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_brms.png');}
+    &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_tablet_cdk.png');}
+    &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_grid.png');}
+    &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_virt.png');}
+    &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_developer_toolset.png');}
+    &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_devstudio.png');}
     &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_devsuite.png');}
     &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_dotnetrhel.png');}
-    &.eap {background-image: cdn('../images/design/products/productheader_tablet_jboss_eap.png');}
-    &.fuse {background-image: cdn('../images/design/products/productheader_tablet_jboss_fuse.png');}
-    &.mobileplatform {background-image: cdn('../images/design/products/productheader_tablet_rh_mobile_app_platform.png');}
-    &.openshift {background-image: cdn('../images/design/products/productheader_tablet_openshift_enterprise.png');}
-    &.rhel {background-image: cdn('../images/design/products/productheader_tablet_rhel.png');}
-    &.satellite {background-image: cdn('../images/design/products/productheader_tablet_rh_satellite.png');}
-    &.softwarecollections {background-image: cdn('../images/design/products/productheader_tablet_rh_software_collections.png');}
-    &.webserver {background-image: cdn('../images/design/products/productheader_tablet_jboss_webserver.png');}
+    &.eap {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_eap.png');}
+    &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_fuse.png');}
+    &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_mobile_app_platform.png');}
+    &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_openshift_enterprise.png');}
+    &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rhel.png');}
+    &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_satellite.png');}
+    &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_software_collections.png');}
+    &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_webserver.png');}
   }
   @include mobile-portrait-and-down {
-    &.amq {background-image: cdn('../images/design/products/productheader_mobile_jboss_amq.png');}
-    &.atomic {background-image: cdn('../images/design/products/productheader_mobile_rhel_atomic_host.png');}
-    &.bpmsuite {background-image: cdn('../images/design/products/productheader_mobile_jboss_bpm_suite.png');}
-    &.brms {background-image: cdn('../images/design/products/productheader_mobile_jboss_brms.png');}
-    &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_mobile_cdk.png');}
-    &.datagrid {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_grid.png');}
-    &.datavirt {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_virt.png');}
-    &.developertoolset {background-image: cdn('../images/design/products/productheader_mobile_rh_developer_toolset.png');}
-    &.devstudio {background-image: cdn('../images/design/products/productheader_mobile_jboss_devstudio.png');}
+    &.amq {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_amq.png');}
+    &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_bpm_suite.png');}
+    &.brms {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_brms.png');}
+    &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_mobile_cdk.png');}
+    &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_grid.png');}
+    &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_virt.png');}
+    &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_developer_toolset.png');}
+    &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_devstudio.png');}
     &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_devsuite.png');}
     &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_dotnetrhel.png');}
-    &.eap {background-image: cdn('../images/design/products/productheader_mobile_jboss_eap.png');}
-    &.fuse {background-image: cdn('../images/design/products/productheader_mobile_jboss_fuse.png');}
-    &.mobileplatform {background-image: cdn('../images/design/products/productheader_mobile_rh_mobile_app_platform.png');}
-    &.openshift {background-image: cdn('../images/design/products/productheader_mobile_openshift_enterprise.png');}
-    &.rhel {background-image: cdn('../images/design/products/productheader_mobile_rhel.png');}
-    &.satellite {background-image: cdn('../images/design/products/productheader_mobile_rh_satellite.png');}
-    &.softwarecollections {background-image: cdn('../images/design/products/productheader_mobile_rh_software_collections.png');}
-    &.webserver {background-image: cdn('../images/design/products/productheader_mobile_jboss_webserver.png');}
+    &.eap {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_eap.png');}
+    &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_fuse.png');}
+    &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_mobile_app_platform.png');}
+    &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_openshift_enterprise.png');}
+    &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rhel.png');}
+    &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_satellite.png');}
+    &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_software_collections.png');}
+    &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_webserver.png');}
   }
 }
 
@@ -248,6 +197,7 @@ div.mobile.product-color {
     color: $grey-3;
     font-weight: 100;
     margin-bottom: 0;
+    font-size: 27px;
   }
   @include desktop-and-down {
     padding:20px;
@@ -257,6 +207,7 @@ div.mobile.product-color {
 #hero-try-or-buy {
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.9);
+  padding-top: 15px;
 
   &.storage-and-big-data {
     border-bottom: 1px dashed $storage;
@@ -314,7 +265,6 @@ div.mobile.product-color {
     text-align: left;
     display: block;
     padding: 5px 16px;
-    margin-top: 1em;
     color: $grey-7;
     p {
       color: $link;
@@ -803,4 +753,48 @@ rhdp-tryitnow {
       }
     }
   }
+}
+
+button.tiny, .button.tiny {
+    padding-top: .625rem;
+    padding-right: 1.25rem;
+    padding-bottom: .6875rem;
+    padding-left: 1.25rem;
+    font-size: .6875rem;
+}
+
+#guides-row{
+  border-bottom: 1px solid #d5d5d5;
+  margin: 1em 0 0 0;
+  .dropdown.button, button.dropdown {
+    position: relative;
+    float: right;
+  }
+  & > div {
+    padding-left: 0;
+  }
+  ul li:before{display: none;}
+}
+#guides-row:last-child {
+  border-bottom: none;
+}
+
+.more-guides{
+  margin: 1.5em auto;
+}
+
+.f-dropdown {
+  position: absolute;
+  left: -9999px;
+  list-style: none;
+  margin-left: 0;
+  width: 100%;
+  max-height: none;
+  height: auto;
+  background: #fff;
+  border: solid 1px #ccc;
+  font-size: .875rem;
+  z-index: 89;
+  margin-top: 2px;
+  max-width: 200px;
 }
