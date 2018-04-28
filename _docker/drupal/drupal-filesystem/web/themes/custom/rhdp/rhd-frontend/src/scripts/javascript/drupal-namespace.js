@@ -111,11 +111,11 @@ app.dcp.thumbnails = {
 app.products = {
   "amq": {"upstream": ["activemq","fabric8"],"stackoverflow": ["jbossamq", "amq"], "buzz_tags": ["amq","JBoss A-MQ"]},
   "bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite","jBPM"]},
-  "brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": "redhat-brms", "buzz_tags": ["brms","JBoss BRMS"]},
+  "brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": ["redhat-brms","decision manager","red hat decision manager"], "buzz_tags": ["brms","JBoss BRMS"]},
   "cdk": {"upstream": null,"stackoverflow": "redhat-containers", "buzz_tags": ["containers"]},
   "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "redhat-datagrid", "buzz_tags": ["datagrid","jboss data grid"]},
   "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "redhat-datavirt", "buzz_tags": ["datavirt","jboss datavirt"]},
-  "developertoolset": {"upstream": null,"stackoverflow": "redhat-dts", "buzz_tags": ["developertoolset"]},
+  "developertoolset": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat-dts","gcc"], "tag_set_two" :["redhat-dts","redhat","rhel","red hat"]}}, "buzz_tags": ["developertoolset"]},
   "devstudio": {"upstream": ["jbosstools"],"stackoverflow": "jboss-developer-studio", "buzz_tags": ["jbds","JBoss DevStudio"]},
   "devsuite": {"upstream": null,"stackoverflow": "_none", "buzz_tags": "devsuite"},
   "dotnet": {"upstream": null,"stackoverflow": "rhel.net", "buzz_tags": "dotnet"},
@@ -125,10 +125,17 @@ app.products = {
   "openjdk": {"upstream": null,"stackoverflow": "redhat-openjdk", "buzz_tags": "openjdk"},
   "openshift": {"upstream": null,"stackoverflow": ["openshift","openshift-client-tools","openshift-enterprise","openshift-cartridge","openshift-php-cartridges","openshift-gears","openshift-web-console","openshift-env-variables"], "buzz_tags": ["openshift","openshiftv3"]},
   "rhel": {"upstream": ["fedora"],"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["rhel","rhel7"]},
+  "rhoar": {"stackoverflow": ["redhat-rhoar"]},
   "softwarecollections": {"upstream": null,"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["software collections"]},
   "webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"], "buzz_tags": ["webserver"]},
-  "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["redhat-rhamt"],"buzz_tags": ["mobileplatform","mobile"]},
-  "rhamt": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
+  "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["rhmap"],"buzz_tags": ["mobileplatform","mobile"]},
+  "clang-llvm-go-rust": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat","red hat","rhel"], "tag_set_two" :["go","golang","rust","llvm","clang"]}},"buzz_tags": ["rhel","rhel7"]},
+  "migrationtoolkit": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
+};
+
+app.products.downloads = {
+    "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
+    "cdk" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/cdk/hello-world/#fndtn-rhel"}
 };
 
 /*

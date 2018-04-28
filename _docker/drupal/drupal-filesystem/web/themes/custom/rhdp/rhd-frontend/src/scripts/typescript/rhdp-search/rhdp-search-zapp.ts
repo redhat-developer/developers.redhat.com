@@ -66,27 +66,27 @@ class RHDPSearchApp extends HTMLElement {
     filterObj = {
         term:'', 
         facets: [
-            { name: 'CONTENT TYPE', key: 'sys_type', items: [
+            { name: 'CONTENT TYPE', key: 'type', items: [
                 {key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs']},
                 {key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype']},
-                {key: 'article', name: 'Article', value: ['article', 'solution'], type: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution']},
-                {key: 'blogpost', name: "Blog Posts", value: ['blogpost'], type: ['jbossorg_blog']},
-                {key: 'book', name: "Book", value: ["book"], type: ["jbossdeveloper_book"]},
+                {key: 'article', name: 'Article', value: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'], type: ['rht_knowledgebase_article', 'rht_knowledgebase_solution']},
+                {key: 'blogpost', name: "Blog Posts", value: ['jbossorg_blog'], type: ['jbossorg_blog']},
+                {key: 'book', name: "Book", value: ["jbossdeveloper_book"], type: ["jbossdeveloper_book"]},
                 {key: 'bom', name: "BOM", value: ["jbossdeveloper_bom"], type: ['jbossdeveloper_bom']},
-                {key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'], type: ['jbossdeveloper_cheatsheet']},
-                {key: 'demo', name: 'Demo', value: ['demo'], type: ['jbossdeveloper_demo']},
+                {key: 'cheatsheet', name: "Cheat Sheet", value: ['jbossdeveloper_cheatsheet'], type: ['jbossdeveloper_cheatsheet']},
+                {key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo'], type: ['jbossdeveloper_demo']},
                 {key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event']},
                 {key: 'forum', name: 'Forum', value: ['jbossorg_sbs_forum'], type: ['jbossorg_sbs_forum']},
                 {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
-                {key: 'quickstart', name: "Quickstart", value: ['quickstart'], type: ['jbossdeveloper_quickstart']},
-                {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_thread'], type: ['stackoverflow_question']},
-                {key: 'video', name: "Video", value: ["video"], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
-                {key: 'webpage', name: "Web Page", value: ['webpage'], type: ['rhd_website']}
+                {key: 'quickstart', name: "Quickstart", value: ['jbossdeveloper_quickstart'], type: ['jbossdeveloper_quickstart']},
+                {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_question'], type: ['stackoverflow_question']},
+                {key: 'video', name: "Video", value: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                {key: 'webpage', name: "Web Page", value: ['rht_website'], type: ['rht_website']}
                 ] 
             },
             {
                 name:'PRODUCT', 
-                key: 'product', 
+                key: 'project', 
                 items: [
                 {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},

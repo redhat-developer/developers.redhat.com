@@ -130,7 +130,7 @@ function rhdp_preprocess_html(array &$variables) {
     }
 }
 
-function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
     $env_settings = \Drupal::config('redhat_developers');
 
     $settings['rhd'] = array();

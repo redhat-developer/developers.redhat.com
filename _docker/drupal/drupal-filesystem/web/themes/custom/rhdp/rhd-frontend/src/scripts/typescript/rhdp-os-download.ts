@@ -13,8 +13,8 @@ class RHDPOSDownload extends HTMLElement {
 
     stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
+        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
+        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
     };
 
     get url() {

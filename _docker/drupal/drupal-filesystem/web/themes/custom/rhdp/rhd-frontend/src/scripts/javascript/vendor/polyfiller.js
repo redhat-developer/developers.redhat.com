@@ -87,7 +87,7 @@
     define('polyfiller', ['jquery'], factory);
   }
 }(function($){
-  "use strict";
+  
   var firstRun, path;
   var webshims = window.webshims;
   var DOMSUPPORT = 'dom-support';

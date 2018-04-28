@@ -6,16 +6,17 @@
  * Licensed under MIT
  */
 
-(function ( factory ) {
+// (function ( factory ) {
 
-    // Register as an anonymous module.
-    if ( typeof define === 'function' && define.amd )
-        define( 'picker', ['jquery'], factory )
+//     // Register as an anonymous module.
+//     if ( typeof define === 'function' && define.amd )
+//         define( 'picker', ['jquery'], factory )
 
-    // Or using browser globals.
-    else this.Picker = factory( jQuery )
+//     // Or using browser globals.
+//     else this.Picker = factory( jQuery )
 
-}(function( $ ) {
+// }
+var Picker = (function( $ ) {
 
 var $document = $( document )
 
@@ -952,7 +953,7 @@ function ariaAttr(attribute, data) {
 return PickerConstructor
 
 
-}));
+}(jQuery));
 
 
 
