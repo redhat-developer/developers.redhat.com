@@ -3,7 +3,7 @@
  * License - http://fontawesome.com/license (Commercial License)
  */
 (function () {
-'use strict';
+
 
 var _WINDOW = {};
 try {
@@ -452,7 +452,7 @@ bunker(function () {
 
 }());
 (function () {
-'use strict';
+
 
 var _WINDOW = {};
 try {
@@ -1233,7 +1233,7 @@ bunker(function () {
 
 }());
 (function () {
-'use strict';
+
 
 var _WINDOW = {};
 try {
@@ -2014,7 +2014,7 @@ bunker(function () {
 
 }());
 (function () {
-'use strict';
+
 
 var _WINDOW = {};
 try {
@@ -2795,7 +2795,7 @@ bunker(function () {
 
 }());
 (function () {
-'use strict';
+
 
 var noop = function noop() {};
 
@@ -3414,7 +3414,7 @@ var end = function end(name) {
 
 var perf = { begin: begin, end: end };
 
-'use strict';
+
 
 /**
  * Internal helper to bind a function known to have 4 arguments
@@ -3426,7 +3426,7 @@ var bindInternal4 = function bindInternal4 (func, thisContext) {
   };
 };
 
-'use strict';
+
 
 
 

@@ -1,4 +1,4 @@
-"use strict";
+
 // Karma configuration for running unit-tests in Docker
 module.exports = function (config) {
     config.set({

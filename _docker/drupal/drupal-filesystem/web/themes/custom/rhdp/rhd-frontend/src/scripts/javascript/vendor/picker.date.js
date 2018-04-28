@@ -4,16 +4,17 @@
  * http://amsul.github.io/pickadate.js/date.htm
  */
 
-(function ( factory ) {
+// (function ( factory ) {
 
-    // Register as an anonymous module.
-    if ( typeof define == 'function' && define.amd )
-        define( ['picker','jquery'], factory )
+//     // Register as an anonymous module.
+//     if ( typeof define == 'function' && define.amd )
+//         define( ['picker','jquery'], factory )
 
-    // Or using browser globals.
-    else factory( Picker, jQuery )
+//     // Or using browser globals.
+//     else factory( Picker, jQuery )
 
-}(function( Picker, $ ) {
+// }
+(function( Picker, $ ) {
 
 
 /**
@@ -1270,7 +1271,7 @@ DatePicker.defaults = (function( prefix ) {
 Picker.extend( 'pickadate', DatePicker )
 
 
-}));
+}(Picker, jQuery));
 
 
 

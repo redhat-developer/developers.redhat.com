@@ -1,9 +1,13 @@
 app.sso = function () {
 
     function updateUser() {
-        var usr = digitalData.user[0].profile[0].profileInfo;
+        //Push it onto the event array of the digitalData object
+        window.digitalData = window.digitalData || {};
+        //Update digitalData.page.listing objects
+        digitalData.user = digitalData.user || [{profile: [{profileInfo: {}}]}];
+        var usr = digitalData.user[0].profile[0].profileInfo || {};
 
-        if (window.location.href.indexOf('/login') >= 0 && window.location.href.indexOf('/user') < 0) {
+        if (window.location.href.toLowerCase().indexOf('/login') >= 0 && window.location.href.toLowerCase().indexOf('/user') < 0) {
             keycloak.login({"redirectUri": app.ssoConfig.logout_url});
         }
 
@@ -11,7 +15,7 @@ app.sso = function () {
             keycloak.updateToken().success(function () {
                 saveTokens();
 
-                var logged_in_user = keycloak.tokenParsed.name;
+                var logged_in_user = keycloak.tokenParsed.name || "My Account";
 
                 // show username instead of full name if full name is empty or blank (only space character)
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
@@ -197,5 +201,7 @@ function storageAvailable(type) {
 
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
-app.sso();
+if (typeof Keycloak !== 'undefined') {
+    app.sso();
+}
 

@@ -33,10 +33,6 @@ search.service('searchService',function($http, $q) {
         query_highlight: true,
         type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
       });
-
-      if (/resources/.test(window.location.href)) {
-        search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
-      }
       var endpoint = app.dcp.url.developer_materials;
     }
 
@@ -268,7 +264,6 @@ function searchCtrlFunc($scope, $window, searchService) {
 
   var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
   var isSearch = !!window.location.href.match(/\/search/);
-  var isResources = !!window.location.href.match(/\/resources/);
   var searchTerm = window.location.search.split('=');
   var isFirstSearch = true;
   var q = '';
@@ -342,11 +337,6 @@ function searchCtrlFunc($scope, $window, searchService) {
       }
     }
   }, true)
-
-  // Resources Page Specifics
-  if (isResources) {
-    $scope.params.sortBy = 'most-recent';
-  }
 
   // Search Page Specifics
   if (isSearch && searchTerm) {
@@ -447,7 +437,13 @@ function searchCtrlFunc($scope, $window, searchService) {
         $scope.params.product = product;
 
         var tags = app.products[product]['stackoverflow'];
-        params.tag = tags.slice();
+          if(tags.AND){
+              params.tag = tags.AND.tag_set_one.slice();
+              params.tags_and_logic = tags.AND.tag_set_two.slice();
+          }
+          else{
+              params.tag = tags.slice();
+          }
       }
       
       else {
@@ -456,23 +452,15 @@ function searchCtrlFunc($scope, $window, searchService) {
         if (params.product !== "") {
           product = params.product;
           var tags = app.products[product]['stackoverflow'];
-          params.tag = tags.slice();
+          if(tags.AND){
+              params.tag = tags.AND.tag_set_one.slice();
+              params.tags_and_logic = tags.AND.tag_set_two.slice();
+          }
+          else{
+              params.tag = tags.slice();
+          }
         }
         window.location.hash = "#!q=" + params.product;
-      }
-    }
-
-    if (isResources && $scope.userFilters) {
-      $scope.urlFilters();
-
-      if ($scope.params.project && $scope.params.sys_type.includes("blogpost")) {
-        product = params.project;
-        if (app.products[product]['buzz_tags'] !== '_none') {
-          var blog_tags = app.products[product]['buzz_tags'];
-          params.tag = blog_tags.slice();
-          params.tags_or_logic = "e";
-        }
-        delete params.project;
       }
     }
 
@@ -546,8 +534,8 @@ function searchCtrlFunc($scope, $window, searchService) {
 
   $scope.filter.restore = function() {
 
-    // if we do not have a window hash or are not on the resources page, skip restoring
-    if (!isResources || !window.location.hash) {
+    // if we do not have a window hash, skip restoring
+    if (!window.location.hash) {
       $scope.updateSearch(); // run with no filters
       return;
     }
@@ -769,12 +757,5 @@ function searchCtrlFunc($scope, $window, searchService) {
   /*
     Get latest materials on page load
   */
-  if (isResources) {
-    if (!window.location.hash) {
-      window.location = '#!';
-    }
-    window.setTimeout($scope.filter.restore, 0);
-  } else {
-    $scope.updateSearch();
-  }
+  $scope.updateSearch();
 }
