@@ -12263,3 +12263,36 @@ table {
       border-right: 0; }
   table p {
     margin: 0; }
+
+.flex-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0; }
+
+.flex-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.page-devoxx4kids #ytplayer {
+  max-width: 100%; }
+
+.wide-hero.devoxx4kids .column {
+  height: auto !important; }
+  @media (min-width: 992px) {
+    .wide-hero.devoxx4kids .column {
+      width: 50%; } }
+  @media (min-width: 1240px) {
+    .wide-hero.devoxx4kids .column {
+      padding-left: 30px;
+      padding-right: 30px; } }
+
+.wide-hero.devoxx4kids .video-embed {
+  margin-top: 40px; }
+  @media (min-width: 992px) {
+    .wide-hero.devoxx4kids .video-embed {
+      margin-top: 0; } }
