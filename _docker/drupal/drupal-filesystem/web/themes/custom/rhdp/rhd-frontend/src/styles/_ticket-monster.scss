@@ -33,4 +33,11 @@
       max-width: 250px;
     }
   }
+  @include tablet-landscape-and-down {
+    iframe {
+      max-width: 90%;
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+  }
 }
