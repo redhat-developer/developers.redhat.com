@@ -7626,6 +7626,10 @@ div.mobile.product-color {
         left: 15px;
         background-color: #888; }
 
+.downloads-table {
+  background: #f5f5f6;
+  padding: 0; }
+
 @media only screen and (max-width: 1170px) {
   #hero-try-or-buy {
     padding: 0;
@@ -8203,18 +8207,18 @@ ul.toc {
   max-width: 180px;
   min-width: 125px; }
 
-.gsi-nav li {
-  list-style: none;
-  padding-bottom: 10px; }
-  .gsi-nav li a.past-block:last-child {
-    color: #a5ab36; }
-  .gsi-nav li a {
-    color: #027CBB; }
-    .gsi-nav li a:after {
-      content: "\f054";
-      font-size: 10px;
-      margin-left: 5px;
-      font-family: 'FontAwesome'; }
+.gsi-nav {
+  padding-left: 0; }
+  .gsi-nav li {
+    list-style: none;
+    padding-bottom: 10px; }
+    .gsi-nav li a.past-block:last-child {
+      color: #a5ab36; }
+    .gsi-nav li a {
+      color: #027CBB; }
+      .gsi-nav li a:after {
+        content: "\203A";
+        margin-left: 5px; }
 
 .gsi h3 {
   border-bottom: 1px solid #d5d5d5;
@@ -9622,7 +9626,6 @@ p.desc {
       #rhd-cheat-sheet .cs-excerpt span.open-quote, #rhd-cheat-sheet .book-excerpt span.open-quote, #rhd-book .cs-excerpt span.open-quote, #rhd-book .book-excerpt span.open-quote {
         font-size: 7em;
         width: 60px;
-        margin-top: 40px;
         color: #00b9e4;
         font-style: normal; }
       #rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .cs-excerpt span .field--name-field-book-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-book-excerpt, #rhd-book .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .cs-excerpt span .field--name-field-book-excerpt, #rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .book-excerpt span .field--name-field-book-excerpt {
@@ -10444,6 +10447,71 @@ strong.tag-label, .qtn-answer strong {
         background-color: #F7F7F7;
         cursor: auto;
         pointer-events: none; }
+
+.faq-nav-fixed {
+  position: fixed;
+  top: 0;
+  padding-top: 20px;
+  width: 18%;
+  max-width: 180px; }
+
+.faq-nav a.past-block:last-child {
+  color: #a5ab36; }
+
+.faq-nav {
+  padding-left: 0; }
+  .faq-nav li {
+    list-style: none;
+    padding-bottom: 10px; }
+    .faq-nav li a {
+      color: #0066CC; }
+      .faq-nav li a:after {
+        content: "\203A";
+        margin-left: 5px; }
+
+.mobile-selector {
+  display: none; }
+
+.faq .align {
+  float: right !important; }
+
+.faq h3 {
+  border-bottom: 1px solid #D5D5D5;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  font-weight: 100; }
+
+.faq .olist ol {
+  counter-reset: section; }
+
+.faq .olist li {
+  list-style-type: none; }
+
+.faq .olist li:before {
+  counter-increment: section;
+  content: counters(section, ".") " ";
+  display: inline;
+  background: #D5D5D5;
+  color: #FFF;
+  float: left;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 19px;
+  font-weight: 600;
+  margin-right: 10px; }
+
+.faq > div {
+  margin-bottom: 40px; }
+
+@media only screen and (max-width: 768px) {
+  .faq-nav-fixed {
+    position: relative;
+    width: 100%; }
+  ul.faq-nav, .gsi-nav {
+    display: none; }
+  .mobile-selector {
+    display: block;
+    width: 100%; } }
 
 .about .wrapper {
   padding-bottom: 0; }

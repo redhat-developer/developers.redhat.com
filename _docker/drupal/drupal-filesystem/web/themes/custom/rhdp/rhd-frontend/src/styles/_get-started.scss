@@ -120,6 +120,7 @@ ul.toc {
 }
 
 .gsi-nav {
+  padding-left: 0;
   li {
     list-style:none;
     padding-bottom:10px;
@@ -131,10 +132,8 @@ ul.toc {
     a {
       color: $link-sm;
       &:after {
-        content: "\f054";
-        font-size: 10px;
+        content: "\203A";
         margin-left: 5px;
-        font-family: 'FontAwesome';
       }
     }
   }
