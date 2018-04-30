@@ -34,9 +34,9 @@
       font-size: 4em;
     }
   }
-  .row {
-    @extend .flex-center;
-  }
+  //.row {
+  //  @extend .flex-center;
+  //}
 }
 
 // Downloads
@@ -59,7 +59,7 @@ h3.downloads-header {
     .category-label {
       margin-bottom: 20px;
       margin-top: 20px;
-      background:#656565 cdn("../images/design/dotted_line-white.svg") no-repeat;
+      background:#656565 url('src/images/dotted_line-white.svg') no-repeat;
       padding:20px;
       background-size:1000px;
       background-position:center right -300px;
@@ -130,7 +130,7 @@ div.download-loading{
 
 
 .most-popular-downloads {
-  background:#E6E7E8 cdn("../images/design/dotted_line-white.svg") no-repeat;
+  background:#E6E7E8 url('src/images/dotted_line-white.svg') no-repeat;
   padding:20px 0;
   background-size:1200px;
   h3 {
@@ -163,4 +163,12 @@ div.download-loading{
     text-align: center;
     display: block;
   }
+}
+
+rhdp-downloads-all-item {
+
+  .large-9.center.columns{
+    text-align: center;
+  }
+
 }

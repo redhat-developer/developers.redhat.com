@@ -11379,6 +11379,128 @@ ul.devoxx-list {
     position: relative;
     top: 8px; }
 
+.hero.hero-downloads {
+  background: cdn("../images/design/RHDev_pageheader_downloads_desktop.png") top center repeat-x;
+  border: 0;
+  margin-bottom: 0; }
+  .hero.hero-downloads h2 {
+    color: white;
+    font-size: 5em;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600; }
+  .hero.hero-downloads p {
+    color: white;
+    font-size: 1.1em;
+    margin: 20px 0; }
+    .hero.hero-downloads p a, .hero.hero-downloads p a:active, .hero.hero-downloads p a:focus, .hero.hero-downloads p a:hover {
+      color: white; }
+  @media only screen and (max-width: 1024px) {
+    .hero.hero-downloads {
+      background: cdn("../images/design/RHDev_pageheader_downloads_tablet.png") top center/cover no-repeat;
+      min-height: auto; }
+      .hero.hero-downloads h2 {
+        margin-top: 10px; }
+      .hero.hero-downloads p {
+        margin: 0 15px 20px 15px; } }
+  @media only screen and (max-width: 480px) {
+    .hero.hero-downloads {
+      background: cdn("../images/design/RHDev_pageheader_downloads_mobile.png") top center/cover no-repeat; }
+      .hero.hero-downloads h2 {
+        font-size: 4em; } }
+
+h3.downloads-header {
+  text-transform: uppercase;
+  margin: 30px 0; }
+
+#downloads {
+  width: 100%; }
+  #downloads .download-list p {
+    margin: 0; }
+  #downloads .download-list .category-label + rhdp-downloads-all-item .row hr {
+    display: none; }
+  #downloads .download-list hr {
+    margin: 2rem 1rem; }
+  #downloads .download-list .category-label {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #656565 url("src/images/dotted_line-white.svg") no-repeat;
+    padding: 20px;
+    background-size: 1000px;
+    background-position: center right -300px; }
+    #downloads .download-list .category-label h4 {
+      text-transform: uppercase;
+      color: white;
+      font-size: 25px;
+      margin: 0;
+      line-height: 1; }
+  #downloads .download-list .indent-product {
+    margin-left: 1em; }
+    #downloads .download-list .indent-product .large-8 {
+      margin-left: -.7em; }
+    @media only screen and (max-width: 1024px) {
+      #downloads .download-list .indent-product .large-8 {
+        margin-left: 0; } }
+  #downloads .button {
+    width: 100%; }
+  #downloads h5 {
+    font-size: 25px; }
+  #downloads #other-resources .category-label {
+    margin-bottom: 40px;
+    margin-top: 50px; }
+  #downloads #other-resources ul {
+    margin-left: 0;
+    list-style: none; }
+  #downloads #other-resources a.button {
+    background: #6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
+    width: 100%;
+    padding: 25px 10px 25px 20px;
+    text-align: left; }
+  #downloads #other-resources a.button:hover, #downloads #other-resources a.button:active, #downloads #other-resources a.button:focus {
+    background: #43aac7 cdn("../images/design/stars-texture.png") bottom right no-repeat; }
+
+div.download-loading.loading {
+  background: cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+  min-height: 250px; }
+
+.has-download, .no-download {
+  display: none; }
+
+.download-links a + a {
+  margin-left: 10px; }
+
+.most-popular-downloads {
+  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
+  padding: 20px 0;
+  background-size: 1200px; }
+  .most-popular-downloads h3 {
+    color: #242424;
+    text-transform: uppercase; }
+
+.popular-download-box {
+  background: white;
+  padding: 20px;
+  border: 1px solid #DEDEDE;
+  margin-bottom: 20px; }
+  .popular-download-box .button {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 0; }
+  .popular-download-box h4 {
+    font-size: 17px;
+    min-height: 60px; }
+  .popular-download-box p {
+    margin: 0;
+    color: black;
+    text-align: center; }
+  .popular-download-box small {
+    text-align: center;
+    display: block; }
+
+rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
+  text-align: center; }
+
 .wide.wide-hero.eclipse {
   background: cdn("https://static.jboss.org/rhd/images/_images_eclipse_eclipse_microsite_hero.jpg");
   background-size: cover;
