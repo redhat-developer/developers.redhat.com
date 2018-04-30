@@ -16,6 +16,7 @@ class RHDPSearchApp extends HTMLElement {
 
     _name = 'Search';
     _url;
+    _oburl = '../rhdp-apps/onebox/onebox.json';
 
     get name() {
         return this._name;
@@ -37,6 +38,16 @@ class RHDPSearchApp extends HTMLElement {
         this.query.url = this.url;
         this.setAttribute('url', this.url);
     }
+
+    get oburl() {
+        return this._oburl;
+    }
+    set oburl(val) {
+        if (this._oburl === val) return;
+        this._oburl = val;
+    }
+
+
 
     template = `<div class="row">
     <span class="search-outage-msg"></span>
@@ -133,6 +144,7 @@ class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
+        this.onebox.url = this.oburl;
         
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
@@ -148,7 +160,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['url', 'name']; 
+        return ['url', 'name', 'oburl']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

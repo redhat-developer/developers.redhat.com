@@ -12,7 +12,7 @@ function indexOfObjectValueInArray(arr, key, val) {
 /*
   Create a service for fetching materials
 */
-search.service('searchService',function($http, $q) {
+search.service('searchService',['$http', '$q', function($http, $q) {
   this.getSearchResults = function(params) {
     var deferred = $q.defer();
 
@@ -45,7 +45,7 @@ search.service('searchService',function($http, $q) {
       });
     return deferred.promise;
   }
-});
+}]);
 
 /*
   Directive to add target=_blank to KCS and solutions
@@ -196,16 +196,16 @@ search.filter('tagGroup', function() {
   }
 });
 
-search.filter('title', function($sce) {
+search.filter('title', ['$sce', function($sce) {
   return function(result) {
     if (result.highlight && result.highlight.sys_title) {
       return $sce.trustAsHtml(result.highlight.sys_title[0]);
     }
     return $sce.trustAsHtml(result.fields.sys_title[0]);
   }
-});
+}]);
 
-search.filter('description', function($sce, $sanitize) {
+search.filter('description', ['$sce', '$sanitize', function($sce, $sanitize) {
   return function(result) {
     var description = "";
 
@@ -220,43 +220,43 @@ search.filter('description', function($sce, $sanitize) {
     }
     return description;
   }
-});
+}]);
 
 
-search.filter('question', function($sce) {
+search.filter('question', ['$sce', function($sce) {
   return function(result) {
     if (result.highlight && result.highlight._source.sys_content_plaintext) {
       return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0].replace(/<[^>]+>/gm, ''));
     }
     return $sce.trustAsHtml(result._source.sys_content_plaintext.replace(/<[^>]+>/gm, ''));
   }
-});
+}]);
 
-search.filter('htmlToPlaintext', function($sce) {
+search.filter('htmlToPlaintext', ['$sce', function($sce) {
   return function(result) {
     return String(result).replace(/<[^>]+>/gm, '');
   }
-});
+}]);
 
 /*
  Filter to remove Stack Overflow author id number from 'author'
  */
-search.filter('author', function($sce) {
+search.filter('author', ['$sce', function($sce) {
   return function(result) {
     var authorName = result._source.author.split('-')[0];
     return authorName;
   }
-});
+}]);
 
 /*
  Filter to make Stack Overflow question date human readable
  */
-search.filter('stackDate', function($sce) {
+search.filter('stackDate', ['$sce', function($sce) {
   return function(result) {
     var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
     return time;
   }
-});
+}]);
 
 search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
 
