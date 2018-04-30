@@ -12153,10 +12153,13 @@ img {
   border: 1px solid #efeff0;
   padding: 20px;
   margin: 15px 0; }
-  .callout-light p {
-    margin-bottom: 0; }
+  .callout-light p, .callout-light a, .callout-light ul, .callout-light ol {
+    margin-top: 0; }
   .callout-light a {
     color: #73BCF7; }
+    .callout-light a.button {
+      color: #FFF;
+      display: inline-block; }
 
 .card {
   padding: 30px 20px;
@@ -12263,3 +12266,15 @@ table {
       border-right: 0; }
   table p {
     margin: 0; }
+
+/* Error pages */
+.error-content {
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto; }
+  .error-content .callout-light {
+    margin-bottom: 0; }
+  .error-content > img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block; }
