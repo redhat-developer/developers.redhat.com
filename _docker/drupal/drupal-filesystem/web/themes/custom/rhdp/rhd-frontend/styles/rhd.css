@@ -928,24 +928,30 @@ a.light-cta {
       padding: 100px 0;
       padding-bottom: 120px; } }
   .assembly-type-hero .content {
-    max-width: 60rem; }
+    max-width: 40rem; }
+    @media (min-width: 1240px) {
+      .assembly-type-hero .content {
+        max-width: 52rem; } }
   .assembly-type-hero .background {
-    display: none; }
+    display: none;
+    z-index: -1; }
     @media (min-width: 992px) {
       .assembly-type-hero .background {
         display: block; } }
     .assembly-type-hero .background:after {
       display: none; }
-  .assembly-type-hero h1 {
+  .assembly-type-hero .homepage-hero-heading {
     font-size: 23px;
     line-height: 2em; }
     @media (min-width: 576px) {
-      .assembly-type-hero h1 {
+      .assembly-type-hero .homepage-hero-heading {
         font-size: 45px;
         line-height: 1.4; } }
     @media (min-width: 768px) {
-      .assembly-type-hero h1 {
+      .assembly-type-hero .homepage-hero-heading {
         font-size: 50px; } }
+    .assembly-type-hero .homepage-hero-heading a {
+      white-space: nowrap; }
   .assembly-type-hero h2 {
     font-size: 4rem;
     line-height: 1.1; }
