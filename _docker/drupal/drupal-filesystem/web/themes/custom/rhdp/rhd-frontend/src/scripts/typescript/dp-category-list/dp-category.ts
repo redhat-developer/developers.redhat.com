@@ -11,6 +11,7 @@ export default class DPCategory extends RHElement {
 img, svg { height: 150px; width: 150px; }
 
 :host(:hover), :host([visible]) {
+    cursor: pointer;
     color: var(--rhd-blue);
     fill: var(--rhd-blue);
 }
@@ -25,6 +26,7 @@ ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image
     _name:string;
     _image:string;
     _visible:boolean = false;
+    _index = -1;
 
     get name() { return this._name; }
     set name(val) {
@@ -63,6 +65,14 @@ ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image
         // this.shadowRoot.querySelector('section').style.display = this._visible ? 'block' : 'none';
     }
 
+    get index() {
+        return this._index;
+    }
+    set index(val) {
+        if (this._index === val) return;
+        this._index = val;
+    }
+
     constructor() {
         super('dp-category-list');
         
@@ -92,9 +102,14 @@ ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image
     }
 
     _getIndex(node) {
-        let i = 1;
-        while (node = node.previousElementSibling) { if (node.nodeName === 'DP-CATEGORY') { ++i } }
-        return i;
+        if(this.index < 0) {
+            let i = 1;
+            while (node = node.previousElementSibling) { if (node.nodeName === 'DP-CATEGORY') { ++i } }
+            return i;
+        } else {
+            return this.index;
+        }
+        
     }
 
     async _getSVG(path) {

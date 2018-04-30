@@ -309,8 +309,7 @@ body.microsite-multi-page, body.microsite {
   }
 }
 
-body.page-node-type-promotion-page {
-  .promotion-header {
+.promotion-header {
     margin-bottom: 4em;
     img {
       max-width: 320px;
@@ -326,7 +325,6 @@ body.page-node-type-promotion-page {
     h3 {
       margin-top: 0;
     }
-  }
   .author-img {
     width: 115px;
     margin-top: 10px;
@@ -361,6 +359,9 @@ body.page-node-type-promotion-page {
 }
 
 @include tablet-landscape-and-down {
+  .promotion-header .field__item img {
+    max-width: 100%;
+  }
   .microsite-tmpl {
     margin-top: 15px;
   }
@@ -375,15 +376,8 @@ body.page-node-type-promotion-page {
 
   .microsite-tmpl .mailto-link {
     .button.mailto-btn {
-      border: none;
-      padding: 0;
       a {
         display: block;
-      }
-      a:after {
-        content: "\f0da";
-        font-family: "FontAwesome";
-        margin-left: 3px;
       }
     }
   }

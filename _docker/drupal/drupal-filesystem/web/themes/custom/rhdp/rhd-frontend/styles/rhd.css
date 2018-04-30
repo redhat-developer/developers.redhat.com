@@ -887,6 +887,8 @@ a.light-cta {
       @media (min-width: 992px) {
         .assembly-type-video_hero .content .section-title {
           margin-bottom: 6px; } }
+      .assembly-type-video_hero .content .section-title a {
+        color: #333; }
     .assembly-type-video_hero .content p {
       margin-top: 0;
       font-size: 15px;
@@ -6085,6 +6087,82 @@ table {
     display: table-cell;
     line-height: 1.375em; }
 
+meta.foundation-version {
+  font-family: "/5.4.4/"; }
+
+meta.foundation-mq-small {
+  font-family: "/only screen/";
+  width: 0em; }
+
+meta.foundation-mq-medium {
+  font-family: "/only screen and (min-width:48.063em)/";
+  width: 48.063em; }
+
+meta.foundation-mq-large {
+  font-family: "/only screen and (min-width:64.063em)/";
+  width: 64.063em; }
+
+meta.foundation-mq-xlarge {
+  font-family: "/only screen and (min-width:90.063em)/";
+  width: 90.063em; }
+
+meta.foundation-mq-xxlarge {
+  font-family: "/only screen and (min-width:120.063em)/";
+  width: 120.063em; }
+
+meta.foundation-data-attribute-namespace {
+  font-family: false; }
+
+ul.pagination {
+  display: block;
+  min-height: 1.5rem;
+  margin-left: -0.3125rem; }
+  ul.pagination li {
+    height: 1.5rem;
+    color: #222222;
+    font-size: 0.875rem;
+    margin-left: 0.3125rem; }
+    ul.pagination li a, ul.pagination li button {
+      display: block;
+      padding: 0.5em 0.9375em;
+      color: #999999;
+      background: none;
+      border-radius: 0;
+      font-weight: normal;
+      font-size: 1em;
+      line-height: inherit;
+      transition: background-color 300ms ease-out; }
+    ul.pagination li:hover a,
+    ul.pagination li a:focus,
+    ul.pagination li:hover button,
+    ul.pagination li button:focus {
+      background: #e6e6e6; }
+    ul.pagination li.unavailable a, ul.pagination li.unavailable button {
+      cursor: default;
+      color: #999999; }
+    ul.pagination li.unavailable:hover a,
+    ul.pagination li.unavailable a:focus,
+    ul.pagination li.unavailable:hover button,
+    ul.pagination li.unavailable button:focus {
+      background: transparent; }
+    ul.pagination li.current a, ul.pagination li.current button {
+      background: #0066CC;
+      color: #FFFFFF;
+      font-weight: normal;
+      cursor: default; }
+      ul.pagination li.current a:hover, ul.pagination li.current a:focus, ul.pagination li.current button:hover, ul.pagination li.current button:focus {
+        background: #008CBA; }
+  ul.pagination li {
+    float: left;
+    display: block; }
+
+/* Pagination centred wrapper */
+.pagination-centered {
+  text-align: center; }
+  .pagination-centered ul.pagination li {
+    float: none;
+    display: inline-block; }
+
 /*
    Zurb Foundation Overides
   These are things that can't be changed in _settings.scss
@@ -6151,22 +6229,24 @@ body.fullbleed .content-wrapper {
       display: flex !important; } }
 
 .rh-nav-universal {
-  max-width: 73.125rem;
+  max-width: 720px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0 auto;
   font-size: 14px;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 130px 1fr 130px;
+  grid-template-columns: 130px 1fr;
   align-items: center;
   justify-items: center;
   min-height: 50px;
   grid-column-gap: 224px; }
   @media (min-width: 992px) {
     .rh-nav-universal {
-      grid-column-gap: 0; } }
-  @media (min-width: 1240px) {
-    .rh-nav-universal {
-      grid-template-columns: 200px 1fr 180px; } }
+      max-width: 1400px;
+      grid-column-gap: 0;
+      grid-template-columns: 145px 1fr; } }
 
 .rhd-menu {
   list-style: none;
@@ -6199,6 +6279,17 @@ body.fullbleed .content-wrapper {
   text-transform: uppercase; }
   .rh-nav-universal-link:active, .rh-nav-universal-link:hover, .rh-nav-universal-link:focus {
     color: #FFFFFF; }
+  .rh-nav-universal-link a[data-drupal-link-system-path="<front>"] {
+    color: #FFF;
+    position: relative; }
+    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:before {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 2px;
+      background-color: #CC0000;
+      position: absolute;
+      bottom: -3px; }
 
 .rh-header-logo {
   max-width: 100px;
@@ -7535,6 +7626,10 @@ div.mobile.product-color {
         left: 15px;
         background-color: #888; }
 
+.downloads-table {
+  background: #f5f5f6;
+  padding: 0; }
+
 @media only screen and (max-width: 1170px) {
   #hero-try-or-buy {
     padding: 0;
@@ -8112,18 +8207,18 @@ ul.toc {
   max-width: 180px;
   min-width: 125px; }
 
-.gsi-nav li {
-  list-style: none;
-  padding-bottom: 10px; }
-  .gsi-nav li a.past-block:last-child {
-    color: #a5ab36; }
-  .gsi-nav li a {
-    color: #027CBB; }
-    .gsi-nav li a:after {
-      content: "\f054";
-      font-size: 10px;
-      margin-left: 5px;
-      font-family: 'FontAwesome'; }
+.gsi-nav {
+  padding-left: 0; }
+  .gsi-nav li {
+    list-style: none;
+    padding-bottom: 10px; }
+    .gsi-nav li a.past-block:last-child {
+      color: #a5ab36; }
+    .gsi-nav li a {
+      color: #027CBB; }
+      .gsi-nav li a:after {
+        content: "\203A";
+        margin-left: 5px; }
 
 .gsi h3 {
   border-bottom: 1px solid #d5d5d5;
@@ -9531,7 +9626,6 @@ p.desc {
       #rhd-cheat-sheet .cs-excerpt span.open-quote, #rhd-cheat-sheet .book-excerpt span.open-quote, #rhd-book .cs-excerpt span.open-quote, #rhd-book .book-excerpt span.open-quote {
         font-size: 7em;
         width: 60px;
-        margin-top: 40px;
         color: #00b9e4;
         font-style: normal; }
       #rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .cs-excerpt span .field--name-field-book-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-cheat-sheet .book-excerpt span .field--name-field-book-excerpt, #rhd-book .cs-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .cs-excerpt span .field--name-field-book-excerpt, #rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt, #rhd-book .book-excerpt span .field--name-field-book-excerpt {
@@ -9621,19 +9715,26 @@ p.desc {
   #rhd-cheat-sheet .shown-after-login, #rhd-cheat-sheet .hidden-after-login, #rhd-book .shown-after-login, #rhd-book .hidden-after-login {
     display: none; }
   @media only screen and (max-width: 1024px) {
-    #rhd-cheat-sheet .cs-info .cs-social, #rhd-cheat-sheet .cs-info .book-social, #rhd-cheat-sheet .book-info .cs-social, #rhd-cheat-sheet .book-info .book-social, #rhd-book .cs-info .cs-social, #rhd-book .cs-info .book-social, #rhd-book .book-info .cs-social, #rhd-book .book-info .book-social {
-      float: none !important;
-      margin-top: 5px; }
-    #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
-      display: block; }
-    #rhd-cheat-sheet .field--name-field-cheat-sheet-tags, #rhd-cheat-sheet .field--name-field-tags, #rhd-book .field--name-field-cheat-sheet-tags, #rhd-book .field--name-field-tags {
-      margin-bottom: 25px; }
-    #rhd-cheat-sheet a.button, #rhd-book a.button {
-      width: 100%;
-      margin-right: 0; } }
+    #rhd-cheat-sheet, #rhd-book {
+      padding: 15px; }
+      #rhd-cheat-sheet .cs-info .cs-social, #rhd-cheat-sheet .cs-info .book-social, #rhd-cheat-sheet .book-info .cs-social, #rhd-cheat-sheet .book-info .book-social, #rhd-book .cs-info .cs-social, #rhd-book .cs-info .book-social, #rhd-book .book-info .cs-social, #rhd-book .book-info .book-social {
+        float: none !important;
+        margin-top: 5px; }
+      #rhd-cheat-sheet .cs-info ul li, #rhd-cheat-sheet .book-info ul li, #rhd-book .cs-info ul li, #rhd-book .book-info ul li {
+        display: block; }
+      #rhd-cheat-sheet .field--name-field-cheat-sheet-tags, #rhd-cheat-sheet .field--name-field-tags, #rhd-book .field--name-field-cheat-sheet-tags, #rhd-book .field--name-field-tags {
+        margin-bottom: 25px; }
+      #rhd-cheat-sheet a.button, #rhd-book a.button {
+        width: 100%;
+        margin-right: 0; } }
   @media only screen and (max-width: 768px) {
     #rhd-cheat-sheet .cs-tags, #rhd-book .cs-tags {
       margin-top: 20px; } }
+  @media only screen and (max-width: 480px) {
+    #rhd-cheat-sheet .cs-excerpt span.open-quote, #rhd-book .cs-excerpt span.open-quote {
+      display: none; }
+    #rhd-cheat-sheet .cs-excerpt span, #rhd-book .cs-excerpt span {
+      width: 100%; } }
   #rhd-cheat-sheet .white-card, #rhd-book .white-card {
     background-color: #FFFFFF;
     height: 193px;
@@ -10037,22 +10138,21 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
   .site-header .card.green p {
     margin-bottom: 0; }
 
-body.page-node-type-promotion-page .promotion-header {
+.promotion-header {
   margin-bottom: 4em; }
-  body.page-node-type-promotion-page .promotion-header img {
+  .promotion-header img {
     max-width: 320px; }
-  body.page-node-type-promotion-page .promotion-header .report-title {
+  .promotion-header .report-title {
     margin-top: 20px; }
-  body.page-node-type-promotion-page .promotion-header .button {
+  .promotion-header .button {
     display: block;
     margin: 17px 0;
     max-width: 320px; }
-  body.page-node-type-promotion-page .promotion-header h3 {
+  .promotion-header h3 {
     margin-top: 0; }
-
-body.page-node-type-promotion-page .author-img {
-  width: 115px;
-  margin-top: 10px; }
+  .promotion-header .author-img {
+    width: 115px;
+    margin-top: 10px; }
 
 .microsite-tmpl {
   margin-top: 3em; }
@@ -10073,6 +10173,8 @@ body.page-node-type-promotion-page .author-img {
   display: none; }
 
 @media only screen and (max-width: 1024px) {
+  .promotion-header .field__item img {
+    max-width: 100%; }
   .microsite-tmpl {
     margin-top: 15px; }
   .microsite-tmpl .field--name-field-call-to-action-link,
@@ -10080,15 +10182,8 @@ body.page-node-type-promotion-page .author-img {
     width: 100%; }
   .microsite-tmpl .field__item img {
     margin-bottom: 25px; }
-  .microsite-tmpl .mailto-link .button.mailto-btn {
-    border: none;
-    padding: 0; }
-    .microsite-tmpl .mailto-link .button.mailto-btn a {
-      display: block; }
-    .microsite-tmpl .mailto-link .button.mailto-btn a:after {
-      content: "\f0da";
-      font-family: "FontAwesome";
-      margin-left: 3px; }
+  .microsite-tmpl .mailto-link .button.mailto-btn a {
+    display: block; }
   .microsite-tmpl .button.mailto-btn {
     display: block !important;
     background: #FFFFFF;
@@ -10148,6 +10243,276 @@ body.page-node-type-promotion-page .author-img {
         position: relative; }
       #rhd-article .field--name-field-tags .field__item:last-child:after {
         display: none; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update, .stackoverflow-results-container .stackoverflow-update .update {
+  margin-top: 1em; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
+    padding-top: 5px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
+      display: inline-block;
+      text-align: center;
+      margin-right: 4px;
+      width: 30%;
+      min-height: 80px;
+      max-width: 80px;
+      max-height: 80;
+      padding-top: 15px; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
+        font-size: .8em; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
+        margin-bottom: 0;
+        line-height: 1; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
+        border: 2px solid #8ed300; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
+        background-color: #8ed300;
+        color: #FFFFFF; }
+        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
+          color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
+        border: 2px solid #CCCCCC;
+        background-color: #CCCCCC;
+        color: #FFFFFF; }
+        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
+          color: #FFFFFF; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
+    float: right; }
+  .stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
+    color: #0066CC;
+    font-weight: 600;
+    font-size: 1.4375rem;
+    margin-bottom: 8px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 70px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px !important;
+    margin-top: 8px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
+    display: block;
+    margin-top: 1em; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
+    background-color: #F9F9F9;
+    margin: 10px 0;
+    padding: 20px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
+      color: #73BCF7; }
+
+.stackoverflow-results-container .stackoverflow-update .update {
+  margin-top: 2em; }
+
+.stackoverflow-product-update .update .update-meta {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #E6E6E6;
+  min-height: 84px; }
+
+.stackoverflow-update .update {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6e7e8; }
+
+.hero.stackoverflow-main {
+  background-color: #0089d0;
+  background-position: left top;
+  background-image: url("https://static.jboss.org/images/rhd/headers/stackoverflow_overview_background.svg");
+  background-size: 37%;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+  border: none;
+  margin-bottom: 0; }
+  .hero.stackoverflow-main h3, .hero.stackoverflow-main p {
+    color: #FFFFFF; }
+
+.stack-help {
+  background-color: #242424;
+  margin-bottom: 25px; }
+  .stack-help h3 {
+    text-align: right;
+    color: #CCCCCC; }
+  .stack-help p {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+    margin-bottom: 5px; }
+  .stack-help a {
+    color: #73BCF7; }
+    .stack-help a:hover, .stack-help a:active {
+      color: #0066CC; }
+
+.stackoverflow-filters label {
+  font-weight: 800;
+  color: #424242;
+  font-size: 1.6em;
+  margin-right: 20px;
+  display: inline-block; }
+
+.stackoverflow-filters .styled-select {
+  display: inline-block;
+  z-index: 1; }
+
+.qtn-answer.display-answer {
+  display: block; }
+
+.qtn-answer.hide-answer {
+  display: none; }
+
+.qtn-answer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important; }
+
+div.so-tags {
+  margin-top: 5px; }
+
+div.so-tags > *:nth-last-child(2):after {
+  content: ''; }
+
+strong.tag-label, .qtn-answer strong {
+  margin-right: 5px; }
+
+@media only screen and (max-width: 1024px) {
+  .hero.stackoverflow-main {
+    padding: 40px 30px; }
+  .stackoverflow-main img {
+    max-width: 500px;
+    margin-bottom: 20px; }
+  .stack-help {
+    margin: 0 -15px 25px -15px;
+    padding: 20px 15px; }
+    .stack-help h3 {
+      text-align: left; }
+  .qtn-stats {
+    margin-bottom: 15px; } }
+
+@media only screen and (max-width: 480px) {
+  .stackoverflow-results-container .stackoverflow-update .update span.so-author {
+    float: none;
+    margin-top: 5px;
+    display: block; } }
+
+#forumsContainer {
+  display: none; }
+
+.so-sorting {
+  float: right;
+  margin-top: 20px; }
+
+#paginator {
+  border-top: 1px solid #CCCCCC;
+  padding-top: 15px;
+  clear: both; }
+  #paginator ul.pagination {
+    font-size: 0;
+    height: auto; }
+    @media only screen and (min-width: 64.063em) {
+      #paginator ul.pagination {
+        float: right; } }
+    #paginator ul.pagination li {
+      position: relative;
+      float: left;
+      padding: 0;
+      line-height: 1.42857;
+      text-decoration: none;
+      color: #0066CC;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-left: -1px;
+      height: auto; }
+      #paginator ul.pagination li:before {
+        display: none; }
+      #paginator ul.pagination li.one-page {
+        visibility: hidden;
+        margin-top: 0; }
+      #paginator ul.pagination li a {
+        padding-top: 0.6em;
+        transition: none;
+        cursor: pointer;
+        min-height: 36.39px; }
+        #paginator ul.pagination li a:hover, #paginator ul.pagination li a:focus {
+          color: #005582 !important;
+          background: #eee;
+          border-color: #ddd; }
+      #paginator ul.pagination li.current a {
+        z-index: 2;
+        color: #fff !important;
+        background: #0088ce !important;
+        border-color: #0088ce !important; }
+      #paginator ul.pagination li.unavailable {
+        background-color: #F7F7F7;
+        cursor: auto;
+        pointer-events: none; }
+
+.faq-nav-fixed {
+  position: fixed;
+  top: 0;
+  padding-top: 20px;
+  width: 18%;
+  max-width: 180px; }
+
+.faq-nav a.past-block:last-child {
+  color: #a5ab36; }
+
+.faq-nav {
+  padding-left: 0; }
+  .faq-nav li {
+    list-style: none;
+    padding-bottom: 10px; }
+    .faq-nav li a {
+      color: #0066CC; }
+      .faq-nav li a:after {
+        content: "\203A";
+        margin-left: 5px; }
+
+.mobile-selector {
+  display: none; }
+
+.faq .align {
+  float: right !important; }
+
+.faq h3 {
+  border-bottom: 1px solid #D5D5D5;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  font-weight: 100; }
+
+.faq .olist ol {
+  counter-reset: section; }
+
+.faq .olist li {
+  list-style-type: none; }
+
+.faq .olist li:before {
+  counter-increment: section;
+  content: counters(section, ".") " ";
+  display: inline;
+  background: #D5D5D5;
+  color: #FFF;
+  float: left;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 19px;
+  font-weight: 600;
+  margin-right: 10px; }
+
+.faq > div {
+  margin-bottom: 40px; }
+
+@media only screen and (max-width: 768px) {
+  .faq-nav-fixed {
+    position: relative;
+    width: 100%; }
+  ul.faq-nav, .gsi-nav {
+    display: none; }
+  .mobile-selector {
+    display: block;
+    width: 100%; } }
 
 .about .wrapper {
   padding-bottom: 0; }
@@ -11282,6 +11647,12 @@ ul.product-forums.multi-column {
   #ticket-monster-content .ticket-monster-links img {
     max-width: 250px; }
 
+@media only screen and (max-width: 1024px) {
+  #ticket-monster-content iframe {
+    max-width: 90%;
+    margin: 0 auto 15px auto;
+    display: block; } }
+
 .wide-hero.vjbug {
   background-image: url("https://static.jboss.org/rhd/images/vjbug_microsite_banner_desktop.png");
   background-size: cover;
@@ -12036,7 +12407,8 @@ body.page-node-type-article h1.page-title {
 
 .page-community-contributor .node__content > .text-formatted,
 .page-ticket-monster .node__content > .text-formatted,
-.page-middleware .node__content > .text-formatted {
+.page-middleware .node__content > .text-formatted,
+.page-stack-overflow .node__content > .text-formatted {
   max-width: none;
   padding: 0;
   margin-bottom: 0; }
@@ -12166,6 +12538,7 @@ img {
   color: white;
   margin-bottom: 15px; }
 
+.field--name-field-related-product.field--type-entity-reference,
 .related-product-card,
 .related-content-card {
   background-color: #FFFFFF;
@@ -12175,6 +12548,7 @@ img {
   height: auto;
   margin: 15px 0;
   position: relative; }
+  .field--name-field-related-product.field--type-entity-reference h6,
   .related-product-card h6,
   .related-content-card h6 {
     font-weight: bold;
@@ -12182,6 +12556,7 @@ img {
     color: #8c8f91;
     font-size: 16px;
     margin-top: 5px; }
+  .field--name-field-related-product.field--type-entity-reference span,
   .related-product-card span,
   .related-content-card span {
     margin: 5px 0;
@@ -12194,10 +12569,12 @@ img {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; }
     @media only screen and (max-width: 1024px) {
+      .field--name-field-related-product.field--type-entity-reference span,
       .related-product-card span,
       .related-content-card span {
         max-height: 95px;
         -webkit-line-clamp: 3; } }
+  .field--name-field-related-product.field--type-entity-reference p,
   .related-product-card p,
   .related-content-card p {
     margin-bottom: 0; }

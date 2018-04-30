@@ -140,49 +140,24 @@
             "speakers": ["alexsoto"]
         },
         {
-            "title": "Blue/Green Deployments with OpenShift",
-            "date": "Date TBD",
-            "confirmed": false,
-            "youtube_id": "",
-            "offer_id": "",
+            "title": "Enterprise Node.js on OpenShift",
+            "date": "4/19/2018",
+            "confirmed": true,
+            "youtube_id": "BXj0uw65yKc",
             "register": true,
-            "abstract": "The 'deploy moment' is an occasion that still gives many developers the shivers...Luckily enough, today we have tools like Kubernetes and OpenShift that enable us to turn the deploy moment into a simple, every day, every hour activity. Today we have Kubernetes and OpenShift to automate out-of-box many different scenarios like a Blue/Green deployment. Come and join this live demo session to learn how you can have a better and safe deployment using Linux containers.",
-            "speakers": "Rafael Benevides",
-            "speaker_intro": ""
+            "inxpo": "https://onlinexperiences.com/Launch/DataPortal/ShowKey=51003",
+            "abstract": "<p>JavaScript has always played an important role in the browser, and now it's use in enterprise server-side development has exploded with Node.js. It's reactive architecture and lightweight makes it an ideal technology for containerized microservices architectures you've been hearing so much about.<br/>What does this mean for your enterprise? Where does it fit, and how can Red Hat® OpenShift Application Runtimes help you use this technology while still taking advantage of the foremost Platform-as-a-Service?<br/>Join this session for the answers. We'll also demonstrate how quickly you can set up a non-trivial, enterprise-grade Node.js applications on Red Hat OpenShift Container Platform. We'll explore how to integrate with other open source technologies, such as Istio, and discuss strategies for your Node.js development and deployment pipeline, including canary and blue/green deployment strategies.</p>",
+            "speakers": ["lanceball"]
         },
         {
-            "title": "Feature Toggles & Hypothesis Driven Development",
-            "date": "Date TBD",
-            "confirmed": false,
-            "youtube_id": "",
-            "offer_id": "",
+            "title": "Jakarta EE: The Future of Java EE",
+            "date": "5/3/2018 12:00 PM EST",
+            "confirmed": true,
+            "youtube_id": "f2EwhTUmeOI",
             "register": true,
-            "abstract": "Can you foresee the feature? Do you know if you'll achieve your goals with the code you're deploying today? Let's drop this crystal ball and start practicing some Hypothesis-Driven Development. Join us on this webinar and we'll show you how Feature Toggles can be bundled inside your software development process to enable you to quickly assess the business results of your code, and help you to make the decisions that matter.",
-            "speakers": "Edson Yanaga",
-            "twitter_handle": "yanaga",
-            "speaker_intro": ""
-        },
-        {
-            "title": "DevOps and ChatOps with OpenShift.io",
-            "date": "Date TBD",
-            "confirmed": false,
-            "youtube_id": "",
-            "offer_id": "",
-            "register": true,
-            "abstract": "The buzzword 'DevOps' begins with Dev as in Developers.  In this session, we will demonstrate how a development team can quickly and easily setup a new Continuous Deployment Pipeline leveraging the best of open source microservices frameworks like Spring Boot, Vert.x and Wildfly Swarm as well as tools like Jenkins and Eclipse Che.",
-            "speakers": "James Strachan",
-            "speaker_intro": ""
-        },
-        {
-            "title": "The IoT Meets Kubernetes",
-            "date": "Date TBD",
-            "confirmed": false,
-            "youtube_id": "",
-            "offer_id": "",
-            "register": true,
-            "abstract": "The the sheer volume of Internet of Things requires massively scalable ingestion and analytics engines and in this session you will see how to leverage messaging-as-a-service, the open source EnMasse project on a backplane of Cloud Native Computing Fundation's Kubernetes.",
-            "speakers": "Paolo Patierno",
-            "speaker_intro": ""
+            "inxpo": "https://onlinexperiences.com/Server.nxp?LASCmd=AI:4;F:APIUTILS!51004&PageID=2C1CF13E-08F4-43A4-B25D-0B38FE3226CF&AffiliateData=rhdp",
+            "abstract": "<p>In case you missed it, Java EE was given a new home at the Eclipse Foundation and on 26th February Jakarta EE was chosen as the new name for Java EE. Join this session to gain an understanding where Jakarta EE is heading and how customers and communities can help drive the future of enterprise Java.<br/>Java EE has been the dominant enterprise Java standard for well over a decade. However, in recent years there has been confusion and concern around its future promoting new efforts such as Eclipse MicroProfile to take just enough Java EE into the world of cloud and microservices. But all of that changed in 2017 when Oracle announced that, working with Red Hat and IBM, they were donating all of Java EE to the Eclipse Foundation and to be rebranded as Jakarta EE. What does this mean for the future of enterprise Java and traditional Java application servers?</p>",
+            "speakers": ["marklittle"]
         }
     ],
     "speakers": {
@@ -236,8 +211,8 @@
         },
         "jamesfalkner": {
             "name":"James Falkner",
-            "twitter":"schtool",
             "intro":"James Falkner is a Red Hat technology evangelist, teacher, learner, and author. Dedicated to open source and open computing he works at Red Hat as a product marketing manager for Red Hat's portfolio of open source products.",
+            "twitter":"schtool",
             "image":""
         },
         "kamesh": {
@@ -261,6 +236,16 @@
             "name":"Alex Soto Bueno",
             "intro":"Alex Bueno is a Red Hat software engineer in the Developers group. He is a passionate about the Java world, software automation, and he believes in the open source software model. Alex is the creator of the NoSQLUnit project, member of the JSR374 (Java API for JSON Processing) Expert Group, the co-author of &ldquo;Testing Java Microservices&rdquo; (a Manning Publications book), and contributor of several open source projects such as Arquillian ecosystem or Asciidoctor. He is an international speaker presenting at software conferences like Devoxx, JavaOne, JavaZone, or JavaLand.",
             "twitter":"alexsotob"
+        },
+        "lanceball": {
+            "name":"Lance Ball",
+            "intro":"Lance Ball is the lead engineer for the Node.js activities within Red Hat JBoss Middleware and a Node.js core contributor. Lance speaks at conferences around the world, and he enjoy writing code in lots of different programming languages.",
+            "twitter":"lanceball"
+        },
+        "marklittle": {
+            "name":"Mark Little",
+            "intro": "Dr. Mark Little leads the technical direction, research, and development for Red Hat JBoss Middleware. Prior to 2008, Mark served as the SOA technical development manager and director of standards. Additionally, he was a chief architect and co-founder at Arjuna Technologies, a spin-off from HP, where he was distinguished engineer. Mark has worked in the area of reliable distributed systems for more than 30 years.",
+            "twitter":"nmcl"
         }
     }
 }
