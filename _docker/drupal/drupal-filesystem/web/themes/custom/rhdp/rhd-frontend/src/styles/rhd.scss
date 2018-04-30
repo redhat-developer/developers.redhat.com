@@ -29,6 +29,8 @@
 @import "videos";
 @import "microsite";
 @import "articles";
+@import "stackoverflow";
+@import "paginator";
 
 
 // Stylesheets for microsites
@@ -115,7 +117,8 @@ body.page-node-type-article {
 // Makes Basic Pages full width
 .page-community-contributor,
 .page-ticket-monster,
-.page-middleware {
+.page-middleware,
+.page-stack-overflow {
   .node__content > .text-formatted {
     max-width: none;
     padding: 0;

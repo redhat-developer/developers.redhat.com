@@ -6087,6 +6087,82 @@ table {
     display: table-cell;
     line-height: 1.375em; }
 
+meta.foundation-version {
+  font-family: "/5.4.4/"; }
+
+meta.foundation-mq-small {
+  font-family: "/only screen/";
+  width: 0em; }
+
+meta.foundation-mq-medium {
+  font-family: "/only screen and (min-width:48.063em)/";
+  width: 48.063em; }
+
+meta.foundation-mq-large {
+  font-family: "/only screen and (min-width:64.063em)/";
+  width: 64.063em; }
+
+meta.foundation-mq-xlarge {
+  font-family: "/only screen and (min-width:90.063em)/";
+  width: 90.063em; }
+
+meta.foundation-mq-xxlarge {
+  font-family: "/only screen and (min-width:120.063em)/";
+  width: 120.063em; }
+
+meta.foundation-data-attribute-namespace {
+  font-family: false; }
+
+ul.pagination {
+  display: block;
+  min-height: 1.5rem;
+  margin-left: -0.3125rem; }
+  ul.pagination li {
+    height: 1.5rem;
+    color: #222222;
+    font-size: 0.875rem;
+    margin-left: 0.3125rem; }
+    ul.pagination li a, ul.pagination li button {
+      display: block;
+      padding: 0.5em 0.9375em;
+      color: #999999;
+      background: none;
+      border-radius: 0;
+      font-weight: normal;
+      font-size: 1em;
+      line-height: inherit;
+      transition: background-color 300ms ease-out; }
+    ul.pagination li:hover a,
+    ul.pagination li a:focus,
+    ul.pagination li:hover button,
+    ul.pagination li button:focus {
+      background: #e6e6e6; }
+    ul.pagination li.unavailable a, ul.pagination li.unavailable button {
+      cursor: default;
+      color: #999999; }
+    ul.pagination li.unavailable:hover a,
+    ul.pagination li.unavailable a:focus,
+    ul.pagination li.unavailable:hover button,
+    ul.pagination li.unavailable button:focus {
+      background: transparent; }
+    ul.pagination li.current a, ul.pagination li.current button {
+      background: #0066CC;
+      color: #FFFFFF;
+      font-weight: normal;
+      cursor: default; }
+      ul.pagination li.current a:hover, ul.pagination li.current a:focus, ul.pagination li.current button:hover, ul.pagination li.current button:focus {
+        background: #008CBA; }
+  ul.pagination li {
+    float: left;
+    display: block; }
+
+/* Pagination centred wrapper */
+.pagination-centered {
+  text-align: center; }
+  .pagination-centered ul.pagination li {
+    float: none;
+    display: inline-block; }
+
 /*
    Zurb Foundation Overides
   These are things that can't be changed in _settings.scss
@@ -10164,6 +10240,211 @@ body.page-node-type-promotion-page .author-img {
       #rhd-article .field--name-field-tags .field__item:last-child:after {
         display: none; }
 
+.stackoverflow-results-container .stackoverflow-product-update .update, .stackoverflow-results-container .stackoverflow-update .update {
+  margin-top: 1em; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
+    padding-top: 5px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
+      display: inline-block;
+      text-align: center;
+      margin-right: 4px;
+      width: 30%;
+      min-height: 80px;
+      max-width: 80px;
+      max-height: 80;
+      padding-top: 15px; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
+        font-size: .8em; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
+        margin-bottom: 0;
+        line-height: 1; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
+        border: 2px solid #8ed300; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
+        background-color: #8ed300;
+        color: #FFFFFF; }
+        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
+          color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
+        border: 2px solid #CCCCCC;
+        background-color: #CCCCCC;
+        color: #FFFFFF; }
+        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
+          color: #FFFFFF; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
+    float: right; }
+  .stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
+    color: #0066CC;
+    font-weight: 600;
+    font-size: 1.4375rem;
+    margin-bottom: 8px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 70px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px !important;
+    margin-top: 8px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
+    display: block;
+    margin-top: 1em; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
+    background-color: #F9F9F9;
+    margin: 10px 0;
+    padding: 20px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
+      color: #73BCF7; }
+
+.stackoverflow-results-container .stackoverflow-update .update {
+  margin-top: 2em; }
+
+.stackoverflow-product-update .update .update-meta {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #E6E6E6;
+  min-height: 84px; }
+
+.stackoverflow-update .update {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6e7e8; }
+
+.hero.stackoverflow-main {
+  background-color: #0089d0;
+  background-position: left top;
+  background-image: url("https://static.jboss.org/images/rhd/headers/stackoverflow_overview_background.svg");
+  background-size: 37%;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+  border: none;
+  margin-bottom: 0; }
+  .hero.stackoverflow-main h3, .hero.stackoverflow-main p {
+    color: #FFFFFF; }
+
+.stack-help {
+  background-color: #242424;
+  margin-bottom: 25px; }
+  .stack-help h3 {
+    text-align: right;
+    color: #CCCCCC; }
+  .stack-help p {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+    margin-bottom: 5px; }
+  .stack-help a {
+    color: #73BCF7; }
+    .stack-help a:hover, .stack-help a:active {
+      color: #0066CC; }
+
+.stackoverflow-filters label {
+  font-weight: 800;
+  color: #424242;
+  font-size: 1.6em;
+  margin-right: 20px;
+  display: inline-block; }
+
+.stackoverflow-filters .styled-select {
+  display: inline-block;
+  z-index: 1; }
+
+.qtn-answer.display-answer {
+  display: block; }
+
+.qtn-answer.hide-answer {
+  display: none; }
+
+.qtn-answer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important; }
+
+div.so-tags {
+  margin-top: 5px; }
+
+div.so-tags > *:nth-last-child(2):after {
+  content: ''; }
+
+strong.tag-label, .qtn-answer strong {
+  margin-right: 5px; }
+
+@media only screen and (max-width: 1024px) {
+  .hero.stackoverflow-main {
+    padding: 40px 30px; }
+  .stackoverflow-main img {
+    max-width: 500px;
+    margin-bottom: 20px; }
+  .stack-help {
+    margin: 0 -15px 25px -15px;
+    padding: 20px 15px; }
+    .stack-help h3 {
+      text-align: left; }
+  .qtn-stats {
+    margin-bottom: 15px; } }
+
+@media only screen and (max-width: 480px) {
+  .stackoverflow-results-container .stackoverflow-update .update span.so-author {
+    float: none;
+    margin-top: 5px;
+    display: block; } }
+
+#forumsContainer {
+  display: none; }
+
+.so-sorting {
+  float: right;
+  margin-top: 20px; }
+
+#paginator {
+  border-top: 1px solid #CCCCCC;
+  padding-top: 15px;
+  clear: both; }
+  #paginator ul.pagination {
+    font-size: 0;
+    height: auto; }
+    @media only screen and (min-width: 64.063em) {
+      #paginator ul.pagination {
+        float: right; } }
+    #paginator ul.pagination li {
+      position: relative;
+      float: left;
+      padding: 0;
+      line-height: 1.42857;
+      text-decoration: none;
+      color: #0066CC;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-left: -1px;
+      height: auto; }
+      #paginator ul.pagination li:before {
+        display: none; }
+      #paginator ul.pagination li.one-page {
+        visibility: hidden;
+        margin-top: 0; }
+      #paginator ul.pagination li a {
+        padding-top: 0.6em;
+        transition: none;
+        cursor: pointer;
+        min-height: 36.39px; }
+        #paginator ul.pagination li a:hover, #paginator ul.pagination li a:focus {
+          color: #005582 !important;
+          background: #eee;
+          border-color: #ddd; }
+      #paginator ul.pagination li.current a {
+        z-index: 2;
+        color: #fff !important;
+        background: #0088ce !important;
+        border-color: #0088ce !important; }
+      #paginator ul.pagination li.unavailable {
+        background-color: #F7F7F7;
+        cursor: auto;
+        pointer-events: none; }
+
 .about .wrapper {
   padding-bottom: 0; }
 
@@ -12051,7 +12332,8 @@ body.page-node-type-article h1.page-title {
 
 .page-community-contributor .node__content > .text-formatted,
 .page-ticket-monster .node__content > .text-formatted,
-.page-middleware .node__content > .text-formatted {
+.page-middleware .node__content > .text-formatted,
+.page-stack-overflow .node__content > .text-formatted {
   max-width: none;
   padding: 0;
   margin-bottom: 0; }
