@@ -6151,22 +6151,24 @@ body.fullbleed .content-wrapper {
       display: flex !important; } }
 
 .rh-nav-universal {
-  max-width: 73.125rem;
+  max-width: 720px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0 auto;
   font-size: 14px;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 130px 1fr 130px;
+  grid-template-columns: 130px 1fr;
   align-items: center;
   justify-items: center;
   min-height: 50px;
   grid-column-gap: 224px; }
   @media (min-width: 992px) {
     .rh-nav-universal {
-      grid-column-gap: 0; } }
-  @media (min-width: 1240px) {
-    .rh-nav-universal {
-      grid-template-columns: 200px 1fr 180px; } }
+      max-width: 1400px;
+      grid-column-gap: 0;
+      grid-template-columns: 145px 1fr; } }
 
 .rhd-menu {
   list-style: none;
@@ -6199,6 +6201,17 @@ body.fullbleed .content-wrapper {
   text-transform: uppercase; }
   .rh-nav-universal-link:active, .rh-nav-universal-link:hover, .rh-nav-universal-link:focus {
     color: #FFFFFF; }
+  .rh-nav-universal-link a[data-drupal-link-system-path="<front>"] {
+    color: #FFF;
+    position: relative; }
+    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:before {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 2px;
+      background-color: #CC0000;
+      position: absolute;
+      bottom: -3px; }
 
 .rh-header-logo {
   max-width: 100px;
