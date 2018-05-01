@@ -5,10 +5,14 @@
     padding-bottom: 120px;
   }
   .content {
-    max-width: 60rem;
+    max-width: 40rem;
+    @include desktop-large {
+      max-width: 52rem;
+    }
   }
   .background {
     display: none;
+    z-index: -1;
     @include desktop-small {
       display: block;
     }
@@ -16,7 +20,7 @@
       display: none;
     }
   }
-  h1 {
+  .homepage-hero-heading {
     font-size: 23px;
     line-height: 2em;
     @include tablet-portrait {
@@ -25,6 +29,9 @@
     }
     @include tablet-landscape {
       font-size: 50px;
+    }
+    a {
+      white-space: nowrap;
     }
   }
   h2 {
