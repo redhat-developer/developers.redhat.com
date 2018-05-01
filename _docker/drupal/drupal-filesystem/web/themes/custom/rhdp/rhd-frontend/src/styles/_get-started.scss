@@ -493,6 +493,9 @@ ul.toc {
     line-height: 1.2;
     margin-bottom: 0;
   }
+  .tabs-content > .content:focus {
+    outline: none;
+  }
 }
 
 .collapsable {
@@ -696,6 +699,7 @@ ul.toc {
   border: 5px solid #e6e7e8;
   padding: 1.5rem;
   margin: 3rem 0;
+  clear: both;
   ul li:before{ 
     display: none;
   }

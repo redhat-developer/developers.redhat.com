@@ -8657,6 +8657,9 @@ ul.toc {
   line-height: 1.2;
   margin-bottom: 0; }
 
+#get-started-instructions .tabs-content > .content:focus {
+  outline: none; }
+
 .collapsable input#stepOne, .collapsable input#stepTwo, .collapsable input#stepThree, .collapsable input#stepFour {
   display: none;
   visibility: hidden; }
@@ -8814,7 +8817,8 @@ ul.toc {
 .box.callout {
   border: 5px solid #e6e7e8;
   padding: 1.5rem;
-  margin: 3rem 0; }
+  margin: 3rem 0;
+  clear: both; }
   .box.callout ul li:before {
     display: none; }
 
