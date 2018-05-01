@@ -28,7 +28,7 @@
     display: grid;
     grid-gap: $gutter $gutter;
     grid-template-columns: 1fr 1fr;
-    @include tablet-landscape {
+    @include desktop-small {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
@@ -57,7 +57,7 @@
       }
     }
     .content-card-list {
-      @include tablet-landscape {
+      @include desktop-small {
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
