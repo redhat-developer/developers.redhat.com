@@ -7991,6 +7991,68 @@ button.tiny, .button.tiny {
   margin-top: 2px;
   max-width: 200px; }
 
+.rh-downloads table.downloads-table {
+  background-color: #d5d5d5; }
+  .rh-downloads table.downloads-table thead tr th {
+    padding: 5px; }
+  .rh-downloads table.downloads-table .download-links a, .rh-downloads table.downloads-table .download-links a + a {
+    display: block;
+    margin-left: 0; }
+
+.rh-downloads .download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.rh-downloads .download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.rh-downloads .download-link .version-name {
+  text-align: center; }
+
+.rh-downloads a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.large-16.small-24.columns a.button, .large-16.small-24.developer-materials-sidebar a.button, .large-16.small-24.developer-materials-main a.button, .large-16.small-24.microsite-nav a.button {
+  margin-bottom: 1.25rem;
+  margin-top: 0px; }
+  .large-16.small-24.columns a.button.medium-cta.blue, .large-16.small-24.developer-materials-sidebar a.button.medium-cta.blue, .large-16.small-24.developer-materials-main a.button.medium-cta.blue, .large-16.small-24.microsite-nav a.button.medium-cta.blue {
+    border-color: #0088ce;
+    color: #0088ce; }
+    .large-16.small-24.columns a.button.medium-cta.blue:hover, .large-16.small-24.developer-materials-sidebar a.button.medium-cta.blue:hover, .large-16.small-24.developer-materials-main a.button.medium-cta.blue:hover, .large-16.small-24.microsite-nav a.button.medium-cta.blue:hover {
+      background-color: #0088ce;
+      color: #fff; }
+
+.has-download .caps {
+  text-transform: uppercase;
+  margin-top: .2rem;
+  margin-bottom: .5rem; }
+
+.has-download .large-16.columns p, .has-download .large-16.developer-materials-sidebar p, .has-download .large-16.developer-materials-main p, .has-download .large-16.microsite-nav p {
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0px;
+  margin-bottom: 1.25rem;
+  text-rendering: optimizeLegibility; }
+
+.panel.callout {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d2d9e3;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #f3f5f8;
+  color: #333; }
+  .panel.callout h5 {
+    margin: 0px 0px 10px 0px; }
+  .panel.callout .field__item p {
+    margin: 0px 0px 20px 0px; }
+
 #kc-register-form .rhd-adaptive-placeholder,
 #kc-update-profile-form .rhd-adaptive-placeholder {
   margin-bottom: 20px; }
@@ -10606,7 +10668,7 @@ h3.downloads-header {
   #downloads .download-list .category-label {
     margin-bottom: 20px;
     margin-top: 20px;
-    background: #656565 cdn("../images/design/dotted_line-white.svg") no-repeat;
+    background: #656565 url("src/images/dotted_line-white.svg") no-repeat;
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
@@ -10671,7 +10733,7 @@ a.download-link:before {
   padding-right: 3px; }
 
 .most-popular-downloads {
-  background: #E6E7E8 cdn("../images/design/dotted_line-white.svg") no-repeat;
+  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
   padding: 20px 0;
   background-size: 1200px; }
   .most-popular-downloads h3 {
@@ -10698,6 +10760,9 @@ a.download-link:before {
   .popular-download-box small {
     text-align: center;
     display: block; }
+
+rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
+  text-align: center; }
 
 .about .wrapper {
   padding-bottom: 0; }
@@ -11563,6 +11628,117 @@ ul.devoxx-list {
     color: #FFFFFF;
     position: relative;
     top: 8px; }
+
+h3.downloads-header {
+  text-transform: uppercase;
+  margin: 30px 0; }
+
+#downloads {
+  width: 100%; }
+  #downloads .download-list p {
+    margin: 0; }
+  #downloads .download-list .category-label + rhdp-downloads-all-item .row hr {
+    display: none; }
+  #downloads .download-list hr {
+    margin: 2rem 1rem; }
+  #downloads .download-list .category-label {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #656565 url("src/images/dotted_line-white.svg") no-repeat;
+    padding: 20px;
+    background-size: 1000px;
+    background-position: center right -300px; }
+    #downloads .download-list .category-label h4 {
+      text-transform: uppercase;
+      color: white;
+      font-size: 25px;
+      margin: 0;
+      line-height: 1; }
+  #downloads .download-list .indent-product {
+    margin-left: 1em; }
+    #downloads .download-list .indent-product .large-8 {
+      margin-left: -.7em; }
+    @media only screen and (max-width: 1024px) {
+      #downloads .download-list .indent-product .large-8 {
+        margin-left: 0; } }
+  #downloads .button {
+    width: 100%; }
+  #downloads h5 {
+    font-size: 25px; }
+  #downloads #other-resources .category-label {
+    margin-bottom: 40px;
+    margin-top: 50px; }
+  #downloads #other-resources ul {
+    margin-left: 0;
+    list-style: none; }
+  #downloads #other-resources a.button {
+    background: #6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
+    width: 100%;
+    padding: 25px 10px 25px 20px;
+    text-align: left; }
+  #downloads #other-resources a.button:hover, #downloads #other-resources a.button:active, #downloads #other-resources a.button:focus {
+    background: #43aac7 cdn("../images/design/stars-texture.png") bottom right no-repeat; }
+
+div.download-loading.loading {
+  background: cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+  min-height: 250px; }
+
+.has-download, .no-download {
+  display: none; }
+  .has-download h4.caps, .no-download h4.caps {
+    text-transform: uppercase; }
+
+.download-links a + a {
+  margin-left: 10px; }
+
+.download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.download-link .version-name {
+  text-align: center; }
+
+a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.most-popular-downloads {
+  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
+  padding: 20px 0;
+  background-size: 1200px; }
+  .most-popular-downloads h3 {
+    color: #242424;
+    text-transform: uppercase; }
+
+.popular-download-box {
+  background: white;
+  padding: 20px;
+  border: 1px solid #DEDEDE;
+  margin-bottom: 20px; }
+  .popular-download-box .button {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 0; }
+  .popular-download-box h4 {
+    font-size: 17px;
+    min-height: 60px; }
+  .popular-download-box p {
+    margin: 0;
+    color: black;
+    text-align: center; }
+  .popular-download-box small {
+    text-align: center;
+    display: block; }
+
+rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
+  text-align: center; }
 
 .wide.wide-hero.eclipse {
   background: cdn("https://static.jboss.org/rhd/images/_images_eclipse_eclipse_microsite_hero.jpg");
@@ -12606,6 +12782,37 @@ body.page-node-type-article h1.page-title {
   justify-content: space-between;
   align-items: center;
   color: #5e6a71; }
+
+.rh-universal-footer {
+  background-color: #1A1A1A;
+  flex: 0 0 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #5e6a71;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
+  .rh-universal-footer .rh-footer-logo, .rh-universal-footer .rh-summit-footer-logo {
+    flex: 0 0 300px; }
+  .rh-universal-footer .contentinfo {
+    flex: 1 1 auto; }
+
+.rhd-footer {
+  background-color: #242424;
+  color: #FFFFFF;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
+
+.rhd-footer-nav {
+  flex: 1 1 auto; }
+
+.rhd-footer-sidebar {
+  background-color: #CC0000;
+  flex: 0 0 33%; }
 
 .visually-hidden {
   display: none; }
