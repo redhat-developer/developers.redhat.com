@@ -8481,6 +8481,8 @@ ul.toc {
         .multipath-tabs-sm ul.tabs.nav-tabs li.active a {
           padding-bottom: 4px;
           border-bottom: 3px solid #CC0000; }
+      .multipath-tabs-sm ul.tabs.nav-tabs li a:focus, .multipath-tabs-sm ul.tabs.nav-tabs li a:hover, .multipath-tabs-sm ul.tabs.nav-tabs li a:active {
+        background-color: #FFFFFF; }
 
 @-moz-document url-prefix() {
   .multipath-tabs-sm ul.tabs.nav-tabs li.active {
@@ -8539,7 +8541,8 @@ ul.toc {
   -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
   -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
   transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-  min-height: 165px; }
+  min-height: 165px;
+  height: 100%; }
   #get-started-instructions .card h4 {
     color: #FFFFFF;
     margin-top: 0;
@@ -10403,70 +10406,78 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
       #rhd-article .field--name-field-tags .field__item:last-child:after {
         display: none; }
 
-.stackoverflow-results-container .stackoverflow-product-update .update, .stackoverflow-results-container .stackoverflow-update .update {
+.stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
+  padding-top: 5px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
+    display: inline-block;
+    text-align: center;
+    margin-right: 4px;
+    width: 30%;
+    min-height: 80px;
+    max-width: 80px;
+    max-height: 80;
+    padding-top: 15px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
+      font-size: .8em; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
+      margin-bottom: 0;
+      line-height: 1; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
+      border: 2px solid #8ed300; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
+      background-color: #8ed300;
+      color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
+        color: #FFFFFF; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
+      border: 2px solid #CCCCCC;
+      background-color: #CCCCCC;
+      color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
+        color: #FFFFFF; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
+  float: right; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
+  color: #0066CC;
+  font-weight: 600;
+  font-size: 1.4375rem;
+  margin-bottom: 8px; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important;
+  margin-top: 8px; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
+  display: block;
   margin-top: 1em; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
-    padding-top: 5px; }
-    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
-      display: inline-block;
-      text-align: center;
-      margin-right: 4px;
-      width: 30%;
-      min-height: 80px;
-      max-width: 80px;
-      max-height: 80;
-      padding-top: 15px; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
-        font-size: .8em; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
-        margin-bottom: 0;
-        line-height: 1; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
-        border: 2px solid #8ed300; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
-        background-color: #8ed300;
-        color: #FFFFFF; }
-        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
-          color: #FFFFFF; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
-        border: 2px solid #CCCCCC;
-        background-color: #CCCCCC;
-        color: #FFFFFF; }
-        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
-          color: #FFFFFF; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
-    float: right; }
-  .stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
-    color: #0066CC;
-    font-weight: 600;
-    font-size: 1.4375rem;
-    margin-bottom: 8px; }
-  .stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    max-height: 70px;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    margin-bottom: 10px !important;
-    margin-top: 8px; }
-  .stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
-    display: block;
-    margin-top: 1em; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
-    background-color: #F9F9F9;
-    margin: 10px 0;
-    padding: 20px; }
-    .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
-      color: #73BCF7; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
+  background-color: #F9F9F9;
+  margin: 10px 0;
+  padding: 20px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
+    color: #73BCF7; }
 
 .stackoverflow-results-container .stackoverflow-update .update {
   margin-top: 2em; }
 
-.stackoverflow-product-update .update .update-meta {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #E6E6E6;
-  min-height: 140px; }
+.so-product-result {
+  padding: 0; }
+
+.stackoverflow-product-update .update {
+  padding: 0; }
+  .stackoverflow-product-update .update .update-meta {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #E6E6E6;
+    min-height: 105px; }
 
 .stackoverflow-update .update {
   padding-bottom: 20px;
@@ -11830,13 +11841,14 @@ ul.product-forums li {
   list-style: none;
   padding-bottom: 5px;
   border-bottom: 1px solid #E6E6E6;
-  min-height: 84px;
+  min-height: 90px;
   break-inside: avoid-column; }
   ul.product-forums li:before {
     display: none; }
 
 ul.product-forums h5 {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  padding-top: 0; }
 
 ul.product-forums a {
   color: #0066CC;
@@ -11857,6 +11869,10 @@ ul.product-forums.multi-column {
   column-gap: 20px; }
   ul.product-forums.multi-column li {
     margin-top: 0; }
+
+ul.product-forums-latest {
+  padding-left: 0;
+  margin-top: 30px; }
 
 .eventsjavaone2015 .wrapper {
   padding-bottom: 0; }
