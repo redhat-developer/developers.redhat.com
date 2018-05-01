@@ -1,6 +1,5 @@
 .stackoverflow-results-container {
   .stackoverflow-product-update .update, .stackoverflow-update .update{
-    margin-top: 1em;
     
     .qtn-stats {
       padding-top: 5px;
@@ -73,10 +72,17 @@
   }
 }
 
-.stackoverflow-product-update .update .update-meta {
-  padding-bottom: 5px;
-  border-bottom: 1px solid $grey-2;
-  min-height: 140px;
+.so-product-result {
+  padding: 0;
+}
+
+.stackoverflow-product-update .update {
+  padding: 0;
+  .update-meta {
+    padding-bottom: 5px;
+    border-bottom: 1px solid $grey-2;
+    min-height: 105px;
+  }
 }
 
 .stackoverflow-update .update{
