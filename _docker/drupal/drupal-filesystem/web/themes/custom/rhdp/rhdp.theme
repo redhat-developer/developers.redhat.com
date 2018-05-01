@@ -186,7 +186,7 @@ function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAss
 function rhdp_preprocess_page(&$variables) {
   if (isset($variables['node'])) {
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$variables['node']->id());
-    if ($alias == '/harmonize/home') {
+    if ($alias == '/') {
       $variables['is_front'] = true;
     }
   }
