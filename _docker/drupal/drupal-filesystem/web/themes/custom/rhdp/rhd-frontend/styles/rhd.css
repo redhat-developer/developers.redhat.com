@@ -7937,6 +7937,15 @@ button.tiny, .button.tiny {
   content: "\f01a";
   padding-right: 3px; }
 
+.panel.callout {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d2d9e3;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #f3f5f8;
+  color: #333; }
+
 #kc-register-form .rhd-adaptive-placeholder,
 #kc-update-profile-form .rhd-adaptive-placeholder {
   margin-bottom: 20px; }
@@ -12834,3 +12843,81 @@ table {
   @media (min-width: 992px) {
     .wide-hero.devoxx4kids .video-embed {
       margin-top: 0; } }
+
+button, .button {
+  text-transform: uppercase;
+  background: #CC0000;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 9px 40px;
+  -webkit-transition: background .2s ease-in 0s;
+  transition: background .2s ease-in 0s;
+  line-height: 1.44;
+  margin-left: 0 !important;
+  margin-right: 0 !important; }
+  button:hover, button:focus, .button:hover, .button:focus {
+    background-color: #8f0000; }
+  button.heavy-cta, .button.heavy-cta {
+    font-weight: bold; }
+    button.heavy-cta.white, .button.heavy-cta.white {
+      background: #FFFFFF;
+      color: #CC0000; }
+      button.heavy-cta.white:hover, button.heavy-cta.white:focus, .button.heavy-cta.white:hover, .button.heavy-cta.white:focus {
+        background-color: #f0f0f0; }
+    button.heavy-cta.black, .button.heavy-cta.black {
+      background: #000000;
+      color: #FFFFFF; }
+    button.heavy-cta.blue, .button.heavy-cta.blue {
+      background: #0066CC;
+      color: #FFFFFF; }
+      button.heavy-cta.blue:hover, button.heavy-cta.blue:focus, .button.heavy-cta.blue:hover, .button.heavy-cta.blue:focus {
+        background-color: #0057ad; }
+  button.medium-cta, .button.medium-cta {
+    border: 1px solid #CC0000;
+    line-height: 1.44;
+    color: #CC0000;
+    background-color: transparent;
+    padding: 8px 40px; }
+    button.medium-cta:hover, button.medium-cta:focus, .button.medium-cta:hover, .button.medium-cta:focus {
+      background-color: #CC0000;
+      color: #FFFFFF; }
+    button.medium-cta.white, .button.medium-cta.white {
+      border-color: #FFFFFF;
+      color: #FFFFFF; }
+      button.medium-cta.white:hover, button.medium-cta.white:focus, .button.medium-cta.white:hover, .button.medium-cta.white:focus {
+        background-color: #FFFFFF;
+        color: #CC0000; }
+    button.medium-cta.black, .button.medium-cta.black {
+      border-color: #000000;
+      color: #000000; }
+      button.medium-cta.black:hover, button.medium-cta.black:focus, .button.medium-cta.black:hover, .button.medium-cta.black:focus {
+        background-color: #000000;
+        color: #FFFFFF; }
+    button.medium-cta.blue, .button.medium-cta.blue {
+      border-color: #0066CC;
+      color: #0066CC; }
+      button.medium-cta.blue:hover, button.medium-cta.blue:focus, .button.medium-cta.blue:hover, .button.medium-cta.blue:focus {
+        background-color: #0066CC;
+        color: #FFFFFF; }
+  button.large, .button.large {
+    padding: 0.6em 0.9em; }
+  button.long, .button.long {
+    padding: .6em 5em; }
+  button + button, button + .button, .button + button, .button + .button {
+    margin-left: 20px; }
+  button.inverse, .button.inverse {
+    background: white;
+    color: #CC0000; }
+  button.clear, .button.clear {
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+    border: 0; }
+    button.clear i, .button.clear i {
+      margin-right: 2px;
+      margin-left: 2px; }
+  button.external-link:after, .button.external-link:after {
+    display: none; }
