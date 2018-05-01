@@ -16,14 +16,14 @@
  */
 #}
 <section{{ attributes.addClass('assembly') }}>
-
   <div class="container">
     <div class="video">
       {{ content.video }}
     </div>
     {% if content|without('video')|render %}
     <div class="content">
-      {{- content|without('video') -}}
+      <h2 class="section-title"><a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a></h2>
+      {{- content|without('video', 'field_title') -}}
     </div>
     {% endif %}
   </div>
