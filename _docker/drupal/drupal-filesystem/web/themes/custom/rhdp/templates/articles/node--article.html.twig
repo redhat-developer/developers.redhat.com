@@ -65,7 +65,7 @@ other methods (such as node.delete) will result in an exception.
 * @ingroup themeable
 */
 #}
-{% set article_classes = (not hide_toc) ? ["large-20", "medium-15", "columns", "gsi", "fetch-toc", "article-content"] : ["large-19", "medium-19", "columns", "gsi", "fetch-toc", "article-content"] %}
+{% set article_classes = (not hide_toc) ? [ "medium-20", "columns", "gsi", "fetch-toc", "article-content"] : ["large-19", "medium-19", "columns", "gsi", "fetch-toc", "article-content"] %}
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
   <div class="row">
     <div class="large-19 medium-24 columns">
@@ -87,13 +87,13 @@ other methods (such as node.delete) will result in an exception.
     </div>
   </div>
   <div class="row">
-    <div class="large-4 medium-4 columns">
-        {% if not hide_toc %}
+    {% if not hide_toc %}
+        <div class="medium-4 columns">
             <ul class="toc gsi-nav">
             </ul>
             <div>&nbsp;</div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
     <div{{ content_attributes.addClass(article_classes) }}>
         {{ content.body }}
     </div>
