@@ -807,6 +807,7 @@ button.tiny, .button.tiny {
 .rh-downloads{
 
   table.downloads-table {
+    background-color: rgb(213, 213, 213);
     thead tr th {
       padding: 5px;
     }
@@ -846,6 +847,40 @@ button.tiny, .button.tiny {
 
 }
 
+.large-16.small-24.columns{
+  a.button{
+    &.medium-cta.blue {
+      &:hover{
+        background-color: #0088ce;
+        color: #fff;
+      }
+      border-color: #0088ce;
+      color: #0088ce;
+    }
+    margin-bottom: 1.25rem;
+    margin-top: 0px;
+
+  }
+}
+
+.has-download {
+  .caps {
+    text-transform: uppercase;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+  }
+  .large-16.columns{
+    p{
+      font-family: inherit;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-top: 0px;
+      margin-bottom: 1.25rem;
+      text-rendering: optimizeLegibility;
+    }
+  }
+}
 
 .panel.callout {
   border-style: solid;
@@ -854,5 +889,13 @@ button.tiny, .button.tiny {
   margin-bottom: 1.25rem;
   padding: 1.25rem;
   background: #f3f5f8;
-  color: #333
+  color: #333;
+  h5 {
+    margin: 0px 0px 10px 0px;
+  }
+  .field__item {
+    p {
+      margin: 0px 0px 20px 0px;
+    }
+  }
 }
