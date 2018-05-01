@@ -37,6 +37,17 @@
   <head>
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/{{ directory }}/rhd-frontend/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/{{ directory }}/rhd-frontend/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/{{ directory }}/rhd-frontend/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/{{ directory }}/rhd-frontend/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/{{ directory }}/rhd-frontend/favicons/safari-pinned-tab.svg" color="#da532c">
+    <link rel="shortcut icon" href="/{{ directory }}/rhd-frontend/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/{{ directory }}/rhd-frontend/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
