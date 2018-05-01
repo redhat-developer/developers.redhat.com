@@ -393,35 +393,6 @@ table.downloads {
   color: $white;
 }
 
-// Download link
-
-.download-link {
-  h4 {
-    a {
-      &:before {
-          font-family: 'FontAwesome';
-          content: "\f01a";
-          padding-right:3px;
-      }
-    }
-  }
-  a.button {
-    display: block;
-    margin: 0 auto 5px auto;
-  }
-  .version-name {
-    text-align: center;
-  }
-}
-
-a.download-link {
-  &:before {
-      font-family: 'FontAwesome';
-      content: "\f01a";
-      padding-right:3px;
-  }
-}
-
 .guide-format-link {
   text-transform: uppercase;
 }

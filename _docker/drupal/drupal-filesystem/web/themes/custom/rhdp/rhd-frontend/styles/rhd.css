@@ -7450,7 +7450,8 @@ body.page-node-type-learning-path .wrapper {
 
 .product-graphics {
   background-position: left top, right bottom;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  padding-bottom: 5em; }
   .product-graphics.storage-and-big-data {
     background-image: url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_orange-1.png"), url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png"); }
   .product-graphics.it-infrastructure {
@@ -10383,7 +10384,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
 .stackoverflow-product-update .update .update-meta {
   padding-bottom: 5px;
   border-bottom: 1px solid #E6E6E6;
-  min-height: 84px; }
+  min-height: 140px; }
 
 .stackoverflow-update .update {
   padding-bottom: 20px;
@@ -10589,6 +10590,114 @@ strong.tag-label, .qtn-answer strong {
   .mobile-selector {
     display: block;
     width: 100%; } }
+
+h3.downloads-header {
+  text-transform: uppercase;
+  margin: 30px 0; }
+
+#downloads {
+  width: 100%; }
+  #downloads .download-list p {
+    margin: 0; }
+  #downloads .download-list .category-label + rhdp-downloads-all-item .row hr {
+    display: none; }
+  #downloads .download-list hr {
+    margin: 2rem 1rem; }
+  #downloads .download-list .category-label {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #656565 cdn("../images/design/dotted_line-white.svg") no-repeat;
+    padding: 20px;
+    background-size: 1000px;
+    background-position: center right -300px; }
+    #downloads .download-list .category-label h4 {
+      text-transform: uppercase;
+      color: white;
+      font-size: 25px;
+      margin: 0;
+      line-height: 1; }
+  #downloads .download-list .indent-product {
+    margin-left: 1em; }
+    #downloads .download-list .indent-product .large-8 {
+      margin-left: -.7em; }
+    @media only screen and (max-width: 1024px) {
+      #downloads .download-list .indent-product .large-8 {
+        margin-left: 0; } }
+  #downloads .button {
+    width: 100%; }
+  #downloads h5 {
+    font-size: 25px; }
+  #downloads #other-resources .category-label {
+    margin-bottom: 40px;
+    margin-top: 50px; }
+  #downloads #other-resources ul {
+    margin-left: 0;
+    list-style: none; }
+  #downloads #other-resources a.button {
+    background: #6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
+    width: 100%;
+    padding: 25px 10px 25px 20px;
+    text-align: left; }
+  #downloads #other-resources a.button:hover, #downloads #other-resources a.button:active, #downloads #other-resources a.button:focus {
+    background: #43aac7 cdn("../images/design/stars-texture.png") bottom right no-repeat; }
+
+div.download-loading.loading {
+  background: cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+  min-height: 250px; }
+
+.has-download, .no-download {
+  display: none; }
+  .has-download h4.caps, .no-download h4.caps {
+    text-transform: uppercase; }
+
+.download-links a + a {
+  margin-left: 10px; }
+
+.download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.download-link .version-name {
+  text-align: center; }
+
+a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.most-popular-downloads {
+  background: #E6E7E8 cdn("../images/design/dotted_line-white.svg") no-repeat;
+  padding: 20px 0;
+  background-size: 1200px; }
+  .most-popular-downloads h3 {
+    color: #242424;
+    text-transform: uppercase; }
+
+.popular-download-box {
+  background: white;
+  padding: 20px;
+  border: 1px solid #DEDEDE;
+  margin-bottom: 20px; }
+  .popular-download-box .button {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 0; }
+  .popular-download-box h4 {
+    font-size: 17px;
+    min-height: 60px; }
+  .popular-download-box p {
+    margin: 0;
+    color: black;
+    text-align: center; }
+  .popular-download-box small {
+    text-align: center;
+    display: block; }
 
 .about .wrapper {
   padding-bottom: 0; }

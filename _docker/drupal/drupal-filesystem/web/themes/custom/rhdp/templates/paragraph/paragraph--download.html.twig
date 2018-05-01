@@ -27,12 +27,12 @@
 </div>
 <div class="row">
     {% if content.field_overview_main_content|render|striptags|trim is not empty %}
-        <div class="large-16 small-24 columns">
+        <div class="large-16 small-24 columns end">
             {{ content.field_overview_main_content }}
         </div>
     {% endif %}
     {% if offer_subscription %}
-        <div class="large-16 small-24 columns"><br>
+        <div class="large-16 small-24 columns end"><br>
             <h4 id="ready-production-use">Ready to use {{ product_short_name }} in Production?</h4>
             <p>
                 With a Red Hat subscription, you can deploy your application into a production environment and get
