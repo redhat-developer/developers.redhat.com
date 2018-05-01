@@ -34,10 +34,14 @@
     {% else %}
       <ul class="rhd-menu rh-universal-login">
     {% endif %}
-    {% for item in items %}
+      <li class="login"><span class="icon"><i class="fas fa-user"></i></span><a>Log In</a></li>
+      <li class="logged-in" style="display: none;"><a class="logged-in-name" href="#"></a></li>
+      <li class="logged-in" style="display: none;"><a class="logout" href="#">Log Out</a></li>
+    {# {% for item in items %}
       {%
         set classes = [
           'menu-item',
+          'login',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
           item.in_active_trail ? 'menu-item--active-trail',
@@ -53,7 +57,7 @@
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}
       </li>
-    {% endfor %}
+    {% endfor %} #}
     </ul>
   {% endif %}
 {% endmacro %}

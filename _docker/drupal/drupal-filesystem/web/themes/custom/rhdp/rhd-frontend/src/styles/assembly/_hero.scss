@@ -61,5 +61,17 @@
       margin-bottom: 0;
     }
   }
+  .topics-billboard-list {
+    .topic {
+      &:after {
+        content: ' / ';
+      }
+      &:last-child {
+        &:after {
+          content: '';
+        }
+      }
+    }
+  }
 }
 

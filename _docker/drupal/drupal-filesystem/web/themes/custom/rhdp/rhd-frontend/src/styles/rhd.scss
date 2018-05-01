@@ -31,6 +31,8 @@
 @import "articles";
 @import "stackoverflow";
 @import "paginator";
+@import "faq";
+@import "downloads";
 
 
 // Stylesheets for microsites
@@ -135,46 +137,6 @@ body.page-node-type-article {
   align-items: center;
   color: #5e6a71;
 }
-.rh-universal-footer {
-    background-color: #1A1A1A;
-    flex: 0 0 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: #5e6a71;
-
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-
-    .rh-footer-logo, .rh-summit-footer-logo {
-        flex: 0 0 300px;
-    }
-
-    .contentinfo {
-        flex: 1 1 auto;
-    }
-}
-
-.rhd-footer {
-    background-color: $dark-gray;
-    color: $white;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: row;
-
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-}
-
-.rhd-footer-nav {
-    flex: 1 1 auto;
-}
-
-.rhd-footer-sidebar {
-    background-color: $red;
-    flex: 0 0 33%;
-}
 
 .visually-hidden {
   display: none;
@@ -271,11 +233,15 @@ img {
   border: 1px solid #efeff0;
   padding: 20px;
   margin: 15px 0;
-  p {
-    margin-bottom: 0;
+  p, a, ul, ol {
+    margin-top: 0;
   }
   a {
     color: $link-dark-background;
+    &.button {
+      color: #FFF;
+      display: inline-block;
+    }
   }
 }
 
@@ -288,6 +254,7 @@ img {
   margin-bottom: 15px;
 }
 
+.field--name-field-related-product.field--type-entity-reference,
 .related-product-card,
 .related-content-card {
   background-color: $white;
@@ -402,4 +369,71 @@ table {
   p {
     margin:0;
   }
+}
+
+/* Error pages */
+.error-content {
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  .callout-light {
+    margin-bottom: 0;
+  }
+  > img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+.flex-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.flex-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-devoxx4kids {
+  #ytplayer {
+    max-width: 100%;
+  }
+}
+
+.wide-hero.devoxx4kids {
+  .column {
+    height: auto !important;
+    @include desktop-small {
+      width: 50%;
+    }
+    @include desktop-large {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  .video-embed {
+    margin-top: 40px;
+    @include desktop-small {
+      margin-top: 0;
+    }
+  }
+}
+
+.show-more-text {
+  overflow: hidden;
+  max-height: 75px;
+  &.open { max-height: 100% !important; }
+}
+.show-more{
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  span { display: block; }
+  span.less { display: none; }
 }

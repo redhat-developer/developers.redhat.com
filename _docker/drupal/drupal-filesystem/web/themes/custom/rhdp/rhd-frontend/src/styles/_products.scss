@@ -75,7 +75,7 @@
 .product-graphics {
   background-position: left top, right bottom;
   background-repeat: no-repeat;
-  
+  padding-bottom: 5em;
   &.storage-and-big-data {
     background-image: url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_orange-1.png'),  url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
   }
@@ -416,6 +416,11 @@ div.mobile.product-color {
       }
     }
   }
+}
+
+.downloads-table {
+  background: #f5f5f6;
+  padding: 0;  
 }
 
 @include desktop-and-down {
