@@ -7913,6 +7913,30 @@ button.tiny, .button.tiny {
   margin-top: 2px;
   max-width: 200px; }
 
+.rh-downloads table.downloads-table thead tr th {
+  padding: 5px; }
+
+.rh-downloads table.downloads-table .download-links a, .rh-downloads table.downloads-table .download-links a + a {
+  display: block;
+  margin-left: 0; }
+
+.rh-downloads .download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.rh-downloads .download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.rh-downloads .download-link .version-name {
+  text-align: center; }
+
+.rh-downloads a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
 #kc-register-form .rhd-adaptive-placeholder,
 #kc-update-profile-form .rhd-adaptive-placeholder {
   margin-bottom: 20px; }

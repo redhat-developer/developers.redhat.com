@@ -803,3 +803,47 @@ button.tiny, .button.tiny {
   margin-top: 2px;
   max-width: 200px;
 }
+
+.rh-downloads{
+
+  table.downloads-table {
+    thead tr th {
+      padding: 5px;
+    }
+    .download-links a, .download-links a + a {
+      display: block;
+      margin-left: 0;
+    }
+  }
+
+  .download-link {
+    h4 {
+      a {
+        &:before {
+          font-family: 'FontAwesome';
+          content: "\f01a";
+          padding-right:3px;
+        }
+      }
+    }
+    a.button {
+      display: block;
+      margin: 0 auto 5px auto;
+    }
+    .version-name {
+      text-align: center;
+    }
+  }
+
+  a.download-link {
+    &:before {
+      font-family: 'FontAwesome';
+      content: "\f01a";
+      padding-right:3px;
+    }
+  }
+
+
+}
+
+
