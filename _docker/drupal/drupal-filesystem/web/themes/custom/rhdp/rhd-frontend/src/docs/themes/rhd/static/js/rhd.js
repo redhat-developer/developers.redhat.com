@@ -356,13 +356,19 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                         var len = _this.querySelectorAll('dp-category').length;
                         var idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
                         var list = _this.items[detail.index - 1];
+                        var a = _this.querySelector("dp-category:nth-child(" + _this.active + ")");
                         if (detail.index === _this.active) {
+                            if (a) {
+                                a['visible'] = false;
+                            }
                             _this.removeChild(_this.items[_this.active - 1]);
                             _this.active = 0;
                         }
                         else {
                             if (_this.active > 0) {
-                                _this.removeChild(_this.items[_this.active - 1]);
+                                if (a) {
+                                    a['visible'] = false;
+                                }
                                 _this.active = 0;
                             }
                             var rowEle = _this.querySelector("dp-category:nth-child(" + idx + ")");
@@ -389,6 +395,8 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                 DPCategoryList.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
+                DPCategoryList.prototype._setVisibleCategories = function (index) {
+                };
                 return DPCategoryList;
             }(rhelement_3.default));
             exports_4("default", DPCategoryList);
@@ -413,10 +421,11 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
+                    _this._index = -1;
                     _this._showList = _this._showList.bind(_this);
                     return _this;
                 }
@@ -470,6 +479,18 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     enumerable: true,
                     configurable: true
                 });
+                Object.defineProperty(DPCategory.prototype, "index", {
+                    get: function () {
+                        return this._index;
+                    },
+                    set: function (val) {
+                        if (this._index === val)
+                            return;
+                        this._index = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 DPCategory.prototype.connectedCallback = function () {
                     var _this = this;
                     _super.prototype.render.call(this, this.template(this));
@@ -493,13 +514,18 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     this.visible = !this.visible;
                 };
                 DPCategory.prototype._getIndex = function (node) {
-                    var i = 1;
-                    while (node = node.previousElementSibling) {
-                        if (node.nodeName === 'DP-CATEGORY') {
-                            ++i;
+                    if (this.index < 0) {
+                        var i = 1;
+                        while (node = node.previousElementSibling) {
+                            if (node.nodeName === 'DP-CATEGORY') {
+                                ++i;
+                            }
                         }
+                        return i;
                     }
-                    return i;
+                    else {
+                        return this.index;
+                    }
                 };
                 DPCategory.prototype._getSVG = function (path) {
                     return __awaiter(this, void 0, void 0, function () {
@@ -4747,6 +4773,7 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
+        _this._oburl = '../rhdp-apps/onebox/onebox.json';
         _this.template = "<div class=\"row\">\n    <span class=\"search-outage-msg\"></span>\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
         _this.urlEle = new RHDPSearchURL();
         _this.query = new RHDPSearchQuery();
@@ -4846,6 +4873,18 @@ var RHDPSearchApp = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RHDPSearchApp.prototype, "oburl", {
+        get: function () {
+            return this._oburl;
+        },
+        set: function (val) {
+            if (this._oburl === val)
+                return;
+            this._oburl = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     RHDPSearchApp.prototype.connectedCallback = function () {
         this.innerHTML = this.template;
         this.active.setAttribute('type', 'active');
@@ -4855,6 +4894,7 @@ var RHDPSearchApp = (function (_super) {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
+        this.onebox.url = this.oburl;
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.box);
@@ -4868,7 +4908,7 @@ var RHDPSearchApp = (function (_super) {
     };
     Object.defineProperty(RHDPSearchApp, "observedAttributes", {
         get: function () {
-            return ['url', 'name'];
+            return ['url', 'name', 'oburl'];
         },
         enumerable: true,
         configurable: true
@@ -8791,36 +8831,36 @@ function indexOfObjectValueInArray(arr, key, val) {
     }
     return idx;
 }
-search.service('searchService', function ($http, $q) {
-    this.getSearchResults = function (params) {
-        var deferred = $q.defer();
-        if ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
-            var isStackOverflow = true;
-        }
-        if (isStackOverflow) {
-            var search = Object.assign(params, {
-                field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
-                query_highlight: true
+search.service('searchService', ['$http', '$q', function ($http, $q) {
+        this.getSearchResults = function (params) {
+            var deferred = $q.defer();
+            if ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
+                var isStackOverflow = true;
+            }
+            if (isStackOverflow) {
+                var search = Object.assign(params, {
+                    field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
+                    query_highlight: true
+                });
+                var endpoint = app.dcp.url.stackoverflow;
+            }
+            else {
+                var search = Object.assign(params, {
+                    query_highlight: true,
+                    type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
+                });
+                var endpoint = app.dcp.url.developer_materials;
+            }
+            $http.get(endpoint, { params: search })
+                .success(function (data) {
+                deferred.resolve(data);
+            })
+                .error(function (err) {
+                throw new Error(err);
             });
-            var endpoint = app.dcp.url.stackoverflow;
-        }
-        else {
-            var search = Object.assign(params, {
-                query_highlight: true,
-                type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
-            });
-            var endpoint = app.dcp.url.developer_materials;
-        }
-        $http.get(endpoint, { params: search })
-            .success(function (data) {
-            deferred.resolve(data);
-        })
-            .error(function (err) {
-            throw new Error(err);
-        });
-        return deferred.promise;
-    };
-});
+            return deferred.promise;
+        };
+    }]);
 search.directive('resourceType', function () {
     return {
         restrict: 'A',
@@ -8952,57 +8992,57 @@ search.filter('tagGroup', function () {
         return modifiedTags;
     };
 });
-search.filter('title', function ($sce) {
-    return function (result) {
-        if (result.highlight && result.highlight.sys_title) {
-            return $sce.trustAsHtml(result.highlight.sys_title[0]);
-        }
-        return $sce.trustAsHtml(result.fields.sys_title[0]);
-    };
-});
-search.filter('description', function ($sce, $sanitize) {
-    return function (result) {
-        var description = "";
-        if (result.highlight && result.highlight.sys_content_plaintext) {
-            description = result.highlight.sys_content_plaintext.join('...');
-        }
-        else if (result.highlight && result.highlight.sys_description) {
-            description = result.highlight.sys_description[0];
-        }
-        else if (!result.highlight && result.fields.sys_content_plaintext) {
-            description = result.fields.sys_content_plaintext[0];
-        }
-        else {
-            description = result.fields.sys_description[0];
-        }
-        return description;
-    };
-});
-search.filter('question', function ($sce) {
-    return function (result) {
-        if (result.highlight && result.highlight._source.sys_content_plaintext) {
-            return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0].replace(/<[^>]+>/gm, ''));
-        }
-        return $sce.trustAsHtml(result._source.sys_content_plaintext.replace(/<[^>]+>/gm, ''));
-    };
-});
-search.filter('htmlToPlaintext', function ($sce) {
-    return function (result) {
-        return String(result).replace(/<[^>]+>/gm, '');
-    };
-});
-search.filter('author', function ($sce) {
-    return function (result) {
-        var authorName = result._source.author.split('-')[0];
-        return authorName;
-    };
-});
-search.filter('stackDate', function ($sce) {
-    return function (result) {
-        var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
-        return time;
-    };
-});
+search.filter('title', ['$sce', function ($sce) {
+        return function (result) {
+            if (result.highlight && result.highlight.sys_title) {
+                return $sce.trustAsHtml(result.highlight.sys_title[0]);
+            }
+            return $sce.trustAsHtml(result.fields.sys_title[0]);
+        };
+    }]);
+search.filter('description', ['$sce', '$sanitize', function ($sce, $sanitize) {
+        return function (result) {
+            var description = "";
+            if (result.highlight && result.highlight.sys_content_plaintext) {
+                description = result.highlight.sys_content_plaintext.join('...');
+            }
+            else if (result.highlight && result.highlight.sys_description) {
+                description = result.highlight.sys_description[0];
+            }
+            else if (!result.highlight && result.fields.sys_content_plaintext) {
+                description = result.fields.sys_content_plaintext[0];
+            }
+            else {
+                description = result.fields.sys_description[0];
+            }
+            return description;
+        };
+    }]);
+search.filter('question', ['$sce', function ($sce) {
+        return function (result) {
+            if (result.highlight && result.highlight._source.sys_content_plaintext) {
+                return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0].replace(/<[^>]+>/gm, ''));
+            }
+            return $sce.trustAsHtml(result._source.sys_content_plaintext.replace(/<[^>]+>/gm, ''));
+        };
+    }]);
+search.filter('htmlToPlaintext', ['$sce', function ($sce) {
+        return function (result) {
+            return String(result).replace(/<[^>]+>/gm, '');
+        };
+    }]);
+search.filter('author', ['$sce', function ($sce) {
+        return function (result) {
+            var authorName = result._source.author.split('-')[0];
+            return authorName;
+        };
+    }]);
+search.filter('stackDate', ['$sce', function ($sce) {
+        return function (result) {
+            var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
+            return time;
+        };
+    }]);
 search.controller('SearchController', ['$scope', '$window', 'searchService', searchCtrlFunc]);
 function searchCtrlFunc($scope, $window, searchService) {
     var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
@@ -15037,7 +15077,12 @@ $(function () {
     }
 });
 $(function () {
-    $(".collapsible-section h3").on("click", function () {
+    $(".rhd-menu .menu-item--expanded > a").each(function () {
+        $(this).replaceWith("<h3 class='section-toggle'>" + $(this).text() + "</h3>");
+    });
+});
+$(function () {
+    $(".rhd-menu .menu-item--expanded h3").on("click", function () {
         var windowsize = document.body.clientWidth;
         if (windowsize <= 1170) {
             $(this).parent().toggleClass("collapsed");
@@ -15052,10 +15097,10 @@ function checkWidth() {
     var windowsize = document.body.clientWidth;
     ;
     if (windowsize <= 1170) {
-        $(".collapsible-section").addClass("collapsed");
+        $(".menu-item--expanded").addClass("collapsed");
     }
     else {
-        $(".collapsible-section").removeClass("collapsed");
+        $(".menu-item--expanded").removeClass("collapsed");
     }
 }
 ;

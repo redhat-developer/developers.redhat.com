@@ -8,21 +8,23 @@
 }
 
 .rh-nav-universal {
-  max-width: 73.125rem;
+  max-width: 690px + $gutter;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0 auto;
   font-size: 14px;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 130px 1fr 130px;
+  grid-template-columns: 130px 1fr;
   align-items: center;
   justify-items: center;
   min-height: 50px;
   grid-column-gap: 224px;
   @include desktop-small {
+    max-width: 1400px;
     grid-column-gap: 0;
-  }
-  @include desktop-large {
-    grid-template-columns: 200px 1fr 180px;
+    grid-template-columns: 145px 1fr;
   }
 }
 
@@ -65,6 +67,21 @@
   text-transform: uppercase;
   &:active, &:hover, &:focus {
     color: $white;
+  }
+  a {
+    &[data-drupal-link-system-path="<front>"] {
+      color: #FFF;
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: $red;
+        position: absolute;
+        bottom: -3px;
+      }
+    }
   }
 }
 
