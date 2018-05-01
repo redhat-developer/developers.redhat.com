@@ -463,3 +463,16 @@ table {
     }
   }
 }
+
+.show-more-text {
+  overflow: hidden;
+  max-height: 75px;
+  &.open { max-height: 100% !important; }
+}
+.show-more{
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  span { display: block; }
+  span.less { display: none; }
+}
