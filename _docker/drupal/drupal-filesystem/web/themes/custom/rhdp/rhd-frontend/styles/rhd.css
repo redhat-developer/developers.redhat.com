@@ -9802,7 +9802,7 @@ p.desc {
         display: none; }
 
 .video-page .show-more-text {
-  max-height: 73px; }
+  max-height: 69px; }
 
 .video-page a.show-more {
   border-top: 1px solid #D5D5D5; }
@@ -9854,18 +9854,17 @@ p.desc {
 
 section.related-content {
   background-color: #F9F9F9;
-  padding: 3em 0; }
-
-@media only screen and (max-width: 1170px) {
-  section.related-content {
-    margin: 0 -15px; } }
+  padding: 3em 0;
+  margin-top: 3em; }
 
 @media only screen and (max-width: 1024px) {
   .video-page .slides iframe {
     width: 80%;
     height: 400px; }
   .video-page .related-content-card {
-    min-height: 245px; } }
+    min-height: 245px; }
+  .video-page.related-content h4 {
+    margin-left: 15px; } }
 
 @media only screen and (max-width: 768px) {
   header.video-page .field--name-title {
@@ -12688,3 +12687,18 @@ table {
   @media (min-width: 992px) {
     .wide-hero.devoxx4kids .video-embed {
       margin-top: 0; } }
+
+.show-more-text {
+  overflow: hidden;
+  max-height: 75px; }
+  .show-more-text.open {
+    max-height: 100% !important; }
+
+.show-more {
+  text-align: center;
+  display: block;
+  cursor: pointer; }
+  .show-more span {
+    display: block; }
+  .show-more span.less {
+    display: none; }

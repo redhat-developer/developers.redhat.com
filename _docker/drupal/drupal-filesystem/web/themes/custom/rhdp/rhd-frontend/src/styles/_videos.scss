@@ -39,7 +39,7 @@
       }
     }
   }
-  .show-more-text { max-height: 73px; }
+  .show-more-text { max-height: 69px; }
   a.show-more { border-top: 1px solid $grey-3; }
   .video-transcript {
     padding: 2em 0 0 0;
@@ -93,12 +93,7 @@
 section.related-content {
   background-color: $grey-1;
   padding: 3em 0;
-  // position: relative;
-  // top: 113px;
-}
-
-@include desktop-and-down {
-  section.related-content { margin: 0 -15px; }
+  margin-top: 3em;
 }
 
 @include tablet-landscape-and-down {
@@ -108,6 +103,9 @@ section.related-content {
       height: 400px;
     }
     .related-content-card { min-height: 245px; }
+    &.related-content h4 {
+      margin-left: 15px;
+    }
   }
 }
 
