@@ -1276,7 +1276,11 @@ a.light-cta {
   .assembly-type-dynamic_content_list .cta-link {
     margin-top: 2rem; }
     .assembly-type-dynamic_content_list .cta-link .button {
-      display: inline-block; }
+      display: inline-block;
+      width: 100%; }
+      @media (min-width: 576px) {
+        .assembly-type-dynamic_content_list .cta-link .button {
+          width: auto; } }
   .assembly-type-dynamic_content_list .related-topics label {
     text-transform: uppercase;
     font-size: 14px;
