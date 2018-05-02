@@ -603,12 +603,23 @@ a.light-cta {
     margin-right: .5rem; }
   .node--view-mode-card .more {
     color: #0066CC;
+    font-weight: 800;
     margin-top: 40px; }
-    .node--view-mode-card .more .svg-inline--fa {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.2rem;
-      vertical-align: bottom; }
+    .node--view-mode-card .more:after {
+      padding-left: 2px;
+      content: "\25B8"; }
+    .node--view-mode-card .more:hover, .node--view-mode-card .more:focus {
+      color: #004C98; }
+    .node--view-mode-card .more.black {
+      color: #000000; }
+      .node--view-mode-card .more.black:hover, .node--view-mode-card .more.black:focus {
+        color: #0066CC; }
+    .node--view-mode-card .more.white {
+      color: #FFFFFF; }
+      .node--view-mode-card .more.white:hover, .node--view-mode-card .more.white:focus {
+        color: #2B9AF3; }
+    .node--view-mode-card .more.external-link:after {
+      vertical-align: baseline; }
 
 .card-image {
   padding-top: 25px;
