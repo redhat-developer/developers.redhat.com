@@ -12219,8 +12219,9 @@ rhdp-search-box {
     position: relative;
     text-align: center;
     color: #fff; }
-  rhdp-search-box button i.fa.fa-search {
-    display: none; }
+  @media (min-width: 768px) {
+    rhdp-search-box button svg {
+      display: none !important; } }
   @media only screen and (max-width: 768px) {
     rhdp-search-box {
       margin-bottom: .5em; }
