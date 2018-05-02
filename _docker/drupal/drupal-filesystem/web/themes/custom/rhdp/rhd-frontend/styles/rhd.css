@@ -603,12 +603,23 @@ a.light-cta {
     margin-right: .5rem; }
   .node--view-mode-card .more {
     color: #0066CC;
+    font-weight: 800;
     margin-top: 40px; }
-    .node--view-mode-card .more .svg-inline--fa {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.2rem;
-      vertical-align: bottom; }
+    .node--view-mode-card .more:after {
+      padding-left: 2px;
+      content: "\25B8"; }
+    .node--view-mode-card .more:hover, .node--view-mode-card .more:focus {
+      color: #004C98; }
+    .node--view-mode-card .more.black {
+      color: #000000; }
+      .node--view-mode-card .more.black:hover, .node--view-mode-card .more.black:focus {
+        color: #0066CC; }
+    .node--view-mode-card .more.white {
+      color: #FFFFFF; }
+      .node--view-mode-card .more.white:hover, .node--view-mode-card .more.white:focus {
+        color: #2B9AF3; }
+    .node--view-mode-card .more.external-link:after {
+      vertical-align: baseline; }
 
 .card-image {
   padding-top: 25px;
@@ -851,7 +862,7 @@ a.light-cta {
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
-  background-image: url("src/images/Blue_Background@2x.png");
+  background-image: url("../images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -10707,7 +10718,7 @@ h3.downloads-header {
   #downloads .download-list .category-label {
     margin-bottom: 20px;
     margin-top: 20px;
-    background: #656565 url("../src/images/dotted_line-white.svg") no-repeat;
+    background: #656565 url("../images/dotted_line-white.svg") no-repeat;
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
@@ -10772,7 +10783,7 @@ a.download-link:before {
   padding-right: 3px; }
 
 .most-popular-downloads {
-  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
+  background: #E6E7E8 url("../images/dotted_line-white.svg") no-repeat;
   padding: 20px 0;
   background-size: 1200px; }
   .most-popular-downloads h3 {
@@ -11683,7 +11694,7 @@ h3.downloads-header {
   #downloads .download-list .category-label {
     margin-bottom: 20px;
     margin-top: 20px;
-    background: #656565 url("../src/images/dotted_line-white.svg") no-repeat;
+    background: #656565 url("../images/dotted_line-white.svg") no-repeat;
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
@@ -11748,7 +11759,7 @@ a.download-link:before {
   padding-right: 3px; }
 
 .most-popular-downloads {
-  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
+  background: #E6E7E8 url("../images/dotted_line-white.svg") no-repeat;
   padding: 20px 0;
   background-size: 1200px; }
   .most-popular-downloads h3 {
@@ -12219,8 +12230,9 @@ rhdp-search-box {
     position: relative;
     text-align: center;
     color: #fff; }
-  rhdp-search-box button i.fa.fa-search {
-    display: none; }
+  @media (min-width: 768px) {
+    rhdp-search-box button svg {
+      display: none !important; } }
   @media only screen and (max-width: 768px) {
     rhdp-search-box {
       margin-bottom: .5em; }
