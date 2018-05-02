@@ -7121,17 +7121,15 @@ body.page-node-type-learning-path .wrapper {
     flex-shrink: 1;
     margin: 30px 15px;
     border: 1px solid #CCC;
-    padding: 30px; }
-    #rhd-learning-path .lp-info h2, #rhd-learning-path .lp-info h6 {
-      margin-top: 15px; }
+    padding: 30px;
+    min-width: 370px; }
+    #rhd-learning-path .lp-info h1 {
+      font-size: 38px; }
     #rhd-learning-path .lp-info h2 {
-      font-size: 36px; }
-      #rhd-learning-path .lp-info h2 ~ p {
-        margin-bottom: 30px; }
-    #rhd-learning-path .lp-info h4 {
-      text-transform: uppercase;
-      color: #424242;
-      display: inline-block; }
+      font-size: 27px;
+      text-transform: uppercase; }
+    #rhd-learning-path .lp-info strong {
+      font-weight: 600; }
     #rhd-learning-path .lp-info .lp-time {
       float: right; }
       #rhd-learning-path .lp-info .lp-time .interval-value {
@@ -7291,8 +7289,6 @@ body.page-node-type-learning-path .wrapper {
     #rhd-learning-path .lp-cards-container {
       margin-top: 0; } }
   @media screen and (max-width: 1150px) {
-    #rhd-learning-path .lp-info h4 {
-      font-size: 14px; }
     #rhd-learning-path .lp-info .lp-time .interval-value {
       margin-top: 0; } }
   @media screen and (max-width: 1024px) {
@@ -7300,8 +7296,6 @@ body.page-node-type-learning-path .wrapper {
       background-color: #fff; }
       #rhd-learning-path .lp-info {
         padding: 15px; }
-        #rhd-learning-path .lp-info h2 {
-          font-size: 32px; }
       #rhd-learning-path .lp-cards-container {
         padding: 15px; }
         #rhd-learning-path .lp-cards-container .dp-content-card {
@@ -7319,7 +7313,7 @@ body.page-node-type-learning-path .wrapper {
         padding: 15px; }
         #rhd-learning-path .lp-info .show-more-text {
           overflow: hidden;
-          max-height: 75px; }
+          max-height: 90px; }
         #rhd-learning-path .lp-info a.show-more {
           display: block;
           margin: 15px 0;
@@ -7329,6 +7323,9 @@ body.page-node-type-learning-path .wrapper {
         padding: 15px;
         margin: 0; } }
   @media screen and (max-width: 750px) {
+    #rhd-learning-path .lp-info .show-more-text {
+      overflow: hidden;
+      max-height: 80px; }
     #rhd-learning-path .lp-cards-container .dp-content-card .card-details {
       display: block; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-details .dp-duration {
@@ -7347,6 +7344,9 @@ body.page-node-type-learning-path .wrapper {
         line-height: 28px; }
       #rhd-learning-path .lp-cards-container .dp-content-card div.img {
         width: auto; } }
+  @media screen and (max-width: 480px) {
+    #rhd-learning-path .lp-info {
+      min-width: 250px; } }
   @media (max-width: 320px) {
     #rhd-learning-path .lp-cards-container .dp-content-card div.img {
       display: block; } }
@@ -12824,7 +12824,8 @@ body.page-node-type-video-resource h1.page-title,
 body.page-node-type-books h1.page-title,
 body.page-node-type-cheat-sheet h1.page-title,
 body.page-node-type-promotion-page h1.page-title,
-body.page-node-type-article h1.page-title {
+body.page-node-type-article h1.page-title,
+body.page-node-type-learning-path h1.page-title {
   display: none; }
 
 .page-community-contributor .node__content > .text-formatted,
