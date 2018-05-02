@@ -28,7 +28,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
             <div class="forum-stack-row">
                 {% if show_forums %}
                     <div class="large-{{ column_size }} columns latest-discussions" id="forumsContainer">
-                        <h4 class="caps"><i class="far fa-comments"></i>&nbsp;Latest Discussions</h4>
+                        <h4 class="caps">Latest Discussions&nbsp;<i class="far fa-comments"></i></h4>
                         <ul class="product-forums product-forums-latest {{ show_stack_overflow ? '' : ' multi-column' }}" data-tags="{{ product_machine_name }}"></ul>
                         <h5 class="right">
                             <a href="{{ content.field_product_forum_link['#items']|first.uri }}"
@@ -47,7 +47,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                                      ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0"
                                      id="stackContainer">
                                     <div ng-repeat="result in results | limitTo:{{ column_size == 24 ? '8' : '4' }}"
-                                         ng-init="r = result" class="{{ column_size == 24 ? 'large-12' : 'large-24' }} columns">
+                                         ng-init="r = result" class="{{ column_size == 24 ? 'large-12' : 'large-24' }} columns so-product-result">
                                         <div class="stackoverflow-product-update">
                                             <div class="update large-24 columns">
                                                 <div class="update-meta">

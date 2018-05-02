@@ -42,11 +42,11 @@ app.productForums.render = function(materials) {
           '<a href="' + material.fields.sys_url_view[0] + '" class="qtn-title" target="_blank" rel="noopener noreferrer">',
             material.fields.sys_title[0],
           '</a>',
-        '<h5>',
-        '<p>',
+        '</h5>',
+        '<small>',
           '<span class="replies">' + material.fields.replies_count + ' replies</span>',
           '<span class="date right">Last reply on ' + formattedDate + '</span>',
-        '</p>',
+        '</small>',
       '</li>'
     ].join('');
 

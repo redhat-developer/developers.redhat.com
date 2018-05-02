@@ -86,7 +86,7 @@ ul.product-forums {
     list-style: none;
     padding-bottom: 5px;
     border-bottom: 1px solid $grey-2;
-    min-height: 84px;
+    min-height: 90px;
     break-inside: avoid-column;
     &:before {
       display: none;
@@ -94,6 +94,7 @@ ul.product-forums {
   }
   h5 {
     margin-bottom: 0;
+    padding-top: 0;
   }
   a {
     color: $link;
@@ -116,4 +117,9 @@ ul.product-forums {
       margin-top: 0;
     }
   }
+}
+
+ul.product-forums-latest {
+  padding-left: 0;
+  margin-top: 30px;
 }
