@@ -6357,16 +6357,14 @@ body.fullbleed .content-wrapper {
     display: none; } }
 
 .rhd-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  max-width: 73.125rem;
   margin: 0 auto;
   padding: 11px 0;
   color: #656565; }
   @media (min-width: 768px) {
     .rhd-header {
+      align-items: center;
+      justify-items: center;
+      max-width: 73.125rem;
       flex: 1 1 auto;
       display: grid;
       grid-template-columns: auto 1fr;
@@ -6769,12 +6767,14 @@ body.fullbleed .content-wrapper {
 .rhd-header-logo {
   grid-row: 1;
   grid-column: 1;
-  width: 174px;
+  width: 100%;
+  max-width: 174px;
   display: block;
-  line-height: 0; }
+  line-height: 0;
+  padding-right: 20px; }
   @media (min-width: 768px) {
     .rhd-header-logo {
-      width: 226px; } }
+      max-width: 226px; } }
   .rhd-header-logo img {
     max-width: 100%;
     height: auto; }
