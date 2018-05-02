@@ -81,13 +81,30 @@
   }
 
   .more {
-    color: $blue;
+    color: $link;
+    font-weight: 800;
     margin-top: 40px;
-    .svg-inline--fa {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.2rem;
-      vertical-align: bottom;
+    &:after {
+      padding-left:2px;
+      content: "\25B8";
+    }
+    &:hover, &:focus {
+      color: $linkhover;
+    }
+    &.black {
+      color: $black;
+      &:hover, &:focus {
+        color: $link;
+      }
+    }
+    &.white {
+      color: $white;
+      &:hover, &:focus {
+        color: $linkhover-dark-background;
+      }
+    }
+    &.external-link:after {
+      vertical-align: baseline;
     }
   }
 }
