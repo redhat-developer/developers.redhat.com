@@ -113,6 +113,10 @@ button, .button {
   }
 }
 
+.button {
+  display: inline-block;
+}
+
 a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,

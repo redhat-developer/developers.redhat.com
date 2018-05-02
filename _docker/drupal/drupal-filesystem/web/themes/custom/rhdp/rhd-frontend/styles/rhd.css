@@ -511,6 +511,9 @@ button, .button {
   button.external-link:after, .button.external-link:after {
     display: none; }
 
+.button {
+  display: inline-block; }
+
 a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
