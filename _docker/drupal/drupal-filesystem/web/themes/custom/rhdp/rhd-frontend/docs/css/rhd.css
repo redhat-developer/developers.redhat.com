@@ -369,6 +369,8 @@ div.alert-box {
     text-transform: uppercase;
     display: inline-block;
     line-height: 1.6; }
+    .author.short-teaser .author-name .field--name-title {
+      margin-bottom: 0; }
   .author.short-teaser .field--name-field-headshot img {
     width: 90px;
     height: auto !important;
@@ -603,12 +605,23 @@ a.light-cta {
     margin-right: .5rem; }
   .node--view-mode-card .more {
     color: #0066CC;
+    font-weight: 800;
     margin-top: 40px; }
-    .node--view-mode-card .more .svg-inline--fa {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.2rem;
-      vertical-align: bottom; }
+    .node--view-mode-card .more:after {
+      padding-left: 2px;
+      content: "\25B8"; }
+    .node--view-mode-card .more:hover, .node--view-mode-card .more:focus {
+      color: #004C98; }
+    .node--view-mode-card .more.black {
+      color: #000000; }
+      .node--view-mode-card .more.black:hover, .node--view-mode-card .more.black:focus {
+        color: #0066CC; }
+    .node--view-mode-card .more.white {
+      color: #FFFFFF; }
+      .node--view-mode-card .more.white:hover, .node--view-mode-card .more.white:focus {
+        color: #2B9AF3; }
+    .node--view-mode-card .more.external-link:after {
+      vertical-align: baseline; }
 
 .card-image {
   padding-top: 25px;
@@ -6346,16 +6359,14 @@ body.fullbleed .content-wrapper {
     display: none; } }
 
 .rhd-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  max-width: 73.125rem;
   margin: 0 auto;
   padding: 11px 0;
   color: #656565; }
   @media (min-width: 768px) {
     .rhd-header {
+      align-items: center;
+      justify-items: center;
+      max-width: 73.125rem;
       flex: 1 1 auto;
       display: grid;
       grid-template-columns: auto 1fr;
@@ -6758,12 +6769,14 @@ body.fullbleed .content-wrapper {
 .rhd-header-logo {
   grid-row: 1;
   grid-column: 1;
-  width: 174px;
+  width: 100%;
+  max-width: 174px;
   display: block;
-  line-height: 0; }
+  line-height: 0;
+  padding-right: 20px; }
   @media (min-width: 768px) {
     .rhd-header-logo {
-      width: 226px; } }
+      max-width: 226px; } }
   .rhd-header-logo img {
     max-width: 100%;
     height: auto; }
@@ -12219,8 +12232,9 @@ rhdp-search-box {
     position: relative;
     text-align: center;
     color: #fff; }
-  rhdp-search-box button i.fa.fa-search {
-    display: none; }
+  @media (min-width: 768px) {
+    rhdp-search-box button svg {
+      display: none !important; } }
   @media only screen and (max-width: 768px) {
     rhdp-search-box {
       margin-bottom: .5em; }
