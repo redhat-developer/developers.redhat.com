@@ -17,7 +17,7 @@ rhdp-search-app {
 rhdp-search-box {
     margin: 0 0 1em 0;
 
-    form.search-bar { 
+    form.search-bar {
         box-sizing: border-box;
         color: rgb(66,66,66);
         cursor: auto;
@@ -25,7 +25,7 @@ rhdp-search-box {
         flex-direction: row;
         font-size: 16px;
         line-height: 24px;
-        position: relative; 
+        position: relative;
         margin: 0;
         width: 100%;
     }
@@ -33,7 +33,7 @@ rhdp-search-box {
     form.search-bar div {
         flex: 1 1 100%;
     }
-    
+
     input.user-search {
         background-color: white;
         border-bottom-color: rgb(204,204,204);
@@ -83,7 +83,11 @@ rhdp-search-box {
         color: #fff;
     }
 
-    button i.fa.fa-search { display:none; }
+    button svg {
+        @include tablet-landscape {
+            display: none !important;
+        }
+    }
 
     @media only screen and (max-width: 768px) {
         margin-bottom: .5em;
@@ -115,7 +119,7 @@ rhdp-search-sort-page {
     border-bottom: 1px solid $grey-4;
 
     p { margin-bottom: 0; }
-    
+
     select { width: auto; padding-right: 20px; }
     .tight {
         display: none;
@@ -132,7 +136,7 @@ rhdp-search-sort-page {
         cursor: pointer;
         position: relative;
         text-align: center;
-        color: #333; 
+        color: #333;
         width: 100%;
         display: block;
         width: 150px;
@@ -140,8 +144,8 @@ rhdp-search-sort-page {
     }
 
     @media only screen and (max-width: 768px) {
-        align-self: flex-end; 
-        position: absolute; 
+        align-self: flex-end;
+        position: absolute;
         top: -4.5em;
         border-bottom: none;
         margin-left: 180px;
@@ -149,8 +153,8 @@ rhdp-search-sort-page {
         top: -4.6em;
 
         span { display: none; }
-        select { 
-            width: 150px; 
+        select {
+            width: 150px;
             text-align: center;
             text-align-last: center;
             font-weight: 600;
@@ -172,12 +176,12 @@ rhdp-search-sort-page {
         .roomy {
             display: none;
         }
-        .tight { 
-            display: block; 
+        .tight {
+            display: block;
         }
         .clear {
             padding: 0;
-            margin: 0; 
+            margin: 0;
             border: 1px solid white;
             width: auto;
             font-weight: bold;
@@ -200,14 +204,14 @@ rhdp-search-filters {
     }
 
     .title {
-        background: #e6e7e8; 
+        background: #e6e7e8;
         color: #000;
         text-transform: uppercase;
         padding: .5em 1em;
         font-weight: 600;
     }
     .cancel { display: none; }
-    .showBtn { 
+    .showBtn {
         display: none;
         background: #ccc;
         text-decoration: none;
@@ -221,7 +225,7 @@ rhdp-search-filters {
         cursor: pointer;
         position: relative;
         text-align: center;
-        color: #333; 
+        color: #333;
         width: 100%;
         }
     .groups {
@@ -243,8 +247,8 @@ rhdp-search-filters {
 
     }
     .active-type strong {
-        flex: 0 1 auto; 
-        order: 1; 
+        flex: 0 1 auto;
+        order: 1;
         font-weight: 600;
         font-size: 1.2em;
         margin: 0.3em .7em 0 0;
@@ -280,12 +284,12 @@ rhdp-search-filters {
             top: 100px;
         }
 
-        flex: none; 
-        align-self: 
-        flex-start; 
+        flex: none;
+        align-self:
+        flex-start;
         float: left;
         border: none;
-        margin: 0 0 1.3em 0; 
+        margin: 0 0 1.3em 0;
 
         .title { flex: 0 0 40px; order: 1; vertical-align: middle; }
         .showBtn {
@@ -339,7 +343,7 @@ rhdp-search-filters {
             display: block;
             .modal {
                 transition: .5s ease-in-out;
-                transform: translateX(100%); 
+                transform: translateX(100%);
             }
 
             .cover {
@@ -355,20 +359,20 @@ rhdp-search-filters {
                 position: absolute;
                 top: 0px;
             }
-            .cancel { 
-                display: block; 
-                float: right; 
-                color: $blue; 
+            .cancel {
+                display: block;
+                float: right;
+                color: $blue;
                 font-size: 14px;
-            } 
-            
+            }
+
             .groups {
                 background: white;
-                flex: 1 1 100%; 
+                flex: 1 1 100%;
                 order: 1;
                 overflow: auto;
             }
-            .footer { 
+            .footer {
                 display: block;
                 flex: 1 0 auto;
                 height: 70px;
@@ -400,14 +404,14 @@ rhdp-search-filters {
                 transition: background .2s ease-in 0s;
                 color: $white;
             }
-        
+
             rhdp-search-filter-group {
                 margin: 0 0 .5em 0;
             }
         }
     }
 }
-    
+
 rhdp-search-results {
     flex: 1 1 auto;
     display: flex;
@@ -476,7 +480,7 @@ rhdp-search-result {
         font-family: "overpass","Open Sans",Helvetica,sans-serif;
     }
 
-    p { margin: 0; 
+    p { margin: 0;
         color: #424242;
         font-family: "overpass","Open Sans",Helvetica,sans-serif;
         }
@@ -498,8 +502,8 @@ rhdp-search-result {
         max-height: 45px;
         margin-bottom: 25px;
     }
-    .thumb { 
-        flex: 0 0 130px; 
+    .thumb {
+        flex: 0 0 130px;
         margin-left: 1em;
     }
     .hlt { font-weight: 600; }
@@ -524,7 +528,7 @@ rhdp-search-filter-group {
         }
     }
 
-    .toggle { 
+    .toggle {
         float: right;
         font-weight: 600;
         &.expand {
@@ -604,7 +608,7 @@ rhdp-search-filter-item {
         cursor: default;
 
         .clearItem {
-          font-weight: 700;  
+          font-weight: 700;
           cursor: pointer;
         }
     }
@@ -616,10 +620,10 @@ rhdp-search-filter-item {
     }
 
     @media only screen and (max-width: 768px) {
-        .list { 
+        .list {
             line-height: 25px;
             padding-left: 0;
-            font-size: 16px; 
+            font-size: 16px;
         }
         span { display: inline; font-size: 16px; }
 
@@ -672,8 +676,8 @@ rhdp-search-filter-item {
         //     order: 2;
         // }
 
-        // .list { 
-        //     
+        // .list {
+        //
         // }
     }
 }
@@ -696,7 +700,7 @@ rhdp-search-onebox {
             list-style-type: none;
             padding-right: 20px;
 
-            a { 
+            a {
                 position: relative;
                 padding-left: 3em;
 
