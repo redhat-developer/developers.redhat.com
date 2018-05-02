@@ -851,7 +851,7 @@ a.light-cta {
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
-  background-image: url("src/images/Blue_Background@2x.png");
+  background-image: url("../images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -8005,6 +8005,68 @@ button.tiny, .button.tiny {
   margin-top: 2px;
   max-width: 200px; }
 
+.rh-downloads table.downloads-table {
+  background-color: #d5d5d5; }
+  .rh-downloads table.downloads-table thead tr th {
+    padding: 5px; }
+  .rh-downloads table.downloads-table .download-links a, .rh-downloads table.downloads-table .download-links a + a {
+    display: block;
+    margin-left: 0; }
+
+.rh-downloads .download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.rh-downloads .download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.rh-downloads .download-link .version-name {
+  text-align: center; }
+
+.rh-downloads a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.large-16.small-24.columns a.button, .large-16.small-24.developer-materials-sidebar a.button, .large-16.small-24.developer-materials-main a.button, .large-16.small-24.microsite-nav a.button {
+  margin-bottom: 1.25rem;
+  margin-top: 0px; }
+  .large-16.small-24.columns a.button.medium-cta.blue, .large-16.small-24.developer-materials-sidebar a.button.medium-cta.blue, .large-16.small-24.developer-materials-main a.button.medium-cta.blue, .large-16.small-24.microsite-nav a.button.medium-cta.blue {
+    border-color: #0088ce;
+    color: #0088ce; }
+    .large-16.small-24.columns a.button.medium-cta.blue:hover, .large-16.small-24.developer-materials-sidebar a.button.medium-cta.blue:hover, .large-16.small-24.developer-materials-main a.button.medium-cta.blue:hover, .large-16.small-24.microsite-nav a.button.medium-cta.blue:hover {
+      background-color: #0088ce;
+      color: #fff; }
+
+.has-download .caps {
+  text-transform: uppercase;
+  margin-top: .2rem;
+  margin-bottom: .5rem; }
+
+.has-download .large-16.columns p, .has-download .large-16.developer-materials-sidebar p, .has-download .large-16.developer-materials-main p, .has-download .large-16.microsite-nav p {
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0px;
+  margin-bottom: 1.25rem;
+  text-rendering: optimizeLegibility; }
+
+.panel.callout {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d2d9e3;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #f3f5f8;
+  color: #333; }
+  .panel.callout h5 {
+    margin: 0px 0px 10px 0px; }
+  .panel.callout .field__item p {
+    margin: 0px 0px 20px 0px; }
+
 #kc-register-form .rhd-adaptive-placeholder,
 #kc-update-profile-form .rhd-adaptive-placeholder {
   margin-bottom: 20px; }
@@ -8419,6 +8481,8 @@ ul.toc {
         .multipath-tabs-sm ul.tabs.nav-tabs li.active a {
           padding-bottom: 4px;
           border-bottom: 3px solid #CC0000; }
+      .multipath-tabs-sm ul.tabs.nav-tabs li a:focus, .multipath-tabs-sm ul.tabs.nav-tabs li a:hover, .multipath-tabs-sm ul.tabs.nav-tabs li a:active {
+        background-color: #FFFFFF; }
 
 @-moz-document url-prefix() {
   .multipath-tabs-sm ul.tabs.nav-tabs li.active {
@@ -8477,7 +8541,8 @@ ul.toc {
   -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
   -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
   transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-  min-height: 165px; }
+  min-height: 165px;
+  height: 100%; }
   #get-started-instructions .card h4 {
     color: #FFFFFF;
     margin-top: 0;
@@ -8591,6 +8656,9 @@ ul.toc {
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0; }
+
+#get-started-instructions .tabs-content > .content:focus {
+  outline: none; }
 
 .collapsable input#stepOne, .collapsable input#stepTwo, .collapsable input#stepThree, .collapsable input#stepFour {
   display: none;
@@ -8749,7 +8817,8 @@ ul.toc {
 .box.callout {
   border: 5px solid #e6e7e8;
   padding: 1.5rem;
-  margin: 3rem 0; }
+  margin: 3rem 0;
+  clear: both; }
   .box.callout ul li:before {
     display: none; }
 
@@ -10341,70 +10410,82 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
       #rhd-article .field--name-field-tags .field__item:last-child:after {
         display: none; }
 
-.stackoverflow-results-container .stackoverflow-product-update .update, .stackoverflow-results-container .stackoverflow-update .update {
+@media only screen and (max-width: 1170px) {
+  #rhd-article {
+    padding: 15px; } }
+
+.stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
+  padding-top: 5px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
+    display: inline-block;
+    text-align: center;
+    margin-right: 4px;
+    width: 30%;
+    min-height: 80px;
+    max-width: 80px;
+    max-height: 80;
+    padding-top: 15px; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
+      font-size: .8em; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
+      margin-bottom: 0;
+      line-height: 1; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
+      border: 2px solid #8ed300; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
+      background-color: #8ed300;
+      color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
+        color: #FFFFFF; }
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
+      border: 2px solid #CCCCCC;
+      background-color: #CCCCCC;
+      color: #FFFFFF; }
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
+        color: #FFFFFF; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
+  float: right; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
+  color: #0066CC;
+  font-weight: 600;
+  font-size: 1.4375rem;
+  margin-bottom: 8px; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important;
+  margin-top: 8px; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
+  display: block;
   margin-top: 1em; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
-    padding-top: 5px; }
-    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div {
-      display: inline-block;
-      text-align: center;
-      margin-right: 4px;
-      width: 30%;
-      min-height: 80px;
-      max-width: 80px;
-      max-height: 80;
-      padding-top: 15px; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
-        font-size: .8em; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4 {
-        margin-bottom: 0;
-        line-height: 1; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
-        border: 2px solid #8ed300; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
-        background-color: #8ed300;
-        color: #FFFFFF; }
-        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4 {
-          color: #FFFFFF; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
-        border: 2px solid #CCCCCC;
-        background-color: #CCCCCC;
-        color: #FFFFFF; }
-        .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
-          color: #FFFFFF; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
-    float: right; }
-  .stackoverflow-results-container .stackoverflow-product-update .update a.qtn-title, .stackoverflow-results-container .stackoverflow-update .update a.qtn-title {
-    color: #0066CC;
-    font-weight: 600;
-    font-size: 1.4375rem;
-    margin-bottom: 8px; }
-  .stackoverflow-results-container .stackoverflow-product-update .update p.qtn-content, .stackoverflow-results-container .stackoverflow-update .update p.qtn-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    max-height: 70px;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    margin-bottom: 10px !important;
-    margin-top: 8px; }
-  .stackoverflow-results-container .stackoverflow-product-update .update span.qtn-answer, .stackoverflow-results-container .stackoverflow-update .update span.qtn-answer {
-    display: block;
-    margin-top: 1em; }
-  .stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
-    background-color: #F9F9F9;
-    margin: 10px 0;
-    padding: 20px; }
-    .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
-      color: #73BCF7; }
+
+.stackoverflow-results-container .stackoverflow-product-update .update .callout, .stackoverflow-results-container .stackoverflow-update .update .callout {
+  background-color: #F9F9F9;
+  margin: 10px 0;
+  padding: 20px; }
+  .stackoverflow-results-container .stackoverflow-product-update .update .callout a, .stackoverflow-results-container .stackoverflow-update .update .callout a {
+    color: #73BCF7; }
 
 .stackoverflow-results-container .stackoverflow-update .update {
   margin-top: 2em; }
 
-.stackoverflow-product-update .update .update-meta {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #E6E6E6;
-  min-height: 140px; }
+.so-product-result {
+  padding: 0; }
+
+.stackoverflow-product-update .update {
+  padding: 0; }
+  .stackoverflow-product-update .update .update-meta {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #E6E6E6;
+    min-height: 105px; }
 
 .stackoverflow-update .update {
   padding-bottom: 20px;
@@ -10626,7 +10707,7 @@ h3.downloads-header {
   #downloads .download-list .category-label {
     margin-bottom: 20px;
     margin-top: 20px;
-    background: #656565 cdn("../images/design/dotted_line-white.svg") no-repeat;
+    background: #656565 url("../src/images/dotted_line-white.svg") no-repeat;
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
@@ -10691,7 +10772,7 @@ a.download-link:before {
   padding-right: 3px; }
 
 .most-popular-downloads {
-  background: #E6E7E8 cdn("../images/design/dotted_line-white.svg") no-repeat;
+  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
   padding: 20px 0;
   background-size: 1200px; }
   .most-popular-downloads h3 {
@@ -10718,6 +10799,9 @@ a.download-link:before {
   .popular-download-box small {
     text-align: center;
     display: block; }
+
+rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
+  text-align: center; }
 
 .about .wrapper {
   padding-bottom: 0; }
@@ -11584,6 +11668,117 @@ ul.devoxx-list {
     position: relative;
     top: 8px; }
 
+h3.downloads-header {
+  text-transform: uppercase;
+  margin: 30px 0; }
+
+#downloads {
+  width: 100%; }
+  #downloads .download-list p {
+    margin: 0; }
+  #downloads .download-list .category-label + rhdp-downloads-all-item .row hr {
+    display: none; }
+  #downloads .download-list hr {
+    margin: 2rem 1rem; }
+  #downloads .download-list .category-label {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #656565 url("../src/images/dotted_line-white.svg") no-repeat;
+    padding: 20px;
+    background-size: 1000px;
+    background-position: center right -300px; }
+    #downloads .download-list .category-label h4 {
+      text-transform: uppercase;
+      color: white;
+      font-size: 25px;
+      margin: 0;
+      line-height: 1; }
+  #downloads .download-list .indent-product {
+    margin-left: 1em; }
+    #downloads .download-list .indent-product .large-8 {
+      margin-left: -.7em; }
+    @media only screen and (max-width: 1024px) {
+      #downloads .download-list .indent-product .large-8 {
+        margin-left: 0; } }
+  #downloads .button {
+    width: 100%; }
+  #downloads h5 {
+    font-size: 25px; }
+  #downloads #other-resources .category-label {
+    margin-bottom: 40px;
+    margin-top: 50px; }
+  #downloads #other-resources ul {
+    margin-left: 0;
+    list-style: none; }
+  #downloads #other-resources a.button {
+    background: #6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
+    width: 100%;
+    padding: 25px 10px 25px 20px;
+    text-align: left; }
+  #downloads #other-resources a.button:hover, #downloads #other-resources a.button:active, #downloads #other-resources a.button:focus {
+    background: #43aac7 cdn("../images/design/stars-texture.png") bottom right no-repeat; }
+
+div.download-loading.loading {
+  background: cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+  min-height: 250px; }
+
+.has-download, .no-download {
+  display: none; }
+  .has-download h4.caps, .no-download h4.caps {
+    text-transform: uppercase; }
+
+.download-links a + a {
+  margin-left: 10px; }
+
+.download-link h4 a:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.download-link a.button {
+  display: block;
+  margin: 0 auto 5px auto; }
+
+.download-link .version-name {
+  text-align: center; }
+
+a.download-link:before {
+  font-family: 'FontAwesome';
+  content: "\f01a";
+  padding-right: 3px; }
+
+.most-popular-downloads {
+  background: #E6E7E8 url("src/images/dotted_line-white.svg") no-repeat;
+  padding: 20px 0;
+  background-size: 1200px; }
+  .most-popular-downloads h3 {
+    color: #242424;
+    text-transform: uppercase; }
+
+.popular-download-box {
+  background: white;
+  padding: 20px;
+  border: 1px solid #DEDEDE;
+  margin-bottom: 20px; }
+  .popular-download-box .button {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 0; }
+  .popular-download-box h4 {
+    font-size: 17px;
+    min-height: 60px; }
+  .popular-download-box p {
+    margin: 0;
+    color: black;
+    text-align: center; }
+  .popular-download-box small {
+    text-align: center;
+    display: block; }
+
+rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
+  text-align: center; }
+
 .wide.wide-hero.eclipse {
   background: cdn("https://static.jboss.org/rhd/images/_images_eclipse_eclipse_microsite_hero.jpg");
   background-size: cover;
@@ -11654,13 +11849,14 @@ ul.product-forums li {
   list-style: none;
   padding-bottom: 5px;
   border-bottom: 1px solid #E6E6E6;
-  min-height: 84px;
+  min-height: 90px;
   break-inside: avoid-column; }
   ul.product-forums li:before {
     display: none; }
 
 ul.product-forums h5 {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  padding-top: 0; }
 
 ul.product-forums a {
   color: #0066CC;
@@ -11681,6 +11877,10 @@ ul.product-forums.multi-column {
   column-gap: 20px; }
   ul.product-forums.multi-column li {
     margin-top: 0; }
+
+ul.product-forums-latest {
+  padding-left: 0;
+  margin-top: 30px; }
 
 .eventsjavaone2015 .wrapper {
   padding-bottom: 0; }
@@ -12626,6 +12826,37 @@ body.page-node-type-article h1.page-title {
   justify-content: space-between;
   align-items: center;
   color: #5e6a71; }
+
+.rh-universal-footer {
+  background-color: #1A1A1A;
+  flex: 0 0 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #5e6a71;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
+  .rh-universal-footer .rh-footer-logo, .rh-universal-footer .rh-summit-footer-logo {
+    flex: 0 0 300px; }
+  .rh-universal-footer .contentinfo {
+    flex: 1 1 auto; }
+
+.rhd-footer {
+  background-color: #242424;
+  color: #FFFFFF;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
+
+.rhd-footer-nav {
+  flex: 1 1 auto; }
+
+.rhd-footer-sidebar {
+  background-color: #CC0000;
+  flex: 0 0 33%; }
 
 .visually-hidden {
   display: none; }
