@@ -1,4 +1,3 @@
-{% extends "block.html.twig" %}
 {#
 /**
  * @file
@@ -17,7 +16,7 @@
 {% block content %}
   {% if site_logo %}
     <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="rhd-header-logo" id="home-link">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="rhd-header-logo" />
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
     </a>
   {% endif %}
   {% if site_name or site_slogan %}

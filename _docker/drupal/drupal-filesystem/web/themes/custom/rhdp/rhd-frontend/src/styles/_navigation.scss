@@ -142,15 +142,13 @@
 // Red Hat Developer Header
 
 .rhd-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  max-width: 73.125rem;
   margin: 0 auto;
   padding: 11px 0;
   color: #656565;
   @include tablet-landscape {
+    align-items: center;
+    justify-items: center;
+    max-width: 73.125rem;
     flex: 1 1 auto;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -653,11 +651,13 @@
 .rhd-header-logo {
   grid-row: 1;
   grid-column: 1;
-  width: 174px;
+  width: 100%;
+  max-width: 174px;
   display: block;
   line-height: 0;
+  padding-right: 20px;
   @include tablet-landscape {
-    width: 226px;
+    max-width: 226px;
   }
   img {
     max-width: 100%;
