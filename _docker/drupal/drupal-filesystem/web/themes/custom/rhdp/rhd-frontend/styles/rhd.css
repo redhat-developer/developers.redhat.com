@@ -826,7 +826,7 @@ a.light-cta {
 .latest-disqus-comment + .latest-disqus-comment {
   margin-top: 30px; }
 
-.page-node-type-topic-page .rhd-masthead, .page-node-type-topic-page .rhd-masthead .menu-toggle, .page-node-type-topic-page .layout-container {
+.page-node-type-topic-page .rhd-masthead, .page-node-type-topic-page .layout-container {
   background-color: #F9F9F9; }
 
 .assembly {
@@ -6700,7 +6700,7 @@ body.fullbleed .content-wrapper {
       .rhd-masthead .menu-toggle-wrapper {
         display: none; } }
   .rhd-masthead .menu-toggle {
-    background-color: #FFF;
+    background-color: transparent;
     border: 1px solid #242424;
     color: #242424;
     font-size: 14px;
