@@ -183,9 +183,27 @@ body.page-node-type-learning-path {
 
 
 .field--name-body {
-  margin-bottom: 40px;
+  margin-bottom: 25px;
+  @include tablet-landscape {
+    margin-bottom: 40px;
+  }
+  p, ul, ol {
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
+.page-title {
+  margin-top: 23px;
+  margin-bottom: 8px;
+  @include tablet-landscape {
+    margin-top: 35px;
+  }
+}
 img {
   max-width: 100%;
   height: auto;

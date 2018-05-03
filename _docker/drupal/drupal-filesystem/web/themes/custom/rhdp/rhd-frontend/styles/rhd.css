@@ -12883,7 +12883,21 @@ body.page-node-type-learning-path h1.page-title {
   display: none; }
 
 .field--name-body {
-  margin-bottom: 40px; }
+  margin-bottom: 25px; }
+  @media (min-width: 768px) {
+    .field--name-body {
+      margin-bottom: 40px; } }
+  .field--name-body p:first-child, .field--name-body ul:first-child, .field--name-body ol:first-child {
+    margin-top: 0; }
+  .field--name-body p:last-child, .field--name-body ul:last-child, .field--name-body ol:last-child {
+    margin-bottom: 0; }
+
+.page-title {
+  margin-top: 23px;
+  margin-bottom: 8px; }
+  @media (min-width: 768px) {
+    .page-title {
+      margin-top: 35px; } }
 
 img {
   max-width: 100%;
