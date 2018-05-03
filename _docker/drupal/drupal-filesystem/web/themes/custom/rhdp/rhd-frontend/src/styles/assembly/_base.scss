@@ -1,10 +1,14 @@
 .assembly {
+  background-color: #FFF;
   &.has-background {
     position: relative;
     .container {
       position: relative;
       z-index: 1;
     }
+  }
+  &:focus {
+    outline: 0;
   }
   .field__item, .field {
     display: block;
@@ -35,7 +39,6 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-
   .field--name-field-title, .header {
     font-size: 22px;
     line-height: 1.5;

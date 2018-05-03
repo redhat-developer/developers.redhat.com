@@ -826,44 +826,45 @@ a.light-cta {
 .latest-disqus-comment + .latest-disqus-comment {
   margin-top: 30px; }
 
-.assembly.has-background {
-  position: relative; }
-  .assembly.has-background .container, .assembly.has-background .node__content > .field--name-body, .assembly.has-background
-  #block-rhdp-local-tasks {
-    position: relative;
-    z-index: 1; }
+.page-node-type-topic-page .rhd-masthead, .page-node-type-topic-page .rhd-masthead .menu-toggle, .page-node-type-topic-page .layout-container {
+  background-color: #F9F9F9; }
 
-.assembly .field__item, .assembly .field {
-  display: block; }
-
-.assembly.assembly-dark {
-  background: #252525; }
-  .assembly.assembly-dark, .assembly.assembly-dark h1, .assembly.assembly-dark h2, .assembly.assembly-dark h3, .assembly.assembly-dark h4, .assembly.assembly-dark h5, .assembly.assembly-dark h6 {
-    color: white; }
-
-.assembly.assembly-space {
-  padding-top: 80px;
-  padding-bottom: 80px; }
-
-.assembly.assembly-center * {
-  text-align: center; }
-
-.assembly .background {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.assembly .field--name-field-title, .assembly .header {
-  font-size: 22px;
-  line-height: 1.5;
-  text-align: center;
-  margin-bottom: 40px; }
+.assembly {
+  background-color: #FFF; }
+  .assembly.has-background {
+    position: relative; }
+    .assembly.has-background .container, .assembly.has-background .node__content > .field--name-body, .assembly.has-background
+    #block-rhdp-local-tasks {
+      position: relative;
+      z-index: 1; }
+  .assembly:focus {
+    outline: 0; }
+  .assembly .field__item, .assembly .field {
+    display: block; }
+  .assembly.assembly-dark {
+    background: #252525; }
+    .assembly.assembly-dark, .assembly.assembly-dark h1, .assembly.assembly-dark h2, .assembly.assembly-dark h3, .assembly.assembly-dark h4, .assembly.assembly-dark h5, .assembly.assembly-dark h6 {
+      color: white; }
+  .assembly.assembly-space {
+    padding-top: 80px;
+    padding-bottom: 80px; }
+  .assembly.assembly-center * {
+    text-align: center; }
+  .assembly .background {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; }
+  .assembly .field--name-field-title, .assembly .header {
+    font-size: 22px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 40px; }
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
@@ -1670,9 +1671,6 @@ a.light-cta {
   @media (min-width: 576px) {
     .assembly-type-content_with_image .assembly-image {
       flex-grow: 1; } }
-
-.assembly:focus {
-  outline: 0; }
 
 meta.foundation-version {
   font-family: "/5.4.4/"; }
