@@ -5,15 +5,13 @@ dependencies:
   config:
     - field.field.scheduled_update.node__moderation_state_1.field_moderation_state_2
     - scheduled_updates.scheduled_update_type.node__moderation_state_1
-  module:
-    - workbench_moderation
 id: scheduled_update.node__moderation_state_1.default
 targetEntityType: scheduled_update
 bundle: node__moderation_state_1
 mode: default
 content:
   field_moderation_state_2:
-    type: moderation_state_default
+    type: options_select
     weight: 5
     settings: {  }
     third_party_settings: {  }

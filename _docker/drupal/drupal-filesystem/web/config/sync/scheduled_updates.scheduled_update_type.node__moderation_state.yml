@@ -10,7 +10,7 @@ update_types_supported:
 field_map:
   field_moderation_state_1: moderation_state
 update_runner:
-  id: default_embedded
+  id: latest_revision
   after_run: ARCHIVE
   invalid_update_behavior: DELETE
   create_revisions: 'YES'

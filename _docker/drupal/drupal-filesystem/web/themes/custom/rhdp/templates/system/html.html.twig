@@ -35,6 +35,7 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
+    <title>{{ head_title['title'] }}</title>
     <script>
   /**
   * Creates and dispatches an event trigger
@@ -228,7 +229,6 @@
   {% endif %}
 
     <head-placeholder token="{{ placeholder_token }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/{{ directory }}/rhd-frontend/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/{{ directory }}/rhd-frontend/favicons/favicon-32x32.png">
