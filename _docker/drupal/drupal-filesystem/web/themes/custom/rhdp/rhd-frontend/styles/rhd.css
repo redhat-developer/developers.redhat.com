@@ -7647,7 +7647,7 @@ div.mobile.product-color {
   display: none; }
 
 #product-features {
-  margin: 1em 0; }
+  margin: 1.5em 0; }
   #product-features .feature-icon {
     text-align: center; }
     #product-features .feature-icon p {
@@ -8005,12 +8005,14 @@ button.tiny, .button.tiny {
   border-bottom: 1px solid #d5d5d5;
   margin: 1em 0 0 0; }
   #guides-row .dropdown.button, #guides-row button.dropdown {
-    position: relative;
-    float: right; }
+    float: right;
+    margin-top: 15px; }
   #guides-row > div {
     padding-left: 0; }
-  #guides-row ul li:before {
-    display: none; }
+  #guides-row h5 {
+    margin: 5px 0; }
+  #guides-row p {
+    margin-top: 0; }
 
 #guides-row:last-child {
   border-bottom: none; }
@@ -10063,6 +10065,19 @@ section.related-content {
   padding: 3em 0;
   margin-top: 3em; }
 
+.video-caption {
+  margin-top: 1em;
+  text-align: center;
+  font-size: .9em; }
+
+.video-caption * {
+  font-size: .9rem; }
+
+.product-video {
+  margin: 30px 0; }
+  .product-video .video-caption {
+    margin-top: -3em; }
+
 @media only screen and (max-width: 1024px) {
   .video-page .slides iframe {
     width: 80%;
@@ -10070,7 +10085,11 @@ section.related-content {
   .video-page .related-content-card {
     min-height: 245px; }
   .video-page.related-content h4 {
-    margin-left: 15px; } }
+    margin-left: 15px; }
+  .product-video {
+    margin: 1em 0 0 0; }
+    .product-video .video-caption {
+      margin-top: 0; } }
 
 @media only screen and (max-width: 768px) {
   header.video-page .field--name-title {
@@ -10096,17 +10115,6 @@ section.related-content {
     margin: 0 15px; }
   .video-page .field--name-field-video-related-links {
     margin-left: 15px; } }
-
-.video-caption {
-  margin-top: 1em;
-  text-align: center;
-  font-size: .9em; }
-
-.video-caption * {
-  font-size: .9rem; }
-
-.product-video .video-caption {
-  margin-top: -3em; }
 
 @media only screen and (max-width: 480px) {
   .video-page .slides iframe {
@@ -13173,7 +13181,8 @@ pre {
 /* Tables */
 table {
   border: 0;
-  background: #D5D5D5; }
+  background: #D5D5D5;
+  border-collapse: collapse; }
   table tbody tr {
     background: #f5f5f6; }
   table td {
