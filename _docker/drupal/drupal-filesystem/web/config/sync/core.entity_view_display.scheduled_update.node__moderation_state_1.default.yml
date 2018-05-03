@@ -1,0 +1,56 @@
+uuid: 04e1f9b7-4269-46fe-8b91-52ba1dd4e855
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.scheduled_update.node__moderation_state_1.field_moderation_state_2
+    - scheduled_updates.scheduled_update_type.node__moderation_state_1
+  module:
+    - fences
+    - options
+    - user
+id: scheduled_update.node__moderation_state_1.default
+targetEntityType: scheduled_update
+bundle: node__moderation_state_1
+mode: default
+content:
+  field_moderation_state_2:
+    type: entity_reference_label
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  status:
+    label: inline
+    type: list_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  update_timestamp:
+    label: above
+    type: timestamp
+    weight: 2
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  user_id:
+    label: inline
+    type: author
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
