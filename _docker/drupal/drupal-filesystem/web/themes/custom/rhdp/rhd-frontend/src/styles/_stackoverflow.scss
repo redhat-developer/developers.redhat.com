@@ -77,11 +77,22 @@
 }
 
 .stackoverflow-product-update .update {
-  padding: 0;
+  padding: 0 1em 0 0;
   .update-meta {
     padding-bottom: 5px;
     border-bottom: 1px solid $grey-2;
-    min-height: 105px;
+    min-height: 120px;
+  }
+  .qtn-title {
+    min-height: 50px;
+    a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 50px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
 }
 

@@ -336,7 +336,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-template-rows: auto;\n        grid-auto-flow: row;\n        grid-gap: 15px;\n        margin: 0 15px;\n        max-width: 320px;\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-gap: 30px;\n            margin: 0 auto;\n            min-width: 1200px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
+                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-template-rows: auto;\n        grid-auto-flow: row;\n        grid-gap: 15px;\n        margin: 0 15px;\n        max-width: 320px;\n    }\n\n    @media (min-width: 600px) {\n        section {\n            grid-template-columns: repeat(2, 1fr);\n            grid-gap: 15px;\n            margin: 0 15px;\n            min-width: 600px;\n            justify-items: center;\n        }\n    }\n\n    @media (min-width: 900px) {\n        section {\n            grid-template-columns: repeat(3, 1fr);\n            grid-gap: 30px;\n            margin: 0 30px;\n            min-width: 900px;\n            justify-items: center;\n        }\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-gap: 30px;\n            margin: 0 auto;\n            min-width: 1200px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
                         return tpl;
                     };
                     _this.items = [];
@@ -421,7 +421,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n    grid-column: span 1;\n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -16126,9 +16126,7 @@ jQuery(function () {
 app = window.app || {};
 app.middlewareBlog = {};
 app.middlewareBlog.fetch = function () {
-    console.log("here 2");
     $.getJSON(app.dcp.url.search + '/middlewareblogs?newFirst=true&from=0&size=2', function (data) {
-        console.log("here 3");
         if (data.hits && data.hits.hits) {
             app.middlewareBlog.render(data.hits.hits);
         }

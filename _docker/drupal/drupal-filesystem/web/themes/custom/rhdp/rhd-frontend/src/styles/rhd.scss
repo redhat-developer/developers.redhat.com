@@ -4,6 +4,7 @@
 @import "container";
 @import "typography/typography";
 @import "patterns/patterns";
+@import "topic-page";
 @import "assembly/assembly";
 @import "foundation/foundation";
 @import "navigation";
@@ -174,7 +175,8 @@ body.page-node-type-video-resource,
 body.page-node-type-books,
 body.page-node-type-cheat-sheet,
 body.page-node-type-promotion-page,
-body.page-node-type-article {
+body.page-node-type-article,
+body.page-node-type-learning-path {
   h1.page-title {
     display: none;
   }
@@ -192,15 +194,6 @@ body.page-node-type-article {
   }
 }
 
-.rh-universal-header {
-  background-color: #1A1A1A;
-  flex: 0 0 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: #5e6a71;
-}
 .rh-universal-footer {
     background-color: #1A1A1A;
     flex: 0 0 50px;
@@ -253,9 +246,27 @@ body.page-node-type-article {
 
 
 .field--name-body {
-  margin-bottom: 40px;
+  margin-bottom: 25px;
+  @include tablet-landscape {
+    margin-bottom: 40px;
+  }
+  p, ul, ol {
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
+.page-title {
+  margin-top: 23px;
+  margin-bottom: 8px;
+  @include tablet-landscape {
+    margin-top: 35px;
+  }
+}
 img {
   max-width: 100%;
   height: auto;
@@ -478,10 +489,10 @@ table {
 /* Error pages */
 .error-content {
   padding-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  .callout-light {
-    margin-bottom: 0;
+  margin: 15px auto 60px auto;
+  text-align: center;
+  p {
+    font-size: 18px;
   }
   > img {
     margin-left: auto;

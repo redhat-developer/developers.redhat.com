@@ -23,16 +23,15 @@ body.page-node-type-learning-path {
     margin: 30px 15px;
     border: 1px solid #CCC;
     padding: 30px;
-    h2, h6 { margin-top: 15px; }
+    min-width: 370px;
+    h1 {
+      font-size: 38px;
+    }
     h2 { 
-      font-size: 36px;
-      ~ p { margin-bottom: 30px; }
-    }
-    h4 {
+      font-size: 27px;
       text-transform: uppercase;
-      color: $grey-6;
-      display: inline-block;
     }
+    strong {font-weight: 600;}
     .lp-time {
       float: right;
       .interval-value{
@@ -227,8 +226,6 @@ body.page-node-type-learning-path {
 
   @media screen and (max-width: 1150px) {
     .lp-info {
-      h4 { font-size: 14px; }
-
       .lp-time .interval-value { 
         margin-top: 0; 
       }
@@ -239,7 +236,6 @@ body.page-node-type-learning-path {
     background-color: #fff;
     .lp-info {
       padding: 15px;
-      h2 {font-size: 32px; }
     }
 
     .lp-cards-container { 
@@ -266,7 +262,7 @@ body.page-node-type-learning-path {
 
       .show-more-text {
         overflow: hidden;
-        max-height: 75px;
+        max-height: 90px;
       }
       a.show-more {
         display: block;
@@ -283,6 +279,10 @@ body.page-node-type-learning-path {
   }
 
   @media screen and (max-width: 750px) {
+    .lp-info .show-more-text {
+      overflow: hidden;
+      max-height: 80px;
+    }
     .lp-cards-container {
       .dp-content-card {
         .card-details {
@@ -316,7 +316,9 @@ body.page-node-type-learning-path {
   }
 
   @media screen and (max-width: 480px) {
-    
+    .lp-info {
+      min-width: 250px;
+    }
     
   }
 
