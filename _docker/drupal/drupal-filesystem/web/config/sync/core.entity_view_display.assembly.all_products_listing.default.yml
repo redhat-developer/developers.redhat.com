@@ -6,7 +6,9 @@ dependencies:
     - assembly.assembly_type.all_products_listing
     - field.field.assembly.all_products_listing.field_content
     - field.field.assembly.all_products_listing.field_navigation_title
+    - field.field.assembly.all_products_listing.field_title
   module:
+    - fences
     - text
 id: assembly.all_products_listing.default
 targetEntityType: assembly
@@ -20,14 +22,22 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  name:
-    label: hidden
-    type: string
+  field_title:
     weight: 0
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: section-title
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
 hidden:
   field_navigation_title: true
+  name: true
   user_id: true
