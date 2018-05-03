@@ -12,16 +12,48 @@ export default class DPCategoryList extends RHElement {
         padding: 30px 0;
         display: block;
     }
+
     section {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 30px;
-        margin: 0 auto;
-        width: 1200px;
-        justify-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-auto-flow: row;
+        grid-gap: 15px;
+        margin: 0 15px;
+        max-width: 320px;
+    }
+
+    @media (min-width: 600px) {
+        section {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 15px;
+            margin: 0 15px;
+            min-width: 600px;
+            justify-items: center;
+        }
+    }
+
+    @media (min-width: 900px) {
+        section {
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            margin: 0 30px;
+            min-width: 900px;
+            justify-items: center;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        section {
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 30px;
+            margin: 0 auto;
+            min-width: 1200px;
+            justify-items: center;
+        }
     }
 </style>
-<section data-rhd-grid="quad">
+<section >
 <slot></slot>
 </section>
 `;

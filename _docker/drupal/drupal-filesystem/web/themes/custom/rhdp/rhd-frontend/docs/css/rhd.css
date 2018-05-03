@@ -511,6 +511,9 @@ button, .button {
   button.external-link:after, .button.external-link:after {
     display: none; }
 
+.button {
+  display: inline-block; }
+
 a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
@@ -10533,16 +10536,17 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     .stack-help a:hover, .stack-help a:active {
       color: #0066CC; }
 
-.stackoverflow-filters label {
-  font-weight: 800;
-  color: #424242;
-  font-size: 1.6em;
-  margin-right: 20px;
-  display: inline-block; }
-
-.stackoverflow-filters .styled-select {
-  display: inline-block;
-  z-index: 1; }
+.stackoverflow-filters {
+  padding-top: 1em; }
+  .stackoverflow-filters label {
+    font-weight: 800;
+    color: #424242;
+    font-size: 1.6em;
+    margin-right: 20px;
+    display: inline-block; }
+  .stackoverflow-filters .styled-select {
+    display: inline-block;
+    z-index: 1; }
 
 .qtn-answer.display-answer {
   display: block; }
@@ -10592,8 +10596,10 @@ strong.tag-label, .qtn-answer strong {
   display: none; }
 
 .so-sorting {
-  float: right;
   margin-top: 20px; }
+  .so-sorting select.results-count {
+    width: auto;
+    margin: 0 1em; }
 
 #paginator {
   border-top: 1px solid #CCCCCC;
@@ -12779,26 +12785,79 @@ rhdp-search-onebox ul.slots {
   display: flex;
   flex-direction: column;
   display: grid;
-  grid-template-columns: repeat(12, [content-start] 70px) [content-end];
+  grid-template-columns: [content-start] 1fr [content-end];
   grid-template-rows: minmax(30px, 1fr) [bottomrow];
   grid-auto-flow: column;
-  grid-gap: 30px;
-  margin: 0 auto;
-  width: 1200px; }
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px; }
+  @media (min-width: 640px) {
+    [data-rhd-grid="normal"] {
+      grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+      margin: 0 30px;
+      min-width: 640px;
+      max-width: auto; } }
+  @media (min-width: 960px) {
+    [data-rhd-grid="normal"] {
+      grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+      margin: 0 30px;
+      min-width: 960px;
+      max-width: auto; } }
+  @media (min-width: 1260px) {
+    [data-rhd-grid="normal"] {
+      grid-template-columns: repeat(12, [content-start] 70px) [content-end];
+      min-width: 1260px;
+      max-width: auto; } }
 
 [data-rhd-grid="quad"] {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-  margin: 0 auto;
-  width: 1200px; }
+  grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px; }
+  @media (min-width: 640px) {
+    [data-rhd-grid="quad"] {
+      grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+      margin: 0 30px;
+      min-width: 640px;
+      max-width: auto; } }
+  @media (min-width: 960px) {
+    [data-rhd-grid="quad"] {
+      grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+      margin: 0 30px;
+      min-width: 960px;
+      max-width: auto; } }
+  @media (min-width: 1260px) {
+    [data-rhd-grid="quad"] {
+      grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+      min-width: 1260px;
+      max-width: auto; } }
 
 [data-rhd-grid="triple"] {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
-  margin: 0 auto;
-  width: 1200px; }
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px; }
+  @media (min-width: 640px) {
+    [data-rhd-grid="triple"] {
+      grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+      margin: 0 30px;
+      min-width: 640px;
+      max-width: auto; } }
+  @media (min-width: 960px) {
+    [data-rhd-grid="triple"] {
+      min-width: 960px;
+      max-width: auto; } }
+  @media (min-width: 1260px) {
+    [data-rhd-grid="triple"] {
+      grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+      min-width: 1260px;
+      max-width: auto; } }
+  @media (min-width: 1260px) {
+    [data-rhd-grid="triple"] {
+      max-width: 1260px;
+      grid-template-columns: repeat(3, 1fr); } }
 
 [data-rhd-col="span12"] {
   grid-column: content-start / content-end; }

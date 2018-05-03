@@ -7,6 +7,7 @@ export default class DPCategory extends RHElement {
 <style>
 :host { 
     text-align: center; 
+    grid-column: span 1;
 }
 img, svg { height: 150px; width: 150px; }
 

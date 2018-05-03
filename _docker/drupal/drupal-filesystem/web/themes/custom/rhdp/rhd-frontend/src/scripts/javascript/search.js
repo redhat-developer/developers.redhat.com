@@ -427,7 +427,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     }
     
     if (isStackOverflow) {
-      if (/help/.test(window.location.href)) {
+      if (window.location.href.indexOf('products') >= 0 && window.location.href.indexOf('help') >= 0) {
         if ($('#stackOverflowProduct').length) {
           var product = $('#stackOverflowProduct').data('product');
         } else {
