@@ -32,7 +32,7 @@ class SystemCalls
 
     begin
       Docker::Network.get("#{environment.get_compose_project_name}_default")
-      execute_docker_compose(environment,:down, %w[-v])
+      execute_docker_compose(environment,:down, %w(-v))
       puts '- Stopped current Docker environment.'
     rescue
       puts "- No containers for Docker environment '#{environment.environment_name}' are running."
@@ -231,9 +231,9 @@ def build_base_docker_images(environment, system_exec)
     build_args += create_proxy_environment_docker_build_args(environment)
   end
 
-  system_exec.execute_docker(:build, %w[--tag=developer.redhat.com/base:2.0.0].concat(build_args).concat(%w[./base]))
-  system_exec.execute_docker(:build, %w[--tag=developer.redhat.com/java:3.0.0].concat(build_args).concat(%w[./java]))
-  system_exec.execute_docker(:build, %w[--tag=developer.redhat.com/ruby:2.3.0].concat(build_args).concat(%w[./ruby]))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/base:2.0.0).concat(build_args).concat(%w(./base)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/java:3.0.0).concat(build_args).concat(%w(./java)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby:2.3.0).concat(build_args).concat(%w(./ruby)))
 end
 
 #
@@ -320,7 +320,7 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
   unless supporting_services.nil? or supporting_services.empty?
     puts 'Starting all required supporting services...'
 
-    system_exec.execute_docker_compose(environment, :up, %w[-d --no-recreate].concat(supporting_services))
+    system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
 
     bind_drupal_container_details_into_environment(environment, supporting_services)
     bind_searchisko_container_details_into_environment(environment, supporting_services)
@@ -342,7 +342,7 @@ def initialise_environment(environment, pull_drupal_data_image, system_exec)
   environment.initialize_environment
   if pull_drupal_data_image
     puts '- Pulling drupal_data image from Docker Hub...'
-    system_exec.execute_docker_compose(environment, :pull, %w[drupal_data]);
+    system_exec.execute_docker_compose(environment, :pull, %w(drupal_data));
     puts '- Completed pull of drupal_data image from Docker Hub.'
   end
 end
@@ -374,7 +374,7 @@ if $0 == __FILE__
   end
 
   if tasks[:export]
-    system_exec.execute_docker_compose(environment, :exec, %w[drupal drush cr])
+    system_exec.execute_docker_compose(environment, :exec, 'drupal drush cr')
   end
 
   start_and_wait_for_supporting_services(environment, tasks[:supporting_services], system_exec)
