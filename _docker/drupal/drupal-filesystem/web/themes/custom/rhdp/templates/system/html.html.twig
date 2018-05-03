@@ -35,7 +35,7 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    <title>{{ head_title|safe_join(' | ') }}</title>
+    <title>{{ head_title['title'] }}</title>
     <script>
   /**
   * Creates and dispatches an event trigger
