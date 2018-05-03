@@ -14,7 +14,8 @@ class WordpressApi implements RemoteContentApiInterface {
   private $client;
 
   public function __construct(ClientInterface $client) {
-    $this->apiUrl = 'https://developers.redhat.com/blog';
+    //$this->apiUrl = 'https://developers.redhat.com/blog';
+    $this->apiUrl = 'https://origin-developers.redhat.com/blog'; // this url bypasses akamai
     $this->client = $client;
   }
 
