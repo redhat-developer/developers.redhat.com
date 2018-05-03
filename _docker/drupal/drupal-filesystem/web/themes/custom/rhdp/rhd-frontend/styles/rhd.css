@@ -8022,12 +8022,20 @@ button.tiny, .button.tiny {
   max-width: 200px; }
 
 .rh-downloads table.downloads-table {
+  border-collapse: collapse;
   background-color: #d5d5d5; }
   .rh-downloads table.downloads-table thead tr th {
     padding: 5px; }
-  .rh-downloads table.downloads-table .download-links a, .rh-downloads table.downloads-table .download-links a + a {
-    display: block;
-    margin-left: 0; }
+  .rh-downloads table.downloads-table .download-links a {
+    display: inline;
+    margin-left: 0;
+    width: auto;
+    height: auto; }
+  .rh-downloads table.downloads-table .download-links a + a {
+    margin-left: 10px; }
+
+.rh-downloads .view-older-downloads {
+  margin-bottom: 20px; }
 
 .rh-downloads .download-link h4 a:before {
   font-family: 'FontAwesome';
