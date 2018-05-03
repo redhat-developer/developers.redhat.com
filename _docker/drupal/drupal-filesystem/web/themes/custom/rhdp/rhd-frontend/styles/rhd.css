@@ -8376,18 +8376,27 @@ a.get-started-quickstart.button {
   border-radius: 0;
   overflow: hidden;
   margin-bottom: 20px; }
-  .gsi-meta ul li {
-    width: 33.33%;
-    float: left;
-    list-style: none; }
-    .gsi-meta ul li strong {
-      margin-right: 3px; }
-    .gsi-meta ul li a + a {
-      margin-left: 5px; }
+  .gsi-meta ul {
+    margin-top: 0;
+    padding-left: 15px; }
+    .gsi-meta ul li {
+      width: 33.33%;
+      float: left;
+      list-style: none; }
+      .gsi-meta ul li strong {
+        margin-right: 3px; }
+      .gsi-meta ul li a + a {
+        margin-left: 5px; }
+  .gsi-meta .field--name-field-related-product.field--type-entity-reference {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0; }
 
 ul.toc {
   margin: 0;
-  width: 100%; }
+  width: 100%;
+  z-index: -1; }
 
 .gsi-nav-fixed {
   position: fixed;
@@ -12925,7 +12934,8 @@ body.page-node-type-books h1.page-title,
 body.page-node-type-cheat-sheet h1.page-title,
 body.page-node-type-promotion-page h1.page-title,
 body.page-node-type-article h1.page-title,
-body.page-node-type-learning-path h1.page-title {
+body.page-node-type-learning-path h1.page-title,
+body.page-node-type-coding-resource h1.page-title {
   display: none; }
 
 .page-community-contributor .node__content > .text-formatted,
@@ -13115,7 +13125,12 @@ pre {
   background: #f9f9f9;
   border: 1px solid #d5d5d5;
   border-radius: 0;
-  font-weight: 600; }
+  font-weight: 600;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word; }
 
 .content-type-label {
   text-transform: uppercase;
