@@ -18,13 +18,32 @@
   .header {
     color: #FFF;
     font-size: 27px;
-    margin-bottom: 24px;
     line-height: 1.25;
+    margin-bottom: 5px;
     @include tablet-portrait {
       font-size: 40px;
     }
     @include tablet-landscape {
       font-size: 57px;
+      margin-bottom: 0;
+    }
+  }
+
+  p, ul, ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > .container > .button {
+    &:last-child {
+      margin-top: 24px;
+      @include tablet-landscape {
+        margin-top: 34px;
+      }
+    }
+    &:first-child:last-child {
+      margin-top: 0;
     }
   }
 
