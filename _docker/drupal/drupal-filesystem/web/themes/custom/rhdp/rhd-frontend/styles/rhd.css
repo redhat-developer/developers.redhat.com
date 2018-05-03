@@ -1208,6 +1208,11 @@ a.light-cta {
     .assembly-type-static_content_band.four-up .field--name-field-content-list {
       grid-template-columns: 1fr 1fr 1fr 1fr; } }
 
+.assembly-type-node_reference,
+.assembly-type-static_item,
+.assembly-type-wordpress_post_reference {
+  background: transparent; }
+
 .assembly-type-dynamic_content_feed {
   background-color: #f9f9f9;
   padding-top: 2rem;
