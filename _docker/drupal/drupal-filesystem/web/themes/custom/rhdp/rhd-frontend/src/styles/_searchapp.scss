@@ -146,23 +146,27 @@ rhdp-search-sort-page {
     @media only screen and (max-width: 768px) {
         align-self: flex-end;
         position: absolute;
-        top: -4.5em;
         border-bottom: none;
-        margin-left: 180px;
-
+        right: 0;
         top: -4.6em;
+        padding-left: 180px;
+        width: 100%;
 
         span { display: none; }
         select {
-            width: 150px;
-            text-align: center;
-            text-align-last: center;
+            margin-left: 15px;
+            display: block;
+            margin-right: 15px;
+            width: 100%;
+            max-width: 150px;
+            text-align: left;
+            text-align-last: left;
             font-weight: 600;
             height: auto;
             border: 1px solid $blue;
             line-height: 1.44;
             background-color: transparent;
-            padding: 8px 0;
+            padding: 8px 10px;
             color:$blue;
             font-size: 16px;
             position: relative;
@@ -187,12 +191,21 @@ rhdp-search-sort-page {
             font-weight: bold;
         }
     }
-
+    @media only screen and (max-width: 400px) {
+        padding-left: 55%;
+        select {
+            margin-left: 0;
+        }
+    }
     @media only screen and (max-width: 365px) {
         position: relative;
         left: 0; top: 0;
         margin-left: 0px;
-
+        padding-left: 0;
+        select {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
 
@@ -299,8 +312,9 @@ rhdp-search-filters {
             border: 1px solid $blue;
             line-height: 1.44;
             background-color: transparent;
-            padding: 8px 0;
+            padding: 8px 10px;
             color:$blue;
+            text-align: left;
 
             &:hover, &:focus {
                 background-color: $blue;
