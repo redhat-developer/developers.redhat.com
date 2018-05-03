@@ -16,6 +16,7 @@ class TestOptions < Minitest::Test
   def test_export_with_no_explicit_destination
     tasks = Options.parse(['--export'])
     assert(tasks[:build])
+    assert(tasks[:export])
     assert_equal(['--rm','export'], tasks[:awestruct_command_args])
   end
 
