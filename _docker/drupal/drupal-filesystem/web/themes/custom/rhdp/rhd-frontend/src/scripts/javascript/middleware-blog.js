@@ -11,9 +11,7 @@ app.middlewareBlog = {};
 app.middlewareBlog.fetch = function() {
 
   // $("ul.middleware-blog.middleware-blog-latest").addClass('loading');
-  console.log("here 2");
   $.getJSON(app.dcp.url.search + '/middlewareblogs?newFirst=true&from=0&size=2' ,function(data){
-    console.log("here 3");
     if(data.hits && data.hits.hits) {
       app.middlewareBlog.render(data.hits.hits);
     }

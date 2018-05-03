@@ -15,9 +15,9 @@
     {% if access != 'free-content' %}
     <div class="dp-access-level">
       {% if access == 'member-content' %}
-      <i class="fa fa-user"></i> For RHDP Members
+      <i class="fas fa-user"></i> For RHDP Members
       {% else %}
-      <i class="fa fa-usd"></i> Red Hat Training
+      <i class="fas fa-dollar-sign"></i> Red Hat Training
       {% endif %}
     </div>
     {% endif %}
@@ -29,7 +29,7 @@
       </div>
       {% if node.field_read_time.value %}
       <div class="dp-duration">
-          <i class="fa fa-clock"></i> {{node.field_read_time.value}}
+          <i class="far fa-clock"></i> {{node.field_read_time.value}}
       </div>
       {% endif %}
       {% if node.field_difficulty.value %}
