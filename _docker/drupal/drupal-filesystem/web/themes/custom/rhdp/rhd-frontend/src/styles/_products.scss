@@ -807,16 +807,27 @@ button.tiny, .button.tiny {
 .rh-downloads{
 
   table.downloads-table {
+    border-collapse: collapse;
     background-color: rgb(213, 213, 213);
     thead tr th {
       padding: 5px;
     }
-    .download-links a, .download-links a + a {
-      display: block;
-      margin-left: 0;
+    .download-links {
+      a {
+        display: inline;
+        margin-left: 0;
+        width: auto;
+        height: auto;
+      }
+      a + a {
+        margin-left: 10px;
+      }
     }
   }
 
+  .view-older-downloads{
+    margin-bottom: 20px;
+  }
   .download-link {
     h4 {
       a {
