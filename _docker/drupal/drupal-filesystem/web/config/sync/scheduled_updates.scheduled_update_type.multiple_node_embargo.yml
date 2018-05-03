@@ -8,33 +8,12 @@ id: multiple_node_embargo
 label: 'Publish multiple nodes at a certain time'
 update_entity_type: node
 update_types_supported:
-  - independent
+  - embedded
 field_map:
   field_moderation_state: moderation_state
 update_runner:
-  id: default_independent
+  id: latest_revision
   after_run: DELETE
   invalid_update_behavior: DELETE
   create_revisions: BUNDLE_DEFAULT
   update_user: USER_UPDATE_OWNER
-  bundles:
-    article: article
-    assembly_page: assembly_page
-    author: author
-    books: books
-    cheat_sheet: cheat_sheet
-    connectors: connectors
-    events: events
-    learning_path: learning_path
-    page: page
-    product: product
-    rh_certification_exam: rh_certification_exam
-    rh_training_class: rh_training_class
-    topic_page: topic_page
-    video_resource: video_resource
-    coding_resource: '0'
-    promotion_card: '0'
-    promotion_page: '0'
-    rhd_microsite: '0'
-    rhd_solution_overview: '0'
-    topic: '0'
