@@ -374,7 +374,7 @@ if $0 == __FILE__
   end
 
   if tasks[:export]
-    system_exec.execute_docker_compose(environment, :exec, 'drupal drush cr')
+    system_exec.execute_docker_compose(environment, :exec, %w[drupal drush cr])
   end
 
   start_and_wait_for_supporting_services(environment, tasks[:supporting_services], system_exec)
