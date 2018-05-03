@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.scheduled_update.field_moderation_state
     - scheduled_updates.scheduled_update_type.node_embargo
+    - workbench_moderation.moderation_state.published
 _core:
   default_config_hash: UUdOywcjdHs2k7tBQ85t84KEGF2xb3HTCFVoG53xMVM
 id: scheduled_update.node_embargo.field_moderation_state
@@ -15,9 +16,13 @@ label: 'Moderation state'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: a8468483-4d8d-4257-86a2-a2bf8c652121
 default_value_callback: ''
 settings:
   handler: 'default:moderation_state'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles: null
+    auto_create: false
 field_type: entity_reference

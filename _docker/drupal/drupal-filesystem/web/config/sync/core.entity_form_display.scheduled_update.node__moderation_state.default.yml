@@ -1,0 +1,25 @@
+uuid: a4515dd0-3050-4785-8da0-787fc2402a55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.scheduled_update.node__moderation_state.field_moderation_state_1
+    - scheduled_updates.scheduled_update_type.node__moderation_state
+id: scheduled_update.node__moderation_state.default
+targetEntityType: scheduled_update
+bundle: node__moderation_state
+mode: default
+content:
+  field_moderation_state_1:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  update_timestamp:
+    type: datetime_timestamp
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
