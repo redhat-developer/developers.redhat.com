@@ -289,7 +289,7 @@ div.mobile.product-color {
 .product-video h4{display: none;}
 
 #product-features{
-  margin: 1em 0;
+  margin: 1.5em 0;
   .feature-icon {
     text-align: center;
     p {
@@ -772,13 +772,18 @@ button.tiny, .button.tiny {
   border-bottom: 1px solid #d5d5d5;
   margin: 1em 0 0 0;
   .dropdown.button, button.dropdown {
-    position: relative;
     float: right;
+    margin-top: 15px;
   }
   & > div {
     padding-left: 0;
   }
-  ul li:before{display: none;}
+  h5 {
+    margin: 5px 0;
+  }
+  p {
+    margin-top: 0;
+  }
 }
 #guides-row:last-child {
   border-bottom: none;
