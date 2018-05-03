@@ -127,6 +127,8 @@
 }
 
 .stackoverflow-filters {
+  padding-top: 1em;
+
   label {
     font-weight: 800;
     color: $grey-6;
@@ -200,6 +202,10 @@ strong.tag-label, .qtn-answer strong {
 }
 
 .so-sorting {
-  float: right;
   margin-top: 20px;
+
+  select.results-count {
+    width: auto;
+    margin: 0 1em;
+  }
 }

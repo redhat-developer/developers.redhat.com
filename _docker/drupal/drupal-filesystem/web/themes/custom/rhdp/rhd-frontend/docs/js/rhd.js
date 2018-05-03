@@ -336,7 +336,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n    section {\n        display: grid;\n        grid-template-columns: repeat(4, 1fr);\n        grid-gap: 30px;\n        margin: 0 auto;\n        width: 1200px;\n        justify-items: center;\n    }\n</style>\n<section data-rhd-grid=\"quad\">\n<slot></slot>\n</section>\n";
+                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-gap: 15px;\n        margin: 0 15px;\n        max-width: 320px;\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-gap: 30px;\n            margin: 0 auto;\n            min-width: 1200px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
                         return tpl;
                     };
                     _this.items = [];
@@ -421,7 +421,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n    grid-column: span 1;\n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -5563,6 +5563,104 @@ function storageAvailable(type) {
 if (typeof Keycloak !== 'undefined') {
     app.sso();
 }
+app.dcp.getNameFromContributor = function (contributor) {
+    return contributor.substring(0, contributor.lastIndexOf("<") - 1);
+};
+app.dcp.generateContributorSpan = function (tmpl, contributor) {
+    var d = {};
+    d.contributor = contributor;
+    d.contributorName = app.dcp.getNameFromContributor(contributor);
+    return tmpl.template(d);
+};
+app.dcp.authStatus = function () {
+    return $.ajax({
+        type: "GET",
+        url: app.dcp.url.auth_status,
+        xhrFields: { withCredentials: true }
+    });
+};
+app.dcp.resolveContributors = function (sysContributors) {
+    if (!sysContributors) {
+        var sysContributors = [];
+        $('[data-sys-contributor]').each(function (i, el) {
+            var contributor = $(el).data('sys-contributor');
+            if (contributor) {
+                sysContributors.push(contributor);
+            }
+        });
+        sysContributors = $.unique(sysContributors);
+    }
+    contributors = sysContributors.unique();
+    app.dcp.currentRequest = $.ajax({
+        url: app.dcp.url.search,
+        data: {
+            "sys_type": "contributor_profile",
+            "field": ["sys_url_view", "sys_title", "sys_contributors", "accounts"],
+            "contributor": contributors,
+            "size": contributors.length
+        },
+        beforeSend: function () {
+            if (app.dcp.currentRequest && app.dcp.currentRequest.readyState != 4) {
+                app.dcp.currentRequest.abort();
+            }
+        }
+    }).done(function (data) {
+        var hits = data.hits.hits;
+        for (var i = 0; i < hits.length; i++) {
+            var accounts = {};
+            if (hits[i].fields.accounts) {
+                for (var j = 0; j < hits[i].fields.accounts.length; j++) {
+                    accounts[hits[i].fields.accounts[j].domain] = hits[i].fields.accounts[j].username;
+                }
+            }
+            $("span.contributor[data-sys-contributor='" + hits[i].fields.sys_contributors + "']").each(function () {
+                var followable = false;
+                $(this).find('a.name').each(function () {
+                    $(this).html(hits[i].fields.sys_title).attr('href', hits[i].fields.sys_url_view);
+                });
+                $(this).find('a.rss').each(function () {
+                    if (false) {
+                        $(this).attr('href', '');
+                        followable = true;
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+                $(this).find('a.facebook').each(function () {
+                    if (accounts['facebook.com']) {
+                        $(this).attr('href', 'http://www.facebook.com/' + accounts['facebook.com']);
+                        followable = true;
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+                $(this).find('a.twitter').each(function () {
+                    if (accounts['twitter.com']) {
+                        $(this).attr('href', 'http://www.twitter.com/' + accounts['twitter.com']);
+                        followable = true;
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+                $(this).find('a.linkedin').each(function () {
+                    if (accounts['linkedin']) {
+                        $(this).attr('href', 'http://www.linkedin.com/in/' + accounts['linkedin.com']);
+                        followable = true;
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+                if (!followable) {
+                    $(this).find('span.follow').hide();
+                }
+            });
+        }
+    });
+};
 app.buzz = {
     filter: function (tmpl, container, itemCount, append, from, dataIndex, callback) {
         itemCount = itemCount || 8;
@@ -5805,6 +5903,582 @@ app.buzz.init();
         return obj;
     };
 });
+var dcp = angular.module('dcp', []);
+dcp.config(['$provide', function ($provide) {
+        $provide.decorator('$browser', function ($delegate) {
+            var superUrl = $delegate.url;
+            $delegate.url = function (url, replace) {
+                if (url !== undefined) {
+                    return superUrl(url.replace(/\%20/g, "+"), replace);
+                }
+                else {
+                    return superUrl().replace(/\+/g, "%20");
+                }
+            };
+            return $delegate;
+        });
+    }]);
+dcp.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
+        return {
+            request: function (config) {
+                if (config.method == 'GET' && config.url.indexOf(app.dcp.url.developer_materials) > -1) {
+                    $injector.get('$rootScope').$broadcast('_START_REQUEST_');
+                }
+                return config;
+            },
+            requestError: function (rejection) {
+                return $q.reject(rejection);
+            },
+            response: function (response) {
+                if (response.config.method == 'GET' && response.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
+                    $injector.get('$rootScope').$broadcast('_END_REQUEST_');
+                }
+                return response;
+            },
+            responseError: function (rejection) {
+                if (rejection.config.method == 'GET' && rejection.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
+                    $injector.get('$rootScope').$broadcast('_END_REQUEST_');
+                }
+                return $q.reject(rejection);
+            }
+        };
+    }]);
+dcp.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('httpInterceptor');
+    }]);
+dcp.service('materialService', ['$http', '$q', function ($http, $q) {
+        this.deferred_ = $q.defer();
+        this.getMaterials = function (params) {
+            var params = params || {};
+            var query = {};
+            query.newFirst = true;
+            if (params.project === 'devstudio' && params.sys_type === 'quickstart') {
+                params.project = '';
+            }
+            if (params.query) {
+                query.query = params.query;
+            }
+            if (params.project) {
+                query.project = params.project;
+            }
+            if (params.randomize) {
+                query.randomize = params.randomize;
+            }
+            if (params.size) {
+                query['size' + params.size] = true;
+            }
+            if (params.sys_type &&
+                (($.isArray(params.sys_type) && params.sys_type.length > 0) ||
+                    ($.trim(params.sys_type).length > 0))) {
+                query.sys_type = params.sys_type;
+            }
+            if (!params.type) {
+                query.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+            }
+            if (params.publish_date_from) {
+                query.publish_date_from = params.publish_date_from;
+            }
+            if (params.from) {
+                query.from = params.from;
+            }
+            if (true) {
+                this.deferred_.resolve(undefined);
+            }
+            this.deferred_ = $q.defer();
+            var promise = this.deferred_.promise;
+            var deferred = this.deferred_;
+            $http.get(app.dcp.url.developer_materials, { params: query, timeout: promise })
+                .success(function (data) {
+                deferred.resolve(data);
+            })
+                .error(function () {
+                $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
+            });
+            return promise;
+        };
+    }]);
+dcp.factory('dataFlowService', ['$location', function ($location) {
+        var service = function () {
+            this.processParams = function (params) {
+                var params_ = params || {};
+                $location.path($.param(params_));
+            };
+        };
+        return new service();
+    }]);
+dcp.factory('helper', function () {
+    var Helper = function () {
+        this.firstIfArray = function (input) {
+            if ($.isArray(input) && input.length > 0) {
+                return input[0];
+            }
+            return input;
+        };
+        this.parsePath = function (path) {
+            var path_ = path || '';
+            if (path_.indexOf('/') == 0) {
+                path_ = path_.substr(1);
+            }
+            return deparam(path_);
+        };
+        this.safeParams = function (params) {
+            var p = angular.isObject(params) ? params : {};
+            var obj = {};
+            angular.copy(p, obj);
+            for (var key in obj) {
+                if (!obj.hasOwnProperty(key))
+                    continue;
+                if (!this.isValidParam_(key)) {
+                    delete obj[key];
+                }
+            }
+            return obj;
+        };
+        this.VALID_URL_PARAMS_ = [
+            "sys_type",
+            "rating",
+            "publish_date_from",
+            "tag",
+            "level",
+            "from",
+            "query",
+            "project",
+            "product",
+            "size"
+        ];
+        this.isValidParam_ = function (key) {
+            return this.VALID_URL_PARAMS_.indexOf(key) >= 0;
+        };
+        this.removeTagItems = function (input) {
+            var indexes = [];
+            if ($.isArray(input) && input.length > 0) {
+                var excludes = app.dcp.excludeResourceTags;
+                angular.forEach(input, function (str) {
+                    var index = excludes.indexOf(str);
+                    if (index == -1) {
+                        indexes.push(str);
+                    }
+                });
+            }
+            return indexes.join(',');
+        };
+        this.availableFormats = [
+            { value: "quickstart", "name": "Quickstart", "description": "Single use-case code examples tested with the latest stable product releases" },
+            { value: "video", "name": "Video", "description": "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
+            { value: "demo", "name": "Demo", "description": "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
+            { value: "jbossdeveloper_example", "name": "Tutorial", "description": "Guided content, teaching you how to build complex applications from the ground up" },
+            { value: "jbossdeveloper_archetype", "name": "Archetype", "description": "Maven Archetypes for building Red Hat JBoss Middleware applications" },
+            { value: "jbossdeveloper_bom", "name": "BOM", "description": "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
+            { value: "quickstart_early_access", "name": "Early Access", "description": "Single use-case code examples demonstrating features not yet available in a product release" },
+            { value: "article", "name": "Articles (Premium)", "description": "Technical articles and best practices for Red Hat JBoss Middleware products" },
+            { value: "solution", "name": "Solutions (Premium)", "description": "Answers to questions or issues you may be experiencing" }
+        ];
+    };
+    return new Helper();
+});
+dcp.filter('thumbnailURL', function () {
+    return function (item) {
+        var thumbnails = app.dcp.thumbnails;
+        if (item.fields.thumbnail && item.fields.thumbnail[0]) {
+            return item.fields.thumbnail[0];
+        }
+        else if (item._type) {
+            return thumbnails[item._type];
+        }
+        else {
+            return thumbnails["rht_knowledgebase_article"];
+        }
+    };
+});
+dcp.filter('isPremium', ['helper', function (helper) {
+        return function (url) {
+            url = helper.firstIfArray(url);
+            if (url) {
+                return !!url.match("access.redhat.com");
+            }
+            else {
+                return false;
+            }
+        };
+    }]);
+dcp.filter('brackets', ['helper', function (helper) {
+        return function (num) {
+            num = helper.firstIfArray(num);
+            if (num > 0) {
+                return "  (" + num + ")";
+            }
+        };
+    }]);
+dcp.filter('truncate', ['helper', function (helper) {
+        return function (str) {
+            str = helper.firstIfArray(str);
+            str = $("<p>").html(str).text();
+            if (str.length <= 150) {
+                return str;
+            }
+            return str.slice(0, 150) + "…";
+        };
+    }]);
+dcp.filter('HHMMSS', ['helper', function (helper) {
+        return function (sec_string) {
+            sec_string = helper.firstIfArray(sec_string);
+            var sec_num = parseInt(sec_string, 10);
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var time = minutes + ':' + seconds;
+            if (parseInt(hours) > 0) {
+                time = hours + ':' + time;
+            }
+            return time;
+        };
+    }]);
+dcp.filter('timeAgo', ['helper', function (helper) {
+        return function (timestamp) {
+            timestamp = helper.firstIfArray(timestamp);
+            if (!timestamp)
+                return;
+            var date = new Date(timestamp);
+            return $.timeago(date);
+        };
+    }]);
+dcp.filter('firstIfArray', ['helper', function (helper) {
+        return function (input) {
+            return helper.firstIfArray(input);
+        };
+    }]);
+dcp.filter('noURL', function () {
+    return function (str) {
+        var filterArray = [];
+        angular.forEach(str, function (ref) {
+            if (ref.fields.sys_url_view) {
+                filterArray.push(ref);
+            }
+        });
+        return filterArray;
+    };
+});
+dcp.filter('removeExcludedTags', ['helper', function (helper) {
+        return function (input) {
+            return helper.removeTagItems(input);
+        };
+    }]);
+dcp.filter('urlFix', ['helper', function (helper) {
+        return function (str) {
+            str = helper.firstIfArray(str);
+            if (!str.length) {
+                return;
+            }
+            else if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
+                return str;
+            }
+            else {
+                return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?(\/docker-nightly)?/, app.baseUrl);
+            }
+        };
+    }]);
+dcp.filter('trim', ['helper', function (helper) {
+        return function (str) {
+            str = helper.firstIfArray(str);
+            return str.trim();
+        };
+    }]);
+dcp.filter('name', ['helper', function (helper) {
+        return function (str) {
+            str = helper.firstIfArray(str);
+            str = str || "";
+            var pieces = str.split('<');
+            if (pieces.length) {
+                return pieces[0].trim();
+            }
+        };
+    }]);
+dcp.filter('formatName', ['helper', function (helper) {
+        return function (value, scope) {
+            value = helper.firstIfArray(value);
+            for (var f in scope.data.availableFormats) {
+                var format = scope.data.availableFormats[f];
+                if (format.value === value) {
+                    return format.name;
+                }
+            }
+            return value;
+        };
+    }]);
+dcp.filter('safeNumber', ['helper', function (helper) {
+        return function (input) {
+            input = helper.firstIfArray(input);
+            var n = parseInt(input, 10);
+            return isNaN(n) ? 0 : n;
+        };
+    }]);
+dcp.filter('checkInternal', ['helper', '$location', function (helper, $location) {
+        return function (item) {
+            if (!helper.firstIfArray(item.fields.sys_url_view)) {
+                return true;
+            }
+            else if (!!helper.firstIfArray(item.fields.sys_url_view).match($location.host())) {
+                return true;
+            }
+            return false;
+        };
+    }]);
+dcp.controller('developerMaterialsController', ['$scope', 'materialService', '$rootScope', '$location', 'helper', 'dataFlowService',
+    function ($scope, materialService, $rootScope, $location, helper, dataFlowService) {
+        window.scope = $scope;
+        $scope.params = {};
+        $scope.Math = Math;
+        $scope.data = {
+            layout: 'list',
+            dateNumber: 0
+        };
+        $scope.randomize = false;
+        $scope.pagination = { size: 10 };
+        $scope.filters = {};
+        $scope.filter = {};
+        var needsToBeUnregistered = $rootScope.$on('$locationChangeSuccess', function () {
+            $scope.fetchAndUpdate();
+        });
+        $rootScope.$on('$destroy', needsToBeUnregistered);
+        $scope.$on('_START_REQUEST_', function () {
+            $scope.data.loading = true;
+        });
+        $scope.$on('_END_REQUEST_', function () {
+            $scope.data.loading = false;
+        });
+        $scope.data.availableTopics = app.dcp.availableTopics;
+        $scope.data.availableFormats = helper.availableFormats;
+        $scope.fetchAndUpdate = function () {
+            $scope.params = helper.safeParams(helper.parsePath($location.path()));
+            $scope.params.size = $scope.pagination.size;
+            $scope.params.project = $scope.filters.project;
+            materialService.getMaterials($scope.params)
+                .then(function (data) {
+                if (data && data.hits && data.hits.hits) {
+                    $scope.data.materials = data.hits.hits;
+                    $scope.data.total = data.hits.total;
+                    $scope.paginate($scope.paginate.currentPage || 1);
+                }
+                else {
+                    $scope.data.materials = [];
+                    $scope.data.total = 0;
+                }
+            })
+                .then(function () {
+                $scope.filters.query = $scope.params.query;
+                $scope.filters.sys_type = $scope.params.sys_type;
+            });
+        };
+        $scope.paginate = function (page) {
+            $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
+            $scope.pagination.size = parseInt($scope.pagination.size);
+            var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
+            var endAt = page * $scope.pagination.size;
+            var pages = Math.ceil($scope.data.total / $scope.pagination.size);
+            if (page > pages || page < 1 || typeof page === "string") {
+                return;
+            }
+            $scope.paginate.pages = pages;
+            $scope.paginate.currentPage = page;
+            $scope.data.displayedMaterials = $scope.data.materials;
+            $scope.paginate.pagesArray = app.utils.diplayPagination($scope.paginate.currentPage, pages, 4);
+        };
+        $scope.filters.sys_tags = [];
+        $scope.filters.sys_type = [];
+        $scope.filter.toggleSelection = function toggleSelection(itemName, selectedArray) {
+            if (!$scope.filters[selectedArray]) {
+                $scope.filters[selectedArray] = [];
+            }
+            var idx = $scope.filters[selectedArray].indexOf(itemName);
+            if (idx > -1) {
+                $scope.filters[selectedArray].splice(idx, 1);
+            }
+            else {
+                $scope.filters[selectedArray].push(itemName);
+            }
+        };
+        $scope.filter.updateDate = function () {
+            var n = parseInt($scope.data.dateNumber);
+            var d = new Date();
+            var labels = ["All", "Within 1 Year", "Within 30 days", "Within 7 days", "Within 24hrs"];
+            $scope.data.displayDate = labels[n];
+            switch (n) {
+                case 0:
+                    delete $scope.filters.publish_date_from;
+                    break;
+                case 1:
+                    d.setFullYear(d.getFullYear() - 1);
+                    break;
+                case 2:
+                    d.setDate(d.getDate() - 30);
+                    break;
+                case 3:
+                    d.setDate(d.getDate() - 7);
+                    break;
+                case 4:
+                    d.setDate(d.getDate() - 1);
+                    break;
+            }
+            if (n) {
+                $scope.filters.publish_date_from = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            }
+        };
+        $scope.filter.clear = function () {
+            $scope.filters.sys_tags = [];
+            $scope.filters.sys_type = [];
+            $scope.data.dateNumber = 0;
+            $scope.data.skillNumber = 0;
+            delete $scope.filters.query;
+            delete $scope.filters.sys_rating_avg;
+            delete $scope.filters.level;
+            delete $scope.filters.publish_date_from;
+            delete localStorage[$scope.data.pageType + '-filters'];
+            $(".chosen").trigger("chosen:updated");
+        };
+        $scope.firstPage = function () {
+            $scope.paginate.currentPage = 1;
+            $scope.processPagination_();
+        };
+        $scope.previousPage = function () {
+            $scope.paginate.currentPage -= 1;
+            $scope.processPagination_();
+        };
+        $scope.nextPage = function () {
+            $scope.paginate.currentPage += 1;
+            $scope.processPagination_();
+        };
+        $scope.lastPage = function () {
+            $scope.paginate.currentPage = $scope.paginate.pages;
+            $scope.processPagination_();
+        };
+        $scope.goToPage = function (page) {
+            if (typeof page !== 'number') {
+                return;
+            }
+            $scope.paginate.currentPage = page;
+            $scope.processPagination_();
+        };
+        $scope.processPagination_ = function () {
+            $scope.filters.from = ($scope.paginate.currentPage - 1) * $scope.pagination.size;
+            $scope.filter.applyFilters();
+        };
+        $scope.filter.applyFilters = function () {
+            $scope.data.displayedMaterials = [];
+            $scope.filter.store();
+            dataFlowService.processParams($scope.filters);
+        };
+        $scope.filter.store = function () {
+            window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify(scope.filters);
+            window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] = new Date().getTime();
+        };
+        $scope.filter.restore = function () {
+            $scope.data.skillNumber = 0;
+            $scope.data.dateNumber = 0;
+            if (!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
+                $scope.filter.applyFilters();
+                return;
+            }
+            if ($location.path().length > 0) {
+                var filters = deparam($location.path().slice(1));
+                if (typeof filters.sys_type === "string") {
+                    var filterArr = [];
+                    filterArr.push(filters.sys_type);
+                    filters.sys_type = filterArr;
+                }
+                $scope.filters = filters;
+                if ($scope.filters.level) {
+                    var labels = ["All", "Beginner", "Intermediate", "Advanced"];
+                    var idx = labels.indexOf($scope.filters.level);
+                    if (idx >= 0) {
+                        $scope.data.skillNumber = idx;
+                    }
+                    $scope.filter.updateSkillLevel();
+                }
+                if ($scope.filters.publish_date_from) {
+                    var parts = scope.filters.publish_date_from.split('-');
+                    var d = new Date(parts[0], parts[1], parts[2]);
+                    var now = new Date().getTime();
+                    var ago = now - d;
+                    var daysAgo = Math.floor(ago / 1000 / 60 / 60 / 24);
+                    if (daysAgo <= 1) {
+                        $scope.data.dateNumber = 4;
+                    }
+                    else if (daysAgo > 1 && daysAgo <= 7) {
+                        $scope.data.dateNumber = 3;
+                    }
+                    else if (daysAgo > 7 && daysAgo <= 30) {
+                        $scope.data.dateNumber = 2;
+                    }
+                    else {
+                        $scope.data.dateNumber = 1;
+                    }
+                    $scope.filter.updateDate();
+                }
+            }
+            else if (window.localStorage && window.localStorage[$scope.data.pageType + '-filters']) {
+                var now = new Date().getTime();
+                var then = window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] || 0;
+                if ((now - then) < 7200000) {
+                    $scope.filters = JSON.parse(window.localStorage[$scope.data.pageType + '-filters']);
+                }
+            }
+            $scope.filter.applyFilters();
+            $scope.fetchAndUpdate();
+        };
+        $scope.chosen = function () {
+            $('select.chosen').unbind().chosen().change(function () {
+                var tags = $(this).val();
+                if (tags) {
+                    $scope.filters.sys_tags = tags;
+                }
+                else {
+                    delete $scope.filters.sys_tags;
+                }
+                $scope.$apply();
+                $scope.filter.applyFilters();
+            }).trigger('chosen:updated');
+        };
+        $scope.$watch('data.availableTopics', function () {
+            window.setTimeout(function () {
+                $scope.chosen();
+            }, 0);
+        });
+        $scope.$watch('data.layout', function (newVal, oldVal) {
+            if ($scope.data.layout) {
+                window.localStorage.layout = $scope.data.layout;
+            }
+        });
+    }]);
+$(function () {
+    $('form.dev-mat-filters').on('submit', function (e) {
+        e.preventDefault();
+    });
+    $('.filters-clear').on('click', function (e) {
+        e.preventDefault();
+        app.dm.clearFilters($(this));
+    });
+    $('.filter-block h5').on('click', function () {
+        if (window.innerWidth <= 768) {
+            var el = $(this);
+            el.toggleClass('filter-block-open');
+            el.next('.filter-block-inputs').slideToggle(300);
+        }
+    });
+    $('.filter-toggle').on('click', function () {
+        if (window.innerWidth <= 768) {
+            $('.developer-materials-sidebar').toggleClass('open');
+        }
+    });
+});
 !function () { var a, AbstractChosen, Chosen, SelectParser, b, c = {}.hasOwnProperty, d = function (a, b) { function d() { this.constructor = a; } for (var e in b)
     c.call(b, e) && (a[e] = b[e]); return d.prototype = b.prototype, a.prototype = new d, a.__super__ = b.prototype, a; }; SelectParser = function () { function SelectParser() { this.options_index = 0, this.parsed = []; } return SelectParser.prototype.add_node = function (a) { return "OPTGROUP" === a.nodeName.toUpperCase() ? this.add_group(a) : this.add_option(a); }, SelectParser.prototype.add_group = function (a) { var b, c, d, e, f, g; for (b = this.parsed.length, this.parsed.push({ array_index: b, group: !0, label: this.escapeExpression(a.label), children: 0, disabled: a.disabled }), f = a.childNodes, g = [], d = 0, e = f.length; e > d; d++)
     c = f[d], g.push(this.add_option(c, b, a.disabled)); return g; }, SelectParser.prototype.add_option = function (a, b, c) { return "OPTION" === a.nodeName.toUpperCase() ? ("" !== a.text ? (null != b && (this.parsed[b].children += 1), this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, value: a.value, text: a.text, html: a.innerHTML, selected: a.selected, disabled: c === !0 ? c : a.disabled, group_array_index: b, classes: a.className, style: a.style.cssText })) : this.parsed.push({ array_index: this.parsed.length, options_index: this.options_index, empty: !0 }), this.options_index += 1) : void 0; }, SelectParser.prototype.escapeExpression = function (a) { var b, c; return null == a || a === !1 ? "" : /[\&\<\>\"\'\`]/.test(a) ? (b = { "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#x27;", "`": "&#x60;" }, c = /&(?!\w+;)|[\<\>\"\'\`]/g, a.replace(c, function (a) { return b[a] || "&amp;"; })) : a; }, SelectParser; }(), SelectParser.select_to_array = function (a) { var b, c, d, e, f; for (c = new SelectParser, f = a.childNodes, d = 0, e = f.length; e > d; d++)
@@ -5878,6 +6552,185 @@ $(function () {
         app.overlay.open(html);
     });
 });
+app.books = {
+    supportsLocalStorage: function () {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        }
+        catch (e) {
+            return false;
+        }
+    },
+    restoreFilter: function (hashParams) {
+        if (!this.supportsLocalStorage()) {
+            return;
+        }
+        var filterKeys = [
+            "keyword",
+        ];
+        var hashParams = hashParams || app.utils.getParametersFromHash();
+        $.each(filterKeys, function (idx, key) {
+            if ($.isEmptyObject(hashParams)) {
+                var formValue = window.localStorage.getItem("booksFilter." + key);
+            }
+            else {
+                var formValue = hashParams[key];
+            }
+            if (formValue === 'undefined') {
+                formValue = '';
+            }
+            if (formValue) {
+                switch (key) {
+                    case "keyword":
+                        $('input[name="filter-text"]').val(formValue).trigger('change');
+                        break;
+                }
+            }
+        });
+    },
+    performFilter: function () {
+        var bookTemplate = app.templates.bookTemplate;
+        var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
+            "<a class=\"name link-sm\"><!=normalizedAuthor!></a>" +
+            "</span>";
+        $('ul.book-list').empty();
+        filters = typeof filters !== 'undefined' ? filters : {};
+        if (!maxResults) {
+            var maxResults = 500;
+        }
+        var keyword = $('input[name="filter-text"]').val();
+        $.extend(filters, {
+            "keyword": keyword,
+        });
+        var formValues = {
+            "keyword": keyword,
+        };
+        if (this.supportsLocalStorage()) {
+            $.each(formValues, function (key, val) {
+                window.localStorage.setItem("booksFilter." + key, val);
+            });
+        }
+        var currentFilters = {};
+        $.each(filters, function (key, val) {
+            if (val.length) {
+                currentFilters[key] = val;
+            }
+        });
+        var query = [];
+        if (currentFilters['keyword']) {
+            query.push(keyword);
+        }
+        $("ul.book-list").addClass('loading');
+        var data = {
+            "field": ["preview_link", "thumbnail", "sys_title", "sys_contributor", "average_rating", "sys_created", "sys_description", "sys_url_view", "isbn", "authors"],
+            "query": query,
+            "size": maxResults,
+            "sys_type": "book",
+            "sortBy": "new-create"
+        };
+        app.books.currentRequest = $.ajax({
+            dataType: 'json',
+            url: app.dcp.url.search,
+            data: data,
+            beforeSend: function () {
+                if (app.books.currentRequest && app.books.currentRequest.readyState != 4) {
+                    app.books.currentRequest.abort();
+                }
+            },
+            error: function () {
+                $("ul.book-list").html(app.dcp.error_message);
+            }
+        }).done(function (data) {
+            var results = data.hits.hits;
+            for (var k = 0; k < results.length; k++) {
+                var book = results[k].fields;
+                var authors = "";
+                if (!book.sys_url_view) {
+                    book.sys_url_view = "";
+                }
+                if (book.sys_contributor) {
+                    if (book.sys_contributor.length == 1) {
+                        authors += "Author: ";
+                    }
+                    else {
+                        authors += "Authors: ";
+                    }
+                    for (var i = 0; i < book.sys_contributor.length; i++) {
+                        authors += contributorTemplate.template({ "author": book.sys_contributor[i], "normalizedAuthor": app.dcp.getNameFromContributor(book.sys_contributor[i]) });
+                        if (i < (book.sys_contributor.length - 1)) {
+                            authors += ", ";
+                        }
+                    }
+                }
+                else if (book.authors) {
+                    var str = "";
+                    if (book.authors.length == 1) {
+                        authors += "Author: ";
+                    }
+                    else {
+                        authors += "Authors: ";
+                    }
+                    for (var i = 0; i < book.authors.length; i++) {
+                        authors += book.authors[i];
+                        if (i < (book.authors.length - 1)) {
+                            authors += ", ";
+                        }
+                    }
+                }
+                book.authors = authors;
+                book.average_rating = roundHalf(book.average_rating) || "";
+                book.sys_description = book.sys_description || "";
+                if (book.sys_created) {
+                    var published = new Date(book.sys_created);
+                    var now = new Date();
+                    var oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+                    if (published > oneYearAgo) {
+                        book.published = "Published: " + jQuery.timeago(published);
+                    }
+                    else {
+                        book.published = "Published: " + published.getFullYear() + "-" + published.getMonth() + "-" + published.getDate();
+                    }
+                }
+                else {
+                    book.published = "";
+                }
+                $('ul.book-list').append(bookTemplate.template(book));
+            }
+            $("ul.book-list").removeClass('loading');
+        });
+    }
+};
+(function () {
+    var timeOut;
+    $('form.books-filters').on('change keyup', 'input, select', function (e) {
+        var keys = [37, 38, 39, 40, 9, 91, 92, 18, 17, 16];
+        if (e.type === "keyup" && ($(this).attr('name') !== 'filter-text' || keys.indexOf(e.keyCode) !== -1)) {
+            return;
+        }
+        clearTimeout(timeOut);
+        timeOut = setTimeout(function () {
+            app.books.performFilter();
+        }, 300);
+    });
+    $('form.books-filters').on('submit', function (e) {
+        e.preventDefault();
+    });
+    if ($('[data-set]').length) {
+        app.utils.parseDataAttributes();
+    }
+    else if (window.location.search && !!window.location.search.match(/_escaped_fragment/)) {
+        var hashParams = app.utils.getParametersFromHash();
+        app.utils.restoreFromHash();
+        app.books.restoreFilter(hashParams);
+    }
+    else if (window.location.hash) {
+        app.utils.restoreFromHash();
+        app.books.restoreFilter();
+    }
+    else if ($('form.books-filters').length) {
+        app.books.restoreFilter();
+    }
+})();
 app.rating = {
     displayYour: function () {
         var num = Math.round(app.rating.your * 2) / 2;
@@ -9184,7 +10037,7 @@ function searchCtrlFunc($scope, $window, searchService) {
             history.pushState($scope.params, $scope.params.query, searchPage + '?q=' + $scope.params.query);
         }
         if (isStackOverflow) {
-            if (/help/.test(window.location.href)) {
+            if (window.location.href.indexOf('products') >= 0 && window.location.href.indexOf('help') >= 0) {
                 if ($('#stackOverflowProduct').length) {
                     var product = $('#stackOverflowProduct').data('product');
                 }
@@ -9625,6 +10478,162 @@ $(function () {
         app.equalizeBottoms(heroEls);
     }
 });
+app.connectors = {
+    orderBy: {
+        PRIORITY: 'priority',
+        SYS_TITLE: 'sys_title'
+    },
+    open: function (html) {
+        $('.overlay-content').html(html);
+        $('body').addClass('overlay-open');
+    },
+    close: function () {
+        $('body').removeClass('overlay-open');
+        $('.overlay-content').empty();
+    },
+    fallbackImage: function (el) {
+        el.src = "#{cdn( site.base_url + '/images/design/default_connector_200x150.png')}";
+    },
+    hideCodeSnippetIfEmpty: function (snippet_elem) {
+        var snippet_value = snippet_elem.find('.snippet-value');
+        if (!snippet_value.val()) {
+            snippet_elem.hide();
+        }
+    },
+    hideDocsLinkIfEmpty: function (docs_elem) {
+        var docs_link = docs_elem.find('.docs-link');
+        var docs_link_text = docs_elem.find('.docs-link-text');
+        if (!docs_link.attr("href")) {
+            docs_link_text.hide();
+        }
+    },
+    hideExtLinkIfEmpty: function (ext_elem) {
+        var link_1 = ext_elem.find('.link_1');
+        var link_1_text = ext_elem.find('.link_1_text');
+        var link_2 = ext_elem.find('.link_2');
+        var link_2_text = ext_elem.find('.link_2_text');
+        if (!link_1.attr("href")) {
+            link_1_text.hide();
+        }
+        if (!link_2.attr("href")) {
+            link_2_text.hide();
+        }
+    },
+    displayOverlay: function (e) {
+        e.preventDefault();
+        var overlay_content = $(this).parents('li').find('.connector-overlay-content');
+        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
+        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
+        app.connectors.hideDocsLinkIfEmpty(overlay_content);
+        app.connectors.hideExtLinkIfEmpty(overlay_content);
+        app.connectors.open(overlay_content.html());
+    },
+    orderByPriority: function (e) {
+        e.preventDefault();
+        var targetProductFilter = $('[data-target-product]').data('target-product');
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
+        $('.connectors-order a').removeClass('active');
+        $('.order-priority').addClass('active');
+    },
+    orderByAlpha: function (e) {
+        e.preventDefault();
+        var targetProductFilter = $('[data-target-product]').data('target-product');
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
+        $('.connectors-order a').removeClass('active');
+        $('.order-alpha').addClass('active');
+    },
+    connectorFilter: function (query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
+        var url = app.dcp.url.connectors;
+        var request_data = {};
+        if (query) {
+            request_data.query = query;
+        }
+        if (target_product) {
+            request_data.target_product = target_product;
+        }
+        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
+            request_data.sortAlpha = true;
+        }
+        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
+            request_data.id = featuredIDs;
+        }
+        $("ul.connector-results").addClass('loading');
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            data: request_data,
+            container: container,
+            thumbnailSize: thumbnailSize,
+            error: function () {
+                $('ul.connector-results').html(app.dcp.error_message);
+            }
+        }).done(function (data) {
+            var container = this.container || $('ul.connector-results');
+            var thumbnailSize = this.thumbnailSize || "200x150";
+            app.connectors.format(data, container, thumbnailSize);
+        });
+    },
+    format: function (data, container, thumbnailSize) {
+        if (data.responses) {
+            var hits = data.responses[0].hits.hits;
+        }
+        else {
+            var hits = data.hits.hits;
+        }
+        var html = "";
+        for (var i = 0; i < hits.length; i++) {
+            var props = hits[i]._source;
+            props.img_path_thumb = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
+            props.fallback_img = app.connectors.fallbackImage(this);
+            if (!('sys_content' in props)) {
+                props.sys_content = props.sys_description;
+            }
+            if (props.sys_description.length > 150) {
+                props.sys_description = props.sys_description.slice(0, 146).concat(' ...');
+            }
+            if (!props.code_snippet_1) {
+                props.code_snippet_1 = '';
+            }
+            if (!props.code_snippet_2) {
+                props.code_snippet_2 = '';
+            }
+            if (!props.more_details_url) {
+                props.more_details_url = '';
+            }
+            if (!props.link_1_text || !props.link_1_url) {
+                props.link_1_text = '';
+                props.link_1_url = '';
+            }
+            if (!props.link_2_text || !props.link_2_url) {
+                props.link_2_text = '';
+                props.link_2_url = '';
+            }
+            var connectorTemplate = app.templates.connectorTemplate;
+            html += connectorTemplate.template(props);
+        }
+        container.html(html).removeClass('loading');
+    }
+};
+$(function () {
+    $('ul.connector-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
+    $('ul.featured-connectors-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
+    $('.link-list').on('click', 'a.order-priority', app.connectors.orderByPriority);
+    $('.link-list').on('click', 'a.order-alpha', app.connectors.orderByAlpha);
+    $('.overlay-close').on('click', app.connectors.close);
+    var targetProductFilter = $('[data-target-product]').data('target-product');
+    var orderBy = $('[data-order-by]').data('order-by');
+    var connectorResults = $('.connector-results');
+    if (connectorResults.length) {
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
+    }
+    var featuredConnectorIds = $('.featured-connector-ids');
+    if (featuredConnectorIds.length) {
+        var featuredIds = JSON.parse(featuredConnectorIds.text());
+        if ($.isArray(featuredIds) && featuredIds.length > 0) {
+            app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
+        }
+    }
+});
 app.overlay = {};
 app.overlay.open = function (html) {
     $('body').addClass('overlay-open');
@@ -9650,6 +10659,83 @@ $(function () {
         if (e.keyCode === 27) {
             app.overlay.close();
         }
+    });
+});
+$(function () {
+    var ytThumbs = $('#ytThumbs');
+    if (ytThumbs.length) {
+        ytEmbed.init({ 'block': 'ytThumbs', 'q': 'PLnLQldO10NUMqPvW5loz6aLGL3GrqJEGq', 'type': 'playlist', 'results': 50, 'meta': true, 'player': 'link', 'layout': 'full' });
+    }
+});
+app.bookDownload = {
+    urlParam: function (name) {
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!!results) {
+            return results[1] || 0;
+        }
+        else {
+            return null;
+        }
+    },
+    download: function () {
+        var tcDownloadURL = $.encoder.canonicalize(app.bookDownload.urlParam('tcDownloadURL'));
+        var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
+        if (tcDownloadURL &&
+            tcDownloadURL.startsWith('https://access.cdn.redhat.com/')) {
+            tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
+            $('.promotion-header').prepend("<div class='alert-box alert-success'><div class='icon'></div><div class='alert-content'><p><a href='" + tcDownloadURL + "'>Click here</a> if your download does not begin automatically.</p></div></div>");
+            $("a#tcDownloadLink").attr("href", tcDownloadURL);
+            if (!app.utils.isMobile.any()) {
+                $.fileDownload(tcDownloadURL);
+            }
+            var ddDownloadEvent = {
+                eventInfo: {
+                    eventAction: 'book_download',
+                    eventName: 'download',
+                    fileName: tcDownloadFileName,
+                    fileType: 'book',
+                    productDetail: "",
+                    timeStamp: new Date(),
+                    processed: {
+                        adobeAnalytics: false
+                    }
+                }
+            };
+            window.digitalData = window.digitalData || {};
+            digitalData.event = digitalData.event || [];
+            digitalData.event.push(ddDownloadEvent);
+            sendCustomEvent('downloadEvent');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'product_download_file_name': tcDownloadFileName });
+            window.dataLayer.push({ 'event': 'Book Download Requested' });
+        }
+    },
+};
+$(function () {
+    if ($('#book-download-promotion').length) {
+        app.bookDownload.download();
+    }
+});
+app.carousel = app.carousel || {
+    init: function ($carousel) {
+        $carousel.on('click', '.carousel-pager', function () {
+            app.carousel.slide($carousel, $(this).hasClass('prev'));
+        });
+    },
+    slide: function ($carousel, reverse) {
+        var slides = $carousel.find('li');
+        var $slideWrapper = $carousel.find('ul');
+        var scrollLeft = $slideWrapper.scrollLeft();
+        var $nextItem;
+        var pagerWidth = $carousel.find('a.carousel-pager:first').width();
+        var itemWidth = $carousel.find('li:first').outerWidth(true);
+        var ammount = (reverse ? '+=' + (-itemWidth) : '+=' + itemWidth);
+        $slideWrapper.animate({ 'scrollLeft': ammount });
+    }
+};
+$(function () {
+    $('.video-carousel').each(function (i, el) {
+        app.carousel.init($(el));
     });
 });
 app.video = app.video || {};
@@ -14617,6 +15703,7 @@ $(function () {
         app.topics.fetch();
     }
 });
+$('.datepicker').pickadate();
 app = window.app || {};
 app.latest = {};
 app.latest.fetch = function () {
@@ -14720,6 +15807,16 @@ if (tab !== null) {
         this.parentElement.classList.toggle('open');
     });
 }
+var app = app || {};
+app.abTest = {
+    swap: function (path, selector) {
+        var url = app.baseUrl + '/' + path;
+        $.get(url)
+            .then(function (html) {
+            $(selector).html(html);
+        });
+    }
+};
 app = window.app || {};
 app.productForums = {};
 app.productForums.fetch = function () {
@@ -14782,6 +15879,23 @@ window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
                 showCollectorDialog();
             });
         }
+    }
+});
+app.adaptivePlaceholder = {
+    changeFilledState: function () {
+        var input = $(this);
+        var value = input.val();
+        if (value !== "" && value != undefined) {
+            input.addClass('filled');
+        }
+        else {
+            input.removeClass('filled');
+        }
+    }
+};
+$(function () {
+    if ($('.rhd-adaptive-placeholder').length) {
+        $('input, textarea, select').on('blur', app.adaptivePlaceholder.changeFilledState);
     }
 });
 (function () {

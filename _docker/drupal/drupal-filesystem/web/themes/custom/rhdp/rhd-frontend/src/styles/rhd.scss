@@ -56,32 +56,95 @@
 
 
 [data-rhd-grid="normal"] {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    display: grid;
+  display: grid;
+  grid-template-columns: [content-start] 1fr [content-end];
+  grid-template-rows: minmax(30px, 1fr) [bottomrow];
+  grid-auto-flow: column;
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+    margin: 0 30px;
+    min-width: 640px;
+    max-width: auto;  
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+    margin: 0 30px;
+    min-width: 960px;
+    max-width: auto;      
+  }
+
+  @media (min-width: 1260px) {
     grid-template-columns: repeat(12, [content-start] 70px) [content-end];
-    grid-template-rows: minmax(30px, 1fr) [bottomrow];
-    grid-auto-flow: column;
-    grid-gap: 30px;
-    margin: 0 auto;
-    width: 1200px;
+    min-width: 1260px;
+    max-width: auto;      
+  }
 }
 
 [data-rhd-grid="quad"] {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-  margin: 0 auto;
-  width: 1200px;
+  grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+    margin: 0 30px;
+    min-width: 640px;
+    max-width: auto;  
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+    margin: 0 30px;
+    min-width: 960px;
+    max-width: auto;      
+  }
+
+  @media (min-width: 1260px) {
+    grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+    min-width: 1260px;
+    max-width: auto;      
+  }
 }
 
 [data-rhd-grid="triple"] {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
-  margin: 0 auto;
-  width: 1200px;
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
+  margin: 0 15px;
+  max-width: 320px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
+    margin: 0 30px;
+    min-width: 640px;
+    max-width: auto;  
+  }
+
+  @media (min-width: 960px) {
+    min-width: 960px;
+    max-width: auto;      
+  }
+
+  @media (min-width: 1260px) {
+    grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
+    min-width: 1260px;
+    max-width: auto;      
+  }
+
+  @media (min-width: 1260px) {
+    max-width: 1260px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 [data-rhd-col="span12"] {

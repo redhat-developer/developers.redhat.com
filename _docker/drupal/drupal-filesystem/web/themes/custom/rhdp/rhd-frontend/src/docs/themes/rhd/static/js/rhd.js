@@ -336,7 +336,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n    section {\n        display: grid;\n        grid-template-columns: repeat(4, 1fr);\n        grid-gap: 30px;\n        margin: 0 auto;\n        width: 1200px;\n        justify-items: center;\n    }\n</style>\n<section data-rhd-grid=\"quad\">\n<slot></slot>\n</section>\n";
+                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-template-rows: auto;\n        grid-auto-flow: row;\n        grid-gap: 15px;\n        margin: 0 15px;\n        max-width: 320px;\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-gap: 30px;\n            margin: 0 auto;\n            min-width: 1200px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
                         return tpl;
                     };
                     _this.items = [];
@@ -10037,7 +10037,7 @@ function searchCtrlFunc($scope, $window, searchService) {
             history.pushState($scope.params, $scope.params.query, searchPage + '?q=' + $scope.params.query);
         }
         if (isStackOverflow) {
-            if (/help/.test(window.location.href)) {
+            if (window.location.href.indexOf('products') >= 0 && window.location.href.indexOf('help') >= 0) {
                 if ($('#stackOverflowProduct').length) {
                     var product = $('#stackOverflowProduct').data('product');
                 }
