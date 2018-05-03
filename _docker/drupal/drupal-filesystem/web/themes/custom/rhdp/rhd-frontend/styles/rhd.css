@@ -1393,14 +1393,27 @@ a.light-cta {
   .assembly-type-call_to_action .header {
     color: #FFF;
     font-size: 27px;
-    margin-bottom: 24px;
-    line-height: 1.25; }
+    line-height: 1.25;
+    margin-bottom: 5px; }
     @media (min-width: 576px) {
       .assembly-type-call_to_action .header {
         font-size: 40px; } }
     @media (min-width: 768px) {
       .assembly-type-call_to_action .header {
-        font-size: 57px; } }
+        font-size: 57px;
+        margin-bottom: 0; } }
+  .assembly-type-call_to_action p:last-child, .assembly-type-call_to_action ul:last-child, .assembly-type-call_to_action ol:last-child {
+    margin-bottom: 0; }
+  .assembly-type-call_to_action > .container > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action >
+  #block-rhdp-local-tasks > .button:last-child {
+    margin-top: 24px; }
+    @media (min-width: 768px) {
+      .assembly-type-call_to_action > .container > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action >
+      #block-rhdp-local-tasks > .button:last-child {
+        margin-top: 34px; } }
+  .assembly-type-call_to_action > .container > .button:first-child:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:first-child:last-child, .assembly-type-call_to_action >
+  #block-rhdp-local-tasks > .button:first-child:last-child {
+    margin-top: 0; }
   .assembly-type-call_to_action.left {
     float: none !important;
     text-align: left; }
