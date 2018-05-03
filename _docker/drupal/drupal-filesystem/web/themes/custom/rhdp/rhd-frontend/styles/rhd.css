@@ -6718,28 +6718,28 @@ body.fullbleed .content-wrapper {
       box-shadow: none; }
   .rhd-mobile-tray .rhd-mobile-tray-inner {
     position: relative; }
-  .rhd-mobile-tray .menu--account {
+  .rhd-mobile-tray .rh-universal-login {
     background-color: #242424;
     color: #FFF;
     font-size: 14px; }
-    .rhd-mobile-tray .menu--account a {
+    .rhd-mobile-tray .rh-universal-login a {
       color: #FFF;
       letter-spacing: 0.05em; }
-    .rhd-mobile-tray .menu--account li:first-child {
+    .rhd-mobile-tray .rh-universal-login li:first-child {
       padding: 21px 15px;
       padding-right: 130px; }
-    .rhd-mobile-tray .menu--account li:nth-child(n+2) {
+    .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) {
       font-size: 11px;
       font-weight: 600;
       text-align: center;
       text-transform: uppercase; }
-      .rhd-mobile-tray .menu--account li:nth-child(n+2) > a {
+      .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) > a {
         padding: 10px 15px;
         display: block;
         background-color: #363636; }
-    .rhd-mobile-tray .menu--account .menu-item {
+    .rhd-mobile-tray .rh-universal-login .menu-item {
       padding-top: 0; }
-    .rhd-mobile-tray .menu--account .icon {
+    .rhd-mobile-tray .rh-universal-login .icon {
       margin-right: 10px; }
   .rhd-mobile-tray .menu-toggle {
     padding: 0;
@@ -12835,15 +12835,6 @@ body.page-node-type-learning-path h1.page-title {
   max-width: none;
   padding: 0;
   margin-bottom: 0; }
-
-.rh-universal-header {
-  background-color: #1A1A1A;
-  flex: 0 0 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: #5e6a71; }
 
 .rh-universal-footer {
   background-color: #1A1A1A;
