@@ -1,12 +1,12 @@
 <section{{ attributes.addClass('assembly') }}>
     <div class="container">
         <header>
-            {{ content.name }}
+            {{ content.field_title }}
         </header>
         {{ content.content }}
         <div>
             {% if content %}
-                {{- content|without('name', 'content') -}}
+                {{- content|without('field_title', 'content') -}}
             {% endif %}
         </div>
     </div>

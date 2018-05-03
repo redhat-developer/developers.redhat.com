@@ -72,20 +72,20 @@
     grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
     margin: 0 30px;
     min-width: 640px;
-    max-width: auto;  
+    max-width: auto;
   }
 
   @media (min-width: 960px) {
     grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
     margin: 0 30px;
     min-width: 960px;
-    max-width: auto;      
+    max-width: auto;
   }
 
   @media (min-width: 1260px) {
     grid-template-columns: repeat(12, [content-start] 70px) [content-end];
     min-width: 1260px;
-    max-width: auto;      
+    max-width: auto;
   }
 }
 
@@ -100,20 +100,20 @@
     grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
     margin: 0 30px;
     min-width: 640px;
-    max-width: auto;  
+    max-width: auto;
   }
 
   @media (min-width: 960px) {
     grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
     margin: 0 30px;
     min-width: 960px;
-    max-width: auto;      
+    max-width: auto;
   }
 
   @media (min-width: 1260px) {
     grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
     min-width: 1260px;
-    max-width: auto;      
+    max-width: auto;
   }
 }
 
@@ -128,18 +128,18 @@
     grid-template-columns: repeat(2, [content-start] 1fr) [content-end];
     margin: 0 30px;
     min-width: 640px;
-    max-width: auto;  
+    max-width: auto;
   }
 
   @media (min-width: 960px) {
     min-width: 960px;
-    max-width: auto;      
+    max-width: auto;
   }
 
   @media (min-width: 1260px) {
     grid-template-columns: repeat(3, [content-start] 1fr) [content-end];
     min-width: 1260px;
-    max-width: auto;      
+    max-width: auto;
   }
 
   @media (min-width: 1260px) {
