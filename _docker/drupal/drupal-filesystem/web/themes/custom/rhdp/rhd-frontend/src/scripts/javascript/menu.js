@@ -75,6 +75,9 @@
   };
   Drupal.behaviors.topicNavSlider = {
     attach: function (context, settings) {
+      if (!$('.rhd-topic-nav').length) {
+        return;
+      }
       $('.rhd-topic-nav').slick({
         infinite: false,
         slidesToShow: 4,
