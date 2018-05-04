@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.all_products_listing
     - field.field.assembly.all_products_listing.field_content
     - field.field.assembly.all_products_listing.field_navigation_title
+    - field.field.assembly.all_products_listing.field_title
   module:
     - text
     - workbench_moderation
@@ -15,7 +16,7 @@ bundle: all_products_listing
 mode: default
 content:
   field_content:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -23,7 +24,15 @@ content:
     type: text_textarea
     region: content
   field_navigation_title:
-    weight: 6
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -32,7 +41,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 4
+    weight: 5
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -46,19 +55,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  user_id:
-    type: entity_reference_autocomplete
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
     third_party_settings: {  }
   visual_styles:
     type: options_select
@@ -67,4 +67,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  user_id: true
