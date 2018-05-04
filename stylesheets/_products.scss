@@ -45,6 +45,12 @@
 }
 .hero.hero-wide.product-header {
     margin-bottom: 0;
+    h1, .field__item  {
+      color: $white;
+    }
+    .field--name-field-product-summary {
+      font-size: 27px;
+    }
 }
 
 .product-header {

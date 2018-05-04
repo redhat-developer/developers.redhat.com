@@ -7382,157 +7382,20 @@ body.page-node-type-learning-path .wrapper {
       height: 200px; } }
 
 .hero.hero-wide.product-header {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  border: none; }
 
-.product-header {
-  background-position: top center;
-  background-size: cover;
-  background-repeat: repeat-x; }
-  .product-header.amq {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_amq.png"); }
-  .product-header.atomic {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rhel_atomic_host.png"); }
-  .product-header.bpmsuite {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_bpm_suite.png"); }
-  .product-header.brms {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_brms.png"); }
-  .product-header.cdk {
-    background-image: url("https://static.jboss.org/rhd/images/products/RHDev_productheader_desktop_cdk.png"); }
-  .product-header.datagrid {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_data_grid.png"); }
-  .product-header.datavirt {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_data_virt.png"); }
-  .product-header.developertoolset {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rh_developer_toolset.png"); }
-  .product-header.devstudio {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_devstudio.png"); }
-  .product-header.devsuite {
-    background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_devsuite.png"); }
-  .product-header.dotnet {
-    background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_dotnetrhel.png"); }
-  .product-header.eap {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_eap.png"); }
-  .product-header.fuse {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_fuse.png"); }
-  .product-header.mobileplatform {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rh_mobile_app_platform.png"); }
-  .product-header.openshift {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_openshift_enterprise.png"); }
-  .product-header.rhel {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rhel.png"); }
-  .product-header.satellite {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rh_satellite.png"); }
-  .product-header.softwarecollections {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_rh_software_collections.png"); }
-  .product-header.webserver {
-    background-image: url("https://static.jboss.org/rhd/images/products/prod_header_jboss_webserver.png"); }
-  @media only screen and (max-width: 768px) {
-    .product-header.amq {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_amq.png"); }
-    .product-header.atomic {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rhel_atomic_host.png"); }
-    .product-header.bpmsuite {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_bpm_suite.png"); }
-    .product-header.brms {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_brms.png"); }
-    .product-header.cdk {
-      background-image: url("https://static.jboss.org/rhd/images/products/RHDev_productheader_tablet_cdk.png"); }
-    .product-header.datagrid {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_grid.png"); }
-    .product-header.datavirt {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_virt.png"); }
-    .product-header.developertoolset {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rh_developer_toolset.png"); }
-    .product-header.devstudio {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_devstudio.png"); }
-    .product-header.devsuite {
-      background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_devsuite.png"); }
-    .product-header.dotnet {
-      background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_dotnetrhel.png"); }
-    .product-header.eap {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_eap.png"); }
-    .product-header.fuse {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_fuse.png"); }
-    .product-header.mobileplatform {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rh_mobile_app_platform.png"); }
-    .product-header.openshift {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_openshift_enterprise.png"); }
-    .product-header.rhel {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rhel.png"); }
-    .product-header.satellite {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rh_satellite.png"); }
-    .product-header.softwarecollections {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_rh_software_collections.png"); }
-    .product-header.webserver {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_webserver.png"); } }
-  @media (max-width: 320px) {
-    .product-header.amq {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_amq.png"); }
-    .product-header.atomic {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rhel_atomic_host.png"); }
-    .product-header.bpmsuite {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_bpm_suite.png"); }
-    .product-header.brms {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_brms.png"); }
-    .product-header.cdk {
-      background-image: url("https://static.jboss.org/rhd/images/products/RHDev_productheader_mobile_cdk.png"); }
-    .product-header.datagrid {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_grid.png"); }
-    .product-header.datavirt {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_virt.png"); }
-    .product-header.developertoolset {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rh_developer_toolset.png"); }
-    .product-header.devstudio {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_devstudio.png"); }
-    .product-header.devsuite {
-      background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_devsuite.png"); }
-    .product-header.dotnet {
-      background-image: url("https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_dotnetrhel.png"); }
-    .product-header.eap {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_eap.png"); }
-    .product-header.fuse {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_fuse.png"); }
-    .product-header.mobileplatform {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rh_mobile_app_platform.png"); }
-    .product-header.openshift {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_openshift_enterprise.png"); }
-    .product-header.rhel {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rhel.png"); }
-    .product-header.satellite {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rh_satellite.png"); }
-    .product-header.softwarecollections {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_rh_software_collections.png"); }
-    .product-header.webserver {
-      background-image: url("https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_webserver.png"); } }
+.products-content {
+  padding: 0; }
 
 .product-graphics {
-  background-position: left top, right bottom;
-  background-repeat: no-repeat;
   padding-bottom: 5em; }
-  .product-graphics.storage-and-big-data {
-    background-image: url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_orange-1.png"), url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png"); }
-  .product-graphics.it-infrastructure {
-    background-image: url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_blue-1.png"), url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png"); }
-  .product-graphics.application-development {
-    background-image: url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_green-1.png"), url("https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png"); }
-  .product-graphics .row.content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding-top: 40px; }
 
 div.mobile.product-color {
   margin: -15px -15px 10px -15px;
   padding-bottom: 0; }
-  div.mobile.product-color.storage-and-big-data {
-    border-top: 9px solid #f0ab00; }
-  div.mobile.product-color.it-infrastructure {
-    border-top: 9px solid #0088ce; }
-  div.mobile.product-color.application-development {
-    border-top: 9px solid #92d400; }
 
 .mobile.product-header {
-  background-image: none;
-  background-color: #FFFFFF;
-  color: #333333;
   border-bottom: none;
   padding-bottom: 0; }
   .mobile.product-header h3 {
@@ -7559,10 +7422,6 @@ div.mobile.product-color {
     border: 2px solid #CC0000;
     margin-left: 0; }
 
-@media only screen and (max-width: 1024px) {
-  .product-graphics.storage-and-big-data, .product-graphics.it-infrastructure, .product-graphics.application-development {
-    background-image: none; } }
-
 .product .toolbar {
   text-align: right; }
   .product .toolbar a {
@@ -7576,22 +7435,8 @@ div.mobile.product-color {
   font-weight: normal; }
 
 .product-header {
-  background-color: rgba(0, 0, 0, 0.77);
   padding: 20px 15px 15px 15px; }
-  .product-header.storage-and-big-data {
-    border-bottom: 9px solid #f0ab00; }
-  .product-header.it-infrastructure {
-    border-bottom: 9px solid #0088ce; }
-  .product-header.application-development {
-    border-bottom: 9px solid #92d400; }
-  .product-header h2, .product-header .breadcrumbs > *:before, .product-header .breadcrumbs a {
-    color: #FFFFFF; }
-  .product-header .breadcrumbs li {
-    color: #FFFFFF;
-    text-transform: none;
-    font-size: 14px; }
   .product-header h3 {
-    color: #D5D5D5;
     font-weight: 100;
     margin-bottom: 0;
     font-size: 27px; }
@@ -7600,57 +7445,7 @@ div.mobile.product-color {
       padding: 20px; } }
 
 #hero-try-or-buy {
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding-top: 15px; }
-  #hero-try-or-buy.storage-and-big-data {
-    border-bottom: 1px dashed #f0ab00; }
-  #hero-try-or-buy.it-infrastructure {
-    border-bottom: 1px dashed #0088ce; }
-  #hero-try-or-buy.application-development {
-    border-bottom: 1px dashed #92d400; }
-  #hero-try-or-buy .button {
-    width: 100%;
-    padding: .7rem;
-    display: inline-block;
-    margin: 1.5em 0; }
-  #hero-try-or-buy p {
-    margin-bottom: 0; }
-    #hero-try-or-buy p.caps {
-      text-transform: uppercase;
-      margin-top: 0; }
-  #hero-try-or-buy .hello-world {
-    align-items: center;
-    margin-bottom: 1em; }
-    #hero-try-or-buy .hello-world > [class^=large-]:first-child {
-      padding-left: 0; }
-    #hero-try-or-buy .hello-world > [class^=large-]:last-child {
-      padding-right: 0; }
-    #hero-try-or-buy .hello-world > div:first-child {
-      text-align: center; }
-    #hero-try-or-buy .hello-world h2 {
-      color: #333333;
-      font-size: 37px;
-      margin-bottom: 0; }
-    @media only screen and (max-width: 64em) {
-      #hero-try-or-buy .hello-world {
-        margin-bottom: 15px; }
-        #hero-try-or-buy .hello-world small {
-          display: block; }
-        #hero-try-or-buy .hello-world p {
-          margin-bottom: 10px; } }
-  #hero-try-or-buy .outside-links a {
-    text-align: left;
-    display: block;
-    padding: 5px 16px;
-    color: #333333; }
-    #hero-try-or-buy .outside-links a p {
-      color: #0066CC;
-      margin-top: 0; }
-      #hero-try-or-buy .outside-links a p svg {
-        margin-left: 5px; }
-    #hero-try-or-buy .outside-links a i {
-      margin-left: 5px; }
+  display: none; }
 
 .product-placeholder {
   width: 100%;
@@ -7765,16 +7560,9 @@ div.mobile.product-color {
   background: #f5f5f6;
   padding: 0; }
 
-@media only screen and (max-width: 1170px) {
-  #hero-try-or-buy {
-    padding: 0;
-    margin: 0; }
-    #hero-try-or-buy .hello-world {
-      padding: 0; } }
-
 @media only screen and (max-width: 480px) {
-  #hero-try-or-buy {
-    display: none; }
+  .products-content {
+    padding: 0 1em; }
   .side-nav li.side-nav-toggle {
     background: #333333 !important; }
   .product-page-content {
@@ -7789,9 +7577,7 @@ div.mobile.product-color {
   .product-graphics .row.content {
     padding-top: 0; }
     .product-graphics .row.content h2.subpage-name {
-      font-size: 1.5em; }
-  .hero.hero-wide.product-header {
-    display: none; } }
+      font-size: 1.5em; } }
 
 ul.product-langs {
   margin-top: 25px !important; }
