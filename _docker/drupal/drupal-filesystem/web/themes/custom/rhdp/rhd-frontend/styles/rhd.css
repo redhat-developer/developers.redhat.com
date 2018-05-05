@@ -10412,6 +10412,8 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
 
 div.so-tags {
   margin-top: 5px; }
+  div.so-tags .tag:not(:nth-last-of-type(2)):after {
+    content: ', '; }
 
 div.so-tags > *:nth-last-child(2):after {
   content: ''; }
