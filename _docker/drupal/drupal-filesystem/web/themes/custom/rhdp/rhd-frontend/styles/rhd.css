@@ -989,10 +989,18 @@ a.light-cta {
     margin-top: 0; }
   .assembly-type-hero .content *:last-child {
     margin-bottom: 0; }
-  .assembly-type-hero .topics-billboard-list .topic:after {
-    content: ' / '; }
-  .assembly-type-hero .topics-billboard-list .topic:last-child:after {
-    content: ''; }
+  .assembly-type-hero .topics-billboard-list {
+    font-size: 23px;
+    line-height: 1.24;
+    margin: 0;
+    font-weight: 500; }
+    @media (min-width: 576px) {
+      .assembly-type-hero .topics-billboard-list {
+        font-size: 50px; } }
+    .assembly-type-hero .topics-billboard-list .topic:after {
+      content: ' / '; }
+    .assembly-type-hero .topics-billboard-list .topic:last-child:after {
+      content: ''; }
 
 .assembly-type-on_page_navigation {
   background-color: #0066CC;
