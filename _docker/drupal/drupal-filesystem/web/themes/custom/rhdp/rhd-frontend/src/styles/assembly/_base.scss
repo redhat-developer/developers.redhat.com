@@ -15,6 +15,9 @@
   }
   &.assembly-dark {
     background: #252525;
+    & a{
+      color: $link-dark-background;
+    }
     &, h1, h2, h3, h4, h5, h6 {
       color: white;
     }
