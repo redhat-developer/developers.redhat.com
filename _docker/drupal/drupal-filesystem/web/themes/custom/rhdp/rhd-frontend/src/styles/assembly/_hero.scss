@@ -20,20 +20,6 @@
       display: none;
     }
   }
-  .homepage-hero-heading {
-    font-size: 23px;
-    line-height: 2em;
-    @include tablet-portrait {
-      font-size: 45px;
-      line-height: 1.4;
-    }
-    @include tablet-landscape {
-      font-size: 50px;
-    }
-    a {
-      white-space: nowrap;
-    }
-  }
   h2 {
     font-size: 4rem;
     line-height: 1.1;
@@ -44,15 +30,7 @@
       font-size: 50px;
     }
   }
-  a {
-    color: #0066CC;
-    font-weight: bold;
-    text-decoration: none;
-    background-image: radial-gradient(ellipse, #0066CC 50%,transparent 50%);
-    background-position: 0 1.1em;
-    background-repeat: repeat-x;
-    background-size: 6px 4px;
-  }
+
   .content {
     *:first-child {
       margin-top: 0;
@@ -61,25 +39,54 @@
       margin-bottom: 0;
     }
   }
-  .topics-billboard-list {
-    font-size: 23px;
-    line-height: 1.24;
-    margin: 0;
-    font-weight: 500;
+}
 
-    @include tablet-portrait {
-      font-size: 50px;
+.topics-hero-list {
+  font-size: 23px;
+  line-height: 1.24;
+  margin: 0;
+  font-weight: 500;
+
+  @include tablet-portrait {
+    font-size: 40px;
+    margin-bottom: 1rem;
+  }
+
+  @include desktop-small {
+    font-size: 70px;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: #0066CC;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    &:before {
+      content: ' ';
+      width: calc(100% - 1em);
+      position: absolute;
+      height: 4px;
+      bottom: 0;
+      left: 0;
+      background-image: radial-gradient(ellipse, #0066CC 50%,transparent 50%);
+      background-repeat: repeat-x;
+      background-size: 6px 4px;
     }
+    &:last-child:before {
+      width: 100%;
+    }
+  }
 
-    .topic {
-      &:after {
-        content: ' / ';
-      }
-      &:last-child {
-        &:after {
-          content: '';
-        }
-      }
+  .topic {
+    white-space: nowrap;
+    &:after {
+      content: ' / ';
+      font-weight: normal;
+      color: #333;
+    }
+    &:last-child:after {
+      content: '';
     }
   }
 }
