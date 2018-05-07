@@ -87,9 +87,9 @@ export default class DPCategoryList extends RHElement {
                 cols = 3;
             }
             let detail = e['detail'];
-            let len = this.querySelectorAll('dp-category').length;
+            let len = this.querySelectorAll('dp-category').length+1;
             let calc = 1 + (Math.ceil(detail.index / cols) * cols);
-            let idx = calc <= len+1 ? calc : len;
+            let idx = calc <= len ? calc : len;
             let list = this.querySelector('dp-category-item-list[visible]');
             if (list) {
                 list.removeAttribute('visible');
@@ -116,7 +116,7 @@ export default class DPCategoryList extends RHElement {
                 this.active = detail.index;
                 list = this.querySelector(`dp-category:nth-child(${this.active})`).querySelector('dp-category-item-list');
                 
-                if (idx <= len) {
+                if (idx < len) {
                     let rowEle = this.querySelector(`dp-category:nth-child(${idx})`);
                     this.insertBefore(list, rowEle);
                 } else {

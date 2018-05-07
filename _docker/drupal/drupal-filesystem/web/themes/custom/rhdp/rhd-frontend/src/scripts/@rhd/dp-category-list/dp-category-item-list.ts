@@ -22,6 +22,8 @@ export default class DPCategoryItemList extends RHElement {
                 grid-gap: 15px;
                 position: relative;
                 padding-top: 15px;
+                padding-right: 15px;
+                padding-left: 15px;
             }
 
             @media (min-width: 500px) {
