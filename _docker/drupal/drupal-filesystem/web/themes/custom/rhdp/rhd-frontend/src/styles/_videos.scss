@@ -96,6 +96,23 @@ section.related-content {
   margin-top: 3em;
 }
 
+.video-caption {
+  margin-top: 1em;
+  text-align: center;
+  font-size: .9em;
+}
+
+.video-caption * {
+  font-size: .9rem;
+}
+
+.product-video {
+  margin: 30px 0;
+  .video-caption {
+    margin-top: -3em;
+  }
+}
+
 @include tablet-landscape-and-down {
   .video-page {
     .slides iframe {
@@ -107,6 +124,12 @@ section.related-content {
       margin-left: 15px;
     }
   }
+  .product-video {
+    margin: 1em 0 0 0;
+    .video-caption {
+      margin-top: 0;
+    }
+  } 
 }
 
 @include tablet-portrait-and-down { 
@@ -130,19 +153,6 @@ section.related-content {
   }
 }
 
-.video-caption {
-  margin-top: 1em;
-  text-align: center;
-  font-size: .9em;
-}
-
-.video-caption * {
-  font-size: .9rem;
-}
-
-.product-video .video-caption {
-  margin-top: -3em;
-}
 @include mobile-landscape-and-down {
   .video-page {
     .slides iframe { height: 230px; }

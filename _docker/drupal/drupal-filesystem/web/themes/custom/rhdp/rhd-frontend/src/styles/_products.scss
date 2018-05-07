@@ -1,112 +1,23 @@
 // Products
 .hero.hero-wide.product-header {
     margin-bottom: 0;
+    border: none;
 }
 
-.product-header {
-  background-position: top center;
-  background-size: cover;
-  background-repeat: repeat-x;
-
-  &.amq {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_amq.png');}
-  &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rhel_atomic_host.png');}
-  &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_bpm_suite.png');}
-  &.brms {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_brms.png');}
-  &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_desktop_cdk.png');}
-  &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_data_grid.png');}
-  &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_data_virt.png');}
-  &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_developer_toolset.png');}
-  &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_devstudio.png');}
-  &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_devsuite.png');}
-  &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_desktop_dotnetrhel.png');}
-  &.eap {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_eap.png');}
-  &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_fuse.png');}
-  &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_mobile_app_platform.png');}
-  &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_openshift_enterprise.png');}
-  &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rhel.png');}
-  &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_satellite.png');}
-  &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_rh_software_collections.png');}
-  &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/prod_header_jboss_webserver.png');}
-
-  @include tablet-portrait-and-down {
-    &.amq {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_amq.png');}
-    &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rhel_atomic_host.png');}
-    &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_bpm_suite.png');}
-    &.brms {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_brms.png');}
-    &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_tablet_cdk.png');}
-    &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_grid.png');}
-    &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_data_virt.png');}
-    &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_developer_toolset.png');}
-    &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_devstudio.png');}
-    &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_devsuite.png');}
-    &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_tablet_dotnetrhel.png');}
-    &.eap {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_eap.png');}
-    &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_fuse.png');}
-    &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_mobile_app_platform.png');}
-    &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_openshift_enterprise.png');}
-    &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rhel.png');}
-    &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_satellite.png');}
-    &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_rh_software_collections.png');}
-    &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/productheader_tablet_jboss_webserver.png');}
-  }
-  @include mobile-portrait-and-down {
-    &.amq {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_amq.png');}
-    &.atomic {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rhel_atomic_host.png');}
-    &.bpmsuite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_bpm_suite.png');}
-    &.brms {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_brms.png');}
-    &.cdk {background-image: url('https://static.jboss.org/rhd/images/products/RHDev_productheader_mobile_cdk.png');}
-    &.datagrid {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_grid.png');}
-    &.datavirt {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_data_virt.png');}
-    &.developertoolset {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_developer_toolset.png');}
-    &.devstudio {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_devstudio.png');}
-    &.devsuite {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_devsuite.png');}
-    &.dotnet {background-image: url('https://static.jboss.org/images/rhd/headers/RHDev_productheader_mobile_dotnetrhel.png');}
-    &.eap {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_eap.png');}
-    &.fuse {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_fuse.png');}
-    &.mobileplatform {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_mobile_app_platform.png');}
-    &.openshift {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_openshift_enterprise.png');}
-    &.rhel {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rhel.png');}
-    &.satellite {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_satellite.png');}
-    &.softwarecollections {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_rh_software_collections.png');}
-    &.webserver {background-image: url('https://static.jboss.org/rhd/images/products/productheader_mobile_jboss_webserver.png');}
-  }
+.products-content {
+  padding: 0;
 }
 
 .product-graphics {
-  background-position: left top, right bottom;
-  background-repeat: no-repeat;
   padding-bottom: 5em;
-  &.storage-and-big-data {
-    background-image: url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_orange-1.png'),  url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
-  }
-  &.it-infrastructure {
-    background-image: url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_blue-1.png'),  url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
-  }
-  &.application-development {
-    background-image: url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_green-1.png'),  url('https://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
-  }
-
-  .row.content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding-top: 40px;
-  }
-
 }
 
 div.mobile.product-color {
   margin: -15px -15px 10px -15px;
   padding-bottom: 0;
-
-  &.storage-and-big-data {border-top: 9px solid $storage;}
-  &.it-infrastructure {border-top: 9px solid $infrastructure-alt;}
-  &.application-development {border-top: 9px solid $app-development;}
-
 }
 
 .mobile.product-header {
-  background-image: none;
-  background-color: $white;
-  color: $grey-7;
   border-bottom: none;
   padding-bottom: 0;
 
@@ -149,14 +60,6 @@ div.mobile.product-color {
   }
 }
 
-@include tablet-landscape-and-down {
-  .product-graphics {
-    &.storage-and-big-data, &.it-infrastructure, &.application-development {
-      background-image: none;
-    }
-  }
-}
-
 .product {
   .toolbar {
     text-align: right;
@@ -174,27 +77,8 @@ div.mobile.product-color {
 }
 
 .product-header{
-  background-color: rgba(0, 0, 0, 0.77);
   padding: 20px 15px 15px 15px;
-  &.storage-and-big-data {
-    border-bottom: 9px solid $storage;
-  }
-  &.it-infrastructure {
-    border-bottom: 9px solid $infrastructure-alt;
-  }
-  &.application-development {
-    border-bottom: 9px solid $app-development;
-  }
-  h2, .breadcrumbs > *:before, .breadcrumbs a{
-    color: $white;
-  }
-  .breadcrumbs li {
-    color: $white;
-    text-transform: none;
-    font-size: 14px;
-  }
   h3 {
-    color: $grey-3;
     font-weight: 100;
     margin-bottom: 0;
     font-size: 27px;
@@ -205,78 +89,7 @@ div.mobile.product-color {
 }
 
 #hero-try-or-buy {
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding-top: 15px;
-
-  &.storage-and-big-data {
-    border-bottom: 1px dashed $storage;
-  }
-  &.it-infrastructure {
-    border-bottom: 1px dashed $infrastructure-alt;
-  }
-  &.application-development {
-    border-bottom: 1px dashed $app-development;
-  }
-  .button {
-    width: 100%;
-    padding: .7rem;
-    display: inline-block;
-    margin: 1.5em 0;
-  }
-  p {
-    margin-bottom: 0;
-    &.caps {
-      text-transform: uppercase;
-      margin-top: 0;
-    }
-  }
-  .hello-world{
-    & > [class^=large-] {
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-    align-items: center;
-    margin-bottom: 1em;
-    & > div:first-child {
-      text-align: center;
-    }
-    h2{
-      color: $grey-7;
-      font-size: 37px;
-      margin-bottom: 0;
-    }
-
-    @media only screen and (max-width: 64em) {
-      margin-bottom: 15px;
-      small {
-        display: block;
-      }
-      p {
-        margin-bottom: 10px;
-      }
-    }
-  }
-  .outside-links a{
-    text-align: left;
-    display: block;
-    padding: 5px 16px;
-    color: $grey-7;
-    p {
-      color: $link;
-      margin-top: 0;
-      svg {
-        margin-left: 5px;
-      }
-    }
-    i {
-      margin-left: 5px;
-    }
-  }
+  display: none;
 }
 
 .product-placeholder{
@@ -289,7 +102,7 @@ div.mobile.product-color {
 .product-video h4{display: none;}
 
 #product-features{
-  margin: 1em 0;
+  margin: 1.5em 0;
   .feature-icon {
     text-align: center;
     p {
@@ -423,20 +236,11 @@ div.mobile.product-color {
   padding: 0;  
 }
 
-@include desktop-and-down {
-  #hero-try-or-buy {
-    padding: 0;
-    margin:0;
-    .hello-world {
-      padding: 0;
-    }
-  }
-}
-
 @include mobile-landscape-and-down {
-  #hero-try-or-buy {
-    display: none;
+  .products-content {
+    padding: 0 1em;
   }
+
 
   .side-nav li.side-nav-toggle {
     background: $grey-7 !important;
@@ -464,10 +268,6 @@ div.mobile.product-color {
     h2.subpage-name {
       font-size: 1.5em;
     }
-  }
-
-  .hero.hero-wide.product-header {
-    display: none;
   }
 }
 
@@ -753,7 +553,6 @@ rhdp-tryitnow {
       li {
         display: list-item;
         &.side-nav-toggle a:after {
-          // @include transform(rotate(-90deg));
         }
       }
     }
@@ -772,13 +571,18 @@ button.tiny, .button.tiny {
   border-bottom: 1px solid #d5d5d5;
   margin: 1em 0 0 0;
   .dropdown.button, button.dropdown {
-    position: relative;
     float: right;
+    margin-top: 15px;
   }
   & > div {
     padding-left: 0;
   }
-  ul li:before{display: none;}
+  h5 {
+    margin: 5px 0;
+  }
+  p {
+    margin-top: 0;
+  }
 }
 #guides-row:last-child {
   border-bottom: none;
