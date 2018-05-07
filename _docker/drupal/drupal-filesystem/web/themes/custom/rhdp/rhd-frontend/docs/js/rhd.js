@@ -47,7 +47,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-System.register("typescript/rhelement", [], function (exports_1, context_1) {
+System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var RHElement;
@@ -101,7 +101,7 @@ System.register("typescript/rhelement", [], function (exports_1, context_1) {
         }
     };
 });
-System.register("typescript/rhdp-alert", ["typescript/rhelement"], function (exports_2, context_2) {
+System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_2, context_2) {
     "use strict";
     var __moduleName = context_2 && context_2.id;
     var rhelement_1, RHDPAlert;
@@ -263,7 +263,7 @@ System.register("typescript/rhdp-alert", ["typescript/rhelement"], function (exp
         }
     };
 });
-System.register("typescript/dp-category-list/dp-category-item-list", ["typescript/rhelement"], function (exports_3, context_3) {
+System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_3, context_3) {
     "use strict";
     var __moduleName = context_3 && context_3.id;
     var rhelement_2, DPCategoryItemList;
@@ -280,10 +280,11 @@ System.register("typescript/dp-category-list/dp-category-item-list", ["typescrip
                     var _this = _super.call(this, 'dp-category-item-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n            <style>\n            :host {\n                display: none;\n                grid-column: span 4;\n            }\n\n            div {\n                display: grid;\n                grid-template-columns: repeat(3, 1fr);\n                grid-gap: 30px;\n                position: relative;\n                border: 1px solid #CCCCCC;\n                background-color: #FFFFFF;\n                padding: 30px;\n                margin-bottom: 30px;\n            }\n\n            div:after, div:before {\n                bottom: 100%;\n                left: " + (el.index % 4 > 0 ? ((2 * (el.index % 4)) - 1) * 12.5 : 7 * 12.5) + "%;\n                border: solid transparent;\n                content: \" \";\n                height: 0;\n                width: 0;\n                position: absolute;\n                pointer-events: none;\n            }\n            \n            div:after {\n                border-bottom-color: #FFFFFF;\n                border-width: 15px;\n                margin-left: -15px;\n            }\n            div:before {\n                border-bottom-color: #CCCCCC;\n                border-width: 16px;\n                margin-left: -16px;\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
+                        tpl.innerHTML = "\n            <style>\n            :host[visible] {\n                display: block;\n            }\n\n            :host {\n                display: none;\n                flex: 1 1 100%;\n                grid-column: span 1;\n                margin-bottom: 30px;\n            }\n\n            div {\n                display: grid;\n                grid-template-columns: 1fr;\n                grid-gap: 15px;\n                position: relative;\n                padding-top: 15px;\n                padding-right: 15px;\n                padding-left: 15px;\n            }\n\n            @media (min-width: 500px) {\n                :host {\n                    grid-column: span 2;\n                }\n\n                div {\n                    border: 1px solid #CCCCCC;\n                }\n            }\n\n            @media (min-width: 800px) {\n                :host {\n                    grid-column: span 3;\n                }\n\n                div {\n                    grid-template-columns: repeat(2, 1fr);\n                }\n            }\n\n            @media (min-width: 1200px) {\n                :host {\n                    grid-column: span 4;\n                }\n\n                div {\n                    grid-template-columns: repeat(3, 1fr);\n                    grid-gap: 30px;\n                    background-color: #FFFFFF;\n                    padding: 30px;\n                    margin-bottom: 30px;\n                }\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
                         return tpl;
                     };
                     _this._index = 1;
+                    _this._visible = false;
                     return _this;
                 }
                 Object.defineProperty(DPCategoryItemList.prototype, "index", {
@@ -299,12 +300,33 @@ System.register("typescript/dp-category-list/dp-category-item-list", ["typescrip
                     enumerable: true,
                     configurable: true
                 });
+                Object.defineProperty(DPCategoryItemList.prototype, "visible", {
+                    get: function () {
+                        return this._visible;
+                    },
+                    set: function (val) {
+                        val = val !== null && val !== false ? true : false;
+                        if (this._visible === val)
+                            return;
+                        this._visible = val;
+                        if (this._visible) {
+                            this.style.display = 'block';
+                            this.setAttribute('visible', '');
+                        }
+                        else {
+                            this.style.display = 'none';
+                            this.removeAttribute('visible');
+                        }
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 DPCategoryItemList.prototype.connectedCallback = function () {
                     _super.prototype.render.call(this, this.template(this));
                 };
                 Object.defineProperty(DPCategoryItemList, "observedAttributes", {
                     get: function () {
-                        return ['index'];
+                        return ['index', 'visible'];
                     },
                     enumerable: true,
                     configurable: true
@@ -319,7 +341,7 @@ System.register("typescript/dp-category-list/dp-category-item-list", ["typescrip
         }
     };
 });
-System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhelement"], function (exports_4, context_4) {
+System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_4, context_4) {
     "use strict";
     var __moduleName = context_4 && context_4.id;
     var rhelement_3, DPCategoryList;
@@ -336,7 +358,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-template-rows: auto;\n        grid-auto-flow: row;\n        grid-gap: 15px;\n        margin: 0 15px;\n        max-width: 320px;\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-gap: 30px;\n            margin: 0 auto;\n            min-width: 1200px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
+                        tpl.innerHTML = "\n<style>\n    :host {\n        position: relative;\n        background-color: #F9F9F9;\n        padding: 30px 0;\n        display: block;\n    }\n\n    section {\n        display: grid;\n        grid-template-columns: 1fr;\n        grid-template-rows: auto;\n        grid-auto-flow: row;\n        grid-gap: 0;\n        margin: 0;\n        max-width: 500px;\n    }\n\n    @media (min-width: 500px) {\n        section {\n            grid-template-columns: repeat(2, 1fr);\n            grid-column-gap: 15px;\n            margin: 0 15px;\n            max-width: 800px;\n            justify-items: center;\n        }\n    }\n\n    @media (min-width: 800px) {\n        section {\n            grid-template-columns: repeat(3, 1fr);\n            grid-column-gap: 30px;\n            margin: 0 30px;\n            max-width: 1200px;\n            justify-items: center;\n        }\n    }\n\n    @media (min-width: 1200px) {\n        section {\n            grid-template-columns: repeat(4, 1fr);\n            grid-column-gap: 30px;\n            margin: 0 auto;\n            max-width: 1260px;\n            justify-items: center;\n        }\n    }\n</style>\n<section >\n<slot></slot>\n</section>\n";
                         return tpl;
                     };
                     _this.items = [];
@@ -346,41 +368,53 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
                 DPCategoryList.prototype.connectedCallback = function () {
                     var _this = this;
                     _super.prototype.render.call(this, this.template(this));
-                    var li = this.querySelectorAll('dp-category-item-list');
-                    for (var ele in li) {
-                        this.items.push(li[ele]);
-                    }
-                    ;
                     this.addEventListener('dp-category-selected', function (e) {
+                        var w = window.innerWidth;
+                        var cols = 4;
+                        if (w < 500) {
+                            cols = 1;
+                        }
+                        else if (w < 800) {
+                            cols = 2;
+                        }
+                        else if (w < 1200) {
+                            cols = 3;
+                        }
                         var detail = e['detail'];
-                        var len = _this.querySelectorAll('dp-category').length;
-                        var idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
-                        var list = _this.items[detail.index - 1];
-                        var a = _this.querySelector("dp-category:nth-child(" + _this.active + ")");
+                        var len = _this.querySelectorAll('dp-category').length + 1;
+                        var calc = 1 + (Math.ceil(detail.index / cols) * cols);
+                        var idx = calc <= len ? calc : len;
+                        var list = _this.querySelector('dp-category-item-list[visible]');
+                        if (list) {
+                            list.removeAttribute('visible');
+                            _this.removeChild(list);
+                        }
                         if (detail.index === _this.active) {
+                            var a = _this.querySelector('dp-category[visible]');
                             if (a) {
-                                a['visible'] = false;
+                                a.appendChild(list);
                             }
-                            _this.removeChild(_this.items[_this.active - 1]);
                             _this.active = 0;
                         }
                         else {
                             if (_this.active > 0) {
+                                var a = _this.querySelector("dp-category:nth-child(" + _this.active + ")");
                                 if (a) {
-                                    a['visible'] = false;
+                                    a.removeAttribute('visible');
+                                    a.appendChild(list);
                                 }
                                 _this.active = 0;
                             }
-                            var rowEle = _this.querySelector("dp-category:nth-child(" + idx + ")");
                             _this.active = detail.index;
-                            list.index = detail.index || 1;
-                            list['style'].display = 'block';
-                            if (idx <= len) {
+                            list = _this.querySelector("dp-category:nth-child(" + _this.active + ")").querySelector('dp-category-item-list');
+                            if (idx < len) {
+                                var rowEle = _this.querySelector("dp-category:nth-child(" + idx + ")");
                                 _this.insertBefore(list, rowEle);
                             }
                             else {
                                 _this.appendChild(list);
                             }
+                            list.setAttribute('visible', '');
                         }
                     });
                     this.querySelector('dp-category').setAttribute('visible', '');
@@ -404,7 +438,7 @@ System.register("typescript/dp-category-list/dp-category-list", ["typescript/rhe
         }
     };
 });
-System.register("typescript/dp-category-list/dp-category", ["typescript/rhelement"], function (exports_5, context_5) {
+System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_5, context_5) {
     "use strict";
     var __moduleName = context_5 && context_5.id;
     var rhelement_4, DPCategory;
@@ -421,7 +455,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    text-align: center; \n}\nimg, svg { height: 150px; width: 150px; }\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\n:host([visible]):after, :host([visible]):before {\n    top: 100%;\n    left: 50%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n}\n\n:host([visible]):before {\n    border-bottom-color: #CCCCCC;\n    border-width: 15px;\n    margin-left: -15px;\n}\n:host([visible]):after {\n    border-bottom-color: #FFFFFF;\n    border-width: 16px;\n    margin-left: -16px;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: Overpass;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -552,7 +586,7 @@ System.register("typescript/dp-category-list/dp-category", ["typescript/rhelemen
         }
     };
 });
-System.register("typescript/dp-category-list/dp-category-item", ["typescript/rhelement"], function (exports_6, context_6) {
+System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_6, context_6) {
     "use strict";
     var __moduleName = context_6 && context_6.id;
     var rhelement_5, DPCategoryItem;
@@ -594,7 +628,7 @@ System.register("typescript/dp-category-list/dp-category-item", ["typescript/rhe
         }
     };
 });
-System.register("typescript/dp-category-list/dp-product-short-teaser", ["typescript/rhelement"], function (exports_7, context_7) {
+System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_7, context_7) {
     "use strict";
     var __moduleName = context_7 && context_7.id;
     var rhelement_6, DPProductShortTeaser;
@@ -611,7 +645,7 @@ System.register("typescript/dp-category-list/dp-product-short-teaser", ["typescr
                     var _this = _super.call(this, 'dp-product-short-teaser') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: Overpass;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n    }\n    h4 { flex: 0 0 24px; }\n    h4 a {\n        color: #0066CC;\n        font-family: Overpass;\n        font-size: 18px;\n        font-weight: bold;\n        line-height: 24px;\n    }\n\n    div {\n        flex: 1 1 auto;\n    }\n\n    a.more {\n        flex: 0 0 21px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
+                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: Overpass;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: Overpass;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
                         return tpl;
                     };
                     return _this;
@@ -677,7 +711,7 @@ System.register("typescript/dp-category-list/dp-product-short-teaser", ["typescr
         }
     };
 });
-System.register("typescript/rhd-app", ["typescript/rhdp-alert", "typescript/dp-category-list/dp-category-list", "typescript/dp-category-list/dp-category", "typescript/dp-category-list/dp-category-item-list", "typescript/dp-category-list/dp-category-item", "typescript/dp-category-list/dp-product-short-teaser"], function (exports_8, context_8) {
+System.register("@rhd/rhd-app", ["@rhd/rhdp-alert", "@rhd/dp-category-list/dp-category-list", "@rhd/dp-category-list/dp-category", "@rhd/dp-category-list/dp-category-item-list", "@rhd/dp-category-list/dp-category-item", "@rhd/dp-category-list/dp-product-short-teaser"], function (exports_8, context_8) {
     "use strict";
     var __moduleName = context_8 && context_8.id;
     var rhdp_alert_1, dp_category_list_1, dp_category_1, dp_category_item_list_1, dp_category_item_1, dp_product_short_teaser_1, RHDApp;
@@ -714,6 +748,7 @@ System.register("typescript/rhd-app", ["typescript/rhdp-alert", "typescript/dp-c
                 }
                 return RHDApp;
             }());
+            exports_8("default", RHDApp);
         }
     };
 });
@@ -1525,7 +1560,7 @@ var DevNationLiveApp = (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-System.register("typescript/dp-stackoverflow/dp-stackoverflow", ["typescript/rhelement"], function (exports_9, context_9) {
+System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
     var __moduleName = context_9 && context_9.id;
     var rhelement_7, DPStackOverflow;
@@ -16126,9 +16161,7 @@ jQuery(function () {
 app = window.app || {};
 app.middlewareBlog = {};
 app.middlewareBlog.fetch = function () {
-    console.log("here 2");
     $.getJSON(app.dcp.url.search + '/middlewareblogs?newFirst=true&from=0&size=2', function (data) {
-        console.log("here 3");
         if (data.hits && data.hits.hits) {
             app.middlewareBlog.render(data.hits.hits);
         }

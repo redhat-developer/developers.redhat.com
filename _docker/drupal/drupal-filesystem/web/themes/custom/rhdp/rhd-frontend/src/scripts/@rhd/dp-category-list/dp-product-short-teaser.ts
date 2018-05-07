@@ -1,4 +1,5 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
+//import fontawesome from '@fortawesome/fontawesome';
 
 export default class DPProductShortTeaser extends RHElement {
     template = el => {
@@ -12,22 +13,29 @@ export default class DPProductShortTeaser extends RHElement {
         margin-bottom: 30px;
         display: flex;
         flex-direction: column;
+        text-align: left;
     }
-    h4 { flex: 0 0 24px; }
-    h4 a {
-        color: #0066CC;
+    h4 { 
+        flex: 0 0 24px;
         font-family: Overpass;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
         line-height: 24px;
+        margin: 0 0 5px 0;
+    }
+    h4 a {
+        color: #0066CC;
+        text-decoration: none;
     }
 
     div {
         flex: 1 1 auto;
+        margin-bottom: 16px;
+        color: #000000;
     }
 
     a.more {
-        flex: 0 0 21px;
+        flex: 0 0 25px;
         display: block;
         width: auto;
         color: #0066CC;
@@ -78,6 +86,8 @@ export default class DPProductShortTeaser extends RHElement {
 
     connectedCallback() {
         super.render(this.template(this));
+
+        // fontawesome.dom.i2svg({node: undefined, callback: undefined});
     }
 
     static get observedAttributes() { 

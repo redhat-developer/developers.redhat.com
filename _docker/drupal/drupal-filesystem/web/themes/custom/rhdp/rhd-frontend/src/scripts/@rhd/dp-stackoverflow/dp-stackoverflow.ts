@@ -1,4 +1,4 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
 
 export default class DPStackOverflow extends RHElement {
     template = el => {
