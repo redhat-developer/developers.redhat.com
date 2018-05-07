@@ -1,4 +1,4 @@
-import RHElement from './rhelement';
+import RHElement from '@rhelements/rhelement';
 // import fontawesome from '@fortawesome/fontawesome';
 // import * as faTimes from '@fortawesome/fontawesome-pro-solid/faTimes';
 

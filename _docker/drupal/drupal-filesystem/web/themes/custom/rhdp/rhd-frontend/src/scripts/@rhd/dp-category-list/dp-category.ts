@@ -1,4 +1,4 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
 
 export default class DPCategory extends RHElement {
     template = (el:DPCategory) => {
@@ -6,15 +6,87 @@ export default class DPCategory extends RHElement {
         tpl.innerHTML = `
 <style>
 :host { 
-    text-align: center; 
     grid-column: span 1;
+    border-top: 1px solid var(--rhd-blue);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+    align-items: center;
+    background-color: var(--rhd-white, #ffffff);
+    position: relative;
+    z-index: 1;
 }
-img, svg { height: 150px; width: 150px; }
+
+:host([visible]):after, :host([visible]):before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+:host([visible]):before {
+    border-bottom-color: #CCCCCC;
+    border-width: 15px;
+    margin-left: -15px;
+}
+:host([visible]):after {
+    border-bottom-color: #FFFFFF;
+    border-width: 16px;
+    margin-left: -16px;
+}
+
+img, svg { 
+    flex: 0 0 60px; 
+    padding-right: 24px; 
+    height: 60px;   
+}
+
+h4 {
+    flex: 1 0 auto;
+    color: #0066CC;
+    font-family: Overpass;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 21px;
+    margin: 0 0 5px 0;
+}
 
 :host(:hover), :host([visible]) {
     cursor: pointer;
     color: var(--rhd-blue);
     fill: var(--rhd-blue);
+    border-top: 5px solid var(--rhd-blue);
+    border-bottom: 5px solid var(--rhd-blue);
+}
+
+@media (min-width: 500px) {
+    :host, :host(:hover), :host([visible]) {
+        flex-direction: column;
+        text-align: center; 
+        border-top: none;
+        border-bottom: none;
+        background-color: transparent;
+        margin-bottom:30px;
+    }
+
+    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }
+}
+
+@media (min-width: 800px) {
+    :host {
+        
+    }
+}
+
+@media (min-width: 1200px) {
+    :host {
+        
+    }
 }
 </style>
 ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image }
@@ -65,6 +137,16 @@ ${el.image && el.image.indexOf('svg') < 0 ? `<img src="${el.image}">` : el.image
         }
         // this.shadowRoot.querySelector('section').style.display = this._visible ? 'block' : 'none';
     }
+
+    // setChildrenVisibility(items:NodeListOf<Element>, visible:boolean) {
+    //     for (let i=0, l=items.length; i < l; i++) {
+    //         if(visible) {
+    //             items[i].setAttribute('visible','');
+    //         } else {
+    //             items[i].removeAttribute('visible');
+    //         }
+    //     }
+    // }
 
     get index() {
         return this._index;

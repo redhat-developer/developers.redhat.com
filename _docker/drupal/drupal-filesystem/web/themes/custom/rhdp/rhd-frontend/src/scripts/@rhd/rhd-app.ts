@@ -5,7 +5,7 @@ import DPCategoryItemList from './dp-category-list/dp-category-item-list';
 import DPCategoryItem from './dp-category-list/dp-category-item';
 import DPProductShortTeaser from './dp-category-list/dp-product-short-teaser';
 
-class RHDApp {
+export default class RHDApp {
     a = new RHDPAlert();
     b = new DPCategoryList();
     c = new DPCategory();
