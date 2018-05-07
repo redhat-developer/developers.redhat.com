@@ -15,6 +15,9 @@
   }
   &.assembly-dark {
     background: #252525;
+    & a{
+      color: $link-dark-background;
+    }
     &, h1, h2, h3, h4, h5, h6 {
       color: white;
     }
@@ -44,5 +47,12 @@
     line-height: 1.5;
     text-align: center;
     margin-bottom: 40px;
+  }
+
+  &.no-padding-top {
+    padding-top: 0 !important;
+  }
+  &.no-padding-bottom {
+    padding-bottom: 0 !important;
   }
 }
