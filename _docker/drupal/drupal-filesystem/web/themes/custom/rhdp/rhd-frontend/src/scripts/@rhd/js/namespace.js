@@ -58,7 +58,7 @@ app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable 
 app.dcp.url.developer_materials= '#{site.dcp_base_protocol_relative_url}v2/rest/search/developer_materials';
 app.dcp.excludeResourceTags = ["red hat", "Red Hat", "redhat"];
 
-app.dcp.availableTopics = #{JSON.dump(site.dev_mat_techs.flatten.uniq.sort)};
+app.dcp.availableTopics = '#{JSON.dump(site.dev_mat_techs.flatten.uniq.sort)}';
 app.dcp.thumbnails = {
     // jboss
     "jbossdeveloper_quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
@@ -83,7 +83,7 @@ app.dcp.thumbnails = {
 /*
   Products
 */
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'], buzz_tags: site.products[product]['buzz_tags'] || '_none'}; map; })};
+app.products = "#{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'], buzz_tags: site.products[product]['buzz_tags'] || '_none'}; map; })}";
 
 
 /*

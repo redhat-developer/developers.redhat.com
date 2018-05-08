@@ -1,1 +1,1 @@
-System.import('typescript/rhd-app');
+System.import('@rhd/rhd-app');

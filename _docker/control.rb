@@ -373,9 +373,14 @@ if $0 == __FILE__
     system_exec.execute_docker_compose(environment, :run, tasks[:unit_tests])
   end
 
+  if tasks[:export]
+    system_exec.execute_docker_compose(environment, :exec, %w[-T drupal drush cr])
+  end
+
   start_and_wait_for_supporting_services(environment, tasks[:supporting_services], system_exec)
 
   if tasks[:awestruct_command_args]
     system_exec.execute_docker_compose(environment, :run, tasks[:awestruct_command_args])
   end
+
 end

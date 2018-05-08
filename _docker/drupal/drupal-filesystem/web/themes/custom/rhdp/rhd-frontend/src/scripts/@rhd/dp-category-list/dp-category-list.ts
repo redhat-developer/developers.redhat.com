@@ -1,4 +1,4 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
 import DPCategoryItemList from './dp-category-item-list';
 
 export default class DPCategoryList extends RHElement {
@@ -18,27 +18,27 @@ export default class DPCategoryList extends RHElement {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-auto-flow: row;
-        grid-gap: 15px;
-        margin: 0 15px;
-        max-width: 320px;
+        grid-gap: 0;
+        margin: 0;
+        max-width: 500px;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 500px) {
         section {
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 15px;
+            grid-column-gap: 15px;
             margin: 0 15px;
-            min-width: 600px;
+            max-width: 800px;
             justify-items: center;
         }
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 800px) {
         section {
             grid-template-columns: repeat(3, 1fr);
-            grid-gap: 30px;
+            grid-column-gap: 30px;
             margin: 0 30px;
-            min-width: 900px;
+            max-width: 1200px;
             justify-items: center;
         }
     }
@@ -46,9 +46,9 @@ export default class DPCategoryList extends RHElement {
     @media (min-width: 1200px) {
         section {
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 30px;
+            grid-column-gap: 30px;
             margin: 0 auto;
-            min-width: 1200px;
+            max-width: 1260px;
             justify-items: center;
         }
     }
@@ -70,41 +70,60 @@ export default class DPCategoryList extends RHElement {
     connectedCallback() {
         super.render(this.template(this));
 
-        let li = this.querySelectorAll('dp-category-item-list');
-        for( let ele in li ) {
-            this.items.push(li[ele]);
-        };
-        //this.setAttribute('data-rhd-grid', 'quad');
+        // let li = this.querySelectorAll('dp-category-item-list');
+        // for( let ele in li ) {
+        //     this.items.push(li[ele]);
+        // };
+        // //this.setAttribute('data-rhd-grid', 'quad');
 
         this.addEventListener('dp-category-selected', e => {
+            let w = window.innerWidth;
+            let cols = 4;
+            if (w < 500) {
+                cols = 1;
+            } else if (w < 800) {
+                cols = 2;
+            } else if (w < 1200) {
+                cols = 3;
+            }
             let detail = e['detail'];
-            let len = this.querySelectorAll('dp-category').length;
-            let idx = 1 + (Math.ceil(detail.index / 4) * 4) || len;
-            let list = this.items[detail.index-1];
-            let a = this.querySelector(`dp-category:nth-child(${this.active})`)
+            let len = this.querySelectorAll('dp-category').length+1;
+            let calc = 1 + (Math.ceil(detail.index / cols) * cols);
+            let idx = calc <= len ? calc : len;
+            let list = this.querySelector('dp-category-item-list[visible]');
+            if (list) {
+                list.removeAttribute('visible');
+                this.removeChild(list);
+            }
+            
             if (detail.index === this.active) {
+                let a = this.querySelector('dp-category[visible]');
                 if (a) {
-                    a['visible'] = false;
+                    a.appendChild(list);
                 }
-                this.removeChild(this.items[this.active-1]);
                 this.active = 0;
             } else {
                 if (this.active > 0) {
+                    let a = this.querySelector(`dp-category:nth-child(${this.active})`);
                     if (a) {
-                        a['visible'] = false;
+                        a.removeAttribute('visible');
+                        a.appendChild(list);
                     }
                     //this.removeChild(this.items[this.active-1]);
                     this.active = 0;
                 }
-                let rowEle = this.querySelector(`dp-category:nth-child(${idx})`)
+                
                 this.active = detail.index;
-                list.index = detail.index || 1;
-                list['style'].display = 'block';
-                if (idx <= len) {
+                list = this.querySelector(`dp-category:nth-child(${this.active})`).querySelector('dp-category-item-list');
+                
+                if (idx < len) {
+                    let rowEle = this.querySelector(`dp-category:nth-child(${idx})`);
                     this.insertBefore(list, rowEle);
                 } else {
                     this.appendChild(list);
                 }
+
+                list.setAttribute('visible','');
             }
         });
 
