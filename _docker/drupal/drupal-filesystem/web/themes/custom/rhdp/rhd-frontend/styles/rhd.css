@@ -10694,6 +10694,58 @@ a.download-link:before {
 rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-9.center.developer-materials-sidebar, rhdp-downloads-all-item .large-9.center.developer-materials-main, rhdp-downloads-all-item .large-9.center.microsite-nav {
   text-align: center; }
 
+.text-content .connector h3 {
+  line-height: 1;
+  margin-top: .5em;
+  margin-bottom: 0.3125rem; }
+
+.text-content .connector h3, .text-content .connector p {
+  text-align: left; }
+
+.text-content .connectors-order a {
+  margin: 0 .5em; }
+
+.connector-overlay-content {
+  display: none; }
+
+.copy-to-clipboard {
+  height: 14px;
+  width: 114px;
+  display: inline-block;
+  margin-left: 10px; }
+  .copy-to-clipboard embed, .copy-to-clipboard object {
+    width: 114px;
+    height: 14px; }
+
+@media only screen and (max-width: 768px) {
+  body.overlay-open {
+    overflow: hidden; }
+    body.overlay-open .overlay {
+      display: block;
+      overflow: scroll;
+      height: 100%;
+      -webkit-overflow-scrolling: touch; } }
+
+ul.featured-connectors-results > li {
+  display: inline;
+  height: auto;
+  float: left;
+  padding: 0 0.625em 1.25em; }
+  ul.featured-connectors-results > li .defaultconnectorimage {
+    width: 100%;
+    border: 0;
+    background: none;
+    height: auto; }
+  ul.featured-connectors-results > li:before {
+    display: none; }
+  ul.featured-connectors-results > li .connector-logo {
+    max-width: 250px; }
+
+ul.featured-connectors-results a.image-link img {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 5px; }
+
 .about .wrapper {
   padding-bottom: 0; }
 
