@@ -35,8 +35,8 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 <h2 class="subpage-name" id="overview">All Connectors</h2>
                 <p class="link-list connectors-order">
                     <strong>Order By</strong>
-                    <a href="#" class="active order-priority"><i class="fa fa-sort-amount-desc"></i>Importance</a>
-                    <a href="#" class="order-alpha"><i class="fa fa-sort-alpha-asc"></i>Alphabetically</a>
+                    <a href="#" class="active order-priority"><i class="fas fa-sort-amount-down"></i> Importance</a>
+                    <a href="#" class="order-alpha"><i class="fas fa-sort-amount-up"></i> Alphabetically</a>
                 </p>
                 {% if content.field_overview_main_content|render|striptags|trim is not empty %}
                     {{ content.field_overview_main_content }}
