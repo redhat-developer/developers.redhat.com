@@ -134,8 +134,8 @@ app.products = {
 };
 
 app.products.downloads = {
-    "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
-    "cdk" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl" : "/products/cdk/hello-world/#fndtn-rhel"}
+    "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
+    "cdk" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/cdk/hello-world/#fndtn-rhel"}
 };
 
 /*
