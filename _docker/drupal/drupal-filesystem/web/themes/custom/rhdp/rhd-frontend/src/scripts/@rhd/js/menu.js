@@ -33,6 +33,7 @@
         // Remove links that don't actually link to anything
         .not('[href="#"]')
         .not('[href="#0"]')
+        .not('[role="tab"]')
         .click(function(event) {
           var navHeight = 0;
           if ($('.toolbar-tray-horizontal').outerHeight() > 0) {
