@@ -13,6 +13,7 @@ If you are not using docker, there will be no support.
 This works best on Linux, but we do have Mac users that are developing successfully in this environment.
 The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
+
 There are some [Common Issues](#CommonIssues) you may encounter, check them out before seeking help.
 
 ### Utilities
