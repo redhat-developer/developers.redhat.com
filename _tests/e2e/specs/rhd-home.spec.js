@@ -8,7 +8,7 @@ describe('Home Page', function () {
             .open('/');
         expect(homePage.getPageSource(),
             'WARNING! Please check the page title! The site export will break, ' +
-            'the nagios health check expects <title>Red Hat Developer').to.include('<faiul>Red Hat Developer')
+            'the nagios health check expects <title>Red Hat Developer').to.include('<title>Red Hat Developer')
     });
 
 });
