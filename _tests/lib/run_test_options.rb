@@ -200,7 +200,7 @@ class RunTestOptions
       if test_configuration[:browserstack]
         test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
       else
-        test_configuration[:run_tests_command] = "npm run ci:#{ENV['RHD_TEST_PROFILE']} -- #{run_tests_command}"
+        test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
       end
     else
       # run tests via a local browser

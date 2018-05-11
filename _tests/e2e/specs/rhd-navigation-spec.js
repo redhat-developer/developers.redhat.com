@@ -8,13 +8,14 @@ const loginPage = new LoginPage();
 
 describe('Navigation bar', function () {
 
-    tags('wip').it("should navigate users to the Keycloak Login page", function () {
+    tags('sanity').it("should navigate users to the Keycloak Login page", function () {
         homePage
             .open('/');
         siteNav
             .clickLoginLink();
-        expect(loginPage
-            .isOnLoginPage(), 'Log in page was not displayed').to.eq(true)
-    });
+        if (!loginPage.isOnLoginPage()) {
+            throw Error('Log in page was not displayed')
+        }
+    }, 2);
 
 });

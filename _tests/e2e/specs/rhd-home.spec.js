@@ -3,7 +3,7 @@ const homePage = new HomePage();
 
 describe('Home Page', function () {
 
-    it("health check: homepage should contain <title>Red Hat Developer", function () {
+    tags('sanity').it("health check: homepage should contain <title>Red Hat Developer", function () {
         homePage
             .open('/');
         expect(homePage.getPageSource(),

@@ -20,8 +20,8 @@ class CheatSheetsPage extends BasePage {
     }
 
     awaitDownloadThankYou() {
-        this.waitForUrlContaining('media-download-confirmation', 8000);
-        return this.awaitIsVisible(this.getSelector('thankYou'));
+        this.waitForUrlContaining('media-download-confirmation', 15000);
+        return this.awaitIsVisible(this.getSelector('thankYou'), 15000);
     }
 
     clickLoginToDownloadBtn() {

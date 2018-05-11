@@ -19,7 +19,7 @@ describe('Products Downloads: Login', function () {
         dowloadHelper.clearDownloadDirectory(global.downloadDir)
     });
 
-    tags('dm').it('RHD supportable Product: User must login in order to download products', function () {
+    tags('sanity', 'dm').it('RHD supportable Product: User must login in order to download products', function () {
         this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
         let productOverviewPage = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
@@ -37,9 +37,10 @@ describe('Products Downloads: Login', function () {
             .awaitDownloadThankYou();
         expect(dowloadHelper.getDownloads().length,
             `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
-    }, 2);
+    });
 
-    tags('dm','stage').it('Red Hat JBoss/Red Hat Developer subscription: User must login in order to download JBoss Fuse', function () {
+    tags('dm', 'stage').it('Red Hat JBoss/Red Hat Developer subscription: User must login in order to download JBoss Fuse', function () {
+        this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
         let productOverviewPage = new ProductOverview('fuse', 'download', 'JBoss Fuse');
         productOverviewPage
@@ -58,7 +59,8 @@ describe('Products Downloads: Login', function () {
             `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
     });
 
-    tags('dm','stage').it('RHD full user profile: User must login in order to download Red Hat JBoss Developer Studio', function () {
+    tags('dm', 'stage').it('RHD full user profile: User must login in order to download Red Hat JBoss Developer Studio', function () {
+        this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
         let productOverviewPage = new ProductOverview('devstudio', 'download', 'JBoss Developer Studio');
         productOverviewPage
@@ -77,7 +79,8 @@ describe('Products Downloads: Login', function () {
             `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
     });
 
-    tags('dm','stage').it('authenticated user can download RHD products', function () {
+    tags('dm', 'stage').it('authenticated user can download RHD products', function () {
+        this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
         let productOverviewPage = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
         loginPage
@@ -96,7 +99,8 @@ describe('Products Downloads: Login', function () {
             `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
     });
 
-    tags('dm','stage').it('should allow active OpenShift.com account users (simple user account) to login and download RHD supportable user products', function () {
+    tags('dm', 'stage').it('should allow active OpenShift.com account users (simple user account) to login and download RHD supportable user products', function () {
+        this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).createOpenshiftUser();
         let productOverviewPage = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
         loginPage
@@ -115,7 +119,8 @@ describe('Products Downloads: Login', function () {
             `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
     });
 
-    tags('dm','stage').it('@ignore @stage should allow active Red Hat Customer Portal account (full user account) users to login and download RHD supportable user products', function () {
+    tags('dm', 'stage').it('@ignore @stage should allow active Red Hat Customer Portal account (full user account) users to login and download RHD supportable user products', function () {
+        this.retries(2);
         siteUser = new User(process.env.RHD_BASE_URL).createCustomerPortalAccount();
         let productOverviewPage = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
         loginPage

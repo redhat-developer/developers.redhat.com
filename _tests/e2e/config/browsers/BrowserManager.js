@@ -19,7 +19,6 @@ class BrowserManager {
     }
 
     firefoxBrowser() {
-        console.log('e2e tests running using Firefox browser');
         const myProfile = new FirefoxProfile();
         myProfile.setPreference("general.useragent.override", "Red Hat Developers Testing");
 
@@ -39,7 +38,6 @@ class BrowserManager {
 
         let caps;
         if (browser === 'desktop') {
-            console.log(`e2e tests running using Chrome browser`);
             caps = {
                 maxInstances: 1,
                 browserName: 'chrome',
@@ -59,7 +57,6 @@ class BrowserManager {
                 }
             }
         } else {
-            console.log(`e2e tests running using a Chrome ${browser} emulated browser`);
             caps = {
                 maxInstances: 1,
                 browserName: 'chrome',

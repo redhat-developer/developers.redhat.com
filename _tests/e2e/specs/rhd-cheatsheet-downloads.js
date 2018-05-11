@@ -18,7 +18,8 @@ describe('RHD Cheatsheet downloads', function () {
         siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
     });
 
-    tags('dm').it('User can log in and download RHD promotional cheetsheets', function () {
+    tags('sanity', 'dm').it('User can log in and download RHD promotional cheetsheets', function () {
+        this.retries(2);
         cheatSheetPage = new CheatSheetsPage('advanced-linux-commands');
         cheatSheetPage
             .open();

@@ -129,7 +129,8 @@ exports.config = {
     screenshotPath: 'screenshots',
 
     mochawesomeOpts: {
-        includeScreenshots: true
+        includeScreenshots: true,
+        screenshotUseRelativePath: true
     },
 
     mochaOpts: {
@@ -138,8 +139,8 @@ exports.config = {
     },
 
     reporterOptions: {
-        outputDir: `./${testProfile}-results`, //json file will be written to this directory
-        mochawesome_filename: './results.json', //will default to wdiomochawesome.json if no name is provided
+        outputDir: `./report/${testProfile}-results`, //json file will be written to this directory
+        mochawesome_filename: 'results.json', //will default to wdiomochawesome.json if no name is provided
     },
 //
 // =====
@@ -161,111 +162,29 @@ exports.config = {
          * Setup the Chai assertion framework
          */
         const chai = require('chai');
-
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
 
         const path = require('path');
         global.downloadDir = path.resolve('tmp_downloads');
-
         global.tags = require('mocha-tags');
 
     },
 
-//
-// Hook that gets executed before the suite starts
     beforeSuite: function (suite) {
-        const fs = require('fs');
-        let screenshots = this.screenshotPath;
-        let report = `./${testProfile}-results`;
-        if (!fs.existsSync(screenshots)) {
-            fs.mkdirSync(screenshots);
-        }
-        if (!fs.existsSync(report)) {
-            fs.mkdirSync(report);
-        }
-    },
-//
-    afterTest(test) {
-        const path = require('path');
-
-        // if test passed, ignore, else take and save screenshot.
-        if (test.passed) {
-            return;
-        }
-
-        /*
-         * get the current date and clean it
-         * const date = (new Date()).toString().replace(/\s/g, '-').replace(/-\(\w+\)/, '');
-         */
-        const {browserName} = browser.desiredCapabilities;
-        const timestamp = new Date().toLocaleString('iso', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-        }).replace(/[ ]/g, '--').replace(':', '-');
-
-        // get current test title and clean it, to use it as file name
-        const filename = encodeURIComponent(
-            `${
-                test.fullTitle.replace(/\s+/g, '-')
-                }-${browserName}-${timestamp}`.replace(/[/]/g, '__')
-        ).replace(/%../, '.');
-
-        const filePath = path.resolve(this.screenshotPath, `${filename}.png`);
-
-        browser.saveScreenshot(filePath);
+        let fs = require("fs-extra");
+        fs.ensureDirSync(`./report/${testProfile}-results`);
     },
 
-// Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-// beforeEach in Mocha)
-// beforeHook: function () {
-// },
-//
-// Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-// afterEach in Mocha)
-// afterHook: function () {
-// },
-//
-// Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-// beforeTest: function (test) {
-// },
-//
-// Runs before a WebdriverIO command gets executed.
-// beforeCommand: function (commandName, args) {
-// },
-//
-// Runs after a WebdriverIO command gets executed
-// afterCommand: function (commandName, args, result, error) {
-// },
-//
-// Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-// afterTest: function (test) {
-// },
-//
-// Hook that gets executed after the suite has ended
-//     afterSuite: function () {
-//     },
-
-// Gets executed after all tests are done. You still have access to all global variables from
-// the test.
-// after: function (result, capabilities, specs) {
-// },
-//
-// Gets executed after all workers got shut down and the process is about to exit. It is not
-// possible to defer the end of the process using a promise.
     onComplete: function (exitCode) {
         try {
             const {execSync} = require('child_process');
             console.log('Generating mochawesome report . . .');
-            execSync(`marge --reportDir ${testProfile}-results ${testProfile}-results/results.json  && cp -r screenshots ${testProfile}-results/screenshots`);
+            execSync(`marge --reportDir report/${testProfile}-results report/${testProfile}-results/results.json  && cp -r screenshots report/${testProfile}-results/screenshots`);
             console.log('Generated mochawesome report!');
         } catch (e) {
-            console.log('!!!!!!!!!!! >> failed to generate test report << !!!!!!!!!!!!!')
+            console.log('>>> failed to generate test report <<<')
         }
     }
-}
+};
