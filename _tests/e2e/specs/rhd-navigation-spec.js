@@ -14,9 +14,7 @@ describe('Navigation bar', function () {
             .open('/');
         siteNav
             .clickLoginLink();
-        if (!loginPage.isOnLoginPage()) {
-            throw Error('Log in page was not displayed')
-        }
+        expect(loginPage.isOnLoginPage(),'Log in page was not displayed').to.be.true
     });
 
 });
