@@ -9,6 +9,7 @@ const siteNav = new SiteNav();
 describe('Search Page', function () {
 
     tags('sanity').it('should allow users to search for content via site-nav search field', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -19,17 +20,19 @@ describe('Search Page', function () {
             .awaitSearchPage();
         expect(searchPage.searchResults.getAllResults().value.length,
             'Search page was not displayed').to.be.gt(0)
-    }, 2);
+    });
 
     it("Default result sorting should be 'Relevance'", function () {
+        this.retries(2);
         searchPage
             .open();
         let resultSort = searchPage.searchResultSort.getResultSort();
         expect(resultSort,
             `Relevance was not selected by default, was ${resultSort}`).to.equal('relevance');
-    }, 2);
+    });
 
     it("should sort results by 'Most Recent'", function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -45,9 +48,10 @@ describe('Search Page', function () {
             expect(new Date(remainingResults).getTime(),
                 'Results for cdk were not ordered by most-recent').to.be.lte(new Date(firstResult).getTime())
         }
-    }, 2);
+    });
 
     it('should filter results by Content Type', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -60,9 +64,10 @@ describe('Search Page', function () {
             .searchResults.awaitLoadingSpinner();
         expect(searchPage.searchFilter.activeFilter().getText(),
             'Results did not include a tag for APIs and Docs').to.include('APIs and Docs');
-    }, 2);
+    });
 
     it('should filter results by Product', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -75,9 +80,10 @@ describe('Search Page', function () {
             .searchResults.awaitLoadingSpinner();
         expect(searchPage.searchFilter.activeFilter().getText(),
             'Results did not include a tag for Red Hat Enterprise Linux').to.include('Red Hat Enterprise Linux');
-    }, 2);
+    });
 
     it('should filter results by Topic', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -90,9 +96,10 @@ describe('Search Page', function () {
             .searchResults.awaitLoadingSpinner();
         expect(searchPage.searchFilter.activeFilter().getText(),
             'Results did not include a tag for Containers').to.include('Containers');
-    }, 2);
+    });
 
     it('should clear search filters', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -109,9 +116,10 @@ describe('Search Page', function () {
             .searchResults.awaitLoadingSpinner();
         expect(searchPage.searchFilter.activeFilter().isVisible(),
             'Filters were not cleared').to.be.false
-    }, 2);
+    });
 
     it('should not alert when user searches via site-nav search field containing malicious scripts', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -120,9 +128,10 @@ describe('Search Page', function () {
             .awaitSearchPage();
         expect(searchPage.hasAlert(),
             'Warning! Alert was visible').to.be.false
-    }, 2);
+    });
 
     it('should display a product associated with a OneBox at the top of the results', function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -131,6 +140,6 @@ describe('Search Page', function () {
             .searchResults.awaitResultsFor('cdk');
         expect(searchPage.searchOneBox.getOneBoxTitle(),
             'OneBox was not displayed for cdk').to.eq('Red Hat Container Development Kit');
-    }, 2);
+    });
 
 });

@@ -9,6 +9,7 @@ const loginPage = new LoginPage();
 describe('Navigation bar', function () {
 
     tags('sanity').it("should navigate users to the Keycloak Login page", function () {
+        this.retries(2);
         homePage
             .open('/');
         siteNav
@@ -16,6 +17,6 @@ describe('Navigation bar', function () {
         if (!loginPage.isOnLoginPage()) {
             throw Error('Log in page was not displayed')
         }
-    }, 2);
+    });
 
 });
