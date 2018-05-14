@@ -122,4 +122,3 @@ if $PROGRAM_NAME == __FILE__
     Kernel.exit(1)
   end
 end
-

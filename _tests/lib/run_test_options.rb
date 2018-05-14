@@ -1,7 +1,6 @@
 require 'optparse'
 require 'json'
 require_relative '../../_docker/lib/default_logger'
-require_relative 'e2e_test_options'
 require_relative '../blc/generate_critical_link_sitemap'
 
 #
@@ -10,7 +9,6 @@ require_relative '../blc/generate_critical_link_sitemap'
 #
 #
 class RunTestOptions
-  include E2ETestOptionsHelper
 
   def initialize(test_dir)
     @test_dir = test_dir
@@ -56,7 +54,6 @@ class RunTestOptions
       # e2e commandline options
       #
       opts.on('--browser BROWSER', String, 'The driver to use when running the tests. [default=chrome]') do |browser|
-        check_supported_browser(browser)
         test_configuration[:browser] = browser
       end
 
@@ -64,8 +61,8 @@ class RunTestOptions
         test_configuration[:browserstack] = true
       end
 
-      opts.on('--cucumber-tags CUCUMBER_TAGS', String, 'The cucumber tags to use') do |cucumber_tags|
-        test_configuration[:cucumber_tags] = cucumber_tags
+      opts.on('--mocha-tags MOCHA_TAGS', String, 'The mocha tags to run or exclude in test run') do |mocha_tags|
+        test_configuration[:mocha_tags] = mocha_tags
       end
 
       #
@@ -195,20 +192,60 @@ class RunTestOptions
     bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
-    bind_environment_variable('RHD_CHIMP_TAGS', test_configuration[:cucumber_tags]) if test_configuration[:cucumber_tags]
+    bind_environment_variable('RHD_MOCHA_TAGS', test_configuration[:mocha_tags]) if test_configuration[:mocha_tags]
 
-    run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
+    run_tests_command += " --baseUrl=#{test_configuration[:base_url]}"
+    run_tests_command += " --tags=#{test_configuration[:mocha_tags]}" if test_configuration[:mocha_tags]
     if test_configuration[:docker]
       if test_configuration[:browserstack]
-        test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
+        test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
       else
-        test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
+        test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
       end
     else
       # run tests via a local browser
-      test_configuration[:run_tests_command] = "cd #{@test_dir}/e2e && npm test -- #{run_tests_command}"
+      test_configuration[:run_tests_command] = "cd #{@test_dir}/e2e && npm run e2e -- #{run_tests_command}"
     end
   end
+
+
+  #
+  # Checks that the user has supplied us with a valid supported browser
+  #
+  def bind_browser_environment_variables(run_in_docker, browser, test_configuration)
+    if browser == 'chrome'
+      if run_in_docker
+        test_configuration[:docker_node] = 'chrome'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
+      end
+      bind_environment_variable('RHD_JS_DRIVER', 'chrome')
+    elsif browser == 'firefox'
+      if run_in_docker
+        test_configuration[:docker_node] = 'firefox'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'firefox')
+      end
+      bind_environment_variable('RHD_JS_DRIVER', 'firefox')
+    else
+      if run_in_docker
+        test_configuration[:docker_node] = 'chrome'
+        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
+      end
+      bind_environment_variable('RHD_JS_DRIVER', browser)
+    end
+  end
+
+  #
+  # Creates a default e2e test configuration
+  #
+  def create_default_test_configuration
+    default_configuration = {}
+    default_configuration[:browser] = 'chrome'
+    default_configuration[:docker] = false
+    default_configuration[:browserstack] = false
+    default_configuration[:profile] = 'desktop'
+    default_configuration
+  end
+
 
   #
   # Builds broken link checking test command based on given parameters
