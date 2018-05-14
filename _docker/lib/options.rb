@@ -81,7 +81,7 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
+        #tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
       end
 
       opts.on('--no-decrypt','Do not attempt to decrypt the secrets file (secrets are set in the environment)') do
