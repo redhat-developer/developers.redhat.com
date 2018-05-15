@@ -1483,8 +1483,10 @@ a.light-cta {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 1.5em; }
-    .assembly-type-all_products_listing .all-products-listing a, .assembly-type-all_products_listing .all-products-listing a:hover, .assembly-type-all_products_listing .all-products-listing a:active, .assembly-type-all_products_listing .all-products-listing a:focus {
+    .assembly-type-all_products_listing .all-products-listing a, .assembly-type-all_products_listing .all-products-listing a:active, .assembly-type-all_products_listing .all-products-listing a:focus {
       color: #424242; }
+    .assembly-type-all_products_listing .all-products-listing a:hover {
+      color: #0066CC; }
   .assembly-type-all_products_listing .field--name-field-content {
     display: grid;
     grid-template-columns: 70%;
