@@ -1,0 +1,16 @@
+---
+layout: microsite
+---
+
+= define 'nav_bar'
+  - unless page.nav.nil?
+    .row
+      .microsite-nav
+        ul class="microsite-nav-#{page.nav.length}"
+          - page.nav.each do |item|
+            li
+              a href=item.url
+                | #{item.title}
+
+= content
+

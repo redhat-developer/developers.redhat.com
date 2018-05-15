@@ -1,0 +1,23 @@
+### Working with RHSCL packages
+
+The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal session, `scl enable` needs to be run again.
+
+While it is possible to change the system profile to make RHSCL packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the RHSCL version in the path first.
+
+
+#### Permanently enable RHSCL in your development environment
+
+To make one or more RHSCL packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
+
+Using your preferred text editor, add the following line to your `~/.bashrc`:
+
+.~/.bashrc
+[listing,subs="attributes"]
+----
+# Add {tthw-langlong} from RHSCL to my login environment
+source scl_source enable {tthw-sclname}
+----
+
+After making the change, you should log out and log back in again.
+
+When you deliver an application that uses RHSCL packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
