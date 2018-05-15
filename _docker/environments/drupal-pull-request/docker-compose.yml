@@ -1,42 +1,5 @@
 version: '2'
 services:
-  awestruct:
-    build: ../../awestruct
-    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'rake git_setup clean gen[drupal_pull_request]'"
-    links:
-      - drupal
-    volumes:
-      - ../../../:/home/awestruct/developer.redhat.com
-      - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
-    environment:
-      - github_status_enabled=true
-      - github_status_api_token
-      - github_status_context=drupal-site
-      - github_status_repo=redhat-developer/developers.redhat.com
-      - github_status_target_url=http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
-      - github_status_sha1=${ghprbActualCommit}
-      - ghprbPullId
-      - google_api_key
-      - dcp_user
-      - dcp_password
-      - vimeo_client_secret
-      - vimeo_access_token_secret
-      - vimeo_access_token
-      - cache_password
-      - cache_url
-      - site_base_path
-      - site_path_suffix
-      - cdn_prefix
-      - cache_user
-      - github_token
-      - drupal_user
-      - drupal_password
-      - SEARCHISKO_HOST_PORT
-      - DRUPAL_HOST_PORT
-      - DRUPAL_HOST_IP
-      - BUILD_URL
-      - AWE_PROC_COUNT=10
-
   drupal:
     build: ../../drupal
     ports:
@@ -67,7 +30,7 @@ services:
 
   # Drupal production data
   drupal_data:
-   image: redhatdeveloper/drupal-data:latest
+   image: redhatdeveloper/drupal-data-lite:latest
    volumes:
     - /var/www/drupal/web/config/active
     - /var/www/drupal/web/sites/default/files
