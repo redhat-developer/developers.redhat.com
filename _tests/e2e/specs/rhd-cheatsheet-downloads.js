@@ -1,3 +1,4 @@
+const DownloadManager = require("./support/rest/Download.Manager");
 const CheatSheetsPage = require('./support/pages/website/CheatSheets.page');
 const LoginPage = require('./support/pages/keycloak/Login.page');
 const loginPage = new LoginPage();
@@ -40,6 +41,11 @@ describe('RHD Cheatsheet downloads', function () {
     });
 
     afterEach(function () {
+        let downloadManager = new DownloadManager(process.env.RHD_BASE_URL);
+        if (this.currentTest.state === 'failed') {
+            global.logger.warn(`Cheatsheet download failed. Download Manager status was: ${downloadManager.isDMRunning()}`)
+        }
+
         try {
             let encodedURL = qs.escape(process.env.RHD_BASE_URL);
             if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
