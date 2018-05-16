@@ -3,7 +3,7 @@ class RHDPProjects extends HTMLElement {
     private _loading = true;
     private _dcpUrl = '';
     private _data;
-
+    private _productId;
 
     get dcpUrl() {
         return this.getAttribute('dcp-url') ? this.getAttribute('dcp-url') : this._dcpUrl;
@@ -47,6 +47,9 @@ class RHDPProjects extends HTMLElement {
         this.addEventListener('data-results-complete', this._loadDataResult);
         let query = new RHDPProjectQuery();
         query.dcpUrl = this.dcpUrl;
+        if(this._getProductId()){
+            query.filter = this._getProductId();
+        }
         let url = new RHDPProjectURL();
         this.appendChild(query);
         this.appendChild(url);
@@ -58,6 +61,12 @@ class RHDPProjects extends HTMLElement {
         while(childNodes.firstChild){
             childNodes.removeChild(childNodes.firstChild);
         }
+    }
+
+
+    _getProductId(){
+        let productId = this.getAttribute('upstream-product-id');
+        return productId;
     }
 
     _loadDataResult(e){
@@ -115,6 +124,12 @@ class RHDPProjects extends HTMLElement {
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
         this.innerHTML = this.template`${this}`;
+    }
+
+    communityTemplate = (strings, project) => {
+        return `
+        <ul class="large-block-grid-4 small-block-grid-2 results" id="product-upstream-projects"></ul>
+        `;
     }
 
     template = (strings, project) => {
