@@ -3,7 +3,7 @@
 }
 
 .wide-hero.msbuild {
-  background-image: cdn('../images/events/msbuild/msbuild_microsite_banner_1811x260px.png');
+  background-image: url('https://static.jboss.org/rhd/images/msbuild_microsite_banner_1811x260px.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13,11 +13,11 @@
     min-height: 188px;
   }
   @include tablet-portrait-and-down {
-    background: cdn('../images/events/msbuild/msbuild_microsite_banner_600x446.png') top center / cover repeat-x;
+    background: url('https://static.jboss.org/rhd/images/msbuild_microsite_banner_600x446.png') top center / cover repeat-x;
     min-height: 480px;
   }
   @include mobile-landscape-and-down {
-    background: cdn('../images/events/msbuild/msbuild_microsite_banner_480x500px.png') top center / cover repeat-x;
+    background: url('https://static.jboss.org/rhd/images/msbuild_microsite_banner_480x500px.png') top center / cover repeat-x;
     min-height: 427px;
   }
 }
