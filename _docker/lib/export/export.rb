@@ -63,6 +63,16 @@ if $0 == __FILE__
     Kernel.exit!(1)
   end
 
+  if ENV['pr_export']
+    @DEFAULT_EXPORT_LOCATION = "/tmp/export"
+    @DEFAULT_EXPORT_ARCHIVE_LOCATION = "/tmp/export/export-archives"
+
+    # Make sure the directory exists
+    log.info("Making directory '#{@DEFAULT_EXPORT_ARCHIVE_LOCATION}'")
+    require 'fileutils'
+    FileUtils.mkdir_p @DEFAULT_EXPORT_ARCHIVE_LOCATION
+  end
+
   process_runner = ProcessRunner.new
   cron_invoker = CronInvoker.new(drupal_host)
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)

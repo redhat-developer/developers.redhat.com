@@ -55,6 +55,7 @@ services:
     - github_status_sha1=${ghprbActualCommit}
     - drupal.export.fail_on_missing
     - drupal.export.final_base_url=${export_destination}
+    - pr_export=true
 
   #
   # Testing
