@@ -75,6 +75,10 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
       ];
     }
 
+    // Actually sort the array.
+    // Sorting by key desc
+    krsort($items);
+
     // Flatten array
     $flat_items = [];
     foreach($items as $date) {
