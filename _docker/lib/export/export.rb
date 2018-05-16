@@ -56,6 +56,8 @@ end
 
 if $0 == __FILE__
 
+  log = DefaultLogger.logger
+
   drupal_host = ARGV[0]
   rsync_location = ARGV[1]
   if drupal_host == ''
@@ -78,7 +80,6 @@ if $0 == __FILE__
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)
   export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new, ExportHtmlPostProcessor.new(process_runner, @DEFAULT_STATIC_RESOURCES))
   rsync_handler = StaticExportRsync.new(process_runner, ExportArchiver.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION, ExportArchivePruner.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION)))
-  log = DefaultLogger.logger
 
   begin
     log.info("Beginning export of content from Drupal at '#{drupal_host}'...")
