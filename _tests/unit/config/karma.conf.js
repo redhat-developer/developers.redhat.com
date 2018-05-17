@@ -24,7 +24,7 @@ module.exports = function (config) {
             'jasmine-global.js',
             'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/custom-elements-es5-adapter.js',
             'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-lite.js',
-            '../../../javascripts/build.js',
+            '../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/rhd.min.js',
             '../**/*_spec.js'          
         ]
     })
