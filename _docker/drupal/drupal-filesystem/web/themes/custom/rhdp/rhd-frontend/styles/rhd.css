@@ -11408,7 +11408,7 @@ ul.ytlist {
   padding-bottom: 0; }
 
 .wide-hero.devoxxbe {
-  background-image: cdn("../images/events/devoxx/2015/devoxx-be_microsite_desktop_hero.png");
+  background-image: url("https://static.jboss.org/rhd/images/devoxx-be_microsite_desktop_hero.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11418,7 +11418,7 @@ ul.ytlist {
   min-height: 260px; }
   @media only screen and (max-width: 768px) {
     .wide-hero.devoxxbe {
-      background: cdn("../images/events/devoxx/2015/devoxx-be_microsite_mobile_hero.png") top center/cover repeat-x;
+      background: url("https://static.jboss.org/rhd/images/devoxx-be_microsite_mobile_hero.png") top center/cover repeat-x;
       min-height: 400px; } }
 
 #devoxx-be-microsite section {
@@ -11466,7 +11466,8 @@ ul.ytlist {
     max-width: 80px; }
 
 #devoxx-be-microsite ul.speakers-list p, #devoxx-be-microsite ul.speakers-list h4 {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  margin-top: 0; }
 
 #devoxx-be-microsite ul.speakers-list .talk-info {
   background-color: #E6E6E6;
@@ -11591,7 +11592,8 @@ ul.devoxx-list {
 
 #devoxxfrance-microsite ul.speakers-list h4 {
   display: inline-block;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  margin-top: 0; }
 
 #devoxxfrance-microsite ul.speakers-list p {
   margin-bottom: 0; }
@@ -11839,7 +11841,7 @@ ul.product-forums-latest {
   padding-top: 40px;
   min-height: 260px; }
   .wide-hero.javaone.javaone2015 {
-    background-image: cdn("../images/javaone/2015/javaone_microsite_desktop_hero.png"); }
+    background-image: url("https://static.jboss.org/rhd/images/javaone_microsite_desktop_hero.png"); }
   .wide-hero.javaone.javaone2016 {
     background-image: url("https://static.jboss.org/images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg");
     min-height: 200px; }
@@ -11847,7 +11849,7 @@ ul.product-forums-latest {
     background-image: url("https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_desktop.png"); }
   @media only screen and (max-width: 768px) {
     .wide-hero.javaone.javaone2015 {
-      background: cdn("../images/javaone/2015/javaone_microsite_mobile_hero.png") top center/cover repeat-x;
+      background: url("https://static.jboss.org/rhd/images/javaone_microsite_mobile_hero.png") top center/cover repeat-x;
       min-height: 400px; }
     .wide-hero.javaone.javaone2016 {
       background: url("https://static.jboss.org/images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg") top center/cover repeat-x;
@@ -11910,7 +11912,8 @@ ul.product-forums-latest {
   color: #FFFFFF; }
 
 #javaone-microsite ul.speakers-list p, #javaone-microsite ul.speakers-list h4 {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  margin-top: 0; }
 
 #javaone-microsite ul.speakers-list .talk-info {
   background-color: #09496F;
@@ -12722,6 +12725,210 @@ rhdp-search-onebox ul.slots {
   rhdp-search-filter-item #toggle {
     display: block; } }
 
+.eventsjudcon2016brno .wrapper {
+  padding-bottom: 0; }
+
+.wide-hero.judcon-brno {
+  background-image: url("https://static.jboss.org/rhd/images/judcon-brno_banner_2000x400px.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 260px; }
+  @media only screen and (max-width: 1024px) {
+    .wide-hero.judcon-brno {
+      background: url("https://static.jboss.org/rhd/images/judcon-brno_banner_1811x260px.png") top center/cover repeat-x; } }
+  @media only screen and (max-width: 480px) {
+    .wide-hero.judcon-brno {
+      background: url("https://static.jboss.org/rhd/images/judcon-brno_banner_480x500px.png") top center/cover repeat-x;
+      min-height: 500px; } }
+
+#judcon-brno-microsite section {
+  padding: 35px 0; }
+  #judcon-brno-microsite section.inverse {
+    background-color: #0d5884;
+    padding: 25px 0; }
+    #judcon-brno-microsite section.inverse p, #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse h3, #judcon-brno-microsite section.inverse h4, #judcon-brno-microsite section.inverse h5, #judcon-brno-microsite section.inverse h6, #judcon-brno-microsite section.inverse ul, #judcon-brno-microsite section.inverse li {
+      color: #FFFFFF; }
+    #judcon-brno-microsite section.inverse a {
+      color: #FFFFFF;
+      font-weight: 600; }
+
+#judcon-brno-microsite .callout-light {
+  padding-bottom: 0; }
+  #judcon-brno-microsite .callout-light a {
+    color: #73BCF7; }
+
+#judcon-brno-microsite ul {
+  list-style: none; }
+  #judcon-brno-microsite ul.session-list li {
+    margin-bottom: .5em; }
+
+#judcon-brno-microsite .event-header {
+  margin-bottom: 25px; }
+  #judcon-brno-microsite .event-header .judcon-date .large-6, #judcon-brno-microsite .event-header .judcon-date .developer-materials-sidebar {
+    padding-right: 0;
+    text-align: right; }
+
+.eventsgids2016 .wrapper {
+  padding-bottom: 0; }
+
+.wide-hero.gids {
+  background-image: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_1811x260px_31mar2016.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  max-width: 100%;
+  margin: 0;
+  min-height: 240px; }
+  @media only screen and (max-width: 1024px) {
+    .wide-hero.gids {
+      background: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_600x446_31mar2016.png") top center/cover repeat-x;
+      min-height: 560px; } }
+  @media only screen and (max-width: 480px) {
+    .wide-hero.gids {
+      background: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_480x500px_31mar2016.png") top center/cover repeat-x;
+      min-height: 450px; } }
+
+#gids-microsite section {
+  padding: 35px 0; }
+  #gids-microsite section.dark-blue {
+    background-color: #0088C3; }
+    #gids-microsite section.dark-blue p, #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue h3, #gids-microsite section.dark-blue h4, #gids-microsite section.dark-blue h5, #gids-microsite section.dark-blue h6 {
+      color: #FFFFFF; }
+  #gids-microsite section.pale-blue {
+    background-color: #A3DBE8; }
+    #gids-microsite section.pale-blue p, #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue h3, #gids-microsite section.pale-blue h4, #gids-microsite section.pale-blue h5, #gids-microsite section.pale-blue h6, #gids-microsite section.pale-blue i {
+      color: #242424; }
+
+#gids-microsite .site-header p {
+  font-size: 1.2em; }
+
+#gids-microsite ul {
+  list-style: none; }
+  #gids-microsite ul.nav-list li {
+    margin: 15px 0;
+    color: #0088C3; }
+    #gids-microsite ul.nav-list li i {
+      margin-right: 3px;
+      color: #0088C3; }
+
+#gids-microsite .gids-date {
+  margin-top: 15px; }
+  #gids-microsite .gids-date h6, #gids-microsite .gids-date i.fa {
+    display: inline;
+    margin-right: 10px; }
+
+#gids-microsite ul.speakers-list li {
+  margin-top: 35px;
+  margin-left: 0; }
+
+#gids-microsite ul.speakers-list .speaker-info strong {
+  color: #FFFFFF; }
+
+#gids-microsite ul.speakers-list h4 {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-top: 0; }
+
+#gids-microsite ul.speakers-list p {
+  margin-bottom: 0; }
+
+#gids-microsite ul.speakers-list .talk-info {
+  background-color: rgba(0, 103, 146, 0.55);
+  padding: 10px;
+  margin-bottom: 10px; }
+  #gids-microsite ul.speakers-list .talk-info a {
+    color: #FFFFFF;
+    position: relative;
+    top: 8px; }
+
+.eventsmsbuild2016 .wrapper {
+  padding-bottom: 0; }
+
+.wide-hero.msbuild {
+  background-image: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_1811x260px.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  min-height: 260px; }
+  @media only screen and (max-width: 1024px) {
+    .wide-hero.msbuild {
+      min-height: 188px; } }
+  @media only screen and (max-width: 768px) {
+    .wide-hero.msbuild {
+      background: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_600x446.png") top center/cover repeat-x;
+      min-height: 480px; } }
+  @media only screen and (max-width: 480px) {
+    .wide-hero.msbuild {
+      background: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_480x500px.png") top center/cover repeat-x;
+      min-height: 427px; } }
+
+#msbuild-microsite section {
+  padding: 35px 0; }
+  #msbuild-microsite section.inverse {
+    background-color: #0d5884;
+    padding: 25px 0;
+    background-image: none; }
+    #msbuild-microsite section.inverse p, #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse h3, #msbuild-microsite section.inverse h4, #msbuild-microsite section.inverse h5, #msbuild-microsite section.inverse h6 {
+      color: #FFFFFF; }
+
+#msbuild-microsite .site-header p {
+  font-size: 1.2em; }
+
+#msbuild-microsite ul {
+  list-style: none; }
+  #msbuild-microsite ul.nav-list li {
+    margin: 15px 0; }
+    #msbuild-microsite ul.nav-list li i {
+      margin-right: 3px; }
+  #msbuild-microsite ul.speakers-list li img {
+    display: block;
+    float: left;
+    height: 120px; }
+
+#msbuild-microsite .msbuild-date {
+  margin-top: 15px; }
+  #msbuild-microsite .msbuild-date h6, #msbuild-microsite .msbuild-date i.fa {
+    display: inline;
+    color: #FFFFFF; }
+
+#msbuild-microsite ul.msb-team-members {
+  margin-top: 60px; }
+  #msbuild-microsite ul.msb-team-members li {
+    margin: 20px 0; }
+  #msbuild-microsite ul.msb-team-members img {
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px auto;
+    max-width: 155px; }
+  #msbuild-microsite ul.msb-team-members span .name {
+    font-weight: 800;
+    font-size: 1em;
+    display: inline;
+    margin-left: 15px; }
+  #msbuild-microsite ul.msb-team-members span a {
+    display: inline;
+    margin-left: 5px;
+    font-size: 1.1em; }
+  #msbuild-microsite ul.msb-team-members span .title {
+    font-size: .9em;
+    margin-left: 15px; }
+
+@media only screen and (max-width: 768px) {
+  #msbuild-microsite a.button {
+    float: none !important;
+    width: 100%; } }
+
+#msbuild-registration iframe {
+  min-height: 670px;
+  display: block;
+  margin: 30px auto; }
+
 [data-rhd-grid="normal"] {
   display: flex;
   flex-direction: column;
@@ -12829,7 +13036,15 @@ body.page-node-type-coding-resource h1.page-title {
 .page-community-contributor .node__content > .text-formatted,
 .page-ticket-monster .node__content > .text-formatted,
 .page-middleware .node__content > .text-formatted,
-.page-stack-overflow .node__content > .text-formatted {
+.page-stack-overflow .node__content > .text-formatted,
+.page-events-devoxx-2015 .node__content > .text-formatted,
+.page-events-devoxxfrance-2016 .node__content > .text-formatted,
+.page-events-judcon-2016-brno .node__content > .text-formatted,
+.page-events-gids-2016 .node__content > .text-formatted,
+.page-events-javaone-2015 .node__content > .text-formatted,
+.page-events-javaone-2016 .node__content > .text-formatted,
+.page-events-javaone-2017 .node__content > .text-formatted,
+.page-events-msbuild-2016 .node__content > .text-formatted {
   max-width: none;
   padding: 0;
   margin-bottom: 0; }
@@ -13167,3 +13382,24 @@ body.overlay-open .overlay {
   font-size: 30px;
   top: 10px;
   right: 10px; }
+
+.connect-with-us {
+  padding: 50px 0;
+  background-color: #CC0000; }
+  .connect-with-us h2 {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 0; }
+  .connect-with-us h4 {
+    font-weight: 200;
+    color: #FFFFFF; }
+  .connect-with-us ul.social-links {
+    list-style: none;
+    display: block;
+    margin: 15px auto 0 auto;
+    text-align: center; }
+    .connect-with-us ul.social-links li, .connect-with-us ul.social-links li a {
+      display: inline;
+      color: #FFFFFF;
+      font-size: 1.5em;
+      margin-right: 15px; }

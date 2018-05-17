@@ -3,7 +3,7 @@
 }
 
 .wide-hero.devoxxbe {
-  background-image: cdn('../images/events/devoxx/2015/devoxx-be_microsite_desktop_hero.png');
+  background-image: url('https://static.jboss.org/rhd/images/devoxx-be_microsite_desktop_hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,7 +12,7 @@
   padding-top: 40px;
   min-height: 260px;
   @include tablet-portrait-and-down {
-    background: cdn('../images/events/devoxx/2015/devoxx-be_microsite_mobile_hero.png') top center / cover repeat-x;
+    background: url('https://static.jboss.org/rhd/images/devoxx-be_microsite_mobile_hero.png') top center / cover repeat-x;
     min-height: 400px;
   }
 }
@@ -81,6 +81,7 @@
     }
     p, h4 {
         margin-bottom: 0;
+        margin-top: 0;
     }
     .talk-info {
       background-color: $grey-2;
