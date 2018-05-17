@@ -1,7 +1,30 @@
-<h6>Related Content</h6>
-{{ title_prefix }}
-<h4 {{ title_attributes }}> {{ label }} </h4>
-{{ title_suffix }}
-<p {{ content_attributes.addClass('description') }}>
-    <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Watch Now</a>
-</p>
+{%
+    set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
+%}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+    <div class="text-content">
+        {{ title_prefix }}
+        <h3 {{ title_attributes.addClass('title') }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
+        {{ title_suffix }}
+        <div class="date">{{ content.field_video_publish_date }}</div>
+        <div {{ content_attributes.addClass(['description', 'summary']) }}>{{ content.field_short_description }}</div>
+    </div>
+    <div class="teaser-image">
+        <a href="{{ url }}">
+            <div class="image-table">
+                <div class="image-cell">
+                    <img src="{{ content.field_video_thumbnail_url|raw }}"/>
+                    <div class="play-button">►</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</article>
