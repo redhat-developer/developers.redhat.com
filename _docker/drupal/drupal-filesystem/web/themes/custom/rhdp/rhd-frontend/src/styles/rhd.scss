@@ -54,6 +54,9 @@
 @import "ticket-monster";
 @import "vjbug";
 @import "searchapp";
+@import "judcon-brno";
+@import "gids";
+@import "msbuild";
 
 
 
@@ -188,7 +191,15 @@ body.page-node-type-coding-resource {
 .page-community-contributor,
 .page-ticket-monster,
 .page-middleware,
-.page-stack-overflow {
+.page-stack-overflow,
+.page-events-devoxx-2015,
+.page-events-devoxxfrance-2016,
+.page-events-judcon-2016-brno,
+.page-events-gids-2016,
+.page-events-javaone-2015,
+.page-events-javaone-2016,
+.page-events-javaone-2017,
+.page-events-msbuild-2016 {
   .node__content > .text-formatted {
     max-width: none;
     padding: 0;
@@ -559,4 +570,30 @@ table {
   cursor: pointer;
   span { display: block; }
   span.less { display: none; }
+}
+
+.connect-with-us {
+  padding: 50px 0;
+  background-color: $red;
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  h4 {
+    font-weight: 200;
+    color: $white;
+  }
+  ul.social-links {
+    list-style: none;
+    display: block;
+    margin: 15px auto 0 auto;
+    text-align: center;
+    li, li a {
+      display: inline;
+      color: $white;
+      font-size: 1.5em;
+      margin-right: 15px;
+    }
+  }
 }
