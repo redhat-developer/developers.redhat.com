@@ -42,7 +42,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 <div class="large-24 columns">
                     <h3 id="projects-standards">Projects and Standards included in {{ product_name }}</h3>
                     <div class="community-projects" data-product-id="{{ product_machine_name }}">
-                        <ul class="large-block-grid-4 small-block-grid-2 results" id="product-upstream-projects"></ul>
+                        <rhdp-projects dcp-url="https://dcp2.jboss.org/v2/rest/search/suggest_project_name_ngram_more_fields?sort=sys_title&query=" upstream-product-id="{{ product_machine_name }}"></rhdp-projects>
                     </div>
                 </div>
             </div>

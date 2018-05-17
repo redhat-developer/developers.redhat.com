@@ -46,6 +46,7 @@ class RHDPProjects extends HTMLElement {
         this.innerHTML = this.template`${this}`;
         this.addEventListener('data-results-complete', this._loadDataResult);
         let query = new RHDPProjectQuery();
+        query.filter = this.getAttribute('upstream-product-id') ? this.getAttribute('upstream-product-id') : '';
         query.dcpUrl = this.dcpUrl;
         let url = new RHDPProjectURL();
         this.appendChild(query);
