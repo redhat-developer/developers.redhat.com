@@ -15,14 +15,14 @@
     {{ with "js/rhd.min.js" | absURL }}
     <script>
     SystemJS.import("{{ . }}").then(function() {
-        System.import('typescript/rhd-app');
+        System.import('@rhd/rhd-app');
     })</script>
     {{ end }}
 {{ else }}
     {{ with "js/rhd.js" | absURL }}
     <script>
     SystemJS.import("{{ . }}").then(function() {
-        System.import('typescript/rhd-app');
+        System.import('@rhd/rhd-app');
     });
     </script>
     {{ end }}
