@@ -18,13 +18,10 @@
         <div {{ content_attributes.addClass(['description', 'summary']) }}>{{ content.field_short_description }}</div>
     </div>
     <div class="teaser-image">
-        <a href="{{ url }}">
             <div class="image-table">
                 <div class="image-cell">
-                    <img src="{{ content.field_video_thumbnail_url|raw }}"/>
-                    <div class="play-button">►</div>
+                    {{ content.field_video_resource }}
                 </div>
             </div>
-        </a>
     </div>
 </article>
