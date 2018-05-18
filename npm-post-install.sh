@@ -8,5 +8,6 @@ $(npm bin)/gulp
 
 # Run npm install in the rhdp theme to pull down the front-end repo and build
 cd _docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
-npm start
+npm install
+npm build
 
