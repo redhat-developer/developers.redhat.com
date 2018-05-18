@@ -328,8 +328,8 @@ class TestControl < Minitest::Test
   def test_build_css_and_js_for_drupal
     status = mock()
 
-    status.expects(:success?).returns(true).twice
-    Open3.expects(:capture2e).with('npm npm config set @fortawesome:registry test"').returns(['out',status])
+    status.expects(:success?).returns(true).at_most(3)
+    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out',status])
     Open3.expects(:capture2e).with('npm install').returns(['out',status])
     Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out',status])
 
@@ -351,7 +351,7 @@ class TestControl < Minitest::Test
     status = mock()
 
     status.expects(:success?).returns(false)
-    Open3.expects(:capture2e).with('npm install').returns(['out',status])
+    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out',status])
 
     assert_raises(SystemExit){
       build_css_and_js_for_drupal
@@ -361,9 +361,10 @@ class TestControl < Minitest::Test
   def test_should_abort_if_cannot_build_css_and_js_for_drupal_running_gulp
     status = mock()
 
-    status.expects(:success?).twice.returns(true).then.returns(false)
-    Open3.expects(:capture2e).with('npm install').returns(['out',status])
-    Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['Oh dear!',status])
+    status.expects(:success?).returns(true).twice.then.returns(false)
+    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out', status])
+    Open3.expects(:capture2e).with('npm install').returns(['out', status])
+    # Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out', status])
 
     assert_raises(SystemExit){
       build_css_and_js_for_drupal
