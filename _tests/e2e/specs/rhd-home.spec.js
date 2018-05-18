@@ -3,12 +3,12 @@ const homePage = new HomePage();
 
 describe('Home Page', function () {
 
-    tags('sanity').it("health check: homepage should contain <title>Red Hat Developer", function () {
+    tags('sanity').it("homepage should contain an embedded hash string for the nagios health check", function () {
         homePage
             .open('/');
         expect(homePage.getPageSource(),
             'WARNING! Please check the page title! The site export will break, ' +
-            'the nagios health check expects <title>Red Hat Developer').to.include('<title>Red Hat Developer')
+            'the nagios health check expects 00fef0cf90c42f3e40921fb3370e520a').to.include('00fef0cf90c42f3e40921fb3370e520a')
     });
 
 });
