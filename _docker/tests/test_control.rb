@@ -10,6 +10,7 @@ class TestControl < Minitest::Test
 
   def setup
     @previous_cdn_prefix = ENV['cdn_prefix']
+    ENV[FORTAWESOME_REGISTRY] = 'test'
   end
 
   def teardown
@@ -18,6 +19,7 @@ class TestControl < Minitest::Test
     ENV['DRUPAL_HOST_IP'] = nil
     ENV['DRUPAL_HOST_PORT'] = nil
     ENV['cdn_prefix'] = @previous_cdn_prefix
+    ENV[FORTAWESOME_REGISTRY] = nil
   end
 
   def test_should_initialise_environment
@@ -326,6 +328,7 @@ class TestControl < Minitest::Test
     status = mock()
 
     status.expects(:success?).returns(true).twice
+    Open3.expects(:capture2e).with('npm npm config set @fortawesome:registry test"').returns(['out',status])
     Open3.expects(:capture2e).with('npm install').returns(['out',status])
     Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out',status])
 
