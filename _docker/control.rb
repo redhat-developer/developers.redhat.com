@@ -213,7 +213,7 @@ end
 def build_css_and_js_for_drupal
   puts '- Building CSS and JS for Drupal...'
 
-  run-npm_command("npm config set @fortawesome:registry #{ENV[FORTAWESOME_REGISTRY]}", 'Failed to set Fontawesome registry')
+  run_npm_command("npm config set @fortawesome:registry #{ENV[FORTAWESOME_REGISTRY]}", 'Failed to set Fontawesome registry')
   run_npm_command('npm install',"Failed to run 'npm install'. Do you have npm installed?")
   run_npm_command('$(npm bin)/gulp', 'Failed to run Gulp to build CSS and JS for Drupal')
 
