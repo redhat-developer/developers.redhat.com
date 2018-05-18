@@ -2,7 +2,7 @@
 
 # These locations should not need to change
 USER=$(whoami)
-GROUP=$(groups | awk '{ print $1 }') 
+GROUP=$(groups | awk '{ print $1 }')
 PROJ=$(pwd)
 DRUPAL="${PROJ}/_docker/drupal"
 DRUPAL_FILESYSTEM="${DRUPAL}/drupal-filesystem"
@@ -10,7 +10,7 @@ WEB="${DRUPAL_FILESYSTEM}/web"
 ENVIRON="${PROJ}/_docker/environments/drupal-dev"
 
 # Getting the database going, because we can't really do much until this is up
-docker-compose -f "${ENVIRON}/docker-compose.yml" up -d drupalmysql
+docker-compose -p drupaldev -f "${ENVIRON}/docker-compose.yml" up -d drupalmysql
 
 echo "Waiting until the database is up..."
 
@@ -36,7 +36,7 @@ cd ${DRUPAL_FILESYSTEM}
 composer install
 
 # Symlink the rest of the files and folders needed
-echo "Creating symlinks if needed" 
+echo "Creating symlinks if needed"
 
 if [ ! -d "${WEB}/fonts" ]
 then
@@ -82,7 +82,7 @@ echo "Running drush updb"
 ${WEB}/../vendor/bin/drush --root=${WEB} updb --entity-updates
 
 echo "Running drush cr"
-${WEB}/../vendor/bin/drush --root=${WEB} cr 
+${WEB}/../vendor/bin/drush --root=${WEB} cr
 
 echo "Starting the server"
 ${WEB}/../vendor/bin/drush --root=${WEB} rs

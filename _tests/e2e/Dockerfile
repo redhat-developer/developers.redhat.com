@@ -21,5 +21,6 @@ RUN groupadd -g 1000 e2e \
 USER e2e
 WORKDIR /home/e2e
 COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
 ENV PATH /home/e2e/node_modules/.bin:/usr/java/latest/bin:$PATH

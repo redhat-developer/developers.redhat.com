@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.scheduled_update.field_moderation_state_1
     - scheduled_updates.scheduled_update_type.node__moderation_state
+    - workbench_moderation.moderation_state.published
 id: scheduled_update.node__moderation_state.field_moderation_state_1
 field_name: field_moderation_state_1
 entity_type: scheduled_update
@@ -15,10 +16,11 @@ required: false
 translatable: false
 default_value:
   -
-    -
-      target_id: published
+    target_uuid: a8468483-4d8d-4257-86a2-a2bf8c652121
 default_value_callback: ''
 settings:
   handler: 'default:moderation_state'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles: null
+    auto_create: false
 field_type: entity_reference

@@ -2,11 +2,16 @@
   .connector {
     h3 {
       line-height: 1;
-      margin-top:emCalc(5px);
+      margin-top: .5em;
       margin-bottom:emCalc(5px);
     }
     h3,p {
       text-align: left;
+    }
+  }
+  .connectors-order {
+    a {
+      margin: 0 .5em;
     }
   }
 }

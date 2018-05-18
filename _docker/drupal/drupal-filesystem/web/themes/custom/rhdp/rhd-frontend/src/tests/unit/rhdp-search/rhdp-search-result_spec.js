@@ -1,4 +1,4 @@
-"use strict";
+
 // Test rhdp-search-result component
 
 describe('Search Result', function() {

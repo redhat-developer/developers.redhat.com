@@ -68,16 +68,15 @@ other methods (such as node.delete) will result in an exception.
 
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-learning-path") }}>
   <div class="lp-info">
-    <h4>Learning Paths</h4>
-    <div class="lp-time">{{ content.field_completion_time }}</div>
+    <h2>Learning Paths</h2>
     {{ title_prefix }}
-      <h2>{{ label }}</h2>
+      <h1>{{ label }}</h1>
     {{ title_suffix }}
     <div class="show-more-text auto-open" data-count="500" data-max-width="768">
       {{ content.field_long_description }}
-      <h6>{{ content.field_requirements_an_or_pre_req['#title'] }}</h6>
+      <strong>{{ content.field_requirements_an_or_pre_req['#title'] }}</strong>
       {{ content.field_requirements_an_or_pre_req }}
-      <h6>{{ content.field_audience['#title'] }}</h6>
+      <strong>{{ content.field_audience['#title'] }}</strong>
       {{content.field_audience}}
       <div class="certification">
         {{content.field_related_red_hat_certificat}}

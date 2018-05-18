@@ -1,37 +1,37 @@
 {
-  "name": "developers.redhat.com-e2e-tests",
+  "name": "developers.redhat.com",
   "version": "1.0.0",
-  "description": "e2e testing environment using chimp and cucumber for developers.redhat.com e2e tests",
+  "description": "RHDP e2e testing",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "watch": "chimp config/chimp-watch.js --watch",
-    "watch:mobile": "RHD_JS_DRIVER=iphone_6 chimp config/chimp-local.js --watch",
-    "watch:docker": "sh local-docker-selenium.sh && chimp config/chimp-local-docker.js --watch",
-    "watch:bs": "sh start-browserstack.sh && chimp config/chimp-browserstack.js --watch"
+    "e2e": "wdio config/wdio.conf.local.js",
+    "e2e:docker": "wdio config/wdio.conf.docker.js",
+    "e2e:browserstack": "wdio config/wdio.conf.browserstack.js"
   },
-  "keywords": [
-    "chimp",
-    "cucumber"
-  ],
   "author": "Ian Hamilton (ihamilto@redhat.com)",
   "license": "ISC",
   "dependencies": {
+    "webdriverio": "~4.12.0",
     "async": "^2.5.0",
     "browserstack-local": "^1.3.0",
-    "chimp": "^0.51.1",
-    "cucumber": "^3.1.0",
-    "cucumber-html-reporter": "^3.0.4",
     "faker": "4.1.0",
     "fs-extra": "^5.0.0",
     "imap-simple": "4.0.0",
     "path": "^0.12.7",
     "request": "^2.85.0",
-    "sync-request": "6.0.0"
-  },
-  "devDependencies": {
+    "sync-request": "6.0.0",
+    "wdio-mochawesome-reporter": "^1.3.0",
     "asyncawait": "^1.0.6",
+    "chai": "^4.1.2",
+    "cross-var": "^1.1.0",
     "firefox-profile": "^1.1.0",
-    "underscore": "^1.8.3"
+    "mocha-tags": "^1.0.1",
+    "underscore": "^1.8.3",
+    "wdio-mocha-framework": "^0.5.13",
+    "wdio-selenium-standalone-service": "~0.0.10",
+    "wdio-spec-reporter": "^0.1.4",
+    "mocha": "^5.1.1",
+    "mochawesome-report-generator": "^2.3.2",
+    "log4js": "^2.6.1"
   }
 }

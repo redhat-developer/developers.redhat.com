@@ -3,7 +3,7 @@
 }
 
 .wide-hero.judcon-brno {
-  background-image: cdn('../images/events/judcon/judcon-brno_banner_2000x400px.png');
+  background-image: url('https://static.jboss.org/rhd/images/judcon-brno_banner_2000x400px.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,10 +12,10 @@
   padding-top: 40px;
   min-height: 260px;
   @include tablet-landscape-and-down {
-    background: cdn('../images/events/judcon/judcon-brno_banner_1811x260px.png') top center / cover repeat-x;
+    background: url('https://static.jboss.org/rhd/images/judcon-brno_banner_1811x260px.png') top center / cover repeat-x;
   }
   @include mobile-landscape-and-down {
-    background: cdn('../images/events/judcon/judcon-brno_banner_480x500px.png') top center / cover repeat-x;
+    background: url('https://static.jboss.org/rhd/images/judcon-brno_banner_480x500px.png') top center / cover repeat-x;
     min-height: 500px;
   }
 }

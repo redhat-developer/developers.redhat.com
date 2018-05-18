@@ -92,6 +92,8 @@ a.get-started-quickstart.button {
   overflow: hidden;
   margin-bottom: 20px;
   ul {
+    margin-top: 0;
+    padding-left: 15px;
     li {
       width:33.33%;
       float:left;
@@ -104,11 +106,18 @@ a.get-started-quickstart.button {
       }
     }
   }
+  .field--name-field-related-product.field--type-entity-reference {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 ul.toc {
   margin: 0;
   width: 100%;
+  z-index: -1;
 }
 .gsi-nav-fixed {
   position: fixed;
@@ -120,6 +129,7 @@ ul.toc {
 }
 
 .gsi-nav {
+  padding-left: 0;
   li {
     list-style:none;
     padding-bottom:10px;
@@ -131,10 +141,8 @@ ul.toc {
     a {
       color: $link-sm;
       &:after {
-        content: "\f054";
-        font-size: 10px;
+        content: "\203A";
         margin-left: 5px;
-        font-family: 'FontAwesome';
       }
     }
   }
@@ -286,6 +294,7 @@ ul.toc {
           border-bottom: 3px solid $red;
         }
       }
+      a:focus, a:hover, a:active { background-color: $white; }
       @-moz-document url-prefix() {
         &.active { bottom: -1px; }
       }
@@ -356,6 +365,7 @@ ul.toc {
     -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     min-height: 165px;
+    height: 100%;
     h4 {
       color: $white;
       margin-top: 0;
@@ -491,6 +501,9 @@ ul.toc {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 0;
+  }
+  .tabs-content > .content:focus {
+    outline: none;
   }
 }
 
@@ -695,6 +708,7 @@ ul.toc {
   border: 5px solid #e6e7e8;
   padding: 1.5rem;
   margin: 3rem 0;
+  clear: both;
   ul li:before{ 
     display: none;
   }

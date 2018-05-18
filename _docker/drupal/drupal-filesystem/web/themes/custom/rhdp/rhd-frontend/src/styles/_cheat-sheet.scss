@@ -26,7 +26,6 @@
       &.open-quote {
         font-size: 7em;
         width: 60px;
-        margin-top: 40px;
         color: #00b9e4;
         font-style: normal;
       }
@@ -122,6 +121,7 @@
   }
 
   @include tablet-landscape-and-down {
+    padding: 15px;
     .cs-info, .book-info {
       .cs-social, .book-social {
         float: none !important;
@@ -143,6 +143,15 @@
   @include tablet-portrait-and-down {
     .cs-tags {
       margin-top: 20px;
+    }
+  }
+
+  @include mobile-landscape-and-down {
+    .cs-excerpt span.open-quote {
+      display: none;
+    }
+    .cs-excerpt span {
+      width: 100%;
     }
   }
   // I'd REALLY like to get this setup correctly, but I don't want to break other places

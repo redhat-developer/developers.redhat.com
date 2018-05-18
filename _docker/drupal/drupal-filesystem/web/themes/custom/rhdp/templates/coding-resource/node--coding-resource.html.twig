@@ -11,9 +11,9 @@
 <div class="row" itemscope="" itemtype="http://schema.org/Article">
     {# This should really include the columns class #}
     <div class="collapse large-24">
-        <h2 class="divider" id="start" itemprop="name">
+        <h1 class="divider" id="start" itemprop="name">
             {{ label }}
-        </h2>
+        </h1>
         <div class="gsi-meta">
             <ul>
                 {% if content.field_author|render|striptags|trim is not empty %}
@@ -54,12 +54,12 @@
                     <div class="row">
                         <div class="columns large-24">
                             <a href="{{ repo_url }}/archive/{{ content.field_version.0 }}.zip" class="button">Download <i
-                                        class="fa fa-download"></i></a>
+                                        class="fas fa-download"></i></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="columns large-24">
-                            <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fa fa-github"></i> View on GitHub</a>
+                            <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fab fa-github"></i> View on GitHub</a>
                         </div>
                     </div>
                 </div>

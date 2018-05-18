@@ -1,0 +1,19 @@
+uuid: a25e7a2a-ac15-49ca-b52d-c9d0df1850c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_categories
+    - field.storage.assembly.field_title
+id: assembly.product_categories.field_title
+field_name: field_title
+entity_type: assembly
+bundle: product_categories
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

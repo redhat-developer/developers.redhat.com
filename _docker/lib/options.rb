@@ -35,6 +35,7 @@ class Options
       opts.on('--export [EXPORT_LOCATION]', String, 'Export all content from Drupal within the environment and rsync it to EXPORT_LOCATION') do | export_location |
         tasks[:build] = true
         tasks[:docker_pull] = false
+        tasks[:export] = true
         tasks[:awestruct_command_args] = ['--rm', 'export']
         if !export_location.nil? && !export_location.empty?
           tasks[:awestruct_command_args] << export_location
@@ -80,7 +81,7 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
+        #tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
       end
 
       opts.on('--no-decrypt','Do not attempt to decrypt the secrets file (secrets are set in the environment)') do

@@ -1,1 +1,1 @@
-System.import('rhd-app');
+System.import('@rhd/rhd-app');

@@ -5,11 +5,29 @@ dependencies:
   config:
     - assembly.assembly_type.product_categories
     - field.field.assembly.product_categories.field_navigation_title
+    - field.field.assembly.product_categories.field_title
+  module:
+    - fences
 id: assembly.product_categories.default
 targetEntityType: assembly
 bundle: product_categories
 mode: default
-content: {  }
+content:
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: section-title
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
 hidden:
   field_navigation_title: true
   name: true

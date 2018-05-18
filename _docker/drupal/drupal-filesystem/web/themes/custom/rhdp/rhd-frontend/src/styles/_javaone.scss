@@ -12,7 +12,7 @@
   padding-top: 40px;
   min-height: 260px;
   
-  &.javaone2015{ background-image: cdn('../images/javaone/2015/javaone_microsite_desktop_hero.png');}
+  &.javaone2015{ background-image: url('https://static.jboss.org/rhd/images/javaone_microsite_desktop_hero.png');}
   &.javaone2016{ 
     background-image: url('https://static.jboss.org/images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg');
     min-height: 200px;
@@ -22,7 +22,7 @@
 
   @include tablet-portrait-and-down {
     &.javaone2015{
-      background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+      background: url('https://static.jboss.org/rhd/images/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
       min-height: 400px;
     }
     &.javaone2016{
@@ -111,6 +111,7 @@
     }
     p, h4 {
         margin-bottom: 0;
+        margin-top: 0;
     }
     .talk-info {
       background-color: #09496F;

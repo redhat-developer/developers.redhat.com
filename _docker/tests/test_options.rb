@@ -16,6 +16,7 @@ class TestOptions < Minitest::Test
   def test_export_with_no_explicit_destination
     tasks = Options.parse(['--export'])
     assert(tasks[:build])
+    assert(tasks[:export])
     assert_equal(['--rm','export'], tasks[:awestruct_command_args])
   end
 
@@ -168,7 +169,6 @@ class TestOptions < Minitest::Test
     refute(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(%w(--rm --service-ports awestruct), tasks[:awestruct_command_args])
   end
 
   def test_run_tests_with_no_decrypt
@@ -185,7 +185,6 @@ class TestOptions < Minitest::Test
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 
   def test_run_the_stack_drupal_pull_request
@@ -196,7 +195,6 @@ class TestOptions < Minitest::Test
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(%w(drupalmysql drupal), tasks[:supporting_services])
-    assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 
   def test_test_task

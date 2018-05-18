@@ -45,6 +45,12 @@
 }
 .hero.hero-wide.product-header {
     margin-bottom: 0;
+    h1, .field__item  {
+      color: $white;
+    }
+    .field--name-field-product-summary {
+      font-size: 27px;
+    }
 }
 
 .product-header {
@@ -648,6 +654,15 @@ ul.product-langs {
     float: right;
     margin-top: 13px;
   }
+}
+
+.rh-downloads{
+  .download-link{
+    .version-name{
+      margin-top: 15px;
+    }
+
+}
 }
 
 rhdp-tryitnow {
