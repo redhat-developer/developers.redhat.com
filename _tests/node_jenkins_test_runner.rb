@@ -31,7 +31,7 @@ class NodeJenkinsTestRunner
     elsif @test_type == 'blc'
       tests_passed &= execute_blc
     elsif @test_type == 'sanity'
-      tests_passed &= execute_critical_page_checks
+      tests_passed &= execute_e2e('desktop')
     else
       raise(StandardError, "#{@test_type} is not a recognised test type, please check and try again")
     end
@@ -69,22 +69,6 @@ class NodeJenkinsTestRunner
       success = false
     end
     success
-  end
-
-  #
-  # Execute the critical page checks
-  #
-  def execute_critical_page_checks
-    generate_critical_page_sitemap
-    result = true
-    test_execution_command = build_blc_run_tests_command
-    begin
-      @process_runner.execute!(test_execution_command)
-    rescue
-      puts 'Critical page link checks failed.'
-      result = false
-    end
-    result
   end
 
   #
@@ -134,9 +118,9 @@ class NodeJenkinsTestRunner
       end
     else
       if profile == 'desktop'
-        command += " --mocha-tags=not:#{mocha_tags}"
+        command += " --mocha-tags=#{mocha_tags}"
       else
-        command += " --mocha-tags=not:#{mocha_tags}"
+        command += " --mocha-tags=#{mocha_tags}"
       end
     end
     command

@@ -1,6 +1,7 @@
 const qs = require('querystring');
 const User = require("./support/rest/keycloak/Site.user");
 const dowloadHelper = require('./support/DownloadHelper');
+const DownloadManager = require("./support/rest/Download.Manager");
 const HomePage = require('./support/pages/website/Home.page');
 const homePage = new HomePage();
 const LoginPage = require('./support/pages/keycloak/Login.page');
@@ -142,6 +143,11 @@ describe('Products Downloads: Login', function () {
     });
 
     afterEach(function () {
+        let downloadManager = new DownloadManager(process.env.RHD_BASE_URL);
+        if (this.currentTest.state === 'failed') {
+            global.logger.warn(`Product download failed! Download Manager status was: ${downloadManager.isDMRunning()}`)
+        }
+
         try {
             let encodedURL = qs.escape(process.env.RHD_BASE_URL);
             if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
