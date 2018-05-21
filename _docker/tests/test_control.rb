@@ -234,7 +234,6 @@ class TestControl < Minitest::Test
     environment.expects(:create_template_resources).never
 
     expects(:copy_project_dependencies_for_awestruct_image)
-    expects(:build_css_and_js_for_drupal).never
     expects(:build_base_docker_images).with(environment, system_exec)
     expects(:build_environment_docker_images).with(environment, system_exec)
 
@@ -251,7 +250,6 @@ class TestControl < Minitest::Test
     environment.expects(:environment_name).returns('foo')
     environment.expects(:create_template_resources)
 
-    expects(:build_css_and_js_for_drupal)
     expects(:copy_project_dependencies_for_awestruct_image)
     expects(:build_base_docker_images).with(environment, system_exec)
     expects(:build_environment_docker_images).with(environment, system_exec)
@@ -325,18 +323,6 @@ class TestControl < Minitest::Test
 
   end
 
-  def test_build_css_and_js_for_drupal
-    status = mock()
-
-    status.expects(:success?).returns(true).at_most(3)
-    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out',status])
-    Open3.expects(:capture2e).with('npm install').returns(['out',status])
-    Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out',status])
-
-    build_css_and_js_for_drupal
-
-  end
-
   def test_create_proxy_environment_docker_build_args
 
     environment = mock()
@@ -344,32 +330,6 @@ class TestControl < Minitest::Test
     environment.expects(:get_https_proxy).returns('http://bar.com')
 
     assert_equal(%w(--build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com), create_proxy_environment_docker_build_args(environment))
-  end
-
-  def test_should_abort_if_cannot_build_css_and_js_running_npm_install
-
-    status = mock()
-
-    status.expects(:success?).returns(false)
-    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out',status])
-
-    assert_raises(SystemExit){
-      build_css_and_js_for_drupal
-    }
-  end
-
-  def test_should_abort_if_cannot_build_css_and_js_for_drupal_running_gulp
-    status = mock()
-
-    status.expects(:success?).returns(true).twice.then.returns(false)
-    Open3.expects(:capture2e).with('npm config set @fortawesome:registry test').returns(['out', status])
-    Open3.expects(:capture2e).with('npm install').returns(['out', status])
-    # Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out', status])
-
-    assert_raises(SystemExit){
-      build_css_and_js_for_drupal
-    }
-
   end
 
   def test_load_environment_aborts_execution_if_environment_does_not_exist
