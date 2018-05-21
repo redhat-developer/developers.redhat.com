@@ -12,9 +12,8 @@ sleep 10
 ruby drupal_install_checker.rb
 
 # Build theme
-cd /var/www/drupal/themes/custom/rhdp/rhd-frontend
+cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend
 npm config set @fortawesome:registry ${FORTAWESOME_REGISTRY}
-npm rebuild --force
 npm install
 npm run-script build
 
