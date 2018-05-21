@@ -26,6 +26,7 @@ class DrupalInstallChecker
     wait_for_database_to_boot
     check_all_required_drupal_configuration
 
+    build_theme_files
     drush_cache_rebuild
     drush_config_import
     drush_updb
@@ -115,6 +116,17 @@ class DrupalInstallChecker
     puts 'Importing latest Drupal configuration...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim))
     drush_cache_rebuild
+  end
+
+  def build_theme_files
+    puts 'Executing npm config...'
+    process_executor.exec!('npm', %W[config set @fortawesome:registry #{ENV['FORTAWESOME_REGISTRY']}])
+    puts 'Executing "npm rebuild --force" for rhd-frontend...'
+    process_executor.exec!('npm', %w[rebuild /var/www/drupal/web/themes/custom/rhdp/rhd-frontend --force])
+    puts 'Executing "npm install" for rhd-frontend...'
+    process_executor.exec!('npm', %w[install /var/www/drupal/web/themes/custom/rhdp/rhd-frontend])
+    puts 'Executing "npm build" for the theme...'
+    process_executor.exec!('npm', %w[build /var/www/drupal/web/themes/custom/rhdp/rhd-frontend])
   end
 
 end

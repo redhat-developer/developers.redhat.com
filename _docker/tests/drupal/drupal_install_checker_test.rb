@@ -71,6 +71,7 @@ class DrupalInstallCheckerTest < Minitest::Test
   end
 
   def test_should_fully_prepare_drupal_for_boot
+    ENV['FORTAWESOME_REGISTRY'] = 'test'
     @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
                                                   "--port=#{@opts['database']['port']}",
                                                   "--user=#{@opts['database']['username']}",
@@ -86,11 +87,15 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                              '--execute=show tables', "#{@opts['database']['name']}"]]
 
 
-    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
-    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web -y cim)]
-    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
-    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(-y --root=/var/www/drupal/web --entity-updates updb)]
-    @process_exec.expect :exec!, true ,['/var/www/drupal/vendor/bin/drush',%w(--root=/var/www/drupal/web cr)]
+    @process_exec.expect :exec!, true, ['npm', %w[config set @fortawesome:registry test]]
+    @process_exec.expect :exec!, true, ['npm', %w[rebuild /var/www/drupal/web/themes/custom/rhdp/rhd-frontend --force]]
+    @process_exec.expect :exec!, true, ['npm', %w[install /var/www/drupal/web/themes/custom/rhdp/rhd-frontend]]
+    @process_exec.expect :exec!, true, ['npm', %w[build /var/www/drupal/web/themes/custom/rhdp/rhd-frontend]]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim)]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb)]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
 
     @install_checker.prepare_drupal_for_boot
 
