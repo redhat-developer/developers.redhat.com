@@ -37,7 +37,7 @@ describe('RHD Cheatsheet downloads', function () {
         cheatSheetPage
             .awaitDownloadThankYou();
         expect(dowloadHelper.getDownloads().length,
-            'Failed to download cheatsheet').to.be.at.least(1)
+            'Failed to download cheatsheet').to.eql(1)
     });
 
     afterEach(function () {
