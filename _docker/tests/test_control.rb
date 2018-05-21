@@ -10,8 +10,6 @@ class TestControl < Minitest::Test
 
   def setup
     @previous_cdn_prefix = ENV['cdn_prefix']
-    @prev_fortawesome = ENV['FORTAWESOME_REGISTRY']
-    ENV['FORTAWESOME_REGISTRY'] = 'test' 
   end
 
   def teardown
@@ -20,7 +18,6 @@ class TestControl < Minitest::Test
     ENV['DRUPAL_HOST_IP'] = nil
     ENV['DRUPAL_HOST_PORT'] = nil
     ENV['cdn_prefix'] = @previous_cdn_prefix
-    ENV['FORTAWESOME_REGISTRY'] = @prev_fortawesome
   end
 
   def test_should_initialise_environment
