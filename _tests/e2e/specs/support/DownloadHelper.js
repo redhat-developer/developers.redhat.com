@@ -1,4 +1,6 @@
 const fs = require('fs-extra');
+const log4js = require('log4js');
+const logger = log4js.getLogger();
 
 class DownloadHelper {
 
@@ -18,7 +20,7 @@ class DownloadHelper {
         let dirSize = [];
         do {
             fs.readdirSync(global.downloadDir).forEach(file => {
-                console.log('waiting for download . . . ');
+                logger.info('waiting for download . . . ');
                 this.sleep(1000);
                 fileName.push(file);
                 dirSize.push(file);

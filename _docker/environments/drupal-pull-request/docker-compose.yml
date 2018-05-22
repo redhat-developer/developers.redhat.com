@@ -2,6 +2,8 @@ version: '2'
 services:
   drupal:
     build: ../../drupal
+    environment:
+      - FORTAWESOME_REGISTRY
     ports:
       - "${DRUPAL_HOST_PORT}:80"
     links:

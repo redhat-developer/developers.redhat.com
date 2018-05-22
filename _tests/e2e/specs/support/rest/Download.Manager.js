@@ -20,6 +20,12 @@ class DownloadManager {
         }
     }
 
+    isDMRunning() {
+        let request_header = {"Content-Type": "application/json"};
+        let response = request('GET', `${this.baseUrl}/download-manager/rest/available?nv=1`, {headers: request_header});
+        return response.statusCode;
+    }
+
     /**
      * Calls DM endpoint and returns all available downloads
      * @return a hash map containing product name and it's code
@@ -93,6 +99,5 @@ class DownloadManager {
     }
 }
 
-export {
-    DownloadManager
-};
+module.exports = DownloadManager;
+
