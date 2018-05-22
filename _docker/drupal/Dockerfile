@@ -8,6 +8,9 @@ LABEL version="dev"
 
 ADD remi-release-6.rpm /root/
 
+# Install Node 8
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+
 RUN rpm -Uvh /root/remi-release-6.rpm
 RUN yum-config-manager --enable remi-php71; \
     yum -y update; \
@@ -15,6 +18,7 @@ RUN yum-config-manager --enable remi-php71; \
            git \
            httpd.x86_64 \
            mysql \
+           nodejs \
            php \
            php-cli \
            php-common \
@@ -41,7 +45,8 @@ RUN { \
 
 EXPOSE 80
 
-RUN curl https://getcomposer.org/installer > composer-installer && php composer-installer && mv composer.phar /usr/local/bin/composer
+# Install latest composer
+RUN curl https://getcomposer.org/installer > composer-installer && php composer-installer && mv composer.phar /usr/local/bin/composer 
 
 WORKDIR /var/www/drupal
 COPY apache/drupal.conf /etc/httpd/conf.d/drupal.conf

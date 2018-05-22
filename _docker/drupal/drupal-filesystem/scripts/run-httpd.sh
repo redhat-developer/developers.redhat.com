@@ -11,6 +11,15 @@ sleep 10
 # Check if drupal is installed, install if needed
 ruby drupal_install_checker.rb
 
+# Build theme
+cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend
+npm config set @fortawesome:registry ${FORTAWESOME_REGISTRY}
+npm install
+npm run-script build
+
+# Go back to where we were before
+cd /var/www/drupal
+
 # Run all database migrations
 ruby /var/www/drupal/phinx.rb migrate
 
