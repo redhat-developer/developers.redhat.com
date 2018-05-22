@@ -60,7 +60,7 @@ then
 fi
 
 # ADD from docker active config, files
-echo "Adding the active config from the prod dump"
+echo "\nAdding the active config from the prod dump"
 rm -rf ${WEB}/config/active
 mkdir ${WEB}/config/active
 
@@ -70,6 +70,9 @@ sudo chown -R ${USER}:${GROUP} ${WEB}/config/active
 echo "Adding site/files"
 sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
 sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
+
+echo "Building css/js for theme"
+npm install
 
 echo "Running drush cim"
 ${WEB}/../vendor/bin/drush --root=${WEB} cim

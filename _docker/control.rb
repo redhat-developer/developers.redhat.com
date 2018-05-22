@@ -201,19 +201,10 @@ def run_npm_command(cmd, error_message)
 
   puts " -- Running command '#{cmd}'..."
   out, status = Open3.capture2e("#{cmd}")
+  puts " -- #{cmd} output --"
+  puts out
+  puts " -- End #{cmd} output --"
   Kernel.abort("#{error_message}: #{out}") unless status.success?
-end
-
-#
-# Delegates out to Gulp to build the CSS and JS for Drupal
-#
-def build_css_and_js_for_drupal
-  puts '- Building CSS and JS for Drupal...'
-
-  run_npm_command('npm install',"Failed to run 'npm install'. Do you have npm installed?")
-  run_npm_command('$(npm bin)/gulp', 'Failed to run Gulp to build CSS and JS for Drupal')
-
-  puts '- Successfully built CSS and JS for Drupal'
 end
 
 def create_proxy_environment_docker_build_args(environment)
@@ -250,7 +241,6 @@ def build_environment_resources(environment, system_exec)
   puts "Building all required resources for environment '#{environment.environment_name}'"
 
   if environment.is_drupal_environment?
-    build_css_and_js_for_drupal
     environment.create_template_resources
   end
 
@@ -382,5 +372,4 @@ if $0 == __FILE__
   if tasks[:awestruct_command_args]
     system_exec.execute_docker_compose(environment, :run, tasks[:awestruct_command_args])
   end
-
 end
