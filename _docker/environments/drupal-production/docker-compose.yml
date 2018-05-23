@@ -14,6 +14,7 @@ services:
       - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
       - /data/drupal-logs/lightning:/var/log/httpd
+      - /data/drupal/npm-cache:/root/.npm
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
     environment:
@@ -38,7 +39,7 @@ services:
     volumes:
       - ../../../:/home/jenkins_developer/developer.redhat.com
       - /data/drupal:/drupal
-      - /git/backups:/backups
+      - /data/git/backups:/backups
       - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
       - /credentials/git/backups/netrc:/home/jenkins_developer/.netrc
 
