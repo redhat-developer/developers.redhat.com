@@ -18,11 +18,15 @@ npm config set @fortawesome:registry ${FORTAWESOME_REGISTRY}
 # Add npm proxy
 if [ -z ${http_proxy+x} ]
 then
+  echo "No proxy config"
+else
   echo "Setting npm proxy to http://${http_proxy}"
   npm config set proxy http://${http_proxy}
 fi
 if [ -z ${https_proxy+x} ]
 then
+  echo "No proxy config"
+else
   echo "Setting npm https-proxy to http://${https_proxy}"
   npm config set https-proxy http://${https_proxy}
 fi
