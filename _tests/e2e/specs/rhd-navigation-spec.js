@@ -14,7 +14,13 @@ describe('Navigation bar', function () {
             .open('/');
         siteNav
             .clickLoginLink();
-        expect(loginPage.isOnLoginPage(),'Log in page was not displayed').to.be.true
+        expect(loginPage.isOnLoginPage(), 'Log in page was not displayed').to.be.true
+    });
+
+    afterEach(function () {
+        if (this.currentTest.state === 'failed') {
+            global.logger.warn(`Login page was not accessible!`)
+        }
     });
 
 });

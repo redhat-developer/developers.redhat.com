@@ -752,6 +752,188 @@ System.register("@rhd/rhd-app", ["@rhd/rhdp-alert", "@rhd/dp-category-list/dp-ca
         }
     };
 });
+System.register("@rhd/rhdp-cookie", ["@rhelements/rhelement"], function (exports_9, context_9) {
+    "use strict";
+    var __moduleName = context_9 && context_9.id;
+    var rhelement_7, RHDPCookie;
+    return {
+        setters: [
+            function (rhelement_7_1) {
+                rhelement_7 = rhelement_7_1;
+            }
+        ],
+        execute: function () {
+            RHDPCookie = (function (_super) {
+                __extends(RHDPCookie, _super);
+                function RHDPCookie() {
+                    var _this = _super.call(this, 'rhdp-alert') || this;
+                    _this.template = function (el) {
+                        var tpl = document.createElement("template");
+                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: " + (el.size !== 'xl' ? 'row' : 'column') + ";\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: " + el.background + ";\n            border-color: " + el.border + ";\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin-bottom: 0;\n            display: inline\n        }\n\n        strong { margin-right: .5em; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n            " + (el.size !== 'xl' ? '' : "\n            display: inline;\n            float: left;\n            margin-left: 1em;\n            ") + "\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <slot></slot>\n        " + (el.size === 'xl' ? "<a class=\"close\"><i class=\"fas fa-times\"</a>" : '');
+                        return tpl;
+                    };
+                    _this._type = 'info';
+                    _this._icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+                    _this._background = '#dcedf8';
+                    _this._border = '#87aac1';
+                    _this.text = _this.innerHTML;
+                    return _this;
+                }
+                Object.defineProperty(RHDPCookie.prototype, "type", {
+                    get: function () {
+                        return this._type;
+                    },
+                    set: function (val) {
+                        if (this._type === val)
+                            return;
+                        this._type = val;
+                        switch (this._type) {
+                            case 'success':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
+                                this.background = '#e9f4e9';
+                                this.border = '#8db28a';
+                                break;
+                            case 'warning':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
+                                this.background = '#fdf2e5';
+                                this.border = '#deb142';
+                                break;
+                            case 'error':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
+                                this.background = '#ffe6e6';
+                                this.border = '#d8aaab';
+                                break;
+                            case 'info':
+                            default:
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+                                this.background = '#dcedf8';
+                                this.border = '#87aac1';
+                                break;
+                        }
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "size", {
+                    get: function () {
+                        return this._size;
+                    },
+                    set: function (val) {
+                        if (this._size === val)
+                            return;
+                        this._size = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "heading", {
+                    get: function () {
+                        return this._heading;
+                    },
+                    set: function (val) {
+                        if (this._heading === val)
+                            return;
+                        this._heading = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "text", {
+                    get: function () {
+                        return this._text;
+                    },
+                    set: function (val) {
+                        if (this._text === val)
+                            return;
+                        this._text = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "icon", {
+                    get: function () {
+                        return this._icon;
+                    },
+                    set: function (val) {
+                        if (this._icon === val)
+                            return;
+                        this._icon = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "background", {
+                    get: function () {
+                        return this._background;
+                    },
+                    set: function (val) {
+                        if (this._background === val)
+                            return;
+                        this._background = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPCookie.prototype, "border", {
+                    get: function () {
+                        return this._border;
+                    },
+                    set: function (val) {
+                        if (this._border === val)
+                            return;
+                        this._border = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPCookie.prototype.connectedCallback = function () {
+                    var _this = this;
+                    _super.prototype.render.call(this, this.template(this));
+                    this.addEventListener('click', function (e) {
+                        if (e.target && e.target['className'] === 'close') {
+                            _this.innerHTML = '';
+                        }
+                    });
+                };
+                RHDPCookie.prototype.setCookie = function (name, value, expireDays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (expireDays * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+                };
+                RHDPCookie.prototype.getCookie = function (cname) {
+                    var name = cname + "=";
+                    var ca = document.cookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                };
+                Object.defineProperty(RHDPCookie, "observedAttributes", {
+                    get: function () {
+                        return ['type', 'size', 'heading'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPCookie.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                    _super.prototype.render.call(this, this.template(this));
+                    ;
+                };
+                return RHDPCookie;
+            }(rhelement_7.default));
+            exports_9("default", RHDPCookie);
+            window.customElements.define('rhdp-cookie', RHDPCookie);
+        }
+    };
+});
 var RHDPOSDownload = (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
@@ -977,8 +1159,8 @@ var RHDPThankyou = (function (_super) {
     __extends(RHDPThankyou, _super);
     function RHDPThankyou() {
         var _this = _super.call(this) || this;
-        _this.template = function (strings, name, directLink) {
-            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            <iframe src=\"" + directLink + "\"></iframe>\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
+        _this.template = function (strings, name, directLink, recentDownload) {
+            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
         };
         return _this;
     }
@@ -1021,9 +1203,10 @@ var RHDPThankyou = (function (_super) {
         configurable: true
     });
     RHDPThankyou.prototype.connectedCallback = function () {
+        this._recentDownload = this.checkRecentDownload();
         this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
         this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = this.template(__makeTemplateObject(["", "", ""], ["", "", ""]), this.mediaName, this.directLink);
+        this.innerHTML = this.template(__makeTemplateObject(["", "", "", ""], ["", "", "", ""]), this.mediaName, this.directLink, this._recentDownload);
     };
     Object.defineProperty(RHDPThankyou, "observedAttributes", {
         get: function () {
@@ -1050,6 +1233,26 @@ var RHDPThankyou = (function (_super) {
         if (!results[2])
             return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+    RHDPThankyou.prototype.checkRecentDownload = function () {
+        var storageExpiration = 30000, storageName = 'media-download-url';
+        if (window.location.href.indexOf('media-download-confirmation') > 0) {
+            if (window.localStorage.getItem(storageName)) {
+                var recentDownload, timeOfRefer, currentTime;
+                recentDownload = JSON.parse(window.localStorage.getItem(storageName));
+                timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+                currentTime = new Date().getTime();
+                if (currentTime - timeOfRefer > storageExpiration) {
+                    window.localStorage.removeItem(storageName);
+                }
+                return true;
+            }
+            else {
+                var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
+                localStorage.setItem(storageName, JSON.stringify(referrerDownload));
+                return false;
+            }
+        }
     };
     return RHDPThankyou;
 }(HTMLElement));
@@ -1560,14 +1763,14 @@ var DevNationLiveApp = (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_9, context_9) {
+System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_10, context_10) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
-    var rhelement_7, DPStackOverflow;
+    var __moduleName = context_10 && context_10.id;
+    var rhelement_8, DPStackOverflow;
     return {
         setters: [
-            function (rhelement_7_1) {
-                rhelement_7 = rhelement_7_1;
+            function (rhelement_8_1) {
+                rhelement_8 = rhelement_8_1;
             }
         ],
         execute: function () {
@@ -1586,8 +1789,8 @@ System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelemen
                     _super.prototype.render.call(this, this.template(this));
                 };
                 return DPStackOverflow;
-            }(rhelement_7.default));
-            exports_9("default", DPStackOverflow);
+            }(rhelement_8.default));
+            exports_10("default", DPStackOverflow);
         }
     };
 });

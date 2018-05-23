@@ -1,36 +1,5 @@
 version: '2'
 services:
-  awestruct:
-    build:
-     context: ../../awestruct
-     args:
-      http_proxy: proxy01.util.phx2.redhat.com:8080
-      https_proxy: proxy01.util.phx2.redhat.com:8080
-    command:
-      - "rake git_setup clean gen[drupal_production]"
-    volumes:
-      - ../../../:/home/awestruct/developer.redhat.com
-      - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
-    environment:
-      - http_proxy=proxy01.util.phx2.redhat.com:8080
-      - https_proxy=proxy01.util.phx2.redhat.com:8080
-      - google_api_key
-      - dcp_user
-      - dcp_password
-      - vimeo_client_secret
-      - vimeo_access_token_secret
-      - vimeo_access_token
-      - cache_password
-      - cache_url
-      - site_base_path
-      - site_path_suffix
-      - cdn_prefix
-      - cache_user
-      - github_token
-      - drupal_user
-      - drupal_password
-
-
   drupal:
     build:
      context: ../../drupal
@@ -45,11 +14,14 @@ services:
       - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
       - /data/drupal-logs/lightning:/var/log/httpd
+      - /data/drupal/npm-cache:/root/.npm
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080
+      - FORTAWESOME_REGISTRY
+
 
   #
   # Environment actions
@@ -67,7 +39,7 @@ services:
     volumes:
       - ../../../:/home/jenkins_developer/developer.redhat.com
       - /data/drupal:/drupal
-      - /git/backups:/backups
+      - /data/git/backups:/backups
       - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
       - /credentials/git/backups/netrc:/home/jenkins_developer/.netrc
 

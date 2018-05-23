@@ -761,8 +761,8 @@ var RHDPOSDownload = (function (_super) {
         _this._winURL = "";
         _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -5057,8 +5057,8 @@ app.products = {
     "migrationtoolkit": { "upstream": null, "stackoverflow": ["rhamt"], "buzz_tags": ["windup", "rhamt"] }
 };
 app.products.downloads = {
-    "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.zip", "rhelUrl": "/products/cdk/hello-world/#fndtn-rhel" }
+    "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
+    "cdk": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/cdk/hello-world/#fndtn-rhel" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};

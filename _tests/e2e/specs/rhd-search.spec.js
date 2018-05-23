@@ -1,3 +1,4 @@
+const request = require("sync-request");
 const HomePage = require('./support/pages/website/Home.page');
 const SearchPage = require('./support/pages/website/Search.page');
 const SiteNav = require('./support/pages/website/NavigationBar.section');
@@ -140,6 +141,14 @@ describe('Search Page', function () {
             .searchResults.awaitResultsFor('cdk');
         expect(searchPage.searchOneBox.getOneBoxTitle(),
             'OneBox was not displayed for cdk').to.eq('Red Hat Container Development Kit');
+    });
+
+    afterEach(function () {
+        if (this.currentTest.state === 'failed') {
+            let request_header = {"Content-Type": "application/json"};
+            let response = request('GET', 'https://dcp2.jboss.org/v2/rest/search/', {headers: request_header});
+            global.logger.warn(`DCP Status was: ${response.statusCode}`)
+        }
     });
 
 });
