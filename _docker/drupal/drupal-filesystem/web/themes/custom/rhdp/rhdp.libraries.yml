@@ -11,14 +11,14 @@ base-theme:
   # This should be all of the style sheets broken up according to smaccs
   css:
     base:
-      rhd-frontend/styles/rhd.css: {}
+      rhd-frontend/rhd.min.css: { minified: true }
   js:
     rhd-frontend/src/scripts/@rhd/js/menu.js: {}
     https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
     https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
     https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system-production.js: { type: external, minified: true }
     /auth/js/keycloak.js: { type: external, minified: false  }
-    rhd-frontend/rhd.js: {}
+    rhd-frontend/rhd.min.js: { minified: true}
     rhd-frontend/docs/js/fontawesome-all.js: {}
     js/init.js: {}
   dependencies:
