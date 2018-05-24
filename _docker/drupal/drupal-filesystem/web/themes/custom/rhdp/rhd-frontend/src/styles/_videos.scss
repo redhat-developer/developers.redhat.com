@@ -164,20 +164,20 @@ section.related-content {
   border-radius: 50%;
   background: rgba(0, 0, 0, .65);
   color: #FFF;
-  padding: .4rem 1rem;
+  padding: .5rem .75rem;
   width: 3rem;
   height: 3rem;
   position: relative;
   bottom: 4rem;
-  left: 12.75rem;
   font-size: 1.7rem;
+  float: right;
+  right: .5rem;
 
   @include mobile-landscape-and-down {
-    padding: 0 .45rem;
+    padding: .1rem .4rem;
     width: 2rem;
     height: 2rem;
     bottom: 2.5rem;
-    left: 8.5rem;
     font-size: 1.5rem;
   }
 }
