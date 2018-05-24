@@ -122,9 +122,90 @@
     }
   }
 }
-.rh-universal-login .icon {
-  margin-right: 10px;
-  color: #FFF;
+
+.rh-universal-login {
+  .dropdwn-menu {
+    font-size: 14px !important;
+    color: #333;
+    position: absolute;
+    margin-top: 10px;
+    background-color: #E6E6E6;
+    list-style: none;
+    box-shadow: 0px 8px 16px 0px #000;
+    display: none;
+    padding-left: 0;
+    z-index: 9999;
+    @media screen and (max-width: 768px) {
+      position: relative !important;
+
+      li.logged-in {
+        display: inline-block;
+        text-align: center !important;
+        margin: 0;
+        min-width: 128px;
+        padding: 10px 0px !important;
+        text-transform: none !important;
+        &:first-child{
+          border-right: 1px solid #D5D5D5;
+
+        }
+        a.logout {
+          display: inline;
+          padding: 0;
+          background-color: transparent;
+        }
+      }
+    }
+    li {
+      padding-left: 0 !important;
+      padding-right: 35px;
+      border-bottom: 1px solid #D5D5D5;
+      margin: 10px;
+      a {
+        color: black;
+      }
+    }
+  }
+
+  &:hover{
+    background-color: grey;
+  }
+
+  li.logged-in {
+      a {font-size: 14px;}
+      @media screen and (max-width: 768px) {
+        text-align: left !important;
+      }
+      .logged-in-name {
+        font-size: 14px;
+        @media screen and (max-width: 768px) {
+          display: inline-block !important;
+          padding: 25px 10px 15px !important;
+          background-color: transparent !important;
+        }
+      }
+    .icon {
+      margin-right: 10px;
+      color: #FFF;
+      @media screen and (max-width: 768px) {
+        margin-right: 0;
+        margin-left: 10px;
+      }
+    }
+
+  }
+
+  .icon {
+    margin-right: 10px;
+    color: #FFF;
+  }
+
+  a + .icon {
+  margin-left: 10px;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
