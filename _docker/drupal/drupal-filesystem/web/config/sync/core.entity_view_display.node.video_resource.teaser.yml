@@ -10,8 +10,11 @@ dependencies:
     - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_topics
+    - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -20,6 +23,7 @@ dependencies:
     - field.field.node.video_resource.field_video_thumbnail_url
     - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
+    - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
     - datetime
@@ -36,21 +40,21 @@ bundle: video_resource
 mode: teaser
 content:
   body:
-    label: visually_hidden
+    label: hidden
     type: text_default
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_duration:
-    weight: 9
-    label: above
+    weight: 8
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_likes:
-    weight: 6
+    weight: 5
     label: above
     settings:
       thousand_separator: ''
@@ -59,17 +63,24 @@ content:
     type: number_integer
     region: content
   field_related_content:
-    weight: 16
-    label: visually_hidden
+    weight: 13
+    label: hidden
     settings:
       view_mode: teaser
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_short_description:
+    type: basic_string
+    weight: 14
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_slideshare_source:
-    weight: 13
-    label: visually_hidden
+    weight: 11
+    label: hidden
     settings:
       trim_length: null
       url_only: false
@@ -80,16 +91,16 @@ content:
     type: link
     region: content
   field_speakers:
-    weight: 4
-    label: visually_hidden
+    weight: 3
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_video_publish_date:
-    weight: 10
-    label: above
+    weight: 9
+    label: hidden
     settings:
       format_type: medium
       timezone_override: ''
@@ -97,8 +108,8 @@ content:
     type: datetime_default
     region: content
   field_video_related_links:
-    weight: 14
-    label: visually_hidden
+    weight: 12
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -110,7 +121,7 @@ content:
     region: content
   field_video_resource:
     weight: 0
-    label: visually_hidden
+    label: hidden
     settings:
       responsive: true
       width: 854
@@ -120,7 +131,7 @@ content:
     type: video_embed_field_video
     region: content
   field_video_resource_tags:
-    weight: 3
+    weight: 2
     label: inline
     settings:
       link: true
@@ -128,8 +139,8 @@ content:
     type: entity_reference_label
     region: content
   field_video_target_product:
-    weight: 7
-    label: visually_hidden
+    weight: 6
+    label: hidden
     settings:
       view_mode: teaser
       link: false
@@ -137,23 +148,30 @@ content:
     type: entity_reference_entity_view
     region: content
   field_video_thumbnail_url:
-    weight: 8
-    label: above
+    weight: 7
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   field_video_transcript:
-    weight: 11
-    label: visually_hidden
+    weight: 10
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_views:
-    weight: 5
-    label: visually_hidden
+    weight: 4
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -163,5 +181,8 @@ content:
 hidden:
   field_card_image: true
   field_difficulty: true
+  field_topics: true
+  field_video_author: true
   links: true
+  scheduled_update: true
   workbench_moderation_control: true

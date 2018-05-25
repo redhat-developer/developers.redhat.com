@@ -9948,6 +9948,26 @@ section.related-content {
   .video-page .video-content {
     margin-top: 2em; } }
 
+.rh-play-button {
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #FFF;
+  padding: .4rem 1rem;
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  bottom: 4rem;
+  left: 12.75rem;
+  font-size: 1.7rem; }
+  @media only screen and (max-width: 480px) {
+    .rh-play-button {
+      padding: 0 .45rem;
+      width: 2rem;
+      height: 2rem;
+      bottom: 2.5rem;
+      left: 8.5rem;
+      font-size: 1.5rem; } }
+
 .wide h1, .wide h2, .wide h3, .wide h4, .wide h5, .wide h6 {
   color: #424242; }
 

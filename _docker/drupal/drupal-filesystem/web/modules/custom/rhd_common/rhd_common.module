@@ -108,7 +108,7 @@ function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
         $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-date', 'val', [$published_date->format('Y-m-d')]));
         $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-time', 'val', [$published_date->format('H:m:s')]));
         $response->addCommand(new InvokeCommand('#edit-field-video-thumbnail-url-0-value', 'val',
-          [$video->snippet->thumbnails->default->url]));
+          [$video->snippet->thumbnails->standard->url]));
 
         // Set seconds, minutes, hours in that order
         $duration = new DateInterval($video->contentDetails->duration); // ->h // ->i // ->s
