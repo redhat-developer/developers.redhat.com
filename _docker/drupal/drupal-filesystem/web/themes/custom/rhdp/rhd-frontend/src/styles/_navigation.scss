@@ -92,7 +92,23 @@
 
 .rh-universal-header .rh-universal-login {
   grid-column-end: right;
-  a {
+
+  li.logged-in {
+    font-size: 14px;
+    .logged-in-name {
+      font-size: 14px;
+    }
+    .icon {
+      margin-right: 10px;
+      color: #FFF;
+    }
+  }
+
+  &:hover{
+    background-color: $gray-6;
+  }
+
+  li a {
     font-size: 16px;
     text-transform: none;
     color: $white;
@@ -102,97 +118,53 @@
       color: $white;
     }
   }
-  .user-logged-in & {
-    padding: 10px;
-    background-color: #272727;
-    a {
-      font-size: 14px;
-    }
-    li {
-      line-height: 1;
-    }
-    li:nth-child(n+2) {
-      padding-left: 24px;
-      line-height: 1;
-      a {
-        font-size: 10px;
-        color: #999;
-        line-height: 1;
-      }
-    }
-  }
+  //.user-logged-in & {
+  //  padding: 10px;
+  //  background-color: #272727;
+  //  a {
+  //    font-size: 14px;
+  //  }
+  //  li {
+  //    line-height: 1;
+  //  }
+  //  li:nth-child(n+2) {
+  //    padding-left: 24px;
+  //    line-height: 1;
+  //    a {
+  //      font-size: 10px;
+  //      color: #999;
+  //      line-height: 1;
+  //    }
+  //  }
+  //}
 }
 
 .rh-universal-login {
   .dropdwn-menu {
-    font-size: 14px !important;
+    font-size: 14px;
     color: #333;
     position: absolute;
     margin-top: 10px;
     background-color: #E6E6E6;
     list-style: none;
-    box-shadow: 0px 8px 16px 0px #000;
+    box-shadow: 0px 1px 1px 0px #000;
     display: none;
     padding-left: 0;
     z-index: 9999;
     @media screen and (max-width: 768px) {
-      position: relative !important;
+      position: relative;
 
-      li.logged-in {
-        display: inline-block;
-        text-align: center !important;
-        margin: 0;
-        min-width: 128px;
-        padding: 10px 0px !important;
-        text-transform: none !important;
-        &:first-child{
-          border-right: 1px solid #D5D5D5;
-
-        }
-        a.logout {
-          display: inline;
-          padding: 0;
-          background-color: transparent;
-        }
-      }
     }
     li {
-      padding-left: 0 !important;
+      padding-left: 0;
       padding-right: 35px;
       border-bottom: 1px solid #D5D5D5;
       margin: 10px;
       a {
+        font-size: 14px;
         color: black;
       }
     }
-  }
-
-  &:hover{
-    background-color: grey;
-  }
-
-  li.logged-in {
-      a {font-size: 14px;}
-      @media screen and (max-width: 768px) {
-        text-align: left !important;
-      }
-      .logged-in-name {
-        font-size: 14px;
-        @media screen and (max-width: 768px) {
-          display: inline-block !important;
-          padding: 25px 10px 15px !important;
-          background-color: transparent !important;
-        }
-      }
-    .icon {
-      margin-right: 10px;
-      color: #FFF;
-      @media screen and (max-width: 768px) {
-        margin-right: 0;
-        margin-left: 10px;
-      }
-    }
-
   }
 
   .icon {
@@ -663,6 +635,42 @@
     position: relative;
   }
   .rh-universal-login {
+
+    li.logged-in {
+      text-align: left;
+      .logged-in-name {
+          display: inline-block;
+          padding: 25px 10px 15px;
+          background-color: transparent;
+      }
+      .icon {
+          margin-right: 0;
+          margin-left: 10px;
+      }
+      &.dropdwn-item{
+        display: inline-block;
+        text-align: center;
+        margin: 0;
+        min-width: 128px;
+        padding: 10px 0px;
+        text-transform: none;
+        font-size: 11px;
+        &:first-child{
+          border-right: 1px solid #D5D5D5;
+
+        }
+        a {
+          font-size: 11px;
+          &.logout {
+            display: inline;
+            padding: 0;
+            background-color: transparent;
+          }
+        }
+      }
+
+    }
+
     background-color: #242424;
     color: #FFF;
     font-size: 14px;
@@ -678,8 +686,8 @@
       &:nth-child(n+2) {
         font-size: 11px;
         font-weight: 600;
-        text-align: center;
-        text-transform: uppercase;
+        text-align: left;
+        text-transform: none;
         > a {
           padding: 10px 15px;
           display: block;

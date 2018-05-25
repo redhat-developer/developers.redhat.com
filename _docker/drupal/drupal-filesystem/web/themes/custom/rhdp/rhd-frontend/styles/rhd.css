@@ -6440,88 +6440,45 @@ body.fullbleed .content-wrapper {
 
 .rh-universal-header .rh-universal-login {
   grid-column-end: right; }
-  .rh-universal-header .rh-universal-login a {
+  .rh-universal-header .rh-universal-login li.logged-in {
+    font-size: 14px; }
+    .rh-universal-header .rh-universal-login li.logged-in .logged-in-name {
+      font-size: 14px; }
+    .rh-universal-header .rh-universal-login li.logged-in .icon {
+      margin-right: 10px;
+      color: #FFF; }
+  .rh-universal-header .rh-universal-login:hover {
+    background-color: #424242; }
+  .rh-universal-header .rh-universal-login li a {
     font-size: 16px;
     text-transform: none;
     color: #FFFFFF;
     font-weight: 400; }
-    .rh-universal-header .rh-universal-login a:active, .rh-universal-header .rh-universal-login a:hover, .rh-universal-header .rh-universal-login a:focus {
+    .rh-universal-header .rh-universal-login li a:active, .rh-universal-header .rh-universal-login li a:hover, .rh-universal-header .rh-universal-login li a:focus {
       color: #FFFFFF; }
-  .user-logged-in .rh-universal-header .rh-universal-login {
-    padding: 10px;
-    background-color: #272727; }
-    .user-logged-in .rh-universal-header .rh-universal-login a {
-      font-size: 14px; }
-    .user-logged-in .rh-universal-header .rh-universal-login li {
-      line-height: 1; }
-    .user-logged-in .rh-universal-header .rh-universal-login li:nth-child(n+2) {
-      padding-left: 24px;
-      line-height: 1; }
-      .user-logged-in .rh-universal-header .rh-universal-login li:nth-child(n+2) a {
-        font-size: 10px;
-        color: #999;
-        line-height: 1; }
 
 .rh-universal-login .dropdwn-menu {
-  font-size: 14px !important;
+  font-size: 14px;
   color: #333;
   position: absolute;
   margin-top: 10px;
   background-color: #E6E6E6;
   list-style: none;
-  box-shadow: 0px 8px 16px 0px #000;
+  box-shadow: 0px 1px 1px 0px #000;
   display: none;
   padding-left: 0;
   z-index: 9999; }
   @media screen and (max-width: 768px) {
     .rh-universal-login .dropdwn-menu {
-      position: relative !important; }
-      .rh-universal-login .dropdwn-menu li.logged-in {
-        display: inline-block;
-        text-align: center !important;
-        margin: 0;
-        min-width: 128px;
-        padding: 10px 0px !important;
-        text-transform: none !important; }
-        .rh-universal-login .dropdwn-menu li.logged-in:first-child {
-          border-right: 1px solid #D5D5D5; }
-        .rh-universal-login .dropdwn-menu li.logged-in a.logout {
-          display: inline;
-          padding: 0;
-          background-color: transparent; } }
+      position: relative; } }
   .rh-universal-login .dropdwn-menu li {
-    padding-left: 0 !important;
+    padding-left: 0;
     padding-right: 35px;
     border-bottom: 1px solid #D5D5D5;
     margin: 10px; }
     .rh-universal-login .dropdwn-menu li a {
+      font-size: 14px;
       color: black; }
-
-.rh-universal-login:hover {
-  background-color: grey; }
-
-.rh-universal-login li.logged-in a {
-  font-size: 14px; }
-
-@media screen and (max-width: 768px) {
-  .rh-universal-login li.logged-in {
-    text-align: left !important; } }
-
-.rh-universal-login li.logged-in .logged-in-name {
-  font-size: 14px; }
-  @media screen and (max-width: 768px) {
-    .rh-universal-login li.logged-in .logged-in-name {
-      display: inline-block !important;
-      padding: 25px 10px 15px !important;
-      background-color: transparent !important; } }
-
-.rh-universal-login li.logged-in .icon {
-  margin-right: 10px;
-  color: #FFF; }
-  @media screen and (max-width: 768px) {
-    .rh-universal-login li.logged-in .icon {
-      margin-right: 0;
-      margin-left: 10px; } }
 
 .rh-universal-login .icon {
   margin-right: 10px;
@@ -6902,6 +6859,31 @@ body.fullbleed .content-wrapper {
     background-color: #242424;
     color: #FFF;
     font-size: 14px; }
+    .rhd-mobile-tray .rh-universal-login li.logged-in {
+      text-align: left; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in .logged-in-name {
+        display: inline-block;
+        padding: 25px 10px 15px;
+        background-color: transparent; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in .icon {
+        margin-right: 0;
+        margin-left: 10px; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item {
+        display: inline-block;
+        text-align: center;
+        margin: 0;
+        min-width: 128px;
+        padding: 10px 0px;
+        text-transform: none;
+        font-size: 11px; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item:first-child {
+          border-right: 1px solid #D5D5D5; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item a {
+          font-size: 11px; }
+          .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item a.logout {
+            display: inline;
+            padding: 0;
+            background-color: transparent; }
     .rhd-mobile-tray .rh-universal-login a {
       color: #FFF;
       letter-spacing: 0.05em; }
@@ -6911,8 +6893,8 @@ body.fullbleed .content-wrapper {
     .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) {
       font-size: 11px;
       font-weight: 600;
-      text-align: center;
-      text-transform: uppercase; }
+      text-align: left;
+      text-transform: none; }
       .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) > a {
         padding: 10px 15px;
         display: block;
