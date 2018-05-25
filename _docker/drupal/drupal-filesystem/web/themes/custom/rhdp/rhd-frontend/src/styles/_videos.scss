@@ -160,24 +160,24 @@ section.related-content {
   }
 }
 
-.rh-play-button {
+.rhd-play-button {
   border-radius: 50%;
   background: rgba(0, 0, 0, .65);
   color: #FFF;
-  padding: .5rem .75rem;
-  width: 3rem;
-  height: 3rem;
+  padding: 0 0 0 .5rem;
+  width: 2rem;
+  height: 2rem;
   position: relative;
-  bottom: 4rem;
-  font-size: 1.7rem;
-  float: right;
-  right: .5rem;
+  bottom: 2.5rem;
+  font-size: 1.5rem;
+  left: 80px;
 
-  @include mobile-landscape-and-down {
-    padding: .1rem .4rem;
-    width: 2rem;
-    height: 2rem;
-    bottom: 2.5rem;
-    font-size: 1.5rem;
+  @include tablet-portrait-and-up {
+    padding: .5rem 1rem;
+    width: 3rem;
+    height: 3rem;
+    bottom: 4rem;
+    font-size: 1.7rem;
+    left: 120px;
   }
 }

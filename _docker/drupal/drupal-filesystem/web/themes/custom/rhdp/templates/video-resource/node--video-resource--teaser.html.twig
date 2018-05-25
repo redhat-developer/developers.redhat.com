@@ -1,28 +1,17 @@
-{%
-    set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-]
-%}
+{% set classes = [
+    'rhd-list-entry',
+] %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
     <div class="text-content">
         {{ title_prefix }}
-        <h3 {{ title_attributes.addClass('title') }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
+        <h3 {{ title_attributes.addClass(['rhd-list-entry--title']) }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
         {{ title_suffix }}
-        <div class="date">{{ content.field_video_publish_date }}</div>
-        <div {{ content_attributes.addClass(['description', 'summary']) }}>{{ content.field_short_description }}</div>
+        <div class="rhd-list-entry--date">{{ content.field_video_publish_date }}</div>
+        <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
     </div>
-    <div class="teaser-image">
-            <div class="image-table">
-                <div class="image-cell">
-                    <img src="{{ content.field_video_thumbnail_url }}" alt="Video Thumbnail">
-                    <div class="rh-play-button">►</div>
-                </div>
-            </div>
+    <div class="rhd-list-entry--image">
+        <img src="{{ content.field_video_thumbnail_url }}" alt="Video Thumbnail">
+        <div class="rhd-play-button">►</div>
     </div>
 </article>
