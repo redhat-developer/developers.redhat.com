@@ -1,7 +1,17 @@
-<h6>Related Content</h6>
-{{ title_prefix }}
-<h4 {{ title_attributes }}> {{ label }} </h4>
-{{ title_suffix }}
-<p {{ content_attributes.addClass('description') }}>
-    <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Watch Now</a>
-</p>
+{% set classes = [
+    'rhd-list-entry',
+] %}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+    <div class="text-content">
+        {{ title_prefix }}
+        <h3 {{ title_attributes.addClass(['rhd-list-entry--title']) }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
+        {{ title_suffix }}
+        <div class="rhd-list-entry--date">{{ content.field_video_publish_date }}</div>
+        <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
+    </div>
+    <div class="rhd-list-entry--image">
+        <img src="{{ content.field_video_thumbnail_url }}" alt="Video Thumbnail">
+        <div class="rhd-play-button">►</div>
+    </div>
+</article>

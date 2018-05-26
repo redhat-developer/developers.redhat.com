@@ -14,7 +14,7 @@ class RHDPOSDownload extends HTMLElement {
     stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
         "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel"}
+        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64"}
     };
 
     get url() {

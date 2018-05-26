@@ -1,21 +1,16 @@
-<article class="wordpress-blog-post-teaser">
-
-  {% if media and media.media_type == 'image' %}
-    <div class="teaser-image">
-      <div class="tile-image {{ media.scale_orientation }}">
-        <div class="image-table">
-          <div class="image-cell">
-            <img src="{{ media.source_url }}"/>
-          </div>
-        </div>
-      </div>
+{% set classes = [
+    'rhd-list-entry',
+] %}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+    <div class="text-content">
+        <h3 class="rhd-list-entry--title"><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
+        <div class="rhd-list-entry--date">{{ date }}</div>
+        <div class="rhd-list-entry--summary">{{ post.excerpt.rendered|raw }}</div>
     </div>
-  {% endif %}
-
-  <div class="text-content">
-    <h3 class="title"><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
-    <div class="date">{{ date }}</div>
-    <div class="summary">{{ post.excerpt.rendered|raw }}</div>
-  </div>
-
+    {% if media and media.media_type == 'image' %}
+        <div class="rhd-list-entry--image">
+            <img src="{{ media.source_url }}"/>
+        </div>
+    {% endif %}
 </article>
