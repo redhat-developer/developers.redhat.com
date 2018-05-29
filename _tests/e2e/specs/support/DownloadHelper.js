@@ -16,19 +16,17 @@ class DownloadHelper {
 
     getDownloads() {
         let downloadCount = 0;
-        let fileName = [];
         let dirSize = [];
         do {
             fs.readdirSync(global.downloadDir).forEach(file => {
                 logger.info('waiting for download . . . ');
                 this.sleep(1000);
-                fileName.push(file);
                 dirSize.push(file);
                 downloadCount++;
             });
         }
         while (dirSize.length === 0 && downloadCount < 6);
-        return dirSize;
+        return dirSize.length;
     }
 
     sleep(delay) {
