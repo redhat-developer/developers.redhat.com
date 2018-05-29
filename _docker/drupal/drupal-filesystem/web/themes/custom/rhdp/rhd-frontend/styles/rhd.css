@@ -1355,6 +1355,67 @@ a.light-cta {
   .assembly-type-dynamic_content_list .disqus + .related-topics {
     margin-top: 46px; }
 
+.rhd-list-entry {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  max-width: 160px;
+  margin-bottom: 2rem;
+  grid-column-gap: 1rem; }
+  .rhd-list-entry > *:first-child {
+    grid-row-start: -1; }
+  @media only screen and (min-width: 481px) {
+    .rhd-list-entry {
+      grid-template-rows: unset;
+      grid-template-columns: 1fr auto;
+      max-width: 100%;
+      margin: 1rem 0; } }
+
+.rhd-list-entry--title {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 8px; }
+  .rhd-list-entry--title > a {
+    color: #000;
+    text-decoration: none; }
+  @media only screen and (min-width: 481px) {
+    .rhd-list-entry--title {
+      display: block;
+      font-size: 26px;
+      margin-top: 0; } }
+
+.rhd-list-entry--summary {
+  display: none; }
+  @media only screen and (min-width: 481px) {
+    .rhd-list-entry--summary {
+      display: block; }
+      .rhd-list-entry--summary p {
+        font-size: 14px; } }
+
+.rhd-list-entry--date {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px; }
+
+.rhd-list-entry--image {
+  height: 90px;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  @media only screen and (min-width: 481px) {
+    .rhd-list-entry--image {
+      height: unset;
+      display: inherit; } }
+  .rhd-list-entry--image > img {
+    max-width: 160px;
+    max-height: 90px; }
+    @media only screen and (min-width: 481px) {
+      .rhd-list-entry--image > img {
+        max-height: unset;
+        max-width: 180px; } }
+
 .assembly-type-featured_resources {
   padding-top: 38px;
   padding-bottom: 38px;
@@ -9948,25 +10009,25 @@ section.related-content {
   .video-page .video-content {
     margin-top: 2em; } }
 
-.rh-play-button {
+.rhd-play-button {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.65);
   color: #FFF;
-  padding: .4rem 1rem;
-  width: 3rem;
-  height: 3rem;
+  padding: 0 0 0 .5rem;
+  width: 2rem;
+  height: 2rem;
   position: relative;
-  bottom: 4rem;
-  left: 12.75rem;
-  font-size: 1.7rem; }
-  @media only screen and (max-width: 480px) {
-    .rh-play-button {
-      padding: 0 .45rem;
-      width: 2rem;
-      height: 2rem;
-      bottom: 2.5rem;
-      left: 8.5rem;
-      font-size: 1.5rem; } }
+  bottom: 2.5rem;
+  font-size: 1.5rem;
+  left: 80px; }
+  @media only screen and (min-width: 481px) {
+    .rhd-play-button {
+      padding: .5rem 1rem;
+      width: 3rem;
+      height: 3rem;
+      bottom: 4rem;
+      font-size: 1.7rem;
+      left: 120px; } }
 
 .wide h1, .wide h2, .wide h3, .wide h4, .wide h5, .wide h6 {
   color: #424242; }
