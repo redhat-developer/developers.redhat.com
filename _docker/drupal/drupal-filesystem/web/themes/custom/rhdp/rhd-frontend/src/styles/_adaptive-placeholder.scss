@@ -113,7 +113,8 @@
     list-style: none;
     color: #424242;
     
-    & + .field {
+    & + .field,
+    &:not(:first-of-type) {
       margin-top: 20px;
     }
     &.form-field-note-text {
