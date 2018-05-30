@@ -20,19 +20,22 @@ class DownloadHelper {
         do {
             fs.readdirSync(global.downloadDir).forEach(file => {
                 logger.info('waiting for download . . . ');
-                this.sleep(1000);
-                dirSize.push(file);
-                downloadCount++;
+                dirSize.push(file)
             });
+            this.sleep(1000);
+            downloadCount++;
+            if (dirSize.length > 0 || downloadCount === 6) {
+                return dirSize.length;
+            }
         }
-        while (dirSize.length === 0 && downloadCount < 6);
-        return dirSize.length;
+        while (dirSize.length === 0) ;
     }
 
     sleep(delay) {
         let start = new Date().getTime();
         while (new Date().getTime() < start + delay) ;
     }
+
 }
 
 module.exports = new DownloadHelper;

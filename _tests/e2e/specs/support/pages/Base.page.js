@@ -43,7 +43,7 @@ class BasePage {
 
     awaitIsLoggedIn(siteUser) {
         this.waitForSelectorContainingText('.logged-in-name'
-            , `${siteUser['firstName']} ${siteUser['lastName']}`)
+            , `${siteUser['firstName']} ${siteUser['lastName']}`, 30000)
     }
 
     waitForPageTitle(title, timeout = 6000) {

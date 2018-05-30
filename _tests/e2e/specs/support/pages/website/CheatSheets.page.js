@@ -11,7 +11,8 @@ class CheatSheetsPage extends BasePage {
             cheatSheetPage: '#rhd-cheat-sheet',
             loginToDownloadBtn: '.hidden-after-login',
             clickToDownloadBtn: '.shown-after-login',
-            thankYou: '.thankyou'
+            thankYou: '.thankyou',
+            retryDownload: '#download-link'
         });
     }
 
@@ -29,6 +30,10 @@ class CheatSheetsPage extends BasePage {
         let location = downloadBtn.getLocationInView();
         downloadBtn.scroll(location['x'], location['y']);
         return this.clickOn(downloadBtn);
+    }
+
+    retryDownload() {
+        return this.clickOn(this.getSelector('retryDownload'))
     }
 
 }
