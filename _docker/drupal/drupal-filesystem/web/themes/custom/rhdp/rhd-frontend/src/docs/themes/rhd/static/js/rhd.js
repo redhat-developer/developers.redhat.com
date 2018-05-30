@@ -280,7 +280,7 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
                     var _this = _super.call(this, 'dp-category-item-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n            <style>\n            :host[visible] {\n                display: block;\n            }\n\n            :host {\n                display: none;\n                flex: 1 1 100%;\n                grid-column: span 1;\n                margin-bottom: 30px;\n            }\n\n            div {\n                display: grid;\n                grid-template-columns: 1fr;\n                grid-gap: 15px;\n                position: relative;\n                padding-top: 15px;\n                padding-right: 15px;\n                padding-left: 15px;\n            }\n\n            @media (min-width: 500px) {\n                :host {\n                    grid-column: span 2;\n                }\n\n                div {\n                    border: 1px solid #CCCCCC;\n                }\n            }\n\n            @media (min-width: 800px) {\n                :host {\n                    grid-column: span 3;\n                }\n\n                div {\n                    grid-template-columns: repeat(2, 1fr);\n                }\n            }\n\n            @media (min-width: 1200px) {\n                :host {\n                    grid-column: span 4;\n                }\n\n                div {\n                    grid-template-columns: repeat(3, 1fr);\n                    grid-gap: 30px;\n                    background-color: #FFFFFF;\n                    padding: 30px;\n                    margin-bottom: 30px;\n                }\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
+                        tpl.innerHTML = "\n            <style>\n            :host[visible] {\n                display: block;\n            }\n\n            :host {\n                display: none;\n                flex: 1 1 100%;\n                grid-column: span 1;\n            }\n\n            div {\n                background: white;\n                display: grid;\n                grid-template-columns: 1fr;\n                grid-gap: 15px;\n                position: relative;\n                padding-top: 15px;\n                padding-right: 15px;\n                padding-left: 15px;\n            }\n\n            @media (min-width: 500px) {\n                :host {\n                    grid-column: span 2;\n                    margin-bottom: 30px;\n                }\n\n                div {\n                    border: 1px solid #CCCCCC;\n                }\n            }\n\n            @media (min-width: 800px) {\n                :host {\n                    grid-column: span 3;\n                }\n\n                div {\n                    grid-template-columns: repeat(2, 1fr);\n                }\n            }\n\n            @media (min-width: 1200px) {\n                :host {\n                    grid-column: span 4;\n                }\n\n                div {\n                    grid-template-columns: repeat(3, 1fr);\n                    grid-gap: 30px;\n                    background-color: #FFFFFF;\n                    padding: 30px;\n                    margin-bottom: 30px;\n                }\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
                         return tpl;
                     };
                     _this._index = 1;
@@ -455,7 +455,7 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\n:host([visible]):after, :host([visible]):before {\n    top: 100%;\n    left: 50%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n}\n\n:host([visible]):before {\n    border-bottom-color: #CCCCCC;\n    border-width: 15px;\n    margin-left: -15px;\n}\n:host([visible]):after {\n    border-bottom-color: #FFFFFF;\n    border-width: 16px;\n    margin-left: -16px;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: Overpass;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: Overpass;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -752,188 +752,6 @@ System.register("@rhd/rhd-app", ["@rhd/rhdp-alert", "@rhd/dp-category-list/dp-ca
         }
     };
 });
-System.register("@rhd/rhdp-cookie", ["@rhelements/rhelement"], function (exports_9, context_9) {
-    "use strict";
-    var __moduleName = context_9 && context_9.id;
-    var rhelement_7, RHDPCookie;
-    return {
-        setters: [
-            function (rhelement_7_1) {
-                rhelement_7 = rhelement_7_1;
-            }
-        ],
-        execute: function () {
-            RHDPCookie = (function (_super) {
-                __extends(RHDPCookie, _super);
-                function RHDPCookie() {
-                    var _this = _super.call(this, 'rhdp-alert') || this;
-                    _this.template = function (el) {
-                        var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: " + (el.size !== 'xl' ? 'row' : 'column') + ";\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: " + el.background + ";\n            border-color: " + el.border + ";\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin-bottom: 0;\n            display: inline\n        }\n\n        strong { margin-right: .5em; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n            " + (el.size !== 'xl' ? '' : "\n            display: inline;\n            float: left;\n            margin-left: 1em;\n            ") + "\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <slot></slot>\n        " + (el.size === 'xl' ? "<a class=\"close\"><i class=\"fas fa-times\"</a>" : '');
-                        return tpl;
-                    };
-                    _this._type = 'info';
-                    _this._icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
-                    _this._background = '#dcedf8';
-                    _this._border = '#87aac1';
-                    _this.text = _this.innerHTML;
-                    return _this;
-                }
-                Object.defineProperty(RHDPCookie.prototype, "type", {
-                    get: function () {
-                        return this._type;
-                    },
-                    set: function (val) {
-                        if (this._type === val)
-                            return;
-                        this._type = val;
-                        switch (this._type) {
-                            case 'success':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
-                                this.background = '#e9f4e9';
-                                this.border = '#8db28a';
-                                break;
-                            case 'warning':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
-                                this.background = '#fdf2e5';
-                                this.border = '#deb142';
-                                break;
-                            case 'error':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
-                                this.background = '#ffe6e6';
-                                this.border = '#d8aaab';
-                                break;
-                            case 'info':
-                            default:
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
-                                this.background = '#dcedf8';
-                                this.border = '#87aac1';
-                                break;
-                        }
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "size", {
-                    get: function () {
-                        return this._size;
-                    },
-                    set: function (val) {
-                        if (this._size === val)
-                            return;
-                        this._size = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "heading", {
-                    get: function () {
-                        return this._heading;
-                    },
-                    set: function (val) {
-                        if (this._heading === val)
-                            return;
-                        this._heading = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "text", {
-                    get: function () {
-                        return this._text;
-                    },
-                    set: function (val) {
-                        if (this._text === val)
-                            return;
-                        this._text = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "icon", {
-                    get: function () {
-                        return this._icon;
-                    },
-                    set: function (val) {
-                        if (this._icon === val)
-                            return;
-                        this._icon = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "background", {
-                    get: function () {
-                        return this._background;
-                    },
-                    set: function (val) {
-                        if (this._background === val)
-                            return;
-                        this._background = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPCookie.prototype, "border", {
-                    get: function () {
-                        return this._border;
-                    },
-                    set: function (val) {
-                        if (this._border === val)
-                            return;
-                        this._border = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                RHDPCookie.prototype.connectedCallback = function () {
-                    var _this = this;
-                    _super.prototype.render.call(this, this.template(this));
-                    this.addEventListener('click', function (e) {
-                        if (e.target && e.target['className'] === 'close') {
-                            _this.innerHTML = '';
-                        }
-                    });
-                };
-                RHDPCookie.prototype.setCookie = function (name, value, expireDays) {
-                    var d = new Date();
-                    d.setTime(d.getTime() + (expireDays * 24 * 60 * 60 * 1000));
-                    var expires = "expires=" + d.toUTCString();
-                    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-                };
-                RHDPCookie.prototype.getCookie = function (cname) {
-                    var name = cname + "=";
-                    var ca = document.cookie.split(';');
-                    for (var i = 0; i < ca.length; i++) {
-                        var c = ca[i];
-                        while (c.charAt(0) == ' ') {
-                            c = c.substring(1);
-                        }
-                        if (c.indexOf(name) == 0) {
-                            return c.substring(name.length, c.length);
-                        }
-                    }
-                    return "";
-                };
-                Object.defineProperty(RHDPCookie, "observedAttributes", {
-                    get: function () {
-                        return ['type', 'size', 'heading'];
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                RHDPCookie.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-                    this[name] = newVal;
-                    _super.prototype.render.call(this, this.template(this));
-                    ;
-                };
-                return RHDPCookie;
-            }(rhelement_7.default));
-            exports_9("default", RHDPCookie);
-            window.customElements.define('rhdp-cookie', RHDPCookie);
-        }
-    };
-});
 var RHDPOSDownload = (function (_super) {
     __extends(RHDPOSDownload, _super);
     function RHDPOSDownload() {
@@ -944,7 +762,7 @@ var RHDPOSDownload = (function (_super) {
         _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.productDownloads = {
             "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/cdk/hello-world/#fndtn-rhel" }
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -1763,14 +1581,14 @@ var DevNationLiveApp = (function (_super) {
     return DevNationLiveApp;
 }(HTMLElement));
 customElements.define('devnation-live-app', DevNationLiveApp);
-System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_10, context_10) {
+System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
-    var __moduleName = context_10 && context_10.id;
-    var rhelement_8, DPStackOverflow;
+    var __moduleName = context_9 && context_9.id;
+    var rhelement_7, DPStackOverflow;
     return {
         setters: [
-            function (rhelement_8_1) {
-                rhelement_8 = rhelement_8_1;
+            function (rhelement_7_1) {
+                rhelement_7 = rhelement_7_1;
             }
         ],
         execute: function () {
@@ -1789,8 +1607,8 @@ System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelemen
                     _super.prototype.render.call(this, this.template(this));
                 };
                 return DPStackOverflow;
-            }(rhelement_8.default));
-            exports_10("default", DPStackOverflow);
+            }(rhelement_7.default));
+            exports_9("default", DPStackOverflow);
         }
     };
 });
@@ -5261,7 +5079,7 @@ app.products = {
 };
 app.products.downloads = {
     "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/cdk/hello-world/#fndtn-rhel" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};

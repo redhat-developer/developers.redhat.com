@@ -18,28 +18,6 @@ export default class DPCategory extends RHElement {
     z-index: 1;
 }
 
-:host([visible]):after, :host([visible]):before {
-    top: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-
-:host([visible]):before {
-    border-bottom-color: #CCCCCC;
-    border-width: 15px;
-    margin-left: -15px;
-}
-:host([visible]):after {
-    border-bottom-color: #FFFFFF;
-    border-width: 16px;
-    margin-left: -16px;
-}
-
 img, svg { 
     flex: 0 0 60px; 
     padding-right: 24px; 
@@ -73,6 +51,29 @@ h4 {
         background-color: transparent;
         margin-bottom:30px;
     }
+
+    :host([visible]):after, :host([visible]):before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    
+    :host([visible]):before {
+        border-bottom-color: #CCCCCC;
+        border-width: 15px;
+        margin-left: -15px;
+    }
+    :host([visible]):after {
+        border-bottom-color: #FFFFFF;
+        border-width: 16px;
+        margin-left: -16px;
+    }
+    
 
     img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }
 }

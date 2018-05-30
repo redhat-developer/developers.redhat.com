@@ -13,10 +13,10 @@ export default class DPCategoryItemList extends RHElement {
                 display: none;
                 flex: 1 1 100%;
                 grid-column: span 1;
-                margin-bottom: 30px;
             }
 
             div {
+                background: white;
                 display: grid;
                 grid-template-columns: 1fr;
                 grid-gap: 15px;
@@ -29,6 +29,7 @@ export default class DPCategoryItemList extends RHElement {
             @media (min-width: 500px) {
                 :host {
                     grid-column: span 2;
+                    margin-bottom: 30px;
                 }
 
                 div {
