@@ -36,8 +36,8 @@ describe('Products Downloads: Login', function () {
             .awaitIsLoggedIn(siteUser);
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloads(),
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     tags('dm', 'stage').it('Red Hat JBoss/Red Hat Developer subscription: User must login in order to download JBoss Fuse', function () {
@@ -56,8 +56,8 @@ describe('Products Downloads: Login', function () {
             .awaitIsLoggedIn(siteUser);
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloads(),
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     tags('dm', 'stage').it('RHD full user profile: User must login in order to download Red Hat JBoss Developer Studio', function () {
@@ -76,8 +76,8 @@ describe('Products Downloads: Login', function () {
             .awaitIsLoggedIn(siteUser);
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloads(),
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     tags('dm', 'stage').it('authenticated user can download RHD products', function () {
@@ -96,8 +96,8 @@ describe('Products Downloads: Login', function () {
             .download();
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloadSize().length,
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     tags('dm', 'stage').it('should allow active OpenShift.com account users (simple user account) to login and download RHD supportable user products', function () {
@@ -116,8 +116,8 @@ describe('Products Downloads: Login', function () {
             .download();
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloads(),
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     tags('dm', 'stage').it('@ignore @stage should allow active Red Hat Customer Portal account (full user account) users to login and download RHD supportable user products', function () {
@@ -138,8 +138,8 @@ describe('Products Downloads: Login', function () {
             .download();
         productOverviewPage
             .awaitDownloadThankYou();
-        expect(dowloadHelper.getDownloads().length,
-            `Expected 1 download, but got ${dowloadHelper.getDownloads().length}`).to.eq(1)
+        expect(dowloadHelper.getDownloads(),
+            `Expected 1 download, but got ${dowloadHelper.getDownloads()}`).to.eq(1)
     });
 
     afterEach(function () {
