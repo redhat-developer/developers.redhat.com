@@ -7,6 +7,8 @@ const homePage = new HomePage();
 const searchPage = new SearchPage();
 const siteNav = new SiteNav();
 
+const tags = require('mocha-tags');
+
 describe('Search Page', function () {
 
     tags('sanity').it('should allow users to search for content via site-nav search field', function () {
