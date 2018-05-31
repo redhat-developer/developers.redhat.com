@@ -168,7 +168,6 @@ exports.config = {
 
         const path = require('path');
         global.downloadDir = path.resolve('tmp_downloads');
-        global.tags = require('mocha-tags');
 
         const log4js = require('log4js');
         global.logger = log4js.getLogger();

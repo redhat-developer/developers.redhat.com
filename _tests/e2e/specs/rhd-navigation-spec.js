@@ -6,6 +6,8 @@ const homePage = new HomePage();
 const siteNav = new SiteNav();
 const loginPage = new LoginPage();
 
+const tags = require('mocha-tags');
+
 describe('Navigation bar', function () {
 
     tags('sanity').it("should navigate users to the Keycloak Login page", function () {
