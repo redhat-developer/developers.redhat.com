@@ -9,6 +9,8 @@ const qs = require('querystring');
 const dowloadHelper = require('./support/DownloadHelper');
 const User = require("./support/rest/keycloak/Site.user");
 
+const tags = require('mocha-tags');
+
 describe('RHD Cheatsheet downloads', function () {
 
     let siteUser;
@@ -39,6 +41,7 @@ describe('RHD Cheatsheet downloads', function () {
         try {
             expect(dowloadHelper.getDownloads(), 'Failed to download cheatsheet').to.eql(1)
         } catch (e) {
+            console.log('cheatsheet download did not trigger first time');
             cheatSheetPage
                 .retryDownload();
             expect(dowloadHelper.getDownloads(), 'Failed to download cheatsheet').to.eql(1)

@@ -1,6 +1,8 @@
 const HomePage = require('./support/pages/website/Home.page');
 const homePage = new HomePage();
 
+const tags = require('mocha-tags');
+
 describe('Home Page', function () {
 
     tags('sanity').it("homepage should contain an embedded hash string for the nagios health check", function () {
