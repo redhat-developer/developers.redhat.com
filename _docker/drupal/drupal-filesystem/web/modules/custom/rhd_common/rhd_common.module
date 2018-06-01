@@ -89,7 +89,6 @@ function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
     $video_url = current(current($form_state->getValue('field_video_resource')));
 
     if (!empty($video_url)) {
-        // TODO: do a youtube check
         $video = NULL;
         try {
             $youtube = new Madcoda\Youtube\Youtube(array('key' => $key));
@@ -120,7 +119,7 @@ function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
 
         // Build the url alias and set that
         $response->addCommand(new InvokeCommand('#edit-path-0-alias', 'val',
-          ['/video/youtube/' . getYouTubeVideoId($video_url)]));
+          ['/videos/youtube/' . getYouTubeVideoId($video_url)]));
     }
 
     return $response;
