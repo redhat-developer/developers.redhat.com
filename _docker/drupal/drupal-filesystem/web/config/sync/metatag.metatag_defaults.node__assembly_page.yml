@@ -5,15 +5,11 @@ dependencies: {  }
 id: node__assembly_page
 label: 'Content: Landing Page'
 tags:
+  image_src: '[node:field_share_image:share:url]'
   referrer: no-referrer
-  og_description: ''
-  og_determiner: the
-  og_image: '[node:field_share_image:share]'
-  og_site_name: '[site:name]'
+  og_image: '[node:field_share_image:entity:url]'
   og_title: '[node:title]'
+  og_site_name: '[site:name]'
   og_url: '[node:url]'
-  twitter_cards_description: ''
-  twitter_cards_image: '[node:field_share_image:share]'
-  twitter_cards_site: '@rhdevelopers'
-  twitter_cards_title: '[node:title]'
-  twitter_cards_type: summary
+  og_image_url: '[node:field_share_image:share:url]'
+  og_determiner: the
