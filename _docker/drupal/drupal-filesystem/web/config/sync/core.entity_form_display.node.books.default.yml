@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
+    - field.field.node.books.field_meta_tags
     - field.field.node.books.field_mobi_link
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
@@ -38,6 +39,7 @@ dependencies:
     - inline_entity_form
     - interval
     - link
+    - metatag
     - path
     - text
     - workbench_moderation
@@ -123,6 +125,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_meta_tags:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   field_mobi_link:
     weight: 13

@@ -7,6 +7,19 @@ _core:
 id: node
 label: Content
 tags:
-  title: '[node:title] | [site:name]'
   description: '[node:summary]'
-  canonical_url: '[node:url]'
+  image_src: '[node:field_card_image:uri]'
+  canonical_url: '[current-page:url:absolute]'
+  title: '[node:title] | [site:name]'
+  referrer: no-referrer
+  og_image: '[node:field_card_image:uri]'
+  og_title: '[current-page:title]'
+  og_updated_time: '[node:changed:html_datetime]'
+  og_site_name: '[site:name]'
+  og_url: '[current-page:url:absolute]'
+  twitter_cards_title: '[current-page:title]'
+  twitter_cards_description: '[node:summary]'
+  twitter_cards_site: '@rhdevelopers'
+  twitter_cards_image: '[node:field_card_image:uri]'
+  twitter_cards_page_url: '[current-page:url:absolute]'
+  twitter_cards_type: summary
