@@ -45,8 +45,10 @@ function rhd_common_tokens($type, $tokens, array $data, array $options,
 
     if ($key === 'related_product_code') {
       /** @var \Drupal\node\Entity\Node $product */
-      $product = $node->field_related_product->referencedEntities()[0];
-      $replacements[$val] = $product->field_url_product_name->value;
+      if (isset($node->field_related_product)) {
+        $product = $node->field_related_product->referencedEntities()[0];
+        $replacements[$val] = $product->field_url_product_name->value;
+      }
     }
   });
 
