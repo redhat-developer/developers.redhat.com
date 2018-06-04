@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
+    - field.field.node.books.field_meta_tags
     - field.field.node.books.field_mobi_link
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
@@ -34,6 +35,7 @@ dependencies:
     - datetime
     - interval
     - link
+    - metatag
     - options
     - text
     - user
@@ -131,6 +133,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_meta_tags:
+    weight: 24
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   field_mobi_link:
     weight: 16

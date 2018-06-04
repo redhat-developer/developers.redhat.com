@@ -1,0 +1,23 @@
+uuid: b51e3a68-cb62-42e0-a90c-7092f17afaa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.cheat_sheet
+  module:
+    - metatag
+id: node.cheat_sheet.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: cheat_sheet
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag

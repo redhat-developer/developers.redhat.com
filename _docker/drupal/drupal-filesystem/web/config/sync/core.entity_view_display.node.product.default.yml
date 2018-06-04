@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
     - field.field.node.product.field_image
+    - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
@@ -21,6 +22,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - link
+    - metatag
     - options
     - user
 _core:
@@ -53,6 +55,13 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_meta_tags:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   field_product_category:
     weight: 5

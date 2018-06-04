@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
     - field.field.node.product.field_image
+    - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
@@ -25,6 +26,7 @@ dependencies:
     - field_group
     - inline_entity_form
     - link
+    - metatag
     - paragraphs
     - workbench_moderation
 third_party_settings:
@@ -90,6 +92,12 @@ content:
       selection_mode: selection_append
     region: content
     third_party_settings: {  }
+  field_meta_tags:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_product_categories:
     type: options_buttons
     weight: 3
