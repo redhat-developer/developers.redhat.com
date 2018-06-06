@@ -30,7 +30,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-<ul{{ attributes.addClass('rhd-menu rh-universal-login') }}>
+      <ul{{ attributes.addClass('rhd-menu rh-universal-login') }}>
     {% else %}
     <ul class="rhd-menu rh-universal-login">
         {% endif %}
@@ -39,7 +39,7 @@
             <span class="icon"><i class="fas fa-user"></i></span>
             <a class="logged-in-name" href="#"></a>
             <span class="icon"><i class="fal fa-angle-down"></i></span>
-            <ul class="dropdwn-menu">
+            <ul class="dropdwn-menu rh-user-menu">
                 <li class="logged-in dropdwn-item"><a class="account-info" href="#">Account Info</a></li>
                 <li class="logged-in dropdwn-item"><a class="logout" href="#">Log Out</a></li>
             </ul>
