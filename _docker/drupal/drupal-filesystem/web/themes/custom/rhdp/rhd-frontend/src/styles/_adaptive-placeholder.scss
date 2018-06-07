@@ -82,6 +82,20 @@
   }
 
   select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    box-shadow: 0;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-size: .875rem;
+    padding: .5rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: box-shadow .45s, border-color .45s ease-in-out;
     background-color: $white;
     height: 3.2em;
     padding-top: 1.2em;
@@ -115,7 +129,7 @@
     
     & + .field,
     &:not(:first-of-type) {
-      margin-top: 20px;
+      margin-top: 15px;
     }
     &.form-field-note-text {
       margin-top: 5px;
