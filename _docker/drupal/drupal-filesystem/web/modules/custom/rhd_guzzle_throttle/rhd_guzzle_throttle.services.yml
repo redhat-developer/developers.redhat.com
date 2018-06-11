@@ -1,0 +1,11 @@
+services:
+  throttle.middleware:
+    class: Drupal\rhd_guzzle_throttle\ThrottleMiddlewareFactory
+    arguments: ['@settings', '@config.factory']
+    tags:
+      - { name: http_client_middleware }
+  cachedresponse.middleware:
+    class: Drupal\rhd_guzzle_throttle\CachedResponseMiddlewareFactory
+    arguments: ['@settings', '@config.factory']
+    tags:
+      - { name: http_client_middleware }
