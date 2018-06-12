@@ -118,14 +118,13 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
                     var _this = _super.call(this, 'rhdp-alert') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: " + (el.size !== 'xl' ? 'row' : 'column') + ";\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: " + el.background + ";\n            border-color: " + el.border + ";\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin-bottom: 0;\n            display: inline\n        }\n\n        strong { margin-right: .5em; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n            " + (el.size !== 'xl' ? '' : "\n            display: inline;\n            float: left;\n            margin-left: 1em;\n            ") + "\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <slot></slot>\n        " + (el.size === 'xl' ? "<a class=\"close\"><i class=\"fas fa-times\"</a>" : '');
+                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: row;\n            display: grid;\n            grid-template-columns: 1.5em auto 1fr;\n            grid-template-rows: auto;\n            grid-gap: .5em;\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: #dcedf8;\n            border-color: #87aac1;\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin: 0;\n            display: inline;\n        }\n\n        p { margin: 0; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n        }\n\n        :host([type=\"success\"]) {\n            background-color: #e9f4e9;\n            border-color: #8db28a;\n        }\n        :host([type=\"warning\"]) {\n            background-color: #fdf2e5;\n            border-color: #deb142;\n        }\n        :host([type=\"error\"]) {\n            background-color: #ffe6e6;\n            border-color: #d8aaab;\n        }\n\n        :host([size=\"xl\"]) {\n            grid-template-columns: 1.5em 1fr 1.5em;\n            grid-template-rows: auto 1fr;\n            flex-direction: column;\n        }\n\n        :host([size=\"xl\"]) img {\n            grid-column: 1;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) h3, :host([size=\"xl\"]) strong {\n            font-weight: 400;\n            font-size: 27px;\n            grid-column: 2;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) .close {\n            grid-column: 3;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) p {\n            grid-column: 2;\n            grid-row: 2;\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <p><slot></slot></p>\n        " + (el.size === 'xl' ? "<a class=\"close\" href=\"#\"><i class=\"fas fa-times\"></i></a>" : '');
                         return tpl;
                     };
                     _this._type = 'info';
                     _this._icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
                     _this._background = '#dcedf8';
                     _this._border = '#87aac1';
-                    _this.text = _this.innerHTML;
                     return _this;
                 }
                 Object.defineProperty(RHDPAlert.prototype, "type", {
@@ -139,26 +138,19 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
                         switch (this._type) {
                             case 'success':
                                 this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
-                                this.background = '#e9f4e9';
-                                this.border = '#8db28a';
                                 break;
                             case 'warning':
                                 this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
-                                this.background = '#fdf2e5';
-                                this.border = '#deb142';
                                 break;
                             case 'error':
                                 this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
-                                this.background = '#ffe6e6';
-                                this.border = '#d8aaab';
                                 break;
                             case 'info':
                             default:
                                 this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
-                                this.background = '#dcedf8';
-                                this.border = '#87aac1';
                                 break;
                         }
+                        this.setAttribute('type', this._type);
                     },
                     enumerable: true,
                     configurable: true
@@ -171,6 +163,7 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
                         if (this._size === val)
                             return;
                         this._size = val;
+                        this.setAttribute('size', this._size);
                     },
                     enumerable: true,
                     configurable: true
@@ -211,38 +204,16 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPAlert.prototype, "background", {
-                    get: function () {
-                        return this._background;
-                    },
-                    set: function (val) {
-                        if (this._background === val)
-                            return;
-                        this._background = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPAlert.prototype, "border", {
-                    get: function () {
-                        return this._border;
-                    },
-                    set: function (val) {
-                        if (this._border === val)
-                            return;
-                        this._border = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
                 RHDPAlert.prototype.connectedCallback = function () {
                     var _this = this;
                     _super.prototype.render.call(this, this.template(this));
-                    this.addEventListener('click', function (e) {
-                        if (e.target && e.target['className'] === 'close') {
+                    var lnk = this.shadowRoot.querySelector('a');
+                    if (lnk) {
+                        lnk.addEventListener('click', function (e) {
                             _this.innerHTML = '';
-                        }
-                    });
+                            return false;
+                        });
+                    }
                 };
                 Object.defineProperty(RHDPAlert, "observedAttributes", {
                     get: function () {
@@ -15960,64 +15931,11 @@ $(function () {
         var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
         if (isReferrer('jbd')) {
             switch (getPrimaryCategory()) {
-                case 'products':
-                    if ($('.mobile.product-header').length > 0) {
-                        referrerHTML.insertBefore('.mobile.product-header');
-                    }
-                    else {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    break;
-                case 'downloads':
-                    referrerHTML.insertBefore('.most-popular-downloads');
-                    break;
-                case 'topics':
-                    referrerHTML.insertBefore('.topics-main div:first');
-                    break;
-                case 'community':
-                    referrerHTML.insertAfter('.contributors-main');
-                    break;
-                case 'about':
-                case 'books':
-                case 'quickstarts':
-                    referrerHTML.insertBefore('.node__content');
-                    break;
-                case 'articles':
-                case 'spotlights':
-                case 'variants':
-                case 'vjbug':
-                case 'terms-and-conditions':
-                case 'ticket-monster':
-                case 'archetypes':
-                case 'boms':
-                case 'demos':
-                case 'general-error':
-                case 'video':
-                case 'promotions':
-                case 'webinars':
-                case 'devnation2015':
-                case 'forums':
-                case 'events':
-                    if ($('.hero').length > 0) {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    else if ($('.wide-hero').length > 0) {
-                        referrerHTML.insertAfter('.wide-hero');
-                    }
-                    else {
-                        referrerHTML.insertBefore('#page');
-                    }
-                    break;
-                case 'projects':
-                case 'resources':
-                case 'stack-overflow':
-                    referrerHTML.insertAfter('header:first');
-                    break;
                 case 'middleware':
                     jbdReferrerHTML.insertBefore('.rh-jboss-middleware');
                     break;
-                case '':
-                    referrerHTML.insertAfter('.spotlights-wrap');
+                default:
+                    referrerHTML.insertAfter('header');
                     break;
             }
             $('#referral-alert .close').on("click", function () {
@@ -16037,8 +15955,7 @@ $(function () {
         return referrer;
     }
     function getPrimaryCategory() {
-        prtcl = /https?:\/\//;
-        category = window.location.href.replace(prtcl, '').replace(drupalSettings.rhd.urls.base_url, '').replace(drupalSettings.rhd.urls.final_base_url, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
+        var category = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
         return category.length > 1 ? category[1] : category[0];
     }
 }());

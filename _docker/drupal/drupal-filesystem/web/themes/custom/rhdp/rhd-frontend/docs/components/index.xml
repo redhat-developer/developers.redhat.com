@@ -293,58 +293,53 @@
       <pubDate>Tue, 17 Apr 2018 14:39:40 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/alerts/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+      <description>&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;
+&lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;
 &lt;/div&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert heading=&amp;#34;Alert with a Heading:&amp;#34;&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert heading=&amp;#34;Alert with a Heading:&amp;#34;&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;
+&lt;/div&gt;
+&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;success&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;success&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
+&lt;/div&gt;
+&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;warning&amp;#34; heading=&amp;#34;Warning Heading:&amp;#34;&amp;gt;This is the warning text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;warning&amp;#34; heading=&amp;#34;Warning Heading:&amp;#34;&amp;gt;This is the warning text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;
+&lt;/div&gt;
+&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;error&amp;#34; heading=&amp;#34;Error Heading:&amp;#34;&amp;gt;This is the error text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;error&amp;#34; heading=&amp;#34;Error Heading:&amp;#34;&amp;gt;This is the error text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
+&lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;
+&lt;/div&gt;
+&lt;div data-rhd-grid=&#34;normal&#34;&gt;
 &lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt; &amp;lt;rhdp-alert type=&amp;#34;info&amp;#34; size=&amp;#34;xl&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
+&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;info&amp;#34; size=&amp;#34;xl&amp;#34; heading=&amp;#34;Welcome jboss.org members!&amp;#34;&amp;gt;It&amp;#39;s true &amp;amp;mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. &amp;lt;a href=&amp;#34;https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t&amp;#34;&amp;gt;Read more about this on our blog.&amp;lt;/a&amp;gt;&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;code-sample&#34;&gt;
- &lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
+&lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Welcome jboss.org members!&#34;&gt;It&#39;s true &amp;mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. &lt;a href=&#34;https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t&#34;&gt;Read more about this on our blog.&lt;/a&gt;&lt;/rhdp-alert&gt;
 &lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
