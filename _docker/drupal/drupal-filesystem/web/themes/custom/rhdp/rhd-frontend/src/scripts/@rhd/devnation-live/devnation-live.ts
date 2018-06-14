@@ -188,7 +188,7 @@ class DevNationLiveApp extends HTMLElement {
                                         <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speakers[speaker]}`).join('')} </p>
                                         <p>${sess.date}</p>
                                         <p>${sess.abstract}</p>
-                                        <a href="https://developers.redhat.com/video/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>
+                                        <a href="https://developers.redhat.com/videos/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>
                                     </div>
                                 </div>
                             </li>`
