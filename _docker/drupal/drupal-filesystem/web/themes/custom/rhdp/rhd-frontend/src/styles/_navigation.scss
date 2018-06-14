@@ -16,7 +16,7 @@
   font-size: 14px;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: auto 1fr;
   align-items: center;
   justify-items: center;
   min-height: 50px;
@@ -57,7 +57,7 @@
   a {
     color: #999999;
     &:hover, &:focus, &:active {
-      color: #FFF;
+      color: $white;
     }
   }
 }
@@ -70,7 +70,7 @@
   }
   a {
     &[data-drupal-link-system-path="<front>"] {
-      color: #FFF;
+      color: $white;
       position: relative;
       &:before {
         content: '';
@@ -92,7 +92,28 @@
 
 .rh-universal-header .rh-universal-login {
   grid-column-end: right;
-  a {
+  height: 100%;
+  padding: 15px 10px 0 10px;
+
+  li.logged-in {
+    font-size: 14px;
+    .logged-in-name {
+      font-size: 14px;
+    }
+    .icon {
+      margin-right: 10px;
+      color: $white;
+    }
+    .logged-in-name ~ .icon {
+      margin-right: 0;
+    }
+  }
+
+  &:hover{
+    background-color: $gray-6;
+  }
+
+  li a {
     font-size: 16px;
     text-transform: none;
     color: $white;
@@ -102,29 +123,73 @@
       color: $white;
     }
   }
-  .user-logged-in & {
-    padding: 10px;
-    background-color: #272727;
-    a {
-      font-size: 14px;
+  //.user-logged-in & {
+  //  padding: 10px;
+  //  background-color: #272727;
+  //  a {
+  //    font-size: 14px;
+  //  }
+  //  li {
+  //    line-height: 1;
+  //  }
+  //  li:nth-child(n+2) {
+  //    padding-left: 24px;
+  //    line-height: 1;
+  //    a {
+  //      font-size: 10px;
+  //      color: #999;
+  //      line-height: 1;
+  //    }
+  //  }
+  //}
+}
+
+.rh-universal-login {
+  .dropdwn-menu {
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    background-color: $gray-2;
+    list-style: none;
+    -webkit-box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.35);
+    -moz-box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.35);
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.35);
+    display: none;
+    padding-left: 0;
+    z-index: 99;
+    margin-left: -10px;
+    margin-top: 16px;
+    @media screen and (max-width: 768px) {
+      position: relative;
+      width: auto !important;
+      margin-left: 0;
     }
     li {
-      line-height: 1;
-    }
-    li:nth-child(n+2) {
-      padding-left: 24px;
-      line-height: 1;
-      a {
-        font-size: 10px;
-        color: #999;
-        line-height: 1;
+      padding-left: 0;
+      padding-right: 35px;
+      margin: 10px;
+      &:not(:last-child) {
+        border-bottom: 1px solid $gray-3 ;
+        padding-bottom: 5px;
+      }
+      a, a:focus, a:hover, a:active {
+        font-size: 14px;
+        color: black;
       }
     }
   }
-}
-.rh-universal-login .icon {
-  margin-right: 10px;
-  color: #FFF;
+
+  .icon {
+    margin-right: 10px;
+    color: $white;
+  }
+
+  a + .icon {
+  margin-left: 10px;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -159,7 +224,7 @@
   }
   &.front-nav {
     @include desktop-small {
-      border-bottom: 1px solid #242424;
+      border-bottom: 1px solid $gray-8;
       padding: 20px 0;
     }
   }
@@ -289,7 +354,7 @@
     }
   }
   a {
-    color: #242424;
+    color: $gray-8;
     padding: 8px 0;
     display: inline-block;
     border-bottom: 3px solid transparent;
@@ -321,7 +386,7 @@
 .rhd-topic-header-inner {
   position: relative;
   @include desktop-small {
-    border-bottom: 1px solid #242424;
+    border-bottom: 1px solid $gray-8;
   }
   > .rhd-nav-all-topics {
     font-weight: bold;
@@ -333,7 +398,7 @@
       top: 0;
     }
     a {
-      color: #000;
+      color: $black;
       padding: 8px 0;
       display: inline-block;
       border-bottom: 3px solid transparent;
@@ -470,7 +535,7 @@
   }
   .rhd-header-link {
     > a {
-      color: #242424;
+      color: $gray-8;
       display: block;
       padding: 15px;
     }
@@ -514,8 +579,8 @@
 }
 
 .rhd-masthead {
-  border-bottom: 1px solid #242424;
-  background-color: #FFF;
+  border-bottom: 1px solid $gray-8;
+  background-color: $white;
   @include desktop-small {
     border-bottom: none;
   }
@@ -545,8 +610,8 @@
   }
   .menu-toggle {
     background-color: transparent;
-    border: 1px solid #242424;
-    color: #242424;
+    border: 1px solid $gray-8;
+    color: $gray-8;
     font-size: 14px;
     padding: 11px 15px;
     line-height: 1;
@@ -560,7 +625,7 @@
   position: absolute;
   top: 0;
   right: -15px;
-  background-color: #FFF;
+  background-color: $white;
   z-index: 101;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
   overflow: hidden;
@@ -582,11 +647,56 @@
     position: relative;
   }
   .rh-universal-login {
-    background-color: #242424;
-    color: #FFF;
-    font-size: 14px;
+    background-color: $gray-8;
+    color: $white;
+    font-size: 13px;
+
+    li.logged-in {
+      text-align: left;
+      .logged-in-name {
+          display: inline-block;
+          padding: 20px 10px 15px;
+          background-color: transparent;
+          max-width: 50%;
+          font-weight: 400;
+          &:hover, &:active, &:focus {
+            color: $white;
+          }
+      }
+      .icon {
+          margin-right: 0;
+          margin-left: 10px;
+          .fa-user {
+            vertical-align: top;
+            margin-top: 24px;
+          }
+      }
+      &.dropdwn-item{
+        display: inline-block;
+        text-align: center;
+        margin: 0;
+        min-width: 128px;
+        padding: 10px 0px;
+        text-transform: none;
+        font-size: 13px;
+        border-bottom: none;
+        font-weight: 400;
+        &:first-child{
+          border-right: 1px solid $gray-3;
+        }
+        a {
+          font-size: 13px;
+          &.logout {
+            display: inline;
+            padding: 0;
+            background-color: transparent;
+          }
+        }
+      }
+
+    }
     a {
-      color: #FFF;
+      color: $white;
       letter-spacing: 0.05em;
     }
     li {
@@ -595,10 +705,10 @@
         padding-right: 130px;
       }
       &:nth-child(n+2) {
-        font-size: 11px;
+        font-size: 14px;
         font-weight: 600;
-        text-align: center;
-        text-transform: uppercase;
+        text-align: left;
+        text-transform: none;
         > a {
           padding: 10px 15px;
           display: block;
