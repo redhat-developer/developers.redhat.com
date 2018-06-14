@@ -151,8 +151,8 @@
     max-width: 73.125rem;
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
   }
   @include desktop-small {
     padding: 20px 0;
@@ -434,11 +434,6 @@
   display: none;
 }
 
-.rhd-header-logo {
-  max-width: 250px;
-  justify-self: start;
-}
-
 .rhd-nav-fixed {
   justify-self: end;
   .description {
@@ -652,15 +647,18 @@
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  max-width: 174px;
+  max-width: 330px;
   display: block;
   line-height: 0;
   padding-right: 20px;
-  @include tablet-landscape {
-    max-width: 226px;
+  margin: -20px 0 -20px 0;
+  justify-self: start;
+  @include tablet-portrait-and-down {
+    margin: 0;
   }
   img {
-    max-width: 100%;
+    max-width: none;
+    width: 100%;
     height: auto;
   }
 }
