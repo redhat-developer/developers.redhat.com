@@ -1,6 +1,8 @@
 import RHElement from '@rhelements/rhelement';
-// import fontawesome from '@fortawesome/fontawesome';
-// import * as faTimes from '@fortawesome/fontawesome-pro-solid/faTimes';
+import {library, icon} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+
+library.add(fas);
 
 export default class RHDPAlert extends RHElement {
     template = el => {
@@ -96,8 +98,8 @@ export default class RHDPAlert extends RHElement {
         ${el.size === 'xl' ? '<h3>' : ''}
         ${el.heading ? `<strong>${el.heading}</strong>` : ''}
         ${el.size === 'xl' ? '</h3>' : ''}
-        <p><slot></slot></p>
-        ${el.size === 'xl' ? `<a class="close" href="#"><i class="fas fa-times"></i></a>` : ''}`;
+        <p><slot>${el.text}</slot></p>
+        ${el.size === 'xl' ? `<a class="close" href="#">${icon({prefix: 'fas', iconName: 'times'}).html}</a>` : ''}`;
         // ${el.size === 'xl' ? `<a class="close">${fontawesome.icon(faTimes)}</a>` : ''}`;
         return tpl;
     }
@@ -167,18 +169,19 @@ export default class RHDPAlert extends RHElement {
         this._icon = val;
     }
 
-    constructor() {
-        super('rhdp-alert');
+    constructor(element: string='rhdp-alert') {
+        super(element);
     }
 
     connectedCallback() {
         super.render(this.template(this));
 
-        const lnk = this.shadowRoot.querySelector('a');
+        const lnk = this.shadowRoot.querySelector('.close');
         if (lnk) {
             lnk.addEventListener('click', e => {
-               this.innerHTML = '';
-               return false;
+                e.preventDefault();
+                console.log('Close');
+                this.innerHTML = '';
             });
         }
     }

@@ -1,4 +1,5 @@
 import RHDPAlert from './rhdp-alert';
+import DPReferrer from './dp-referrer';
 import DPCategoryList from './dp-category-list/dp-category-list';
 import DPCategory from './dp-category-list/dp-category';
 import DPCategoryItemList from './dp-category-list/dp-category-item-list';
@@ -12,4 +13,5 @@ export default class RHDApp {
     d = new DPCategoryItemList();
     e = new DPCategoryItem();
     f = new DPProductShortTeaser();
+    g = new DPReferrer();
 }
