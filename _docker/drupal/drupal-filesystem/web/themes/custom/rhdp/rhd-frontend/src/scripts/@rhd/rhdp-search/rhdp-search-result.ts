@@ -50,7 +50,7 @@ class RHDPSearchResult extends HTMLElement {
 
     set description(val) {
         if (this._description === val) return;
-        this._description = val;
+        this._description = val.replace('>','&gt;').replace('<','&lt;');
     }
 
     get premium() {
