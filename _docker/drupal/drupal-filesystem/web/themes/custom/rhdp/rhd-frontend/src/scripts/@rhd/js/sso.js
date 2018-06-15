@@ -24,8 +24,8 @@ app.sso = function () {
 
                 $('a.logged-in-name')
                     .text(logged_in_user)
-                    .attr('href', app.ssoConfig.account_url)
                     .show();
+                $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())

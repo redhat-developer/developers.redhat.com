@@ -4276,7 +4276,7 @@ var RHDPSearchResult = (function (_super) {
         set: function (val) {
             if (this._description === val)
                 return;
-            this._description = val;
+            this._description = val.replace('>', '&gt;').replace('<', '&lt;');
         },
         enumerable: true,
         configurable: true
