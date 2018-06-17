@@ -61,12 +61,6 @@ _docker/drupal/.idea
 .gitignore
 _tests/unit/package.json
 _tests/unit/report/
-_tests/e2e/screenshots
-_tests/e2e/etc
-_tests/e2e/npm-debug.log
-_tests/e2e/desktop-results
-_tests/e2e/mobile-results
-_tests/e2e/node_modules
 local.log
 /_tests/e2e/BrowserStackLocal
 
@@ -77,3 +71,11 @@ _docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/rhd.min.css
 _docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/rhd.js
 _docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/rhd.min.js
 
+_tests/e2e/report/desktop-results/results.html
+_tests/e2e/report/desktop-results/results.json
+_tests/e2e/report/desktop-results/screenshots/
+_tests/e2e/tmp_downloads/
+_tests/e2e/report/mobile-results/results.html
+_tests/e2e/report/mobile-results/results.json
+_tests/e2e/report/mobile-results/screenshots/
+_tests/e2e/screenshots
