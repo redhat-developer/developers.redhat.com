@@ -9,7 +9,7 @@ class RHDPProjectQuery extends HTMLElement {
     // TODO: Fix this ugly hack. Add upstream projects to products once Drupal REST endpoints are exposed.
     productData = {
         "amq": {"upstream": ["activemq","fabric8"]},
-        "bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"]},
+        "rhpam": {"upstream": ["drools","guvnor","optaplanner","jbpm"]},
         "brms": {"upstream": ["optaplanner","drools","guvnor"]},
         "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"]},
         "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"]},

@@ -8084,7 +8084,7 @@ button.tiny, .button.tiny {
   position: relative;
   list-style: none;
   color: #424242; }
-  .rhd-adaptive-placeholder .field + .field {
+  .rhd-adaptive-placeholder .field + .field, .rhd-adaptive-placeholder .field:not(:first-of-type) {
     margin-top: 20px; }
   .rhd-adaptive-placeholder .field.form-field-note-text {
     margin-top: 5px;
@@ -13303,6 +13303,13 @@ img {
   .related-content-card p {
     margin-bottom: 0; }
 
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
 pre {
   padding: 10px;
   background: #f9f9f9;
@@ -13314,6 +13321,13 @@ pre {
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word; }
+
+code {
+  padding: 1px;
+  border: 1px solid #d5d5d5;
+  background-color: #f9f9f9;
+  font-weight: normal;
+  color: #0a0a0a; }
 
 .content-type-label {
   text-transform: uppercase;
