@@ -30,7 +30,7 @@ export default class DPStackOverflow extends RHElement {
     <option value="developertoolset">Red Hat Developer Toolset</option>
     <option value="rhel">Red Hat Enterprise Linux</option>
     <option value="amq">Red Hat JBoss AMQ</option>
-    <option value="bpmsuite">Red Hat JBoss BPM Suite</option>
+    <option value="rhpam">Red Hat Process Automation Manager</option>
     <option value="brms">Red Hat Decision Manager</option>
     <option value="datagrid">Red Hat JBoss Data Grid</option>
     <option value="datavirt">Red Hat JBoss Data Virtualization</option>
