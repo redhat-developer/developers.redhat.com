@@ -763,13 +763,17 @@
   padding-right: 20px;
   margin: -20px 0 -20px 0;
   justify-self: start;
-  @include tablet-portrait-and-down {
-    margin: 0;
-  }
+
   img {
     max-width: none;
     width: 100%;
     height: auto;
+  }
+  @include tablet-portrait-and-down {
+    margin: 0;
+    img {
+      width: 90%;
+    }
   }
 }
 
