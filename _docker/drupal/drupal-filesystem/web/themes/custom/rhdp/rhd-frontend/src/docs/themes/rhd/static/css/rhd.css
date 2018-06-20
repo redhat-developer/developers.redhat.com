@@ -6380,7 +6380,7 @@ body.fullbleed .content-wrapper {
   font-size: 14px;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: auto 1fr;
   align-items: center;
   justify-items: center;
   min-height: 50px;
@@ -6415,7 +6415,7 @@ body.fullbleed .content-wrapper {
   .rh-nav-universal-list a {
     color: #999999; }
     .rh-nav-universal-list a:hover, .rh-nav-universal-list a:focus, .rh-nav-universal-list a:active {
-      color: #FFF; }
+      color: #FFFFFF; }
 
 .rh-nav-universal-link {
   color: #999999;
@@ -6423,7 +6423,7 @@ body.fullbleed .content-wrapper {
   .rh-nav-universal-link:active, .rh-nav-universal-link:hover, .rh-nav-universal-link:focus {
     color: #FFFFFF; }
   .rh-nav-universal-link a[data-drupal-link-system-path="<front>"] {
-    color: #FFF;
+    color: #FFFFFF;
     position: relative; }
     .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:before {
       content: '';
@@ -6439,32 +6439,67 @@ body.fullbleed .content-wrapper {
   padding: 5px; }
 
 .rh-universal-header .rh-universal-login {
-  grid-column-end: right; }
-  .rh-universal-header .rh-universal-login a {
+  grid-column-end: right;
+  height: 100%;
+  padding: 15px 10px 0 10px; }
+  .rh-universal-header .rh-universal-login li.logged-in {
+    font-size: 14px; }
+    .rh-universal-header .rh-universal-login li.logged-in .logged-in-name {
+      font-size: 14px; }
+    .rh-universal-header .rh-universal-login li.logged-in .icon {
+      margin-right: 10px;
+      color: #FFFFFF; }
+    .rh-universal-header .rh-universal-login li.logged-in .logged-in-name ~ .icon {
+      margin-right: 0; }
+  .rh-universal-header .rh-universal-login:hover {
+    background-color: #424242; }
+  .rh-universal-header .rh-universal-login li a {
     font-size: 16px;
     text-transform: none;
     color: #FFFFFF;
     font-weight: 400; }
-    .rh-universal-header .rh-universal-login a:active, .rh-universal-header .rh-universal-login a:hover, .rh-universal-header .rh-universal-login a:focus {
+    .rh-universal-header .rh-universal-login li a:active, .rh-universal-header .rh-universal-login li a:hover, .rh-universal-header .rh-universal-login li a:focus {
       color: #FFFFFF; }
-  .user-logged-in .rh-universal-header .rh-universal-login {
-    padding: 10px;
-    background-color: #272727; }
-    .user-logged-in .rh-universal-header .rh-universal-login a {
-      font-size: 14px; }
-    .user-logged-in .rh-universal-header .rh-universal-login li {
-      line-height: 1; }
-    .user-logged-in .rh-universal-header .rh-universal-login li:nth-child(n+2) {
-      padding-left: 24px;
-      line-height: 1; }
-      .user-logged-in .rh-universal-header .rh-universal-login li:nth-child(n+2) a {
-        font-size: 10px;
-        color: #999;
-        line-height: 1; }
+
+.rh-universal-login .dropdwn-menu {
+  font-size: 14px;
+  color: #333;
+  position: absolute;
+  background-color: #E6E6E6;
+  list-style: none;
+  -webkit-box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.35);
+  display: none;
+  padding-left: 0;
+  z-index: 99;
+  margin-left: -10px;
+  margin-top: 16px; }
+  @media screen and (max-width: 768px) {
+    .rh-universal-login .dropdwn-menu {
+      position: relative;
+      width: auto !important;
+      margin-left: 0; } }
+  .rh-universal-login .dropdwn-menu li {
+    padding-left: 0;
+    padding-right: 35px;
+    margin: 10px; }
+    .rh-universal-login .dropdwn-menu li:not(:last-child) {
+      border-bottom: 1px solid #D5D5D5;
+      padding-bottom: 5px; }
+    .rh-universal-login .dropdwn-menu li a, .rh-universal-login .dropdwn-menu li a:focus, .rh-universal-login .dropdwn-menu li a:hover, .rh-universal-login .dropdwn-menu li a:active {
+      font-size: 14px;
+      color: black; }
 
 .rh-universal-login .icon {
   margin-right: 10px;
-  color: #FFF; }
+  color: #FFFFFF; }
+
+.rh-universal-login a + .icon {
+  margin-left: 10px; }
+  @media screen and (max-width: 768px) {
+    .rh-universal-login a + .icon {
+      display: none; } }
 
 @media screen and (max-width: 1024px) {
   .rh-nav-universal-list {
@@ -6630,7 +6665,7 @@ body.fullbleed .content-wrapper {
         position: absolute;
         top: 0; } }
     .rhd-topic-header-inner > .rhd-nav-all-topics a {
-      color: #000;
+      color: #000000;
       padding: 8px 0;
       display: inline-block;
       border-bottom: 3px solid transparent; }
@@ -6775,7 +6810,7 @@ body.fullbleed .content-wrapper {
 
 .rhd-masthead {
   border-bottom: 1px solid #242424;
-  background-color: #FFF; }
+  background-color: #FFFFFF; }
   @media (min-width: 992px) {
     .rhd-masthead {
       border-bottom: none; } }
@@ -6814,7 +6849,7 @@ body.fullbleed .content-wrapper {
   position: absolute;
   top: 0;
   right: -15px;
-  background-color: #FFF;
+  background-color: #FFFFFF;
   z-index: 101;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   overflow: hidden;
@@ -6833,19 +6868,53 @@ body.fullbleed .content-wrapper {
     position: relative; }
   .rhd-mobile-tray .rh-universal-login {
     background-color: #242424;
-    color: #FFF;
-    font-size: 14px; }
+    color: #FFFFFF;
+    font-size: 13px; }
+    .rhd-mobile-tray .rh-universal-login li.logged-in {
+      text-align: left; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in .logged-in-name {
+        display: inline-block;
+        padding: 20px 10px 15px;
+        background-color: transparent;
+        max-width: 50%;
+        font-weight: 400; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in .logged-in-name:hover, .rhd-mobile-tray .rh-universal-login li.logged-in .logged-in-name:active, .rhd-mobile-tray .rh-universal-login li.logged-in .logged-in-name:focus {
+          color: #FFFFFF; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in .icon {
+        margin-right: 0;
+        margin-left: 10px; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in .icon .fa-user {
+          vertical-align: top;
+          margin-top: 24px; }
+      .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item {
+        display: inline-block;
+        text-align: center;
+        margin: 0;
+        min-width: 128px;
+        padding: 10px 0px;
+        text-transform: none;
+        font-size: 13px;
+        border-bottom: none;
+        font-weight: 400; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item:first-child {
+          border-right: 1px solid #D5D5D5; }
+        .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item a {
+          font-size: 13px; }
+          .rhd-mobile-tray .rh-universal-login li.logged-in.dropdwn-item a.logout {
+            display: inline;
+            padding: 0;
+            background-color: transparent; }
     .rhd-mobile-tray .rh-universal-login a {
-      color: #FFF;
+      color: #FFFFFF;
       letter-spacing: 0.05em; }
     .rhd-mobile-tray .rh-universal-login li:first-child {
       padding: 21px 15px;
       padding-right: 130px; }
     .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) {
-      font-size: 11px;
+      font-size: 14px;
       font-weight: 600;
-      text-align: center;
-      text-transform: uppercase; }
+      text-align: left;
+      text-transform: none; }
       .rhd-mobile-tray .rh-universal-login li:nth-child(n+2) > a {
         padding: 10px 15px;
         display: block;
@@ -8060,6 +8129,20 @@ button.tiny, .button.tiny {
   cursor: text; }
 
 .rhd-adaptive-placeholder select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  box-shadow: 0;
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-size: .875rem;
+  padding: .5rem;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: box-shadow .45s, border-color .45s ease-in-out;
   background-color: #FFFFFF;
   height: 3.2em;
   padding-top: 1.2em;
@@ -8085,7 +8168,7 @@ button.tiny, .button.tiny {
   list-style: none;
   color: #424242; }
   .rhd-adaptive-placeholder .field + .field, .rhd-adaptive-placeholder .field:not(:first-of-type) {
-    margin-top: 20px; }
+    margin-top: 15px; }
   .rhd-adaptive-placeholder .field.form-field-note-text {
     margin-top: 5px;
     font-size: 0.75rem;

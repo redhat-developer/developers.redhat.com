@@ -101,7 +101,7 @@ class RHDPSearchApp extends HTMLElement {
                 items: [
                 {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
-                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
+                {key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam','bpmsuite']},
                 {key: 'brms', name: 'Red Hat Decision Manager', value: ['brms']},
                 {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
                 {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},

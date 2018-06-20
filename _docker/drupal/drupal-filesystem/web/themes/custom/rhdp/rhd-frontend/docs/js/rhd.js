@@ -2989,6 +2989,9 @@ var RHDPProjects = (function (_super) {
         this.addEventListener('data-results-complete', this._loadDataResult);
         var query = new RHDPProjectQuery();
         query.dcpUrl = this.dcpUrl;
+        if (this._getProductId()) {
+            query.filter = this._getProductId();
+        }
         var url = new RHDPProjectURL();
         this.appendChild(query);
         this.appendChild(url);
@@ -2998,6 +3001,10 @@ var RHDPProjects = (function (_super) {
         while (childNodes.firstChild) {
             childNodes.removeChild(childNodes.firstChild);
         }
+    };
+    RHDPProjects.prototype._getProductId = function () {
+        var productId = this.getAttribute('upstream-product-id');
+        return productId;
     };
     RHDPProjects.prototype._loadDataResult = function (e) {
         this.removeAllProjects();
@@ -4276,7 +4283,7 @@ var RHDPSearchResult = (function (_super) {
         set: function (val) {
             if (this._description === val)
                 return;
-            this._description = val;
+            this._description = val.replace('>', '&gt;').replace('<', '&lt;');
         },
         enumerable: true,
         configurable: true
