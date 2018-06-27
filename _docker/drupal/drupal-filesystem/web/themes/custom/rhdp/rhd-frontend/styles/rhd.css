@@ -6425,14 +6425,13 @@ body.fullbleed .content-wrapper {
   .rh-nav-universal-link a[data-drupal-link-system-path="<front>"] {
     color: #FFFFFF;
     position: relative; }
-    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:before {
+    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:after {
       content: '';
       display: block;
       width: 25px;
-      height: 2px;
+      height: 3px;
       background-color: #CC0000;
-      position: absolute;
-      bottom: -3px; }
+      margin-top: 0; }
 
 .rh-header-logo {
   max-width: 100px;
@@ -6520,8 +6519,8 @@ body.fullbleed .content-wrapper {
       max-width: 73.125rem;
       flex: 1 1 auto;
       display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto 1fr; } }
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto; } }
   @media (min-width: 992px) {
     .rhd-header {
       padding: 20px 0; } }
@@ -6580,7 +6579,7 @@ body.fullbleed .content-wrapper {
             width: 30px;
             background-color: #CC0000;
             height: 3px;
-            margin-top: 3px;
+            margin-top: 0;
             transform: scaleX(0);
             transition: 200ms ease-in-out;
             transform-origin: left; }
@@ -6747,10 +6746,6 @@ body.fullbleed .content-wrapper {
   height: 100%;
   z-index: 50;
   display: none; }
-
-.rhd-header-logo {
-  max-width: 250px;
-  justify-self: start; }
 
 .rhd-nav-fixed {
   justify-self: end; }
@@ -6955,16 +6950,21 @@ body.fullbleed .content-wrapper {
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  max-width: 174px;
+  max-width: 260px;
   display: block;
   line-height: 0;
-  padding-right: 20px; }
-  @media (min-width: 768px) {
-    .rhd-header-logo {
-      max-width: 226px; } }
+  padding-right: 20px;
+  margin: -20px 0 -20px 0;
+  justify-self: start; }
   .rhd-header-logo img {
-    max-width: 100%;
+    max-width: none;
+    width: 100%;
     height: auto; }
+  @media only screen and (max-width: 768px) {
+    .rhd-header-logo {
+      margin: 0; }
+      .rhd-header-logo img {
+        width: 90%; } }
 
 .rhd-nav-dynamic {
   grid-row: 2;
@@ -11424,14 +11424,14 @@ ul.featured-connectors-results a.image-link img {
   text-align: center; }
 
 .hero.hero-devnation2015 {
-  background: cdn("../images/devnation2015/RHDev_indeximage_desktop_devnation.png") top center/cover repeat-x;
+  background: url("/images/devnation2015/RHDev_indeximage_desktop_devnation.png") top center/cover repeat-x;
   border: 0;
   padding: 20px;
   padding-top: 40px;
   min-height: 230px; }
   @media only screen and (max-width: 768px) {
     .hero.hero-devnation2015 {
-      background: cdn("../images/devnation2015/RHDev_indeximage_mobile_devnation.png") top center/cover repeat-x;
+      background: url("/images/devnation2015/RHDev_indeximage_mobile_devnation.png") top center/cover repeat-x;
       margin: -15px; }
       .hero.hero-devnation2015 h2.blowout {
         padding-top: 20px !important; } }
