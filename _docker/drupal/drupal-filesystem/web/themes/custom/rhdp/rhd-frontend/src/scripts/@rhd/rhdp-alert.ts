@@ -1,8 +1,8 @@
 import RHElement from '@rhelements/rhelement';
-import {library, icon} from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
+// import {library, icon} from '@fortawesome/fontawesome-svg-core';
+// import {fas} from '@fortawesome/free-solid-svg-icons';
 
-library.add(fas);
+// library.add(fas);
 
 export default class RHDPAlert extends RHElement {
     template = el => {
@@ -99,7 +99,8 @@ export default class RHDPAlert extends RHElement {
         ${el.heading ? `<strong>${el.heading}</strong>` : ''}
         ${el.size === 'xl' ? '</h3>' : ''}
         <p><slot>${el.text}</slot></p>
-        ${el.size === 'xl' ? `<a class="close" href="#">${icon({prefix: 'fas', iconName: 'times'}).html}</a>` : ''}`;
+        ${el.size === 'xl' ? `<a class="close" href="#"><i class="fas fa-times"></i></a>` : ''}`;
+        // ${icon({prefix: 'fas', iconName: 'times'}).html}
         // ${el.size === 'xl' ? `<a class="close">${fontawesome.icon(faTimes)}</a>` : ''}`;
         return tpl;
     }
