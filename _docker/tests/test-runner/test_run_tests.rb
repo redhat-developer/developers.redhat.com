@@ -150,7 +150,7 @@ class TestRunTests < MiniTest::Test
     ENV['rhd_test'] = 'blc'
 
     test_configuration = {}
-    test_configuration[:blc] = true
+    test_configuration[:website] = true
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'bundle exec blinkr'
 
@@ -168,7 +168,7 @@ class TestRunTests < MiniTest::Test
     ENV['rhd_test'] = 'blc'
 
     test_configuration = {}
-    test_configuration[:blc] = true
+    test_configuration[:website] = true
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'bundle exec blinkr'
 

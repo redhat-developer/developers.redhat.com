@@ -1,4 +1,4 @@
-FROM test-base:2.3.0
+FROM test-base:0.1.0
 
 WORKDIR /tmp
 RUN yum install -y bzip2 fontconfig freetype freetype-devel fontconfig-devel libstdc++ && \
@@ -10,7 +10,7 @@ RUN yum install -y bzip2 fontconfig freetype freetype-devel fontconfig-devel lib
 COPY Gemfile Gemfile.lock ./
 RUN bundle install -j 10
 
-RUN groupadd -g 1000 blc
-RUN useradd -g blc -m -s /bin/bash -u 1000 blc
-USER blc
-WORKDIR /home/blc
+RUN groupadd -g 1000 website
+RUN useradd -g website -m -s /bin/bash -u 1000 website
+USER website
+WORKDIR /home/website
