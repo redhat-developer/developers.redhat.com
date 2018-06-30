@@ -1,4 +1,7 @@
-FROM centos:7.3.1611
+FROM test-base:0.1.0
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install -j 10
 
 RUN groupadd -g 1000 dcp
 RUN useradd -g dcp -m -s /bin/bash -u 1000 dcp

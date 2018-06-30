@@ -10,7 +10,7 @@ RUN yum install -y bzip2 fontconfig freetype freetype-devel fontconfig-devel lib
 COPY Gemfile Gemfile.lock ./
 RUN bundle install -j 10
 
-RUN groupadd -g 1000 website
-RUN useradd -g website -m -s /bin/bash -u 1000 website
-USER website
-WORKDIR /home/website
+RUN groupadd -g 1000 blinkr
+RUN useradd -g blinkr -m -s /bin/bash -u 1000 blinkr
+USER blinkr
+WORKDIR /home/blinkr

@@ -1,7 +1,6 @@
 require 'optparse'
 require 'json'
 require_relative '../../_docker/lib/default_logger'
-require_relative '../link-checking/website/generate_critical_link_sitemap'
 
 #
 # Class implementation that parses the options supplied to the
@@ -34,8 +33,12 @@ class RunTestOptions
         test_configuration[:e2e] = opt
       end
 
-      opts.on('--blc', 'Execute broken link checks') do |opt|
-        test_configuration[:website] = opt
+      opts.on('--blinkr', 'Execute broken link checks') do |opt|
+        test_configuration[:blinkr] = opt
+      end
+
+      opts.on('--dcp', 'Execute dcp broken link checks') do |opt|
+        test_configuration[:dcp] = opt
       end
 
       #
@@ -134,7 +137,8 @@ class RunTestOptions
   def bind_test_type_environment_variable(test_configuration)
     bind_environment_variable('rhd_test', 'unit') if test_configuration[:unit]
     bind_environment_variable('rhd_test', 'e2e') if test_configuration[:e2e]
-    bind_environment_variable('rhd_test', 'blc') if test_configuration[:website]
+    bind_environment_variable('rhd_test', 'blinkr') if test_configuration[:blinkr]
+    bind_environment_variable('rhd_test', 'dcp') if test_configuration[:dcp]
   end
 
   #
@@ -143,7 +147,8 @@ class RunTestOptions
   def build_test_execution_command(test_configuration)
     test_configuration[:run_tests_command] = build_unit_test_execution_cmd(test_configuration) if test_configuration[:unit]
     test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration) if test_configuration[:e2e]
-    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) if test_configuration[:website]
+    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) if test_configuration[:blinkr]
+    test_configuration[:run_tests_command] = build_dcp_test_execution_cmd(test_configuration) if test_configuration[:dcp]
   end
 
   #
@@ -159,7 +164,7 @@ class RunTestOptions
       bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
       bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
     end
-    bind_environment_variable('github_status_context', 'broken-link-checks') if test_type == 'blc'
+    bind_environment_variable('github_status_context', 'broken-link-checks') if test_type == 'blinkr'
   end
 
   #
@@ -244,5 +249,30 @@ class RunTestOptions
     default_configuration[:browserstack] = false
     default_configuration[:profile] = 'desktop'
     default_configuration
+  end
+
+  #
+  # Builds broken link checking test command based on given parameters
+  #
+  def build_blc_test_execution_cmd(test_configuration)
+    run_tests_command = ''
+    run_tests_command += " -c #{test_configuration[:config]}" if test_configuration[:config]
+    run_tests_command += " -u #{test_configuration[:base_url]}" if test_configuration[:base_url]
+    run_tests_command += " -s #{test_configuration[:single_url]}" if test_configuration[:single_url]
+    run_tests_command += ' --ignore-internal' if test_configuration[:ignore_internal]
+    run_tests_command += ' --ignore-external' if test_configuration[:ignore_external]
+    run_tests_command += ' --ignore-ssl' if test_configuration[:ignore_ssl]
+    run_tests_command += ' -v' if test_configuration[:verbose]
+    test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
+  end
+
+  #
+  # Builds the command to use to execute the dcp-broken-link checks
+  #
+  def build_dcp_test_execution_cmd(test_configuration)
+    run_tests_command = ''
+    run_tests_command += " --config #{test_configuration[:config]}" if test_configuration[:config]
+    run_tests_command += " --base-url=#{test_configuration[:base_url]}" if test_configuration[:base_url]
+    test_configuration[:run_tests_command] = "bundle exec dcp-checker#{run_tests_command}"
   end
 end
