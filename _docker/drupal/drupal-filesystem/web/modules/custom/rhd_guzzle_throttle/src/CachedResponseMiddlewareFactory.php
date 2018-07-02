@@ -10,26 +10,21 @@ namespace Drupal\rhd_guzzle_throttle;
 
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Site\Settings;
-use function GuzzleHttp\Psr7\copy_to_string;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Contracts\Config\Repository;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class CachedResponseMiddlewareFactory {
 
-  /*** @var \Drupal\Core\Site\Settings */
-  private $settings;
-
-  /** @var ConfigFactoryInterface */
+  /** @var Repository */
   private $config;
 
   /**
    * @inheritDoc
    */
-  public function __construct(Settings $settings, ConfigFactoryInterface $configFactory) {
-    $this->settings = $settings;
-    $this->config = $configFactory;
+  public function __construct(Repository $config) {
+    $this->config = $config;
   }
 
   /**
@@ -43,13 +38,14 @@ class CachedResponseMiddlewareFactory {
 
         return $promise->then(function (ResponseInterface $response) use ($request) {
           if ($response->getStatusCode() >= 400) {
-            $cache = new DrupalFileCache();
+            $cache = new DrupalLaravelAdapter($this->config);
 
             /** @var ResponseInterface $cachedResponse */
             $cachedResponse = $cache->getResponse($request);
 
             // If we actually have a valid cached response, return it
             if (isset($cachedResponse)) {
+              // FIXME: Should we return a fulfilled promise here?
               return $cachedResponse;
             }
           }
