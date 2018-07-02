@@ -72,7 +72,7 @@ class ExportHtmlPostProcessor
   end
 
   #
-  # See https://issues.jboss.org/browse/DEVELOPER-3500
+  # See https://issues.jboss.org/browse/DEVELOPER-3500 and DEVELOPER-4614
   #
   # After Httrack has run there is some mark-up in the exported HTML that identifies the host from which it mirrored the site. This is a minor
   # security issue, as we're leaking the host name of Drupal outside our controlled network.
@@ -80,19 +80,32 @@ class ExportHtmlPostProcessor
   # I attempted to turn off this mark-up generation in Drupal, but as with most things, Drupal just ignores you.
   #
   # Anyways, here we remove the <link rel="shortlink"/> , <link rel="revision"/> and <meta name="Generator"/> mark-up from the DOM.
+  # We are also modifying meta tags and links so they have the proper location for images and canonical refs.
+  # We are intentionally not messing with script tags.
+  #
   # @return true if the DOM was modified, false otherwise
   #
-  def remove_drupal_host_identifying_markup?(html_doc)
-    elements_to_remove = html_doc.css('link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]')
-    elements_to_remove.each do | element |
+  def remove_drupal_host_identifying_markup?(host, html_doc)
+    modified = false
+    prod_host = 'developers.redhat.com'
+    remove_elements = 'link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]'
+
+    html_doc.css(remove_elements).each do |element|
       element.remove
+      modified = true
     end
 
-    if elements_to_remove.size > 0
-      @log.info("\tRemoved Drupal host identifying markup.")
+    html_doc.css("meta[content*='#{host}']").each do |element|
+      element['content'] = element['content'].gsub(host, prod_host)
+      modified = true
     end
 
-    elements_to_remove.size > 0
+    html_doc.css("link[href*='#{host}']").each do |element|
+      element['href'] = element['href'].gsub(host, prod_host)
+      modified = true
+    end
+
+    @log.info("\tRemoved Drupal host identifying markup.") if modified
   end
 
 
@@ -109,7 +122,7 @@ class ExportHtmlPostProcessor
         Nokogiri::HTML(file)
       end
 
-      hide_drupal = remove_drupal_host_identifying_markup?(html_doc)
+      hide_drupal = remove_drupal_host_identifying_markup?(drupal_host, html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
       rewrite_access_links = rewrite_access_redhat_com_links(html_doc, html_file)
       rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
