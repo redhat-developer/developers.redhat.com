@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.all_products_listing
-    - assembly.assembly_type.blog_posts
     - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.dynamic_content_feed
@@ -21,7 +20,6 @@ dependencies:
     - assembly.assembly_type.rich_text_columns
     - assembly.assembly_type.static_content_band
     - assembly.assembly_type.video_hero
-    - assembly.assembly_type.videos
     - field.storage.node.field_sections
     - node.type.assembly_page
   module:
@@ -41,7 +39,6 @@ settings:
   handler_settings:
     target_bundles:
       all_products_listing: all_products_listing
-      blog_posts: blog_posts
       call_to_action: call_to_action
       static_content_band: static_content_band
       dynamic_content_feed: dynamic_content_feed
@@ -58,7 +55,6 @@ settings:
       rich_text_columns: rich_text_columns
       content_with_image: content_with_image
       video_hero: video_hero
-      videos: videos
     sort:
       field: _none
     auto_create: false

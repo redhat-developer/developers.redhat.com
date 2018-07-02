@@ -280,7 +280,7 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
                     var _this = _super.call(this, 'dp-category-item-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n            <style>\n            :host[visible] {\n                display: block;\n            }\n\n            :host {\n                display: none;\n                flex: 1 1 100%;\n                grid-column: span 1;\n                margin-bottom: 30px;\n            }\n\n            div {\n                background: white;\n                display: grid;\n                grid-template-columns: 1fr;\n                grid-gap: 15px;\n                position: relative;\n                padding-top: 15px;\n                padding-right: 15px;\n                padding-left: 15px;\n            }\n\n            @media (min-width: 500px) {\n                :host {\n                    grid-column: span 2;\n                }\n\n                div {\n                    border: 1px solid #CCCCCC;\n                }\n            }\n\n            @media (min-width: 800px) {\n                :host {\n                    grid-column: span 3;\n                }\n\n                div {\n                    grid-template-columns: repeat(2, 1fr);\n                }\n            }\n\n            @media (min-width: 1200px) {\n                :host {\n                    grid-column: span 4;\n                }\n\n                div {\n                    grid-template-columns: repeat(3, 1fr);\n                    grid-gap: 30px;\n                    background-color: #FFFFFF;\n                    padding: 30px;\n                    margin-bottom: 30px;\n                }\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
+                        tpl.innerHTML = "\n            <style>\n            :host[visible] {\n                display: block;\n            }\n\n            :host {\n                display: none;\n                flex: 1 1 100%;\n                grid-column: span 1;\n            }\n\n            div {\n                background: white;\n                display: grid;\n                grid-template-columns: 1fr;\n                grid-gap: 15px;\n                position: relative;\n                padding-top: 15px;\n                padding-right: 15px;\n                padding-left: 15px;\n            }\n\n            @media (min-width: 500px) {\n                :host {\n                    grid-column: span 2;\n                    margin-bottom: 30px;\n                }\n\n                div {\n                    border: 1px solid #CCCCCC;\n                }\n            }\n\n            @media (min-width: 800px) {\n                :host {\n                    grid-column: span 3;\n                }\n\n                div {\n                    grid-template-columns: repeat(2, 1fr);\n                }\n            }\n\n            @media (min-width: 1200px) {\n                :host {\n                    grid-column: span 4;\n                }\n\n                div {\n                    grid-template-columns: repeat(3, 1fr);\n                    grid-gap: 30px;\n                    background-color: #FFFFFF;\n                    padding: 30px;\n                    margin-bottom: 30px;\n                }\n            }\n            </style>\n            <div>\n            <slot></slot>\n            </div>\n            ";
                         return tpl;
                     };
                     _this._index = 1;
@@ -2989,6 +2989,9 @@ var RHDPProjects = (function (_super) {
         this.addEventListener('data-results-complete', this._loadDataResult);
         var query = new RHDPProjectQuery();
         query.dcpUrl = this.dcpUrl;
+        if (this._getProductId()) {
+            query.filter = this._getProductId();
+        }
         var url = new RHDPProjectURL();
         this.appendChild(query);
         this.appendChild(url);
@@ -2998,6 +3001,10 @@ var RHDPProjects = (function (_super) {
         while (childNodes.firstChild) {
             childNodes.removeChild(childNodes.firstChild);
         }
+    };
+    RHDPProjects.prototype._getProductId = function () {
+        var productId = this.getAttribute('upstream-product-id');
+        return productId;
     };
     RHDPProjects.prototype._loadDataResult = function (e) {
         this.removeAllProjects();
@@ -4276,7 +4283,7 @@ var RHDPSearchResult = (function (_super) {
         set: function (val) {
             if (this._description === val)
                 return;
-            this._description = val;
+            this._description = val.replace('>', '&gt;').replace('<', '&lt;');
         },
         enumerable: true,
         configurable: true
