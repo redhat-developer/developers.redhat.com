@@ -72,14 +72,13 @@
     &[data-drupal-link-system-path="<front>"] {
       color: $white;
       position: relative;
-      &:before {
+      &:after {
         content: '';
         display: block;
         width: 25px;
-        height: 2px;
+        height: 3px;
         background-color: $red;
-        position: absolute;
-        bottom: -3px;
+        margin-top: 0;
       }
     }
   }
@@ -216,8 +215,8 @@
     max-width: 73.125rem;
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
   }
   @include desktop-small {
     padding: 20px 0;
@@ -286,8 +285,8 @@
             display: block;
             width: 30px;
             background-color: #CC0000;
-            height: 2px;
-            margin-top: 3px;
+            height: 3px;
+            margin-top: 0;
             transform: scaleX(0);
             transition: 200ms ease-in-out;
             transform-origin: left;
@@ -359,6 +358,10 @@
     display: inline-block;
     border-bottom: 3px solid transparent;
     position: relative;
+    height: 41px;
+    @include tablet-landscape {
+      height: 44px;
+    }
     &:after {
       content: '';
       display: block;
@@ -497,11 +500,6 @@
   height: 100%;
   z-index: 50;
   display: none;
-}
-
-.rhd-header-logo {
-  max-width: 250px;
-  justify-self: start;
 }
 
 .rhd-nav-fixed {
@@ -762,16 +760,23 @@
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  max-width: 174px;
+  max-width: 260px;
   display: block;
   line-height: 0;
   padding-right: 20px;
-  @include tablet-landscape {
-    max-width: 226px;
-  }
+  margin: -20px 0 -20px 0;
+  justify-self: start;
+
   img {
-    max-width: 100%;
+    max-width: none;
+    width: 100%;
     height: auto;
+  }
+  @include tablet-portrait-and-down {
+    margin: 0;
+    img {
+      width: 90%;
+    }
   }
 }
 

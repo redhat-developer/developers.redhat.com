@@ -4,7 +4,6 @@ class RHDPProjects extends HTMLElement {
     private _dcpUrl = '';
     private _data;
 
-
     get dcpUrl() {
         return this.getAttribute('dcp-url') ? this.getAttribute('dcp-url') : this._dcpUrl;
     }
@@ -47,6 +46,9 @@ class RHDPProjects extends HTMLElement {
         this.addEventListener('data-results-complete', this._loadDataResult);
         let query = new RHDPProjectQuery();
         query.dcpUrl = this.dcpUrl;
+        if(this._getProductId()){
+            query.filter = this._getProductId();
+        }
         let url = new RHDPProjectURL();
         this.appendChild(query);
         this.appendChild(url);
@@ -58,6 +60,12 @@ class RHDPProjects extends HTMLElement {
         while(childNodes.firstChild){
             childNodes.removeChild(childNodes.firstChild);
         }
+    }
+
+
+    _getProductId(){
+        let productId = this.getAttribute('upstream-product-id');
+        return productId;
     }
 
     _loadDataResult(e){
