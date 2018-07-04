@@ -358,6 +358,10 @@
     display: inline-block;
     border-bottom: 3px solid transparent;
     position: relative;
+    height: 41px;
+    @include tablet-landscape {
+      height: 44px;
+    }
     &:after {
       content: '';
       display: block;

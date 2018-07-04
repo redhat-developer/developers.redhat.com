@@ -173,5 +173,12 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     assert_equal(0, drupal_elements.size)
   end
 
+  def test_should_remove_all_drupal_host_references_from_markup
+    test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
+    assert test_page.to_s.include? 'rhdp-drupal.redhat.com'
 
+    @export_post_processor.post_process_html_export('rhdp-drupal.redhat.com', @export_directory)
+    test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
+    refute test_page.to_s.include? 'rhdp-drupal.redhat.com'
+  end
 end
