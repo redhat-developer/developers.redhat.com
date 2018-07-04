@@ -23,7 +23,6 @@ class BrowserManager {
         myProfile.setPreference("general.useragent.override", "Red Hat Developers Testing");
 
         return {
-            maxInstances: 1,
             browserName: 'firefox',
             firefox_profile: myProfile,
             acceptInsecureCerts: true,
@@ -39,7 +38,6 @@ class BrowserManager {
         let caps;
         if (browser === 'desktop') {
             caps = {
-                maxInstances: 1,
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
 
@@ -58,7 +56,6 @@ class BrowserManager {
             }
         } else {
             caps = {
-                maxInstances: 1,
                 browserName: 'chrome',
                 acceptInsecureCerts: true,
                 chromeOptions: {

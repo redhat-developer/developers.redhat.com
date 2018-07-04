@@ -12,7 +12,7 @@ if (typeof process.env.NODE_SELENIUM_HOST === 'undefined') {
 const dockerConfig = Object.assign(baseConfig, {
 
     host: dockerHost,
-    maxInstances: 1,
+    maxInstances: 10,
     capabilities: [browserCaps],
 
 });

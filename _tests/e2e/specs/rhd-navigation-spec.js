@@ -16,7 +16,7 @@ describe('Navigation bar', function () {
             .open('/');
         siteNav
             .clickLoginLink();
-        expect(loginPage.isOnLoginPage(), 'Log in page was not displayed').to.be.true
+        expect(loginPage.isOnLoginPage(), 'Log in page to be displayed').to.be.true
     });
 
     afterEach(function () {
@@ -24,5 +24,4 @@ describe('Navigation bar', function () {
             global.logger.warn(`Login page was not accessible!`)
         }
     });
-
 });
