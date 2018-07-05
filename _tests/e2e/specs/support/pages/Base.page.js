@@ -20,7 +20,12 @@ class BasePage {
         }
 
         if (this.selector) {
-            this.awaitIsVisible(this.selector, 30000);
+            // try catch to fix random stale element error
+            try {
+                this.awaitIsVisible(this.selector, 30000);
+            } catch (e) {
+                this.awaitIsVisible(this.selector, 30000);
+            }
         }
     }
 
@@ -46,19 +51,19 @@ class BasePage {
             , `${siteUser['firstName']} ${siteUser['lastName']}`, 30000)
     }
 
-    waitForPageTitle(title, timeout = 6000) {
+    waitForPageTitle(title, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getTitle().indexOf(title) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for page title to contain ${title}`);
     }
 
-    waitForUrlContaining(string, timeout = 6000) {
+    waitForUrlContaining(string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for url to contain ${string}`);
     }
 
-    waitForSelectorContainingText(selector, string, timeout = 6000) {
+    waitForSelectorContainingText(selector, string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getText(selector).indexOf(string) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for selector to contain ${string}`);
@@ -85,7 +90,7 @@ class BasePage {
         }
     }
 
-    awaitIsVisible(selector, timeout = 6000) {
+    awaitIsVisible(selector, timeout = 10000) {
         if (typeof selector === 'string') {
             browser.waitForVisible(selector, timeout);
             return true
@@ -94,7 +99,7 @@ class BasePage {
         }
     }
 
-    awaitIsNotVisible(selector, timeout = 6000) {
+    awaitIsNotVisible(selector, timeout = 10000) {
         if (typeof selector === 'string') {
             return browser.waitForVisible(selector, timeout, true);
         } else {
@@ -197,7 +202,7 @@ class BasePage {
         }
     }
 
-    awaitExists(selector, timeout = 6000) {
+    awaitExists(selector, timeout = 10000) {
         try {
             if (typeof selector === 'string') {
                 return browser.waitForExist(selector, timeout);
