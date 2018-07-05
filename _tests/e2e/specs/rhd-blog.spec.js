@@ -6,6 +6,7 @@ const tags = require('mocha-tags');
 describe('Red Hat Blog Page', function () {
 
     tags('sanity').it("should contain an embedded hash string for the nagios health check", function () {
+        this.retries(2);
         searchPage
             .open('/');
         expect(searchPage.getPageSource(),
