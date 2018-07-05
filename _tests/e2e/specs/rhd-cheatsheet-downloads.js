@@ -38,14 +38,7 @@ describe('RHD Cheatsheet downloads', function () {
             .awaitIsLoggedIn(siteUser);
         cheatSheetPage
             .awaitDownloadThankYou();
-        try {
-            expect(dowloadHelper.getDownloads(), 'Failed to download cheatsheet').to.eql(1)
-        } catch (e) {
-            console.log('cheatsheet download did not trigger first time');
-            cheatSheetPage
-                .retryDownload();
-            expect(dowloadHelper.getDownloads(), 'Failed to download cheatsheet').to.eql(1)
-        }
+        expect(dowloadHelper.getDownloads(), 'to download advanced-linux-cheatsheet').to.eql(1)
     });
 
     afterEach(function () {
@@ -53,7 +46,6 @@ describe('RHD Cheatsheet downloads', function () {
         if (this.currentTest.state === 'failed') {
             global.logger.warn(`Cheatsheet download failed. Download Manager status was: ${downloadManager.isDMRunning()}`)
         }
-
         try {
             let encodedURL = qs.escape(process.env.RHD_BASE_URL);
             if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
@@ -65,5 +57,4 @@ describe('RHD Cheatsheet downloads', function () {
             console.log(e)
         }
     });
-
 });
