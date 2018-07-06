@@ -36,6 +36,6 @@
 
   function getPrimaryCategory() {
     var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//);
-    return category[0]; 
+    return bc[0]; 
   }
 }());
