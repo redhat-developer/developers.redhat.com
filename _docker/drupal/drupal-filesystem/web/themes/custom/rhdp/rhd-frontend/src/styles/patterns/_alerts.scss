@@ -5,6 +5,7 @@ div.alert-box {
   padding: 10px 20px;
   margin: 1.5em auto;
   font-size: 1em;
+  position: relative;
 
   div.alert-content {
     display: inline;
@@ -78,6 +79,7 @@ div.alert-box {
       h1, h2, h3, h4, h5, h6 {
         font-weight: 400;
         margin-bottom: 0;
+        margin-top: 0;
       }
     }
   }
@@ -89,10 +91,7 @@ div.alert-box {
     height: 24px;
     width: 24px;
     color: #3b6e90;
-    &:before {
-      font-family: FontAwesome;
-      content: '\f00d';
-    }
+    right: 1em;
   }
 }
 
