@@ -26,6 +26,7 @@ dependencies:
     - node.type.video_resource
   module:
     - datetime
+    - fences
     - interval
     - link
     - options
@@ -175,10 +176,17 @@ content:
     region: content
   field_video_resource_tags:
     weight: 3
-    label: inline
+    label: hidden
     settings:
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_video_target_product:
