@@ -25,6 +25,32 @@ function getCookie(cname) {
     return "";
 }
 
+function getUserAgent(){
+    var OSName = "Windows";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="RHEL";
+
+    return OSName;
+
+}
+
+function setProductOSTab(systemType) {
+    switch(systemType){
+        case 'Windows':
+            return 'fndtn-windows';
+            break;
+        case 'MacOS':
+            return 'fndtn-macos';
+            break;
+        case 'RHEL' :
+            return 'fndtn-rhel';
+            break;
+        default:
+            return 'fndtn-windows';
+    }
+}
+
+
 function checkRecentDownload() {
     // Set storage expiration time to 10 minutes
     var storageExpiration = 600000;
@@ -47,10 +73,12 @@ function checkRecentDownload() {
 }
 
 (function () {
-    var productApp = angular.module('productApp', []);
+    var productApp = angular.module('productApp', []),
+        productOSHash = setProductOSTab(getUserAgent()),
+        pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
 
-    var pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
     if(pathRegex){
+        window.location.hash = productOSHash;
         if(window.location.pathname != getCookie('product_path')){
             setCookie('product_page_cookie', null, 1);
         }
@@ -65,7 +93,7 @@ function checkRecentDownload() {
             }
         };
         var productCookie = getCookie('product_page_cookie');
-        if(productCookie && productCookie != 'null'){
+        if(productCookie && productCookie != 'null' && !window.location.href.contains('tcDownloadFile')){
             window.location.hash = productCookie;
         }
 
