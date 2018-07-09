@@ -22,7 +22,7 @@ app.sso = function () {
                     logged_in_user = "My Account";
                 }
 
-                $('a.logged-in-name')
+                $('span.logged-in-name')
                     .text(logged_in_user)
                     .show();
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
