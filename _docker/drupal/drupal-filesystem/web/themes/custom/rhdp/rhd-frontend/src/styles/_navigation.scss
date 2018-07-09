@@ -109,6 +109,9 @@
     .logged-in-name ~ .icon {
       margin-right: 0;
     }
+    .dropdwn-trigger:focus {
+      outline: 0;
+    }
   }
 
   &:hover{
@@ -125,25 +128,6 @@
       color: $white;
     }
   }
-  //.user-logged-in & {
-  //  padding: 10px;
-  //  background-color: #272727;
-  //  a {
-  //    font-size: 14px;
-  //  }
-  //  li {
-  //    line-height: 1;
-  //  }
-  //  li:nth-child(n+2) {
-  //    padding-left: 24px;
-  //    line-height: 1;
-  //    a {
-  //      font-size: 10px;
-  //      color: #999;
-  //      line-height: 1;
-  //    }
-  //  }
-  //}
 }
 
 .rh-universal-login {
@@ -185,6 +169,9 @@
   .icon {
     margin-right: 10px;
     color: $white;
+    .fa-user {
+      width: 14px;
+    }
   }
 
   .logged-in-name + .icon {
