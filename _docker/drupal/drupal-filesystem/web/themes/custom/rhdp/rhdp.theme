@@ -433,6 +433,20 @@ function rhdp_preprocess_field(&$variables, $hook) {
       ), array('absolute' => TRUE))->toString();
       $variables['overview_url'] = $url;
     }
+
+    if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+      $entity = $variables['items'][0]['content']['#options']['entity'];
+
+      $product_code = $entity->field_product_machine_name->value;
+      $overview_url = $entity->field_product_pages->referencedEntities()[0]->field_overview_url->value;
+      $url_string = str_replace(' ', '-', strtolower($overview_url));
+      $url = Url::fromRoute('rhd_common.main_page_controller', array(
+        'product_code' => $product_code,
+        'sub_page' => $url_string,
+      ), []);
+
+      $variables['items'][0]['content']['#url'] = $url;
+    }
 }
 
 function rhdp_preprocess_assembly(&$variables) {
