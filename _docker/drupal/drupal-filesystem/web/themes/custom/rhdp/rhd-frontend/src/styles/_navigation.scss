@@ -26,6 +26,9 @@
     grid-column-gap: 0;
     grid-template-columns: 145px 1fr;
   }
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    max-width: none;
+  }
 }
 
 .rhd-menu {
@@ -106,6 +109,9 @@
     .logged-in-name ~ .icon {
       margin-right: 0;
     }
+    .dropdwn-trigger:focus {
+      outline: 0;
+    }
   }
 
   &:hover{
@@ -122,25 +128,6 @@
       color: $white;
     }
   }
-  //.user-logged-in & {
-  //  padding: 10px;
-  //  background-color: #272727;
-  //  a {
-  //    font-size: 14px;
-  //  }
-  //  li {
-  //    line-height: 1;
-  //  }
-  //  li:nth-child(n+2) {
-  //    padding-left: 24px;
-  //    line-height: 1;
-  //    a {
-  //      font-size: 10px;
-  //      color: #999;
-  //      line-height: 1;
-  //    }
-  //  }
-  //}
 }
 
 .rh-universal-login {
@@ -157,11 +144,12 @@
     padding-left: 0;
     z-index: 99;
     margin-left: -10px;
-    margin-top: 16px;
+    margin-top: 10px;
     @media screen and (max-width: 768px) {
       position: relative;
       width: auto !important;
       margin-left: 0;
+      margin-top: 0;
     }
     li {
       padding-left: 0;
@@ -181,9 +169,12 @@
   .icon {
     margin-right: 10px;
     color: $white;
+    .fa-user {
+      width: 14px;
+    }
   }
 
-  a + .icon {
+  .logged-in-name + .icon {
   margin-left: 10px;
     @media screen and (max-width: 768px) {
       display: none;
