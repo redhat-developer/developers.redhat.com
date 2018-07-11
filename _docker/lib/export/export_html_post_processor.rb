@@ -58,10 +58,10 @@ class ExportHtmlPostProcessor
 
       request.on_complete do |response|
         # Make the directory
-        FileUtils.mkdir_p(File.join(export_directory, File.dirname(URI.parse(url).path)))
+        FileUtils.mkdir_p(File.join(export_directory, File.dirname(URI.parse(i).path)))
 
         # return the whole path with resource name, including any prepended path
-        path = File.join(export_directory, URI.parse(url).path)
+        path = File.join(export_directory, URI.parse(i).path)
 
         @log.info "Retrieving file \"#{File.basename(path)}\" for static export"
         File.write(path, response.body)
