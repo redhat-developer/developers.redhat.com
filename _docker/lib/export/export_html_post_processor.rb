@@ -53,7 +53,7 @@ class ExportHtmlPostProcessor
   def fetch_additional_static_resources(export_directory)
     hydra = Typhoeus::Hydra.new
 
-    urls.each do |i|
+    @additional_static_resources.each do |i|
       request = Typhoeus::Request.new(i, followlocation: true)
 
       request.on_complete do |response|
@@ -121,7 +121,6 @@ class ExportHtmlPostProcessor
     end
 
     html_doc.css("meta[content*='#{host}']").each do |element|
-      # TODO: save the location so we can pull it in static resources
       @additional_static_resources << element['content']
       element['content'] = element['content'].gsub(host, final_base_url_location)
       modified = true
