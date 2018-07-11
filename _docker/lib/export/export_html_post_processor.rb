@@ -2,6 +2,7 @@ require 'cgi'
 require 'nokogiri'
 require 'fileutils'
 require 'uri'
+require 'typhoeus'
 require_relative '../default_logger'
 require_relative 'export_urls'
 
@@ -25,6 +26,7 @@ class ExportHtmlPostProcessor
     @process_runner = process_runner
     @static_file_directory = static_file_directory
     @documentation_link_suffixes = %w(.html .pdf .epub)
+    @additional_static_resources = []
   end
 
   #
@@ -44,7 +46,31 @@ class ExportHtmlPostProcessor
   def copy_static_resources(export_directory)
     @log.info("Copying static resources from '#{@static_file_directory}' to '#{export_directory}'...")
     FileUtils.cp_r("#{@static_file_directory}/.", export_directory)
+    fetch_additional_static_resources(export_directory)
     @log.info("Completed copy of static resources from '#{@static_file_directory}'.")
+  end
+
+  def fetch_additional_static_resources(export_directory)
+    hydra = Typhoeus::Hydra.new
+
+    urls.each do |i|
+      request = Typhoeus::Request.new(i, followlocation: true)
+
+      request.on_complete do |response|
+        # Make the directory
+        FileUtils.mkdir_p(File.join(export_directory, File.dirname(URI.parse(url).path)))
+
+        # return the whole path with resource name, including any prepended path
+        path = File.join(export_directory, URI.parse(url).path)
+
+        @log.info "Retrieving file \"#{File.basename(path)}\" for static export"
+        File.write(path, response.body)
+      end
+
+      hydra.queue(request)
+    end
+
+    hydra.run
   end
 
   #
@@ -87,7 +113,6 @@ class ExportHtmlPostProcessor
   #
   def remove_drupal_host_identifying_markup?(host, html_doc)
     modified = false
-    prod_host = 'developers.redhat.com'
     remove_elements = 'link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]'
 
     html_doc.css(remove_elements).each do |element|
@@ -96,12 +121,14 @@ class ExportHtmlPostProcessor
     end
 
     html_doc.css("meta[content*='#{host}']").each do |element|
-      element['content'] = element['content'].gsub(host, prod_host)
+      # TODO: save the location so we can pull it in static resources
+      @additional_static_resources << element['content']
+      element['content'] = element['content'].gsub(host, final_base_url_location)
       modified = true
     end
 
     html_doc.css("link[href*='#{host}']").each do |element|
-      element['href'] = element['href'].gsub(host, prod_host)
+      element['href'] = element['href'].gsub(host, final_base_url_location)
       modified = true
     end
 
@@ -234,7 +261,7 @@ class ExportHtmlPostProcessor
           :rewrite_links_for_trailing_slash_url_structure,
           :rewrite_form_target_urls?, :relocate_index_html,
           :remove_drupal_host_identifying_markup?,
-          :post_process_html_dom, :rewrite_keycloak_src
+          :post_process_html_dom, :rewrite_keycloak_src, :fetch_additional_static_resources
 
 end
 
