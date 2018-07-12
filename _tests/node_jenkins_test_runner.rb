@@ -131,7 +131,7 @@ class NodeJenkinsTestRunner
       if profile == 'desktop'
         command += ' --mocha-tags=not:stage'
       else
-        command += ' --mocha-tags=not:dm'
+        command += ' --mocha-tags=not:desktop'
       end
     else
       if profile == 'desktop'
@@ -172,7 +172,6 @@ class NodeJenkinsTestRunner
   def clear_download_dir
     FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp_downloads")
   end
-
 end
 
 #

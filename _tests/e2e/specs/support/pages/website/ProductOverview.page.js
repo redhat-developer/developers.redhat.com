@@ -1,12 +1,11 @@
-const BasePage = require('../Base.page');
+import {Base} from '../Base.page'
 
-class ProductOverviewPage extends BasePage {
+export class ProductOverview extends Base {
 
     constructor(productCode, tab, productName) {
         super({
             path: `/products/${productCode}/${tab}`,
             pageTitle: `Red Hat Developer | ${productName}`,
-            selector: '.products-content'
         });
 
         this.productCode = productCode;
@@ -23,14 +22,10 @@ class ProductOverviewPage extends BasePage {
     }
 
     awaitHelloWorldPage() {
-        return this.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 30000);
+        return this.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 60000);
     }
 
     awaitDownloadThankYou() {
-        this.awaitHelloWorldPage();
         return this.awaitIsVisible(this.getSelector('downloadThankYou'), 30000);
     }
-
 }
-
-module.exports = ProductOverviewPage;
