@@ -1,13 +1,10 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-class HomePage extends BasePage {
+export class Home extends Base {
     constructor() {
         super({
             path: '/',
             pageTitle: 'Red Hat Developer',
-            selector: '.content-teaser-list'
         });
     }
 }
-
-module.exports = HomePage;

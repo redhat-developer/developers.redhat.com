@@ -1,12 +1,11 @@
-const BasePage = require('../Base.page');
+const Base = require('../Base.page');
 
-class ProductOverviewPage extends BasePage {
+export class ProductOverview extends Base {
 
     constructor(productCode, tab, productName) {
         super({
             path: `/products/${productCode}/${tab}`,
             pageTitle: `Red Hat Developer | ${productName}`,
-            selector: '.products-content'
         });
 
         this.productCode = productCode;
@@ -30,7 +29,4 @@ class ProductOverviewPage extends BasePage {
         this.awaitHelloWorldPage();
         return this.awaitIsVisible(this.getSelector('downloadThankYou'), 30000);
     }
-
 }
-
-module.exports = ProductOverviewPage;

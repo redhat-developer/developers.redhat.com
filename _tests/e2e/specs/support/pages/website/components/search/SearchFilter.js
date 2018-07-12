@@ -1,6 +1,6 @@
-const BasePage = require('../../../Base.page');
+import {Base} from '../../../Base.page';
 
-class SearchFilter extends BasePage {
+export class SearchFilter extends Base {
     constructor() {
         super();
 
@@ -50,7 +50,7 @@ class SearchFilter extends BasePage {
     }
 
     _clickOpenMobileFilter() {
-        let isMobile = this.isDisplayed(this.getSelector('showBtn'));
+        let isMobile = this.displayed(this.getSelector('showBtn'));
         if (isMobile) {
             this.clickOn(this.getSelector('showBtn'));
             this.awaitIsVisible(this.getSelector('cover'));
@@ -67,7 +67,4 @@ class SearchFilter extends BasePage {
             return this.clickOn(this.getSelector('applyFilters'));
         }
     }
-
 }
-
-module.exports = SearchFilter;

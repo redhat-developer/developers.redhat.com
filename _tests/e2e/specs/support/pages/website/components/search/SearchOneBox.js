@@ -1,6 +1,6 @@
-const BasePage = require('../../../Base.page');
+import {Base} from '../../../Base.page';
 
-class SearchOneBox extends BasePage {
+export class SearchOneBox extends Base {
     constructor() {
         super();
 
@@ -22,7 +22,4 @@ class SearchOneBox extends BasePage {
         let el = `${element.charAt(0).toLowerCase() + element.slice(1).replace(/\s/g, '')}`.toString();
         return this.element(this.getSelector(el));
     }
-
 }
-
-module.exports = SearchOneBox;

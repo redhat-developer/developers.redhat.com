@@ -1,6 +1,6 @@
-const BasePage = require('../Base.page');
+const Base = require('../Base.page');
 
-class CheatSheetsPage extends BasePage {
+export class CheatSheets extends Base {
 
     constructor(cheatSheet) {
         super({
@@ -31,11 +31,4 @@ class CheatSheetsPage extends BasePage {
         downloadBtn.scroll(location['x'], location['y']);
         return this.clickOn(downloadBtn);
     }
-
-    retryDownload() {
-        return this.clickOn(this.getSelector('retryDownload'))
-    }
-
 }
-
-module.exports = CheatSheetsPage;

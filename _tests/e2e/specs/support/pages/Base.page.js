@@ -1,12 +1,10 @@
-class BasePage {
+export class Base {
     constructor({
                     path = '/',
-                    pageTitle,
-                    selector,
+                    pageTitle
                 } = {}) {
         this.urlBase = process.env.RHD_BASE_URL;
         this.path = path;
-        this.selector = selector;
         this.pageTitle = pageTitle;
         this.selectors = {};
     }
@@ -17,15 +15,6 @@ class BasePage {
 
         if (this.pageTitle) {
             this.waitForPageTitle(this.pageTitle, 30000);
-        }
-
-        if (this.selector) {
-            // try catch to fix random stale element error
-            try {
-                this.awaitIsVisible(this.selector, 30000);
-            } catch (e) {
-                this.awaitIsVisible(this.selector, 30000);
-            }
         }
     }
 
@@ -57,6 +46,10 @@ class BasePage {
         }, timeout, `Timed out after ${timeout} seconds waiting for page title to contain ${title}`);
     }
 
+    title() {
+       return browser.getTitle();
+    }
+
     waitForUrlContaining(string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1
@@ -81,7 +74,7 @@ class BasePage {
         return elements;
     }
 
-    isDisplayed(selector) {
+    displayed(selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.isVisible(selector);
@@ -214,18 +207,7 @@ class BasePage {
         }
     }
 
-    getPageSource() {
+    pageSource() {
         return browser.getSource();
     }
-
-    getHTMLForSelector(selector) {
-        if (typeof selector === 'string') {
-            return browser.getHTML(selector)
-        } else {
-            return selector.getHTML()
-        }
-    }
-
 }
-
-module.exports = BasePage;

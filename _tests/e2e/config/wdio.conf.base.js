@@ -134,6 +134,7 @@ exports.config = {
     },
 
     mochaOpts: {
+        compilers: ['js:babel-register'],
         ui: 'bdd',
         timeout: 60000
     },

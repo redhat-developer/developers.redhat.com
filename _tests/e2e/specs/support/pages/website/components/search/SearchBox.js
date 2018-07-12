@@ -1,7 +1,7 @@
 const BasePage = require('../../../Base.page');
 const SearchResults = require('./SearchResults');
 
-class SearchBox extends BasePage {
+export class SearchBox extends BasePage {
     constructor() {
         super();
 
@@ -28,5 +28,3 @@ class SearchBox extends BasePage {
     }
 
 }
-
-module.exports = SearchBox;

@@ -1,12 +1,9 @@
 const BasePage = require('../Base.page');
 
-class RegisterPage extends BasePage {
+export class RegisterPage extends BasePage {
 
     constructor() {
-        super({
-            path: '/register',
-            selector: '#kc-register-form'
-        });
+        super({path: '/register'});
 
         this.addSelectors({
             registerForm: '#kc-register-form',
@@ -82,5 +79,3 @@ class RegisterPage extends BasePage {
         return this.clickOn(this.getSelector('createAccountBtn'))
     }
 }
-
-module.exports = RegisterPage;

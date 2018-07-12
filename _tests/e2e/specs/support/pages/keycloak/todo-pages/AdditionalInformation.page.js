@@ -1,4 +1,4 @@
-const BasePage = require('../Base.page');
+const BasePage = require('../../Base.page');
 
 class AdditionalInformationPage extends BasePage {
 
@@ -25,7 +25,7 @@ class AdditionalInformationPage extends BasePage {
         });
     }
 
-    completeAdditionalInformation(user, acceptTerms = false) {
+    complete(user, acceptTerms = false) {
         this.type(user['firstName'], this.getSelector('firstNameField'));
         this.type(user['lastName'], this.getSelector('lastNameField'));
         this.type(user['company'], this.getSelector('companyField'));

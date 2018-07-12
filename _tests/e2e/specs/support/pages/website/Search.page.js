@@ -1,24 +1,21 @@
-const BasePage = require('../Base.page');
-const SearchBox = require("./components/search/SearchBox");
-const SearchFilter = require("./components/search/SearchFilter");
-const SearchOneBox = require("./components/search/SearchOneBox");
-const SearchResults = require("./components/search/SearchResults");
-const SearchResultSort = require("./components/search/SearchResultSort");
+import {Base} from '../Base.page'
+import {SearchFilter} from './components/search/SearchFilter'
+import {SearchOneBox} from './components/search/SearchOneBox'
+import {SearchResults} from './components/search/SearchResults'
+import {SearchResultSort} from './components/search/SearchResultSort'
 
-class SearchPage extends BasePage {
+export class Search extends Base {
 
     constructor() {
         super({
             path: '/search/',
             pageTitle: 'Search Results',
-            selector: '//rhdp-search-results',
         });
 
         this.addSelectors({
             searchPage: '.searchpage-middle',
         });
 
-        this.searchBox = new SearchBox();
         this.searchFilter = new SearchFilter();
         this.searchResults = new SearchResults();
         this.searchOneBox = new SearchOneBox();
@@ -29,7 +26,4 @@ class SearchPage extends BasePage {
         this.awaitIsVisible(this.getSelector('searchPage'), 30000);
         return this.searchResults.awaitLoadingSpinner()
     }
-
 }
-
-module.exports = SearchPage;

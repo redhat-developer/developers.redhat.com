@@ -1,17 +1,14 @@
-const SearchPage = require('./support/pages/website/Search.page');
-const searchPage = new SearchPage();
-
-const tags = require('mocha-tags');
-
-describe('Red Hat Blog Page', function () {
-
-    tags('sanity').it("should contain an embedded hash string for the nagios health check", function () {
-        this.retries(2);
-        searchPage
-            .open('/');
-        expect(searchPage.getPageSource(),
-            'WARNING! Please check the page title! The site export will break, ' +
-            'the nagios health check expects 00fef0cf90c42f3e40921fb3370e520a').to.include('00fef0cf90c42f3e40921fb3370e520a')
-    });
-
-});
+// const Blog = require('./support/pages/website/Blog.page');
+// const blog = new Blog();
+//
+// const tags = require('mocha-tags');
+//
+// describe('Red Hat Blog Page', function () {
+//
+//     tags('sanity')
+//         .it("should contain an embedded hash string for the nagios health check", function () {
+//         this.retries(2);
+//         blog.open('/');
+//         expect(blog.pageSource()).to.include('00fef0cf90c42f3e40921fb3370e520a')
+//     });
+// });
