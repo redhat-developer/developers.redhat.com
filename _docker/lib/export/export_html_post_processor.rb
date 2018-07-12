@@ -123,19 +123,23 @@ class ExportHtmlPostProcessor
     end
 
     html_doc.css("meta[content*='#{host}']").each do |element|
-      @additional_static_resources << element['content'].gsub('https', 'http') # remove ssl for this part
-      old_content_uri = URI.parse element['content']
-
-      old_content_uri.host = URI.parse(final_base_url_location).host
-      element['content'] = old_content_uri.to_s
+      content = element['content']
+      @additional_static_resources << content.gsub('https', 'http') # remove ssl for this part
+      if content.index('//')
+        element['content'] = final_base_url_location + content[content.index('/', content.index('//') + 2)..-1]
+      else
+        element['content'] = final_base_url_location + content
+      end
       modified = true
     end
 
     html_doc.css("link[href*='#{host}']").each do |element|
-      old_content_uri = URI.parse element['href']
-      old_content_uri.host = URI.parse(final_base_url_location).host
-
-      element['href'] = old_content_uri.to_s
+      href = element['href']
+      if href.index('//')
+        element['href'] = final_base_url_location + href[href.index('/', href.index('//') + 2)..-1]
+      else
+        element['href'] = final_base_url_location + href
+      end
       modified = true
     end
 
