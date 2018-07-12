@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_guzzle_throttle.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_guzzle_throttle_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_guzzle_throttle module.
+    case 'help.page.rhd_guzzle_throttle':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHD Guzzle Throttle code') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -77,6 +77,11 @@ cd ${THEME}/rhd-frontend
 npm install && npm run-script build 
 cd ${PROJ}
 
+echo "Running DB Migrations"
+cd ${DRUPAL_FILESYSTEM}
+vendor/bin/phinx migrate
+cd ${PROJ}
+
 echo "Running drush cim"
 ${WEB}/../vendor/bin/drush --root=${WEB} cim
 
