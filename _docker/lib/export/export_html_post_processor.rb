@@ -68,8 +68,8 @@ class ExportHtmlPostProcessor
 
           @log.info "Retrieving file \"#{File.basename(path)}\" for static export"
           File.write(path, response.body)
-          hydra.queue(request)
         end
+        hydra.queue(request)
       end
     end
     hydra.run
@@ -124,12 +124,18 @@ class ExportHtmlPostProcessor
 
     html_doc.css("meta[content*='#{host}']").each do |element|
       @additional_static_resources << element['content'].gsub('https', 'http') # remove ssl for this part
-      element['content'] = element['content'].gsub(host, final_base_url_location)
+      old_content_uri = URI.parse element['content']
+
+      old_content_uri.host = URI.parse(final_base_url_location).host
+      element['content'] = old_content_uri.to_s
       modified = true
     end
 
     html_doc.css("link[href*='#{host}']").each do |element|
-      element['href'] = element['href'].gsub(host, final_base_url_location)
+      old_content_uri = URI.parse element['href']
+      old_content_uri.host = URI.parse(final_base_url_location).host
+
+      element['href'] = old_content_uri.to_s
       modified = true
     end
 
