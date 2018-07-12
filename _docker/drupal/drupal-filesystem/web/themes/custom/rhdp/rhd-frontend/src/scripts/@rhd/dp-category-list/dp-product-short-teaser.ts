@@ -7,7 +7,7 @@ export default class DPProductShortTeaser extends RHElement {
         tpl.innerHTML = `
 <style>
     :host { 
-        font-family: Overpass;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         font-size: 14px;
         line-height: 21px;
         margin-bottom: 30px;
@@ -17,7 +17,7 @@ export default class DPProductShortTeaser extends RHElement {
     }
     h4 { 
         flex: 0 0 24px;
-        font-family: Overpass;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         font-size: 14px;
         font-weight: bold;
         line-height: 24px;

@@ -27,7 +27,7 @@ img, svg {
 h4 {
     flex: 1 0 auto;
     color: #0066CC;
-    font-family: Overpass;
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 21px;
