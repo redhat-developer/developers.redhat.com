@@ -46,6 +46,9 @@ class ExportHtmlPostProcessor
   def copy_static_resources(export_directory)
     @log.info("Copying static resources from '#{@static_file_directory}' to '#{export_directory}'...")
     FileUtils.cp_r("#{@static_file_directory}/.", export_directory)
+
+    # TODO: remove duplicates from the array
+    @additional_static_resources.uniq!
     fetch_additional_static_resources(export_directory)
     @log.info("Completed copy of static resources from '#{@static_file_directory}'.")
   end

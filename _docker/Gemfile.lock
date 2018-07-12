@@ -1,8 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     ansi (1.5.0)
     builder (3.2.3)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     docker-api (1.34.2)
       excon (>= 0.47.0)
       multi_json
@@ -12,6 +16,7 @@ GEM
     ffi (1.9.14)
     gpgme (2.0.16)
       mini_portile2 (~> 2.3)
+    hashdiff (0.3.7)
     metaclass (0.0.4)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -25,9 +30,15 @@ GEM
     multi_json (1.13.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    public_suffix (3.0.2)
     ruby-progressbar (1.9.0)
+    safe_yaml (1.0.4)
     typhoeus (0.8.0)
       ethon (>= 0.8.0)
+    webmock (3.4.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
 
 PLATFORMS
   ruby
@@ -40,6 +51,7 @@ DEPENDENCIES
   mocha
   nokogiri
   typhoeus
+  webmock
 
 BUNDLED WITH
    1.16.2
