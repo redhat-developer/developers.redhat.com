@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-class DownloadHelper {
+export class DownloadDir {
 
     clear() {
         let dirSize = [];
@@ -22,6 +22,12 @@ class DownloadHelper {
             this.sleep(1000);
             downloadCount++;
             if (dirSize.length > 0 || downloadCount === 6) {
+                if (process.env.RHD_BASE_URL !== 'https://developers.stage.redhat.com') {
+                    /* This is bad, however we need to throttle the production download sanity tests for monitoring purposes.
+                    * Akamai is blocks requests if there are too many in quick succession. Never use sleeps in tests, ever. This is an extenuating circumstance.  */
+                    browser.pause(60000)
+                }
+
                 return dirSize.length;
             }
         }
@@ -34,5 +40,3 @@ class DownloadHelper {
     }
 
 }
-
-module.exports = new DownloadHelper;

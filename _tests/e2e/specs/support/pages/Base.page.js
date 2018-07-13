@@ -11,11 +11,12 @@ export class Base {
 
     open() {
         const openUrl = `${this.urlBase}${this.path}`;
-        this.visit(openUrl);
+        let res = this.visit(openUrl);
 
         if (this.pageTitle) {
-            this.waitForPageTitle(this.pageTitle, 30000);
+            return this.waitForPageTitle(this.pageTitle, 30000);
         }
+        return res
     }
 
     addSelectors(selectors) {

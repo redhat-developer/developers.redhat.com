@@ -1,6 +1,6 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-export class RegisterPage extends BasePage {
+export class Register extends Base {
 
     constructor() {
         super({path: '/register'});

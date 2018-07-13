@@ -1,4 +1,4 @@
-const Base = require('../Base.page');
+import {Base} from "../Base.page"
 
 export class Blog extends Base {
     constructor() {

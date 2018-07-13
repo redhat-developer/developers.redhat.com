@@ -1,6 +1,6 @@
-const Base = require('../Base.page');
+import {Base} from "../Base.page"
 
-export class LoginPage extends Base {
+export class Login extends Base {
 
     constructor() {
         super({
@@ -36,6 +36,7 @@ export class LoginPage extends Base {
     with(user) {
         this.type(user['email'], this.getSelector('usernameField'));
         this.type(user['password'], this.getSelector('passwordField'));
-        return this.clickOn(this.getSelector('loginButton'))
+        this.clickOn(this.getSelector('loginButton'));
+        return this.awaitIsLoggedIn(user);
     }
 }

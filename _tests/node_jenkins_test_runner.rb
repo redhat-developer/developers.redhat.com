@@ -172,7 +172,6 @@ class NodeJenkinsTestRunner
   def clear_download_dir
     FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp_downloads")
   end
-
 end
 
 #
