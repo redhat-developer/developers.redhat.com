@@ -1,4 +1,4 @@
-### JIRA Issue
+### JIRA Issue Link
 * Link to the JIRA ticket(s) this pull request solves
 
 ### Verification Process
