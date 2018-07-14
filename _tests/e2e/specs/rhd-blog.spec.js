@@ -4,7 +4,7 @@ const tags = require('mocha-tags');
 
 describe('Red Hat Blog Page', function () {
 
-    tags('sanity')
+    tags('sanity', 'stage')
         .it("should contain an embedded hash string for the nagios health check", function () {
             this.retries(2);
             let blog = new Blog();
