@@ -131,7 +131,7 @@ class NodeJenkinsTestRunner
       if profile == 'desktop'
         command += ' --mocha-tags=not:stage'
       else
-        command += ' --mocha-tags=not:dm'
+        command += ' --mocha-tags=not:desktop'
       end
     else
       if profile == 'desktop'

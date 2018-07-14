@@ -2,6 +2,7 @@ import {Home} from './support/pages/website/Home.page';
 import {Search} from './support/pages/website/Search.page';
 import {NavigationBar} from './support/pages/website/NavigationBar.section';
 const tags = require('mocha-tags');
+
 describe('Search Page', function () {
     let siteNav, home, search;
 
@@ -12,7 +13,7 @@ describe('Search Page', function () {
     });
 
     tags('sanity')
-        .it.only('should allow users to search for content via site-nav search field', function () {
+        .it('should allow users to search for content via site-nav search field', function () {
             this.retries(2);
             home.open('/');
             siteNav.searchFor('hello world');

@@ -9,7 +9,7 @@ import {Utils} from './support/Utils'
 
 const tags = require('mocha-tags');
 
-describe('Download Manager', function () {
+tags('desktop').describe('Download Manager', function () {
     let downloadDir, downloadSize, siteUser;
     let home, login, additionalInformation;
 

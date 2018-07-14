@@ -37,9 +37,9 @@ export class SearchFilter extends Base {
         let filter;
         let isMobile = this._clickOpenMobileFilter();
         if (isMobile) {
-            filter = this.element(`//*[@id="cover"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/div[*]/rhdp-search-filter-item[*]/div/label[contains(text(), '${filterOption}')]`);
+            filter = this.element(`//*[@id="cover"]//label[contains(text(), '${filterOption}')]`);
         } else {
-            filter = this.element(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/div[*]/rhdp-search-filter-item/div//label[contains(text(), '${filterOption}')]`);
+            filter = this.element(`//*[@id="control"]//label[contains(text(), '${filterOption}')]`);
         }
         this.clickOn(filter);
         if (isMobile) {
@@ -63,7 +63,7 @@ export class SearchFilter extends Base {
     }
 
     _clickApplyMobileFilter() {
-        if (this.isDisplayed(this.getSelector('applyFilters'))) {
+        if (this.displayed(this.getSelector('applyFilters'))) {
             return this.clickOn(this.getSelector('applyFilters'));
         }
     }
