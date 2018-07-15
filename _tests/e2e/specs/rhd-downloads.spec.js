@@ -23,7 +23,6 @@ tags('desktop').describe('Download Manager', function () {
 
     afterEach(function () {
         new Utils().logout(process.env.RHD_BASE_URL);
-        downloadDir.clear(global.downloadDir)
     });
 
     tags('sanity', 'dm')

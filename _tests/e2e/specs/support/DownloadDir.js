@@ -14,6 +14,7 @@ export class DownloadDir {
 
     get() {
         let downloadCount = 0;
+        let numberOfDownloads;
         let dirSize = [];
         do {
             fs.readdirSync(global.downloadDir).forEach(file => {
@@ -25,10 +26,13 @@ export class DownloadDir {
                 if (process.env.RHD_BASE_URL !== 'https://developers.stage.redhat.com') {
                     /* This is bad, however we need to throttle the production download sanity tests for monitoring purposes.
                     * Akamai is blocks requests if there are too many in quick succession. Never use sleeps in tests, ever. This is an extenuating circumstance.  */
-                    browser.pause(60000)
+                    numberOfDownloads = dirSize.length;
+                    browser.pause(60000);
+                    this.clear()
+                } else {
+                    numberOfDownloads = dirSize.length;
                 }
-
-                return dirSize.length;
+                return numberOfDownloads;
             }
         }
         while (dirSize.length === 0) ;
