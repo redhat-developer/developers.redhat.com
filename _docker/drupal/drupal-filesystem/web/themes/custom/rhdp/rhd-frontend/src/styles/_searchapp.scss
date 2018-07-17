@@ -61,7 +61,7 @@ rhdp-search-box {
         -webkit-appearance: none;
         height: 20px;
         width: 20px;
-        background-image: url('https://static.jboss.org/rhd/images/icons/fa_times_icon.svg');
+        background-image: url('/images/icons/fa_times_icon.svg');
         opacity: 1;
         pointer-events: auto;
     }
@@ -467,7 +467,7 @@ rhdp-search-result {
     .subscription-required {
         &:before {
             content: '';
-            background: url('https://static.jboss.org/rhd/images/icons/subscription-required.svg') no-repeat;
+            background: url('/images/icons/subscription-required.svg') no-repeat;
             background-size:cover;
             position:absolute;
             margin-top: 5px;
