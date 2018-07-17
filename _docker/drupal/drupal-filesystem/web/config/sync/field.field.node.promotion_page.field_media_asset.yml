@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_media_asset
-    - media.type.image
-    - media.type.video
+    - media_entity.bundle.image
+    - media_entity.bundle.video
     - node.type.promotion_page
 _core:
   default_config_hash: 8kbKD_VrrzcaEBRGc1iQEl4rbCTsrXsYDXBUE7TGb_k

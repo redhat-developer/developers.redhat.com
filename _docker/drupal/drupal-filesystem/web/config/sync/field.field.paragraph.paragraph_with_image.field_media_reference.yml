@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_media_reference
-    - media.type.image
-    - media.type.video
+    - media_entity.bundle.image
+    - media_entity.bundle.video
     - paragraphs.paragraphs_type.paragraph_with_image
 _core:
   default_config_hash: CVNf2_NdchB-RtYcxi1mL3FpA4vxQLVdeGLEGeOg7As
