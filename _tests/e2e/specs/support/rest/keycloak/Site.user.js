@@ -3,7 +3,7 @@ const KeyCloakAdmin = require("./Keycloak.admin");
 const ItAdmin = require("./IT.admin");
 const Gmail = require("./Gmail");
 
-class User {
+export class User {
 
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
@@ -174,5 +174,3 @@ class User {
         return array[Math.floor(Math.random() * array.length)];
     }
 }
-
-module.exports = User;

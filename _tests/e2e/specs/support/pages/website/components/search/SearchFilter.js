@@ -1,6 +1,6 @@
-const BasePage = require('../../../Base.page');
+import {Base} from '../../../Base.page';
 
-class SearchFilter extends BasePage {
+export class SearchFilter extends Base {
     constructor() {
         super();
 
@@ -37,9 +37,9 @@ class SearchFilter extends BasePage {
         let filter;
         let isMobile = this._clickOpenMobileFilter();
         if (isMobile) {
-            filter = this.element(`//*[@id="cover"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/div[*]/rhdp-search-filter-item[*]/div/label[contains(text(), '${filterOption}')]`);
+            filter = this.element(`//*[@id="cover"]//label[contains(text(), '${filterOption}')]`);
         } else {
-            filter = this.element(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/div[*]/rhdp-search-filter-item/div//label[contains(text(), '${filterOption}')]`);
+            filter = this.element(`//*[@id="control"]//label[contains(text(), '${filterOption}')]`);
         }
         this.clickOn(filter);
         if (isMobile) {
@@ -50,7 +50,7 @@ class SearchFilter extends BasePage {
     }
 
     _clickOpenMobileFilter() {
-        let isMobile = this.isDisplayed(this.getSelector('showBtn'));
+        let isMobile = this.displayed(this.getSelector('showBtn'));
         if (isMobile) {
             this.clickOn(this.getSelector('showBtn'));
             this.awaitIsVisible(this.getSelector('cover'));
@@ -63,11 +63,8 @@ class SearchFilter extends BasePage {
     }
 
     _clickApplyMobileFilter() {
-        if (this.isDisplayed(this.getSelector('applyFilters'))) {
+        if (this.displayed(this.getSelector('applyFilters'))) {
             return this.clickOn(this.getSelector('applyFilters'));
         }
     }
-
 }
-
-module.exports = SearchFilter;

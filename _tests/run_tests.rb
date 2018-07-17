@@ -27,7 +27,7 @@ class RunTest
 
     if test_configuration[:docker]
       if ENV['rhd_test'] == 'e2e' || ENV['rhd_test'] == 'unit'
-      run_tests_in_docker(test_configuration)
+        run_tests_in_docker(test_configuration)
       else
         run_blc_in_docker(test_configuration)
       end

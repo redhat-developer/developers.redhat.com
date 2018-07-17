@@ -13,7 +13,6 @@ if (typeof process.env.RHD_BASE_URL === 'undefined') {
         let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
         let getPullRequestNumber = parsedUrl.pathname.split('/')[2];
         process.env.RHD_DRUPAL_INSTANCE = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000) + (getPullRequestNumber - 0)}`;
-        console.log(process.env.RHD_DRUPAL_INSTANCE)
     } else if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
         process.env.RHD_DRUPAL_INSTANCE = 'http://rhdp-drupal.stage.redhat.com'
     }
@@ -134,8 +133,9 @@ exports.config = {
     },
 
     mochaOpts: {
+        compilers: ['js:babel-register'],
         ui: 'bdd',
-        timeout: 60000
+        timeout: 90000
     },
 
     reporterOptions: {

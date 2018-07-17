@@ -1,6 +1,6 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-class AdditionalInformationPage extends BasePage {
+export class AdditionalInformation extends Base {
 
     constructor() {
         super({
@@ -25,7 +25,7 @@ class AdditionalInformationPage extends BasePage {
         });
     }
 
-    completeAdditionalInformation(user, acceptTerms = false) {
+    complete(user, acceptTerms = false) {
         this.type(user['firstName'], this.getSelector('firstNameField'));
         this.type(user['lastName'], this.getSelector('lastNameField'));
         this.type(user['company'], this.getSelector('companyField'));
@@ -60,5 +60,3 @@ class AdditionalInformationPage extends BasePage {
     }
 
 }
-
-module.exports = AdditionalInformationPage;

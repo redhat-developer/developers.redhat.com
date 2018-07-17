@@ -1,6 +1,6 @@
-const BasePage = require('../../../Base.page');
+import {Base} from '../../../Base.page';
 
-class SearchResults extends BasePage {
+export class SearchResults extends Base {
 
     constructor() {
         super();
@@ -38,7 +38,4 @@ class SearchResults extends BasePage {
     getResultDate(i) {
         return this.element(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//rh-datetime`).getAttribute('datetime');
     }
-
 }
-
-module.exports = SearchResults;
