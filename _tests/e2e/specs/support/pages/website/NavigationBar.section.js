@@ -1,6 +1,7 @@
-const BasePage = require('../Base.page');
+import {Base} from '../Base.page';
+import {Search} from "./Search.page";
 
-class NavigationBarSection extends BasePage {
+export class NavigationBar extends Base {
 
     constructor() {
         super();
@@ -18,9 +19,9 @@ class NavigationBarSection extends BasePage {
         });
     }
 
-    toggleMobileNav() {
+    toggle() {
         let mobileNavToggle;
-        mobileNavToggle = this.isDisplayed(this.getSelector('mobileNavToggle'));
+        mobileNavToggle = this.displayed(this.getSelector('mobileNavToggle'));
         if (mobileNavToggle) {
             this.clickOn(this.getSelector('mobileNavToggle'));
             // wait for modal to completely open
@@ -32,8 +33,8 @@ class NavigationBarSection extends BasePage {
         }
     }
 
-    clickLoginLink() {
-        let isMobile = this.toggleMobileNav();
+    clickLogin() {
+        let isMobile = this.toggle();
         let loginElements = this.elements(this.getSelector('login'));
         if (isMobile) {
             this.clickOn(loginElements.value[1])
@@ -56,7 +57,7 @@ class NavigationBarSection extends BasePage {
     }
 
     enterSearch(searchTerm) {
-        let isMobile = this.toggleMobileNav();
+        let isMobile = this.toggle();
         if (isMobile === true) {
             return this.type(searchTerm, this.searchField().value[1]);
         } else {
@@ -67,16 +68,15 @@ class NavigationBarSection extends BasePage {
 
     searchFor(searchTerm) {
         this.enterSearch(searchTerm);
-        return this.triggerSearch();
+        this.triggerSearch();
+        return new Search().awaitSearchPage()
     }
 
     triggerSearch() {
-        if (this.isDisplayed(this.getSelector('mobileMenuOpen'))) {
+        if (this.displayed(this.getSelector('mobileMenuOpen'))) {
             return this.clickOn(this.searchBtn().value[1]);
         } else {
             return this.clickOn(this.searchBtn().value[0]);
         }
     }
 }
-
-module.exports = NavigationBarSection;

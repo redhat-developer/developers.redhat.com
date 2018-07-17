@@ -1,6 +1,6 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-class CheatSheetsPage extends BasePage {
+export class CheatSheets extends Base {
 
     constructor(cheatSheet) {
         super({
@@ -20,9 +20,12 @@ class CheatSheetsPage extends BasePage {
         return this.awaitIsVisible(this.getSelector('cheatSheetPage'));
     }
 
+    awaitDownloadConfirmation() {
+        return this.waitForUrlContaining('media-download-confirmation', 30000)
+    }
+
     awaitDownloadThankYou() {
-        this.waitForUrlContaining('media-download-confirmation', 15000);
-        return this.awaitIsVisible(this.getSelector('thankYou'), 15000);
+        this.awaitIsVisible(this.getSelector('thankYou'), 30000);
     }
 
     clickLoginToDownloadBtn() {
@@ -31,11 +34,4 @@ class CheatSheetsPage extends BasePage {
         downloadBtn.scroll(location['x'], location['y']);
         return this.clickOn(downloadBtn);
     }
-
-    retryDownload() {
-        return this.clickOn(this.getSelector('retryDownload'))
-    }
-
 }
-
-module.exports = CheatSheetsPage;

@@ -1,7 +1,7 @@
-const BasePage = require('../../../Base.page');
-const SearchResults = require('./SearchResults');
+import {Base} from '../../../Base.page'
+import {SearchResults} from './SearchResults'
 
-class SearchResultSort extends BasePage {
+export class SearchResultSort extends Base {
     constructor() {
         super();
         this.addSelectors({
@@ -20,7 +20,4 @@ class SearchResultSort extends BasePage {
         browser.pause(1000);
         return this.searchResults.awaitLoadingSpinner()
     }
-
 }
-
-module.exports = SearchResultSort;

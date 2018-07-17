@@ -5,7 +5,7 @@ browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
 let localConfig = Object.assign(baseConfig, {
 
-    maxInstances: 1,
+    maxInstances: 10,
     capabilities: [browserCaps],
     services: ['selenium-standalone']
 
