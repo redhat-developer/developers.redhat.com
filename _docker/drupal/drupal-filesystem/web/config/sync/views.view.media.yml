@@ -5,11 +5,13 @@ dependencies:
   config:
     - image.style.medium
     - image.style.thumbnail
-    - media_entity.bundle.image
+    - media.type.image
   module:
     - entity_browser
+    - file
     - image
-    - media_entity
+    - media
+    - system
     - user
     - views_infinite_scroll
 _core:
@@ -1232,7 +1234,7 @@ display:
             format: default_summary
           specify_validation: true
           validate:
-            type: 'entity:media_bundle'
+            type: 'entity:media_type'
             fail: ignore
           validate_options:
             operation: view

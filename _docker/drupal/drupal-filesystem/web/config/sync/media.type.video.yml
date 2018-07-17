@@ -9,9 +9,9 @@ _core:
 id: video
 label: Video
 description: 'A video hosted by YouTube, Vimeo, or some other provider.'
-type: video_embed_field
+source: video_embed_field
 queue_thumbnail_downloads: false
 new_revision: false
-type_configuration:
+source_configuration:
   source_field: field_media_video_embed_field
 field_map: {  }
