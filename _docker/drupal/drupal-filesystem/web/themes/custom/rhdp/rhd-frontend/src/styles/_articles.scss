@@ -70,5 +70,13 @@
 @include desktop-and-down {
   #rhd-article {
     padding: 15px;
-  }  
+  }
+}
+
+.page-node-type-article .disqus-thread-wrapper {
+  padding-top: 40px;
+  border-top: #E4E4E4 1px solid;
+  h2 {
+    @extend h4;
+  }
 }
