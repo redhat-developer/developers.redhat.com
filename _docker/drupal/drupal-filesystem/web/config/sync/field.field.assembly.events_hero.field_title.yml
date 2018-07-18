@@ -1,0 +1,19 @@
+uuid: edf5b789-b82e-4aaf-8738-4102de2310de
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_hero
+    - field.storage.assembly.field_title
+id: assembly.events_hero.field_title
+field_name: field_title
+entity_type: assembly
+bundle: events_hero
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
