@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_help().
@@ -43,6 +44,16 @@ function rhd_disqus_theme($existing, $type, $theme, $path) {
         'thread' => NULL,
         'shortname' => $config->get('rhd_disqus_shortname') ?: NULL,
         'title' => t('Comments'),
+      ],
+    ],
+    'rhd_disqus__comment__latest' => [
+      'template' => 'rhd-disqus--comment--latest',
+      'variables' => [
+        'thread_title' => NULL,
+        'message' => NULL,
+        'date' => NULL,
+        'reply_url' => NULL,
+        'attributes' => new Attribute([]),
       ],
     ],
   ];
