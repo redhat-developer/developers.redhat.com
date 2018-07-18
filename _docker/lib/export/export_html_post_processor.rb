@@ -57,7 +57,9 @@ class ExportHtmlPostProcessor
 
     @additional_static_resources.each do |i|
       unless File.exists?(File.join(export_directory, URI.parse(i).path))
-        request = Typhoeus::Request.new(i, followlocation: true)
+        url = URI.parse(i.to_s)
+        url.query = nil
+        request = Typhoeus::Request.new(url, followlocation: true)
 
         request.on_complete do |response|
           # Make the directory
@@ -126,9 +128,13 @@ class ExportHtmlPostProcessor
       content = element['content']
       @additional_static_resources << content.gsub('https', 'http') # remove ssl for this part
       if content.index('//')
-        element['content'] = final_base_url_location + content[content.index('/', content.index('//') + 2)..-1]
+        new_url = URI.parse(final_base_url_location + content[content.index('/', content.index('//') + 3)..-1])
+        new_url.query = nil
+        element['content'] = new_url.to_s
       else
-        element['content'] = final_base_url_location + content
+        new_url = URI.parse(final_base_url_location + content)
+        new_url.query = nil
+        element['content'] = new_url.to_s
       end
       modified = true
     end
@@ -136,9 +142,13 @@ class ExportHtmlPostProcessor
     html_doc.css("link[href*='#{host}']").each do |element|
       href = element['href']
       if href.index('//')
-        element['href'] = final_base_url_location + href[href.index('/', href.index('//') + 2)..-1]
+        new_url = URI.parse(final_base_url_location + href[href.index('/', href.index('//') + 3)..-1])
+        new_url.query = nil
+        element['href'] = new_url.to_s
       else
-        element['href'] = final_base_url_location + href
+        new_url = URI.parse(final_base_url_location + href)
+        new_url.query = nil
+        element['href'] = new_url.to_s
       end
       modified = true
     end

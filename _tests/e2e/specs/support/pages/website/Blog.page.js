@@ -1,13 +1,14 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-class BlogPage extends BasePage {
+export class Blog extends Base {
     constructor() {
         super({
-            path: '/blog',
             pageTitle: 'RHD Blog - Insights and news on Red Hat developer tools, platforms and more',
-            selector: '.content-teaser-list'
         });
     }
-}
 
-module.exports = BlogPage;
+    open() {
+        this.visit('https://developers.redhat.com/blog');
+        return this.waitForPageTitle(this.pageTitle)
+    }
+}

@@ -1,7 +1,7 @@
-const BasePage = require('../../../Base.page');
-const SearchResults = require('./SearchResults');
+import {Base} from '../../../Base.page'
+import {SearchResults} from './SearchResults'
 
-class SearchBox extends BasePage {
+export class SearchBox extends Base {
     constructor() {
         super();
 
@@ -26,7 +26,4 @@ class SearchBox extends BasePage {
     triggerSearch() {
         return this.clickOn(this.getSelector('searchButton'));
     }
-
 }
-
-module.exports = SearchBox;
