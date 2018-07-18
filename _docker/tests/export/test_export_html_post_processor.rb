@@ -176,13 +176,13 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
     assert test_page.to_s.include? 'rhdp-drupal.redhat.com'
 
-    stub_request(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png?itok=OS1h6w8I').
+    stub_request(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png').
         to_return(status: 200, body: "", headers: {})
 
     @export_post_processor.post_process_html_export('rhdp-drupal.redhat.com', @export_directory)
     test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
     refute test_page.to_s.include? 'rhdp-drupal.redhat.com'
 
-    assert_requested(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png?itok=OS1h6w8I')
+    assert_requested(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png')
   end
 end
