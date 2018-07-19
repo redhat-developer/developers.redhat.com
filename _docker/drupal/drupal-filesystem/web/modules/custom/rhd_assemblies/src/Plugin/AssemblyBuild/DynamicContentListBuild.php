@@ -62,49 +62,7 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
       'limit' => 4,
       'truncate' => TRUE,
     ];
-
-    // if ($disqus_secret_key) {
-      // $query = [
-      //   'forum' => 'alloy-disqus-sandbox', // shortname
-      //   'limit' => 4,
-      //   'api_key' => 'h38QeFPPzhJ9DPrkavGIoOmMklThQUKNtmheFyhofu9zOadmlwLf1YbQceEnR9U9',
-      // ];
-      // $client = \Drupal::httpClient();
-      // $url = 'https://disqus.com/api/3.0/posts/list.json';
-      // $request = $client->request('GET', $url, ['query' => $query]);
-      // $response = $request->getBody()->getContents();
-      // $results = json_decode($response);
-
-      // if ($results && $results->response) {
-      //   $comments['disqus'] = [];
-      //   foreach ($results->response as $result) {
-      //     // format date
-      //     $timestamp = strtotime($result->createdAt);
-      //     $date = date('F j, Y', $timestamp);
-
-      //     // truncate message
-      //     $message = $result->raw_message;
-      //     $length = 177;
-      //     if (strlen($message) > $length) {
-      //       $message = substr($message, 0, $length) . '&hellip;';
-      //     }
-
-      //     $comments['disqus'][] = [
-      //       '#theme' => 'latest_disqus_comment',
-      //       '#title' => 'Title here',
-      //       '#comment' => ['#markup' => $message ],
-      //       '#date' => $date,
-      //       // '#reply-url' => $result['reply-url']
-      //     ];
-      //   }
-      // }
-
-      // Figure out data structure returned and put it into the build for the template to handle
-      return $comments;
-    // }
-    // else {
-    //   return false;
-    // }
+    return $comments;
   }
 
 }
