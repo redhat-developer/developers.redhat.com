@@ -41,7 +41,7 @@
       </div>
       {% endif %}
     </div>
-    <h4>{{ node.title.value }}</h4>
+    <h4 class="line-clamp-2">{{ node.title.value }}</h4>
     <p>{{ node.field_book_description.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
