@@ -653,6 +653,14 @@ a.light-cta {
     .tile-image.vertical .image-table .image-cell {
       display: block; }
 
+.tile-comment-count {
+  font-size: 12px;
+  margin-top: -10px; }
+  .tile-comment-count svg {
+    margin-right: 0.5em;
+    display: inline-block;
+    vertical-align: middle; }
+
 .node--type-video-resource.node--view-mode-tile .image-table,
 .node--type-video-resource.node--view-mode-tile .image-cell {
   display: block; }
@@ -664,9 +672,10 @@ a.light-cta {
   bottom: -9999px;
   top: -9999px;
   margin: auto;
-  width: auto;
   max-width: none;
-  height: 100%; }
+  max-height: none;
+  width: 100%;
+  height: auto; }
 
 .node--type-video-resource.node--view-mode-tile .play-button {
   position: absolute;
