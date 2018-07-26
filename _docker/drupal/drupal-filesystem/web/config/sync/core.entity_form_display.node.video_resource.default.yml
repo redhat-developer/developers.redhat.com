@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.video_resource.body
     - field.field.node.video_resource.field_card_image
     - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_share_image
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
@@ -26,6 +28,7 @@ dependencies:
     - node.type.video_resource
   module:
     - datetime
+    - entity_browser
     - entity_browser_entity_form
     - inline_entity_form
     - interval
@@ -87,6 +90,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_share_image:
+    type: entity_browser_file
+    weight: 21
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_short_description:
     weight: 2
     settings:
@@ -189,7 +205,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 21
+    weight: 22
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -201,7 +217,7 @@ content:
     region: content
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 22
+    weight: 23
     settings:
       form_mode: default
       override_labels: true
@@ -212,6 +228,7 @@ content:
       collapsible: false
       collapsed: false
       allow_existing: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none

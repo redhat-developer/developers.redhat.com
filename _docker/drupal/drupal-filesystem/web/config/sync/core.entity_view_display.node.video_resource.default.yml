@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.video_resource.field_duration
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_share_image
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
@@ -223,6 +224,7 @@ content:
     type: number_integer
     region: content
 hidden:
+  field_share_image: true
   links: true
   scheduled_update: true
   workbench_moderation_control: true
