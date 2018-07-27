@@ -85,11 +85,12 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
     puts "Testing access to service '#{service_name}' via URL '#{target_url}'..."
 
     up = false
-    until up do
-      begin
-
+    count = 0
+    until up || count > 300 do # until the service is up or we've reached 300 tries (~600 seconds/10 minutes)
+      begin 
         # Firstly, sleep so we don't bombard the service with requests and then check the container is still running
         sleep 2
+        count += 1 # increment the counter
         get_host_mapped_port_for_container(environment, service_name, service_port)
 
         # Then try accessing the service on the target_url. Anything other than a non-400 status code means its not up
@@ -101,6 +102,8 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
       end
     end
 
+    raise StandardError("#{service_name} appears to be down.") unless up
+
     puts "Service '#{service_name}' is up on '#{target_url}'"
 
     [host, port]
@@ -110,7 +113,7 @@ def wait_for_drupal_to_start(environment, supporting_services)
 
   if check_supported_service_requested(supporting_services, 'drupal')
 
-    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','80/tcp','user/login')
+    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','80/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg')
 
   else
     puts 'Not waiting for Drupal to start as it is not a required supporting_service'
