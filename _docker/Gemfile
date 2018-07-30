@@ -1,12 +1,14 @@
 source "https://rubygems.org"
 
-gem 'gpgme', '~> 2.0'
+gem 'gpgme'
 gem 'docker-api', :require => 'docker'
+gem 'typhoeus'
 
 group :test do
-  gem 'mocha', '~> 1.1'
+  gem 'mocha'
   # Useful for running the tests on the commandline, and technically they are required
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'nokogiri'
+  gem 'webmock'
 end

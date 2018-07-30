@@ -1,12 +1,11 @@
-const BasePage = require('../Base.page');
+import {Base} from "../Base.page"
 
-class LoginPage extends BasePage {
+export class Login extends Base {
 
     constructor() {
         super({
             path: '/login',
             pageTitle: 'Log In | Red Hat Developer Program',
-            selector: '.kc-loginpage'
         });
 
         this.addSelectors({
@@ -21,37 +20,23 @@ class LoginPage extends BasePage {
         });
     }
 
-    awaitLoginPage() {
+    awaitLogin() {
         return this.awaitExists(this.getSelector('loginPage'), 30000)
     }
 
-    isOnLoginPage() {
+    isDisplayed() {
         this.waitForPageTitle('Log In', 30000);
-        let el = this.element(this.getSelector('loginPage'));
-        return this.isDisplayed(el)
+        return this.displayed(this.getSelector('usernameField'))
     }
 
     feedback() {
         return this.textOf(this.getSelector('kcFeedback'), 30000)
     }
 
-    login(user) {
+    with(user) {
         this.type(user['email'], this.getSelector('usernameField'));
         this.type(user['password'], this.getSelector('passwordField'));
-        return this.clickOn(this.getSelector('loginButton'))
-    }
-
-    clickCreateAccountLink() {
-        return this.clickOn(this.getSelector('registerLink'))
-    }
-
-    clickGithubBtn() {
-        return this.clickOn(this.getSelector('gitHubBtn'))
-    }
-
-    clickForgotPasswordLink() {
-        return this.clickOn(this.getSelector('forgotPasswordLink'))
+        this.clickOn(this.getSelector('loginButton'));
+        return this.awaitIsLoggedIn(user);
     }
 }
-
-module.exports = LoginPage;

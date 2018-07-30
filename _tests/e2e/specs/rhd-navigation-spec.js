@@ -1,28 +1,25 @@
-const HomePage = require('./support/pages/website/Home.page');
-const SiteNav = require('./support/pages/website/NavigationBar.section');
-const LoginPage = require('./support/pages/keycloak/Login.page');
-
-const homePage = new HomePage();
-const siteNav = new SiteNav();
-const loginPage = new LoginPage();
+import {Home} from './support/pages/website/Home.page'
+import {NavigationBar} from './support/pages/website/NavigationBar.section'
+import {Login} from './support/pages/keycloak/Login.page'
 
 const tags = require('mocha-tags');
 
 describe('Navigation bar', function () {
+    let home, navBar, login;
 
-    tags('sanity').it("should navigate users to the Keycloak Login page", function () {
-        this.retries(2);
-        homePage
-            .open('/');
-        siteNav
-            .clickLoginLink();
-        expect(loginPage.isOnLoginPage(), 'Log in page was not displayed').to.be.true
+    beforeEach(function () {
+        home = new Home();
+        navBar = new NavigationBar();
+        login = new Login();
     });
 
-    afterEach(function () {
-        if (this.currentTest.state === 'failed') {
-            global.logger.warn(`Login page was not accessible!`)
-        }
-    });
-
+    tags('sanity')
+        .it("should navigate users to the Keycloak Login page", function () {
+            this.retries(2);
+            home
+                .open('/');
+            navBar
+                .clickLogin();
+            expect(login.isDisplayed()).to.be.true
+        });
 });

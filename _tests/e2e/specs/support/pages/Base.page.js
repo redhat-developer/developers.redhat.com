@@ -1,27 +1,22 @@
-class BasePage {
+export class Base {
     constructor({
                     path = '/',
-                    pageTitle,
-                    selector,
+                    pageTitle
                 } = {}) {
         this.urlBase = process.env.RHD_BASE_URL;
         this.path = path;
-        this.selector = selector;
         this.pageTitle = pageTitle;
         this.selectors = {};
     }
 
     open() {
         const openUrl = `${this.urlBase}${this.path}`;
-        this.visit(openUrl);
+        let res = this.visit(openUrl);
 
         if (this.pageTitle) {
-            this.waitForPageTitle(this.pageTitle, 30000);
+            return this.waitForPageTitle(this.pageTitle, 30000);
         }
-
-        if (this.selector) {
-            this.awaitIsVisible(this.selector, 30000);
-        }
+        return res
     }
 
     addSelectors(selectors) {
@@ -46,19 +41,23 @@ class BasePage {
             , `${siteUser['firstName']} ${siteUser['lastName']}`, 30000)
     }
 
-    waitForPageTitle(title, timeout = 6000) {
+    waitForPageTitle(title, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getTitle().indexOf(title) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for page title to contain ${title}`);
     }
 
-    waitForUrlContaining(string, timeout = 6000) {
+    title() {
+       return browser.getTitle();
+    }
+
+    waitForUrlContaining(string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for url to contain ${string}`);
     }
 
-    waitForSelectorContainingText(selector, string, timeout = 6000) {
+    waitForSelectorContainingText(selector, string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getText(selector).indexOf(string) > -1
         }, timeout, `Timed out after ${timeout} seconds waiting for selector to contain ${string}`);
@@ -76,7 +75,7 @@ class BasePage {
         return elements;
     }
 
-    isDisplayed(selector) {
+    displayed(selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.isVisible(selector);
@@ -85,7 +84,7 @@ class BasePage {
         }
     }
 
-    awaitIsVisible(selector, timeout = 6000) {
+    awaitIsVisible(selector, timeout = 10000) {
         if (typeof selector === 'string') {
             browser.waitForVisible(selector, timeout);
             return true
@@ -94,7 +93,7 @@ class BasePage {
         }
     }
 
-    awaitIsNotVisible(selector, timeout = 6000) {
+    awaitIsNotVisible(selector, timeout = 10000) {
         if (typeof selector === 'string') {
             return browser.waitForVisible(selector, timeout, true);
         } else {
@@ -197,7 +196,7 @@ class BasePage {
         }
     }
 
-    awaitExists(selector, timeout = 6000) {
+    awaitExists(selector, timeout = 10000) {
         try {
             if (typeof selector === 'string') {
                 return browser.waitForExist(selector, timeout);
@@ -209,18 +208,7 @@ class BasePage {
         }
     }
 
-    getPageSource() {
+    pageSource() {
         return browser.getSource();
     }
-
-    getHTMLForSelector(selector) {
-        if (typeof selector === 'string') {
-            return browser.getHTML(selector)
-        } else {
-            return selector.getHTML()
-        }
-    }
-
 }
-
-module.exports = BasePage;

@@ -1,0 +1,15 @@
+uuid: 93e7b7a0-7c97-4a0a-be4f-aa8bdc5ce1b4
+langcode: en
+status: true
+dependencies: {  }
+name: media_asset_cover_medium
+label: 'Media Asset Cover Medium (250x377)'
+effects:
+  278112b0-8a25-4d70-984b-b20ba083b155:
+    uuid: 278112b0-8a25-4d70-984b-b20ba083b155
+    id: image_scale
+    weight: 1
+    data:
+      width: 250
+      height: null
+      upscale: true

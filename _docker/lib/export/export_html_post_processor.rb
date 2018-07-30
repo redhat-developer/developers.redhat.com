@@ -2,6 +2,7 @@ require 'cgi'
 require 'nokogiri'
 require 'fileutils'
 require 'uri'
+require 'typhoeus'
 require_relative '../default_logger'
 require_relative 'export_urls'
 
@@ -25,6 +26,7 @@ class ExportHtmlPostProcessor
     @process_runner = process_runner
     @static_file_directory = static_file_directory
     @documentation_link_suffixes = %w(.html .pdf .epub)
+    @additional_static_resources = []
   end
 
   #
@@ -32,10 +34,10 @@ class ExportHtmlPostProcessor
   # form target to be relative to the current page.
   #
   def locate_index_link_href(html_document, html_page)
-      home_link = html_document.css('#home-link')
-      raise StandardError.new("Unable to locate link to index.html on page '#{html_page}'") if home_link.empty?
-      raise StandardError.new("Found more than one link with id 'home-link' on page '#{html_page}'") if home_link.length > 1
-      home_link.first.attributes['href'].value
+    home_link = html_document.css('#home-link')
+    raise StandardError.new("Unable to locate link to index.html on page '#{html_page}'") if home_link.empty?
+    raise StandardError.new("Found more than one link with id 'home-link' on page '#{html_page}'") if home_link.length > 1
+    home_link.first.attributes['href'].value
   end
 
   #
@@ -44,7 +46,35 @@ class ExportHtmlPostProcessor
   def copy_static_resources(export_directory)
     @log.info("Copying static resources from '#{@static_file_directory}' to '#{export_directory}'...")
     FileUtils.cp_r("#{@static_file_directory}/.", export_directory)
+
+    @additional_static_resources.uniq!
+    fetch_additional_static_resources(export_directory)
     @log.info("Completed copy of static resources from '#{@static_file_directory}'.")
+  end
+
+  def fetch_additional_static_resources(export_directory)
+    hydra = Typhoeus::Hydra.new
+
+    @additional_static_resources.each do |i|
+      unless File.exists?(File.join(export_directory, URI.parse(i).path))
+        url = URI.parse(i.to_s)
+        url.query = nil
+        request = Typhoeus::Request.new(url, followlocation: true)
+
+        request.on_complete do |response|
+          # Make the directory
+          FileUtils.mkdir_p(File.join(export_directory, File.dirname(URI.parse(i).path)))
+
+          # return the whole path with resource name, including any prepended path
+          path = File.join(export_directory, URI.parse(i).path)
+
+          @log.info "Retrieving file \"#{File.basename(path)}\" for static export"
+          File.write(path, response.body)
+        end
+        hydra.queue(request)
+      end
+    end
+    hydra.run
   end
 
   #
@@ -72,7 +102,7 @@ class ExportHtmlPostProcessor
   end
 
   #
-  # See https://issues.jboss.org/browse/DEVELOPER-3500
+  # See https://issues.jboss.org/browse/DEVELOPER-3500 and DEVELOPER-4614
   #
   # After Httrack has run there is some mark-up in the exported HTML that identifies the host from which it mirrored the site. This is a minor
   # security issue, as we're leaking the host name of Drupal outside our controlled network.
@@ -80,19 +110,50 @@ class ExportHtmlPostProcessor
   # I attempted to turn off this mark-up generation in Drupal, but as with most things, Drupal just ignores you.
   #
   # Anyways, here we remove the <link rel="shortlink"/> , <link rel="revision"/> and <meta name="Generator"/> mark-up from the DOM.
+  # We are also modifying meta tags and links so they have the proper location for images and canonical refs.
+  # We are intentionally not messing with script tags.
+  #
   # @return true if the DOM was modified, false otherwise
   #
-  def remove_drupal_host_identifying_markup?(html_doc)
-    elements_to_remove = html_doc.css('link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]')
-    elements_to_remove.each do | element |
+  def remove_drupal_host_identifying_markup?(host, html_doc)
+    modified = false
+    remove_elements = 'link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]'
+
+    html_doc.css(remove_elements).each do |element|
       element.remove
+      modified = true
     end
 
-    if elements_to_remove.size > 0
-      @log.info("\tRemoved Drupal host identifying markup.")
+    html_doc.css("meta[content*='#{host}']").each do |element|
+      content = element['content']
+      @additional_static_resources << content.gsub('https', 'http') # remove ssl for this part
+      if content.index('//')
+        new_url = URI.parse(final_base_url_location + content[content.index('/', content.index('//') + 3)..-1])
+        new_url.query = nil
+        element['content'] = new_url.to_s
+      else
+        new_url = URI.parse(final_base_url_location + content)
+        new_url.query = nil
+        element['content'] = new_url.to_s
+      end
+      modified = true
     end
 
-    elements_to_remove.size > 0
+    html_doc.css("link[href*='#{host}']").each do |element|
+      href = element['href']
+      if href.index('//')
+        new_url = URI.parse(final_base_url_location + href[href.index('/', href.index('//') + 3)..-1])
+        new_url.query = nil
+        element['href'] = new_url.to_s
+      else
+        new_url = URI.parse(final_base_url_location + href)
+        new_url.query = nil
+        element['href'] = new_url.to_s
+      end
+      modified = true
+    end
+
+    @log.info("\tRemoved Drupal host identifying markup.") if modified
   end
 
 
@@ -102,21 +163,21 @@ class ExportHtmlPostProcessor
   #
   def post_process_html_dom(drupal_host, export_directory)
 
-    Dir.glob("#{export_directory}/**/*.html") do | html_file |
+    Dir.glob("#{export_directory}/**/*.html") do |html_file|
       @log.info("Post-processing HTML DOM in file '#{html_file}'...")
 
-      html_doc = File.open(html_file) do | file |
+      html_doc = File.open(html_file) do |file|
         Nokogiri::HTML(file)
       end
 
-      hide_drupal = remove_drupal_host_identifying_markup?(html_doc)
+      hide_drupal = remove_drupal_host_identifying_markup?(drupal_host, html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
       rewrite_access_links = rewrite_access_redhat_com_links(html_doc, html_file)
       rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
 
       if hide_drupal || rewrite_forms || rewrite_access_links
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
-        File.open(html_file,'w') do | file |
+        File.open(html_file, 'w') do |file|
           file.write(html_doc.to_html)
         end
       end
@@ -159,7 +220,7 @@ class ExportHtmlPostProcessor
   def rewrite_form_target_urls?(drupal_host, html_doc, html_file_name)
 
     forms_to_modify = html_doc.css("form[action^=\"http://#{drupal_host}\"]")
-    forms_to_modify.each do | form |
+    forms_to_modify.each do |form|
       home_link_href = locate_index_link_href(html_doc, html_file_name)
       new_action_value = "#{home_link_href}search/"
 
@@ -191,7 +252,7 @@ class ExportHtmlPostProcessor
   def rewrite_access_redhat_com_links(html_doc, html_file_name)
     links_to_modify = html_doc.css("body a[href*=\"access.redhat.com\"]")
     modified = false
-    links_to_modify.each do | link |
+    links_to_modify.each do |link|
       if link.attributes['href'].value.include?('documentation')
 
         uri = URI(link.attributes['href'].value)
@@ -200,7 +261,7 @@ class ExportHtmlPostProcessor
         # Only perform processing on the link if it doesn't already link to an allowed
         # documentation suffix e.g. .html, .pdf or .epub
         #
-        allowed_link_suffix = @documentation_link_suffixes.any? { | suffix | uri.path.to_s.end_with?(suffix)}
+        allowed_link_suffix = @documentation_link_suffixes.any? {|suffix| uri.path.to_s.end_with?(suffix)}
         unless allowed_link_suffix
           new_path = uri.path.end_with?('/') ? "#{uri.path}index.html" : "#{uri.path}/index.html"
           uri.path = new_path
@@ -221,7 +282,7 @@ class ExportHtmlPostProcessor
           :rewrite_links_for_trailing_slash_url_structure,
           :rewrite_form_target_urls?, :relocate_index_html,
           :remove_drupal_host_identifying_markup?,
-          :post_process_html_dom, :rewrite_keycloak_src
+          :post_process_html_dom, :rewrite_keycloak_src, :fetch_additional_static_resources
 
 end
 

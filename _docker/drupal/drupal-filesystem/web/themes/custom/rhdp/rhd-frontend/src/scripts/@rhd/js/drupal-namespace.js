@@ -110,7 +110,7 @@ app.dcp.thumbnails = {
 */
 app.products = {
   "amq": {"upstream": ["activemq","fabric8"],"stackoverflow": ["jbossamq", "amq"], "buzz_tags": ["amq","JBoss A-MQ"]},
-  "bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite","jBPM"]},
+  "rhpam": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite","jBPM"]},
   "brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": ["redhat-brms","decision manager","red hat decision manager"], "buzz_tags": ["brms","JBoss BRMS"]},
   "cdk": {"upstream": null,"stackoverflow": "redhat-containers", "buzz_tags": ["containers"]},
   "datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "redhat-datagrid", "buzz_tags": ["datagrid","jboss data grid"]},
@@ -135,7 +135,7 @@ app.products = {
 
 app.products.downloads = {
     "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
-    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64"}
+    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64"}
 };
 
 /*

@@ -6,7 +6,7 @@ export default class RHDPSearchResult extends RHElement {
         tpl.innerHTML = `
         <style>
 :host {
-    font-family: "overpass","Open Sans",Helvetica,sans-serif;
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
     margin-bottom: 25px;
     padding-bottom: 25px;
     border-bottom: 1px solid $grey-3;
@@ -39,12 +39,12 @@ export default class RHDPSearchResult extends RHElement {
         color: #06c;
         cursor: pointer;
         margin: 0;
-        font-family: "overpass","Open Sans",Helvetica,sans-serif;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
     }
 
     p { margin: 0; 
         color: #424242;
-        font-family: "overpass","Open Sans",Helvetica,sans-serif;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         }
     .result-info span{
         font-size: .9rem;

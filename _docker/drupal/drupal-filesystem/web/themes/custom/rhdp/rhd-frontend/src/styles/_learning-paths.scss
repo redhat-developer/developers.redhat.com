@@ -18,8 +18,6 @@ body.page-node-type-learning-path {
   min-width: 1px; 
 
   .lp-info {
-    flex-grow: 1;
-    flex-shrink: 1;
     margin: 30px 15px;
     border: 1px solid #CCC;
     padding: 30px;
@@ -65,8 +63,6 @@ body.page-node-type-learning-path {
 
   .lp-cards-container {
     background-color: #EEE;
-    flex-grow: 2;
-    flex-shrink: .5;
     margin: 0 15px;
     display: flex;
     flex-direction: column;
@@ -203,7 +199,7 @@ body.page-node-type-learning-path {
       .bio rh-datetime, .bio .dp-author {
         display: inline;
         color: #999;
-        font-family: overpass;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         font-size: 14px;
         line-height: 22px;
       }
@@ -214,7 +210,7 @@ body.page-node-type-learning-path {
     .lp-info { margin: 0; }
     
     .lp-cards-container {
-      margin: -15px 0 0 15px;
+      //margin: -15px 0 0 15px;
       padding: 15px;
     }
   }

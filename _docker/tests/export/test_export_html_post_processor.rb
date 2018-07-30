@@ -3,7 +3,6 @@ require 'mocha/mini_test'
 require 'fileutils'
 require 'nokogiri'
 
-
 require_relative '../../lib/process_runner'
 require_relative '../../lib/export/export_html_post_processor'
 require_relative '../test_helper'
@@ -173,5 +172,17 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     assert_equal(0, drupal_elements.size)
   end
 
+  def test_should_remove_all_drupal_host_references_from_markup
+    test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
+    assert test_page.to_s.include? 'rhdp-drupal.redhat.com'
 
+    stub_request(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png').
+        to_return(status: 200, body: "", headers: {})
+
+    @export_post_processor.post_process_html_export('rhdp-drupal.redhat.com', @export_directory)
+    test_page = get_html_document("#{@export_directory}/drupal-host-leak/index.html")
+    refute test_page.to_s.include? 'rhdp-drupal.redhat.com'
+
+    assert_requested(:get, 'http://rhdp-drupal.redhat.com/sites/default/files/styles/share/public/share-image-homepage.png')
+  end
 end

@@ -1190,7 +1190,8 @@ display:
     display_title: 'REST export'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
       path: drupal/books
       pager:
         type: none
@@ -1220,7 +1221,7 @@ display:
               raw_output: true
             field_book_description:
               alias: ''
-              raw_output: true
+              raw_output: false
             field_book_url:
               alias: ''
               raw_output: true
@@ -1249,6 +1250,9 @@ display:
               alias: ''
               raw_output: true
             field_related_product:
+              alias: ''
+              raw_output: false
+            path:
               alias: ''
               raw_output: false
     cache_metadata:

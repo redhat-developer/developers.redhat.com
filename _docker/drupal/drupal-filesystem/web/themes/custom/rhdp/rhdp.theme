@@ -147,7 +147,6 @@ function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAss
     $rhd_settings = &$settings['rhd'];
 
     $rhd_settings['urls'] = array();
-    $rhd_settings['urls']['base_url'] = \Drupal::config('redhat_developers')->get('rhd_base_url');
     $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
 
     $rhd_settings['downloadManager'] = array();
@@ -433,6 +432,20 @@ function rhdp_preprocess_field(&$variables, $hook) {
         'sub_page' => $url_string,
       ), array('absolute' => TRUE))->toString();
       $variables['overview_url'] = $url;
+    }
+
+    if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+      $entity = $variables['items'][0]['content']['#options']['entity'];
+
+      $product_code = $entity->field_product_machine_name->value;
+      $overview_url = $entity->field_product_pages->referencedEntities()[0]->field_overview_url->value;
+      $url_string = str_replace(' ', '-', strtolower($overview_url));
+      $url = Url::fromRoute('rhd_common.main_page_controller', array(
+        'product_code' => $product_code,
+        'sub_page' => $url_string,
+      ), []);
+
+      $variables['items'][0]['content']['#url'] = $url;
     }
 }
 

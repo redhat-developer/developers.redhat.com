@@ -1,0 +1,17 @@
+services:
+  laravel.database_config_factory:
+    class: Drupal\rhd_guzzle_throttle\LaravelConfigFactory
+    parent: container.trait
+  laravel.database_config:
+    class: \Illuminate\Config\Repository
+    factory: ['@laravel.database_config_factory', create]
+  throttle.middleware:
+    class: Drupal\rhd_guzzle_throttle\ThrottleMiddlewareFactory
+    arguments: ['@settings', '@laravel.database_config']
+    tags:
+      - { name: http_client_middleware }
+  cachedresponse.middleware:
+    class: Drupal\rhd_guzzle_throttle\CachedResponseMiddlewareFactory
+    arguments: ['@laravel.database_config']
+    tags:
+      - { name: http_client_middleware }

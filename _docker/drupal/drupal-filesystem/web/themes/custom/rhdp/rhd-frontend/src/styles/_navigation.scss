@@ -26,6 +26,9 @@
     grid-column-gap: 0;
     grid-template-columns: 145px 1fr;
   }
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    max-width: none;
+  }
 }
 
 .rhd-menu {
@@ -72,14 +75,13 @@
     &[data-drupal-link-system-path="<front>"] {
       color: $white;
       position: relative;
-      &:before {
+      &:after {
         content: '';
         display: block;
         width: 25px;
-        height: 2px;
+        height: 3px;
         background-color: $red;
-        position: absolute;
-        bottom: -3px;
+        margin-top: 0;
       }
     }
   }
@@ -107,6 +109,9 @@
     .logged-in-name ~ .icon {
       margin-right: 0;
     }
+    .dropdwn-trigger:focus {
+      outline: 0;
+    }
   }
 
   &:hover{
@@ -123,25 +128,6 @@
       color: $white;
     }
   }
-  //.user-logged-in & {
-  //  padding: 10px;
-  //  background-color: #272727;
-  //  a {
-  //    font-size: 14px;
-  //  }
-  //  li {
-  //    line-height: 1;
-  //  }
-  //  li:nth-child(n+2) {
-  //    padding-left: 24px;
-  //    line-height: 1;
-  //    a {
-  //      font-size: 10px;
-  //      color: #999;
-  //      line-height: 1;
-  //    }
-  //  }
-  //}
 }
 
 .rh-universal-login {
@@ -158,11 +144,12 @@
     padding-left: 0;
     z-index: 99;
     margin-left: -10px;
-    margin-top: 16px;
+    margin-top: 10px;
     @media screen and (max-width: 768px) {
       position: relative;
       width: auto !important;
       margin-left: 0;
+      margin-top: 0;
     }
     li {
       padding-left: 0;
@@ -182,9 +169,12 @@
   .icon {
     margin-right: 10px;
     color: $white;
+    .fa-user {
+      width: 14px;
+    }
   }
 
-  a + .icon {
+  .logged-in-name + .icon {
   margin-left: 10px;
     @media screen and (max-width: 768px) {
       display: none;
@@ -216,8 +206,8 @@
     max-width: 73.125rem;
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
   }
   @include desktop-small {
     padding: 20px 0;
@@ -286,8 +276,8 @@
             display: block;
             width: 30px;
             background-color: #CC0000;
-            height: 2px;
-            margin-top: 3px;
+            height: 3px;
+            margin-top: 0;
             transform: scaleX(0);
             transition: 200ms ease-in-out;
             transform-origin: left;
@@ -359,6 +349,10 @@
     display: inline-block;
     border-bottom: 3px solid transparent;
     position: relative;
+    height: 41px;
+    @include tablet-landscape {
+      height: 44px;
+    }
     &:after {
       content: '';
       display: block;
@@ -497,11 +491,6 @@
   height: 100%;
   z-index: 50;
   display: none;
-}
-
-.rhd-header-logo {
-  max-width: 250px;
-  justify-self: start;
 }
 
 .rhd-nav-fixed {
@@ -762,16 +751,23 @@
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  max-width: 174px;
+  max-width: 260px;
   display: block;
   line-height: 0;
   padding-right: 20px;
-  @include tablet-landscape {
-    max-width: 226px;
-  }
+  margin: -20px 0 -20px 0;
+  justify-self: start;
+
   img {
-    max-width: 100%;
+    max-width: none;
+    width: 100%;
     height: auto;
+  }
+  @include tablet-portrait-and-down {
+    margin: 0;
+    img {
+      width: 90%;
+    }
   }
 }
 

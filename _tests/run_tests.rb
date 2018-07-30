@@ -26,7 +26,11 @@ class RunTest
     test_configuration = @run_tests_options.parse_command_line(args)
 
     if test_configuration[:docker]
-      run_tests_in_docker(test_configuration)
+      if ENV['rhd_test'] == 'e2e' || ENV['rhd_test'] == 'unit'
+        run_tests_in_docker(test_configuration)
+      else
+        run_blc_in_docker(test_configuration)
+      end
     else
       run_tests_from_command_line(test_configuration)
     end
@@ -56,10 +60,17 @@ class RunTest
   end
 
   #
-  # Builds the tests base Docker image
+  # Builds the unit/e2e test base Docker image
   #
   def build_base_docker_image(test_dir)
     @process_runner.execute!("cd #{test_dir} && docker build -t test-base:2.3.0 .")
+  end
+
+  #
+  # Builds the broken link checking base Docker image
+  #
+  def build_blc_base_docker_image(test_dir)
+    @process_runner.execute!("cd #{test_dir}/blc && docker build -t test-base:0.1.0 .")
   end
 
   #
@@ -83,6 +94,21 @@ class RunTest
       end
     end
 
+    @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
+    @log.info("Completed run of #{ENV['rhd_test']} tests.")
+  end
+
+  #
+  # Runs the broken link checks within Docker by executing
+  # a number of Docker commands in sequence.
+  #
+  def run_blc_in_docker(test_configuration)
+    build_blc_base_docker_image(@test_dir)
+    compose_project_name = docker_compose_project_name
+    compose_environment_directory = "#{@test_dir}/blc/#{ENV['rhd_test']}/environments"
+    @log.info("Launching #{ENV['rhd_test']} testing environment...")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
     @log.info("Completed run of #{ENV['rhd_test']} tests.")
