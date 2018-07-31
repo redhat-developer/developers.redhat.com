@@ -3,7 +3,7 @@
   @include tablet-portrait-and-down {
     text-align: center;
   }
-  @include tablet-landscape {
+  @include tablet-landscape-and-up {
     padding: 100px 0;
   }
   .header {
@@ -11,7 +11,7 @@
     margin-bottom: 16px;
     font-size: 18px;
     margin-top: 0;
-    @include tablet-landscape {
+    @include tablet-landscape-and-up {
       font-weight: bold;
       font-size: 36px;
       text-align: left;
@@ -59,7 +59,7 @@
     }
     + .assembly-image {
       margin-top: 13px;
-      max-width: 212px;
+      max-width: 320px;
       @include tablet-portrait-and-down {
         max-width: 100%;
         width: 100%;
@@ -76,7 +76,7 @@
         max-width: 320px;
       }
       img {
-        max-width: 212px;
+        max-width: 320px;
       }
     }
   }
