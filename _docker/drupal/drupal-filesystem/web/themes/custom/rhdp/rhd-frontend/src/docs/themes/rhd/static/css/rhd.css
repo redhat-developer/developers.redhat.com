@@ -1,122 +1,5 @@
 @charset "UTF-8";
-/*
- * Red Hat Overpass font CDN
- https://overpass-30e2.kxcdn.com/overpass.css
- */
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin.eot");
-  /* IE9 Compat Modes */
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-thin.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-thin.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-thin.ttf") format("truetype");
-  /* Safari, Android, iOS */
-  font-weight: 200;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.ttf") format("truetype");
-  font-weight: 200;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-light.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-light.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-light.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-regular.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-regular.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-regular.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-regular.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-regular.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-italic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-bold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-bold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic; }
-
+@import url("https://fonts.googleapis.com/css?family=Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext");
 :root {
   --rhd-grey-3: #D5D5D5;
   --rhd-gray-3: #D5D5D5;
@@ -127,7 +10,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
 
 body {
   margin: 0;
@@ -296,7 +179,8 @@ div.alert-box {
   border-style: solid;
   padding: 10px 20px;
   margin: 1.5em auto;
-  font-size: 1em; }
+  font-size: 1em;
+  position: relative; }
   div.alert-box div.alert-content {
     display: inline; }
     div.alert-box div.alert-content strong {
@@ -346,17 +230,16 @@ div.alert-box {
       width: calc(100% - 4em); }
       div.alert-box.alert-xl div.alert-content h1, div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h3, div.alert-box.alert-xl div.alert-content h4, div.alert-box.alert-xl div.alert-content h5, div.alert-box.alert-xl div.alert-content h6 {
         font-weight: 400;
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        margin-top: 0; }
   div.alert-box a.close {
     top: 1em;
     margin-right: 5px;
     background-repeat: no-repeat;
     height: 24px;
     width: 24px;
-    color: #3b6e90; }
-    div.alert-box a.close:before {
-      font-family: FontAwesome;
-      content: '\f00d'; }
+    color: #3b6e90;
+    right: 1em; }
 
 .author.short-teaser {
   font-size: 14px;
@@ -4003,7 +3886,7 @@ meta.foundation-data-attribute-namespace {
   padding: 0.875rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   .side-nav li {
     margin: 0 0 0.4375rem 0;
     font-size: 0.875rem;
@@ -4019,7 +3902,7 @@ meta.foundation-data-attribute-namespace {
     .side-nav li.active > a:first-child:not(.button) {
       color: #666666;
       font-weight: 400;
-      font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
     .side-nav li.divider {
       border-top: 0px solid;
       height: 0;
@@ -4396,7 +4279,7 @@ select {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
-  font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: normal;
   border-radius: 0;
@@ -6044,7 +5927,7 @@ meta.foundation-data-attribute-namespace {
       background-color: #EFEFEF;
       color: #222222;
       padding: 1rem 2rem;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
       font-size: 1rem; }
       .tabs dd > a:hover, .tabs .tab-title > a:hover {
         background-color: #e1e1e1; }
@@ -6150,7 +6033,7 @@ meta.foundation-data-attribute-namespace {
       color: #222222;
       padding: 1rem;
       display: block;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
       font-size: 1rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
         background: #e3e3e3; }
@@ -6390,6 +6273,9 @@ body.fullbleed .content-wrapper {
       max-width: 1400px;
       grid-column-gap: 0;
       grid-template-columns: 145px 1fr; } }
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    .rh-nav-universal {
+      max-width: none; } }
 
 .rhd-menu {
   list-style: none;
@@ -6425,14 +6311,13 @@ body.fullbleed .content-wrapper {
   .rh-nav-universal-link a[data-drupal-link-system-path="<front>"] {
     color: #FFFFFF;
     position: relative; }
-    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:before {
+    .rh-nav-universal-link a[data-drupal-link-system-path="<front>"]:after {
       content: '';
       display: block;
       width: 25px;
-      height: 2px;
+      height: 3px;
       background-color: #CC0000;
-      position: absolute;
-      bottom: -3px; }
+      margin-top: 0; }
 
 .rh-header-logo {
   max-width: 100px;
@@ -6451,6 +6336,8 @@ body.fullbleed .content-wrapper {
       color: #FFFFFF; }
     .rh-universal-header .rh-universal-login li.logged-in .logged-in-name ~ .icon {
       margin-right: 0; }
+    .rh-universal-header .rh-universal-login li.logged-in .dropdwn-trigger:focus {
+      outline: 0; }
   .rh-universal-header .rh-universal-login:hover {
     background-color: #424242; }
   .rh-universal-header .rh-universal-login li a {
@@ -6474,12 +6361,13 @@ body.fullbleed .content-wrapper {
   padding-left: 0;
   z-index: 99;
   margin-left: -10px;
-  margin-top: 16px; }
+  margin-top: 10px; }
   @media screen and (max-width: 768px) {
     .rh-universal-login .dropdwn-menu {
       position: relative;
       width: auto !important;
-      margin-left: 0; } }
+      margin-left: 0;
+      margin-top: 0; } }
   .rh-universal-login .dropdwn-menu li {
     padding-left: 0;
     padding-right: 35px;
@@ -6494,11 +6382,13 @@ body.fullbleed .content-wrapper {
 .rh-universal-login .icon {
   margin-right: 10px;
   color: #FFFFFF; }
+  .rh-universal-login .icon .fa-user {
+    width: 14px; }
 
-.rh-universal-login a + .icon {
+.rh-universal-login .logged-in-name + .icon {
   margin-left: 10px; }
   @media screen and (max-width: 768px) {
-    .rh-universal-login a + .icon {
+    .rh-universal-login .logged-in-name + .icon {
       display: none; } }
 
 @media screen and (max-width: 1024px) {
@@ -6520,8 +6410,8 @@ body.fullbleed .content-wrapper {
       max-width: 73.125rem;
       flex: 1 1 auto;
       display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto 1fr; } }
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto; } }
   @media (min-width: 992px) {
     .rhd-header {
       padding: 20px 0; } }
@@ -6579,8 +6469,8 @@ body.fullbleed .content-wrapper {
             display: block;
             width: 30px;
             background-color: #CC0000;
-            height: 2px;
-            margin-top: 3px;
+            height: 3px;
+            margin-top: 0;
             transform: scaleX(0);
             transition: 200ms ease-in-out;
             transform-origin: left; }
@@ -6632,7 +6522,11 @@ body.fullbleed .content-wrapper {
     padding: 8px 0;
     display: inline-block;
     border-bottom: 3px solid transparent;
-    position: relative; }
+    position: relative;
+    height: 41px; }
+    @media (min-width: 768px) {
+      .rhd-topic-nav a {
+        height: 44px; } }
     .rhd-topic-nav a:after {
       content: '';
       display: block;
@@ -6747,10 +6641,6 @@ body.fullbleed .content-wrapper {
   height: 100%;
   z-index: 50;
   display: none; }
-
-.rhd-header-logo {
-  max-width: 250px;
-  justify-self: start; }
 
 .rhd-nav-fixed {
   justify-self: end; }
@@ -6955,16 +6845,21 @@ body.fullbleed .content-wrapper {
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  max-width: 174px;
+  max-width: 260px;
   display: block;
   line-height: 0;
-  padding-right: 20px; }
-  @media (min-width: 768px) {
-    .rhd-header-logo {
-      max-width: 226px; } }
+  padding-right: 20px;
+  margin: -20px 0 -20px 0;
+  justify-self: start; }
   .rhd-header-logo img {
-    max-width: 100%;
+    max-width: none;
+    width: 100%;
     height: auto; }
+  @media only screen and (max-width: 768px) {
+    .rhd-header-logo {
+      margin: 0; }
+      .rhd-header-logo img {
+        width: 90%; } }
 
 .rhd-nav-dynamic {
   grid-row: 2;
@@ -7299,8 +7194,6 @@ body.page-node-type-learning-path .wrapper {
   width: 100%;
   min-width: 1px; }
   #rhd-learning-path .lp-info {
-    flex-grow: 1;
-    flex-shrink: 1;
     margin: 30px 15px;
     border: 1px solid #CCC;
     padding: 30px;
@@ -7334,8 +7227,6 @@ body.page-node-type-learning-path .wrapper {
       display: none; }
   #rhd-learning-path .lp-cards-container {
     background-color: #EEE;
-    flex-grow: 2;
-    flex-shrink: .5;
     margin: 0 15px;
     display: flex;
     flex-direction: column;
@@ -7456,14 +7347,13 @@ body.page-node-type-learning-path .wrapper {
       #rhd-learning-path .lp-cards-container .dp-content-card .bio rh-datetime, #rhd-learning-path .lp-cards-container .dp-content-card .bio .dp-author {
         display: inline;
         color: #999;
-        font-family: overpass;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         font-size: 14px;
         line-height: 22px; }
   @media screen and (max-width: 1175px) {
     #rhd-learning-path .lp-info {
       margin: 0; }
     #rhd-learning-path .lp-cards-container {
-      margin: -15px 0 0 15px;
       padding: 15px; } }
   @media screen and (max-width: 1175px) and (min-width: 1171px) {
     #rhd-learning-path .lp-info {
@@ -8581,7 +8471,7 @@ ul.toc {
     display: inline-block;
     font-size: .9rem;
     margin-bottom: 0;
-    font-family: "overpass", "Open Sans", Helvetica, sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   #get-started-instructions .card:hover {
     background-color: #2d7195; }
     #get-started-instructions .card:hover .step-num {
@@ -8624,7 +8514,7 @@ ul.toc {
     #get-started-instructions .step-header .duration .paragraph, #get-started-instructions .step-header .duration .paragraph p {
       display: inline;
       font-size: .9rem;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif; }
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
 
 #get-started-instructions .step-num {
   color: #aae3ec;
@@ -11891,9 +11781,18 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
   text-align: center; }
 
 .wide.wide-hero.eclipse {
-  background: cdn("https://static.jboss.org/rhd/images/_images_eclipse_eclipse_microsite_hero.jpg");
-  background-size: cover;
+  background: url("/images/_images_eclipse_eclipse_microsite_hero_overlay.png"), url("/images/_images_eclipse_eclipse_microsite_hero.jpg");
+  background-repeat: no-repeat;
+  background-size: 70%, cover;
+  background-position: center center, center center;
   height: 450px; }
+  @media screen and (max-width: 834px) {
+    .wide.wide-hero.eclipse {
+      height: 300px; } }
+  @media screen and (max-width: 414px) {
+    .wide.wide-hero.eclipse {
+      height: 150px;
+      background-size: 90%, cover; } }
 
 .hero.hero-forums {
   background: url("https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_desktop.png") top center/cover no-repeat;
@@ -12260,7 +12159,7 @@ ul.product-forums-latest {
 rhdp-search-app {
   display: flex;
   flex-flow: column;
-  font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-app .hide {
     display: none; }
   rhdp-search-app .show {
@@ -12652,7 +12551,7 @@ rhdp-search-results {
       display: block; } }
 
 rhdp-search-result {
-  font-family: "overpass","Open Sans",Helvetica,sans-serif;
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
   margin-bottom: 25px;
   padding-bottom: 25px;
   border-bottom: 1px solid #D5D5D5;
@@ -12678,11 +12577,11 @@ rhdp-search-result {
     color: #06c;
     cursor: pointer;
     margin: 0;
-    font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-result p {
     margin: 0;
     color: #424242;
-    font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-result .result-info span {
     font-size: .9rem;
     color: #424242; }
@@ -12744,7 +12643,7 @@ rhdp-search-filter-group {
       margin-left: 0; } }
 
 rhdp-search-filter-item {
-  font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-filter-item span {
     display: none; }
   rhdp-search-filter-item .text {

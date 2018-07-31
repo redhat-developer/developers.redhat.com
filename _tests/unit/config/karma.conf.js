@@ -21,10 +21,15 @@ module.exports = function (config) {
         failOnEmptyTestSuite: false,
 
         files: [
-            'jasmine-global.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/custom-elements-es5-adapter.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-lite.js',
-            '../../../javascripts/build.js',
+            // 'jasmine-global.js',
+            'jquery.min.js',
+            'angular.min.js',
+            'drupal-scaffold.js',
+            'system-production.js', // 'https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js',
+            'custom-elements-es5-adapter.js', // 'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js',
+            'webcomponents-bundle.js', // 'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js',
+            '../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/rhd.js',
+            '../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/js/init.js',
             '../**/*_spec.js'          
         ]
     })

@@ -1,4 +1,4 @@
-class RHDPDownloadsProducts extends HTMLElement {
+export default class RHDPDownloadsProducts extends HTMLElement {
     private _category;
     _products = {
         "products": [{
@@ -226,3 +226,5 @@ class RHDPDownloadsProducts extends HTMLElement {
 
 
 }
+
+window.customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
