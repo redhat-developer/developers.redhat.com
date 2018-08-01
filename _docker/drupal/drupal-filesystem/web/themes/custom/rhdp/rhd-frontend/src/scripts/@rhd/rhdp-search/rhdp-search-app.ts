@@ -122,37 +122,23 @@ export default class RHDPSearchApp extends HTMLElement {
             },
             { name: 'TOPIC', key: 'tag', items: [
                 /*
+                Architecture
+                Big Data
+                CI/CD
                 Containers
-                Java
                 DevOps
+                Integration
+                Internet of Things
+                Java
+                Kubernetes
+                Linux
                 Microservices
+                Performance
                 Programming Languages
                 Security
-                Performance
-                .NET Core
-                CI/CD
-                Internet of Things
-                JavaScript
-                C++
-                Modern App Dev
-                Node.js
-                Big Data
-                Service Mesh
-                C#
-                UI/UX
-                Python
-                Ruby
                 Serverless
-                Go
-                C
-                PHP
-                Data Encapsulation
-                Perl
-                clang/LLVM
-                Rust
-                Scala
-                Topics
-                Red Hat Certification
+                Service Mesh
+                Spring Boot
                 */
                 {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
                 {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
@@ -161,8 +147,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 {key: 'iot', name: 'Internet of Things', value: ['IoT','Internet of Things']},
                 {key: 'microservices', name: 'Microservices', value: ['Microservices',' WildFly Swarm']},
                 {key: 'mobile', name: 'Mobile', value: ['Mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
-                {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
-                {key: '', name: '', value: []},
+                {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']}
                 ] 
             }
         ]

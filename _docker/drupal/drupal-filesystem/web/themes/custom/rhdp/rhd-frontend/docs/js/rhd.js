@@ -101,844 +101,704 @@ System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
         }
     };
 });
-var RHDPOSDownload = (function (_super) {
-    __extends(RHDPOSDownload, _super);
-    function RHDPOSDownload() {
-        var _this = _super.call(this) || this;
-        _this._rhelURL = "";
-        _this._macURL = "";
-        _this._winURL = "";
-        _this.stage_download_url = 'https://developers.stage.redhat.com';
-        _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
-        };
-        _this.template = function (strings, product, downloadUrl, platform, version) {
-            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
-        };
-        _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
-            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPOSDownload.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (value) {
-            if (this._url === value)
-                return;
-            this._url = value;
-            this.setAttribute('url', this._url);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "productCode", {
-        get: function () {
-            return this._productCode;
-        },
-        set: function (value) {
-            if (this._productCode === value)
-                return;
-            this._productCode = value;
-            this.setAttribute('product-code', this._productCode);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "platformType", {
-        get: function () {
-            return this._platformType;
-        },
-        set: function (value) {
-            if (this._platformType === value)
-                return;
-            this._platformType = value;
-            this.setAttribute('platform-type', this._platformType);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "downloadURL", {
-        get: function () {
-            return this._downloadURL;
-        },
-        set: function (value) {
-            if (this._downloadURL === value)
-                return;
-            this._downloadURL = value;
-            this.setAttribute('download-url', this._downloadURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "rhelURL", {
-        get: function () {
-            return this._rhelURL;
-        },
-        set: function (value) {
-            if (this._rhelURL === value)
-                return;
-            this._rhelURL = value;
-            this.setAttribute('rhel-download', this._rhelURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "macURL", {
-        get: function () {
-            return this._macURL;
-        },
-        set: function (value) {
-            if (this._macURL === value)
-                return;
-            this._macURL = value;
-            this.setAttribute('mac-download', this._macURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "winURL", {
-        get: function () {
-            return this._winURL;
-        },
-        set: function (value) {
-            if (this._winURL === value)
-                return;
-            this._winURL = value;
-            this.setAttribute('windows-download', this._winURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "productName", {
-        get: function () {
-            return this._productName;
-        },
-        set: function (value) {
-            if (this._productName === value)
-                return;
-            this._productName = value;
-            this.setAttribute('name', this._productName);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "version", {
-        get: function () {
-            return this._version;
-        },
-        set: function (value) {
-            if (this._version === value)
-                return;
-            this._version = value;
-            this.setAttribute('version', this._version);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "displayOS", {
-        get: function () {
-            return this._displayOS;
-        },
-        set: function (value) {
-            if (this._displayOS === value)
-                return;
-            this._displayOS = value;
-            this.setAttribute('display-os', this._displayOS);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPOSDownload.prototype.connectedCallback = function () {
-        this.platformType = this.getUserAgent();
-        this.setDownloadURLByPlatform();
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.productName, this.downloadURL, this.platformType, this.version);
-    };
-    Object.defineProperty(RHDPOSDownload, "observedAttributes", {
-        get: function () {
-            return ['product-code', 'platform-type', 'download-url', 'name'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPOSDownload.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    RHDPOSDownload.prototype.getUserAgent = function () {
-        var OSName = "Windows";
-        if (navigator.appVersion.indexOf("Mac") != -1)
-            OSName = "MacOS";
-        if (navigator.appVersion.indexOf("Linux") != -1)
-            OSName = "RHEL";
-        return OSName;
-    };
-    RHDPOSDownload.prototype.getDownloadOrigin = function (productUrl) {
-        if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
-            productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
-        }
-        return productUrl;
-    };
-    RHDPOSDownload.prototype.setOSURL = function (productId) {
-        switch (productId) {
-            case 'devsuite':
-                this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
-                this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
-                this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
-                break;
-            case 'cdk':
-                this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
-                this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
-                this.rhelURL = this.getDownloadOrigin(this.productDownloads.cdk.rhelUrl);
-                break;
-            default:
-                this.winURL = this.getDownloadOrigin(this.downloadURL);
-                this.macURL = this.getDownloadOrigin(this.downloadURL);
-                this.rhelURL = this.getDownloadOrigin(this.downloadURL);
-        }
-    };
-    RHDPOSDownload.prototype.setDownloadURLByPlatform = function () {
-        if (this.winURL.length <= 0 || this.macURL.length <= 0 || this.rhelURL.length <= 0) {
-            return;
-        }
-        this.displayOS = true;
-        switch (this.platformType) {
-            case "Windows":
-                this.downloadURL = this.getDownloadOrigin(this.winURL);
-                break;
-            case "MacOS":
-                this.downloadURL = this.getDownloadOrigin(this.macURL);
-                break;
-            case "RHEL":
-                this.downloadURL = this.getDownloadOrigin(this.rhelURL);
-                break;
-            default:
-                this.downloadURL = this.getDownloadOrigin(this.winURL);
-        }
-    };
-    return RHDPOSDownload;
-}(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('rhdp-os-download', RHDPOSDownload);
-});
-var RHDPThankyou = (function (_super) {
-    __extends(RHDPThankyou, _super);
-    function RHDPThankyou() {
-        var _this = _super.call(this) || this;
-        _this.template = function (strings, name, directLink, recentDownload) {
-            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPThankyou.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (value) {
-            if (this._url === value)
-                return;
-            this._url = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPThankyou.prototype, "mediaName", {
-        get: function () {
-            return this._mediaName;
-        },
-        set: function (value) {
-            if (this._mediaName === value)
-                return;
-            this._mediaName = value;
-            this.setAttribute('media-name', this._mediaName);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPThankyou.prototype, "directLink", {
-        get: function () {
-            return this._directLink;
-        },
-        set: function (value) {
-            if (this._directLink === value)
-                return;
-            this._directLink = value;
-            this.setAttribute('direct-download', this._directLink);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPThankyou.prototype.connectedCallback = function () {
-        this._recentDownload = this.checkRecentDownload();
-        this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
-        this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", ""], ["", "", "", ""]), this.mediaName, this.directLink, this._recentDownload);
-    };
-    Object.defineProperty(RHDPThankyou, "observedAttributes", {
-        get: function () {
-            return ['media-name', 'direct-link'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPThankyou.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    RHDPThankyou.prototype.stripLabelFromMedia = function (name) {
-        if (name) {
-            name = name.replace(/Media:[\s]/g, "");
-        }
-        return name;
-    };
-    RHDPThankyou.prototype.getParameterByName = function (urlName) {
-        this.url = this.url ? this.url : window.location.href;
-        urlName = urlName.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + urlName + "(=([^&#]*)|&|#|$)"), results = regex.exec(this.url);
-        if (!results)
-            return null;
-        if (!results[2])
-            return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-    RHDPThankyou.prototype.checkRecentDownload = function () {
-        var storageExpiration = 30000, storageName = 'media-download-url';
-        if (window.location.href.indexOf('media-download-confirmation') > 0) {
-            if (window.localStorage.getItem(storageName)) {
-                var recentDownload, timeOfRefer, currentTime;
-                recentDownload = JSON.parse(window.localStorage.getItem(storageName));
-                timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
-                currentTime = new Date().getTime();
-                if (currentTime - timeOfRefer > storageExpiration) {
-                    window.localStorage.removeItem(storageName);
-                    return false;
-                }
-                return true;
-            }
-            else {
-                var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
-                localStorage.setItem(storageName, JSON.stringify(referrerDownload));
-                return false;
-            }
-        }
-    };
-    return RHDPThankyou;
-}(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('rhdp-thankyou', RHDPThankyou);
-});
-var RHDPTryItNow = (function (_super) {
-    __extends(RHDPTryItNow, _super);
-    function RHDPTryItNow() {
-        var _this = _super.call(this) || this;
-        _this._title = '';
-        _this._subtitle = '';
-        _this._buttonID = '';
-        _this._buttonText = '';
-        _this._buttonLink = '';
-        _this._icon = '';
-        _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
-            return "<section> \n                    <div class=\"row\"> \n                        " + (icon ? "<img src=\"" + icon + "\"> " : '') + "\n                        <div class=\"tryitnow-titles\">\n                            " + (title ? "<h4>" + title + "</h4>" : '') + "\n                            " + (subtitle ? "<h5>" + subtitle + "</h5>" : '') + "\n                        </div>\n                        <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a>\n                    </div>\n                </section>";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPTryItNow.prototype, "title", {
-        get: function () {
-            return this._title;
-        },
-        set: function (value) {
-            if (this._title === value)
-                return;
-            this._title = value;
-            this.setAttribute('title', this._title);
-            this.querySelector('h4') ? this.querySelector('h4').innerHTML = this._title : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPTryItNow.prototype, "subtitle", {
-        get: function () {
-            return this._subtitle;
-        },
-        set: function (value) {
-            if (this._subtitle === value)
-                return;
-            this._subtitle = value;
-            this.setAttribute('subtitle', this._subtitle);
-            this.querySelector('h5') ? this.querySelector('h5').innerHTML = this._subtitle : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonid", {
-        get: function () {
-            return this._buttonID;
-        },
-        set: function (value) {
-            if (this._buttonID === value)
-                return;
-            this._buttonID = value;
-            this.setAttribute('buttonid', this._buttonID);
-            this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonlink", {
-        get: function () {
-            return this._buttonLink;
-        },
-        set: function (value) {
-            if (this._buttonLink === value)
-                return;
-            this._buttonLink = value;
-            this.setAttribute('buttonlink', this._buttonLink);
-            this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPTryItNow.prototype, "icon", {
-        get: function () {
-            return this._icon;
-        },
-        set: function (value) {
-            if (this._icon === value)
-                return;
-            this._icon = value;
-            this.setAttribute('icon', this._icon);
-            this.querySelector('img') ? this.querySelector('img').src = this._icon : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttontext", {
-        get: function () {
-            return this._buttonText;
-        },
-        set: function (value) {
-            if (this._buttonText === value)
-                return;
-            this._buttonText = value;
-            this.setAttribute('buttontext', this._buttonText);
-            this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPTryItNow.prototype.connectedCallback = function () {
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""]), this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid);
-    };
-    ;
-    Object.defineProperty(RHDPTryItNow, "observedAttributes", {
-        get: function () {
-            return ['buttontext', 'icon', 'buttonlink', 'buttonid', 'subtitle', 'title'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPTryItNow.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPTryItNow;
-}(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('rhdp-tryitnow', RHDPTryItNow);
-});
-var DevNationLiveSession = (function () {
-    function DevNationLiveSession(obj) {
-        var _this = this;
-        this._title = '';
-        this._date = '';
-        this._youtube_id = '';
-        this._speakers = [];
-        this._abstract = '';
-        this._confirmed = false;
-        this._register = true;
-        this._upcoming = false;
-        this._inxpo = '';
-        Object.keys(obj).map(function (key) {
-            _this[key] = obj[key];
-        });
-        var dt = Date.parse(this.date);
-        if (dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
-            this.upcoming = true;
-        }
-    }
-    Object.defineProperty(DevNationLiveSession.prototype, "title", {
-        get: function () {
-            return this._title;
-        },
-        set: function (val) {
-            if (this._title === val)
-                return;
-            this._title = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "date", {
-        get: function () {
-            return this._date;
-        },
-        set: function (val) {
-            if (this._date === val)
-                return;
-            this._date = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "youtube_id", {
-        get: function () {
-            return this._youtube_id;
-        },
-        set: function (val) {
-            if (this._youtube_id === val)
-                return;
-            this._youtube_id = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "speakers", {
-        get: function () {
-            return this._speakers;
-        },
-        set: function (val) {
-            if (this._speakers === val)
-                return;
-            this._speakers = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "abstract", {
-        get: function () {
-            return this._abstract;
-        },
-        set: function (val) {
-            if (this._abstract === val)
-                return;
-            this._abstract = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "register", {
-        get: function () {
-            return this._register;
-        },
-        set: function (val) {
-            if (this._register === val)
-                return;
-            this._register = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "confirmed", {
-        get: function () {
-            return this._confirmed;
-        },
-        set: function (val) {
-            if (this._confirmed === val)
-                return;
-            this._confirmed = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "inxpo", {
-        get: function () {
-            return this._inxpo;
-        },
-        set: function (val) {
-            if (this._inxpo === val)
-                return;
-            this._inxpo = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSession.prototype, "upcoming", {
-        get: function () {
-            return this._upcoming;
-        },
-        set: function (val) {
-            this._upcoming = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return DevNationLiveSession;
-}());
-var DevNationLiveSpeaker = (function () {
-    function DevNationLiveSpeaker(obj) {
-        var _this = this;
-        this._name = '';
-        this._intro = '';
-        this._twitter = '';
-        this._image = '';
-        Object.keys(obj).map(function (key) {
-            _this[key] = obj[key];
-        });
-    }
-    Object.defineProperty(DevNationLiveSpeaker.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (val) {
-            if (this._name === val)
-                return;
-            this._name = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSpeaker.prototype, "intro", {
-        get: function () {
-            return this._intro;
-        },
-        set: function (val) {
-            if (this._intro === val)
-                return;
-            this._intro = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSpeaker.prototype, "twitter", {
-        get: function () {
-            return this._twitter;
-        },
-        set: function (val) {
-            if (this._twitter === val)
-                return;
-            this._twitter = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveSpeaker.prototype, "image", {
-        get: function () {
-            return this._image;
-        },
-        set: function (val) {
-            if (this._image === val)
-                return;
-            this._image = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return DevNationLiveSpeaker;
-}());
-var DevNationLiveApp = (function (_super) {
-    __extends(DevNationLiveApp, _super);
-    function DevNationLiveApp() {
-        var _this = _super.call(this) || this;
-        _this._src = '../rhdp-apps/devnationlive/devnationlive.json';
-        _this._form = '../rhdp-apps/devnationlive/';
-        _this._upcoming = [];
-        _this._past = [];
-        _this._mode = 'cors';
-        _this.speakerLongTemplate = function (strings, speaker) {
-            return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '') + "\n            " + (speaker.intro ? "<p>" + speaker.intro + "</p>" : '');
-        };
-        _this.speakerShortTemplate = function (strings, speaker) {
-            return " <strong>" + speaker.name + "</strong>\n            " + (speaker.twitter ? "(<a href=\"https://twitter.com/" + speaker.twitter + "\" target=\"_blank\" class=\"external-link\">@" + speaker.twitter + "</a>)" : '');
-        };
-        _this.template = function (strings, next, upcoming, past, speakers) {
-            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "<section class=\"next-session\">\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <div class=\"session-date right\"><i class=\"fa fa-calendar fa-2x\"></i> " + next.date + "</div>\n                    <h4 class=\"caps\">" + next.title + "</h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-14 small-24 columns\">\n                    <h5 class=\"caps session-label\">Session:</h5>\n                    <p class=\"abstract\">" + next.abstract + "</p>\n                    <a href=\"" + next.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>\n                </div>\n                <div class=\"large-10 columns\">\n                    <h5 class=\"caps session-label\">Speaker(s):</h5>\n                    " + next.speakers.map(function (speaker) { return _this.speakerLongTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + "  \n                </div>\n            </div>\n        </section>" : '') + "\n        <section class=\"session-list\">\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) { return "" + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-24 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                    <p>" + sess.date + "</p>\n                                    <p>" + sess.abstract + "</p>\n                                    " + (sess.register ? "\n                                    <a href=\"" + sess.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>" : '') + "\n                                </div>\n                            </div>\n                        </li>"
-                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/videos/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
-                : ''); }).join('') + "\n                        </ul>\n                    </div>"
-                : '') + "\n            </div>\n        </section>\n    </div>";
-        };
-        return _this;
-    }
-    Object.defineProperty(DevNationLiveApp.prototype, "sessions", {
-        get: function () {
-            return this._sessions;
-        },
-        set: function (val) {
-            if (this._sessions === val)
-                return;
-            this._sessions = val;
-            var next = false;
-            for (var i = 0; i < this.sessions.length; i++) {
-                var sess = new DevNationLiveSession(this.sessions[i]);
-                if (sess.confirmed) {
-                    if (sess.upcoming) {
-                        if (next) {
-                            if (sess.inxpo.length > 0) {
-                                this.upcoming.push(sess);
-                            }
-                        }
-                        else {
-                            if (sess.inxpo.length > 0) {
-                                this.next = sess;
-                                next = true;
-                            }
-                        }
-                    }
-                    else {
-                        this.past.push(sess);
-                    }
-                }
-            }
-            this.past.sort(this.sortPastSessions);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "speakers", {
-        get: function () {
-            return this._speakers;
-        },
-        set: function (val) {
-            if (this._speakers === val)
-                return;
-            this._speakers = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "next", {
-        get: function () {
-            return this._next;
-        },
-        set: function (val) {
-            if (this._next === val)
-                return;
-            this._next = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "past", {
-        get: function () {
-            return this._past;
-        },
-        set: function (val) {
-            if (this._past === val)
-                return;
-            this._past = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "src", {
-        get: function () {
-            return this._src;
-        },
-        set: function (val) {
-            if (this._src === val)
-                return;
-            this._src = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "mode", {
-        get: function () {
-            return this._mode;
-        },
-        set: function (val) {
-            if (this._mode === val)
-                return;
-            this._mode = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "form", {
-        get: function () {
-            return this._form;
-        },
-        set: function (val) {
-            if (this._form === val)
-                return;
-            this._form = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "upcoming", {
-        get: function () {
-            return this._upcoming;
-        },
-        set: function (val) {
-            if (this._upcoming === val)
-                return;
-            this._upcoming = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp.prototype, "data", {
-        get: function () {
-            return this._data;
-        },
-        set: function (val) {
-            if (this._data === val)
-                return;
-            this._data = val;
-            this.sessions = this._data['sessions'] ? this._data['sessions'].sort(this.sortSessions) : [];
-            this.speakers = this._data['speakers'] ? this._data['speakers'] : [];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DevNationLiveApp, "observedAttributes", {
-        get: function () {
-            return ['src', 'form', 'mode'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    DevNationLiveApp.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    DevNationLiveApp.prototype.connectedCallback = function () {
-        var _this = this;
-        var fHead = new Headers();
-        var fInit = {
-            method: 'GET',
-            headers: fHead,
-            mode: this.mode,
-            cache: 'default'
-        };
-        fetch(this.src, fInit)
-            .then(function (resp) { return resp.json(); })
-            .then(function (data) {
-            _this.data = data;
-            _this.innerHTML = _this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), _this.next, _this.upcoming, _this.past, _this.speakers);
-        });
-    };
-    DevNationLiveApp.prototype.getCookie = function (name) {
-        var re = new RegExp('(?:(?:^|.*;\\s*)' + name + '\\s*\\=\\s*([^;]*).*$)|^.*$');
-        return document.cookie.replace(re, "$1");
-    };
-    DevNationLiveApp.prototype.sortSessions = function (a, b) {
-        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
-        return da - db;
-    };
-    DevNationLiveApp.prototype.sortPastSessions = function (a, b) {
-        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
-        return db - da;
-    };
-    return DevNationLiveApp;
-}(HTMLElement));
-customElements.define('devnation-live-app', DevNationLiveApp);
-System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_2, context_2) {
+System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_2, context_2) {
     "use strict";
     var __moduleName = context_2 && context_2.id;
-    var rhelement_1, DPCategoryItemList;
+    var rhelement_1, RHDPAlert;
     return {
         setters: [
             function (rhelement_1_1) {
                 rhelement_1 = rhelement_1_1;
+            }
+        ],
+        execute: function () {
+            RHDPAlert = (function (_super) {
+                __extends(RHDPAlert, _super);
+                function RHDPAlert(element) {
+                    if (element === void 0) { element = 'rhdp-alert'; }
+                    var _this = _super.call(this, element) || this;
+                    _this.template = function (el) {
+                        var tpl = document.createElement("template");
+                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: row;\n            display: grid;\n            grid-template-columns: 1.5em auto 1fr;\n            grid-template-rows: auto;\n            grid-gap: .5em;\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: #dcedf8;\n            border-color: #87aac1;\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin: 0;\n            display: inline;\n        }\n\n        p { margin: 0; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n        }\n\n        :host([type=\"success\"]) {\n            background-color: #e9f4e9;\n            border-color: #8db28a;\n        }\n        :host([type=\"warning\"]) {\n            background-color: #fdf2e5;\n            border-color: #deb142;\n        }\n        :host([type=\"error\"]) {\n            background-color: #ffe6e6;\n            border-color: #d8aaab;\n        }\n\n        :host([size=\"xl\"]) {\n            grid-template-columns: 1.5em 1fr 1.5em;\n            grid-template-rows: auto 1fr;\n            flex-direction: column;\n        }\n\n        :host([size=\"xl\"]) img {\n            grid-column: 1;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) h3, :host([size=\"xl\"]) strong {\n            font-weight: 400;\n            font-size: 27px;\n            grid-column: 2;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) .close {\n            grid-column: 3;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) p {\n            grid-column: 2;\n            grid-row: 2;\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <p><slot>" + el.text + "</slot></p>\n        " + (el.size === 'xl' ? "<a class=\"close\" href=\"#\"><i class=\"fas fa-times\"></i></a>" : '');
+                        return tpl;
+                    };
+                    _this._type = 'info';
+                    _this._icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+                    _this._background = '#dcedf8';
+                    _this._border = '#87aac1';
+                    return _this;
+                }
+                Object.defineProperty(RHDPAlert.prototype, "type", {
+                    get: function () {
+                        return this._type;
+                    },
+                    set: function (val) {
+                        if (this._type === val)
+                            return;
+                        this._type = val;
+                        switch (this._type) {
+                            case 'success':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
+                                break;
+                            case 'warning':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
+                                break;
+                            case 'error':
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
+                                break;
+                            case 'info':
+                            default:
+                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+                                break;
+                        }
+                        this.setAttribute('type', this._type);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPAlert.prototype, "size", {
+                    get: function () {
+                        return this._size;
+                    },
+                    set: function (val) {
+                        if (this._size === val)
+                            return;
+                        this._size = val;
+                        this.setAttribute('size', this._size);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPAlert.prototype, "heading", {
+                    get: function () {
+                        return this._heading;
+                    },
+                    set: function (val) {
+                        if (this._heading === val)
+                            return;
+                        this._heading = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPAlert.prototype, "text", {
+                    get: function () {
+                        return this._text;
+                    },
+                    set: function (val) {
+                        if (this._text === val)
+                            return;
+                        this._text = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPAlert.prototype, "icon", {
+                    get: function () {
+                        return this._icon;
+                    },
+                    set: function (val) {
+                        if (this._icon === val)
+                            return;
+                        this._icon = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPAlert.prototype.connectedCallback = function () {
+                    var _this = this;
+                    _super.prototype.render.call(this, this.template(this));
+                    var lnk = this.shadowRoot.querySelector('.close');
+                    if (lnk) {
+                        lnk.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            console.log('Close');
+                            _this.innerHTML = '';
+                        });
+                    }
+                };
+                Object.defineProperty(RHDPAlert, "observedAttributes", {
+                    get: function () {
+                        return ['type', 'size', 'heading'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPAlert.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                    _super.prototype.render.call(this, this.template(this));
+                    ;
+                };
+                return RHDPAlert;
+            }(rhelement_1.default));
+            exports_2("default", RHDPAlert);
+            window.customElements.define('rhdp-alert', RHDPAlert);
+        }
+    };
+});
+System.register("@rhd/dp-referrer", ["@rhd/rhdp-alert"], function (exports_3, context_3) {
+    "use strict";
+    var __moduleName = context_3 && context_3.id;
+    var rhdp_alert_1, DPReferrer;
+    return {
+        setters: [
+            function (rhdp_alert_1_1) {
+                rhdp_alert_1 = rhdp_alert_1_1;
+            }
+        ],
+        execute: function () {
+            DPReferrer = (function (_super) {
+                __extends(DPReferrer, _super);
+                function DPReferrer() {
+                    var _this = _super.call(this, 'dp-referrer') || this;
+                    _this._uri = new URL(window.location.href);
+                    return _this;
+                }
+                Object.defineProperty(DPReferrer.prototype, "uri", {
+                    get: function () {
+                        return this._uri;
+                    },
+                    set: function (val) {
+                        if (this._uri === val)
+                            return;
+                        this._uri = val;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                DPReferrer.prototype.connectedCallback = function () {
+                    if (this.uri.searchParams.get('referrer') === 'jbd') {
+                        var category = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
+                        this.size = 'xl';
+                        this.heading = category[0] !== 'middleware' ? 'Welcome jboss.org members!' : 'You have been redirected from JBoss.org to Red Hat Developer.';
+                        this.innerHTML = category[0] !== 'middleware' ? "It's true \u2014 JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href=\"https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t\"> Read more about this on our blog.</a>" : "It's true &mdash; JBoss Developer and Red Hat Developer are one and the same, and you can find all the great stuff you were looking for right here on <a href=\"https://developers.redhat.com/\">developers.redhat.com.</a>";
+                        _super.prototype.render.call(this, this.template(this));
+                    }
+                    else {
+                        this.innerHTML = '';
+                    }
+                };
+                return DPReferrer;
+            }(rhdp_alert_1.default));
+            exports_3("default", DPReferrer);
+            window.customElements.define('dp-referrer', DPReferrer);
+        }
+    };
+});
+System.register("@rhd/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_4, context_4) {
+    "use strict";
+    var __moduleName = context_4 && context_4.id;
+    var rhelement_2, DPStackOverflow;
+    return {
+        setters: [
+            function (rhelement_2_1) {
+                rhelement_2 = rhelement_2_1;
+            }
+        ],
+        execute: function () {
+            DPStackOverflow = (function (_super) {
+                __extends(DPStackOverflow, _super);
+                function DPStackOverflow() {
+                    var _this = _super.call(this, 'dp-category-list') || this;
+                    _this.template = function (el) {
+                        var tpl = document.createElement("template");
+                        tpl.innerHTML = "\n        <style>\n\n        </style>\n        <label for=\"filterByProduct\">Filter by Product</label>\n        <select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n<div ng-app=\"search\">\n<div class=\"row\" ng-controller=\"SearchController\">\n    <div class=\"large-24 columns\">\n    <div class=\"row\">\n        <div class=\"large-24 columns\">\n        <form class=\"search-bar\" ng-submit=\"updateSearch(); resetPagination();\" role=\"search\"> </form>\n        </div>\n        <div class=\"large-24 columns\" id=\"scrollPoint\">\n        <div class=\"row\">\n            <div class=\"large-14 columns stackoverflow-filters\">\n            <label for=\"filterByProduct\">Filter by Product</label>\n\n            <div class=\"styled-select\">\n<select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n    <option value=\"\">Show all</option>\n    <option value=\"openjdk\">OpenJDK</option>\n    <option value=\"rhamt\">Red Hat Application Migration Toolkit</option>\n    <option value=\"cdk\">Red Hat Developer Container Kit</option>\n    <option value=\"developertoolset\">Red Hat Developer Toolset</option>\n    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n    <option value=\"amq\">Red Hat JBoss AMQ</option>\n    <option value=\"rhpam\">Red Hat Process Automation Manager</option>\n    <option value=\"brms\">Red Hat Decision Manager</option>\n    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n    <option value=\"rhmap\">Red Hat Mobile Application Platform</option>\n    <option value=\"rhoar\">Red Hat Openshift Application Runtimes</option>\n    <option value=\"openshift\">Red Hat OpenShift Container Platform</option>\n    <option value=\"softwarecollections\">Red Hat Software Collections</option>\n    <option value=\"dotnet\">.NET Core for Red Hat Enterprise Linux</option>\n</select>\n</div>\n            </div>\n\n            <div class=\"large-10 columns\">\n            <div class=\"sorting so-sorting\">\n                <p ng-if=\"totalCount &gt; 10\">Show<select class=\"results-count\" ng-change=\"updateSearch()\" ng-model=\"params.size\"><option value=\"10\">10</option>\n<option value=\"25\">25</option>\n<option value=\"50\">50</option>\n<option value=\"100\">100</option></select>results per page</p>\n            </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n            <h3 class=\"results-title\" ng-bind-template=\"No results found\" ng-if=\"totalCount &lt;= 0\"> </h3>\n\n            <h4 class=\"results-sub-title\" ng-bind-template=\"Please select a different product\" ng-if=\"totalCount &lt;= 0\"> </h4>\n\n            <div class=\"stackoverflow-results-container\" ng-class=\"loading ? 'invisible' : 'search-results-loaded'\" ng-if=\"totalCount &gt; 0\">\n                <div ng-init=\"r = result\" ng-repeat=\"result in results\">\n                <div class=\"stackoverflow-update\">\n                    <div class=\"update\">\n                    <div class=\"update-meta\">\n                        <div class=\"row\">\n                        <div class=\"large-6 columns qtn-stats\">\n\n                            <div class=\"votes-count\">\n                            <h4 ng-bind=\"r._source.up_vote_count\"> </h4>\n                            <p ng-bind-template=\"Votes\"> </p>\n                            </div>\n                            <div class=\"answer-count\" ng-class=\"(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' \">\n                            <h4 ng-bind=\"r._source.answer_count\"> </h4>\n                            <p ng-bind-template=\"Answers\"> </p>\n                            </div>\n                            <div class=\"views-count\">\n                            <h4 ng-bind=\"r._source.view_count\"> </h4>\n                            <p ng-bind-template=\"Views\"> </p>\n                            </div>\n                        </div>\n\n                        <div class=\"large-18 columns\">\n                            <a class=\"qtn-title\" ng-href=\"{{r._source.sys_url_view}}\" ng-bind-html=\"r._source.sys_title\"> </a>\n                            <p class=\"qtn-content\" ng-bind-html=\"r | question\"> </p>\n\n                            <div class=\"callout qtn-answer\" ng-class=\"r._source.answers[0] ? 'display-answer' : 'hide-answer' \">\n                            <p ng-show=\"r._source.answers[0].is_accepted == true\">\n                                <strong ng-bind-template=\"Accepted answer: \"> </strong>\n                            </p>\n                            <p ng-show=\"r._source.answers[0].is_accepted == false\">\n                                <strong ng-bind-template=\"Latest answer: \"> </strong>\n                            </p>\n                            <p ng-bind=\"r._source.answers[0].body | htmlToPlaintext\"></p>\n                            <a ng-href=\"{{r._source.sys_url_view}}\" target=\"_blank\" rel=\"noopener noreferrer\" ng-bind-template=\"Read full question at Stack Overflow \u203A\"> </a>\n                            </div>\n                            <div class=\"so-tags\">\n                            <strong class=\"tag-label\" ng-bind-template=\"Tags:\"> </strong>\n                            <span class=\"tag\" ng-repeat=\"tag in r._source.sys_tags\" ng-bind=\"tag\"> </span>\n                            <span class=\"so-author\" ng-bind-template=\"{{r | stackDate}} | {{r | author}}\"> </span>\n                            </div>\n                        </div>\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                </div>\n            </div>\n            </div>\n        </div>\n\n        <nav id=\"paginator\" ng-hide=\"loading\" ng-if=\"paginate.pages &gt; 1\"><span ng-bind-template=\"Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results\"></span>\n            <ul class=\"pagination\">\n<li id=\"pagination-first\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('first'); scrollPosition();\">First</a>\n            </li>\n            <li id=\"pagination-prev\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('prev'); scrollPosition();\">Previous</a>\n            </li>\n            <li class=\"pagination-page-number\" id=\"pagination-{{$index}}\" ng-class=\"{current: page == paginate.currentPage}\" ng-repeat=\"page in paginate.pagesArray track by $index\">\n                <a ng-click=\"goToPage(page); scrollPosition();\" data-page=\"{{page}}\" ng-bind=\"page\"> </a>\n            </li>\n            <li id=\"pagination-next\" ng-class=\"paginate.currentPage &gt;= paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('next'); scrollPosition();\">Next</a>\n            </li>\n            <li id=\"pagination-last\" ng-class=\"paginate.currentPage  == paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('last'); scrollPosition();\">Last</a>\n            </li>\n            </ul></nav>\n</div>\n";
+                        return tpl;
+                    };
+                    return _this;
+                }
+                DPStackOverflow.prototype.connectedCallback = function () {
+                    _super.prototype.render.call(this, this.template(this));
+                };
+                return DPStackOverflow;
+            }(rhelement_2.default));
+            exports_4("default", DPStackOverflow);
+        }
+    };
+});
+System.register("@rhd/rhdp-os-download", [], function (exports_5, context_5) {
+    "use strict";
+    var __moduleName = context_5 && context_5.id;
+    var RHDPOSDownload, templateObject_1;
+    return {
+        setters: [],
+        execute: function () {
+            RHDPOSDownload = (function (_super) {
+                __extends(RHDPOSDownload, _super);
+                function RHDPOSDownload() {
+                    var _this = _super.call(this) || this;
+                    _this._rhelURL = "";
+                    _this._macURL = "";
+                    _this._winURL = "";
+                    _this.stage_download_url = 'https://developers.stage.redhat.com';
+                    _this.productDownloads = {
+                        "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
+                        "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
+                    };
+                    _this.template = function (strings, product, downloadUrl, platform, version) {
+                        return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
+                    };
+                    _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
+                        return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
+                    };
+                    return _this;
+                }
+                Object.defineProperty(RHDPOSDownload.prototype, "url", {
+                    get: function () {
+                        return this._url;
+                    },
+                    set: function (value) {
+                        if (this._url === value)
+                            return;
+                        this._url = value;
+                        this.setAttribute('url', this._url);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "productCode", {
+                    get: function () {
+                        return this._productCode;
+                    },
+                    set: function (value) {
+                        if (this._productCode === value)
+                            return;
+                        this._productCode = value;
+                        this.setAttribute('product-code', this._productCode);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "platformType", {
+                    get: function () {
+                        return this._platformType;
+                    },
+                    set: function (value) {
+                        if (this._platformType === value)
+                            return;
+                        this._platformType = value;
+                        this.setAttribute('platform-type', this._platformType);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "downloadURL", {
+                    get: function () {
+                        return this._downloadURL;
+                    },
+                    set: function (value) {
+                        if (this._downloadURL === value)
+                            return;
+                        this._downloadURL = value;
+                        this.setAttribute('download-url', this._downloadURL);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "rhelURL", {
+                    get: function () {
+                        return this._rhelURL;
+                    },
+                    set: function (value) {
+                        if (this._rhelURL === value)
+                            return;
+                        this._rhelURL = value;
+                        this.setAttribute('rhel-download', this._rhelURL);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "macURL", {
+                    get: function () {
+                        return this._macURL;
+                    },
+                    set: function (value) {
+                        if (this._macURL === value)
+                            return;
+                        this._macURL = value;
+                        this.setAttribute('mac-download', this._macURL);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "winURL", {
+                    get: function () {
+                        return this._winURL;
+                    },
+                    set: function (value) {
+                        if (this._winURL === value)
+                            return;
+                        this._winURL = value;
+                        this.setAttribute('windows-download', this._winURL);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "productName", {
+                    get: function () {
+                        return this._productName;
+                    },
+                    set: function (value) {
+                        if (this._productName === value)
+                            return;
+                        this._productName = value;
+                        this.setAttribute('name', this._productName);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "version", {
+                    get: function () {
+                        return this._version;
+                    },
+                    set: function (value) {
+                        if (this._version === value)
+                            return;
+                        this._version = value;
+                        this.setAttribute('version', this._version);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPOSDownload.prototype, "displayOS", {
+                    get: function () {
+                        return this._displayOS;
+                    },
+                    set: function (value) {
+                        if (this._displayOS === value)
+                            return;
+                        this._displayOS = value;
+                        this.setAttribute('display-os', this._displayOS);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPOSDownload.prototype.connectedCallback = function () {
+                    this.platformType = this.getUserAgent();
+                    this.setDownloadURLByPlatform();
+                    this.innerHTML = this.template(templateObject_1 || (templateObject_1 = __makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""])), this.productName, this.downloadURL, this.platformType, this.version);
+                };
+                Object.defineProperty(RHDPOSDownload, "observedAttributes", {
+                    get: function () {
+                        return ['product-code', 'platform-type', 'download-url', 'name'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPOSDownload.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                RHDPOSDownload.prototype.getUserAgent = function () {
+                    var OSName = "Windows";
+                    if (navigator.appVersion.indexOf("Mac") != -1)
+                        OSName = "MacOS";
+                    if (navigator.appVersion.indexOf("Linux") != -1)
+                        OSName = "RHEL";
+                    return OSName;
+                };
+                RHDPOSDownload.prototype.getDownloadOrigin = function (productUrl) {
+                    if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
+                        productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+                    }
+                    return productUrl;
+                };
+                RHDPOSDownload.prototype.setOSURL = function (productId) {
+                    switch (productId) {
+                        case 'devsuite':
+                            this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
+                            this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
+                            this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
+                            break;
+                        case 'cdk':
+                            this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
+                            this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
+                            this.rhelURL = this.getDownloadOrigin(this.productDownloads.cdk.rhelUrl);
+                            break;
+                        default:
+                            this.winURL = this.getDownloadOrigin(this.downloadURL);
+                            this.macURL = this.getDownloadOrigin(this.downloadURL);
+                            this.rhelURL = this.getDownloadOrigin(this.downloadURL);
+                    }
+                };
+                RHDPOSDownload.prototype.setDownloadURLByPlatform = function () {
+                    if (this.winURL.length <= 0 || this.macURL.length <= 0 || this.rhelURL.length <= 0) {
+                        return;
+                    }
+                    this.displayOS = true;
+                    switch (this.platformType) {
+                        case "Windows":
+                            this.downloadURL = this.getDownloadOrigin(this.winURL);
+                            break;
+                        case "MacOS":
+                            this.downloadURL = this.getDownloadOrigin(this.macURL);
+                            break;
+                        case "RHEL":
+                            this.downloadURL = this.getDownloadOrigin(this.rhelURL);
+                            break;
+                        default:
+                            this.downloadURL = this.getDownloadOrigin(this.winURL);
+                    }
+                };
+                return RHDPOSDownload;
+            }(HTMLElement));
+            exports_5("default", RHDPOSDownload);
+            window.addEventListener('WebComponentsReady', function () {
+                customElements.define('rhdp-os-download', RHDPOSDownload);
+            });
+        }
+    };
+});
+System.register("@rhd/rhdp-thankyou-page", [], function (exports_6, context_6) {
+    "use strict";
+    var __moduleName = context_6 && context_6.id;
+    var RHDPThankyou, templateObject_2;
+    return {
+        setters: [],
+        execute: function () {
+            RHDPThankyou = (function (_super) {
+                __extends(RHDPThankyou, _super);
+                function RHDPThankyou() {
+                    var _this = _super.call(this) || this;
+                    _this.template = function (strings, name, directLink, recentDownload) {
+                        return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
+                    };
+                    return _this;
+                }
+                Object.defineProperty(RHDPThankyou.prototype, "url", {
+                    get: function () {
+                        return this._url;
+                    },
+                    set: function (value) {
+                        if (this._url === value)
+                            return;
+                        this._url = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPThankyou.prototype, "mediaName", {
+                    get: function () {
+                        return this._mediaName;
+                    },
+                    set: function (value) {
+                        if (this._mediaName === value)
+                            return;
+                        this._mediaName = value;
+                        this.setAttribute('media-name', this._mediaName);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPThankyou.prototype, "directLink", {
+                    get: function () {
+                        return this._directLink;
+                    },
+                    set: function (value) {
+                        if (this._directLink === value)
+                            return;
+                        this._directLink = value;
+                        this.setAttribute('direct-download', this._directLink);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPThankyou.prototype.connectedCallback = function () {
+                    this._recentDownload = this.checkRecentDownload();
+                    this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
+                    this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
+                    this.innerHTML = this.template(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", "", "", ""], ["", "", "", ""])), this.mediaName, this.directLink, this._recentDownload);
+                };
+                Object.defineProperty(RHDPThankyou, "observedAttributes", {
+                    get: function () {
+                        return ['media-name', 'direct-link'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPThankyou.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                RHDPThankyou.prototype.stripLabelFromMedia = function (name) {
+                    if (name) {
+                        name = name.replace(/Media:[\s]/g, "");
+                    }
+                    return name;
+                };
+                RHDPThankyou.prototype.getParameterByName = function (urlName) {
+                    this.url = this.url ? this.url : window.location.href;
+                    urlName = urlName.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + urlName + "(=([^&#]*)|&|#|$)"), results = regex.exec(this.url);
+                    if (!results)
+                        return null;
+                    if (!results[2])
+                        return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                };
+                RHDPThankyou.prototype.checkRecentDownload = function () {
+                    var storageExpiration = 30000, storageName = 'media-download-url';
+                    if (window.location.href.indexOf('media-download-confirmation') > 0) {
+                        if (window.localStorage.getItem(storageName)) {
+                            var recentDownload, timeOfRefer, currentTime;
+                            recentDownload = JSON.parse(window.localStorage.getItem(storageName));
+                            timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+                            currentTime = new Date().getTime();
+                            if (currentTime - timeOfRefer > storageExpiration) {
+                                window.localStorage.removeItem(storageName);
+                                return false;
+                            }
+                            return true;
+                        }
+                        else {
+                            var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
+                            localStorage.setItem(storageName, JSON.stringify(referrerDownload));
+                            return false;
+                        }
+                    }
+                };
+                return RHDPThankyou;
+            }(HTMLElement));
+            exports_6("default", RHDPThankyou);
+            window.addEventListener('WebComponentsReady', function () {
+                customElements.define('rhdp-thankyou', RHDPThankyou);
+            });
+        }
+    };
+});
+System.register("@rhd/rhdp-tryitnow", [], function (exports_7, context_7) {
+    "use strict";
+    var __moduleName = context_7 && context_7.id;
+    var RHDPTryItNow, templateObject_3;
+    return {
+        setters: [],
+        execute: function () {
+            RHDPTryItNow = (function (_super) {
+                __extends(RHDPTryItNow, _super);
+                function RHDPTryItNow() {
+                    var _this = _super.call(this) || this;
+                    _this._title = '';
+                    _this._subtitle = '';
+                    _this._buttonID = '';
+                    _this._buttonText = '';
+                    _this._buttonLink = '';
+                    _this._icon = '';
+                    _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
+                        return "<section> \n                    <div class=\"row\"> \n                        " + (icon ? "<img src=\"" + icon + "\"> " : '') + "\n                        <div class=\"tryitnow-titles\">\n                            " + (title ? "<h4>" + title + "</h4>" : '') + "\n                            " + (subtitle ? "<h5>" + subtitle + "</h5>" : '') + "\n                        </div>\n                        <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a>\n                    </div>\n                </section>";
+                    };
+                    return _this;
+                }
+                Object.defineProperty(RHDPTryItNow.prototype, "title", {
+                    get: function () {
+                        return this._title;
+                    },
+                    set: function (value) {
+                        if (this._title === value)
+                            return;
+                        this._title = value;
+                        this.setAttribute('title', this._title);
+                        this.querySelector('h4') ? this.querySelector('h4').innerHTML = this._title : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPTryItNow.prototype, "subtitle", {
+                    get: function () {
+                        return this._subtitle;
+                    },
+                    set: function (value) {
+                        if (this._subtitle === value)
+                            return;
+                        this._subtitle = value;
+                        this.setAttribute('subtitle', this._subtitle);
+                        this.querySelector('h5') ? this.querySelector('h5').innerHTML = this._subtitle : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPTryItNow.prototype, "buttonid", {
+                    get: function () {
+                        return this._buttonID;
+                    },
+                    set: function (value) {
+                        if (this._buttonID === value)
+                            return;
+                        this._buttonID = value;
+                        this.setAttribute('buttonid', this._buttonID);
+                        this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPTryItNow.prototype, "buttonlink", {
+                    get: function () {
+                        return this._buttonLink;
+                    },
+                    set: function (value) {
+                        if (this._buttonLink === value)
+                            return;
+                        this._buttonLink = value;
+                        this.setAttribute('buttonlink', this._buttonLink);
+                        this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPTryItNow.prototype, "icon", {
+                    get: function () {
+                        return this._icon;
+                    },
+                    set: function (value) {
+                        if (this._icon === value)
+                            return;
+                        this._icon = value;
+                        this.setAttribute('icon', this._icon);
+                        this.querySelector('img') ? this.querySelector('img').src = this._icon : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPTryItNow.prototype, "buttontext", {
+                    get: function () {
+                        return this._buttonText;
+                    },
+                    set: function (value) {
+                        if (this._buttonText === value)
+                            return;
+                        this._buttonText = value;
+                        this.setAttribute('buttontext', this._buttonText);
+                        this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPTryItNow.prototype.connectedCallback = function () {
+                    this.innerHTML = this.template(templateObject_3 || (templateObject_3 = __makeTemplateObject(["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""])), this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid);
+                };
+                ;
+                Object.defineProperty(RHDPTryItNow, "observedAttributes", {
+                    get: function () {
+                        return ['buttontext', 'icon', 'buttonlink', 'buttonid', 'subtitle', 'title'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPTryItNow.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                return RHDPTryItNow;
+            }(HTMLElement));
+            exports_7("default", RHDPTryItNow);
+            window.customElements.define('rhdp-tryitnow', RHDPTryItNow);
+        }
+    };
+});
+System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_8, context_8) {
+    "use strict";
+    var __moduleName = context_8 && context_8.id;
+    var rhelement_3, DPCategoryItemList;
+    return {
+        setters: [
+            function (rhelement_3_1) {
+                rhelement_3 = rhelement_3_1;
             }
         ],
         execute: function () {
@@ -1003,20 +863,20 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
                     this[name] = newVal;
                 };
                 return DPCategoryItemList;
-            }(rhelement_1.default));
-            exports_2("default", DPCategoryItemList);
+            }(rhelement_3.default));
+            exports_8("default", DPCategoryItemList);
             window.customElements.define('dp-category-item-list', DPCategoryItemList);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_3, context_3) {
+System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
-    var __moduleName = context_3 && context_3.id;
-    var rhelement_2, DPCategoryItem;
+    var __moduleName = context_9 && context_9.id;
+    var rhelement_4, DPCategoryItem;
     return {
         setters: [
-            function (rhelement_2_1) {
-                rhelement_2 = rhelement_2_1;
+            function (rhelement_4_1) {
+                rhelement_4 = rhelement_4_1;
             }
         ],
         execute: function () {
@@ -1045,20 +905,20 @@ System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelemen
                     this[name] = newVal;
                 };
                 return DPCategoryItem;
-            }(rhelement_2.default));
-            exports_3("default", DPCategoryItem);
+            }(rhelement_4.default));
+            exports_9("default", DPCategoryItem);
             window.customElements.define('dp-category-item', DPCategoryItem);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_4, context_4) {
+System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_10, context_10) {
     "use strict";
-    var __moduleName = context_4 && context_4.id;
-    var rhelement_3, DPCategoryList;
+    var __moduleName = context_10 && context_10.id;
+    var rhelement_5, DPCategoryList;
     return {
         setters: [
-            function (rhelement_3_1) {
-                rhelement_3 = rhelement_3_1;
+            function (rhelement_5_1) {
+                rhelement_5 = rhelement_5_1;
             }
         ],
         execute: function () {
@@ -1142,20 +1002,20 @@ System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelemen
                 DPCategoryList.prototype._setVisibleCategories = function (index) {
                 };
                 return DPCategoryList;
-            }(rhelement_3.default));
-            exports_4("default", DPCategoryList);
+            }(rhelement_5.default));
+            exports_10("default", DPCategoryList);
             window.customElements.define('dp-category-list', DPCategoryList);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_5, context_5) {
+System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_11, context_11) {
     "use strict";
-    var __moduleName = context_5 && context_5.id;
-    var rhelement_4, DPCategory;
+    var __moduleName = context_11 && context_11.id;
+    var rhelement_6, DPCategory;
     return {
         setters: [
-            function (rhelement_4_1) {
-                rhelement_4 = rhelement_4_1;
+            function (rhelement_6_1) {
+                rhelement_6 = rhelement_6_1;
             }
         ],
         execute: function () {
@@ -1290,20 +1150,20 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
                     });
                 };
                 return DPCategory;
-            }(rhelement_4.default));
-            exports_5("default", DPCategory);
+            }(rhelement_6.default));
+            exports_11("default", DPCategory);
             window.customElements.define('dp-category', DPCategory);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_6, context_6) {
+System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_12, context_12) {
     "use strict";
-    var __moduleName = context_6 && context_6.id;
-    var rhelement_5, DPProductShortTeaser;
+    var __moduleName = context_12 && context_12.id;
+    var rhelement_7, DPProductShortTeaser;
     return {
         setters: [
-            function (rhelement_5_1) {
-                rhelement_5 = rhelement_5_1;
+            function (rhelement_7_1) {
+                rhelement_7 = rhelement_7_1;
             }
         ],
         execute: function () {
@@ -1373,836 +1233,760 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
                     }
                 };
                 return DPProductShortTeaser;
-            }(rhelement_5.default));
-            exports_6("default", DPProductShortTeaser);
+            }(rhelement_7.default));
+            exports_12("default", DPProductShortTeaser);
             window.customElements.define('dp-product-short-teaser', DPProductShortTeaser);
         }
     };
 });
-System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_7, context_7) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-all-item", ["@rhd/rhdp-os-download"], function (exports_13, context_13) {
     "use strict";
-    var __moduleName = context_7 && context_7.id;
-    var rhelement_6, DPStackOverflow;
+    var __moduleName = context_13 && context_13.id;
+    var rhdp_os_download_1, RHDPDownloadsAllItem, templateObject_4, templateObject_5;
     return {
         setters: [
-            function (rhelement_6_1) {
-                rhelement_6 = rhelement_6_1;
+            function (rhdp_os_download_1_1) {
+                rhdp_os_download_1 = rhdp_os_download_1_1;
             }
         ],
         execute: function () {
-            DPStackOverflow = (function (_super) {
-                __extends(DPStackOverflow, _super);
-                function DPStackOverflow() {
-                    var _this = _super.call(this, 'dp-category-list') || this;
-                    _this.template = function (el) {
-                        var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n        <style>\n\n        </style>\n        <label for=\"filterByProduct\">Filter by Product</label>\n        <select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n<div ng-app=\"search\">\n<div class=\"row\" ng-controller=\"SearchController\">\n    <div class=\"large-24 columns\">\n    <div class=\"row\">\n        <div class=\"large-24 columns\">\n        <form class=\"search-bar\" ng-submit=\"updateSearch(); resetPagination();\" role=\"search\"> </form>\n        </div>\n        <div class=\"large-24 columns\" id=\"scrollPoint\">\n        <div class=\"row\">\n            <div class=\"large-14 columns stackoverflow-filters\">\n            <label for=\"filterByProduct\">Filter by Product</label>\n\n            <div class=\"styled-select\">\n<select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n    <option value=\"\">Show all</option>\n    <option value=\"openjdk\">OpenJDK</option>\n    <option value=\"rhamt\">Red Hat Application Migration Toolkit</option>\n    <option value=\"cdk\">Red Hat Developer Container Kit</option>\n    <option value=\"developertoolset\">Red Hat Developer Toolset</option>\n    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n    <option value=\"amq\">Red Hat JBoss AMQ</option>\n    <option value=\"rhpam\">Red Hat Process Automation Manager</option>\n    <option value=\"brms\">Red Hat Decision Manager</option>\n    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n    <option value=\"rhmap\">Red Hat Mobile Application Platform</option>\n    <option value=\"rhoar\">Red Hat Openshift Application Runtimes</option>\n    <option value=\"openshift\">Red Hat OpenShift Container Platform</option>\n    <option value=\"softwarecollections\">Red Hat Software Collections</option>\n    <option value=\"dotnet\">.NET Core for Red Hat Enterprise Linux</option>\n</select>\n</div>\n            </div>\n\n            <div class=\"large-10 columns\">\n            <div class=\"sorting so-sorting\">\n                <p ng-if=\"totalCount &gt; 10\">Show<select class=\"results-count\" ng-change=\"updateSearch()\" ng-model=\"params.size\"><option value=\"10\">10</option>\n<option value=\"25\">25</option>\n<option value=\"50\">50</option>\n<option value=\"100\">100</option></select>results per page</p>\n            </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n            <h3 class=\"results-title\" ng-bind-template=\"No results found\" ng-if=\"totalCount &lt;= 0\"> </h3>\n\n            <h4 class=\"results-sub-title\" ng-bind-template=\"Please select a different product\" ng-if=\"totalCount &lt;= 0\"> </h4>\n\n            <div class=\"stackoverflow-results-container\" ng-class=\"loading ? 'invisible' : 'search-results-loaded'\" ng-if=\"totalCount &gt; 0\">\n                <div ng-init=\"r = result\" ng-repeat=\"result in results\">\n                <div class=\"stackoverflow-update\">\n                    <div class=\"update\">\n                    <div class=\"update-meta\">\n                        <div class=\"row\">\n                        <div class=\"large-6 columns qtn-stats\">\n\n                            <div class=\"votes-count\">\n                            <h4 ng-bind=\"r._source.up_vote_count\"> </h4>\n                            <p ng-bind-template=\"Votes\"> </p>\n                            </div>\n                            <div class=\"answer-count\" ng-class=\"(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' \">\n                            <h4 ng-bind=\"r._source.answer_count\"> </h4>\n                            <p ng-bind-template=\"Answers\"> </p>\n                            </div>\n                            <div class=\"views-count\">\n                            <h4 ng-bind=\"r._source.view_count\"> </h4>\n                            <p ng-bind-template=\"Views\"> </p>\n                            </div>\n                        </div>\n\n                        <div class=\"large-18 columns\">\n                            <a class=\"qtn-title\" ng-href=\"{{r._source.sys_url_view}}\" ng-bind-html=\"r._source.sys_title\"> </a>\n                            <p class=\"qtn-content\" ng-bind-html=\"r | question\"> </p>\n\n                            <div class=\"callout qtn-answer\" ng-class=\"r._source.answers[0] ? 'display-answer' : 'hide-answer' \">\n                            <p ng-show=\"r._source.answers[0].is_accepted == true\">\n                                <strong ng-bind-template=\"Accepted answer: \"> </strong>\n                            </p>\n                            <p ng-show=\"r._source.answers[0].is_accepted == false\">\n                                <strong ng-bind-template=\"Latest answer: \"> </strong>\n                            </p>\n                            <p ng-bind=\"r._source.answers[0].body | htmlToPlaintext\"></p>\n                            <a ng-href=\"{{r._source.sys_url_view}}\" target=\"_blank\" rel=\"noopener noreferrer\" ng-bind-template=\"Read full question at Stack Overflow \u203A\"> </a>\n                            </div>\n                            <div class=\"so-tags\">\n                            <strong class=\"tag-label\" ng-bind-template=\"Tags:\"> </strong>\n                            <span class=\"tag\" ng-repeat=\"tag in r._source.sys_tags\" ng-bind=\"tag\"> </span>\n                            <span class=\"so-author\" ng-bind-template=\"{{r | stackDate}} | {{r | author}}\"> </span>\n                            </div>\n                        </div>\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                </div>\n            </div>\n            </div>\n        </div>\n\n        <nav id=\"paginator\" ng-hide=\"loading\" ng-if=\"paginate.pages &gt; 1\"><span ng-bind-template=\"Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results\"></span>\n            <ul class=\"pagination\">\n<li id=\"pagination-first\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('first'); scrollPosition();\">First</a>\n            </li>\n            <li id=\"pagination-prev\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('prev'); scrollPosition();\">Previous</a>\n            </li>\n            <li class=\"pagination-page-number\" id=\"pagination-{{$index}}\" ng-class=\"{current: page == paginate.currentPage}\" ng-repeat=\"page in paginate.pagesArray track by $index\">\n                <a ng-click=\"goToPage(page); scrollPosition();\" data-page=\"{{page}}\" ng-bind=\"page\"> </a>\n            </li>\n            <li id=\"pagination-next\" ng-class=\"paginate.currentPage &gt;= paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('next'); scrollPosition();\">Next</a>\n            </li>\n            <li id=\"pagination-last\" ng-class=\"paginate.currentPage  == paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('last'); scrollPosition();\">Last</a>\n            </li>\n            </ul></nav>\n</div>\n";
-                        return tpl;
+            RHDPDownloadsAllItem = (function (_super) {
+                __extends(RHDPDownloadsAllItem, _super);
+                function RHDPDownloadsAllItem() {
+                    var _this = _super.call(this) || this;
+                    _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
+                        return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
                     };
                     return _this;
                 }
-                DPStackOverflow.prototype.connectedCallback = function () {
-                    _super.prototype.render.call(this, this.template(this));
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "name", {
+                    get: function () {
+                        return this._name;
+                    },
+                    set: function (value) {
+                        if (this._name === value)
+                            return;
+                        this._name = value;
+                        this.setAttribute('name', this.name);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "productId", {
+                    get: function () {
+                        return this._productId;
+                    },
+                    set: function (value) {
+                        if (this.productId === value)
+                            return;
+                        this._productId = value;
+                        this.setAttribute('productid', this._productId);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "dataFallbackUrl", {
+                    get: function () {
+                        return this._dataFallbackUrl;
+                    },
+                    set: function (value) {
+                        if (this.dataFallbackUrl === value)
+                            return;
+                        this._dataFallbackUrl = value;
+                        this.setAttribute('datafallbackurl', this._dataFallbackUrl);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "downloadUrl", {
+                    get: function () {
+                        return this._downloadUrl;
+                    },
+                    set: function (value) {
+                        if (this.downloadUrl === value)
+                            return;
+                        this._downloadUrl = value;
+                        this.setAttribute('downloadurl', this._downloadUrl);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "description", {
+                    get: function () {
+                        return this._description;
+                    },
+                    set: function (value) {
+                        this._description = value;
+                        this.setAttribute('description', this._description);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "learnMore", {
+                    get: function () {
+                        return this._learnMore;
+                    },
+                    set: function (value) {
+                        this._learnMore = value;
+                        this.setAttribute('learnmore', this._learnMore);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "version", {
+                    get: function () {
+                        return this._version;
+                    },
+                    set: function (value) {
+                        this._version = value;
+                        this.setAttribute('version', this._version);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsAllItem.prototype, "platform", {
+                    get: function () {
+                        return this._platform;
+                    },
+                    set: function (value) {
+                        this._platform = value;
+                        this.setAttribute('platform', this._platform);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsAllItem.prototype.connectedCallback = function () {
+                    if (this.productId === 'devsuite' || this.productId === 'cdk') {
+                        this.osVersionExtract(this.productId);
+                        this.innerHTML = this.template(templateObject_4 || (templateObject_4 = __makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""])), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform);
+                    }
+                    else {
+                        this.innerHTML = this.template(templateObject_5 || (templateObject_5 = __makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""])), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null);
+                    }
                 };
-                return DPStackOverflow;
-            }(rhelement_6.default));
-            exports_7("default", DPStackOverflow);
+                RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
+                    var osPlatform = new rhdp_os_download_1.default();
+                    osPlatform.platformType = osPlatform.getUserAgent();
+                    osPlatform.downloadURL = this.downloadUrl;
+                    osPlatform.setOSURL(productId);
+                    osPlatform.setDownloadURLByPlatform();
+                    this.downloadUrl = osPlatform.downloadURL;
+                    this.platform = osPlatform.platformType;
+                };
+                Object.defineProperty(RHDPDownloadsAllItem, "observedAttributes", {
+                    get: function () {
+                        return ['name'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsAllItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                return RHDPDownloadsAllItem;
+            }(HTMLElement));
+            exports_13("default", RHDPDownloadsAllItem);
+            window.customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
         }
     };
 });
-System.register("@rhd/rhdp-alert/rhdp-alert", ["@rhelements/rhelement"], function (exports_8, context_8) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-all", ["@rhd/rhdp-downloads/rhdp-downloads-all-item"], function (exports_14, context_14) {
     "use strict";
-    var __moduleName = context_8 && context_8.id;
-    var rhelement_7, RHDPAlert;
+    var __moduleName = context_14 && context_14.id;
+    var rhdp_downloads_all_item_1, RHDPDownloadsAll, templateObject_6;
     return {
         setters: [
-            function (rhelement_7_1) {
-                rhelement_7 = rhelement_7_1;
+            function (rhdp_downloads_all_item_1_1) {
+                rhdp_downloads_all_item_1 = rhdp_downloads_all_item_1_1;
             }
         ],
         execute: function () {
-            RHDPAlert = (function (_super) {
-                __extends(RHDPAlert, _super);
-                function RHDPAlert(element) {
-                    if (element === void 0) { element = 'rhdp-alert'; }
-                    var _this = _super.call(this, element) || this;
-                    _this.template = function (el) {
-                        var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n        <style>\n        :host {\n            color: #363636 !important;\n            display: flex;\n            flex-direction: row;\n            display: grid;\n            grid-template-columns: 1.5em auto 1fr;\n            grid-template-rows: auto;\n            grid-gap: .5em;\n            border-width: 1px;\n            border-style: solid;\n            padding: 10px 20px;\n            margin: 1.5em auto;\n            font-size: 1em;\n            background-color: #dcedf8;\n            border-color: #87aac1;\n            line-height: 24px;\n            vertical-align: middle;\n        }\n\n        h3, strong {\n            margin: 0;\n            display: inline;\n        }\n\n        p { margin: 0; }\n          \n        img {\n            flex: 0 0 1.5em;\n            height: 1.5em;\n            display: block;\n            position: relative;\n            margin-right: 10px;\n        }\n\n        :host([type=\"success\"]) {\n            background-color: #e9f4e9;\n            border-color: #8db28a;\n        }\n        :host([type=\"warning\"]) {\n            background-color: #fdf2e5;\n            border-color: #deb142;\n        }\n        :host([type=\"error\"]) {\n            background-color: #ffe6e6;\n            border-color: #d8aaab;\n        }\n\n        :host([size=\"xl\"]) {\n            grid-template-columns: 1.5em 1fr 1.5em;\n            grid-template-rows: auto 1fr;\n            flex-direction: column;\n        }\n\n        :host([size=\"xl\"]) img {\n            grid-column: 1;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) h3, :host([size=\"xl\"]) strong {\n            font-weight: 400;\n            font-size: 27px;\n            grid-column: 2;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) .close {\n            grid-column: 3;\n            grid-row: 1;\n        }\n\n        :host([size=\"xl\"]) p {\n            grid-column: 2;\n            grid-row: 2;\n        }\n        \n        a.close {\n            top: 1em;\n            margin-right: 5px;\n            background-repeat: no-repeat;\n            height: 24px;\n            width: 24px;\n            color: #3b6e90;\n        }\n        \n        </style>\n        <img src=\"" + el.icon + "\">\n        " + (el.size === 'xl' ? '<h3>' : '') + "\n        " + (el.heading ? "<strong>" + el.heading + "</strong>" : '') + "\n        " + (el.size === 'xl' ? '</h3>' : '') + "\n        <p><slot>" + el.text + "</slot></p>\n        " + (el.size === 'xl' ? "<a class=\"close\" href=\"#\"><i class=\"fas fa-times\"></i></a>" : '');
-                        return tpl;
+            RHDPDownloadsAll = (function (_super) {
+                __extends(RHDPDownloadsAll, _super);
+                function RHDPDownloadsAll() {
+                    var _this = _super.call(this) || this;
+                    _this.template = function (strings, id, heading) {
+                        return "<div class=\"download-list\">\n                    <div class=\"large-24 category-label\" id=\"" + id + "\">\n                        <h4>" + heading + "</h4>\n                    </div>\n                </div>\n                ";
                     };
-                    _this._type = 'info';
-                    _this._icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
-                    _this._background = '#dcedf8';
-                    _this._border = '#87aac1';
                     return _this;
                 }
-                Object.defineProperty(RHDPAlert.prototype, "type", {
+                Object.defineProperty(RHDPDownloadsAll.prototype, "id", {
                     get: function () {
-                        return this._type;
+                        return this._id;
                     },
-                    set: function (val) {
-                        if (this._type === val)
+                    set: function (value) {
+                        if (this.id === value)
                             return;
-                        this._type = val;
-                        switch (this._type) {
-                            case 'success':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
-                                break;
-                            case 'warning':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
-                                break;
-                            case 'error':
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
-                                break;
-                            case 'info':
-                            default:
-                                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
-                                break;
-                        }
-                        this.setAttribute('type', this._type);
+                        this._id = value;
+                        this.setAttribute('id', this._id);
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPAlert.prototype, "size", {
-                    get: function () {
-                        return this._size;
-                    },
-                    set: function (val) {
-                        if (this._size === val)
-                            return;
-                        this._size = val;
-                        this.setAttribute('size', this._size);
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPAlert.prototype, "heading", {
+                Object.defineProperty(RHDPDownloadsAll.prototype, "heading", {
                     get: function () {
                         return this._heading;
                     },
-                    set: function (val) {
-                        if (this._heading === val)
+                    set: function (value) {
+                        if (this.heading === value)
                             return;
-                        this._heading = val;
+                        this._heading = value;
+                        this.setAttribute('heading', this._heading);
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPAlert.prototype, "text", {
+                Object.defineProperty(RHDPDownloadsAll.prototype, "products", {
                     get: function () {
-                        return this._text;
+                        return this._products;
                     },
-                    set: function (val) {
-                        if (this._text === val)
+                    set: function (value) {
+                        if (this.products === value)
                             return;
-                        this._text = val;
+                        this._products = value;
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPAlert.prototype, "icon", {
-                    get: function () {
-                        return this._icon;
-                    },
-                    set: function (val) {
-                        if (this._icon === val)
-                            return;
-                        this._icon = val;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                RHDPAlert.prototype.connectedCallback = function () {
-                    var _this = this;
-                    _super.prototype.render.call(this, this.template(this));
-                    var lnk = this.shadowRoot.querySelector('.close');
-                    if (lnk) {
-                        lnk.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            console.log('Close');
-                            _this.innerHTML = '';
-                        });
+                RHDPDownloadsAll.prototype.connectedCallback = function () {
+                    this.innerHTML = this.template(templateObject_6 || (templateObject_6 = __makeTemplateObject(["", "", ""], ["", "", ""])), this.id, this.heading);
+                    this.getProductsWithTargetHeading(this.products);
+                };
+                RHDPDownloadsAll.prototype.getProductsWithTargetHeading = function (productList) {
+                    if (productList.products) {
+                        var products = productList.products.products;
+                        var len = products.length;
+                        for (var i = 0; i < len; i++) {
+                            if (products[i].groupHeading === this.heading) {
+                                var item = new rhdp_downloads_all_item_1.default();
+                                item.name = products[i].productName;
+                                item.productId = products[i].productCode ? products[i].productCode : "";
+                                item.dataFallbackUrl = products[i].dataFallbackUrl ? products[i].dataFallbackUrl : "";
+                                item.downloadUrl = products[i].downloadLink ? products[i].downloadLink : "";
+                                item.description = products[i].description ? products[i].description : "";
+                                item.learnMore = products[i].learnMoreLink ? products[i].learnMoreLink : "";
+                                item.version = products[i].version ? products[i].version : "";
+                                this.querySelector('.download-list').appendChild(item);
+                            }
+                        }
                     }
                 };
-                Object.defineProperty(RHDPAlert, "observedAttributes", {
+                Object.defineProperty(RHDPDownloadsAll, "observedAttributes", {
                     get: function () {
-                        return ['type', 'size', 'heading'];
+                        return ['id', 'heading'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPAlert.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                RHDPDownloadsAll.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
-                    _super.prototype.render.call(this, this.template(this));
-                    ;
                 };
-                return RHDPAlert;
-            }(rhelement_7.default));
-            exports_8("default", RHDPAlert);
-            window.customElements.define('rhdp-alert', RHDPAlert);
+                return RHDPDownloadsAll;
+            }(HTMLElement));
+            exports_14("default", RHDPDownloadsAll);
+            window.customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
         }
     };
 });
-var RHDPDownloadsAllItem = (function (_super) {
-    __extends(RHDPDownloadsAllItem, _super);
-    function RHDPDownloadsAllItem() {
-        var _this = _super.call(this) || this;
-        _this.template = function (strings, name, productId, dataFallbackUrl, downloadUrl, learnMore, description, version, platform) {
-            return "\n            <div class=\"row\">\n                <hr>\n                <div class=\"large-24 column\">\n                    <h5>" + name + "</h5>\n                </div>\n            \n                <div class=\"large-10 columns\">\n                    <p></p>\n            \n                    <div class=\"paragraph\">\n                        <p>" + description + "</p>\n                    </div>\n                    <a href=\"" + learnMore + "\">Learn More</a></div>\n            \n                <div class=\"large-9 center columns\">\n                \n                  " + (version ? "<p data-download-id-version=\"" + productId + "\">Version: " + version + " " + (_this.platform ? "for " + platform : '') + "</p>" : "<p data-download-id-version=\"" + productId + "\">&nbsp;</p>") + "  \n                </div>\n            \n                <div class=\"large-5 columns\"><a class=\"button medium-cta blue\" data-download-id=\"" + productId + "\"\n                                                data-fallback-url=\"" + dataFallbackUrl + "\"\n                                                href=\"" + downloadUrl + "\">Download</a></div>\n            </div>\n";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            if (this._name === value)
-                return;
-            this._name = value;
-            this.setAttribute('name', this.name);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "productId", {
-        get: function () {
-            return this._productId;
-        },
-        set: function (value) {
-            if (this.productId === value)
-                return;
-            this._productId = value;
-            this.setAttribute('productid', this._productId);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "dataFallbackUrl", {
-        get: function () {
-            return this._dataFallbackUrl;
-        },
-        set: function (value) {
-            if (this.dataFallbackUrl === value)
-                return;
-            this._dataFallbackUrl = value;
-            this.setAttribute('datafallbackurl', this._dataFallbackUrl);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "downloadUrl", {
-        get: function () {
-            return this._downloadUrl;
-        },
-        set: function (value) {
-            if (this.downloadUrl === value)
-                return;
-            this._downloadUrl = value;
-            this.setAttribute('downloadurl', this._downloadUrl);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "description", {
-        get: function () {
-            return this._description;
-        },
-        set: function (value) {
-            this._description = value;
-            this.setAttribute('description', this._description);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "learnMore", {
-        get: function () {
-            return this._learnMore;
-        },
-        set: function (value) {
-            this._learnMore = value;
-            this.setAttribute('learnmore', this._learnMore);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "version", {
-        get: function () {
-            return this._version;
-        },
-        set: function (value) {
-            this._version = value;
-            this.setAttribute('version', this._version);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAllItem.prototype, "platform", {
-        get: function () {
-            return this._platform;
-        },
-        set: function (value) {
-            this._platform = value;
-            this.setAttribute('platform', this._platform);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsAllItem.prototype.connectedCallback = function () {
-        if (this.productId === 'devsuite' || this.productId === 'cdk') {
-            this.osVersionExtract(this.productId);
-            this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform);
-        }
-        else {
-            this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, null);
-        }
-    };
-    RHDPDownloadsAllItem.prototype.osVersionExtract = function (productId) {
-        var osPlatform = new RHDPOSDownload();
-        osPlatform.platformType = osPlatform.getUserAgent();
-        osPlatform.downloadURL = this.downloadUrl;
-        osPlatform.setOSURL(productId);
-        osPlatform.setDownloadURLByPlatform();
-        this.downloadUrl = osPlatform.downloadURL;
-        this.platform = osPlatform.platformType;
-    };
-    Object.defineProperty(RHDPDownloadsAllItem, "observedAttributes", {
-        get: function () {
-            return ['name'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsAllItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPDownloadsAllItem;
-}(HTMLElement));
-var RHDPDownloadsAll = (function (_super) {
-    __extends(RHDPDownloadsAll, _super);
-    function RHDPDownloadsAll() {
-        var _this = _super.call(this) || this;
-        _this.template = function (strings, id, heading) {
-            return "<div class=\"download-list\">\n                    <div class=\"large-24 category-label\" id=\"" + id + "\">\n                        <h4>" + heading + "</h4>\n                    </div>\n                </div>\n                ";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPDownloadsAll.prototype, "id", {
-        get: function () {
-            return this._id;
-        },
-        set: function (value) {
-            if (this.id === value)
-                return;
-            this._id = value;
-            this.setAttribute('id', this._id);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAll.prototype, "heading", {
-        get: function () {
-            return this._heading;
-        },
-        set: function (value) {
-            if (this.heading === value)
-                return;
-            this._heading = value;
-            this.setAttribute('heading', this._heading);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsAll.prototype, "products", {
-        get: function () {
-            return this._products;
-        },
-        set: function (value) {
-            if (this.products === value)
-                return;
-            this._products = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsAll.prototype.connectedCallback = function () {
-        this.innerHTML = this.template(__makeTemplateObject(["", "", ""], ["", "", ""]), this.id, this.heading);
-        this.getProductsWithTargetHeading(this.products);
-    };
-    RHDPDownloadsAll.prototype.getProductsWithTargetHeading = function (productList) {
-        if (productList.products) {
-            var products = productList.products.products;
-            var len = products.length;
-            for (var i = 0; i < len; i++) {
-                if (products[i].groupHeading === this.heading) {
-                    var item = new RHDPDownloadsAllItem();
-                    item.name = products[i].productName;
-                    item.productId = products[i].productCode ? products[i].productCode : "";
-                    item.dataFallbackUrl = products[i].dataFallbackUrl ? products[i].dataFallbackUrl : "";
-                    item.downloadUrl = products[i].downloadLink ? products[i].downloadLink : "";
-                    item.description = products[i].description ? products[i].description : "";
-                    item.learnMore = products[i].learnMoreLink ? products[i].learnMoreLink : "";
-                    item.version = products[i].version ? products[i].version : "";
-                    this.querySelector('.download-list').appendChild(item);
-                }
+System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-product", ["@rhd/rhdp-os-download"], function (exports_15, context_15) {
+    "use strict";
+    var __moduleName = context_15 && context_15.id;
+    var rhdp_os_download_2, RHDPDownloadsPopularProduct, templateObject_7;
+    return {
+        setters: [
+            function (rhdp_os_download_2_1) {
+                rhdp_os_download_2 = rhdp_os_download_2_1;
             }
-        }
-    };
-    Object.defineProperty(RHDPDownloadsAll, "observedAttributes", {
-        get: function () {
-            return ['id', 'heading'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsAll.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPDownloadsAll;
-}(HTMLElement));
-var RHDPDownloadsApp = (function (_super) {
-    __extends(RHDPDownloadsApp, _super);
-    function RHDPDownloadsApp() {
-        var _this = _super.call(this) || this;
-        _this.stage_download_url = 'https://developers.stage.redhat.com';
-        _this.popularProduct = new RHDPDownloadsPopularProducts();
-        _this.products = new RHDPDownloadsProducts();
-        _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <span class=\"dl-outage-msg\"></span>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
-        return _this;
-    }
-    Object.defineProperty(RHDPDownloadsApp.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (val) {
-            if (this._url === val)
-                return;
-            this._url = val;
-            this.setAttribute('url', this.url);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsApp.prototype.connectedCallback = function () {
-        this.innerHTML = this.template;
-        this.setProductsDownloadData(this.url);
-    };
-    RHDPDownloadsApp.prototype.addGroups = function (productList) {
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('accelerated_development_and_management', 'ACCELERATED DEVELOPMENT AND MANAGEMENT', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('developer_tools', 'DEVELOPER TOOLS', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('infrastructure', 'INFRASTRUCTURE', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('integration_and_automation', 'INTEGRATION AND AUTOMATION', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile', 'MOBILE', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud', 'CLOUD', productList));
-        this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'LANGUAGES AND COMPILERS', productList));
-    };
-    RHDPDownloadsApp.prototype.setPopularProducts = function (productList) {
-        this.popularProduct.productList = productList.products;
-        this.querySelector('.most-popular-downloads .row').appendChild(this.popularProduct);
-    };
-    RHDPDownloadsApp.prototype.downloadsAllFactory = function (id, heading, productList) {
-        var downloads = new RHDPDownloadsAll();
-        downloads.id = id;
-        downloads.heading = heading;
-        downloads.products = productList;
-        return downloads;
-    };
-    RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
-        var _this = this;
-        if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
-            url = url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
-        }
-        var fInit = {
-            method: 'GET',
-            headers: new Headers(),
-            mode: 'cors',
-            cache: 'default'
-        };
-        fetch(url, fInit)
-            .then(function (resp) { return resp.json(); })
-            .then(function (data) {
-            _this.products.data = data;
-            _this.setPopularProducts(_this.products);
-            _this.addGroups(_this.products);
-        });
-    };
-    Object.defineProperty(RHDPDownloadsApp, "observedAttributes", {
-        get: function () {
-            return ['url'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsApp.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPDownloadsApp;
-}(HTMLElement));
-var RHDPDownloadsPopularProduct = (function (_super) {
-    __extends(RHDPDownloadsPopularProduct, _super);
-    function RHDPDownloadsPopularProduct() {
-        var _this = _super.call(this) || this;
-        _this.template = function (strings, name, id, dataFallbackUrl, url) {
-            return "\n        <div class=\"large-6 column\">\n            <div class=\"popular-download-box\">\n                <h4>" + name + "</h4>\n                <a class=\"button heavy-cta\" data-download-id=\"" + id + "\" data-fallback-url=\"" + dataFallbackUrl + "\" href=\"" + url + "\"><i class=\"fa fa-download\"></i> Download</a>\n            </div>\n        </div>";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            if (this._name === value)
-                return;
-            this._name = value;
-            this.setAttribute('name', this.name);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "productId", {
-        get: function () {
-            return this._productId;
-        },
-        set: function (value) {
-            if (this.productId === value)
-                return;
-            this._productId = value;
-            this.setAttribute('productid', this.productId);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "dataFallbackUrl", {
-        get: function () {
-            return this._dataFallbackUrl;
-        },
-        set: function (value) {
-            if (this.dataFallbackUrl === value)
-                return;
-            this._dataFallbackUrl = value;
-            this.setAttribute('datafallbackurl', this.dataFallbackUrl);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "downloadUrl", {
-        get: function () {
-            return this._downloadUrl;
-        },
-        set: function (value) {
-            if (this.downloadUrl === value)
-                return;
-            this._downloadUrl = value;
-            this.setAttribute('downloadurl', this.downloadUrl);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsPopularProduct.prototype.osVersionExtract = function (productId) {
-        var osPlatform = new RHDPOSDownload();
-        osPlatform.platformType = osPlatform.getUserAgent();
-        osPlatform.downloadURL = this.downloadUrl;
-        osPlatform.setOSURL(productId);
-        osPlatform.setDownloadURLByPlatform();
-        this.downloadUrl = osPlatform.downloadURL;
-    };
-    RHDPDownloadsPopularProduct.prototype.connectedCallback = function () {
-        this.osVersionExtract(this.productId);
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl);
-    };
-    Object.defineProperty(RHDPDownloadsPopularProduct, "observedAttributes", {
-        get: function () {
-            return ['name', 'productid', 'downloadurl', 'datafallbackurl'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsPopularProduct.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPDownloadsPopularProduct;
-}(HTMLElement));
-var RHDPDownloadsPopularProducts = (function (_super) {
-    __extends(RHDPDownloadsPopularProducts, _super);
-    function RHDPDownloadsPopularProducts() {
-        return _super.call(this) || this;
-    }
-    Object.defineProperty(RHDPDownloadsPopularProducts.prototype, "productList", {
-        get: function () {
-            return this._productList;
-        },
-        set: function (value) {
-            if (this._productList === value)
-                return;
-            this._productList = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsPopularProducts.prototype.addProduct = function (product) {
-        var productNode = new RHDPDownloadsPopularProduct();
-        productNode.name = product.productName;
-        productNode.productId = product.productCode;
-        productNode.dataFallbackUrl = product.dataFallbackUrl;
-        productNode.downloadUrl = product.downloadLink;
-        this.appendChild(productNode);
-    };
-    RHDPDownloadsPopularProducts.prototype.renderProductList = function () {
-        if (this.productList.products) {
-            var products = this.productList.products;
-            var len = products.length;
-            for (var i = 0; i < len; i++) {
-                if (products[i].featured) {
-                    this.addProduct(products[i]);
+        ],
+        execute: function () {
+            RHDPDownloadsPopularProduct = (function (_super) {
+                __extends(RHDPDownloadsPopularProduct, _super);
+                function RHDPDownloadsPopularProduct() {
+                    var _this = _super.call(this) || this;
+                    _this.template = function (strings, name, id, dataFallbackUrl, url) {
+                        return "\n        <div class=\"large-6 column\">\n            <div class=\"popular-download-box\">\n                <h4>" + name + "</h4>\n                <a class=\"button heavy-cta\" data-download-id=\"" + id + "\" data-fallback-url=\"" + dataFallbackUrl + "\" href=\"" + url + "\"><i class=\"fa fa-download\"></i> Download</a>\n            </div>\n        </div>";
+                    };
+                    return _this;
                 }
-            }
+                Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "name", {
+                    get: function () {
+                        return this._name;
+                    },
+                    set: function (value) {
+                        if (this._name === value)
+                            return;
+                        this._name = value;
+                        this.setAttribute('name', this.name);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "productId", {
+                    get: function () {
+                        return this._productId;
+                    },
+                    set: function (value) {
+                        if (this.productId === value)
+                            return;
+                        this._productId = value;
+                        this.setAttribute('productid', this.productId);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "dataFallbackUrl", {
+                    get: function () {
+                        return this._dataFallbackUrl;
+                    },
+                    set: function (value) {
+                        if (this.dataFallbackUrl === value)
+                            return;
+                        this._dataFallbackUrl = value;
+                        this.setAttribute('datafallbackurl', this.dataFallbackUrl);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsPopularProduct.prototype, "downloadUrl", {
+                    get: function () {
+                        return this._downloadUrl;
+                    },
+                    set: function (value) {
+                        if (this.downloadUrl === value)
+                            return;
+                        this._downloadUrl = value;
+                        this.setAttribute('downloadurl', this.downloadUrl);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsPopularProduct.prototype.osVersionExtract = function (productId) {
+                    var osPlatform = new rhdp_os_download_2.default();
+                    osPlatform.platformType = osPlatform.getUserAgent();
+                    osPlatform.downloadURL = this.downloadUrl;
+                    osPlatform.setOSURL(productId);
+                    osPlatform.setDownloadURLByPlatform();
+                    this.downloadUrl = osPlatform.downloadURL;
+                };
+                RHDPDownloadsPopularProduct.prototype.connectedCallback = function () {
+                    this.osVersionExtract(this.productId);
+                    this.innerHTML = this.template(templateObject_7 || (templateObject_7 = __makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""])), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl);
+                };
+                Object.defineProperty(RHDPDownloadsPopularProduct, "observedAttributes", {
+                    get: function () {
+                        return ['name', 'productid', 'downloadurl', 'datafallbackurl'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsPopularProduct.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                return RHDPDownloadsPopularProduct;
+            }(HTMLElement));
+            exports_15("default", RHDPDownloadsPopularProduct);
+            window.customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
         }
     };
-    RHDPDownloadsPopularProducts.prototype.connectedCallback = function () {
-        this.renderProductList();
-    };
-    RHDPDownloadsPopularProducts.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    return RHDPDownloadsPopularProducts;
-}(HTMLElement));
-var RHDPDownloadsProducts = (function (_super) {
-    __extends(RHDPDownloadsProducts, _super);
-    function RHDPDownloadsProducts() {
-        var _this = _super.call(this) || this;
-        _this._products = {
-            "products": [{
-                    "productName": "Red Hat JBoss Data Grid",
-                    "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
-                    "productCode": "datagrid",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=data.grid&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.",
-                    "version": "",
-                    "learnMoreLink": "/products/datagrid/overview/"
-                }, {
-                    "productName": "Red Hat JBoss Enterprise Application Platform",
-                    "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
-                    "productCode": "eap",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=appplatform&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.",
-                    "version": "",
-                    "learnMoreLink": "/products/eap/overview/"
-                }, {
-                    "productName": "Red Hat JBoss Web Server",
-                    "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
-                    "downloadLink": "/products/webserver/download/",
-                    "description": "Apache httpd, Tomcat, etc. to provide a single solution for large-scale websites and light-weight Java web applications.",
-                    "version": "",
-                    "learnMoreLink": "/products/webserver/overview/"
-                }, {
-                    "productName": "Red Hat Application Migration Toolkit",
-                    "groupHeading": "DEVELOPER TOOLS",
-                    "productCode": "migrationtoolkit",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads",
-                    "downloadLink": "",
-                    "description": "Red Hat Application Migration Toolkit is an assembly of open source tools that enables large-scale application migrations and modernizations. The tooling consists of multiple individual components that provide support for each phase of a migration process.",
-                    "version": "",
-                    "learnMoreLink": "/products/rhamt/overview/"
-                }, {
-                    "productName": "Red Hat Container Development Kit",
-                    "groupHeading": "DEVELOPER TOOLS",
-                    "productCode": "cdk",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads/content/293/",
-                    "downloadLink": "",
-                    "description": "For container development, includes RHEL and OpenShift 3.",
-                    "version": "",
-                    "learnMoreLink": "/products/cdk/overview/"
-                }, {
-                    "productName": "Red Hat Development Suite",
-                    "groupHeading": "DEVELOPER TOOLS",
-                    "productCode": "devsuite",
-                    "featured": true,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads",
-                    "downloadLink": "",
-                    "description": "A fully integrated development environment for modern enterprise development.",
-                    "version": "",
-                    "learnMoreLink": "/products/devsuite/overview/"
-                }, {
-                    "productName": "Red Hat JBoss Developer Studio",
-                    "groupHeading": "DEVELOPER TOOLS",
-                    "productCode": "devstudio",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jbossdeveloperstudio&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.",
-                    "version": "",
-                    "learnMoreLink": "/products/devstudio/overview/"
-                }, {
-                    "productName": "Red Hat Enterprise Linux",
-                    "groupHeading": "INFRASTRUCTURE",
-                    "productCode": "rhel",
-                    "featured": true,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads/content/69/",
-                    "downloadLink": "",
-                    "description": "For traditional development, includes Software Collections and Developer Toolset.",
-                    "version": "",
-                    "learnMoreLink": "/products/rhel/overview/"
-                }, {
-                    "productName": "Red Hat JBoss AMQ",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "amq",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.amq&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.",
-                    "version": "",
-                    "learnMoreLink": "/products/amq/overview/"
-                }, {
-                    "productName": "Red Hat Decision Manager",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "brms",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=brms&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "A programming platform to easily capture and maintain rules for business changes, without impacting static applications.",
-                    "version": "",
-                    "learnMoreLink": "/products/red-hat-decision-manager/overview/"
-                }, {
-                    "productName": "Red Hat Process Automation Manager",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "rhpam",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=bpm.suite&productChanged=yes",
-                    "downloadLink": "",
-                    "description": "A platform that combines business rules and process management (BPM), and complex event processing.",
-                    "version": "",
-                    "learnMoreLink": "/products/rhpam/overview/"
-                }, {
-                    "productName": "Red Hat JBoss Data Virtualization",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "datavirt",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=data.services.platform&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
-                    "version": "",
-                    "learnMoreLink": "/products/datavirt/overview/"
-                }, {
-                    "productName": "Red Hat JBoss Fuse",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "fuse",
-                    "featured": true,
-                    "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions",
-                    "downloadLink": "",
-                    "description": "A small-footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.",
-                    "version": "",
-                    "learnMoreLink": "/products/fuse/overview/"
-                }, {
-                    "productName": "Red Hat Mobile Application Platform",
-                    "groupHeading": "MOBILE",
-                    "featured": true,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads/content/316/",
-                    "downloadLink": "/products/mobileplatform/download/",
-                    "description": "Develop and deploy mobile apps in an agile and flexible manner.",
-                    "version": "",
-                    "learnMoreLink": "/products/mobileplatform/overview/"
-                }, {
-                    "productName": "Red Hat OpenShift Container Platform",
-                    "groupHeading": "CLOUD",
-                    "productCode": "openshift",
-                    "featured": false,
-                    "dataFallbackUrl": "https://access.redhat.com/downloads/content/290/",
-                    "downloadLink": "",
-                    "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
-                    "version": "",
-                    "learnMoreLink": "/products/openshift/overview/"
-                }, {
-                    "productName": "OpenJDK",
-                    "groupHeading": "LANGUAGES AND COMPILERS",
-                    "productCode": "openjdk",
-                    "featured": false,
-                    "dataFallbackUrl": "/products/openjdk/overview/",
-                    "downloadLink": "",
-                    "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
-                    "version": "",
-                    "learnMoreLink": "/products/openjdk/overview/"
-                }]
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPDownloadsProducts.prototype, "category", {
-        get: function () {
-            return this._category;
-        },
-        set: function (value) {
-            if (this._category === value)
-                return;
-            this._category = value;
-            this.setAttribute('category', this._category);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsProducts.prototype, "products", {
-        get: function () {
-            return this._products;
-        },
-        set: function (value) {
-            if (this._products === value)
-                return;
-            this._products = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPDownloadsProducts.prototype, "data", {
-        get: function () {
-            return this._data;
-        },
-        set: function (value) {
-            if (this._data === value)
-                return;
-            this._data = value;
-            this.setAttribute('data', this._data);
-            this._createProductList();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPDownloadsProducts.prototype._createProductList = function () {
-        var tempProductList = { "products": [] };
-        if (this._data) {
-            var productLen = this.products.products.length;
-            var dataLen = this.data.length;
-            for (var i = 0; i < productLen; i++) {
-                var product = this.products.products[i];
-                for (var j = 0; j < dataLen; j++) {
-                    var data = this.data[j];
-                    if (data['productCode'] == product['productCode']) {
-                        this.products.products[i]['downloadLink'] = data['featuredArtifact']['url'];
-                        this.products.products[i]['version'] = data['featuredArtifact']['versionName'];
+});
+System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-products", ["@rhd/rhdp-downloads/rhdp-downloads-popular-product"], function (exports_16, context_16) {
+    "use strict";
+    var __moduleName = context_16 && context_16.id;
+    var rhdp_downloads_popular_product_1, RHDPDownloadsPopularProducts;
+    return {
+        setters: [
+            function (rhdp_downloads_popular_product_1_1) {
+                rhdp_downloads_popular_product_1 = rhdp_downloads_popular_product_1_1;
+            }
+        ],
+        execute: function () {
+            RHDPDownloadsPopularProducts = (function (_super) {
+                __extends(RHDPDownloadsPopularProducts, _super);
+                function RHDPDownloadsPopularProducts() {
+                    return _super.call(this) || this;
+                }
+                Object.defineProperty(RHDPDownloadsPopularProducts.prototype, "productList", {
+                    get: function () {
+                        return this._productList;
+                    },
+                    set: function (value) {
+                        if (this._productList === value)
+                            return;
+                        this._productList = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsPopularProducts.prototype.addProduct = function (product) {
+                    var productNode = new rhdp_downloads_popular_product_1.default();
+                    productNode.name = product.productName;
+                    productNode.productId = product.productCode;
+                    productNode.dataFallbackUrl = product.dataFallbackUrl;
+                    productNode.downloadUrl = product.downloadLink;
+                    this.appendChild(productNode);
+                };
+                RHDPDownloadsPopularProducts.prototype.renderProductList = function () {
+                    if (this.productList.products) {
+                        var products = this.productList.products;
+                        var len = products.length;
+                        for (var i = 0; i < len; i++) {
+                            if (products[i].featured) {
+                                this.addProduct(products[i]);
+                            }
+                        }
                     }
-                }
-                tempProductList['products'].push(product);
-            }
+                };
+                RHDPDownloadsPopularProducts.prototype.connectedCallback = function () {
+                    this.renderProductList();
+                };
+                RHDPDownloadsPopularProducts.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                return RHDPDownloadsPopularProducts;
+            }(HTMLElement));
+            exports_16("default", RHDPDownloadsPopularProducts);
+            window.customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
         }
-        this.products = tempProductList;
     };
-    return RHDPDownloadsProducts;
-}(HTMLElement));
-window.addEventListener('WebComponentsReady', function () {
-    customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
-    customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
-    customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
-    customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
-    customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
-    customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
+});
+System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exports_17, context_17) {
+    "use strict";
+    var __moduleName = context_17 && context_17.id;
+    var RHDPDownloadsProducts;
+    return {
+        setters: [],
+        execute: function () {
+            RHDPDownloadsProducts = (function (_super) {
+                __extends(RHDPDownloadsProducts, _super);
+                function RHDPDownloadsProducts() {
+                    var _this = _super.call(this) || this;
+                    _this._products = {
+                        "products": [{
+                                "productName": "Red Hat JBoss Data Grid",
+                                "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
+                                "productCode": "datagrid",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=data.grid&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.",
+                                "version": "",
+                                "learnMoreLink": "/products/datagrid/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss Enterprise Application Platform",
+                                "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
+                                "productCode": "eap",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=appplatform&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.",
+                                "version": "",
+                                "learnMoreLink": "/products/eap/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss Web Server",
+                                "groupHeading": "ACCELERATED DEVELOPMENT AND MANAGEMENT",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=webserver&productChanged=yes",
+                                "downloadLink": "/products/webserver/download/",
+                                "description": "Apache httpd, Tomcat, etc. to provide a single solution for large-scale websites and light-weight Java web applications.",
+                                "version": "",
+                                "learnMoreLink": "/products/webserver/overview/"
+                            }, {
+                                "productName": "Red Hat Application Migration Toolkit",
+                                "groupHeading": "DEVELOPER TOOLS",
+                                "productCode": "migrationtoolkit",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads",
+                                "downloadLink": "",
+                                "description": "Red Hat Application Migration Toolkit is an assembly of open source tools that enables large-scale application migrations and modernizations. The tooling consists of multiple individual components that provide support for each phase of a migration process.",
+                                "version": "",
+                                "learnMoreLink": "/products/rhamt/overview/"
+                            }, {
+                                "productName": "Red Hat Container Development Kit",
+                                "groupHeading": "DEVELOPER TOOLS",
+                                "productCode": "cdk",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads/content/293/",
+                                "downloadLink": "",
+                                "description": "For container development, includes RHEL and OpenShift 3.",
+                                "version": "",
+                                "learnMoreLink": "/products/cdk/overview/"
+                            }, {
+                                "productName": "Red Hat Development Suite",
+                                "groupHeading": "DEVELOPER TOOLS",
+                                "productCode": "devsuite",
+                                "featured": true,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads",
+                                "downloadLink": "",
+                                "description": "A fully integrated development environment for modern enterprise development.",
+                                "version": "",
+                                "learnMoreLink": "/products/devsuite/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss Developer Studio",
+                                "groupHeading": "DEVELOPER TOOLS",
+                                "productCode": "devstudio",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jbossdeveloperstudio&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.",
+                                "version": "",
+                                "learnMoreLink": "/products/devstudio/overview/"
+                            }, {
+                                "productName": "Red Hat Enterprise Linux",
+                                "groupHeading": "INFRASTRUCTURE",
+                                "productCode": "rhel",
+                                "featured": true,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads/content/69/",
+                                "downloadLink": "",
+                                "description": "For traditional development, includes Software Collections and Developer Toolset.",
+                                "version": "",
+                                "learnMoreLink": "/products/rhel/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss AMQ",
+                                "groupHeading": "INTEGRATION AND AUTOMATION",
+                                "productCode": "amq",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.amq&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.",
+                                "version": "",
+                                "learnMoreLink": "/products/amq/overview/"
+                            }, {
+                                "productName": "Red Hat Decision Manager",
+                                "groupHeading": "INTEGRATION AND AUTOMATION",
+                                "productCode": "brms",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=brms&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "A programming platform to easily capture and maintain rules for business changes, without impacting static applications.",
+                                "version": "",
+                                "learnMoreLink": "/products/red-hat-decision-manager/overview/"
+                            }, {
+                                "productName": "Red Hat Process Automation Manager",
+                                "groupHeading": "INTEGRATION AND AUTOMATION",
+                                "productCode": "rhpam",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=bpm.suite&productChanged=yes",
+                                "downloadLink": "",
+                                "description": "A platform that combines business rules and process management (BPM), and complex event processing.",
+                                "version": "",
+                                "learnMoreLink": "/products/rhpam/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss Data Virtualization",
+                                "groupHeading": "INTEGRATION AND AUTOMATION",
+                                "productCode": "datavirt",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=data.services.platform&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
+                                "version": "",
+                                "learnMoreLink": "/products/datavirt/overview/"
+                            }, {
+                                "productName": "Red Hat JBoss Fuse",
+                                "groupHeading": "INTEGRATION AND AUTOMATION",
+                                "productCode": "fuse",
+                                "featured": true,
+                                "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions",
+                                "downloadLink": "",
+                                "description": "A small-footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.",
+                                "version": "",
+                                "learnMoreLink": "/products/fuse/overview/"
+                            }, {
+                                "productName": "Red Hat Mobile Application Platform",
+                                "groupHeading": "MOBILE",
+                                "featured": true,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads/content/316/",
+                                "downloadLink": "/products/mobileplatform/download/",
+                                "description": "Develop and deploy mobile apps in an agile and flexible manner.",
+                                "version": "",
+                                "learnMoreLink": "/products/mobileplatform/overview/"
+                            }, {
+                                "productName": "Red Hat OpenShift Container Platform",
+                                "groupHeading": "CLOUD",
+                                "productCode": "openshift",
+                                "featured": false,
+                                "dataFallbackUrl": "https://access.redhat.com/downloads/content/290/",
+                                "downloadLink": "",
+                                "description": "An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.",
+                                "version": "",
+                                "learnMoreLink": "/products/openshift/overview/"
+                            }, {
+                                "productName": "OpenJDK",
+                                "groupHeading": "LANGUAGES AND COMPILERS",
+                                "productCode": "openjdk",
+                                "featured": false,
+                                "dataFallbackUrl": "/products/openjdk/overview/",
+                                "downloadLink": "",
+                                "description": "A Tried, Tested and Trusted open source implementation of the Java platform",
+                                "version": "",
+                                "learnMoreLink": "/products/openjdk/overview/"
+                            }]
+                    };
+                    return _this;
+                }
+                Object.defineProperty(RHDPDownloadsProducts.prototype, "category", {
+                    get: function () {
+                        return this._category;
+                    },
+                    set: function (value) {
+                        if (this._category === value)
+                            return;
+                        this._category = value;
+                        this.setAttribute('category', this._category);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsProducts.prototype, "products", {
+                    get: function () {
+                        return this._products;
+                    },
+                    set: function (value) {
+                        if (this._products === value)
+                            return;
+                        this._products = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(RHDPDownloadsProducts.prototype, "data", {
+                    get: function () {
+                        return this._data;
+                    },
+                    set: function (value) {
+                        if (this._data === value)
+                            return;
+                        this._data = value;
+                        this.setAttribute('data', this._data);
+                        this._createProductList();
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsProducts.prototype._createProductList = function () {
+                    var tempProductList = { "products": [] };
+                    if (this._data) {
+                        var productLen = this.products.products.length;
+                        var dataLen = this.data.length;
+                        for (var i = 0; i < productLen; i++) {
+                            var product = this.products.products[i];
+                            for (var j = 0; j < dataLen; j++) {
+                                var data = this.data[j];
+                                if (data['productCode'] == product['productCode']) {
+                                    this.products.products[i]['downloadLink'] = data['featuredArtifact']['url'];
+                                    this.products.products[i]['version'] = data['featuredArtifact']['versionName'];
+                                }
+                            }
+                            tempProductList['products'].push(product);
+                        }
+                    }
+                    this.products = tempProductList;
+                };
+                return RHDPDownloadsProducts;
+            }(HTMLElement));
+            exports_17("default", RHDPDownloadsProducts);
+            window.customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
+        }
+    };
+});
+System.register("@rhd/rhdp-downloads/rhdp-downloads-app", ["@rhd/rhdp-downloads/rhdp-downloads-popular-products", "@rhd/rhdp-downloads/rhdp-downloads-products", "@rhd/rhdp-downloads/rhdp-downloads-all"], function (exports_18, context_18) {
+    "use strict";
+    var __moduleName = context_18 && context_18.id;
+    var rhdp_downloads_popular_products_1, rhdp_downloads_products_1, rhdp_downloads_all_1, RHDPDownloadsApp;
+    return {
+        setters: [
+            function (rhdp_downloads_popular_products_1_1) {
+                rhdp_downloads_popular_products_1 = rhdp_downloads_popular_products_1_1;
+            },
+            function (rhdp_downloads_products_1_1) {
+                rhdp_downloads_products_1 = rhdp_downloads_products_1_1;
+            },
+            function (rhdp_downloads_all_1_1) {
+                rhdp_downloads_all_1 = rhdp_downloads_all_1_1;
+            }
+        ],
+        execute: function () {
+            RHDPDownloadsApp = (function (_super) {
+                __extends(RHDPDownloadsApp, _super);
+                function RHDPDownloadsApp() {
+                    var _this = _super.call(this) || this;
+                    _this.stage_download_url = 'https://developers.stage.redhat.com';
+                    _this.popularProduct = new rhdp_downloads_popular_products_1.default();
+                    _this.products = new rhdp_downloads_products_1.default();
+                    _this.template = "<div class=\"hero hero-wide hero-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-12 medium-24 columns\" id=\"downloads\">\n                            <h2>Downloads</h2>\n                        </div>\n                    </div>\n                </div>\n                <span class=\"dl-outage-msg\"></span>\n                <div class=\"most-popular-downloads\">\n                    <div class=\"row\">\n                        <div class=\"large-24 column\">\n                            <h3>Most Popular</h3>\n                        </div>\n                    </div>\n                \n                    <div class=\"row\">\n                    </div>\n                </div>\n                <div class=\"row\" id=\"downloads\">\n                    <div class=\"large-24 columns\">\n                        <h3 class=\"downloads-header\">All Downloads</h3>\n                    </div>\n                </div>";
+                    return _this;
+                }
+                Object.defineProperty(RHDPDownloadsApp.prototype, "url", {
+                    get: function () {
+                        return this._url;
+                    },
+                    set: function (val) {
+                        if (this._url === val)
+                            return;
+                        this._url = val;
+                        this.setAttribute('url', this.url);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsApp.prototype.connectedCallback = function () {
+                    this.innerHTML = this.template;
+                    this.setProductsDownloadData(this.url);
+                };
+                RHDPDownloadsApp.prototype.addGroups = function (productList) {
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('accelerated_development_and_management', 'ACCELERATED DEVELOPMENT AND MANAGEMENT', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('developer_tools', 'DEVELOPER TOOLS', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('infrastructure', 'INFRASTRUCTURE', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('integration_and_automation', 'INTEGRATION AND AUTOMATION', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile', 'MOBILE', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud', 'CLOUD', productList));
+                    this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes', 'LANGUAGES AND COMPILERS', productList));
+                };
+                RHDPDownloadsApp.prototype.setPopularProducts = function (productList) {
+                    this.popularProduct.productList = productList.products;
+                    this.querySelector('.most-popular-downloads .row').appendChild(this.popularProduct);
+                };
+                RHDPDownloadsApp.prototype.downloadsAllFactory = function (id, heading, productList) {
+                    var downloads = new rhdp_downloads_all_1.default();
+                    downloads.id = id;
+                    downloads.heading = heading;
+                    downloads.products = productList;
+                    return downloads;
+                };
+                RHDPDownloadsApp.prototype.setProductsDownloadData = function (url) {
+                    var _this = this;
+                    if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
+                        url = url.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+                    }
+                    var fInit = {
+                        method: 'GET',
+                        headers: new Headers(),
+                        mode: 'cors',
+                        cache: 'default'
+                    };
+                    fetch(url, fInit)
+                        .then(function (resp) { return resp.json(); })
+                        .then(function (data) {
+                        _this.products.data = data;
+                        _this.setPopularProducts(_this.products);
+                        _this.addGroups(_this.products);
+                    });
+                };
+                Object.defineProperty(RHDPDownloadsApp, "observedAttributes", {
+                    get: function () {
+                        return ['url'];
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHDPDownloadsApp.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                return RHDPDownloadsApp;
+            }(HTMLElement));
+            exports_18("default", RHDPDownloadsApp);
+            window.customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
+        }
+    };
 });
 var RHDPProjectFilterBox = (function (_super) {
     __extends(RHDPProjectFilterBox, _super);
