@@ -296,7 +296,8 @@ div.alert-box {
   border-style: solid;
   padding: 10px 20px;
   margin: 1.5em auto;
-  font-size: 1em; }
+  font-size: 1em;
+  position: relative; }
   div.alert-box div.alert-content {
     display: inline; }
     div.alert-box div.alert-content strong {
@@ -346,17 +347,16 @@ div.alert-box {
       width: calc(100% - 4em); }
       div.alert-box.alert-xl div.alert-content h1, div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h3, div.alert-box.alert-xl div.alert-content h4, div.alert-box.alert-xl div.alert-content h5, div.alert-box.alert-xl div.alert-content h6 {
         font-weight: 400;
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        margin-top: 0; }
   div.alert-box a.close {
     top: 1em;
     margin-right: 5px;
     background-repeat: no-repeat;
     height: 24px;
     width: 24px;
-    color: #3b6e90; }
-    div.alert-box a.close:before {
-      font-family: FontAwesome;
-      content: '\f00d'; }
+    color: #3b6e90;
+    right: 1em; }
 
 .author.short-teaser {
   font-size: 14px;
@@ -1786,6 +1786,177 @@ a.light-cta {
     font-weight: 600;
     text-align: center;
     margin-bottom: 1em; }
+
+.assembly-type-events_hero {
+  color: #242424;
+  background-color: #00B9E4;
+  background-image: url("images/Blue_Background@2x.png");
+  background-repeat: no-repeat;
+  background-size: 1060px auto;
+  background-position: bottom left;
+  position: relative; }
+  @media (min-width: 576px) {
+    .assembly-type-events_hero {
+      background-size: 1440px auto; } }
+  .assembly-type-events_hero .container, .assembly-type-events_hero .node__content > .field--name-body, .assembly-type-events_hero
+  #block-rhdp-local-tasks {
+    display: block; }
+    @media (min-width: 992px) {
+      .assembly-type-events_hero .container, .assembly-type-events_hero .node__content > .field--name-body, .assembly-type-events_hero
+      #block-rhdp-local-tasks {
+        display: flex; } }
+    .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero
+    #block-rhdp-local-tasks .primary-event {
+      padding: 30px 0; }
+      @media (min-width: 576px) {
+        .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero
+        #block-rhdp-local-tasks .primary-event {
+          padding: 70px 0; } }
+      .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event h2.section-title {
+        font-weight: bold;
+        margin: 0 0 15px; }
+        @media (min-width: 576px) {
+          .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero
+          #block-rhdp-local-tasks .primary-event h2.section-title {
+            margin: 0 0 45px; } }
+      .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
+        font-weight: 800;
+        text-transform: uppercase;
+        margin: 0 0 10px; }
+        @media (min-width: 576px) {
+          .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero
+          #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
+            margin: 0 0 20px; } }
+      .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event .event-info h3 {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 18px;
+        margin: 0 0 10px; }
+        @media (min-width: 576px) {
+          .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero
+          #block-rhdp-local-tasks .primary-event .event-info h3 {
+            margin: 0 0 20px;
+            font-size: 27px;
+            line-height: 27px; } }
+      .assembly-type-events_hero .container .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event .event-info .field--name-field-short-description {
+        font-size: 16px;
+        line-height: 24px;
+        color: #424242; }
+      .assembly-type-events_hero .container .primary-event .event-presenters, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event .event-presenters {
+        float: left;
+        width: 100%; }
+        .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero
+        #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
+          margin-top: 35px; }
+          @media (min-width: 576px) {
+            .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero
+            #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
+              float: left;
+              margin-right: 40px;
+              max-width: 200px; }
+              .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero
+              #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser:last-of-type {
+                margin-right: 0; } }
+      .assembly-type-events_hero .container .primary-event .button, .assembly-type-events_hero .node__content > .field--name-body .primary-event .button, .assembly-type-events_hero
+      #block-rhdp-local-tasks .primary-event .button {
+        margin-top: 40px; }
+    .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero
+    .has-sidebar#block-rhdp-local-tasks .primary-event {
+      width: 100%; }
+      @media (min-width: 992px) {
+        .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero
+        .has-sidebar#block-rhdp-local-tasks .primary-event {
+          padding-right: 70px;
+          width: 50%;
+          flex-grow: 2; } }
+    .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero
+    .has-sidebar#block-rhdp-local-tasks .secondary-events {
+      width: 100%;
+      background-color: #d5d5d5;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      padding: 30px;
+      z-index: 2; }
+      @media (min-width: 992px) {
+        .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero
+        .has-sidebar#block-rhdp-local-tasks .secondary-events {
+          width: 50%;
+          max-width: 320px;
+          flex-grow: 1;
+          padding: 70px 0 70px 70px;
+          left: auto;
+          right: auto;
+          margin: 0; } }
+      .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero
+      .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
+        text-transform: uppercase;
+        margin: 0 0 15px;
+        font-weight: bold; }
+        @media (min-width: 992px) {
+          .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero
+          .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
+            margin: 0 0 35px; } }
+      .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero
+      .has-sidebar#block-rhdp-local-tasks .secondary-events article {
+        float: left;
+        width: 48%; }
+        .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero
+        .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
+          margin-right: 2%; }
+        @media (min-width: 992px) {
+          .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero
+          .has-sidebar#block-rhdp-local-tasks .secondary-events article {
+            float: none;
+            width: 100%; }
+            .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero
+            .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
+              margin-bottom: 50px;
+              margin-right: 0; } }
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-image, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-image, .assembly-type-events_hero
+      .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-image {
+        background-color: transparent; }
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-title, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-title, .assembly-type-events_hero
+      .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-title {
+        font-weight: bold; }
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link, .assembly-type-events_hero
+      .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link {
+        clear: both;
+        width: 100%; }
+        .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a, .assembly-type-events_hero
+        .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a {
+          color: #0066CC;
+          margin-right: 20px;
+          padding-right: 5px;
+          position: relative; }
+          .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a:after, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a:after, .assembly-type-events_hero
+          .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a:after {
+            left: 100%;
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            border-left-color: #0066CC;
+            border-width: 5px;
+            margin-top: -5px; }
+  @media (min-width: 992px) {
+    .assembly-type-events_hero .background-sidebar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30%;
+      height: 100%;
+      background-color: #d5d5d5; } }
 
 meta.foundation-version {
   font-family: "/5.4.4/"; }
@@ -6390,6 +6561,9 @@ body.fullbleed .content-wrapper {
       max-width: 1400px;
       grid-column-gap: 0;
       grid-template-columns: 145px 1fr; } }
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    .rh-nav-universal {
+      max-width: none; } }
 
 .rhd-menu {
   list-style: none;
@@ -6450,6 +6624,8 @@ body.fullbleed .content-wrapper {
       color: #FFFFFF; }
     .rh-universal-header .rh-universal-login li.logged-in .logged-in-name ~ .icon {
       margin-right: 0; }
+    .rh-universal-header .rh-universal-login li.logged-in .dropdwn-trigger:focus {
+      outline: 0; }
   .rh-universal-header .rh-universal-login:hover {
     background-color: #424242; }
   .rh-universal-header .rh-universal-login li a {
@@ -6473,12 +6649,13 @@ body.fullbleed .content-wrapper {
   padding-left: 0;
   z-index: 99;
   margin-left: -10px;
-  margin-top: 16px; }
+  margin-top: 10px; }
   @media screen and (max-width: 768px) {
     .rh-universal-login .dropdwn-menu {
       position: relative;
       width: auto !important;
-      margin-left: 0; } }
+      margin-left: 0;
+      margin-top: 0; } }
   .rh-universal-login .dropdwn-menu li {
     padding-left: 0;
     padding-right: 35px;
@@ -6493,11 +6670,13 @@ body.fullbleed .content-wrapper {
 .rh-universal-login .icon {
   margin-right: 10px;
   color: #FFFFFF; }
+  .rh-universal-login .icon .fa-user {
+    width: 14px; }
 
-.rh-universal-login a + .icon {
+.rh-universal-login .logged-in-name + .icon {
   margin-left: 10px; }
   @media screen and (max-width: 768px) {
-    .rh-universal-login a + .icon {
+    .rh-universal-login .logged-in-name + .icon {
       display: none; } }
 
 @media screen and (max-width: 1024px) {
@@ -6631,7 +6810,11 @@ body.fullbleed .content-wrapper {
     padding: 8px 0;
     display: inline-block;
     border-bottom: 3px solid transparent;
-    position: relative; }
+    position: relative;
+    height: 41px; }
+    @media (min-width: 768px) {
+      .rhd-topic-nav a {
+        height: 44px; } }
     .rhd-topic-nav a:after {
       content: '';
       display: block;
@@ -11891,9 +12074,18 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
   text-align: center; }
 
 .wide.wide-hero.eclipse {
-  background: cdn("https://static.jboss.org/rhd/images/_images_eclipse_eclipse_microsite_hero.jpg");
-  background-size: cover;
+  background: url("/images/_images_eclipse_eclipse_microsite_hero_overlay.png"), url("/images/_images_eclipse_eclipse_microsite_hero.jpg");
+  background-repeat: no-repeat;
+  background-size: 70%, cover;
+  background-position: center center, center center;
   height: 450px; }
+  @media screen and (max-width: 834px) {
+    .wide.wide-hero.eclipse {
+      height: 300px; } }
+  @media screen and (max-width: 414px) {
+    .wide.wide-hero.eclipse {
+      height: 150px;
+      background-size: 90%, cover; } }
 
 .hero.hero-forums {
   background: url("https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_desktop.png") top center/cover no-repeat;

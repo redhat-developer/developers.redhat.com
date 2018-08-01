@@ -1,0 +1,23 @@
+uuid: 5ad99d9a-8d8b-4c99-952b-0b9317b7bb7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_hero
+    - field.storage.assembly.field_sidebar_link
+  module:
+    - link
+id: assembly.events_hero.field_sidebar_link
+field_name: field_sidebar_link
+entity_type: assembly
+bundle: events_hero
+label: 'Sidebar Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
