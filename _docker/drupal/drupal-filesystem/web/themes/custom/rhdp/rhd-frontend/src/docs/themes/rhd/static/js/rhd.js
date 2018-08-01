@@ -4783,8 +4783,7 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                                     { key: 'iot', name: 'Internet of Things', value: ['IoT', 'Internet of Things'] },
                                     { key: 'microservices', name: 'Microservices', value: ['Microservices', ' WildFly Swarm'] },
                                     { key: 'mobile', name: 'Mobile', value: ['Mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },
-                                    { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] },
-                                    { key: '', name: '', value: [] },
+                                    { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] }
                                 ]
                             }
                         ]

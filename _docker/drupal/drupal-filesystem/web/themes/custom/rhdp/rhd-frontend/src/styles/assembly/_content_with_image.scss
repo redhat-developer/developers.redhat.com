@@ -1,19 +1,27 @@
 .assembly-type-content_with_image {
   padding: 40px 0;
-  @include tablet-landscape {
+  @include tablet-portrait-and-down {
+    text-align: center;
+  }
+  @include tablet-landscape-and-up {
     padding: 100px 0;
   }
   .header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 16px;
     font-size: 18px;
     margin-top: 0;
-    @include tablet-landscape {
+    @include tablet-landscape-and-up {
       font-weight: bold;
       font-size: 36px;
+      text-align: left;
     }
   }
   .container {
+    @include tablet-portrait-and-down {
+      flex-flow: row wrap-reverse;
+      display: flex;
+    }
     @include tablet-portrait {
       display: flex;
     }
@@ -37,6 +45,9 @@
     }
   }
   .assembly-content {
+    @include tablet-portrait-and-down {
+      width: 100% !important;
+    }
     @include tablet-portrait {
       flex-grow: 2;
     }
@@ -48,7 +59,14 @@
     }
     + .assembly-image {
       margin-top: 13px;
-      max-width: 212px;
+      max-width: 320px;
+      @include tablet-portrait-and-down {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+        margin-bottom: 20px;
+      }
       @include tablet-portrait {
         margin-top: 0;
         margin-left: 30px;
@@ -57,11 +75,22 @@
         margin-left: 50px;
         max-width: 320px;
       }
+      img {
+        max-width: 320px;
+        @include mobile-landscape-and-down {
+          max-width: 212px;
+        }
+      }
     }
   }
   .assembly-image {
     @include tablet-portrait {
       flex-grow: 1;
+    }
+  }
+  .button {
+    margin: 15px 15px 0 0 !important;
+    @include tablet-portrait {
     }
   }
 }

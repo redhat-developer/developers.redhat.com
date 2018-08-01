@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.events.field_data_tags
     - field.field.node.events.field_description
     - field.field.node.events.field_end_date
@@ -20,6 +21,7 @@ dependencies:
     - field.field.node.events.field_solution_type
     - field.field.node.events.field_start_date
     - field.field.node.events.field_target_product
+    - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
     - field.field.node.events.scheduled_update
@@ -27,6 +29,7 @@ dependencies:
     - node.type.events
   module:
     - datetime
+    - entity_browser
     - entity_browser_entity_form
     - image
     - inline_entity_form
@@ -41,7 +44,7 @@ bundle: events
 mode: default
 content:
   field_data_tags:
-    weight: 16
+    weight: 17
     settings:
       size: 60
       placeholder: ''
@@ -57,13 +60,13 @@ content:
     type: text_textarea
     region: content
   field_end_date:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_event_background_image:
-    weight: 12
+    weight: 13
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -71,25 +74,25 @@ content:
     type: image_image
     region: content
   field_event_format:
-    weight: 9
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_event_image:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_event_location:
-    weight: 5
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_more_details:
-    weight: 7
+    weight: 8
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -97,14 +100,14 @@ content:
     type: link_default
     region: content
   field_on_homepage:
-    weight: 13
+    weight: 14
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_presenter_s_:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -113,7 +116,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_region:
-    weight: 10
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -127,13 +130,13 @@ content:
     type: string_textarea
     region: content
   field_site:
-    weight: 17
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_solution_type:
-    weight: 15
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -145,11 +148,24 @@ content:
     type: datetime_default
     region: content
   field_target_product:
-    weight: 14
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_tile_thumbnail:
+    type: entity_browser_file
+    weight: 9
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_topics:
     weight: 1
     settings: {  }
@@ -158,13 +174,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 18
+    weight: 19
     settings: {  }
     region: content
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 19
+    weight: 20
     settings:
       form_mode: default
       override_labels: true

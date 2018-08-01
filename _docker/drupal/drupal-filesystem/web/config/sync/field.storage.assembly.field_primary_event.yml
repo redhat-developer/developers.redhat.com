@@ -1,0 +1,20 @@
+uuid: 4d432730-29b5-4a05-98d5-8704e65fce6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_primary_event
+field_name: field_primary_event
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

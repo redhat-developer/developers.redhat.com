@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
+    - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
@@ -127,7 +128,7 @@ content:
     type: string_textfield
     region: content
   field_meta_tags:
-    weight: 26
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -185,6 +186,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_share_image:
+    type: entity_browser_file
+    weight: 22
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_short_description:
     weight: 3
     settings:
@@ -218,7 +232,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 22
+    weight: 23
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -230,7 +244,7 @@ content:
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 23
+    weight: 24
     settings:
       form_mode: default
       override_labels: true
@@ -241,6 +255,7 @@ content:
       collapsible: false
       collapsed: false
       allow_existing: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
