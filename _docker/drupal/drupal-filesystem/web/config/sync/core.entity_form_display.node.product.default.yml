@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
@@ -152,6 +153,19 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_share_image:
+    type: entity_browser_file
+    weight: 14
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_short_description:
     type: string_textarea
     weight: 2
@@ -178,13 +192,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 14
+    weight: 15
     settings: {  }
     region: content
     third_party_settings: {  }
   scheduled_update:
     type: inline_entity_form_complex
-    weight: 15
+    weight: 16
     settings:
       form_mode: default
       override_labels: true
@@ -195,6 +209,7 @@ content:
       collapsible: false
       collapsed: false
       allow_existing: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
