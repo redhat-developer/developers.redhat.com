@@ -1,5 +1,5 @@
-import RHElement from '../rhelement';
-import RHDPSearchFilterItem from './rhdp-search-filter-item';
+import RHElement from '@rhelements/rhelement';
+import RHDPSearchFilterItem from '@rhd/rhdp-search/rhdp-search-filter-item';
 
 export default class RHDPSearchQuery extends RHElement {
     _filters;

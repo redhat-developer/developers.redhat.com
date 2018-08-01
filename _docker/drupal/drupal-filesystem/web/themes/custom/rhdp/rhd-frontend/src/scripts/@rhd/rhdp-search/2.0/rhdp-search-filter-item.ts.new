@@ -1,16 +1,16 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
 
 export default class RHDPSearchFilterItem extends RHElement {
     template = el => {
         const tpl = document.createElement("template");
         let checked = el.active ? 'checked' : '';
-        tpl.innerHTML = `<div class="list"><span>${el.name}</span><input type="checkbox" ${checked} id="filter-item-${el.key}" value="${el.key}"><label for="filter-item-${el.key}">${el.name}</label></div>`;
+        tpl.innerHTML = `<div class="list"><span>${el.name}</span><input type="checkbox" ${checked} id="filter-item-${el.key}" value="${el.key}"><label for="filter-item-${el.key}"><slot></slot></label></div>`;
         return tpl;
     }
 
     inlineTemplate = el => {
         const tpl = document.createElement("template");
-        tpl.innerHTML = el.active ? `<div class="inline">${el.name} <i class="fa fa-times clearItem" aria-hidden="true"></i></div>` : '';
+        tpl.innerHTML = el.active ? `<div class="inline"><slot></slot><i class="fa fa-times clearItem" aria-hidden="true"></i></div>` : '';
         return tpl;
     }
 

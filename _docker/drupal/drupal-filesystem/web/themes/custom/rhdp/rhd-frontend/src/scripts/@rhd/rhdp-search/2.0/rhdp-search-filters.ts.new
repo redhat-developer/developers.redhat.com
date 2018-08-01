@@ -1,6 +1,6 @@
-import RHElement from '../rhelement';
-import RHDPSearchFilterGroup from './rhdp-search-filter-group';
-import RHDPSearchFilterItem from './rhdp-search-filter-item';
+import RHElement from '@rhelements/rhelement';
+import RHDPSearchFilterGroup from '@rhd/rhdp-search/rhdp-search-filter-group';
+import RHDPSearchFilterItem from '@rhd/rhdp-search/rhdp-search-filter-item';
 
 export default class RHDPSearchFilters extends RHElement {
     template = el => {
@@ -123,6 +123,7 @@ export default class RHDPSearchFilters extends RHElement {
 <div class="control" id="control">
     <div class="title">${el.title}</div>
     <div class="groups">
+    <slot></slot>
     </div>
 </div>`;
         return tpl;
@@ -139,6 +140,7 @@ export default class RHDPSearchFilters extends RHElement {
 <div class="cover" id="cover">
     <div class="title">${el.title} <a href="#" class="cancel" id="cancel">Close</a></div>
     <div class="groups">
+    <slot></slot>
     </div>
     <div class="footer">
     <a href="#" class="clearFilters">Clear Filters</a> 

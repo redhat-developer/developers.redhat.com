@@ -1,4 +1,4 @@
-import RHElement from '../rhelement';
+import RHElement from '@rhelements/rhelement';
 
 export default class RHDPSearchURL extends RHElement {
     _uri = new URL(window.location.href); // https://developers.redhat.com/search/?q=term+term1+term2&f=a+b+c&s=sort&r=100

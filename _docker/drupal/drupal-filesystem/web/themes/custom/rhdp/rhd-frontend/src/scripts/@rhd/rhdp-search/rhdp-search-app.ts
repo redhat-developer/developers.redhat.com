@@ -1,13 +1,13 @@
-// import {RHDPSearchURL} from './rhdp-search-url';
-// import {RHDPSearchQuery} from './rhdp-search-query';
-// import {RHDPSearchBox} from './rhdp-search-box';
-// import {RHDPSearchResultCount} from './rhdp-search-result-count';
-// import {RHDPSearchFilters} from './rhdp-search-filters';
-// import {RHDPSearchOneBox} from './rhdp-search-onebox';
-// import {RHDPSearchResults} from './rhdp-search-results';
-// import {RHDPSearchSortPage} from './rhdp-search-sort-page';
+import RHDPSearchURL from '@rhd/rhdp-search/rhdp-search-url';
+import RHDPSearchQuery from '@rhd/rhdp-search/rhdp-search-query';
+import RHDPSearchBox from '@rhd/rhdp-search/rhdp-search-box';
+import RHDPSearchResultCount from '@rhd/rhdp-search/rhdp-search-result-count';
+import RHDPSearchFilters from '@rhd/rhdp-search/rhdp-search-filters';
+import RHDPSearchOneBox from '@rhd/rhdp-search/rhdp-search-onebox';
+import RHDPSearchResults from './rhdp-search-results';
+import RHDPSearchSortPage from '@rhd/rhdp-search/rhdp-search-sort-page';
 
-class RHDPSearchApp extends HTMLElement {
+export default class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
         //this.toggleModal = this.toggleModal.bind(this);
@@ -121,6 +121,39 @@ class RHDPSearchApp extends HTMLElement {
                 ]
             },
             { name: 'TOPIC', key: 'tag', items: [
+                /*
+                Containers
+                Java
+                DevOps
+                Microservices
+                Programming Languages
+                Security
+                Performance
+                .NET Core
+                CI/CD
+                Internet of Things
+                JavaScript
+                C++
+                Modern App Dev
+                Node.js
+                Big Data
+                Service Mesh
+                C#
+                UI/UX
+                Python
+                Ruby
+                Serverless
+                Go
+                C
+                PHP
+                Data Encapsulation
+                Perl
+                clang/LLVM
+                Rust
+                Scala
+                Topics
+                Red Hat Certification
+                */
                 {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
                 {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
                 {key: 'devops', name: 'DevOps', value: ['DevOps','CI','CD','Continuous Delivery']},
@@ -129,11 +162,11 @@ class RHDPSearchApp extends HTMLElement {
                 {key: 'microservices', name: 'Microservices', value: ['Microservices',' WildFly Swarm']},
                 {key: 'mobile', name: 'Mobile', value: ['Mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
                 {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
+                {key: '', name: '', value: []},
                 ] 
             }
         ]
     };
-
     connectedCallback() {
         this.innerHTML = this.template;
 

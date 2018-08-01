@@ -164,8 +164,14 @@
   grid-column: 5 / span 9;
 }
 
+[data-rhd-col="4span"]
+
 [data-rhd-row="span5"] {
   grid-row: span 5;
+}
+
+[data-rhd-row="3span6"] {
+  grid-row: 3 / span 6;
 }
 
 [data-rhd-row="bottom"] {
