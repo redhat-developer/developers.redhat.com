@@ -1,0 +1,20 @@
+uuid: 2df0f1a0-bd1a-4658-abfe-34968784890b
+langcode: en
+status: true
+dependencies:
+  module:
+    - workbench_moderation
+third_party_settings:
+  workbench_moderation:
+    enabled: 1
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+id: form
+label: Form
+description: 'Display a form with optional title and footer content.'
+visual_styles: ''
+new_revision: true
