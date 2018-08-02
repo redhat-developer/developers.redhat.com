@@ -1,7 +1,8 @@
 var Drupal = {
     url: {
         toAbsolute: function(baseUrl) { return '/'; }
-    }
+    },
+    behaviors: {}
 };
 
 var drupalSettings = {
