@@ -31,7 +31,9 @@
       <div class="dp-duration">
           <i class="far fa-clock"></i> 
           {% for intvl in node.field_duration|reverse %}
-          {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {% if intvl.period != "second" %}
+              {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {% endif %}
           {% endfor %}
       </div>
       {% endif %}

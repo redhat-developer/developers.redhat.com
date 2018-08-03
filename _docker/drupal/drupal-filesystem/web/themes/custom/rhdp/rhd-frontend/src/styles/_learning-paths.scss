@@ -71,7 +71,7 @@ body.page-node-type-learning-path {
         flex-wrap: nowrap;
         align-items: stretch;
         padding: 30px;
-        min-width: 66%;
+        min-width: calc(66% - 30px);
         
         // CONTENT CARD STYLES
         .dp-content-card {
@@ -151,6 +151,7 @@ body.page-node-type-learning-path {
                 align-items: stretch;
                 padding: 30px;
                 min-width: 1px;
+                width: 100%;
             }
             .card-details {
                 display: flex;
@@ -217,17 +218,13 @@ body.page-node-type-learning-path {
     }
     @media screen and (max-width: 1175px) {
         .lp-info {
-            margin: 0;
+            margin-top: 15px;
         }
         .lp-cards-container {
-            //margin: -15px 0 0 15px;
             padding: 15px;
         }
     }
     @media screen and (max-width: 1175px) and (min-width: 1171px) {
-        .lp-info {
-            margin-top: 15px;
-        }
         .lp-cards-container {
             margin-top: 0;
         }
@@ -292,6 +289,9 @@ body.page-node-type-learning-path {
                         margin-top: .25em;
                     }
                 }
+                .dp-level {
+                  display: none;
+                }
             }
         }
     }
@@ -303,9 +303,6 @@ body.page-node-type-learning-path {
                     padding: 15px;
                 }
                 p {
-                    display: none;
-                }
-                .dp-level {
                     display: none;
                 }
                 h4 {
