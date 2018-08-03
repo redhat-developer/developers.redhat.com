@@ -4217,7 +4217,6 @@ System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_27,
                 __extends(RHDPSearchResult, _super);
                 function RHDPSearchResult() {
                     var _this = _super.call(this) || this;
-                    _this._url = ['', ''];
                     _this.template = function (strings, url, title, kind, created, description, premium, thumbnail) {
                         return "<div>\n            <h4>" + (url ? "<a href=\"" + url + "\">" + title + "</a>" : title) + "</h4>\n            <p " + (premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"') + ">\n                <span class=\"caps\">" + kind + "</span>\n                " + (created ? "- <rh-datetime datetime=\"" + created + "\" type=\"local\" day=\"numeric\" month=\"long\" year=\"numeric\">" + created + "</rh-datetime>" : '') + "\n            </p>\n            <p class=\"result-description\">" + description + "</p>\n        </div>\n        " + (thumbnail ? "<div class=\"thumb\"><img src=\"" + thumbnail.replace('http:', 'https:') + "\"></div>" : '');
                     };
@@ -4225,7 +4224,8 @@ System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_27,
                 }
                 Object.defineProperty(RHDPSearchResult.prototype, "url", {
                     get: function () {
-                        return this._url;
+                        var stage = window.location.href.indexOf('stage') >= 0 || window.location.href.indexOf('developers') < 0 ? '.stage' : '';
+                        return !this.premium ? this._url : "https://broker" + stage + ".redhat.com/partner/drc/userMapping?redirect=" + encodeURIComponent(this._url);
                     },
                     set: function (val) {
                         if (this._url === val)
@@ -4403,7 +4403,7 @@ System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_27,
                 };
                 RHDPSearchResult.prototype.computeURL = function (result) {
                     if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
-                        this.url = result.fields.field_book_url;
+                        this.url = result.fields.field_book_url ? result.fields.field_book_url : '';
                     }
                     else {
                         this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
