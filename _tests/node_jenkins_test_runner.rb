@@ -59,22 +59,21 @@ class NodeJenkinsTestRunner
   end
 
   #
-  # Execute the blc checks, if critical link checks fail it will bail and fail build
-  #
+  # Execute the blinkr (rhd website) blc checks
   def execute_blc
     success = true
     test_execution_command = build_blc_run_tests_command
     begin
       @process_runner.execute!(test_execution_command)
     rescue
-      puts 'Run of blc failed.'
+      puts 'Run of blinkr broken link checks failed.'
       success = false
     end
     success
   end
 
   #
-  # Execute the blc checks, if critical link checks fail it will bail and fail build
+  # Execute the dcp-blc (rhd website dcp content) checks
   #
   def execute_dcp_checks
     success = true
@@ -83,21 +82,6 @@ class NodeJenkinsTestRunner
       @process_runner.execute!(test_execution_command)
     rescue
       puts 'Run of dcp broken link checks failed.'
-      success = false
-    end
-    success
-  end
-
-  #
-  # Generate critical pages sitemap.xml
-  #
-  def generate_critical_page_sitemap
-    success = true
-    cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
-    begin
-      @process_runner.execute!(cmd)
-    rescue
-      puts 'Failed to generate critical link sitemap.xml'
       success = false
     end
     success

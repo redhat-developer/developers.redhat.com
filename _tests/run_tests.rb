@@ -109,6 +109,7 @@ class RunTest
     compose_environment_directory = "#{@test_dir}/blc/#{ENV['rhd_test']}/environments"
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d blinkr-chrome") if test_configuration[:blinkr]
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
     @log.info("Completed run of #{ENV['rhd_test']} tests.")

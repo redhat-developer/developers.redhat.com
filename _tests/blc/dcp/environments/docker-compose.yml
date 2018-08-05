@@ -1,7 +1,8 @@
 version: '2'
 services:
+
   rhd_dcp_testing:
-   build: ../
-   volumes:
+    build: ../blc/dcp/
+    volumes:
     - ../../../../:/home/dcp/developers.redhat.com
-   working_dir: /home/dcp/developers.redhat.com/_tests/blc/dcp
+    working_dir: /home/dcp/developers.redhat.com/_tests/blc/dcp

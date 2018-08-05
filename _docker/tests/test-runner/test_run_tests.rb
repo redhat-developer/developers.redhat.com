@@ -157,6 +157,7 @@ class TestRunTests < MiniTest::Test
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc && docker build -t test-base:0.1.0 .')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing build')
+    @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing up -d blinkr-chrome')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing run --rm --no-deps rhd_blinkr_testing bundle exec blinkr')
 
     @run_tests.execute_tests(%w(--use-docker))
@@ -175,8 +176,8 @@ class TestRunTests < MiniTest::Test
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc && docker build -t test-base:0.1.0 .')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo build')
+    @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo up -d blinkr-chrome')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo run --rm --no-deps rhd_blinkr_testing bundle exec blinkr')
-
 
     @run_tests.execute_tests(%w(--use-docker))
   end
@@ -195,12 +196,12 @@ class TestRunTests < MiniTest::Test
     @run_tests.execute_tests(%w())
   end
 
-  def test_should_run_blinkr_tests_from_docker_when_docker_specified
+  def test_should_run_dcp_tests_from_docker_when_docker_specified
 
     ENV['rhd_test'] = 'dcp'
 
     test_configuration = {}
-    test_configuration[:blinkr] = true
+    test_configuration[:dcp] = true
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'bundle exec dcp-checker'
 
@@ -212,13 +213,13 @@ class TestRunTests < MiniTest::Test
     @run_tests.execute_tests(%w(--use-docker))
   end
 
-  def test_should_run_blinkr_tests_from_docker_with_user_specified_compose_project_name
+  def test_should_run_dcp_tests_from_docker_with_user_specified_compose_project_name
 
     ENV['COMPOSE_PROJECT_NAME'] = 'foo'
     ENV['rhd_test'] = 'dcp'
 
     test_configuration = {}
-    test_configuration[:blinkr] = true
+    test_configuration[:dcp] = true
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'bundle exec dcp-checker'
 
