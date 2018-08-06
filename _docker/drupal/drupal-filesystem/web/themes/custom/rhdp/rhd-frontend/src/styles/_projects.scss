@@ -141,7 +141,7 @@ ul.project-social {
 }
 
 .hero.hero-projects {
-  background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_desktop.png') top center / cover no-repeat;
+  background: url('/images/RHDev_pageheader_upstream_desktop.png') top center / cover no-repeat;
   content : ':4242';
   border:0;
   min-height: 220px;
@@ -160,7 +160,7 @@ ul.project-social {
     }
   }
   @include tablet-portrait-and-down {
-    background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
+    background: url('/images/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
       margin-top: 10px;
@@ -168,7 +168,7 @@ ul.project-social {
     }
   }
   @include mobile-landscape-and-down {
-    background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_mobile.png') top center / cover no-repeat;
+    background: url('/images/RHDev_pageheader_upstream_mobile.png') top center / cover no-repeat;
   }
   p {
     color: white;

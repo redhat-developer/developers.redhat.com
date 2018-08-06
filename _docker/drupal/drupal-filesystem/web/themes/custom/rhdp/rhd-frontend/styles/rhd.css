@@ -199,22 +199,22 @@ div.alert-box {
     background-color: #dcedf8;
     border-color: #87aac1; }
     div.alert-box.alert-info div.icon:before {
-      content: url("https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg"); }
+      content: url("/images/icons/RHD_alerticon_info.svg"); }
   div.alert-box.alert-success {
     background-color: #e9f4e9;
     border-color: #8db28a; }
     div.alert-box.alert-success div.icon:before {
-      content: url("https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg"); }
+      content: url("/images/icons/RHD_alerticon_success.svg"); }
   div.alert-box.alert-warning {
     background-color: #fdf2e5;
     border-color: #deb142; }
     div.alert-box.alert-warning div.icon:before {
-      content: url("https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg"); }
+      content: url("/images/icons/RHD_alerticon_warning.svg"); }
   div.alert-box.alert-error {
     background-color: #ffe6e6;
     border-color: #d8aaab; }
     div.alert-box.alert-error div.icon:before {
-      content: url("https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg"); }
+      content: url("/images/icons/RHD_alerticon_error.svg"); }
   div.alert-box.alert-xl {
     background-color: #dcedf8;
     border-color: #87aac1; }
@@ -223,7 +223,7 @@ div.alert-box {
       float: left;
       margin-left: 1em; }
       div.alert-box.alert-xl div.icon:before {
-        content: url("https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg"); }
+        content: url("/images/icons/RHD_alerticon_info.svg"); }
     div.alert-box.alert-xl div.alert-content {
       display: inline;
       float: right;
@@ -8292,19 +8292,19 @@ button.tiny, .button.tiny {
       background-size: contain;
       background-repeat: no-repeat; }
       .kc-wrapper .kc-provider-login a.stack-overflow {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_stack_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_stack_transparent.png"); }
       .kc-wrapper .kc-provider-login a.linkedin {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_linkedin_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_linkedin_transparent.png"); }
       .kc-wrapper .kc-provider-login a.twitter {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_twitter_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_twitter_transparent.png"); }
       .kc-wrapper .kc-provider-login a.facebook {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_facebook_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_facebook_transparent.png"); }
       .kc-wrapper .kc-provider-login a.google-plus {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_googleplus_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_googleplus_transparent.png"); }
       .kc-wrapper .kc-provider-login a.windows {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_microsoft_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_microsoft_transparent.png"); }
       .kc-wrapper .kc-provider-login a.github {
-        background-image: url("https://static.jboss.org/images/rhd/icons/socialmedia_icons_github_transparent.png"); }
+        background-image: url("/images/icons/socialmedia_icons_github_transparent.png"); }
   @media only screen and (max-width: 768px) {
     .kc-wrapper .kc-card {
       width: inherit; } }
@@ -9505,14 +9505,14 @@ h2.large-title#buzz i {
       width: 100%; } }
 
 .button.button--solution {
-  background: #6abcd3 url("https://static.jboss.org/rhd/images/stars-texture.png") bottom right no-repeat;
+  background: #6abcd3 url("/images/stars-texture.png") bottom right no-repeat;
   padding: 30px 10px 30px 20px;
   text-align: left;
   width: 100%;
   display: inline-block;
   margin-bottom: 1em; }
   .button.button--solution:hover {
-    background: #43aac7 url("https://static.jboss.org/rhd/images/stars-texture.png") bottom right no-repeat; }
+    background: #43aac7 url("/images/stars-texture.png") bottom right no-repeat; }
   .button.button--solution.clear {
     color: #0088ce;
     text-align: center;
@@ -9719,7 +9719,7 @@ ul.project-social {
       padding: 0; } }
 
 .hero.hero-projects {
-  background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_desktop.png") top center/cover no-repeat;
+  background: url("/images/RHDev_pageheader_upstream_desktop.png") top center/cover no-repeat;
   content: ':4242';
   border: 0;
   min-height: 220px;
@@ -9735,14 +9735,14 @@ ul.project-social {
       font-size: 4em; } }
   @media only screen and (max-width: 768px) {
     .hero.hero-projects {
-      background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png") top center/cover no-repeat;
+      background: url("/images/RHDev_pageheader_upstream_tablet.png") top center/cover no-repeat;
       min-height: auto; }
       .hero.hero-projects h2 {
         margin-top: 10px;
         line-height: 1; } }
   @media only screen and (max-width: 480px) {
     .hero.hero-projects {
-      background: url("https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_mobile.png") top center/cover no-repeat; } }
+      background: url("/images/RHDev_pageheader_upstream_mobile.png") top center/cover no-repeat; } }
   .hero.hero-projects p {
     color: white;
     font-size: 20px; }
@@ -10606,7 +10606,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
 .hero.stackoverflow-main {
   background-color: #0089d0;
   background-position: left top;
-  background-image: url("https://static.jboss.org/images/rhd/headers/stackoverflow_overview_background.svg");
+  background-image: url("/images/headers/stackoverflow_overview_background.svg");
   background-size: 37%;
   background-repeat: no-repeat;
   padding: 40px 0;
@@ -10976,7 +10976,7 @@ ul.featured-connectors-results a.image-link img {
   padding-bottom: 0; }
 
 .about-header {
-  background: url("https://static.jboss.org/images/rhd/headers/about_hero_banner_2000x446.png") top center/cover no-repeat;
+  background: url("/images/headers/about_hero_banner_2000x446.png") top center/cover no-repeat;
   height: 446px; }
   .about-header h2, .about-header h3, .about-header h3, .about-header h5, .about-header p {
     color: #FFFFFF; }
@@ -11173,7 +11173,7 @@ ul.featured-connectors-results a.image-link img {
       margin-right: 15px; }
 
 .wide-hero.awards {
-  background: url("https://static.jboss.org/rhd/images/_images_awards_microsite_hero.jpg");
+  background: url("/images/_images_awards_microsite_hero.jpg");
   padding: 1em; }
   .wide-hero.awards h2, .wide-hero.awards p {
     color: #FFFFFF; }
@@ -11207,7 +11207,7 @@ ul.featured-connectors-results a.image-link img {
   padding-bottom: 0; }
 
 .contributors-main {
-  background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_desktop.png") top center/cover no-repeat; }
+  background: url("/images/rhdev_pageheader_contributors_desktop.png") top center/cover no-repeat; }
   .contributors-main h2, .contributors-main h3, .contributors-main h4, .contributors-main h5, .contributors-main p {
     color: #FFFFFF; }
   .contributors-main .contrubutors-title {
@@ -11223,11 +11223,11 @@ ul.featured-connectors-results a.image-link img {
 
 @media only screen and (max-width: 1024px) {
   .contributors-main {
-    background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_tablet.png") top center/cover no-repeat; } }
+    background: url("/images/rhdev_pageheader_contributors_tablet.png") top center/cover no-repeat; } }
 
 @media only screen and (max-width: 480px) {
   .contributors-main {
-    background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_mobile.png") top center/cover no-repeat; } }
+    background: url("/images/rhdev_pageheader_contributors_mobile.png") top center/cover no-repeat; } }
 
 .contributers-sec1 {
   padding: 50px 0; }
@@ -11530,7 +11530,7 @@ ul.ytlist {
       width: 100% !important; } }
 
 .wide-hero.devnation2016 {
-  background-image: url("https://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_desktop_21jun2016.png");
+  background-image: url("/images/microsite/RHDev_pageheader_devnation2016_desktop_21jun2016.png");
   background-size: cover;
   background-position: top center;
   background-repeat: repeat-x;
@@ -11546,7 +11546,7 @@ ul.ytlist {
       background-repeat: repeat-x; } }
   @media only screen and (max-width: 480px) {
     .wide-hero.devnation2016 {
-      background-image: url("https://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_mobile_21jun2016.png");
+      background-image: url("/images/microsite/RHDev_pageheader_devnation2016_mobile_21jun2016.png");
       min-height: 400px;
       padding-top: 115px; } }
 
@@ -11632,7 +11632,7 @@ ul.ytlist {
   padding-bottom: 0; }
 
 .wide-hero.devoxxbe {
-  background-image: url("https://static.jboss.org/rhd/images/devoxx-be_microsite_desktop_hero.png");
+  background-image: url("/images/devoxx-be_microsite_desktop_hero.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11642,7 +11642,7 @@ ul.ytlist {
   min-height: 260px; }
   @media only screen and (max-width: 768px) {
     .wide-hero.devoxxbe {
-      background: url("https://static.jboss.org/rhd/images/devoxx-be_microsite_mobile_hero.png") top center/cover repeat-x;
+      background: url("/images/devoxx-be_microsite_mobile_hero.png") top center/cover repeat-x;
       min-height: 400px; } }
 
 #devoxx-be-microsite section {
@@ -11724,7 +11724,7 @@ ul.ytlist {
       border: none; } }
 
 .wide-hero.devoxx4kids {
-  background: url("https://static.jboss.org/rhd/images/_images_devoxx4kids_microsite_hero.jpg") top center no-repeat;
+  background: url("/images/_images_devoxx4kids_microsite_hero.jpg") top center no-repeat;
   background-size: cover;
   color: white;
   padding: 50px 0;
@@ -11746,7 +11746,7 @@ ul.devoxx-list {
   padding-bottom: 0; }
 
 .wide-hero.devoxxfrance {
-  background-image: url("https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_1811x260px_11apr1016.jpg");
+  background-image: url("/images/microsite/devoxxfr2016_banner_1811x260px_11apr1016.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11765,7 +11765,7 @@ ul.devoxx-list {
       color: #A3DBE8; }
   @media only screen and (max-width: 768px) {
     .wide-hero.devoxxfrance {
-      background: url("https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_600x446_11apr1016.jpg") top center/cover repeat-x; }
+      background: url("/images/microsite/devoxxfr2016_banner_600x446_11apr1016.jpg") top center/cover repeat-x; }
       .wide-hero.devoxxfrance h2, .wide-hero.devoxxfrance h3 {
         text-align: left;
         max-width: 82%; }
@@ -11774,7 +11774,7 @@ ul.devoxx-list {
         margin-left: 0; } }
   @media only screen and (max-width: 480px) {
     .wide-hero.devoxxfrance {
-      background-image: url("https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_480x500px_11apr1016.jpg"); }
+      background-image: url("/images/microsite/devoxxfr2016_banner_480x500px_11apr1016.jpg"); }
       .wide-hero.devoxxfrance h2, .wide-hero.devoxxfrance h3 {
         max-width: 100%; } }
 
@@ -11965,7 +11965,7 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
       background-size: 90%, cover; } }
 
 .hero.hero-forums {
-  background: url("https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_desktop.png") top center/cover no-repeat;
+  background: url("/images/headers/RHDev_pageheader_forums_desktop.png") top center/cover no-repeat;
   content: ':4242';
   border: 0;
   min-height: 205px;
@@ -11985,7 +11985,7 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
       color: white; }
   @media only screen and (max-width: 1024px) {
     .hero.hero-forums {
-      background: url("https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_tablet.png") top center/cover no-repeat;
+      background: url("/images/headers/RHDev_pageheader_forums_tablet.png") top center/cover no-repeat;
       min-height: auto; }
       .hero.hero-forums h2 {
         margin-top: 10px; }
@@ -11994,7 +11994,7 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
         max-width: 100%; } }
   @media only screen and (max-width: 480px) {
     .hero.hero-forums {
-      background: url("https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_mobile.png") top center/cover no-repeat; }
+      background: url("/images/headers/RHDev_pageheader_forums_mobile.png") top center/cover no-repeat; }
       .hero.hero-forums h2 {
         font-size: 3em; } }
   .hero.hero-forums .row > [class^=large-]:first-child {
@@ -12074,28 +12074,28 @@ ul.product-forums-latest {
   padding-top: 40px;
   min-height: 260px; }
   .wide-hero.javaone.javaone2015 {
-    background-image: url("https://static.jboss.org/rhd/images/javaone_microsite_desktop_hero.png"); }
+    background-image: url("/images/javaone_microsite_desktop_hero.png"); }
   .wide-hero.javaone.javaone2016 {
-    background-image: url("https://static.jboss.org/images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg");
+    background-image: url("/images/microsite/javaone2016_banner_desktop_25aug2016.jpg");
     min-height: 200px; }
   .wide-hero.javaone.javaone2017 {
-    background-image: url("https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_desktop.png"); }
+    background-image: url("/images/microsite/javaone2017_micrositebanner_desktop.png"); }
   @media only screen and (max-width: 768px) {
     .wide-hero.javaone.javaone2015 {
-      background: url("https://static.jboss.org/rhd/images/javaone_microsite_mobile_hero.png") top center/cover repeat-x;
+      background: url("/images/javaone_microsite_mobile_hero.png") top center/cover repeat-x;
       min-height: 400px; }
     .wide-hero.javaone.javaone2016 {
-      background: url("https://static.jboss.org/images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg") top center/cover repeat-x;
+      background: url("/images/microsite/javaone2016_banner_tablet_25aug2016.jpg") top center/cover repeat-x;
       min-height: 400px; }
     .wide-hero.javaone.javaone2017 {
-      background: url("https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_tablet.png") top center/cover repeat-x;
+      background: url("/images/microsite/javaone2017_micrositebanner_tablet.png") top center/cover repeat-x;
       min-height: 400px; } }
   @media (max-width: 320px) {
     .wide-hero.javaone.javaone2016 {
-      background: url("https://static.jboss.org/images/rhd/microsite/javaone2016_banner_mobile_25aug2016.jpg") top center/cover repeat-x;
+      background: url("/images/microsite/javaone2016_banner_mobile_25aug2016.jpg") top center/cover repeat-x;
       min-height: 430px; }
     .wide-hero.javaone.javaone2017 {
-      background: url("https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_mobile.png") top center/cover repeat-x;
+      background: url("/images/microsite/javaone2017_micrositebanner_mobile.png") top center/cover repeat-x;
       min-height: 430px; } }
 
 #javaone-microsite section {
@@ -12209,7 +12209,7 @@ ul.product-forums-latest {
   margin: 30px auto; }
 
 .hero.hero-ticketmonster {
-  background: url("https://static.jboss.org/rhd/images/ticket_monster-headerbg.png") repeat-x;
+  background: url("/images/ticket_monster-headerbg.png") repeat-x;
   border: 0;
   padding: 20px;
   padding-top: 40px;
@@ -12240,14 +12240,14 @@ ul.product-forums-latest {
     display: block; } }
 
 .wide-hero.vjbug {
-  background-image: url("https://static.jboss.org/rhd/images/vjbug_microsite_banner_desktop.png");
+  background-image: url("/images/vjbug_microsite_banner_desktop.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 242px; }
   @media only screen and (max-width: 768px) {
     .wide-hero.vjbug {
-      background: url("https://static.jboss.org/rhd/images/vjbug_microsite_banner_mobile.png") top center/cover repeat-x;
+      background: url("/images/vjbug_microsite_banner_mobile.png") top center/cover repeat-x;
       min-height: 115px; } }
 
 #vJBug-microsite {
@@ -12382,7 +12382,7 @@ rhdp-search-box {
     -webkit-appearance: none;
     height: 20px;
     width: 20px;
-    background-image: url("https://static.jboss.org/rhd/images/icons/fa_times_icon.svg");
+    background-image: url("/images/icons/fa_times_icon.svg");
     opacity: 1;
         pointer-events: auto; }
   rhdp-search-box button {
@@ -12729,7 +12729,7 @@ rhdp-search-result {
   flex-direction: row; }
   rhdp-search-result .subscription-required:before {
     content: '';
-    background: url("https://static.jboss.org/rhd/images/icons/subscription-required.svg") no-repeat;
+    background: url("/images/icons/subscription-required.svg") no-repeat;
     background-size: cover;
     position: absolute;
     margin-top: 5px;
@@ -12961,7 +12961,7 @@ rhdp-search-onebox ul.slots {
   padding-bottom: 0; }
 
 .wide-hero.judcon-brno {
-  background-image: url("https://static.jboss.org/rhd/images/judcon-brno_banner_2000x400px.png");
+  background-image: url("/images/judcon-brno_banner_2000x400px.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12971,10 +12971,10 @@ rhdp-search-onebox ul.slots {
   min-height: 260px; }
   @media only screen and (max-width: 1024px) {
     .wide-hero.judcon-brno {
-      background: url("https://static.jboss.org/rhd/images/judcon-brno_banner_1811x260px.png") top center/cover repeat-x; } }
+      background: url("/images/judcon-brno_banner_1811x260px.png") top center/cover repeat-x; } }
   @media only screen and (max-width: 480px) {
     .wide-hero.judcon-brno {
-      background: url("https://static.jboss.org/rhd/images/judcon-brno_banner_480x500px.png") top center/cover repeat-x;
+      background: url("/images/judcon-brno_banner_480x500px.png") top center/cover repeat-x;
       min-height: 500px; } }
 
 #judcon-brno-microsite section {
@@ -13008,7 +13008,7 @@ rhdp-search-onebox ul.slots {
   padding-bottom: 0; }
 
 .wide-hero.gids {
-  background-image: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_1811x260px_31mar2016.png");
+  background-image: url("/images/microsite/gids2016_banner_1811x260px_31mar2016.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13018,11 +13018,11 @@ rhdp-search-onebox ul.slots {
   min-height: 240px; }
   @media only screen and (max-width: 1024px) {
     .wide-hero.gids {
-      background: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_600x446_31mar2016.png") top center/cover repeat-x;
+      background: url("/images/microsite/gids2016_banner_600x446_31mar2016.png") top center/cover repeat-x;
       min-height: 560px; } }
   @media only screen and (max-width: 480px) {
     .wide-hero.gids {
-      background: url("https://static.jboss.org/images/rhd/microsite/gids2016_banner_480x500px_31mar2016.png") top center/cover repeat-x;
+      background: url("/images/microsite/gids2016_banner_480x500px_31mar2016.png") top center/cover repeat-x;
       min-height: 450px; } }
 
 #gids-microsite section {
@@ -13082,7 +13082,7 @@ rhdp-search-onebox ul.slots {
   padding-bottom: 0; }
 
 .wide-hero.msbuild {
-  background-image: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_1811x260px.png");
+  background-image: url("/images/msbuild_microsite_banner_1811x260px.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13093,11 +13093,11 @@ rhdp-search-onebox ul.slots {
       min-height: 188px; } }
   @media only screen and (max-width: 768px) {
     .wide-hero.msbuild {
-      background: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_600x446.png") top center/cover repeat-x;
+      background: url("/images/msbuild_microsite_banner_600x446.png") top center/cover repeat-x;
       min-height: 480px; } }
   @media only screen and (max-width: 480px) {
     .wide-hero.msbuild {
-      background: url("https://static.jboss.org/rhd/images/msbuild_microsite_banner_480x500px.png") top center/cover repeat-x;
+      background: url("/images/msbuild_microsite_banner_480x500px.png") top center/cover repeat-x;
       min-height: 427px; } }
 
 #msbuild-microsite section {

@@ -37,7 +37,7 @@
 }
 
 .button.button--solution {
-  background:#6abcd3 url('https://static.jboss.org/rhd/images/stars-texture.png') bottom right no-repeat;
+  background:#6abcd3 url('/images/stars-texture.png') bottom right no-repeat;
   padding: 30px 10px 30px 20px;
   text-align:left;
   width: 100%;
@@ -45,7 +45,7 @@
   margin-bottom: 1em;
 
   &:hover {
-    background:darken(#6abcd3,10%) url('https://static.jboss.org/rhd/images/stars-texture.png') bottom right no-repeat;
+    background:darken(#6abcd3,10%) url('/images/stars-texture.png') bottom right no-repeat;
   }
   &.clear {
     color:#0088ce;

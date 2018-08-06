@@ -49,7 +49,7 @@
 .topics-dotted-graphics {
   background-position: left top, right bottom;
   background-repeat: no-repeat;
-  background-image: url('https://static.jboss.org/images/rhd/backgrounds/solutions_dotted_lines_top_left_gray.png'),  url('https://static.jboss.org/images/rhd/backgrounds/solutions_dotted_lines_bottom_right_gray.png');
+  background-image: url('/images/solutions_dotted_lines_top_left_gray.png'),  url('/images/solutions_dotted_lines_bottom_right_gray.png');
 }
 
 .topics-main {
@@ -101,7 +101,7 @@
       display: block;
     }
     &.microservices {
-      background-image: url(https://static.jboss.org/_root/images/rhd/topic/RHDev_topics_primopromo_microservicesicon_20sept2016.png);
+      background-image: url('/images/RHDev_topics_primopromo_microservicesicon_20sept2016.png');
       background-size: cover;
     }
     &.dotnet {

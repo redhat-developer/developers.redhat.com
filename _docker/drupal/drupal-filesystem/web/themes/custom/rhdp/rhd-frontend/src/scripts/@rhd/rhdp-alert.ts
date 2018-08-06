@@ -65,7 +65,7 @@ export default class RHDPAlert extends RHElement {
     _type = 'info';
     _size : String;
     _heading : String;
-    _icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+    _icon = '/images/icons/RHD_alerticon_info.svg';
     _background = '#dcedf8';
     _border = '#87aac1';
     _text : String;
@@ -78,23 +78,23 @@ export default class RHDPAlert extends RHElement {
         this._type = val;
         switch(this._type) {
             case 'success':
-                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_success.svg';
+                this.icon = '/images/icons/RHD_alerticon_success.svg';
                 this.background = '#e9f4e9';
                 this.border = '#8db28a';
                 break;
             case 'warning':
-                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_warning.svg';
+                this.icon = '/images/icons/RHD_alerticon_warning.svg';
                 this.background = '#fdf2e5';
                 this.border = '#deb142';
                 break;
             case 'error':
-                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_error.svg';
+                this.icon = '/images/icons/RHD_alerticon_error.svg';
                 this.background = '#ffe6e6';
                 this.border = '#d8aaab';
                 break;
             case 'info':
             default:
-                this.icon = 'https://static.jboss.org/rhd/images/icons/RHD_alerticon_info.svg';
+                this.icon = '/images/icons/RHD_alerticon_info.svg';
                 this.background = '#dcedf8';
                 this.border = '#87aac1';
                 break;
