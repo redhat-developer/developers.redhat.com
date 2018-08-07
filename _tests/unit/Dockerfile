@@ -14,6 +14,7 @@ WORKDIR /home/unit
 COPY package.json ./
 RUN npm install
 WORKDIR /home/unit/developers.redhat.com/_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/
-RUN npm install && npm run build
+RUN npm install
+RUN npm start
 WORKDIR /home/unit
 ENV PATH /home/unit/node_modules/.bin:$PATH
