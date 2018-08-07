@@ -39,17 +39,6 @@ composer install
 # Symlink the rest of the files and folders needed
 echo "Creating symlinks if needed"
 
-if [ ! -d "${WEB}/fonts" ]
-then
-  ln -s ${PROJ}/stylesheets/fonts ${WEB}/fonts
-fi
-
-if [ ! -d "${WEB}/images" ]
-then
-  ln -s ${PROJ}/images ${WEB}/images
-fi
-
-
 if [ ! -f "${WEB}/sites/default/rhd.settings.php" ]
 then
   sudo ln -s ${ENVIRON}/rhd.settings.php ${WEB}/sites/default/rhd.settings.php

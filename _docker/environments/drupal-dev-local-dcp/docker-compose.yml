@@ -12,8 +12,6 @@ services:
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../drupal/drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
-      - ../../../images:/var/www/drupal/web/images:ro
-      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
     environment
       - FORTAWESOME_REGISTRY
 
