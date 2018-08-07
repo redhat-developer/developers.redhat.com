@@ -31,7 +31,9 @@
       <div class="dp-duration">
           <i class="far fa-clock"></i> 
           {% for intvl in node.field_duration|reverse %}
-          {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {% if intvl.period != "second" %}
+              {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {% endif %}
           {% endfor %}
       </div>
       {% endif %}
@@ -44,8 +46,8 @@
       </div>
       {% endif %}
     </div>
-    <h4>{{ node.title.value }}</h4>
-    <p>{{ node.body.value|striptags }}</p>
+    <h4 class="line-clamp-2">{{ node.title.value }}</h4>
+    <p class="line-clamp-3">{{ node.body.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_video_publish_date.value|date("c")}}">{{node.field_video_publish_date.value|date("Y-m-d")}}</rh-datetime>
       <div class="dp-author">
