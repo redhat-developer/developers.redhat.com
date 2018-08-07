@@ -83,7 +83,11 @@ other methods (such as node.delete) will result in an exception.
     </div>
     <div class="large-5 medium-24 columns">
         {% include '@rhd/share.html.twig' %}
-        <strong>Tags:</strong> {{ content.field_tags }}
+        {% if content.field_tags|render %}
+        <div class="article-tags">
+            <strong>Tags:</strong> {{ content.field_tags }}
+        </div>
+        {% endif %}
     </div>
   </div>
   <div class="row">
