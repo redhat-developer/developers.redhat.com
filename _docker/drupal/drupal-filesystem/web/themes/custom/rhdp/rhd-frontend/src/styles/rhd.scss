@@ -88,8 +88,8 @@
 
   @media (min-width: 1260px) {
     grid-template-columns: repeat(12, [content-start] 70px) [content-end];
-    min-width: 1260px;
-    max-width: auto;
+    max-width: 1260px;
+    margin: 0 auto;
   }
 }
 
