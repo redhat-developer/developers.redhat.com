@@ -62,7 +62,7 @@ function build_subpage_link_entry($sub_page, $template)
 
   $base_url = ($drupal_env === 'pr')
     ? "http://{$rhd_drupal_config['host']}:{$rhd_drupal_config['port']}"
-    : {$rhd_drupal_config['host']};
+    : $rhd_drupal_config['host'];
 
   $url_product_name = $sub_page->getParentEntity()->field_url_product_name->value;
   $sub_page_slug = strtolower(str_replace(' ', '-', $sub_page->field_overview_url->value));
