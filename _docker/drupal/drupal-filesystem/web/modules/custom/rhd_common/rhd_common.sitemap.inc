@@ -56,7 +56,14 @@ function product_node_sitemap_entries(&$links) {
  */
 function build_subpage_link_entry($sub_page, $template)
 {
-  $base_url = \Drupal::request()->getSchemeAndHttpHost();
+  /** @var \Drupal\Core\Config\ImmutableConfig $rhd_config */
+  $rhd_drupal_config = \Drupal::config('redhat_developers')->get('drupal');
+  $drupal_env = \Drupal::config('redhat_developers')->get('environment');
+
+  $base_url = ($drupal_env === 'pr')
+    ? "http://{$rhd_drupal_config['host']}:{$rhd_drupal_config['port']}"
+    : $rhd_drupal_config['host'];
+
   $url_product_name = $sub_page->getParentEntity()->field_url_product_name->value;
   $sub_page_slug = strtolower(str_replace(' ', '-', $sub_page->field_overview_url->value));
 
