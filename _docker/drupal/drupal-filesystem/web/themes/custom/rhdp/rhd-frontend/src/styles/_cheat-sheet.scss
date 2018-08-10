@@ -187,6 +187,14 @@
       -webkit-box-orient: vertical;
       margin-bottom: 0;
     }
-  } 
+  }
 }
 
+.page-node-type-cheat-sheet .disqus-thread-wrapper {
+  padding-top: 40px;
+  border-top: #E4E4E4 1px solid;
+  margin-top:  40px;
+  h2 {
+    @extend h4;
+  }
+}
