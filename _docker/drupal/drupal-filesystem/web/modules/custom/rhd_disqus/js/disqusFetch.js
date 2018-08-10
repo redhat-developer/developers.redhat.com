@@ -22,9 +22,7 @@
         // check if link is on current domain or live domain
         var a = document.createElement('a');
         a.href = link;
-        if (a.hostname == window.location.hostname || a.hostname == 'developers.redhat.com') {
-          getThreadInfo(params, commentCountSuccess);
-        }
+        getThreadInfo(params, commentCountSuccess);
       });
     }
   };
