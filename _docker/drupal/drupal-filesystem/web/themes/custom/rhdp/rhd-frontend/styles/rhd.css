@@ -1605,18 +1605,27 @@ a.light-cta {
 
 .assembly-type-content_with_image {
   padding: 40px 0; }
-  @media (min-width: 768px) {
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image {
+      text-align: center; } }
+  @media only screen and (min-width: 769px) {
     .assembly-type-content_with_image {
       padding: 100px 0; } }
   .assembly-type-content_with_image .header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 16px;
     font-size: 18px;
     margin-top: 0; }
-    @media (min-width: 768px) {
+    @media only screen and (min-width: 769px) {
       .assembly-type-content_with_image .header {
         font-weight: bold;
-        font-size: 36px; } }
+        font-size: 36px;
+        text-align: left; } }
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image .container, .assembly-type-content_with_image .node__content > .field--name-body, .assembly-type-content_with_image
+    #block-rhdp-local-tasks {
+      flex-flow: row wrap-reverse;
+      display: flex; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .container, .assembly-type-content_with_image .node__content > .field--name-body, .assembly-type-content_with_image
     #block-rhdp-local-tasks {
@@ -1637,6 +1646,9 @@ a.light-cta {
         font-size: 16px; } }
     .assembly-type-content_with_image p:first-child, .assembly-type-content_with_image ol:first-child, .assembly-type-content_with_image ul:first-child {
       margin-top: 0; }
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image .assembly-content {
+      width: 100% !important; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .assembly-content {
       flex-grow: 2; } }
@@ -1647,7 +1659,14 @@ a.light-cta {
     margin-bottom: 20px; }
   .assembly-type-content_with_image .assembly-content + .assembly-image {
     margin-top: 13px;
-    max-width: 212px; }
+    max-width: 320px; }
+    @media only screen and (max-width: 768px) {
+      .assembly-type-content_with_image .assembly-content + .assembly-image {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+        margin-bottom: 20px; } }
     @media (min-width: 576px) {
       .assembly-type-content_with_image .assembly-content + .assembly-image {
         margin-top: 0;
@@ -1656,9 +1675,16 @@ a.light-cta {
       .assembly-type-content_with_image .assembly-content + .assembly-image {
         margin-left: 50px;
         max-width: 320px; } }
+    .assembly-type-content_with_image .assembly-content + .assembly-image img {
+      max-width: 320px; }
+      @media only screen and (max-width: 480px) {
+        .assembly-type-content_with_image .assembly-content + .assembly-image img {
+          max-width: 212px; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .assembly-image {
       flex-grow: 1; } }
+  .assembly-type-content_with_image .button {
+    margin: 15px 15px 0 0 !important; }
 
 .assembly-type-product_categories {
   background-color: #F9F9F9;
@@ -7406,7 +7432,7 @@ body.page-node-type-learning-path .wrapper {
     flex-wrap: nowrap;
     align-items: stretch;
     padding: 30px;
-    min-width: 66%; }
+    min-width: calc(66% - 30px); }
     #rhd-learning-path .lp-cards-container .dp-content-card {
       display: flex;
       flex-direction: row;
@@ -7470,7 +7496,8 @@ body.page-node-type-learning-path .wrapper {
         flex-wrap: nowrap;
         align-items: stretch;
         padding: 30px;
-        min-width: 1px; }
+        min-width: 1px;
+        width: 100%; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-details {
         display: flex;
         flex-direction: row;
@@ -7522,12 +7549,10 @@ body.page-node-type-learning-path .wrapper {
         line-height: 22px; }
   @media screen and (max-width: 1175px) {
     #rhd-learning-path .lp-info {
-      margin: 0; }
+      margin-top: 15px; }
     #rhd-learning-path .lp-cards-container {
       padding: 15px; } }
   @media screen and (max-width: 1175px) and (min-width: 1171px) {
-    #rhd-learning-path .lp-info {
-      margin-top: 15px; }
     #rhd-learning-path .lp-cards-container {
       margin-top: 0; } }
   @media screen and (max-width: 1150px) {
@@ -7571,15 +7596,15 @@ body.page-node-type-learning-path .wrapper {
     #rhd-learning-path .lp-cards-container .dp-content-card .card-details {
       display: block; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-details .dp-duration {
-        margin-top: .25em; } }
+        margin-top: .25em; }
+    #rhd-learning-path .lp-cards-container .dp-content-card .dp-level {
+      display: none; } }
   @media screen and (max-width: 675px) {
     #rhd-learning-path .lp-cards-container .dp-content-card {
       flex-direction: column; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-info {
         padding: 15px; }
       #rhd-learning-path .lp-cards-container .dp-content-card p {
-        display: none; }
-      #rhd-learning-path .lp-cards-container .dp-content-card .dp-level {
         display: none; }
       #rhd-learning-path .lp-cards-container .dp-content-card h4 {
         font-size: 18px;
@@ -9933,7 +9958,8 @@ p.desc {
       #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
       #rhd-book .book-tags .field--name-field-tags .field__item:after {
         content: ", ";
-        position: relative; }
+        position: relative;
+        left: -3px; }
       #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
       #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:last-child:after,
       #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
@@ -10468,6 +10494,8 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     position: absolute;
     float: right;
     right: 0; }
+  #rhd-article .article-tags {
+    padding-bottom: 15px; }
   #rhd-article .article-info {
     border: none;
     background: #D5D5D5;
@@ -13649,3 +13677,6 @@ body.overlay-open .overlay {
       color: #FFFFFF;
       font-size: 1.5em;
       margin-right: 15px; }
+
+.caption > figcaption {
+  margin-top: 10px; }
