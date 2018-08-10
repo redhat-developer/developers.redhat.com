@@ -10510,7 +10510,12 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     float: right;
     right: 0; }
   #rhd-article .article-tags {
-    padding-bottom: 15px; }
+    padding-bottom: 15px;
+    padding-right: 15px;
+    position: absolute; }
+    @media only screen and (max-width: 1024px) {
+      #rhd-article .article-tags {
+        position: relative; } }
   #rhd-article .article-info {
     border: none;
     background: #D5D5D5;
