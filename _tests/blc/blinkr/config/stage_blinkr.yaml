@@ -1,6 +1,6 @@
 base_url: https://developers.stage.redhat.com
 verbose: true
-remote: true
+remote: false
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
