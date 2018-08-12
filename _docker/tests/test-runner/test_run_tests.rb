@@ -157,7 +157,6 @@ class TestRunTests < MiniTest::Test
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc && docker build -t test-base:0.1.0 .')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing build')
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing up -d blinkr-chrome')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p rhd_blinkr_testing run --rm --no-deps rhd_blinkr_testing bundle exec blinkr')
 
     @run_tests.execute_tests(%w(--use-docker))
@@ -176,7 +175,6 @@ class TestRunTests < MiniTest::Test
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc && docker build -t test-base:0.1.0 .')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo build')
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo up -d blinkr-chrome')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/blc/blinkr/environments && docker-compose -p foo run --rm --no-deps rhd_blinkr_testing bundle exec blinkr')
 
     @run_tests.execute_tests(%w(--use-docker))

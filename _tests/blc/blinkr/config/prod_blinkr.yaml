@@ -1,6 +1,6 @@
 verbose: true
 base_url: https://developers.redhat.com
-remote: true
+remote: false
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -63,5 +63,5 @@ environments:
 
 max_page_retys: 5
 max_retrys: 5
-threads: 10
+threads: 5
 report: blinkr.html
