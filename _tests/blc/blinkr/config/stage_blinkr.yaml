@@ -1,8 +1,6 @@
 base_url: https://developers.stage.redhat.com
 verbose: true
-ignore_external: true
-ignore_ssl: true
-
+remote: false
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -39,12 +37,10 @@ ignores:
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
 
 environments:
-  - http://developer-drupal.web.prod.ext.phx2.redhat.com
-  - https://developer-drupal.web.prod.ext.phx2.redhat.com
+  - http://rhdp-drupal.stage.redhat.com
+  - https://rhdp-drupal.stage.redhat.com
 
 max_page_retys: 5
 max_retrys: 5
-browser: phantomjs
-ignore_fragments: true
-phantomjs_threads: 8
+threads: 10
 report: blinkr.html

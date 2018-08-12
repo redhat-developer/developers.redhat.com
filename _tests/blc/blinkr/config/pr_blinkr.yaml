@@ -1,4 +1,5 @@
 verbose: true
+remote: false
 
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
@@ -40,15 +41,12 @@ ignores:
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
 
 environments:
-  - http://developer-drupal.web.prod.ext.phx2.redhat.com
-  - https://developer-drupal.web.prod.ext.phx2.redhat.com
+  - http://rhdp-drupal.redhat.com
+  - https://rhdp-drupal.redhat.com
 
 ignore_external: true
 
-ignore_ssl: true
 max_page_retys: 5
 max_retrys: 5
-browser: phantomjs
-ignore_fragments: true
-phantomjs_threads: 8
+threads: 10
 report: blinkr.html
