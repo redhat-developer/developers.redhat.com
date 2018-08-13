@@ -16,6 +16,9 @@
     margin-top: 0;
     width: calc(100% - 30px);
   }
+  .label-text {
+    @include word-wrap;
+  }
   .video-content { margin-top: 4.5em; }
   .video-description {
     margin-bottom: 1em;
@@ -39,7 +42,7 @@
       }
     }
   }
-  .show-more-text { max-height: 69px; }
+  .show-more-text { max-height: 65px; }
   a.show-more { border-top: 1px solid $grey-3; }
   .video-transcript {
     padding: 2em 0 0 0;

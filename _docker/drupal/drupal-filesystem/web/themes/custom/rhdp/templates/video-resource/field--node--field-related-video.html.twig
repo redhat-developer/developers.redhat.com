@@ -51,7 +51,7 @@ label_display == 'visually_hidden' ? 'visually-hidden',
 
 <div{{ attributes.addClass(classes, 'field__items') }}>
   {% for item in items %}
-    <div{{ attributes.addClass(['field__item', 'large-6 columns', 'related-content-card', 'tertiary-promo']) }}>
+    <div{{ attributes.addClass(['field__item', 'large-6 columns line-clamp-2', 'related-content-card', 'tertiary-promo']) }}>
         <h6>Related Video</h6>
         {{ item }}
     </div>
