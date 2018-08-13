@@ -1,47 +1,72 @@
 version: '2'
 services:
   rhd_e2e_testing:
-    build: ../
+    build: ..
     volumes:
-      - ../../../:/home/e2e/developers.redhat.com
+    - ../../../:/home/e2e/developers.redhat.com
     entrypoint: ruby /home/e2e/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
     working_dir: /home/e2e/developers.redhat.com/_tests/e2e
     environment:
-      - github_status_enabled
-      - github_status_api_token
-      - github_status_context
-      - github_status_repo=redhat-developer/developers.redhat.com
-      - github_status_target_url=${BUILD_URL}artifact/_tests/e2e/report/${RHD_TEST_PROFILE}-results/results.html
-      - github_status_sha1
-      - RHD_BS_AUTHKEY
-      - RHD_BS_USERNAME
-      - RHD_DOCKER_DRIVER
-      - NODE_SELENIUM_HOST=${RHD_DOCKER_DRIVER}
-      - RHD_JS_DRIVER
-      - RHD_VERBOSE_OUTPUT
-      - RHD_CHIMP_TAGS
-      - RHD_TEST_CONFIG
-      - RHD_BASE_URL
-      - RHD_TEST_PROFILE
-      - RHD_DRUPAL_ADMIN_USERNAME
-      - RHD_DRUPAL_ADMIN_PASSWORD
-      - RHD_KEYCLOAK_ADMIN_USERNAME
-      - RHD_KEYCLOAK_ADMIN_PASSWORD
+    - github_status_enabled
+    - github_status_api_token
+    - github_status_context
+    - github_status_repo=redhat-developer/developers.redhat.com
+    - github_status_target_url=${BUILD_URL}artifact/_tests/e2e/report/${RHD_TEST_PROFILE}-results/results.html
+    - github_status_sha1
+    - RHD_BS_AUTHKEY
+    - RHD_BS_USERNAME
+    - RHD_DOCKER_DRIVER
+    - RHD_JS_DRIVER
+    - RHD_VERBOSE_OUTPUT
+    - RHD_TEST_CONFIG
+    - RHD_BASE_URL
+    - RHD_TEST_PROFILE
+    - RHD_DRUPAL_ADMIN_USERNAME
+    - RHD_DRUPAL_ADMIN_PASSWORD
+    - RHD_KEYCLOAK_ADMIN_USERNAME
+    - RHD_KEYCLOAK_ADMIN_PASSWORD
+    - GRID_HOST=selhub
+    - GRID_PORT=4444
+
+  selhub:
+    image: selenium/hub:3.14.0-arsenic
+    restart: always
+    expose:
+    - "4444"
+    ports:
+    - "4444"
+    privileged: true
+    environment:
+      GRID_TIMEOUT: 720
+      GRID_BROWSER_TIMEOUT: 360
+      GRID_MAX_SESSION: 10
 
   chrome:
-    image: selenium/standalone-chrome-debug:3.8.1-aluminum
+    image: selenium/node-chrome:3.14.0-arsenic
     volumes:
-      - /dev/shm:/dev/shm
-      - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
+    - /dev/shm:/dev/shm
+    - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
+    depends_on:
+    - selhub
     ports:
-      - "5900"
-    links:
-      - rhd_e2e_testing
+    - 5900
+    environment:
+      HUB_PORT_4444_TCP_ADDR: selhub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_INSTANCES: 10
+      NODE_MAX_SESSION: 10
 
   firefox:
-    image: selenium/standalone-firefox-debug:3.8.1-aluminum
+    image: selenium/node-firefox:3.14.0-arsenic
+    volumes:
+    - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
+    depends_on:
+    - selhub
     ports:
-      - "5901"
-    links:
-      - rhd_e2e_testing
-    shm_size: 2g
+    - 5901
+    environment:
+      HUB_PORT_4444_TCP_ADDR: selhub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_INSTANCES: 10
+      NODE_MAX_SESSION: 10
+    

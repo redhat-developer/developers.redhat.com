@@ -1,6 +1,6 @@
 verbose: true
 base_url: https://developers.redhat.com
-hard_fail: false
+remote: true
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -41,7 +41,7 @@ skips:
   - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
   - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
   - !ruby/regexp /^https:\/\/developers\.redhat\.com\/download-manager\/file\/(.*)/
-  
+
 ignores:
   - code: 202
   - code: 203
@@ -56,12 +56,12 @@ ignores:
   - url: https://xx.x.x.x:8443
   # Blinkr can't follow the redirect on the below pages for some reason - will be fixed in a future release of blinkr
   - url: https://www-admin.corp.redhat.com/en/about/press-releases/red-hat-delivers-latest-stable-developer-tools-newest-installment-red-hat-software-collections
-  - url: https://developers.redhat.com/register
-  - url: https://developers.redhat.com/login
 
-max_page_retys: 5
-max_retrys: 5
-browser: phantomjs
-ignore_fragments: true
-phantomjs_threads: 8
+environments:
+  - http://rhdp-drupal.redhat.com
+  - https://rhdp-drupal.redhat.com
+
+max_page_retys: 6
+max_retrys: 6
+threads: 10
 report: blinkr.html

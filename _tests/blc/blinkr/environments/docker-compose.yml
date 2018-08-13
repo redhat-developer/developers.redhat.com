@@ -1,12 +1,12 @@
 version: '2'
 services:
   rhd_blinkr_testing:
-   build: ../
-   volumes:
+    build: ../
+    volumes:
     - ../../../../:/home/blinkr/developers.redhat.com
-   entrypoint: ruby /home/blinkr/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
-   working_dir: /home/blinkr/developers.redhat.com/_tests/blc/blinkr
-   environment:
+    entrypoint: ruby /home/blinkr/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
+    working_dir: /home/blinkr/developers.redhat.com/_tests/blc/blinkr
+    environment:
     - github_status_enabled
     - github_status_api_token
     - github_status_context
@@ -14,3 +14,14 @@ services:
     - github_status_target_url=${BUILD_URL}artifact/_tests/blcg/blinkr/blinkr.html
     - github_status_sha1
     - CONFIG
+    - GRID_HOST=blinkr_chrome
+    - GRID_PORT=4444
+
+  blinkr_chrome:
+    image: selenium/standalone-chrome:3.14.0-arsenic
+    volumes:
+    - /dev/shm:/dev/shm
+    expose:
+    - "4444"
+    links:
+    - rhd_blinkr_testing
