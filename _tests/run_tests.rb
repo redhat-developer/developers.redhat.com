@@ -86,13 +86,14 @@ class RunTest
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
 
-    if test_configuration[:e2e]
-      if test_configuration[:browserstack]
-        @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh")
-      else
-        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:docker_node]}")
-      end
-    end
+     if test_configuration[:e2e]
+       if test_configuration[:browserstack]
+         @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh")
+       else
+         @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d chrome")
+         @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale chrome=2")
+       end
+     end
 
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
@@ -109,6 +110,7 @@ class RunTest
     compose_environment_directory = "#{@test_dir}/blc/#{ENV['rhd_test']}/environments"
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d chrome") if test_configuration[:blinkr]
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
     @log.info("Completed run of #{ENV['rhd_test']} tests.")

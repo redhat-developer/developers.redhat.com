@@ -89,21 +89,6 @@ class NodeJenkinsTestRunner
   end
 
   #
-  # Generate critical pages sitemap.xml
-  #
-  def generate_critical_page_sitemap
-    success = true
-    cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
-    begin
-      @process_runner.execute!(cmd)
-    rescue
-      puts 'Failed to generate critical link sitemap.xml'
-      success = false
-    end
-    success
-  end
-
-  #
   # Reads an environment variable, returning its value or nil if it is not set or empty
   #
   def read_env_variable(variable_name)
