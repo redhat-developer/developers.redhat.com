@@ -12,7 +12,7 @@
     small { display: block; }
   }
   .field--type-video-embed-field { margin-bottom: 1.5em; }
-  .page-info-bar { 
+  .page-info-bar {
     margin-top: 0;
     width: calc(100% - 30px);
   }
@@ -129,10 +129,10 @@ section.related-content {
     .video-caption {
       margin-top: 0;
     }
-  } 
+  }
 }
 
-@include tablet-portrait-and-down { 
+@include tablet-portrait-and-down {
   header.video-page .field--name-title { font-size: 30px; }
   .video-page {
     .page-info-bar { margin-bottom: 2em; }
@@ -179,5 +179,13 @@ section.related-content {
     bottom: 4rem;
     font-size: 1.7rem;
     left: 120px;
+  }
+}
+
+.page-node-type-video-resource .disqus-thread-wrapper {
+  padding: 40px 0;
+  h2 {
+    @extend h4;
+    text-transform: uppercase;
   }
 }
