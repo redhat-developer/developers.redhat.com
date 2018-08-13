@@ -46,6 +46,8 @@ class DrupalPageUrlListGenerator
       links << "http://#{@drupal_host}#{uri.path}"
     end
 
+    links << "http://#{@drupal_host}/404-error/index.html"
+
     links.uniq!
     links
   end
