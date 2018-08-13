@@ -14,10 +14,10 @@ services:
     - github_status_target_url=${BUILD_URL}artifact/_tests/blcg/blinkr/blinkr.html
     - github_status_sha1
     - CONFIG
-    - GRID_HOST=chrome
+    - GRID_HOST=blinkr_chrome
     - GRID_PORT=4444
 
-  chrome:
+  blinkr_chrome:
     image: selenium/standalone-chrome:3.14.0-arsenic
     volumes:
     - /dev/shm:/dev/shm
