@@ -122,9 +122,16 @@ section.related-content {
       width: 80%;
       height: 400px;
     }
-    .related-content-card { min-height: 245px; }
+    .related-content-card { 
+      min-height: 245px; 
+    }
     &.related-content h4 {
-      margin-left: 15px;
+      //margin-left: 15px;
+    }
+    #video-related-cont {
+      & > h4 {
+        margin-left: 15px;
+      }
     }
   }
   .product-video {
