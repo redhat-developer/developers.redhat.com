@@ -93,9 +93,9 @@ app.relatedContent.render = function(materials) {
       title = title.replace("| Red Hat Developer Program", "");
 
       var item = [
-        '<div class="large-6 columns line-clamp-2 related-content-card">',
+        '<div class="large-6 columns related-content-card">',
         '<h6>Related ' + material.fields.sys_type + '</h6>',
-        '<h4><span  >' + title + '</span></h4>',
+        '<h4><span class="line-clamp-2">' + title + '</span></h4>',
         '<p class="description">',
         '<a class="light-cta" href="' + material.fields.sys_url_view[0] + '">Read More</a>',
         '</p>',
