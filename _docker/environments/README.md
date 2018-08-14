@@ -11,9 +11,6 @@ The environments supported by the RHDP project are as follows:
 * drupal-staging: The new staging environment for Drupal version of developers.redhat.com
 * drupal-production: The new production environment for Drupal version of developers.redhat.com
 
-Additionally we have 'awestuct-staging' and 'awestruct-production'. These environments are used by Jenkins to run
-Awestruct against the staging and production Drupal instances. 
-
 ### Per-environment docker-compose.yml
 
 Each environment has its own docker-compose.yml file. The service definitions within these files may vary depending on
