@@ -13,6 +13,9 @@
             return false;
           }
           $(commentCountContainer).find('[data-disqus-comment-count-number]').html(thread.posts);
+          if (thread.posts === 1 || thread.posts === '1') {
+            $(commentCountContainer).find('[data-disqus-comment-count-verbage]').html('Comment');
+          }
           $(commentCountContainer).removeClass('hidden');
         }
 
