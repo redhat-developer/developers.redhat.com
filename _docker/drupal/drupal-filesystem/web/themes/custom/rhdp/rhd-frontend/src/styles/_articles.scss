@@ -6,6 +6,14 @@
     float: right;
     right: 0;
   }
+  .article-tags {
+    padding-bottom: 15px;
+    padding-right: 15px;
+    position: absolute;
+    @include tablet-landscape-and-down {
+      position: relative;
+    }
+  }
   .article-info{
     border: none;
     background: $grey-3;
