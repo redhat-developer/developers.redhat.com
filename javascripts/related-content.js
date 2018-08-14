@@ -104,6 +104,11 @@ app.relatedContent.render = function(materials) {
 
       html.push(item);
       $("div.video-related-content.video-related-content-list").removeClass('loading');
+      var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+      $clampItems.each(function() {
+          var $tmpItem = $(this);
+          $clamp($tmpItem.get(0), {clamp: 2, useNativeClamp: true});      
+      });
     }
   });
 

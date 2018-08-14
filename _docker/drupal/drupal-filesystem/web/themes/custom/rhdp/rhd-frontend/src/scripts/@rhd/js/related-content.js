@@ -108,7 +108,11 @@ app.relatedContent.render = function(materials) {
   });
 
   $('.video-related-content-list').html(html.join(''));
-
+  var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+  $clampItems.each(function() {
+      var $tmpItem = $(this);
+      $clamp($tmpItem.get(0), {clamp: 2, useNativeClamp: true});      
+  });
 }
 
 $(function() {
