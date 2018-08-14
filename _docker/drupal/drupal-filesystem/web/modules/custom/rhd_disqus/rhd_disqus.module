@@ -55,6 +55,7 @@ function rhd_disqus_preprocess_assembly(&$variables) {
 
   if ($type == 'static_item') {
     $variables['absolute_url'] = FALSE;
+    $variables['rhd_domain'] = FALSE;
     $url_field = $assembly->get('field_url')->getValue();
     if (!empty($url_field)) {
       $url_field = reset($url_field);
@@ -62,6 +63,15 @@ function rhd_disqus_preprocess_assembly(&$variables) {
       $url = \Drupal\Core\Url::fromUri($uri);
       $url_is_external = \Drupal\Component\Utility\UrlHelper::isExternal($url->toString());
       $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+      // don't run comment js on this entity
+      // if it isn't a redhat domain or the current domain
+      if ($_SERVER['SERVER_NAME']) {
+        $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+        if ($host == $_SERVER['SERVER_NAME'] || !(strpos($host, 'redhat.com') === FALSE)) {
+          $variables['rhd_domain'] = TRUE;
+        }
+      }
     }
   }
 }
