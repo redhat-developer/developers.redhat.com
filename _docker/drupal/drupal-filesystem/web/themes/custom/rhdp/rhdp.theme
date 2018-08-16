@@ -481,4 +481,11 @@ function rhdp_preprocess_assembly(&$variables) {
       }
     }
 
+    if ($assembly->hasField('field_html_embed_code')) {
+      $embed_value = $assembly->get('field_html_embed_code')->getValue();
+      if ($embed_value[0]['value']) {
+        $variables['eloqua_html_embed_code'] = $embed_value[0]['value'];
+      }
+    }
+
 }

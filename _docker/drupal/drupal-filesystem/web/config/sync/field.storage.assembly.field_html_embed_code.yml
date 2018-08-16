@@ -1,0 +1,19 @@
+uuid: 5ff68ba2-2e7f-44a4-86f8-aed3cf39e756
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_html_embed_code
+field_name: field_html_embed_code
+entity_type: assembly
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

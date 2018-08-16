@@ -1,0 +1,29 @@
+uuid: 73a3a31c-9823-4e79-9265-ff81f9e3b92f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - assembly.assembly_type.form
+    - field.storage.assembly.field_embed_form
+id: assembly.form.field_embed_form
+field_name: field_embed_form
+entity_type: assembly
+bundle: form
+label: 'Embed Form'
+description: 'Choose an embed form from the "Eloqua Form Embed" Assembly Type'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      eloqua_form_embed: eloqua_form_embed
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

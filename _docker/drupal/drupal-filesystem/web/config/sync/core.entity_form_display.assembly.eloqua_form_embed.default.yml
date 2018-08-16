@@ -1,0 +1,33 @@
+uuid: 3bd2513e-c80f-40f0-937b-71d62025c16b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.field.assembly.eloqua_form_embed.field_html_embed_code
+id: assembly.eloqua_form_embed.default
+targetEntityType: assembly
+bundle: eloqua_form_embed
+mode: default
+content:
+  field_html_embed_code:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  status: true
+  user_id: true
+  visual_styles: true

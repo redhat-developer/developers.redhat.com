@@ -5,8 +5,11 @@ dependencies:
   config:
     - assembly.assembly_type.form
     - field.field.assembly.form.field_content
+    - field.field.assembly.form.field_embed_form
     - field.field.assembly.form.field_title
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - text
     - workbench_moderation
 id: assembly.form.default
@@ -21,6 +24,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_embed_form:
+    weight: 3
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: true
+      override_labels: false
+      collapsible: false
+      collapsed: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
     region: content
   field_title:
     weight: 2
