@@ -1,5 +1,5 @@
-import {Base} from '../../../Base.page'
-import {SearchResults} from './SearchResults'
+import {Base} from '../../../Base.page';
+import {SearchResults} from './SearchResults';
 
 export class SearchBox extends Base {
     constructor() {
