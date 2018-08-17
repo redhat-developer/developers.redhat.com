@@ -19,7 +19,7 @@ export class SearchResults extends Base {
 
     awaitLoadingSpinner() {
         this.awaitExists(this.getSelector('searchPage'));
-        return this.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000)
+        return this.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000);
     }
 
     awaitResultsFor(searchTerm) {
@@ -28,11 +28,11 @@ export class SearchResults extends Base {
     }
 
     getAllResults() {
-        return this.elements(this.getSelector('allSearchResults'))
+        return this.elements(this.getSelector('allSearchResults'));
     }
 
     getResultByIndex(i) {
-        return this.element(`//rhdp-search-result[${i}]/div`)
+        return this.element(`//rhdp-search-result[${i}]/div`);
     }
 
     getResultDate(i) {

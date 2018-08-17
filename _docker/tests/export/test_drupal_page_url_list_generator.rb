@@ -33,7 +33,7 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     @drupal_page_list_url_generator.generate_page_url_list!
 
     lines = File.readlines("#{@export_directory}/url-list.txt")
-    assert_equal(7, lines.length)
+    assert_equal(8, lines.length)
     lines.each do | line |
       assert(line.start_with?('http://192.168.99.100:32769/'))
     end
@@ -53,7 +53,7 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     @drupal_page_list_url_generator.generate_page_url_list!
 
     lines = File.readlines("#{@export_directory}/url-list.txt")
-    assert_equal(7, lines.length)
+    assert_equal(8, lines.length)
     lines.each do | line |
       assert(line.start_with?('http://192.168.99.100:32769/'))
     end

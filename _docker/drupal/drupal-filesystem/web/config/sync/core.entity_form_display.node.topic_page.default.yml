@@ -56,6 +56,7 @@ content:
       match_operator: CONTAINS
       collapsible: false
       collapsed: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
@@ -63,7 +64,7 @@ content:
     region: content
   field_share_image:
     type: entity_browser_file
-    weight: 7
+    weight: 5
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -76,7 +77,7 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 5
+    weight: 6
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -87,7 +88,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   scheduled_update:
-    weight: 6
+    weight: 7
     settings:
       form_mode: default
       label_singular: ''
@@ -98,6 +99,7 @@ content:
       collapsible: false
       collapsed: false
       allow_existing: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none

@@ -1,0 +1,19 @@
+uuid: 0fce473f-7d17-4e28-ac9f-a26d3f8fc442
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_sidebar_link
+field_name: field_sidebar_link
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

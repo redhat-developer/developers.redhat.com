@@ -1,0 +1,11 @@
+
+rhd_disqus.rhd_disqus_settings_form:
+  path: '/admin/config/rhd-disqus/settings'
+  defaults:
+    _form: '\Drupal\rhd_disqus\Form\DisqusSettingsForm'
+    _title: 'RHD Disqus Settings'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+

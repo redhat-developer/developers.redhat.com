@@ -95,7 +95,7 @@ app.relatedContent.render = function(materials) {
       var item = [
         '<div class="large-6 columns related-content-card">',
         '<h6>Related ' + material.fields.sys_type + '</h6>',
-        '<h4><span  >' + title + '</span></h4>',
+        '<h4><span class="line-clamp-2">' + title + '</span></h4>',
         '<p class="description">',
         '<a class="light-cta" href="' + material.fields.sys_url_view[0] + '">Read More</a>',
         '</p>',
@@ -108,7 +108,11 @@ app.relatedContent.render = function(materials) {
   });
 
   $('.video-related-content-list').html(html.join(''));
-
+  var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+  $clampItems.each(function() {
+      var $tmpItem = $(this);
+      $clamp($tmpItem.get(0), {clamp: 2, useNativeClamp: true});      
+  });
 }
 
 $(function() {

@@ -1,0 +1,95 @@
+uuid: 6679bb35-af38-4e31-a6c5-f347087db9c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_hero
+    - entity_browser.browser.image_browser
+    - field.field.assembly.events_hero.field_background_image
+    - field.field.assembly.events_hero.field_primary_event
+    - field.field.assembly.events_hero.field_secondary_events
+    - field.field.assembly.events_hero.field_sidebar_link
+    - field.field.assembly.events_hero.field_sidebar_title
+    - field.field.assembly.events_hero.field_title
+  module:
+    - entity_browser
+    - link
+id: assembly.events_hero.default
+targetEntityType: assembly
+bundle: events_hero
+mode: default
+content:
+  field_background_image:
+    type: entity_browser_file
+    weight: 7
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_primary_event:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_secondary_events:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_sidebar_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_sidebar_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true
