@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.coding_resource.field_tags
     - field.field.node.coding_resource.field_technologies
     - field.field.node.coding_resource.field_version
-    - field.field.node.coding_resource.scheduled_update
     - node.type.coding_resource
   module:
     - user
@@ -41,4 +40,3 @@ hidden:
   field_technologies: true
   field_version: true
   links: true
-  scheduled_update: true

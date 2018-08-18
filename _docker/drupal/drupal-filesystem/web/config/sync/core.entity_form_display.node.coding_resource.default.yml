@@ -15,16 +15,13 @@ dependencies:
     - field.field.node.coding_resource.field_tags
     - field.field.node.coding_resource.field_technologies
     - field.field.node.coding_resource.field_version
-    - field.field.node.coding_resource.scheduled_update
     - node.type.coding_resource
   module:
+    - content_moderation
     - datetime
-    - entity_browser_entity_form
-    - inline_entity_form
     - link
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: 0Wd1Zcfm8wzSJi23BRSe-NJZa11B3ykczVFt1rAzmW8
 id: node.coding_resource.default
@@ -126,34 +123,17 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 14
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 15
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'publishing date'
-      label_plural: 'publishing dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
-    region: content
   title:
     type: string_textfield
     weight: 0

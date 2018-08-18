@@ -6,8 +6,6 @@ dependencies:
     - assembly.assembly_type.product_categories
     - field.field.assembly.product_categories.field_navigation_title
     - field.field.assembly.product_categories.field_title
-  module:
-    - workbench_moderation
 id: assembly.product_categories.default
 targetEntityType: assembly
 bundle: product_categories
@@ -30,11 +28,14 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 4
-    settings: {  }
-    region: content
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0
