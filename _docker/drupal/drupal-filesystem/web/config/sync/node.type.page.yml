@@ -3,15 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
-    - lightning_scheduled_updates
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus:
       - main
     parent: 'main:'
-  lightning_scheduled_updates:
-    embargo: true
 _core:
   default_config_hash: kYY0S6NYT60EisdcOtQjEix0X0BeY6h7iLWnUZk_SCg
 name: 'Basic page (Deprecated)'
