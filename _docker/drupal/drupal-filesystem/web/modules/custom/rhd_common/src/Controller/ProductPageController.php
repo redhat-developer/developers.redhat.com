@@ -224,12 +224,7 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
         return TRUE;
       }
 
-      if ($productRev->moderation_state->getValue()[0]['target_id'] == 'published') {
-        return TRUE;
-      }
-      else {
-        return FALSE;
-      }
+      return $productRev->isPublished();
     });
 
     if (empty($possibilies)) {
