@@ -12,7 +12,6 @@ dependencies:
   module:
     - image
     - text
-    - workbench_moderation
 id: assembly.hero.default
 targetEntityType: assembly
 bundle: hero
@@ -51,11 +50,14 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 7
-    settings: {  }
-    region: content
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0

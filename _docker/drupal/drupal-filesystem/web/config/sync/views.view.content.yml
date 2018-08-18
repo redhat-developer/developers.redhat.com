@@ -4,8 +4,9 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.topics
+    - workflows.workflow.00c7e3ae
   module:
-    - lightning_workflow
+    - content_moderation
     - node
     - taxonomy
     - user
@@ -289,7 +290,7 @@ display:
           entity_field: changed
         moderation_state:
           id: moderation_state
-          table: node_field_data
+          table: content_moderation_state_field_data
           field: moderation_state
           relationship: none
           group_type: group
@@ -335,11 +336,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: false
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -349,59 +350,9 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
+          entity_type: content_moderation_state
           entity_field: moderation_state
           plugin_id: field
-        forward_revision_exists:
-          id: forward_revision_exists
-          table: node_field_data
-          field: forward_revision_exists
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Has unpublished edits'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          entity_type: node
-          plugin_id: forward_revision_exists
         operations:
           id: operations
           table: node
@@ -478,6 +429,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -593,8 +545,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value: ''
+          operator: in
+          value:
+            all: all
+            00c7e3ae-archived: 00c7e3ae-archived
+            00c7e3ae-draft: 00c7e3ae-draft
+            00c7e3ae-needs_review: 00c7e3ae-needs_review
+            00c7e3ae-published: 00c7e3ae-published
           group: 1
           exposed: true
           expose:
@@ -611,6 +568,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -624,8 +582,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           entity_type: node
-          entity_field: moderation_state
-          plugin_id: string
+          plugin_id: moderation_state_filter
       sorts: {  }
       title: Content
       empty:
@@ -644,15 +601,6 @@ display:
           field: uid
           admin_label: author
           required: true
-          plugin_id: standard
-        latest_revision__node:
-          id: latest_revision__node
-          table: workbench_revision_tracker
-          field: latest_revision__node
-          relationship: none
-          group_type: group
-          admin_label: 'latest revision'
-          required: false
           plugin_id: standard
       show_admin_links: false
       filter_groups:
@@ -674,7 +622,8 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:workflow_list'
   page_1:
     display_options:
       path: admin/content/node
@@ -706,4 +655,5 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:workflow_list'

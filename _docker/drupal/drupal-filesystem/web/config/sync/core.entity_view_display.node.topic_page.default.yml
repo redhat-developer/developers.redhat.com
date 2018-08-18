@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.topic_page.field_meta_tags
     - field.field.node.topic_page.field_sections
     - field.field.node.topic_page.field_share_image
-    - field.field.node.topic_page.scheduled_update
     - node.type.topic_page
   module:
     - entity_reference_revisions
@@ -24,6 +23,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  content_moderation_control:
+    weight: -20
     region: content
   field_sections:
     weight: 2
@@ -43,4 +45,3 @@ hidden:
   field_meta_tags: true
   field_share_image: true
   links: true
-  scheduled_update: true

@@ -13,7 +13,6 @@ dependencies:
   module:
     - entity_browser
     - text
-    - workbench_moderation
 id: assembly.video_hero.default
 targetEntityType: assembly
 bundle: video_hero
@@ -66,11 +65,14 @@ content:
     type: entity_reference_autocomplete
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 8
-    settings: {  }
-    region: content
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0

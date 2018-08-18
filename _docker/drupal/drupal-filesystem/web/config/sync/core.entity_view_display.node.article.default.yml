@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.field_topics
-    - field.field.node.article.scheduled_update
     - node.type.article
   module:
     - interval
@@ -38,6 +37,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
+    region: content
+  content_moderation_control:
+    weight: -20
     region: content
   field_card_image:
     weight: 105
@@ -131,4 +133,3 @@ hidden:
   field_author_name: true
   field_hide_toc: true
   field_image: true
-  scheduled_update: true

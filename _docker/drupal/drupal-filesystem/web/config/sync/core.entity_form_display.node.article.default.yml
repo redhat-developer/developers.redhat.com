@@ -16,17 +16,14 @@ dependencies:
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.field_topics
-    - field.field.node.article.scheduled_update
     - node.type.article
   module:
-    - entity_browser_entity_form
-    - inline_entity_form
+    - content_moderation
     - interval
     - link
     - metatag
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: O9-fUiX8SoHaVWfm388Qnry-b5_w23TZhgowE4PLRBo
 id: node.article.default
@@ -124,11 +121,11 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 17
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 11
@@ -141,23 +138,6 @@ content:
       display_label: true
     weight: 9
     third_party_settings: {  }
-    region: content
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 18
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'Scheduled publication date'
-      label_plural: 'Scheduled publication dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
     region: content
   sticky:
     type: boolean_checkbox

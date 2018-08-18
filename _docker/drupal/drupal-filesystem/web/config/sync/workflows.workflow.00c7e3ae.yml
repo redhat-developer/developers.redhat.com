@@ -1,0 +1,133 @@
+uuid: ccb3b3aa-d1a3-4f69-acd8-be5647c2da33
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.assembly_page
+    - node.type.author
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.connectors
+    - node.type.events
+    - node.type.learning_path
+    - node.type.page
+    - node.type.product
+    - node.type.promotion_card
+    - node.type.promotion_page
+    - node.type.rh_certification_exam
+    - node.type.rh_training_class
+    - node.type.rhd_microsite
+    - node.type.rhd_solution_overview
+    - node.type.topic
+    - node.type.topic_page
+    - node.type.video_resource
+  module:
+    - content_moderation
+id: 00c7e3ae
+label: 'RHDP Editorial Workflow'
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      label: Archived
+      published: false
+      default_revision: true
+      weight: 1
+    draft:
+      label: Draft
+      published: false
+      default_revision: false
+      weight: 2
+    needs_review:
+      label: 'Needs Review'
+      published: false
+      default_revision: false
+      weight: 3
+    published:
+      label: Published
+      published: true
+      default_revision: true
+      weight: 4
+  transitions:
+    archived_published:
+      label: Un-archive
+      from:
+        - archived
+      to: published
+      weight: 1
+    draft_draft:
+      label: 'Create New Draft'
+      from:
+        - draft
+      to: draft
+      weight: 2
+    draft_needs_review:
+      label: 'Request Review'
+      from:
+        - draft
+      to: needs_review
+      weight: 3
+    draft_published:
+      label: Publish
+      from:
+        - draft
+      to: published
+      weight: 4
+    needs_review_draft:
+      label: 'Send Back to Draft'
+      from:
+        - needs_review
+      to: draft
+      weight: 5
+    needs_review_needs_review:
+      label: 'Keep in Review'
+      from:
+        - needs_review
+      to: needs_review
+      weight: 6
+    needs_review_published:
+      label: Publish
+      from:
+        - needs_review
+      to: published
+      weight: 7
+    published_archived:
+      label: Archive
+      from:
+        - published
+      to: archived
+      weight: 8
+    published_draft:
+      label: 'Create New Draft'
+      from:
+        - published
+      to: draft
+      weight: 9
+    published_published:
+      label: Publish
+      from:
+        - published
+      to: published
+      weight: 10
+  entity_types:
+    node:
+      - article
+      - assembly_page
+      - author
+      - books
+      - cheat_sheet
+      - connectors
+      - events
+      - learning_path
+      - page
+      - product
+      - promotion_card
+      - promotion_page
+      - rh_certification_exam
+      - rh_training_class
+      - rhd_microsite
+      - rhd_solution_overview
+      - topic
+      - topic_page
+      - video_resource
