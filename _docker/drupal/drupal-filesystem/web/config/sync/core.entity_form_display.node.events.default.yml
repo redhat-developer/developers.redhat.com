@@ -24,18 +24,15 @@ dependencies:
     - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
-    - field.field.node.events.scheduled_update
     - image.style.thumbnail
     - node.type.events
   module:
+    - content_moderation
     - datetime
     - entity_browser
-    - entity_browser_entity_form
     - image
-    - inline_entity_form
     - link
     - text
-    - workbench_moderation
 _core:
   default_config_hash: GGP4WPf7fQzefk1CREJvQ0AQ0fL2jddPAwQ2_EEAbBk
 id: node.events.default
@@ -173,27 +170,10 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 19
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 20
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'publishing date'
-      label_plural: 'publishing dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
+    type: moderation_state_default
     region: content
   title:
     type: string_textfield

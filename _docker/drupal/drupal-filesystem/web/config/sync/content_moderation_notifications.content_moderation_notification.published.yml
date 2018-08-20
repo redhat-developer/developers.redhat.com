@@ -1,0 +1,20 @@
+uuid: 03a9f651-aa57-4e4b-803b-8de157aeb8bd
+langcode: en
+status: true
+dependencies: {  }
+id: published
+workflow: 00c7e3ae
+transitions:
+  draft_published: draft_published
+  needs_review_published: needs_review_published
+  published_published: published_published
+roles:
+  content_team: content_team
+  content_admin: content_admin
+author: true
+emails: ''
+subject: '[node:title] moderation state changed to Published'
+body:
+  value: "<p><span class=\"blob-code-inner blob-code-marker-deletion\"><span class=\"pl-s\">The content at [node:url] has been published by [node:initiator].</span></span></p>\r\n"
+  format: rhd_html
+label: Published

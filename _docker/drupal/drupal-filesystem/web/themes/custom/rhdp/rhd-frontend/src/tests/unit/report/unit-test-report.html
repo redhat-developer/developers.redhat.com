@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>RHD frontend unit-test results</title>
+    <style type="text/css">html,body{font-family:Arial,sans-serif;font-size:1rem;margin:0;padding:0;}body{padding:10px 40px;}h1{margin-bottom:0;}h2{margin-top:0;margin-bottom:0;color:#999;}table{width:100%;margin-top:20px;margin-bottom:20px;table-layout:fixed;}tr.header{background:#ddd;font-weight:bold;border-bottom:none;}td{padding:7px;border-top:none;border-left:1px black solid;border-bottom:1px black solid;border-right:none;word-break:break-all;word-wrap:break-word;}tr.pass td{color:#003b07;background:#86e191;}tr.skip td{color:#7d3a00;background:#ffd24a;}tr.fail td{color:#5e0e00;background:#ff9c8a;}tr:first-child td{border-top:1px black solid;}td:last-child{border-right:1px black solid;}tr.overview{font-weight:bold;color:#777;}tr.overview td{padding-bottom:0px;border-bottom:none;}tr.system-out td{color:#777;}tr.system-errors td{color:#f00;}hr{height:2px;margin:30px 0;background:#000;border:none;}section{margin-top:40px;}h3{margin:6px 0;}.overview{color:#333;font-weight:bold;}.system-out{margin:0.4rem 0;}.system-errors{color:#a94442}.spec{padding:0.8rem;margin:0.3rem 0;}.spec--pass{color:#3c763d;background-color:#dff0d8;border:1px solid #d6e9c6;}.spec--skip{color:#8a6d3b;background-color:#fcf8e3;border:1px solid #faebcc;}.spec--fail{color:#a94442;background-color:#f2dede;border:1px solid #ebccd1;}.spec--group{color:#636363;background-color:#f0f0f0;border:1px solid #e6e6e6;margin:0;}.spec--group:not(:first-of-type){margin:20px 0 0 0;}.spec__title{display:inline;}.spec__suite{display:inline;}.spec__descrip{font-weight:normal;}.spec__status{float:right;}.spec__log{padding-left: 2.3rem;}.hidden{display:none;}body.compact .spec p{margin-top:0;margin-bottom:0.5rem;}body.compact .spec,body.compact tr,body.compact .overview,body.compact .system-out,body.compact .system-errors{font-size:0.85rem;}body.compact .spec{padding:0.3rem 0.5rem;}body.compact section{margin-top:30px;}</style>
+  </head>
+  <body class="">
+    <h1>RHD frontend unit-test results</h1>
+    <section>
+      <header class="overview">
+        <div class="browser">Browser: HeadlessChrome 0.0.0 (Linux 0.0.0)</div>
+        <div class="timestamp">Timestamp: 2018-8-8 18:07:48</div>
+        <p class="results">
+          134 tests / 
+          0 errors / 
+          118 failures / 
+          1 skipped / 
+          runtime: 0.288s
+        </p>
+      </header>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Alert component</p>
+            <em class="spec__descrip">should have the right structure</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPAlert is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-alert_spec.js:9:13)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-alert_spec.js:20:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-alert_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the platform property</em>
+          </div>
+          <div class="spec__status">Passed in 0.025s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the description property</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the learnMore property</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the dataFallbackUrl property</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the downloadUrl property</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the name property</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the productId property</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the version property</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic</p>
+            <em class="spec__descrip">should update the downloadURL with the appropriate text for devsuite</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:111:58)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic</p>
+            <em class="spec__descrip">should update the platform with the appropriate text for devsuite</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:93:65)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic</p>
+            <em class="spec__descrip">should update the osVersion</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: wc.osVersionExtract is not a function<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:85:16)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the version with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:141:65)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the heading</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:123:61)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the description with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:126:70)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the downloadURL with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:135:58)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the datafallback with the appropriate url</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:132:58)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the productID with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:138:58)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the href the appropriate learnmore link</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all-item_spec.js:129:70)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectQuery is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'dcpUrl' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:23:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectQuery is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:40:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property '_filterChange' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:53:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-query_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Given Downloads Application</p>
+            <em class="spec__descrip">should be true</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">Expected 0 to be greater than 0.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-app_spec.js:18:37)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with incomplete properties</p>
+            <em class="spec__descrip">should be blank with only a URL value</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:32:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:42:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with incomplete properties</p>
+            <em class="spec__descrip">should be blank with only a term value</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:32:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:47:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with incomplete properties</p>
+            <em class="spec__descrip">should be blank with no values</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:32:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:36:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update term and url attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:17:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:23:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should not be blank with a matched term regardless of captialization</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:102:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should be blank with an unmatched term</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:97:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should have a button linked to the appropriate URL</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:164:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should have a paragraph with the feature details</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:160:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should have a heading linked to the appropriate URL</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:155:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should not be blank</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerHTML' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:151:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should list the slotted items with icons, text, and links</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelectorAll' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:174:30)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a term matched to not the first feature</p>
+            <em class="spec__descrip">should have an unordered list with three items</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:147:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:169:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should have a paragraph with the feature details</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:121:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should have a heading linked to the appropriate URL</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:116:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should have a button linked to the appropriate URL</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:125:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should not be blank</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerHTML' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:112:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should list the slotted items with icons, text, and links</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelectorAll' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:135:30)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and a matched term</p>
+            <em class="spec__descrip">should have an unordered list with three items</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchOneBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'data' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:92:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'setAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:108:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:130:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-onebox_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result Count</p>
+            <em class="spec__descrip">should be 0 results with only a term value</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResultCount is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:23:17)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result Count</p>
+            <em class="spec__descrip">should say the right thing with a count and term set</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResultCount is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'count' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:27:18)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result Count</p>
+            <em class="spec__descrip">should be blank with no values</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResultCount is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:16:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result Count</p>
+            <em class="spec__descrip">should not have a term with only a count</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResultCount is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'count' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:19:18)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result-count_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Inline properties</p>
+            <em class="spec__descrip">should clear inline element on clearItem click</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'active' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:57:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:69:26)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Inline properties</p>
+            <em class="spec__descrip">should set inline innertext</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'active' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:57:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:66:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Inline properties</p>
+            <em class="spec__descrip">should set active on clearItem click</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'active' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:57:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:76:26)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the appropriate fields</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'getAttribute' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:26:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should show the name field</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:21:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Checkbox</p>
+            <em class="spec__descrip">should set the active state</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:35:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Active</p>
+            <em class="spec__descrip">should modify the active state</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'active' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:45:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-item_spec.js:16:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList and productList attributes</em>
+          </div>
+          <div class="spec__status">Passed in 0.009s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList and productList attributes</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList and productList attributes</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList and productList attributes</em>
+          </div>
+          <div class="spec__status">Passed in 0s</div>
+        </h3>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the osVersion</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: wc.osVersionExtract is not a function<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-product_spec.js:54:16)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the href attribute with the proper download url</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-product_spec.js:69:63)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the data-download-id attribute with the appropriate id</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-product_spec.js:63:63)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the data-fallback-url attribute with the appropriate url</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-product_spec.js:66:63)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the heading with the appropriate name</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-product_spec.js:60:64)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Query</p>
+            <em class="spec__descrip">should be true</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchQuery is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-query_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'filters' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-query_spec.js:16:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-query_spec.js:12:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectURL is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-url_spec.js:6:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-url_spec.js:19:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-url_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the id property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update the heading property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the id with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'id' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:75:64)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should have a heading with the appropriate text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:72:42)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:93:67)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a download list class to append children to</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:89:58)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended with a data-download-id-version</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:109:98)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended with a version</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:113:98)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended with a learn more link</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:105:92)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended medium-cta blue with appropriate data</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:117:97)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended with a description</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:101:85)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data &raquo; and product category headings</p>
+            <em class="spec__descrip">should have a rhdp-downloads-all-item child appended with a heading</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPDownloadsProducts is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:24:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-all_spec.js:97:92)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjects is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:10:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'loading' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:24:24)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:17:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should react to setting the loading status</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjects is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:10:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'loading' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:31:24)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:17:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should display project items</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjects is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:10:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property '_loadDataResult' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:49:16)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:17:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the project list when queries are submitted</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjects is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:10:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property '_loadDataResult' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:62:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-projects_spec.js:17:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:17:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'imageUrl' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:46:25)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should get expected results from class functions</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:17:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'getCorrectUrl' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:100:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">innerHTML</p>
+            <em class="spec__descrip">should have all attributes populated with text</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'imageUrl' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:134:25)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:169:39)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">innerHTML</p>
+            <em class="spec__descrip">should have text in innerHTML</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectItem is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'imageUrl' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:134:25)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerHTML' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:165:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-item_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Filters</p>
+            <em class="spec__descrip">should be true</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilters is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filters_spec.js:9:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filters_spec.js:19:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filters_spec.js:15:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the term when changed</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectFilterBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:6:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:29:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:36:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all attributes</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPProjectFilterBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:6:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'term' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:18:21)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-projects/rhdp-project-filter-box_spec.js:11:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result</p>
+            <em class="spec__descrip">should have a created date from resultset</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:59:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Result</p>
+            <em class="spec__descrip">should have a sys_url_view</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:66:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Title</p>
+            <em class="spec__descrip">should match fields.sys_title by default</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:79:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Title</p>
+            <em class="spec__descrip">should match highlight.sys_title if present</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:73:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Web Page" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:234:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Article" for the right result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:150:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Stack Overflow" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:222:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Blog Post" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:138:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Forum Thread" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:210:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Quickstart" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:198:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Video" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:126:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types &raquo; should have "Book" for the corresponding result types</p>
+            <em class="spec__descrip">book with an empty field_book_url</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:265:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types &raquo; should have "Book" for the corresponding result types</p>
+            <em class="spec__descrip">externally hosted books</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:257:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types &raquo; should have "Book" for the corresponding result types</p>
+            <em class="spec__descrip">all books</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:247:31)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Quickstart" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:186:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Event" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:174:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Result Types</p>
+            <em class="spec__descrip">should have "Demo" for the corresponding result types</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:162:27)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Description</p>
+            <em class="spec__descrip">should match highlights.sys_plaintext if present without h.sys_description</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:98:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Description</p>
+            <em class="spec__descrip">should match fields.sys_description by default</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:109:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Description</p>
+            <em class="spec__descrip">should match highlights.sys_description if present</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResult is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:50:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'result' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:88:23)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-result_spec.js:55:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--skip" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Given Search Application</p>
+            <em class="spec__descrip">should be true</em>
+          </div>
+          <div class="spec__status">Skipped</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update products attribute</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update data attribute</em>
+          </div>
+          <div class="spec__status">Passed in 0.001s</div>
+        </h3>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update categoryHeading attribute</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">Expected null to equal 'Test Product'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-products_spec.js:23:49)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should set the products when data is added</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">Expected $.products[0].downloadLink = '' to equal 'http://www.testdownloadlink.com/'.<br />Expected $.products[0].version = '' to equal '6.3.0'.<br />Error: Expected $.products[0].downloadLink = '' to equal 'http://www.testdownloadlink.com/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-products_spec.js:118:33)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Box</p>
+            <em class="spec__descrip">should be true</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchBox is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-box_spec.js:9:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'querySelector' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-box_spec.js:18:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-box_spec.js:14:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with a valid url</p>
+            <em class="spec__descrip">should display the link from tcDownloadURL</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-thankyou-page_spec.js:52:54)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with a valid url</p>
+            <em class="spec__descrip">should display the correct name without Media in the title</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-thankyou-page_spec.js:48:49)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update url, media-name and direct-link</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          Expected null to equal 'Media: Test Download'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-thankyou-page_spec.js:32:51)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'http://www.test-download.com'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-thankyou-page_spec.js:33:56)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Properties</p>
+            <em class="spec__descrip">should have a name property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterGroup is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'name' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:23:21)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Properties</p>
+            <em class="spec__descrip">should have a key property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterGroup is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'key' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:18:20)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Properties</p>
+            <em class="spec__descrip">should have a toggle property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterGroup is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'toggle' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:33:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Properties</p>
+            <em class="spec__descrip">should have an items property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchFilterGroup is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:7:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'items' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-filter-group_spec.js:29:22)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic methods</p>
+            <em class="spec__descrip">should set platform URLs based on product id</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: wc.setOSURL is not a function<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:93:16)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic methods</p>
+            <em class="spec__descrip">should set platformType based on User-Agent</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">Expected undefined to equal 'RHEL'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:89:37)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">logic methods</p>
+            <em class="spec__descrip">should set platformType based on User-Agent</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">Expected undefined to equal 'RHEL'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:80:37)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update all properties with appropriate values</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          Expected null to equal 'https://testdownload.com/products/testproduct/download/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:51:44)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'testproduct'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:52:53)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'https://testdownload.com/products/testproduct/download/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:53:53)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'http://www.rhel-url-download.com/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:54:54)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'http://www.mac-url-download.com/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:55:53)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'http://www.win-url-download.com/'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:56:57)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'Test product'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:57:45)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal '7.0.0'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:58:48)<br />    at &lt;Jasmine&gt;<br />
+          <br />Expected null to equal 'true'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:59:51)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should display the full name with version and platform</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:131:53)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should update the link with the appropriate download url</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:127:57)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should NOT display the platform when platform urls do not exist</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-os-download_spec.js:139:53)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Sort and Paging</p>
+            <em class="spec__descrip">should read "Sort results by [[sort]]</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchSortPage is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot read property 'innerText' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:40:19)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Sort and Paging</p>
+            <em class="spec__descrip">should share the sort property out</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchSortPage is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'sort' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:36:17)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Sort and Paging</p>
+            <em class="spec__descrip">should respond to setting and getting the sort property</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchSortPage is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'sort' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:25:17)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-sort-page_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">Search Results (list)</p>
+            <em class="spec__descrip">should have a results object</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">
+          ReferenceError: RHDPSearchResults is not defined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-results_spec.js:8:9)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Cannot set property 'results' of undefined<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-results_spec.js:18:20)<br />    at &lt;Jasmine&gt;<br />
+          <br />TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-search/rhdp-search-results_spec.js:13:23)<br />    at &lt;Jasmine&gt;<br />
+        </p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should display a child node with the appropriate data-download-id</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'getAttribute' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-products_spec.js:55:57)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should display a child node with the appropriate heading</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'innerText' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-products_spec.js:52:58)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--fail" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">with valid data</p>
+            <em class="spec__descrip">should display a child node with the appropriate href</em>
+          </div>
+          <div class="spec__status">Failed</div>
+        </h3>
+        <p class="spec__log">TypeError: Cannot read property 'href' of null<br />    at &lt;Jasmine&gt;<br />    at UserContext.&lt;anonymous&gt; (/home/unit/developers.redhat.com/_tests/unit/rhdp-downloads/rhdp-downloads-popular-products_spec.js:58:57)<br />    at &lt;Jasmine&gt;<br /></p>
+      </div>
+      <div class="spec spec--pass" style="">
+        <h3 class="spec__header">
+          <div class="spec__title">
+            <p class="spec__suite">properties</p>
+            <em class="spec__descrip">should update productList variable</em>
+          </div>
+          <div class="spec__status">Passed in 0.005s</div>
+        </h3>
+      </div>
+    </section>
+  </body>
+</html>

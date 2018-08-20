@@ -520,6 +520,7 @@ display:
               anonymous: '0'
               administrator: '0'
               editor: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -736,7 +737,7 @@ display:
       link_url: /admin
       link_display: '0'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -889,7 +890,7 @@ display:
       display_description: 'The five most recent edits by this user'
       use_ajax: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -907,7 +908,7 @@ display:
       display_extenders: {  }
       display_description: 'The embedded view for use on a landing page'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

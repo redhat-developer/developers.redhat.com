@@ -11,7 +11,6 @@ dependencies:
     - paragraphs.paragraphs_type.connectors
   module:
     - text
-    - workbench_moderation
 _core:
   default_config_hash: nn9eG2ozeZyQ3AUOooZAXDbUY604VN7kssXezwg5sIM
 id: paragraph.connectors.default
@@ -49,6 +48,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  moderation_state:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

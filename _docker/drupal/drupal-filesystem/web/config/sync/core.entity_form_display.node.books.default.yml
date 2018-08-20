@@ -31,19 +31,16 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
-    - field.field.node.books.scheduled_update
     - node.type.books
   module:
+    - content_moderation
     - datetime
     - entity_browser
-    - entity_browser_entity_form
-    - inline_entity_form
     - interval
     - link
     - metatag
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
 id: node.books.default
@@ -231,35 +228,17 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 23
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 24
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'publishing date'
-      label_plural: 'publishing dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
-    region: content
   title:
     type: string_textfield
     weight: 0

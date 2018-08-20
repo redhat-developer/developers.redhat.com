@@ -15,7 +15,7 @@ export class SearchOneBox extends Base {
     }
 
     getOneBoxTitle() {
-        return this.textOf(this.getSelector('oneBoxTitle'))
+        return this.textOf(this.getSelector('oneBoxTitle'));
     }
 
     getOneBoxElement(element) {

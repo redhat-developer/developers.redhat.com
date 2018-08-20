@@ -31,7 +31,7 @@ function product_node_sitemap_entries(&$links) {
   // lambda function to overcome the inability to pass $links by reference :(
   // this add all the sub pages to the list of links and unsets the one with the node entry
   $callback = function ($product_node_link, $product_node_link_index) use (&$links) {
-    $product = Node::load($links[$product_node_link_index]['entity_info']['id']);
+    $product = Node::load($links[$product_node_link_index]['meta']['entity_info']['id']);
     $sub_pages = $product->field_product_pages->referencedEntities();
     $entries = array_map('build_subpage_link_entry', $sub_pages,
       array_fill(0, count($sub_pages), $links[$product_node_link_index]));
@@ -56,7 +56,14 @@ function product_node_sitemap_entries(&$links) {
  */
 function build_subpage_link_entry($sub_page, $template)
 {
-  $base_url = \Drupal::request()->getSchemeAndHttpHost();
+  /** @var \Drupal\Core\Config\ImmutableConfig $rhd_config */
+  $rhd_drupal_config = \Drupal::config('redhat_developers')->get('drupal');
+  $drupal_env = \Drupal::config('redhat_developers')->get('environment');
+
+  $base_url = ($drupal_env === 'pr')
+    ? "http://{$rhd_drupal_config['host']}:{$rhd_drupal_config['port']}"
+    : $rhd_drupal_config['host'];
+
   $url_product_name = $sub_page->getParentEntity()->field_url_product_name->value;
   $sub_page_slug = strtolower(str_replace(' ', '-', $sub_page->field_overview_url->value));
 
@@ -76,8 +83,8 @@ function build_subpage_link_entry($sub_page, $template)
 function found_product_in_sitemap($links, $product_ids)
 {
   return array_filter($links, function ($link) use ($product_ids) {
-    if (!empty($link['entity_info'])) {
-      return in_array($link['entity_info']['id'], $product_ids);
+    if (!empty($link['meta']['entity_info'])) {
+      return in_array($link['meta']['entity_info']['id'], $product_ids);
     }
   });
 }
