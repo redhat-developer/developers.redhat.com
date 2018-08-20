@@ -56,6 +56,7 @@ describe('Search Filter Item', function() {
         beforeEach(function() {
             wc.active = true;
             wc.setAttribute('inline', true);
+            console.log("AAAAAAAAAAAAAAAAAAAAAAAAHHHH");
         });
 
         afterEach(function() {

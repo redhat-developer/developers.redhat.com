@@ -1,4 +1,4 @@
-
+"use strict";
 // RHDP Project Items Component Unit Tests
 describe('RHDP Project Items Component', function() {
     var wc;

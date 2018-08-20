@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-downloads-popular-products component
 
 describe('Downloads Popular Products', function() {

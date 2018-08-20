@@ -5,7 +5,7 @@ RUN yum install -y  epel-release gcc gcc-c++ git libcurl-devel libffi-devel libt
     libxslt-devel libyaml-devel openssl-devel patch readline-devel ruby-devel tar which wget make && yum clean all
 
 # install nodejs
-RUN curl --silent --location https://rpm.nodesource.com/setup |bash - \
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x |bash - \
     && rpm -ivh https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.1/3.el7/x86_64/http-parser-2.7.1-3.el7.x86_64.rpm && yum -y install nodejs
 
 # install ruby and rubygems

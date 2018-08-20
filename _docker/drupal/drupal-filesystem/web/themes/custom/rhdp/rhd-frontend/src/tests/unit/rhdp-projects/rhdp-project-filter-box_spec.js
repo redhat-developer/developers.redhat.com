@@ -1,4 +1,4 @@
-
+"use strict";
 describe('RHDP Project Filter Box Component', function() {
     var wc;
 

@@ -5,7 +5,7 @@
   "main": "Gulpfile.js",
   "scripts": {
     "test": "karma start _tests/unit/config/karma.conf.js",
-    "test:docker": "karma start config/karma.conf.js"
+    "test:docker": "karma start config/karma.docker.conf.js"
   },
   "author": "Red Hat Inc.",
   "license": "",
@@ -13,14 +13,14 @@
     "npm": ">=5.3.0",
     "node": ">= 5.9.1"
   },
-  "devDependencies": {
-    "jasmine-core": "2.8.0",
-    "karma": "1.7.1",
-    "karma-chrome-launcher": "2.2.0",
+  "dependencies": {
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.5",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-htmlfile-reporter": "^0.3.5",
-    "karma-jasmine": "1.1.0",
-    "karma-jasmine-ajax": "0.1.13",
-    "karma-jasmine-html-reporter": "0.2.2",
-    "karma-spec-reporter": "0.0.31"
+    "karma-jasmine": "^1.1.2",
+    "karma-jasmine-ajax": "^0.1.13",
+    "karma-jasmine-html-reporter": "^1.2.0",
+    "karma-spec-reporter": "0.0.32"
   }
 }
