@@ -191,6 +191,8 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
             return strtolower($entity->field_overview_url->value) === 'hello world';
           })) > 0;
 
+    $build['#cache']['max-age'] = 0; // Disable caching of these product pages
+
     return $build;
   }
 
