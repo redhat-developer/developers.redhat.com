@@ -212,27 +212,22 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
   private function findProduct($url_name) {
     $query = $this->entityQuery->get('node', 'AND');
     $query->condition('field_url_product_name', $url_name)
-      ->allRevisions();
-    $rids = $query->execute();
+      ->accessCheck(true);
 
-    $possibilies = array_filter(array_keys($rids), function ($rid) {
-      $storage = $this->entityTypeManager()->getStorage('node');
-      $productRev = $storage->loadRevision($rid);
+    if ($this->currentUser()->hasPermission('view product revisions')) {
+      $query->latestRevision();
+    } else {
+      $query->currentRevision();
+    }
 
-      // if has permission to view all revs return true
-      if ($this->currentUser()->hasPermission('view product revisions')) {
-        return TRUE;
-      }
+    $version = end(array_keys($query->execute()));
 
-      return $productRev->isPublished();
-    });
-
-    if (empty($possibilies)) {
+    if (empty($version)) {
       throw new NotFoundHttpException();
     }
 
     return $this->entityTypeManager()
       ->getStorage('node')
-      ->loadRevision(end($possibilies));
+      ->loadRevision($version);
   }
 }
