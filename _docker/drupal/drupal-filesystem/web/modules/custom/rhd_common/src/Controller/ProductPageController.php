@@ -222,7 +222,8 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
       $query->currentRevision();
     }
 
-    $version = end(array_keys($query->execute()));
+    $vids = array_keys($query->execute());
+    $version = end($vids);
 
     if (empty($version)) {
       throw new NotFoundHttpException();
