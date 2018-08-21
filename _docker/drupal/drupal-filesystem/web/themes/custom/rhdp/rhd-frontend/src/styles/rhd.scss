@@ -412,8 +412,8 @@ img {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 
-    @include tablet-landscape-and-down {
-      max-height: 85px;
+    @include desktop-small-and-down {
+      max-height: 95px;
       -webkit-line-clamp: 3;
     }
   }
@@ -482,7 +482,7 @@ code {
  }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .page-info-bar{
       .share-sm {
         float: none !important;

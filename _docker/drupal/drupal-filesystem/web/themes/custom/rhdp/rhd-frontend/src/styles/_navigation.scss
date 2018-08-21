@@ -26,7 +26,7 @@
     grid-column-gap: 0;
     grid-template-columns: 145px 1fr;
   }
-  @media screen and (max-width: 991px) and (min-width: 768px) {
+  @media screen and (max-width: #{$mq-desktop-small - 1}) and (min-width: #{$mq-tablet-landscape}) {
     max-width: none;
   }
 }
@@ -145,7 +145,7 @@
     z-index: 99;
     margin-left: -10px;
     margin-top: 10px;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: #{$mq-tablet-landscape}) {
       position: relative;
       width: auto !important;
       margin-left: 0;
@@ -176,19 +176,19 @@
 
   .logged-in-name + .icon {
   margin-left: 10px;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: #{$mq-tablet-landscape}) {
       display: none;
     }
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: #{$mq-desktop-small}) {
   .rh-nav-universal-list {
     display: none;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: #{$mq-mobile-landscape}) {
   .rh-universal-header {
     display: none;
   }
@@ -763,7 +763,7 @@
     width: 100%;
     height: auto;
   }
-  @include tablet-portrait-and-down {
+  @include desktop-small-and-down {
     margin: 0;
     img {
       width: 90%;

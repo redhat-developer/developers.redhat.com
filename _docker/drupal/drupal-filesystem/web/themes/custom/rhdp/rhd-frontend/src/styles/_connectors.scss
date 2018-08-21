@@ -31,7 +31,7 @@
   }
 }
 
-@include tablet-portrait-and-down {
+@include desktop-small-and-down {
   body.overlay-open {
     overflow: hidden;
     .overlay {

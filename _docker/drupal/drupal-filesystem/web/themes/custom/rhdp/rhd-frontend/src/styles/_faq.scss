@@ -66,7 +66,7 @@
 }
 
 
-@include tablet-portrait-and-down {
+@include desktop-small-and-down {
   .faq-nav-fixed {
     position: relative; // on mobile we don't want a fixed nav
     width:100%;

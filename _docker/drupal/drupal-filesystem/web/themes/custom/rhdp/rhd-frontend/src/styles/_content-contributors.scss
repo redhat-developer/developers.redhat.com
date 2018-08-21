@@ -22,7 +22,7 @@
     }
   }
 }
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .contributors-main {
     background: url('https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_tablet.png') top center / cover no-repeat;
   }
@@ -52,7 +52,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .benefits p {
     margin-left: 45px;
   }
@@ -69,7 +69,7 @@
     margin: 0 auto;
     max-width: 250px;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     img {
       margin: 0;
     }
@@ -131,7 +131,7 @@
   margin-top: 50%;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .cc-or {
     margin: 20px auto;
   }

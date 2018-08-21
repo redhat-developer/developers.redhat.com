@@ -137,7 +137,7 @@
     grid-row-start: -1;
   }
 
-  @include tablet-portrait-and-up {
+  @include mobile-landscape-and-up {
     grid-template-rows: unset;
     grid-template-columns: 1fr auto;
     max-width: 100%;
@@ -155,7 +155,7 @@
     text-decoration: none;
   }
 
-  @include tablet-portrait-and-up {
+  @include mobile-landscape-and-up {
     display: block;
     font-size: 26px;
     margin-top: 0;
@@ -165,7 +165,7 @@
 .rhd-list-entry--summary {
   display: none;
 
-  @include tablet-portrait-and-up {
+  @include mobile-landscape-and-up {
     display: block;
     p {
       font-size: 14px;
@@ -188,7 +188,7 @@
   flex-direction: column;
   justify-content: center;
 
-  @include tablet-portrait-and-up {
+  @include mobile-landscape-and-up {
     height: unset;
     display: inherit;
   }
@@ -197,7 +197,7 @@
     max-width: 160px;
     max-height: 90px;
 
-    @include tablet-portrait-and-up {
+    @include mobile-landscape-and-up {
       max-height: unset;
       max-width: 180px;
     }

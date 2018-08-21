@@ -20,7 +20,7 @@
 
   &.javaone2017{ background-image: url('https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_desktop.png'); }
 
-  @include tablet-portrait-and-down {
+  @include desktop-small-and-down {
     &.javaone2015{
       background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
       min-height: 400px;
@@ -135,7 +135,7 @@
       display: block;
     }
   }
-  @include tablet-portrait-and-down {
+  @include desktop-small-and-down {
     a.button {
       float: none !important;
       width: 100%;
