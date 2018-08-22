@@ -758,7 +758,7 @@ a.light-cta {
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
-  background-image: url("../images/Blue_Background@2x.png");
+  background-image: url("../rhd-frontend/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -1304,7 +1304,7 @@ a.light-cta {
   padding-top: 38px;
   padding-bottom: 38px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(./docs/img/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1512,7 +1512,7 @@ a.light-cta {
   padding-top: 30px;
   padding-bottom: 30px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(./docs/img/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1700,7 +1700,7 @@ a.light-cta {
 .assembly-type-events_hero {
   color: #242424;
   background-color: #00B9E4;
-  background-image: url("images/Blue_Background@2x.png");
+  background-image: url("../rhd-frontend/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -1867,6 +1867,22 @@ a.light-cta {
       width: 30%;
       height: 100%;
       background-color: #d5d5d5; } }
+
+.field--name-field-form {
+  background-color: #e4e4e6;
+  padding: 20px; }
+  .field--name-field-form .form-header {
+    margin-bottom: 50px; }
+    .field--name-field-form .form-header h4, .field--name-field-form .form-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .field--name-field-form .form-header h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #c00;
+      font-weight: 600;
+      margin-left: 0; }
+  .field--name-field-form .form-footer {
+    margin-top: 40px; }
+    .field--name-field-form .form-footer p {
+      margin: 0; }
 
 meta.foundation-version {
   font-family: "/5.4.4/"; }
@@ -13222,6 +13238,42 @@ rhdp-search-onebox ul.slots {
   min-height: 670px;
   display: block;
   margin: 30px auto; }
+
+.page-node-type-landing-page-single-offer header {
+  margin-top: 20px;
+  margin-bottom: 90px; }
+  .page-node-type-landing-page-single-offer header .rh-header-logo {
+    max-width: 260px; }
+
+.page-node-type-landing-page-single-offer main.column-container {
+  display: grid; }
+
+.page-node-type-landing-page-single-offer main .main-content {
+  width: 66%;
+  margin-bottom: 100px; }
+  @media only screen and (max-width: 768px) {
+    .page-node-type-landing-page-single-offer main .main-content {
+      width: 100%;
+      margin-bottom: 40px; } }
+  .page-node-type-landing-page-single-offer main .main-content h1 {
+    text-transform: uppercase;
+    color: #424242;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 1.35;
+    margin: 0; }
+
+.page-node-type-landing-page-single-offer main .sidebar {
+  width: 33%; }
+  @media only screen and (max-width: 768px) {
+    .page-node-type-landing-page-single-offer main .sidebar {
+      width: 100%;
+      margin-bottom: 40px; } }
+
+.page-node-type-landing-page-single-offer footer {
+  float: left;
+  width: 100%; }
 
 [data-rhd-grid="normal"] {
   display: flex;
