@@ -193,10 +193,26 @@ function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAss
  * Implements template_preprocess_page().
  */
 function rhdp_preprocess_page(&$variables) {
-  if (isset($variables['node'])) {
-    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$variables['node']->id());
+
+  $node = isset($variables['node']) ? $variables['node'] : FALSE;
+
+  if ($node) {
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->id());
     if ($alias == '/') {
       $variables['is_front'] = true;
+    }
+  }
+
+  // Pull out assemblies to page level for solp
+  if ($node && $node->getType() == 'landing_page_single_offer') {
+    foreach(['sections', 'form'] as $field) {
+      $fieldname = 'field_' . $field;
+      if (isset($node->$fieldname)) {
+        $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
+        $output = $viewBuilder->viewField($node->$fieldname, 'full');
+        $output['#cache']['tags'] = $node->getCacheTags();
+        $variables['page'][$field] = $output;
+      }
     }
   }
 }

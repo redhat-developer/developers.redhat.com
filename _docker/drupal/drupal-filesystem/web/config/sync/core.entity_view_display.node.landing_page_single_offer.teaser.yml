@@ -1,0 +1,33 @@
+uuid: 8bcdeaa0-35e1-4106-8652-51540d85235c
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.landing_page_single_offer.body
+    - field.field.node.landing_page_single_offer.field_meta_tags
+    - node.type.landing_page_single_offer
+  module:
+    - text
+    - user
+id: node.landing_page_single_offer.teaser
+targetEntityType: node
+bundle: landing_page_single_offer
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_meta_tags: true
