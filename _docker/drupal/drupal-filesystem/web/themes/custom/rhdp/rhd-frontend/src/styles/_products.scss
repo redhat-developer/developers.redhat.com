@@ -370,18 +370,6 @@ ul.product-langs {
   }
 }
 
-@include mobile-landscape-and-down {
-  table.downloads-table {
-    thead tr th {
-      padding: 5px;
-    }
-    .download-links a, .download-links a + a {
-      display: block;
-      margin-left: 0;
-    }
-  }
-}
-
 .forums-stack-row {
   margin: 2em 0;
 }
@@ -615,6 +603,7 @@ button.tiny, .button.tiny {
     background-color: rgb(213, 213, 213);
     thead tr th {
       padding: 5px;
+      min-width: 110px;
     }
     .download-links {
       a {
@@ -658,8 +647,21 @@ button.tiny, .button.tiny {
       padding-right:3px;
     }
   }
+}
 
-
+@include mobile-landscape-and-down {
+  .rh-downloads {
+    table.downloads-table {
+      thead tr th {
+        padding: 5px;
+        min-width: auto;
+      }
+      .download-links a, .download-links a + a {
+        display: block;
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .large-16.small-24.columns{
