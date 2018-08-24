@@ -27,7 +27,7 @@ export class NavigationBar extends Base {
             // wait for modal to completely open
             this.awaitIsVisible(this.getSelector('mobileMenuOpen'));
             browser.pause(1000);
-            return true
+            return true;
         } else {
             return false;
         }

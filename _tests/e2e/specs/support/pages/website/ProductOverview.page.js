@@ -1,11 +1,11 @@
-import {Base} from '../Base.page'
+import {Base} from '../Base.page';
 
 export class ProductOverview extends Base {
 
     constructor(productCode, tab, productName) {
         super({
             path: `/products/${productCode}/${tab}`,
-            pageTitle: `Red Hat Developer | ${productName}`,
+            pageTitle: `Red Hat Developer | ${productName}`
         });
 
         this.productCode = productCode;
@@ -18,7 +18,7 @@ export class ProductOverview extends Base {
     }
 
     download() {
-        this.clickOn(this.getSelector('downloadBtn'))
+        this.clickOn(this.getSelector('downloadBtn'));
     }
 
     awaitHelloWorldPage() {

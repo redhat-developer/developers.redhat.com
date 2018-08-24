@@ -9,7 +9,6 @@ dependencies:
     - paragraphs.paragraphs_type.document_details
   module:
     - text
-    - workbench_moderation
 _core:
   default_config_hash: gW6q0ZHEUbk4RnyoCnUqNlcZhn16ohbtNwHAEliRqdQ
 id: paragraph.document_details.default
@@ -38,6 +37,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  moderation_state:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

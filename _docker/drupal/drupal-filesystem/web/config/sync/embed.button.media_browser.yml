@@ -3,14 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - media_entity.bundle.image
-    - media_entity.bundle.video
+    - media.type.image
+    - media.type.video
   content:
     - 'file:file:2df741a0-59cd-4177-9166-257a8d964232'
   module:
     - entity_embed
     - image
-    - media_entity
+    - media
 _core:
   default_config_hash: t5RloB_VKSNiTH5ZuoOxvVOQSlVBcyG0pcQOr0IA15k
 label: 'Media browser'

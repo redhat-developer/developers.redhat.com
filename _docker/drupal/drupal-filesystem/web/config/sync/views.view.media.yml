@@ -5,11 +5,12 @@ dependencies:
   config:
     - image.style.medium
     - image.style.thumbnail
-    - media_entity.bundle.image
+    - media.type.image
   module:
     - entity_browser
+    - file
     - image
-    - media_entity
+    - media
     - user
     - views_infinite_scroll
 _core:
@@ -682,11 +683,11 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Provider
+            label: Type
             description: ''
             use_operator: false
             operator: bundle_op
-            identifier: provider
+            identifier: type
             required: false
             remember: false
             multiple: false
@@ -735,6 +736,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1061,6 +1063,7 @@ display:
               landing_page_reviewer: '0'
               media_creator: '0'
               media_manager: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1232,7 +1235,7 @@ display:
             format: default_summary
           specify_validation: true
           validate:
-            type: 'entity:media_bundle'
+            type: 'entity:media_type'
             fail: ignore
           validate_options:
             operation: view
@@ -1484,6 +1487,7 @@ display:
               landing_page_reviewer: '0'
               media_creator: '0'
               media_manager: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''

@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.author.field_position_title
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
-    - field.field.node.author.scheduled_update
     - node.type.author
   module:
     - fences
@@ -36,6 +35,9 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
+    region: content
+  content_moderation_control:
+    weight: -20
     region: content
   field_headshot:
     weight: 0
@@ -66,4 +68,3 @@ hidden:
   field_twitter: true
   field_youtube: true
   links: true
-  scheduled_update: true

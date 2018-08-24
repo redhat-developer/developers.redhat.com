@@ -30,7 +30,6 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
-    - field.field.node.books.scheduled_update
     - node.type.books
   module:
     - datetime
@@ -47,6 +46,9 @@ targetEntityType: node
 bundle: books
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_author:
     weight: 1
     label: hidden
@@ -286,5 +288,4 @@ hidden:
   field_cover_image: true
   field_share_image: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

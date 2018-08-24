@@ -1,0 +1,21 @@
+uuid: c19495b4-e691-48f7-ba97-439042966fa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.landing_page_single_offer
+  module:
+    - metatag
+id: node.landing_page_single_offer.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: landing_page_single_offer
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

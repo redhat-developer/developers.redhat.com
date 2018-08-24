@@ -7,7 +7,6 @@ dependencies:
     - field.field.block_content.basic.body
   module:
     - text
-    - workbench_moderation
 _core:
   default_config_hash: S0f54eS7by2OoFl_NrvBK9UGTPx51cktxKhvwMy0Jls
 id: block_content.basic.default
@@ -31,5 +30,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
+  moderation_state:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden: {  }

@@ -10,7 +10,6 @@ dependencies:
   module:
     - link
     - text
-    - workbench_moderation
 id: assembly.learning_paths.default
 targetEntityType: assembly
 bundle: learning_paths
@@ -41,11 +40,14 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 3
-    settings: {  }
-    region: content
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0

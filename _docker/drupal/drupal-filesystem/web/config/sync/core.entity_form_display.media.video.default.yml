@@ -5,11 +5,10 @@ dependencies:
   config:
     - field.field.media.video.field_media_in_library
     - field.field.media.video.field_media_video_embed_field
-    - media_entity.bundle.video
+    - media.type.video
   module:
     - path
     - video_embed_field
-    - workbench_moderation
 _core:
   default_config_hash: BMG8OQWV1nbWdUtXRCu6Hje117RiS58dpHj2nI8wNdc
 id: media.video.default
@@ -30,6 +29,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  moderation_state:
+    weight: 101
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -47,6 +55,13 @@ content:
   preview:
     weight: 0
     region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
 hidden:
   created: true
   uid: true

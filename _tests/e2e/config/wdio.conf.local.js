@@ -59,7 +59,7 @@ exports.config = {
         global.logger = log4js.getLogger();
         global.logger.level = 'debug';
 
-        process.env.RHD_BASE_URL = this.baseUrl
+        process.env.RHD_BASE_URL = this.baseUrl;
 
     },
 };

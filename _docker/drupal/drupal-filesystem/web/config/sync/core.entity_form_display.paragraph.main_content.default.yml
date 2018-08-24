@@ -8,7 +8,6 @@ dependencies:
   module:
     - field_group
     - text
-    - workbench_moderation
 third_party_settings:
   field_group:
     group_product_pages:
@@ -38,6 +37,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  moderation_state:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true
