@@ -25,7 +25,7 @@
   .home-title {
     margin-top: emCalc(50px);
   }
-  @include tablet-portrait-and-down {
+  @include desktop-small-and-down {
     .spotlight {
       margin-top: emCalc(20px);
       a.button {

@@ -21,7 +21,7 @@
       color: white;
     }
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     background: url('https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {

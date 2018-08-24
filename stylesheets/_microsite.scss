@@ -114,7 +114,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   body.fullbleed {
     .row {
       .row {
@@ -213,7 +213,7 @@ body.microsite-multi-page, body.microsite {
   }
 }
 
-@include tablet-portrait-and-down {
+@include desktop-small-and-down {
   .microsite-nav {
     position: relative;
     z-index: 2;
@@ -358,7 +358,7 @@ body.microsite-multi-page, body.microsite {
   display: none;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .microsite-tmpl {
     margin-top: 15px;
   }
