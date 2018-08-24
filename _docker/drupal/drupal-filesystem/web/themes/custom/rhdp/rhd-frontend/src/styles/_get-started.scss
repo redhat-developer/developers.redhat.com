@@ -163,7 +163,7 @@ ul.toc {
 
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .gsi-nav-fixed {
     position: relative; // on mobile we don't want a fixed nav
   }
@@ -302,7 +302,7 @@ ul.toc {
     }
   }
 }
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .multipath-tabs-sm ul li{
     display: block;

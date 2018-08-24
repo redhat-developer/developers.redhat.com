@@ -159,7 +159,7 @@ ul.project-social {
       font-size: 4em;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {

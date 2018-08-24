@@ -197,7 +197,7 @@ footer.bottom {
     .legal ul.inline-list { margin-top: 0; }
     .legal a.summit-logo { margin-right: 0; }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     ul.inline-list { margin-top: .6em; }
     #collapseFooter { min-height: 200px; }
     a.summit-logo {
@@ -232,7 +232,7 @@ p.feedback {
 nav.top-bar {
   margin-bottom: 1.5em;
   margin-bottom: 0;
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     @include transform(translateX(-100%) translateZ(0));
     width: 85%;
     position: absolute;
@@ -303,7 +303,7 @@ i.jd-redhat:before {
 
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   header.main {
     h4 {

@@ -12,7 +12,7 @@
   @include tablet-landscape-and-down {
     min-height: 188px;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/msbuild_microsite_banner_600x446.png') top center / cover repeat-x;
     min-height: 480px;
   }
@@ -90,7 +90,7 @@
       }
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     a.button {
       float: none !important;
       width: 100%;

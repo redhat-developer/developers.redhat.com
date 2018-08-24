@@ -149,7 +149,7 @@ ul.project-social {
       font-size: 4em;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: cdn('../images/design/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {

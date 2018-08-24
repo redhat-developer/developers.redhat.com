@@ -448,7 +448,7 @@ rhdp-tryitnow {
       margin-right: -15px;    
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .row span { width: calc(100% - 90px); }
     a.button.medium-cta.white { left: 107px; }
   }
@@ -513,7 +513,7 @@ rhdp-tryitnow {
 }
 
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .side-nav {
     li {

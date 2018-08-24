@@ -419,7 +419,7 @@
    }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .swipe-wrap {
     counter-reset: item; /* create a item counter scope */
   }

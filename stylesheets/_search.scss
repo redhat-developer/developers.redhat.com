@@ -96,7 +96,7 @@ form.header-search {
 }
 
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   form.search {
     span.search-close {
       display: block;
@@ -453,7 +453,7 @@ img.video-thumb {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   nav.accounts div.search-wrapper {
     top: 0;
     width: 100%;

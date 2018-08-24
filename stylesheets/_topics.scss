@@ -198,7 +198,7 @@
         min-height: 445px;
       }
     }
-    @include tablet-portrait-and-down {
+    @include tablet-landscape-768-and-down {
       height: auto;
       &.dotnet, &.iot {
         min-height: 200px;
@@ -410,7 +410,7 @@ ul.topic-resources.topic-resources-list{
   a:nth-of-type(1n+13) {display: none;}
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   ul.topic-resources.topic-resources-list {
     li {
       width: calc(50% - 34px);

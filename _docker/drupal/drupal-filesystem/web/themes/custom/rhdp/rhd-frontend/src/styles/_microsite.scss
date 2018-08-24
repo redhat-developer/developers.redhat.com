@@ -212,7 +212,7 @@ body.microsite-multi-page, body.microsite {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .microsite-nav {
     position: relative;
     z-index: 2;

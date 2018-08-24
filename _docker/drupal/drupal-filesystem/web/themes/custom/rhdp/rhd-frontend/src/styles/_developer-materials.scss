@@ -264,7 +264,7 @@ table.developer-materials-grid {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   body.developer-materials {
     .content-wrapper, .wrapper, .developer-materials-sidebar {
       padding:0;
@@ -422,7 +422,7 @@ table.developer-materials-grid {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .developer-materials-main {
     width:100%;
   }

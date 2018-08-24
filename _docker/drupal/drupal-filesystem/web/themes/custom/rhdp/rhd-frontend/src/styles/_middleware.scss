@@ -106,7 +106,7 @@
       }
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     ul.middleware-blog li{
       span.author, span.date {
         display: inline-block;

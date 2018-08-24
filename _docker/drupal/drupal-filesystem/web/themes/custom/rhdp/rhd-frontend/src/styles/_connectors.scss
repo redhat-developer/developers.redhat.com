@@ -31,7 +31,7 @@
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   body.overlay-open {
     overflow: hidden;
     .overlay {

@@ -10,7 +10,7 @@
   img{
     max-width: 700px;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background-position: top center;
     background-repeat: repeat-x;
   }

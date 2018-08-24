@@ -21,7 +21,7 @@
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   // Everything
   .wrapper {
@@ -129,7 +129,7 @@
 }
 
 // 3rd level nav on solutions pages
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .side-nav {
     li {
@@ -240,7 +240,7 @@
 
 // Mobile Nav
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .hero {
     &.hero-wide {
