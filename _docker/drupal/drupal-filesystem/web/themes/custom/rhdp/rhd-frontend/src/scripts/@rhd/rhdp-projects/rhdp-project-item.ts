@@ -322,16 +322,12 @@ class RHDPProjectItem extends HTMLElement {
                 <p class="solution-name-link">${project.projectName}</p>
             </h5>
             <p>
-        
+                <a class="solution-overlay-learn link-sm">Learn more</a> ${project.downloadsLink ? `| <a href="${project.downloadsLink}" class="link-sm">Download</a>` : ''}
             </p>
-            <a class="solution-overlay-learn link-sm">Learn more</a> ${project.downloadsLink ? `| <a href="${project.downloadsLink}" class="link-sm">Download</a>` : ''}
             <div class="project-content row">
-                <div class="large-6 project-content-left columns"><img
-                        src="${project.imageUrl}" alt="${project.projectName}">
-                    <p><a class="upstream-download" href="${project.downloadsLink}"><i class="fa fa-download"></i> Download</a></p>
-                    <p>
-                        ${project.sys_url_view ? `<a href="${project.sys_url_view}">Visit home page</a>` : ''}
-                    </p>
+                <div class="large-6 project-content-left columns"><img src="${project.imageUrl}" alt="${project.projectName}">
+                    ${project.downloadsLink ? `<p><a class="upstream-download" href="${project.downloadsLink}"><i class="fa fa-download"></i> Download</a></p>` : ''}
+                    ${project.sys_url_view ? `<p><a href="${project.sys_url_view}">Visit home page</a></p>` : ''}
                     <ul class="project-social"> 
                         ${project.twitterLink ? `<li><a href="${project.twitterLink}"><i class="fa fa-twitter"></i></a></li>` : ''}
                     </ul>
