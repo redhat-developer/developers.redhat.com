@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   border:0;
   min-height: 260px;
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     min-height: 188px;
   }
   @include tablet-landscape-768-and-down {

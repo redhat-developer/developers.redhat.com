@@ -162,7 +162,7 @@ div.mobile.product-color {
     .large-8 {
       margin-left: -.7em;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       .large-8 {
         margin-left: 0;
       }
@@ -298,7 +298,7 @@ ul.product-langs {
       margin: 0 5px;
     }
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     li {
       width: calc(33% - 20px);
       min-height: 189px;

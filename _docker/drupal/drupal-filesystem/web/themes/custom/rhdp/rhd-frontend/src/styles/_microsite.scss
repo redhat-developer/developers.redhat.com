@@ -113,7 +113,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   body.fullbleed {
     .row {
       .row {
@@ -358,7 +358,7 @@ body.microsite-multi-page, body.microsite {
   display: none;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .promotion-header .field__item img {
     max-width: 100%;
   }

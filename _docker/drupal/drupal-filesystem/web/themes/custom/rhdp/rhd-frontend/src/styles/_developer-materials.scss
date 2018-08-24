@@ -13,7 +13,7 @@
     text-transform: uppercase;
     font-weight: 600;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     background: cdn('../images/design/RHDev_pageheader_resources_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
@@ -416,7 +416,7 @@ table.developer-materials-grid {
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .developer-materials-main {
     width:75%;
   }

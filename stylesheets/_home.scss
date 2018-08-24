@@ -83,7 +83,7 @@ a.spotlight-item {
       height: 120px;
       margin-bottom: 10px;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       height: 135px;
       margin-bottom: 5px;
     }
@@ -250,7 +250,7 @@ ul.homepage-resources {
   .contributors-banner { bottom: -115px; }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .homepage-main {
     background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_rhoarlaunch_07dec2017.png");
     background-size: cover;

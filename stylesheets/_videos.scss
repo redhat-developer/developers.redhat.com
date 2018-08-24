@@ -82,7 +82,7 @@ section.related-content {
   section.related-content { margin: 0 -15px; }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .video-page {
     .slides iframe {
       width: 80%;

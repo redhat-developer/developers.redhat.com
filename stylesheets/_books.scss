@@ -86,7 +86,7 @@ p.desc {
   margin-bottom: 5px;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .books-filters {
     input[name="filter-text"] {
       width:100%;

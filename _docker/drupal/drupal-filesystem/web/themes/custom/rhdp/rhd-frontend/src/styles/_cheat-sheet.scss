@@ -121,7 +121,7 @@
     display: none;
   }
 
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     padding: 15px;
     .cs-info, .book-info {
       .cs-social, .book-social {

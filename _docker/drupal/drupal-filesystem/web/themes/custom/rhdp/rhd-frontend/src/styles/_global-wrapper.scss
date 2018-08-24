@@ -280,7 +280,7 @@ i.jd-redhat:before {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     // stack
     -webkit-box-orient:vertical;
     -webkit-box-direction:normal;

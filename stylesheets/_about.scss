@@ -64,7 +64,7 @@
     float: right;
     margin-right: 15%;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     .float-content {
       float: none;
       margin-right: 0;
@@ -181,7 +181,7 @@
     display: block;
     margin: 9% auto 0 auto;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     a.button {
       margin: 0 auto;
     }

@@ -170,7 +170,7 @@ ul.toc {
 
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .get-started-items {
     background:none;
     a.get-started-example {
@@ -380,7 +380,7 @@ ul.toc {
         padding: 0;
       }
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       h4 {
         padding-top: 15px;
       }
@@ -727,7 +727,7 @@ ul.toc {
     width: 100%;
   }
 }
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .get-started-content img{
     width: 100%;
   }
