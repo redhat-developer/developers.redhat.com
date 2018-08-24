@@ -336,8 +336,10 @@ class RHDPProjectItem extends HTMLElement {
                         ${project.twitterLink ? `<li><a href="${project.twitterLink}"><i class="fa fa-twitter"></i></a></li>` : ''}
                     </ul>
                 </div>
-                <div class="large-18 project-content-right columns"><h3><a href="${project.sys_url_view}">${project.projectName}</a>
-                </h3>
+                <div class="large-18 project-content-right columns">
+                    <h3>
+                        ${project.sys_url_view ?  `<a href="${project.sys_url_view}">${project.projectName}</a>` : `${project.projectName}`}
+                    </h3>
                     <p>${project.descriptions}</p>
                     <div class="upstream-more-content">
                         <ul class="project-details-list">
