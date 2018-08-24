@@ -1,6 +1,6 @@
 class RHDPSearchOneBox extends HTMLElement {
     _term = '';
-    _url = '../rhdp-apps/onebox/onebox.json#onebox';
+    _url = '../rhdp-apps/onebox/onebox.json';
     _data;
     _feature;
     _mock = false;

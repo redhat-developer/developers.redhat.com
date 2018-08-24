@@ -16,7 +16,7 @@ class RHDPSearchApp extends HTMLElement {
 
     _name = 'Search';
     _url;
-    _oburl = '../rhdp-apps/onebox/onebox.json#zap';
+    _oburl = '../rhdp-apps/onebox/onebox.json';
 
     get name() {
         return this._name;
