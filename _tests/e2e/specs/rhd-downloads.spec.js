@@ -68,7 +68,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName).to.eq(1);
+            expect(downloadName.toString()).to.include('fuse');
         });
 
     tags('dm', 'stage')
@@ -88,7 +88,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName).to.eq(1);
+            expect(downloadName.toString()).to.include('devstudio');
         });
 
     tags('dm', 'stage')
@@ -108,7 +108,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName).to.eq(1);
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('dm', 'stage')
@@ -132,7 +132,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName).to.eq(1);
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('sanity', 'dm')
