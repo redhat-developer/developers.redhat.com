@@ -3,14 +3,9 @@ const fs = require('fs-extra');
 export class DownloadDir {
 
     clear() {
-        let dirSize = [];
-        fs.readdirSync(global.downloadDir).forEach(file => {
-            dirSize.push(file)
-        });
-        if (dirSize.length > 0) {
-            fs.emptyDir(global.downloadDir)
-        }
-    }
+        fs.removeSync(global.downloadDir);
+        fs.mkdirsSync(global.downloadDir);
+    };
 
     get() {
         let downloadCount = 0;
@@ -27,7 +22,7 @@ export class DownloadDir {
                     /* This is bad, however we need to throttle the production download sanity tests for monitoring purposes.
                     * Akamai is blocks requests if there are too many in quick succession. Never use sleeps in tests, ever. This is an extenuating circumstance.  */
                     numberOfDownloads = dirSize.length;
-                    browser.pause(60000);
+                    browser.pause(30000);
                 } else {
                     numberOfDownloads = dirSize.length;
                 }
