@@ -41,7 +41,7 @@ $mq-desktop-large: 1240px;
   }
 }
 
-@mixin mobile-landscape-and-up { // > 481px
+@mixin mobile-landscape-and-up { // > 481px | duplicate of tablet-portrait-and-up. Instances tablet-portrait-and-up renamed 
   @media only screen and (min-width: #{$mq-mobile-landscape + 1}) {
     @content;
   }
