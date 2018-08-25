@@ -1,0 +1,19 @@
+uuid: e2676ce0-8be9-48d7-b0f1-4a7f6f2f2e27
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.storage.assembly.field_html_embed_code
+id: assembly.eloqua_form_embed.field_html_embed_code
+field_name: field_html_embed_code
+entity_type: assembly
+bundle: eloqua_form_embed
+label: 'HTML Embed Code'
+description: 'HTML Embed Code From Eloqua: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAA/Help/Forms/Tasks/EmbeddingFormInWebPage.htm'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

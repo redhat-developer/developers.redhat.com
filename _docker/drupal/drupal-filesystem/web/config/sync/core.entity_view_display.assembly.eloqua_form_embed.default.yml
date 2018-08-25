@@ -1,0 +1,31 @@
+uuid: dc170c81-9ab3-48c5-b11b-144b9f3599c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.field.assembly.eloqua_form_embed.field_html_embed_code
+  module:
+    - fences
+id: assembly.eloqua_form_embed.default
+targetEntityType: assembly
+bundle: eloqua_form_embed
+mode: default
+content:
+  field_html_embed_code:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: basic_string
+    region: content
+hidden:
+  name: true
+  user_id: true
