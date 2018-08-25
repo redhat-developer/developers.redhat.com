@@ -31,7 +31,7 @@ tags('desktop').describe('Download Manager', function () {
     });
 
     tags('sanity', 'dm')
-        .it('@wip should allow users to login in and download RHEL', function () {
+        .it('should allow users to login in and download RHEL', function () {
             this.retries(1);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
@@ -136,7 +136,7 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('sanity', 'dm')
-        .it('@wip should allow users to log-in and download advanced-linux-commands', function () {
+        .it('should allow users to log-in and download advanced-linux-commands', function () {
             this.retries(1);
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
