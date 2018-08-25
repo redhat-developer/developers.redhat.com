@@ -10,7 +10,7 @@ import {Utils} from './support/Utils';
 const tags = require('mocha-tags');
 
 tags('desktop').describe('Download Manager', function () {
-    let downloadDir, downloadSize, siteUser;
+    let downloadDir, downloadName, siteUser;
     let home, login, additionalInformation;
 
     beforeEach(function () {
@@ -47,11 +47,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            try {
-                expect(downloadSize).to.eventually.eq(1);
-            } catch (e) {
-            }
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('dm', 'stage')
@@ -70,8 +67,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('fuse');
         });
 
     tags('dm', 'stage')
@@ -90,8 +87,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('devstudio');
         });
 
     tags('dm', 'stage')
@@ -110,8 +107,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('dm', 'stage')
@@ -134,8 +131,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('sanity', 'dm')
@@ -159,10 +156,7 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitDownloadConfirmation();
             cheatSheet
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            try {
-                expect(downloadSize).to.eventually.eq(1);
-            } catch (e) {
-            }
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('pdf')
         });
 });
