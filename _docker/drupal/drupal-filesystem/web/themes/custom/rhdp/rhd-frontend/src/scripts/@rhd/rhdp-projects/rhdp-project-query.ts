@@ -15,7 +15,7 @@ class RHDPProjectQuery extends HTMLElement {
         "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"]},
         "devstudio": {"upstream": ["jbosstools"]},
         "eap": {"upstream": ["wildfly","jgroups","hibernate","hornetq","jbossclustering","jbossmc","narayana","jbossweb","jbossws","ironjacamar","jgroups","mod_cluster","jbossas_osgi","jbosssso","picketlink","resteasy","weld","wise","xnio"]},
-        "fuse": {"upstream": ["camel","karaf","activemq","cxf","fabric8","switchyard","hawtio"]},
+        "fuse": {"upstream": ["camel","karaf","activemq","cxf","syndesis","apicurio","hawtio"]},
         "rhel": {"upstream": ["fedora"]},
         "webserver": {"upstream": ["tomcat","httpd","mod_cluster"]},
     };
