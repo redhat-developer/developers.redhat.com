@@ -31,7 +31,7 @@ tags('desktop').describe('Download Manager', function () {
     });
 
     tags('sanity', 'dm')
-        .it('should allow users to login in and download RHEL', function () {
+        .it('@wip should allow users to login in and download RHEL', function () {
             this.retries(1);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
@@ -48,7 +48,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName.toString()).to.include('rhel');
+            expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
     tags('dm', 'stage')
@@ -136,7 +136,7 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('sanity', 'dm')
-        .it('should allow users to log-in and download advanced-linux-commands', function () {
+        .it('@wip should allow users to log-in and download advanced-linux-commands', function () {
             this.retries(1);
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
@@ -157,6 +157,6 @@ tags('desktop').describe('Download Manager', function () {
             cheatSheet
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName.toString()).to.include('pdf')
+            expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
         });
 });
