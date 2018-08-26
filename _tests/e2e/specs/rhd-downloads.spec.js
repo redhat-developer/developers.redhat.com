@@ -48,7 +48,7 @@ tags('desktop').describe('Download Manager', function () {
             productOverview
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName.toString()).to.include('rhel');
+            expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
     tags('dm', 'stage')
@@ -157,6 +157,6 @@ tags('desktop').describe('Download Manager', function () {
             cheatSheet
                 .awaitDownloadThankYou();
             downloadName = downloadDir.get();
-            expect(downloadName.toString()).to.include('pdf')
+            expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
         });
 });
