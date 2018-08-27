@@ -4,14 +4,21 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.node_reference
+    - field.field.assembly.node_reference.field_audience_selection
     - field.field.assembly.node_reference.field_node_reference
 id: assembly.node_reference.default
 targetEntityType: assembly
 bundle: node_reference
 mode: default
 content:
-  field_node_reference:
+  field_audience_selection:
     weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_node_reference:
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60

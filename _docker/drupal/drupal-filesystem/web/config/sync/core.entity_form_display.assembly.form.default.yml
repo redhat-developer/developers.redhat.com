@@ -4,15 +4,23 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.form
+    - field.field.assembly.form.field_audience_selection
     - field.field.assembly.form.field_content
     - field.field.assembly.form.field_title
   module:
+    - content_moderation
     - text
 id: assembly.form.default
 targetEntityType: assembly
 bundle: form
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_content:
     weight: 4
     settings:
@@ -22,7 +30,7 @@ content:
     type: text_textarea
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -45,7 +53,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 2
     region: content
     settings:
       display_label: true

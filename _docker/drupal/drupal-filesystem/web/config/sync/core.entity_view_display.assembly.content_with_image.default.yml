@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.content_with_image
+    - field.field.assembly.content_with_image.field_audience_selection
     - field.field.assembly.content_with_image.field_background_image
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
@@ -51,6 +52,7 @@ content:
     type: string
     region: content
 hidden:
+  field_audience_selection: true
   field_background_image: true
   field_navigation_title: true
   name: true

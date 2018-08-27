@@ -1,0 +1,21 @@
+uuid: 43fb82ca-ce82-47d3-baa7-04b2b4ec29bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.form
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.form.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: form
+label: 'Audience Selection'
+description: 'Check user types above to hide this assembly from that group. Leave all unchecked to display for all user types.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

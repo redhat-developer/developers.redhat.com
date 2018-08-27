@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.hero
+    - field.field.assembly.hero.field_audience_selection
     - field.field.assembly.hero.field_background_image
     - field.field.assembly.hero.field_content
     - field.field.assembly.hero.field_navigation_title
@@ -31,6 +32,7 @@ content:
     type: string
     region: content
 hidden:
+  field_audience_selection: true
   field_background_image: true
   field_navigation_title: true
   name: true
