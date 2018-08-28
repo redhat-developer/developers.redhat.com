@@ -21,7 +21,7 @@
     content.field_links|render ? 'has-links' : 'no-links'
   ]
 %}
-<section{{ attributes.addClass(classes) }}>
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
   <div class="container">
     {{ content.field_title }}
     <div class="grid">
