@@ -15,6 +15,6 @@ author: true
 emails: ''
 subject: '[node:title] moderation state changed to Published'
 body:
-  value: "<p><span class=\"blob-code-inner blob-code-marker-deletion\"><span class=\"pl-s\">The content at [node:url] has been published by [node:initiator].</span></span></p>\r\n"
-  format: rhd_html
+  value: "The content at [node:url] has been published by [node:initiator].\r\n"
+  format: markdown
 label: Published
