@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.rich_text
+    - field.field.assembly.rich_text.field_audience_selection
     - field.field.assembly.rich_text.field_background_image
     - field.field.assembly.rich_text.field_content
     - field.field.assembly.rich_text.field_navigation_title
@@ -39,6 +40,7 @@ content:
     type: string
     region: content
 hidden:
+  field_audience_selection: true
   field_background_image: true
   field_navigation_title: true
   name: true

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.featured_evangelists
+    - field.field.assembly.featured_evangelists.field_audience_selection
     - field.field.assembly.featured_evangelists.field_cta_link
     - field.field.assembly.featured_evangelists.field_evangelists
     - field.field.assembly.featured_evangelists.field_navigation_title
@@ -68,6 +69,7 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
+  field_audience_selection: true
   field_navigation_title: true
   name: true
   user_id: true

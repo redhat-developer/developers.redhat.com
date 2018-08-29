@@ -4,19 +4,25 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.on_page_navigation
+    - field.field.assembly.on_page_navigation.field_audience_selection
+  module:
+    - content_moderation
 id: assembly.on_page_navigation.default
 targetEntityType: assembly
 bundle: on_page_navigation
 mode: default
 content:
-  moderation_state:
-    type: entity_reference_autocomplete
-    weight: 3
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+  moderation_state:
+    type: moderation_state_default
+    weight: 4
+    region: content
+    settings: {  }
     third_party_settings: {  }
   name:
     type: string_textfield
@@ -28,7 +34,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 2
     region: content
     settings:
       display_label: true
@@ -36,7 +42,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

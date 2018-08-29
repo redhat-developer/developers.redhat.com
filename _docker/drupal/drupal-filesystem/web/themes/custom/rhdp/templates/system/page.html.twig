@@ -67,7 +67,9 @@
   <div class="rhd-search-toggle-overlay"></div>
 
   <div class="container">
-    {{ page.title }}
+    {%  if not is_front %}
+      {{ page.title }}
+    {% endif %}
   </div>
 
   <main role="main">

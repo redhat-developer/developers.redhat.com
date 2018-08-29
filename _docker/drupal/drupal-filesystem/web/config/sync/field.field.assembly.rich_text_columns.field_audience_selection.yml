@@ -1,0 +1,21 @@
+uuid: 9782548c-0d1d-4a72-86ec-800348ef7da4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.rich_text_columns
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.rich_text_columns.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: rich_text_columns
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -5,14 +5,14 @@ dependencies: {  }
 id: review_requested
 workflow: 00c7e3ae
 transitions:
-  draft_needs_review: draft_needs_review
+  needs_review_draft: needs_review_draft
 roles:
   content_team: content_team
   content_admin: content_admin
-author: false
+author: true
 emails: ''
 subject: '[node:title] changes requested'
 body:
-  value: "<p>Changes have been requested for [node:title]. It has been sent back to draft by [node:initiator]. You can review/edit at [node:edit-url].</p>\r\n"
-  format: rich_text
+  value: 'Changes have been requested for [node:title] and it has been sent back to draft by [node:initiator]. You can review/edit at [node:edit-url].'
+  format: markdown
 label: 'Review Requested'

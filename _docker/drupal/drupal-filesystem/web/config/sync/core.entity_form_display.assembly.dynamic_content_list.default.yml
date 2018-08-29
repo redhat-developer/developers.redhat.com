@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.dynamic_content_list
+    - field.field.assembly.dynamic_content_list.field_audience_selection
     - field.field.assembly.dynamic_content_list.field_category_filter
     - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
@@ -18,14 +19,20 @@ targetEntityType: assembly
 bundle: dynamic_content_list
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_category_filter:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
     region: content
   field_cta_link:
-    weight: 7
+    weight: 8
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -33,13 +40,13 @@ content:
     type: link_default
     region: content
   field_drupal_term_filter:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_links:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -47,7 +54,7 @@ content:
     type: link_default
     region: content
   field_navigation_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -55,7 +62,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -72,7 +79,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true
@@ -80,7 +87,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

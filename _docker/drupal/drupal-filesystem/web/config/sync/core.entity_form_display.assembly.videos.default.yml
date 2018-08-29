@@ -4,16 +4,25 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.videos
+    - field.field.assembly.videos.field_audience_selection
     - field.field.assembly.videos.field_navigation_title
     - field.field.assembly.videos.field_tags
     - field.field.assembly.videos.field_title
+  module:
+    - content_moderation
 id: assembly.videos.default
 targetEntityType: assembly
 bundle: videos
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_navigation_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -21,7 +30,7 @@ content:
     type: string_textfield
     region: content
   field_tags:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -30,7 +39,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_title:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -38,13 +47,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 6
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: moderation_state_default
     region: content
   name:
     type: string_textfield
@@ -56,7 +62,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true

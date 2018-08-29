@@ -1,0 +1,21 @@
+uuid: 0392d154-d54c-4b1d-b4fe-5d04f90dcc24
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.hero
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.hero.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: hero
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
