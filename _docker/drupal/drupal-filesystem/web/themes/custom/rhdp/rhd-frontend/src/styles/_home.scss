@@ -5,7 +5,7 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_rhoarlaunch_07dec2017.png");
+  background-image: url("/images/rhd/hero/RHDev_homehero_desktop_rhoarlaunch_07dec2017.png");
   background-position: center center;
   height: 310px;
   background-repeat: repeat-x;
@@ -99,11 +99,11 @@ a.spotlight-item {
     color: $white;
     &::before { opacity: 0.7; }
   }
-  &:nth-of-type(1)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_containerterminology_14mar2018.png'); }
-  &:nth-of-type(2)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_manningbookjpbm_26jan.png'); }
-  &:nth-of-type(3)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_osiolaunch_09may2017.png'); }
-  &:nth-of-type(4)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_reactivemicroservices_21apr2017.png'); }
-  &:nth-of-type(5)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_advlinuxcheat_11may2017.png'); }
+  &:nth-of-type(1)::before { background-image: url('/images/rhd/promo/RHDev_homepromo_containerterminology_14mar2018.png'); }
+  &:nth-of-type(2)::before { background-image: url('/images/rhd/promo/RHDev_homepromo_manningbookjpbm_26jan.png'); }
+  &:nth-of-type(3)::before { background-image: url('/images/rhd/promo/RHDev_homepromo_osiolaunch_09may2017.png'); }
+  &:nth-of-type(4)::before { background-image: url('/images/rhd/promo/RHDev_homepromo_reactivemicroservices_21apr2017.png'); }
+  &:nth-of-type(5)::before { background-image: url('/images/rhd/promo/RHDev_homepromo_advlinuxcheat_11may2017.png'); }
   &.external-link:after { display: none; }
 }
 
@@ -252,7 +252,7 @@ ul.homepage-resources {
 
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_rhoarlaunch_07dec2017.png");
+    background-image: url("/images/rhd/hero/RHDev_homehero_tablet_rhoarlaunch_07dec2017.png");
     background-size: cover;
     background-position: top left;
     min-height: 400px;
@@ -295,7 +295,7 @@ ul.homepage-resources {
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_rhoarlaunch_07dec2017.png");
+    background-image: url("/images/rhd/hero/RHDev_homehero_mobile_rhoarlaunch_07dec2017.png");
     min-height: 480px;
   }
   .spotlights-container { flex-direction: column; }

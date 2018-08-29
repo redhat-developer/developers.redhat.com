@@ -3,7 +3,7 @@
 }
 
 .wide-hero.gids {
-  background-image: url('https://static.jboss.org/images/rhd/microsite/gids2016_banner_1811x260px_31mar2016.png');
+  background-image: url('/images/rhd/microsite/gids2016_banner_1811x260px_31mar2016.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,11 +12,11 @@
   margin: 0;
   min-height: 240px;
   @include tablet-landscape-and-down {
-    background: url('https://static.jboss.org/images/rhd/microsite/gids2016_banner_600x446_31mar2016.png') top center / cover repeat-x;
+    background: url('/images/rhd/microsite/gids2016_banner_600x446_31mar2016.png') top center / cover repeat-x;
     min-height: 560px;
   }
   @include mobile-landscape-and-down {
-    background: url('https://static.jboss.org/images/rhd/microsite/gids2016_banner_480x500px_31mar2016.png') top center / cover repeat-x;
+    background: url('/images/rhd/microsite/gids2016_banner_480x500px_31mar2016.png') top center / cover repeat-x;
     min-height: 450px;
   }
 }

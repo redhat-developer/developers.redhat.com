@@ -44,13 +44,13 @@
       background-color: $grey-1;
       background-size: contain;
       background-repeat: no-repeat;
-      &.stack-overflow { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_stack_transparent.png'); }
-      &.linkedin { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_linkedin_transparent.png'); }
-      &.twitter { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_twitter_transparent.png'); }
-      &.facebook { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_facebook_transparent.png'); }
-      &.google-plus { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_googleplus_transparent.png'); }
-      &.windows { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_microsoft_transparent.png'); }
-      &.github { background-image: url('https://static.jboss.org/images/rhd/icons/socialmedia_icons_github_transparent.png'); }
+      &.stack-overflow { background-image: url('/images/rhd/icons/socialmedia_icons_stack_transparent.png'); }
+      &.linkedin { background-image: url('/images/rhd/icons/socialmedia_icons_linkedin_transparent.png'); }
+      &.twitter { background-image: url('/images/rhd/icons/socialmedia_icons_twitter_transparent.png'); }
+      &.facebook { background-image: url('/images/rhd/icons/socialmedia_icons_facebook_transparent.png'); }
+      &.google-plus { background-image: url('/images/rhd/icons/socialmedia_icons_googleplus_transparent.png'); }
+      &.windows { background-image: url('/images/rhd/icons/socialmedia_icons_microsoft_transparent.png'); }
+      &.github { background-image: url('/images/rhd/icons/socialmedia_icons_github_transparent.png'); }
     }
   }
   @include tablet-portrait-and-down {
