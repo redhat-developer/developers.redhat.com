@@ -3,7 +3,7 @@
 }
 
 .wide-hero.devoxxfrance {
-  background-image: url('https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_1811x260px_11apr1016.jpg');
+  background-image: url('/images/rhd/microsite/devoxxfr2016_banner_1811x260px_11apr1016.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@
     }
   }
   @include tablet-portrait-and-down {
-    background: url('https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_600x446_11apr1016.jpg') top center / cover repeat-x;
+    background: url('/images/rhd/microsite/devoxxfr2016_banner_600x446_11apr1016.jpg') top center / cover repeat-x;
     h2, h3 {
       text-align: left;
       max-width: 82%;
@@ -35,7 +35,7 @@
     }
   }
   @include mobile-landscape-and-down {
-    background-image: url('https://static.jboss.org/images/rhd/microsite/devoxxfr2016_banner_480x500px_11apr1016.jpg');
+    background-image: url('/images/rhd/microsite/devoxxfr2016_banner_480x500px_11apr1016.jpg');
     h2, h3 {
       max-width: 100%;
     }

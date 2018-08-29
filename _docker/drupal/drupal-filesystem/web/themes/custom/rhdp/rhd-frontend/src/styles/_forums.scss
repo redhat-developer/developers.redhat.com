@@ -1,5 +1,5 @@
 .hero.hero-forums {
-  background: url('https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_desktop.png') top center / cover no-repeat;
+  background: url('/images/rhd/headers/RHDev_pageheader_forums_desktop.png') top center / cover no-repeat;
   content : ':4242';
   border:0;
   min-height: 205px;
@@ -22,7 +22,7 @@
     }
   }
   @include tablet-landscape-and-down {
-    background: url('https://static.jboss.org/images/rhd/headers/RHDev_pageheader_forums_tablet.png') top center / cover no-repeat;
+    background: url('/images/rhd/headers/RHDev_pageheader_forums_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
       margin-top: 10px;
