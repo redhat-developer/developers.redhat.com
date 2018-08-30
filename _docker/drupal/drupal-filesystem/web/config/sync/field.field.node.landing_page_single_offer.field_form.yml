@@ -1,0 +1,30 @@
+uuid: 406f3baf-58fc-4993-a2f0-e5e623542d52
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.form
+    - field.storage.node.field_form
+    - node.type.landing_page_single_offer
+  module:
+    - entity_reference_revisions
+id: node.landing_page_single_offer.field_form
+field_name: field_form
+entity_type: node
+bundle: landing_page_single_offer
+label: Form
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      form: form
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

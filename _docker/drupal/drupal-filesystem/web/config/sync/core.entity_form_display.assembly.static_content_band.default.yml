@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.static_content_band
+    - field.field.assembly.static_content_band.field_audience_selection
     - field.field.assembly.static_content_band.field_content_list
     - field.field.assembly.static_content_band.field_navigation_title
     - field.field.assembly.static_content_band.field_title
@@ -15,8 +16,14 @@ targetEntityType: assembly
 bundle: static_content_band
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_content_list:
-    weight: 4
+    weight: 5
     settings:
       form_mode: default
       label_singular: ''
@@ -27,6 +34,7 @@ content:
       collapsible: false
       collapsed: false
       allow_existing: false
+      allow_duplicate: false
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
@@ -34,14 +42,14 @@ content:
     region: content
   field_navigation_title:
     type: string_textfield
-    weight: 3
+    weight: 4
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -58,7 +66,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -66,7 +74,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

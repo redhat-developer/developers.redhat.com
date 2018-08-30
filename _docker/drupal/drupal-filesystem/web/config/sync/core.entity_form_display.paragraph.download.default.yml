@@ -16,7 +16,6 @@ dependencies:
   module:
     - link
     - text
-    - workbench_moderation
 _core:
   default_config_hash: 8kDVZ69EfUirNdqE8bWKgUaD4FPJInhl-cl9kjXiulc
 id: paragraph.download.default
@@ -85,6 +84,15 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  moderation_state:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

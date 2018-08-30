@@ -1,0 +1,21 @@
+uuid: c5c42083-492f-43a7-ba99-82eb6b9e74ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.wordpress_post_reference.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: wordpress_post_reference
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

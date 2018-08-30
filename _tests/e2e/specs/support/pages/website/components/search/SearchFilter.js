@@ -16,11 +16,11 @@ export class SearchFilter extends Base {
     }
 
     activeFilter() {
-        return this.element(this.getSelector('activeFilters'))
+        return this.element(this.getSelector('activeFilters'));
     }
 
     clearSearchFilters() {
-        return this.clickOn(this.getSelector('clearFilters'))
+        return this.clickOn(this.getSelector('clearFilters'));
     }
 
     chooseFilter(filterType, filterOption) {

@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.events_hero
     - entity_browser.browser.image_browser
+    - field.field.assembly.events_hero.field_audience_selection
     - field.field.assembly.events_hero.field_background_image
     - field.field.assembly.events_hero.field_primary_event
     - field.field.assembly.events_hero.field_secondary_events
@@ -19,9 +20,15 @@ targetEntityType: assembly
 bundle: events_hero
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_background_image:
     type: entity_browser_file
-    weight: 7
+    weight: 8
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -33,7 +40,7 @@ content:
     region: content
     third_party_settings: {  }
   field_primary_event:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -42,7 +49,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_secondary_events:
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -51,7 +58,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_sidebar_link:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -59,7 +66,7 @@ content:
     type: link_default
     region: content
   field_sidebar_title:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -67,7 +74,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -84,7 +91,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 2
     region: content
     settings:
       display_label: true

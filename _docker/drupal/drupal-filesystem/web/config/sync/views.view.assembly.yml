@@ -476,6 +476,7 @@ display:
               administrator: '0'
               content_manager: '0'
               user_manager: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -548,7 +549,7 @@ display:
         groups:
           1: AND
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -565,7 +566,7 @@ display:
       display_extenders: {  }
       path: admin/content/assembly
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

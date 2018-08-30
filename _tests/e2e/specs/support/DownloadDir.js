@@ -10,32 +10,21 @@ export class DownloadDir {
         if (dirSize.length > 0) {
             fs.emptyDir(global.downloadDir)
         }
-    }
+    };
 
     get() {
         let downloadCount = 0;
-        let numberOfDownloads;
-        let dirSize = [];
+        let downloads = [];
         do {
             fs.readdirSync(global.downloadDir).forEach(file => {
-                dirSize.push(file)
+                downloads.push(file);
             });
             this.sleep(1000);
             downloadCount++;
-            if (dirSize.length > 0 || downloadCount === 6) {
-                if (process.env.RHD_BASE_URL !== 'https://developers.stage.redhat.com') {
-                    /* This is bad, however we need to throttle the production download sanity tests for monitoring purposes.
-                    * Akamai is blocks requests if there are too many in quick succession. Never use sleeps in tests, ever. This is an extenuating circumstance.  */
-                    numberOfDownloads = dirSize.length;
-                    browser.pause(60000);
-                } else {
-                    numberOfDownloads = dirSize.length;
-                }
-                this.clear();
-                return numberOfDownloads;
-            }
+            if (downloads.length > 0 || downloadCount === 15) return downloads;
+
         }
-        while (dirSize.length === 0) ;
+        while (downloads.length === 0) ;
     }
 
     sleep(delay) {

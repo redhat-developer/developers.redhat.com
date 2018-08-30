@@ -193,15 +193,6 @@ function rhd_common_preprocess_get_started_tabs(&$variables)
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function rhd_common_preprocess_paragraph__docs_and_apis(&$variables)
-{
-  $paragraph = $variables['paragraph'];
-  $variables['product_documentation_code'] = $paragraph->field_product_documentation_code->value;
-}
-
-/**
  * Implements hook_page_attachments_alter().
  *
  * Add in the metatags for the product pages
@@ -230,9 +221,11 @@ function rhd_common_page_attachments_alter(array &$attachments)
     if (isset($product)) {
       // Figure out which sub page we're on
       $product_pages = $product->field_product_pages->referencedEntities();
-      $active_paragraph = current(array_filter($product_pages, function ($entity) use ($route_params) {
-        return strtolower($entity->field_overview_url->value) === $route_params['sub_page'];
-      }));
+      $filtered_paragraphs = array_filter($product_pages,
+        function ($entity) use ($route_params) {
+          return str_replace(' ', '-', strtolower($entity->field_overview_url->value)) === $route_params['sub_page'];
+        });
+      $active_paragraph = current($filtered_paragraphs);
 
       // Get all the meta tags, many were missed so we're redoing all this logic :(
       $metatags = $global_metatag_manager->load('global');

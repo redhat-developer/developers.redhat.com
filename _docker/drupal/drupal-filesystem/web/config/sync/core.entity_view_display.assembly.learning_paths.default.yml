@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.learning_paths
+    - field.field.assembly.learning_paths.field_audience_selection
     - field.field.assembly.learning_paths.field_cta_link
     - field.field.assembly.learning_paths.field_description
     - field.field.assembly.learning_paths.field_title
@@ -66,5 +67,6 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
+  field_audience_selection: true
   name: true
   user_id: true

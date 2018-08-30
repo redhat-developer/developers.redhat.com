@@ -24,7 +24,6 @@ dependencies:
     - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
-    - field.field.node.events.scheduled_update
     - image.style.crop_thumbnail
     - node.type.events
   module:
@@ -38,6 +37,9 @@ targetEntityType: node
 bundle: events
 mode: tile
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_tile_thumbnail:
     type: image_url
     weight: 1
@@ -85,5 +87,4 @@ hidden:
   field_start_date: true
   field_target_product: true
   field_topics: true
-  scheduled_update: true
   workbench_moderation_control: true

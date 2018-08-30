@@ -25,7 +25,7 @@
   {% set has_sidebar = TRUE %}
 {% endif %}
 
-<section{{ attributes.addClass('assembly') }}>
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <div class="container{{ sidebar_class }}">
     <div class="primary-event">
       <h2 class="section-title">{{ content.field_title }}</h2>

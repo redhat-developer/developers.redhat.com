@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.static_item
+    - field.field.assembly.static_item.field_audience_selection
     - field.field.assembly.static_item.field_image
     - field.field.assembly.static_item.field_title
     - field.field.assembly.static_item.field_url
@@ -68,5 +69,6 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
+  field_audience_selection: true
   name: true
   user_id: true

@@ -4,15 +4,22 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.events_list
+    - field.field.assembly.events_list.field_audience_selection
     - field.field.assembly.events_list.field_event
     - field.field.assembly.events_list.field_navigation_title
   module:
-    - workbench_moderation
+    - content_moderation
 id: assembly.events_list.default
 targetEntityType: assembly
 bundle: events_list
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_event:
     weight: 6
     settings:
@@ -31,11 +38,11 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 3
+    weight: 7
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -53,7 +60,7 @@ content:
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,7 +70,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

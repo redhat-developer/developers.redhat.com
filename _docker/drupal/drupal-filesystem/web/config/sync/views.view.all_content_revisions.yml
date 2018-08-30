@@ -17,6 +17,7 @@ dependencies:
     - node.type.topic
     - node.type.video_resource
   module:
+    - content_moderation
     - node
     - user
 id: all_content_revisions
@@ -307,7 +308,7 @@ display:
           plugin_id: field
         moderation_state:
           id: moderation_state
-          table: node_field_revision
+          table: content_moderation_state_field_data
           field: moderation_state
           relationship: none
           group_type: group
@@ -353,11 +354,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -367,7 +368,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
+          entity_type: content_moderation_state
           entity_field: moderation_state
           plugin_id: field
         link_to_revision:
@@ -620,6 +621,9 @@ display:
               content_team: '0'
               topics_owners: '0'
               content_admin: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: 'Revision user ID'
@@ -688,6 +692,9 @@ display:
               content_team: '0'
               topics_owners: '0'
               content_admin: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -743,7 +750,7 @@ display:
           1: AND
       use_ajax: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -761,7 +768,7 @@ display:
       display_extenders: {  }
       path: admin/all-content-revisions
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

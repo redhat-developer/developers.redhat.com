@@ -19,17 +19,14 @@ dependencies:
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
-    - field.field.node.product.scheduled_update
     - node.type.product
   module:
+    - content_moderation
     - entity_browser
-    - entity_browser_entity_form
     - field_group
-    - inline_entity_form
     - link
     - metatag
     - paragraphs
-    - workbench_moderation
 third_party_settings:
   field_group:
     group_sub_pages:
@@ -191,28 +188,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 15
+    weight: 27
     settings: {  }
-    region: content
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 16
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'publishing date'
-      label_plural: 'publishing dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
+    type: moderation_state_default
     region: content
   title:
     type: string_textfield

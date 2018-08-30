@@ -193,10 +193,26 @@ function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAss
  * Implements template_preprocess_page().
  */
 function rhdp_preprocess_page(&$variables) {
-  if (isset($variables['node'])) {
-    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$variables['node']->id());
+
+  $node = isset($variables['node']) ? $variables['node'] : FALSE;
+
+  if ($node) {
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->id());
     if ($alias == '/') {
       $variables['is_front'] = true;
+    }
+  }
+
+  // Pull out assemblies to page level for solp
+  if ($node && $node->getType() == 'landing_page_single_offer') {
+    foreach(['sections', 'form'] as $field) {
+      $fieldname = 'field_' . $field;
+      if (isset($node->$fieldname)) {
+        $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
+        $output = $viewBuilder->viewField($node->$fieldname, 'full');
+        $output['#cache']['tags'] = $node->getCacheTags();
+        $variables['page'][$field] = $output;
+      }
     }
   }
 }
@@ -454,7 +470,6 @@ function rhdp_preprocess_assembly(&$variables) {
     $type = $assembly->bundle();
     $variables['background_image_url'] = FALSE;
 
-    // kint(($assembly->hasField('field_background_image') ? 'has' : 'does not have') . ' background image');
     if ($assembly->hasField('field_background_image')) {
       $image_value = $assembly->get('field_background_image')->getValue();
       if ($image_value) {
@@ -465,4 +480,16 @@ function rhdp_preprocess_assembly(&$variables) {
       }
     }
 
+    if ($assembly->hasField('field_audience_selection')) {
+      $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+      $variables['audience_selection'] = '';
+      if ($field_audience_selection_values) {
+        $audience_selection_values = [];
+        foreach($field_audience_selection_values as $field_audience_selection_value) {
+          $audience_selection_values[] = $field_audience_selection_value['value'];
+        }
+        $audience_selection = implode(',', $audience_selection_values);
+        $variables['audience_selection'] = " data-audience={$audience_selection}";
+      }
+    }
 }
