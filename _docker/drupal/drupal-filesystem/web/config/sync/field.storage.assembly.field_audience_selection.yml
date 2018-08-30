@@ -1,0 +1,27 @@
+uuid: 7791858e-1c5a-4b2b-8d23-26e4be3a5df1
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: authenticated
+      label: Authenticated
+    -
+      value: unauthenticated
+      label: Unauthenticated
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

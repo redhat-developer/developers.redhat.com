@@ -18,12 +18,12 @@ module:
   coding_resource: 0
   color: 0
   config: 0
-  config_update: 0
-  config_update_ui: 0
   connectors: 0
-  consumers: 0
   contact: 0
   contact_storage: 0
+  content_moderation: 0
+  content_moderation_edit_notify: 0
+  content_moderation_notifications: 0
   contextual: 0
   crop: 0
   ctools: 0
@@ -36,7 +36,6 @@ module:
   editor: 0
   editor_advanced_link: 0
   embed: 0
-  entity: 0
   entity_block: 0
   entity_browser: 0
   entity_browser_entity_form: 0
@@ -60,7 +59,6 @@ module:
   jsonapi: 0
   layout_discovery: 0
   layoutmanager: 0
-  lightning_api: 0
   lightning_contact_form: 0
   lightning_core: 0
   lightning_media: 0
@@ -71,14 +69,12 @@ module:
   lightning_media_twitter: 0
   lightning_media_video: 0
   lightning_page: 0
-  lightning_scheduled_updates: 0
+  lightning_scheduler: 0
   lightning_workflow: 0
   link: 0
   linkit: 0
   markdown: 0
-  media_entity: 0
-  media_entity_document: 0
-  media_entity_image: 0
+  media: 0
   media_entity_instagram: 0
   media_entity_twitter: 0
   menu_link_attributes: 0
@@ -106,17 +102,15 @@ module:
   rest: 0
   rhd_assemblies: 0
   rhd_common: 0
+  rhd_disqus: 0
   rhd_guzzle_throttle: 0
   rhd_microsite: 0
   rhd_solution_overview: 0
-  scheduled_updates: 0
   schemata: 0
   schemata_json_schema: 0
   search: 0
   serialization: 0
   shortcut: 0
-  simple_oauth: 0
-  simple_oauth_extras: 0
   simple_sitemap: 0
   smtp: 0
   subpathauto: 0
@@ -138,8 +132,7 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   workbench: 0
-  workbench_email: 0
-  workbench_moderation: 0
+  workflows: 0
   menu_link_content: 1
   pathauto: 1
   views: 10

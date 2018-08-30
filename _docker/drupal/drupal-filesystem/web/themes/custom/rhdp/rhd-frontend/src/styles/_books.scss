@@ -97,7 +97,7 @@ p.desc {
 @include mobile-landscape-and-down {
 
 .book {
-  padding-right:0px 
+  padding-right: 0px;
  }
   li.book {
     width:100%;
@@ -109,3 +109,15 @@ p.desc {
   display: none;
 }
 
+.page-node-type-books .disqus-thread-wrapper {
+  padding-top: 40px;
+  border-top: #E4E4E4 1px solid;
+  margin-top: 40px;
+  h2 {
+    @extend h4;
+  }
+}
+
+.book-content {
+  display: table;
+}

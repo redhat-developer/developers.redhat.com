@@ -16,7 +16,6 @@ dependencies:
     - paragraphs
     - text
     - video_embed_field
-    - workbench_moderation
 _core:
   default_config_hash: aX03NCj6p8VTFSKUermHxSSvCuolg5gLRZtlS7t5JOg
 id: paragraph.overview.default
@@ -80,6 +79,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  moderation_state:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

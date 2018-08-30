@@ -1,0 +1,21 @@
+uuid: c34e989a-39fc-4ab6-8cf9-b9cc5ff298c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.dynamic_content_feed.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: dynamic_content_feed
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

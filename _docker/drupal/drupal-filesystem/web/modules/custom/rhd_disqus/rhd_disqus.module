@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_disqus.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_disqus_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_disqus module.
+    case 'help.page.rhd_disqus':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Disqus comments for RHD') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
+    $build['disqus_thread'] = ['#theme' => 'rhd_disqus__thread'];
+  }
+}
+
+function rhd_disqus_theme($existing, $type, $theme, $path) {
+  $config = \Drupal::config('rhd_disqus.disqussettings');
+  return [
+    'rhd_disqus__thread' => [
+      'template' => 'rhd-disqus--thread',
+      'variables' => [
+        'thread' => NULL,
+        'shortname' => $config->get('rhd_disqus_shortname') ?: NULL,
+        'title' => t('Comments'),
+      ],
+    ],
+    'rhd_disqus__comment__latest' => [
+      'template' => 'rhd-disqus--comment--latest',
+      'variables' => [
+        'thread_title' => NULL,
+        'message' => NULL,
+        'date' => NULL,
+        'reply_url' => NULL,
+        'attributes' => new Attribute([]),
+      ],
+    ],
+  ];
+}

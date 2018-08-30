@@ -4,19 +4,10 @@ status: true
 dependencies:
   module:
     - menu_ui
-    - workbench_moderation
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-  workbench_moderation:
-    enabled: true
-    allowed_moderation_states:
-      - published
-      - archived
-      - draft
-      - needs_review
-    default_moderation_state: draft
 _core:
   default_config_hash: V9tUFh5Z2E9IUD_snTeFgZGIAegE9NTNIGROY6eIQ34
 name: 'Technology Page (Deprecated)'

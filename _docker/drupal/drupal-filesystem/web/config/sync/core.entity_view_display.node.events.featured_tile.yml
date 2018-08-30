@@ -24,7 +24,6 @@ dependencies:
     - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
-    - field.field.node.events.scheduled_update
     - node.type.events
   module:
     - datetime
@@ -37,6 +36,9 @@ targetEntityType: node
 bundle: events
 mode: featured_tile
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_presenter_s_:
     weight: 3
     label: hidden
@@ -120,5 +122,4 @@ hidden:
   field_target_product: true
   field_tile_thumbnail: true
   field_topics: true
-  scheduled_update: true
   workbench_moderation_control: true

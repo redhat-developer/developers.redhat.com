@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
     - field.field.node.product.field_image
+    - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
     - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
@@ -14,10 +15,10 @@ dependencies:
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
-    - field.field.node.product.scheduled_update
     - image.style.large
     - node.type.product
   module:
@@ -32,6 +33,9 @@ targetEntityType: node
 bundle: product
 mode: featured_tile
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_call_to_action_link:
     type: link
     weight: 2
@@ -91,6 +95,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_card_image: true
+  field_meta_tags: true
   field_product_categories: true
   field_product_category: true
   field_product_machine_name: true
@@ -98,7 +103,7 @@ hidden:
   field_product_short_name: true
   field_product_summary: true
   field_product_technology_group: true
+  field_share_image: true
   field_stackoverflow_product_refe: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_categories
+    - field.field.assembly.product_categories.field_audience_selection
     - field.field.assembly.product_categories.field_navigation_title
     - field.field.assembly.product_categories.field_title
   module:
@@ -29,6 +30,7 @@ content:
     type: string
     region: content
 hidden:
+  field_audience_selection: true
   field_navigation_title: true
   name: true
   user_id: true

@@ -16,7 +16,7 @@ export class Base {
         if (this.pageTitle) {
             return this.waitForPageTitle(this.pageTitle, 30000);
         }
-        return res
+        return res;
     }
 
     addSelectors(selectors) {
@@ -33,17 +33,16 @@ export class Base {
     }
 
     visit(url) {
-        browser.url(url)
+        browser.url(url);
     }
 
     awaitIsLoggedIn(siteUser) {
-        this.waitForSelectorContainingText('.logged-in-name'
-            , `${siteUser['firstName']} ${siteUser['lastName']}`, 30000)
+        this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 30000);
     }
 
     waitForPageTitle(title, timeout = 10000) {
         browser.waitUntil(function () {
-            return browser.getTitle().indexOf(title) > -1
+            return browser.getTitle().indexOf(title) > -1;
         }, timeout, `Timed out after ${timeout} seconds waiting for page title to contain ${title}`);
     }
 
@@ -59,7 +58,7 @@ export class Base {
 
     waitForSelectorContainingText(selector, string, timeout = 10000) {
         browser.waitUntil(function () {
-            return browser.getText(selector).indexOf(string) > -1
+            return browser.getText(selector).indexOf(string) > -1;
         }, timeout, `Timed out after ${timeout} seconds waiting for selector to contain ${string}`);
     }
 
@@ -87,7 +86,7 @@ export class Base {
     awaitIsVisible(selector, timeout = 10000) {
         if (typeof selector === 'string') {
             browser.waitForVisible(selector, timeout);
-            return true
+            return true;
         } else {
             return selector.waitForVisible(timeout);
         }
@@ -104,18 +103,18 @@ export class Base {
     type(input, selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
-            return browser.setValue(selector, input)
+            return browser.setValue(selector, input);
         } else {
-            return selector.setValue(input)
+            return selector.setValue(input);
         }
     }
 
     clickOn(selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
-            return browser.click(selector)
+            return browser.click(selector);
         } else {
-            return selector.click()
+            return selector.click();
         }
     }
 
@@ -123,7 +122,7 @@ export class Base {
         if (typeof selector === 'string') {
             return browser.isSelected(selector);
         } else {
-            return selector.isSelected()
+            return selector.isSelected();
         }
     }
 
@@ -132,7 +131,7 @@ export class Base {
             return browser.getValue(selector);
 
         } else {
-            return selector.getValue()
+            return selector.getValue();
         }
     }
 
@@ -141,7 +140,7 @@ export class Base {
         if (typeof selector === 'string') {
             browser.selectByValue(selector, value);
         } else {
-            return selector.selectByValue(value)
+            return selector.selectByValue(value);
         }
     }
 
@@ -150,7 +149,7 @@ export class Base {
         if (typeof selector === 'string') {
             browser.selectByVisibleText(selector, value);
         } else {
-            return selector.selectByVisibleText(value)
+            return selector.selectByVisibleText(value);
         }
     }
 
@@ -160,9 +159,9 @@ export class Base {
         let i = 0;
         do {
             if (typeof selector === 'string') {
-                text = browser.getText(selector)
+                text = browser.getText(selector);
             } else {
-                text = selector.getText()
+                text = selector.getText();
             }
             i++;
         }
@@ -174,22 +173,22 @@ export class Base {
         let hasAlert;
         try {
             browser.alertText();
-            hasAlert = true
+            hasAlert = true;
         } catch (e) {
-            hasAlert = false
+            hasAlert = false;
         }
-        return hasAlert
+        return hasAlert;
     }
 
     key(key) {
-        return browser.keys(key)
+        return browser.keys(key);
     }
 
     scrollIntoView(selector) {
         let location;
         if (typeof selector === 'string') {
             location = browser.getLocationInView(selector);
-            return browser.scroll(location['x'], location['y'])
+            return browser.scroll(location['x'], location['y']);
         } else {
             location = selector.getLocationInView();
             return selector.scroll(location['x'], location['y']);
@@ -204,7 +203,7 @@ export class Base {
                 return selector.waitForExist(timeout);
             }
         } catch (e) {
-            return false
+            return false;
         }
     }
 

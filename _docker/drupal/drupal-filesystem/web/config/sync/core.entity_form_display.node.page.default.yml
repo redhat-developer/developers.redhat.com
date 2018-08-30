@@ -5,14 +5,12 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
-    - field.field.node.page.scheduled_update
     - node.type.page
   module:
-    - inline_entity_form
+    - content_moderation
     - metatag
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: L1fBdp2a9eZINN76KMcEIrHmz-zZVpQ9GSSqy5QtyiU
 id: node.page.default
@@ -42,11 +40,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   moderation_state:
-    type: moderation_state_default
-    weight: 8
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 5
@@ -58,21 +56,6 @@ content:
     settings:
       display_label: true
     weight: 3
-    third_party_settings: {  }
-    region: content
-  scheduled_update:
-    type: inline_entity_form_complex
-    settings:
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: false
-      match_operator: CONTAINS
-      form_mode: default
-      collapsible: false
-      collapsed: false
-    weight: 9
     third_party_settings: {  }
     region: content
   sticky:

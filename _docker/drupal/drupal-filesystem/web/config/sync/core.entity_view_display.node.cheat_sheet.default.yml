@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
     - field.field.node.cheat_sheet.field_topics
-    - field.field.node.cheat_sheet.scheduled_update
     - node.type.cheat_sheet
   module:
     - interval
@@ -39,6 +38,9 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
     region: content
   field_card_image:
     weight: 10
@@ -146,4 +148,3 @@ content:
 hidden:
   field_cover_image: true
   field_share_image: true
-  scheduled_update: true
