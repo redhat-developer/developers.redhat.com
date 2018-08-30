@@ -200,6 +200,9 @@ function rhd_common_preprocess_node(&$variables) {
   if ($variables['node']->getType() === 'video_resource') {
     video_tags($variables);
   }
+
+  // Add `is_front` at the node level
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
 }
 
 /**
