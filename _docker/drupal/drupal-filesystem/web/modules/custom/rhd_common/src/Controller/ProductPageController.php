@@ -152,10 +152,6 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
       throw new NotFoundHttpException();
     }
 
-    $build = $this->entityTypeManager()
-      ->getViewBuilder($active_product->getEntityTypeId())
-      ->view($active_product, 'full');
-
     $build['#theme'] = 'product-pages';
     $build['#page_links'] = $page_links;
     $build['#product_machine_name'] = $active_product->field_product_machine_name->value;
@@ -164,6 +160,8 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
       ->getViewBuilder($active_paragraph->getEntityTypeId())
       ->view($active_paragraph, 'full');
 
+    $build['#product_summary'] = $active_product->field_product_summary->view(['label' => 'hidden']);
+    $build['#product_title'] = $active_product->getTitle();
 
     // Also product category
     if ($active_product->hasField('field_product_category')) {
@@ -209,7 +207,7 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
 
   /**
    * @param string $url_name URL Product Name
-   * @return mixed|NULL
+   * @return \Drupal\Core\Entity\EntityInterface|NULL
    */
   private function findProduct($url_name) {
     $query = $this->entityQuery->get('node', 'AND');

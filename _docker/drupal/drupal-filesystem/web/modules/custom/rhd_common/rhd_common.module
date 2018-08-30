@@ -152,6 +152,8 @@ function rhd_common_theme($existing, $type, $theme, $path)
       'product-pages' => [
         'render element' => 'elements',
         'variables' => [
+          'product_summary' => NULL,
+          'product_title' => NULL,
           'page_links' => NULL,
           'active_paragraph' => NULL,
           'product_category' => NULL,
