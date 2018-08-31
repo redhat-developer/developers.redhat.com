@@ -7607,7 +7607,7 @@ body.page-node-type-learning-path .wrapper {
         padding: 15px; }
       #rhd-learning-path .lp-cards-container .dp-content-card p {
         display: none; }
-      #rhd-learning-path .lp-cards-container .dp-content-card h4 {
+      #rhd-learning-path .lp-cards-container .dp-content-card h4, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2 {
         font-size: 18px;
         line-height: 28px; }
       #rhd-learning-path .lp-cards-container .dp-content-card div.img {
@@ -10440,7 +10440,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
 .promotion-header {
   margin-bottom: 4em; }
   .promotion-header img {
-    max-width: 320px; }
+    max-width: 100%; }
   .promotion-header .report-title {
     margin-top: 20px; }
   .promotion-header .button {
