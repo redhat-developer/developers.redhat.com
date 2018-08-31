@@ -72,7 +72,6 @@
  * @ingroup themeable
  */
 #}
-
 <div class="mobile product-color {{ product_category }}"></div>
 
 <article{{ attributes }}>
@@ -80,9 +79,9 @@
         <div class="row">
             <div class="large-24 columns">
                 {{ title_prefix }}
-                <h1 {{ title_attributes }}>{{ title }}</h1>
+                <h1 {{ title_attributes }}>{{ product_title }}</h1>
                 {{ title_suffix }}
-                <p id="product">{{ field_product_summary }}</p>
+                <p id="product">{{ product_summary }}</p>
             </div>
         </div>
     </section>

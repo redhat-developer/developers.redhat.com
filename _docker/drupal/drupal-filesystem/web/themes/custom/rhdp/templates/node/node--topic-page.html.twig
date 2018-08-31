@@ -71,46 +71,35 @@
  */
 #}
 {%
-  set classes = [
+    set classes = [
     'node',
     'node--type-' ~ node.bundle|clean_class,
     node.isPromoted() ? 'node--promoted',
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
-{%
-  set title_tag = page ? 'h1' : 'h2'
+]
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-  {% if not is_front %}
-  <div class="container">
-      {{ title_prefix }}
+    <div class="container">
+        {{ title_prefix }}
         <h1{{ title_attributes }}>{{ label }}</h1>
-      {{ title_suffix }}
-  </div>
-  {% endif %}
+        {{ title_suffix }}
+    </div>
 
-  {% if content.field_hero|render %}
-  {{ content.field_hero }}
-  {% endif %}
+    {% if display_submitted %}
+        <footer class="node__meta">
+            {{ author_picture }}
+            <div{{ author_attributes.addClass('node__submitted') }}>
+                {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+                {{ metadata }}
+            </div>
+        </footer>
+    {% endif %}
 
-  {% if display_submitted %}
-    <footer class="node__meta">
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
-
-  <div{{ content_attributes.addClass('node__content row') }}>
-    {{ content|without('field_sections', 'field_hero') }}
-  </div>
-
-  {{ content.field_sections }}
+    <div{{ content_attributes.addClass('node__content') }}>
+        {{ content }}
+    </div>
 
 </article>
