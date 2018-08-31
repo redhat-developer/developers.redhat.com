@@ -4,7 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
   min-height: 242px;
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/vjbug_microsite_banner_mobile.png') top center / cover repeat-x;
     min-height: 115px;
   }
@@ -108,7 +108,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   #videoModal, a.enlarge-video {
     display: none;
   }

@@ -11,7 +11,7 @@
       display: grid;
     }
     .main-content {
-      @include tablet-portrait-and-down {
+      @include tablet-landscape-768-and-down {
         width: 100%;
         margin-bottom: 40px;
       }
@@ -28,7 +28,7 @@
       }
     }
     .sidebar {
-      @include tablet-portrait-and-down {
+      @include tablet-landscape-768-and-down {
         width: 100%;
         margin-bottom: 40px;
       }

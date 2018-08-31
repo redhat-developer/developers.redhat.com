@@ -5,12 +5,14 @@
 {% set repo_url = content.field_source_link[0]['#url'].uri %}
 
 <div class="row">
-    <h2 class="large-title" id="developer-materials">Developer Materials</h2>
+    <div class="large-24 columns">
+        <h2 class="large-title" id="developer-materials">Developer Materials</h2>
+    </div>
 </div>
 
-<div class="row" itemscope="" itemtype="http://schema.org/Article">
+<div class="row coding-resource" itemscope="" itemtype="http://schema.org/Article">
     {# This should really include the columns class #}
-    <div class="collapse large-24">
+    <div class="collapse large-24 columns">
         <h1 class="divider" id="start" itemprop="name">
             {{ label }}
         </h1>
@@ -42,26 +44,17 @@
             </ul>
         </div>
         <div class="row content">
-            <div class="columns large-24">
-                <div class="columns medium-4 large-4">
+            <div class="large-24 columns">
+                <div class="medium-4 columns">
                     <ul class="toc gsi-nav"></ul>
                     <br>
                 </div>
-                <div class="columns medium-16 large-16 gsi">
+                <div class="medium-15 gsi columns">
                     {{ content.body }}
                 </div>
-                <div class="columns large-4 medium-4">
-                    <div class="row">
-                        <div class="columns large-24">
-                            <a href="{{ repo_url }}/archive/{{ content.field_version.0 }}.zip" class="button">Download <i
-                                        class="fas fa-download"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="columns large-24">
-                            <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fab fa-github"></i> View on GitHub</a>
-                        </div>
-                    </div>
+                <div class="medium-5 ctas columns">
+                    <a href="{{ repo_url }}/archive/{{ content.field_version.0 }}.zip" class="button">Download <i class="fas fa-download"></i></a><br/>
+                    <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fab fa-github"></i> View on GitHub</a>
                 </div>
             </div>
         </div>

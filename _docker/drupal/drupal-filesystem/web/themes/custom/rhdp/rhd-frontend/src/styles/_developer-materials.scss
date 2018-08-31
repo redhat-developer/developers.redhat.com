@@ -13,7 +13,7 @@
     text-transform: uppercase;
     font-weight: 600;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     background: cdn('../images/design/RHDev_pageheader_resources_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
@@ -264,7 +264,7 @@ table.developer-materials-grid {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   body.developer-materials {
     .content-wrapper, .wrapper, .developer-materials-sidebar {
       padding:0;
@@ -416,13 +416,13 @@ table.developer-materials-grid {
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .developer-materials-main {
     width:75%;
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .developer-materials-main {
     width:100%;
   }
@@ -590,4 +590,15 @@ a[data-page="⋯"]{
   border: 1px solid rgb(144, 144, 144);
   border-radius: 9px;
   z-index: 1;
+}
+
+.coding-resource {
+  .ctas {
+    text-align: center;
+    a.button {
+      margin-bottom: .5rem;
+      padding: 10px;
+      width: 100%;
+    }
+  }
 }

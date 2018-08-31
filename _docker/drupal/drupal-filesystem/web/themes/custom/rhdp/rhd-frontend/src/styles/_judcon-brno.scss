@@ -11,7 +11,7 @@
   padding: 20px;
   padding-top: 40px;
   min-height: 260px;
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     background: url('https://static.jboss.org/rhd/images/judcon-brno_banner_1811x260px.png') top center / cover repeat-x;
   }
   @include mobile-landscape-and-down {

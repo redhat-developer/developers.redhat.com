@@ -30,8 +30,65 @@ function rhd_disqus_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_node_view().
  */
 function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
+  $disqus_shortname = $disqus_config->get('rhd_disqus_shortname') ?: FALSE;
+  $disqus_api_key = $disqus_config->get('rhd_disqus_api_key') ?: FALSE;
+  $disqus_secret_key = $disqus_config->get('rhd_disqus_secret_key') ?: FALSE;
+
   if ($view_mode == 'full' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
     $build['disqus_thread'] = ['#theme' => 'rhd_disqus__thread'];
+  }
+  if ($view_mode == 'tile' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
+    $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
+
+    $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
+    $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
+    $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
+
+    $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
+  }
+}
+
+function rhd_disqus_preprocess_assembly(&$variables) {
+  $assembly = $variables['elements']['#assembly'];
+  $type = $assembly->bundle();
+
+  if ($type == 'static_item') {
+    $variables['absolute_url'] = FALSE;
+    $variables['rhd_domain'] = FALSE;
+    $url_field = $assembly->get('field_url')->getValue();
+    if (!empty($url_field)) {
+      $url_field = reset($url_field);
+      $uri = $url_field['uri'];
+      $url = \Drupal\Core\Url::fromUri($uri);
+      $url_is_external = \Drupal\Component\Utility\UrlHelper::isExternal($url->toString());
+      $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+      // don't run comment js on this entity
+      // if it isn't a redhat domain or the current domain
+      if ($_SERVER['SERVER_NAME']) {
+        $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+        if ($host == $_SERVER['SERVER_NAME'] || !(strpos($host, 'redhat.com') === FALSE)) {
+          $variables['rhd_domain'] = TRUE;
+        }
+      }
+    }
+  }
+}
+
+function rhd_disqus_assembly_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
+  $disqus_shortname = $disqus_config->get('rhd_disqus_shortname') ?: FALSE;
+  $disqus_api_key = $disqus_config->get('rhd_disqus_api_key') ?: FALSE;
+  $disqus_secret_key = $disqus_config->get('rhd_disqus_secret_key') ?: FALSE;
+
+  if ($entity->bundle() == 'static_content_band') {
+    $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
+    $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
+    $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
+    $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
+
+    $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
   }
 }
 
