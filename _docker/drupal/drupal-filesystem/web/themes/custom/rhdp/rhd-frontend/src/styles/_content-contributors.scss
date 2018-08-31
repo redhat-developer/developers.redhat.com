@@ -1,3 +1,12 @@
+.page-community-contributor-signup {
+  div.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__items {
+    max-width:100%;
+    width:100%;
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
 .communitycontributor .wrapper {
   padding-bottom: 0;
 }
@@ -9,6 +18,10 @@
   }
   .contrubutors-title {
     padding: 3em 0;
+
+    @media(max-width:$desktop-large) {
+      padding:3em 1em;
+    }
   }
   .contributors-cta {
     background-color: rgba(0, 0, 0, 0.5);
@@ -191,10 +204,10 @@
   background-color: #bee0f2;
 }
 
-.radio-clock{background-image:cdn('../images/content-contributors/clock.png');}
-.radio-calendar{background-image:cdn('../images/content-contributors/calendar.png');}
-.radio-podium-woman{background-image:cdn('../images/content-contributors/podium_woman.png');}
-.radio-podium-empty{background-image:cdn('../images/content-contributors/podium_empty.png');}
+.radio-clock{background-image:url('../images/content-contributors/clock.png');}
+.radio-calendar{background-image:url('../images/content-contributors/calendar.png');}
+.radio-podium-woman{background-image:url('../images/content-contributors/podium_woman.png');}
+.radio-podium-empty{background-image:url('../images/content-contributors/podium_empty.png');}
 
 .cc-selector input:active +.answer-cc{opacity: .9;}
 .cc-selector input:checked +.answer-cc{
