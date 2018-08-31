@@ -37,9 +37,9 @@ export class NavigationBar extends Base {
         let isMobile = this.toggle();
         let loginElements = this.elements(this.getSelector('login'));
         if (isMobile) {
-            this.clickOn(loginElements.value[1])
+            this.clickOn(loginElements.value[1]);
         } else {
-            this.clickOn(loginElements.value[0])
+            this.clickOn(loginElements.value[0]);
         }
     }
 
@@ -69,7 +69,7 @@ export class NavigationBar extends Base {
     searchFor(searchTerm) {
         this.enterSearch(searchTerm);
         this.triggerSearch();
-        return new Search().awaitSearchPage()
+        return new Search().awaitSearchPage();
     }
 
     triggerSearch() {
