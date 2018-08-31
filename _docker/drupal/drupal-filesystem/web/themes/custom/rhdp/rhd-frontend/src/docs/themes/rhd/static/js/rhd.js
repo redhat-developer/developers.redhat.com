@@ -1,7 +1,10 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -23,8 +26,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -49,8 +52,8 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 };
 System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var RHElement;
+    var __moduleName = context_1 && context_1.id;
     return {
         setters: [],
         execute: function () {
@@ -103,8 +106,8 @@ System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
 });
 System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_2, context_2) {
     "use strict";
-    var __moduleName = context_2 && context_2.id;
     var rhelement_1, RHDPAlert;
+    var __moduleName = context_2 && context_2.id;
     return {
         setters: [
             function (rhelement_1_1) {
@@ -265,8 +268,8 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
 });
 System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_3, context_3) {
     "use strict";
-    var __moduleName = context_3 && context_3.id;
     var rhelement_2, DPCategoryItemList;
+    var __moduleName = context_3 && context_3.id;
     return {
         setters: [
             function (rhelement_2_1) {
@@ -343,8 +346,8 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
 });
 System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_4, context_4) {
     "use strict";
-    var __moduleName = context_4 && context_4.id;
     var rhelement_3, DPCategoryList;
+    var __moduleName = context_4 && context_4.id;
     return {
         setters: [
             function (rhelement_3_1) {
@@ -440,8 +443,8 @@ System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelemen
 });
 System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_5, context_5) {
     "use strict";
-    var __moduleName = context_5 && context_5.id;
     var rhelement_4, DPCategory;
+    var __moduleName = context_5 && context_5.id;
     return {
         setters: [
             function (rhelement_4_1) {
@@ -588,8 +591,8 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
 });
 System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_6, context_6) {
     "use strict";
-    var __moduleName = context_6 && context_6.id;
     var rhelement_5, DPCategoryItem;
+    var __moduleName = context_6 && context_6.id;
     return {
         setters: [
             function (rhelement_5_1) {
@@ -630,8 +633,8 @@ System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelemen
 });
 System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_7, context_7) {
     "use strict";
-    var __moduleName = context_7 && context_7.id;
     var rhelement_6, DPProductShortTeaser;
+    var __moduleName = context_7 && context_7.id;
     return {
         setters: [
             function (rhelement_6_1) {
@@ -713,8 +716,8 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
 });
 System.register("@rhd/rhd-app", ["@rhd/rhdp-alert", "@rhd/dp-category-list/dp-category-list", "@rhd/dp-category-list/dp-category", "@rhd/dp-category-list/dp-category-item-list", "@rhd/dp-category-list/dp-category-item", "@rhd/dp-category-list/dp-product-short-teaser"], function (exports_8, context_8) {
     "use strict";
-    var __moduleName = context_8 && context_8.id;
     var rhdp_alert_1, dp_category_list_1, dp_category_1, dp_category_item_list_1, dp_category_item_1, dp_product_short_teaser_1, RHDApp;
+    var __moduleName = context_8 && context_8.id;
     return {
         setters: [
             function (rhdp_alert_1_1) {
@@ -1584,8 +1587,8 @@ var DevNationLiveApp = (function (_super) {
 customElements.define('devnation-live-app', DevNationLiveApp);
 System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
     var rhelement_7, DPStackOverflow;
+    var __moduleName = context_9 && context_9.id;
     return {
         setters: [
             function (rhelement_7_1) {
@@ -2369,7 +2372,7 @@ var RHDPProjectItem = (function (_super) {
     function RHDPProjectItem() {
         var _this = _super.call(this) || this;
         _this.template = function (strings, project) {
-            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n        \n            </p>\n            <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img\n                        src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    <p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>\n                    <p>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">Visit home page</a>" : '') + "\n                    </p>\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\"><h3><a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>\n                </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
+            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n                <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            </p>\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    " + (project.downloadsLink ? "<p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>" : '') + "\n                    " + (project.sys_url_view ? "<p><a href=\"" + project.sys_url_view + "\">Visit home page</a></p>" : '') + "\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\">\n                    <h3>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>" : "" + project.projectName) + "\n                    </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
         };
         return _this;
     }
@@ -2750,7 +2753,7 @@ var RHDPProjectQuery = (function (_super) {
             "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"] },
             "devstudio": { "upstream": ["jbosstools"] },
             "eap": { "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"] },
-            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "fabric8", "switchyard", "hawtio"] },
+            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "syndesis", "apicurio", "hawtio"] },
             "rhel": { "upstream": ["fedora"] },
             "webserver": { "upstream": ["tomcat", "httpd", "mod_cluster"] },
         };
@@ -5476,6 +5479,7 @@ app.sso = function () {
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
+                $('[data-audience="authenticated"]').show();
                 $('a.logout').on('click', function (e) {
                     e.preventDefault();
                     keycloak.logout({ "redirectUri": app.ssoConfig.logout_url });
@@ -5497,6 +5501,7 @@ app.sso = function () {
             $('li.login, section.register-banner, .hidden-after-login').show();
             $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
             $('li.logged-in').hide();
+            $('[data-audience="unauthenticated"]').show();
             $('li.login a').on('click', function (e) {
                 e.preventDefault();
                 keycloak.login();
@@ -8338,69 +8343,6 @@ catch (c) {
         reflow: function () { }
     };
 }(jQuery, window, window.document));
-;
-(function ($, window, document, undefined) {
-    Foundation.libs.equalizer = {
-        name: 'equalizer',
-        version: '5.4.4',
-        settings: {
-            use_tallest: true,
-            before_height_change: $.noop,
-            after_height_change: $.noop,
-            equalize_on_stack: false
-        },
-        init: function (scope, method, options) {
-            Foundation.inherit(this, 'image_loaded');
-            this.bindings(method, options);
-            this.reflow();
-        },
-        events: function () {
-            this.S(window).off('.equalizer').on('resize.fndtn.equalizer', function (e) {
-                this.reflow();
-            }.bind(this));
-        },
-        equalize: function (equalizer) {
-            var isStacked = false, vals = equalizer.find('[' + this.attr_name() + '-watch]:visible'), settings = equalizer.data(this.attr_name(true) + '-init');
-            if (vals.length === 0)
-                return;
-            var firstTopOffset = vals.first().offset().top;
-            settings.before_height_change();
-            equalizer.trigger('before-height-change').trigger('before-height-change.fndth.equalizer');
-            vals.height('inherit');
-            vals.each(function () {
-                var el = $(this);
-                if (el.offset().top !== firstTopOffset) {
-                    isStacked = true;
-                }
-            });
-            if (settings.equalize_on_stack === false) {
-                if (isStacked)
-                    return;
-            }
-            ;
-            var heights = vals.map(function () { return $(this).outerHeight(false); }).get();
-            if (settings.use_tallest) {
-                var max = Math.max.apply(null, heights);
-                vals.css('height', max);
-            }
-            else {
-                var min = Math.min.apply(null, heights);
-                vals.css('height', min);
-            }
-            settings.after_height_change();
-            equalizer.trigger('after-height-change').trigger('after-height-change.fndtn.equalizer');
-        },
-        reflow: function () {
-            var self = this;
-            this.S('[' + this.attr_name() + ']', this.scope).each(function () {
-                var $eq_target = $(this);
-                self.image_loaded(self.S('img', this), function () {
-                    self.equalize($eq_target);
-                });
-            });
-        }
-    };
-})(jQuery, window, window.document);
 ;
 (function ($, window, document, undefined) {
     Foundation.libs.accordion = {
@@ -16557,6 +16499,7 @@ $(document).ready(function () {
             }
         }
         if (this.href.indexOf(location.hostname) == -1) {
+            $(this).append(" <i class='far fa-file-pdf'></i>");
             $(this).on("click", function () { return true; });
             $(this).attr({ target: "_blank" });
             $(this).trigger("click");
@@ -16657,7 +16600,7 @@ app.relatedContent.render = function (materials) {
             var item = [
                 '<div class="large-6 columns related-content-card">',
                 '<h6>Related ' + material.fields.sys_type + '</h6>',
-                '<h4><span  >' + title + '</span></h4>',
+                '<h4><span class="line-clamp-2">' + title + '</span></h4>',
                 '<p class="description">',
                 '<a class="light-cta" href="' + material.fields.sys_url_view[0] + '">Read More</a>',
                 '</p>',
@@ -16668,6 +16611,11 @@ app.relatedContent.render = function (materials) {
         }
     });
     $('.video-related-content-list').html(html.join(''));
+    var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+    $clampItems.each(function () {
+        var $tmpItem = $(this);
+        $clamp($tmpItem.get(0), { clamp: 2, useNativeClamp: true });
+    });
 };
 $(function () {
     var $videoRelatedContentList = $('.video-related-content-list');
