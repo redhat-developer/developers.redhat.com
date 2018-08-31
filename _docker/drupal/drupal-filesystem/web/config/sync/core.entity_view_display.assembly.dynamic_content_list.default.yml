@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.dynamic_content_list
+    - field.field.assembly.dynamic_content_list.field_audience_selection
     - field.field.assembly.dynamic_content_list.field_category_filter
     - field.field.assembly.dynamic_content_list.field_cta_link
     - field.field.assembly.dynamic_content_list.field_drupal_term_filter
@@ -74,6 +75,7 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
+  field_audience_selection: true
   field_category_filter: true
   field_drupal_term_filter: true
   field_navigation_title: true

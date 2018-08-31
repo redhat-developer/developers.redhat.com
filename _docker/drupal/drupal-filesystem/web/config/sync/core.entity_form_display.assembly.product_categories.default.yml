@@ -4,15 +4,24 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_categories
+    - field.field.assembly.product_categories.field_audience_selection
     - field.field.assembly.product_categories.field_navigation_title
     - field.field.assembly.product_categories.field_title
+  module:
+    - content_moderation
 id: assembly.product_categories.default
 targetEntityType: assembly
 bundle: product_categories
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_navigation_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -20,7 +29,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -28,13 +37,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 6
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: moderation_state_default
     region: content
   name:
     type: string_textfield
@@ -54,7 +60,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

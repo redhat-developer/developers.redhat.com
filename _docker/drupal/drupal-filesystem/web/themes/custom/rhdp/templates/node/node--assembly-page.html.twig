@@ -85,6 +85,14 @@
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
+  {% if not is_front %}
+  <div class="container">
+      {{ title_prefix }}
+        <h1{{ title_attributes }}>{{ label }}</h1>
+      {{ title_suffix }}
+  </div>
+  {% endif %}
+
   {% if content.field_hero|render %}
   {{ content.field_hero }}
   {% endif %}

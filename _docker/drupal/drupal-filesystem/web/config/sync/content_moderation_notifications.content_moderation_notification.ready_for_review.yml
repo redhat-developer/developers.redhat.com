@@ -14,6 +14,6 @@ author: true
 emails: ''
 subject: '[node:title] ready for review'
 body:
-  value: "<p><span class=\"blob-code-inner blob-code-marker-deletion\"><span class=\"pl-s\">Content on the developers.redhat.com website is now ready for review, it was added by [node:initiator]. You can review/edit at [node:edit-url].</span></span></p>\r\n"
-  format: rhd_html
+  value: "Content by [node:initiator] is ready for review. You can review/edit at [node:edit-url].</p>\r\n"
+  format: markdown
 label: 'Ready For Review'

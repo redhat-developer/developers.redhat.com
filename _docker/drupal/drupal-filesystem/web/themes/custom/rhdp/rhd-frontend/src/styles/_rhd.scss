@@ -150,17 +150,6 @@ a {
     outline-width: 1px;
     outline-color: color($link);
   }
-  &[href$=".pdf"]:after,
-  &.pdf:after {
-    content: "\f1c1";
-    font-family: FontAwesome;
-    margin-left: 4px;
-  }
-
-  &.img-link {
-    &[href$=".pdf"]:after,
-    &.pdf:after { display: none; }
-  }
 }
 
 p a:hover {

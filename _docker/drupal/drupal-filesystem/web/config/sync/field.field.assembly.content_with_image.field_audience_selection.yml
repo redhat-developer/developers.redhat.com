@@ -1,0 +1,21 @@
+uuid: effb4679-d760-45ab-901e-0a4d595655ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.content_with_image.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: content_with_image
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

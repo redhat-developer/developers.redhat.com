@@ -4,15 +4,23 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.blog_posts
+    - field.field.assembly.blog_posts.field_audience_selection
     - field.field.assembly.blog_posts.field_category_filter
     - field.field.assembly.blog_posts.field_navigation_title
   module:
+    - content_moderation
     - rhd_assemblies
 id: assembly.blog_posts.default
 targetEntityType: assembly
 bundle: blog_posts
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_category_filter:
     weight: 6
     settings: {  }
@@ -28,13 +36,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: moderation_state_default
     region: content
   name:
     type: string_textfield
@@ -53,7 +58,7 @@ content:
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,7 +68,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
