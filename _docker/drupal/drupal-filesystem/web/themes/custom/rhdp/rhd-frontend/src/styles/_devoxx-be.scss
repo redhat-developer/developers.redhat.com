@@ -11,7 +11,7 @@
   padding: 20px;
   padding-top: 40px;
   min-height: 260px;
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/devoxx-be_microsite_mobile_hero.png') top center / cover repeat-x;
     min-height: 400px;
   }
@@ -106,7 +106,7 @@
     display: block;
     max-width:300px;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .talk-info {
       margin-top: 10px;
     }

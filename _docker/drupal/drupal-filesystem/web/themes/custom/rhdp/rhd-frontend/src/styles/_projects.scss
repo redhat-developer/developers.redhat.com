@@ -158,12 +158,12 @@ ul.project-social {
     text-transform: uppercase;
     font-weight: 600;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     h2 {
       font-size: 4em;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {

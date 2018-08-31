@@ -214,7 +214,7 @@ h4.events-header.divider {
     text-transform: uppercase;
     font-weight: 600;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: cdn('../images/design/RHDev_pageheader_events_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
@@ -253,7 +253,7 @@ h4.events-header.divider {
   width: 25%;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .event-item{
     width: 50%;
   }

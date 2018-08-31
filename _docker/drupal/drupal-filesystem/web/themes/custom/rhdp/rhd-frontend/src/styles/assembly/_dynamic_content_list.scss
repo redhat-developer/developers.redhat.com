@@ -147,7 +147,6 @@
 .rhd-list-entry {
   display: grid;
   grid-template-rows: 1fr auto;
-  max-width: 160px;
   margin-bottom: 2rem;
   grid-column-gap: 1.75rem;
   align-items: center;
@@ -156,7 +155,7 @@
     grid-row-start: -1;
   }
 
-  @include tablet-portrait-and-up {
+  @include tablet-portrait {
     grid-template-rows: unset;
     grid-template-columns: 1fr 1fr;
     max-width: 100%;
@@ -194,13 +193,12 @@
   line-height: 1.3;
   margin-bottom: 8px;
   font-weight: bold;
-
   & > a {
     color: #000;
     text-decoration: none;
   }
 
-  @include tablet-portrait-and-up {
+  @include tablet-portrait {
     display: block;
     font-size: 26px;
     margin-top: 0;
@@ -212,7 +210,7 @@
   font-size: 14px;
   color: #424242;
 
-  @include tablet-portrait-and-up {
+  @include tablet-portrait {
     display: block;
   }
 }
@@ -228,18 +226,21 @@
 .rhd-list-entry--image {
   position: relative;
   justify-self: center;
-  padding-top: 60%;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include tablet-portrait {
+    height: unset;
+    display: inherit;
+  }
 
   &>img {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
+    max-height: 90px;
+
+    @include tablet-portrait {
+      max-height: unset;
+      max-width: 180px;
+    }
   }
 }

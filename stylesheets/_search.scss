@@ -96,7 +96,7 @@ form.header-search {
 }
 
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   form.search {
     span.search-close {
       display: block;
@@ -414,7 +414,7 @@ img.video-thumb {
 
 
 // MQ for Developer Materials Page
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .type-filters {
     label {
       flex: 1 0 auto;
@@ -453,7 +453,7 @@ img.video-thumb {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   nav.accounts div.search-wrapper {
     top: 0;
     width: 100%;

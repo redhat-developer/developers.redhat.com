@@ -19,7 +19,7 @@
     display: block;
   }
   &.iot {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_iot.png');}
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     padding-top: 20px;
     margin: -15px;
   }
@@ -151,7 +151,7 @@
     span.promo-tags {
       position: relative;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       background-size: 30%, contain;
       &.iot {
         min-height: 445px;
@@ -192,13 +192,13 @@
       -webkit-line-clamp: 8;
       -webkit-box-orient: vertical;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       background-size: 30%;
       &.dotnet, &.iot {
         min-height: 445px;
       }
     }
-    @include tablet-portrait-and-down {
+    @include tablet-landscape-768-and-down {
       height: auto;
       &.dotnet, &.iot {
         min-height: 200px;
@@ -226,7 +226,7 @@
     h4 {
       color: $white;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       background-size: 30%;
       height: auto;
     }
@@ -311,7 +311,7 @@
         text-transform: uppercase;
       }
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       height: auto;
       background-size: 30%;
     }
@@ -410,7 +410,7 @@ ul.topic-resources.topic-resources-list{
   a:nth-of-type(1n+13) {display: none;}
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   ul.topic-resources.topic-resources-list {
     li {
       width: calc(50% - 34px);

@@ -51,7 +51,7 @@ header.main {
     color: $grey-8;
   }
 
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .has-sub-nav:hover > a,
     .has-sub-nav>a:hover,
     a.sub-nav-downloads:hover {
@@ -212,7 +212,7 @@ nav.accounts {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   nav.accounts ul {
     padding-top: 0;
   }
@@ -268,7 +268,7 @@ nav.accounts {
   Mobile
  */
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   header.main {
     background:black;
     div.logo {

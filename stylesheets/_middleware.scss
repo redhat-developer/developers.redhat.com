@@ -75,7 +75,7 @@ body.page-middleware {
     div.alert-content h3 { text-transform: none; }
   }
 
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     section {
       .video-col {
         padding-bottom: 56.25%;
@@ -91,7 +91,7 @@ body.page-middleware {
       }
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     ul.middleware-blog li{
       span.author, span.date {
         display: inline-block;
