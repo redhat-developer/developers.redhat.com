@@ -1,20 +1,18 @@
-uuid: 55339df9-6e61-4ebe-ae0d-768d98d2c3ec
+uuid: 9c4ea5cc-ea74-402c-9752-7a52aef358e7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.media.field_media_in_library
-    - media.type.instagram
-_core:
-  default_config_hash: tO2-8ZW4Qrh4LdJ26ZDTLXx2opRwRiTb7bN9ErwWzlc
-id: media.instagram.field_media_in_library
+    - media.type.video_file
+id: media.video_file.field_media_in_library
 field_name: field_media_in_library
 entity_type: media
-bundle: instagram
+bundle: video_file
 label: 'Show in media library'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 1

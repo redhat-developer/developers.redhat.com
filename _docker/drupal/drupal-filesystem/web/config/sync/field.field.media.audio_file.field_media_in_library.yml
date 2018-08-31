@@ -1,20 +1,20 @@
-uuid: 55339df9-6e61-4ebe-ae0d-768d98d2c3ec
+uuid: 00a7111b-bfec-4b65-8f84-ae04150c5994
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.media.field_media_in_library
-    - media.type.instagram
+    - media.type.audio_file
 _core:
-  default_config_hash: tO2-8ZW4Qrh4LdJ26ZDTLXx2opRwRiTb7bN9ErwWzlc
-id: media.instagram.field_media_in_library
+  default_config_hash: hIskJF6WjHEMFiykLQcTfblXXer2ZJtwqOIMGIhjMWs
+id: media.audio_file.field_media_in_library
 field_name: field_media_in_library
 entity_type: media
-bundle: instagram
+bundle: audio_file
 label: 'Show in media library'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 1
