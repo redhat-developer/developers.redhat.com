@@ -82,6 +82,9 @@ cd ${DRUPAL_FILESYSTEM}
 vendor/bin/phinx migrate
 cd ${PROJ}
 
+echo "Sanitizing the database"
+${WEB}/../vendor/bin/drush --root=${WEB} sqlsan --sanitize-password=drupal --sanitize-email=user+%uid@example.com
+
 echo "Running drush cr"
 ${WEB}/../vendor/bin/drush --root=${WEB} cr
 
