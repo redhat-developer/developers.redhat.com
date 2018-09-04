@@ -32,7 +32,7 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('sanity', 'dm')
         .it('should allow users to login in and download RHEL', function () {
-            this.retries(1);
+            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
@@ -43,6 +43,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitLogin();
             login
                 .with(siteUser);
+            home
+                .awaitIsLoggedIn(siteUser);
             productOverview
                 .awaitHelloWorldPage();
             productOverview
@@ -137,7 +139,7 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('sanity', 'dm')
         .it('should allow users to log-in and download advanced-linux-commands', function () {
-            this.retries(1);
+            this.retries(2);
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
