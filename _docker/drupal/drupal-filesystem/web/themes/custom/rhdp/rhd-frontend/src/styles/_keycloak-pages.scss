@@ -53,7 +53,7 @@
       &.github { background-image: url('/images/rhd/icons/socialmedia_icons_github_transparent.png'); }
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .kc-card { width: inherit; }
   }
   @include mobile-landscape-and-down {

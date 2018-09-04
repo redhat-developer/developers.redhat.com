@@ -175,7 +175,6 @@
 
 // Hides title from Basic Pages
 body.page-node-type-page,
-body.path-products,
 body.page-node-type-video-resource,
 body.page-node-type-books,
 body.page-node-type-cheat-sheet,
@@ -412,7 +411,7 @@ img {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       max-height: 85px;
       -webkit-line-clamp: 3;
     }
@@ -482,7 +481,7 @@ code {
  }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .page-info-bar{
       .share-sm {
         float: none !important;

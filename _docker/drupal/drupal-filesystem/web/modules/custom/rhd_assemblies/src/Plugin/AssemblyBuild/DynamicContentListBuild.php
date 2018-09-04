@@ -28,7 +28,7 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
   protected function getComments() {
     $config = \Drupal::config('rhd_disqus.disqussettings');
     $shortname = $config->get('rhd_disqus_shortname') ?: FALSE;
-    $api_key = FALSE;
+    $api_key = $config->get('rhd_disqus_api_key') ?: FALSE;
 
     if (!$api_key || !$shortname) {
       return false;
@@ -62,6 +62,7 @@ class DynamicContentListBuild extends DynamicContentFeedBuild {
       'limit' => 4,
       'truncate' => TRUE,
     ];
+    return $comments;
   }
 
 }

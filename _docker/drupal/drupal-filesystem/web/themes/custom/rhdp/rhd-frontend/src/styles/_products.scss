@@ -162,7 +162,7 @@ div.mobile.product-color {
     .large-8 {
       margin-left: -.7em;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       .large-8 {
         margin-left: 0;
       }
@@ -298,7 +298,7 @@ ul.product-langs {
       margin: 0 5px;
     }
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     li {
       width: calc(33% - 20px);
       min-height: 189px;
@@ -448,7 +448,7 @@ rhdp-tryitnow {
       margin-right: -15px;    
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .row span { width: calc(100% - 90px); }
     a.button.medium-cta.white { left: 107px; }
   }
@@ -513,7 +513,7 @@ rhdp-tryitnow {
 }
 
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .side-nav {
     li {

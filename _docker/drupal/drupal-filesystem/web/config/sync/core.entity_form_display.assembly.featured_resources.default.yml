@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.featured_resources
+    - field.field.assembly.featured_resources.field_audience_selection
     - field.field.assembly.featured_resources.field_links
     - field.field.assembly.featured_resources.field_navigation_title
     - field.field.assembly.featured_resources.field_resources
@@ -15,8 +16,14 @@ targetEntityType: assembly
 bundle: featured_resources
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_links:
-    weight: 5
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -24,7 +31,7 @@ content:
     type: link_default
     region: content
   field_navigation_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -32,7 +39,7 @@ content:
     type: string_textfield
     region: content
   field_resources:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -41,7 +48,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -58,7 +65,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -66,7 +73,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

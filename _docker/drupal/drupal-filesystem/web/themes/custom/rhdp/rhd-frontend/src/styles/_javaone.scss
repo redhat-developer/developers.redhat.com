@@ -20,7 +20,7 @@
 
   &.javaone2017{ background-image: url('/images/rhd/microsite/javaone2017_micrositebanner_desktop.png'); }
 
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     &.javaone2015{
       background: url('/images/rhd/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
       min-height: 400px;
@@ -136,7 +136,7 @@
       display: block;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     a.button {
       float: none !important;
       width: 100%;

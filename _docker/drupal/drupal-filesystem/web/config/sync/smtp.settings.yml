@@ -7,9 +7,11 @@ smtp_username: ''
 smtp_password: ''
 smtp_from: rhd-drupal@redhat.com
 smtp_fromname: 'Red Hat Developers Drupal'
-smtp_allowhtml: '1'
+smtp_allowhtml: '0'
 smtp_test_address: ''
 smtp_debugging: false
 prev_mail_system: php_mail
 _core:
   default_config_hash: WEa5Ex_IeAcm6Bm0hmQ4vU_nDwJDB8hW-vxT1qpGIbM
+smtp_client_hostname: ''
+smtp_client_helo: ''

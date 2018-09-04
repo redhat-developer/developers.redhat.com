@@ -4,7 +4,7 @@
   padding: 20px;
   padding-top: 40px;
   min-height: 230px;
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('/images/devnation2015/RHDev_indeximage_mobile_devnation.png') top center / cover repeat-x;
     margin: -15px;
     h2.blowout {
@@ -44,7 +44,7 @@ ul.ytlist {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   ul.ytlist {
     table {
       width: 100%;

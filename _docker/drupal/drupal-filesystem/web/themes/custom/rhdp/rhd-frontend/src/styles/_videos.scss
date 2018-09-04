@@ -120,7 +120,6 @@ section.related-content {
 }
 
 .video-caption {
-  margin-top: 1em;
   text-align: center;
   font-size: .9em;
 }
@@ -131,12 +130,9 @@ section.related-content {
 
 .product-video {
   margin: 30px 0;
-  .video-caption {
-    margin-top: -3em;
-  }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .video-page {
     .slides iframe {
       width: 80%;
@@ -154,7 +150,7 @@ section.related-content {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   header.video-page .field--name-title {
     font-size: 30px;
   }
@@ -213,7 +209,7 @@ section.related-content {
   bottom: 2.5rem;
   font-size: 1.5rem;
   left: 80px;
-  @include tablet-portrait-and-up {
+  @include mobile-landscape-and-up {
     padding: .5rem 1rem;
     width: 3rem;
     height: 3rem;

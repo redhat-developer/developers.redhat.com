@@ -4,18 +4,26 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.all_products_listing
+    - field.field.assembly.all_products_listing.field_audience_selection
     - field.field.assembly.all_products_listing.field_content
     - field.field.assembly.all_products_listing.field_navigation_title
     - field.field.assembly.all_products_listing.field_title
   module:
+    - content_moderation
     - text
 id: assembly.all_products_listing.default
 targetEntityType: assembly
 bundle: all_products_listing
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_content:
-    weight: 3
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -23,7 +31,7 @@ content:
     type: text_textarea
     region: content
   field_navigation_title:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -31,7 +39,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -39,13 +47,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: moderation_state_default
     region: content
   name:
     type: string_textfield
@@ -65,7 +70,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

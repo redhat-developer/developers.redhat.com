@@ -1,122 +1,5 @@
 @charset "UTF-8";
-/*
- * Red Hat Overpass font CDN
- https://overpass-30e2.kxcdn.com/overpass.css
- */
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin.eot");
-  /* IE9 Compat Modes */
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-thin.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-thin.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-thin.ttf") format("truetype");
-  /* Safari, Android, iOS */
-  font-weight: 200;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-thin-italic.ttf") format("truetype");
-  font-weight: 200;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extralight.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extralight-italic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-light.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-light.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-light.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-light-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-light-italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-regular.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-regular.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-regular.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-regular.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-regular.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-italic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-semibold-italic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-bold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-bold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-bold-italic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-extrabold-italic.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-heavy.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'overpass';
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.eot");
-  src: url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.eot?#iefix") format("embedded-opentype"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.woff2") format("woff2"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.woff") format("woff"), url("https://overpass-30e2.kxcdn.com/overpass-heavy-italic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic; }
-
+@import url("https://fonts.googleapis.com/css?family=Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext");
 :root {
   --rhd-grey-3: #D5D5D5;
   --rhd-gray-3: #D5D5D5;
@@ -127,7 +10,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
 
 body {
   margin: 0;
@@ -1722,18 +1605,27 @@ a.light-cta {
 
 .assembly-type-content_with_image {
   padding: 40px 0; }
-  @media (min-width: 768px) {
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image {
+      text-align: center; } }
+  @media only screen and (min-width: 769px) {
     .assembly-type-content_with_image {
       padding: 100px 0; } }
   .assembly-type-content_with_image .header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 16px;
     font-size: 18px;
     margin-top: 0; }
-    @media (min-width: 768px) {
+    @media only screen and (min-width: 769px) {
       .assembly-type-content_with_image .header {
         font-weight: bold;
-        font-size: 36px; } }
+        font-size: 36px;
+        text-align: left; } }
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image .container, .assembly-type-content_with_image .node__content > .field--name-body, .assembly-type-content_with_image
+    #block-rhdp-local-tasks {
+      flex-flow: row wrap-reverse;
+      display: flex; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .container, .assembly-type-content_with_image .node__content > .field--name-body, .assembly-type-content_with_image
     #block-rhdp-local-tasks {
@@ -1754,6 +1646,9 @@ a.light-cta {
         font-size: 16px; } }
     .assembly-type-content_with_image p:first-child, .assembly-type-content_with_image ol:first-child, .assembly-type-content_with_image ul:first-child {
       margin-top: 0; }
+  @media only screen and (max-width: 768px) {
+    .assembly-type-content_with_image .assembly-content {
+      width: 100% !important; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .assembly-content {
       flex-grow: 2; } }
@@ -1764,7 +1659,14 @@ a.light-cta {
     margin-bottom: 20px; }
   .assembly-type-content_with_image .assembly-content + .assembly-image {
     margin-top: 13px;
-    max-width: 212px; }
+    max-width: 320px; }
+    @media only screen and (max-width: 768px) {
+      .assembly-type-content_with_image .assembly-content + .assembly-image {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+        margin-bottom: 20px; } }
     @media (min-width: 576px) {
       .assembly-type-content_with_image .assembly-content + .assembly-image {
         margin-top: 0;
@@ -1773,9 +1675,16 @@ a.light-cta {
       .assembly-type-content_with_image .assembly-content + .assembly-image {
         margin-left: 50px;
         max-width: 320px; } }
+    .assembly-type-content_with_image .assembly-content + .assembly-image img {
+      max-width: 320px; }
+      @media only screen and (max-width: 480px) {
+        .assembly-type-content_with_image .assembly-content + .assembly-image img {
+          max-width: 212px; } }
   @media (min-width: 576px) {
     .assembly-type-content_with_image .assembly-image {
       flex-grow: 1; } }
+  .assembly-type-content_with_image .button {
+    margin: 15px 15px 0 0 !important; }
 
 .assembly-type-product_categories {
   background-color: #F9F9F9;
@@ -1956,8 +1865,7 @@ a.light-cta {
       right: 0;
       width: 30%;
       height: 100%;
-      background-color: white;
-      z-index: 1; } }
+      background-color: #d5d5d5; } }
 
 meta.foundation-version {
   font-family: "/5.4.4/"; }
@@ -4175,7 +4083,7 @@ meta.foundation-data-attribute-namespace {
   padding: 0.875rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   .side-nav li {
     margin: 0 0 0.4375rem 0;
     font-size: 0.875rem;
@@ -4191,7 +4099,7 @@ meta.foundation-data-attribute-namespace {
     .side-nav li.active > a:first-child:not(.button) {
       color: #666666;
       font-weight: 400;
-      font-family: overpass, "Open Sans", Helvetica, sans-serif; }
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
     .side-nav li.divider {
       border-top: 0px solid;
       height: 0;
@@ -4568,7 +4476,7 @@ select {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
-  font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: normal;
   border-radius: 0;
@@ -6216,7 +6124,7 @@ meta.foundation-data-attribute-namespace {
       background-color: #EFEFEF;
       color: #222222;
       padding: 1rem 2rem;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
       font-size: 1rem; }
       .tabs dd > a:hover, .tabs .tab-title > a:hover {
         background-color: #e1e1e1; }
@@ -6322,7 +6230,7 @@ meta.foundation-data-attribute-namespace {
       color: #222222;
       padding: 1rem;
       display: block;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif;
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
       font-size: 1rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
         background: #e3e3e3; }
@@ -7483,12 +7391,10 @@ body.page-node-type-learning-path .wrapper {
   width: 100%;
   min-width: 1px; }
   #rhd-learning-path .lp-info {
-    flex-grow: 1;
-    flex-shrink: 1;
     margin: 30px 15px;
     border: 1px solid #CCC;
     padding: 30px;
-    min-width: 370px; }
+    min-width: 33%; }
     #rhd-learning-path .lp-info h1 {
       font-size: 38px; }
     #rhd-learning-path .lp-info h2 {
@@ -7510,7 +7416,8 @@ body.page-node-type-learning-path .wrapper {
         #rhd-learning-path .lp-info .certification span.icon {
           height: 20px;
           width: 20px; }
-    #rhd-learning-path .lp-info .show-more-text, #rhd-learning-path .lp-info .show-more-text.open {
+    #rhd-learning-path .lp-info .show-more-text,
+    #rhd-learning-path .lp-info .show-more-text.open {
       display: block;
       overflow: auto;
       max-height: 100%; }
@@ -7518,8 +7425,6 @@ body.page-node-type-learning-path .wrapper {
       display: none; }
   #rhd-learning-path .lp-cards-container {
     background-color: #EEE;
-    flex-grow: 2;
-    flex-shrink: .5;
     margin: 0 15px;
     display: flex;
     flex-direction: column;
@@ -7527,7 +7432,7 @@ body.page-node-type-learning-path .wrapper {
     flex-wrap: nowrap;
     align-items: stretch;
     padding: 30px;
-    min-width: 1px; }
+    min-width: calc(66% - 30px); }
     #rhd-learning-path .lp-cards-container .dp-content-card {
       display: flex;
       flex-direction: row;
@@ -7552,9 +7457,7 @@ body.page-node-type-learning-path .wrapper {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        flex-basis: 70px;
-        flex-grow: 0;
-        flex-shrink: 0; }
+        max-height: calc((1rem * 1.5) * 3.1); }
       #rhd-learning-path .lp-cards-container .dp-content-card.free-content {
         border-left: 10px solid #3F9C35; }
         #rhd-learning-path .lp-cards-container .dp-content-card.free-content div.img .dp-access-level {
@@ -7593,7 +7496,8 @@ body.page-node-type-learning-path .wrapper {
         flex-wrap: nowrap;
         align-items: stretch;
         padding: 30px;
-        min-width: 1px; }
+        min-width: 1px;
+        width: 100%; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-details {
         display: flex;
         flex-direction: row;
@@ -7626,32 +7530,29 @@ body.page-node-type-learning-path .wrapper {
         #rhd-learning-path .lp-cards-container .dp-content-card .dp-content-type i {
           margin-right: .25em; }
       #rhd-learning-path .lp-cards-container .dp-content-card h4 {
-        font-size: 23px;
-        font-weight: 600px;
+        font-size: 1.4375rem;
+        font-weight: 600;
         margin: 15px 0;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        max-height: 64px;
+        max-height: calc((1.4375rem * 1.2) * 2.1);
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        flex-shrink: 0;
         line-height: 1.2; }
-      #rhd-learning-path .lp-cards-container .dp-content-card .bio rh-datetime, #rhd-learning-path .lp-cards-container .dp-content-card .bio .dp-author {
+      #rhd-learning-path .lp-cards-container .dp-content-card .bio rh-datetime,
+      #rhd-learning-path .lp-cards-container .dp-content-card .bio .dp-author {
         display: inline;
         color: #999;
-        font-family: overpass;
+        font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
         font-size: 14px;
         line-height: 22px; }
   @media screen and (max-width: 1175px) {
     #rhd-learning-path .lp-info {
-      margin: 0; }
+      margin-top: 15px; }
     #rhd-learning-path .lp-cards-container {
-      margin: -15px 0 0 15px;
       padding: 15px; } }
   @media screen and (max-width: 1175px) and (min-width: 1171px) {
-    #rhd-learning-path .lp-info {
-      margin-top: 15px; }
     #rhd-learning-path .lp-cards-container {
       margin-top: 0; } }
   @media screen and (max-width: 1150px) {
@@ -7695,15 +7596,15 @@ body.page-node-type-learning-path .wrapper {
     #rhd-learning-path .lp-cards-container .dp-content-card .card-details {
       display: block; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-details .dp-duration {
-        margin-top: .25em; } }
+        margin-top: .25em; }
+    #rhd-learning-path .lp-cards-container .dp-content-card .dp-level {
+      display: none; } }
   @media screen and (max-width: 675px) {
     #rhd-learning-path .lp-cards-container .dp-content-card {
       flex-direction: column; }
       #rhd-learning-path .lp-cards-container .dp-content-card .card-info {
         padding: 15px; }
       #rhd-learning-path .lp-cards-container .dp-content-card p {
-        display: none; }
-      #rhd-learning-path .lp-cards-container .dp-content-card .dp-level {
         display: none; }
       #rhd-learning-path .lp-cards-container .dp-content-card h4 {
         font-size: 18px;
@@ -8765,7 +8666,7 @@ ul.toc {
     display: inline-block;
     font-size: .9rem;
     margin-bottom: 0;
-    font-family: "overpass", "Open Sans", Helvetica, sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   #get-started-instructions .card:hover {
     background-color: #2d7195; }
     #get-started-instructions .card:hover .step-num {
@@ -8808,7 +8709,7 @@ ul.toc {
     #get-started-instructions .step-header .duration .paragraph, #get-started-instructions .step-header .duration .paragraph p {
       display: inline;
       font-size: .9rem;
-      font-family: "overpass", "Open Sans", Helvetica, sans-serif; }
+      font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
 
 #get-started-instructions .step-num {
   color: #aae3ec;
@@ -10057,7 +9958,8 @@ p.desc {
       #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
       #rhd-book .book-tags .field--name-field-tags .field__item:after {
         content: ", ";
-        position: relative; }
+        position: relative;
+        left: -3px; }
       #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
       #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:last-child:after,
       #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
@@ -12453,7 +12355,7 @@ ul.product-forums-latest {
 rhdp-search-app {
   display: flex;
   flex-flow: column;
-  font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-app .hide {
     display: none; }
   rhdp-search-app .show {
@@ -12845,7 +12747,7 @@ rhdp-search-results {
       display: block; } }
 
 rhdp-search-result {
-  font-family: "overpass","Open Sans",Helvetica,sans-serif;
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
   margin-bottom: 25px;
   padding-bottom: 25px;
   border-bottom: 1px solid #D5D5D5;
@@ -12871,11 +12773,11 @@ rhdp-search-result {
     color: #06c;
     cursor: pointer;
     margin: 0;
-    font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-result p {
     margin: 0;
     color: #424242;
-    font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+    font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-result .result-info span {
     font-size: .9rem;
     color: #424242; }
@@ -12937,7 +12839,7 @@ rhdp-search-filter-group {
       margin-left: 0; } }
 
 rhdp-search-filter-item {
-  font-family: "overpass","Open Sans",Helvetica,sans-serif; }
+  font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif; }
   rhdp-search-filter-item span {
     display: none; }
   rhdp-search-filter-item .text {
@@ -13773,3 +13675,6 @@ body.overlay-open .overlay {
       color: #FFFFFF;
       font-size: 1.5em;
       margin-right: 15px; }
+
+.caption > figcaption {
+  margin-top: 10px; }

@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.learning_paths
+    - field.field.assembly.learning_paths.field_audience_selection
     - field.field.assembly.learning_paths.field_cta_link
     - field.field.assembly.learning_paths.field_description
     - field.field.assembly.learning_paths.field_title
   module:
+    - content_moderation
     - link
     - text
 id: assembly.learning_paths.default
@@ -15,8 +17,14 @@ targetEntityType: assembly
 bundle: learning_paths
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_cta_link:
-    weight: 26
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -40,13 +48,10 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: moderation_state_default
     region: content
   name:
     type: string_textfield
@@ -65,7 +70,7 @@ content:
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -75,7 +80,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

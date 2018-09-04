@@ -28,7 +28,8 @@ app.sso = function () {
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
-                $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
+                $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
+                $('[data-audience="authenticated"]').show();
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click', function(e) {
                     e.preventDefault();
@@ -53,6 +54,7 @@ app.sso = function () {
             $('li.login, section.register-banner, .hidden-after-login').show();
             $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
             $('li.logged-in').hide();
+            $('[data-audience="unauthenticated"]').show();
             $('li.login a').on('click', function(e){
                 e.preventDefault();
                 keycloak.login();

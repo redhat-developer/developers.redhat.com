@@ -470,7 +470,6 @@ function rhdp_preprocess_assembly(&$variables) {
     $type = $assembly->bundle();
     $variables['background_image_url'] = FALSE;
 
-    // kint(($assembly->hasField('field_background_image') ? 'has' : 'does not have') . ' background image');
     if ($assembly->hasField('field_background_image')) {
       $image_value = $assembly->get('field_background_image')->getValue();
       if ($image_value) {
@@ -481,4 +480,16 @@ function rhdp_preprocess_assembly(&$variables) {
       }
     }
 
+    if ($assembly->hasField('field_audience_selection')) {
+      $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+      $variables['audience_selection'] = '';
+      if ($field_audience_selection_values) {
+        $audience_selection_values = [];
+        foreach($field_audience_selection_values as $field_audience_selection_value) {
+          $audience_selection_values[] = $field_audience_selection_value['value'];
+        }
+        $audience_selection = implode(',', $audience_selection_values);
+        $variables['audience_selection'] = " data-audience={$audience_selection}";
+      }
+    }
 }

@@ -1,0 +1,21 @@
+uuid: cbfa0759-4c2a-40a6-9d6e-9d876e8945d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.videos
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.videos.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: videos
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

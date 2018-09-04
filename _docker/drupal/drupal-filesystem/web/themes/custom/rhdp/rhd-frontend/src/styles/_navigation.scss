@@ -755,18 +755,18 @@
   display: block;
   line-height: 0;
   padding-right: 20px;
-  margin: -20px 0 -20px 0;
+  margin: 0;
   justify-self: start;
 
   img {
     max-width: none;
-    width: 100%;
+    width: 90%;
     height: auto;
   }
-  @include tablet-portrait-and-down {
-    margin: 0;
+  @include desktop-small {
+    margin: -20px 0 -20px 0;
     img {
-      width: 90%;
+      width: 100%;
     }
   }
 }

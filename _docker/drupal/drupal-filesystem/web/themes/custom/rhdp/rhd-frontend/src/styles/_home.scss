@@ -83,12 +83,12 @@ a.spotlight-item {
       height: 120px;
       margin-bottom: 10px;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       height: 135px;
       margin-bottom: 5px;
     }
     @media only screen and (max-width: 915px) { height: 105px; }
-    @include tablet-portrait-and-down { height: 145px; }
+    @include tablet-landscape-768-and-down { height: 145px; }
     @include mobile-landscape-and-down {
       height: 200px;
       margin-bottom: 10px;
@@ -250,7 +250,7 @@ ul.homepage-resources {
   .contributors-banner { bottom: -115px; }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .homepage-main {
     background-image: url("/images/rhd/hero/RHDev_homehero_tablet_rhoarlaunch_07dec2017.png");
     background-size: cover;
@@ -272,7 +272,7 @@ ul.homepage-resources {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   a.title { max-width: 100%; }
   .inverse-spotlights .large-8 {
     width: 90% !important;
