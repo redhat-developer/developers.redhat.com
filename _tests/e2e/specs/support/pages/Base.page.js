@@ -37,7 +37,8 @@ export class Base {
     }
 
     awaitIsLoggedIn(siteUser) {
-        this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 30000);
+        this.awaitIsNotVisible('.login', 60000) && this.awaitIsVisible('.logged-in', 60000);
+        this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 60000);
     }
 
     waitForPageTitle(title, timeout = 10000) {
