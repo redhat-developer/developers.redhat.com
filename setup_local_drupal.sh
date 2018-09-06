@@ -4,7 +4,6 @@
 USER=$(whoami)
 GROUP=$(groups | awk '{ print $1 }')
 PROJ=$(pwd)
-EXPORT_STATIC="${PROJ}/_docker/lib/export/static"
 DRUPAL="${PROJ}/_docker/drupal"
 DRUPAL_FILESYSTEM="${DRUPAL}/drupal-filesystem"
 WEB="${DRUPAL_FILESYSTEM}/web"
@@ -47,7 +46,7 @@ fi
 
 if [ ! -d "${WEB}/images" ]
 then
-  ln -s ${EXPORT_STATIC}/images ${WEB}/images
+  ln -s ${PROJ}/images ${WEB}/images
 fi
 
 

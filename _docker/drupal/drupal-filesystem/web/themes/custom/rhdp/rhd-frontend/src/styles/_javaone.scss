@@ -12,36 +12,36 @@
   padding-top: 40px;
   min-height: 260px;
   
-  &.javaone2015{ background-image: url('../../../../images/rhd/javaone_microsite_desktop_hero.png');}
+  &.javaone2015{ background-image: url('/images/rhd/javaone_microsite_desktop_hero.png');}
   &.javaone2016{ 
-    background-image: url('../../../../images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg');
+    background-image: url('/images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg');
     min-height: 200px;
   }
 
-  &.javaone2017{ background-image: url('../../../../images/rhd/microsite/javaone2017_micrositebanner_desktop.png'); }
+  &.javaone2017{ background-image: url('/images/rhd/microsite/javaone2017_micrositebanner_desktop.png'); }
 
   @include tablet-landscape-768-and-down {
     &.javaone2015{
-      background: url('../../../../images/rhd/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+      background: url('/images/rhd/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
       min-height: 400px;
     }
     &.javaone2016{
-      background: url('../../../../images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg') top center / cover repeat-x;
+      background: url('/images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg') top center / cover repeat-x;
       min-height: 400px;
     }
     &.javaone2017{
-      background: url('../../../../rhd/microsite/javaone2017_micrositebanner_tablet.png') top center / cover repeat-x;
+      background: url('/images/rhd/microsite/javaone2017_micrositebanner_tablet.png') top center / cover repeat-x;
       min-height: 400px;
     }
   }
 
   @include mobile-portrait-and-down {
     &.javaone2016{
-      background: url('../../../../images/rhd/microsite/javaone2016_banner_mobile_25aug2016.jpg') top center / cover repeat-x;
+      background: url('/images/rhd/microsite/javaone2016_banner_mobile_25aug2016.jpg') top center / cover repeat-x;
       min-height: 430px;
     }
     &.javaone2017{
-      background: url('../../../../images/rhd/microsite/javaone2017_micrositebanner_mobile.png') top center / cover repeat-x;
+      background: url('/images/rhd/microsite/javaone2017_micrositebanner_mobile.png') top center / cover repeat-x;
       min-height: 430px;
     }
   }
