@@ -473,12 +473,13 @@
     }
   }
   .rhd-search-toggle {
+    cursor: pointer;
     position: absolute;
     bottom: 0;
     top: 5px;
     &:hover, &:active, &:focus {
       background-color: transparent;
-      color: inherit;
+      color: #000;
     }
   }
 }

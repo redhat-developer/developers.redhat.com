@@ -62,8 +62,13 @@ rhdp-search-box {
         height: 20px;
         width: 20px;
         background-image: url('https://static.jboss.org/rhd/images/icons/fa_times_icon.svg');
-        opacity: 1;
-        pointer-events: auto;
+        opacity: 0.75;
+        pointer-events: auto;
+        color: #000;
+        cursor: pointer;
+        &:hover, &:active {
+            opacity: 1;
+        }
     }
 
     button {
