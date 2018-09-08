@@ -3,6 +3,7 @@ base_url: https://developers.redhat.com
 remote: true
 skips:
 - !ruby/regexp /^https:\/\/redhat.com\/.*/
+- !ruby/regexp /^http:\/\/registry.access.redhat\.com\/.*/
 - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
 - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
 - http://10.1.2.2:8000/
@@ -54,7 +55,6 @@ ignores:
 - code: 403
 - code: 502
 - code: 999
-# This is not an error in real browsers.It is a known issue with PhantomJS https://github.com/ariya/phantomjs/issues/12750
 - url: !ruby/regexp /https:\/\/f\.vimeocdn\.com\/.*/
 - url: !ruby/regexp /ssl\.google-analytics\.com\/.*/
 - url: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
@@ -68,5 +68,5 @@ environments:
 
 max_page_retys: 6
 max_retrys: 6
-threads: 8
+threads: 10
 report: blinkr.html
