@@ -74,7 +74,7 @@ class RunTest
       if test_configuration[:browserstack]
         @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh")
       else
-        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:browser]}")
+        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d chrome")
       end
     end
 
