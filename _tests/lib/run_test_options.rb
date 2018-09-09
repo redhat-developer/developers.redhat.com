@@ -200,7 +200,7 @@ class RunTestOptions
     bind_environment_variable('RHD_MOCHA_TAGS', test_configuration[:mocha_tags]) if test_configuration[:mocha_tags]
 
     run_tests_command += " --baseUrl=#{test_configuration[:base_url]}"
-    run_tests_command += " --tags=#{test_configuration[:mocha_tags]}" if test_configuration[:mocha_tags]
+    run_tests_command += " --#{test_configuration[:mocha_tags]}" if test_configuration[:mocha_tags]
     if test_configuration[:docker]
       if test_configuration[:browserstack]
         test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"

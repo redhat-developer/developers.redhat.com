@@ -1,7 +1,6 @@
 "use strict";
 const fs = require('fs-extra');
 const path = require('path');
-const FirefoxProfile = require('firefox-profile');
 
 class BrowserManager {
 
@@ -9,23 +8,10 @@ class BrowserManager {
     createBrowser(browser) {
         if (browser === 'chrome') {
             return this.chromeBrowser('desktop');
-        } else if (browser === 'firefox') {
-            return this.firefoxBrowser();
         } else if (browser.indexOf('bs_') > -1) {
             return this.browserstackBrowser(browser);
         } else {
             return this.chromeBrowser(browser)
-        }
-    }
-
-    firefoxBrowser() {
-        const myProfile = new FirefoxProfile();
-        myProfile.setPreference("general.useragent.override", "Red Hat Developers Testing");
-
-        return {
-            browserName: 'firefox',
-            firefox_profile: myProfile,
-            acceptInsecureCerts: true,
         }
     }
 
