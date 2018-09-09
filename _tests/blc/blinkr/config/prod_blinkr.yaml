@@ -46,7 +46,8 @@ skips:
 - !ruby/regexp /^https:\/\/pubs\.vmware\.com\/workstation\-\d*\/.*/
 - !ruby/regexp /^https:\/\/developers\.redhat\.com\/quickstarts\.*\/.*/
 - !ruby/regexp /^https:\/\/developers\.redhat\.com\/download-manager\/file\/(.*)/
-
+- !ruby/regexp /^https?:\/\/(www\.)?slideshare\.net\/(.*)/
+- !ruby/regexp /^https?:\/\/(www\.)?devnation\.org\/(.*)/
 
 ignores:
 - code: 0
