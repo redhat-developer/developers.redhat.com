@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.video_file.field_media_in_library
+    - field.field.media.video_file.field_media_video_file
+    - media.type.video_file
+  module:
+    - file
+id: media.video_file.default
+targetEntityType: media
+bundle: video_file
+mode: default
+content:
+  field_media_video_file:
+    type: file_video
+    weight: 0
+    label: visually_hidden
+    settings:
+      muted: false
+      width: 640
+      height: 480
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  thumbnail: true
+  uid: true
