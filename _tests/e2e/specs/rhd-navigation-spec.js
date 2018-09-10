@@ -3,6 +3,7 @@ import {NavigationBar} from './support/pages/website/NavigationBar.section'
 import {Login} from './support/pages/keycloak/Login.page'
 
 describe('Navigation bar', function () {
+    this.retries(2);
     let home, navBar, login;
 
     beforeEach(function () {
@@ -11,8 +12,7 @@ describe('Navigation bar', function () {
         login = new Login();
     });
 
-    it("tags: @sanity : should navigate users to the Keycloak Login page", function () {
-        this.retries(2);
+    it("@sanity : should navigate users to the Keycloak Login page", function () {
         home
             .open('/');
         navBar
