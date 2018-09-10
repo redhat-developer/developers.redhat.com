@@ -1,17 +1,17 @@
+import {Base} from "../support/pages/Base.page";
+
 const qs = require('querystring');
 
-export class Utils {
+export class Utils extends Base {
 
     logout(baseUrl) {
+        let logoutLink;
         let encodedURL = qs.escape(baseUrl);
-        try {
-            if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
-                return browser.url(`https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
-            } else {
-                return browser.url(`https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`)
-            }
-        } catch (e) {
-            console.log(e)
+        if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
+            logoutLink = `https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`
+        } else {
+            logoutLink = `https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`
         }
+        return this.visit(logoutLink);
     }
 }

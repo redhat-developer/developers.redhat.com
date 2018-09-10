@@ -10,6 +10,7 @@ import {Utils} from './support/Utils';
 const tags = require('mocha-tags');
 
 tags('desktop').describe('Download Manager', function () {
+    this.retries(2);
     let downloadDir, downloadName, siteUser;
     let home, login, additionalInformation;
 
@@ -29,7 +30,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm')
         .it('@sanity : should allow users to login in and download RHEL', function () {
-            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
@@ -50,7 +50,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm', 'stage')
         .it('should allow users to login-in and download Red Hat JBoss/Red Hat Developer subscription products', function () {
-            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('fuse', 'download', 'JBoss Fuse');
             productOverview
@@ -71,7 +70,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm', 'stage')
         .it('should allow users to login in and download RHD full user profile products', function () {
-            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('devstudio', 'download', 'JBoss Developer Studio');
             productOverview
@@ -92,7 +90,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm', 'stage')
         .it('should allow active OpenShift.com account users (simple user account) to login and download RHD supportable user products', function () {
-            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).createOpenshiftUser();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             login
@@ -113,7 +110,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm', 'stage')
         .it('should allow active Red Hat Customer Portal account (full user account) users to login and download RHD supportable user products', function () {
-            this.retries(2);
             siteUser = new User(process.env.RHD_BASE_URL).createCustomerPortalAccount();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             login
@@ -138,7 +134,6 @@ tags('desktop').describe('Download Manager', function () {
 
     tags('dm')
         .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
-            this.retries(2);
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
@@ -159,4 +154,3 @@ tags('desktop').describe('Download Manager', function () {
             expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
         });
 });
-
