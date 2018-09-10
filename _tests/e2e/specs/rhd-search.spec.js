@@ -3,6 +3,7 @@ import {Search} from './support/pages/website/Search.page';
 import {NavigationBar} from './support/pages/website/NavigationBar.section';
 
 describe('Search Page', function () {
+    this.retries(2);
     let siteNav, home, search;
 
     beforeEach(() => {
@@ -12,21 +13,18 @@ describe('Search Page', function () {
     });
 
     it('@sanity : should allow users to search for content via site-nav search field', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('hello world');
         expect(search.searchResults.getAllResults().value.length).to.be.gt(0);
     });
 
     it("should default result sorting should be 'Relevance'", function () {
-        this.retries(2);
         search.open();
         let resultSort = search.searchResultSort.getResultSort();
         expect(resultSort).to.equal('relevance');
     });
 
     it("should sort results by 'Most Recent'", function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('cdk');
         search.searchResultSort.selectSortBy('Most Recent');
@@ -39,7 +37,6 @@ describe('Search Page', function () {
     });
 
     it('should filter results by Content Type', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('java');
         search
@@ -50,7 +47,6 @@ describe('Search Page', function () {
     });
 
     it('should filter results by Product', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('java');
         search
@@ -61,7 +57,6 @@ describe('Search Page', function () {
     });
 
     it('should filter results by Topic', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('java');
         search
@@ -72,7 +67,6 @@ describe('Search Page', function () {
     });
 
     it('should clear search filters', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('java');
         search
@@ -87,14 +81,12 @@ describe('Search Page', function () {
     });
 
     it('should not alert when user searches via site-nav search field containing malicious scripts', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('%3Cscript%3Ealert');
         expect(search.hasAlert()).to.be.false
     });
 
     it('should display a product associated with a OneBox at the top of the results', function () {
-        this.retries(2);
         home.open('/');
         siteNav.searchFor('cdk');
         search.searchResults.awaitResultsFor('cdk');
