@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.wordpress_post_reference
+    - field.field.assembly.wordpress_post_reference.field_audience_selection
     - field.field.assembly.wordpress_post_reference.field_post_reference
   module:
     - rhd_assemblies
@@ -20,6 +21,7 @@ content:
     type: wppost_autocomplete
     region: content
 hidden:
+  field_audience_selection: true
   moderation_state: true
   name: true
   status: true

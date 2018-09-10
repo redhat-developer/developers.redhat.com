@@ -163,14 +163,14 @@ ul.toc {
 
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .gsi-nav-fixed {
     position: relative; // on mobile we don't want a fixed nav
   }
 
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .get-started-items {
     background:none;
     a.get-started-example {
@@ -302,7 +302,7 @@ ul.toc {
     }
   }
 }
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
 
   .multipath-tabs-sm ul li{
     display: block;
@@ -364,13 +364,14 @@ ul.toc {
     -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-    min-height: 165px;
+    min-height: 205px;
     height: 100%;
     h4 {
       color: $white;
       margin-top: 0;
       margin-bottom: 8px;
       font-size: 23px;
+      line-height: 1.3;
     }
     .tabs-content {
       margin: 0;
@@ -380,7 +381,7 @@ ul.toc {
         padding: 0;
       }
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       h4 {
         padding-top: 15px;
       }
@@ -727,7 +728,7 @@ ul.toc {
     width: 100%;
   }
 }
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .get-started-content img{
     width: 100%;
   }

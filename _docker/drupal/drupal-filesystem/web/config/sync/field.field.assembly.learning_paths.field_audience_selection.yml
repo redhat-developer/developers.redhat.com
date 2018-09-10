@@ -1,0 +1,21 @@
+uuid: 20ca0a39-2114-4f70-a467-2e45fc6809e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.learning_paths
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.learning_paths.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: learning_paths
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

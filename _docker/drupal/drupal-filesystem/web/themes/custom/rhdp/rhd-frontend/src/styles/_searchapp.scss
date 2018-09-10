@@ -736,7 +736,7 @@ rhdp-search-onebox {
         }
     }
 }
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
     rhdp-search-onebox {
         ul.slots {
             display: block;
@@ -747,7 +747,7 @@ rhdp-search-onebox {
     }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
     rhdp-search-onebox {
         ul.slots li img{ max-width: 2em; }
     }

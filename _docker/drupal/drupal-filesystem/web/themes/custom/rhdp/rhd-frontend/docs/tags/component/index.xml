@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Component on RHD Front-end Code and Documentation</title>
-    <link>https://redhat-developer.github.io/rhd-frontend/tags/component/index.xml</link>
+    <link>https://redhat-developer.github.io/rhd-frontend/tags/component/</link>
     <description>Recent content in Component on RHD Front-end Code and Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/component/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Apr 2018 13:12:43 -0400</lastBuildDate>
+    
+	<atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/component/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Stack Overflow</title>
@@ -14,259 +17,7 @@
       <pubDate>Mon, 30 Apr 2018 13:12:43 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/stack-overflow/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div ng-app=&amp;#34;search&amp;#34;&amp;gt;
-  &amp;lt;div class=&amp;#34;row&amp;#34; ng-controller=&amp;#34;SearchController&amp;#34;&amp;gt;
-    &amp;lt;div class=&amp;#34;large-24 columns&amp;#34;&amp;gt;
-      &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
-        &amp;lt;div class=&amp;#34;large-24 columns&amp;#34;&amp;gt;
-          &amp;lt;form class=&amp;#34;search-bar&amp;#34; ng-submit=&amp;#34;updateSearch(); resetPagination();&amp;#34; role=&amp;#34;search&amp;#34;&amp;gt; &amp;lt;/form&amp;gt;
-        &amp;lt;/div&amp;gt;
-
-        &amp;lt;div class=&amp;#34;large-24 columns&amp;#34; id=&amp;#34;scrollPoint&amp;#34;&amp;gt;
-          &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
-            &amp;lt;div class=&amp;#34;large-14 columns stackoverflow-filters&amp;#34;&amp;gt;
-              &amp;lt;label for=&amp;#34;filterByProduct&amp;#34;&amp;gt;Filter by Product&amp;lt;/label&amp;gt;
-
-              &amp;lt;div class=&amp;#34;styled-select&amp;#34;&amp;gt;
-                &amp;lt;select id=&amp;#34;filterByProduct&amp;#34; name=&amp;#34;filter-by-product&amp;#34; ng-change=&amp;#34;updateSearch(); resetPagination();&amp;#34; ng-model=&amp;#34;params.product&amp;#34;&amp;gt;&amp;lt;option value=&amp;#34;&amp;#34;&amp;gt;Show all&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;openjdk&amp;#34;&amp;gt;OpenJDK&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;rhamt&amp;#34;&amp;gt;Red Hat Application Migration Toolkit&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;cdk&amp;#34;&amp;gt;Red Hat Developer Container Kit&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;developertoolset&amp;#34;&amp;gt;Red Hat Developer Toolset&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;rhel&amp;#34;&amp;gt;Red Hat Enterprise Linux&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;amq&amp;#34;&amp;gt;Red Hat JBoss AMQ&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;bpmsuite&amp;#34;&amp;gt;Red Hat JBoss BPM Suite&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;brms&amp;#34;&amp;gt;Red Hat Decision Manager&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;datagrid&amp;#34;&amp;gt;Red Hat JBoss Data Grid&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;datavirt&amp;#34;&amp;gt;Red Hat JBoss Data Virtualization&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;devstudio&amp;#34;&amp;gt;Red Hat JBoss Developer Studio&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;eap&amp;#34;&amp;gt;Red Hat JBoss Enterprise Application Platform&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;fuse&amp;#34;&amp;gt;Red Hat JBoss Fuse&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;webserver&amp;#34;&amp;gt;Red Hat JBoss Web Server&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;rhmap&amp;#34;&amp;gt;Red Hat Mobile Application Platform&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;rhoar&amp;#34;&amp;gt;Red Hat Openshift Application Runtimes&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;openshift&amp;#34;&amp;gt;Red Hat OpenShift Container Platform&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;softwarecollections&amp;#34;&amp;gt;Red Hat Software Collections&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;dotnet&amp;#34;&amp;gt;.NET Core for Red Hat Enterprise Linux&amp;lt;/option&amp;gt;&amp;lt;/select&amp;gt;
-&amp;lt;/div&amp;gt;
-            &amp;lt;/div&amp;gt;
-
-            &amp;lt;div class=&amp;#34;large-10 columns&amp;#34;&amp;gt;
-              &amp;lt;div class=&amp;#34;sorting so-sorting&amp;#34;&amp;gt;
-                &amp;lt;p ng-if=&amp;#34;totalCount &amp;amp;gt; 10&amp;#34;&amp;gt;Show&amp;lt;select class=&amp;#34;results-count&amp;#34; ng-change=&amp;#34;updateSearch()&amp;#34; ng-model=&amp;#34;params.size&amp;#34;&amp;gt;&amp;lt;option value=&amp;#34;10&amp;#34;&amp;gt;10&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;25&amp;#34;&amp;gt;25&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;50&amp;#34;&amp;gt;50&amp;lt;/option&amp;gt;
-&amp;lt;option value=&amp;#34;100&amp;#34;&amp;gt;100&amp;lt;/option&amp;gt;&amp;lt;/select&amp;gt;results per page&amp;lt;/p&amp;gt;
-              &amp;lt;/div&amp;gt;
-            &amp;lt;/div&amp;gt;
-          &amp;lt;/div&amp;gt;
-
-          &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
-            &amp;lt;div class=&amp;#34;large-24 columns&amp;#34;&amp;gt;
-              &amp;lt;h3 class=&amp;#34;results-title&amp;#34; ng-bind-template=&amp;#34;No results found&amp;#34; ng-if=&amp;#34;totalCount &amp;amp;lt;= 0&amp;#34;&amp;gt; &amp;lt;/h3&amp;gt;
-
-              &amp;lt;h4 class=&amp;#34;results-sub-title&amp;#34; ng-bind-template=&amp;#34;Please select a different product&amp;#34; ng-if=&amp;#34;totalCount &amp;amp;lt;= 0&amp;#34;&amp;gt; &amp;lt;/h4&amp;gt;
-
-              &amp;lt;div class=&amp;#34;stackoverflow-results-container&amp;#34; ng-class=&amp;#34;loading ? &amp;#39;invisible&amp;#39; : &amp;#39;search-results-loaded&amp;#39;&amp;#34; ng-if=&amp;#34;totalCount &amp;amp;gt; 0&amp;#34;&amp;gt;
-                &amp;lt;div ng-init=&amp;#34;r = result&amp;#34; ng-repeat=&amp;#34;result in results&amp;#34;&amp;gt;
-                  &amp;lt;div class=&amp;#34;stackoverflow-update&amp;#34;&amp;gt;
-                    &amp;lt;div class=&amp;#34;update&amp;#34;&amp;gt;
-                      &amp;lt;div class=&amp;#34;update-meta&amp;#34;&amp;gt;
-                        &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
-                          &amp;lt;div class=&amp;#34;large-6 columns qtn-stats&amp;#34;&amp;gt;
-
-                            &amp;lt;div class=&amp;#34;votes-count&amp;#34;&amp;gt;
-                              &amp;lt;h4 ng-bind=&amp;#34;r._source.up_vote_count&amp;#34;&amp;gt; &amp;lt;/h4&amp;gt;
-                              &amp;lt;p ng-bind-template=&amp;#34;Votes&amp;#34;&amp;gt; &amp;lt;/p&amp;gt;
-                            &amp;lt;/div&amp;gt;
-                            &amp;lt;div class=&amp;#34;answer-count&amp;#34; ng-class=&amp;#34;(r._source.answers[0].is_accepted == true) ? &amp;#39;accepted-answer&amp;#39; : &amp;#39;&amp;#39; &amp;#34;&amp;gt;
-                              &amp;lt;h4 ng-bind=&amp;#34;r._source.answer_count&amp;#34;&amp;gt; &amp;lt;/h4&amp;gt;
-                              &amp;lt;p ng-bind-template=&amp;#34;Answers&amp;#34;&amp;gt; &amp;lt;/p&amp;gt;
-                            &amp;lt;/div&amp;gt;
-                            &amp;lt;div class=&amp;#34;views-count&amp;#34;&amp;gt;
-                              &amp;lt;h4 ng-bind=&amp;#34;r._source.view_count&amp;#34;&amp;gt; &amp;lt;/h4&amp;gt;
-                              &amp;lt;p ng-bind-template=&amp;#34;Views&amp;#34;&amp;gt; &amp;lt;/p&amp;gt;
-                            &amp;lt;/div&amp;gt;
-                          &amp;lt;/div&amp;gt;
-
-                          &amp;lt;div class=&amp;#34;large-18 columns&amp;#34;&amp;gt;
-                            &amp;lt;a class=&amp;#34;qtn-title&amp;#34; ng-href=&amp;#34;{{r._source.sys_url_view}}&amp;#34; ng-bind-html=&amp;#34;r._source.sys_title&amp;#34;&amp;gt; &amp;lt;/a&amp;gt;
-                            &amp;lt;p class=&amp;#34;qtn-content&amp;#34; ng-bind-html=&amp;#34;r | question&amp;#34;&amp;gt; &amp;lt;/p&amp;gt;
-
-                            &amp;lt;div class=&amp;#34;callout qtn-answer&amp;#34; ng-class=&amp;#34;r._source.answers[0] ? &amp;#39;display-answer&amp;#39; : &amp;#39;hide-answer&amp;#39; &amp;#34;&amp;gt;
-                              &amp;lt;p ng-show=&amp;#34;r._source.answers[0].is_accepted == true&amp;#34;&amp;gt;
-                                &amp;lt;strong ng-bind-template=&amp;#34;Accepted answer: &amp;#34;&amp;gt; &amp;lt;/strong&amp;gt;
-                              &amp;lt;/p&amp;gt;
-                              &amp;lt;p ng-show=&amp;#34;r._source.answers[0].is_accepted == false&amp;#34;&amp;gt;
-                                &amp;lt;strong ng-bind-template=&amp;#34;Latest answer: &amp;#34;&amp;gt; &amp;lt;/strong&amp;gt;
-                              &amp;lt;/p&amp;gt;
-                              &amp;lt;p ng-bind=&amp;#34;r._source.answers[0].body | htmlToPlaintext&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
-                              &amp;lt;a ng-href=&amp;#34;{{r._source.sys_url_view}}&amp;#34; target=&amp;#34;_blank&amp;#34; rel=&amp;#34;noopener noreferrer&amp;#34; ng-bind-template=&amp;#34;Read full question at Stack Overflow ›&amp;#34;&amp;gt; &amp;lt;/a&amp;gt;
-                            &amp;lt;/div&amp;gt;
-                            &amp;lt;div class=&amp;#34;so-tags&amp;#34;&amp;gt;
-                              &amp;lt;strong class=&amp;#34;tag-label&amp;#34; ng-bind-template=&amp;#34;Tags:&amp;#34;&amp;gt; &amp;lt;/strong&amp;gt;
-                              &amp;lt;span class=&amp;#34;tag&amp;#34; ng-repeat=&amp;#34;tag in r._source.sys_tags&amp;#34; ng-bind=&amp;#34;tag&amp;#34;&amp;gt; &amp;lt;/span&amp;gt;
-                              &amp;lt;span class=&amp;#34;so-author&amp;#34; ng-bind-template=&amp;#34;{{r | stackDate}} | {{r | author}}&amp;#34;&amp;gt; &amp;lt;/span&amp;gt;
-                            &amp;lt;/div&amp;gt;
-                          &amp;lt;/div&amp;gt;
-                        &amp;lt;/div&amp;gt;
-                      &amp;lt;/div&amp;gt;
-                    &amp;lt;/div&amp;gt;
-                  &amp;lt;/div&amp;gt;
-                &amp;lt;/div&amp;gt;
-              &amp;lt;/div&amp;gt;
-            &amp;lt;/div&amp;gt;
-          &amp;lt;/div&amp;gt;
-
-          &amp;lt;nav id=&amp;#34;paginator&amp;#34; ng-hide=&amp;#34;loading&amp;#34; ng-if=&amp;#34;paginate.pages &amp;amp;gt; 1&amp;#34;&amp;gt;&amp;lt;span ng-bind-template=&amp;#34;Showing {{params.from &amp;#43; 1}}-{{paginate.lastVisible}} of  {{totalCount}} results&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;
-            &amp;lt;ul class=&amp;#34;pagination&amp;#34;&amp;gt;
-&amp;lt;li id=&amp;#34;pagination-first&amp;#34; ng-class=&amp;#34;paginate.currentPage &amp;amp;lt; 2 ? &amp;#39;unavailable&amp;#39;: &amp;#39;available&amp;#39;&amp;#34;&amp;gt;
-                &amp;lt;a ng-click=&amp;#34;goToPage(&amp;#39;first&amp;#39;); scrollPosition();&amp;#34;&amp;gt;First&amp;lt;/a&amp;gt;
-              &amp;lt;/li&amp;gt;
-              &amp;lt;li id=&amp;#34;pagination-prev&amp;#34; ng-class=&amp;#34;paginate.currentPage &amp;amp;lt; 2 ? &amp;#39;unavailable&amp;#39;: &amp;#39;available&amp;#39;&amp;#34;&amp;gt;
-                &amp;lt;a ng-click=&amp;#34;goToPage(&amp;#39;prev&amp;#39;); scrollPosition();&amp;#34;&amp;gt;Previous&amp;lt;/a&amp;gt;
-              &amp;lt;/li&amp;gt;
-              &amp;lt;li class=&amp;#34;pagination-page-number&amp;#34; id=&amp;#34;pagination-{{$index}}&amp;#34; ng-class=&amp;#34;{current: page == paginate.currentPage}&amp;#34; ng-repeat=&amp;#34;page in paginate.pagesArray track by $index&amp;#34;&amp;gt;
-                &amp;lt;a ng-click=&amp;#34;goToPage(page); scrollPosition();&amp;#34; data-page=&amp;#34;{{page}}&amp;#34; ng-bind=&amp;#34;page&amp;#34;&amp;gt; &amp;lt;/a&amp;gt;
-              &amp;lt;/li&amp;gt;
-              &amp;lt;li id=&amp;#34;pagination-next&amp;#34; ng-class=&amp;#34;paginate.currentPage &amp;amp;gt;= paginate.pages ? &amp;#39;unavailable&amp;#39;: &amp;#39;available&amp;#39;&amp;#34;&amp;gt;
-                &amp;lt;a ng-click=&amp;#34;goToPage(&amp;#39;next&amp;#39;); scrollPosition();&amp;#34;&amp;gt;Next&amp;lt;/a&amp;gt;
-              &amp;lt;/li&amp;gt;
-              &amp;lt;li id=&amp;#34;pagination-last&amp;#34; ng-class=&amp;#34;paginate.currentPage  == paginate.pages ? &amp;#39;unavailable&amp;#39;: &amp;#39;available&amp;#39;&amp;#34;&amp;gt;
-                &amp;lt;a ng-click=&amp;#34;goToPage(&amp;#39;last&amp;#39;); scrollPosition();&amp;#34;&amp;gt;Last&amp;lt;/a&amp;gt;
-              &amp;lt;/li&amp;gt;
-            &amp;lt;/ul&amp;gt;&amp;lt;/nav&amp;gt;
-&amp;lt;/div&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;div ng-app=&#34;search&#34;&gt;
-  &lt;div class=&#34;row&#34; ng-controller=&#34;SearchController&#34;&gt;
-    &lt;div class=&#34;large-24 columns&#34;&gt;
-      &lt;div class=&#34;row&#34;&gt;
-        &lt;div class=&#34;large-24 columns&#34;&gt;
-          &lt;form class=&#34;search-bar&#34; ng-submit=&#34;updateSearch(); resetPagination();&#34; role=&#34;search&#34;&gt; &lt;/form&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&#34;large-24 columns&#34; id=&#34;scrollPoint&#34;&gt;
-          &lt;div class=&#34;row&#34;&gt;
-            &lt;div class=&#34;large-14 columns stackoverflow-filters&#34;&gt;
-              &lt;label for=&#34;filterByProduct&#34;&gt;Filter by Product&lt;/label&gt;
-
-              &lt;div class=&#34;styled-select&#34;&gt;
-                &lt;select id=&#34;filterByProduct&#34; name=&#34;filter-by-product&#34; ng-change=&#34;updateSearch(); resetPagination();&#34; ng-model=&#34;params.product&#34;&gt;&lt;option value=&#34;&#34;&gt;Show all&lt;/option&gt;
-&lt;option value=&#34;openjdk&#34;&gt;OpenJDK&lt;/option&gt;
-&lt;option value=&#34;rhamt&#34;&gt;Red Hat Application Migration Toolkit&lt;/option&gt;
-&lt;option value=&#34;cdk&#34;&gt;Red Hat Developer Container Kit&lt;/option&gt;
-&lt;option value=&#34;developertoolset&#34;&gt;Red Hat Developer Toolset&lt;/option&gt;
-&lt;option value=&#34;rhel&#34;&gt;Red Hat Enterprise Linux&lt;/option&gt;
-&lt;option value=&#34;amq&#34;&gt;Red Hat JBoss AMQ&lt;/option&gt;
-&lt;option value=&#34;bpmsuite&#34;&gt;Red Hat JBoss BPM Suite&lt;/option&gt;
-&lt;option value=&#34;brms&#34;&gt;Red Hat Decision Manager&lt;/option&gt;
-&lt;option value=&#34;datagrid&#34;&gt;Red Hat JBoss Data Grid&lt;/option&gt;
-&lt;option value=&#34;datavirt&#34;&gt;Red Hat JBoss Data Virtualization&lt;/option&gt;
-&lt;option value=&#34;devstudio&#34;&gt;Red Hat JBoss Developer Studio&lt;/option&gt;
-&lt;option value=&#34;eap&#34;&gt;Red Hat JBoss Enterprise Application Platform&lt;/option&gt;
-&lt;option value=&#34;fuse&#34;&gt;Red Hat JBoss Fuse&lt;/option&gt;
-&lt;option value=&#34;webserver&#34;&gt;Red Hat JBoss Web Server&lt;/option&gt;
-&lt;option value=&#34;rhmap&#34;&gt;Red Hat Mobile Application Platform&lt;/option&gt;
-&lt;option value=&#34;rhoar&#34;&gt;Red Hat Openshift Application Runtimes&lt;/option&gt;
-&lt;option value=&#34;openshift&#34;&gt;Red Hat OpenShift Container Platform&lt;/option&gt;
-&lt;option value=&#34;softwarecollections&#34;&gt;Red Hat Software Collections&lt;/option&gt;
-&lt;option value=&#34;dotnet&#34;&gt;.NET Core for Red Hat Enterprise Linux&lt;/option&gt;&lt;/select&gt;
-&lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;div class=&#34;large-10 columns&#34;&gt;
-              &lt;div class=&#34;sorting so-sorting&#34;&gt;
-                &lt;p ng-if=&#34;totalCount &amp;gt; 10&#34;&gt;Show&lt;select class=&#34;results-count&#34; ng-change=&#34;updateSearch()&#34; ng-model=&#34;params.size&#34;&gt;&lt;option value=&#34;10&#34;&gt;10&lt;/option&gt;
-&lt;option value=&#34;25&#34;&gt;25&lt;/option&gt;
-&lt;option value=&#34;50&#34;&gt;50&lt;/option&gt;
-&lt;option value=&#34;100&#34;&gt;100&lt;/option&gt;&lt;/select&gt;results per page&lt;/p&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-
-          &lt;div class=&#34;row&#34;&gt;
-            &lt;div class=&#34;large-24 columns&#34;&gt;
-              &lt;h3 class=&#34;results-title&#34; ng-bind-template=&#34;No results found&#34; ng-if=&#34;totalCount &amp;lt;= 0&#34;&gt; &lt;/h3&gt;
-
-              &lt;h4 class=&#34;results-sub-title&#34; ng-bind-template=&#34;Please select a different product&#34; ng-if=&#34;totalCount &amp;lt;= 0&#34;&gt; &lt;/h4&gt;
-
-              &lt;div class=&#34;stackoverflow-results-container&#34; ng-class=&#34;loading ? &#39;invisible&#39; : &#39;search-results-loaded&#39;&#34; ng-if=&#34;totalCount &amp;gt; 0&#34;&gt;
-                &lt;div ng-init=&#34;r = result&#34; ng-repeat=&#34;result in results&#34;&gt;
-                  &lt;div class=&#34;stackoverflow-update&#34;&gt;
-                    &lt;div class=&#34;update&#34;&gt;
-                      &lt;div class=&#34;update-meta&#34;&gt;
-                        &lt;div class=&#34;row&#34;&gt;
-                          &lt;div class=&#34;large-6 columns qtn-stats&#34;&gt;
-
-                            &lt;div class=&#34;votes-count&#34;&gt;
-                              &lt;h4 ng-bind=&#34;r._source.up_vote_count&#34;&gt; &lt;/h4&gt;
-                              &lt;p ng-bind-template=&#34;Votes&#34;&gt; &lt;/p&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&#34;answer-count&#34; ng-class=&#34;(r._source.answers[0].is_accepted == true) ? &#39;accepted-answer&#39; : &#39;&#39; &#34;&gt;
-                              &lt;h4 ng-bind=&#34;r._source.answer_count&#34;&gt; &lt;/h4&gt;
-                              &lt;p ng-bind-template=&#34;Answers&#34;&gt; &lt;/p&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&#34;views-count&#34;&gt;
-                              &lt;h4 ng-bind=&#34;r._source.view_count&#34;&gt; &lt;/h4&gt;
-                              &lt;p ng-bind-template=&#34;Views&#34;&gt; &lt;/p&gt;
-                            &lt;/div&gt;
-                          &lt;/div&gt;
-
-                          &lt;div class=&#34;large-18 columns&#34;&gt;
-                            &lt;a class=&#34;qtn-title&#34; ng-href=&#34;{{r._source.sys_url_view}}&#34; ng-bind-html=&#34;r._source.sys_title&#34;&gt; &lt;/a&gt;
-                            &lt;p class=&#34;qtn-content&#34; ng-bind-html=&#34;r | question&#34;&gt; &lt;/p&gt;
-
-                            &lt;div class=&#34;callout qtn-answer&#34; ng-class=&#34;r._source.answers[0] ? &#39;display-answer&#39; : &#39;hide-answer&#39; &#34;&gt;
-                              &lt;p ng-show=&#34;r._source.answers[0].is_accepted == true&#34;&gt;
-                                &lt;strong ng-bind-template=&#34;Accepted answer: &#34;&gt; &lt;/strong&gt;
-                              &lt;/p&gt;
-                              &lt;p ng-show=&#34;r._source.answers[0].is_accepted == false&#34;&gt;
-                                &lt;strong ng-bind-template=&#34;Latest answer: &#34;&gt; &lt;/strong&gt;
-                              &lt;/p&gt;
-                              &lt;p ng-bind=&#34;r._source.answers[0].body | htmlToPlaintext&#34;&gt;&lt;/p&gt;
-                              &lt;a ng-href=&#34;{{r._source.sys_url_view}}&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; ng-bind-template=&#34;Read full question at Stack Overflow ›&#34;&gt; &lt;/a&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&#34;so-tags&#34;&gt;
-                              &lt;strong class=&#34;tag-label&#34; ng-bind-template=&#34;Tags:&#34;&gt; &lt;/strong&gt;
-                              &lt;span class=&#34;tag&#34; ng-repeat=&#34;tag in r._source.sys_tags&#34; ng-bind=&#34;tag&#34;&gt; &lt;/span&gt;
-                              &lt;span class=&#34;so-author&#34; ng-bind-template=&#34;{{r | stackDate}} | {{r | author}}&#34;&gt; &lt;/span&gt;
-                            &lt;/div&gt;
-                          &lt;/div&gt;
-                        &lt;/div&gt;
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-
-          &lt;nav id=&#34;paginator&#34; ng-hide=&#34;loading&#34; ng-if=&#34;paginate.pages &amp;gt; 1&#34;&gt;&lt;span ng-bind-template=&#34;Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results&#34;&gt;&lt;/span&gt;
-            &lt;ul class=&#34;pagination&#34;&gt;
-&lt;li id=&#34;pagination-first&#34; ng-class=&#34;paginate.currentPage &amp;lt; 2 ? &#39;unavailable&#39;: &#39;available&#39;&#34;&gt;
-                &lt;a ng-click=&#34;goToPage(&#39;first&#39;); scrollPosition();&#34;&gt;First&lt;/a&gt;
-              &lt;/li&gt;
-              &lt;li id=&#34;pagination-prev&#34; ng-class=&#34;paginate.currentPage &amp;lt; 2 ? &#39;unavailable&#39;: &#39;available&#39;&#34;&gt;
-                &lt;a ng-click=&#34;goToPage(&#39;prev&#39;); scrollPosition();&#34;&gt;Previous&lt;/a&gt;
-              &lt;/li&gt;
-              &lt;li class=&#34;pagination-page-number&#34; id=&#34;pagination-{{$index}}&#34; ng-class=&#34;{current: page == paginate.currentPage}&#34; ng-repeat=&#34;page in paginate.pagesArray track by $index&#34;&gt;
-                &lt;a ng-click=&#34;goToPage(page); scrollPosition();&#34; data-page=&#34;{{page}}&#34; ng-bind=&#34;page&#34;&gt; &lt;/a&gt;
-              &lt;/li&gt;
-              &lt;li id=&#34;pagination-next&#34; ng-class=&#34;paginate.currentPage &amp;gt;= paginate.pages ? &#39;unavailable&#39;: &#39;available&#39;&#34;&gt;
-                &lt;a ng-click=&#34;goToPage(&#39;next&#39;); scrollPosition();&#34;&gt;Next&lt;/a&gt;
-              &lt;/li&gt;
-              &lt;li id=&#34;pagination-last&#34; ng-class=&#34;paginate.currentPage  == paginate.pages ? &#39;unavailable&#39;: &#39;available&#39;&#34;&gt;
-                &lt;a ng-click=&#34;goToPage(&#39;last&#39;); scrollPosition();&#34;&gt;Last&lt;/a&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;&lt;/nav&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;div ng-app=&amp;#34;search&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;row&amp;#34; ng-controller=&amp;#34;SearchController&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;large-24 columns&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;large-24 columns&amp;#34;&amp;gt; &amp;lt;form class=&amp;#34;search-bar&amp;#34; ng-submit=&amp;#34;updateSearch(); resetPagination();&amp;#34; role=&amp;#34;search&amp;#34;&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;large-24 columns&amp;#34; id=&amp;#34;scrollPoint&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;large-14 columns stackoverflow-filters&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;filterByProduct&amp;#34;&amp;gt;Filter by Product&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;styled-select&amp;#34;&amp;gt; &amp;lt;select id=&amp;#34;filterByProduct&amp;#34; name=&amp;#34;filter-by-product&amp;#34; ng-change=&amp;#34;updateSearch(); resetPagination();&amp;#34; ng-model=&amp;#34;params.product&amp;#34;&amp;gt;&amp;lt;option value=&amp;#34;&amp;#34;&amp;gt;Show all&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;openjdk&amp;#34;&amp;gt;OpenJDK&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;rhamt&amp;#34;&amp;gt;Red Hat Application Migration Toolkit&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;cdk&amp;#34;&amp;gt;Red Hat Developer Container Kit&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;developertoolset&amp;#34;&amp;gt;Red Hat Developer Toolset&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;rhel&amp;#34;&amp;gt;Red Hat Enterprise Linux&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;amq&amp;#34;&amp;gt;Red Hat JBoss AMQ&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;bpmsuite&amp;#34;&amp;gt;Red Hat JBoss BPM Suite&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;brms&amp;#34;&amp;gt;Red Hat Decision Manager&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;datagrid&amp;#34;&amp;gt;Red Hat JBoss Data Grid&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;datavirt&amp;#34;&amp;gt;Red Hat JBoss Data Virtualization&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;devstudio&amp;#34;&amp;gt;Red Hat JBoss Developer Studio&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;eap&amp;#34;&amp;gt;Red Hat JBoss Enterprise Application Platform&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;fuse&amp;#34;&amp;gt;Red Hat JBoss Fuse&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;webserver&amp;#34;&amp;gt;Red Hat JBoss Web Server&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;rhmap&amp;#34;&amp;gt;Red Hat Mobile Application Platform&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;rhoar&amp;#34;&amp;gt;Red Hat Openshift Application Runtimes&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;openshift&amp;#34;&amp;gt;Red Hat OpenShift Container Platform&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;softwarecollections&amp;#34;&amp;gt;Red Hat Software Collections&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;dotnet&amp;#34;&amp;gt;.</description>
     </item>
     
     <item>
@@ -275,15 +26,7 @@
       <pubDate>Thu, 19 Apr 2018 13:22:06 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/rhdp-downloads/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-downlads url=&amp;#34;https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1&amp;#34;&amp;gt;&amp;lt;/rhdp-downloads&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-downlads url=&#34;https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1&#34;&gt;&lt;/rhdp-downloads&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;rhdp-downlads url=&amp;#34;https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1&amp;#34;&amp;gt;&amp;lt;/rhdp-downloads&amp;gt;     </description>
     </item>
     
     <item>
@@ -292,55 +35,7 @@
       <pubDate>Tue, 17 Apr 2018 14:39:40 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/alerts/</guid>
-      <description>&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;
-&lt;/div&gt;
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert heading=&amp;#34;Alert with a Heading:&amp;#34;&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;
-&lt;/div&gt;
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;success&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;
-&lt;/div&gt;
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;warning&amp;#34; heading=&amp;#34;Warning Heading:&amp;#34;&amp;gt;This is the warning text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;
-&lt;/div&gt;
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;error&amp;#34; heading=&amp;#34;Error Heading:&amp;#34;&amp;gt;This is the error text&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;
-&lt;/div&gt;
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-alert type=&amp;#34;info&amp;#34; size=&amp;#34;xl&amp;#34; heading=&amp;#34;Welcome jboss.org members!&amp;#34;&amp;gt;It&amp;#39;s true &amp;amp;mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. &amp;lt;a href=&amp;#34;https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t&amp;#34;&amp;gt;Read more about this on our blog.&amp;lt;/a&amp;gt;&amp;lt;/rhdp-alert&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Welcome jboss.org members!&#34;&gt;It&#39;s true &amp;mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. &lt;a href=&#34;https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t&#34;&gt;Read more about this on our blog.&lt;/a&gt;&lt;/rhdp-alert&gt;
-&lt;/div&gt;&lt;/p&gt;
-</description>
+      <description>&amp;lt;rhdp-alert&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;   This is the alert text  &amp;lt;rhdp-alert heading=&amp;#34;Alert with a Heading:&amp;#34;&amp;gt;This is the alert text&amp;lt;/rhdp-alert&amp;gt;   This is the alert text  &amp;lt;rhdp-alert type=&amp;#34;success&amp;#34; heading=&amp;#34;Success Heading:&amp;#34;&amp;gt;This is the success text&amp;lt;/rhdp-alert&amp;gt;   This is the success text  &amp;lt;rhdp-alert type=&amp;#34;warning&amp;#34; heading=&amp;#34;Warning Heading:&amp;#34;&amp;gt;This is the warning text&amp;lt;/rhdp-alert&amp;gt;   This is the warning text  &amp;lt;rhdp-alert type=&amp;#34;error&amp;#34; heading=&amp;#34;Error Heading:&amp;#34;&amp;gt;This is the error text&amp;lt;/rhdp-alert&amp;gt;   This is the error text  &amp;lt;rhdp-alert type=&amp;#34;info&amp;#34; size=&amp;#34;xl&amp;#34; heading=&amp;#34;Welcome jboss.</description>
     </item>
     
     <item>
@@ -349,15 +44,7 @@
       <pubDate>Tue, 17 Apr 2018 14:39:40 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/referrer/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;dp-referrer&amp;gt;&amp;lt;/dp-referrer&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;dp-referrer&gt;&lt;/dp-referrer&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;dp-referrer&amp;gt;&amp;lt;/dp-referrer&amp;gt;     </description>
     </item>
     
     <item>
@@ -366,363 +53,7 @@
       <pubDate>Fri, 13 Apr 2018 03:00:54 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/expandable-groups/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;dp-category-list&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Application Automation&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Automation.svg&amp;#34;&amp;gt;
-    &amp;lt;dp-category-item-list&amp;gt;
-        &amp;lt;dp-category-item&amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Decision Manager&amp;#34; link=&amp;#34;/products/red-hat-decision-manager&amp;#34; download-link=&amp;#34;/products/red-hat-decision-manager/download&amp;#34;&amp;gt;
-                A programming platform to easily capture and maintain rules for business changes, without impacting static applications.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item&amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss BPM Suite&amp;#34; link=&amp;#34;/products/bpmsuite&amp;#34; download-link=&amp;#34;/products/bpmsuite/download&amp;#34; &amp;gt;
-                A platform that combines business rules and process management (BPM), and complex event processing.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Application Integration&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Object_Gear-Group_RGB_Flat.svg&amp;#34;&amp;gt;
-    &amp;lt;dp-category-item-list&amp;gt;
-        &amp;lt;dp-category-item&amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat AMQ&amp;#34; link=&amp;#34;/products/amq&amp;#34; download-link=&amp;#34;/products/amq/download&amp;#34;&amp;gt;
-                A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item&amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss Data Virtualization&amp;#34; link=&amp;#34;/products/datavirt&amp;#34; download-link=&amp;#34;/products/datavirt/download&amp;#34; &amp;gt;
-                A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Application Runtimes&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Transportation_Speedometer_RGB_Flat.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list&amp;gt;
-        &amp;lt;dp-category-item&amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss Enterprise Application Platform&amp;#34; link=&amp;#34;/products/eap&amp;#34; download-link=&amp;#34;/products/eap/download&amp;#34; &amp;gt;
-                An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss Data Grid&amp;#34; link=&amp;#34;/products/datagrid&amp;#34; download-link=&amp;#34;/products/datagrid/download&amp;#34; &amp;gt;
-                An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss Web Server&amp;#34; link=&amp;#34;/products/webserver&amp;#34; download-link=&amp;#34;/products/webserver/download&amp;#34; &amp;gt;
-                A web server that combines market-leading open source technologies with enterprise capabilities to provide a single solution for large-scale websites and light-weight Java web applications.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat OpenShift Application Runtimes&amp;#34; link=&amp;#34;/products/rhoar&amp;#34; download-link=&amp;#34;/products/rhoar/download&amp;#34; &amp;gt;
-                Cloud native application runtimes optimized for OpenShift.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Cloud&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Cloud_Standard_RGB_Flat.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat OpenShift Container Platform&amp;#34; link=&amp;#34;/products/openshift&amp;#34; download-link=&amp;#34;/products/openshift/download&amp;#34; &amp;gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;OpenShift.io&amp;#34; link=&amp;#34;/products/openshiftio&amp;#34; download-link=&amp;#34;/products/openshiftio/download&amp;#34; &amp;gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Developer Tools&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Software_Command_RGB_Black.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Development Suite&amp;#34; link=&amp;#34;/products/devsuite&amp;#34; download-link=&amp;#34;/products/devsuite/download&amp;#34; &amp;gt;
-                A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Container Development Kit&amp;#34; link=&amp;#34;/products/cdk&amp;#34; download-link=&amp;#34;/products/cdk/download&amp;#34; &amp;gt;
-                Red Hat Container Development Kit provides Red Hat OpenShift Container Platform running on Red Hat Enterprise Linux to help you develop container-based applications quickly. 
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss Developer Studio&amp;#34; link=&amp;#34;/products/devstudio&amp;#34; download-link=&amp;#34;/products/devstudio/download&amp;#34; &amp;gt;
-                An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat OpenShift Container Platform&amp;#34; link=&amp;#34;/products/openshift&amp;#34; download-link=&amp;#34;/products/openshift/download&amp;#34; &amp;gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Application Migration Toolkit&amp;#34; link=&amp;#34;/products/rhamt&amp;#34; download-link=&amp;#34;/products/rhamt/download&amp;#34; &amp;gt;
-                An assembly of open source tools that enables large-scale application migrations and modernizations.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;OpenShift.io&amp;#34; link=&amp;#34;/products/openshiftio&amp;#34; download-link=&amp;#34;/products/openshiftio/download&amp;#34; &amp;gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;DevOps&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Miscellanious_DevOps_RGB_Black.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat OpenShift Container Platform&amp;#34; link=&amp;#34;/products/openshift&amp;#34; download-link=&amp;#34;/products/openshift/download&amp;#34; &amp;gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;OpenShift.io&amp;#34; link=&amp;#34;/products/openshiftio&amp;#34; download-link=&amp;#34;/products/openshiftio/download&amp;#34; &amp;gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Languages and Compilers&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Software_Code_RGB_Flat.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;.NET Core 2.0&amp;#34; link=&amp;#34;/products/dotnet&amp;#34; download-link=&amp;#34;/products/dotnet/download&amp;#34; &amp;gt;
-                Build and run cross-platform .NET applications on the world’s number one Enterprise-ready Linux Distribution, Red Hat Enterprise Linux.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;OpenJDK&amp;#34; link=&amp;#34;/products/openjdk&amp;#34; download-link=&amp;#34;/products/openjdk/download&amp;#34; &amp;gt;
-                OpenJDK 8 (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE). 
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Developer Toolset&amp;#34; link=&amp;#34;/products/developertoolset&amp;#34; download-link=&amp;#34;/products/developertoolset/download&amp;#34; &amp;gt;
-                Get the latest stable versions of GCC (C, C&amp;#43;&amp;#43;, Fortran), Eclipse, GDB, SystemTap, and essential development tools.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Compilers: Clang/LLVM, Go, Rust&amp;#34; link=&amp;#34;/products/clang-llvm-go-rust&amp;#34; download-link=&amp;#34;/products/clang-llvm-go-rust/download&amp;#34; &amp;gt;
-                Important new Clang/LLVM, Go, Rust compilers for Red Hat Enterprise Linux 7.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Linux Platforms&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Misc_Network-Technical_RGB_Flat.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat OpenShift Container Platform&amp;#34; link=&amp;#34;/products/openshift&amp;#34; download-link=&amp;#34;/products/openshift/download&amp;#34; &amp;gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Software Collections&amp;#34; link=&amp;#34;/products/softwarecollections&amp;#34; download-link=&amp;#34;/products/softwarecollections/download&amp;#34; &amp;gt;
-                The latest, stable updates of development technologies for Red Hat Enterprise Linux.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Enterprise Linux&amp;#34; link=&amp;#34;/products/rhel&amp;#34; download-link=&amp;#34;/products/rhel/download&amp;#34; &amp;gt;
-                A stable, proven foundation that’s versatile enough for rolling out new applications, virtualizing environments, and creating a secure hybrid cloud
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Enterprise Linux for SAP Solutions&amp;#34; link=&amp;#34;/products/sap&amp;#34; download-link=&amp;#34;/products/sap/download&amp;#34; &amp;gt;
-                Access all of the special bits you need for SAP development on Red Hat Enterprise Linux.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;dp-category name=&amp;#34;Mobile Application Development&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Software_Application-Mobile_RGB_Flat.svg&amp;#34; &amp;gt;
-    &amp;lt;dp-category-item-list &amp;gt;
-        &amp;lt;dp-category-item &amp;gt;
-            &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Mobile Application Platform&amp;#34; link=&amp;#34;/products/mobileplatform&amp;#34; download-link=&amp;#34;/products/mobileplatform/download&amp;#34; &amp;gt;
-                A development and deployment platform for creating mobile apps in an agile and flexible manner.
-            &amp;lt;/dp-product-short-teaser&amp;gt;
-        &amp;lt;/dp-category-item&amp;gt;
-    &amp;lt;/dp-category-item-list&amp;gt;
-&amp;lt;/dp-category&amp;gt;
-&amp;lt;/dp-category-list&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;dp-category-list&gt;
-&lt;dp-category name=&#34;Application Automation&#34; image=&#34;/rhd-frontend/img/Icon_RH_Automation.svg&#34;&gt;
-    &lt;dp-category-item-list&gt;
-        &lt;dp-category-item&gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Decision Manager&#34; link=&#34;/products/red-hat-decision-manager&#34; download-link=&#34;/products/red-hat-decision-manager/download&#34;&gt;
-                A programming platform to easily capture and maintain rules for business changes, without impacting static applications.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item&gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss BPM Suite&#34; link=&#34;/products/bpmsuite&#34; download-link=&#34;/products/bpmsuite/download&#34; &gt;
-                A platform that combines business rules and process management (BPM), and complex event processing.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Application Integration&#34; image=&#34;/rhd-frontend/img/Icon_RH_Object_Gear-Group_RGB_Flat.svg&#34;&gt;
-    &lt;dp-category-item-list&gt;
-        &lt;dp-category-item&gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat AMQ&#34; link=&#34;/products/amq&#34; download-link=&#34;/products/amq/download&#34;&gt;
-                A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item&gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss Data Virtualization&#34; link=&#34;/products/datavirt&#34; download-link=&#34;/products/datavirt/download&#34; &gt;
-                A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Application Runtimes&#34; image=&#34;/rhd-frontend/img/Icon_RH_Transportation_Speedometer_RGB_Flat.svg&#34; &gt;
-    &lt;dp-category-item-list&gt;
-        &lt;dp-category-item&gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss Enterprise Application Platform&#34; link=&#34;/products/eap&#34; download-link=&#34;/products/eap/download&#34; &gt;
-                An innovative, modular, cloud-ready application platform that addresses management, automation and developer productivity.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss Data Grid&#34; link=&#34;/products/datagrid&#34; download-link=&#34;/products/datagrid/download&#34; &gt;
-                An in-memory data grid to accelerate performance that is fast, distributed, scalable, and independent from the data tier.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss Web Server&#34; link=&#34;/products/webserver&#34; download-link=&#34;/products/webserver/download&#34; &gt;
-                A web server that combines market-leading open source technologies with enterprise capabilities to provide a single solution for large-scale websites and light-weight Java web applications.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat OpenShift Application Runtimes&#34; link=&#34;/products/rhoar&#34; download-link=&#34;/products/rhoar/download&#34; &gt;
-                Cloud native application runtimes optimized for OpenShift.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Cloud&#34; image=&#34;/rhd-frontend/img/Icon_RH_Cloud_Standard_RGB_Flat.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat OpenShift Container Platform&#34; link=&#34;/products/openshift&#34; download-link=&#34;/products/openshift/download&#34; &gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;OpenShift.io&#34; link=&#34;/products/openshiftio&#34; download-link=&#34;/products/openshiftio/download&#34; &gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Developer Tools&#34; image=&#34;/rhd-frontend/img/Icon_RH_Software_Command_RGB_Black.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Development Suite&#34; link=&#34;/products/devsuite&#34; download-link=&#34;/products/devsuite/download&#34; &gt;
-                A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Container Development Kit&#34; link=&#34;/products/cdk&#34; download-link=&#34;/products/cdk/download&#34; &gt;
-                Red Hat Container Development Kit provides Red Hat OpenShift Container Platform running on Red Hat Enterprise Linux to help you develop container-based applications quickly. 
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat JBoss Developer Studio&#34; link=&#34;/products/devstudio&#34; download-link=&#34;/products/devstudio/download&#34; &gt;
-                An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat OpenShift Container Platform&#34; link=&#34;/products/openshift&#34; download-link=&#34;/products/openshift/download&#34; &gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Application Migration Toolkit&#34; link=&#34;/products/rhamt&#34; download-link=&#34;/products/rhamt/download&#34; &gt;
-                An assembly of open source tools that enables large-scale application migrations and modernizations.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;OpenShift.io&#34; link=&#34;/products/openshiftio&#34; download-link=&#34;/products/openshiftio/download&#34; &gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;DevOps&#34; image=&#34;/rhd-frontend/img/Icon_RH_Miscellanious_DevOps_RGB_Black.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat OpenShift Container Platform&#34; link=&#34;/products/openshift&#34; download-link=&#34;/products/openshift/download&#34; &gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;OpenShift.io&#34; link=&#34;/products/openshiftio&#34; download-link=&#34;/products/openshiftio/download&#34; &gt;
-                OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Languages and Compilers&#34; image=&#34;/rhd-frontend/img/Icon_RH_Software_Code_RGB_Flat.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;.NET Core 2.0&#34; link=&#34;/products/dotnet&#34; download-link=&#34;/products/dotnet/download&#34; &gt;
-                Build and run cross-platform .NET applications on the world’s number one Enterprise-ready Linux Distribution, Red Hat Enterprise Linux.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;OpenJDK&#34; link=&#34;/products/openjdk&#34; download-link=&#34;/products/openjdk/download&#34; &gt;
-                OpenJDK 8 (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE). 
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Developer Toolset&#34; link=&#34;/products/developertoolset&#34; download-link=&#34;/products/developertoolset/download&#34; &gt;
-                Get the latest stable versions of GCC (C, C++, Fortran), Eclipse, GDB, SystemTap, and essential development tools.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Compilers: Clang/LLVM, Go, Rust&#34; link=&#34;/products/clang-llvm-go-rust&#34; download-link=&#34;/products/clang-llvm-go-rust/download&#34; &gt;
-                Important new Clang/LLVM, Go, Rust compilers for Red Hat Enterprise Linux 7.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Linux Platforms&#34; image=&#34;/rhd-frontend/img/Icon_RH_Misc_Network-Technical_RGB_Flat.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat OpenShift Container Platform&#34; link=&#34;/products/openshift&#34; download-link=&#34;/products/openshift/download&#34; &gt;
-                An open, hybrid Platform-as-a-Service (PaaS) to quickly develop, host, scale, and deliver apps in the cloud.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Software Collections&#34; link=&#34;/products/softwarecollections&#34; download-link=&#34;/products/softwarecollections/download&#34; &gt;
-                The latest, stable updates of development technologies for Red Hat Enterprise Linux.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Enterprise Linux&#34; link=&#34;/products/rhel&#34; download-link=&#34;/products/rhel/download&#34; &gt;
-                A stable, proven foundation that’s versatile enough for rolling out new applications, virtualizing environments, and creating a secure hybrid cloud
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Enterprise Linux for SAP Solutions&#34; link=&#34;/products/sap&#34; download-link=&#34;/products/sap/download&#34; &gt;
-                Access all of the special bits you need for SAP development on Red Hat Enterprise Linux.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;dp-category name=&#34;Mobile Application Development&#34; image=&#34;/rhd-frontend/img/Icon_RH_Software_Application-Mobile_RGB_Flat.svg&#34; &gt;
-    &lt;dp-category-item-list &gt;
-        &lt;dp-category-item &gt;
-            &lt;dp-product-short-teaser name=&#34;Red Hat Mobile Application Platform&#34; link=&#34;/products/mobileplatform&#34; download-link=&#34;/products/mobileplatform/download&#34; &gt;
-                A development and deployment platform for creating mobile apps in an agile and flexible manner.
-            &lt;/dp-product-short-teaser&gt;
-        &lt;/dp-category-item&gt;
-    &lt;/dp-category-item-list&gt;
-&lt;/dp-category&gt;
-&lt;/dp-category-list&gt;
-
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;dp-category-list&amp;gt; &amp;lt;dp-category name=&amp;#34;Application Automation&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Automation.svg&amp;#34;&amp;gt; &amp;lt;dp-category-item-list&amp;gt; &amp;lt;dp-category-item&amp;gt; &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat Decision Manager&amp;#34; link=&amp;#34;/products/red-hat-decision-manager&amp;#34; download-link=&amp;#34;/products/red-hat-decision-manager/download&amp;#34;&amp;gt; A programming platform to easily capture and maintain rules for business changes, without impacting static applications. &amp;lt;/dp-product-short-teaser&amp;gt; &amp;lt;/dp-category-item&amp;gt; &amp;lt;dp-category-item&amp;gt; &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat JBoss BPM Suite&amp;#34; link=&amp;#34;/products/bpmsuite&amp;#34; download-link=&amp;#34;/products/bpmsuite/download&amp;#34; &amp;gt; A platform that combines business rules and process management (BPM), and complex event processing. &amp;lt;/dp-product-short-teaser&amp;gt; &amp;lt;/dp-category-item&amp;gt; &amp;lt;/dp-category-item-list&amp;gt; &amp;lt;/dp-category&amp;gt; &amp;lt;dp-category name=&amp;#34;Application Integration&amp;#34; image=&amp;#34;/rhd-frontend/img/Icon_RH_Object_Gear-Group_RGB_Flat.svg&amp;#34;&amp;gt; &amp;lt;dp-category-item-list&amp;gt; &amp;lt;dp-category-item&amp;gt; &amp;lt;dp-product-short-teaser name=&amp;#34;Red Hat AMQ&amp;#34; link=&amp;#34;/products/amq&amp;#34; download-link=&amp;#34;/products/amq/download&amp;#34;&amp;gt; A small-footprint, performant, robust messaging platform that enables real-time app, device, and service integration.</description>
     </item>
     
     <item>
@@ -731,15 +62,7 @@
       <pubDate>Wed, 23 Aug 2017 22:56:52 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/devnationlive/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;devnation-live-app src=&amp;#34;/json/devnationlive.json&amp;#34;&amp;gt;&amp;lt;/devnation-live-app&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;devnation-live-app src=&#34;https://redhat-developer.github.io/rhd-frontend/json/devnationlive.json&#34;&gt;&lt;/devnation-live-app&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;devnation-live-app src=&amp;#34;/json/devnationlive.json&amp;#34;&amp;gt;&amp;lt;/devnation-live-app&amp;gt;     </description>
     </item>
     
     <item>
@@ -748,15 +71,7 @@
       <pubDate>Wed, 23 Aug 2017 22:56:37 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/onebox/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-onebox url=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34; term=&amp;#34;fuse&amp;#34;&amp;gt;&amp;lt;/rhdp-search-onebox&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-search-onebox url=&#34;/rhd-frontend/json/onebox.json&#34; term=&#34;fuse&#34;&gt;&lt;/rhdp-search-onebox&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;rhdp-search-onebox url=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34; term=&amp;#34;fuse&amp;#34;&amp;gt;&amp;lt;/rhdp-search-onebox&amp;gt;     </description>
     </item>
     
     <item>
@@ -765,15 +80,7 @@
       <pubDate>Wed, 23 Aug 2017 22:25:45 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/components/search/</guid>
-      <description>&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;&amp;lt;rhdp-search-app url=&amp;#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&amp;#34; oburl=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34;&amp;gt;&amp;lt;/rhdp-search-app&amp;gt;&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-&lt;rhdp-search-app url=&#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&#34; oburl=&#34;/rhd-frontend/json/onebox.json&#34;&gt;&lt;/rhdp-search-app&gt;
-&lt;/div&gt;
-</description>
+      <description>&amp;lt;rhdp-search-app url=&amp;#34;https://dcp2.jboss.org/v2/rest/search/developer_materials&amp;#34; oburl=&amp;#34;/rhd-frontend/json/onebox.json&amp;#34;&amp;gt;&amp;lt;/rhdp-search-app&amp;gt;     </description>
     </item>
     
   </channel>

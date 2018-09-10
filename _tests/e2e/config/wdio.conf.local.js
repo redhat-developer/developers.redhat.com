@@ -2,6 +2,12 @@ const BrowserManager = require('./browsers/BrowserManager');
 
 browserCaps = BrowserManager.createBrowser('chrome');
 
+if (typeof process.env.RHD_BASE_URL === 'undefined') {
+    baseUrl = 'http://docker:8888'
+} else {
+    baseUrl = process.env.RHD_BASE_URL
+}
+
 exports.config = {
 
     services: ['selenium-standalone'],
@@ -22,7 +28,7 @@ exports.config = {
 
     coloredLogs: true,
 
-    baseUrl: 'http://docker:8888',
+    baseUrl: baseUrl,
 
     waitforTimeout: 15000,
 

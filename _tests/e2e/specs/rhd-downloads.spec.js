@@ -10,29 +10,29 @@ import {Utils} from './support/Utils';
 const tags = require('mocha-tags');
 
 tags('desktop').describe('Download Manager', function () {
-    let downloadDir, downloadSize, siteUser;
+    let downloadDir, downloadName, siteUser;
     let home, login, additionalInformation;
 
-    this.retries(2);
     beforeEach(function () {
         login = new Login();
         home = new Home();
         additionalInformation = new AdditionalInformation();
         downloadDir = new DownloadDir();
+        downloadDir.clear()
     });
 
     afterEach(function () {
         try {
             new Utils().logout(process.env.RHD_BASE_URL);
-        } catch(e) {
+        } catch (e) {
             new Utils().logout(process.env.RHD_BASE_URL);
         }
         downloadDir.clear(global.downloadDir)
     });
 
     tags('sanity', 'dm')
-        .it('should allow users to login in and download RHD supportable Products', function () {
-            downloadDir.clear(global.downloadDir);
+        .it('should allow users to login in and download RHEL', function () {
+            this.retries(1);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
@@ -47,13 +47,12 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
     tags('dm', 'stage')
         .it('should allow users to login-in and download Red Hat JBoss/Red Hat Developer subscription products', function () {
-            downloadDir.clear(global.downloadDir);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('fuse', 'download', 'JBoss Fuse');
             productOverview
@@ -68,13 +67,12 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('fuse');
         });
 
     tags('dm', 'stage')
         .it('should allow users to login in and download RHD full user profile products', function () {
-            downloadDir.clear(global.downloadDir);
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('devstudio', 'download', 'JBoss Developer Studio');
             productOverview
@@ -89,13 +87,12 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('devstudio');
         });
 
     tags('dm', 'stage')
         .it('should allow active OpenShift.com account users (simple user account) to login and download RHD supportable user products', function () {
-            downloadDir.clear(global.downloadDir);
             siteUser = new User(process.env.RHD_BASE_URL).createOpenshiftUser();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             login
@@ -110,13 +107,12 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('dm', 'stage')
         .it('should allow active Red Hat Customer Portal account (full user account) users to login and download RHD supportable user products', function () {
-            downloadDir.clear(global.downloadDir);
             siteUser = new User(process.env.RHD_BASE_URL).createCustomerPortalAccount();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             login
@@ -135,13 +131,13 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitHelloWorldPage();
             productOverview
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.eq(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString()).to.include('rhel');
         });
 
     tags('sanity', 'dm')
-        .it('should allow users to log-in and download promotional cheetsheets', function () {
-            downloadDir.clear(global.downloadDir);
+        .it('should allow users to log-in and download advanced-linux-commands', function () {
+            this.retries(1);
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
@@ -160,7 +156,7 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitDownloadConfirmation();
             cheatSheet
                 .awaitDownloadThankYou();
-            downloadSize = downloadDir.get();
-            expect(downloadSize).to.gte(1);
+            downloadName = downloadDir.get();
+            expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
         });
 });

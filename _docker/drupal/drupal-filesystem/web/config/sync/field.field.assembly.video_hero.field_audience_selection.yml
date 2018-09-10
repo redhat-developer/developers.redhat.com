@@ -1,0 +1,21 @@
+uuid: 73aaabd6-609a-4209-a2a0-d3be7010504d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.video_hero.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: video_hero
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.featured_resources
+    - field.field.assembly.featured_resources.field_audience_selection
     - field.field.assembly.featured_resources.field_links
     - field.field.assembly.featured_resources.field_navigation_title
     - field.field.assembly.featured_resources.field_resources
@@ -68,6 +69,7 @@ content:
     type: string
     region: content
 hidden:
+  field_audience_selection: true
   field_navigation_title: true
   name: true
   user_id: true

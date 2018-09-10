@@ -1,0 +1,21 @@
+uuid: 62c12da5-d2ae-4faf-ae01-7546aa7c4dc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.featured_products.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: featured_products
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
