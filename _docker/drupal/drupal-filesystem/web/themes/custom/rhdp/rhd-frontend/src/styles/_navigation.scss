@@ -280,9 +280,9 @@
             margin-top: 0;
             transform: scaleX(0);
             transition: 200ms ease-in-out;
-            transform-origin: left;
+            transform-origin: center;
           }
-          &.is-active {
+          &.is-active, &:hover, &:active {
             color: #000;
             &:after {
               transform: scaleX(1);
@@ -473,12 +473,13 @@
     }
   }
   .rhd-search-toggle {
+    cursor: pointer;
     position: absolute;
     bottom: 0;
     top: 5px;
     &:hover, &:active, &:focus {
       background-color: transparent;
-      color: inherit;
+      color: #000;
     }
   }
 }
@@ -545,7 +546,16 @@
   }
 }
 
-.rhd-header-link, .rhd-nav-search {
+.rhd-header-link {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: $grey-5;
+  &:active, &:hover, &:focus {
+    color: $grey-5;
+  }
+}
+
+.rhd-nav-search {
   font-size: 16px;
   text-transform: uppercase;
   color: $grey-5;

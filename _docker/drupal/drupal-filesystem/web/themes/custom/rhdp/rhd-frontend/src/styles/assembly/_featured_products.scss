@@ -25,7 +25,10 @@
     text-align: center;
     padding: 30px 15px;
     font-size: 14px;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     .tile-title {
       color: $gray-8;
       font-size: 18px;

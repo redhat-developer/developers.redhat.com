@@ -82,6 +82,8 @@
     </div>
 </div>
 
-<noscript>
+{% if node.field_exclude_from_search.value == '1' %}
+  <noscript>
     <meta name="DCP:WebpageSearchExclude" content="true">
-</noscript>
+  </noscript>
+{% endif %}

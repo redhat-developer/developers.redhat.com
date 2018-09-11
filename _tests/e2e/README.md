@@ -20,8 +20,7 @@ Sanity:
 ## Run Single test
 Add something unique to the test `it.` description, for example to execute the following scenario:
 
-        tags('sanity', 'dm')
-                .it('@wip should allow users to log-in and download promotional cheetsheets', function () {
+        it('@wip should allow users to log-in and download promotional cheetsheets', function () {
                     this.retries(1);
                     let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
                     let cheatSheet = new CheatSheets('advanced-linux-commands');

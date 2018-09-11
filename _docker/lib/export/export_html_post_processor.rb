@@ -151,6 +151,20 @@ class ExportHtmlPostProcessor
         element['href'] = new_url.to_s
       end
       modified = true
+      end
+
+    html_doc.css("*[data-disqus-thread-link*='#{host}']").each do |element|
+      disqus_link = element['data-disqus-thread-link']
+      if disqus_link.index('//')
+        new_url = URI.parse(final_base_url_location + disqus_link[disqus_link.index('/', disqus_link.index('//') + 3)..-1])
+        new_url.query = nil
+        element['data-disqus-thread-link'] = new_url.to_s
+      else
+        new_url = URI.parse(final_base_url_location + disqus_link)
+        new_url.query = nil
+        element['data-disqus-thread-link'] = new_url.to_s
+      end
+      modified = true
     end
 
     @log.info("\tRemoved Drupal host identifying markup.") if modified
