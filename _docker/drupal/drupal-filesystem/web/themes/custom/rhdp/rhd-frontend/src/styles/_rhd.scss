@@ -152,7 +152,7 @@ a {
   }
 }
 
-p a:hover {
+p a:not(.button):hover {
   border-bottom: 1px solid #DCDCDC;
 }
 
