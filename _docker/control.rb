@@ -102,7 +102,7 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
       end
     end
 
-    raise StandardError("#{service_name} appears to be down.") unless up
+    raise StandardError.new("#{service_name} appears to be down.") unless up
 
     puts "Service '#{service_name}' is up on '#{target_url}'"
 
