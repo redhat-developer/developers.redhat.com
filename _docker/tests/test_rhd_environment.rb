@@ -32,6 +32,27 @@ class TestRhdEnvironment < MiniTest::Test
 
   end
 
+  def test_should_get_docker_host_for_drupal_dev
+    @environment.environment_name = 'drupal-dev'
+    assert_equal('docker', @environment.get_docker_host)
+  end
+
+  def test_should_get_docker_host_for_drupal_pr
+    @environment.environment_name = 'drupal-pull-request'
+    assert_equal('rhdp-jenkins-slave.lab4.eng.bos.redhat.com', @environment.get_docker_host)
+  end
+
+  def test_should_get_docker_host_for_drupal_staging
+    @environment.environment_name = 'drupal-staging'
+    assert_equal('rhdp-drupal.stage.redhat.com', @environment.get_docker_host)
+  end
+
+  def test_should_get_docker_host_for_drupal_staging
+    @environment.environment_name = 'drupal-production'
+    assert_equal('rhdp-drupal.redhat.com', @environment.get_docker_host)
+  end
+
+
   def test_drupal_pr_environment_does_not_preselect_port_if_required_env_variable_empty
     ENV['ghprbPullId'] = ''
     @environment.environment_name = 'drupal-pull-request'

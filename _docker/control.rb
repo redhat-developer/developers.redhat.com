@@ -253,34 +253,9 @@ def build_environment_resources(environment, system_exec)
 
 end
 
-#
-# This works around using docker-machine in non-native docker environments e.g. on a Mac.
-# In that scenario, host-mapped container ports are *not* mapped to localhost, instead they are mapped
-# to the VM provisioned by docker-machine.
-#
-# Users are expected to set a host alias of 'docker' for the VM that is running their docker containers. If
-# this alias does not exist, then we have to assume that Docker is running directly on the local machine.
-#
-# Note: We cannot rely on 'docker inspect' to determine this as it reports the host IP as 0.0.0.0 in a
-# docker-machine environment, presumably because that makes sense in the context of the docker-machine install.
-#
-def determine_docker_host_for_container_ports
-
-  begin
-    docker_host = Resolv.getaddress('docker')
-    puts "Host alias for 'docker' found. Assuming container ports are exposed on ip '#{docker_host}'"
-  rescue
-    docker_host = Resolv.getaddress(Socket.gethostname)
-    puts "No host alias for 'docker' found. Assuming container ports are exposed on '#{docker_host}'"
-  end
-
-  docker_host
-
-end
-
 def bind_drupal_container_details_into_environment(environment, supporting_services)
   if check_supported_service_requested(supporting_services, 'drupal')
-    drupal_host = determine_docker_host_for_container_ports
+    drupal_host = environment.get_docker_host
     drupal_port = get_host_mapped_port_for_container(environment, 'drupal', '80/tcp')
 
     # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
