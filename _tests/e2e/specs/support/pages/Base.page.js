@@ -33,7 +33,14 @@ export class Base {
     }
 
     visit(url) {
-        browser.url(url);
+        try {
+            return browser.url(url);
+        } catch (err) {
+            if (err && err.message.indexOf('stale element reference') >= 0) {
+                console.log('[safeIsVisible] Got stale element reference; trying again...');
+                return  browser.url(url);
+            }
+        }
     }
 
     awaitIsLoggedIn(siteUser) {
@@ -142,15 +149,6 @@ export class Base {
             browser.selectByValue(selector, value);
         } else {
             return selector.selectByValue(value);
-        }
-    }
-
-    selectByText(selector, value) {
-        this.awaitExists(selector);
-        if (typeof selector === 'string') {
-            browser.selectByVisibleText(selector, value);
-        } else {
-            return selector.selectByVisibleText(value);
         }
     }
 
