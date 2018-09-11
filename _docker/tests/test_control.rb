@@ -81,7 +81,7 @@ class TestControl < Minitest::Test
     service_port = '80/tcp'
     service_url = 'user/login'
 
-    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
+    environment.expects(:get_docker_host).returns('127.0.0.1')
     expects(:get_host_mapped_port_for_container).with(environment, 'drupal', service_port).returns('80').times(2)
 
     response = mock()

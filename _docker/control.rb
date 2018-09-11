@@ -78,7 +78,7 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
 
     puts "Waiting for service '#{service_name}' to start..."
 
-    host = determine_docker_host_for_container_ports
+    host = environment.get_docker_host
     port = get_host_mapped_port_for_container(environment, service_name, service_port)
 
     target_url = "http://#{host}:#{port}/#{service_url}"
