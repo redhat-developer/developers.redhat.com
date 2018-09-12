@@ -19,6 +19,11 @@ targetEntityType: node
 bundle: promotion_card
 mode: teaser
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_container_external_link:
     type: link
     weight: 1
