@@ -1,0 +1,23 @@
+uuid: b50445a0-3758-4388-8e79-17d84a81a6ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_search
+    - node.type.video_resource
+id: node.video_resource.field_exclude_from_search
+field_name: field_exclude_from_search
+entity_type: node
+bundle: video_resource
+label: 'Exclude from search'
+description: 'Select to exclude this page from the Search page results.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

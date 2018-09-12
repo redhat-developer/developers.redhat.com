@@ -10,10 +10,12 @@ import {Utils} from './support/Utils';
 const tags = require('mocha-tags');
 
 tags('desktop').describe('Download Manager', function () {
+    this.retries(2);
     let downloadDir, downloadName, siteUser;
     let home, login, additionalInformation;
 
     beforeEach(function () {
+        new Utils().logout(process.env.RHD_BASE_URL);
         login = new Login();
         home = new Home();
         additionalInformation = new AdditionalInformation();
@@ -22,17 +24,12 @@ tags('desktop').describe('Download Manager', function () {
     });
 
     afterEach(function () {
-        try {
-            new Utils().logout(process.env.RHD_BASE_URL);
-        } catch (e) {
-            new Utils().logout(process.env.RHD_BASE_URL);
-        }
+        new Utils().logout(process.env.RHD_BASE_URL);
         downloadDir.clear(global.downloadDir)
     });
 
-    tags('sanity', 'dm')
-        .it('should allow users to login in and download RHEL', function () {
-            this.retries(1);
+    tags('dm')
+        .it('@sanity : should allow users to login in and download RHEL', function () {
             siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
@@ -135,9 +132,8 @@ tags('desktop').describe('Download Manager', function () {
             expect(downloadName.toString()).to.include('rhel');
         });
 
-    tags('sanity', 'dm')
-        .it('should allow users to log-in and download advanced-linux-commands', function () {
-            this.retries(1);
+    tags('dm')
+        .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
@@ -146,8 +142,6 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitLoaded();
             cheatSheet
                 .clickLoginToDownloadBtn();
-            login
-                .awaitLogin();
             login
                 .with(siteUser);
             home

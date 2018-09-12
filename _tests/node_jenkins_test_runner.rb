@@ -127,17 +127,21 @@ class NodeJenkinsTestRunner
       command += " --browser=#{rhd_js_driver}"
     end
     command += " --profile=#{profile}"
-    if mocha_tags.nil?
-      if profile == 'desktop'
-        command += ' --mocha-tags=not:stage'
-      else
-        command += ' --mocha-tags=not:desktop'
-      end
+    if @test_type == 'sanity'
+      command += "  --mocha-tags=mochaOpts.grep=@sanity"
     else
-      if profile == 'desktop'
-        command += " --mocha-tags=#{mocha_tags}"
+      if mocha_tags.nil?
+        if profile == 'desktop'
+          command += '  --mocha-tags=tags=not:stage'
+        else
+          command += ' --mocha-tags=tags=not:desktop'
+        end
       else
-        command += " --mocha-tags=#{mocha_tags}"
+        if profile == 'desktop'
+          command += "  --mocha-tags=tags=#{mocha_tags}"
+        else
+          command += "  --mocha-tags=tags=#{mocha_tags}"
+        end
       end
     end
     command
