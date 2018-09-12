@@ -301,13 +301,15 @@ function rhdp_preprocess_node(&$variables) {
   // Add icon for 'login required' resources
   if ($variables['view_mode'] == 'card') {
     $variables['login_req'] = false;
-    foreach (['field_book_url', 'field_cheat_sheet_download_url', 'field_source_link'] as $field) {
+    foreach (['field_book_url', 'field_cheat_sheet_download_url', 'field_source_link', 'field_pdf_link', 'field_mobi_link', 'field_epub'] as $field) {
       if ($node->hasField($field)) {
         $ext_url = $node->get($field)->getValue();
         if (count($ext_url)) {
           $ext_url_uri = reset($ext_url)['uri'];
-          if (strpos($ext_url_uri, 'developers.redhat.com/download-manager/') >= 0) {
+          if (strpos($ext_url_uri, 'developers.redhat.com/download-manager/') !== false) {
             $variables['login_req'] = true;
+            // we have a download-manager link break loop no need to continue!
+            break;
           }
         }
       }
