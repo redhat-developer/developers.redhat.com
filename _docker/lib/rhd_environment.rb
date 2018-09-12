@@ -134,6 +134,21 @@ class RhdEnvironment
     @environment_name == 'drupal-staging' or @environment_name == 'drupal-production'
   end
 
+  def get_docker_host
+    case @environment_name
+      when 'drupal-dev'
+        return 'docker'
+      when 'drupal-pull-request'
+        return 'rhdp-jenkins-slave.lab4.eng.bos.redhat.com'
+      when 'drupal-staging'
+        return 'rhdp-drupal.stage.redhat.com'
+      when 'drupal-production'
+        return 'rhdp-drupal.redhat.com'
+      else
+        raise StandardError "Cannot determine Docker host for environment '#{@environment_name}'"
+    end
+  end
+
   #
   # Provides the list of supporting services that should be started in each environment before
   # running Awestruct

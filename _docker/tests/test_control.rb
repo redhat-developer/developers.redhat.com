@@ -42,8 +42,8 @@ class TestControl < Minitest::Test
     environment = mock()
     supporting_services = %w(drupal)
 
+    environment.expects(:get_docker_host).returns('127.0.0.1')
     expects(:check_supported_service_requested).with(supporting_services, 'drupal').returns(true)
-    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
     expects(:get_host_mapped_port_for_container).with(environment, 'drupal', '80/tcp').returns('80')
 
     bind_drupal_container_details_into_environment(environment, supporting_services)
@@ -81,7 +81,7 @@ class TestControl < Minitest::Test
     service_port = '80/tcp'
     service_url = 'user/login'
 
-    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
+    environment.expects(:get_docker_host).returns('127.0.0.1')
     expects(:get_host_mapped_port_for_container).with(environment, 'drupal', service_port).returns('80').times(2)
 
     response = mock()
@@ -163,30 +163,6 @@ class TestControl < Minitest::Test
 
     assert_equal(container, get_docker_container(environment, container_name))
 
-  end
-
-  def test_determine_docker_host_for_container_ports_with_docker_host_alias
-
-      host_ip = '10.20.30.40'
-      # won't execute if docker defined.
-      # Socket.expects(:gethostname).returns('localhost')
-      # Resolv.expects(:getaddress).with('localhost').returns(host_ip)
-
-      docker_machine_ip = '192.168.0.1'
-      Resolv.expects(:getaddress).with('docker').returns(docker_machine_ip)
-
-      assert_equal(docker_machine_ip, determine_docker_host_for_container_ports)
-  end
-
-  def test_determine_docker_host_for_container_ports_with_no_docker_host_alias
-
-    host_ip = '10.20.30.40'
-
-    Socket.expects(:gethostname).returns('localhost')
-    Resolv.expects(:getaddress).with('localhost').returns(host_ip)
-    Resolv.expects(:getaddress).with('docker').raises(StandardError.new('No docker alias here!'))
-
-    assert_equal(host_ip, determine_docker_host_for_container_ports)
   end
 
   def test_start_and_wait_for_supporting_services
