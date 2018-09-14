@@ -11,7 +11,7 @@ services:
     - GRID_PORT=4444
 
   blinkr_chrome:
-    image: selenium/standalone-chrome-debug:3.14.0-arsenic
+    image: selenium/standalone-chrome-debug:3.14.0-dubnium
     volumes:
     - /dev/shm:/dev/shm
     ports:

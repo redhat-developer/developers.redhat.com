@@ -6,11 +6,6 @@ skips:
 - !ruby/regexp /^http:\/\/registry.access.redhat\.com\/.*/
 - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
 - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
-- http://10.1.2.2:8000/
-- http://cow.org:8080
-- https://horse.org:4443
-- https://openshift.example.com/
-- http://ticketmonster-your_domain.rhcloud.com/
 - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
 - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
 - !ruby/regexp /(.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
@@ -48,6 +43,17 @@ skips:
 - !ruby/regexp /^https:\/\/developers\.redhat\.com\/download-manager\/file\/(.*)/
 - !ruby/regexp /^https?:\/\/(www\.)?slideshare\.net\/(.*)/
 - !ruby/regexp /^https?:\/\/(www\.)?devnation\.org\/(.*)/
+# download page has been removed - it should not be in the sitemap
+- !ruby/regexp /^https:\/\/developers\.redhat\.com\/downloads/
+- !ruby/regexp /^https:\/\/developers\.redhat\.com\/media\-download\-confirmation\/null/
+- http://subscription.rhn.redhat.com
+- http://10.1.2.2:8000/
+- http://cow.org:8080
+- https://horse.org:4443
+- https://openshift.example.com/
+- http://ticketmonster-your_domain.rhcloud.com/
+- https://homebrew.bintray.com/bottles/libedit-20180525-3.1.high_s
+- https://developers.redhat.com/blog/user/login/
 
 ignores:
 - code: 0
