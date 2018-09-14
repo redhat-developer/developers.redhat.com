@@ -5,11 +5,8 @@ dependencies: {  }
 id: published
 workflow: 00c7e3ae
 transitions:
-  draft_published: draft_published
   needs_review_published: needs_review_published
-  published_published: published_published
 roles:
-  content_team: content_team
   content_admin: content_admin
 author: true
 emails: ''
