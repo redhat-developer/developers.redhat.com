@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'mocha/mini_test'
 
 require_relative '../test_helper'
-require_relative '../../../_tests/lib/run_test_options'
+require_relative '../../../_tests/run_test_options'
 
 class TestRunTestOptions < MiniTest::Test
 
