@@ -6,9 +6,7 @@ id: review_requested
 workflow: 00c7e3ae
 transitions:
   needs_review_draft: needs_review_draft
-roles:
-  content_team: content_team
-  content_admin: content_admin
+roles: {  }
 author: true
 emails: ''
 subject: '[node:title] changes requested'

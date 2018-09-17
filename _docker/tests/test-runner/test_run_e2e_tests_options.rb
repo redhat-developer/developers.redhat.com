@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'mocha/mini_test'
 
 require_relative '../test_helper'
-require_relative '../../../_tests/lib/run_test_options'
+require_relative '../../../_tests/run_test_options'
 
 class TestRunTestOptions < MiniTest::Test
 
@@ -35,7 +35,7 @@ class TestRunTestOptions < MiniTest::Test
     Kernel.expects(:abort).with('Please specify a base url. For example --base-url=http://foo.com')
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --use-docker --browser=chrome))
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm run e2e:docker --  --baseUrl=', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:ci --  --baseUrl=', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_e2e_test_execution
@@ -72,9 +72,8 @@ class TestRunTestOptions < MiniTest::Test
 
     assert(test_configuration[:docker])
     assert_equal('firefox', test_configuration[:browser])
-    assert_equal('npm run e2e:docker --  --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:ci --  --baseUrl=http://foo.com', test_configuration[:run_tests_command])
     assert_equal('firefox', ENV['RHD_JS_DRIVER'])
-    assert_equal('firefox', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
   end
