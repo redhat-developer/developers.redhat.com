@@ -1,6 +1,6 @@
-// import {RHDPSearchResult} from './rhdp-search-result';
+import RHDPSearchResult from '@rhd/rhdp-search/rhdp-search-result';
 
-class RHDPSearchResults extends HTMLElement {
+export default class RHDPSearchResults extends HTMLElement {
     _results;
     _more = false;
     _last = 0;

@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-search-sort-page component
 
 describe('Search Sort and Paging', function() {

@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-search-filters component
 
 describe('Search Filters', function() {

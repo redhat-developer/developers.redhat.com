@@ -11,7 +11,7 @@ Alerts – RHD Front-end Code and Documentation
     <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/rhd.min.css">
     
     <link rel="stylesheet" href="https://redhat-developer.github.io/rhd-frontend/css/prism-ghcolors.css">
-    <script src="https://redhat-developer.github.io/rhd-frontend/js/base.js"></script>>
+    <script src="https://redhat-developer.github.io/rhd-frontend/js/base.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
@@ -180,58 +180,53 @@ Alerts – RHD Front-end Code and Documentation
     <main role="main">
     
 <h1 data-rhd-grid="normal"><span data-rhd-col="span12">Alerts</span></h1>
-<section><div data-rhd-grid="normal">
+<section><p><div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert&gt;This is the alert text&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert>This is the alert text</rhdp-alert>
+<rhdp-alert>This is the alert text</rhdp-alert>
 </div>
-
-<p><div data-rhd-grid="normal">
+<div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert heading=&#34;Alert with a Heading:&#34;&gt;This is the alert text&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert heading="Alert with a Heading:">This is the alert text</rhdp-alert>
-</div></p>
-
-<p><div data-rhd-grid="normal">
+<rhdp-alert heading="Alert with a Heading:">This is the alert text</rhdp-alert>
+</div>
+<div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert type=&#34;success&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert type="success" heading="Success Heading:">This is the success text</rhdp-alert>
-</div></p>
-
-<p><div data-rhd-grid="normal">
+<rhdp-alert type="success" heading="Success Heading:">This is the success text</rhdp-alert>
+</div>
+<div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert type=&#34;warning&#34; heading=&#34;Warning Heading:&#34;&gt;This is the warning text&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert type="warning" heading="Warning Heading:">This is the warning text</rhdp-alert>
-</div></p>
-
-<p><div data-rhd-grid="normal">
+<rhdp-alert type="warning" heading="Warning Heading:">This is the warning text</rhdp-alert>
+</div>
+<div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert type=&#34;error&#34; heading=&#34;Error Heading:&#34;&gt;This is the error text&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert type="error" heading="Error Heading:">This is the error text</rhdp-alert>
-</div></p>
-
-<p><div data-rhd-grid="normal">
+<rhdp-alert type="error" heading="Error Heading:">This is the error text</rhdp-alert>
+</div>
+<div data-rhd-grid="normal">
 <pre data-rhd-col="span12" style="max-height: 10em;">
-<code class="language-html"> &lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Success Heading:&#34;&gt;This is the success text&lt;/rhdp-alert&gt;</code>
+<code class="language-html">&lt;rhdp-alert type=&#34;info&#34; size=&#34;xl&#34; heading=&#34;Welcome jboss.org members!&#34;&gt;It&#39;s true &amp;mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. &lt;a href=&#34;https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t&#34;&gt;Read more about this on our blog.&lt;/a&gt;&lt;/rhdp-alert&gt;</code>
 </pre>
 </div>
 <div class="code-sample">
- <rhdp-alert type="info" size="xl" heading="Success Heading:">This is the success text</rhdp-alert>
+<rhdp-alert type="info" size="xl" heading="Welcome jboss.org members!">It's true &mdash; JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com. <a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t">Read more about this on our blog.</a></rhdp-alert>
 </div></p>
 </section>
 

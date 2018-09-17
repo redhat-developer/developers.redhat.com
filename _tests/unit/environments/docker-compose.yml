@@ -3,9 +3,10 @@ services:
   rhd_unit_testing:
     build: ../
     volumes:
-      - ../../../:/home/unit/developers.redhat.com
-    entrypoint: ruby /home/unit/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
-    working_dir: /home/unit/developers.redhat.com/_tests/unit
+      - ../../../_docker/lib/:/home/unit/_docker/lib
+      - ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/:/home/unit/rhd-frontend
+    entrypoint: ruby /home/unit/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
+    # working_dir: /home/unit/developers.redhat.com/_tests/unit
     environment:
       - github_status_enabled
       - github_status_api_token

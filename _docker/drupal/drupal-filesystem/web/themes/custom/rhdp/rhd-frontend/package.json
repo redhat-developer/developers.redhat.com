@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm run docs",
-    "test": "karma start src/tests/config/karma.conf.js",
+    "test": "npm run build && karma start src/tests/unit/config/karma.conf.js",
+    "test:docker": "npm run build && karma start src/tests/unit/config/karma.docker.conf.js",
     "build": "npm run scripts && npm run styles",
     "scripts": "tsc && uglifyjs rhd.js -c -m -o rhd.min.js",
     "scripts:copy": "cpx rhd.js src/docs/themes/rhd/static/js && cpx rhd.min.js src/docs/themes/rhd/static/js",
@@ -23,31 +24,27 @@
   "repository": "https://github.com/redhat-developer/rhd-frontend.git",
   "author": "<ldary@redhat.com>",
   "license": "MIT",
-  "devDependencies": {
-    "browser-sync": "^2.23.6",
+  "dependencies": {
+    "browser-sync": "^2.24.6",
     "cpx": "^1.5.0",
-    "cssnano": "^3.10.0",
-    "eslint": "^4.19.1",
-    "hugo-cli": "^0.4.2",
-    "jasmine-core": "^2.7.0",
+    "cssnano": "^4.0.5",
+    "eslint": "^5.3.0",
+    "hugo-cli": "^0.7.0",
+    "jasmine-core": "^3.1.0",
     "jsdoc": "^3.5.5",
-    "karma": "^1.7.0",
+    "karma": "^2.0.5",
     "karma-chrome-launcher": "^2.2.0",
     "karma-htmlfile-reporter": "^0.3.5",
-    "karma-jasmine": "^1.1.0",
+    "karma-jasmine": "^1.1.2",
     "karma-jasmine-ajax": "^0.1.13",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-spec-reporter": "^0.0.31",
-    "node-sass": "^4.7.2",
-    "postcss-cli": "^5.0.0",
+    "karma-jasmine-html-reporter": "^1.2.0",
+    "karma-spec-reporter": "0.0.32",
+    "node-sass": "^4.9.2",
+    "postcss-cli": "^6.0.0",
     "sassdoc": "^2.5.0",
-    "semantic-release": "^15.1.4",
-    "travis-deploy-once": "^4.4.1",
-    "typescript": "^2.9.0-dev.20180422",
-    "uglify-js": "^3.3.16"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.5",
-    "@fortawesome/fontawesome-pro-solid": "^5.0.10"
+    "semantic-release": "^15.9.5",
+    "travis-deploy-once": "^5.0.2",
+    "typescript": "^3.0.1",
+    "uglify-js": "^3.4.6"
   }
 }

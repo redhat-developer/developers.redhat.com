@@ -152,9 +152,9 @@ app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
 
-var homeLink = document.getElementById('home-link')
-app.ssoConfig.confirmation = homeLink.href + '/confirmation'
-app.ssoConfig.logout_url = homeLink.href
+var homeLink = document.getElementById('home-link') || { href: ''};
+app.ssoConfig.confirmation = homeLink.href + '/confirmation';
+app.ssoConfig.logout_url = homeLink.href;
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 

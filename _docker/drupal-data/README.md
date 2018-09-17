@@ -50,8 +50,6 @@ The `redhatdeveloper/drupal-data` container is built after every successful depl
        volumes:
          - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
          - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
-         - ../../../images:/var/www/drupal/web/images:ro
-         - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
        volumes_from:
         - drupal_data
     
