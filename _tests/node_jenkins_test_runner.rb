@@ -28,10 +28,6 @@ class NodeJenkinsTestRunner
       end
     elsif @test_type == 'dm'
       tests_passed &= execute_e2e('desktop')
-    elsif @test_type == 'blinkr'
-      tests_passed &= execute_blc
-    elsif @test_type == 'dcp'
-      tests_passed &= execute_dcp_checks
     elsif @test_type == 'sanity'
       tests_passed &= execute_e2e('desktop')
     else
@@ -53,51 +49,6 @@ class NodeJenkinsTestRunner
       @process_runner.execute!(test_execution_command)
     rescue
       puts "Run of test profile '#{profile}' failed."
-      success = false
-    end
-    success
-  end
-
-  #
-  # Execute the blc checks, if critical link checks fail it will bail and fail build
-  #
-  def execute_blc
-    success = true
-    test_execution_command = build_blc_run_tests_command
-    begin
-      @process_runner.execute!(test_execution_command)
-    rescue
-      puts 'Run of blc failed.'
-      success = false
-    end
-    success
-  end
-
-  #
-  # Execute the blc checks, if critical link checks fail it will bail and fail build
-  #
-  def execute_dcp_checks
-    success = true
-    test_execution_command = build_dcp_run_tests_command
-    begin
-      @process_runner.execute!(test_execution_command)
-    rescue
-      puts 'Run of dcp broken link checks failed.'
-      success = false
-    end
-    success
-  end
-
-  #
-  # Generate critical pages sitemap.xml
-  #
-  def generate_critical_page_sitemap
-    success = true
-    cmd = "ruby _tests/blc/generate_critical_link_sitemap.rb #{@host_to_test}"
-    begin
-      @process_runner.execute!(cmd)
-    rescue
-      puts 'Failed to generate critical link sitemap.xml'
       success = false
     end
     success
@@ -147,28 +98,6 @@ class NodeJenkinsTestRunner
     command
   end
 
-  #
-  # Builds the command to use to execute the broken-link checks, including whether or not
-  # we should send updates to GitHub
-  #
-  def build_blc_run_tests_command
-    github_sha1 = read_env_variable('ghprbActualCommit')
-    config = read_env_variable('CONFIG')
-    command = "ruby _tests/run_tests.rb --blinkr -c #{config} --base-url=#{@host_to_test}"
-    command += " --update-github-status=#{github_sha1}" if github_sha1
-    command += ' --use-docker'
-    command
-  end
-
-  # Builds the command to use to execute the broken-link checks, including whether or not
-  # we should send updates to GitHub
-  #
-  def build_dcp_run_tests_command
-    command = "ruby _tests/run_tests.rb --dcp --base-url=#{@host_to_test}"
-    command += ' --use-docker'
-    command
-  end
-
   def create_download_dir
     FileUtils.mkdir_p("#{@control_script_directory}/e2e/tmp_downloads")
   end
@@ -187,7 +116,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w(blinkr dcp e2e dm kc sanity)
+  available_test_types = %w(e2e dm kc sanity)
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"
@@ -196,7 +125,7 @@ if $PROGRAM_NAME == __FILE__
 
   host_to_test = ARGV[1]
   if host_to_test.nil? || host_to_test.empty?
-    puts 'Please specify the host to test as the first argument to this script e.g. ruby jenkins_test_runner.rb https://developers.redhat.com'
+    puts 'Please specify the host to test as the first argument to this script e.g. ruby node_jenkins_test_runner.rb https://developers.redhat.com'
     Kernel.exit(1)
   end
   jenkins_test_runner = NodeJenkinsTestRunner.new(test_type, host_to_test, "#{__dir__}", ProcessRunner.new)

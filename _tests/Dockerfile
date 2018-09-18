@@ -10,9 +10,9 @@ RUN curl --silent --location https://rpm.nodesource.com/setup |bash - \
 
 # install ruby and rubygems
 WORKDIR /tmp
-RUN wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz \
-    && tar -xzf /tmp/ruby-2.1.2.tar.gz \
-    && cd ruby-2.1.2/ \
+RUN wget http://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz \
+    && tar -xzf /tmp/ruby-2.5.1.tar.gz \
+    && cd ruby-2.5.1/ \
     && ./configure --disable-install-doc \
     && make \
     && make install \

@@ -1,6 +1,5 @@
 if (typeof process.env.RHD_BASE_URL === 'undefined') {
     process.env.RHD_BASE_URL = 'https://developers.redhat.com';
-    console.log('No base url set, defaulting to staging');
     baseUrl = process.env.RHD_BASE_URL
 } else {
     baseUrl = process.env.RHD_BASE_URL
@@ -105,12 +104,6 @@ exports.config = {
     // webdriverrtc: {},
     // browserevent: {}
     // },
-    //
-    // Test runner services
-    // Services take over a specific job you don't want to take care of. They enhance
-    // your test setup with almost no effort. Unlike plugins, they don't add new
-    // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

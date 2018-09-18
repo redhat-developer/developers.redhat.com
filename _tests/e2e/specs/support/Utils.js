@@ -14,4 +14,5 @@ export class Utils extends Base {
         }
         return this.visit(logoutLink);
     }
+
 }

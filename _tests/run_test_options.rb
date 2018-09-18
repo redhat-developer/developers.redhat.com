@@ -1,6 +1,6 @@
 require 'optparse'
 require 'json'
-require_relative '../../_docker/lib/default_logger'
+require_relative '../_docker/lib/default_logger'
 
 #
 # Class implementation that parses the options supplied to the
@@ -33,17 +33,6 @@ class RunTestOptions
         test_configuration[:e2e] = opt
       end
 
-      opts.on('--blinkr', 'Execute broken link checks') do |opt|
-        test_configuration[:blinkr] = opt
-      end
-
-      opts.on('--dcp', 'Execute dcp broken link checks') do |opt|
-        test_configuration[:dcp] = opt
-      end
-
-      #
-      # e2e and broken link testing commandline options
-      #
       opts.on('--base-url RHD_BASE_URL', String, 'Run the tests against the specified host e.g http://developers.stage.redhat.com') do |host|
         test_configuration[:base_url] = host
       end
@@ -53,9 +42,6 @@ class RunTestOptions
         test_configuration[:verbose] = opt
       end
 
-      #
-      # e2e commandline options
-      #
       opts.on('--browser BROWSER', String, 'The driver to use when running the tests. [default=chrome]') do |browser|
         test_configuration[:browser] = browser
       end
@@ -66,30 +52,6 @@ class RunTestOptions
 
       opts.on('--mocha-tags MOCHA_TAGS', String, 'The mocha tags to run or exclude in test run') do |mocha_tags|
         test_configuration[:mocha_tags] = mocha_tags
-      end
-
-      #
-      # Broken link checking commandline options
-      #
-      opts.on('-c CONFIG_FILE', 'specify the config.yaml file for broken link checks') do |opt|
-        test_configuration[:config] = opt
-      end
-
-      opts.on('-s SINGLE_URL', 'test a single URL, outputting the response to the console') do |opt|
-        test_configuration[:single_url] = opt
-        test_configuration[:base_url] = opt
-      end
-
-      opts.on('--ignore-internal', "Ignore internal URL's") do |opt|
-        test_configuration[:ignore_internal] = opt
-      end
-
-      opts.on('--ignore-external', "Ignore external URL's") do |opt|
-        test_configuration[:ignore_external] = opt
-      end
-
-      opts.on('--ignore-ssl', 'Disable SSL certificate checking for staging environments') do |opt|
-        test_configuration[:ignore_ssl] = opt
       end
 
       #
@@ -121,7 +83,7 @@ class RunTestOptions
     end
     bind_test_type_environment_variable(test_configuration)
     bind_github_status_environment_variables(test_configuration[:github_sha1], ENV['rhd_test'].to_s, test_configuration[:profile])
-    bind_browser_environment_variables(test_configuration[:docker], test_configuration[:browser], test_configuration) if test_configuration[:e2e]
+    bind_browser_environment_variables(test_configuration[:browser]) if test_configuration[:e2e]
     build_test_execution_command(test_configuration)
     test_configuration
   end
@@ -135,20 +97,14 @@ class RunTestOptions
   # and run commands based on the test type.
   #
   def bind_test_type_environment_variable(test_configuration)
-    bind_environment_variable('rhd_test', 'unit') if test_configuration[:unit]
-    bind_environment_variable('rhd_test', 'e2e') if test_configuration[:e2e]
-    bind_environment_variable('rhd_test', 'blinkr') if test_configuration[:blinkr]
-    bind_environment_variable('rhd_test', 'dcp') if test_configuration[:dcp]
+    test_configuration[:unit] ? bind_environment_variable('rhd_test', 'unit') : bind_environment_variable('rhd_test', 'e2e')
   end
 
   #
   # Builds the command that will be used to execute the specified tests
   #
   def build_test_execution_command(test_configuration)
-    test_configuration[:run_tests_command] = build_unit_test_execution_cmd(test_configuration) if test_configuration[:unit]
-    test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration) if test_configuration[:e2e]
-    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) if test_configuration[:blinkr]
-    test_configuration[:run_tests_command] = build_dcp_test_execution_cmd(test_configuration) if test_configuration[:dcp]
+    test_configuration[:unit] ? build_unit_test_execution_cmd(test_configuration) : build_e2e_test_execution_cmd(test_configuration)
   end
 
   #
@@ -164,7 +120,6 @@ class RunTestOptions
       bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
       bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
     end
-    bind_environment_variable('github_status_context', 'broken-link-checks') if test_type == 'blinkr'
   end
 
   #
@@ -205,7 +160,7 @@ class RunTestOptions
       if test_configuration[:browserstack]
         test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
       else
-        test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+        test_configuration[:run_tests_command] = "npm run e2e:ci -- #{run_tests_command}"
       end
     else
       # run tests via a local browser
@@ -217,26 +172,8 @@ class RunTestOptions
   #
   # Checks that the user has supplied us with a valid supported browser
   #
-  def bind_browser_environment_variables(run_in_docker, browser, test_configuration)
-    if browser == 'chrome'
-      if run_in_docker
-        test_configuration[:docker_node] = 'chrome'
-        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
-      end
-      bind_environment_variable('RHD_JS_DRIVER', 'chrome')
-    elsif browser == 'firefox'
-      if run_in_docker
-        test_configuration[:docker_node] = 'firefox'
-        bind_environment_variable('RHD_DOCKER_DRIVER', 'firefox')
-      end
-      bind_environment_variable('RHD_JS_DRIVER', 'firefox')
-    else
-      if run_in_docker
-        test_configuration[:docker_node] = 'chrome'
-        bind_environment_variable('RHD_DOCKER_DRIVER', 'chrome')
-      end
-      bind_environment_variable('RHD_JS_DRIVER', browser)
-    end
+  def bind_browser_environment_variables(browser)
+     bind_environment_variable('RHD_JS_DRIVER', browser)
   end
 
   #
@@ -249,30 +186,5 @@ class RunTestOptions
     default_configuration[:browserstack] = false
     default_configuration[:profile] = 'desktop'
     default_configuration
-  end
-
-  #
-  # Builds broken link checking test command based on given parameters
-  #
-  def build_blc_test_execution_cmd(test_configuration)
-    run_tests_command = ''
-    run_tests_command += " -c #{test_configuration[:config]}" if test_configuration[:config]
-    run_tests_command += " -u #{test_configuration[:base_url]}" if test_configuration[:base_url]
-    run_tests_command += " -s #{test_configuration[:single_url]}" if test_configuration[:single_url]
-    run_tests_command += ' --ignore-internal' if test_configuration[:ignore_internal]
-    run_tests_command += ' --ignore-external' if test_configuration[:ignore_external]
-    run_tests_command += ' --ignore-ssl' if test_configuration[:ignore_ssl]
-    run_tests_command += ' -v' if test_configuration[:verbose]
-    test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
-  end
-
-  #
-  # Builds the command to use to execute the dcp-broken-link checks
-  #
-  def build_dcp_test_execution_cmd(test_configuration)
-    run_tests_command = ''
-    run_tests_command += " --config #{test_configuration[:config]}" if test_configuration[:config]
-    run_tests_command += " --base-url=#{test_configuration[:base_url]}" if test_configuration[:base_url]
-    test_configuration[:run_tests_command] = "bundle exec dcp-checker#{run_tests_command}"
   end
 end
