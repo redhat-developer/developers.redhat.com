@@ -8,6 +8,7 @@ services:
         https_proxy: proxy01.util.phx2.redhat.com:8080
     ports:
       - "80:80"
+    restart: 'unless-stopped'
     volumes:
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
@@ -61,6 +62,7 @@ services:
       - /data/drupal-export:/export
       - /credentials/rsync:/home/jenkins_developer/.ssh
       - ../../../:/home/jenkins_developer/developer.redhat.com
+      - ../../../images:/home/jenkins_developer/developer.redhat.com/_docker/lib/export/static/images:ro
     environment:
      - drupal.export.fail_on_missing
      - drupal.export.final_base_url=https://developers.stage.redhat.com/
