@@ -134,11 +134,11 @@ class RunTestOptions
   # Builds unit-test command for local and inside docker testing
   #
   def build_unit_test_execution_cmd(test_configuration)
-    if test_configuration[:docker]
-      test_configuration[:run_tests_command] = 'npm run test:docker'
-    else
+    # if test_configuration[:docker]
+    #   test_configuration[:run_tests_command] = 'npm run test:docker'
+    # else
       test_configuration[:run_tests_command] = 'npm test'
-    end
+    # end
   end
 
   #
