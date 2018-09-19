@@ -14,7 +14,8 @@ class TestExport < MiniTest::Test
     @export_strategy = mock()
     @rsync_handler = mock()
     @rsync_destination = 'foo@bar:/my/export'
-    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, @rsync_destination)
+    @export_diff = mock()
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, @rsync_destination, @export_diff)
   end
 
   def test_export
@@ -27,12 +28,13 @@ class TestExport < MiniTest::Test
     @page_url_list_generator.expects(:save_sitemap).with(nil, '/export/foo/sitemap.xml')
     @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
     @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination, true)
+    @export_diff.expects(:modified_content_urls).with('/export/foo')
 
     @export.export!
   end
 
   def test_export_with_no_rsync_location
-    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, nil)
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, nil, @export_diff)
 
     url_list_file = mock()
 
