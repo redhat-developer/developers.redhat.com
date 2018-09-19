@@ -67,6 +67,7 @@ services:
     build: ../../export
     volumes:
      - ../../../:/home/jenkins_developer/developer.redhat.com
+     - ../../../images:/home/jenkins_developer/developer.redhat.com/_docker/lib/export/static/images:ro
      - export:/export
     entrypoint: "ruby _docker/lib/export/export.rb docker"
     environment:

@@ -1,0 +1,22 @@
+uuid: 6b0df3e9-6f10-4e8f-a651-9ccc3f966f1e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: devpath_url_path
+label: 'Learning Guide URL Path'
+type: 'canonical_entities:node'
+pattern: '/learn/[node:title]'
+selection_criteria:
+  bb7e0fbd-5909-4c05-94a1-2b0492f68f88:
+    id: node_type
+    bundles:
+      learning_path: learning_path
+    negate: false
+    context_mapping:
+      node: node
+    uuid: bb7e0fbd-5909-4c05-94a1-2b0492f68f88
+selection_logic: and
+weight: -5
+relationships: {  }

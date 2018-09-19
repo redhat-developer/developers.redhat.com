@@ -43,6 +43,7 @@ services:
    build: ../../export
    volumes:
     - ../../../:/home/jenkins_developer/developer.redhat.com
+    - ../../../images:/home/jenkins_developer/developer.redhat.com/_docker/lib/export/static/images:ro
     - ../../awestruct/overlay/ssh-key:/home/jenkins_developer/.ssh
    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'ruby _docker/lib/export/export.rb rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}'"
    network_mode: "host"
