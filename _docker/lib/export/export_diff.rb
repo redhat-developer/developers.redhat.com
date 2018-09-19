@@ -27,13 +27,16 @@ module RedhatDeveloper
       # empty array of changed content. Additionally if the current sitemap.xml is malformed, then again an empty array is returned.
       #
       def modified_content_urls(export_directory)
+        @log.info('Checking to see if any page content has changed since last run of the export...')
         current_sitemap = load_current_sitemap(export_directory)
         return [] if current_sitemap.nil?
 
         previous_sitemap = load_previous_sitemap
         return [] if previous_sitemap.nil?
 
-        check_for_modified_content(current_sitemap, previous_sitemap)
+        content = check_for_modified_content(current_sitemap, previous_sitemap)
+        @log.info("A total of '#{content.size}' pages have changed their content since the last run of the export.")
+        content
       end
 
       private
@@ -55,7 +58,7 @@ module RedhatDeveloper
           return nil
         end
 
-        @log.info("Using sitemap.xml from previous export archived at '#{ previous_export_directory }' to determine any modified content.")
+        @log.info("\tUsing sitemap.xml from previous export archived at '#{ previous_export_directory }' to determine any modified content.")
         load_sitemap_xml("#{ previous_export_directory }/sitemap.xml")
       end
 
@@ -75,7 +78,7 @@ module RedhatDeveloper
           return nil
         end
 
-        @log.info("Using current sitemap.xml at location '#{sitemap_xml_path}'.")
+        @log.info("\tUsing current sitemap.xml at location '#{sitemap_xml_path}'.")
         xml_document
       end
 
@@ -106,12 +109,12 @@ module RedhatDeveloper
           previous_timestamp = previous_urls[url]
 
           if previous_timestamp.nil?
-            @log.info("URL '#{ url }' did not exist in the previous export and is new content. No cache clear required.")
+            @log.info("\tURL '#{ url }' did not exist in the previous export and is new content. No cache clear required.")
             next
           end
 
           if Date.parse(current_timestamp) > Date.parse(previous_timestamp)
-            @log.info("Content of URL '#{ url }' has changed. <lastmod> in current sitemap '#{ current_timestamp }', <lastmod> in previous sitemap '#{ previous_timestamp }'.")
+            @log.info("\tContent of URL '#{ url }' has changed. <lastmod> in current sitemap '#{ current_timestamp }', <lastmod> in previous sitemap '#{ previous_timestamp }'.")
             modified_urls.push(url)
           end
 

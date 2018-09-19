@@ -11,6 +11,9 @@ class DefaultLogger
   # @return A default configured logger instance
   #
   def self.logger
+    # Causes output to be immediately flushed to STDOUT. Without this we lose some logging when the
+    # Docker container exists before the buffer is flushed.
+    STDOUT.sync = true
     log = Logger.new(STDOUT)
     log.formatter = proc do |severity, datetime, _, msg|
       date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
