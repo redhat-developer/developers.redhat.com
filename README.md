@@ -246,7 +246,10 @@ bundle exec ./control.rb -e drupal-dev --export
 Once the export process has completed, you will be able to access the static HTML version of the site at http://docker:9000 on your machine.
 
 
-### To run the frontend unit-tests
+### To run the build related unit-tests
+In the root of the project.
+
+      bundle exec rake test
 
 ### Drupal Configuration Changes
 
