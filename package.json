@@ -4,8 +4,7 @@
   "description": "developers.redhat.com build",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "karma start _tests/unit/config/karma.conf.js",
-    "test:docker": "karma start config/karma.docker.conf.js"
+    "test": "karma start _docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/src/tests/unit/config/karma.conf.js"
   },
   "author": "Red Hat Inc.",
   "license": "",
@@ -21,6 +20,9 @@
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-ajax": "^0.1.13",
     "karma-jasmine-html-reporter": "^1.2.0",
-    "karma-spec-reporter": "0.0.32"
+    "karma-spec-reporter": "0.0.32",
+    "node-sass": "4.5.3",
+    "node-sass-utils": "1.1.2",
+    "typescript": "^2.7.1"
   }
 }

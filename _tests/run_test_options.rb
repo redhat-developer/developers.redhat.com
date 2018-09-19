@@ -134,11 +134,7 @@ class RunTestOptions
   # Builds unit-test command for local and inside docker testing
   #
   def build_unit_test_execution_cmd(test_configuration)
-    if test_configuration[:docker]
-      test_configuration[:run_tests_command] = 'npm run test:docker'
-    else
-      test_configuration[:run_tests_command] = 'npm test'
-    end
+    test_configuration[:run_tests_command] = 'npm test'
   end
 
   #
@@ -173,7 +169,7 @@ class RunTestOptions
   # Checks that the user has supplied us with a valid supported browser
   #
   def bind_browser_environment_variables(browser)
-     bind_environment_variable('RHD_JS_DRIVER', browser)
+    bind_environment_variable('RHD_JS_DRIVER', browser)
   end
 
   #
