@@ -222,6 +222,15 @@ Run `bundle install` from within the `_docker` directory to download the necessa
 Run the unit tests (also available using `guard` locally).
 
       bundle exec ./control.rb -e drupal-dev -t
+      
+### To run the frontend unit-tests
+In the root of the project:
+
+      npm test
+      
+Inside docker (preferred as this is the same as PR environment). In the root of the project directory execute the following command:
+      
+      ruby _tests/run_tests.rb --unit --use-docker          
 
 ### Running the Site Export
 The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
@@ -237,40 +246,8 @@ bundle exec ./control.rb -e drupal-dev --export
 Once the export process has completed, you will be able to access the static HTML version of the site at http://docker:9000 on your machine.
 
 
-### Running Acceptance Tests (slow)
-This section explains how a developer can run the front-end Acceptance Tests.
+### To run the frontend unit-tests
 
-To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
-
-    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
- 
-To run the acceptance tests against the locally running Drupal server
-
-     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker
-
-To run the acceptance tests against the remote host:
-
-    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=host_you_want_to_test
-
-There are a number of short keys that can be used to run the tests on our various environments:
-
-1. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
-2. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
-
-_NOTE:_ - Never run the acceptance tests against production.
-This can interfere with site stats! 
-We have a set of smoke tests that can be ran against production, for a quick sanity check of the site.
-Smoke tests can be executed by running the following: 
-
-    CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production
-
-When working locally, you may find it quicker to run the tests outside of docker.
-Providing you have your stack already running (if testing a local build).
-Execute the following:
-
-    rake features HOST_TO_TEST=host_you_wish_to_test
-    
-    
 ### Drupal Configuration Changes
 
 The easiest way to do this is to make the necessary changes in the UI of Drupal, then export them to the `sync` directory.

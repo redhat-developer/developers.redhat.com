@@ -62,7 +62,6 @@ class RunTest
   end
 
   def run_tests_from_command_line(test_configuration)
-    copy_required_project_resources(test_configuration)
     @log.info("Running #{ENV['rhd_test']} tests from the command line...")
     @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh") if test_configuration[:browserstack]
     @process_runner.execute!(test_configuration[:run_tests_command])

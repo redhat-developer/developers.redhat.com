@@ -14,4 +14,3 @@ WORKDIR /home/unit/
 COPY package.json ./
 RUN npm install
 ENV PATH /home/unit/node_modules/.bin:$PATH
-RUN echo "PWD is: $PWD"
