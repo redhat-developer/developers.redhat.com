@@ -1,0 +1,19 @@
+uuid: 175d029a-c25b-4a7b-91db-d46581d56ff7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.storage.assembly.field_eloqua_json
+id: assembly.eloqua_form_embed.field_eloqua_json
+field_name: field_eloqua_json
+entity_type: assembly
+bundle: eloqua_form_embed
+label: 'Eloqua JSON'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

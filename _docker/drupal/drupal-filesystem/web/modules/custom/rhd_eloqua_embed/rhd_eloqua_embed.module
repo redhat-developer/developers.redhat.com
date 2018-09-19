@@ -1,0 +1,11 @@
+<?php
+
+/**
+* @file
+* Contains rhd_eloqua_embed.module.
+*
+*/
+
+function rhd_eloqua_embed_preprocess_page(array &$variables) {
+  $variables['eloqua_json'] = $variables['page']['#title'];
+}

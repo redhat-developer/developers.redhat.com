@@ -1,0 +1,6 @@
+<div id="GatedFormContainer"></div>
+<script>
+  $.when(dynamicForm.Util.CheckPlugins()).then(function() {
+    dynamicForm.Start({{eloqua_json|raw}});
+  });
+</script>
