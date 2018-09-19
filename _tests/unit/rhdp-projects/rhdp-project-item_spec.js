@@ -192,7 +192,7 @@ describe('RHDP Project Items Component', function() {
             expect(projectsListHTML[9].innerHTML).toEqual('User Forum: <a href="http://userForumLink.com/">userForumLink.com/</a>');
             expect(projectsListHTML[10].innerHTML).toEqual('Dev Forum: <a href="http://devForumLink.com/">devForumLink.com/</a>');
             expect(projectsListHTML[11].innerHTML).toEqual('KnowledgeBase: <a href="http://knowledgebaseLink.com/">knowledgebaseLink.com/</a>');
-            expect(projectsListHTML[12].innerHTML).toEqual('Blog: <a href="http://blogLink.com/">blogLink.com/ <i class="fas fa-external-link"></a>');
+            expect(projectsListHTML[12].innerHTML).toEqual('Blog: <a href="http://blogLink.com/">blogLink.com/</a>');
             expect(projectsListHTML[13].innerHTML).toEqual('Anonymous Source: <a href="http://anonymousLink.com/">anonymousLink.com/</a>');
 
         });
