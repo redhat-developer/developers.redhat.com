@@ -16,27 +16,3 @@
     }
   }
 }
-
-#GatedFormContainer {
- .rh-logo {
-    display: none;
-  }
-  .form-header{
-    h1 {
-      @extend h1;
-    }
-    p,
-    .form-message,
-    .form-content p {
-      @extend p;
-      font-weight: normal;
-    }
-  }
-}
-#GatedFormContainer .control-label,
-#GatedFormContainer .form-content > .form-group:not(#FormSubmitButton-form-group) > :not([type=hidden]):first-child {
-  @extend label;
-}
-#GatedFormContainer .form-content > .form-group:not(:empty):not(#FormSubmitButton-form-group) {
-  margin-bottom: 5px;
-}

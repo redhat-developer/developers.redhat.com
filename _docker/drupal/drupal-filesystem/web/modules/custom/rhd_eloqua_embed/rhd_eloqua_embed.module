@@ -6,6 +6,13 @@
 *
 */
 
-function rhd_eloqua_embed_preprocess_page(array &$variables) {
-  $variables['eloqua_json'] = $variables['page']['#title'];
+function rhd_eloqua_embed_theme($existing, $type, $theme, $path) {
+  return [
+    'rhd_eloqua_embed_page' => [
+      'variables' => [
+        'eloqua_json' => NULL,
+      ],
+      'template' => 'rhd-eloqua-embed-page',
+    ],
+  ];
 }
