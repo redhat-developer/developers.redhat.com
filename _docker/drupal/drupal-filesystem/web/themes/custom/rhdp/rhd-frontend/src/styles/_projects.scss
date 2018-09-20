@@ -84,15 +84,16 @@ ul.featured-projects-results {
     overflow: hidden;
     font-size: emCalc(16);
     a {
-      &:after {
-        font-family: 'FontAwesome';
-        content : "\f08e";
-        margin-left: 5px;
-        font-size: 12px;
+      i {
         color: $link-sm;
       }
-      &[href*="jboss.org"]:after {
-        content :'';
+      &[href*="jboss.org"] {
+        i {
+          display: none;
+        }
+        svg[data-icon="external-link"] {
+          display: none;
+        }
       }
     }
   }
