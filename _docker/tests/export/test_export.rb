@@ -14,9 +14,7 @@ class TestExport < MiniTest::Test
     @export_strategy = mock()
     @rsync_handler = mock()
     @rsync_destination = 'foo@bar:/my/export'
-    @export_diff = mock()
-    @akamai_cache_flush = mock()
-    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, @rsync_destination, @export_diff, @akamai_cache_flush)
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, @rsync_destination)
   end
 
   def test_export
@@ -29,15 +27,12 @@ class TestExport < MiniTest::Test
     @page_url_list_generator.expects(:save_sitemap).with(nil, '/export/foo/sitemap.xml')
     @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
     @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination, true)
-    @export_diff.expects(:modified_content_urls).with('/export/foo').returns(%w(https://foo.com))
-    @akamai_cache_flush.expects(:invalidate_cache_for_urls).with(%w(https://foo.com))
-
 
     @export.export!
   end
 
   def test_export_with_no_rsync_location
-    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, nil, @export_diff, @akamai_cache_flush)
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, nil)
 
     url_list_file = mock()
 
