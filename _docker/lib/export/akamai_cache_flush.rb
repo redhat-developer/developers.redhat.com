@@ -117,7 +117,8 @@ module RedhatDeveloper
 
 
       #
-      # Determines if the process should fail if content is missing from the export
+      # Reads the environment variable 'drupal.export.attempt_invalidate_cache' to see if the cache invalidation
+      # process is currently enabled.
       #
        def should_attempt_cache_invalidate
          attempt_invalidate_cache = ENV['drupal.export.attempt_invalidate_cache']
