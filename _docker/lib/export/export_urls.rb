@@ -1,5 +1,3 @@
-require 'json'
-
 #
 # Small module that can be used a a mixin, primarily for working with URLs provided by the user for
 # the export process
