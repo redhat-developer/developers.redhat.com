@@ -4,14 +4,21 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.eloqua_form_embed
+    - field.field.assembly.eloqua_form_embed.field_audience_selection
     - field.field.assembly.eloqua_form_embed.field_eloqua_json
 id: assembly.eloqua_form_embed.default
 targetEntityType: assembly
 bundle: eloqua_form_embed
 mode: default
 content:
-  field_eloqua_json:
+  field_audience_selection:
     weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_eloqua_json:
+    weight: 3
     settings:
       rows: 10
       placeholder: ''

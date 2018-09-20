@@ -1,15 +1,42 @@
 .assembly-type-eloqua_form_embed {
   .iframe-container {
-    overflow: hidden;
-    padding-top: 56.25%;
     position: relative;
+    overflow: hidden;
+    @extend .container;
+    opacity: 0;
+    height: 0px;
+    margin-bottom: 20px;
     iframe {
-      border: 0;
-      height: 100%;
-      left: 0;
       position: absolute;
       top: 0;
+      left: 0;
+      height: 100%;
       width: 100%;
+      border: 0;
     }
   }
+}
+
+#GatedFormContainer {
+ .rh-logo {
+    display: none;
+  }
+  .form-header{
+    h1 {
+      @extend h1;
+    }
+    p,
+    .form-message,
+    .form-content p {
+      @extend p;
+      font-weight: normal;
+    }
+  }
+}
+#GatedFormContainer .control-label,
+#GatedFormContainer .form-content > .form-group:not(#FormSubmitButton-form-group) > :not([type=hidden]):first-child {
+  @extend label;
+}
+#GatedFormContainer .form-content > .form-group:not(:empty):not(#FormSubmitButton-form-group) {
+  margin-bottom: 5px;
 }
