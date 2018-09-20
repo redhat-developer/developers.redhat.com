@@ -205,7 +205,7 @@ function rhdp_preprocess_page(&$variables) {
 
   // Pull out assemblies to page level for solp
   if ($node && $node->getType() == 'landing_page_single_offer') {
-    foreach(['sections', 'form'] as $field) {
+    foreach(['sections', 'eloqua_form'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
         $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
@@ -493,5 +493,10 @@ function rhdp_preprocess_assembly(&$variables) {
         $audience_selection = implode(',', $audience_selection_values);
         $variables['audience_selection'] = " data-audience={$audience_selection}";
       }
+    }
+
+    if ($assembly->hasField('field_eloqua_json')) {
+      $eloqua_assembly_id = $assembly->id();
+      $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
 }

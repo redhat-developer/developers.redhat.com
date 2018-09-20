@@ -1,0 +1,19 @@
+uuid: 65fd93c9-5dba-4ff7-89aa-805eb09652ff
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_eloqua_json
+field_name: field_eloqua_json
+entity_type: assembly
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
