@@ -6656,16 +6656,20 @@ body.fullbleed .content-wrapper {
         box-shadow: none; }
       .rhd-header .rhd-nav-fixed .search-bar .user-search::placeholder {
         color: #656565 !important; }
+      .rhd-header .rhd-nav-fixed .search-bar .user-search:-webkit-autofill, .rhd-header .rhd-nav-fixed .search-bar .user-search:-webkit-autofill:hover, .rhd-header .rhd-nav-fixed .search-bar .user-search:-webkit-autofill:focus {
+        background-color: transparent; }
       @media (min-width: 576px) {
         .rhd-header .rhd-nav-fixed .search-bar .user-search {
           margin-bottom: 0;
           background-color: transparent; } }
     .rhd-header .rhd-nav-fixed .rhd-nav-search {
-      padding-top: 0 !important; }
+      padding-top: 0 !important;
+      overflow: hidden;
+      transition: 150ms ease-in-out; }
       @media (min-width: 576px) {
         .rhd-header .rhd-nav-fixed .rhd-nav-search {
           position: absolute;
-          right: -50px;
+          right: -60px;
           top: 0; } }
       @media (min-width: 576px) {
         .rhd-header .rhd-nav-fixed .rhd-nav-search #search-button {
@@ -6723,7 +6727,8 @@ body.fullbleed .content-wrapper {
       .rhd-header.rhd-search-open .rhd-menu li {
         display: inline-block; } }
     .rhd-header.rhd-search-open .rhd-menu li.rhd-nav-search {
-      display: inline-block; }
+      display: inline-block;
+      right: -50px; }
 
 .rhd-topic-nav {
   font-weight: bold;
@@ -6862,7 +6867,7 @@ body.fullbleed .content-wrapper {
   z-index: 51;
   margin-left: 0;
   transition: 150ms ease-in-out;
-  width: 30px; }
+  width: 36px; }
   .rhd-nav-search.open {
     width: 110%;
     background-color: #F9F9F9;
@@ -6889,7 +6894,8 @@ body.fullbleed .content-wrapper {
     position: absolute;
     bottom: 0;
     top: 0;
-    left: 13px; }
+    left: 0;
+    padding: 0 10px; }
     .rhd-nav-search .rhd-search-toggle-open:hover, .rhd-nav-search .rhd-search-toggle-open:active, .rhd-nav-search .rhd-search-toggle-open:focus {
       background-color: transparent;
       color: #000;

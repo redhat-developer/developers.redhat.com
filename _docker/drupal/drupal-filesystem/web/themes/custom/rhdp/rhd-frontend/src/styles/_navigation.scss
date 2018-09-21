@@ -243,6 +243,11 @@
         &::placeholder {
           color: #656565 !important;
         }
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+          background-color: transparent;
+        }
         @include tablet-portrait {
           margin-bottom: 0;
           background-color: transparent;
@@ -251,9 +256,11 @@
     }
     .rhd-nav-search {
       padding-top: 0 !important;
+      overflow: hidden;
+      transition: 150ms ease-in-out;
       @include tablet-portrait {
         position: absolute;
-        right: -50px;
+        right: -60px;
         top: 0;
       }
       #search-button {
@@ -328,6 +335,7 @@
         }
         &.rhd-nav-search {
           display: inline-block;
+          right: -50px;
         }
       }
     }
@@ -493,7 +501,7 @@
   z-index: 51;
   margin-left: 0;
   transition: 150ms ease-in-out;
-  width: 30px;
+  width: 36px;
   &.open {
     width: 110%;
     background-color: #F9F9F9;
@@ -525,7 +533,8 @@
     position: absolute;
     bottom: 0;
     top: 0;
-    left: 13px;
+    left: 0;
+    padding: 0 10px;
     &:hover, &:active, &:focus {
       background-color: transparent;
       color: #000;
