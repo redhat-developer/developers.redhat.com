@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.landing_page_single_offer.body
-    - field.field.node.landing_page_single_offer.field_eloqua_form
+    - field.field.node.landing_page_single_offer.field_form
     - field.field.node.landing_page_single_offer.field_meta_tags
     - field.field.node.landing_page_single_offer.field_sections
     - node.type.landing_page_single_offer
@@ -24,24 +24,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_eloqua_form:
-    type: entity_reference_revisions_entity_view
+  field_form:
     weight: 1
-    region: content
     label: hidden
     settings:
       view_mode: default
       link: ''
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   field_sections:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: default

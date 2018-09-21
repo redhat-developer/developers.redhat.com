@@ -205,7 +205,7 @@ function rhdp_preprocess_page(&$variables) {
 
   // Pull out assemblies to page level for solp
   if ($node && $node->getType() == 'landing_page_single_offer') {
-    foreach(['sections', 'eloqua_form'] as $field) {
+    foreach(['sections', 'form'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
         $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
