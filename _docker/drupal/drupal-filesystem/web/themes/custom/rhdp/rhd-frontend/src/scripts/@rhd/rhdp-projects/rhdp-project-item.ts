@@ -339,20 +339,20 @@ class RHDPProjectItem extends HTMLElement {
                     <p>${project.descriptions}</p>
                     <div class="upstream-more-content">
                         <ul class="project-details-list">
-                            ${project.docsLink ? `<li>Docs: <a href="${project.docsLink}">Documentation</a></li>` : ''}
-                            ${project.communityLink ? `<li>Community: <a href="${project.communityLink}">${project.generateViewLink(project.communityLink)}</a></li>` : ''}
-                            ${project.mailingListLink ? `<li>Mailing List: <a href="${project.mailingListLink}">${project.generateViewLink(project.mailingListLink)}</a></li>` : ''}
-                            ${project.chatLink ? `<li>Chat: <a href="${project.chatLink}">${project.generateViewLink(project.chatLink)}</a></li>` : ''}
-                            ${project.jiraLink ? `<li>JIRA: <a href="${project.jiraLink}">${project.generateViewLink(project.jiraLink)}</a></li>` : ''}
-                            ${project.srcLink ? `<li>Source: <a href="${project.srcLink}">${project.generateViewLink(project.srcLink)}</a></li>` : ''}
-                            ${project.githubLink ? `<li>Github: <a href="${project.githubLink}">${project.generateViewLink(project.githubLink)}</a></li>` : ''}
-                            ${project.buildLink ? `<li>Build: <a href="${project.buildLink}">${project.generateViewLink(project.buildLink)}</a></li>` : ''}
-                            ${project.issueTracker ? `<li>Issue: <a href="${project.issueTracker}">${project.generateViewLink(project.issueTracker)}</a></li>` : ''}
-                            ${project.userForumLink ? `<li>User Forum: <a href="${project.userForumLink}">${project.generateViewLink(project.userForumLink)}</a></li>` : ''}  
-                            ${project.devForumLink ? `<li>Dev Forum: <a href="${project.devForumLink}">${project.generateViewLink(project.devForumLink)}</a></li>` : ''}  
-                            ${project.knowledgebaseLink ? `<li>KnowledgeBase: <a href="${project.knowledgebaseLink}">${project.generateViewLink(project.knowledgebaseLink)}</a></li>` : ''} 
-                            ${project.blogLink ? `<li>Blog: <a href="${project.blogLink}">${project.generateViewLink(project.blogLink)}</a></li>` : ''} 
-                            ${project.anonymousLink ? `<li>Anonymous Source: <a href="${project.anonymousLink}">${project.generateViewLink(project.anonymousLink)}</a></li>` : ''} 
+                            ${project.docsLink ? `<li>Docs: <a href="${project.docsLink}">Documentation <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.communityLink ? `<li>Community: <a href="${project.communityLink}">${project.generateViewLink(project.communityLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.mailingListLink ? `<li>Mailing List: <a href="${project.mailingListLink}">${project.generateViewLink(project.mailingListLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.chatLink ? `<li>Chat: <a href="${project.chatLink}">${project.generateViewLink(project.chatLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.jiraLink ? `<li>JIRA: <a href="${project.jiraLink}">${project.generateViewLink(project.jiraLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.srcLink ? `<li>Source: <a href="${project.srcLink}">${project.generateViewLink(project.srcLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.githubLink ? `<li>Github: <a href="${project.githubLink}">${project.generateViewLink(project.githubLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.buildLink ? `<li>Build: <a href="${project.buildLink}">${project.generateViewLink(project.buildLink)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.issueTracker ? `<li>Issue: <a href="${project.issueTracker}">${project.generateViewLink(project.issueTracker)} <i class="fas fa-external-link"></i></a></li>` : ''}
+                            ${project.userForumLink ? `<li>User Forum: <a href="${project.userForumLink}">${project.generateViewLink(project.userForumLink)} <i class="fas fa-external-link"></i></a></li>` : ''}  
+                            ${project.devForumLink ? `<li>Dev Forum: <a href="${project.devForumLink}">${project.generateViewLink(project.devForumLink)} <i class="fas fa-external-link"></i></a></li>` : ''}  
+                            ${project.knowledgebaseLink ? `<li>KnowledgeBase: <a href="${project.knowledgebaseLink}">${project.generateViewLink(project.knowledgebaseLink)} <i class="fas fa-external-link"></i></a></li>` : ''} 
+                            ${project.blogLink ? `<li>Blog: <a href="${project.blogLink}">${project.generateViewLink(project.blogLink)} <i class="fas fa-external-link"></i></a></li>` : ''} 
+                            ${project.anonymousLink ? `<li>Anonymous Source: <a href="${project.anonymousLink}">${project.generateViewLink(project.anonymousLink)} <i class="fas fa-external-link"></i></a></li>` : ''} 
                         </ul>
                     </div>
                 </div>

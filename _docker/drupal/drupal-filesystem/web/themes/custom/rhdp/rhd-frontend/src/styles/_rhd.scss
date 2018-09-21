@@ -275,7 +275,10 @@ a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
 .heavy-cta a[href$=".pdf"]:after,
-.madium-cta a[href$=".pdf"]:after{ display: none; }
+.medium-cta a[href$=".pdf"], 
+.f-dropdown a[href$=".pdf"]{ 
+  display: none; 
+}
 
 a.light-cta{
   color: $link;
