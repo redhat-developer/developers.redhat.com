@@ -80,7 +80,7 @@ module RedhatDeveloper
       #
       def akamai_client
 
-        if(!File.exist?(@edgerc))
+        unless File.exist?(@edgerc)
           @log.warn("\t The configuration file '#{@edgerc}' does not exist or cannot be read.")
           return nil
         end
