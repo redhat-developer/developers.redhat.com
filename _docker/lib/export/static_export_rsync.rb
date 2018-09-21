@@ -2,6 +2,8 @@ require 'tmpdir'
 require_relative '../../lib/process_runner'
 require_relative '../../lib/default_logger'
 require_relative 'export_archiver'
+require_relative 'export_diff'
+require_relative 'akamai_cache_flush'
 
 #
 # This class uses rsync to copy a static export of a Drupal site to a given location on a target host.
@@ -12,11 +14,13 @@ class StaticExportRsync
 
   attr_accessor :empty_directory
 
-  def initialize(process_runner, export_archiver)
+  def initialize(process_runner, export_archiver, export_diff, akamai_cache_flush)
     @process_runner = process_runner
     @log = DefaultLogger.logger
     @empty_directory = Dir.mktmpdir
     @export_archiver = export_archiver
+    @export_diff = export_diff
+    @akamai_cache_flush = akamai_cache_flush
   end
 
   #
@@ -38,7 +42,11 @@ class StaticExportRsync
     rsync(export_directory, final_destination, true)
     @log.info("Completed rsync of '#{export_directory}' to '#{rsync_target_location}.'")
 
-    archive_rsync(export_directory) if archive
+    if archive
+      changed_content = @export_diff.modified_content_urls(export_directory)
+      archive_rsync(export_directory)
+      @akamai_cache_flush.invalidate_cache_for_urls(changed_content)
+    end
   end
 
   def archive_rsync(export_directory)

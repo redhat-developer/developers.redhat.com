@@ -47,6 +47,8 @@ module RedhatDeveloper
         if current_sitemap.nil?
           @log.warn("Unable to locate sitemap.xml for current export at expected location '#{sitemap_xml_path}'. Cannot generate list of URLs to clear from cache.")
         end
+
+        @log.info("\tUsing current sitemap.xml at location '#{sitemap_xml_path}'.")
         current_sitemap
       end
 
@@ -78,7 +80,6 @@ module RedhatDeveloper
           return nil
         end
 
-        @log.info("\tUsing current sitemap.xml at location '#{sitemap_xml_path}'.")
         xml_document
       end
 
