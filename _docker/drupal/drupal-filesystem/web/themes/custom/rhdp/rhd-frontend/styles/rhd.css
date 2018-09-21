@@ -398,7 +398,8 @@ a.button[href$=".pdf"] .fa-file-pdf,
 a.heavy-cta[href$=".pdf"] .fa-file-pdf,
 a.medium-cta[href$=".pdf"] .fa-file-pdf,
 .heavy-cta a[href$=".pdf"] .fa-file-pdf,
-.madium-cta a[href$=".pdf"] .fa-file-pdf {
+.medium-cta a[href$=".pdf"] .fa-file-pdf,
+.f-dropdown a[href$=".pdf"] .fa-file-pdf {
   display: none; }
 
 a.light-cta {
@@ -763,7 +764,7 @@ a.light-cta {
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
-  background-image: url("../images/Blue_Background@2x.png");
+  background-image: url("/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -1345,7 +1346,7 @@ a.light-cta {
   padding-top: 38px;
   padding-bottom: 38px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(/images/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1550,7 +1551,7 @@ a.light-cta {
   padding-top: 30px;
   padding-bottom: 30px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(/images/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1731,7 +1732,7 @@ a.light-cta {
 .assembly-type-events_hero {
   color: #242424;
   background-color: #00B9E4;
-  background-image: url("images/Blue_Background@2x.png");
+  background-image: url("/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -8548,9 +8549,6 @@ ul.toc {
     margin-top: -1.5em; }
     .downloadthankyou .thankyouclose a {
       color: #424242; }
-      .downloadthankyou .thankyouclose a:before {
-        font-family: 'FontAwesome';
-        content: "\f00d"; }
   .downloadthankyou .thankyoupanels i {
     text-align: center;
     color: #94aebd;
@@ -9740,14 +9738,12 @@ ul.featured-projects-results {
   .project-details-list li {
     overflow: hidden;
     font-size: 1rem; }
-    .project-details-list li a:after {
-      font-family: 'FontAwesome';
-      content: "\f08e";
-      margin-left: 5px;
-      font-size: 12px;
+    .project-details-list li a i {
       color: #027CBB; }
-    .project-details-list li a[href*="jboss.org"]:after {
-      content: ''; }
+    .project-details-list li a[href*="jboss.org"] i {
+      display: none; }
+    .project-details-list li a[href*="jboss.org"] svg[data-icon="external-link"] {
+      display: none; }
 
 .project-filters h4, .project-filters .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .project-filters h2 {
   font-size: 23px;
