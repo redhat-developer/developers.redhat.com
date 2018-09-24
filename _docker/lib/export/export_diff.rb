@@ -114,7 +114,7 @@ module RedhatDeveloper
             next
           end
 
-          if Date.parse(current_timestamp) > Date.parse(previous_timestamp)
+          if Time.parse(current_timestamp) > Time.parse(previous_timestamp)
             @log.info("\tContent of URL '#{ url }' has changed. <lastmod> in current sitemap '#{ current_timestamp }', <lastmod> in previous sitemap '#{ previous_timestamp }'.")
             modified_urls.push(url)
           end
