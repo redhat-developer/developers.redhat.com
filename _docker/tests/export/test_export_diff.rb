@@ -50,9 +50,10 @@ class TestExportDiff < MiniTest::Test
     make_export_archives
 
     urls = @export_diff.modified_content_urls(@export_dir)
-    assert_equal(2, urls.size)
+    assert_equal(3, urls.size)
     assert(urls.include?('http://developers.redhat.com/articles/no-cost-rhel-faq'))
     assert(urls.include?('http://developers.redhat.com/about'))
+    assert(urls.include?('http://developers.redhat.com/articles/rhel-what-you-need-to-know'))
   end
 
   def teardown

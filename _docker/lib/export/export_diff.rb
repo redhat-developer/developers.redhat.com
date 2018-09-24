@@ -47,6 +47,8 @@ module RedhatDeveloper
         if current_sitemap.nil?
           @log.warn("Unable to locate sitemap.xml for current export at expected location '#{sitemap_xml_path}'. Cannot generate list of URLs to clear from cache.")
         end
+
+        @log.info("\tUsing current sitemap.xml at location '#{sitemap_xml_path}'.")
         current_sitemap
       end
 
@@ -78,7 +80,6 @@ module RedhatDeveloper
           return nil
         end
 
-        @log.info("\tUsing current sitemap.xml at location '#{sitemap_xml_path}'.")
         xml_document
       end
 
@@ -113,7 +114,7 @@ module RedhatDeveloper
             next
           end
 
-          if Date.parse(current_timestamp) > Date.parse(previous_timestamp)
+          if Time.parse(current_timestamp) > Time.parse(previous_timestamp)
             @log.info("\tContent of URL '#{ url }' has changed. <lastmod> in current sitemap '#{ current_timestamp }', <lastmod> in previous sitemap '#{ previous_timestamp }'.")
             modified_urls.push(url)
           end

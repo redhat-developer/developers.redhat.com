@@ -24,5 +24,6 @@ ENV GEM_HOME /home/jenkins_developer/gems
 RUN mkdir -p /home/jenkins_developer/gems
 RUN gem install nokogiri:1.5.10 \
     octokit:4.0 \
-    typhoeus:0.8.0
+    typhoeus:0.8.0 \
+    akamai-edgegrid:1.0.6
 WORKDIR /home/jenkins_developer/developer.redhat.com
