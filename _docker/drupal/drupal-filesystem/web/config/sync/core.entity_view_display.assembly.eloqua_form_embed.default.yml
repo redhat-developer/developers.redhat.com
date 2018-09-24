@@ -1,0 +1,18 @@
+uuid: e1e9619a-e5c5-4fd4-815e-015bca45dd8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.field.assembly.eloqua_form_embed.field_audience_selection
+    - field.field.assembly.eloqua_form_embed.field_eloqua_json
+id: assembly.eloqua_form_embed.default
+targetEntityType: assembly
+bundle: eloqua_form_embed
+mode: default
+content: {  }
+hidden:
+  field_audience_selection: true
+  field_eloqua_json: true
+  name: true
+  user_id: true
