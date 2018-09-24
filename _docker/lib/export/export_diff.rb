@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'time'
 
 require_relative '../default_logger'
 
