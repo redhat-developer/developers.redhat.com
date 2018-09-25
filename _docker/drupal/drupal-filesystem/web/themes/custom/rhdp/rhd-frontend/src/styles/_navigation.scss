@@ -228,18 +228,56 @@
     }
 
     .search-bar {
+      @include tablet-portrait {
+        margin-bottom: 0;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      textarea:-webkit-autofill,
+      textarea:-webkit-autofill:hover
+      textarea:-webkit-autofill:focus,
+      select:-webkit-autofill,
+      select:-webkit-autofill:hover,
+      select:-webkit-autofill:focus {
+        border: none;
+        -webkit-text-fill-color: #656565;
+        transition: background-color 5000s ease-in-out 0s;
+      }
       .user-search {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        padding-left: 0;
+        border: none;
+        padding-left: 50px;
+        font-size: 16px;
+        color: #656565;
+        font-weight: 300;
+        &:focus, &:hover, &:active {
+          box-shadow: none;
+        }
+        &::placeholder {
+          color: #656565 !important;
+        }
+        @include tablet-portrait {
+          margin-bottom: 0;
+          background-color: transparent;
+        }
       }
     }
     .rhd-nav-search {
       padding-top: 0 !important;
+      overflow: hidden;
+      transition: 150ms ease-in-out;
+      @include tablet-portrait {
+        position: absolute;
+        right: -60px;
+        top: 0;
+      }
+      #search-button {
+        @include tablet-portrait {
+          display: none;
+        }
+      }
     }
-    .rhd-search-wrapper {
-      width: 0;
+    s {
       overflow: hidden;
       transition: 200ms ease-in-out;
     }
@@ -251,6 +289,10 @@
       justify-content: flex-end;
       align-items: center;
       height: 100%;
+      overflow: visible;
+      @include tablet-portrait {
+        position: relative;
+      }
 
       li {
         display: inline-block;
@@ -296,11 +338,12 @@
     .rhd-menu {
       li {
         display: none;
-        @include desktop-small {
+        @include tablet-portrait {
           display: inline-block;
         }
         &.rhd-nav-search {
           display: inline-block;
+          right: -50px;
         }
       }
     }
@@ -464,22 +507,49 @@
   position: relative;
   min-height: 23px;
   z-index: 51;
+  margin-left: 0;
+  transition: 150ms ease-in-out;
+  width: 36px;
   &.open {
-    .rhd-search-wrapper {
-      width: 150px;
+    width: 110%;
+    background-color: #F9F9F9;
+    z-index: 999;
+    .rhd-search-toggle-open {
+      pointer-events: none;
     }
-    .rhd-search-toggle {
-      display: none;
+    .rhd-search-toggle-close {
+      opacity: 1;
+      transform: translateX(-7px) translateY(-50%);
     }
   }
-  .rhd-search-toggle {
+  .rhd-search-toggle-close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(20px) translateY(-50%);
+    opacity: 0;
+    transition: 150ms ease-in-out;
+    cursor: pointer;
+    &:hover, &:focus, &:active {
+      color: #000;
+      background-color: transparent;
+      outline: 0;
+    }
+  }
+  .rhd-search-toggle-open {
     cursor: pointer;
     position: absolute;
     bottom: 0;
-    top: 5px;
+    top: 0;
+    left: 0;
+    padding: 0 10px;
     &:hover, &:active, &:focus {
       background-color: transparent;
       color: #000;
+      outline: 0;
+    }
+    &:active, &:focus {
+      color: #656565;
     }
   }
 }
@@ -496,6 +566,9 @@
 
 .rhd-nav-fixed {
   justify-self: end;
+  @include tablet-portrait {
+    margin-right: 50px;
+  }
   .description {
     display: none;
   }
