@@ -44,6 +44,8 @@ content:
   content_moderation_control:
     weight: -20
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_card_image:
     weight: 10
     label: above
@@ -117,7 +119,7 @@ content:
     region: content
   field_published_date:
     weight: 14
-    label: above
+    label: hidden
     settings:
       format_type: medium
       timezone_override: ''
