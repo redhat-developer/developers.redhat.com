@@ -80,7 +80,7 @@ describe('Search Page', function () {
         expect(search.searchFilter.activeFilter().isVisible()).to.be.false
     });
 
-    it('should not alert when user searches via site-nav search field containing malicious scripts', function () {
+    it('@search should not alert when user searches via site-nav search field containing malicious scripts', function () {
         home.open('/');
         siteNav.searchFor('%3Cscript%3Ealert');
         expect(search.hasAlert()).to.be.false
