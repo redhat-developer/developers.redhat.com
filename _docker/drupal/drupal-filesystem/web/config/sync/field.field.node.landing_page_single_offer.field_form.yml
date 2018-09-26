@@ -1,9 +1,9 @@
-uuid: 406f3baf-58fc-4993-a2f0-e5e623542d52
+uuid: 19249ecb-5894-421e-99ac-f706558b1969
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.form
+    - assembly.assembly_type.eloqua_form_embed
     - field.storage.node.field_form
     - node.type.landing_page_single_offer
   module:
@@ -12,7 +12,7 @@ id: node.landing_page_single_offer.field_form
 field_name: field_form
 entity_type: node
 bundle: landing_page_single_offer
-label: Form
+label: 'Sidebar Form'
 description: ''
 required: false
 translatable: false
@@ -22,7 +22,7 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
-      form: form
+      eloqua_form_embed: eloqua_form_embed
     sort:
       field: _none
     auto_create: false

@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.landing_page_single_offer.field_sections
     - node.type.landing_page_single_offer
   module:
+    - content_moderation
     - entity_browser_entity_form
     - inline_entity_form
     - metatag
@@ -35,15 +36,15 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_form:
-    weight: 5
+    weight: 6
     settings:
       form_mode: default
-      override_labels: true
-      label_singular: form
-      label_plural: forms
+      label_singular: ''
+      label_plural: ''
       allow_new: true
       allow_existing: true
       match_operator: CONTAINS
+      override_labels: false
       collapsible: false
       collapsed: false
       allow_duplicate: false
@@ -53,13 +54,13 @@ content:
     type: inline_entity_form_complex
     region: content
   field_meta_tags:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_sections:
-    weight: 6
+    weight: 7
     settings:
       form_mode: default
       label_singular: ''
@@ -78,7 +79,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 7
+    weight: 8
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -104,6 +105,11 @@ content:
       size: 60
       placeholder: ''
     region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   promote: true
