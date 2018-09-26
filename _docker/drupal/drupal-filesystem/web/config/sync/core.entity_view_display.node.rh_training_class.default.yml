@@ -9,11 +9,13 @@ dependencies:
     - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_published_date
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
+    - datetime
     - image
     - interval
     - link
@@ -25,6 +27,9 @@ targetEntityType: node
 bundle: rh_training_class
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_card_image:
     weight: 109
     label: above
@@ -76,6 +81,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_published_date:
+    weight: 111
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_short_description:
     weight: 102
