@@ -175,12 +175,22 @@ app.downloads.display = function(data) {
 
   // var $latestDownloadsTable = app.downloads.createDownloadTable();
 
+  // create 'try it ' title
+  var $titleContainer = $("<div>").addClass('large-24 columns');
+  var $tryTitle = $("<h4>").addClass('caps').append('Try it');
+  $titleContainer.append($tryTitle);
+
+  // create 'all downloads' title
+  var $allContainer = $("<div>").addClass('large-24 columns');
+  var $allTitle = $("<h4>").addClass('caps').append('All Downloads');
+  $allContainer.append($allTitle);
+
   // past downloads table
   var $allDownloadsTable = $("<div style='display:none;'>").addClass('large-24 columns');
   $allDownloadsTable.append( app.downloads.createDownloadTable(productArray.slice(end) ));
   
   // put everything into an element
-  $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable)
+  $downloads = $('<div>').addClass('rh-downloads').append($titleContainer, $downloadLink, $allContainer, $latestDownloadsTables, $toggleLink, $allDownloadsTable);
 
   // put it into the DOM
   $('.product-downloads').html($downloads);
@@ -235,7 +245,6 @@ $(function() {
       $('.has-download').show();
       app.downloads.display(data);
     });
-
   }
 
   //app.downloads.populateLinks();
