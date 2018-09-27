@@ -9,9 +9,13 @@ dependencies:
     - field.field.node.books.field_book_description
     - field.field.node.books.field_book_excerpt
     - field.field.node.books.field_book_url
+    - field.field.node.books.field_card_image
     - field.field.node.books.field_categories
+    - field.field.node.books.field_cover_image
+    - field.field.node.books.field_difficulty
     - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
+    - field.field.node.books.field_meta_tags
     - field.field.node.books.field_mobi_link
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
@@ -19,9 +23,13 @@ dependencies:
     - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
+    - field.field.node.books.field_share_image
+    - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
+    - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
     - node.type.books
   module:
@@ -37,6 +45,11 @@ targetEntityType: node
 bundle: books
 mode: teaser
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_author:
     weight: 1
     label: visually_hidden
@@ -219,7 +232,12 @@ content:
     region: content
 hidden:
   field_card_image: true
+  field_cover_image: true
   field_difficulty: true
+  field_meta_tags: true
   field_read_time: true
+  field_share_image: true
+  field_short_description: true
+  field_topics: true
   links: true
   workbench_moderation_control: true

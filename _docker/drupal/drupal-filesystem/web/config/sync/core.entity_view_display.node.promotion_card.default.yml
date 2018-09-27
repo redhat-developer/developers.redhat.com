@@ -18,6 +18,11 @@ targetEntityType: node
 bundle: promotion_card
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_container_external_link:
     weight: 103
     label: visually_hidden
@@ -40,6 +45,8 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content

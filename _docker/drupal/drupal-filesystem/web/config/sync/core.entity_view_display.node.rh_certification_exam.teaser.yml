@@ -5,6 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.rh_certification_exam.field_completion_time
+    - field.field.node.rh_certification_exam.field_exclude_from_search
+    - field.field.node.rh_certification_exam.field_image
+    - field.field.node.rh_certification_exam.field_level
+    - field.field.node.rh_certification_exam.field_long_description
+    - field.field.node.rh_certification_exam.field_short_description
+    - field.field.node.rh_certification_exam.field_source_link
+    - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
     - user
@@ -13,9 +20,16 @@ targetEntityType: node
 bundle: rh_certification_exam
 mode: teaser
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
@@ -27,3 +41,4 @@ hidden:
   field_long_description: true
   field_short_description: true
   field_source_link: true
+  field_topics: true
