@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.video_resource.field_card_image
     - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_exclude_from_search
     - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_meta_tags
     - field.field.node.video_resource.field_related_content
@@ -39,6 +40,8 @@ content:
   content_moderation_control:
     weight: -20
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_card_image:
     type: link
     weight: 0
@@ -70,6 +73,7 @@ hidden:
   body: true
   field_difficulty: true
   field_duration: true
+  field_exclude_from_search: true
   field_likes: true
   field_meta_tags: true
   field_related_content: true

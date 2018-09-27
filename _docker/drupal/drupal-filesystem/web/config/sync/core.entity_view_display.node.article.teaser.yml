@@ -40,24 +40,10 @@ content:
     label: hidden
     region: content
   content_moderation_control:
-    weight: 0
-    region: content
+    weight: -20
     settings: {  }
     third_party_settings: {  }
-  field_article_type:
-    type: list_default
-    weight: 1
     region: content
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
   field_content_author:
     weight: 5
     label: visually_hidden
