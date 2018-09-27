@@ -1,6 +1,6 @@
-import {Base} from "../Base.page"
+import {Page} from "../Page"
 
-export class Login extends Base {
+export class Login extends Page {
 
     constructor() {
         super({
@@ -26,14 +26,15 @@ export class Login extends Base {
 
     isDisplayed() {
         this.waitForPageTitle('Log In', 30000);
-        return this.displayed(this.getSelector('usernameField'))
+        return this.displayed(this.getSelector('usernameField'));
     }
 
     feedback() {
-        return this.textOf(this.getSelector('kcFeedback'), 30000)
+        return this.textOf(this.getSelector('kcFeedback'), 30000);
     }
 
     with(user) {
+        this.awaitLogin();
         this.type(user['email'], this.getSelector('usernameField'));
         this.type(user['password'], this.getSelector('passwordField'));
         this.clickOn(this.getSelector('loginButton'));

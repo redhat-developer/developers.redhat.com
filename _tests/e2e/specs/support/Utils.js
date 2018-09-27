@@ -1,8 +1,8 @@
-import {Base} from "../support/pages/Base.page";
+import {Page} from "./pages/Page";
 
 const qs = require('querystring');
 
-export class Utils extends Base {
+export class Utils extends Page {
 
     logout(baseUrl) {
         let logoutLink;

@@ -1,6 +1,6 @@
-import {Base} from "../Base.page"
+import {Page} from "../Page"
 
-export class Register extends Base {
+export class Register extends Page {
 
     constructor() {
         super({path: '/register'});

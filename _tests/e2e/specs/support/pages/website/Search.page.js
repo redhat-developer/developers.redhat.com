@@ -1,10 +1,10 @@
-import {Base} from '../Base.page';
+import {Page} from '../Page';
 import {SearchFilter} from './components/search/SearchFilter';
 import {SearchOneBox} from './components/search/SearchOneBox';
 import {SearchResults} from './components/search/SearchResults';
 import {SearchResultSort} from './components/search/SearchResultSort';
 
-export class Search extends Base {
+export class Search extends Page {
 
     constructor() {
         super({
