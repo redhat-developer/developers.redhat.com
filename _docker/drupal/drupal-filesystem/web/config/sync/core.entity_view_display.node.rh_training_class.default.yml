@@ -25,6 +25,11 @@ targetEntityType: node
 bundle: rh_training_class
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_card_image:
     weight: 109
     label: above

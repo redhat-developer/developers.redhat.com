@@ -30,6 +30,11 @@ targetEntityType: node
 bundle: topic
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_blue_card_description:
     type: text_default
     weight: 0

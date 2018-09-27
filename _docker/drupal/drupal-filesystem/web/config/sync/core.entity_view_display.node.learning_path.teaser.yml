@@ -5,6 +5,20 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.learning_path.body
+    - field.field.node.learning_path.field_audience
+    - field.field.node.learning_path.field_card_image
+    - field.field.node.learning_path.field_completion_time
+    - field.field.node.learning_path.field_learning_path_content_item
+    - field.field.node.learning_path.field_long_description
+    - field.field.node.learning_path.field_related_learning_path_s_
+    - field.field.node.learning_path.field_related_product_s_
+    - field.field.node.learning_path.field_related_programming_langua
+    - field.field.node.learning_path.field_related_red_hat_certificat
+    - field.field.node.learning_path.field_related_topic_s_
+    - field.field.node.learning_path.field_requirements_an_or_pre_req
+    - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_topics
+    - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
     - text
@@ -22,9 +36,16 @@ content:
       trim_length: 600
     third_party_settings: {  }
     region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
@@ -41,4 +62,5 @@ hidden:
   field_related_topic_s_: true
   field_requirements_an_or_pre_req: true
   field_short_description: true
+  field_topics: true
   field_value_proposition: true
