@@ -1,5 +1,39 @@
 #rhd-article {
+  padding: 1em;
   padding-top: 2em;
+  @include tablet-portrait {
+    font-size: 18px;
+    line-height: 2.22rem;
+  }
+
+  .gsi {
+    ul, ol {
+      padding-left: 1em;
+      li {
+        margin-left: 1em;
+        padding-left: 0.75em;
+      }
+    }
+  }
+
+  p {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .row {
+    width: auto;
+    max-width: none;
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+
+  .pre-body {
+    margin-bottom: 40px;
+    @include desktop-small {
+      margin-bottom: 70px;
+    }
+  }
 
   .large-5.medium-5.columns{
     position:absolute;
@@ -9,38 +43,39 @@
   .article-tags {
     padding-bottom: 15px;
     padding-right: 15px;
-    position: absolute;
     @include desktop-small-and-down {
       position: relative;
     }
   }
-  .article-info{
+  .article-info {
+    padding: 0;
     border: none;
-    background: $grey-3;
-    padding: 7px 5px;
-    margin-bottom: 2.5em;
+    background-color: transparent;
+    color: #444444;
+    padding: 0 20px;
+    overflow: hidden;
     ul {
-      margin-top: 0;
-      padding: 0 5px 5px 5px;
-      li {
-        width: auto;
-        margin-right: 15px;
-      }
-      .field--name-field-content-author {
+      padding: 0;
+      margin: 0;
+      margin-left: -40px;
+      margin-right: -40px;
+      font-size: 0;
+      > li {
         display: inline-block;
+        width: auto;
+        float: none;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px;
+        @include tablet-portrait {
+          font-size: 18px;
+        }
       }
     }
   }
   .article-content {
-    h2 {
-      border-bottom: 1px solid #d5d5d5;
-      margin-bottom: 20px;
-      padding-bottom: 5px;
-      font-weight: 100;
-      font-size: 16px;
-      @include tablet-landscape {
-        font-size: 32px;
-      }
+    @include desktop-small {
+      margin-right: 25%;
     }
     h3 {
       border-bottom: none;
@@ -49,6 +84,11 @@
       margin-bottom: 10px;
       @include tablet-landscape {
         font-size: 27px;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      &:first-child {
+        margin-top: 0;
       }
     }
   }
