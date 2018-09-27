@@ -32,7 +32,7 @@ Try to minimise the amount of e2e tests we have, as by nature these are slow, an
 The pull request pipeline consists of both desktop and mobile end-to-end tests. The desktop tests excute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
 
 ## Production sanity checks
-As well as testing on PR's we also test in production. These tests are used 
+As well as testing on PR's we also test in production. These tests are a sub-set of the e2e tests, and are used to monitor the status of keycloak, download manager, and DCP. 
 
 ## Retry strategy
 As we're not mocking and using live services, tests sometimes fail. In an attempt to combat this we decided to add retry logic to tests.
