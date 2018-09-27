@@ -1,0 +1,6 @@
+rhd_eloqua_embed.getForm:
+  path: '/rhd/rhd_eloqua_embed/{assembly}'
+  defaults:
+    _controller: '\Drupal\rhd_eloqua_embed\Controller\EloquaEmbedController::getForm'
+  requirements:
+    _permission: 'access content'

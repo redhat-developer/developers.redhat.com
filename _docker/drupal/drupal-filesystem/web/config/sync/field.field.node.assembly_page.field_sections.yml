@@ -8,6 +8,7 @@ dependencies:
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.dynamic_content_list
+    - assembly.assembly_type.eloqua_form_embed
     - assembly.assembly_type.events_hero
     - assembly.assembly_type.events_list
     - assembly.assembly_type.featured_evangelists
@@ -44,6 +45,7 @@ settings:
       static_content_band: static_content_band
       dynamic_content_feed: dynamic_content_feed
       dynamic_content_list: dynamic_content_list
+      eloqua_form_embed: eloqua_form_embed
       events_hero: events_hero
       events_list: events_list
       product_categories: product_categories
