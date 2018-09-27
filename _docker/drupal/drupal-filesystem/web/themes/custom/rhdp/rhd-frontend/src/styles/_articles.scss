@@ -31,6 +31,24 @@
       }
     }
   }
+  .field--name-field-article-highlights {
+    margin: 15px 0;
+    .article-highlight {
+      color: #242424;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 28px;
+      border-left: 4px solid $red;
+      padding-left: 12px;
+      margin: 15px 0;
+      float: left;
+      width: 100%;
+      @include tablet-landscape {
+        font-size: 24px;
+        line-height: 34px;
+      }
+    }
+  }
   .article-content {
     h2 {
       border-bottom: 1px solid #d5d5d5;

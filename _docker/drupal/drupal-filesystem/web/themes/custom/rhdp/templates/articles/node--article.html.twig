@@ -90,6 +90,11 @@ other methods (such as node.delete) will result in an exception.
         {% endif %}
     </div>
   </div>
+  {% if content.field_article_highlights|render %}
+    <div class="row">
+      {{ content.field_article_highlights }}
+    </div>
+  {% endif %}
   <div class="row">
     {% if not hide_toc %}
         <div class="medium-4 columns">
