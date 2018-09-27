@@ -14,7 +14,7 @@
                 {% endif %}
             </li>
             <li>
-                <small>Published: {{ date }}</small>
+                <small>Published: {{ node.createdtime|date('D, m/d/Y') }}</small>
             </li>
             <li class="right share-sm">
                 {% include '@rhd/share.html.twig' %}
