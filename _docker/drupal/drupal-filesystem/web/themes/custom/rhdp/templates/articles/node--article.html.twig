@@ -84,11 +84,10 @@ other methods (such as node.delete) will result in an exception.
                     </li>
                     {% endif %}
                 </ul>
-                <ul class="author-info">
-                    <li><span{{ author_attributes }}>By {{ content.field_content_author|render|striptags }} </span></li>
-                </ul>
+                <div class="share-buttons">
+                    {% include '@rhd/share.html.twig' %}
+                </div>
             </div>
-            {% include '@rhd/share.html.twig' %}
         </div>
     </div>
     <div class="row">
