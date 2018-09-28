@@ -1,0 +1,46 @@
+uuid: 48890b76-8fe5-4223-86f8-23fef54ff644
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.field.assembly.eloqua_form_embed.field_audience_selection
+    - field.field.assembly.eloqua_form_embed.field_eloqua_json
+id: assembly.eloqua_form_embed.default
+targetEntityType: assembly
+bundle: eloqua_form_embed
+mode: default
+content:
+  field_audience_selection:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_eloqua_json:
+    weight: 3
+    settings:
+      rows: 10
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true

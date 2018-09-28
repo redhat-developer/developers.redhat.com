@@ -20,6 +20,9 @@
       };
       $('.rhd-search-toggle').click(function() {
         toggleSearch();
+        if ($('.rhd-nav-search').hasClass('open')) {
+          $('#search_list_text').focus();
+        }
       });
       $('.rhd-search-toggle-overlay').click(function(){
         toggleSearch();

@@ -494,4 +494,9 @@ function rhdp_preprocess_assembly(&$variables) {
         $variables['audience_selection'] = " data-audience={$audience_selection}";
       }
     }
+
+    if ($assembly->hasField('field_eloqua_json')) {
+      $eloqua_assembly_id = $assembly->id();
+      $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
+    }
 }

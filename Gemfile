@@ -45,7 +45,7 @@ gem "octokit", "~> 4.0"
 gem 'docker-api', :require => 'docker'
 gem 'uuid'
 gem 'listen', '3.0.8'
-
+gem 'akamai-edgegrid', '1.0.6'
 # To use Aweplug code from a different location:
 #
 # From a specific GitHub branch. Ommit the 'branch' parameter for 'master'

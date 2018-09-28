@@ -1,0 +1,25 @@
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  <div class="iframe-container">
+    <iframe src="/rhd/rhd_eloqua_embed/{{ eloqua_assembly_id }}" scrolling="no"></iframe>
+  </div>
+</section>
+<script>
+  resizeUnloadedIframe();
+  $(window).resize(function(){
+    resizeLoadedIframe();
+  })
+  function resizeUnloadedIframe() {
+    $('iframe').each(function(){
+      $(this).load(function () {
+        var gatedFormHeight = $(this).contents().find('#GatedFormContainer').height();
+        $(this).parent().height(gatedFormHeight+10).animate({'opacity': 1}, 2000);
+      });
+    });
+  }
+  function resizeLoadedIframe() {
+    $('iframe').each(function(){
+      var gatedFormHeight = $(this).contents().find('#GatedFormContainer').height();
+      $(this).parent().height(gatedFormHeight);
+    });
+  }
+</script>

@@ -5,7 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.landing_page_single_offer.body
+    - field.field.node.landing_page_single_offer.field_form
     - field.field.node.landing_page_single_offer.field_meta_tags
+    - field.field.node.landing_page_single_offer.field_sections
     - node.type.landing_page_single_offer
   module:
     - text
@@ -26,6 +28,8 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content

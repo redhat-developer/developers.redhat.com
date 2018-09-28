@@ -1,18 +1,18 @@
-uuid: 43fb82ca-ce82-47d3-baa7-04b2b4ec29bd
+uuid: 5df00273-dee0-4411-beab-3dc8f2f4100a
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.form
+    - assembly.assembly_type.eloqua_form_embed
     - field.storage.assembly.field_audience_selection
   module:
     - options
-id: assembly.form.field_audience_selection
+id: assembly.eloqua_form_embed.field_audience_selection
 field_name: field_audience_selection
 entity_type: assembly
-bundle: form
+bundle: eloqua_form_embed
 label: 'Audience Selection'
-description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+description: ''
 required: false
 translatable: true
 default_value: {  }
