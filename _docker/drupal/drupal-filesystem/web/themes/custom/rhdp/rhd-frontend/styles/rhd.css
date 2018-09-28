@@ -10622,6 +10622,54 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     #rhd-article {
       font-size: 18px;
       line-height: 2.22rem; } }
+  #rhd-article .a2a_kit {
+    margin-left: -10px; }
+    #rhd-article .a2a_kit a {
+      background-color: #f3f3f3;
+      border-radius: 100%;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+      margin-right: 10px;
+      margin-top: 10px;
+      float: none !important; }
+      @media (min-width: 768px) {
+        #rhd-article .a2a_kit a {
+          margin-top: 0; } }
+      #rhd-article .a2a_kit a:hover > div {
+        opacity: 0.7; }
+  #rhd-article .a2a_button_google_plusone {
+    padding: 3px; }
+    #rhd-article .a2a_button_google_plusone > div:before {
+      content: '';
+      display: block;
+      background: url("../images/design/google-plus-icon.png") !important;
+      width: 100%;
+      height: 100%;
+      background-position: center center !important;
+      background-size: 18px auto !important;
+      background-color: #f3f3f3 !important;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat !important; }
+  #rhd-article .a2a_count {
+    display: none; }
+  #rhd-article .a2a_svg {
+    background-color: transparent !important;
+    border: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: auto !important;
+    transform: translateX(-50%) translateY(-50%); }
+    #rhd-article .a2a_svg path {
+      fill: #000 !important; }
+    #rhd-article .a2a_svg svg {
+      width: 18px; }
   #rhd-article .gsi ul, #rhd-article .gsi ol {
     padding-left: 1em; }
     #rhd-article .gsi ul li, #rhd-article .gsi ol li {
@@ -10656,13 +10704,18 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     background-color: transparent;
     color: #444444;
     padding: 0 20px;
-    overflow: hidden; }
+    overflow: hidden;
+    max-width: 568px; }
+    @media (min-width: 576px) {
+      #rhd-article .article-info {
+        display: flex; } }
     #rhd-article .article-info ul {
       padding: 0;
       margin: 0;
       margin-left: -40px;
       margin-right: -40px;
-      font-size: 0; }
+      font-size: 0;
+      line-height: 1.75; }
       #rhd-article .article-info ul > li {
         display: inline-block;
         width: auto;
@@ -10670,9 +10723,9 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         padding-left: 20px;
         padding-right: 20px;
         font-size: 16px; }
-        @media (min-width: 576px) {
-          #rhd-article .article-info ul > li {
-            font-size: 18px; } }
+  #rhd-article .share-buttons {
+    margin-left: -20px;
+    margin-right: -20px; }
   @media (min-width: 1024px) {
     #rhd-article .article-content {
       margin-right: 25%; } }
@@ -10687,7 +10740,9 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
   #rhd-article .article-content h1:first-child, #rhd-article .article-content h2:first-child, #rhd-article .article-content h3:first-child, #rhd-article .article-content h4:first-child, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-article .disqus-thread-wrapper h2:first-child, .page-node-type-article .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content h5:first-child, #rhd-article .article-content h6:first-child {
     margin-top: 0; }
   #rhd-article .a2a_kit {
-    margin-bottom: 30px; }
+    width: 160px;
+    max-width: 100%;
+    margin: 0; }
   #rhd-article .field--name-field-tags {
     display: inline; }
     #rhd-article .field--name-field-tags .field__item {
