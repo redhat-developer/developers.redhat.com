@@ -138,6 +138,11 @@
   .share-buttons {
     margin-left: -20px;
     margin-right: -20px;
+    @include tablet-portrait {
+      margin: 0;
+      padding-left: 60px;
+      padding-right: 20px;
+    }
   }
   .article-content {
     @include desktop-small {
@@ -159,7 +164,7 @@
     }
   }
   .a2a_kit {
-    width: 160px;
+    width: 187px;
     max-width: 100%;
     margin: 0;
   }

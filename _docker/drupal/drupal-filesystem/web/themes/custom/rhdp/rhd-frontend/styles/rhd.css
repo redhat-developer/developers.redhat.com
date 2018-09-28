@@ -10726,6 +10726,11 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
   #rhd-article .share-buttons {
     margin-left: -20px;
     margin-right: -20px; }
+    @media (min-width: 576px) {
+      #rhd-article .share-buttons {
+        margin: 0;
+        padding-left: 60px;
+        padding-right: 20px; } }
   @media (min-width: 1024px) {
     #rhd-article .article-content {
       margin-right: 25%; } }
@@ -10740,7 +10745,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
   #rhd-article .article-content h1:first-child, #rhd-article .article-content h2:first-child, #rhd-article .article-content h3:first-child, #rhd-article .article-content h4:first-child, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-article .disqus-thread-wrapper h2:first-child, .page-node-type-article .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content h5:first-child, #rhd-article .article-content h6:first-child {
     margin-top: 0; }
   #rhd-article .a2a_kit {
-    width: 160px;
+    width: 187px;
     max-width: 100%;
     margin: 0; }
   #rhd-article .field--name-field-tags {
