@@ -9,13 +9,13 @@
     display: block;
     margin: 0 auto;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_background_r4v1.png') top center / cover repeat-x;
   }
 }
 
 #devnationLive-microsite {
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     h2 { font-size: 2em; }
   }
   .divider {

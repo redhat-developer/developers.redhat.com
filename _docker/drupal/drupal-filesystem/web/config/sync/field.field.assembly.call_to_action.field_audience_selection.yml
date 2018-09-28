@@ -1,0 +1,21 @@
+uuid: 62c31d04-890e-47c9-91d2-3856f2554989
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.call_to_action.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: call_to_action
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

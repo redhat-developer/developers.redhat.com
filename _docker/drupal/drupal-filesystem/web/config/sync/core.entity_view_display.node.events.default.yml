@@ -20,9 +20,9 @@ dependencies:
     - field.field.node.events.field_solution_type
     - field.field.node.events.field_start_date
     - field.field.node.events.field_target_product
+    - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
-    - field.field.node.events.scheduled_update
     - node.type.events
   module:
     - datetime
@@ -39,6 +39,11 @@ targetEntityType: node
 bundle: events
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_data_tags:
     weight: 119
     label: hidden
@@ -181,6 +186,15 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  field_tile_thumbnail:
+    weight: 128
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
   field_title:
     weight: 105
     label: above
@@ -207,5 +221,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  scheduled_update: true
+hidden: {  }

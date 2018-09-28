@@ -1,0 +1,19 @@
+uuid: 88a9afaf-e8a8-445b-9199-8f5b180dfa2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_hero
+    - field.storage.assembly.field_sidebar_title
+id: assembly.events_hero.field_sidebar_title
+field_name: field_sidebar_title
+entity_type: assembly
+bundle: events_hero
+label: 'Sidebar Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

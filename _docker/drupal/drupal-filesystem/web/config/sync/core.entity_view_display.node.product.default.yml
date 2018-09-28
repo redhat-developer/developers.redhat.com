@@ -14,10 +14,10 @@ dependencies:
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
     - field.field.node.product.field_url_product_name
-    - field.field.node.product.scheduled_update
     - node.type.product
   module:
     - entity_reference_revisions
@@ -32,6 +32,11 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_call_to_action_link:
     weight: 10
     label: above
@@ -134,6 +139,6 @@ content:
 hidden:
   field_image: true
   field_product_categories: true
+  field_share_image: true
   field_short_description: true
   links: true
-  scheduled_update: true

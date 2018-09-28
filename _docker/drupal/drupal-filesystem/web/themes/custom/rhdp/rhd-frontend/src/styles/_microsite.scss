@@ -113,7 +113,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   body.fullbleed {
     .row {
       .row {
@@ -212,7 +212,7 @@ body.microsite-multi-page, body.microsite {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   .microsite-nav {
     position: relative;
     z-index: 2;
@@ -312,7 +312,7 @@ body.microsite-multi-page, body.microsite {
 .promotion-header {
     margin-bottom: 4em;
     img {
-      max-width: 320px;
+      max-width: 100%;
     }
     .report-title {
       margin-top: 20px;
@@ -358,7 +358,7 @@ body.microsite-multi-page, body.microsite {
   display: none;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .promotion-header .field__item img {
     max-width: 100%;
   }

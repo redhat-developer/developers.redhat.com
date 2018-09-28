@@ -94,6 +94,7 @@
         &:after{
           content: ", ";
           position: relative;
+          left: -3px;
         }
         &:last-child{
           &:after {
@@ -120,7 +121,7 @@
     display: none;
   }
 
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     padding: 15px;
     .cs-info, .book-info {
       .cs-social, .book-social {
@@ -140,7 +141,7 @@
       margin-right: 0;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .cs-tags {
       margin-top: 20px;
     }
@@ -186,6 +187,14 @@
       -webkit-box-orient: vertical;
       margin-bottom: 0;
     }
-  } 
+  }
 }
 
+.page-node-type-cheat-sheet .disqus-thread-wrapper {
+  padding-top: 40px;
+  border-top: #E4E4E4 1px solid;
+  margin-top:  40px;
+  h2 {
+    @extend h4;
+  }
+}

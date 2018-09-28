@@ -54,13 +54,13 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     assert(File.exist?("#{@export_directory}/nested/nested-file.txt"))
   end
 
-  def test_should_rewrite_access_redhat_com_documentation_links
+  def test_shouldnot_rewrite_access_redhat_com_documentation_links
     @export_post_processor.post_process_html_export('docker', @export_directory)
 
     index_html = get_html_document("#{@export_directory}/index.html")
-    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html',get_link_href(index_html, 'documentation'))
-    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html',get_link_href(index_html, 'documentation-trailing-slash'))
-    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html#foobar',get_link_href(index_html, 'documentation-with-anchor'))
+    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide',get_link_href(index_html, 'documentation'))
+    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/',get_link_href(index_html, 'documentation-trailing-slash'))
+    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide#foobar',get_link_href(index_html, 'documentation-with-anchor'))
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/mypage.html', get_link_href(index_html, 'documentation-with-html'))
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/my.epub', get_link_href(index_html, 'documentation-with-epub'))
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/my.pdf', get_link_href(index_html, 'documentation-with-pdf'))

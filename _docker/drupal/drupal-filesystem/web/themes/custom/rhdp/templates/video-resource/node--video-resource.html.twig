@@ -1,7 +1,7 @@
 <header class="row video-page">
     <div class="large-24 columns">
         <h4 class="content-type-label">Video</h4>
-        <h2>{{ label }}</h2>
+        <h2 class="label-text">{{ label }}</h2>
     </div>
 </header>
 
@@ -75,6 +75,15 @@
         </div>
     </section>
 {% endif %}
-<noscript>
+
+<div class="row">
+    <div class="columns medium-24">
+        {{ content.disqus_thread }}
+    </div>
+</div>
+
+{% if node.field_exclude_from_search.value == '1' %}
+  <noscript>
     <meta name="DCP:WebpageSearchExclude" content="true">
-</noscript>
+  </noscript>
+{% endif %}

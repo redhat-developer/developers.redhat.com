@@ -19,9 +19,11 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 {% if (show_forums or show_stack_overflow) %}
                     <h4>Community Q&amp;A</h4>
                     <p>
-                        See our most popular forum
-                        discussions {% if show_stack_overflow %} and Stack Overflow Q&A posts {% endif %} related
-                        to {{ product_name }}.
+                        See our most popular
+                        {% if show_forums %} forum discussions {% endif %}
+                        {% if (show_forums and show_stack_overflow) %}and{% endif %}
+                        {% if show_stack_overflow %} Stack Overflow Q&A posts {% endif %}
+                        related to {{ product_name }}.
                     </p>
                 {% endif %}
             </div>
@@ -108,7 +110,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                     </li>
                     <li><span><img src="https://static.jboss.org/rhd/images/help_icon_training.svg"
                                    alt="Help Training Icon"></span><span>
-                            <h5 class="caps offset-img">Training &amp; Certifications</h5>
+                            <h5 class="caps">Training &amp; Certifications</h5>
                             <p>Building enterprise apps requires more than self-paced learning. Get formal training, be certified.</p>
                             <a href="https://www.redhat.com/en/services/training">Learn More</a></span>
                     </li>

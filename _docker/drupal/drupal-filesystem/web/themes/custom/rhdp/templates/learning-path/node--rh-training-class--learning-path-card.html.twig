@@ -24,7 +24,7 @@
   <div class="card-info">
     <div class="card-details">
       <div class="dp-content-type {{ node.type.entity.get('type') }}">
-          <i class="fas fa-users"></i> {{node.type.entity.label}}
+          <i class="fas fa-laptop"></i> {{node.type.entity.label}}
       </div>
       {% if node.field_completion_time.value %}
       <div class="dp-duration">
@@ -43,8 +43,8 @@
       </div>
       {% endif %}
     </div>
-    <h4>{{ node.title.value }}</h4>
-    <p>{{ node.field_short_description.value|striptags }}</p>
+    <h4 class="line-clamp-2">{{ node.title.value }}</h4>
+    <p class="line-clamp-3">{{ node.field_short_description.value|striptags }}</p>
     <div class="bio">
       <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
     </div>

@@ -1,5 +1,5 @@
 .wide-hero.devnation2016 {
-  background-image: url('https://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_desktop_21jun2016.png');
+  background-image: url('/images/rhd/microsite/RHDev_pageheader_devnation2016_desktop_21jun2016.png');
   background-size: cover;
   background-position: top center;
   background-repeat: repeat-x;
@@ -10,12 +10,12 @@
   img{
     max-width: 700px;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background-position: top center;
     background-repeat: repeat-x;
   }
   @include mobile-landscape-and-down {
-    background-image: url('https://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_mobile_21jun2016.png');
+    background-image: url('/images/rhd/microsite/RHDev_pageheader_devnation2016_mobile_21jun2016.png');
     min-height: 400px;
     padding-top: 115px;
   }
@@ -119,7 +119,7 @@
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   #videoModal, a.enlarge-video {
     display: none;
   }

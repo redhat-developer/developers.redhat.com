@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - media_entity
+    - media
 _core:
   default_config_hash: fm7okggWKhZ4XPDOu2aXXYCUaki4GxFH4sR4WkSCq-8
 id: media_unpublish_action
 label: 'Unpublish media'
 type: media
-plugin: media_unpublish_action
+plugin: 'entity:unpublish_action:media'
 configuration: {  }

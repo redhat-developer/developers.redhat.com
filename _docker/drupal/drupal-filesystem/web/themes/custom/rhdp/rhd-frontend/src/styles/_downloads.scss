@@ -35,7 +35,7 @@ h3.downloads-header {
       .large-8 {
         margin-left: -.7em;
       }
-      @include tablet-landscape-and-down {
+      @include desktop-small-and-down {
         .large-8 {
           margin-left: 0;
         }
@@ -107,6 +107,7 @@ div.download-loading{
   }
   .version-name {
     text-align: center;
+    margin-bottom: 1.5rem;
   }
 }
 

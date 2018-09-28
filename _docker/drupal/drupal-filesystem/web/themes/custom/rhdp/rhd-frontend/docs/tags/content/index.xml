@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Content on RHD Front-end Code and Documentation</title>
-    <link>https://redhat-developer.github.io/rhd-frontend/tags/content/index.xml</link>
+    <link>https://redhat-developer.github.io/rhd-frontend/tags/content/</link>
     <description>Recent content in Content on RHD Front-end Code and Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/content/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2017 15:04:51 -0400</lastBuildDate>
+    
+	<atom:link href="https://redhat-developer.github.io/rhd-frontend/tags/content/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Notifications</title>
@@ -14,139 +17,8 @@
       <pubDate>Thu, 03 Aug 2017 15:04:51 -0400</pubDate>
       
       <guid>https://redhat-developer.github.io/rhd-frontend/patterns/content/notifications/</guid>
-      <description>
-
-&lt;h1 id=&#34;alerts&#34;&gt;Alerts&lt;/h1&gt;
-
-&lt;h2 id=&#34;information&#34;&gt;Information&lt;/h2&gt;
-
-&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;div class=&amp;#34;alert-box alert-info&amp;#34;&amp;gt;
-&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
-&amp;lt;strong&amp;gt;Info:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;div class=&#34;alert-box alert-info&#34;&gt;
-&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
-&lt;div class=&#34;alert-content&#34;&gt;
-&lt;strong&gt;Info:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id=&#34;success&#34;&gt;Success&lt;/h2&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;div class=&amp;#34;alert-box alert-success&amp;#34;&amp;gt;
-&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
-&amp;lt;strong&amp;gt;Success:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;div class=&#34;alert-box alert-success&#34;&gt;
-&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
-&lt;div class=&#34;alert-content&#34;&gt;
-&lt;strong&gt;Success:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;div class=&amp;#34;alert-box alert-warning&amp;#34;&amp;gt;
-&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
-&amp;lt;strong&amp;gt;Warning:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;div class=&#34;alert-box alert-warning&#34;&gt;
-&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
-&lt;div class=&#34;alert-content&#34;&gt;
-&lt;strong&gt;Warning:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;error&#34;&gt;Error&lt;/h2&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;div class=&amp;#34;alert-box alert-error&amp;#34;&amp;gt;
-&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
-&amp;lt;strong&amp;gt;Error:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;div class=&#34;alert-box alert-error&#34;&gt;
-&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
-&lt;div class=&#34;alert-content&#34;&gt;
-&lt;strong&gt;Error:&lt;/strong&gt;&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;information-xlarge&#34;&gt;Information XLarge&lt;/h2&gt;
-
-&lt;p&gt;&lt;div data-rhd-grid=&#34;normal&#34;&gt;
-&lt;pre data-rhd-col=&#34;span12&#34; style=&#34;max-height: 10em;&#34;&gt;
-&lt;code class=&#34;language-html&#34;&gt;
-&amp;lt;div class=&amp;#34;alert-box alert-xl&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt;
-&amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt;
-&amp;lt;h3&amp;gt;hello world&amp;lt;/h3&amp;gt;
-&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;a class=&amp;#34;close&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
-&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;code-sample&#34;&gt;
-
-&lt;div class=&#34;alert-box alert-xl&#34;&gt;&lt;div class=&#34;row&#34;&gt;
-&lt;div class=&#34;icon&#34;&gt;&lt;/div&gt;
-&lt;div class=&#34;alert-content&#34;&gt;
-&lt;h3&gt;hello world&lt;/h3&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda. Ei possim feugait definitionem vis, nec epicuri insolens recteque no, in eum quod noster. At solet temporibus quo. Te est erat etiam vivendum, qui nominati deseruisse assueverit id. Adhuc falli inciderint eos ut. At mel modo partem. Vel eu copiosae scaevola elaboraret, alii mollis in vis. Duo scripta quaeque oportere an, eum laoreet sadipscing ne, quo movet delenit id. Cu ius tollit dissentiunt.&lt;/p&gt;
-&lt;/div&gt;
-&lt;a class=&#34;close&#34;&gt;&lt;/a&gt;
-&lt;/div&gt;&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;
-</description>
+      <description>Alerts Information &amp;lt;div class=&amp;#34;alert-box alert-info&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt; &amp;lt;strong&amp;gt;Info:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;     Info:Lorem ipsum dolor sit amet, per id case aliquam expetenda.
+   Success &amp;lt;div class=&amp;#34;alert-box alert-success&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;alert-content&amp;#34;&amp;gt; &amp;lt;strong&amp;gt;Success:&amp;lt;/strong&amp;gt;&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, per id case aliquam expetenda.&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;     Success:Lorem ipsum dolor sit amet, per id case aliquam expetenda.</description>
     </item>
     
     <item>

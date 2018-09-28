@@ -3,7 +3,7 @@
 }
 
 .about-header {
-  background: url('https://static.jboss.org/images/rhd/headers/about_hero_banner_2000x446.png') top center / cover no-repeat;
+  background: url('/images/rhd/headers/about_hero_banner_2000x446.png') top center / cover no-repeat;
   height: 446px;
   h2, h3, h3, h5, p {
     color: $white;
@@ -64,7 +64,7 @@
     float: right;
     margin-right: 15%;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     .float-content {
       float: none;
       margin-right: 0;
@@ -181,7 +181,7 @@
     display: block;
     margin: 9% auto 0 auto;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     a.button {
       margin: 0 auto;
     }

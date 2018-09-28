@@ -8,12 +8,16 @@ dependencies:
     - field.field.node.video_resource.field_card_image
     - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_exclude_from_search
     - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_meta_tags
     - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_share_image
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_topics
+    - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -22,7 +26,6 @@ dependencies:
     - field.field.node.video_resource.field_video_thumbnail_url
     - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
-    - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
     - link
@@ -34,6 +37,11 @@ targetEntityType: node
 bundle: video_resource
 mode: tile
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_card_image:
     type: link
     weight: 0
@@ -65,8 +73,11 @@ hidden:
   body: true
   field_difficulty: true
   field_duration: true
+  field_exclude_from_search: true
   field_likes: true
+  field_meta_tags: true
   field_related_content: true
+  field_share_image: true
   field_short_description: true
   field_slideshare_source: true
   field_speakers: true
@@ -80,5 +91,4 @@ hidden:
   field_video_transcript: true
   field_views: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

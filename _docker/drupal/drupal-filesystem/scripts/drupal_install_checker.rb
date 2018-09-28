@@ -27,8 +27,9 @@ class DrupalInstallChecker
     check_all_required_drupal_configuration
 
     drush_cache_rebuild
-    drush_config_import
     drush_updb
+    lightning_update
+    drush_config_import
   end
 
   private
@@ -108,6 +109,12 @@ class DrupalInstallChecker
   def drush_updb
     puts 'Executing drush updb...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
+    drush_cache_rebuild
+  end
+
+  def lightning_update
+    puts 'Executing drush update:lightning...'
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web update:lightning --no-interaction))
     drush_cache_rebuild
   end
 

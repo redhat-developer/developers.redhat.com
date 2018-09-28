@@ -25,24 +25,22 @@ dependencies:
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
+    - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
-    - field.field.node.books.scheduled_update
     - node.type.books
   module:
+    - content_moderation
     - datetime
     - entity_browser
-    - entity_browser_entity_form
-    - inline_entity_form
     - interval
     - link
     - metatag
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
 id: node.books.default
@@ -127,7 +125,7 @@ content:
     type: string_textfield
     region: content
   field_meta_tags:
-    weight: 26
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -185,6 +183,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_share_image:
+    type: entity_browser_file
+    weight: 22
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_short_description:
     weight: 3
     settings:
@@ -217,40 +228,28 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 22
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 23
-    settings:
-      form_mode: default
-      override_labels: true
-      label_singular: 'publishing date'
-      label_plural: 'publishing dates'
-      allow_new: true
-      match_operator: CONTAINS
-      collapsible: false
-      collapsed: false
-      allow_existing: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
-    region: content
   title:
     type: string_textfield
     weight: 0
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+    region: content
+  url_redirects:
+    weight: 50
+    settings: {  }
     third_party_settings: {  }
     region: content
 hidden:

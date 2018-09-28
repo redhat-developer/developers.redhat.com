@@ -12,15 +12,13 @@ dependencies:
     - field.field.node.author.field_position_title
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
-    - field.field.node.author.scheduled_update
     - node.type.author
   module:
+    - content_moderation
     - entity_browser
-    - inline_entity_form
     - link
     - path
     - text
-    - workbench_moderation
 id: node.author.default
 targetEntityType: node
 bundle: author
@@ -103,32 +101,17 @@ content:
     type: link_default
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 13
+    weight: 26
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   path:
     type: path
     weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
-  scheduled_update:
-    type: inline_entity_form_complex
-    weight: 14
-    settings:
-      override_labels: true
-      label_singular: 'Scheduled updates'
-      label_plural: 'Scheduled updatess'
-      allow_new: true
-      match_operator: CONTAINS
-      allow_existing: false
-      form_mode: default
-      collapsible: false
-      collapsed: false
-    third_party_settings: {  }
-    region: content
   sticky:
     type: boolean_checkbox
     settings:
@@ -153,6 +136,11 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
   promote: true
   status: true

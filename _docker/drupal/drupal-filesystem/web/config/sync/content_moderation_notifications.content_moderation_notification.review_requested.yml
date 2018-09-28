@@ -1,0 +1,16 @@
+uuid: 7b966bd4-39d6-4f9f-8d38-1f0b8e6e6743
+langcode: en
+status: true
+dependencies: {  }
+id: review_requested
+workflow: 00c7e3ae
+transitions:
+  needs_review_draft: needs_review_draft
+roles: {  }
+author: true
+emails: ''
+subject: '[node:title] changes requested'
+body:
+  value: 'Changes have been requested for [node:title] and it has been sent back to draft by [node:initiator]. You can review/edit at [node:edit-url].'
+  format: markdown
+label: 'Review Requested'

@@ -8,12 +8,16 @@ dependencies:
     - field.field.node.video_resource.field_card_image
     - field.field.node.video_resource.field_difficulty
     - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_exclude_from_search
     - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_meta_tags
     - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_share_image
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_topics
+    - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
     - field.field.node.video_resource.field_video_related_links
     - field.field.node.video_resource.field_video_resource
@@ -22,7 +26,6 @@ dependencies:
     - field.field.node.video_resource.field_video_thumbnail_url
     - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
-    - field.field.node.video_resource.scheduled_update
     - node.type.video_resource
   module:
     - datetime
@@ -46,6 +49,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_card_image:
     weight: 17
     label: above
@@ -199,7 +207,9 @@ content:
     type: number_integer
     region: content
 hidden:
+  field_exclude_from_search: true
+  field_meta_tags: true
+  field_share_image: true
   field_video_author: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

@@ -60,7 +60,7 @@ app.termsAndConditions = {
 
     if (tcDownloadURL &&
         tcDownloadURL.startsWith('https://access.cdn.redhat.com/') &&
-        tcDownloadURL.contains(tcDownloadFileName)) { //  && !window.localStorage.getItem('recent-download-url')
+        tcDownloadURL.contains(tcDownloadFileName) && !checkRecentDownload()) {
         tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
 
       $("a#tcDownloadLink").attr("href", tcDownloadURL);
@@ -97,6 +97,39 @@ app.termsAndConditions = {
     digitalData.event.push(ddDownloadEvent);
     //Create and dispatch an event trigger
     sendCustomEvent('downloadEvent');
+
+    function setRecentUrlValue() {
+        var referrerDownload = {value: window.location.href, timestamp: new Date().getTime()};
+        localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
+    }
+
+    function checkRecentDownload() {
+        // Set storage expiration time to 10 minutes
+        var storageExpiration = 600000;
+        if(window.location.href.indexOf('download-manager')>0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)){
+            if(window.localStorage.getItem('recent-download-url')){
+                var recentDownload,timeOfRefer, currentTime;
+                recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
+                timeOfRefer = recentDownload && recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+                currentTime = new Date().getTime();
+
+                if(currentTime-timeOfRefer > storageExpiration){
+                    setRecentUrlValue();
+                    return false;
+                }
+                if(recentDownload['value'] !== window.location.href){
+                    setRecentUrlValue();
+                    return false;
+                }
+                return true;
+            }else{
+                setRecentUrlValue();
+                return false;
+            }
+
+        }
+    }
+
   },
   /*
   * T&C banner display
@@ -121,7 +154,11 @@ app.termsAndConditions = {
     });
   }
 
+
+
 };
+
+
 
 // Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
 $(function() {

@@ -1,4 +1,4 @@
-<section{{ attributes.addClass('assembly') }}>
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <div class="container {% if (content.latest_comments == false and content.field_links|render == false) %}narrow{% endif %}">
     {{ content.field_title }}
     <div class="grid">

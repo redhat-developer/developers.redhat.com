@@ -1,4 +1,4 @@
-import {Base} from "../Base.page"
+import {Base} from "../Base.page";
 
 export class CheatSheets extends Base {
 
@@ -21,11 +21,11 @@ export class CheatSheets extends Base {
     }
 
     awaitDownloadConfirmation() {
-        return this.waitForUrlContaining('media-download-confirmation', 30000)
+        return this.waitForUrlContaining('media-download-confirmation', 60000);
     }
 
     awaitDownloadThankYou() {
-        this.awaitIsVisible(this.getSelector('thankYou'), 30000);
+        this.awaitIsVisible(this.getSelector('thankYou'), 60000);
     }
 
     clickLoginToDownloadBtn() {

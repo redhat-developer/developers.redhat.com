@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.learning_path.field_short_description
     - field.field.node.learning_path.field_topics
     - field.field.node.learning_path.field_value_proposition
-    - field.field.node.learning_path.scheduled_update
     - node.type.learning_path
   module:
     - user
@@ -27,7 +26,12 @@ id: node.learning_path.card
 targetEntityType: node
 bundle: learning_path
 mode: card
-content: {  }
+content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   body: true
   field_audience: true
@@ -45,5 +49,4 @@ hidden:
   field_topics: true
   field_value_proposition: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

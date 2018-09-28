@@ -2,6 +2,7 @@
 
 namespace Drupal\rhd_common\Controller;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\Query\QueryFactory;
@@ -65,6 +66,7 @@ class ProductPageController extends ControllerBase {
   public function productPage($product_code, $sub_page) {
     $build = [];
     $active_product = $this->findProduct($product_code);
+
     \Drupal::request()->attributes->add(['node' => $active_product]);
 
     // This render array will hold the left side navigation links
@@ -150,43 +152,43 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
       throw new NotFoundHttpException();
     }
 
-    $build = $this->entityTypeManager()
-      ->getViewBuilder($active_product->getEntityTypeId())
-      ->view($active_product, 'full');
-
     $build['#theme'] = 'product-pages';
-    $build['page_links'] = $page_links;
+    $build['#page_links'] = $page_links;
+    $build['#product_machine_name'] = $active_product->field_product_machine_name->value;
 
-    $build['active_paragraph'] = $this->entityTypeManager()
+    $build['#active_paragraph'] = $this->entityTypeManager()
       ->getViewBuilder($active_paragraph->getEntityTypeId())
       ->view($active_paragraph, 'full');
 
+    $build['#product_summary'] = $active_product->field_product_summary->view(['label' => 'hidden']);
+    $build['#product_title'] = $active_product->getTitle();
 
     // Also product category
     if ($active_product->hasField('field_product_category')) {
       $product_category = $active_product->field_product_category->value;
-      $build['product_category'] = $product_category;
+      $build['#product_category'] = $product_category;
     }
 
     // URL product name
     if ($active_product->hasField('field_url_product_name')) {
-      $build['url_product_name'] = $active_product->field_url_product_name->value;
+      $build['#url_product_name'] = $active_product->field_url_product_name->value;
     }
 
     // Helper for twig to know if there are corresponding product subpages
     $product_pages = $active_product->field_product_pages->referencedEntities();
-    $build['has_community'] = count(array_filter($product_pages,
+    $build['#has_community'] = count(array_filter($product_pages,
         function ($entity) {
           return strtolower($entity->field_overview_url->value) === 'community';
         })) > 0;
-    $build['has_download'] = count(array_filter($product_pages,
+    $build['#has_download'] = count(array_filter($product_pages,
           function ($entity) {
               return strtolower($entity->field_overview_url->value) === 'download';
           })) > 0;
-    $build['has_hello_world'] = count(array_filter($product_pages,
+    $build['#has_hello_world'] = count(array_filter($product_pages,
           function ($entity) {
             return strtolower($entity->field_overview_url->value) === 'hello world';
           })) > 0;
+
     $build['#cache']['max-age'] = 0; // Disable caching of these product pages
 
     return $build;
@@ -205,37 +207,28 @@ WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
 
   /**
    * @param string $url_name URL Product Name
-   * @return mixed|NULL
+   * @return \Drupal\Core\Entity\EntityInterface|NULL
    */
   private function findProduct($url_name) {
     $query = $this->entityQuery->get('node', 'AND');
     $query->condition('field_url_product_name', $url_name)
-      ->allRevisions();
-    $rids = $query->execute();
+      ->accessCheck(true);
 
-    $possibilies = array_filter(array_keys($rids), function ($rid) {
-      $storage = $this->entityTypeManager()->getStorage('node');
-      $productRev = $storage->loadRevision($rid);
+    if ($this->currentUser()->hasPermission('view product revisions')) {
+      $query->latestRevision();
+    } else {
+      $query->currentRevision();
+    }
 
-      // if has permission to view all revs return true
-      if ($this->currentUser()->hasPermission('view product revisions')) {
-        return TRUE;
-      }
+    $vids = array_keys($query->execute());
+    $version = end($vids);
 
-      if ($productRev->moderation_state->getValue()[0]['target_id'] == 'published') {
-        return TRUE;
-      }
-      else {
-        return FALSE;
-      }
-    });
-
-    if (empty($possibilies)) {
+    if (empty($version)) {
       throw new NotFoundHttpException();
     }
 
     return $this->entityTypeManager()
       ->getStorage('node')
-      ->loadRevision(end($possibilies));
+      ->loadRevision($version);
   }
 }

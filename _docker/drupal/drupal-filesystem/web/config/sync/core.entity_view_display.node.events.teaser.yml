@@ -21,9 +21,9 @@ dependencies:
     - field.field.node.events.field_solution_type
     - field.field.node.events.field_start_date
     - field.field.node.events.field_target_product
+    - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
-    - field.field.node.events.scheduled_update
     - node.type.events
   module:
     - datetime
@@ -40,6 +40,11 @@ targetEntityType: node
 bundle: events
 mode: teaser
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_data_tags:
     weight: 119
     label: hidden
@@ -244,4 +249,4 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  scheduled_update: true
+  field_tile_thumbnail: true

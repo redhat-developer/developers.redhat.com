@@ -24,12 +24,12 @@ dependencies:
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
+    - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
-    - field.field.node.books.scheduled_update
     - node.type.books
   module:
     - datetime
@@ -46,6 +46,11 @@ targetEntityType: node
 bundle: books
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_author:
     weight: 1
     label: hidden
@@ -283,6 +288,6 @@ content:
     region: content
 hidden:
   field_cover_image: true
+  field_share_image: true
   links: true
-  scheduled_update: true
   workbench_moderation_control: true

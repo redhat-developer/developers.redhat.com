@@ -150,21 +150,10 @@ a {
     outline-width: 1px;
     outline-color: color($link);
   }
-  &[href$=".pdf"]:after,
-  &.pdf:after {
-    content: "\f1c1";
-    font-family: FontAwesome;
-    margin-left: 4px;
-  }
-
-  &.img-link {
-    &[href$=".pdf"]:after,
-    &.pdf:after { display: none; }
-  }
 }
 
-p a:hover {
-  border-bottom: 1px solid #DCDCDC;
+p a:not(.button):hover {
+  border-bottom: 1px solid $grey-3-5;
 }
 
 p a.external-link:after {
@@ -286,7 +275,10 @@ a.button[href$=".pdf"]:after,
 a.heavy-cta[href$=".pdf"]:after,
 a.medium-cta[href$=".pdf"]:after,
 .heavy-cta a[href$=".pdf"]:after,
-.madium-cta a[href$=".pdf"]:after{ display: none; }
+.medium-cta a[href$=".pdf"], 
+.f-dropdown a[href$=".pdf"]{ 
+  display: none; 
+}
 
 a.light-cta{
   color: $link;
@@ -864,7 +856,7 @@ body.mobile {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       max-height: 95px;
       -webkit-line-clamp: 3;
     }
@@ -2137,7 +2129,7 @@ h2.home-title {
   padding:40px 0 20px 0;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .button.button--join-today {
     top:0;
     margin:20px 0;
@@ -2180,7 +2172,7 @@ h2.home-title {
   word-wrap: break-word;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .button.button--join-today {
     top:0;
     margin:20px 0;
@@ -2319,7 +2311,7 @@ section {
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   #eu-cookie-banner span.read-more {
     display: block;
     a {
@@ -2388,7 +2380,7 @@ a#scroll-to-top {
  }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .page-info-bar{
       .share-sm {
         float: none !important;

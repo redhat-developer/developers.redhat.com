@@ -24,6 +24,11 @@ targetEntityType: node
 bundle: rh_certification_exam
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_completion_time:
     weight: 102
     label: hidden

@@ -22,7 +22,7 @@
       color: white;
     }
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     background: cdn('../images/design/RHDev_pageheader_productsoverview_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
@@ -78,7 +78,7 @@
   &.softwarecollections {background-image: cdn('../images/design/products/prod_header_rh_software_collections.png');}
   &.webserver {background-image: cdn('../images/design/products/prod_header_jboss_webserver.png');}
 
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     &.amq {background-image: cdn('../images/design/products/productheader_tablet_jboss_amq.png');}
     &.atomic {background-image: cdn('../images/design/products/productheader_tablet_rhel_atomic_host.png');}
     &.bpmsuite {background-image: cdn('../images/design/products/productheader_tablet_jboss_bpm_suite.png');}
@@ -199,7 +199,7 @@ div.mobile.product-color {
   }
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .product-graphics {
     &.storage-and-big-data, &.it-infrastructure, &.application-development {
       background-image: none;
@@ -386,7 +386,7 @@ div.mobile.product-color {
     .large-8 {
       margin-left: -.7em;
     }
-    @include tablet-landscape-and-down {
+    @include desktop-small-and-down {
       .large-8 {
         margin-left: 0;
       }
@@ -530,7 +530,7 @@ ul.product-langs {
       margin: 0 5px;
     }
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     li {
       width: calc(33% - 20px);
       min-height: 189px;
@@ -701,7 +701,7 @@ rhdp-tryitnow {
       margin-right: -15px;    
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     .row span { width: calc(100% - 90px); }
     a.button.medium-cta.white { left: 107px; }
   }

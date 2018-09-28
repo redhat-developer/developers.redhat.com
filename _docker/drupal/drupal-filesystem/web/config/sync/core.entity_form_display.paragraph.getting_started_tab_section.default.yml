@@ -10,7 +10,6 @@ dependencies:
   module:
     - paragraphs
     - text
-    - workbench_moderation
 _core:
   default_config_hash: fxpbQrICpaqPt2oHgFL6W9HxOC9E6FUUdwDBycKxYPo
 id: paragraph.getting_started_tab_section.default
@@ -44,6 +43,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  moderation_state:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

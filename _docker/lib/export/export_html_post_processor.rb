@@ -151,6 +151,20 @@ class ExportHtmlPostProcessor
         element['href'] = new_url.to_s
       end
       modified = true
+      end
+
+    html_doc.css("*[data-disqus-thread-link*='#{host}']").each do |element|
+      disqus_link = element['data-disqus-thread-link']
+      if disqus_link.index('//')
+        new_url = URI.parse(final_base_url_location + disqus_link[disqus_link.index('/', disqus_link.index('//') + 3)..-1])
+        new_url.query = nil
+        element['data-disqus-thread-link'] = new_url.to_s
+      else
+        new_url = URI.parse(final_base_url_location + disqus_link)
+        new_url.query = nil
+        element['data-disqus-thread-link'] = new_url.to_s
+      end
+      modified = true
     end
 
     @log.info("\tRemoved Drupal host identifying markup.") if modified
@@ -172,10 +186,9 @@ class ExportHtmlPostProcessor
 
       hide_drupal = remove_drupal_host_identifying_markup?(drupal_host, html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
-      rewrite_access_links = rewrite_access_redhat_com_links(html_doc, html_file)
       rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
 
-      if hide_drupal || rewrite_forms || rewrite_access_links
+      if hide_drupal || rewrite_forms || rewrite_keycloak_src
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
         File.open(html_file, 'w') do |file|
           file.write(html_doc.to_html)
@@ -207,10 +220,16 @@ class ExportHtmlPostProcessor
   # to the root of the directory
   #
   def relocate_index_html(export_directory)
-    FileUtils.mv("#{export_directory}/index/index.html", "#{export_directory}/index.html")
-    FileUtils.rm_rf("#{export_directory}/index")
-    @process_runner.execute!("sed -i'' -e s:'\\.\\.\\/':'':g #{export_directory}/index.html")
-    @log.info("Moved #{export_directory}/index/index.html to #{export_directory}/index.html.")
+    
+    if File.exists?("#{export_directory}/index/index.html") 
+      FileUtils.mv("#{export_directory}/index/index.html", "#{export_directory}/index.html")
+      FileUtils.rm_rf("#{export_directory}/index")
+      @process_runner.execute!("sed -i'' -e s:'\\.\\.\\/':'':g #{export_directory}/index.html")
+      @log.info("Moved #{export_directory}/index/index.html to #{export_directory}/index.html.")
+    else 
+      @log.warn("Failed to move #{export_directory}/index/index.html to #{export_directory}/index.html. source file missing")
+    end
+
   end
 
   #
@@ -243,38 +262,6 @@ class ExportHtmlPostProcessor
       modified = true
     end
     modified
-  end
-
-  #
-  # access.redhat.com links are broken when we strip off the trailing "/index.html" to fix the site export structure.
-  # This fixes that.
-  #
-  def rewrite_access_redhat_com_links(html_doc, html_file_name)
-    links_to_modify = html_doc.css("body a[href*=\"access.redhat.com\"]")
-    modified = false
-    links_to_modify.each do |link|
-      if link.attributes['href'].value.include?('documentation')
-
-        uri = URI(link.attributes['href'].value)
-
-        #
-        # Only perform processing on the link if it doesn't already link to an allowed
-        # documentation suffix e.g. .html, .pdf or .epub
-        #
-        allowed_link_suffix = @documentation_link_suffixes.any? {|suffix| uri.path.to_s.end_with?(suffix)}
-        unless allowed_link_suffix
-          new_path = uri.path.end_with?('/') ? "#{uri.path}index.html" : "#{uri.path}/index.html"
-          uri.path = new_path
-          new_href = uri.to_s
-          @log.info("\tModifying documentation link #{link.attributes['href'].to_s} to #{new_href}")
-          link.attributes['href'].value = new_href
-          modified = true
-        end
-      end
-    end
-
-    modified
-
   end
 
 

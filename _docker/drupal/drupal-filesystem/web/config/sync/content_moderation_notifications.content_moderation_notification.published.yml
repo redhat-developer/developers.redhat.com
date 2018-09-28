@@ -1,0 +1,17 @@
+uuid: 03a9f651-aa57-4e4b-803b-8de157aeb8bd
+langcode: en
+status: true
+dependencies: {  }
+id: published
+workflow: 00c7e3ae
+transitions:
+  needs_review_published: needs_review_published
+roles:
+  content_admin: content_admin
+author: true
+emails: ''
+subject: '[node:title] moderation state changed to Published'
+body:
+  value: "The content at [node:url] has been published by [node:initiator].\r\n"
+  format: markdown
+label: Published

@@ -1,0 +1,19 @@
+uuid: e986f319-e888-4dd7-82a5-a08174124526
+langcode: en
+status: true
+dependencies: {  }
+id: ready_for_review
+workflow: 00c7e3ae
+transitions:
+  draft_needs_review: draft_needs_review
+  needs_review_needs_review: needs_review_needs_review
+roles:
+  content_team: content_team
+  content_admin: content_admin
+author: false
+emails: ''
+subject: '[node:title] ready for review'
+body:
+  value: "Content by [node:initiator] is ready for review. You can review/edit at [node:edit-url].</p>\r\n"
+  format: markdown
+label: 'Ready For Review'

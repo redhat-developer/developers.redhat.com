@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_media_in_library
-    - media_entity.bundle.tweet
+    - media.type.tweet
 _core:
   default_config_hash: wEXH7lwxCx5UjnepjJ74qq-LhsmBqMqKvq7gDFtVxBw
 id: media.tweet.field_media_in_library
 field_name: field_media_in_library
 entity_type: media
 bundle: tweet
-label: 'Save to my media library'
+label: 'Show in media library'
 description: ''
 required: false
 translatable: false
@@ -20,6 +20,6 @@ default_value:
     value: 1
 default_value_callback: ''
 settings:
-  on_label: 'Saved to my media library'
-  off_label: 'Not in my media library'
+  on_label: 'Shown in media library'
+  off_label: 'Hidden in media library'
 field_type: boolean

@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_meta_tags
-    - field.field.node.page.scheduled_update
     - node.type.page
   module:
     - metatag
@@ -25,6 +24,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_meta_tags:
     type: metatag_empty_formatter
     region: content
@@ -40,5 +44,4 @@ content:
   workbench_moderation_control:
     weight: -20
     region: content
-hidden:
-  scheduled_update: true
+hidden: {  }

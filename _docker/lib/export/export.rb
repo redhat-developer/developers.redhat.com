@@ -8,6 +8,8 @@ require_relative 'export_inspector'
 require_relative 'export_archiver'
 require_relative 'export_archive_pruner'
 require_relative 'export_html_post_processor'
+require_relative 'export_diff'
+require_relative 'akamai_cache_flush'
 
 #
 # Class that acts as a controller of the export process from Drupal
@@ -26,7 +28,6 @@ class Export
     @export_strategy = export_strategy
     @rsync_handler = rsync_handler
     @rsync_destination = rsync_destination
-
   end
 
   #
@@ -67,7 +68,9 @@ if $0 == __FILE__
   cron_invoker = CronInvoker.new(drupal_host)
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)
   export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new, ExportHtmlPostProcessor.new(process_runner, @DEFAULT_STATIC_RESOURCES))
-  rsync_handler = StaticExportRsync.new(process_runner, ExportArchiver.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION, ExportArchivePruner.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION)))
+  export_diff = RedhatDeveloper::Export::ExportDiff.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION)
+  akamai_cache_flush = RedhatDeveloper::Export::AkamaiCacheFlush.new(File.expand_path("~/.edgerc"))
+  rsync_handler = StaticExportRsync.new(process_runner, ExportArchiver.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION, ExportArchivePruner.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION)), export_diff, akamai_cache_flush)
   log = DefaultLogger.logger
 
   begin

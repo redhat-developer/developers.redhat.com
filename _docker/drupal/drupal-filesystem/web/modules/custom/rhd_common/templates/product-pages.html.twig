@@ -72,29 +72,26 @@
  * @ingroup themeable
  */
 #}
-
-{% set product_machine_name = elements.field_product_machine_name[0]['#context']['value']|lower %}
-{% set active_paragraph = elements.active_paragraph['#paragraph'] %}
-<div class="mobile product-color {{ elements.product_category }}"></div>
+<div class="mobile product-color {{ product_category }}"></div>
 
 <article{{ attributes }}>
-    <section class="hero hero-wide product-header {{ product_machine_name }} {{ elements.product_category }}">
+    <section class="hero hero-wide product-header {{ product_machine_name }} {{ product_category }}">
         <div class="row">
             <div class="large-24 columns">
                 {{ title_prefix }}
-                <h1 {{ title_attributes }}>{{ elements.title }}</h1>
+                <h1 {{ title_attributes }}>{{ product_title }}</h1>
                 {{ title_suffix }}
-                <p id="product">{{ elements.field_product_summary }}</p>
+                <p id="product">{{ product_summary }}</p>
             </div>
         </div>
     </section>
     <span class="dl-outage-msg"></span>
     <span class="search-outage-msg"></span>
-    <section{{ content_attributes.addClass(["product-graphics", elements.product_category]) }}>
+    <section{{ content_attributes.addClass(["product-graphics", product_category]) }}>
         {% if not active_paragraph.field_overview_hide_get_started.value %}
             <div class="row">
                 <div class="large-24 columns">
-                    <div id="hero-try-or-buy" class="row {{ elements.product_category }}">
+                    <div id="hero-try-or-buy" class="row {{ product_category }}">
                         <div class="large-24 columns hello-world">
                             <div class="small-24 large-6 columns">
                                 <h2>Hello World!</h2>
@@ -102,14 +99,14 @@
                             </div>
                             <div class="small-24 large-6 columns"><p>Let's walk through everything you need to build your
                                     first application.</p></div>
-                            <div class="small-24 large-6 columns"><a class="button medium-cta blue" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'hello-world'}) }}">Get Started</a>
+                            <div class="small-24 large-6 columns"><a class="button medium-cta blue" href="{{ url('rhd_common.main_page_controller', {'product_code': url_product_name, 'sub_page': 'hello-world'}) }}">Get Started</a>
                             </div>
                             <div class="small-24 large-6 columns outside-links">
                                 <a class="large-24 medium-12 columns"
                                    href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>
                                     <p>Contact Sales<i class="fa fa-caret-right"></i></p>
-                                </a>{% if elements.has_community %}<a
-                                class="large-24 medium-12 columns" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'community'}) }}"><strong>Make it
+                                </a>{% if has_community %}<a
+                                class="large-24 medium-12 columns" href="{{ url('rhd_common.main_page_controller', {'product_code': url_product_name, 'sub_page': 'community'}) }}"><strong>Make it
                                         better</strong>
                                     <p>Join the community<i class="fa fa-caret-right"></i></p></a>{% endif %}
                             </div>
@@ -123,17 +120,17 @@
                 <div class="mobile product-header">
                     <div class="row">
                         <div class="large-24 columns">
-                            <h3>{{ elements.title }}</h3>
+                            <h3>{{ title }}</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="large-24 columns products-content">
                 <div class="large-4 medium-7 small-24 columns nav-breakpoint">
-                    {{ elements.page_links }}
+                    {{ page_links }}
                 </div>
                 <div class="large-20 medium-17 small-24 columns">
-                    {{ elements.active_paragraph }}
+                    {{ active_paragraph }}
                 </div>
             </div>
         </div>
@@ -141,11 +138,11 @@
             <div class="row">
                 <h4 class="caps">Build Something Today</h4>
                 <p>Let's walk through everything you need to build your first application.</p>
-                {% if elements.has_download %}
-                  <a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'download'}) }}">Download</a>
+                {% if has_download %}
+                  <a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': url_product_name, 'sub_page': 'download'}) }}">Download</a>
                 {% endif %}
-                {% if elements.has_hello_world %}
-                  <a class="button inverse" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'hello-world'}) }}">Get Started</a>
+                {% if elements and elements.has_hello_world %}
+                  <a class="button inverse" href="{{ url('rhd_common.main_page_controller', {'product_code': url_product_name, 'sub_page': 'hello-world'}) }}">Get Started</a>
                 {% endif %}
                 <div class="outside-links">
                     <a class="large-24 medium-12 columns" href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>

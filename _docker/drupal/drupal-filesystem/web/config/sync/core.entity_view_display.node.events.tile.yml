@@ -1,0 +1,92 @@
+uuid: f4dd4415-5747-4e38-8df5-7178567fbe05
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.events.field_data_tags
+    - field.field.node.events.field_description
+    - field.field.node.events.field_end_date
+    - field.field.node.events.field_event_background_image
+    - field.field.node.events.field_event_format
+    - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_location
+    - field.field.node.events.field_event_type
+    - field.field.node.events.field_more_details
+    - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_presenter_s_
+    - field.field.node.events.field_region
+    - field.field.node.events.field_short_description
+    - field.field.node.events.field_site
+    - field.field.node.events.field_solution_type
+    - field.field.node.events.field_start_date
+    - field.field.node.events.field_target_product
+    - field.field.node.events.field_tile_thumbnail
+    - field.field.node.events.field_title
+    - field.field.node.events.field_topics
+    - image.style.crop_thumbnail
+    - node.type.events
+  module:
+    - fences
+    - image
+    - user
+_core:
+  default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
+id: node.events.tile
+targetEntityType: node
+bundle: events
+mode: tile
+content:
+  content_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tile_thumbnail:
+    type: image_url
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: crop_thumbnail
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_data_tags: true
+  field_description: true
+  field_end_date: true
+  field_event_background_image: true
+  field_event_format: true
+  field_event_image: true
+  field_event_location: true
+  field_event_type: true
+  field_more_details: true
+  field_on_homepage: true
+  field_presenter_s_: true
+  field_region: true
+  field_short_description: true
+  field_site: true
+  field_solution_type: true
+  field_start_date: true
+  field_target_product: true
+  field_topics: true
+  workbench_moderation_control: true

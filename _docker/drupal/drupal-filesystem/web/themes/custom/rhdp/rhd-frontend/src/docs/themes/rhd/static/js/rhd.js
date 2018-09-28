@@ -1,7 +1,10 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -23,8 +26,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -49,8 +52,8 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 };
 System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var RHElement;
+    var __moduleName = context_1 && context_1.id;
     return {
         setters: [],
         execute: function () {
@@ -103,8 +106,8 @@ System.register("@rhelements/rhelement", [], function (exports_1, context_1) {
 });
 System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_2, context_2) {
     "use strict";
-    var __moduleName = context_2 && context_2.id;
     var rhelement_1, RHDPAlert;
+    var __moduleName = context_2 && context_2.id;
     return {
         setters: [
             function (rhelement_1_1) {
@@ -265,8 +268,8 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
 });
 System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_3, context_3) {
     "use strict";
-    var __moduleName = context_3 && context_3.id;
     var rhelement_2, DPCategoryItemList;
+    var __moduleName = context_3 && context_3.id;
     return {
         setters: [
             function (rhelement_2_1) {
@@ -343,8 +346,8 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
 });
 System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_4, context_4) {
     "use strict";
-    var __moduleName = context_4 && context_4.id;
     var rhelement_3, DPCategoryList;
+    var __moduleName = context_4 && context_4.id;
     return {
         setters: [
             function (rhelement_3_1) {
@@ -440,8 +443,8 @@ System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelemen
 });
 System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_5, context_5) {
     "use strict";
-    var __moduleName = context_5 && context_5.id;
     var rhelement_4, DPCategory;
+    var __moduleName = context_5 && context_5.id;
     return {
         setters: [
             function (rhelement_4_1) {
@@ -455,7 +458,7 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: Overpass;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -588,8 +591,8 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
 });
 System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_6, context_6) {
     "use strict";
-    var __moduleName = context_6 && context_6.id;
     var rhelement_5, DPCategoryItem;
+    var __moduleName = context_6 && context_6.id;
     return {
         setters: [
             function (rhelement_5_1) {
@@ -630,8 +633,8 @@ System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelemen
 });
 System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_7, context_7) {
     "use strict";
-    var __moduleName = context_7 && context_7.id;
     var rhelement_6, DPProductShortTeaser;
+    var __moduleName = context_7 && context_7.id;
     return {
         setters: [
             function (rhelement_6_1) {
@@ -645,7 +648,7 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
                     var _this = _super.call(this, 'dp-product-short-teaser') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: Overpass;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: Overpass;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
+                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
                         return tpl;
                     };
                     return _this;
@@ -713,8 +716,8 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
 });
 System.register("@rhd/rhd-app", ["@rhd/rhdp-alert", "@rhd/dp-category-list/dp-category-list", "@rhd/dp-category-list/dp-category", "@rhd/dp-category-list/dp-category-item-list", "@rhd/dp-category-list/dp-category-item", "@rhd/dp-category-list/dp-product-short-teaser"], function (exports_8, context_8) {
     "use strict";
-    var __moduleName = context_8 && context_8.id;
     var rhdp_alert_1, dp_category_list_1, dp_category_1, dp_category_item_list_1, dp_category_item_1, dp_product_short_teaser_1, RHDApp;
+    var __moduleName = context_8 && context_8.id;
     return {
         setters: [
             function (rhdp_alert_1_1) {
@@ -762,7 +765,7 @@ var RHDPOSDownload = (function (_super) {
         _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.productDownloads = {
             "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -1062,6 +1065,7 @@ var RHDPThankyou = (function (_super) {
                 currentTime = new Date().getTime();
                 if (currentTime - timeOfRefer > storageExpiration) {
                     window.localStorage.removeItem(storageName);
+                    return false;
                 }
                 return true;
             }
@@ -1583,8 +1587,8 @@ var DevNationLiveApp = (function (_super) {
 customElements.define('devnation-live-app', DevNationLiveApp);
 System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
     var rhelement_7, DPStackOverflow;
+    var __moduleName = context_9 && context_9.id;
     return {
         setters: [
             function (rhelement_7_1) {
@@ -2368,7 +2372,7 @@ var RHDPProjectItem = (function (_super) {
     function RHDPProjectItem() {
         var _this = _super.call(this) || this;
         _this.template = function (strings, project) {
-            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n        \n            </p>\n            <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img\n                        src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    <p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>\n                    <p>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">Visit home page</a>" : '') + "\n                    </p>\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\"><h3><a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>\n                </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
+            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n                <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            </p>\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    " + (project.downloadsLink ? "<p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>" : '') + "\n                    " + (project.sys_url_view ? "<p><a href=\"" + project.sys_url_view + "\">Visit home page</a></p>" : '') + "\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\">\n                    <h3>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>" : "" + project.projectName) + "\n                    </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
         };
         return _this;
     }
@@ -2749,7 +2753,7 @@ var RHDPProjectQuery = (function (_super) {
             "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"] },
             "devstudio": { "upstream": ["jbosstools"] },
             "eap": { "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"] },
-            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "fabric8", "switchyard", "hawtio"] },
+            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "syndesis", "apicurio", "hawtio"] },
             "rhel": { "upstream": ["fedora"] },
             "webserver": { "upstream": ["tomcat", "httpd", "mod_cluster"] },
         };
@@ -5086,7 +5090,7 @@ app.products = {
 };
 app.products.downloads = {
     "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};
@@ -5468,13 +5472,14 @@ app.sso = function () {
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
                     logged_in_user = "My Account";
                 }
-                $('a.logged-in-name')
+                $('span.logged-in-name')
                     .text(logged_in_user)
                     .show();
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
+                $('[data-audience="authenticated"]').show();
                 $('a.logout').on('click', function (e) {
                     e.preventDefault();
                     keycloak.logout({ "redirectUri": app.ssoConfig.logout_url });
@@ -5496,6 +5501,7 @@ app.sso = function () {
             $('li.login, section.register-banner, .hidden-after-login').show();
             $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
             $('li.logged-in').hide();
+            $('[data-audience="unauthenticated"]').show();
             $('li.login a').on('click', function (e) {
                 e.preventDefault();
                 keycloak.login();
@@ -8339,69 +8345,6 @@ catch (c) {
 }(jQuery, window, window.document));
 ;
 (function ($, window, document, undefined) {
-    Foundation.libs.equalizer = {
-        name: 'equalizer',
-        version: '5.4.4',
-        settings: {
-            use_tallest: true,
-            before_height_change: $.noop,
-            after_height_change: $.noop,
-            equalize_on_stack: false
-        },
-        init: function (scope, method, options) {
-            Foundation.inherit(this, 'image_loaded');
-            this.bindings(method, options);
-            this.reflow();
-        },
-        events: function () {
-            this.S(window).off('.equalizer').on('resize.fndtn.equalizer', function (e) {
-                this.reflow();
-            }.bind(this));
-        },
-        equalize: function (equalizer) {
-            var isStacked = false, vals = equalizer.find('[' + this.attr_name() + '-watch]:visible'), settings = equalizer.data(this.attr_name(true) + '-init');
-            if (vals.length === 0)
-                return;
-            var firstTopOffset = vals.first().offset().top;
-            settings.before_height_change();
-            equalizer.trigger('before-height-change').trigger('before-height-change.fndth.equalizer');
-            vals.height('inherit');
-            vals.each(function () {
-                var el = $(this);
-                if (el.offset().top !== firstTopOffset) {
-                    isStacked = true;
-                }
-            });
-            if (settings.equalize_on_stack === false) {
-                if (isStacked)
-                    return;
-            }
-            ;
-            var heights = vals.map(function () { return $(this).outerHeight(false); }).get();
-            if (settings.use_tallest) {
-                var max = Math.max.apply(null, heights);
-                vals.css('height', max);
-            }
-            else {
-                var min = Math.min.apply(null, heights);
-                vals.css('height', min);
-            }
-            settings.after_height_change();
-            equalizer.trigger('after-height-change').trigger('after-height-change.fndtn.equalizer');
-        },
-        reflow: function () {
-            var self = this;
-            this.S('[' + this.attr_name() + ']', this.scope).each(function () {
-                var $eq_target = $(this);
-                self.image_loaded(self.S('img', this), function () {
-                    self.equalize($eq_target);
-                });
-            });
-        }
-    };
-})(jQuery, window, window.document);
-;
-(function ($, window, document, undefined) {
     Foundation.libs.accordion = {
         name: 'accordion',
         version: '5.4.4',
@@ -9637,6 +9580,187 @@ var ytPlayerParams = {
         'onStateChange': ytEmbed.onPlayerStateChange
     }
 };
+/*!
+* Clamp.js 0.5.1
+*
+* Copyright 2011-2013, Joseph Schmitt http://joe.sh
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*/
+(function () {
+    function clamp(element, options) {
+        options = options || {};
+        var self = this, win = window, opt = {
+            clamp: options.clamp || 2,
+            useNativeClamp: typeof (options.useNativeClamp) != 'undefined' ? options.useNativeClamp : true,
+            splitOnChars: options.splitOnChars || ['.', '-', '–', '—', ' '],
+            animate: options.animate || false,
+            truncationChar: options.truncationChar || '…',
+            truncationHTML: options.truncationHTML
+        }, sty = element.style, originalText = element.innerHTML, supportsNativeClamp = typeof (element.style.webkitLineClamp) != 'undefined', clampValue = opt.clamp, isCSSValue = clampValue.indexOf && (clampValue.indexOf('px') > -1 || clampValue.indexOf('em') > -1), truncationHTMLContainer;
+        if (opt.truncationHTML) {
+            truncationHTMLContainer = document.createElement('span');
+            truncationHTMLContainer.innerHTML = opt.truncationHTML;
+        }
+        function computeStyle(elem, prop) {
+            if (!win.getComputedStyle) {
+                win.getComputedStyle = function (el, pseudo) {
+                    this.el = el;
+                    this.getPropertyValue = function (prop) {
+                        var re = /(\-([a-z]){1})/g;
+                        if (prop == 'float')
+                            prop = 'styleFloat';
+                        if (re.test(prop)) {
+                            prop = prop.replace(re, function () {
+                                return arguments[2].toUpperCase();
+                            });
+                        }
+                        return el.currentStyle && el.currentStyle[prop] ? el.currentStyle[prop] : null;
+                    };
+                    return this;
+                };
+            }
+            return win.getComputedStyle(elem, null).getPropertyValue(prop);
+        }
+        function getMaxLines(height) {
+            var availHeight = height || element.clientHeight;
+            var lineHeight = getLineHeight(element);
+            var returnVal = Math.max(Math.floor(availHeight / lineHeight), 0);
+            return returnVal;
+        }
+        function getMaxHeight(clmp) {
+            var lineHeight = getLineHeight(element);
+            var reminder = lineHeight % 2;
+            var compVal = reminder == 0 ? 0 : 1;
+            var returnVal = Math.floor(lineHeight * clmp) + compVal;
+            return returnVal;
+        }
+        function getLineHeight(elem) {
+            var lh = computeStyle(elem, 'line-height');
+            if (lh == 'normal') {
+                lh = parseInt(computeStyle(elem, 'font-size')) * 1.1;
+            }
+            return parseInt(lh);
+        }
+        var splitOnChars = opt.splitOnChars.slice(0), splitChar = splitOnChars[0], chunks, lastChunk;
+        function getLastChild(elem) {
+            if (elem.lastChild.children && elem.lastChild.children.length > 0) {
+                return getLastChild(Array.prototype.slice.call(elem.children).pop());
+            }
+            else if (!elem.lastChild || !elem.lastChild.nodeValue || elem.lastChild.nodeValue == '' || elem.lastChild.nodeValue == opt.truncationChar) {
+                elem.lastChild.parentNode.removeChild(elem.lastChild);
+                return getLastChild(element);
+            }
+            else {
+                return elem.lastChild;
+            }
+        }
+        function truncate(target, maxHeight) {
+            if (!maxHeight) {
+                return;
+            }
+            function reset() {
+                splitOnChars = opt.splitOnChars.slice(0);
+                splitChar = splitOnChars[0];
+                chunks = null;
+                lastChunk = null;
+            }
+            var nodeValue = target.nodeValue.replace(opt.truncationChar, '');
+            if (!chunks) {
+                if (splitOnChars.length > 0) {
+                    splitChar = splitOnChars.shift();
+                }
+                else {
+                    splitChar = '';
+                }
+                chunks = nodeValue.split(splitChar);
+            }
+            if (chunks.length > 1) {
+                lastChunk = chunks.pop();
+                applyEllipsis(target, chunks.join(splitChar));
+            }
+            else {
+                chunks = null;
+            }
+            if (truncationHTMLContainer) {
+                target.nodeValue = target.nodeValue.replace(opt.truncationChar, '');
+                element.innerHTML = target.nodeValue + ' ' + truncationHTMLContainer.innerHTML + opt.truncationChar;
+            }
+            if (chunks) {
+                if (element.clientHeight <= maxHeight) {
+                    if (splitOnChars.length >= 0 && splitChar != '') {
+                        applyEllipsis(target, chunks.join(splitChar) + splitChar + lastChunk);
+                        chunks = null;
+                    }
+                    else {
+                        return element.innerHTML;
+                    }
+                }
+            }
+            else {
+                if (splitChar == '') {
+                    applyEllipsis(target, '');
+                    target = getLastChild(element);
+                    reset();
+                }
+            }
+            if (opt.animate) {
+                setTimeout(function () {
+                    truncate(target, maxHeight);
+                }, opt.animate === true ? 10 : opt.animate);
+            }
+            else {
+                return truncate(target, maxHeight);
+            }
+        }
+        function applyEllipsis(elem, str) {
+            elem.nodeValue = str + opt.truncationChar;
+        }
+        if (clampValue == 'auto') {
+            clampValue = getMaxLines();
+        }
+        else if (isCSSValue) {
+            clampValue = getMaxLines(parseInt(clampValue));
+        }
+        var clampedText;
+        if (supportsNativeClamp && opt.useNativeClamp) {
+            sty.overflow = 'hidden';
+            sty.textOverflow = 'ellipsis';
+            sty.webkitBoxOrient = 'vertical';
+            sty.display = '-webkit-box';
+            sty.webkitLineClamp = clampValue;
+            if (isCSSValue) {
+                sty.height = opt.clamp + 'px';
+            }
+        }
+        else {
+            var height = getMaxHeight(clampValue);
+            var tmpClientHeight = element.clientHeight;
+            if (height < tmpClientHeight) {
+                clampedText = truncate(getLastChild(element), height);
+            }
+        }
+        return {
+            'original': originalText,
+            'clamped': clampedText
+        };
+    }
+    window.$clamp = clamp;
+})();
+$(function () {
+    var $clampItems = $("[class^='line-clamp-']");
+    $clampItems.each(function () {
+        var $tmpItem = $(this);
+        var testClass = $tmpItem.attr("class");
+        var lineCountArray = testClass.split("-");
+        var testLineCount = parseInt(lineCountArray[lineCountArray.length - 1], 10);
+        if (!isNaN(testLineCount)) {
+            if (testLineCount <= 10 && testLineCount >= 1) {
+                $clamp($tmpItem.get(0), { clamp: testLineCount, useNativeClamp: true });
+            }
+        }
+    });
+});
 app.termsAndConditions = {
     urlParam: function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -9682,7 +9806,7 @@ app.termsAndConditions = {
         }
         if (tcDownloadURL &&
             tcDownloadURL.startsWith('https://access.cdn.redhat.com/') &&
-            tcDownloadURL.contains(tcDownloadFileName)) {
+            tcDownloadURL.contains(tcDownloadFileName) && !checkRecentDownload()) {
             tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
             $("a#tcDownloadLink").attr("href", tcDownloadURL);
             if (tcDownloadFileName) {
@@ -9710,6 +9834,34 @@ app.termsAndConditions = {
         digitalData.event = digitalData.event || [];
         digitalData.event.push(ddDownloadEvent);
         sendCustomEvent('downloadEvent');
+        function setRecentUrlValue() {
+            var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
+            localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
+        }
+        function checkRecentDownload() {
+            var storageExpiration = 600000;
+            if (window.location.href.indexOf('download-manager') > 0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)) {
+                if (window.localStorage.getItem('recent-download-url')) {
+                    var recentDownload, timeOfRefer, currentTime;
+                    recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
+                    timeOfRefer = recentDownload && recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+                    currentTime = new Date().getTime();
+                    if (currentTime - timeOfRefer > storageExpiration) {
+                        setRecentUrlValue();
+                        return false;
+                    }
+                    if (recentDownload['value'] !== window.location.href) {
+                        setRecentUrlValue();
+                        return false;
+                    }
+                    return true;
+                }
+                else {
+                    setRecentUrlValue();
+                    return false;
+                }
+            }
+        }
     },
     callback: function (data) {
         if (data.tac.accepted) {
@@ -15963,68 +16115,15 @@ $(function () {
 });
 (function () {
     $(function () {
-        var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"></a></div></div></div></section>');
+        var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"><i class="fas fa-times"></i></a></div></div></div></section>');
         var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
         if (isReferrer('jbd')) {
             switch (getPrimaryCategory()) {
-                case 'products':
-                    if ($('.mobile.product-header').length > 0) {
-                        referrerHTML.insertBefore('.mobile.product-header');
-                    }
-                    else {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    break;
-                case 'downloads':
-                    referrerHTML.insertBefore('.most-popular-downloads');
-                    break;
-                case 'topics':
-                    referrerHTML.insertBefore('.topics-main div:first');
-                    break;
-                case 'community':
-                    referrerHTML.insertAfter('.contributors-main');
-                    break;
-                case 'about':
-                case 'books':
-                case 'quickstarts':
-                    referrerHTML.insertBefore('.node__content');
-                    break;
-                case 'articles':
-                case 'spotlights':
-                case 'variants':
-                case 'vjbug':
-                case 'terms-and-conditions':
-                case 'ticket-monster':
-                case 'archetypes':
-                case 'boms':
-                case 'demos':
-                case 'general-error':
-                case 'video':
-                case 'promotions':
-                case 'webinars':
-                case 'devnation2015':
-                case 'forums':
-                case 'events':
-                    if ($('.hero').length > 0) {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    else if ($('.wide-hero').length > 0) {
-                        referrerHTML.insertAfter('.wide-hero');
-                    }
-                    else {
-                        referrerHTML.insertBefore('#page');
-                    }
-                    break;
-                case 'projects':
-                case 'resources':
-                case 'stack-overflow':
-                    referrerHTML.insertAfter('header:first');
-                    break;
                 case 'middleware':
-                    jbdReferrerHTML.insertBefore('.rh-jboss-middleware');
+                    jbdReferrerHTML.insertBefore('main');
                     break;
-                case '':
-                    referrerHTML.insertAfter('.spotlights-wrap');
+                default:
+                    referrerHTML.insertBefore('main');
                     break;
             }
             $('#referral-alert .close').on("click", function () {
@@ -16044,9 +16143,8 @@ $(function () {
         return referrer;
     }
     function getPrimaryCategory() {
-        prtcl = /https?:\/\//;
-        category = window.location.href.replace(prtcl, '').replace(drupalSettings.rhd.urls.base_url, '').replace(drupalSettings.rhd.urls.final_base_url, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
-        return category.length > 1 ? category[1] : category[0];
+        var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
+        return bc[0];
     }
 }());
 function getEventTarget(e) {
@@ -16073,28 +16171,33 @@ function getCookie(cname) {
     }
     return "";
 }
-function checkRecentDownload() {
-    var storageExpiration = 600000;
-    if (window.location.href.indexOf('download-manager') > 0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)) {
-        if (window.localStorage.getItem('recent-download-url')) {
-            var recentDownload, timeOfRefer, currentTime;
-            recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
-            timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
-            currentTime = new Date().getTime();
-            if (currentTime - timeOfRefer > storageExpiration) {
-                window.localStorage.removeItem('recent-download-url');
-            }
-        }
-        else {
-            var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
-            localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
-        }
+function getUserAgent() {
+    var OSName = "Windows";
+    if (navigator.appVersion.indexOf("Mac") != -1)
+        OSName = "MacOS";
+    if (navigator.appVersion.indexOf("Linux") != -1)
+        OSName = "RHEL";
+    return OSName;
+}
+function setProductOSTab(systemType) {
+    switch (systemType) {
+        case 'Windows':
+            return 'fndtn-windows';
+            break;
+        case 'MacOS':
+            return 'fndtn-macos';
+            break;
+        case 'RHEL':
+            return 'fndtn-rhel';
+            break;
+        default:
+            return 'fndtn-windows';
     }
 }
 (function () {
-    var productApp = angular.module('productApp', []);
-    var pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
+    var productApp = angular.module('productApp', []), productOSHash = setProductOSTab(getUserAgent()), pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
     if (pathRegex) {
+        window.location.hash = productOSHash;
         if (window.location.pathname != getCookie('product_path')) {
             setCookie('product_page_cookie', null, 1);
         }
@@ -16109,11 +16212,10 @@ function checkRecentDownload() {
         }
         ;
         var productCookie = getCookie('product_page_cookie');
-        if (productCookie && productCookie != 'null') {
+        if (productCookie && productCookie != 'null' && !window.location.href.contains('tcDownloadFile')) {
             window.location.hash = productCookie;
         }
     }
-    checkRecentDownload();
 }());
 $(function () {
     $("input[type='text']").on("click", function () {
@@ -16283,13 +16385,13 @@ checkWidth();
 $(window).on("resize", checkWidth);
 $(function () {
     $(document).click(function (event) {
-        if (!$(event.target).closest("a.logged-in-name").length) {
+        if (!$(event.target).closest("a.dropdwn-trigger").length) {
             if ($('ul.rh-user-menu').is(":visible")) {
                 $('ul.rh-user-menu').hide();
             }
         }
     });
-    $("a.logged-in-name").on("click", function () {
+    $("a.dropdwn-trigger").on("click", function () {
         var width = $('ul.rh-universal-login').outerWidth();
         $('ul.rh-user-menu').width(width);
         $('ul.rh-user-menu').show();
@@ -16397,6 +16499,7 @@ $(document).ready(function () {
             }
         }
         if (this.href.indexOf(location.hostname) == -1) {
+            $(this).append(" <i class='far fa-file-pdf'></i>");
             $(this).on("click", function () { return true; });
             $(this).attr({ target: "_blank" });
             $(this).trigger("click");
@@ -16497,7 +16600,7 @@ app.relatedContent.render = function (materials) {
             var item = [
                 '<div class="large-6 columns related-content-card">',
                 '<h6>Related ' + material.fields.sys_type + '</h6>',
-                '<h4><span  >' + title + '</span></h4>',
+                '<h4><span class="line-clamp-2">' + title + '</span></h4>',
                 '<p class="description">',
                 '<a class="light-cta" href="' + material.fields.sys_url_view[0] + '">Read More</a>',
                 '</p>',
@@ -16508,6 +16611,11 @@ app.relatedContent.render = function (materials) {
         }
     });
     $('.video-related-content-list').html(html.join(''));
+    var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+    $clampItems.each(function () {
+        var $tmpItem = $(this);
+        $clamp($tmpItem.get(0), { clamp: 2, useNativeClamp: true });
+    });
 };
 $(function () {
     var $videoRelatedContentList = $('.video-related-content-list');

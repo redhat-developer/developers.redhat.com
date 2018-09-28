@@ -4,7 +4,7 @@
   padding: 20px;
   padding-top: 40px;
   min-height: 230px;
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover repeat-x;
     margin-bottom: 10px;
     margin-left:-15px;
@@ -286,7 +286,7 @@ ul.solutions {
   margin: 0;
   & > li {
     width:23.875%;
-    background:#DCDCDC;
+    background:$grey-3-5;
     margin:0 1.5% 20px 0;
     &:nth-child(4n+4) {
       margin-right: 0;
@@ -366,7 +366,7 @@ ul.solutions {
   }
 }
 
-@include tablet-portrait-and-down {
+@include tablet-landscape-768-and-down {
   ul.solutions {
     & > li {
       width:32.333333333%;

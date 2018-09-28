@@ -455,7 +455,7 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: Overpass;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
+                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
                         return tpl;
                     };
                     _this._visible = false;
@@ -645,7 +645,7 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
                     var _this = _super.call(this, 'dp-product-short-teaser') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: Overpass;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: Overpass;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
+                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
                         return tpl;
                     };
                     return _this;
@@ -762,7 +762,7 @@ var RHDPOSDownload = (function (_super) {
         _this.stage_download_url = 'https://developers.stage.redhat.com';
         _this.productDownloads = {
             "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
+            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
         };
         _this.template = function (strings, product, downloadUrl, platform, version) {
             return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -1062,6 +1062,7 @@ var RHDPThankyou = (function (_super) {
                 currentTime = new Date().getTime();
                 if (currentTime - timeOfRefer > storageExpiration) {
                     window.localStorage.removeItem(storageName);
+                    return false;
                 }
                 return true;
             }
@@ -1401,7 +1402,7 @@ var DevNationLiveApp = (function (_super) {
         };
         _this.template = function (strings, next, upcoming, past, speakers) {
             return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (next ? "<section class=\"next-session\">\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <div class=\"session-date right\"><i class=\"fa fa-calendar fa-2x\"></i> " + next.date + "</div>\n                    <h4 class=\"caps\">" + next.title + "</h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-14 small-24 columns\">\n                    <h5 class=\"caps session-label\">Session:</h5>\n                    <p class=\"abstract\">" + next.abstract + "</p>\n                    <a href=\"" + next.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>\n                </div>\n                <div class=\"large-10 columns\">\n                    <h5 class=\"caps session-label\">Speaker(s):</h5>\n                    " + next.speakers.map(function (speaker) { return _this.speakerLongTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + "  \n                </div>\n            </div>\n        </section>" : '') + "\n        <section class=\"session-list\">\n            <div class=\"row\">\n                " + (upcoming.length > 0 ? "\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) { return "" + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-24 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                    <p>" + sess.date + "</p>\n                                    <p>" + sess.abstract + "</p>\n                                    " + (sess.register ? "\n                                    <a href=\"" + sess.inxpo + "\" target=\"_blank\" class=\"button heavy-cta\">REGISTER</a>" : '') + "\n                                </div>\n                            </div>\n                        </li>"
-                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/video/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
+                : ''); }).join('') + "\n                    </ul>\n                </div>" : '') + "\n                " + (past.length > 0 ? "\n                " + (upcoming.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) { return "" + (sess.confirmed ? "\n                            <li class=\"single-event\">\n                                <div class=\"row\">\n                                    <div class=\"large-24 columns\">\n                                        <h4 class=\"caps\">" + sess.title + "</h4>\n                                        <p>Speaker(s): " + sess.speakers.map(function (speaker) { return _this.speakerShortTemplate(__makeTemplateObject(["", ""], ["", ""]), speakers[speaker]); }).join('') + " </p>\n                                        <p>" + sess.date + "</p>\n                                        <p>" + sess.abstract + "</p>\n                                        <a href=\"https://developers.redhat.com/videos/youtube/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                                    </div>\n                                </div>\n                            </li>"
                 : ''); }).join('') + "\n                        </ul>\n                    </div>"
                 : '') + "\n            </div>\n        </section>\n    </div>";
         };
@@ -1598,7 +1599,7 @@ System.register("@rhd/dp-stackoverflow/dp-stackoverflow", ["@rhelements/rhelemen
                     var _this = _super.call(this, 'dp-category-list') || this;
                     _this.template = function (el) {
                         var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n        <style>\n\n        </style>\n        <label for=\"filterByProduct\">Filter by Product</label>\n        <select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n<div ng-app=\"search\">\n<div class=\"row\" ng-controller=\"SearchController\">\n    <div class=\"large-24 columns\">\n    <div class=\"row\">\n        <div class=\"large-24 columns\">\n        <form class=\"search-bar\" ng-submit=\"updateSearch(); resetPagination();\" role=\"search\"> </form>\n        </div>\n        <div class=\"large-24 columns\" id=\"scrollPoint\">\n        <div class=\"row\">\n            <div class=\"large-14 columns stackoverflow-filters\">\n            <label for=\"filterByProduct\">Filter by Product</label>\n\n            <div class=\"styled-select\">\n<select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n    <option value=\"\">Show all</option>\n    <option value=\"openjdk\">OpenJDK</option>\n    <option value=\"rhamt\">Red Hat Application Migration Toolkit</option>\n    <option value=\"cdk\">Red Hat Developer Container Kit</option>\n    <option value=\"developertoolset\">Red Hat Developer Toolset</option>\n    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n    <option value=\"amq\">Red Hat JBoss AMQ</option>\n    <option value=\"bpmsuite\">Red Hat JBoss BPM Suite</option>\n    <option value=\"brms\">Red Hat Decision Manager</option>\n    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n    <option value=\"rhmap\">Red Hat Mobile Application Platform</option>\n    <option value=\"rhoar\">Red Hat Openshift Application Runtimes</option>\n    <option value=\"openshift\">Red Hat OpenShift Container Platform</option>\n    <option value=\"softwarecollections\">Red Hat Software Collections</option>\n    <option value=\"dotnet\">.NET Core for Red Hat Enterprise Linux</option>\n</select>\n</div>\n            </div>\n\n            <div class=\"large-10 columns\">\n            <div class=\"sorting so-sorting\">\n                <p ng-if=\"totalCount &gt; 10\">Show<select class=\"results-count\" ng-change=\"updateSearch()\" ng-model=\"params.size\"><option value=\"10\">10</option>\n<option value=\"25\">25</option>\n<option value=\"50\">50</option>\n<option value=\"100\">100</option></select>results per page</p>\n            </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n            <h3 class=\"results-title\" ng-bind-template=\"No results found\" ng-if=\"totalCount &lt;= 0\"> </h3>\n\n            <h4 class=\"results-sub-title\" ng-bind-template=\"Please select a different product\" ng-if=\"totalCount &lt;= 0\"> </h4>\n\n            <div class=\"stackoverflow-results-container\" ng-class=\"loading ? 'invisible' : 'search-results-loaded'\" ng-if=\"totalCount &gt; 0\">\n                <div ng-init=\"r = result\" ng-repeat=\"result in results\">\n                <div class=\"stackoverflow-update\">\n                    <div class=\"update\">\n                    <div class=\"update-meta\">\n                        <div class=\"row\">\n                        <div class=\"large-6 columns qtn-stats\">\n\n                            <div class=\"votes-count\">\n                            <h4 ng-bind=\"r._source.up_vote_count\"> </h4>\n                            <p ng-bind-template=\"Votes\"> </p>\n                            </div>\n                            <div class=\"answer-count\" ng-class=\"(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' \">\n                            <h4 ng-bind=\"r._source.answer_count\"> </h4>\n                            <p ng-bind-template=\"Answers\"> </p>\n                            </div>\n                            <div class=\"views-count\">\n                            <h4 ng-bind=\"r._source.view_count\"> </h4>\n                            <p ng-bind-template=\"Views\"> </p>\n                            </div>\n                        </div>\n\n                        <div class=\"large-18 columns\">\n                            <a class=\"qtn-title\" ng-href=\"{{r._source.sys_url_view}}\" ng-bind-html=\"r._source.sys_title\"> </a>\n                            <p class=\"qtn-content\" ng-bind-html=\"r | question\"> </p>\n\n                            <div class=\"callout qtn-answer\" ng-class=\"r._source.answers[0] ? 'display-answer' : 'hide-answer' \">\n                            <p ng-show=\"r._source.answers[0].is_accepted == true\">\n                                <strong ng-bind-template=\"Accepted answer: \"> </strong>\n                            </p>\n                            <p ng-show=\"r._source.answers[0].is_accepted == false\">\n                                <strong ng-bind-template=\"Latest answer: \"> </strong>\n                            </p>\n                            <p ng-bind=\"r._source.answers[0].body | htmlToPlaintext\"></p>\n                            <a ng-href=\"{{r._source.sys_url_view}}\" target=\"_blank\" rel=\"noopener noreferrer\" ng-bind-template=\"Read full question at Stack Overflow \u203A\"> </a>\n                            </div>\n                            <div class=\"so-tags\">\n                            <strong class=\"tag-label\" ng-bind-template=\"Tags:\"> </strong>\n                            <span class=\"tag\" ng-repeat=\"tag in r._source.sys_tags\" ng-bind=\"tag\"> </span>\n                            <span class=\"so-author\" ng-bind-template=\"{{r | stackDate}} | {{r | author}}\"> </span>\n                            </div>\n                        </div>\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                </div>\n            </div>\n            </div>\n        </div>\n\n        <nav id=\"paginator\" ng-hide=\"loading\" ng-if=\"paginate.pages &gt; 1\"><span ng-bind-template=\"Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results\"></span>\n            <ul class=\"pagination\">\n<li id=\"pagination-first\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('first'); scrollPosition();\">First</a>\n            </li>\n            <li id=\"pagination-prev\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('prev'); scrollPosition();\">Previous</a>\n            </li>\n            <li class=\"pagination-page-number\" id=\"pagination-{{$index}}\" ng-class=\"{current: page == paginate.currentPage}\" ng-repeat=\"page in paginate.pagesArray track by $index\">\n                <a ng-click=\"goToPage(page); scrollPosition();\" data-page=\"{{page}}\" ng-bind=\"page\"> </a>\n            </li>\n            <li id=\"pagination-next\" ng-class=\"paginate.currentPage &gt;= paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('next'); scrollPosition();\">Next</a>\n            </li>\n            <li id=\"pagination-last\" ng-class=\"paginate.currentPage  == paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('last'); scrollPosition();\">Last</a>\n            </li>\n            </ul></nav>\n</div>\n";
+                        tpl.innerHTML = "\n        <style>\n\n        </style>\n        <label for=\"filterByProduct\">Filter by Product</label>\n        <select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n<div ng-app=\"search\">\n<div class=\"row\" ng-controller=\"SearchController\">\n    <div class=\"large-24 columns\">\n    <div class=\"row\">\n        <div class=\"large-24 columns\">\n        <form class=\"search-bar\" ng-submit=\"updateSearch(); resetPagination();\" role=\"search\"> </form>\n        </div>\n        <div class=\"large-24 columns\" id=\"scrollPoint\">\n        <div class=\"row\">\n            <div class=\"large-14 columns stackoverflow-filters\">\n            <label for=\"filterByProduct\">Filter by Product</label>\n\n            <div class=\"styled-select\">\n<select id=\"filterByProduct\" name=\"filter-by-product\" ng-change=\"updateSearch(); resetPagination();\" ng-model=\"params.product\">\n    <option value=\"\">Show all</option>\n    <option value=\"openjdk\">OpenJDK</option>\n    <option value=\"rhamt\">Red Hat Application Migration Toolkit</option>\n    <option value=\"cdk\">Red Hat Developer Container Kit</option>\n    <option value=\"developertoolset\">Red Hat Developer Toolset</option>\n    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n    <option value=\"amq\">Red Hat JBoss AMQ</option>\n    <option value=\"rhpam\">Red Hat Process Automation Manager</option>\n    <option value=\"brms\">Red Hat Decision Manager</option>\n    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n    <option value=\"rhmap\">Red Hat Mobile Application Platform</option>\n    <option value=\"rhoar\">Red Hat Openshift Application Runtimes</option>\n    <option value=\"openshift\">Red Hat OpenShift Container Platform</option>\n    <option value=\"softwarecollections\">Red Hat Software Collections</option>\n    <option value=\"dotnet\">.NET Core for Red Hat Enterprise Linux</option>\n</select>\n</div>\n            </div>\n\n            <div class=\"large-10 columns\">\n            <div class=\"sorting so-sorting\">\n                <p ng-if=\"totalCount &gt; 10\">Show<select class=\"results-count\" ng-change=\"updateSearch()\" ng-model=\"params.size\"><option value=\"10\">10</option>\n<option value=\"25\">25</option>\n<option value=\"50\">50</option>\n<option value=\"100\">100</option></select>results per page</p>\n            </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n            <h3 class=\"results-title\" ng-bind-template=\"No results found\" ng-if=\"totalCount &lt;= 0\"> </h3>\n\n            <h4 class=\"results-sub-title\" ng-bind-template=\"Please select a different product\" ng-if=\"totalCount &lt;= 0\"> </h4>\n\n            <div class=\"stackoverflow-results-container\" ng-class=\"loading ? 'invisible' : 'search-results-loaded'\" ng-if=\"totalCount &gt; 0\">\n                <div ng-init=\"r = result\" ng-repeat=\"result in results\">\n                <div class=\"stackoverflow-update\">\n                    <div class=\"update\">\n                    <div class=\"update-meta\">\n                        <div class=\"row\">\n                        <div class=\"large-6 columns qtn-stats\">\n\n                            <div class=\"votes-count\">\n                            <h4 ng-bind=\"r._source.up_vote_count\"> </h4>\n                            <p ng-bind-template=\"Votes\"> </p>\n                            </div>\n                            <div class=\"answer-count\" ng-class=\"(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' \">\n                            <h4 ng-bind=\"r._source.answer_count\"> </h4>\n                            <p ng-bind-template=\"Answers\"> </p>\n                            </div>\n                            <div class=\"views-count\">\n                            <h4 ng-bind=\"r._source.view_count\"> </h4>\n                            <p ng-bind-template=\"Views\"> </p>\n                            </div>\n                        </div>\n\n                        <div class=\"large-18 columns\">\n                            <a class=\"qtn-title\" ng-href=\"{{r._source.sys_url_view}}\" ng-bind-html=\"r._source.sys_title\"> </a>\n                            <p class=\"qtn-content\" ng-bind-html=\"r | question\"> </p>\n\n                            <div class=\"callout qtn-answer\" ng-class=\"r._source.answers[0] ? 'display-answer' : 'hide-answer' \">\n                            <p ng-show=\"r._source.answers[0].is_accepted == true\">\n                                <strong ng-bind-template=\"Accepted answer: \"> </strong>\n                            </p>\n                            <p ng-show=\"r._source.answers[0].is_accepted == false\">\n                                <strong ng-bind-template=\"Latest answer: \"> </strong>\n                            </p>\n                            <p ng-bind=\"r._source.answers[0].body | htmlToPlaintext\"></p>\n                            <a ng-href=\"{{r._source.sys_url_view}}\" target=\"_blank\" rel=\"noopener noreferrer\" ng-bind-template=\"Read full question at Stack Overflow \u203A\"> </a>\n                            </div>\n                            <div class=\"so-tags\">\n                            <strong class=\"tag-label\" ng-bind-template=\"Tags:\"> </strong>\n                            <span class=\"tag\" ng-repeat=\"tag in r._source.sys_tags\" ng-bind=\"tag\"> </span>\n                            <span class=\"so-author\" ng-bind-template=\"{{r | stackDate}} | {{r | author}}\"> </span>\n                            </div>\n                        </div>\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                </div>\n            </div>\n            </div>\n        </div>\n\n        <nav id=\"paginator\" ng-hide=\"loading\" ng-if=\"paginate.pages &gt; 1\"><span ng-bind-template=\"Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results\"></span>\n            <ul class=\"pagination\">\n<li id=\"pagination-first\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('first'); scrollPosition();\">First</a>\n            </li>\n            <li id=\"pagination-prev\" ng-class=\"paginate.currentPage &lt; 2 ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('prev'); scrollPosition();\">Previous</a>\n            </li>\n            <li class=\"pagination-page-number\" id=\"pagination-{{$index}}\" ng-class=\"{current: page == paginate.currentPage}\" ng-repeat=\"page in paginate.pagesArray track by $index\">\n                <a ng-click=\"goToPage(page); scrollPosition();\" data-page=\"{{page}}\" ng-bind=\"page\"> </a>\n            </li>\n            <li id=\"pagination-next\" ng-class=\"paginate.currentPage &gt;= paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('next'); scrollPosition();\">Next</a>\n            </li>\n            <li id=\"pagination-last\" ng-class=\"paginate.currentPage  == paginate.pages ? 'unavailable': 'available'\">\n                <a ng-click=\"goToPage('last'); scrollPosition();\">Last</a>\n            </li>\n            </ul></nav>\n</div>\n";
                         return tpl;
                     };
                     return _this;
@@ -2141,15 +2142,15 @@ var RHDPDownloadsProducts = (function (_super) {
                     "version": "",
                     "learnMoreLink": "/products/red-hat-decision-manager/overview/"
                 }, {
-                    "productName": "Red Hat JBoss BPM Suite",
+                    "productName": "Red Hat Process Automation Manager",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "bpmsuite",
+                    "productCode": "rhpam",
                     "featured": false,
                     "dataFallbackUrl": "https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=bpm.suite&productChanged=yes",
                     "downloadLink": "",
                     "description": "A platform that combines business rules and process management (BPM), and complex event processing.",
                     "version": "",
-                    "learnMoreLink": "/products/bpmsuite/overview/"
+                    "learnMoreLink": "/products/rhpam/overview/"
                 }, {
                     "productName": "Red Hat JBoss Data Virtualization",
                     "groupHeading": "INTEGRATION AND AUTOMATION",
@@ -2278,7 +2279,7 @@ var RHDPProjectFilterBox = (function (_super) {
         _this._term = '';
         _this._filter = '';
         _this.template = function (strings, project) {
-            return "\n        <form action=\"\" class=\"project-filters\" method=\"GET\" data-drupal-form-fields=\"\">\n            <h4>Filters<a class=\"project-filters-clear\" href=\"#\">Clear All Filters</a></h4>\n            <input name=\"filter-text\" placeholder=\"Filter by keyword\" type=\"text\" value=\"" + project.term + "\">\n            <div class=\"filter-block\">\n                <h5>Included In</h5>\n        \n                <div class=\"styled-select\" ><select name=\"filter-products\" id=\"upstream-project-selection\">\n                    <option value=\"\">Select Product...</option>\n                    <option value=\"amq\">Red Hat JBoss AMQ</option>\n                    <option value=\"bpmsuite\">Red Hat JBoss BPM Suite</option>\n                    <option value=\"brms\">Red Hat Decision Manager</option>\n                    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n                    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n                    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n                    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n                    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n                    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n                    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n                </select></div>\n            </div>\n        </form>\n";
+            return "\n        <form action=\"\" class=\"project-filters\" method=\"GET\" data-drupal-form-fields=\"\">\n            <h4>Filters<a class=\"project-filters-clear\" href=\"#\">Clear All Filters</a></h4>\n            <input name=\"filter-text\" placeholder=\"Filter by keyword\" type=\"text\" value=\"" + project.term + "\">\n            <div class=\"filter-block\">\n                <h5>Included In</h5>\n        \n                <div class=\"styled-select\" ><select name=\"filter-products\" id=\"upstream-project-selection\">\n                    <option value=\"\">Select Product...</option>\n                    <option value=\"amq\">Red Hat JBoss AMQ</option>\n                    <option value=\"rhpam\">Red Hat Process Automation Manager</option>\n                    <option value=\"brms\">Red Hat Decision Manager</option>\n                    <option value=\"datagrid\">Red Hat JBoss Data Grid</option>\n                    <option value=\"datavirt\">Red Hat JBoss Data Virtualization</option>\n                    <option value=\"devstudio\">Red Hat JBoss Developer Studio</option>\n                    <option value=\"eap\">Red Hat JBoss Enterprise Application Platform</option>\n                    <option value=\"fuse\">Red Hat JBoss Fuse</option>\n                    <option value=\"rhel\">Red Hat Enterprise Linux</option>\n                    <option value=\"webserver\">Red Hat JBoss Web Server</option>\n                </select></div>\n            </div>\n        </form>\n";
         };
         return _this;
     }
@@ -2743,7 +2744,7 @@ var RHDPProjectQuery = (function (_super) {
         _this._mockData = false;
         _this.productData = {
             "amq": { "upstream": ["activemq", "fabric8"] },
-            "bpmsuite": { "upstream": ["drools", "guvnor", "optaplanner", "jbpm"] },
+            "rhpam": { "upstream": ["drools", "guvnor", "optaplanner", "jbpm"] },
             "brms": { "upstream": ["optaplanner", "drools", "guvnor"] },
             "datagrid": { "upstream": ["infinispan", "jgroups", "hibernate_subprojects_search"] },
             "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"] },
@@ -4875,7 +4876,7 @@ var RHDPSearchApp = (function (_super) {
                     items: [
                         { key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
                         { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
-                        { key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite'] },
+                        { key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam', 'bpmsuite'] },
                         { key: 'brms', name: 'Red Hat Decision Manager', value: ['brms'] },
                         { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
                         { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
@@ -5062,7 +5063,7 @@ app.dcp.thumbnails = {
 };
 app.products = {
     "amq": { "upstream": ["activemq", "fabric8"], "stackoverflow": ["jbossamq", "amq"], "buzz_tags": ["amq", "JBoss A-MQ"] },
-    "bpmsuite": { "upstream": ["drools", "guvnor", "optaplanner", "jbpm"], "stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite", "jBPM"] },
+    "rhpam": { "upstream": ["drools", "guvnor", "optaplanner", "jbpm"], "stackoverflow": "redhat-bpm", "buzz_tags": ["BPM Suite", "jBPM"] },
     "brms": { "upstream": ["optaplanner", "drools", "guvnor"], "stackoverflow": ["redhat-brms", "decision manager", "red hat decision manager"], "buzz_tags": ["brms", "JBoss BRMS"] },
     "cdk": { "upstream": null, "stackoverflow": "redhat-containers", "buzz_tags": ["containers"] },
     "datagrid": { "upstream": ["infinispan", "jgroups", "hibernate_subprojects_search"], "stackoverflow": "redhat-datagrid", "buzz_tags": ["datagrid", "jboss data grid"] },
@@ -5086,7 +5087,7 @@ app.products = {
 };
 app.products.downloads = {
     "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.4.0-2-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.4.0-2-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.4.0-2-minishift-linux-amd64" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};
@@ -5468,10 +5469,10 @@ app.sso = function () {
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
                     logged_in_user = "My Account";
                 }
-                $('a.logged-in-name')
+                $('span.logged-in-name')
                     .text(logged_in_user)
-                    .attr('href', app.ssoConfig.account_url)
                     .show();
+                $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
@@ -9637,6 +9638,187 @@ var ytPlayerParams = {
         'onStateChange': ytEmbed.onPlayerStateChange
     }
 };
+/*!
+* Clamp.js 0.5.1
+*
+* Copyright 2011-2013, Joseph Schmitt http://joe.sh
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*/
+(function () {
+    function clamp(element, options) {
+        options = options || {};
+        var self = this, win = window, opt = {
+            clamp: options.clamp || 2,
+            useNativeClamp: typeof (options.useNativeClamp) != 'undefined' ? options.useNativeClamp : true,
+            splitOnChars: options.splitOnChars || ['.', '-', '–', '—', ' '],
+            animate: options.animate || false,
+            truncationChar: options.truncationChar || '…',
+            truncationHTML: options.truncationHTML
+        }, sty = element.style, originalText = element.innerHTML, supportsNativeClamp = typeof (element.style.webkitLineClamp) != 'undefined', clampValue = opt.clamp, isCSSValue = clampValue.indexOf && (clampValue.indexOf('px') > -1 || clampValue.indexOf('em') > -1), truncationHTMLContainer;
+        if (opt.truncationHTML) {
+            truncationHTMLContainer = document.createElement('span');
+            truncationHTMLContainer.innerHTML = opt.truncationHTML;
+        }
+        function computeStyle(elem, prop) {
+            if (!win.getComputedStyle) {
+                win.getComputedStyle = function (el, pseudo) {
+                    this.el = el;
+                    this.getPropertyValue = function (prop) {
+                        var re = /(\-([a-z]){1})/g;
+                        if (prop == 'float')
+                            prop = 'styleFloat';
+                        if (re.test(prop)) {
+                            prop = prop.replace(re, function () {
+                                return arguments[2].toUpperCase();
+                            });
+                        }
+                        return el.currentStyle && el.currentStyle[prop] ? el.currentStyle[prop] : null;
+                    };
+                    return this;
+                };
+            }
+            return win.getComputedStyle(elem, null).getPropertyValue(prop);
+        }
+        function getMaxLines(height) {
+            var availHeight = height || element.clientHeight;
+            var lineHeight = getLineHeight(element);
+            var returnVal = Math.max(Math.floor(availHeight / lineHeight), 0);
+            return returnVal;
+        }
+        function getMaxHeight(clmp) {
+            var lineHeight = getLineHeight(element);
+            var reminder = lineHeight % 2;
+            var compVal = reminder == 0 ? 0 : 1;
+            var returnVal = Math.floor(lineHeight * clmp) + compVal;
+            return returnVal;
+        }
+        function getLineHeight(elem) {
+            var lh = computeStyle(elem, 'line-height');
+            if (lh == 'normal') {
+                lh = parseInt(computeStyle(elem, 'font-size')) * 1.1;
+            }
+            return parseInt(lh);
+        }
+        var splitOnChars = opt.splitOnChars.slice(0), splitChar = splitOnChars[0], chunks, lastChunk;
+        function getLastChild(elem) {
+            if (elem.lastChild.children && elem.lastChild.children.length > 0) {
+                return getLastChild(Array.prototype.slice.call(elem.children).pop());
+            }
+            else if (!elem.lastChild || !elem.lastChild.nodeValue || elem.lastChild.nodeValue == '' || elem.lastChild.nodeValue == opt.truncationChar) {
+                elem.lastChild.parentNode.removeChild(elem.lastChild);
+                return getLastChild(element);
+            }
+            else {
+                return elem.lastChild;
+            }
+        }
+        function truncate(target, maxHeight) {
+            if (!maxHeight) {
+                return;
+            }
+            function reset() {
+                splitOnChars = opt.splitOnChars.slice(0);
+                splitChar = splitOnChars[0];
+                chunks = null;
+                lastChunk = null;
+            }
+            var nodeValue = target.nodeValue.replace(opt.truncationChar, '');
+            if (!chunks) {
+                if (splitOnChars.length > 0) {
+                    splitChar = splitOnChars.shift();
+                }
+                else {
+                    splitChar = '';
+                }
+                chunks = nodeValue.split(splitChar);
+            }
+            if (chunks.length > 1) {
+                lastChunk = chunks.pop();
+                applyEllipsis(target, chunks.join(splitChar));
+            }
+            else {
+                chunks = null;
+            }
+            if (truncationHTMLContainer) {
+                target.nodeValue = target.nodeValue.replace(opt.truncationChar, '');
+                element.innerHTML = target.nodeValue + ' ' + truncationHTMLContainer.innerHTML + opt.truncationChar;
+            }
+            if (chunks) {
+                if (element.clientHeight <= maxHeight) {
+                    if (splitOnChars.length >= 0 && splitChar != '') {
+                        applyEllipsis(target, chunks.join(splitChar) + splitChar + lastChunk);
+                        chunks = null;
+                    }
+                    else {
+                        return element.innerHTML;
+                    }
+                }
+            }
+            else {
+                if (splitChar == '') {
+                    applyEllipsis(target, '');
+                    target = getLastChild(element);
+                    reset();
+                }
+            }
+            if (opt.animate) {
+                setTimeout(function () {
+                    truncate(target, maxHeight);
+                }, opt.animate === true ? 10 : opt.animate);
+            }
+            else {
+                return truncate(target, maxHeight);
+            }
+        }
+        function applyEllipsis(elem, str) {
+            elem.nodeValue = str + opt.truncationChar;
+        }
+        if (clampValue == 'auto') {
+            clampValue = getMaxLines();
+        }
+        else if (isCSSValue) {
+            clampValue = getMaxLines(parseInt(clampValue));
+        }
+        var clampedText;
+        if (supportsNativeClamp && opt.useNativeClamp) {
+            sty.overflow = 'hidden';
+            sty.textOverflow = 'ellipsis';
+            sty.webkitBoxOrient = 'vertical';
+            sty.display = '-webkit-box';
+            sty.webkitLineClamp = clampValue;
+            if (isCSSValue) {
+                sty.height = opt.clamp + 'px';
+            }
+        }
+        else {
+            var height = getMaxHeight(clampValue);
+            var tmpClientHeight = element.clientHeight;
+            if (height < tmpClientHeight) {
+                clampedText = truncate(getLastChild(element), height);
+            }
+        }
+        return {
+            'original': originalText,
+            'clamped': clampedText
+        };
+    }
+    window.$clamp = clamp;
+})();
+$(function () {
+    var $clampItems = $("[class^='line-clamp-']");
+    $clampItems.each(function () {
+        var $tmpItem = $(this);
+        var testClass = $tmpItem.attr("class");
+        var lineCountArray = testClass.split("-");
+        var testLineCount = parseInt(lineCountArray[lineCountArray.length - 1], 10);
+        if (!isNaN(testLineCount)) {
+            if (testLineCount <= 10 && testLineCount >= 1) {
+                $clamp($tmpItem.get(0), { clamp: testLineCount, useNativeClamp: true });
+            }
+        }
+    });
+});
 app.termsAndConditions = {
     urlParam: function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -9682,7 +9864,7 @@ app.termsAndConditions = {
         }
         if (tcDownloadURL &&
             tcDownloadURL.startsWith('https://access.cdn.redhat.com/') &&
-            tcDownloadURL.contains(tcDownloadFileName)) {
+            tcDownloadURL.contains(tcDownloadFileName) && !checkRecentDownload()) {
             tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
             $("a#tcDownloadLink").attr("href", tcDownloadURL);
             if (tcDownloadFileName) {
@@ -9710,6 +9892,34 @@ app.termsAndConditions = {
         digitalData.event = digitalData.event || [];
         digitalData.event.push(ddDownloadEvent);
         sendCustomEvent('downloadEvent');
+        function setRecentUrlValue() {
+            var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
+            localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
+        }
+        function checkRecentDownload() {
+            var storageExpiration = 600000;
+            if (window.location.href.indexOf('download-manager') > 0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)) {
+                if (window.localStorage.getItem('recent-download-url')) {
+                    var recentDownload, timeOfRefer, currentTime;
+                    recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
+                    timeOfRefer = recentDownload && recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
+                    currentTime = new Date().getTime();
+                    if (currentTime - timeOfRefer > storageExpiration) {
+                        setRecentUrlValue();
+                        return false;
+                    }
+                    if (recentDownload['value'] !== window.location.href) {
+                        setRecentUrlValue();
+                        return false;
+                    }
+                    return true;
+                }
+                else {
+                    setRecentUrlValue();
+                    return false;
+                }
+            }
+        }
     },
     callback: function (data) {
         if (data.tac.accepted) {
@@ -15963,68 +16173,15 @@ $(function () {
 });
 (function () {
     $(function () {
-        var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"></a></div></div></div></section>');
+        var referrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>You have been redirected from JBoss.org to Red Hat Developers.</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="https://developers.redhat.com/">developers.redhat.com.</a></p><a class="close"><i class="fas fa-times"></i></a></div></div></div></section>');
         var jbdReferrerHTML = $('<section id="referral-alert"><div class="row alert-box alert-xl"><div class="row"><div class="icon"></div><div class="alert-content"><h3>Welcome jboss.org members!</h3><p>It' + "'" + 's true — JBoss Developer and Red Hat Developer Program are joining forces. You can find all the great Middleware information that you were looking for right here on developers.redhat.com.<a href="https://developer.jboss.org/blogs/mark.little/2017/08/31/we-are-moving?_sscc=t"> Read more about this on our blog.</a></p></div></div></div></section>');
         if (isReferrer('jbd')) {
             switch (getPrimaryCategory()) {
-                case 'products':
-                    if ($('.mobile.product-header').length > 0) {
-                        referrerHTML.insertBefore('.mobile.product-header');
-                    }
-                    else {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    break;
-                case 'downloads':
-                    referrerHTML.insertBefore('.most-popular-downloads');
-                    break;
-                case 'topics':
-                    referrerHTML.insertBefore('.topics-main div:first');
-                    break;
-                case 'community':
-                    referrerHTML.insertAfter('.contributors-main');
-                    break;
-                case 'about':
-                case 'books':
-                case 'quickstarts':
-                    referrerHTML.insertBefore('.node__content');
-                    break;
-                case 'articles':
-                case 'spotlights':
-                case 'variants':
-                case 'vjbug':
-                case 'terms-and-conditions':
-                case 'ticket-monster':
-                case 'archetypes':
-                case 'boms':
-                case 'demos':
-                case 'general-error':
-                case 'video':
-                case 'promotions':
-                case 'webinars':
-                case 'devnation2015':
-                case 'forums':
-                case 'events':
-                    if ($('.hero').length > 0) {
-                        referrerHTML.insertAfter('.hero');
-                    }
-                    else if ($('.wide-hero').length > 0) {
-                        referrerHTML.insertAfter('.wide-hero');
-                    }
-                    else {
-                        referrerHTML.insertBefore('#page');
-                    }
-                    break;
-                case 'projects':
-                case 'resources':
-                case 'stack-overflow':
-                    referrerHTML.insertAfter('header:first');
-                    break;
                 case 'middleware':
-                    jbdReferrerHTML.insertBefore('.rh-jboss-middleware');
+                    jbdReferrerHTML.insertBefore('main');
                     break;
-                case '':
-                    referrerHTML.insertAfter('.spotlights-wrap');
+                default:
+                    referrerHTML.insertBefore('main');
                     break;
             }
             $('#referral-alert .close').on("click", function () {
@@ -16044,9 +16201,8 @@ $(function () {
         return referrer;
     }
     function getPrimaryCategory() {
-        prtcl = /https?:\/\//;
-        category = window.location.href.replace(prtcl, '').replace(drupalSettings.rhd.urls.base_url, '').replace(drupalSettings.rhd.urls.final_base_url, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
-        return category.length > 1 ? category[1] : category[0];
+        var bc = window.location.href.replace(/^https?\:\/\/([a-z._-]|[0-9])+(:?[0-9]*)?(\/pr\/[0-9]+\/export)?\//, '').replace(/\/$/, '').split('?')[0].split('#')[0].split(/\//);
+        return bc[0];
     }
 }());
 function getEventTarget(e) {
@@ -16073,28 +16229,33 @@ function getCookie(cname) {
     }
     return "";
 }
-function checkRecentDownload() {
-    var storageExpiration = 600000;
-    if (window.location.href.indexOf('download-manager') > 0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)) {
-        if (window.localStorage.getItem('recent-download-url')) {
-            var recentDownload, timeOfRefer, currentTime;
-            recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
-            timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
-            currentTime = new Date().getTime();
-            if (currentTime - timeOfRefer > storageExpiration) {
-                window.localStorage.removeItem('recent-download-url');
-            }
-        }
-        else {
-            var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
-            localStorage.setItem("recent-download-url", JSON.stringify(referrerDownload));
-        }
+function getUserAgent() {
+    var OSName = "Windows";
+    if (navigator.appVersion.indexOf("Mac") != -1)
+        OSName = "MacOS";
+    if (navigator.appVersion.indexOf("Linux") != -1)
+        OSName = "RHEL";
+    return OSName;
+}
+function setProductOSTab(systemType) {
+    switch (systemType) {
+        case 'Windows':
+            return 'fndtn-windows';
+            break;
+        case 'MacOS':
+            return 'fndtn-macos';
+            break;
+        case 'RHEL':
+            return 'fndtn-rhel';
+            break;
+        default:
+            return 'fndtn-windows';
     }
 }
 (function () {
-    var productApp = angular.module('productApp', []);
-    var pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
+    var productApp = angular.module('productApp', []), productOSHash = setProductOSTab(getUserAgent()), pathRegex = window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g);
     if (pathRegex) {
+        window.location.hash = productOSHash;
         if (window.location.pathname != getCookie('product_path')) {
             setCookie('product_page_cookie', null, 1);
         }
@@ -16109,11 +16270,10 @@ function checkRecentDownload() {
         }
         ;
         var productCookie = getCookie('product_page_cookie');
-        if (productCookie && productCookie != 'null') {
+        if (productCookie && productCookie != 'null' && !window.location.href.contains('tcDownloadFile')) {
             window.location.hash = productCookie;
         }
     }
-    checkRecentDownload();
 }());
 $(function () {
     $("input[type='text']").on("click", function () {
@@ -16281,6 +16441,20 @@ function checkWidth() {
 ;
 checkWidth();
 $(window).on("resize", checkWidth);
+$(function () {
+    $(document).click(function (event) {
+        if (!$(event.target).closest("a.dropdwn-trigger").length) {
+            if ($('ul.rh-user-menu').is(":visible")) {
+                $('ul.rh-user-menu').hide();
+            }
+        }
+    });
+    $("a.dropdwn-trigger").on("click", function () {
+        var width = $('ul.rh-universal-login').outerWidth();
+        $('ul.rh-user-menu').width(width);
+        $('ul.rh-user-menu').show();
+    });
+});
 var g = typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : typeof self !== "undefined" ? self : this;
 (function (e) { var t = function () { try {
     return !!Symbol.iterator;

@@ -1,0 +1,42 @@
+.page-node-type-landing-page-single-offer {
+  header {
+    margin-top: 20px;
+    margin-bottom: 90px;
+    .rh-header-logo {
+      max-width: 260px;
+    }
+  }
+  main {
+    &.column-container {
+      display: grid;
+    }
+    .main-content {
+      @include tablet-landscape-768-and-down {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+      width: 66%;
+      margin-bottom: 100px;
+      h1 {
+        text-transform: uppercase;
+        color: #424242;
+        margin-bottom: 0;
+        font-weight: 400;
+        font-size: 27px;
+        line-height: 1.35;
+        margin: 0;
+      }
+    }
+    .sidebar {
+      @include tablet-landscape-768-and-down {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+      width: 33%;
+    }
+  }
+  footer {
+    float: left;
+    width: 100%;
+  }
+}

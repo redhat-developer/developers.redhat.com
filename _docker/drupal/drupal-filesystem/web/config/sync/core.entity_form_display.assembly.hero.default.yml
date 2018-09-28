@@ -4,22 +4,29 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.hero
+    - field.field.assembly.hero.field_audience_selection
     - field.field.assembly.hero.field_background_image
     - field.field.assembly.hero.field_content
     - field.field.assembly.hero.field_navigation_title
     - field.field.assembly.hero.field_title
     - image.style.thumbnail
   module:
+    - content_moderation
     - image
     - text
-    - workbench_moderation
 id: assembly.hero.default
 targetEntityType: assembly
 bundle: hero
 mode: default
 content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_background_image:
-    weight: 5
+    weight: 6
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -27,7 +34,7 @@ content:
     type: image_image
     region: content
   field_content:
-    weight: 4
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -35,7 +42,7 @@ content:
     type: text_textarea
     region: content
   field_navigation_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -43,7 +50,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -51,11 +58,11 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    type: moderation_state_default
-    weight: 7
+    weight: 9
     settings: {  }
-    region: content
     third_party_settings: {  }
+    type: moderation_state_default
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -73,7 +80,7 @@ content:
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -83,7 +90,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

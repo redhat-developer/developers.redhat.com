@@ -36,6 +36,12 @@
     * Run ```npm start```
     * Commit
 
+## Using Clamp styles
+
+to apply a cross browser line clamp to a item apply the class "line-clamp-*" where the "*" is the numebr of lines you want to clamp e.g. "line-clamp-2" will only display 2 lines before adding ... to the end of the text valid numebrs are intergers "1 to 10".
+
+only to be used on heading "H" tags and paragraph "P" tags.
+
 
 ## Popular Patterns
 

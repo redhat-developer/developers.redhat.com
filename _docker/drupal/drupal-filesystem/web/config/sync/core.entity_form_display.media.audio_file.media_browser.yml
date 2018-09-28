@@ -1,0 +1,64 @@
+uuid: de69fe75-2b7b-41a2-bf2e-c9bd811b925b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.audio_file.field_media_audio_file
+    - field.field.media.audio_file.field_media_in_library
+    - media.type.audio_file
+  module:
+    - content_moderation
+    - file
+    - path
+_core:
+  default_config_hash: Vrdgai9kwD_ZilqzZCL2xnDI9c4_3s9ccRacwMQgOLc
+id: media.audio_file.media_browser
+targetEntityType: media
+bundle: audio_file
+mode: media_browser
+content:
+  field_media_audio_file:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_media_in_library:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    third_party_settings: {  }
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

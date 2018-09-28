@@ -11,7 +11,6 @@ dependencies:
     - paragraphs.paragraphs_type.help
   module:
     - link
-    - workbench_moderation
 _core:
   default_config_hash: 2eA2te9gji-J2z3Rjm-i8n3sz5ujS0aFq5P8DFh62Bo
 id: paragraph.help.default
@@ -48,6 +47,15 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  moderation_state:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

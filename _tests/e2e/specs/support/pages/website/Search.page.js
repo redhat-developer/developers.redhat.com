@@ -1,8 +1,8 @@
-import {Base} from '../Base.page'
-import {SearchFilter} from './components/search/SearchFilter'
-import {SearchOneBox} from './components/search/SearchOneBox'
-import {SearchResults} from './components/search/SearchResults'
-import {SearchResultSort} from './components/search/SearchResultSort'
+import {Base} from '../Base.page';
+import {SearchFilter} from './components/search/SearchFilter';
+import {SearchOneBox} from './components/search/SearchOneBox';
+import {SearchResults} from './components/search/SearchResults';
+import {SearchResultSort} from './components/search/SearchResultSort';
 
 export class Search extends Base {
 
@@ -24,6 +24,6 @@ export class Search extends Base {
 
     awaitSearchPage() {
         this.awaitIsVisible(this.getSelector('searchPage'), 30000);
-        return this.searchResults.awaitLoadingSpinner()
+        return this.searchResults.awaitLoadingSpinner();
     }
 }

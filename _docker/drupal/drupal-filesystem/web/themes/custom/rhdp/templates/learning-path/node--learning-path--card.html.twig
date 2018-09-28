@@ -13,7 +13,7 @@
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
     <div class="header-block">
-      <div class="asset-type">{% if login_req %}<span class="login-required" title="Login required"><span class="fas fa-users"></span></span> {% endif %}Learning Path</div>
+      <div class="asset-type">{% if login_req %}<span class="login-required" title="Free for members"><span class="fas fa-users"></span></span> {% endif %}Learning Guide</div>
       <h3 class="card-title">{{ label }}</h3>
     </div>
     <div class="content-block">
@@ -23,7 +23,7 @@
           <div class="lesson-title">{{ lesson.title|raw }}</div>
         </div>
       {% endfor %}
-      <div class="more">More Lessons</div>
+      <div class="more">More Guides</div>
     </div>
   </a>
 </article>

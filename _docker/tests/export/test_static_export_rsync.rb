@@ -11,7 +11,9 @@ class TestStaticExportRsync < MiniTest::Test
     @process_runner = mock()
     @empty_directory = Dir.mktmpdir
     @export_archiver = mock()
-    @static_export_rsync = StaticExportRsync.new(@process_runner, @export_archiver)
+    @export_diff = mock()
+    @akamai_cache_flush = mock()
+    @static_export_rsync = StaticExportRsync.new(@process_runner, @export_archiver, @export_diff, @akamai_cache_flush)
     @static_export_rsync.empty_directory = @empty_directory
   end
 
@@ -39,9 +41,13 @@ class TestStaticExportRsync < MiniTest::Test
     export_dir = '/export/drupal_8080'
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/my/target/directory'
+    modified_urls = %w(http://foo.com)
 
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host_directory}")
     @export_archiver.expects(:archive_site_export).with(export_dir)
+    @export_diff.expects(:modified_content_urls).with(export_dir).returns(modified_urls)
+    @akamai_cache_flush.expects(:invalidate_cache_for_urls).with(modified_urls)
+
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
   end
 
@@ -81,12 +87,15 @@ class TestStaticExportRsync < MiniTest::Test
     export_dir = '/export/drupal_8080'
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/it-rhd-stg/stg_main[/my/target/directory]'
+    modified_urls = %w(http://foo.com)
 
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
     @export_archiver.expects(:archive_site_export).with(export_dir)
+    @export_diff.expects(:modified_content_urls).with(export_dir).returns(modified_urls)
+    @akamai_cache_flush.expects(:invalidate_cache_for_urls).with(modified_urls)
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
   end
@@ -110,12 +119,15 @@ class TestStaticExportRsync < MiniTest::Test
     export_dir = '/export/drupal_8080'
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:[/my/target/directory]'
+    modified_urls = %w(http://foo.com)
 
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target/directory")
     @process_runner.expects(:execute!).with("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/my/target/directory")
     @export_archiver.expects(:archive_site_export).with(export_dir)
+    @export_diff.expects(:modified_content_urls).with(export_dir).returns(modified_urls)
+    @akamai_cache_flush.expects(:invalidate_cache_for_urls).with(modified_urls)
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
   end

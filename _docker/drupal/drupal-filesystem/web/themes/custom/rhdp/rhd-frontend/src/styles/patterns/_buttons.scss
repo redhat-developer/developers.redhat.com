@@ -117,11 +117,16 @@ button, .button {
   display: inline-block;
 }
 
-a.button[href$=".pdf"]:after,
-a.heavy-cta[href$=".pdf"]:after,
-a.medium-cta[href$=".pdf"]:after,
-.heavy-cta a[href$=".pdf"]:after,
-.madium-cta a[href$=".pdf"]:after{ display: none; }
+a.button[href$=".pdf"],
+a.heavy-cta[href$=".pdf"],
+a.medium-cta[href$=".pdf"],
+.heavy-cta a[href$=".pdf"],
+.medium-cta a[href$=".pdf"], 
+.f-dropdown a[href$=".pdf"]{ 
+  .fa-file-pdf {
+    display: none;
+  }
+}
 
 a.light-cta{
   color: $link;

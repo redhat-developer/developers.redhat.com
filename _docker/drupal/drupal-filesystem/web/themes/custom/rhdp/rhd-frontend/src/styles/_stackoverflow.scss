@@ -104,7 +104,7 @@
 .hero.stackoverflow-main {
   background-color: #0089d0;
   background-position: left top;
-  background-image: url("https://static.jboss.org/images/rhd/headers/stackoverflow_overview_background.svg");
+  background-image: url("/images/rhd/headers/stackoverflow_overview_background.svg");
   background-size: 37%;
   background-repeat: no-repeat;
   padding: 40px 0;
@@ -187,7 +187,7 @@ strong.tag-label, .qtn-answer strong {
   margin-right: 5px;
 }
 
-@include tablet-landscape-and-down {
+@include desktop-small-and-down {
   .hero.stackoverflow-main { padding: 40px 30px; }
   .stackoverflow-main{
     img {

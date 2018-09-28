@@ -151,6 +151,18 @@ function rhd_common_theme($existing, $type, $theme, $path)
     return [
       'product-pages' => [
         'render element' => 'elements',
+        'variables' => [
+          'product_summary' => NULL,
+          'product_title' => NULL,
+          'page_links' => NULL,
+          'active_paragraph' => NULL,
+          'product_category' => NULL,
+          'url_product_name' => NULL,
+          'has_community' => FALSE,
+          'has_download' => FALSE,
+          'has_hello_world' => FALSE,
+          'product_machine_name' => NULL
+        ]
       ],
       'get_started_tabs' => [
         'variables' => ['items' => []]
@@ -188,6 +200,9 @@ function rhd_common_preprocess_node(&$variables) {
   if ($variables['node']->getType() === 'video_resource') {
     video_tags($variables);
   }
+
+  // Add `is_front` at the node level
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
 }
 
 /**

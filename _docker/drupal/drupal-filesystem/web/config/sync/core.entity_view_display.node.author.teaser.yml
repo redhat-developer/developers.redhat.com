@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.author.field_github
     - field.field.node.author.field_headshot
     - field.field.node.author.field_linkedin
+    - field.field.node.author.field_position_title
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
     - image.style.large
@@ -38,6 +39,11 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
+    region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
     region: content
   field_facebook:
     type: link

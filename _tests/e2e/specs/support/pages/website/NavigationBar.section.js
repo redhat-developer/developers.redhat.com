@@ -27,7 +27,7 @@ export class NavigationBar extends Base {
             // wait for modal to completely open
             this.awaitIsVisible(this.getSelector('mobileMenuOpen'));
             browser.pause(1000);
-            return true
+            return true;
         } else {
             return false;
         }
@@ -73,10 +73,6 @@ export class NavigationBar extends Base {
     }
 
     triggerSearch() {
-        if (this.displayed(this.getSelector('mobileMenuOpen'))) {
-            return this.clickOn(this.searchBtn().value[1]);
-        } else {
-            return this.clickOn(this.searchBtn().value[0]);
-        }
+        return this.key("\uE007");
     }
 }

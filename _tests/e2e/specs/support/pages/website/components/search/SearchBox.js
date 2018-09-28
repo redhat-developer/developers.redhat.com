@@ -1,5 +1,5 @@
-import {Base} from '../../../Base.page'
-import {SearchResults} from './SearchResults'
+import {Base} from '../../../Base.page';
+import {SearchResults} from './SearchResults';
 
 export class SearchBox extends Base {
     constructor() {
@@ -7,8 +7,7 @@ export class SearchBox extends Base {
 
         this.addSelectors(
             {
-                searchField: '#query',
-                searchButton: '#search-btn',
+                searchField: '#query'
             });
 
         this.searchResults = new SearchResults();
@@ -24,6 +23,6 @@ export class SearchBox extends Base {
     }
 
     triggerSearch() {
-        return this.clickOn(this.getSelector('searchButton'));
+        return this.key("\uE007");
     }
 }

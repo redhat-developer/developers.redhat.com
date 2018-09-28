@@ -82,18 +82,27 @@ cd ${DRUPAL_FILESYSTEM}
 vendor/bin/phinx migrate
 cd ${PROJ}
 
-echo "Running drush cim"
-${WEB}/../vendor/bin/drush --root=${WEB} cim
+echo "Sanitizing the database"
+${WEB}/../vendor/bin/drush --root=${WEB} sqlsan --sanitize-password=drupal --sanitize-email=user+%uid@example.com
 
 echo "Running drush cr"
 ${WEB}/../vendor/bin/drush --root=${WEB} cr
 
 # Import config and update the database
 echo "Running drush updb"
-${WEB}/../vendor/bin/drush --root=${WEB} updb --entity-updates
+${WEB}/../vendor/bin/drush --root=${WEB} -y updb --entity-updates
 
 echo "Running drush cr"
 ${WEB}/../vendor/bin/drush --root=${WEB} cr
+
+echo "Running drush update:lightning"
+${WEB}/../vendor/bin/drush --root=${WEB} update:lightning --no-interaction
+
+echo "Running drush cr"
+${WEB}/../vendor/bin/drush --root=${WEB} cr
+
+echo "Running drush cim"
+${WEB}/../vendor/bin/drush --root=${WEB} -y cim
 
 echo "Starting the server"
 ${WEB}/../vendor/bin/drush --root=${WEB} rs

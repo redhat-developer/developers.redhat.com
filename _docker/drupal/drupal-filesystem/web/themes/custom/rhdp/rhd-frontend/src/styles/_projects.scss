@@ -5,6 +5,10 @@ li.upstream {
   .defaultprojectimage {
     border:1px solid $grey-5;
     width:100%;
+    p.image-link {
+      text-align: center;
+      margin: 10px;
+    }
   }
 
   h5.solution-name .solution-name-link{
@@ -80,15 +84,16 @@ ul.featured-projects-results {
     overflow: hidden;
     font-size: emCalc(16);
     a {
-      &:after {
-        font-family: 'FontAwesome';
-        content : "\f08e";
-        margin-left: 5px;
-        font-size: 12px;
+      i {
         color: $link-sm;
       }
-      &[href*="jboss.org"]:after {
-        content :'';
+      &[href*="jboss.org"] {
+        i {
+          display: none;
+        }
+        svg[data-icon="external-link"] {
+          display: none;
+        }
       }
     }
   }
@@ -154,12 +159,12 @@ ul.project-social {
     text-transform: uppercase;
     font-weight: 600;
   }
-  @include tablet-landscape-and-down {
+  @include desktop-small-and-down {
     h2 {
       font-size: 4em;
     }
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-768-and-down {
     background: url('https://static.jboss.org/rhd/images/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {

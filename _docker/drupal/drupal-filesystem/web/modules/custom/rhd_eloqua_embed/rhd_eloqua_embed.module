@@ -1,0 +1,18 @@
+<?php
+
+/**
+* @file
+* Contains rhd_eloqua_embed.module.
+*
+*/
+
+function rhd_eloqua_embed_theme($existing, $type, $theme, $path) {
+  return [
+    'rhd_eloqua_embed_page' => [
+      'variables' => [
+        'eloqua_json' => NULL,
+      ],
+      'template' => 'rhd-eloqua-embed-page',
+    ],
+  ];
+}
