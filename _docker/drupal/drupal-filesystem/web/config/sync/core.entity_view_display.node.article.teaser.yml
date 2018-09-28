@@ -9,10 +9,14 @@ dependencies:
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
     - field.field.node.article.field_image
+    - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
+    - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
+    - field.field.node.article.field_topics
     - node.type.article
   module:
     - metatag
@@ -31,6 +35,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
+    region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
     region: content
   field_content_author:
     weight: 101
@@ -69,5 +78,9 @@ hidden:
   field_author_name: true
   field_card_image: true
   field_difficulty: true
+  field_hide_toc: true
   field_image: true
+  field_long_description: true
   field_read_time: true
+  field_short_description: true
+  field_topics: true
