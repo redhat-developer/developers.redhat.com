@@ -70,6 +70,10 @@ other methods (such as node.delete) will result in an exception.
 <div{{ attributes.addClass(["container", "content"]).setAttribute("id", "rhd-article") }}>
     <div class="row pre-body">
         <div class="medium-24 columns">
+            {% if content.field_image|render %}
+            <div class="row">
+            <div class="large-12 columns">
+            {% endif %}
             {{ title_prefix }}
             <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
             {{ title_suffix }}
@@ -88,6 +92,22 @@ other methods (such as node.delete) will result in an exception.
                     {% include '@rhd/share.html.twig' %}
                 </div>
             </div>
+            {% if content.field_image|render %}
+            </div>
+            <div class="large-12 columns floated-image">
+                {% if content.field_image_caption|render %}
+                <figure>
+                {% endif %}
+                {{ content.field_image }}
+                {% if content.field_image_caption|render %}
+                    <figcaption>
+                        {{ content.field_image_caption }}
+                    </figcaption>
+                </div>
+                {% endif %}
+            </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">

@@ -144,6 +144,22 @@
       padding-right: 20px;
     }
   }
+  .floated-image {
+    @include desktop-small {
+      margin-top: 20px;
+    }
+  }
+  figure {
+    margin: 0;
+    figcaption {
+      font-size: 13px;
+      line-height: 19px;
+      p, ol, ul {
+        margin-top: 18px;
+        margin-bottom: 18px;
+      }
+    }
+  }
   .article-content {
     @include desktop-small {
       margin-right: 25%;

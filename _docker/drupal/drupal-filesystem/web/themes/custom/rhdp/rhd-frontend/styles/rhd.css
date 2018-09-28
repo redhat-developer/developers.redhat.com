@@ -10732,6 +10732,17 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         padding-left: 60px;
         padding-right: 20px; } }
   @media (min-width: 1024px) {
+    #rhd-article .floated-image {
+      margin-top: 20px; } }
+  #rhd-article figure {
+    margin: 0; }
+    #rhd-article figure figcaption {
+      font-size: 13px;
+      line-height: 19px; }
+      #rhd-article figure figcaption p, #rhd-article figure figcaption ol, #rhd-article figure figcaption ul {
+        margin-top: 18px;
+        margin-bottom: 18px; }
+  @media (min-width: 1024px) {
     #rhd-article .article-content {
       margin-right: 25%; } }
   #rhd-article .article-content h3 {
