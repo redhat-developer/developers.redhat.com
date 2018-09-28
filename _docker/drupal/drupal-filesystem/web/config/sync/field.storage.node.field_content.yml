@@ -1,0 +1,21 @@
+uuid: 122691e4-6587-425f-a754-d1ca1d27d279
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - entity_reference_revisions
+    - node
+id: node.field_content
+field_name: field_content
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: assembly
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

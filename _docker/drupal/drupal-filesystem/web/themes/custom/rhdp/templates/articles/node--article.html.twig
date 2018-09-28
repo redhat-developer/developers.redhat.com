@@ -100,6 +100,7 @@ other methods (such as node.delete) will result in an exception.
     {% endif %}
     <div{{ content_attributes.addClass(article_classes) }}>
         {{ content.body }}
+        {{ content.field_content }}
     </div>
   </div>
   <div class="medium-20 medium-offset-4 columns">
