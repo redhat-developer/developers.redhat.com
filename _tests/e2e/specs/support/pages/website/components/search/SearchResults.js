@@ -1,6 +1,6 @@
-import {Base} from '../../../Base.page';
+import {Page} from '../../../Page';
 
-export class SearchResults extends Base {
+export class SearchResults extends Page {
 
     constructor() {
         super();

@@ -1,6 +1,6 @@
-import {Base} from "../Base.page"
+import {Page} from "../Page"
 
-export class AdditionalInformation extends Base {
+export class AdditionalInformation extends Page {
 
     constructor() {
         super({

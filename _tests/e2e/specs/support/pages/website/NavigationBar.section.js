@@ -1,7 +1,7 @@
-import {Base} from '../Base.page';
+import {Page} from '../Page';
 import {Search} from "./Search.page";
 
-export class NavigationBar extends Base {
+export class NavigationBar extends Page {
 
     constructor() {
         super();

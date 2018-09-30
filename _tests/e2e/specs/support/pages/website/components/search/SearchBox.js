@@ -1,7 +1,7 @@
-import {Base} from '../../../Base.page';
+import {Page} from '../../../Page';
 import {SearchResults} from './SearchResults';
 
-export class SearchBox extends Base {
+export class SearchBox extends Page {
     constructor() {
         super();
 

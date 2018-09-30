@@ -1,6 +1,6 @@
-import {Base} from "../Base.page";
+import {Page} from "../Page";
 
-export class CheatSheets extends Base {
+export class CheatSheets extends Page {
 
     constructor(cheatSheet) {
         super({
@@ -10,14 +10,16 @@ export class CheatSheets extends Base {
         this.addSelectors({
             cheatSheetPage: '#rhd-cheat-sheet',
             loginToDownloadBtn: '.hidden-after-login',
-            clickToDownloadBtn: '.shown-after-login',
-            thankYou: '.thankyou',
-            retryDownload: '#download-link'
+            thankYou: '.thankyou'
         });
     }
 
     awaitLoaded() {
         return this.awaitIsVisible(this.getSelector('cheatSheetPage'));
+    }
+
+    awaitDownload() {
+       return this.awaitDownloadConfirmation() && this.awaitDownloadThankYou();
     }
 
     awaitDownloadConfirmation() {
@@ -28,7 +30,7 @@ export class CheatSheets extends Base {
         this.awaitIsVisible(this.getSelector('thankYou'), 60000);
     }
 
-    clickLoginToDownloadBtn() {
+    loginToDownload() {
         let downloadBtn = this.element(this.getSelector('loginToDownloadBtn'));
         let location = downloadBtn.getLocationInView();
         downloadBtn.scroll(location['x'], location['y']);
