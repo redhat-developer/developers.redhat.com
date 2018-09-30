@@ -21,6 +21,7 @@ tags('desktop').describe('Download Manager', function () {
     });
 
     afterEach(function () {
+        this.retries(2);
         new Utils().logout(process.env.RHD_BASE_URL);
         downloadDir.clear(global.downloadDir);
     });
