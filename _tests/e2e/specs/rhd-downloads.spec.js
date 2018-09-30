@@ -14,8 +14,6 @@ tags('desktop').describe('Download Manager', function () {
     let home, login;
 
     beforeEach(function () {
-        this.retries(2);
-        new Utils().logout(process.env.RHD_BASE_URL);
         login = new Login();
         home = new Home();
         downloadDir = new DownloadDir();
@@ -23,7 +21,6 @@ tags('desktop').describe('Download Manager', function () {
     });
 
     afterEach(function () {
-        this.retries(2);
         new Utils().logout(process.env.RHD_BASE_URL);
         downloadDir.clear(global.downloadDir);
     });
