@@ -128,7 +128,7 @@ exports.config = {
     mochaOpts: {
         compilers: ['js:babel-register'],
         ui: 'bdd',
-        timeout: 90000
+        timeout: 20000
     },
 
     reporterOptions: {

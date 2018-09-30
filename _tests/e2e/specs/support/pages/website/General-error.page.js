@@ -1,6 +1,6 @@
-import {Base} from "../Base.page";
+import {Page} from "../Page";
 
-export class GeneralErrorPage extends Base {
+export class GeneralErrorPage extends Page {
     constructor() {
         super({
             path: '/general-error/',

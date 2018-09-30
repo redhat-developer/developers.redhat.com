@@ -1,7 +1,7 @@
-import {Base} from '../../../Base.page';
+import {Page} from '../../../Page';
 import {SearchResults} from './SearchResults';
 
-export class SearchBox extends Base {
+export class SearchBox extends Page {
     constructor() {
         super();
 
@@ -14,7 +14,7 @@ export class SearchBox extends Base {
     }
 
     enterSearch(searchTerm) {
-        return this.type(searchTerm, this.getSelector('searchBar'));
+        return this.type(searchTerm, this.getSelector('searchField'));
     }
 
     searchFor(searchTerm) {

@@ -1,51 +1,21 @@
-export class Base {
-    constructor({
-                    path = '/',
-                    pageTitle
-                } = {}) {
-        this.urlBase = process.env.RHD_BASE_URL;
-        this.path = path;
-        this.pageTitle = pageTitle;
-        this.selectors = {};
-    }
-
-    open() {
-        const openUrl = `${this.urlBase}${this.path}`;
-        let res = this.visit(openUrl);
-
-        if (this.pageTitle) {
-            return this.waitForPageTitle(this.pageTitle, 30000);
-        }
-        return res;
-    }
-
-    addSelectors(selectors) {
-        this.selectors = Object.assign(this.selectors, selectors);
-    }
-
-    getSelector(selectorName) {
-        if (!this.selectors[selectorName]) {
-            return console.log(`WARNING: ${selectorName} is not defined as page-object selector!`)
-        }
-        let selector = '';
-        selector += this.selectors[selectorName];
-        return selector.trim();
-    }
+export class PageExtension {
 
     visit(url) {
         try {
             return browser.url(url);
         } catch (err) {
             if (err && err.message.indexOf('stale element reference') >= 0) {
-                console.log('[safeIsVisible] Got stale element reference; trying again...');
-                return  browser.url(url);
+                return browser.url(url);
             }
         }
     }
 
-    awaitIsLoggedIn(siteUser) {
-        this.awaitIsNotVisible('.login', 60000) && this.awaitIsVisible('.logged-in', 60000);
-        this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 60000);
+    enter() {
+        return this.key("\uE007");
+    }
+
+    pause(timeout = 1000) {
+        browser.pause(timeout);
     }
 
     waitForPageTitle(title, timeout = 10000) {
@@ -55,7 +25,7 @@ export class Base {
     }
 
     title() {
-       return browser.getTitle();
+        return browser.getTitle();
     }
 
     waitForUrlContaining(string, timeout = 10000) {
@@ -117,20 +87,12 @@ export class Base {
         }
     }
 
-    clickOn(selector) {
+    click(selector) {
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.click(selector);
         } else {
             return selector.click();
-        }
-    }
-
-    isSelected(selector) {
-        if (typeof selector === 'string') {
-            return browser.isSelected(selector);
-        } else {
-            return selector.isSelected();
         }
     }
 
@@ -183,17 +145,6 @@ export class Base {
         return browser.keys(key);
     }
 
-    scrollIntoView(selector) {
-        let location;
-        if (typeof selector === 'string') {
-            location = browser.getLocationInView(selector);
-            return browser.scroll(location['x'], location['y']);
-        } else {
-            location = selector.getLocationInView();
-            return selector.scroll(location['x'], location['y']);
-        }
-    }
-
     awaitExists(selector, timeout = 10000) {
         try {
             if (typeof selector === 'string') {
@@ -206,7 +157,7 @@ export class Base {
         }
     }
 
-    pageSource() {
+    source() {
         return browser.getSource();
     }
 }
