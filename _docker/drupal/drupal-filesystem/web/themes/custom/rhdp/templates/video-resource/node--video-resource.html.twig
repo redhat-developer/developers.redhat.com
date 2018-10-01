@@ -14,7 +14,9 @@
                 {% endif %}
             </li>
             <li>
-                <small>Published: {{ date }}</small>
+                {% if node.field_video_publish_date.value %}
+                    <small>Published: {{ node.field_video_publish_date.value|date('D, m/d/Y') }}</small>
+                {% endif %}
             </li>
             <li class="right share-sm">
                 {% include '@rhd/share.html.twig' %}
