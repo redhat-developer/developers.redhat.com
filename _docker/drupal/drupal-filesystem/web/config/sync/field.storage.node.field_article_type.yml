@@ -1,0 +1,33 @@
+uuid: fa7132ed-ca0f-4e21-8708-af7f8cbc649f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_article_type
+field_name: field_article_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: how-to
+      label: 'How To'
+    -
+      value: quickstart
+      label: Quickstart
+    -
+      value: article
+      label: Article
+    -
+      value: opinion
+      label: Opinion
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image_browser
     - field.field.node.article.body
+    - field.field.node.article.field_article_type
     - field.field.node.article.field_author_name
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content
@@ -55,7 +56,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 8
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
@@ -67,6 +68,12 @@ content:
     weight: 9
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_article_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_card_image:
     weight: 16
@@ -95,7 +102,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_content_author:
-    weight: 7
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -116,7 +123,7 @@ content:
       display_label: true
     third_party_settings: {  }
   field_long_description:
-    weight: 3
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -168,7 +175,7 @@ content:
     type: interval_default
     region: content
   field_short_description:
-    weight: 5
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -185,7 +192,7 @@ content:
     third_party_settings: {  }
     region: content
   field_topics:
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_buttons

@@ -70,6 +70,9 @@ other methods (such as node.delete) will result in an exception.
 <div{{ attributes.addClass(["container", "content"]).setAttribute("id", "rhd-article") }}>
     <div class="row pre-body">
         <div class="medium-24 columns">
+            {% if content.field_article_type|render %}
+              <p class="article-type">{{ content.field_article_type }}</p>
+            {% endif %}
             {% if content.field_image|render %}
             <div class="row">
             <div class="large-12 columns">
