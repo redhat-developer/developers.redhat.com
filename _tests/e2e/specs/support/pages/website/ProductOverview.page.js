@@ -1,6 +1,6 @@
-import {Base} from '../Base.page';
+import {Page} from '../Page';
 
-export class ProductOverview extends Base {
+export class ProductOverview extends Page {
 
     constructor(productCode, tab, productName) {
         super({
@@ -9,7 +9,6 @@ export class ProductOverview extends Base {
         });
 
         this.productCode = productCode;
-        this.productName = productName;
 
         this.addSelectors({
             downloadBtn: "//rhdp-os-download/div/a",
@@ -18,7 +17,11 @@ export class ProductOverview extends Base {
     }
 
     download() {
-        this.clickOn(this.getSelector('downloadBtn'));
+        return this.click(this.getSelector('downloadBtn'));
+    }
+
+    awaitDownload() {
+        return this.awaitHelloWorldPage() && this.awaitDownloadThankYou();
     }
 
     awaitHelloWorldPage() {
@@ -26,6 +29,6 @@ export class ProductOverview extends Base {
     }
 
     awaitDownloadThankYou() {
-        return this.awaitIsVisible(this.getSelector('downloadThankYou'), 30000);
+        return this.awaitIsVisible(this.getSelector('downloadThankYou'), 60000);
     }
 }

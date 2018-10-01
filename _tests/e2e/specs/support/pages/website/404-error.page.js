@@ -1,6 +1,6 @@
-import {Base} from "../Base.page";
+import {Page} from "../Page";
 
-export class Error404Page extends Base {
+export class Error404Page extends Page {
     constructor() {
         super({
             path: '/404-error/',
