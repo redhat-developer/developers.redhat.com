@@ -69,6 +69,9 @@ other methods (such as node.delete) will result in an exception.
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
   <div class="row">
     <div class="large-19 medium-24 columns">
+        {% if content.field_article_type|render %}
+          <p class="article-type">{{ content.field_article_type }}</p>
+        {% endif %}
         {{ title_prefix }}
         <h2{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h2>
         {{ title_suffix }}
