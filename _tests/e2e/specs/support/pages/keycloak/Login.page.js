@@ -1,6 +1,6 @@
-import {Base} from "../Base.page"
+import {Page} from "../Page"
 
-export class Login extends Base {
+export class Login extends Page {
 
     constructor() {
         super({
@@ -12,31 +12,23 @@ export class Login extends Base {
             loginPage: '.kc-loginpage',
             usernameField: '#username',
             passwordField: '#password',
-            loginButton: '#kc-login',
-            gitHubBtn: '#social-github',
-            forgotPasswordLink: '//*[@id="kc-form-login"]//a[contains(text(), "Forgot your password?")]',
-            registerLink: '//a[contains(text(), "Create one now.")]',
-            kcFeedback: '#kc-feedback',
+            loginButton: '#kc-login'
         });
     }
 
     awaitLogin() {
-        return this.awaitExists(this.getSelector('loginPage'), 30000)
+        return this.awaitExists(this.getSelector('loginPage'), 30000) && this.waitForPageTitle('Log In', 30000);
     }
 
     isDisplayed() {
-        this.waitForPageTitle('Log In', 30000);
-        return this.displayed(this.getSelector('usernameField'))
-    }
-
-    feedback() {
-        return this.textOf(this.getSelector('kcFeedback'), 30000)
+        this.awaitLogin();
+        return this.displayed(this.getSelector('usernameField'));
     }
 
     with(user) {
+        this.awaitLogin();
         this.type(user['email'], this.getSelector('usernameField'));
         this.type(user['password'], this.getSelector('passwordField'));
-        this.clickOn(this.getSelector('loginButton'));
-        return this.awaitIsLoggedIn(user);
+        return this.click(this.getSelector('loginButton'));
     }
 }

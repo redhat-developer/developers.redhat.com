@@ -6,6 +6,6 @@ describe('Home Page', function () {
     it("@sanity : should contain an embedded hash string for the nagios health check", function () {
         let home = new Home();
         home.open('/');
-        expect(home.pageSource()).to.include('00fef0cf90c42f3e40921fb3370e520a');
+        expect(home.source()).to.include('00fef0cf90c42f3e40921fb3370e520a');
     });
 });
