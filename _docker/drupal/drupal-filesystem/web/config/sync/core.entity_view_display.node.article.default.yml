@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_author_name
     - field.field.node.article.field_card_image
+    - field.field.node.article.field_content
     - field.field.node.article.field_content_author
     - field.field.node.article.field_difficulty
     - field.field.node.article.field_hide_toc
@@ -20,8 +21,9 @@ dependencies:
     - image.style.article_floated
     - node.type.article
   module:
-    - fences
     - image
+    - entity_reference_revisions
+    - fences
     - interval
     - link
     - metatag
@@ -37,7 +39,7 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 3
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     label: hidden
@@ -48,7 +50,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_card_image:
-    weight: 10
+    weight: 9
     label: above
     settings:
       trim_length: 80
@@ -59,8 +61,24 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  field_content:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_revisions_entity_view
+    region: content
   field_content_author:
-    weight: 6
+    weight: 5
     label: hidden
     settings:
       link_to_entity: false
@@ -68,7 +86,7 @@ content:
     type: string
     region: content
   field_difficulty:
-    weight: 8
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -105,28 +123,28 @@ content:
     type: text_default
     region: content
   field_long_description:
-    weight: 13
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_meta_tags:
-    weight: 7
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
     region: content
   field_read_time:
-    weight: 9
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_short_description:
-    weight: 12
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -134,7 +152,7 @@ content:
     region: content
   field_tags:
     type: entity_reference_label
-    weight: 4
+    weight: 3
     label: hidden
     settings:
       link: false
@@ -148,7 +166,7 @@ content:
         fences_label_classes: ''
     region: content
   field_topics:
-    weight: 11
+    weight: 10
     label: above
     settings:
       link: true
@@ -156,7 +174,7 @@ content:
     type: entity_reference_label
     region: content
   links:
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
