@@ -1,6 +1,6 @@
-import {Base} from '../../../Base.page';
+import {Page} from '../../../Page';
 
-export class SearchResults extends Base {
+export class SearchResults extends Page {
 
     constructor() {
         super();
@@ -17,25 +17,21 @@ export class SearchResults extends Base {
             });
     }
 
-    awaitLoadingSpinner() {
+    await() {
         this.awaitExists(this.getSelector('searchPage'));
         return this.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000);
     }
 
     awaitResultsFor(searchTerm) {
         this.waitForUrlContaining(searchTerm, 60000);
-        return this.awaitLoadingSpinner();
+        return this.await();
     }
 
-    getAllResults() {
+    all() {
         return this.elements(this.getSelector('allSearchResults'));
     }
 
-    getResultByIndex(i) {
-        return this.element(`//rhdp-search-result[${i}]/div`);
-    }
-
-    getResultDate(i) {
+    dateFor(i) {
         return this.element(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//rh-datetime`).getAttribute('datetime');
     }
 }

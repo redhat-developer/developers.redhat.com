@@ -6,7 +6,7 @@ describe('404 Error Page', function () {
     it("@sanity : should contain an <h1> with '404: You've found something, but not the page you're looking for.' inside it", function () {
         let error404Page = new Error404Page();
         error404Page.open('/404-error/');
-        expect(error404Page.pageSource()).to.include("<h1>404: You've found something, but not the page you're looking for.</h1>");
+        expect(error404Page.source()).to.include("<h1>404: You've found something, but not the page you're looking for.</h1>");
     });
 });
 

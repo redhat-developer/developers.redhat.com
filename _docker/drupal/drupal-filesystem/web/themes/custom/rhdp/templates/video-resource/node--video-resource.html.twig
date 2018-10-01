@@ -14,8 +14,8 @@
                 {% endif %}
             </li>
             <li>
-                {% if content.field_video_publish_date|render|striptags|trim is not empty %}
-                    <small>Published: {{ content.field_video_publish_date }}</small>
+                {% if node.field_video_publish_date.value %}
+                    <small>Published: {{ node.field_video_publish_date.value|date('D, m/d/Y') }}</small>
                 {% endif %}
             </li>
             <li class="right share-sm">
