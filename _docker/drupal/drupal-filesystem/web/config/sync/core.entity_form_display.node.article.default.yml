@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
+    - field.field.node.article.field_related_articles
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.field_topics
@@ -97,6 +98,15 @@ content:
     third_party_settings: {  }
     type: interval_default
     region: content
+  field_related_articles:
+    weight: 17
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_short_description:
     weight: 2
     settings:
@@ -121,7 +131,7 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    weight: 26
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -164,10 +174,10 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 50
+    weight: 19
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_author_name: true
   field_image: true

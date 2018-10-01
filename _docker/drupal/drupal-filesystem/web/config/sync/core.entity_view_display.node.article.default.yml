@@ -13,11 +13,13 @@ dependencies:
     - field.field.node.article.field_long_description
     - field.field.node.article.field_meta_tags
     - field.field.node.article.field_read_time
+    - field.field.node.article.field_related_articles
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
     - field.field.node.article.field_topics
     - node.type.article
   module:
+    - fences
     - interval
     - link
     - metatag
@@ -90,6 +92,22 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: interval_default
+    region: content
+  field_related_articles:
+    weight: 109
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
   field_short_description:
     weight: 107
