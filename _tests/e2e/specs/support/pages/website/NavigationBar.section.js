@@ -1,7 +1,7 @@
-import {Base} from '../Base.page';
+import {Page} from '../Page';
 import {Search} from "./Search.page";
 
-export class NavigationBar extends Base {
+export class NavigationBar extends Page {
 
     constructor() {
         super();
@@ -23,7 +23,7 @@ export class NavigationBar extends Base {
         let mobileNavToggle;
         mobileNavToggle = this.displayed(this.getSelector('mobileNavToggle'));
         if (mobileNavToggle) {
-            this.clickOn(this.getSelector('mobileNavToggle'));
+            this.click(this.getSelector('mobileNavToggle'));
             // wait for modal to completely open
             this.awaitIsVisible(this.getSelector('mobileMenuOpen'));
             browser.pause(1000);
@@ -37,23 +37,19 @@ export class NavigationBar extends Base {
         let isMobile = this.toggle();
         let loginElements = this.elements(this.getSelector('login'));
         if (isMobile) {
-            this.clickOn(loginElements.value[1])
+            this.click(loginElements.value[1])
         } else {
-            this.clickOn(loginElements.value[0])
+            this.click(loginElements.value[0])
         }
     }
 
     toggleSearchBar() {
-        this.clickOn(this.getSelector('searchToggle'));
+        this.click(this.getSelector('searchToggle'));
         this.awaitIsVisible(this.getSelector('searchOpen')) && this.awaitIsVisible(this.getSelector('searchBar'))
     }
 
     searchField() {
         return this.elements(this.getSelector('searchBar'));
-    }
-
-    searchBtn() {
-        return this.elements(this.getSelector('searchButton'));
     }
 
     enterSearch(searchTerm) {
@@ -73,6 +69,6 @@ export class NavigationBar extends Base {
     }
 
     triggerSearch() {
-        return this.key("\uE007");
+        return this.enter();
     }
 }

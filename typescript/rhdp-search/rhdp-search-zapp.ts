@@ -1,13 +1,13 @@
-import RHDPSearchURL from '@rhd/rhdp-search/rhdp-search-url';
-import RHDPSearchQuery from '@rhd/rhdp-search/rhdp-search-query';
-import RHDPSearchBox from '@rhd/rhdp-search/rhdp-search-box';
-import RHDPSearchResultCount from '@rhd/rhdp-search/rhdp-search-result-count';
-import RHDPSearchFilters from '@rhd/rhdp-search/rhdp-search-filters';
-import RHDPSearchOneBox from '@rhd/rhdp-search/rhdp-search-onebox';
-import RHDPSearchResults from './rhdp-search-results';
-import RHDPSearchSortPage from '@rhd/rhdp-search/rhdp-search-sort-page';
+// import {RHDPSearchURL} from './rhdp-search-url';
+// import {RHDPSearchQuery} from './rhdp-search-query';
+// import {RHDPSearchBox} from './rhdp-search-box';
+// import {RHDPSearchResultCount} from './rhdp-search-result-count';
+// import {RHDPSearchFilters} from './rhdp-search-filters';
+// import {RHDPSearchOneBox} from './rhdp-search-onebox';
+// import {RHDPSearchResults} from './rhdp-search-results';
+// import {RHDPSearchSortPage} from './rhdp-search-sort-page';
 
-export default class RHDPSearchApp extends HTMLElement {
+class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
         //this.toggleModal = this.toggleModal.bind(this);
@@ -16,7 +16,6 @@ export default class RHDPSearchApp extends HTMLElement {
 
     _name = 'Search';
     _url;
-    _oburl = '../rhdp-apps/onebox/onebox.json';
 
     get name() {
         return this._name;
@@ -38,16 +37,6 @@ export default class RHDPSearchApp extends HTMLElement {
         this.query.url = this.url;
         this.setAttribute('url', this.url);
     }
-
-    get oburl() {
-        return this._oburl;
-    }
-    set oburl(val) {
-        if (this._oburl === val) return;
-        this._oburl = val;
-    }
-
-
 
     template = `<div class="row">
     <span class="search-outage-msg"></span>
@@ -101,7 +90,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 items: [
                 {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
-                {key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam','bpmsuite']},
+                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
                 {key: 'brms', name: 'Red Hat Decision Manager', value: ['brms']},
                 {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
                 {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
@@ -121,25 +110,6 @@ export default class RHDPSearchApp extends HTMLElement {
                 ]
             },
             { name: 'TOPIC', key: 'tag', items: [
-                /*
-                Architecture
-                Big Data
-                CI/CD
-                Containers
-                DevOps
-                Integration
-                Internet of Things
-                Java
-                Kubernetes
-                Linux
-                Microservices
-                Performance
-                Programming Languages
-                Security
-                Serverless
-                Service Mesh
-                Spring Boot
-                */
                 {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
                 {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
                 {key: 'devops', name: 'DevOps', value: ['devops','CI','CD','Continuous Delivery']},
@@ -152,6 +122,7 @@ export default class RHDPSearchApp extends HTMLElement {
             }
         ]
     };
+
     connectedCallback() {
         this.innerHTML = this.template;
 
@@ -162,7 +133,6 @@ export default class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-        this.onebox.url = this.oburl;
         
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
@@ -178,7 +148,7 @@ export default class RHDPSearchApp extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['url', 'name', 'oburl']; 
+        return ['url', 'name']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

@@ -161,11 +161,11 @@ export default class RHDPSearchApp extends RHElement {
             { name: 'TOPIC', key: 'tag', items: [
                 {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
                 {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
-                {key: 'devops', name: 'DevOps', value: ['DevOps','CI','CD','Continuous Delivery']},
+                {key: 'devops', name: 'DevOps', value: ['devops','CI','CD','Continuous Delivery']},
                 {key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ','AMQP','apache camel','Arquillian','Camel','CDI','CEP','CXF','datagrid','devstudio','Drools','Eclipse','fabric8','Forge','fuse','Hawkular','Hawtio','Hibernate','Hibernate ORM','Infinispan','iPaas','java ee','JavaEE','JBDS','JBoss','JBoss BPM Suite','Red Hat Decision Manager','JBoss Data Grid','jboss eap','JBoss EAP','']},
-                {key: 'iot', name: 'Internet of Things', value: ['IoT','Internet of Things']},
-                {key: 'microservices', name: 'Microservices', value: ['Microservices',' WildFly Swarm']},
-                {key: 'mobile', name: 'Mobile', value: ['Mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
+                {key: 'iot', name: 'Internet of Things', value: ['iot','Internet of Things']},
+                {key: 'microservices', name: 'Microservices', value: ['microservices',' WildFly Swarm']},
+                {key: 'mobile', name: 'Mobile', value: ['mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
                 {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
                 ] 
             }
