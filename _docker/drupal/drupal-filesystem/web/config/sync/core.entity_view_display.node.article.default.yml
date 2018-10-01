@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_article_highlights
     - field.field.node.article.field_author_name
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content_author
@@ -43,6 +44,21 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_article_highlights:
+    weight: 109
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: 'medium-24 columns'
+        fences_field_item_tag: p
+        fences_field_item_classes: article-highlight
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
   field_card_image:
     weight: 105
     label: above
