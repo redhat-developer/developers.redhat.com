@@ -1,12 +1,14 @@
 const BrowserManager = require('./browsers/BrowserManager');
 
-browserCaps = BrowserManager.createBrowser('chrome');
+if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
+    process.env.RHD_JS_DRIVER = 'chrome'
+}
 
 if (typeof process.env.RHD_BASE_URL === 'undefined') {
-    baseUrl = 'http://docker:8888'
-} else {
-    baseUrl = process.env.RHD_BASE_URL
+    process.env.RHD_BASE_URL = 'http://docker:8888'
 }
+
+browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
 exports.config = {
 
@@ -28,7 +30,7 @@ exports.config = {
 
     coloredLogs: true,
 
-    baseUrl: baseUrl,
+    baseUrl: process.env.RHD_BASE_URL,
 
     waitforTimeout: 15000,
 
