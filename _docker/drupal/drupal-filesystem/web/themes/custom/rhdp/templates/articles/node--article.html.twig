@@ -138,4 +138,12 @@ other methods (such as node.delete) will result in an exception.
     <div class="medium-18 medium-offset-6 columns">
         {{ content.disqus_thread }}
     </div>
+    {% if content.field_related_articles|render %}
+        <div class="medium-6 columns">
+            <h4 class="related-article-header">Related Articles</h4>
+        </div>
+        <div class="medium-18 columns related-articles">
+            {{ content.field_related_articles }}
+        </div>
+    {% endif %}
 </div>
