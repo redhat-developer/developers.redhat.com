@@ -1,6 +1,7 @@
-import {Base} from '../../../Base.page';
+import {Page} from '../../../Page';
 
-export class SearchFilter extends Base {
+export class SearchFilter extends Page {
+
     constructor() {
         super();
 
@@ -15,15 +16,15 @@ export class SearchFilter extends Base {
             });
     }
 
-    activeFilter() {
+    active() {
         return this.element(this.getSelector('activeFilters'));
     }
 
-    clearSearchFilters() {
-        return this.clickOn(this.getSelector('clearFilters'));
+    clear() {
+        return this.click(this.getSelector('clearFilters'));
     }
 
-    chooseFilter(filterType, filterOption) {
+    choose(filterType, filterOption) {
         if (filterType === 'Content Type') {
             return this._selectFilter(1, filterOption);
         } else if (filterType === 'Product') {
@@ -41,21 +42,21 @@ export class SearchFilter extends Base {
         } else {
             filter = this.element(`//*[@id="control"]//label[contains(text(), '${filterOption}')]`);
         }
-        this.clickOn(filter);
+        this.click(filter);
         if (isMobile) {
             this._clickApplyMobileFilter();
             // wait a second for the filter to close
-            browser.pause(1000)
+            this.pause(1000);
         }
     }
 
     _clickOpenMobileFilter() {
         let isMobile = this.displayed(this.getSelector('showBtn'));
         if (isMobile) {
-            this.clickOn(this.getSelector('showBtn'));
+            this.click(this.getSelector('showBtn'));
             this.awaitIsVisible(this.getSelector('cover'));
             // await cover to fully expand before proceeding
-            browser.pause(1500);
+            this.pause(1500);
             return true
         } else {
             return false
@@ -64,7 +65,7 @@ export class SearchFilter extends Base {
 
     _clickApplyMobileFilter() {
         if (this.displayed(this.getSelector('applyFilters'))) {
-            return this.clickOn(this.getSelector('applyFilters'));
+            return this.click(this.getSelector('applyFilters'));
         }
     }
 }

@@ -73,7 +73,7 @@ class NodeJenkinsTestRunner
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
     if profile == 'mobile'
-      command += " --browser='iPhone 6'"
+      command += " --browser='iPhone X'"
     else
       command += " --browser=#{rhd_js_driver}"
     end
