@@ -117,14 +117,9 @@ In the root of the project directory execute the following command:
 Example:
 
 ```nodejs
-import {Home} from './support/pages/website/Home.page';
-import {Search} from './support/pages/website/Search.page';
-import {NavigationBar} from './support/pages/website/NavigationBar.section';
-
 describe('Search Page', function () {
+    this.retries(2);
     let siteNav, home, search;
-    
-    this.retries(2)
 
     beforeEach(() => {
         siteNav = new NavigationBar();
@@ -135,23 +130,23 @@ describe('Search Page', function () {
     it('@sanity : should allow users to search for content via site-nav search field', function () {
         home.open('/');
         siteNav.searchFor('hello world');
-        expect(search.searchResults.getAllResults().value.length).to.be.gt(0);
+        expect(search.results.all().value.length).to.be.gt(0);
     });
 
     it("should default result sorting should be 'Relevance'", function () {
         search.open();
-        let resultSort = search.searchResultSort.getResultSort();
+        let resultSort = search.resultSort.get();
         expect(resultSort).to.equal('relevance');
     });
 
     it("should sort results by 'Most Recent'", function () {
         home.open('/');
         siteNav.searchFor('cdk');
-        search.searchResultSort.selectSortBy('Most Recent');
-        let sR = search.searchResults.getAllResults();
-        let firstResult = search.searchResults.getResultDate(1);
+        search.resultSort.sort('Most Recent');
+        let sR = search.results.all();
+        let firstResult = search.results.dateFor(1);
         for (let i = 1; i < sR.value.length; i++) {
-            let remainingResults = search.searchResults.getResultDate(i);
+            let remainingResults = search.results.dateFor(i);
             expect(new Date(remainingResults).getTime()).to.be.lte(new Date(firstResult).getTime())
         }
     });
@@ -160,44 +155,44 @@ describe('Search Page', function () {
         home.open('/');
         siteNav.searchFor('java');
         search
-            .searchFilter.chooseFilter('Content Type', 'APIs and Docs');
+            .filter.choose('Content Type', 'APIs and Docs');
         search
-            .searchResults.awaitLoadingSpinner();
-        expect(search.searchFilter.activeFilter().getText()).to.include('APIs and Docs');
+            .results.await();
+        expect(search.filter.active().getText()).to.include('APIs and Docs');
     });
 
     it('should filter results by Product', function () {
         home.open('/');
         siteNav.searchFor('java');
         search
-            .searchFilter.chooseFilter('Product', 'Red Hat Enterprise Linux');
+            .filter.choose('Product', 'Red Hat Enterprise Linux');
         search
-            .searchResults.awaitLoadingSpinner();
-        expect(search.searchFilter.activeFilter().getText()).to.include('Red Hat Enterprise Linux');
+            .results.await();
+        expect(search.filter.active().getText()).to.include('Red Hat Enterprise Linux');
     });
 
     it('should filter results by Topic', function () {
         home.open('/');
         siteNav.searchFor('java');
         search
-            .searchFilter.chooseFilter('Topic', 'Containers');
+            .filter.choose('Topic', 'Containers');
         search
-            .searchResults.awaitLoadingSpinner();
-        expect(search.searchFilter.activeFilter().getText()).to.include('Containers');
+            .results.await();
+        expect(search.filter.active().getText()).to.include('Containers');
     });
 
     it('should clear search filters', function () {
         home.open('/');
         siteNav.searchFor('java');
         search
-            .searchFilter.chooseFilter('Topic', 'Containers');
+            .filter.choose('Topic', 'Containers');
         search
-            .searchResults.awaitLoadingSpinner();
+            .results.await();
         search
-            .searchFilter.clearSearchFilters();
+            .filter.clear();
         search
-            .searchResults.awaitLoadingSpinner();
-        expect(search.searchFilter.activeFilter().isVisible()).to.be.false
+            .results.await();
+        expect(search.filter.active().isVisible()).to.be.false
     });
 
     it('should not alert when user searches via site-nav search field containing malicious scripts', function () {
@@ -209,15 +204,16 @@ describe('Search Page', function () {
     it('should display a product associated with a OneBox at the top of the results', function () {
         home.open('/');
         siteNav.searchFor('cdk');
-        search.searchResults.awaitResultsFor('cdk');
-        expect(search.searchOneBox.getOneBoxTitle()).to.eq('Red Hat Container Development Kit');
+        search.results.awaitResultsFor('cdk');
+        expect(search.oneBox.getOneBoxTitle()).to.eq('Red Hat Container Development Kit');
     });
 });
+
 ```
 
 ### Inside spec classes
 
-Inside tests there should be minimal logic. Here we should only call methods from page Classes, get values from page Class methods and assert on them.
+When writing tests, keep it as simple and as readable as possible, where possible there should be minimal logic. Here we should only call methods from page Classes, get values from page Class methods and assert on them.
 
 Simple Logic Examples:
 - Go to page
@@ -227,10 +223,10 @@ Simple Logic Examples:
 For example:
 
 ```nodejs
-    it('@sanity : should allow users to search for content via site-nav search field', function () {
+     it('@sanity: should allow users to search for content via site-nav search field', function () {
             home.open('/');
             siteNav.searchFor('hello world');
-            expect(search.searchResults.getAllResults().value.length).to.be.gt(0);
+            expect(search.results.all().value.length).to.be.gt(0);
         });
 ```
 
@@ -302,7 +298,7 @@ selector.click()
 This is because the helper methods are configured to wait for an element to exist before desired action will execute:
 
 ```nodejs
-    clickOn(selector) {
+    click(selector) {
             this.awaitExists(selector);
             if (typeof selector === 'string') {
                 return browser.click(selector);
@@ -312,8 +308,4 @@ This is because the helper methods are configured to wait for an element to exis
         }
 ```
 This will make your tests more robust.
-
-### Code Quality
-
-Code should be clean and kept to the same standard as production code, make sure unused variables and methods are removed, code is correctly formatted, with no newlines or whitespaces.
-                     
+       

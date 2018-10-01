@@ -10,14 +10,14 @@ export class SearchResultSort extends Page {
         this.searchResults = new SearchResults();
     }
 
-    getResultSort() {
+    get() {
         return this.getValue(this.getSelector('resultSort'));
     }
 
-    selectSortBy(sortBy) {
-        this.selectByValue(this.getSelector('resultSort'), sortBy.replace(/\s+/g, '-').toLowerCase());
+    sort(by) {
+        this.selectByValue(this.getSelector('resultSort'), by.replace(/\s+/g, '-').toLowerCase());
         // wait for search to trigger
         browser.pause(1000);
-        return this.searchResults.awaitLoadingSpinner();
+        return this.searchResults.await();
     }
 }

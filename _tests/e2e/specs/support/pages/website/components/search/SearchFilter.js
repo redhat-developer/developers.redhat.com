@@ -16,15 +16,15 @@ export class SearchFilter extends Page {
             });
     }
 
-    activeFilter() {
+    active() {
         return this.element(this.getSelector('activeFilters'));
     }
 
-    clearSearchFilters() {
+    clear() {
         return this.click(this.getSelector('clearFilters'));
     }
 
-    chooseFilter(filterType, filterOption) {
+    choose(filterType, filterOption) {
         if (filterType === 'Content Type') {
             return this._selectFilter(1, filterOption);
         } else if (filterType === 'Product') {

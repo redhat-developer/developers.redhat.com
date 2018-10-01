@@ -14,10 +14,12 @@ tags('desktop').describe('Download Manager', function () {
     let home, login;
 
     beforeEach(function () {
+        this.retries(2);
         login = new Login();
         home = new Home();
         downloadDir = new DownloadDir();
         downloadDir.clear();
+        new Utils().logout(process.env.RHD_BASE_URL);
     });
 
     afterEach(function () {

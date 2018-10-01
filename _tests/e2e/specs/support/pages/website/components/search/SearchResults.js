@@ -17,25 +17,21 @@ export class SearchResults extends Page {
             });
     }
 
-    awaitLoadingSpinner() {
+    await() {
         this.awaitExists(this.getSelector('searchPage'));
         return this.awaitIsNotVisible(this.getSelector('loadingSpinner'), 30000);
     }
 
     awaitResultsFor(searchTerm) {
         this.waitForUrlContaining(searchTerm, 60000);
-        return this.awaitLoadingSpinner();
+        return this.await();
     }
 
-    getAllResults() {
+    all() {
         return this.elements(this.getSelector('allSearchResults'));
     }
 
-    getResultByIndex(i) {
-        return this.element(`//rhdp-search-result[${i}]/div`);
-    }
-
-    getResultDate(i) {
+    dateFor(i) {
         return this.element(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//rh-datetime`).getAttribute('datetime');
     }
 }

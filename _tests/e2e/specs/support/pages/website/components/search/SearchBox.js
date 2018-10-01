@@ -10,7 +10,7 @@ export class SearchBox extends Page {
                 searchField: '#query'
             });
 
-        this.searchResults = new SearchResults();
+        this.results = new SearchResults();
     }
 
     enterSearch(searchTerm) {

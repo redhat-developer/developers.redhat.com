@@ -10,8 +10,7 @@ export class SearchOneBox extends Page {
             });
     }
 
-    getOneBoxTitle() {
+    title() {
         return this.textOf(this.getSelector('oneBoxTitle'));
     }
-
 }
