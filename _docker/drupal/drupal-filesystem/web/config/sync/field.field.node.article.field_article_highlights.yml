@@ -1,0 +1,19 @@
+uuid: 95ffab05-9059-4dc0-a37f-a0d23bab2acc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_highlights
+    - node.type.article
+id: node.article.field_article_highlights
+field_name: field_article_highlights
+entity_type: node
+bundle: article
+label: 'Article Highlights'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.node.article.body
     - field.field.node.article.field_article_type
+    - field.field.node.article.field_article_highlights
     - field.field.node.article.field_author_name
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content
@@ -74,6 +75,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_article_highlights:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_card_image:
     weight: 16
