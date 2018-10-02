@@ -10632,7 +10632,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         margin-left: -3px;
         margin-right: -3px; } }
     #rhd-article .article-hero figcaption {
-      font-size: 10px;
+      font-size: 9px;
       text-align: right; }
       #rhd-article .article-hero figcaption p, #rhd-article .article-hero figcaption ol, #rhd-article .article-hero figcaption ul {
         margin-top: 1em;
@@ -10752,6 +10752,29 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         margin: 0;
         padding-left: 60px;
         padding-right: 20px; } }
+  #rhd-article .authors {
+    float: left;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 20px; }
+    #rhd-article .authors.no-image {
+      margin-top: 0; }
+    #rhd-article .authors .author.short-teaser {
+      float: left;
+      margin-right: 20px; }
+      #rhd-article .authors .author.short-teaser img {
+        width: 80px;
+        margin-bottom: 15px; }
+      #rhd-article .authors .author.short-teaser .author-name {
+        background-color: #F9F9F9;
+        margin: 5px 0;
+        padding: 7px;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: bold; }
+    @media (min-width: 1024px) {
+      #rhd-article .authors {
+        margin-top: 40px; } }
   @media (min-width: 1024px) {
     #rhd-article .floated-image {
       margin-top: 20px; } }
