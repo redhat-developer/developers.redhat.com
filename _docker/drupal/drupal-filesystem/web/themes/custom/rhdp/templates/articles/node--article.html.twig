@@ -71,79 +71,85 @@ other methods (such as node.delete) will result in an exception.
     <div class="row pre-body">
         <div class="medium-24 columns">
             {% if content.field_article_type|render %}
-              <p class="article-type">{{ content.field_article_type }}</p>
+            <p class="article-type">{{ content.field_article_type }}</p>
             {% endif %}
             {% if content.field_image|render %}
             <div class="row">
-            <div class="large-12 columns">
-            {% endif %}
-            {{ title_prefix }}
-            <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
-            {{ title_suffix }}
-            <div class="gsi-meta article-info">
-                <ul class="date-info">
-                    <li>
-                        <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
-                    </li>
-                    {% if node.createdtime != node.changedtime %}
-                    <li>
-                        <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
-                    </li>
+                <div class="large-12 columns">
                     {% endif %}
-                </ul>
-                <div class="share-buttons">
-                    {% include '@rhd/share.html.twig' %}
+                    {{ title_prefix }}
+                    <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
+                    {{ title_suffix }}
+                    <div class="gsi-meta article-info">
+                        <ul class="date-info">
+                            <li>
+                                <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
+                            </li>
+                            {% if node.createdtime != node.changedtime %}
+                            <li>
+                                <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <div class="share-buttons">
+                            {% include '@rhd/share.html.twig' %}
+                        </div>
+                    </div>
+                    {% if content.field_image|render %}
                 </div>
-            </div>
-            {% if content.field_image|render %}
-            </div>
-            <div class="large-12 columns floated-image">
-                {% if content.field_image_caption|render %}
-                <figure>
-                {% endif %}
-                {{ content.field_image }}
-                {% if content.field_image_caption|render %}
-                    <figcaption>
-                        {{ content.field_image_caption }}
-                    </figcaption>
+                <div class="large-12 columns floated-image">
+                    {% if content.field_image_caption|render %}
+                    <figure>
+                        {% endif %}
+                        {{ content.field_image }}
+                        {% if content.field_image_caption|render %}
+                        <figcaption>
+                            {{ content.field_image_caption }}
+                        </figcaption>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
-            </div>
             </div>
             {% endif %}
         </div>
-    </div>
-    {% if content.field_article_highlights|render %}
-        <div class="row">
+        {% if content.field_article_highlights|render %}
+        <div class="row article-highlights">
             {{ content.field_article_highlights }}
         </div>
-    {% endif %}
-    <div class="row">
-        {% if not hide_toc %}
-        <div class="medium-7 large-6 columns">
-            <ul class="toc gsi-nav">
-            </ul>
-            <div>&nbsp;</div>
-        </div>
         {% endif %}
-        <div{{ content_attributes.addClass(article_classes) }}>
-        {{ content.body }}
-        {{ content.field_content }}
+        <div class="row body-row">
+            {% if not hide_toc %}
+            <div class="medium-7 large-6 columns">
+                <ul class="toc gsi-nav">
+                </ul>
+                <div>&nbsp;</div>
+            </div>
+            {% endif %}
+            <div{{ content_attributes.addClass(article_classes) }}>
+            {{ content.body }}
+            {{ content.field_content }}
+        </div>
     </div>
     {% if content.field_tags|render %}
-    <div class="article-tags medium-18 medium-offset-6 columns">
-        {{ content.field_tags }}
+    <div class="row article-tags">
+        <div class="medium-18 medium-offset-6 columns">
+            {{ content.field_tags }}
+        </div>
     </div>
     {% endif %}
-    <div class="medium-18 medium-offset-6 columns">
-        {{ content.disqus_thread }}
+    <div class="row disqus-comments">
+        <div class="medium-18 medium-offset-6 columns">
+            {{ content.disqus_thread }}
+        </div>
     </div>
     {% if content.field_related_articles|render %}
+    <div class="row related-articles">
         <div class="medium-6 columns">
             <h4 class="related-article-header">Related Articles</h4>
         </div>
         <div class="medium-18 columns related-articles">
             {{ content.field_related_articles }}
         </div>
+    </div>
     {% endif %}
 </div>
