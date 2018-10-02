@@ -67,7 +67,7 @@ other methods (such as node.delete) will result in an exception.
 #}
 
 {% set article_classes = (not hide_toc) ? [ "medium-17", "large-12", "columns", "gsi", "fetch-toc", "article-content"] : ["large-12", "medium-12", "medium-offset-7", "large-offset-6", "columns", "gsi", "fetch-toc", "article-content"] %}
-<div{{ attributes.addClass(["container", "content"]).setAttribute("id", "rhd-article") }}>
+<div{{ attributes.addClass(["container", "content", "author-" ~ author_location]).setAttribute("id", "rhd-article") }}>
     {% if has_hero and content.field_image|render %}
     <div class="article-hero">
         {% if content.field_image_caption|render %}
@@ -91,34 +91,52 @@ other methods (such as node.delete) will result in an exception.
             <div class="row">
                 <div class="large-12 columns">
             {% endif %}
-                    {{ title_prefix }}
-                    <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
-                    {{ title_suffix }}
-                    <div class="gsi-meta article-info">
-                        <ul class="date-info">
-                            <li>
-                                <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
-                            </li>
-                            {% if node.createdtime != node.changedtime %}
-                            <li>
-                                <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        <div class="share-buttons">
-                            {% include '@rhd/share.html.twig' %}
+                    <div class="article-info-wrapper">
+                        <div class="article-info-left">
+                            {{ title_prefix }}
+                            <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
+                            {{ title_suffix }}
+                            <div class="gsi-meta article-info">
+                                <ul class="date-info">
+                                    <li>
+                                        <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
+                                    </li>
+                                    {% if node.createdtime != node.changedtime %}
+                                    <li>
+                                        <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                {% if author_location == 'left' %}
+                                <div class="share-buttons">
+                                    {% include '@rhd/share.html.twig' %}
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    {% if content.field_author_evangelist|render %}
-                    <div class="authors">
-                        {{ content.field_author_evangelist }}
-                    </div>
-                    {% elseif content.field_content_author|render %}
-                    <div class="authors no-image">
-                        <div class="author short-teaser">
-                            <span class="author-name">
-                                {{ content.field_content_author }}
-                            </span>
+                        {% if content.field_author_evangelist|render %}
+                        <div class="authors">
+                            {% if author_location == 'right' %}
+                            <div class="share-buttons">
+                                {% include '@rhd/share.html.twig' %}
+                            </div>
+                            {% endif %}
+                            {{ content.field_author_evangelist }}
+                        </div>
+                        {% elseif content.field_content_author|render %}
+                        <div class="authors no-image">
+                            {% if author_location == 'right' %}
+                            <div class="share-buttons">
+                                {% include '@rhd/share.html.twig' %}
+                            </div>
+                            {% endif %}
+                            <div class="authors-inner">
+                                <div class="author short-teaser">
+                                    <span class="author-name">
+                                        {{ content.field_content_author }}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endif %}
