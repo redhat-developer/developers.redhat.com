@@ -5,6 +5,24 @@
     font-size: 18px;
     line-height: 2.22rem;
   }
+  .article-hero {
+    margin-top: -2em;
+    @media only screen and (max-width: 1170px) {
+      margin-top: -15px;
+    }
+    @media only screen and (min-width: 1171px) {
+      margin-left: -3px;
+      margin-right: -3px;
+    }
+    figcaption {
+      font-size: 9px;
+      text-align: right;
+      p, ol, ul {
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+    }
+  }
   .a2a_kit {
     margin-left: -10px;
     a {
@@ -75,7 +93,7 @@
       }
     }
   }
-  
+
   .article-type {
     font-size: 20px;
     text-transform: uppercase;

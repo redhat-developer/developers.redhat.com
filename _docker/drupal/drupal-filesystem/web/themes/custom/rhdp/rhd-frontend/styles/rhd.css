@@ -10622,6 +10622,21 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     #rhd-article {
       font-size: 18px;
       line-height: 2.22rem; } }
+  #rhd-article .article-hero {
+    margin-top: -2em; }
+    @media only screen and (max-width: 1170px) {
+      #rhd-article .article-hero {
+        margin-top: -15px; } }
+    @media only screen and (min-width: 1171px) {
+      #rhd-article .article-hero {
+        margin-left: -3px;
+        margin-right: -3px; } }
+    #rhd-article .article-hero figcaption {
+      font-size: 10px;
+      text-align: right; }
+      #rhd-article .article-hero figcaption p, #rhd-article .article-hero figcaption ol, #rhd-article .article-hero figcaption ul {
+        margin-top: 1em;
+        margin-bottom: 1em; }
   #rhd-article .a2a_kit {
     margin-left: -10px; }
     #rhd-article .a2a_kit a {
