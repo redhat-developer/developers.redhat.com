@@ -1,0 +1,48 @@
+uuid: 7a87b931-0f36-495a-8e19-3566e2b61d8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content
+    - field.field.assembly.content.field_audience_selection
+    - field.field.assembly.content.field_content
+  module:
+    - text
+id: assembly.content.default
+targetEntityType: assembly
+bundle: content
+mode: default
+content:
+  field_audience_selection:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_content:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true
