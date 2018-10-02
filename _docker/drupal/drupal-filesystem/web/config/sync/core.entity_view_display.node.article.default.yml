@@ -52,22 +52,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_article_type:
-    weight: 1
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: list_default
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_article_highlights:
     weight: 109
     label: hidden
@@ -82,6 +66,20 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
     type: string
+    region: content
+  field_article_type:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: list_default
     region: content
   field_card_image:
     weight: 9
