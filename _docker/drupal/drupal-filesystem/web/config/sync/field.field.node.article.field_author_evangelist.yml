@@ -1,0 +1,28 @@
+uuid: 5ed093ba-99e7-442b-b145-245ea47b5a54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_evangelist
+    - node.type.article
+    - node.type.author
+id: node.article.field_author_evangelist
+field_name: field_author_evangelist
+entity_type: node
+bundle: article
+label: 'Content Author/Evangelist'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      author: author
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

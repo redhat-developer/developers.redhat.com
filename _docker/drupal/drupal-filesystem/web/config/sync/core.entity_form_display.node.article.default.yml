@@ -5,8 +5,9 @@ dependencies:
   config:
     - entity_browser.browser.image_browser
     - field.field.node.article.body
-    - field.field.node.article.field_article_type
     - field.field.node.article.field_article_highlights
+    - field.field.node.article.field_article_type
+    - field.field.node.article.field_author_evangelist
     - field.field.node.article.field_author_name
     - field.field.node.article.field_card_image
     - field.field.node.article.field_content
@@ -26,8 +27,8 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
-    - field_group
     - entity_browser_entity_form
+    - field_group
     - inline_entity_form
     - interval
     - link
@@ -41,7 +42,7 @@ third_party_settings:
         - field_image
         - field_image_caption
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: fieldset
       format_settings:
         id: ''
@@ -58,7 +59,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 6
+    weight: 10
     settings:
       rows: 9
       summary_rows: 3
@@ -67,12 +68,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 9
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     region: content
   field_article_highlights:
-    weight: 5
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -85,8 +86,17 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_author_evangelist:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_card_image:
-    weight: 16
+    weight: 20
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -94,7 +104,7 @@ content:
     type: link_default
     region: content
   field_content:
-    weight: 6
+    weight: 9
     settings:
       form_mode: default
       label_singular: ''
@@ -112,7 +122,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_content_author:
-    weight: 5
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -120,14 +130,14 @@ content:
     type: string_textfield
     region: content
   field_difficulty:
-    weight: 14
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_hide_toc:
     type: boolean_checkbox
-    weight: 7
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -154,7 +164,7 @@ content:
     type: text_textarea
     region: content
   field_long_description:
-    weight: 4
+    weight: 5
     settings:
       rows: 9
       summary_rows: 3
@@ -163,20 +173,20 @@ content:
     type: text_textarea_with_summary
     region: content
   field_meta_tags:
-    weight: 15
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_read_time:
-    weight: 13
+    weight: 17
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_related_articles:
-    weight: 17
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60
@@ -185,7 +195,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_short_description:
-    weight: 3
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -194,7 +204,7 @@ content:
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags
-    weight: 17
+    weight: 22
     settings:
       match_operator: CONTAINS
       size: 60
@@ -208,14 +218,14 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    weight: 18
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: content
   path:
     type: path
-    weight: 12
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -223,14 +233,14 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
+    weight: 14
     third_party_settings: {  }
     region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 15
     third_party_settings: {  }
     region: content
   title:
@@ -243,7 +253,7 @@ content:
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -251,7 +261,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 19
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }

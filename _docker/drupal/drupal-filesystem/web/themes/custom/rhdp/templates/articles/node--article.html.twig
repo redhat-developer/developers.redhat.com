@@ -95,6 +95,19 @@ other methods (such as node.delete) will result in an exception.
                     {% include '@rhd/share.html.twig' %}
                 </div>
             </div>
+            {% if content.field_author_evangelist|render %}
+            <div class="authors">
+              {{ content.field_author_evangelist }}
+            </div>
+            {% elseif content.field_content_author|render %}
+            <div class="authors no-image">
+              <div class="author short-teaser">
+                <span class="author-name">
+                  {{ content.field_content_author }}
+                </span>
+              </div>
+            </div>
+            {% endif %}
             {% if content.field_image|render %}
             </div>
             <div class="large-12 columns floated-image">
