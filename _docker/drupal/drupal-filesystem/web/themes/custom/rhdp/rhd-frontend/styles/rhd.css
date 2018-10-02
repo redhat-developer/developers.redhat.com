@@ -18,7 +18,7 @@ body {
   padding: 0;
   color: #333333; }
 
-.container, #user-login-form, .node__content > .field--name-body,
+.container, .assembly-type-eloqua_form_embed .iframe-container, #user-login-form, .node__content > .field--name-body,
 #block-rhdp-local-tasks {
   width: 100%;
   margin-right: auto;
@@ -26,19 +26,19 @@ body {
   padding-left: 15px;
   padding-right: 15px; }
   @media (min-width: 768px) {
-    .container, #user-login-form, .node__content > .field--name-body,
+    .container, .assembly-type-eloqua_form_embed .iframe-container, #user-login-form, .node__content > .field--name-body,
     #block-rhdp-local-tasks {
       max-width: 720px; } }
   @media (min-width: 1024px) {
-    .container, #user-login-form, .node__content > .field--name-body,
+    .container, .assembly-type-eloqua_form_embed .iframe-container, #user-login-form, .node__content > .field--name-body,
     #block-rhdp-local-tasks {
       max-width: 961px; } }
   @media (min-width: 1240px) {
-    .container, #user-login-form, .node__content > .field--name-body,
+    .container, .assembly-type-eloqua_form_embed .iframe-container, #user-login-form, .node__content > .field--name-body,
     #block-rhdp-local-tasks {
       max-width: 1202px; } }
   @media (min-width: 1240px) {
-    .container.narrow, .narrow#user-login-form, .node__content > .narrow.field--name-body,
+    .container.narrow, .assembly-type-eloqua_form_embed .narrow.iframe-container, .narrow#user-login-form, .node__content > .narrow.field--name-body,
     .narrow#block-rhdp-local-tasks {
       max-width: 961px; } }
 
@@ -398,7 +398,8 @@ a.button[href$=".pdf"] .fa-file-pdf,
 a.heavy-cta[href$=".pdf"] .fa-file-pdf,
 a.medium-cta[href$=".pdf"] .fa-file-pdf,
 .heavy-cta a[href$=".pdf"] .fa-file-pdf,
-.madium-cta a[href$=".pdf"] .fa-file-pdf {
+.medium-cta a[href$=".pdf"] .fa-file-pdf,
+.f-dropdown a[href$=".pdf"] .fa-file-pdf {
   display: none; }
 
 a.light-cta {
@@ -722,7 +723,7 @@ a.light-cta {
   background-color: #FFF; }
   .assembly.has-background {
     position: relative; }
-    .assembly.has-background .container, .assembly.has-background #user-login-form, .assembly.has-background .node__content > .field--name-body,
+    .assembly.has-background .container, .assembly.has-background .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly.has-background .iframe-container, .assembly.has-background #user-login-form, .assembly.has-background .node__content > .field--name-body,
     .assembly.has-background #block-rhdp-local-tasks {
       position: relative;
       z-index: 1; }
@@ -763,7 +764,7 @@ a.light-cta {
 
 .assembly-type-video_hero {
   background-color: #00B9E4;
-  background-image: url("../images/Blue_Background@2x.png");
+  background-image: url("/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -773,13 +774,13 @@ a.light-cta {
       padding: 70px 0;
       background-size: 1440px auto; } }
   @media (min-width: 1024px) {
-    .assembly-type-video_hero .container, .assembly-type-video_hero #user-login-form, .assembly-type-video_hero .node__content > .field--name-body,
+    .assembly-type-video_hero .container, .assembly-type-video_hero .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-video_hero .iframe-container, .assembly-type-video_hero #user-login-form, .assembly-type-video_hero .node__content > .field--name-body,
     .assembly-type-video_hero #block-rhdp-local-tasks {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
       grid-column-gap: 50px; } }
   @media (min-width: 1240px) {
-    .assembly-type-video_hero .container, .assembly-type-video_hero #user-login-form, .assembly-type-video_hero .node__content > .field--name-body,
+    .assembly-type-video_hero .container, .assembly-type-video_hero .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-video_hero .iframe-container, .assembly-type-video_hero #user-login-form, .assembly-type-video_hero .node__content > .field--name-body,
     .assembly-type-video_hero #block-rhdp-local-tasks {
       grid-column-gap: 70px; } }
   .assembly-type-video_hero .content {
@@ -1178,7 +1179,7 @@ a.light-cta {
     font-weight: bold;
     font-size: 21px; }
   @media (min-width: 1240px) {
-    .assembly-type-dynamic_content_list .container, .assembly-type-dynamic_content_list #user-login-form, .assembly-type-dynamic_content_list .node__content > .field--name-body,
+    .assembly-type-dynamic_content_list .container, .assembly-type-dynamic_content_list .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-dynamic_content_list .iframe-container, .assembly-type-dynamic_content_list #user-login-form, .assembly-type-dynamic_content_list .node__content > .field--name-body,
     .assembly-type-dynamic_content_list #block-rhdp-local-tasks {
       max-width: 1002px; } }
   .assembly-type-dynamic_content_list .grid {
@@ -1345,7 +1346,7 @@ a.light-cta {
   padding-top: 38px;
   padding-bottom: 38px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(/images/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1417,12 +1418,12 @@ a.light-cta {
         margin-bottom: 0; } }
   .assembly-type-call_to_action p:last-child, .assembly-type-call_to_action ul:last-child, .assembly-type-call_to_action ol:last-child {
     margin-bottom: 0; }
-  .assembly-type-call_to_action > .container > .button:last-child, .assembly-type-call_to_action > #user-login-form > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:last-child {
+  .assembly-type-call_to_action > .container > .button:last-child, .assembly-type-eloqua_form_embed .assembly-type-call_to_action > .iframe-container > .button:last-child, .assembly-type-call_to_action > #user-login-form > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:last-child {
     margin-top: 24px; }
     @media (min-width: 768px) {
-      .assembly-type-call_to_action > .container > .button:last-child, .assembly-type-call_to_action > #user-login-form > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:last-child {
+      .assembly-type-call_to_action > .container > .button:last-child, .assembly-type-eloqua_form_embed .assembly-type-call_to_action > .iframe-container > .button:last-child, .assembly-type-call_to_action > #user-login-form > .button:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:last-child {
         margin-top: 34px; } }
-  .assembly-type-call_to_action > .container > .button:first-child:last-child, .assembly-type-call_to_action > #user-login-form > .button:first-child:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:first-child:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:first-child:last-child {
+  .assembly-type-call_to_action > .container > .button:first-child:last-child, .assembly-type-eloqua_form_embed .assembly-type-call_to_action > .iframe-container > .button:first-child:last-child, .assembly-type-call_to_action > #user-login-form > .button:first-child:last-child, .node__content.assembly-type-call_to_action > .field--name-body > .button:first-child:last-child, .assembly-type-call_to_action > #block-rhdp-local-tasks > .button:first-child:last-child {
     margin-top: 0; }
   .assembly-type-call_to_action.left {
     float: none !important;
@@ -1550,7 +1551,7 @@ a.light-cta {
   padding-top: 30px;
   padding-bottom: 30px;
   background: #E5E5E5;
-  background-image: url(../docs/img/gray_diamond_background.png);
+  background-image: url(/images/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat; }
@@ -1659,20 +1660,20 @@ a.light-cta {
         font-weight: bold;
         font-size: 36px;
         text-align: left; } }
-  .assembly-type-content_with_image .container, .assembly-type-content_with_image #user-login-form, .assembly-type-content_with_image .node__content > .field--name-body,
+  .assembly-type-content_with_image .container, .assembly-type-content_with_image .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-content_with_image .iframe-container, .assembly-type-content_with_image #user-login-form, .assembly-type-content_with_image .node__content > .field--name-body,
   .assembly-type-content_with_image #block-rhdp-local-tasks {
     flex-flow: row wrap-reverse;
     display: flex; }
     @media (min-width: 1024px) {
-      .assembly-type-content_with_image .container, .assembly-type-content_with_image #user-login-form, .assembly-type-content_with_image .node__content > .field--name-body,
+      .assembly-type-content_with_image .container, .assembly-type-content_with_image .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-content_with_image .iframe-container, .assembly-type-content_with_image #user-login-form, .assembly-type-content_with_image .node__content > .field--name-body,
       .assembly-type-content_with_image #block-rhdp-local-tasks {
         flex-flow: row wrap; } }
     @media (min-width: 576px) {
-      .assembly-type-content_with_image .container > div, .assembly-type-content_with_image #user-login-form > div, .assembly-type-content_with_image .node__content > .field--name-body > div, .assembly-type-content_with_image #block-rhdp-local-tasks > div {
+      .assembly-type-content_with_image .container > div, .assembly-type-content_with_image .assembly-type-eloqua_form_embed .iframe-container > div, .assembly-type-eloqua_form_embed .assembly-type-content_with_image .iframe-container > div, .assembly-type-content_with_image #user-login-form > div, .assembly-type-content_with_image .node__content > .field--name-body > div, .assembly-type-content_with_image #block-rhdp-local-tasks > div {
         width: 50%;
         align-self: start; } }
     @media (min-width: 1240px) {
-      .assembly-type-content_with_image .container > div, .assembly-type-content_with_image #user-login-form > div, .assembly-type-content_with_image .node__content > .field--name-body > div, .assembly-type-content_with_image #block-rhdp-local-tasks > div {
+      .assembly-type-content_with_image .container > div, .assembly-type-content_with_image .assembly-type-eloqua_form_embed .iframe-container > div, .assembly-type-eloqua_form_embed .assembly-type-content_with_image .iframe-container > div, .assembly-type-content_with_image #user-login-form > div, .assembly-type-content_with_image .node__content > .field--name-body > div, .assembly-type-content_with_image #block-rhdp-local-tasks > div {
         align-self: center; } }
   .assembly-type-content_with_image p, .assembly-type-content_with_image ol, .assembly-type-content_with_image ul {
     font-size: 13px; }
@@ -1731,7 +1732,7 @@ a.light-cta {
 .assembly-type-events_hero {
   color: #242424;
   background-color: #00B9E4;
-  background-image: url("images/Blue_Background@2x.png");
+  background-image: url("/images/Blue_Background@2x.png");
   background-repeat: no-repeat;
   background-size: 1060px auto;
   background-position: bottom left;
@@ -1740,67 +1741,67 @@ a.light-cta {
   @media (min-width: 576px) {
     .assembly-type-events_hero {
       background-size: 1440px auto; } }
-  .assembly-type-events_hero .container, .assembly-type-events_hero #user-login-form, .assembly-type-events_hero .node__content > .field--name-body,
+  .assembly-type-events_hero .container, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container, .assembly-type-events_hero #user-login-form, .assembly-type-events_hero .node__content > .field--name-body,
   .assembly-type-events_hero #block-rhdp-local-tasks {
     display: block; }
     @media (min-width: 1024px) {
-      .assembly-type-events_hero .container, .assembly-type-events_hero #user-login-form, .assembly-type-events_hero .node__content > .field--name-body,
+      .assembly-type-events_hero .container, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container, .assembly-type-events_hero #user-login-form, .assembly-type-events_hero .node__content > .field--name-body,
       .assembly-type-events_hero #block-rhdp-local-tasks {
         display: flex; } }
-    .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero #user-login-form .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event {
+    .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event, .assembly-type-events_hero #user-login-form .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event {
       padding: 30px 0; }
       @media (min-width: 576px) {
-        .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero #user-login-form .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event {
+        .assembly-type-events_hero .container .primary-event, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event, .assembly-type-events_hero #user-login-form .primary-event, .assembly-type-events_hero .node__content > .field--name-body .primary-event, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event {
           padding: 70px 0; } }
-      .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero #user-login-form .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event h2.section-title {
+      .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event h2.section-title, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event h2.section-title, .assembly-type-events_hero #user-login-form .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event h2.section-title {
         font-weight: bold;
         margin: 0 0 15px; }
         @media (min-width: 576px) {
-          .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero #user-login-form .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event h2.section-title {
+          .assembly-type-events_hero .container .primary-event h2.section-title, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event h2.section-title, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event h2.section-title, .assembly-type-events_hero #user-login-form .primary-event h2.section-title, .assembly-type-events_hero .node__content > .field--name-body .primary-event h2.section-title, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event h2.section-title {
             margin: 0 0 45px; } }
-      .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #user-login-form .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
+      .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-info .rhd-list-entry--date, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #user-login-form .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
         font-weight: 800;
         text-transform: uppercase;
         margin: 0 0 10px; }
         @media (min-width: 576px) {
-          .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #user-login-form .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
+          .assembly-type-events_hero .container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-info .rhd-list-entry--date, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #user-login-form .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .rhd-list-entry--date, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .rhd-list-entry--date {
             margin: 0 0 20px; } }
-      .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero #user-login-form .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info h3 {
+      .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-info h3, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-info h3, .assembly-type-events_hero #user-login-form .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info h3 {
         font-weight: bold;
         font-size: 18px;
         line-height: 18px;
         margin: 0 0 10px; }
         @media (min-width: 576px) {
-          .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero #user-login-form .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info h3 {
+          .assembly-type-events_hero .container .primary-event .event-info h3, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-info h3, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-info h3, .assembly-type-events_hero #user-login-form .primary-event .event-info h3, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info h3, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info h3 {
             margin: 0 0 20px;
             font-size: 27px;
             line-height: 27px; } }
-      .assembly-type-events_hero .container .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero #user-login-form .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .field--name-field-short-description {
+      .assembly-type-events_hero .container .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-info .field--name-field-short-description, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero #user-login-form .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-info .field--name-field-short-description, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-info .field--name-field-short-description {
         font-size: 16px;
         line-height: 24px;
         color: #424242; }
-      .assembly-type-events_hero .container .primary-event .event-presenters, .assembly-type-events_hero #user-login-form .primary-event .event-presenters, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters {
+      .assembly-type-events_hero .container .primary-event .event-presenters, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-presenters, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-presenters, .assembly-type-events_hero #user-login-form .primary-event .event-presenters, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters {
         float: left;
         width: 100%; }
-        .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
+        .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-presenters .short-teaser, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
           margin-top: 35px; }
           @media (min-width: 576px) {
-            .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
+            .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-presenters .short-teaser, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser {
               float: left;
               margin-right: 40px;
               max-width: 200px; }
-              .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser:last-of-type {
+              .assembly-type-events_hero .container .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero #user-login-form .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero .node__content > .field--name-body .primary-event .event-presenters .short-teaser:last-of-type, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .event-presenters .short-teaser:last-of-type {
                 margin-right: 0; } }
-      .assembly-type-events_hero .container .primary-event .button, .assembly-type-events_hero #user-login-form .primary-event .button, .assembly-type-events_hero .node__content > .field--name-body .primary-event .button, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .button {
+      .assembly-type-events_hero .container .primary-event .button, .assembly-type-events_hero .assembly-type-eloqua_form_embed .iframe-container .primary-event .button, .assembly-type-eloqua_form_embed .assembly-type-events_hero .iframe-container .primary-event .button, .assembly-type-events_hero #user-login-form .primary-event .button, .assembly-type-events_hero .node__content > .field--name-body .primary-event .button, .assembly-type-events_hero #block-rhdp-local-tasks .primary-event .button {
         margin-top: 40px; }
-    .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .has-sidebar#user-login-form .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .primary-event {
+    .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .primary-event, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .primary-event, .assembly-type-events_hero .has-sidebar#user-login-form .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .primary-event {
       width: 100%; }
       @media (min-width: 1024px) {
-        .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .has-sidebar#user-login-form .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .primary-event {
+        .assembly-type-events_hero .container.has-sidebar .primary-event, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .primary-event, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .primary-event, .assembly-type-events_hero .has-sidebar#user-login-form .primary-event, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .primary-event, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .primary-event {
           padding-right: 70px;
           width: 50%;
           flex-grow: 2; } }
-    .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events {
+    .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events {
       background-color: #d5d5d5;
       width: 100vw;
       position: relative;
@@ -1809,7 +1810,7 @@ a.light-cta {
       padding: 30px;
       z-index: 2; }
       @media (min-width: 1024px) {
-        .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events {
+        .assembly-type-events_hero .container.has-sidebar .secondary-events, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events {
           width: 50%;
           max-width: 320px;
           flex-grow: 1;
@@ -1817,38 +1818,38 @@ a.light-cta {
           left: auto;
           right: auto;
           margin: 0; } }
-      .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
+      .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events h5, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events h5, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
         text-transform: uppercase;
         margin: 0 0 15px;
         font-weight: bold; }
         @media (min-width: 1024px) {
-          .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
+          .assembly-type-events_hero .container.has-sidebar .secondary-events h5, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events h5, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events h5, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events h5, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events h5, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events h5 {
             margin: 0 0 35px; } }
-      .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article {
+      .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events article, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events article, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article {
         float: left;
         width: 48%; }
-        .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
+        .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events article:first-of-type, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
           margin-right: 4%; }
         @media (min-width: 1024px) {
-          .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article {
+          .assembly-type-events_hero .container.has-sidebar .secondary-events article, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events article, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events article, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article {
             float: none;
             width: 100%; }
-            .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
+            .assembly-type-events_hero .container.has-sidebar .secondary-events article:first-of-type, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events article:first-of-type, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events article:first-of-type, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events article:first-of-type, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events article:first-of-type {
               margin-bottom: 50px;
               margin-right: 0; } }
-      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-image, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .tile-image, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-image, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-image {
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-image, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events .tile-image, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events .tile-image, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .tile-image, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-image, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-image {
         background-color: transparent; }
-      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-title, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .tile-title, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-title, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-title {
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .tile-title, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events .tile-title, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events .tile-title, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .tile-title, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .tile-title, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .tile-title {
         font-weight: bold; }
-      .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link {
+      .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events .more-link, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events .more-link, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link {
         clear: both;
         width: 100%; }
-        .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link a, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a {
+        .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events .more-link a, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events .more-link a, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link a, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a {
           color: #0066CC;
           margin-right: 20px;
           padding-right: 5px;
           position: relative; }
-          .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a:after, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link a:after, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a:after, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a:after {
+          .assembly-type-events_hero .container.has-sidebar .secondary-events .more-link a:after, .assembly-type-events_hero .assembly-type-eloqua_form_embed .has-sidebar.iframe-container .secondary-events .more-link a:after, .assembly-type-eloqua_form_embed .assembly-type-events_hero .has-sidebar.iframe-container .secondary-events .more-link a:after, .assembly-type-events_hero .has-sidebar#user-login-form .secondary-events .more-link a:after, .assembly-type-events_hero .node__content > .has-sidebar.field--name-body .secondary-events .more-link a:after, .assembly-type-events_hero .has-sidebar#block-rhdp-local-tasks .secondary-events .more-link a:after {
             left: 100%;
             top: 50%;
             border: solid transparent;
@@ -1868,21 +1869,19 @@ a.light-cta {
       height: 100%;
       background-color: #d5d5d5; } }
 
-.field--name-field-form {
-  background-color: #e4e4e6;
-  padding: 20px; }
-  .field--name-field-form .form-header {
-    margin-bottom: 50px; }
-    .field--name-field-form .form-header h4, .field--name-field-form .form-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .field--name-field-form .form-header h2, .field--name-field-form .form-header .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .field--name-field-form .form-header h2 {
-      font-size: 18px;
-      text-transform: uppercase;
-      color: #c00;
-      font-weight: 600;
-      margin-left: 0; }
-  .field--name-field-form .form-footer {
-    margin-top: 40px; }
-    .field--name-field-form .form-footer p {
-      margin: 0; }
+.assembly-type-eloqua_form_embed .iframe-container {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  height: 0px;
+  margin-bottom: 20px; }
+  .assembly-type-eloqua_form_embed .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: 0; }
 
 .assembly[data-audience] {
   display: none; }
@@ -8547,28 +8546,32 @@ a.get-started-quickstart.button {
 ul.toc {
   margin: 0;
   width: 100%;
-  z-index: -1; }
+  z-index: 100; }
 
 .gsi-nav-fixed {
   position: fixed;
   top: 0;
   padding-top: 20px;
-  width: 11%;
-  max-width: 180px;
+  width: 25%;
   min-width: 125px; }
 
 .gsi-nav {
-  padding-left: 0; }
+  padding-left: 0;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-top: 8px solid #000;
+  transform: translateY(0);
+  transition: 150ms ease-in-out; }
+  .gsi-nav.gsi-nav-fixed {
+    transform: translateY(30px); }
   .gsi-nav li {
     list-style: none;
     padding-bottom: 10px; }
-    .gsi-nav li a.past-block:last-child {
-      color: #a5ab36; }
     .gsi-nav li a {
-      color: #027CBB; }
-      .gsi-nav li a:after {
-        content: "\203A";
-        margin-left: 5px; }
+      color: #196bcb; }
 
 .gsi h3 {
   border-bottom: 1px solid #d5d5d5;
@@ -8613,9 +8616,6 @@ ul.toc {
     margin-top: -1.5em; }
     .downloadthankyou .thankyouclose a {
       color: #424242; }
-      .downloadthankyou .thankyouclose a:before {
-        font-family: 'FontAwesome';
-        content: "\f00d"; }
   .downloadthankyou .thankyoupanels i {
     text-align: center;
     color: #94aebd;
@@ -9805,14 +9805,12 @@ ul.featured-projects-results {
   .project-details-list li {
     overflow: hidden;
     font-size: 1rem; }
-    .project-details-list li a:after {
-      font-family: 'FontAwesome';
-      content: "\f08e";
-      margin-left: 5px;
-      font-size: 12px;
+    .project-details-list li a i {
       color: #027CBB; }
-    .project-details-list li a[href*="jboss.org"]:after {
-      content: ''; }
+    .project-details-list li a[href*="jboss.org"] i {
+      display: none; }
+    .project-details-list li a[href*="jboss.org"] svg[data-icon="external-link"] {
+      display: none; }
 
 .project-filters h4, .project-filters .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .project-filters h2 {
   font-size: 23px;
@@ -10618,40 +10616,66 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     padding-right: 20px; } }
 
 #rhd-article {
+  padding: 1em;
   padding-top: 2em; }
+  @media (min-width: 576px) {
+    #rhd-article {
+      font-size: 18px;
+      line-height: 2.22rem; } }
+  #rhd-article .gsi ul, #rhd-article .gsi ol {
+    padding-left: 1em; }
+    #rhd-article .gsi ul li, #rhd-article .gsi ol li {
+      margin-left: 1em;
+      padding-left: 0.75em; }
+  #rhd-article p {
+    font-size: inherit;
+    line-height: inherit; }
+  #rhd-article .row {
+    width: auto;
+    max-width: none;
+    margin-left: -1em;
+    margin-right: -1em; }
+  #rhd-article .pre-body {
+    margin-bottom: 40px; }
+    @media (min-width: 1024px) {
+      #rhd-article .pre-body {
+        margin-bottom: 70px; } }
   #rhd-article .large-5.medium-5.columns, #rhd-article .large-5.medium-5.developer-materials-sidebar, #rhd-article .large-5.medium-5.developer-materials-main, #rhd-article .large-5.medium-5.microsite-nav {
     position: absolute;
     float: right;
     right: 0; }
   #rhd-article .article-tags {
     padding-bottom: 15px;
-    padding-right: 15px;
-    position: absolute; }
+    padding-right: 15px; }
     @media only screen and (max-width: 1024px) {
       #rhd-article .article-tags {
         position: relative; } }
   #rhd-article .article-info {
+    padding: 0;
     border: none;
-    background: #D5D5D5;
-    padding: 7px 5px;
-    margin-bottom: 2.5em; }
+    background-color: transparent;
+    color: #444444;
+    padding: 0 20px;
+    overflow: hidden; }
     #rhd-article .article-info ul {
-      margin-top: 0;
-      padding: 0 5px 5px 5px; }
-      #rhd-article .article-info ul li {
+      padding: 0;
+      margin: 0;
+      margin-left: -40px;
+      margin-right: -40px;
+      font-size: 0; }
+      #rhd-article .article-info ul > li {
+        display: inline-block;
         width: auto;
-        margin-right: 15px; }
-      #rhd-article .article-info ul .field--name-field-content-author {
-        display: inline-block; }
-  #rhd-article .article-content h2 {
-    border-bottom: 1px solid #d5d5d5;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    font-weight: 100;
-    font-size: 16px; }
-    @media (min-width: 768px) {
-      #rhd-article .article-content h2 {
-        font-size: 32px; } }
+        float: none;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px; }
+        @media (min-width: 576px) {
+          #rhd-article .article-info ul > li {
+            font-size: 18px; } }
+  @media (min-width: 1024px) {
+    #rhd-article .article-content {
+      margin-right: 25%; } }
   #rhd-article .article-content h3 {
     border-bottom: none;
     font-size: 15px;
@@ -10660,6 +10684,8 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     @media (min-width: 768px) {
       #rhd-article .article-content h3 {
         font-size: 27px; } }
+  #rhd-article .article-content h1:first-child, #rhd-article .article-content h2:first-child, #rhd-article .article-content h3:first-child, #rhd-article .article-content h4:first-child, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-article .disqus-thread-wrapper h2:first-child, .page-node-type-article .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content h5:first-child, #rhd-article .article-content h6:first-child {
+    margin-top: 0; }
   #rhd-article .a2a_kit {
     margin-bottom: 30px; }
   #rhd-article .field--name-field-tags {
