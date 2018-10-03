@@ -1,0 +1,19 @@
+uuid: deb79c45-5956-4230-8aaa-29c60aa9c89a
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_content_pull_quote
+field_name: field_content_pull_quote
+entity_type: assembly
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
