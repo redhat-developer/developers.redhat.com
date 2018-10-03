@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.content
+    - assembly.assembly_type.content_pull_quote
     - field.storage.node.field_content
     - node.type.article
   module:
@@ -23,8 +24,9 @@ settings:
   handler_settings:
     target_bundles:
       content: content
+      content_pull_quote: content_pull_quote
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: content
 field_type: entity_reference_revisions
