@@ -5,7 +5,6 @@ const qs = require('querystring');
 export class Utils extends Page {
 
     cleanSession(baseUrl) {
-        console.log('i failed to log out')
         let logoutLink;
         let encodedURL = qs.escape(baseUrl);
         if (process.env.RHD_BASE_URL === 'https://developers.stage.redhat.com') {
