@@ -37,7 +37,21 @@ export class Page extends PageExtension {
     }
 
     awaitIsLoggedIn(siteUser) {
-        return this.awaitIsNotVisible('.login', 60000) && this.awaitIsVisible('.logged-in', 60000) &&
-            this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 60000);
+        try {
+            return this.awaitIsNotVisible('.login', 90000) && this.awaitIsVisible('.logged-in', 90000) &&
+                this.waitForSelectorContainingText('.logged-in-name', `${siteUser['firstName']} ${siteUser['lastName']}`, 80000);
+        } catch (e) {
+            throw Error('user was not logged in after 80 seconds!');
+        }
+    }
+
+    userLogout() {
+        let loggedInName = '.logged-in-name';
+        let menu = 'nav > ul.rhd-menu.rh-universal-login > li.logged-in > ul';
+        let logout = 'li.logged-in > ul > li:nth-child(2) > a';
+        this.awaitIsVisible(loggedInName);
+        this.click(loggedInName);
+        this.awaitIsVisible(menu);
+        return this.click(logout)
     }
 }
