@@ -140,6 +140,7 @@ other methods (such as node.delete) will result in an exception.
                         </div>
                     </div>
                     {% endif %}
+                </div>
             {% if content.field_image|render and not has_hero %}
                 </div>
                 <div class="large-12 columns floated-image">
@@ -156,12 +157,11 @@ other methods (such as node.delete) will result in an exception.
             </div>
             {% endif %}
         </div>
-        {% if content.field_article_highlights|render %}
-        <div class="row article-highlights">
-            {{ content.field_article_highlights }}
-        </div>
-        {% endif %}
+    {% if content.field_article_highlights|render %}
+    <div class="row article-highlights">
+        {{ content.field_article_highlights }}
     </div>
+    {% endif %}
     <div class="row body-row">
         {% if not hide_toc %}
         <div class="medium-7 large-6 columns">

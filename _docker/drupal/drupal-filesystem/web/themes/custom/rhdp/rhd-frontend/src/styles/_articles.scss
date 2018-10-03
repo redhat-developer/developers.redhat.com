@@ -97,9 +97,10 @@
   .article-type {
     font-size: 20px;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 600;
     color: $gray-4-5;
     margin: 0;
+    letter-spacing: 0.025em;
   }
 
   p {
@@ -344,10 +345,11 @@
 }
 
 .page-node-type-article .disqus-thread-wrapper {
-  padding-top: 40px;
-  border-top: #E4E4E4 1px solid;
-  h2 {
-    @extend h4;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @include desktop-small {
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
 }
 
@@ -355,7 +357,7 @@
   font-weight: normal;
   margin-bottom: 16px;
 }
-.related-articles {
+#rhd-article .related-articles {
   h5 {
     font-weight: normal;
     font-size: 16px;
