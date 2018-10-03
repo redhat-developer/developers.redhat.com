@@ -113,6 +113,11 @@ other methods (such as node.delete) will result in an exception.
                                 </div>
                                 {% endif %}
                             </div>
+                            {% if content.field_topics|render %}
+                             <div class="topics">
+                              More on: {{ content.field_topics }}
+                             </div>
+                            {% endif %}
                         </div>
                         {% if content.field_author_evangelist|render %}
                         <div class="authors">
