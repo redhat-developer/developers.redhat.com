@@ -29,7 +29,7 @@ services:
     - GRID_PORT=4444
 
   chrome:
-    image: selenium/standalone-chrome:3.14.0-dubnium
+    image: selenium/standalone-chrome:3.14.0-europium
     volumes:
     - /dev/shm:/dev/shm
     - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
