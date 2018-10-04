@@ -150,6 +150,11 @@
     padding-right: 15px;
     line-height: 1.5;
     font-weight: bold;
+    a {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: bold;
+    }
     @include desktop-small-and-down {
       position: relative;
     }
