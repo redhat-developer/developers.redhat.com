@@ -82,5 +82,4 @@ class BrowserManager {
     }
 }
 
-module
-    .exports = new BrowserManager;
+module.exports = new BrowserManager;
