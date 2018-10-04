@@ -3,6 +3,12 @@
   border-top: 3px solid $red;
   padding: 15px;
   font-size: 18px;
+  position: relative;
+  svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
   @include tablet-landscape {
     font-size: 24px;
     line-height: 38px;
