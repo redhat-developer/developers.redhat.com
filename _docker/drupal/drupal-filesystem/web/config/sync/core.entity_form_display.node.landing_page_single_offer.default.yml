@@ -21,10 +21,34 @@ dependencies:
   module:
     - content_moderation
     - entity_browser_entity_form
+    - field_group
     - inline_entity_form
     - metatag
     - path
     - text
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 id: node.landing_page_single_offer.default
 targetEntityType: node
 bundle: landing_page_single_offer

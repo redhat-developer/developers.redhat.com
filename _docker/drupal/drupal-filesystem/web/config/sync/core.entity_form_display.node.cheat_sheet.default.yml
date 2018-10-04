@@ -34,11 +34,35 @@ dependencies:
     - content_moderation
     - datetime
     - entity_browser
+    - field_group
     - interval
     - link
     - metatag
     - path
     - text
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 22
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 _core:
   default_config_hash: hK6VqyuwHGWREmF7Yh7eR1qaswdJJrxpzxWQSNUlHkw
 id: node.cheat_sheet.default
@@ -169,61 +193,61 @@ content:
     type: string_textarea
     region: content
   field_tax_audience_segment:
-    weight: 51
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_business_unit:
-    weight: 52
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_campaign:
-    weight: 53
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_lifecycle:
-    weight: 54
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product:
-    weight: 55
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product_line:
-    weight: 56
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_project:
-    weight: 57
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_promotion:
-    weight: 58
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_region:
-    weight: 59
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_stage:
-    weight: 60
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -278,7 +302,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 50
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }

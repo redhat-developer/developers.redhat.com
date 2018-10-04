@@ -22,9 +22,33 @@ dependencies:
     - content_moderation
     - entity_browser
     - entity_browser_entity_form
+    - field_group
     - inline_entity_form
     - metatag
     - path
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 9
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 id: node.assembly_page.default
 targetEntityType: node
 bundle: assembly_page
@@ -37,7 +61,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_meta_tags:
-    weight: 8
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -74,67 +98,67 @@ content:
     region: content
     third_party_settings: {  }
   field_tax_audience_segment:
-    weight: 51
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_business_unit:
-    weight: 52
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_campaign:
-    weight: 53
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_lifecycle:
-    weight: 54
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product:
-    weight: 55
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product_line:
-    weight: 56
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_project:
-    weight: 57
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_promotion:
-    weight: 58
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_region:
-    weight: 59
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_stage:
-    weight: 60
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   moderation_state:
-    weight: 26
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -163,7 +187,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }

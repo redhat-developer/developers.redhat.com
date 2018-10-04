@@ -41,12 +41,36 @@ dependencies:
     - content_moderation
     - datetime
     - entity_browser
+    - field_group
     - interval
     - link
     - metatag
     - path
     - text
     - video_embed_field
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 26
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 _core:
   default_config_hash: usEN6FRM_guH0aZiSFAjZiF7zzRF6KUkXbSFHvD0iv8
 id: node.video_resource.default
@@ -151,61 +175,61 @@ content:
     type: string_textfield
     region: content
   field_tax_audience_segment:
-    weight: 51
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_business_unit:
-    weight: 52
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_campaign:
-    weight: 53
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_lifecycle:
-    weight: 54
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product:
-    weight: 55
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_product_line:
-    weight: 56
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_project:
-    weight: 57
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_promotion:
-    weight: 58
+    weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_region:
-    weight: 59
+    weight: 35
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_tax_stage:
-    weight: 60
+    weight: 36
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -307,7 +331,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 50
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
