@@ -9,7 +9,7 @@ export class CheatSheets extends Page {
 
         this.addSelectors({
             cheatSheetPage: '#rhd-cheat-sheet',
-            loginToDownloadBtn: '.hidden-after-login',
+            loginToDownloadBtn: "//*[contains(text(),'Log in to download')]",
             thankYou: '.thankyou'
         });
     }
