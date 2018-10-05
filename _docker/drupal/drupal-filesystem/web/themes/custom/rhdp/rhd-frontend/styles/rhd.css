@@ -8592,6 +8592,8 @@ ul.toc {
   transition: 150ms ease-in-out; }
   .gsi-nav.gsi-nav-fixed {
     transform: translateY(30px); }
+  .gsi-nav:empty {
+    display: none; }
   .gsi-nav li {
     list-style: none;
     padding-bottom: 10px; }

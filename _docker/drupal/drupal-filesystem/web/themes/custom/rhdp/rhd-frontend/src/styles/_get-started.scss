@@ -140,6 +140,9 @@ ul.toc {
   &.gsi-nav-fixed {
     transform: translateY(30px);
   }
+  &:empty {
+    display: none;
+  }
   li {
     list-style: none;
     padding-bottom: 10px;
