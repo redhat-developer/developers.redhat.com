@@ -241,13 +241,8 @@ System.register("@rhd/rhdp-alert", ["@rhelements/rhelement"], function (exports_
 });
 System.register("@rhd/dp-referrer", ["@rhd/rhdp-alert"], function (exports_3, context_3) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_3 && context_3.id;
     var rhdp_alert_1, DPReferrer;
-=======
-    var rhelement_2, DPCategoryItemList;
     var __moduleName = context_3 && context_3.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
     return {
         setters: [
             function (rhdp_alert_1_1) {
@@ -295,13 +290,8 @@ System.register("@rhd/dp-referrer", ["@rhd/rhdp-alert"], function (exports_3, co
 });
 System.register("@rhd/dp-stackoverflow", ["@rhelements/rhelement"], function (exports_4, context_4) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_4 && context_4.id;
     var rhelement_2, DPStackOverflow;
-=======
-    var rhelement_3, DPCategoryList;
     var __moduleName = context_4 && context_4.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
     return {
         setters: [
             function (rhelement_2_1) {
@@ -329,19 +319,57 @@ System.register("@rhd/dp-stackoverflow", ["@rhelements/rhelement"], function (ex
         }
     };
 });
-System.register("@rhd/rhdp-os-download", [], function (exports_5, context_5) {
+System.register("@rhd/rh-keycloak", ["@rhelements/rhelement"], function (exports_5, context_5) {
     "use strict";
-<<<<<<< HEAD
+    var rhelement_3, RHKeycloak;
     var __moduleName = context_5 && context_5.id;
+    return {
+        setters: [
+            function (rhelement_3_1) {
+                rhelement_3 = rhelement_3_1;
+            }
+        ],
+        execute: function () {
+            RHKeycloak = (function (_super) {
+                __extends(RHKeycloak, _super);
+                function RHKeycloak(element) {
+                    if (element === void 0) { element = 'rh-keycloak'; }
+                    var _this = _super.call(this, element) || this;
+                    _this.template = function (el) {
+                        var tpl = document.createElement("template");
+                        tpl.innerHTML = "";
+                        return tpl;
+                    };
+                    return _this;
+                }
+                Object.defineProperty(RHKeycloak.prototype, "url", {
+                    get: function () {
+                        return this._url;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                RHKeycloak.prototype.connectedCallback = function () {
+                };
+                RHKeycloak.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                    this[name] = newVal;
+                };
+                RHKeycloak.prototype.updateToken = function () {
+                };
+                return RHKeycloak;
+            }(rhelement_3.default));
+            exports_5("default", RHKeycloak);
+            window.customElements.define('rhdp-alert', RHKeycloak);
+        }
+    };
+});
+System.register("@rhd/rhdp-os-download", [], function (exports_6, context_6) {
+    "use strict";
     var RHDPOSDownload, templateObject_1;
-=======
-    var rhelement_4, DPCategory;
-    var __moduleName = context_5 && context_5.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+    var __moduleName = context_6 && context_6.id;
     return {
         setters: [],
         execute: function () {
-<<<<<<< HEAD
             RHDPOSDownload = (function (_super) {
                 __extends(RHDPOSDownload, _super);
                 function RHDPOSDownload() {
@@ -359,16 +387,6 @@ System.register("@rhd/rhdp-os-download", [], function (exports_5, context_5) {
                     };
                     _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
                         return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
-=======
-            DPCategory = (function (_super) {
-                __extends(DPCategory, _super);
-                function DPCategory() {
-                    var _this = _super.call(this, 'dp-category-list') || this;
-                    _this.template = function (el) {
-                        var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n:host { \n    grid-column: span 1;\n    border-top: 1px solid var(--rhd-blue);\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 15px;\n    align-items: center;\n    background-color: var(--rhd-white, #ffffff);\n    position: relative;\n    z-index: 1;\n}\n\nimg, svg { \n    flex: 0 0 60px; \n    padding-right: 24px; \n    height: 60px;   \n}\n\nh4 {\n    flex: 1 0 auto;\n    color: #0066CC;\n    font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n    font-size: 14px;\n    font-weight: normal;\n    line-height: 21px;\n    margin: 0 0 5px 0;\n}\n\n:host(:hover), :host([visible]) {\n    cursor: pointer;\n    color: var(--rhd-blue);\n    fill: var(--rhd-blue);\n    border-top: 5px solid var(--rhd-blue);\n    border-bottom: 5px solid var(--rhd-blue);\n}\n\n@media (min-width: 500px) {\n    :host, :host(:hover), :host([visible]) {\n        flex-direction: column;\n        text-align: center; \n        border-top: none;\n        border-bottom: none;\n        background-color: transparent;\n        margin-bottom:30px;\n    }\n\n    :host([visible]):after, :host([visible]):before {\n        top: 100%;\n        left: 50%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n    }\n    \n    :host([visible]):before {\n        border-bottom-color: #CCCCCC;\n        border-width: 15px;\n        margin-left: -15px;\n    }\n    :host([visible]):after {\n        border-bottom-color: #FFFFFF;\n        border-width: 16px;\n        margin-left: -16px;\n    }\n    \n\n    img, svg { flex: 0 0 150px; height: 150px; padding-right: 0; padding-bottom: 15px; }\n}\n\n@media (min-width: 800px) {\n    :host {\n        \n    }\n}\n\n@media (min-width: 1200px) {\n    :host {\n        \n    }\n}\n</style>\n" + (el.image && el.image.indexOf('svg') < 0 ? "<img src=\"" + el.image + "\">" : el.image) + "\n<h4>" + el.name + "</h4>\n<slot></slot>\n";
-                        return tpl;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
                     };
                     return _this;
                 }
@@ -570,22 +588,17 @@ System.register("@rhd/rhdp-os-download", [], function (exports_5, context_5) {
                 };
                 return RHDPOSDownload;
             }(HTMLElement));
-            exports_5("default", RHDPOSDownload);
+            exports_6("default", RHDPOSDownload);
             window.addEventListener('WebComponentsReady', function () {
                 customElements.define('rhdp-os-download', RHDPOSDownload);
             });
         }
     };
 });
-System.register("@rhd/rhdp-thankyou-page", [], function (exports_6, context_6) {
+System.register("@rhd/rhdp-thankyou-page", [], function (exports_7, context_7) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_6 && context_6.id;
     var RHDPThankyou, templateObject_2;
-=======
-    var rhelement_5, DPCategoryItem;
-    var __moduleName = context_6 && context_6.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+    var __moduleName = context_7 && context_7.id;
     return {
         setters: [],
         execute: function () {
@@ -691,26 +704,20 @@ System.register("@rhd/rhdp-thankyou-page", [], function (exports_6, context_6) {
                 };
                 return RHDPThankyou;
             }(HTMLElement));
-            exports_6("default", RHDPThankyou);
+            exports_7("default", RHDPThankyou);
             window.addEventListener('WebComponentsReady', function () {
                 customElements.define('rhdp-thankyou', RHDPThankyou);
             });
         }
     };
 });
-System.register("@rhd/rhdp-tryitnow", [], function (exports_7, context_7) {
+System.register("@rhd/rhdp-tryitnow", [], function (exports_8, context_8) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_7 && context_7.id;
     var RHDPTryItNow, templateObject_3;
-=======
-    var rhelement_6, DPProductShortTeaser;
-    var __moduleName = context_7 && context_7.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+    var __moduleName = context_8 && context_8.id;
     return {
         setters: [],
         execute: function () {
-<<<<<<< HEAD
             RHDPTryItNow = (function (_super) {
                 __extends(RHDPTryItNow, _super);
                 function RHDPTryItNow() {
@@ -723,16 +730,6 @@ System.register("@rhd/rhdp-tryitnow", [], function (exports_7, context_7) {
                     _this._icon = '';
                     _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
                         return "<section> \n                    <div class=\"row\"> \n                        " + (icon ? "<img src=\"" + icon + "\"> " : '') + "\n                        <div class=\"tryitnow-titles\">\n                            " + (title ? "<h4>" + title + "</h4>" : '') + "\n                            " + (subtitle ? "<h5>" + subtitle + "</h5>" : '') + "\n                        </div>\n                        <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a>\n                    </div>\n                </section>";
-=======
-            DPProductShortTeaser = (function (_super) {
-                __extends(DPProductShortTeaser, _super);
-                function DPProductShortTeaser() {
-                    var _this = _super.call(this, 'dp-product-short-teaser') || this;
-                    _this.template = function (el) {
-                        var tpl = document.createElement("template");
-                        tpl.innerHTML = "\n<style>\n    :host { \n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        line-height: 21px;\n        margin-bottom: 30px;\n        display: flex;\n        flex-direction: column;\n        text-align: left;\n    }\n    h4 { \n        flex: 0 0 24px;\n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        font-size: 14px;\n        font-weight: bold;\n        line-height: 24px;\n        margin: 0 0 5px 0;\n    }\n    h4 a {\n        color: #0066CC;\n        text-decoration: none;\n    }\n\n    div {\n        flex: 1 1 auto;\n        margin-bottom: 16px;\n        color: #000000;\n    }\n\n    a.more {\n        flex: 0 0 25px;\n        display: block;\n        width: auto;\n        color: #0066CC;\n        font-size: 16px;\n        line-height: 25px;\n    }\n</style>\n<h4><a href=\"" + el.link + "\">" + el.name + "</a></h4>\n<div>\n<slot></slot>\n</div>\n<a class=\"more\" href=\"" + el.downloadLink + "\">View all downloads <i class=\"fas fa-caret-right\"></i></a>\n        ";
-                        return tpl;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
                     };
                     return _this;
                 }
@@ -836,28 +833,22 @@ System.register("@rhd/rhdp-tryitnow", [], function (exports_7, context_7) {
                 };
                 return RHDPTryItNow;
             }(HTMLElement));
-            exports_7("default", RHDPTryItNow);
+            exports_8("default", RHDPTryItNow);
             window.customElements.define('rhdp-tryitnow', RHDPTryItNow);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_8, context_8) {
+System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhelement"], function (exports_9, context_9) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_8 && context_8.id;
-    var rhelement_3, DPCategoryItemList;
-=======
-    var rhdp_alert_1, dp_category_list_1, dp_category_1, dp_category_item_list_1, dp_category_item_1, dp_product_short_teaser_1, RHDApp;
-    var __moduleName = context_8 && context_8.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+    var rhelement_4, DPCategoryItemList;
+    var __moduleName = context_9 && context_9.id;
     return {
         setters: [
-            function (rhelement_3_1) {
-                rhelement_3 = rhelement_3_1;
+            function (rhelement_4_1) {
+                rhelement_4 = rhelement_4_1;
             }
         ],
         execute: function () {
-<<<<<<< HEAD
             DPCategoryItemList = (function (_super) {
                 __extends(DPCategoryItemList, _super);
                 function DPCategoryItemList() {
@@ -919,351 +910,20 @@ System.register("@rhd/dp-category-list/dp-category-item-list", ["@rhelements/rhe
                     this[name] = newVal;
                 };
                 return DPCategoryItemList;
-            }(rhelement_3.default));
-            exports_8("default", DPCategoryItemList);
+            }(rhelement_4.default));
+            exports_9("default", DPCategoryItemList);
             window.customElements.define('dp-category-item-list', DPCategoryItemList);
-=======
-            RHDApp = (function () {
-                function RHDApp() {
-                    this.a = new rhdp_alert_1.default();
-                    this.b = new dp_category_list_1.default();
-                    this.c = new dp_category_1.default();
-                    this.d = new dp_category_item_list_1.default();
-                    this.e = new dp_category_item_1.default();
-                    this.f = new dp_product_short_teaser_1.default();
-                }
-                return RHDApp;
-            }());
-            exports_8("default", RHDApp);
         }
     };
 });
-var RHDPOSDownload = (function (_super) {
-    __extends(RHDPOSDownload, _super);
-    function RHDPOSDownload() {
-        var _this = _super.call(this) || this;
-        _this._rhelURL = "";
-        _this._macURL = "";
-        _this._winURL = "";
-        _this.stage_download_url = 'https://developers.stage.redhat.com';
-        _this.productDownloads = {
-            "devsuite": { "windowsUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel" },
-            "cdk": { "windowsUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
-        };
-        _this.template = function (strings, product, downloadUrl, platform, version) {
-            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
-        };
-        _this.downloadsTemplate = function (strings, product, downloadUrl, platform, version) {
-            return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPOSDownload.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (value) {
-            if (this._url === value)
-                return;
-            this._url = value;
-            this.setAttribute('url', this._url);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "productCode", {
-        get: function () {
-            return this._productCode;
-        },
-        set: function (value) {
-            if (this._productCode === value)
-                return;
-            this._productCode = value;
-            this.setAttribute('product-code', this._productCode);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "platformType", {
-        get: function () {
-            return this._platformType;
-        },
-        set: function (value) {
-            if (this._platformType === value)
-                return;
-            this._platformType = value;
-            this.setAttribute('platform-type', this._platformType);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "downloadURL", {
-        get: function () {
-            return this._downloadURL;
-        },
-        set: function (value) {
-            if (this._downloadURL === value)
-                return;
-            this._downloadURL = value;
-            this.setAttribute('download-url', this._downloadURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "rhelURL", {
-        get: function () {
-            return this._rhelURL;
-        },
-        set: function (value) {
-            if (this._rhelURL === value)
-                return;
-            this._rhelURL = value;
-            this.setAttribute('rhel-download', this._rhelURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "macURL", {
-        get: function () {
-            return this._macURL;
-        },
-        set: function (value) {
-            if (this._macURL === value)
-                return;
-            this._macURL = value;
-            this.setAttribute('mac-download', this._macURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "winURL", {
-        get: function () {
-            return this._winURL;
-        },
-        set: function (value) {
-            if (this._winURL === value)
-                return;
-            this._winURL = value;
-            this.setAttribute('windows-download', this._winURL);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "productName", {
-        get: function () {
-            return this._productName;
-        },
-        set: function (value) {
-            if (this._productName === value)
-                return;
-            this._productName = value;
-            this.setAttribute('name', this._productName);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "version", {
-        get: function () {
-            return this._version;
-        },
-        set: function (value) {
-            if (this._version === value)
-                return;
-            this._version = value;
-            this.setAttribute('version', this._version);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPOSDownload.prototype, "displayOS", {
-        get: function () {
-            return this._displayOS;
-        },
-        set: function (value) {
-            if (this._displayOS === value)
-                return;
-            this._displayOS = value;
-            this.setAttribute('display-os', this._displayOS);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPOSDownload.prototype.connectedCallback = function () {
-        this.platformType = this.getUserAgent();
-        this.setDownloadURLByPlatform();
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", "", ""], ["", "", "", "", ""]), this.productName, this.downloadURL, this.platformType, this.version);
-    };
-    Object.defineProperty(RHDPOSDownload, "observedAttributes", {
-        get: function () {
-            return ['product-code', 'platform-type', 'download-url', 'name'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPOSDownload.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    RHDPOSDownload.prototype.getUserAgent = function () {
-        var OSName = "Windows";
-        if (navigator.appVersion.indexOf("Mac") != -1)
-            OSName = "MacOS";
-        if (navigator.appVersion.indexOf("Linux") != -1)
-            OSName = "RHEL";
-        return OSName;
-    };
-    RHDPOSDownload.prototype.getDownloadOrigin = function (productUrl) {
-        if (window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
-            productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
-        }
-        return productUrl;
-    };
-    RHDPOSDownload.prototype.setOSURL = function (productId) {
-        switch (productId) {
-            case 'devsuite':
-                this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
-                this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
-                this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
-                break;
-            case 'cdk':
-                this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
-                this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
-                this.rhelURL = this.getDownloadOrigin(this.productDownloads.cdk.rhelUrl);
-                break;
-            default:
-                this.winURL = this.getDownloadOrigin(this.downloadURL);
-                this.macURL = this.getDownloadOrigin(this.downloadURL);
-                this.rhelURL = this.getDownloadOrigin(this.downloadURL);
-        }
-    };
-    RHDPOSDownload.prototype.setDownloadURLByPlatform = function () {
-        if (this.winURL.length <= 0 || this.macURL.length <= 0 || this.rhelURL.length <= 0) {
-            return;
-        }
-        this.displayOS = true;
-        switch (this.platformType) {
-            case "Windows":
-                this.downloadURL = this.getDownloadOrigin(this.winURL);
-                break;
-            case "MacOS":
-                this.downloadURL = this.getDownloadOrigin(this.macURL);
-                break;
-            case "RHEL":
-                this.downloadURL = this.getDownloadOrigin(this.rhelURL);
-                break;
-            default:
-                this.downloadURL = this.getDownloadOrigin(this.winURL);
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
-        }
-    };
-});
-<<<<<<< HEAD
-System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_9, context_9) {
+System.register("@rhd/dp-category-list/dp-category-item", ["@rhelements/rhelement"], function (exports_10, context_10) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
-    var rhelement_4, DPCategoryItem;
+    var rhelement_5, DPCategoryItem;
+    var __moduleName = context_10 && context_10.id;
     return {
         setters: [
-            function (rhelement_4_1) {
-                rhelement_4 = rhelement_4_1;
-=======
-var RHDPThankyou = (function (_super) {
-    __extends(RHDPThankyou, _super);
-    function RHDPThankyou() {
-        var _this = _super.call(this) || this;
-        _this.template = function (strings, name, directLink, recentDownload) {
-            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
-        };
-        return _this;
-    }
-    Object.defineProperty(RHDPThankyou.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (value) {
-            if (this._url === value)
-                return;
-            this._url = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPThankyou.prototype, "mediaName", {
-        get: function () {
-            return this._mediaName;
-        },
-        set: function (value) {
-            if (this._mediaName === value)
-                return;
-            this._mediaName = value;
-            this.setAttribute('media-name', this._mediaName);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RHDPThankyou.prototype, "directLink", {
-        get: function () {
-            return this._directLink;
-        },
-        set: function (value) {
-            if (this._directLink === value)
-                return;
-            this._directLink = value;
-            this.setAttribute('direct-download', this._directLink);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPThankyou.prototype.connectedCallback = function () {
-        this._recentDownload = this.checkRecentDownload();
-        this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
-        this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = this.template(__makeTemplateObject(["", "", "", ""], ["", "", "", ""]), this.mediaName, this.directLink, this._recentDownload);
-    };
-    Object.defineProperty(RHDPThankyou, "observedAttributes", {
-        get: function () {
-            return ['media-name', 'direct-link'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    RHDPThankyou.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
-        this[name] = newVal;
-    };
-    RHDPThankyou.prototype.stripLabelFromMedia = function (name) {
-        if (name) {
-            name = name.replace(/Media:[\s]/g, "");
-        }
-        return name;
-    };
-    RHDPThankyou.prototype.getParameterByName = function (urlName) {
-        this.url = this.url ? this.url : window.location.href;
-        urlName = urlName.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + urlName + "(=([^&#]*)|&|#|$)"), results = regex.exec(this.url);
-        if (!results)
-            return null;
-        if (!results[2])
-            return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-    RHDPThankyou.prototype.checkRecentDownload = function () {
-        var storageExpiration = 30000, storageName = 'media-download-url';
-        if (window.location.href.indexOf('media-download-confirmation') > 0) {
-            if (window.localStorage.getItem(storageName)) {
-                var recentDownload, timeOfRefer, currentTime;
-                recentDownload = JSON.parse(window.localStorage.getItem(storageName));
-                timeOfRefer = recentDownload.hasOwnProperty('timestamp') ? recentDownload['timestamp'] : 0;
-                currentTime = new Date().getTime();
-                if (currentTime - timeOfRefer > storageExpiration) {
-                    window.localStorage.removeItem(storageName);
-                    return false;
-                }
-                return true;
-            }
-            else {
-                var referrerDownload = { value: window.location.href, timestamp: new Date().getTime() };
-                localStorage.setItem(storageName, JSON.stringify(referrerDownload));
-                return false;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+            function (rhelement_5_1) {
+                rhelement_5 = rhelement_5_1;
             }
         ],
         execute: function () {
@@ -1292,25 +952,20 @@ var RHDPThankyou = (function (_super) {
                     this[name] = newVal;
                 };
                 return DPCategoryItem;
-            }(rhelement_4.default));
-            exports_9("default", DPCategoryItem);
+            }(rhelement_5.default));
+            exports_10("default", DPCategoryItem);
             window.customElements.define('dp-category-item', DPCategoryItem);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_10, context_10) {
+System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelement"], function (exports_11, context_11) {
     "use strict";
-<<<<<<< HEAD
-    var __moduleName = context_10 && context_10.id;
-    var rhelement_5, DPCategoryList;
-=======
-    var rhelement_7, DPStackOverflow;
-    var __moduleName = context_9 && context_9.id;
->>>>>>> 98ef3fc5794f90bb59ca1b9dd9652e6e6701d634
+    var rhelement_6, DPCategoryList;
+    var __moduleName = context_11 && context_11.id;
     return {
         setters: [
-            function (rhelement_5_1) {
-                rhelement_5 = rhelement_5_1;
+            function (rhelement_6_1) {
+                rhelement_6 = rhelement_6_1;
             }
         ],
         execute: function () {
@@ -1394,20 +1049,20 @@ System.register("@rhd/dp-category-list/dp-category-list", ["@rhelements/rhelemen
                 DPCategoryList.prototype._setVisibleCategories = function (index) {
                 };
                 return DPCategoryList;
-            }(rhelement_5.default));
-            exports_10("default", DPCategoryList);
+            }(rhelement_6.default));
+            exports_11("default", DPCategoryList);
             window.customElements.define('dp-category-list', DPCategoryList);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_11, context_11) {
+System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], function (exports_12, context_12) {
     "use strict";
-    var __moduleName = context_11 && context_11.id;
-    var rhelement_6, DPCategory;
+    var rhelement_7, DPCategory;
+    var __moduleName = context_12 && context_12.id;
     return {
         setters: [
-            function (rhelement_6_1) {
-                rhelement_6 = rhelement_6_1;
+            function (rhelement_7_1) {
+                rhelement_7 = rhelement_7_1;
             }
         ],
         execute: function () {
@@ -1542,20 +1197,20 @@ System.register("@rhd/dp-category-list/dp-category", ["@rhelements/rhelement"], 
                     });
                 };
                 return DPCategory;
-            }(rhelement_6.default));
-            exports_11("default", DPCategory);
+            }(rhelement_7.default));
+            exports_12("default", DPCategory);
             window.customElements.define('dp-category', DPCategory);
         }
     };
 });
-System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_12, context_12) {
+System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/rhelement"], function (exports_13, context_13) {
     "use strict";
-    var __moduleName = context_12 && context_12.id;
-    var rhelement_7, DPProductShortTeaser;
+    var rhelement_8, DPProductShortTeaser;
+    var __moduleName = context_13 && context_13.id;
     return {
         setters: [
-            function (rhelement_7_1) {
-                rhelement_7 = rhelement_7_1;
+            function (rhelement_8_1) {
+                rhelement_8 = rhelement_8_1;
             }
         ],
         execute: function () {
@@ -1625,16 +1280,16 @@ System.register("@rhd/dp-category-list/dp-product-short-teaser", ["@rhelements/r
                     }
                 };
                 return DPProductShortTeaser;
-            }(rhelement_7.default));
-            exports_12("default", DPProductShortTeaser);
+            }(rhelement_8.default));
+            exports_13("default", DPProductShortTeaser);
             window.customElements.define('dp-product-short-teaser', DPProductShortTeaser);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-all-item", ["@rhd/rhdp-os-download"], function (exports_13, context_13) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-all-item", ["@rhd/rhdp-os-download"], function (exports_14, context_14) {
     "use strict";
-    var __moduleName = context_13 && context_13.id;
     var rhdp_os_download_1, RHDPDownloadsAllItem, templateObject_4, templateObject_5;
+    var __moduleName = context_14 && context_14.id;
     return {
         setters: [
             function (rhdp_os_download_1_1) {
@@ -1777,15 +1432,15 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-all-item", ["@rhd/rhdp-os-do
                 };
                 return RHDPDownloadsAllItem;
             }(HTMLElement));
-            exports_13("default", RHDPDownloadsAllItem);
+            exports_14("default", RHDPDownloadsAllItem);
             window.customElements.define('rhdp-downloads-all-item', RHDPDownloadsAllItem);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-all", ["@rhd/rhdp-downloads/rhdp-downloads-all-item"], function (exports_14, context_14) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-all", ["@rhd/rhdp-downloads/rhdp-downloads-all-item"], function (exports_15, context_15) {
     "use strict";
-    var __moduleName = context_14 && context_14.id;
     var rhdp_downloads_all_item_1, RHDPDownloadsAll, templateObject_6;
+    var __moduleName = context_15 && context_15.id;
     return {
         setters: [
             function (rhdp_downloads_all_item_1_1) {
@@ -1875,15 +1530,15 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-all", ["@rhd/rhdp-downloads/
                 };
                 return RHDPDownloadsAll;
             }(HTMLElement));
-            exports_14("default", RHDPDownloadsAll);
+            exports_15("default", RHDPDownloadsAll);
             window.customElements.define('rhdp-downloads-all', RHDPDownloadsAll);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-product", ["@rhd/rhdp-os-download"], function (exports_15, context_15) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-product", ["@rhd/rhdp-os-download"], function (exports_16, context_16) {
     "use strict";
-    var __moduleName = context_15 && context_15.id;
     var rhdp_os_download_2, RHDPDownloadsPopularProduct, templateObject_7;
+    var __moduleName = context_16 && context_16.id;
     return {
         setters: [
             function (rhdp_os_download_2_1) {
@@ -1976,15 +1631,15 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-product", ["@rhd/rhd
                 };
                 return RHDPDownloadsPopularProduct;
             }(HTMLElement));
-            exports_15("default", RHDPDownloadsPopularProduct);
+            exports_16("default", RHDPDownloadsPopularProduct);
             window.customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-products", ["@rhd/rhdp-downloads/rhdp-downloads-popular-product"], function (exports_16, context_16) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-products", ["@rhd/rhdp-downloads/rhdp-downloads-popular-product"], function (exports_17, context_17) {
     "use strict";
-    var __moduleName = context_16 && context_16.id;
     var rhdp_downloads_popular_product_1, RHDPDownloadsPopularProducts;
+    var __moduleName = context_17 && context_17.id;
     return {
         setters: [
             function (rhdp_downloads_popular_product_1_1) {
@@ -2036,15 +1691,15 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-popular-products", ["@rhd/rh
                 };
                 return RHDPDownloadsPopularProducts;
             }(HTMLElement));
-            exports_16("default", RHDPDownloadsPopularProducts);
+            exports_17("default", RHDPDownloadsPopularProducts);
             window.customElements.define('rhdp-downloads-popular-products', RHDPDownloadsPopularProducts);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exports_17, context_17) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exports_18, context_18) {
     "use strict";
-    var __moduleName = context_17 && context_17.id;
     var RHDPDownloadsProducts;
+    var __moduleName = context_18 && context_18.id;
     return {
         setters: [],
         execute: function () {
@@ -2275,15 +1930,15 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exp
                 };
                 return RHDPDownloadsProducts;
             }(HTMLElement));
-            exports_17("default", RHDPDownloadsProducts);
+            exports_18("default", RHDPDownloadsProducts);
             window.customElements.define('rhdp-downloads-products', RHDPDownloadsProducts);
         }
     };
 });
-System.register("@rhd/rhdp-downloads/rhdp-downloads-app", ["@rhd/rhdp-downloads/rhdp-downloads-popular-products", "@rhd/rhdp-downloads/rhdp-downloads-products", "@rhd/rhdp-downloads/rhdp-downloads-all"], function (exports_18, context_18) {
+System.register("@rhd/rhdp-downloads/rhdp-downloads-app", ["@rhd/rhdp-downloads/rhdp-downloads-popular-products", "@rhd/rhdp-downloads/rhdp-downloads-products", "@rhd/rhdp-downloads/rhdp-downloads-all"], function (exports_19, context_19) {
     "use strict";
-    var __moduleName = context_18 && context_18.id;
     var rhdp_downloads_popular_products_1, rhdp_downloads_products_1, rhdp_downloads_all_1, RHDPDownloadsApp;
+    var __moduleName = context_19 && context_19.id;
     return {
         setters: [
             function (rhdp_downloads_popular_products_1_1) {
@@ -2375,7 +2030,7 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-app", ["@rhd/rhdp-downloads/
                 };
                 return RHDPDownloadsApp;
             }(HTMLElement));
-            exports_18("default", RHDPDownloadsApp);
+            exports_19("default", RHDPDownloadsApp);
             window.customElements.define('rhdp-downloads-app', RHDPDownloadsApp);
         }
     };
@@ -2477,7 +2132,7 @@ var RHDPProjectItem = (function (_super) {
     function RHDPProjectItem() {
         var _this = _super.call(this) || this;
         _this.template = function (strings, project) {
-            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n                <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            </p>\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    " + (project.downloadsLink ? "<p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>" : '') + "\n                    " + (project.sys_url_view ? "<p><a href=\"" + project.sys_url_view + "\">Visit home page</a></p>" : '') + "\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\">\n                    <h3>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>" : "" + project.projectName) + "\n                    </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + "</a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + "</a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + "</a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + "</a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + "</a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + "</a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + "</a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + "</a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + "</a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + "</a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + "</a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + "</a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + "</a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
+            return "\n        \n            <div class=\"defaultprojectimage\">\n                <p class=\"image-link\"><img src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\"></p></div>\n            <h5 class=\"solution-name\">\n                <p class=\"solution-name-link\">" + project.projectName + "</p>\n            </h5>\n            <p>\n        \n            </p>\n            <a class=\"solution-overlay-learn link-sm\">Learn more</a> " + (project.downloadsLink ? "| <a href=\"" + project.downloadsLink + "\" class=\"link-sm\">Download</a>" : '') + "\n            <div class=\"project-content row\">\n                <div class=\"large-6 project-content-left columns\"><img\n                        src=\"" + project.imageUrl + "\" alt=\"" + project.projectName + "\">\n                    <p><a class=\"upstream-download\" href=\"" + project.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a></p>\n                    <p>\n                        " + (project.sys_url_view ? "<a href=\"" + project.sys_url_view + "\">Visit home page</a>" : '') + "\n                    </p>\n                    <ul class=\"project-social\"> \n                        " + (project.twitterLink ? "<li><a href=\"" + project.twitterLink + "\"><i class=\"fa fa-twitter\"></i></a></li>" : '') + "\n                    </ul>\n                </div>\n                <div class=\"large-18 project-content-right columns\"><h3><a href=\"" + project.sys_url_view + "\">" + project.projectName + "</a>\n                </h3>\n                    <p>" + project.descriptions + "</p>\n                    <div class=\"upstream-more-content\">\n                        <ul class=\"project-details-list\">\n                            " + (project.docsLink ? "<li>Docs: <a href=\"" + project.docsLink + "\">Documentation</a></li>" : '') + "\n                            " + (project.communityLink ? "<li>Community: <a href=\"" + project.communityLink + "\">" + project.generateViewLink(project.communityLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.mailingListLink ? "<li>Mailing List: <a href=\"" + project.mailingListLink + "\">" + project.generateViewLink(project.mailingListLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.chatLink ? "<li>Chat: <a href=\"" + project.chatLink + "\">" + project.generateViewLink(project.chatLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.jiraLink ? "<li>JIRA: <a href=\"" + project.jiraLink + "\">" + project.generateViewLink(project.jiraLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.srcLink ? "<li>Source: <a href=\"" + project.srcLink + "\">" + project.generateViewLink(project.srcLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.githubLink ? "<li>Github: <a href=\"" + project.githubLink + "\">" + project.generateViewLink(project.githubLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.buildLink ? "<li>Build: <a href=\"" + project.buildLink + "\">" + project.generateViewLink(project.buildLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.issueTracker ? "<li>Issue: <a href=\"" + project.issueTracker + "\">" + project.generateViewLink(project.issueTracker) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "\n                            " + (project.userForumLink ? "<li>User Forum: <a href=\"" + project.userForumLink + "\">" + project.generateViewLink(project.userForumLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "  \n                            " + (project.devForumLink ? "<li>Dev Forum: <a href=\"" + project.devForumLink + "\">" + project.generateViewLink(project.devForumLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + "  \n                            " + (project.knowledgebaseLink ? "<li>KnowledgeBase: <a href=\"" + project.knowledgebaseLink + "\">" + project.generateViewLink(project.knowledgebaseLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + " \n                            " + (project.blogLink ? "<li>Blog: <a href=\"" + project.blogLink + "\">" + project.generateViewLink(project.blogLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + " \n                            " + (project.anonymousLink ? "<li>Anonymous Source: <a href=\"" + project.anonymousLink + "\">" + project.generateViewLink(project.anonymousLink) + " <i class=\"fas fa-external-link\"></a></li>" : '') + " \n                        </ul>\n                    </div>\n                </div>\n            </div>\n        ";
         };
         return _this;
     }
@@ -2858,7 +2513,7 @@ var RHDPProjectQuery = (function (_super) {
             "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"] },
             "devstudio": { "upstream": ["jbosstools"] },
             "eap": { "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"] },
-            "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "syndesis", "apicurio", "hawtio"] },
+            "fuse": { "upstream": ["camel", "karaf", "wildfly-camel", "cxf", "syndesis", "apicurio", "hawtio"] },
             "rhel": { "upstream": ["fedora"] },
             "webserver": { "upstream": ["tomcat", "httpd", "mod_cluster"] },
         };
@@ -3178,10 +2833,10 @@ var RHDPProjects = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-projects', RHDPProjects);
 });
-System.register("@rhd/rhdp-search/rhdp-search-url", [], function (exports_19, context_19) {
+System.register("@rhd/rhdp-search/rhdp-search-url", [], function (exports_20, context_20) {
     "use strict";
-    var __moduleName = context_19 && context_19.id;
     var RHDPSearchURL;
+    var __moduleName = context_20 && context_20.id;
     return {
         setters: [],
         execute: function () {
@@ -3213,7 +2868,14 @@ System.register("@rhd/rhdp-search/rhdp-search-url", [], function (exports_19, co
                 });
                 Object.defineProperty(RHDPSearchURL.prototype, "term", {
                     get: function () {
-                        return this._term;
+                        var ua = window.navigator.userAgent;
+                        var trident = ua.indexOf('Trident/');
+                        var isIE = trident > 0;
+                        var tmpTerm = this._term;
+                        if (isIE) {
+                            tmpTerm = tmpTerm.replace("+", " ");
+                        }
+                        return tmpTerm;
                     },
                     set: function (val) {
                         if (this._term === val)
@@ -3360,15 +3022,15 @@ System.register("@rhd/rhdp-search/rhdp-search-url", [], function (exports_19, co
                 };
                 return RHDPSearchURL;
             }(HTMLElement));
-            exports_19("default", RHDPSearchURL);
+            exports_20("default", RHDPSearchURL);
             customElements.define('rhdp-search-url', RHDPSearchURL);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-filter-item", [], function (exports_20, context_20) {
+System.register("@rhd/rhdp-search/rhdp-search-filter-item", [], function (exports_21, context_21) {
     "use strict";
-    var __moduleName = context_20 && context_20.id;
     var RHDPSearchFilterItem, templateObject_8, templateObject_9, templateObject_10, templateObject_11, templateObject_12;
+    var __moduleName = context_21 && context_21.id;
     return {
         setters: [],
         execute: function () {
@@ -3593,15 +3255,15 @@ System.register("@rhd/rhdp-search/rhdp-search-filter-item", [], function (export
                 };
                 return RHDPSearchFilterItem;
             }(HTMLElement));
-            exports_20("default", RHDPSearchFilterItem);
+            exports_21("default", RHDPSearchFilterItem);
             customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-query", [], function (exports_21, context_21) {
+System.register("@rhd/rhdp-search/rhdp-search-query", [], function (exports_22, context_22) {
     "use strict";
-    var __moduleName = context_21 && context_21.id;
     var RHDPSearchQuery;
+    var __moduleName = context_22 && context_22.id;
     return {
         setters: [],
         execute: function () {
@@ -3893,15 +3555,15 @@ System.register("@rhd/rhdp-search/rhdp-search-query", [], function (exports_21, 
                 };
                 return RHDPSearchQuery;
             }(HTMLElement));
-            exports_21("default", RHDPSearchQuery);
+            exports_22("default", RHDPSearchQuery);
             customElements.define('rhdp-search-query', RHDPSearchQuery);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-box", [], function (exports_22, context_22) {
+System.register("@rhd/rhdp-search/rhdp-search-box", [], function (exports_23, context_23) {
     "use strict";
-    var __moduleName = context_22 && context_22.id;
     var RHDPSearchBox, templateObject_13;
+    var __moduleName = context_23 && context_23.id;
     return {
         setters: [],
         execute: function () {
@@ -3969,15 +3631,15 @@ System.register("@rhd/rhdp-search/rhdp-search-box", [], function (exports_22, co
                 };
                 return RHDPSearchBox;
             }(HTMLElement));
-            exports_22("default", RHDPSearchBox);
+            exports_23("default", RHDPSearchBox);
             customElements.define('rhdp-search-box', RHDPSearchBox);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-result-count", [], function (exports_23, context_23) {
+System.register("@rhd/rhdp-search/rhdp-search-result-count", [], function (exports_24, context_24) {
     "use strict";
-    var __moduleName = context_23 && context_23.id;
     var RHDPSearchResultCount;
+    var __moduleName = context_24 && context_24.id;
     return {
         setters: [],
         execute: function () {
@@ -4083,15 +3745,15 @@ System.register("@rhd/rhdp-search/rhdp-search-result-count", [], function (expor
                 };
                 return RHDPSearchResultCount;
             }(HTMLElement));
-            exports_23("default", RHDPSearchResultCount);
+            exports_24("default", RHDPSearchResultCount);
             customElements.define('rhdp-search-result-count', RHDPSearchResultCount);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-filter-group", [], function (exports_24, context_24) {
+System.register("@rhd/rhdp-search/rhdp-search-filter-group", [], function (exports_25, context_25) {
     "use strict";
-    var __moduleName = context_24 && context_24.id;
     var RHDPSearchFilterGroup, templateObject_14;
+    var __moduleName = context_25 && context_25.id;
     return {
         setters: [],
         execute: function () {
@@ -4195,15 +3857,15 @@ System.register("@rhd/rhdp-search/rhdp-search-filter-group", [], function (expor
                 };
                 return RHDPSearchFilterGroup;
             }(HTMLElement));
-            exports_24("default", RHDPSearchFilterGroup);
+            exports_25("default", RHDPSearchFilterGroup);
             customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-filters", ["@rhd/rhdp-search/rhdp-search-filter-group", "@rhd/rhdp-search/rhdp-search-filter-item"], function (exports_25, context_25) {
+System.register("@rhd/rhdp-search/rhdp-search-filters", ["@rhd/rhdp-search/rhdp-search-filter-group", "@rhd/rhdp-search/rhdp-search-filter-item"], function (exports_26, context_26) {
     "use strict";
-    var __moduleName = context_25 && context_25.id;
     var rhdp_search_filter_group_1, rhdp_search_filter_item_1, RHDPSearchFilters, templateObject_15, templateObject_16, templateObject_17;
+    var __moduleName = context_26 && context_26.id;
     return {
         setters: [
             function (rhdp_search_filter_group_1_1) {
@@ -4433,15 +4095,15 @@ System.register("@rhd/rhdp-search/rhdp-search-filters", ["@rhd/rhdp-search/rhdp-
                 };
                 return RHDPSearchFilters;
             }(HTMLElement));
-            exports_25("default", RHDPSearchFilters);
+            exports_26("default", RHDPSearchFilters);
             customElements.define('rhdp-search-filters', RHDPSearchFilters);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-onebox", [], function (exports_26, context_26) {
+System.register("@rhd/rhdp-search/rhdp-search-onebox", [], function (exports_27, context_27) {
     "use strict";
-    var __moduleName = context_26 && context_26.id;
     var RHDPSearchOneBox, templateObject_18, templateObject_19;
+    var __moduleName = context_27 && context_27.id;
     return {
         setters: [],
         execute: function () {
@@ -4593,15 +4255,15 @@ System.register("@rhd/rhdp-search/rhdp-search-onebox", [], function (exports_26,
                 };
                 return RHDPSearchOneBox;
             }(HTMLElement));
-            exports_26("default", RHDPSearchOneBox);
+            exports_27("default", RHDPSearchOneBox);
             customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_27, context_27) {
+System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_28, context_28) {
     "use strict";
-    var __moduleName = context_27 && context_27.id;
     var RHDPSearchResult, templateObject_20;
+    var __moduleName = context_28 && context_28.id;
     return {
         setters: [],
         execute: function () {
@@ -4810,15 +4472,15 @@ System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_27,
                 };
                 return RHDPSearchResult;
             }(HTMLElement));
-            exports_27("default", RHDPSearchResult);
+            exports_28("default", RHDPSearchResult);
             customElements.define('rhdp-search-result', RHDPSearchResult);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-results", ["@rhd/rhdp-search/rhdp-search-result"], function (exports_28, context_28) {
+System.register("@rhd/rhdp-search/rhdp-search-results", ["@rhd/rhdp-search/rhdp-search-result"], function (exports_29, context_29) {
     "use strict";
-    var __moduleName = context_28 && context_28.id;
     var rhdp_search_result_1, RHDPSearchResults;
+    var __moduleName = context_29 && context_29.id;
     return {
         setters: [
             function (rhdp_search_result_1_1) {
@@ -5000,15 +4662,15 @@ System.register("@rhd/rhdp-search/rhdp-search-results", ["@rhd/rhdp-search/rhdp-
                 };
                 return RHDPSearchResults;
             }(HTMLElement));
-            exports_28("default", RHDPSearchResults);
+            exports_29("default", RHDPSearchResults);
             customElements.define('rhdp-search-results', RHDPSearchResults);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-sort-page", [], function (exports_29, context_29) {
+System.register("@rhd/rhdp-search/rhdp-search-sort-page", [], function (exports_30, context_30) {
     "use strict";
-    var __moduleName = context_29 && context_29.id;
     var RHDPSearchSortPage;
+    var __moduleName = context_30 && context_30.id;
     return {
         setters: [],
         execute: function () {
@@ -5067,15 +4729,15 @@ System.register("@rhd/rhdp-search/rhdp-search-sort-page", [], function (exports_
                 };
                 return RHDPSearchSortPage;
             }(HTMLElement));
-            exports_29("default", RHDPSearchSortPage);
+            exports_30("default", RHDPSearchSortPage);
             customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
         }
     };
 });
-System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-search-url", "@rhd/rhdp-search/rhdp-search-query", "@rhd/rhdp-search/rhdp-search-box", "@rhd/rhdp-search/rhdp-search-result-count", "@rhd/rhdp-search/rhdp-search-filters", "@rhd/rhdp-search/rhdp-search-onebox", "@rhd/rhdp-search/rhdp-search-results", "@rhd/rhdp-search/rhdp-search-sort-page"], function (exports_30, context_30) {
+System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-search-url", "@rhd/rhdp-search/rhdp-search-query", "@rhd/rhdp-search/rhdp-search-box", "@rhd/rhdp-search/rhdp-search-result-count", "@rhd/rhdp-search/rhdp-search-filters", "@rhd/rhdp-search/rhdp-search-onebox", "@rhd/rhdp-search/rhdp-search-results", "@rhd/rhdp-search/rhdp-search-sort-page"], function (exports_31, context_31) {
     "use strict";
-    var __moduleName = context_30 && context_30.id;
     var rhdp_search_url_1, rhdp_search_query_1, rhdp_search_box_1, rhdp_search_result_count_1, rhdp_search_filters_1, rhdp_search_onebox_1, rhdp_search_results_1, rhdp_search_sort_page_1, RHDPSearchApp;
+    var __moduleName = context_31 && context_31.id;
     return {
         setters: [
             function (rhdp_search_url_1_1) {
@@ -5170,12 +4832,12 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                             { name: 'TOPIC', key: 'tag', items: [
                                     { key: 'dotnet', name: '.NET', value: ['dotnet', '.net', 'visual studio', 'c#'] },
                                     { key: 'containers', name: 'Containers', value: ['atomic', 'cdk', 'containers'] },
-                                    { key: 'devops', name: 'DevOps', value: ['DevOps', 'CI', 'CD', 'Continuous Delivery'] },
+                                    { key: 'devops', name: 'DevOps', value: ['devops', 'CI', 'CD', 'Continuous Delivery'] },
                                     { key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ', 'AMQP', 'apache camel', 'Arquillian', 'Camel', 'CDI', 'CEP', 'CXF', 'datagrid', 'devstudio', 'Drools', 'Eclipse', 'fabric8', 'Forge', 'fuse', 'Hawkular', 'Hawtio', 'Hibernate', 'Hibernate ORM', 'Infinispan', 'iPaas', 'java ee', 'JavaEE', 'JBDS', 'JBoss', 'JBoss BPM Suite', 'Red Hat Decision Manager', 'JBoss Data Grid', 'jboss eap', 'JBoss EAP', ''] },
-                                    { key: 'iot', name: 'Internet of Things', value: ['IoT', 'Internet of Things'] },
-                                    { key: 'microservices', name: 'Microservices', value: ['Microservices', ' WildFly Swarm'] },
-                                    { key: 'mobile', name: 'Mobile', value: ['Mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },
-                                    { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] }
+                                    { key: 'iot', name: 'Internet of Things', value: ['iot', 'Internet of Things'] },
+                                    { key: 'microservices', name: 'Microservices', value: ['microservices', ' WildFly Swarm'] },
+                                    { key: 'mobile', name: 'Mobile', value: ['mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },
+                                    { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] },
                                 ]
                             }
                         ]
@@ -5263,7 +4925,7 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                 };
                 return RHDPSearchApp;
             }(HTMLElement));
-            exports_30("default", RHDPSearchApp);
+            exports_31("default", RHDPSearchApp);
             customElements.define('rhdp-search-app', RHDPSearchApp);
         }
     };
@@ -11378,9 +11040,15 @@ app.downloads.display = function (data) {
     var currentDownloads = productArray.slice(0, end);
     var $latestDownloadsTables = $("<div>").addClass('large-24 columns');
     $latestDownloadsTables.append(app.downloads.createDownloadTable(currentDownloads));
+    var $titleContainer = $("<div>").addClass('large-24 columns');
+    var $tryTitle = $("<h4>").addClass('caps').append('Try it');
+    $titleContainer.append($tryTitle);
+    var $allContainer = $("<div>").addClass('large-24 columns');
+    var $allTitle = $("<h4>").addClass('caps').append('All Downloads');
+    $allContainer.append($allTitle);
     var $allDownloadsTable = $("<div style='display:none;'>").addClass('large-24 columns');
     $allDownloadsTable.append(app.downloads.createDownloadTable(productArray.slice(end)));
-    $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable);
+    $downloads = $('<div>').addClass('rh-downloads').append($titleContainer, $downloadLink, $allContainer, $latestDownloadsTables, $toggleLink, $allDownloadsTable);
     $('.product-downloads').html($downloads);
     $("div.download-loading").removeClass('loading');
 };
@@ -16735,16 +16403,17 @@ catch (e) {
         setInterval(function () { e.location.origin = r(); }, 100);
     }
 } })(g);
+var _createClass = function () { function e(e, t) { for (var n = 0; n < t.length; n++) {
+    var i = t[n];
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(e, i.key, i);
+} } return function (t, n, i) { return n && e(t.prototype, n), i && e(t, i), t; }; }();
 function _classCallCheck(e, t) { if (!(e instanceof t))
     throw new TypeError("Cannot call a class as a function"); }
 function _possibleConstructorReturn(e, t) { if (!e)
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return !t || "object" != typeof t && "function" != typeof t ? e : t; }
 function _inherits(e, t) { if ("function" != typeof t && null !== t)
     throw new TypeError("Super expression must either be null or a function, not " + typeof t); e.prototype = Object.create(t && t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t); }
-var _createClass = function () { function e(e, t) { for (var n = 0; n < t.length; n++) {
-    var i = t[n];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(e, i.key, i);
-} } return function (t, n, i) { return n && e(t.prototype, n), i && e(t, i), t; }; }(), datetimeTemplate = document.createElement("template");
+var datetimeTemplate = document.createElement("template");
 datetimeTemplate.innerHTML = "\n  <style>\n    :host {\n      display: inline;\n    }\n  </style>\n  <span></span>\n", window.ShadyCSS && ShadyCSS.prepareTemplate(datetimeTemplate, "rh-datetime");
 var RHDatetime = function (e) { function t() { _classCallCheck(this, t); var e = _possibleConstructorReturn(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this)); return e.attachShadow({ mode: "open" }), e.shadowRoot.appendChild(datetimeTemplate.content.cloneNode(!0)), e.type = e.getAttribute("type") || "local", e; } return _inherits(t, HTMLElement), _createClass(t, [{ key: "connectedCallback", value: function () { window.ShadyCSS && ShadyCSS.styleElement(this); } }, { key: "attributeChangedCallback", value: function (e, t, n) { this[e] = n; } }, { key: "_getOptions", value: function () { var e = { weekday: { short: "short", long: "long" }, day: { numeric: "numeric", "2-digit": "2-digit" }, month: { short: "short", long: "long" }, year: { numeric: "numeric", "2-digit": "2-digit" }, hour: { numeric: "numeric", "2-digit": "2-digit" }, minute: { numeric: "numeric", "2-digit": "2-digit" }, second: { numeric: "numeric", "2-digit": "2-digit" }, timeZoneName: { short: "short", long: "long" } }, t = {}; for (var n in e) {
             var i = e[n][this.getAttribute(n)];
@@ -16756,12 +16425,8 @@ var RHDatetime = function (e) { function t() { _classCallCheck(this, t); var e =
             case "relative":
                 n = this._getTimeRelative(this._datetime - Date.now());
                 break;
-            case "absolute":
-                var i = this._datetime;
-                n = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(Date.UTC(i.getFullYear(), i.getMonth(), i.getDate(), i.getHours(), i.getMinutes())));
-                break;
             default: n = this._datetime;
-        } return n; } }, { key: "_getTimeRelative", value: function (e) { var t = e > 0 ? "until" : "ago", n = "just now", i = Math.round(Math.abs(e) / 1e3), a = Math.round(i / 60), r = Math.round(a / 60), o = Math.round(r / 24), u = Math.round(o / 30), s = Math.round(u / 12); return u >= 18 ? n = s + " years" : u >= 12 ? n = "a year" : o >= 45 ? n = u + " months" : o >= 30 ? n = "a month" : r >= 36 ? n = o + " days" : r >= 24 ? n = "a day" : a >= 90 ? n = r + " hours" : a >= 45 ? n = "an hour" : i >= 90 ? n = a + " minutes" : i >= 45 ? n = "a minute" : i >= 10 && (n = i + " seconds"), "just now" !== n ? n + " " + t : n; } }, { key: "datetime", get: function () { return this._datetime; }, set: function (e) { var t = new Date(e); t && (t && this._datetime === t || (this._datetime = t, this.shadowRoot.querySelector("span").innerText = this._getTypeString())); } }, { key: "type", get: function () { return this._type; }, set: function (e) { this._type !== e && (this._type = e); } }], [{ key: "observedAttributes", get: function () { return ["datetime", "type"]; } }]), t; }();
+        } return n; } }, { key: "_getTimeRelative", value: function (e) { var t = e > 0 ? "until" : "ago", n = "just now", i = Math.round(Math.abs(e) / 1e3), a = Math.round(i / 60), r = Math.round(a / 60), o = Math.round(r / 24), s = Math.round(o / 30), u = Math.round(s / 12); return s >= 18 ? n = u + " years" : s >= 12 ? n = "a year" : o >= 45 ? n = s + " months" : o >= 30 ? n = "a month" : r >= 36 ? n = o + " days" : r >= 24 ? n = "a day" : a >= 90 ? n = r + " hours" : a >= 45 ? n = "an hour" : i >= 90 ? n = a + " minutes" : i >= 45 ? n = "a minute" : i >= 10 && (n = i + " seconds"), "just now" !== n ? n + " " + t : n; } }, { key: "datetime", get: function () { return this._datetime; }, set: function (e) { Date.parse(e) && (Date.parse(e) && this._datetime === Date.parse(e) || (this._datetime = Date.parse(e), this.shadowRoot.querySelector("span").innerText = window.Intl ? this._getTypeString() : e)); } }, { key: "type", get: function () { return this._type; }, set: function (e) { this._type !== e && (this._type = e); } }], [{ key: "observedAttributes", get: function () { return ["datetime", "type"]; } }]), t; }();
 window.customElements.define("rh-datetime", RHDatetime);
 $(document).ready(function () {
     $("a[href$='.pdf']").each(function () {
