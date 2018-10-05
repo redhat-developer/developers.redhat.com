@@ -335,7 +335,7 @@
     }
   }
   .article-content {
-    @include desktop-small {
+    @media all and (min-width: 1024px) {
       margin-right: 25%;
     }
     h3 {
