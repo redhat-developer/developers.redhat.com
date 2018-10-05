@@ -4,20 +4,22 @@
 
   sys_type:
   cheatsheet
-  webpage
-  event
-  forumthread
-  stackoverflow_thread
-  quickstart
-  //  demo  // excluded
-  jbossdeveloper_bom
-  jbossdeveloper_archetype
-  jbossdeveloper_example
+  // webpage
+  // event
+  // forumthread
+  // stackoverflow_thread
+  // quickstart
+  //  demo  
+  // jbossdeveloper_bom
+  // jbossdeveloper_archetype
+  // jbossdeveloper_example
   video
   book
   article
-  solution
+  //solution
   blogpost
+
+  // excluded
 */
 
 app = window.app || {};
@@ -30,7 +32,7 @@ app.relatedContent.fetch = function() {
   
   var contentCount = $('#video-related-cont').find('.field--name-field-related-content .related-content-card').length;
   contentCount = 4 - contentCount;
-  var typeString = '&sys_type=cheatsheet&sys_type=webpage&sys_type=event&sys_type=forumthread&sys_type=stackoverflow_thread&sys_type=quickstart&sys_type=jbossdeveloper_bom&sys_type=jbossdeveloper_example&sus_type=jbossdeveloper_archetype&sys_type=video&sys_type=book&sys_type=article&sys_type=solution&sys_type=blogpost';
+  var typeString = '&sys_type=cheatsheet&sys_type=video&sys_type=book&sys_type=article&sys_type=blogpost';
   var tags = ($('#video-related-cont').data('tags') || "");
   var tagsString = "";
 
