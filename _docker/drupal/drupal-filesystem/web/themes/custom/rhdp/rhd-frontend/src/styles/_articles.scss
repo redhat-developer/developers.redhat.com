@@ -5,6 +5,12 @@
     font-size: 18px;
     line-height: 2.22rem;
   }
+  .pre-body {
+    margin-bottom: 30px;
+    @include desktop-small {
+      margin-bottom: 0;
+    }
+  }
   .article-hero {
     margin-top: -2em;
     @media only screen and (max-width: 1170px) {
