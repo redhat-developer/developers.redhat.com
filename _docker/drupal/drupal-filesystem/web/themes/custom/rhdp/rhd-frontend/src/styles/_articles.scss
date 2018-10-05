@@ -27,6 +27,11 @@
       }
     }
   }
+  .article-highlights {
+    @include desktop-small {
+      margin-bottom: 40px;
+    }
+  }
   .a2a_kit {
     margin-left: -10px;
     a {
@@ -190,6 +195,12 @@
       margin-bottom: 40px;
       @include desktop-small {
         margin-bottom: 70px;
+      }
+    }
+    .article-highlights {
+      margin-top: -40px;
+      @include desktop-small {
+        margin-top: -60px;
       }
     }
     .article-info {
