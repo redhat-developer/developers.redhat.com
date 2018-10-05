@@ -137,13 +137,6 @@
     margin-right: -1em;
   }
 
-  .pre-body {
-    margin-bottom: 40px;
-    @include desktop-small {
-      margin-bottom: 70px;
-    }
-  }
-
   .large-5.medium-5.columns{
     position:absolute;
     float: right;
@@ -193,6 +186,12 @@
     }
   }
   &.author-right {
+    .pre-body {
+      margin-bottom: 40px;
+      @include desktop-small {
+        margin-bottom: 70px;
+      }
+    }
     .article-info {
       max-width: 100%;
       ul {

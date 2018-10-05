@@ -10745,11 +10745,6 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     max-width: none;
     margin-left: -1em;
     margin-right: -1em; }
-  #rhd-article .pre-body {
-    margin-bottom: 40px; }
-    @media (min-width: 1024px) {
-      #rhd-article .pre-body {
-        margin-bottom: 70px; } }
   #rhd-article .large-5.medium-5.columns, #rhd-article .large-5.medium-5.developer-materials-sidebar, #rhd-article .large-5.medium-5.developer-materials-main, #rhd-article .large-5.medium-5.microsite-nav {
     position: absolute;
     float: right;
@@ -10792,6 +10787,11 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         padding-left: 20px;
         padding-right: 20px;
         font-size: 16px; }
+  #rhd-article.author-right .pre-body {
+    margin-bottom: 40px; }
+    @media (min-width: 1024px) {
+      #rhd-article.author-right .pre-body {
+        margin-bottom: 70px; } }
   #rhd-article.author-right .article-info {
     max-width: 100%; }
     @media (min-width: 576px) {
