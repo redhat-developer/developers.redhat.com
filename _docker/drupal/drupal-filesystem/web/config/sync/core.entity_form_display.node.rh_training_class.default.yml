@@ -10,12 +10,14 @@ dependencies:
     - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
+    - field.field.node.rh_training_class.field_published_date
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
     - content_moderation
+    - datetime
     - entity_browser
     - interval
     - link
@@ -28,12 +30,12 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   field_card_image:
-    weight: 7
+    weight: 8
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -41,14 +43,14 @@ content:
     type: link_default
     region: content
   field_completion_time:
-    weight: 6
+    weight: 7
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 13
+    weight: 14
     settings:
       display_label: true
     third_party_settings: {  }
@@ -56,7 +58,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 14
+    weight: 15
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -68,13 +70,13 @@ content:
     region: content
     third_party_settings: {  }
   field_level:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_long_description:
-    weight: 3
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -82,8 +84,14 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  field_published_date:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_short_description:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -91,7 +99,7 @@ content:
     type: string_textarea
     region: content
   field_source_link:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -99,20 +107,20 @@ content:
     type: link_default
     region: content
   field_topics:
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   moderation_state:
-    weight: 26
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: content
   path:
     type: path
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -120,14 +128,14 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
+    weight: 11
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 12
     region: content
     third_party_settings: {  }
   title:
@@ -140,7 +148,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS

@@ -1,0 +1,21 @@
+uuid: ec7e85d7-6033-4c82-b12b-4f02ab79a367
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_date
+    - node.type.cheat_sheet
+  module:
+    - datetime
+id: node.cheat_sheet.field_published_date
+field_name: field_published_date
+entity_type: node
+bundle: cheat_sheet
+label: 'Published Date'
+description: 'Add a publish date, if desired. Otherwise, no published date will be displayed'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

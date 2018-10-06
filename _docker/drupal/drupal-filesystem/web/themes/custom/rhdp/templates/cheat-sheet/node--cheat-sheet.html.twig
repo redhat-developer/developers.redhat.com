@@ -88,7 +88,9 @@ other methods (such as node.delete) will result in an exception.
                     {% endif %}
                 </li>
                 <li>
-                    <small>Published: {{ date }}</small>
+                    {% if content.field_published_date|render|striptags|trim is not empty %}
+                        <small>Published: {{ content.field_published_date }}</small>
+                    {% endif %}
                 </li>
                 <li class="right cs-social">
                     {% include '@rhd/share.html.twig' %}

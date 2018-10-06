@@ -6,11 +6,11 @@ id: node__books
 label: 'Content: Books'
 tags:
   image_src: '[node:field_card_image:uri]'
-  canonical_url: '[current-page:url:absolute]'
+  canonical_url: '[current-page:url:absolute]/'
   title: '[site:name] | [current-page:title]'
   og_image: '[node:field_card_image:uri]'
   og_title: '[current-page:title]'
   og_updated_time: '[node:changed:html_datetime]'
   og_site_name: '[site:name]'
-  og_url: '[current-page:url:absolute]'
+  og_url: '[current-page:url:absolute]/'
   og_type: book
