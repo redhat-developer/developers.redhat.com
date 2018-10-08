@@ -1,0 +1,19 @@
+uuid: 62221ae0-e78c-42db-ad56-779886cffe20
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_pull_quote
+    - field.storage.assembly.field_content_pull_quote
+id: assembly.content_pull_quote.field_content_pull_quote
+field_name: field_content_pull_quote
+entity_type: assembly
+bundle: content_pull_quote
+label: 'Content Pull Quote'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

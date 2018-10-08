@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+{% if display_field_tag %}
+    <{{ field_tag|default('div') }}{{ attributes.addClass(classes, 'field__items') }}>
+{% endif %}
+  {% if not label_hidden and display_label_tag %}
+    <{{ label_tag|default('div') }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_tag|default('div') }}>
+  {% endif %}
+  {% for item in items %}
+    {% if display_item_tag %}
+        <{{ field_item_tag|default('div') }}{{ item.attributes.addClass('field__item') }}>
+    {% endif %}
+    {{ item.content }}
+    {% if display_item_tag %}
+        </{{ field_item_tag|default('div') }}>
+    {% endif %}
+  {% endfor %}
+{% if display_field_tag %}
+    </{{ field_tag|default('div') }}>
+{% endif %}

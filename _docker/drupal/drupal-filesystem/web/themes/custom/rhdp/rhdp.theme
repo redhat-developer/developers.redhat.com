@@ -227,6 +227,19 @@ function rhdp_preprocess_node(&$variables) {
     $variables['author_name'] = $node->getTitle();
   }
 
+  if ($node->getType() == 'article') {
+    $variables['has_hero'] = FALSE;
+    $variables['author_location'] = 'left';
+    $type = $node->get('field_article_type')->getValue();
+    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
+      $type = $type[0]['value'];
+      if ($type == 'opinion') {
+        $variables['has_hero'] = TRUE;
+        $variables['author_location'] = 'right';
+        $variables['content']['field_image'][0]['#image_style'] = 'hero';
+      }
+    }
+  }
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
       $variables['event_description'] = $variables['content']['field_description'][0]['#text'];

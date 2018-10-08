@@ -1,0 +1,40 @@
+uuid: f101a0f1-a21c-4ee5-a6ad-ab24cd40b807
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_pull_quote
+    - field.field.assembly.content_pull_quote.field_audience_selection
+    - field.field.assembly.content_pull_quote.field_content_pull_quote
+  module:
+    - fences
+    - options
+id: assembly.content_pull_quote.default
+targetEntityType: assembly
+bundle: content_pull_quote
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_content_pull_quote:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: basic_string
+    region: content
+hidden:
+  name: true
+  user_id: true
