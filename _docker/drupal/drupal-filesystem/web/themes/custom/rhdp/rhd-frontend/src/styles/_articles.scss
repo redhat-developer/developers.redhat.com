@@ -7,7 +7,7 @@
   }
   .pre-body {
     margin-bottom: 30px;
-    @include desktop-small {
+    @media (min-width: 1025px) {
       margin-bottom: 0;
     }
   }
