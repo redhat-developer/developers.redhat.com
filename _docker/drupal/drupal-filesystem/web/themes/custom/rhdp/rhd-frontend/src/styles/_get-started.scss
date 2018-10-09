@@ -141,7 +141,9 @@ ul.toc {
     transform: translateY(30px);
   }
   &:empty {
-    opacity: 0;
+    opacity: 0.01;
+    background-color: transparent;
+    border-top: 8px solid transparent;
   }
   li {
     list-style: none;
