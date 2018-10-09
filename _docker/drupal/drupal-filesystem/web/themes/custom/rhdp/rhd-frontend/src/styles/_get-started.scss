@@ -141,6 +141,7 @@ ul.toc {
     transform: translateY(30px);
   }
   &:empty {
+    //fix for not calculating top on display none div
     opacity: 0.01;
     background-color: transparent;
     border-top: 8px solid transparent;
