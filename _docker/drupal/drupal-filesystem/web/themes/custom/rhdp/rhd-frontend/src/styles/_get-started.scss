@@ -141,7 +141,7 @@ ul.toc {
     transform: translateY(30px);
   }
   &:empty {
-    display: none;
+    opacity: 0;
   }
   li {
     list-style: none;
