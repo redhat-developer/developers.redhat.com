@@ -65,44 +65,141 @@ other methods (such as node.delete) will result in an exception.
 * @ingroup themeable
 */
 #}
-{% set article_classes = (not hide_toc) ? [ "medium-20", "columns", "gsi", "fetch-toc", "article-content"] : ["large-19", "medium-19", "columns", "gsi", "fetch-toc", "article-content"] %}
-<div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
-  <div class="row">
-    <div class="large-19 medium-24 columns">
-        {{ title_prefix }}
-        <h2{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h2>
-        {{ title_suffix }}
-        <div class="gsi-meta article-info">
-            <ul>
-                <li><strong{{ author_attributes }}>By {{content.field_content_author}} </strong></li>
-                <li class="right">
-                    <small>Published: {{ date }}</small>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="large-5 medium-24 columns">
-        {% include '@rhd/share.html.twig' %}
-        {% if content.field_tags|render %}
-        <div class="article-tags">
-            <strong>Tags:</strong> {{ content.field_tags }}
-        </div>
+
+{% set article_classes = (not hide_toc) ? [ "medium-17", "large-12", "columns", "gsi", "fetch-toc", "article-content"] : ["large-12", "medium-12", "medium-offset-7", "large-offset-6", "columns", "gsi", "fetch-toc", "article-content"] %}
+<div{{ attributes.addClass(["container", "content", "author-" ~ author_location]).setAttribute("id", "rhd-article") }}>
+    {% if has_hero and content.field_image|render %}
+    <div class="article-hero">
+        {% if content.field_image_caption|render %}
+        <figure>
+        {% endif %}
+            {{ content.field_image }}
+        {% if content.field_image_caption|render %}
+            <figcaption>
+                {{ content.field_image_caption }}
+            </figcaption>
+        </figure>
         {% endif %}
     </div>
-  </div>
-  <div class="row">
-    {% if not hide_toc %}
-        <div class="medium-4 columns">
+    {% endif %}
+    <div class="row pre-body">
+        <div class="medium-24 columns">
+            {% if content.field_article_type|render %}
+            <p class="article-type">{{ content.field_article_type }}</p>
+            {% endif %}
+            {% if content.field_image|render and not has_hero %}
+            <div class="row">
+                <div class="large-12 columns">
+            {% endif %}
+                    <div class="article-info-wrapper">
+                        <div class="article-info-left">
+                            {{ title_prefix }}
+                            <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
+                            {{ title_suffix }}
+                            <div class="gsi-meta article-info">
+                                <ul class="date-info">
+                                    <li>
+                                        <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
+                                    </li>
+                                    {% if node.createdtime != node.changedtime %}
+                                    <li>
+                                        <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                {% if author_location == 'left' %}
+                                <div class="share-buttons">
+                                    {% include '@rhd/share.html.twig' %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if content.field_topics|render %}
+                             <div class="topics">
+                              More on: {{ content.field_topics }}
+                             </div>
+                            {% endif %}
+                        </div>
+                        {% if content.field_author_evangelist|render %}
+                        <div class="authors">
+                            {% if author_location == 'right' %}
+                            <div class="share-buttons">
+                                {% include '@rhd/share.html.twig' %}
+                            </div>
+                            {% endif %}
+                            {{ content.field_author_evangelist }}
+                        </div>
+                        {% elseif content.field_content_author|render %}
+                        <div class="authors no-image">
+                            {% if author_location == 'right' %}
+                            <div class="share-buttons">
+                                {% include '@rhd/share.html.twig' %}
+                            </div>
+                            {% endif %}
+                            <div class="authors-inner">
+                                <div class="author short-teaser">
+                                    <span class="author-name">
+                                        {{ content.field_content_author }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if content.field_image|render and not has_hero %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% if content.field_image|render and not has_hero %}
+                <div class="large-12 columns floated-image">
+                    {% if content.field_image_caption|render %}
+                    <figure>
+                    {% endif %}
+                    {{ content.field_image }}
+                    {% if content.field_image_caption|render %}
+                        <figcaption>
+                            {{ content.field_image_caption }}
+                        </figcaption>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    {% if content.field_article_highlights|render %}
+    <div class="row article-highlights">
+        {{ content.field_article_highlights }}
+    </div>
+    {% endif %}
+    <div class="row body-row">
+        {% if not hide_toc %}
+        <div class="medium-7 large-6 columns">
             <ul class="toc gsi-nav">
             </ul>
             <div>&nbsp;</div>
         </div>
-    {% endif %}
-    <div{{ content_attributes.addClass(article_classes) }}>
-        {{ content.body }}
+        {% endif %}
+        <div{{ content_attributes.addClass(article_classes) }}>
+            {{ content.body }}
+            {{ content.field_content }}
+            {% if content.field_tags|render %}
+            <div class="article-tags">
+                {{ content.field_tags }}
+            </div>
+            {% endif %}
+        </div>
     </div>
-  </div>
-  <div class="medium-20 medium-offset-4 columns">
-    {{ content.disqus_thread }}
-  </div>
+    <div class="row disqus-comments">
+        <div class="medium-18 medium-offset-6 columns">
+            {{ content.disqus_thread }}
+        </div>
+    </div>
+    {% if content.field_related_articles|render %}
+    <div class="row related-articles">
+        <div class="medium-6 columns">
+            <h4 class="related-article-header">Related Articles</h4>
+        </div>
+        <div class="medium-18 columns related-articles">
+            {{ content.field_related_articles }}
+        </div>
+    </div>
+    {% endif %}
 </div>
