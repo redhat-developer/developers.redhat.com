@@ -1,4 +1,4 @@
-FROM developer.redhat.com/ruby:2.3.0
+FROM developer.redhat.com/ruby:2.4.0
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy
@@ -15,7 +15,6 @@ RUN rpm -Uvh /root/remi-release-6.rpm
 RUN yum-config-manager --enable remi-php71; \
     yum -y update; \
     yum -y install \
-           git \
            httpd.x86_64 \
            mysql \
            nodejs \
