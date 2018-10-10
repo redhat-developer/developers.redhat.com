@@ -1,4 +1,4 @@
-FROM developer.redhat.com/ruby:2.3.0
+FROM developer.redhat.com/ruby:2.4.0
 
 ARG http_proxy
 ARG https_proxy
