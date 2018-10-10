@@ -26,18 +26,23 @@ RUN yum install -y  \
   sqlite-devel \
   tar \
   which \
-  wget && \
+  wget \
+  rsync \
+  centos-release-scl && \
   yum clean all && \
   rm -rf /var/cache/yum
 
-# Install Git here. Installing the 'git' package directly via yum no longer works.
-RUN curl -s https://setup.ius.io/ | bash
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
-RUN yum install -y \
-    git2u \
-    git-lfs && \
+
+RUN yum install -y yum install http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm && \
+    yum install -y git && \
     yum clean all && \
     rm -rf /var/cache/yum
+
+RUN cd /tmp && \
+    wget https://github.com/git-lfs/git-lfs/releases/download/v2.5.2/git-lfs-linux-amd64-v2.5.2.tar.gz && \
+    tar xvf git-lfs-linux-amd64-v2.5.2.tar.gz && \
+    ./install.sh && \
+    rm -rf /tmp/*
 
 WORKDIR /tmp
 
