@@ -11,6 +11,6 @@ RUN groupadd -g 1000 unit \
     && useradd -g unit -m -s /bin/bash -u 1000 unit
 USER unit
 WORKDIR /home/unit/
-COPY package.json ./
-RUN npm install
+COPY * ./
+RUN npm install && npm run build
 ENV PATH /home/unit/node_modules/.bin:$PATH

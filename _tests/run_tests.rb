@@ -37,6 +37,7 @@ class RunTest
       # docker container
       parent_directory = File.dirname("_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/*")
       FileUtils.cp("#{parent_directory}/package.json", "#{@test_dir}/unit")
+      FileUtils.cp("#{parent_directory}/src", "#{@test_dir}/unit")
     end
   end
 
