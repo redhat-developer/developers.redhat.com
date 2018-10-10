@@ -1,16 +1,11 @@
-FROM developer.redhat.com/ruby:2.3.0
+FROM developer.redhat.com/ruby:2.4.0
 
 ARG http_proxy
 ARG https_proxy
 
 COPY mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 
-RUN curl -s https://setup.ius.io/ | bash
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
-RUN yum erase -y git \
-    && yum install -y \
-    git2u \
-    git-lfs \
+RUN yum install -y \
     MariaDB-client \
     && yum clean all
 RUN groupadd -g 1000 jenkins_developer

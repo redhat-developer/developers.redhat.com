@@ -227,7 +227,7 @@ def build_base_docker_images(environment, system_exec)
 
   system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/base:2.0.0).concat(build_args).concat(%w(./base)))
   system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/java:3.0.0).concat(build_args).concat(%w(./java)))
-  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby:2.3.0).concat(build_args).concat(%w(./ruby)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby:2.4.0).concat(build_args).concat(%w(./ruby)))
 end
 
 #

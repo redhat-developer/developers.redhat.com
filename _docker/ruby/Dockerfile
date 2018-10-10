@@ -11,7 +11,6 @@ RUN yum install -y  \
   epel-release \
   gcc \
   gcc-c++ \
-  git \
   libcurl-devel \
   libffi-devel \
   libtool \
@@ -27,7 +26,18 @@ RUN yum install -y  \
   sqlite-devel \
   tar \
   which \
-  wget
+  wget && \
+  yum clean all && \
+  rm -rf /var/cache/yum
+
+# Install Git here. Installing the 'git' package directly via yum no longer works.
+RUN curl -s https://setup.ius.io/ | bash
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
+RUN yum install -y \
+    git2u \
+    git-lfs && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 WORKDIR /tmp
 
