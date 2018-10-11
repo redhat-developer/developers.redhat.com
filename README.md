@@ -24,8 +24,17 @@ Brew is like apt-get or yum for mac.
 [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
 
 ### Docker
+
 For Linux, follow these instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/).
-The native 'Docker for Mac' is now recommended for those working on macOS.
+
+The native 'Docker for Mac' is now recommended for those working on macOS. If you are using Docker for Mac, allocate 4GB of RAM to Docker in the Docker for Mac Preferences > Advanced. Be sure to Apply & Restart after making this change. Also, you will need to add the following entry to your `/etc/hosts` file:
+
+```
+0.0.0.0 docker
+```
+
+to make the docker host available.
+
 No one has tried development on Windows, so it is currently not known what needs to be done.
 
 The scripts assume you can run the `docker` command WITHOUT sudo.
@@ -101,6 +110,8 @@ _NOTE:_ Node.js and npm both need to be installed on the host machine, not in th
     npm install
 3. Run `$(npm bin)/gulp` in the root of the project to generate the JS and CSS files.
 
+You will need to ask a co-worker for the Fort Awesome npm config setting. You will enter an `npm config set` command so that this config value is available during the setup script.
+
 ### Start Drupal
 Run the following script:
 
@@ -108,6 +119,20 @@ Run the following script:
 
 This will fetch the database backup for Drupal, run composer and start Drupal.
 Assuming there were no errors you should be able to access Drupal at 127.0.0.1:8888.
+
+### Running Drupal after the initial setup
+
+After the initial setup, once you have terminated the PHP built-in server and when you need to run the Drupal server again, you can do so by running `drush runserver`, or `drush rs` for short. To do so, you will need to be in the follow directory:
+
+```
+_docker/drupal/drupal-filesystem/web
+```
+
+and then you can run:
+
+```
+../../vendor/bin/drush rs
+```
 
 ## Drupal Page Layout Changes (fast)
 If you are just making a change to the layout file of a Drupal page, follow these steps:
