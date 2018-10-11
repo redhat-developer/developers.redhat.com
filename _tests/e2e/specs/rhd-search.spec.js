@@ -32,7 +32,9 @@ describe('Search Page', function () {
         let firstResult = search.results.dateFor(1);
         for (let i = 1; i < sR.value.length; i++) {
             let remainingResults = search.results.dateFor(i);
-            expect(new Date(remainingResults).getTime()).to.be.lte(new Date(firstResult).getTime())
+            if (new Date(remainingResults).getTime()) {
+                expect(new Date(remainingResults).getTime()).to.be.lte(new Date(firstResult).getTime())
+            }
         }
     });
 
