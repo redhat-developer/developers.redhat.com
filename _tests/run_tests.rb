@@ -36,8 +36,7 @@ class RunTest
       # copy main package.json from project directory in order to use it in the unit-test
       # docker container
       parent_directory = File.dirname("_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/*")
-      FileUtils.cp("#{parent_directory}/package.json", "#{@test_dir}/unit")
-      FileUtils.cp("#{parent_directory}/src", "#{@test_dir}/unit")
+      FileUtils.cp_r("#{parent_directory}", "#{@test_dir}/unit/rhd-frontend")
     end
   end
 
@@ -47,7 +46,7 @@ class RunTest
     if test_configuration[:unit]
       # copy main package.json from project directory in order to use it in the unit-test
       # docker container
-      FileUtils.rm_rf("#{@test_dir}/unit/package.json")
+      FileUtils.rm_rf("#{@test_dir}/unit/rhd-frontend")
     end
   end
 

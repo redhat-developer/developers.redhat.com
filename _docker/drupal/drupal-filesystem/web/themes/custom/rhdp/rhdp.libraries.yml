@@ -20,7 +20,7 @@ base-theme:
     https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
     /auth/js/keycloak.js: { type: external, minified: false  }
     rhd-frontend/rhd.min.js: { minified: true}
-    js/init.js: {}
+    rhd-frontend/init.js: {}
   dependencies:
     - core/jquery
     - core/drupal

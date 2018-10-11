@@ -5,7 +5,7 @@ services:
     volumes:
     - ../../../:/home/unit/developers.redhat.com
     entrypoint: ruby /home/unit/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
-    working_dir: /home/unit/developers.redhat.com
+    working_dir: /home/unit
     environment:
     - github_status_enabled
     - github_status_api_token

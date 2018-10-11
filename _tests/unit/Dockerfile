@@ -10,7 +10,7 @@ RUN curl -O -L https://dl.google.com/linux/direct/google-chrome-stable_current_x
 RUN groupadd -g 1000 unit \
     && useradd -g unit -m -s /bin/bash -u 1000 unit
 USER unit
-WORKDIR /home/unit/
-COPY * ./
-RUN npm install && npm run build
+WORKDIR /home/unit
+COPY --chown=unit:unit rhd-frontend/ ./
+RUN npm install
 ENV PATH /home/unit/node_modules/.bin:$PATH
