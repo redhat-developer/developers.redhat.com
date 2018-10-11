@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-downloads-all component
 
 describe('Downloads All Product Items', function () {
@@ -99,10 +99,10 @@ describe('Downloads All Product Items', function () {
             var productDownloadURL = '';
             switch(wc.platformType){
                 case 'Windows':
-                    productDownloadURL = "/download-manager/file/devsuite-2.2.0-GA-bundle-installer.exe";
+                    productDownloadURL = "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe";
                     break;
                 case 'MacOS':
-                    productDownloadURL = "/download-manager/file/devsuite-2.2.0-GA-bundle-installer-mac.zip";
+                    productDownloadURL = "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg";
                     break;
                 case "RHEL" :
                     productDownloadURL = "/products/devsuite/hello-world/#fndtn-rhel";

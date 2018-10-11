@@ -10,12 +10,15 @@
         "pretty": true,
         "allowJs": true,
         "baseUrl": "src/scripts",
+        //"rootDirs": ["node_modules", "src/scripts"],
         "lib":[
           "dom", "es5", "es6"
         ],
         "outFile": "rhd.js"
+        //"outDir": "scripts"
     },
     "include": [
+        //"node_modules/@fortawesome/**/*.es.js",
         "src/scripts/@rhelements/rhelement.ts",
         "src/scripts/@rhd/**/*.ts",
         "src/scripts/@rhd/js/init.js",

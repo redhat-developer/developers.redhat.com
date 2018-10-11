@@ -1,4 +1,6 @@
-class RHDPDownloadsPopularProduct extends HTMLElement {
+import RHDPOSDownload from '@rhd/rhdp-os-download';
+
+export default class RHDPDownloadsPopularProduct extends HTMLElement {
 
     private _name;
     private _productId;
@@ -83,3 +85,5 @@ class RHDPDownloadsPopularProduct extends HTMLElement {
     }
 
 }
+
+window.customElements.define('rhdp-downloads-popular-product', RHDPDownloadsPopularProduct);

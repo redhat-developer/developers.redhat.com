@@ -1,7 +1,7 @@
-// import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
-// import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
+import RHDPSearchFilterGroup from '@rhd/rhdp-search/rhdp-search-filter-group';
+import RHDPSearchFilterItem from '@rhd/rhdp-search/rhdp-search-filter-item';
 
-class RHDPSearchFilters extends HTMLElement {
+export default class RHDPSearchFilters extends HTMLElement {
     _type = '';
     _title = 'Filter By';
     _filters;

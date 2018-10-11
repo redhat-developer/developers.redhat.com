@@ -1,4 +1,4 @@
-
+"use strict";
 describe('RHDP Project Url', function() {
     var wc;
 

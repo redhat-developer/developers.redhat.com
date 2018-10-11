@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-search-result-count component
 
 describe('Search OneBox', function() {

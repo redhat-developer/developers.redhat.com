@@ -1,4 +1,4 @@
-
+"use strict";
 /* global RHDPDownloadsApp */
 // Test rhdp-downloads-app component
 

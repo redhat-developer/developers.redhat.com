@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-downloads-products component
 
 describe('Download Products', function() {

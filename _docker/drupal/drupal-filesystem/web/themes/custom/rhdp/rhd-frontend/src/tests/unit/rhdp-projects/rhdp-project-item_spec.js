@@ -1,4 +1,4 @@
-
+"use strict";
 // RHDP Project Items Component Unit Tests
 describe('RHDP Project Items Component', function() {
     var wc;
@@ -181,19 +181,19 @@ describe('RHDP Project Items Component', function() {
             expect(wc.querySelector('.large-18.project-content-right.columns a').innerText).toEqual(projectName);
             expect(wc.innerText).toContain(descriptions);
             expect(projectsListHTML[0].innerHTML).toEqual('Docs: <a href="http://docsLink.com/">Documentation</a>');
-            expect(projectsListHTML[1].innerHTML).toEqual('Community: <a href="http://communityLink.com/">communityLink.com/</a>');
-            expect(projectsListHTML[2].innerHTML).toEqual('Mailing List: <a href="http://mailingListLink.com/">mailingListLink.com/</a>');
-            expect(projectsListHTML[3].innerHTML).toEqual('Chat: <a href="http://chatLink.com/">chatLink.com/</a>');
-            expect(projectsListHTML[4].innerHTML).toEqual('JIRA: <a href="http://jiraLink.com/">jiraLink.com/</a>');
-            expect(projectsListHTML[5].innerHTML).toEqual('Source: <a href="http://srcLink.com/">srcLink.com/</a>');
-            expect(projectsListHTML[6].innerHTML).toEqual('Github: <a href="http://githubLink.com/">githubLink.com/</a>');
-            expect(projectsListHTML[7].innerHTML).toEqual('Build: <a href="http://buildLink.com/">buildLink.com/</a>');
-            expect(projectsListHTML[8].innerHTML).toEqual('Issue: <a href="http://issueTracker.com/">issueTracker.com/</a>');
-            expect(projectsListHTML[9].innerHTML).toEqual('User Forum: <a href="http://userForumLink.com/">userForumLink.com/</a>');
-            expect(projectsListHTML[10].innerHTML).toEqual('Dev Forum: <a href="http://devForumLink.com/">devForumLink.com/</a>');
-            expect(projectsListHTML[11].innerHTML).toEqual('KnowledgeBase: <a href="http://knowledgebaseLink.com/">knowledgebaseLink.com/</a>');
-            expect(projectsListHTML[12].innerHTML).toEqual('Blog: <a href="http://blogLink.com/">blogLink.com/</a>');
-            expect(projectsListHTML[13].innerHTML).toEqual('Anonymous Source: <a href="http://anonymousLink.com/">anonymousLink.com/</a>');
+            expect(projectsListHTML[1].innerHTML).toEqual('Community: <a href="http://communityLink.com/">communityLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[2].innerHTML).toEqual('Mailing List: <a href="http://mailingListLink.com/">mailingListLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[3].innerHTML).toEqual('Chat: <a href="http://chatLink.com/">chatLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[4].innerHTML).toEqual('JIRA: <a href="http://jiraLink.com/">jiraLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[5].innerHTML).toEqual('Source: <a href="http://srcLink.com/">srcLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[6].innerHTML).toEqual('Github: <a href="http://githubLink.com/">githubLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[7].innerHTML).toEqual('Build: <a href="http://buildLink.com/">buildLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[8].innerHTML).toEqual('Issue: <a href="http://issueTracker.com/">issueTracker.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[9].innerHTML).toEqual('User Forum: <a href="http://userForumLink.com/">userForumLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[10].innerHTML).toEqual('Dev Forum: <a href="http://devForumLink.com/">devForumLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[11].innerHTML).toEqual('KnowledgeBase: <a href="http://knowledgebaseLink.com/">knowledgebaseLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[12].innerHTML).toEqual('Blog: <a href="http://blogLink.com/">blogLink.com/ <i class="fas fa-external-link"></i></a>');
+            expect(projectsListHTML[13].innerHTML).toEqual('Anonymous Source: <a href="http://anonymousLink.com/">anonymousLink.com/ <i class="fas fa-external-link"></i></a>');
 
         });
     });

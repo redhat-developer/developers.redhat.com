@@ -1,4 +1,4 @@
-class RHDPSearchFilterItem extends HTMLElement {
+export default class RHDPSearchFilterItem extends HTMLElement {
     _key;
     _name;
     _active = false;
