@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.code_snippet
     - assembly.assembly_type.content
     - assembly.assembly_type.content_pull_quote
     - field.storage.node.field_content
@@ -23,6 +24,7 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      code_snippet: code_snippet
       content: content
       content_pull_quote: content_pull_quote
     sort:
