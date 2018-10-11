@@ -1,3 +1,5 @@
+const qs = require('querystring');
+
 if (typeof process.env.RHD_BASE_URL === 'undefined') {
     process.env.RHD_BASE_URL = 'https://developers.redhat.com';
     baseUrl = process.env.RHD_BASE_URL
@@ -82,7 +84,7 @@ exports.config = {
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
-    connectionRetryTimeout: 90000,
+    connectionRetryTimeout: 95000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -128,7 +130,7 @@ exports.config = {
     mochaOpts: {
         compilers: ['js:babel-register'],
         ui: 'bdd',
-        timeout: 65000
+        timeout: 180000
     },
 
     reporterOptions: {

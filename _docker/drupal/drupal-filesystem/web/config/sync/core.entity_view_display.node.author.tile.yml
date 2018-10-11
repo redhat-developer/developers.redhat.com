@@ -1,0 +1,60 @@
+uuid: 192a3085-4393-42b7-8737-868544568c9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.author.body
+    - field.field.node.author.field_facebook
+    - field.field.node.author.field_github
+    - field.field.node.author.field_headshot
+    - field.field.node.author.field_linkedin
+    - field.field.node.author.field_position_title
+    - field.field.node.author.field_twitter
+    - field.field.node.author.field_youtube
+    - image.style.square_small
+    - node.type.author
+  module:
+    - fences
+    - image
+    - user
+id: node.author.tile
+targetEntityType: node
+bundle: author
+mode: tile
+content:
+  content_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_headshot:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: square_small
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: image
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_facebook: true
+  field_github: true
+  field_linkedin: true
+  field_position_title: true
+  field_twitter: true
+  field_youtube: true
+  links: true

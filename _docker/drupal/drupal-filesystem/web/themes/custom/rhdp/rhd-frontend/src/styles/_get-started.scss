@@ -117,33 +117,41 @@ a.get-started-quickstart.button {
 ul.toc {
   margin: 0;
   width: 100%;
-  z-index: -1;
+  z-index: 100;
 }
 .gsi-nav-fixed {
   position: fixed;
   top:0;
   padding-top: 20px;
-  width: 11%;
-  max-width: 180px;
+  width: 25%;
   min-width: 125px;
 }
 
 .gsi-nav {
   padding-left: 0;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-top: 8px solid #000;
+  transform: translateY(0);
+  transition: 150ms ease-in-out;
+  &.gsi-nav-fixed {
+    transform: translateY(30px);
+  }
+  &:empty {
+    //fix for not calculating top on display none div
+    opacity: 0.01;
+    background-color: transparent;
+    border-top: 8px solid transparent;
+  }
   li {
-    list-style:none;
-    padding-bottom:10px;
-
-    a.past-block:last-child {
-      color:#a5ab36;
-    }
+    list-style: none;
+    padding-bottom: 10px;
 
     a {
-      color: $link-sm;
-      &:after {
-        content: "\203A";
-        margin-left: 5px;
-      }
+      color: #196bcb;
     }
   }
 }
@@ -249,10 +257,10 @@ ul.toc {
   padding: 30px;
 
   p {
-	font-size: 1.5em;
+  font-size: 1.5em;
     text-transform: uppercase;
     color:$white;
-	text-shadow: 1px 1px 1px $black;
+  text-shadow: 1px 1px 1px $black;
   }
 }
 
@@ -407,8 +415,8 @@ ul.toc {
     }
   }
 .step2 {
-  padding: 0; 
-  width: 100%; 
+  padding: 0;
+  width: 100%;
   .step2-title {
     padding: 0;
     .tabs-content {
@@ -419,7 +427,7 @@ ul.toc {
       }
     }
   }
- } 
+ }
   .step-header {
     background-color: #3999cb;
     color: $white;
@@ -482,7 +490,7 @@ ul.toc {
     border: 5px solid #e6e7e8;
     padding: 1.5rem;
     margin: 3rem 0;
-    ul li:before{ 
+    ul li:before{
       display: none;
     }
   }
@@ -706,7 +714,7 @@ ul.toc {
   padding: 1.5rem;
   margin: 3rem 0;
   clear: both;
-  ul li:before{ 
+  ul li:before{
     display: none;
   }
 }

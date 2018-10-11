@@ -23,41 +23,41 @@ bundle: author
 mode: default
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
+    weight: 2
     region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   content_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   field_headshot:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       image_style: ''
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     type: image
     region: content
   field_position_title:
-    weight: 2
-    label: above
+    type: string
+    weight: 3
+    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
   workbench_moderation_control:
     weight: -20
     region: content

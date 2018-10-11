@@ -29,6 +29,7 @@ export class Login extends Page {
         this.awaitLogin();
         this.type(user['email'], this.getSelector('usernameField'));
         this.type(user['password'], this.getSelector('passwordField'));
-        return this.click(this.getSelector('loginButton'));
+        this.click(this.getSelector('loginButton'));
+        return this.awaitIsLoggedIn(user)
     }
 }

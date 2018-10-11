@@ -46,9 +46,11 @@
     <h4 class="line-clamp-2">{{ node.title.value }}</h4>
     <p class="line-clamp-3">{{ node.body.value|striptags }}</p>
     <div class="bio">
-      <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
+      {% if node.field_published_date.value is not empty %}
+        <rh-datetime datetime="{{ node.field_published_date.value|date("c")}}">{{node.field_published_date.value|date("Y-m-d")}}</rh-datetime>
+      {% endif %}
       <div class="dp-author">
-      {% if node.field_published_date.value|date("c") and node.field_cheat_sheet_author.value %}
+      {% if node.field_published_date.value is not empty and node.field_cheat_sheet_author.value %}
       &nbsp;&mdash;&nbsp;
       {% endif %}
       {{node.field_cheat_sheet_author.value}}

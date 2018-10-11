@@ -1,0 +1,15 @@
+uuid: d5715591-6168-4289-994c-434c945ee6ed
+langcode: en
+status: true
+dependencies: {  }
+name: article_floated
+label: 'Article Floated'
+effects:
+  ba2d9339-6c60-4dec-a8c3-b666de265236:
+    uuid: ba2d9339-6c60-4dec-a8c3-b666de265236
+    id: image_scale
+    weight: 1
+    data:
+      width: 600
+      height: null
+      upscale: false

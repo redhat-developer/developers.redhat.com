@@ -1,0 +1,32 @@
+uuid: a35ad118-b7e6-4599-8aae-36824d81e6fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content
+    - assembly.assembly_type.content_pull_quote
+    - field.storage.node.field_content
+    - node.type.article
+  module:
+    - entity_reference_revisions
+id: node.article.field_content
+field_name: field_content
+entity_type: node
+bundle: article
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      content: content
+      content_pull_quote: content_pull_quote
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: content
+field_type: entity_reference_revisions

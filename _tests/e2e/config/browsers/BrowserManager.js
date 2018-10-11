@@ -28,7 +28,7 @@ class BrowserManager {
                 acceptInsecureCerts: true,
 
                 chromeOptions: {
-                    args: ['disable-web-security', 'user-agent=Red Hat Developers Testing'],
+                    args: ['start-fullscreen', 'disable-web-security', 'user-agent=Red Hat Developers Testing'],
                     prefs: {
                         "download": {
                             "default_directory": pathToChromeDownloads,
@@ -82,5 +82,4 @@ class BrowserManager {
     }
 }
 
-module
-    .exports = new BrowserManager;
+module.exports = new BrowserManager;

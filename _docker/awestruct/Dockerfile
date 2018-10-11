@@ -1,4 +1,4 @@
-FROM developer.redhat.com/ruby:2.3.0
+FROM developer.redhat.com/ruby:2.4.0
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy

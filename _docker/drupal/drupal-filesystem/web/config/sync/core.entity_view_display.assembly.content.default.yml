@@ -1,0 +1,41 @@
+uuid: 2c13eafc-76aa-4758-8904-ef5ac35f031b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content
+    - field.field.assembly.content.field_audience_selection
+    - field.field.assembly.content.field_content
+  module:
+    - fences
+    - options
+    - text
+id: assembly.content.default
+targetEntityType: assembly
+bundle: content
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_content:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+hidden:
+  name: true
+  user_id: true
