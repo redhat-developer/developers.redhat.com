@@ -1,4 +1,4 @@
-
+"use strict";
 /* global RHDPSearchFilterGroup */
 
 describe('Search Filter Group', function() {

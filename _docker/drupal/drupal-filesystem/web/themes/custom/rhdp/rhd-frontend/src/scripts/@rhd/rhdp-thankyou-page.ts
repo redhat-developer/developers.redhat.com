@@ -1,4 +1,4 @@
-class RHDPThankyou extends HTMLElement {
+export default class RHDPThankyou extends HTMLElement {
 
     private _url;
     private _mediaName;

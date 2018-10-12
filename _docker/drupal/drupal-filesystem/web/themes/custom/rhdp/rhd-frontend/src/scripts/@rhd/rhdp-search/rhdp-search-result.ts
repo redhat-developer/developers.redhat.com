@@ -1,6 +1,6 @@
-class RHDPSearchResult extends HTMLElement {
+export default class RHDPSearchResult extends HTMLElement {
     _result;
-    _url = ['',''];
+    _url;
     _title;
     _kind;
     _created;
@@ -9,7 +9,8 @@ class RHDPSearchResult extends HTMLElement {
     _thumbnail;
 
     get url() {
-        return this._url;
+        const stage = window.location.href.indexOf('stage') >= 0 || window.location.href.indexOf('developers') < 0 ? '.stage' : '';
+        return !this.premium ? this._url : `https://broker${stage}.redhat.com/partner/drc/userMapping?redirect=${encodeURIComponent(this._url)}`;
     }
 
     set url(val) {
@@ -182,7 +183,7 @@ class RHDPSearchResult extends HTMLElement {
     }
     computeURL(result) {
         if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
-            this.url = result.fields.field_book_url;
+            this.url = result.fields.field_book_url ? result.fields.field_book_url : '';
         } else {
             this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
         }

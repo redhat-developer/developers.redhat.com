@@ -33,7 +33,7 @@ class TestRunTestOptions < MiniTest::Test
     test_configuration = @run_tests_options.parse_command_line(%w(--unit --use-docker))
 
     assert(test_configuration[:docker])
-    assert_equal('npm run test:docker', test_configuration[:run_tests_command])
+    assert_equal('npm test', test_configuration[:run_tests_command])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
   end
@@ -43,7 +43,7 @@ class TestRunTestOptions < MiniTest::Test
     test_configuration = @run_tests_options.parse_command_line(%w(--unit --use-docker --update-github-status=123))
 
     assert(test_configuration[:docker])
-    assert_equal('npm run test:docker', test_configuration[:run_tests_command])
+    assert_equal('npm test', test_configuration[:run_tests_command])
     assert_equal('123', ENV['github_status_sha1'])
     assert_equal('js-unit-tests', ENV['github_status_context'])
     assert_equal('true', ENV['github_status_enabled'])

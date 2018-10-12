@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-search-result-count component
 
 describe('Search Result Count', function() {

@@ -1,4 +1,4 @@
-class RHDPSearchURL extends HTMLElement {
+export default class RHDPSearchURL extends HTMLElement {
     _uri = new URL(window.location.href); // https://developers.redhat.com/search/?q=term+term1+term2&f=a+b+c&s=sort&r=100
     _term = this.uri.searchParams.get('t');
     _filters = this._setFilters(this.uri.searchParams.getAll('f'));

@@ -1,4 +1,4 @@
-
+"use strict";
 // Query Component Unit Tests
 describe('RHDP Project Query Component', function() {
     var wc;

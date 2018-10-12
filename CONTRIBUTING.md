@@ -21,7 +21,7 @@ To fix an issue:
 
 5. Add the remote `upstream` repository so you can fetch any changes to the original forked repository.
 
-        git remote add upstream https://github.com/jboss-developer/developers.redhat.com.git
+        git remote add upstream https://github.com/redhat-developer/developers.redhat.com.git
 
 6. Get the latest files from the `upstream` repository.
 

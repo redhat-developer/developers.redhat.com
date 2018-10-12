@@ -1,4 +1,4 @@
-
+"use strict";
 // RHDP Project List Component Unit Tests
 describe('RHDP Projects Component', function() {
     var wc,

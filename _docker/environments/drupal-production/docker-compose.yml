@@ -16,8 +16,6 @@ services:
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
       - /data/drupal-logs/lightning:/var/log/httpd
       - /data/drupal/npm-cache:/root/.npm
-      - ../../../images:/var/www/drupal/web/images:ro
-      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080

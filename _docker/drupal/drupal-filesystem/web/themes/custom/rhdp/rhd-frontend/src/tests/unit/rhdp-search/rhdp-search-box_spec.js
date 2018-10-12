@@ -1,4 +1,4 @@
-
+"use strict";
 /* global RHDPSearchBox */
 // Test rhdp-search-box component
 describe('Search Box', function() {

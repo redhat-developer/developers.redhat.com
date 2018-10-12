@@ -13692,8 +13692,8 @@ rhdp-search-onebox ul.slots {
   @media (min-width: 1260px) {
     [data-rhd-grid="normal"] {
       grid-template-columns: repeat(12, [content-start] 70px) [content-end];
-      min-width: 1260px;
-      max-width: auto; } }
+      max-width: 1260px;
+      margin: 0 auto; } }
 
 [data-rhd-grid="quad"] {
   display: grid;
@@ -13754,8 +13754,11 @@ rhdp-search-onebox ul.slots {
 [data-rhd-col="5span9"] {
   grid-column: 5 / span 9; }
 
-[data-rhd-row="span5"] {
+[data-rhd-col="4span"] [data-rhd-row="span5"] {
   grid-row: span 5; }
+
+[data-rhd-row="3span6"] {
+  grid-row: 3 / span 6; }
 
 [data-rhd-row="bottom"] {
   grid-row: span bottomrow; }

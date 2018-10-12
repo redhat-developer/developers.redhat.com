@@ -1,4 +1,4 @@
-
+"use strict";
 /* global RHDPSearchApp */
 // Test rhdp-search-app component
 
