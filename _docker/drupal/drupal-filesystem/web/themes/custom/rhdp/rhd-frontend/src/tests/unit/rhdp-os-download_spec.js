@@ -1,4 +1,4 @@
-
+"use strict";
 
 describe('OS detection component', function () {
     var productCode,

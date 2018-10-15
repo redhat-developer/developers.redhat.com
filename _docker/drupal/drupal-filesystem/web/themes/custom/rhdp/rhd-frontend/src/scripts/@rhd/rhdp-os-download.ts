@@ -1,4 +1,4 @@
-class RHDPOSDownload extends HTMLElement {
+export default class RHDPOSDownload extends HTMLElement {
 
     private _productCode;
     private _productName;
@@ -13,8 +13,8 @@ class RHDPOSDownload extends HTMLElement {
 
     stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "https://developers.redhat.com/products/devsuite/hello-world/#fndtn-rhel"},
-        "cdk" : {"windowsUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl" : "https://developers.redhat.com/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64"}
+        "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
+        "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64"}
     };
 
     get url() {

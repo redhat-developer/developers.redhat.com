@@ -1,5 +1,6 @@
-class RHDPDownloadsAll extends HTMLElement {
+import RHDPDownloadsAllItem from '@rhd/rhdp-downloads/rhdp-downloads-all-item';
 
+export default class RHDPDownloadsAll extends HTMLElement {
 
     private _id;
     private _heading;
@@ -81,3 +82,5 @@ class RHDPDownloadsAll extends HTMLElement {
     }
 
 }
+
+window.customElements.define('rhdp-downloads-all', RHDPDownloadsAll);

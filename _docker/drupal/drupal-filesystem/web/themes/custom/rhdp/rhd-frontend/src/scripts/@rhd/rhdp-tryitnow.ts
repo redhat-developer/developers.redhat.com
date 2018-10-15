@@ -1,4 +1,4 @@
-class RHDPTryItNow extends HTMLElement {
+export default class RHDPTryItNow extends HTMLElement {
 
     private _title = '';
     private _subtitle = '';
@@ -111,6 +111,4 @@ class RHDPTryItNow extends HTMLElement {
 
 }
 
-window.addEventListener('WebComponentsReady', function() {
-    customElements.define('rhdp-tryitnow', RHDPTryItNow);
-});
+window.customElements.define('rhdp-tryitnow', RHDPTryItNow);

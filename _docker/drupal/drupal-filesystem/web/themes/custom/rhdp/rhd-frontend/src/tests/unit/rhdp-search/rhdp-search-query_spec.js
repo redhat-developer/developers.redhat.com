@@ -1,4 +1,4 @@
-
+"use strict";
 // Test rhdp-search-query component
 
 describe('Search Query', function() {

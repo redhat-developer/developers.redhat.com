@@ -24,8 +24,17 @@ Brew is like apt-get or yum for mac.
 [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
 
 ### Docker
+
 For Linux, follow these instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/).
-The native 'Docker for Mac' is now recommended for those working on macOS.
+
+The native 'Docker for Mac' is now recommended for those working on macOS. If you are using Docker for Mac, allocate 4GB of RAM to Docker in the Docker for Mac Preferences > Advanced. Be sure to Apply & Restart after making this change. Also, you will need to add the following entry to your `/etc/hosts` file:
+
+```
+0.0.0.0 docker
+```
+
+to make the docker host available.
+
 No one has tried development on Windows, so it is currently not known what needs to be done.
 
 The scripts assume you can run the `docker` command WITHOUT sudo.
@@ -101,6 +110,8 @@ _NOTE:_ Node.js and npm both need to be installed on the host machine, not in th
     npm install
 3. Run `$(npm bin)/gulp` in the root of the project to generate the JS and CSS files.
 
+You will need to ask a co-worker for the Fort Awesome npm config setting. You will enter an `npm config set` command so that this config value is available during the setup script.
+
 ### Start Drupal
 Run the following script:
 
@@ -108,6 +119,20 @@ Run the following script:
 
 This will fetch the database backup for Drupal, run composer and start Drupal.
 Assuming there were no errors you should be able to access Drupal at 127.0.0.1:8888.
+
+### Running Drupal after the initial setup
+
+After the initial setup, once you have terminated the PHP built-in server and when you need to run the Drupal server again, you can do so by running `drush runserver`, or `drush rs` for short. To do so, you will need to be in the follow directory:
+
+```
+_docker/drupal/drupal-filesystem/web
+```
+
+and then you can run:
+
+```
+../../vendor/bin/drush rs
+```
 
 ## Drupal Page Layout Changes (fast)
 If you are just making a change to the layout file of a Drupal page, follow these steps:
@@ -222,6 +247,15 @@ Run `bundle install` from within the `_docker` directory to download the necessa
 Run the unit tests (also available using `guard` locally).
 
       bundle exec ./control.rb -e drupal-dev -t
+      
+### To run the frontend unit-tests
+In the root of the project:
+
+      npm test
+      
+Inside docker (preferred as this is the same as PR environment). In the root of the project directory execute the following command:
+      
+      ruby _tests/run_tests.rb --unit --use-docker          
 
 ### Running the Site Export
 The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
@@ -237,40 +271,11 @@ bundle exec ./control.rb -e drupal-dev --export
 Once the export process has completed, you will be able to access the static HTML version of the site at http://docker:9000 on your machine.
 
 
-### Running Acceptance Tests (slow)
-This section explains how a developer can run the front-end Acceptance Tests.
+### To run the build related unit-tests
+In the root of the project.
 
-To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
+      bundle exec rake test
 
-    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
- 
-To run the acceptance tests against the locally running Drupal server
-
-     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker
-
-To run the acceptance tests against the remote host:
-
-    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=host_you_want_to_test
-
-There are a number of short keys that can be used to run the tests on our various environments:
-
-1. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
-2. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
-
-_NOTE:_ - Never run the acceptance tests against production.
-This can interfere with site stats! 
-We have a set of smoke tests that can be ran against production, for a quick sanity check of the site.
-Smoke tests can be executed by running the following: 
-
-    CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production
-
-When working locally, you may find it quicker to run the tests outside of docker.
-Providing you have your stack already running (if testing a local build).
-Execute the following:
-
-    rake features HOST_TO_TEST=host_you_wish_to_test
-    
-    
 ### Drupal Configuration Changes
 
 The easiest way to do this is to make the necessary changes in the UI of Drupal, then export them to the `sync` directory.

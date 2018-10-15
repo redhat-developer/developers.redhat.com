@@ -389,7 +389,7 @@
 
       // If the namespace has not been set (is undefined), try to read it out of the meta element.
       // Otherwise use the globally defined namespace, even if it's empty ('')
-      var namespace = ( this.global.namespace === undefined ) ? $('.foundation-data-attribute-namespace').css('font-family') : this.global.namespace;
+      var namespace = ( this.global.namespace === undefined ) ? '' : this.global.namespace;
 
       // Finally, if the namsepace is either undefined or false, set it to an empty string.
       // Otherwise use the namespace value.

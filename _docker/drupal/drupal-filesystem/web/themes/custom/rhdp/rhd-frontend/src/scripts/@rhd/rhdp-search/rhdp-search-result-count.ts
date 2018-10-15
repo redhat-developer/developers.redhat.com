@@ -1,4 +1,4 @@
-class RHDPSearchResultCount extends HTMLElement {
+export default class RHDPSearchResultCount extends HTMLElement {
     _count = 0;
     _term = '';
     _loading = true;

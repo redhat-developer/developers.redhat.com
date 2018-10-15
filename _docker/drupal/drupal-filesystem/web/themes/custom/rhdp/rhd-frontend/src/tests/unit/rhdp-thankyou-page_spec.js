@@ -1,4 +1,4 @@
-
+"use strict";
 
 describe('Media thank you page', function () {
     var wc;
