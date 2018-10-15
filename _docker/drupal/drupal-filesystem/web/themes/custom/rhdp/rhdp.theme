@@ -529,3 +529,15 @@ function rhdp_preprocess_assembly(&$variables) {
       $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
 }
+
+function rhdp_preprocess_views_view(&$variables) {
+  $view = $variables['view'];
+  $id = $view->storage->id();
+  if ($id == 'taxonomy_term') {
+    $variables['title'] = FALSE;
+    $title = $view->getTitle();
+    if ($title) {
+      $variables['title'] = $title;
+    }
+  }
+}
