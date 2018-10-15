@@ -223,6 +223,11 @@ function rhdp_preprocess_page(&$variables) {
 function rhdp_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'teaser' && $node->getType() == 'video_resource') {
+    $video_thumbnail_url = $node->get('field_video_thumbnail_url')->getValue();
+    $variables['video_thumbnail_url'] = ($video_thumbnail_url) ? $video_thumbnail_url[0]['value'] : FALSE;
+  }
   
   if ($node->getType() == 'author') {
     $variables['author_name'] = $node->getTitle();

@@ -89,8 +89,15 @@ content:
     weight: 5
     label: hidden
     settings:
-      link: false
-    third_party_settings: {  }
+      link: true
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_difficulty:

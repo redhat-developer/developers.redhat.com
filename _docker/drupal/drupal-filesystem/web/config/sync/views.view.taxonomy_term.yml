@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.storage.node.field_cover_image
     - field.storage.node.field_event_background_image
     - field.storage.node.field_image
@@ -229,12 +230,10 @@ display:
           default_row_class: true
           uses_fields: false
       row:
-        type: fields
+        type: 'entity:node'
         options:
-          default_field_elements: false
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: teaser
       header: {  }
       footer: {  }
       empty: {  }
