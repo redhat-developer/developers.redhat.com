@@ -1,0 +1,49 @@
+uuid: 4ff67d0d-c0d6-4708-8e63-fdf31b7f27f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_call_to_action
+    - field.field.assembly.content_call_to_action.field_content
+    - field.field.assembly.content_call_to_action.field_form
+  module:
+    - fences
+    - text
+id: assembly.content_call_to_action.default
+targetEntityType: assembly
+bundle: content_call_to_action
+mode: default
+content:
+  field_content:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_form:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  name: true
+  user_id: true

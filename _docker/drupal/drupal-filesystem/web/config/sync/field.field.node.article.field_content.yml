@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.content
+    - assembly.assembly_type.content_call_to_action
     - assembly.assembly_type.content_pull_quote
     - field.storage.node.field_content
     - node.type.article
@@ -24,6 +25,7 @@ settings:
   handler_settings:
     target_bundles:
       content: content
+      content_call_to_action: content_call_to_action
       content_pull_quote: content_pull_quote
     sort:
       field: _none

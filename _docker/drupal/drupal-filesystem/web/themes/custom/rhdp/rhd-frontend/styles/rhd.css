@@ -1908,6 +1908,41 @@ a.light-cta {
       width: 370px;
       margin-right: -300px; } }
 
+.assembly-type-content_call_to_action {
+  font-size: 12px;
+  line-height: 1.5;
+  background-color: #D5D5D4;
+  border-left: 4px solid #CC0000; }
+  @media (min-width: 1025px) {
+    .assembly-type-content_call_to_action {
+      width: 690px;
+      max-width: none; } }
+  @media (min-width: 1240px) {
+    .assembly-type-content_call_to_action {
+      width: 869px; } }
+  .assembly-type-content_call_to_action p {
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em; }
+  .assembly-type-content_call_to_action > div {
+    padding: 40px 20px;
+    position: relative;
+    top: -0.25em; }
+  .assembly-type-content_call_to_action h2 {
+    font-size: 18px;
+    margin-bottom: 0; }
+  .assembly-type-content_call_to_action p:first-child, .assembly-type-content_call_to_action ul:first-child, .assembly-type-content_call_to_action ol:first-child, .assembly-type-content_call_to_action h1:first-child, .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action h3:first-child, .assembly-type-content_call_to_action h4:first-child, .assembly-type-content_call_to_action .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action h5:first-child, .assembly-type-content_call_to_action h6:first-child {
+    margin-top: 0; }
+  .assembly-type-content_call_to_action p:last-child, .assembly-type-content_call_to_action ul:last-child, .assembly-type-content_call_to_action ol:last-child, .assembly-type-content_call_to_action h1:last-child, .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action h3:last-child, .assembly-type-content_call_to_action h4:last-child, .assembly-type-content_call_to_action .page-node-type-books .disqus-thread-wrapper h2:last-child, .page-node-type-books .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action .page-node-type-cheat-sheet .disqus-thread-wrapper h2:last-child, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action .page-node-type-video-resource .disqus-thread-wrapper h2:last-child, .page-node-type-video-resource .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action h5:last-child, .assembly-type-content_call_to_action h6:last-child {
+    margin-bottom: 0; }
+  .assembly-type-content_call_to_action .assembly {
+    background-color: transparent; }
+  .assembly-type-content_call_to_action .iframe-container {
+    padding: 0;
+    margin: -10px;
+    width: auto; }
+
 .assembly[data-audience] {
   display: none; }
 

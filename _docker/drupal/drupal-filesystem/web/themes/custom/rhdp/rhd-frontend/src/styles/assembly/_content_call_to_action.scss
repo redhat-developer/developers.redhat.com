@@ -1,0 +1,44 @@
+.assembly-type-content_call_to_action {
+  font-size: 12px;
+  line-height: 1.5;
+  background-color: #D5D5D4;
+  border-left: 4px solid #CC0000;
+  @media (min-width: 1025px) {
+    width: 690px;
+    max-width: none;
+  }
+  @include desktop-large {
+    width: 869px;
+  }
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+  > div {
+    padding: 40px 20px;
+    position: relative;
+    top: -0.25em;
+  }
+  h2 {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  p, ul, ol, h1, h2, h3, h4, h5, h6 {
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .assembly {
+    background-color: transparent;
+  }
+  .iframe-container {
+    padding: 0;
+    margin: -10px;
+    width: auto;
+  }
+}
