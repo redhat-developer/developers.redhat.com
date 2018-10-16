@@ -1,0 +1,23 @@
+uuid: 1a31e9a5-c13c-47f2-9881-31aa14ad5e3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_video
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.content_video.field_url
+field_name: field_url
+entity_type: assembly
+bundle: content_video
+label: 'Video URL'
+description: 'Enter only the video URL to be embedded.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

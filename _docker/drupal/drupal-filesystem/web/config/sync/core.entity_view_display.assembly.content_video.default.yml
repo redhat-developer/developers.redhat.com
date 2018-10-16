@@ -1,0 +1,39 @@
+uuid: 9812ba5c-1d9c-4e4f-b682-14f3dfda3dce
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_video
+    - field.field.assembly.content_video.field_audience_selection
+    - field.field.assembly.content_video.field_url
+  module:
+    - fences
+    - link
+id: assembly.content_video.default
+targetEntityType: assembly
+bundle: content_video
+mode: default
+content:
+  field_url:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: true
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+hidden:
+  field_audience_selection: true
+  name: true
+  user_id: true
