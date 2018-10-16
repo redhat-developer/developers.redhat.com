@@ -33,16 +33,25 @@ button, .button {
       &:hover, &:focus {
         background-color: darken( $white, 6% );
       }
+      &.bordered {
+        border: 1px solid $red;
+      }
     }
     &.black {
       background:$black;
       color:$white;
+      &.bordered {
+        border: 1px solid $white;
+      }
     }
     &.blue {
       background:$blue;
       color:$white;
       &:hover, &:focus {
         background-color: darken( $blue, 6% );
+      }
+      &.bordered {
+        border: 1px solid $white;
       }
     }
 
@@ -121,8 +130,8 @@ a.button[href$=".pdf"],
 a.heavy-cta[href$=".pdf"],
 a.medium-cta[href$=".pdf"],
 .heavy-cta a[href$=".pdf"],
-.medium-cta a[href$=".pdf"], 
-.f-dropdown a[href$=".pdf"]{ 
+.medium-cta a[href$=".pdf"],
+.f-dropdown a[href$=".pdf"]{
   .fa-file-pdf {
     display: none;
   }

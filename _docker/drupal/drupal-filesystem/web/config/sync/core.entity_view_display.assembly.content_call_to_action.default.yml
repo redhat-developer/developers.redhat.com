@@ -4,16 +4,25 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.content_call_to_action
+    - field.field.assembly.content_call_to_action.field_audience_selection
     - field.field.assembly.content_call_to_action.field_content
     - field.field.assembly.content_call_to_action.field_form
   module:
     - fences
+    - options
     - text
 id: assembly.content_call_to_action.default
 targetEntityType: assembly
 bundle: content_call_to_action
 mode: default
 content:
+  field_audience_selection:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_content:
     weight: 0
     label: hidden

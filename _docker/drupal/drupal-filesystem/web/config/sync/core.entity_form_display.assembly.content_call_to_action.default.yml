@@ -4,10 +4,10 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.content_call_to_action
+    - field.field.assembly.content_call_to_action.field_audience_selection
     - field.field.assembly.content_call_to_action.field_content
     - field.field.assembly.content_call_to_action.field_form
   module:
-    - content_moderation
     - entity_browser_entity_form
     - inline_entity_form
     - text
@@ -16,8 +16,14 @@ targetEntityType: assembly
 bundle: content_call_to_action
 mode: default
 content:
+  field_audience_selection:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_content:
-    weight: 5
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -25,7 +31,7 @@ content:
     type: text_textarea
     region: content
   field_form:
-    weight: 6
+    weight: 5
     settings:
       form_mode: default
       label_singular: ''
@@ -42,12 +48,6 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 4
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -58,19 +58,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 2
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  user_id:
-    type: entity_reference_autocomplete
-    weight: 2
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
     third_party_settings: {  }
   visual_styles:
     type: options_select
@@ -79,4 +70,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  moderation_state: true
+  user_id: true

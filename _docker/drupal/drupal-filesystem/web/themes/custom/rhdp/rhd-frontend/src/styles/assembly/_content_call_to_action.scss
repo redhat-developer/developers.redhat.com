@@ -41,4 +41,56 @@
     margin: -10px;
     width: auto;
   }
+  &.sidebar {
+    margin-bottom: 15px;
+    border-left: none;
+    padding: 0;
+    position: relative;
+    font-size: 13px;
+    line-height: 19px;
+    h2 {
+      font-size: 27px;
+      line-height: 42px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 13px;
+      line-height: 19px;
+      margin: 15px 0;
+    }
+    .align-center {
+      text-align: center;
+    }
+    .button {
+      display: block;
+    }
+    @include tablet-landscape {
+      float: right;
+      z-index: 99;
+      width: 239px;
+      margin: 15px 0 15px 15px;
+      > div {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 35px;
+        margin-bottom: 15px;
+      }
+    }
+    @include desktop-small {
+      margin: 0 -245px 0 0;
+      > div {
+        padding: 40px 20px;
+      }
+      h2 {
+        font-size: 27px;
+        line-height: 42px;
+      }
+    }
+    @include desktop-large {
+      width: 270px;
+      margin: 0 -300px 0 0;
+    }
+  }
 }
