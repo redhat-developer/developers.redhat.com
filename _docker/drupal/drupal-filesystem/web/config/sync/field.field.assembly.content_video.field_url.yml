@@ -12,8 +12,8 @@ field_name: field_url
 entity_type: assembly
 bundle: content_video
 label: 'Video URL'
-description: 'Enter only the video URL to be embedded.'
-required: false
+description: "Enter only the video URL to be embedded. \r\n<li>Accepts YouTube and Vimeo URLs.</li>\r\n<b>Format:<b>\r\n<ul><li>https://www.youtube.com/watch?v=ZxpY_zZ52kU</li>\r\n<li>https://vimeo.com/68543392</li></ul>"
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
