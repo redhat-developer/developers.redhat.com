@@ -512,6 +512,31 @@ function rhdp_preprocess_assembly(&$variables) {
       $eloqua_assembly_id = $assembly->id();
       $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
+    
+    if ($type == 'content_video') {
+      $field_url = $assembly->get('field_url')->getValue();
+      $video_uri = $field_url[0]['uri'];
+      $variables['video_embed_url'] = FALSE;
+      if ($video_uri) {
+        if (preg_match('%embed%i', $video_uri) || preg_match('%player%i', $video_uri)) { //check for direct embed link
+          $variables['video_embed_url'] = $video_uri;
+        }
+        elseif (preg_match('%youtube|youtu\.be%i', $video_uri)) { //YouTube
+          parse_str( parse_url( $video_uri, PHP_URL_QUERY ), $youtube_params );
+          $youtube_id = $youtube_params['v'];
+          $variables['youtube_id'] = $youtube_id;
+          $variables['video_embed_url'] = "http://youtube.com/embed/$youtube_id?autoplay=0&amp;rel=0";
+        }
+        elseif (preg_match('%vimeo%i', $video_uri)) { //Vimeo
+          $url_parts = explode("/", $video_uri);
+          $url_end = end($url_parts);
+          $url_end_split = preg_split("/(\?|\=|\&)/", $url_end);
+          $vimeo_id = ($url_end_split) ? $url_end_split[0] : $url_end;
+          $variables['video_embed_url'] = "http://player.vimeo.com/video/$vimeo_id?byline=0&amp;portrait=0&amp;autoplay=0";;
+        }
+      }
+    }
+
 }
 
 function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {

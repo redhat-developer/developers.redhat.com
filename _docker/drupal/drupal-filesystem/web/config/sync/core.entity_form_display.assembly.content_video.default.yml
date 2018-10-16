@@ -1,0 +1,48 @@
+uuid: 27537ed8-a377-42c2-9e22-ed3aa0b1fd1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_video
+    - field.field.assembly.content_video.field_audience_selection
+    - field.field.assembly.content_video.field_url
+  module:
+    - link
+id: assembly.content_video.default
+targetEntityType: assembly
+bundle: content_video
+mode: default
+content:
+  field_audience_selection:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_url:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true
