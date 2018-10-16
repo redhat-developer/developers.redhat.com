@@ -1,8 +1,0 @@
-.row
-  .large-6.columns
-    a href="#{page.video.detail_url}"
-      img(src="#{page.video.thumb_url}" alt="Video Thumbnail")
-    .label.material-duration=page.video.duration.strftime('%M:%S')
-  .large-18.columns
-    h4: a href="#{page.video.detail_url}" #{page.video.title}
-    .body: p #{page.video.description}
