@@ -1,0 +1,8 @@
+.assembly-type-content_image {
+  @include desktop-small {
+    width: 158%;
+  }
+  @include desktop-small-and-down {
+    width: 100%;
+  }
+}
