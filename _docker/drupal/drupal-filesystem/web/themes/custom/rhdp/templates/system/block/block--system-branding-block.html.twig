@@ -15,15 +15,15 @@
 {% set attributes = attributes.addClass('site-branding') %}
 {% block content %}
   {% if site_logo %}
-    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="rhd-header-logo" id="home-link">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+    <a href="{{ path('<front>') }}" title="{{ 'Cloud Training for Developers and Developer Tools'|t }}" rel="home" class="rhd-header-logo" id="home-link">
+      <img src="{{ site_logo }}" alt="{{ 'Cloud Training for Developers and Developer Tools'|t }}" />
     </a>
   {% endif %}
   {% if site_name or site_slogan %}
     <div class="site-branding__text">
       {% if site_name %}
         <div class="site-branding__name">
-          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" id="home-link">{{ site_name }}</a>
+          <a href="{{ path('<front>') }}" title="{{ 'Cloud Training for Developers and Developer Tools'|t }}" rel="home" id="home-link">{{ site_name }}</a>
         </div>
       {% endif %}
       {% if site_slogan %}
