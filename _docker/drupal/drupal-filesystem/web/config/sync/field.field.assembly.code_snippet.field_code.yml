@@ -1,0 +1,19 @@
+uuid: 95648010-bb2e-497a-a44e-38bce0d723fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.code_snippet
+    - field.storage.assembly.field_code
+id: assembly.code_snippet.field_code
+field_name: field_code
+entity_type: assembly
+bundle: code_snippet
+label: Code
+description: 'Enter code that will be rendered and formatted nicely via Highlight.js.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

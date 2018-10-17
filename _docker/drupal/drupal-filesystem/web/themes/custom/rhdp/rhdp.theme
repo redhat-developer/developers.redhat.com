@@ -512,6 +512,12 @@ function rhdp_preprocess_assembly(&$variables) {
       $eloqua_assembly_id = $assembly->id();
       $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
+
+    if ($assembly->hasField('field_code')) {
+      $field_code = $assembly->get('field_code')->getValue()[0]['value'];
+	  $variables['code'] = $field_code;
+      $variables['#attached']['library'][] = 'rhdp/highlight-js';
+    }
 }
 
 function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
