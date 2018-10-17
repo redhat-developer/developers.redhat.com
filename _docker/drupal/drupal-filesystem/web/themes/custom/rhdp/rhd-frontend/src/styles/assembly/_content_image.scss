@@ -1,8 +1,9 @@
 .assembly-type-content_image {
-  @include desktop-small {
-    width: 158%;
+  @media (min-width: 1025px) {
+    width: 690px;
+    max-width: none;
   }
-  @include desktop-small-and-down {
-    width: 100%;
+  @include desktop-large {
+    width: 869px;
   }
 }
