@@ -5,11 +5,13 @@ dependencies:
   config:
     - assembly.assembly_type.featured_products
     - field.field.assembly.featured_products.field_audience_selection
+    - field.field.assembly.featured_products.field_cta_link
     - field.field.assembly.featured_products.field_navigation_title
     - field.field.assembly.featured_products.field_products
     - field.field.assembly.featured_products.field_title
   module:
     - content_moderation
+    - link
 id: assembly.featured_products.default
 targetEntityType: assembly
 bundle: featured_products
@@ -20,6 +22,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_cta_link:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_navigation_title:
     weight: 6
@@ -47,7 +57,7 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
