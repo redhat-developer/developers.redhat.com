@@ -1,16 +1,16 @@
-uuid: 27537ed8-a377-42c2-9e22-ed3aa0b1fd1c
+uuid: bef6283c-036b-4f81-a88c-56ca2ad56d00
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.content_video
-    - field.field.assembly.content_video.field_audience_selection
-    - field.field.assembly.content_video.field_url
+    - assembly.assembly_type.embedded_content
+    - field.field.assembly.embedded_content.field_audience_selection
+    - field.field.assembly.embedded_content.field_url
   module:
     - link
-id: assembly.content_video.default
+id: assembly.embedded_content.default
 targetEntityType: assembly
-bundle: content_video
+bundle: embedded_content
 mode: default
 content:
   field_audience_selection:

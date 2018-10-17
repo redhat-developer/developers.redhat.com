@@ -1,16 +1,16 @@
-uuid: e02f0349-6428-43e9-b263-d523aceae58c
+uuid: fdb8053a-985b-4457-9e69-423b6c58a83f
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.content_video
+    - assembly.assembly_type.embedded_content
     - field.storage.assembly.field_audience_selection
   module:
     - options
-id: assembly.content_video.field_audience_selection
+id: assembly.embedded_content.field_audience_selection
 field_name: field_audience_selection
 entity_type: assembly
-bundle: content_video
+bundle: embedded_content
 label: 'Audience Selection'
 description: ''
 required: false

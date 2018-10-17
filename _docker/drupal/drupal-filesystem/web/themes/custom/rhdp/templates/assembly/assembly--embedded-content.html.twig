@@ -1,0 +1,6 @@
+{% if embed_url|render %}
+  <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+    <a href="{{ embed_url }}" data-iframely-url></a>
+  </section>
+  <script async charset="utf-8" src="//cdn.iframe.ly/embed.js?key=71b6124e790b6d7e8cdcba47b2a69ccb"></script>
+{% endif %}

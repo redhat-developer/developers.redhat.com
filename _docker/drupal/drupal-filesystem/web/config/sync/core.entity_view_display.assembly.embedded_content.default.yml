@@ -1,17 +1,17 @@
-uuid: 9812ba5c-1d9c-4e4f-b682-14f3dfda3dce
+uuid: e727eadd-cd02-4b77-9028-a3b212768c73
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.content_video
-    - field.field.assembly.content_video.field_audience_selection
-    - field.field.assembly.content_video.field_url
+    - assembly.assembly_type.embedded_content
+    - field.field.assembly.embedded_content.field_audience_selection
+    - field.field.assembly.embedded_content.field_url
   module:
     - fences
     - link
-id: assembly.content_video.default
+id: assembly.embedded_content.default
 targetEntityType: assembly
-bundle: content_video
+bundle: embedded_content
 mode: default
 content:
   field_url:

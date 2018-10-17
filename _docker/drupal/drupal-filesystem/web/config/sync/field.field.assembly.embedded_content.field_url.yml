@@ -1,0 +1,23 @@
+uuid: 56485948-3a60-4265-8863-f059f8469e0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.embedded_content
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.embedded_content.field_url
+field_name: field_url
+entity_type: assembly
+bundle: embedded_content
+label: 'Embed URL'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

@@ -5,7 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.content
     - assembly.assembly_type.content_pull_quote
-    - assembly.assembly_type.content_video
+    - assembly.assembly_type.embedded_content
     - field.storage.node.field_content
     - node.type.article
   module:
@@ -26,7 +26,7 @@ settings:
     target_bundles:
       content: content
       content_pull_quote: content_pull_quote
-      content_video: content_video
+      embedded_content: embedded_content
     sort:
       field: _none
     auto_create: false
