@@ -6,10 +6,12 @@ dependencies:
     - assembly.assembly_type.static_content_band
     - field.field.assembly.static_content_band.field_audience_selection
     - field.field.assembly.static_content_band.field_content_list
+    - field.field.assembly.static_content_band.field_cta_link
     - field.field.assembly.static_content_band.field_navigation_title
     - field.field.assembly.static_content_band.field_title
   module:
     - fences
+    - rhd_assemblies
 id: assembly.static_content_band.default
 targetEntityType: assembly
 bundle: static_content_band
@@ -23,6 +25,26 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: '80'
+      class: 'button medium-cta blue'
+      url_only: false
+      url_plain: false
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: cta-link
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
     region: content
   field_title:
     weight: 0
