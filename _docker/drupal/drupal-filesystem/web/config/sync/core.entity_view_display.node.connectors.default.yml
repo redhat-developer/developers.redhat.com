@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.connectors.field_connector_details_url
     - field.field.node.connectors.field_connector_id
+    - field.field.node.connectors.field_connector_image
     - field.field.node.connectors.field_connector_link_1
     - field.field.node.connectors.field_connector_link_1_text
     - field.field.node.connectors.field_connector_link_2
@@ -52,6 +53,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_connector_image:
+    type: entity_reference_entity_view
+    weight: 13
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
     region: content
   field_connector_link_1:
     weight: 9
