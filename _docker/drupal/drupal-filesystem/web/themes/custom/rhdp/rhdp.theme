@@ -295,6 +295,11 @@ function rhdp_preprocess_node(&$variables) {
     $node_title = $node->label();
     $variables['node_title'] = str_replace('"', '', $node_title);
   }
+  
+  if ($node->getType() == 'events' && $variables['view_mode'] == 'teaser') {
+    $node_title = $node->label();
+    $variables['node_title'] = str_replace('"', '', $node_title);
+  }
 
   if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
     $product_code = $node->get('field_product_machine_name')->getValue();
