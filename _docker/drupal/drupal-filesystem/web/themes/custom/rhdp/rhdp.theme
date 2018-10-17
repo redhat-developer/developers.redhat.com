@@ -291,6 +291,11 @@ function rhdp_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 
+  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'tile') {
+    $node_title = $node->label();
+    $variables['node_title'] = str_replace('"', '', $node_title);
+  }
+
   if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
     $product_code = $node->get('field_product_machine_name')->getValue();
     if (count($product_code)) {
