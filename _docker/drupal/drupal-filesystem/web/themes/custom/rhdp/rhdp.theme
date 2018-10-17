@@ -513,3 +513,13 @@ function rhdp_preprocess_assembly(&$variables) {
       $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
 }
+
+function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
+  // Replace Twig HTML comments and unwanted whitespace from the Twig title
+  // variable.
+  $variables['title'] = preg_replace(
+    '/(<!--(.)+-->|\s)/',
+    '',
+    $variables['title']
+  );
+}

@@ -11,7 +11,10 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
-    <img src="{{ content.field_tile_thumbnail }}"/>
+    <img{{create_attribute{(
+        'src': content.field_tile_thumbnail['#items'][0].value
+      )}
+    }}
     <h3 class="tile-title">{{ event_title }}</h3>
   </a>
 </article>
