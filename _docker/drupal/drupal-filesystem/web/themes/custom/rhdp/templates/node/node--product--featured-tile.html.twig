@@ -13,7 +13,7 @@
   </a>
     {{ content.field_short_description }}
     {% if cta_url %}
-      <a class="button medium-cta" href="{{ cta_url }}">{{ cta_title }}</a>
+      <a class="button medium-cta" href="{{ cta_url['#markup'] }}">{{ cta_title }}</a>
     {% endif %}
   </a>
 </article>

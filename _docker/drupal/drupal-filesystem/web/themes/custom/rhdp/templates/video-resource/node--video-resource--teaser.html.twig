@@ -11,7 +11,11 @@
         <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
     </div>
     <div class="rhd-list-entry--image">
-        <img src="{{ content.field_video_thumbnail_url }}" alt="Video Thumbnail">
+        <img{{create_attribute({
+            'src': content.field_video_thumbnail_url['#items'][0].value,
+            'alt': 'Video Thumbnail'
+          })
+        }} />
         <div class="rhd-play-button"><span>►</span></div>
     </div>
     <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>

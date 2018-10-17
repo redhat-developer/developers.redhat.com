@@ -14,7 +14,10 @@
     <div class="tile-image">
       <div class="image-table">
         <div class="image-cell">
-          <img src="{{ content.field_video_thumbnail_url }}"/>
+          <img{{create_attribute({
+              'src': content.field_video_thumbnail_url['#items'][0].value
+            })
+          }} />
           <div class="play-button">►</div>
         </div>
       </div>
