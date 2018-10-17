@@ -79,28 +79,47 @@ function rhd_common_form_node_books_edit_form_alter(&$form, FormStateInterface $
  */
 function add_books_validations(array &$form, FormStateInterface $form_state)
 {
-  // Simple validation to test that the end date is after the start date
+  // Retrieve the value of the ISBN field in the form state.
   $isbn_number = $form_state->getValue('field_isbn')[0]['value'];
+
   if (!is_numeric($isbn_number) && !empty($isbn_number))
   {
-    $form_state->setErrorByName('field_isbn', t('The ISBN field must be a number!')); // Create the error
+    // Set an error if the ISBN value is set and isn't numeric.
+    $form_state->setErrorByName(
+      'field_isbn',
+      t('The ISBN field must be a number!')
+    );
   }
   if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number))
   {
-    $form_state->setErrorByName('field_isbn', t('The ISBN field must be a valid 10 or 13 digit number!')); // Create the error
+    // Set an error if the ISBN value is set and isn't 10 or 13 digits.
+    $form_state->setErrorByName(
+      'field_isbn',
+      t('The ISBN field must be a valid 10 or 13 digit number!')
+    );
   }
 
-  // Checks for books that need pages
+  // Checks for books that need pages.
   $needs_own_page_value = (bool) $form_state->getValue('field_needs_own_page')['value'];
+  // Determines if the moderation state is 'published'.
+  $is_published = ($form_state->getValue('moderation_state')[0]['value'] === 'published');
 
-  if ($needs_own_page_value === TRUE) {
+  // If the Needs Own Page field is checked and the node is published, verify
+  // the Book Excerpt and PDF Link fields are not empty.
+  if ($needs_own_page_value === TRUE && $is_published === TRUE) {
     if (empty($form_state->getValue('field_book_excerpt')[0]['value'])) {
-      $form_state->setErrorByName('field_book_excerpt',
-        t('Book excerpt is required'));
+      // Set an error if the Book Excerpt field is empty.
+      $form_state->setErrorByName(
+        'field_book_excerpt',
+        t('Book excerpt is required')
+      );
     }
     if (empty($form_state->getValue('field_pdf_link')[0]['uri'])) {
-      $form_state->setErrorByName('field_pdf_link',
-        t('PDF link is required'));
+      // Set an error if the PDF Link field is empty.
+      $form_state->setErrorByName(
+        'field_pdf_link',
+        t('PDF link is required')
+      );
     }
   }
 }
