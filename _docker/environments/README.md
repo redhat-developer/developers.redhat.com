@@ -11,9 +11,6 @@ The environments supported by the RHDP project are as follows:
 * drupal-staging: The new staging environment for Drupal version of developers.redhat.com
 * drupal-production: The new production environment for Drupal version of developers.redhat.com
 
-Additionally we have 'awestuct-staging' and 'awestruct-production'. These environments are used by Jenkins to run
-Awestruct against the staging and production Drupal instances. 
-
 ### Per-environment docker-compose.yml
 
 Each environment has its own docker-compose.yml file. The service definitions within these files may vary depending on
@@ -51,5 +48,4 @@ The port Drupal runs on is required as part of the Awestruct process that pushes
 it until we start the Drupal container. Therefore it is necessary to create the `drupal-pull-request/rhd.settings.yml` 
 file each time we run a build in the `drupal-pull-request` environment.
 
-For this very reason, `drupal-pull-request/rhd.settings.yml` should not be checked in to Git. A .gitignore directive in
-the `drupal-pull-request` directory should prevent this.
+For this very reason, `drupal-pull-request/rhd.settings.yml` should not be checked in to Git. A .gitignore directive in the `drupal-pull-request` directory should prevent this.

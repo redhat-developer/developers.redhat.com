@@ -545,4 +545,12 @@ function rhdp_preprocess_views_view(&$variables) {
       $variables['title'] = $title;
     }
   }
+function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
+  // Replace Twig HTML comments and unwanted whitespace from the Twig title
+  // variable.
+  $variables['title'] = preg_replace(
+    '/(<!--(.)+-->|\s)/',
+    '',
+    $variables['title']
+  );
 }
