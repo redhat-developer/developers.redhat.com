@@ -20,10 +20,6 @@ app.connectors = {
         $('.overlay-content').empty();
     },
 
-    fallbackImage: function (el) {
-        el.src = "#{cdn( site.base_url + '/images/design/default_connector_200x150.png')}";
-    },
-
     hideCodeSnippetIfEmpty: function (snippet_elem) {
         var snippet_value = snippet_elem.find('.snippet-value');
         if (!snippet_value.val()) {
@@ -152,8 +148,10 @@ app.connectors = {
         for (var i = 0; i < hits.length; i++) {
             var props = hits[i]._source;
 
-            props.img_path_thumb = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = app.connectors.fallbackImage(this);
+            // Set the img_path_thumb to the DCP thumbnail endpoint, and set the
+            // fallback image to the thumbnail on static.jboss.org.
+            props.img_path_thumb = props.thumbnail__target_id;
+            props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
 
             //If no 'long description', use the short one (before it is truncated)
             if (!('sys_content' in props)) {
