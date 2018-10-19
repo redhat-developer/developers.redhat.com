@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.code_snippet
     - field.field.assembly.code_snippet.field_audience_selection
     - field.field.assembly.code_snippet.field_code
+    - field.field.assembly.code_snippet.field_programming_language
   module:
     - options
 id: assembly.code_snippet.default
@@ -26,6 +27,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_programming_language:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
 hidden:
   name: true

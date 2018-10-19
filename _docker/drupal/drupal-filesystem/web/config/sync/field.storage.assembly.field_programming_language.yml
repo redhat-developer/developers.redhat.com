@@ -1,0 +1,204 @@
+uuid: 21ad7b73-6b19-4e14-98cf-20d3f1cec32f
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_programming_language
+field_name: field_programming_language
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: accesslog
+      label: 'Access logs'
+    -
+      value: apache
+      label: Apache
+    -
+      value: applescript
+      label: AppleScript
+    -
+      value: asciidoc
+      label: AsciiDoc
+    -
+      value: awk
+      label: Awk
+    -
+      value: bash
+      label: Bash
+    -
+      value: basic
+      label: Basic
+    -
+      value: csharp
+      label: 'C#'
+    -
+      value: cpp
+      label: C++
+    -
+      value: cmake
+      label: CMake
+    -
+      value: css
+      label: CSS
+    -
+      value: clojure
+      label: Clojure
+    -
+      value: coffeescript
+      label: CoffeeScript
+    -
+      value: crystal
+      label: Crystal
+    -
+      value: d
+      label: D
+    -
+      value: dns
+      label: 'DNS Zone file'
+    -
+      value: dos
+      label: DOS
+    -
+      value: diff
+      label: Diff
+    -
+      value: django
+      label: Django
+    -
+      value: dockerfile
+      label: Dockerfile
+    -
+      value: dsconfig
+      label: dsconfig
+    -
+      value: elm
+      label: Elm
+    -
+      value: erlang
+      label: Erlang
+    -
+      value: fsharp
+      label: 'F#'
+    -
+      value: fortran
+      label: Fortran
+    -
+      value: gcode
+      label: G-Code
+    -
+      value: golang
+      label: Go
+    -
+      value: gradle
+      label: Gradle
+    -
+      value: groovy
+      label: Groovy
+    -
+      value: xhtml
+      label: 'HTML, XML'
+    -
+      value: http
+      label: HTTP
+    -
+      value: haml
+      label: Haml
+    -
+      value: handlebars
+      label: Handlebars
+    -
+      value: haskell
+      label: Haskell
+    -
+      value: ini
+      label: Ini
+    -
+      value: json
+      label: JSON
+    -
+      value: java
+      label: Java
+    -
+      value: javascript
+      label: JavaScript
+    -
+      value: less
+      label: Less
+    -
+      value: lisp
+      label: Lisp
+    -
+      value: makefile
+      label: Makefile
+    -
+      value: markdown
+      label: Markdown
+    -
+      value: nginx
+      label: Nginx
+    -
+      value: objectivec
+      label: 'Objective C'
+    -
+      value: php
+      label: PHP
+    -
+      value: perl
+      label: Perl
+    -
+      value: powershell
+      label: PowerShell
+    -
+      value: puppet
+      label: Puppet
+    -
+      value: python
+      label: Python
+    -
+      value: ruby
+      label: Ruby
+    -
+      value: rust
+      label: Rust
+    -
+      value: scss
+      label: SCSS
+    -
+      value: sql
+      label: SQL
+    -
+      value: scala
+      label: Scala
+    -
+      value: shell
+      label: Shell
+    -
+      value: swift
+      label: Swift
+    -
+      value: twig
+      label: Twig
+    -
+      value: typescript
+      label: TypeScript
+    -
+      value: vbnet
+      label: VB.Net
+    -
+      value: vbscript
+      label: VBScript
+    -
+      value: vim
+      label: 'Vim Script'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

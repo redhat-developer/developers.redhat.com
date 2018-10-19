@@ -513,10 +513,15 @@ function rhdp_preprocess_assembly(&$variables) {
       $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
     }
 
-    if ($assembly->hasField('field_code')) {
+    if ($assembly->hasField('field_code') && $type == 'code_snippet') {
       $field_code = $assembly->get('field_code')->getValue()[0]['value'];
 	  $variables['code'] = $field_code;
       $variables['#attached']['library'][] = 'rhdp/highlight-js';
+    }
+
+    if ($assembly->hasField('field_programming_language') && $type == 'code_snippet') {
+        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
+        $variables['language'] = isset($language) ? $language : '';
     }
 }
 
