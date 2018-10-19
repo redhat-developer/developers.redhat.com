@@ -17,6 +17,6 @@
 #}
 <div{{ attributes.addClass('assembly') }}>
   {% if code %}
-    <pre><code>{{ code }}</code></pre>
+    <pre><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
   {% endif %}
 </div>
