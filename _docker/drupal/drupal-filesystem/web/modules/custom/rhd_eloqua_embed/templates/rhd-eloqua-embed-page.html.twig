@@ -60,20 +60,24 @@
       $.when(dynamicForm.Util.CheckPlugins()).then(function() {
         dynamicForm.Start({{eloqua_json|raw}});
       });
-      var targetNode = document.getElementById('GatedFormContainer');
-      var config = { childList: true };
-      var callback = function(mutationsList, observer) {
-        for(var mutation of mutationsList) {
-          if (mutation.type == 'childList'
-              && mutation.addedNodes.length > 0
-              && mutation.addedNodes[0]['id'] == 'DynamicFormThankYou'
-          ) {
-            window.top.location.replace('http://duckduckgo.com');
-          }
-        }
-      };
-      var observer = new MutationObserver(callback);
-      observer.observe(targetNode, config);
     </script>
+    {% if redirect_url %}
+      <script>
+        var targetNode = document.getElementById('GatedFormContainer');
+        var config = { childList: true };
+        var callback = function(mutationsList, observer) {
+          for(var mutation of mutationsList) {
+            if (mutation.type == 'childList'
+                && mutation.addedNodes.length > 0
+                && mutation.addedNodes[0]['id'] == 'DynamicFormThankYou'
+            ) {
+              window.top.location.replace('{{ redirect_url }}');
+            }
+          }
+        };
+        var observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
+      </script>
+    {% endif %}
   </body>
 </html>
