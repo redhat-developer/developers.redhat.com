@@ -46,12 +46,24 @@
       .cta #GatedFormContainer .control-label.required, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>.required:not([type=hidden]):first-child {
         text-align: left;
       }
+      .inline #GatedFormContainer .col-sm-10.controls, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
+        margin-left: 0;
+      }
+      .inline #GatedFormContainer .form-content::after {
+        content: none;
+      }
       @media (min-width: 701px) {
         .inline #GatedFormContainer .form-content {
           display: flex;
+          justify-content: space-between;
+        }
+        .inline #GatedFormContainer .col-sm-10.controls {
+          margin-left: 0;
         }
         #GatedFormContainer #validationMessages:not(:empty), #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child, #GatedFormContainer .form-footer>.form-group div:not([type=hidden]):first-child {
           width: auto;
+          margin-left: 0;
+          max-width: none;
         }
       }
     </style>
