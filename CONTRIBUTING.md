@@ -54,13 +54,13 @@ To fix an issue:
         
    * Apply those changes to your branch
    
-        git rebase upstream/master
+        git merge upstream/master
         
    * If anyone has commited changes to files that you have also changed, you may see conflicts. 
-   Resolve the conflicted files, add them using `git add`, and continue the rebase:
+   Resolve the conflicted files, add them using `git add`, and continue the merge:
    
         git add <conflicted-file-name>
-        git rebase --continue
+        git merge --continue
         
    * If there were conflicts, it is a good idea to test your changes again to make they still work.
         
