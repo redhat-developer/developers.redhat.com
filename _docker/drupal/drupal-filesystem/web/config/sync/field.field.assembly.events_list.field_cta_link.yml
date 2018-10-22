@@ -1,0 +1,23 @@
+uuid: f6817232-0726-4174-9331-acca6c569325
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_list
+    - field.storage.assembly.field_cta_link
+  module:
+    - link
+id: assembly.events_list.field_cta_link
+field_name: field_cta_link
+entity_type: assembly
+bundle: events_list
+label: 'CTA Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
