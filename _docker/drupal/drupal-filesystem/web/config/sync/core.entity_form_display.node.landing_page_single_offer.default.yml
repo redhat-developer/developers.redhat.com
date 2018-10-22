@@ -7,14 +7,48 @@ dependencies:
     - field.field.node.landing_page_single_offer.field_form
     - field.field.node.landing_page_single_offer.field_meta_tags
     - field.field.node.landing_page_single_offer.field_sections
+    - field.field.node.landing_page_single_offer.field_tax_audience_segment
+    - field.field.node.landing_page_single_offer.field_tax_business_unit
+    - field.field.node.landing_page_single_offer.field_tax_campaign
+    - field.field.node.landing_page_single_offer.field_tax_lifecycle
+    - field.field.node.landing_page_single_offer.field_tax_product
+    - field.field.node.landing_page_single_offer.field_tax_product_line
+    - field.field.node.landing_page_single_offer.field_tax_project
+    - field.field.node.landing_page_single_offer.field_tax_promotion
+    - field.field.node.landing_page_single_offer.field_tax_region
+    - field.field.node.landing_page_single_offer.field_tax_stage
     - node.type.landing_page_single_offer
   module:
     - content_moderation
     - entity_browser_entity_form
+    - field_group
     - inline_entity_form
     - metatag
     - path
     - text
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 id: node.landing_page_single_offer.default
 targetEntityType: node
 bundle: landing_page_single_offer
@@ -76,6 +110,66 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
+    region: content
+  field_tax_audience_segment:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_business_unit:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_campaign:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_lifecycle:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product_line:
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_project:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_promotion:
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_region:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_stage:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   moderation_state:
     type: moderation_state_default

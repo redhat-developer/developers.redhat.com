@@ -1,0 +1,20 @@
+uuid: 40dc9c28-775a-46b1-ae59-d02f79880b7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_tax_project
+field_name: field_tax_project
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

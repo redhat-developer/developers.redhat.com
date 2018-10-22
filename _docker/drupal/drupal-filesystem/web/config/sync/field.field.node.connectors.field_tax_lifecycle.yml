@@ -1,0 +1,29 @@
+uuid: 28f1dbcb-d27c-4ed9-89f4-75d6bdf4b491
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_lifecycle
+    - node.type.connectors
+    - taxonomy.vocabulary.lifecycle
+id: node.connectors.field_tax_lifecycle
+field_name: field_tax_lifecycle
+entity_type: node
+bundle: connectors
+label: 'Lifecycle'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lifecycle: lifecycle
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

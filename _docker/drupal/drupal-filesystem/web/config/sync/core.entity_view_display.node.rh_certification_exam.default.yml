@@ -10,6 +10,16 @@ dependencies:
     - field.field.node.rh_certification_exam.field_long_description
     - field.field.node.rh_certification_exam.field_short_description
     - field.field.node.rh_certification_exam.field_source_link
+    - field.field.node.rh_certification_exam.field_tax_audience_segment
+    - field.field.node.rh_certification_exam.field_tax_business_unit
+    - field.field.node.rh_certification_exam.field_tax_campaign
+    - field.field.node.rh_certification_exam.field_tax_lifecycle
+    - field.field.node.rh_certification_exam.field_tax_product
+    - field.field.node.rh_certification_exam.field_tax_product_line
+    - field.field.node.rh_certification_exam.field_tax_project
+    - field.field.node.rh_certification_exam.field_tax_promotion
+    - field.field.node.rh_certification_exam.field_tax_region
+    - field.field.node.rh_certification_exam.field_tax_stage
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
@@ -25,19 +35,19 @@ bundle: rh_certification_exam
 mode: default
 content:
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_completion_time:
-    weight: 102
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 107
+    weight: 7
     label: hidden
     settings:
       format: default
@@ -47,7 +57,7 @@ content:
     type: boolean
     region: content
   field_image:
-    weight: 108
+    weight: 8
     label: hidden
     settings:
       image_style: ''
@@ -56,28 +66,28 @@ content:
     type: image
     region: content
   field_level:
-    weight: 103
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_long_description:
-    weight: 104
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_short_description:
-    weight: 105
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_source_link:
-    weight: 106
+    weight: 6
     label: hidden
     settings:
       trim_length: 80
@@ -89,7 +99,7 @@ content:
     type: link
     region: content
   field_topics:
-    weight: 109
+    weight: 9
     label: above
     settings:
       link: true
@@ -97,7 +107,7 @@ content:
     type: entity_reference_label
     region: content
   links:
-    weight: 100
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -107,4 +117,14 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   scheduled_update: true

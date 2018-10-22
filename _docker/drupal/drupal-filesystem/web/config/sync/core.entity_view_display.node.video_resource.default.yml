@@ -15,6 +15,16 @@ dependencies:
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tax_audience_segment
+    - field.field.node.video_resource.field_tax_business_unit
+    - field.field.node.video_resource.field_tax_campaign
+    - field.field.node.video_resource.field_tax_lifecycle
+    - field.field.node.video_resource.field_tax_product
+    - field.field.node.video_resource.field_tax_product_line
+    - field.field.node.video_resource.field_tax_project
+    - field.field.node.video_resource.field_tax_promotion
+    - field.field.node.video_resource.field_tax_region
+    - field.field.node.video_resource.field_tax_stage
     - field.field.node.video_resource.field_topics
     - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
@@ -50,12 +60,12 @@ content:
     third_party_settings: {  }
     region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   field_card_image:
-    weight: 17
+    weight: 16
     label: above
     settings:
       trim_length: 80
@@ -81,7 +91,7 @@ content:
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 21
+    weight: 20
     label: above
     settings:
       format: default
@@ -100,7 +110,7 @@ content:
     type: number_integer
     region: content
   field_related_content:
-    weight: 16
+    weight: 15
     label: hidden
     settings:
       view_mode: teaser
@@ -109,7 +119,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_short_description:
-    weight: 19
+    weight: 18
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -136,7 +146,7 @@ content:
     type: string
     region: content
   field_topics:
-    weight: 18
+    weight: 17
     label: above
     settings:
       link: true
@@ -144,7 +154,7 @@ content:
     type: entity_reference_label
     region: content
   field_video_author:
-    weight: 20
+    weight: 19
     label: hidden
     settings:
       view_mode: short_teaser
@@ -181,7 +191,7 @@ content:
     type: link
     region: content
   field_video_resource:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       responsive: true
@@ -224,7 +234,7 @@ content:
     type: string
     region: content
   field_video_transcript:
-    weight: 11
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -242,5 +252,15 @@ content:
 hidden:
   field_meta_tags: true
   field_share_image: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   links: true
   workbench_moderation_control: true
