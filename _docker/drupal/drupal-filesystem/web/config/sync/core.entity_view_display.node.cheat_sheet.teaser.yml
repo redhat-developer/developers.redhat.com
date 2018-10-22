@@ -14,13 +14,16 @@ dependencies:
     - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_meta_tags
+    - field.field.node.cheat_sheet.field_published_date
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
     - field.field.node.cheat_sheet.field_topics
+    - image.style.medium
     - node.type.cheat_sheet
   module:
-    - link
+    - fences
+    - image
     - text
     - user
 _core:
@@ -30,79 +33,64 @@ targetEntityType: node
 bundle: cheat_sheet
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_cheat_sheet_author:
-    weight: 1
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_cheat_sheet_download_url:
-    weight: 3
-    label: visually_hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
   field_cheat_sheet_excerpt:
-    weight: 4
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_cheat_sheet_tags:
-    weight: 5
-    label: visually_hidden
+  field_cover_image:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
     settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
+      image_style: medium
+      image_link: content
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 3
     region: content
-  field_exclude_from_search:
-    weight: 7
-    label: visually_hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  links:
-    weight: 6
-    region: content
+    label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: p
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   workbench_moderation_control:
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   field_card_image: true
-  field_cover_image: true
+  field_cheat_sheet_author: true
+  field_cheat_sheet_download_url: true
+  field_cheat_sheet_tags: true
   field_difficulty: true
+  field_exclude_from_search: true
   field_meta_tags: true
+  field_published_date: true
   field_read_time: true
   field_share_image: true
-  field_short_description: true
   field_topics: true
+  links: true

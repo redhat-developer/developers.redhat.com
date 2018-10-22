@@ -16,6 +16,16 @@ dependencies:
     - field.field.node.learning_path.field_related_topic_s_
     - field.field.node.learning_path.field_requirements_an_or_pre_req
     - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_tax_audience_segment
+    - field.field.node.learning_path.field_tax_business_unit
+    - field.field.node.learning_path.field_tax_campaign
+    - field.field.node.learning_path.field_tax_lifecycle
+    - field.field.node.learning_path.field_tax_product
+    - field.field.node.learning_path.field_tax_product_line
+    - field.field.node.learning_path.field_tax_project
+    - field.field.node.learning_path.field_tax_promotion
+    - field.field.node.learning_path.field_tax_region
+    - field.field.node.learning_path.field_tax_stage
     - field.field.node.learning_path.field_topics
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
@@ -33,24 +43,24 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_audience:
-    weight: 102
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_card_image:
-    weight: 114
+    weight: 15
     label: above
     settings:
       trim_length: 80
@@ -62,14 +72,14 @@ content:
     type: link
     region: content
   field_completion_time:
-    weight: 103
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_learning_path_content_item:
-    weight: 113
+    weight: 14
     label: above
     settings:
       view_mode: learning_path_card
@@ -78,14 +88,14 @@ content:
     type: entity_reference_entity_view
     region: content
   field_long_description:
-    weight: 104
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_related_learning_path_s_:
-    weight: 105
+    weight: 6
     label: above
     settings:
       link: true
@@ -93,7 +103,7 @@ content:
     type: entity_reference_label
     region: content
   field_related_product_s_:
-    weight: 106
+    weight: 7
     label: above
     settings:
       link: true
@@ -101,21 +111,21 @@ content:
     type: entity_reference_label
     region: content
   field_related_programming_langua:
-    weight: 107
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_related_red_hat_certificat:
-    weight: 108
+    weight: 9
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_related_topic_s_:
-    weight: 109
+    weight: 10
     label: above
     settings:
       link: true
@@ -123,21 +133,21 @@ content:
     type: entity_reference_label
     region: content
   field_requirements_an_or_pre_req:
-    weight: 110
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_short_description:
-    weight: 111
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_topics:
-    weight: 115
+    weight: 16
     label: above
     settings:
       link: true
@@ -145,14 +155,14 @@ content:
     type: entity_reference_label
     region: content
   field_value_proposition:
-    weight: 112
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   links:
-    weight: 100
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -162,4 +172,14 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   scheduled_update: true

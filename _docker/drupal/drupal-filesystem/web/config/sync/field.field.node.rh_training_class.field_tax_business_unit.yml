@@ -1,0 +1,29 @@
+uuid: 1ce08eff-758f-428d-8be7-2df6c023ce76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_business_unit
+    - node.type.rh_training_class
+    - taxonomy.vocabulary.business_unit
+id: node.rh_training_class.field_tax_business_unit
+field_name: field_tax_business_unit
+entity_type: node
+bundle: rh_training_class
+label: 'Business Unit (BU)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      business_unit: business_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

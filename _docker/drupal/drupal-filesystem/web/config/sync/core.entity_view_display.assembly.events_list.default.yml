@@ -5,15 +5,37 @@ dependencies:
   config:
     - assembly.assembly_type.events_list
     - field.field.assembly.events_list.field_audience_selection
+    - field.field.assembly.events_list.field_cta_link
     - field.field.assembly.events_list.field_event
     - field.field.assembly.events_list.field_navigation_title
   module:
     - fences
+    - rhd_assemblies
 id: assembly.events_list.default
 targetEntityType: assembly
 bundle: events_list
 mode: default
 content:
+  field_cta_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: '80'
+      class: 'button medium-cta'
+      url_only: 0
+      url_plain: 0
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: cta-link
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
+    region: content
   field_event:
     weight: 0
     label: hidden

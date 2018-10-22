@@ -1,0 +1,64 @@
+uuid: f5ea12b3-9bdc-4709-b2b4-8c1730d9b2d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_image
+    - entity_browser.browser.image_browser
+    - field.field.assembly.content_image.field_audience_selection
+    - field.field.assembly.content_image.field_image
+    - field.field.assembly.content_image.field_image_caption
+  module:
+    - entity_browser
+    - text
+id: assembly.content_image.default
+targetEntityType: assembly
+bundle: content_image
+mode: default
+content:
+  field_audience_selection:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_image:
+    weight: 3
+    settings:
+      entity_browser: image_browser
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      preview_image_style: thumbnail
+      field_widget_edit: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_browser_file
+    region: content
+  field_image_caption:
+    weight: 26
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true

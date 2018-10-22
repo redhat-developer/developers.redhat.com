@@ -16,6 +16,16 @@ dependencies:
     - field.field.node.connectors.field_connector_target_product_1
     - field.field.node.connectors.field_connector_target_product_2
     - field.field.node.connectors.field_connector_target_product_3
+    - field.field.node.connectors.field_tax_audience_segment
+    - field.field.node.connectors.field_tax_business_unit
+    - field.field.node.connectors.field_tax_campaign
+    - field.field.node.connectors.field_tax_lifecycle
+    - field.field.node.connectors.field_tax_product
+    - field.field.node.connectors.field_tax_product_line
+    - field.field.node.connectors.field_tax_project
+    - field.field.node.connectors.field_tax_promotion
+    - field.field.node.connectors.field_tax_region
+    - field.field.node.connectors.field_tax_stage
     - node.type.connectors
   module:
     - link
@@ -30,12 +40,12 @@ bundle: connectors
 mode: default
 content:
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_connector_details_url:
-    weight: 2
+    weight: 3
     label: above
     settings:
       trim_length: 80
@@ -47,7 +57,7 @@ content:
     type: link
     region: content
   field_connector_id:
-    weight: 1
+    weight: 2
     label: above
     settings:
       link_to_entity: false
@@ -64,7 +74,7 @@ content:
     third_party_settings: {  }
     region: content
   field_connector_link_1:
-    weight: 9
+    weight: 10
     label: above
     settings:
       trim_length: 80
@@ -76,7 +86,7 @@ content:
     type: link
     region: content
   field_connector_link_1_text:
-    weight: 10
+    weight: 11
     label: above
     settings:
       link_to_entity: false
@@ -84,7 +94,7 @@ content:
     type: string
     region: content
   field_connector_link_2:
-    weight: 11
+    weight: 12
     label: above
     settings:
       trim_length: 80
@@ -96,7 +106,7 @@ content:
     type: link
     region: content
   field_connector_link_2_text:
-    weight: 12
+    weight: 13
     label: above
     settings:
       link_to_entity: false
@@ -104,14 +114,14 @@ content:
     type: string
     region: content
   field_connector_long_description:
-    weight: 4
+    weight: 5
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_connector_priority:
-    weight: 5
+    weight: 6
     label: above
     settings:
       thousand_separator: ''
@@ -120,39 +130,49 @@ content:
     type: number_integer
     region: content
   field_connector_short_descriptio:
-    weight: 3
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_connector_target_product_1:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_connector_target_product_2:
     weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_connector_target_product_3:
+  field_connector_target_product_2:
     weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  links:
-    weight: 0
+  field_connector_target_product_3:
+    weight: 9
+    label: above
     settings: {  }
     third_party_settings: {  }
+    type: list_default
     region: content
+  links:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
-hidden: {  }
+hidden:
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true

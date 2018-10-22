@@ -6,11 +6,13 @@ dependencies:
     - assembly.assembly_type.static_content_band
     - field.field.assembly.static_content_band.field_audience_selection
     - field.field.assembly.static_content_band.field_content_list
+    - field.field.assembly.static_content_band.field_cta_link
     - field.field.assembly.static_content_band.field_navigation_title
     - field.field.assembly.static_content_band.field_title
   module:
     - entity_browser_entity_form
     - inline_entity_form
+    - link
 id: assembly.static_content_band.default
 targetEntityType: assembly
 bundle: static_content_band
@@ -40,6 +42,14 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
+  field_cta_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_navigation_title:
     type: string_textfield
     weight: 4
@@ -66,7 +76,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true

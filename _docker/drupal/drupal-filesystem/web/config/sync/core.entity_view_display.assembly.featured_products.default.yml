@@ -5,16 +5,38 @@ dependencies:
   config:
     - assembly.assembly_type.featured_products
     - field.field.assembly.featured_products.field_audience_selection
+    - field.field.assembly.featured_products.field_cta_link
     - field.field.assembly.featured_products.field_navigation_title
     - field.field.assembly.featured_products.field_products
     - field.field.assembly.featured_products.field_title
   module:
     - fences
+    - rhd_assemblies
 id: assembly.featured_products.default
 targetEntityType: assembly
 bundle: featured_products
 mode: default
 content:
+  field_cta_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: '80'
+      class: 'button medium-cta blue'
+      url_only: false
+      url_plain: false
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: cta-link
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
+    region: content
   field_products:
     weight: 1
     label: hidden

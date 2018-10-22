@@ -1,7 +1,18 @@
-<h6>Related Book</h6>
-{{ title_prefix }}
-<h4 {{ title_attributes }}> {{ label }} </h4>
-{{ title_suffix }}
-<p {{ content_attributes.addClass('description') }}>
-    <a {{ content_attributes.addClass('light-cta') }} href="{{ url }}">Read More</a>
-</p>
+<div class="row">
+  {% set content_class = (content.field_cover_image|render) ? 'medium-18' : 'small-24' %}
+
+  {% if content.field_cover_image|render %}
+    <div class="article-teaser-image columns medium-6">
+      {{ content.field_cover_image }}
+    </div>
+  {% endif %}
+
+  <div class="article-teaser-content columns {{ content_class }}">
+    <h5><a href="{{ url }}">{{ label }}</a></h5>
+    {% if content.field_book_excerpt|render %}
+      <p>{{content.field_book_excerpt}}</p>
+    {% elseif content.field_short_description|render %}
+      <p>{{content.field_short_description}}</p>
+    {% endif %}
+  </div>
+</div>

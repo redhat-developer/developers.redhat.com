@@ -3,20 +3,19 @@
 ] %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-    <div class="text-content">
-        {{ title_prefix }}
-        <h3 {{ title_attributes.addClass(['rhd-list-entry--title']) }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
-        {{ title_suffix }}
-        <!-- <div class="rhd-list-entry--date">{{ content.field_video_publish_date }}</div> -->
-        <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
-    </div>
+  <div class="text-content">
+    {{ title_prefix }}
+    <h3 {{ title_attributes.addClass(['rhd-list-entry--title']) }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
+    {{ title_suffix }}
+    <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
+  </div>
+  {% if video_thumbnail_url %}
     <div class="rhd-list-entry--image">
-        <img{{create_attribute({
-            'src': content.field_video_thumbnail_url['#items'][0].value,
-            'alt': 'Video Thumbnail'
-          })
-        }} />
-        <div class="rhd-play-button"><span>►</span></div>
+      <a href="{{ url }}">
+        <img src="{{ video_thumbnail_url }}" alt="Video Thumbnail">
+      </a>
+      <div class="rhd-play-button"><span>►</span></div>
     </div>
-    <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>
+  {% endif %}
+  <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>
 </article>

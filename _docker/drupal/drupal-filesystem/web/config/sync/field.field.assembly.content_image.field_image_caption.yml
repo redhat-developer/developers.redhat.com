@@ -1,0 +1,21 @@
+uuid: caee2a30-f1fc-4cc3-b311-6cadfa3456c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_image
+    - field.storage.assembly.field_image_caption
+  module:
+    - text
+id: assembly.content_image.field_image_caption
+field_name: field_image_caption
+entity_type: assembly
+bundle: content_image
+label: 'Image Caption'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
