@@ -1,0 +1,12 @@
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  {% if content.field_image_caption|render %}
+  <figure>
+  {% endif %}
+      {{ content.field_image }}
+  {% if content.field_image_caption|render %}
+      <figcaption>
+          {{ content.field_image_caption }}
+      </figcaption>
+  </figure>
+  {% endif %}
+</section>

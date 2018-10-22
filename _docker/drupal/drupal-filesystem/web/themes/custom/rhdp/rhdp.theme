@@ -260,6 +260,8 @@ function rhdp_preprocess_node(&$variables) {
         $variables['content']['field_image'][0]['#image_style'] = 'hero';
       }
     }
+    $hide_toc = $node->get('field_hide_toc')->getValue();
+    $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
   }
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
