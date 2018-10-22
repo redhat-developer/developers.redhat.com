@@ -1,0 +1,29 @@
+uuid: 2c5ecb27-d89a-448b-9317-9ca3b8273cdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_promotion
+    - node.type.connectors
+    - taxonomy.vocabulary.promotion
+id: node.connectors.field_tax_promotion
+field_name: field_tax_promotion
+entity_type: node
+bundle: connectors
+label: 'Promotion'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      promotion: promotion
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

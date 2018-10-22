@@ -1,0 +1,29 @@
+uuid: 6c7c6847-a638-4bb4-a0ee-454aae563a24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_business_unit
+    - node.type.rh_certification_exam
+    - taxonomy.vocabulary.business_unit
+id: node.rh_certification_exam.field_tax_business_unit
+field_name: field_tax_business_unit
+entity_type: node
+bundle: rh_certification_exam
+label: 'Business Unit (BU)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      business_unit: business_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

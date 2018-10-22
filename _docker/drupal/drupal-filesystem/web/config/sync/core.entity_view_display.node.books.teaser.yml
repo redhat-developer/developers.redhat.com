@@ -31,11 +31,11 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
+    - image.style.medium
     - node.type.books
   module:
-    - datetime
-    - link
-    - options
+    - fences
+    - image
     - text
     - user
 _core:
@@ -46,198 +46,71 @@ bundle: books
 mode: teaser
 content:
   content_moderation_control:
-    weight: -20
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  field_author:
-    weight: 1
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_average_rating:
-    weight: 9
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_book_description:
-    weight: 3
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_book_excerpt:
-    weight: 13
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_book_url:
-    weight: 4
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_categories:
-    weight: 5
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_epub:
-    weight: 17
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_isbn:
-    weight: 11
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_mobi_link:
-    weight: 16
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_needs_own_page:
-    weight: 18
-    label: visually_hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_pdf_link:
-    weight: 15
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_preview_url:
-    weight: 7
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_published_date:
-    weight: 2
-    label: visually_hidden
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_publisher:
-    weight: 8
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_pull_from_google:
-    weight: 10
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_related_product:
-    weight: 14
-    label: visually_hidden
-    settings:
-      view_mode: teaser
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
-  field_tags:
-    weight: 12
-    label: visually_hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_thumbnail_url:
     weight: 0
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
     region: content
-  field_web_reader_url:
-    weight: 6
-    label: visually_hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+    settings: {  }
     third_party_settings: {  }
-    type: link
+  field_book_excerpt:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
+  field_cover_image:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 3
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: p
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
+  field_author: true
+  field_average_rating: true
+  field_book_description: true
+  field_book_url: true
   field_card_image: true
-  field_cover_image: true
+  field_categories: true
   field_difficulty: true
+  field_epub: true
+  field_isbn: true
   field_meta_tags: true
+  field_mobi_link: true
+  field_needs_own_page: true
+  field_pdf_link: true
+  field_preview_url: true
+  field_published_date: true
+  field_publisher: true
+  field_pull_from_google: true
   field_read_time: true
+  field_related_product: true
   field_share_image: true
-  field_short_description: true
+  field_tags: true
+  field_thumbnail_url: true
   field_topics: true
+  field_web_reader_url: true
   links: true
   workbench_moderation_control: true

@@ -224,8 +224,29 @@ function rhdp_preprocess_page(&$variables) {
 function rhdp_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
+
+  if ($variables['view_mode'] == 'teaser' && $node->getType() == 'video_resource') {
+    $video_thumbnail_url = $node->get('field_video_thumbnail_url')->getValue();
+    $variables['video_thumbnail_url'] = ($video_thumbnail_url) ? $video_thumbnail_url[0]['value'] : FALSE;
+  }
+  
   if ($node->getType() == 'author') {
     $variables['author_name'] = $node->getTitle();
+    $variables['author_articles'] = views_embed_view('author_articles');
+    $variables['social_links'] = FALSE;
+    $social_facebook = $node->get('field_facebook')->getValue();
+    $social_github = $node->get('field_github')->getValue();
+    $social_linkedin = $node->get('field_linkedin')->getValue();
+    $social_twitter = $node->get('field_twitter')->getValue();
+    $social_youtube = $node->get('field_youtube')->getValue();
+    $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
+    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+      $variables['social_links'] = TRUE;
+      $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
+      $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
+      $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
+      $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+    }
   }
 
   if ($node->getType() == 'article') {
@@ -240,6 +261,8 @@ function rhdp_preprocess_node(&$variables) {
         $variables['content']['field_image'][0]['#image_style'] = 'hero';
       }
     }
+    $hide_toc = $node->get('field_hide_toc')->getValue();
+    $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
   }
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
@@ -535,6 +558,18 @@ function rhdp_preprocess_assembly(&$variables) {
         }
       }
     }
+}
+
+function rhdp_preprocess_views_view(&$variables) {
+  $view = $variables['view'];
+  $id = $view->storage->id();
+  if ($id == 'taxonomy_term') {
+    $variables['title'] = FALSE;
+    $title = $view->getTitle();
+    if ($title) {
+      $variables['title'] = $title;
+    }
+  }
 }
 
 function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
