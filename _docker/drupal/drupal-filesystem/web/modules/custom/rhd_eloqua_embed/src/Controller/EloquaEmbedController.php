@@ -21,9 +21,12 @@ class EloquaEmbedController {
       if(!$eloqua_json) {
         throw new NotFoundHttpException();
       }
+      $field_url_array = $assembly->get('field_url')->getValue();
+      $redirect_url = ($field_url_array[0]['uri']) ? $field_url_array[0]['uri'] : FALSE;
       $build = [
         '#theme' => 'rhd_eloqua_embed_page',
         '#eloqua_json' => $eloqua_json,
+        '#redirect_url' => $redirect_url,
       ];
       if (is_array($options) && isset($options['class'])) {
         $attributes = new Attribute(['class' => $options['class']]);

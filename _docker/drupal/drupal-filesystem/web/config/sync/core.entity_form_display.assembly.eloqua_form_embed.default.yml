@@ -6,6 +6,9 @@ dependencies:
     - assembly.assembly_type.eloqua_form_embed
     - field.field.assembly.eloqua_form_embed.field_audience_selection
     - field.field.assembly.eloqua_form_embed.field_eloqua_json
+    - field.field.assembly.eloqua_form_embed.field_url
+  module:
+    - link
 id: assembly.eloqua_form_embed.default
 targetEntityType: assembly
 bundle: eloqua_form_embed
@@ -24,6 +27,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_url:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   name:
     type: string_textfield
