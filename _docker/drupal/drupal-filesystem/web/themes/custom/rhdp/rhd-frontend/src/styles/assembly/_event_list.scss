@@ -82,4 +82,15 @@
       border-bottom: none;
     }
   }
+
+  .cta-link {
+    margin-top: 2rem;
+    .button {
+      display: inline-block;
+      width: 100%;
+      @include tablet-portrait {
+        width: auto;
+      }
+    }
+  }
 }

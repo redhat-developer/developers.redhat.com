@@ -1,0 +1,23 @@
+uuid: d191affd-f77e-45f2-8fba-51ba29d40513
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.eloqua_form_embed
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.eloqua_form_embed.field_url
+field_name: field_url
+entity_type: assembly
+bundle: eloqua_form_embed
+label: 'Redirect URL'
+description: 'If you want the from to redirect on submission, put the full redirect URL here.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

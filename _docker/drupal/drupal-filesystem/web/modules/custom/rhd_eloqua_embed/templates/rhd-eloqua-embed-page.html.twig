@@ -27,6 +27,45 @@
         color: #333;
         font-size: 1em;
       }
+      .cta, .cta-stacked {
+        font-size: 13px;
+      }
+      .cta #GatedFormContainer #FormSubmitButton {
+        background-color: #FFF;
+        color: #c00;
+        border-color: #c00;
+      }
+      .cta #GatedFormContainer #FormSubmitButton:hover, .cta #GatedFormContainer #FormSubmitButton:active {
+        background-color: #c00;
+        color: #FFF;
+        border-color: #c00;
+      }
+      .cta #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        display: block;
+      }
+      .cta #GatedFormContainer .control-label.required, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>.required:not([type=hidden]):first-child {
+        text-align: left;
+      }
+      .inline #GatedFormContainer .col-sm-10.controls, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
+        margin-left: 0;
+      }
+      .inline #GatedFormContainer .form-content::after {
+        content: none;
+      }
+      @media (min-width: 701px) {
+        .inline #GatedFormContainer .form-content {
+          display: flex;
+          justify-content: space-between;
+        }
+        .inline #GatedFormContainer .col-sm-10.controls {
+          margin-left: 0;
+        }
+        #GatedFormContainer #validationMessages:not(:empty), #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child, #GatedFormContainer .form-footer>.form-group div:not([type=hidden]):first-child {
+          width: auto;
+          margin-left: 0;
+          max-width: none;
+        }
+      }
     </style>
     <div id="GatedFormContainer"></div>
     <script>
@@ -34,5 +73,23 @@
         dynamicForm.Start({{eloqua_json|raw}});
       });
     </script>
+    {% if redirect_url %}
+      <script>
+        var targetNode = document.getElementById('GatedFormContainer');
+        var config = { childList: true };
+        var callback = function(mutationsList, observer) {
+          for(var mutation of mutationsList) {
+            if (mutation.type == 'childList'
+                && mutation.addedNodes.length > 0
+                && mutation.addedNodes[0]['id'] == 'DynamicFormThankYou'
+            ) {
+              window.top.location.replace('{{ redirect_url }}');
+            }
+          }
+        };
+        var observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
+      </script>
+    {% endif %}
   </body>
 </html>

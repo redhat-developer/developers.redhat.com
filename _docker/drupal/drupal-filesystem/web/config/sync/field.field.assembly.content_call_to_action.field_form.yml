@@ -1,0 +1,28 @@
+uuid: a66462d5-08d8-41a8-a3dd-9101764bdc50
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_call_to_action
+    - assembly.assembly_type.eloqua_form_embed
+    - field.storage.assembly.field_form
+id: assembly.content_call_to_action.field_form
+field_name: field_form
+entity_type: assembly
+bundle: content_call_to_action
+label: Form
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      eloqua_form_embed: eloqua_form_embed
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

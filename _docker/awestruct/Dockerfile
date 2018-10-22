@@ -9,12 +9,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-COPY mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
-
-RUN yum install -y  \
-  pngquant \
-  MariaDB-client \
-  httrack
+RUN yum install -y pngquant
 
 RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?download && \
   mv optipng* optipng.tar.gz && \

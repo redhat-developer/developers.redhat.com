@@ -1,0 +1,29 @@
+uuid: bd3c55d1-6ec6-4d6d-91dd-e53c3f4ebd73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_lifecycle
+    - node.type.video_resource
+    - taxonomy.vocabulary.lifecycle
+id: node.video_resource.field_tax_lifecycle
+field_name: field_tax_lifecycle
+entity_type: node
+bundle: video_resource
+label: 'Lifecycle'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lifecycle: lifecycle
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

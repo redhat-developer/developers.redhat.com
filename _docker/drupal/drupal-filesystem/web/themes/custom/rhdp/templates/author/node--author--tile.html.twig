@@ -1,8 +1,10 @@
 <article{{ attributes.addClass('author short-teaser') }}>
-  {{ content.field_headshot }}
-  {{ title_prefix }}
-  <span{{ title_attributes.addClass('author-name') }}>{{ label }}</span>
-  {{ title_suffix }}
+  <a href="{{ url }}">
+    {{ content.field_headshot }}
+    {{ title_prefix }}
+    <span{{ title_attributes.addClass('author-name') }}>{{ label }}</span>
+    {{ title_suffix }}
+  </a>
   {% if content|without('field_headshot') %}
   <div{{ content_attributes }}>
     {{ content|without('field_headshot') }}

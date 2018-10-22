@@ -17,6 +17,16 @@ dependencies:
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_tax_audience_segment
+    - field.field.node.cheat_sheet.field_tax_business_unit
+    - field.field.node.cheat_sheet.field_tax_campaign
+    - field.field.node.cheat_sheet.field_tax_lifecycle
+    - field.field.node.cheat_sheet.field_tax_product
+    - field.field.node.cheat_sheet.field_tax_product_line
+    - field.field.node.cheat_sheet.field_tax_project
+    - field.field.node.cheat_sheet.field_tax_promotion
+    - field.field.node.cheat_sheet.field_tax_region
+    - field.field.node.cheat_sheet.field_tax_stage
     - field.field.node.cheat_sheet.field_topics
     - node.type.cheat_sheet
   module:
@@ -42,7 +52,7 @@ content:
     third_party_settings: {  }
     region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -89,8 +99,15 @@ content:
     weight: 5
     label: hidden
     settings:
-      link: false
-    third_party_settings: {  }
+      link: true
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_difficulty:
@@ -161,3 +178,13 @@ content:
 hidden:
   field_cover_image: true
   field_share_image: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true

@@ -1,0 +1,19 @@
+uuid: 0095aaa8-6ae7-4106-86fc-d8d067490fe0
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - text
+id: assembly.field_image_caption
+field_name: field_image_caption
+entity_type: assembly
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

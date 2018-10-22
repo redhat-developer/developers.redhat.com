@@ -10,7 +10,7 @@
     </div>
     {% if media and media.media_type == 'image' %}
         <div class="rhd-list-entry--image">
-            <img src="{{ media.source_url }}"/>
+            <img src="{{ media.source_url }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
         </div>
     {% endif %}
 </article>
