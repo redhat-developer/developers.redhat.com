@@ -150,7 +150,7 @@ app.connectors = {
 
             // Set the img_path_thumb to the DCP thumbnail endpoint, and set the
             // fallback image to the thumbnail on static.jboss.org.
-            props.img_path_thumb = props.thumbnail__target_id;
+            props.img_path_thumb = (typeof props.thumbnail__target_id !== 'undefined' && props.thumbnail__target_id !== '') ? props.thumbnail__target_id : "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
             props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
 
             //If no 'long description', use the short one (before it is truncated)
