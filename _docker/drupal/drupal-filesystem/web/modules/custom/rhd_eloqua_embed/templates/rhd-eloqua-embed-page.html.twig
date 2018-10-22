@@ -27,6 +27,33 @@
         color: #333;
         font-size: 1em;
       }
+      .cta, .cta-stacked {
+        font-size: 13px;
+      }
+      .cta #GatedFormContainer #FormSubmitButton {
+        background-color: #FFF;
+        color: #c00;
+        border-color: #c00;
+      }
+      .cta #GatedFormContainer #FormSubmitButton:hover, .cta #GatedFormContainer #FormSubmitButton:active {
+        background-color: #c00;
+        color: #FFF;
+        border-color: #c00;
+      }
+      .cta #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        display: block;
+      }
+      .cta #GatedFormContainer .control-label.required, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>.required:not([type=hidden]):first-child {
+        text-align: left;
+      }
+      @media (min-width: 701px) {
+        .inline #GatedFormContainer .form-content {
+          display: flex;
+        }
+        #GatedFormContainer #validationMessages:not(:empty), #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child, #GatedFormContainer .form-footer>.form-group div:not([type=hidden]):first-child {
+          width: auto;
+        }
+      }
     </style>
     <div id="GatedFormContainer"></div>
     <script>
