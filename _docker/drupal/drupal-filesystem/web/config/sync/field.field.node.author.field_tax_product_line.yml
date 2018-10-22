@@ -1,0 +1,29 @@
+uuid: 5c1c6ec1-55e0-4d6a-8caa-e8e41be097ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_product_line
+    - node.type.author
+    - taxonomy.vocabulary.product_line
+id: node.author.field_tax_product_line
+field_name: field_tax_product_line
+entity_type: node
+bundle: author
+label: 'Product Line (Portfolio)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_line: product_line
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,20 @@
+uuid: 1b19ba75-a7a8-4154-ae3d-6e13f4218945
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_tax_promotion
+field_name: field_tax_promotion
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

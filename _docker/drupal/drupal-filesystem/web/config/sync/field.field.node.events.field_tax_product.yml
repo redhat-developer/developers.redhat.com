@@ -1,0 +1,29 @@
+uuid: 46bdd7ce-6481-4e7e-9c15-530fa86c22a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_product
+    - node.type.events
+    - taxonomy.vocabulary.product
+id: node.events.field_tax_product
+field_name: field_tax_product
+entity_type: node
+bundle: events
+label: 'Product'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

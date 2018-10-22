@@ -1,0 +1,29 @@
+uuid: ec56b459-8a78-4dc7-a8e1-b382ec71c3d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_business_unit
+    - node.type.connectors
+    - taxonomy.vocabulary.business_unit
+id: node.connectors.field_tax_business_unit
+field_name: field_tax_business_unit
+entity_type: node
+bundle: connectors
+label: 'Business Unit (BU)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      business_unit: business_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

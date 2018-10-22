@@ -1,0 +1,29 @@
+uuid: 5410ef2f-5e7f-49f9-a1e5-b4d75b390506
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_lifecycle
+    - node.type.assembly_page
+    - taxonomy.vocabulary.lifecycle
+id: node.assembly_page.field_tax_lifecycle
+field_name: field_tax_lifecycle
+entity_type: node
+bundle: assembly_page
+label: 'Lifecycle'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lifecycle: lifecycle
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 80468c17-d37d-4c4a-9df3-50bf279b515f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_campaign
+    - node.type.author
+    - taxonomy.vocabulary.campaign
+id: node.author.field_tax_campaign
+field_name: field_tax_campaign
+entity_type: node
+bundle: author
+label: 'Campaign'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      campaign: campaign
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

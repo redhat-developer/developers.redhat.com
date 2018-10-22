@@ -1,0 +1,29 @@
+uuid: 95722398-a48f-424d-ba04-9946b2574dad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_region
+    - node.type.coding_resource
+    - taxonomy.vocabulary.region
+id: node.coding_resource.field_tax_region
+field_name: field_tax_region
+entity_type: node
+bundle: coding_resource
+label: 'Region'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      region: region
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
