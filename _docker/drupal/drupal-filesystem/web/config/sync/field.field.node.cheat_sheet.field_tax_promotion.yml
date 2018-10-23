@@ -1,0 +1,29 @@
+uuid: a863bd89-dfbf-48d7-bc2b-994bae5f9214
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_promotion
+    - node.type.cheat_sheet
+    - taxonomy.vocabulary.promotion
+id: node.cheat_sheet.field_tax_promotion
+field_name: field_tax_promotion
+entity_type: node
+bundle: cheat_sheet
+label: 'Promotion'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      promotion: promotion
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

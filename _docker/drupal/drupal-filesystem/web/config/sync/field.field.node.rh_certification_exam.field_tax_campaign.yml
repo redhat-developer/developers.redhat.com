@@ -1,0 +1,29 @@
+uuid: f58467b9-ca8e-4ab6-b0cd-f932d50fd810
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_campaign
+    - node.type.rh_certification_exam
+    - taxonomy.vocabulary.campaign
+id: node.rh_certification_exam.field_tax_campaign
+field_name: field_tax_campaign
+entity_type: node
+bundle: rh_certification_exam
+label: 'Campaign'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      campaign: campaign
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

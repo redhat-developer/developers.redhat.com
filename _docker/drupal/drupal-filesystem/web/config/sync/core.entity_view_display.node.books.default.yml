@@ -27,6 +27,16 @@ dependencies:
     - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
+    - field.field.node.books.field_tax_audience_segment
+    - field.field.node.books.field_tax_business_unit
+    - field.field.node.books.field_tax_campaign
+    - field.field.node.books.field_tax_lifecycle
+    - field.field.node.books.field_tax_product
+    - field.field.node.books.field_tax_product_line
+    - field.field.node.books.field_tax_project
+    - field.field.node.books.field_tax_promotion
+    - field.field.node.books.field_tax_region
+    - field.field.node.books.field_tax_stage
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
@@ -47,12 +57,12 @@ bundle: books
 mode: default
 content:
   content_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   field_author:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false
@@ -60,28 +70,28 @@ content:
     type: string
     region: content
   field_average_rating:
-    weight: 9
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_book_description:
-    weight: 3
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_book_excerpt:
-    weight: 13
+    weight: 14
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_book_url:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -93,7 +103,7 @@ content:
     type: link
     region: content
   field_card_image:
-    weight: 21
+    weight: 22
     label: above
     settings:
       trim_length: 80
@@ -105,7 +115,7 @@ content:
     type: link
     region: content
   field_categories:
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       link_to_entity: false
@@ -113,14 +123,14 @@ content:
     type: string
     region: content
   field_difficulty:
-    weight: 20
+    weight: 21
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_epub:
-    weight: 17
+    weight: 18
     label: hidden
     settings:
       trim_length: 80
@@ -132,7 +142,7 @@ content:
     type: link
     region: content
   field_isbn:
-    weight: 11
+    weight: 12
     label: hidden
     settings:
       link_to_entity: false
@@ -140,14 +150,14 @@ content:
     type: string
     region: content
   field_meta_tags:
-    weight: 24
+    weight: 25
     label: above
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
     region: content
   field_mobi_link:
-    weight: 16
+    weight: 17
     label: hidden
     settings:
       trim_length: 80
@@ -159,7 +169,7 @@ content:
     type: link
     region: content
   field_needs_own_page:
-    weight: 18
+    weight: 19
     label: hidden
     settings:
       format: default
@@ -169,7 +179,7 @@ content:
     type: boolean
     region: content
   field_pdf_link:
-    weight: 15
+    weight: 16
     label: hidden
     settings:
       trim_length: 80
@@ -181,7 +191,7 @@ content:
     type: link
     region: content
   field_preview_url:
-    weight: 7
+    weight: 8
     label: hidden
     settings:
       trim_length: 80
@@ -193,7 +203,7 @@ content:
     type: link
     region: content
   field_published_date:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       timezone_override: ''
@@ -202,7 +212,7 @@ content:
     type: datetime_default
     region: content
   field_publisher:
-    weight: 8
+    weight: 9
     label: hidden
     settings:
       link_to_entity: false
@@ -210,21 +220,21 @@ content:
     type: string
     region: content
   field_pull_from_google:
-    weight: 10
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_read_time:
-    weight: 19
+    weight: 20
     label: above
     settings: {  }
     third_party_settings: {  }
     type: interval_default
     region: content
   field_related_product:
-    weight: 14
+    weight: 15
     label: hidden
     settings:
       view_mode: teaser
@@ -233,14 +243,14 @@ content:
     type: entity_reference_entity_view
     region: content
   field_short_description:
-    weight: 23
+    weight: 24
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_tags:
-    weight: 12
+    weight: 13
     label: hidden
     settings:
       link: false
@@ -255,7 +265,7 @@ content:
     type: entity_reference_label
     region: content
   field_thumbnail_url:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -267,7 +277,7 @@ content:
     type: link
     region: content
   field_topics:
-    weight: 22
+    weight: 23
     label: above
     settings:
       link: true
@@ -275,7 +285,7 @@ content:
     type: entity_reference_label
     region: content
   field_web_reader_url:
-    weight: 6
+    weight: 7
     label: hidden
     settings:
       trim_length: 80
@@ -289,5 +299,15 @@ content:
 hidden:
   field_cover_image: true
   field_share_image: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   links: true
   workbench_moderation_control: true

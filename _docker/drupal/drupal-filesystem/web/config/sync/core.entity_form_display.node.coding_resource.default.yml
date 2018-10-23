@@ -13,15 +13,49 @@ dependencies:
     - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
     - field.field.node.coding_resource.field_tags
+    - field.field.node.coding_resource.field_tax_audience_segment
+    - field.field.node.coding_resource.field_tax_business_unit
+    - field.field.node.coding_resource.field_tax_campaign
+    - field.field.node.coding_resource.field_tax_lifecycle
+    - field.field.node.coding_resource.field_tax_product
+    - field.field.node.coding_resource.field_tax_product_line
+    - field.field.node.coding_resource.field_tax_project
+    - field.field.node.coding_resource.field_tax_promotion
+    - field.field.node.coding_resource.field_tax_region
+    - field.field.node.coding_resource.field_tax_stage
     - field.field.node.coding_resource.field_technologies
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
     - content_moderation
     - datetime
+    - field_group
     - link
     - path
     - text
+third_party_settings:
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 16
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 _core:
   default_config_hash: 0Wd1Zcfm8wzSJi23BRSe-NJZa11B3ykczVFt1rAzmW8
 id: node.coding_resource.default
@@ -31,7 +65,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 6
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -39,7 +73,7 @@ content:
     third_party_settings: {  }
     region: content
   field_author:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -47,7 +81,7 @@ content:
     type: string_textfield
     region: content
   field_contributors:
-    weight: 10
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -55,7 +89,7 @@ content:
     type: string_textfield
     region: content
   field_description:
-    weight: 3
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
@@ -63,19 +97,19 @@ content:
     type: text_textarea
     region: content
   field_level:
-    weight: 11
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_published_date:
-    weight: 9
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_related_product:
-    weight: 8
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -84,13 +118,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_resource_type:
-    weight: 4
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_source_link:
-    weight: 13
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -98,7 +132,7 @@ content:
     type: link_default
     region: content
   field_tags:
-    weight: 14
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -106,8 +140,68 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_tax_audience_segment:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_business_unit:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_campaign:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_lifecycle:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product_line:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_project:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_promotion:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_region:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_stage:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_technologies:
-    weight: 15
+    weight: 13
     settings:
       size: 60
       placeholder: ''
@@ -115,7 +209,7 @@ content:
     type: string_textfield
     region: content
   field_version:
-    weight: 12
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -123,14 +217,14 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 26
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: content
   path:
     type: path
-    weight: 7
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -143,10 +237,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 15
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   promote: true

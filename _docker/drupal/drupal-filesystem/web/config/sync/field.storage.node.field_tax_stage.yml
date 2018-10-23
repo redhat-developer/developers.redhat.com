@@ -1,0 +1,20 @@
+uuid: 08ce8107-c5ee-46b1-bc08-e3bf31f5a902
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_tax_stage
+field_name: field_tax_stage
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

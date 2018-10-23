@@ -21,6 +21,8 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - fences
+    - link
     - text
     - user
 id: node.learning_path.teaser
@@ -31,18 +33,51 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 3
     settings:
       trim_length: 600
     third_party_settings: {  }
     region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
+  field_card_image:
+    type: link
+    weight: 2
     region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: true
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_long_description:
+    type: text_default
+    weight: 4
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_short_description:
+    type: basic_string
+    weight: 5
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   links:
-    weight: 100
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -51,16 +86,13 @@ content:
     region: content
 hidden:
   field_audience: true
-  field_card_image: true
   field_completion_time: true
   field_learning_path_content_item: true
-  field_long_description: true
   field_related_learning_path_s_: true
   field_related_product_s_: true
   field_related_programming_langua: true
   field_related_red_hat_certificat: true
   field_related_topic_s_: true
   field_requirements_an_or_pre_req: true
-  field_short_description: true
   field_topics: true
   field_value_proposition: true

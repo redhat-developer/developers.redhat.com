@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.eloqua_form_embed
     - field.field.assembly.eloqua_form_embed.field_audience_selection
     - field.field.assembly.eloqua_form_embed.field_eloqua_json
+    - field.field.assembly.eloqua_form_embed.field_url
 id: assembly.eloqua_form_embed.default
 targetEntityType: assembly
 bundle: eloqua_form_embed
@@ -14,5 +15,6 @@ content: {  }
 hidden:
   field_audience_selection: true
   field_eloqua_json: true
+  field_url: true
   name: true
   user_id: true

@@ -1,0 +1,29 @@
+uuid: 4b798094-2c3b-42c7-873f-92c413d181c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_region
+    - node.type.video_resource
+    - taxonomy.vocabulary.region
+id: node.video_resource.field_tax_region
+field_name: field_tax_region
+entity_type: node
+bundle: video_resource
+label: 'Region'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      region: region
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

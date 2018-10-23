@@ -18,6 +18,16 @@ dependencies:
     - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_tax_audience_segment
+    - field.field.node.product.field_tax_business_unit
+    - field.field.node.product.field_tax_campaign
+    - field.field.node.product.field_tax_lifecycle
+    - field.field.node.product.field_tax_product
+    - field.field.node.product.field_tax_product_line
+    - field.field.node.product.field_tax_project
+    - field.field.node.product.field_tax_promotion
+    - field.field.node.product.field_tax_region
+    - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
@@ -54,6 +64,27 @@ third_party_settings:
         classes: ''
         direction: horizontal
       label: 'Product Information'
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 18
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 _core:
   default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
 id: node.product.default
@@ -91,7 +122,7 @@ content:
     region: content
     third_party_settings: {  }
   field_meta_tags:
-    weight: 26
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -179,6 +210,66 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_tax_audience_segment:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_business_unit:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_campaign:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_lifecycle:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product_line:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_project:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_promotion:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_region:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_stage:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_url_product_name:
     weight: 10
     settings:
@@ -188,7 +279,7 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 27
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -202,10 +293,10 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 50
+    weight: 17
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   path: true
