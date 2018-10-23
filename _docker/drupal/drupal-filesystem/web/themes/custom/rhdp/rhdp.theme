@@ -590,6 +590,15 @@ function rhdp_preprocess_views_view(&$variables) {
     if ($title) {
       $variables['title'] = $title;
     }
+    
+    if ($type == 'embedded_content') {
+      $field_url = $assembly->get('field_url')->getValue();
+      $embed_url = $field_url[0]['uri'];
+      $variables['embed_url'] = FALSE;
+      if ($embed_url) {
+        $variables['embed_url'] = $embed_url;
+      }
+    }
   }
 }
 

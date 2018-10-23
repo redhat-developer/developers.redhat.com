@@ -1,0 +1,39 @@
+uuid: e727eadd-cd02-4b77-9028-a3b212768c73
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.embedded_content
+    - field.field.assembly.embedded_content.field_audience_selection
+    - field.field.assembly.embedded_content.field_url
+  module:
+    - fences
+    - link
+id: assembly.embedded_content.default
+targetEntityType: assembly
+bundle: embedded_content
+mode: default
+content:
+  field_url:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: true
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+hidden:
+  field_audience_selection: true
+  name: true
+  user_id: true
