@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.media_browser
     - field.field.node.connectors.field_connector_details_url
     - field.field.node.connectors.field_connector_id
     - field.field.node.connectors.field_connector_image
@@ -29,6 +30,7 @@ dependencies:
     - node.type.connectors
   module:
     - content_moderation
+    - entity_browser
     - field_group
     - link
     - text
@@ -47,7 +49,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 15
+      weight: 16
       format_type: details
       format_settings:
         id: ''
@@ -80,7 +82,7 @@ content:
     region: content
   field_connector_image:
     type: entity_browser_entity_reference
-    weight: 51
+    weight: 13
     settings:
       entity_browser: media_browser
       field_widget_display: rendered_entity
@@ -227,7 +229,7 @@ content:
     type: options_select
     region: content
   moderation_state:
-    weight: 13
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -241,7 +243,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
