@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.code_snippet
     - assembly.assembly_type.content
     - assembly.assembly_type.content_call_to_action
     - assembly.assembly_type.content_image
@@ -25,6 +26,7 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      code_snippet: code_snippet
       content: content
       content_call_to_action: content_call_to_action
       content_image: content_image

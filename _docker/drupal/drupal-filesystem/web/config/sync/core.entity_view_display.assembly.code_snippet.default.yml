@@ -1,0 +1,40 @@
+uuid: c452e902-bde5-476f-b5d2-c90fdd8754ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.code_snippet
+    - field.field.assembly.code_snippet.field_audience_selection
+    - field.field.assembly.code_snippet.field_code
+    - field.field.assembly.code_snippet.field_programming_language
+  module:
+    - options
+id: assembly.code_snippet.default
+targetEntityType: assembly
+bundle: code_snippet
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_code:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_programming_language:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden:
+  name: true
+  user_id: true
