@@ -572,7 +572,6 @@ function rhdp_preprocess_assembly(&$variables) {
     if ($assembly->hasField('field_code') && $type == 'code_snippet') {
       $field_code = $assembly->get('field_code')->getValue()[0]['value'];
 	  $variables['code'] = $field_code;
-      $variables['#attached']['library'][] = 'rhdp/highlight-js';
     }
 
     if ($assembly->hasField('field_programming_language') && $type == 'code_snippet') {
