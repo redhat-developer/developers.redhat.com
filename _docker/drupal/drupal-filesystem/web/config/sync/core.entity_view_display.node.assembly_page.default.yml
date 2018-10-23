@@ -6,6 +6,16 @@ dependencies:
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
+    - field.field.node.assembly_page.field_tax_audience_segment
+    - field.field.node.assembly_page.field_tax_business_unit
+    - field.field.node.assembly_page.field_tax_campaign
+    - field.field.node.assembly_page.field_tax_lifecycle
+    - field.field.node.assembly_page.field_tax_product
+    - field.field.node.assembly_page.field_tax_product_line
+    - field.field.node.assembly_page.field_tax_project
+    - field.field.node.assembly_page.field_tax_promotion
+    - field.field.node.assembly_page.field_tax_region
+    - field.field.node.assembly_page.field_tax_stage
     - node.type.assembly_page
   module:
     - entity_reference_revisions
@@ -16,12 +26,12 @@ bundle: assembly_page
 mode: default
 content:
   content_moderation_control:
-    weight: -20
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   field_sections:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       view_mode: default
@@ -32,5 +42,15 @@ content:
 hidden:
   field_meta_tags: true
   field_share_image: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   links: true
   workbench_moderation_control: true

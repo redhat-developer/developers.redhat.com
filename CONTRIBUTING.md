@@ -30,6 +30,7 @@ To fix an issue:
 7. Create a local topic branch to work with your new quickstart, features, changes, or fixes. 
    
         git checkout -b  <topic-branch-name>
+
    * If you are fixing a Bugzilla or JIRA, it is a good practice to use the number in the branch name. For new quickstarts or other fixes, try to use a good description for the branch name. 
    * The following are examples of Git checkout commands:
 
@@ -50,23 +51,24 @@ To fix an issue:
 12. Update your branch with any changes made upstream since you started.
    * Fetch the latest changes from upstream
 
-        git fetch upstream
+            git fetch upstream
         
    * Apply those changes to your branch
    
-        git rebase upstream/master
+            git merge upstream/master
         
    * If anyone has commited changes to files that you have also changed, you may see conflicts. 
-   Resolve the conflicted files, add them using `git add`, and continue the rebase:
+   Resolve the conflicted files, add them using `git add`, and continue the merge:
    
-        git add <conflicted-file-name>
-        git rebase --continue
+            git add <conflicted-file-name>
+            git merge --continue
         
    * If there were conflicts, it is a good idea to test your changes again to make they still work.
         
 13. Push your local topic branch to your GitHub forked repository. This will create a branch on your Git fork repository with the same name as your local topic branch name. 
 
         git push origin HEAD            
+
    _Note:_ The above command assumes your remote repository is named 'origin'. You can verify your forked remote repository name using the command `git remote -v`.
    
 14. Raise a Pull Request by:
@@ -82,7 +84,7 @@ The Pull request will then be reviewed by the Red Hat Developers team, and you m
 2. Make the requested changes and commit them.
 3. Push your branch to your fork on GitHub:
 
-    git push origin DEVELOPER-123
+        git push origin DEVELOPER-123
 
 4. Comment on the PR to indicate that you think you have made the requested changes.
 

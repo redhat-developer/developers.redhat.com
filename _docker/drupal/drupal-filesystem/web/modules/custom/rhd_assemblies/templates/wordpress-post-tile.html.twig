@@ -4,7 +4,7 @@
       <div class="tile-image {{ media.scale_orientation }}">
         <div class="image-table">
           <div class="image-cell">
-            <img src="{{ media.source_url }}"/>
+            <img src="{{ media.source_url }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
           </div>
         </div>
       </div>

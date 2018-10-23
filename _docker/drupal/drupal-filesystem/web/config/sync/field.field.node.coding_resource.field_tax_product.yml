@@ -1,0 +1,29 @@
+uuid: 5ac00e11-9f44-4c9b-8e2f-dd75c4f4f078
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_product
+    - node.type.coding_resource
+    - taxonomy.vocabulary.product
+id: node.coding_resource.field_tax_product
+field_name: field_tax_product
+entity_type: node
+bundle: coding_resource
+label: 'Product'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

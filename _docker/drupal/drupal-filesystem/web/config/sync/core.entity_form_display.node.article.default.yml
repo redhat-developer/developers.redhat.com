@@ -22,6 +22,16 @@ dependencies:
     - field.field.node.article.field_related_articles
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
+    - field.field.node.article.field_tax_audience_segment
+    - field.field.node.article.field_tax_business_unit
+    - field.field.node.article.field_tax_campaign
+    - field.field.node.article.field_tax_lifecycle
+    - field.field.node.article.field_tax_product
+    - field.field.node.article.field_tax_product_line
+    - field.field.node.article.field_tax_project
+    - field.field.node.article.field_tax_promotion
+    - field.field.node.article.field_tax_region
+    - field.field.node.article.field_tax_stage
     - field.field.node.article.field_topics
     - node.type.article
   module:
@@ -50,6 +60,27 @@ third_party_settings:
         description: ''
         required_fields: true
       label: Image
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 23
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
 _core:
   default_config_hash: O9-fUiX8SoHaVWfm388Qnry-b5_w23TZhgowE4PLRBo
 id: node.article.default
@@ -73,7 +104,7 @@ content:
     third_party_settings: {  }
     region: content
   field_article_highlights:
-    weight: 6
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -87,7 +118,7 @@ content:
     type: options_select
     region: content
   field_author_evangelist:
-    weight: 7
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -122,7 +153,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_content_author:
-    weight: 8
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -211,6 +242,66 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  field_tax_audience_segment:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_business_unit:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_campaign:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_lifecycle:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_product_line:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_project:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_promotion:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_region:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tax_stage:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_topics:
     weight: 2
     settings: {  }
@@ -218,7 +309,7 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    weight: 23
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -261,7 +352,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }

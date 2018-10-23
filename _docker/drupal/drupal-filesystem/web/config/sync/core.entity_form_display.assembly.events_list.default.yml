@@ -5,10 +5,12 @@ dependencies:
   config:
     - assembly.assembly_type.events_list
     - field.field.assembly.events_list.field_audience_selection
+    - field.field.assembly.events_list.field_cta_link
     - field.field.assembly.events_list.field_event
     - field.field.assembly.events_list.field_navigation_title
   module:
     - content_moderation
+    - link
 id: assembly.events_list.default
 targetEntityType: assembly
 bundle: events_list
@@ -19,6 +21,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_cta_link:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_event:
     weight: 6
@@ -38,7 +48,7 @@ content:
     type: string_textfield
     region: content
   moderation_state:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default

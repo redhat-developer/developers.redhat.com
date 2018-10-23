@@ -66,7 +66,7 @@ other methods (such as node.delete) will result in an exception.
 */
 #}
 
-{% set article_classes = (not hide_toc) ? [ "medium-17", "large-12", "columns", "gsi", "fetch-toc", "article-content"] : ["large-12", "medium-12", "medium-offset-7", "large-offset-6", "columns", "gsi", "fetch-toc", "article-content"] %}
+{% set article_classes = (hide_toc == TRUE) ? ["large-12", "medium-12", "medium-offset-7", "large-offset-6", "columns", "gsi", "fetch-toc", "article-content"] : [ "medium-17", "large-12", "columns", "gsi", "fetch-toc", "article-content"] %}
 <div{{ attributes.addClass(["container", "content", "author-" ~ author_location]).setAttribute("id", "rhd-article") }}>
     {% if has_hero and content.field_image|render %}
     <div class="article-hero">

@@ -1,0 +1,29 @@
+uuid: 52209df0-0b82-4303-a5e8-1d09bda87735
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_project
+    - node.type.cheat_sheet
+    - taxonomy.vocabulary.project
+id: node.cheat_sheet.field_tax_project
+field_name: field_tax_project
+entity_type: node
+bundle: cheat_sheet
+label: 'Project'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project: project
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

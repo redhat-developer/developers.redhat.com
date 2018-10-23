@@ -1,0 +1,21 @@
+uuid: 67a671ed-9e7b-4507-a6b5-90601cfc0779
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_call_to_action
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.content_call_to_action.field_content
+field_name: field_content
+entity_type: assembly
+bundle: content_call_to_action
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
