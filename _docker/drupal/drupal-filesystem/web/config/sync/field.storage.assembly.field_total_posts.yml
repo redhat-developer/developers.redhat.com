@@ -1,0 +1,33 @@
+uuid: 442161fe-ae02-46ca-85bd-480f737c9b58
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_total_posts
+field_name: field_total_posts
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '4'
+      label: '4'
+    -
+      value: '8'
+      label: '8'
+    -
+      value: '12'
+      label: '12'
+    -
+      value: '16'
+      label: '16'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

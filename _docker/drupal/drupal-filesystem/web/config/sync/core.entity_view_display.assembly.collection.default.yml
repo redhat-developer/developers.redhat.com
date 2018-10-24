@@ -1,0 +1,40 @@
+uuid: 59fb3324-f5a5-424c-ada3-2bdd5d02f589
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.field.assembly.collection.field_audience_selection
+    - field.field.assembly.collection.field_drupal_term_filter
+    - field.field.assembly.collection.field_show_pagination
+    - field.field.assembly.collection.field_title
+    - field.field.assembly.collection.field_total_posts
+  module:
+    - fences
+id: assembly.collection.default
+targetEntityType: assembly
+bundle: collection
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h2
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+hidden:
+  field_audience_selection: true
+  field_drupal_term_filter: true
+  field_show_pagination: true
+  field_total_posts: true
+  name: true
+  user_id: true
