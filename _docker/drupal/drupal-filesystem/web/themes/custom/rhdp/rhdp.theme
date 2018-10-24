@@ -568,6 +568,17 @@ function rhdp_preprocess_assembly(&$variables) {
         }
       }
     }
+
+    if ($assembly->hasField('field_code') && $type == 'code_snippet') {
+      $field_code = $assembly->get('field_code')->getValue()[0]['value'];
+	  $variables['code'] = $field_code;
+      $variables['#attached']['library'][] = 'rhdp/highlight-js';
+    }
+
+    if ($assembly->hasField('field_programming_language') && $type == 'code_snippet') {
+      $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
+      $variables['language'] = isset($language) ? $language : '';
+    }
 }
 
 function rhdp_preprocess_views_view(&$variables) {
@@ -578,6 +589,15 @@ function rhdp_preprocess_views_view(&$variables) {
     $title = $view->getTitle();
     if ($title) {
       $variables['title'] = $title;
+    }
+    
+    if ($type == 'embedded_content') {
+      $field_url = $assembly->get('field_url')->getValue();
+      $embed_url = $field_url[0]['uri'];
+      $variables['embed_url'] = FALSE;
+      if ($embed_url) {
+        $variables['embed_url'] = $embed_url;
+      }
     }
   }
 }

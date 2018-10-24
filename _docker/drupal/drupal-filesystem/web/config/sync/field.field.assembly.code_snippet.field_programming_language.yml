@@ -1,0 +1,21 @@
+uuid: 03ff0d42-82f4-40e7-a559-aabbe2d935cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.code_snippet
+    - field.storage.assembly.field_programming_language
+  module:
+    - options
+id: assembly.code_snippet.field_programming_language
+field_name: field_programming_language
+entity_type: assembly
+bundle: code_snippet
+label: 'Programming language'
+description: 'Highlight.js should automatically detect the language and apply the correct syntax highlighting. If it does not, you can select the language from the Visual Styles above.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
