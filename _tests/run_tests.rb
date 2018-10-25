@@ -31,8 +31,8 @@ class RunTest
 
   # copy required test type resources in order to execute tests.
   def copy_required_project_resources(test_configuration)
-    cleanup(test_configuration)
     if test_configuration[:unit]
+      cleanup
       # copy main package.json from project directory in order to use it in the unit-test
       # docker container
       parent_directory = File.dirname("_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/*")
@@ -42,12 +42,8 @@ class RunTest
 
   # clear required resources before copying
   # in case there has been an update to the file
-  def cleanup(test_configuration)
-    if test_configuration[:unit]
-      # copy main package.json from project directory in order to use it in the unit-test
-      # docker container
-      FileUtils.rm_rf("#{@test_dir}/unit/rhd-frontend")
-    end
+  def cleanup
+    FileUtils.rm_rf("#{@test_dir}/unit/rhd-frontend")
   end
 
   #
