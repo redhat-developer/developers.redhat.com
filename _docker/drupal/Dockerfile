@@ -57,8 +57,8 @@ COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
 COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch drupal-filesystem/view_render_patch.patch /var/www/drupal/
 # Only install dev dependencies on dev environments
 RUN if [ "$composer_profile" = "production" ]; \ 
-    then /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; echo "prod -------- $composer_profile"; \
-    else /usr/local/bin/composer install --no-interaction; echo "not prod ---- $composer_profile"; \
+    then /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; \
+    else /usr/local/bin/composer install --no-interaction; \
     fi
 
 ENV PATH=$PATH:/var/www/drupal/vendor/bin
