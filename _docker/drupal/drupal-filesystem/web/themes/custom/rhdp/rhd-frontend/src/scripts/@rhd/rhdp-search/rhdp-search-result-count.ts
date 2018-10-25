@@ -55,7 +55,7 @@ export default class RHDPSearchResultCount extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
-        this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`
+        this.innerHTML = `${this.count} results found${this.term ? ` for ${this.term}` : ''}`
     }
 
     _setText(e) {
