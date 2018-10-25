@@ -142,8 +142,7 @@ app.stickyFooter = function () {
     var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight();
     var footerHeight = $('footer.bottom').outerHeight();
     var devHeight = $('.under-development').outerHeight();
-    
-    wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
+    var wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
     wrapper.css('min-height', wrapperHeight);
   }
 };
