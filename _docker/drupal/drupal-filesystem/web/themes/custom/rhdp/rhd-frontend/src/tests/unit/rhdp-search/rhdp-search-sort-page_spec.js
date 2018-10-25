@@ -37,6 +37,6 @@ Unit tests for component pass
     });
 
     it('should read "Sort results by [[sort]]', function() {
-        expect(wc.innerText.trim()).toEqual('Sort results by');
+        expect(wc.querySelector('span').innerText.trim()).toEqual('Sort results by');
     });
 });
