@@ -1,0 +1,21 @@
+uuid: 174595af-e015-4c08-b6e4-8f275b22b83d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.cta_form
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.cta_form.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: cta_form
+label: 'Audience Selection'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

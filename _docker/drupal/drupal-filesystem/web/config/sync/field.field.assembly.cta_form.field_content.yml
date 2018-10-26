@@ -1,0 +1,21 @@
+uuid: 1f070858-6d52-4d03-a265-05f81553d4aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.cta_form
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.cta_form.field_content
+field_name: field_content
+entity_type: assembly
+bundle: cta_form
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
