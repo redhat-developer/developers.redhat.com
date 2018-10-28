@@ -2,13 +2,13 @@ require 'minitest/autorun'
 require 'mocha/mini_test'
 
 require_relative '../test_helper'
-require_relative '../../../_tests/run_test_options'
+require_relative '../../../_tests/run_e2e_test_options'
 
-class TestRunTestOptions < MiniTest::Test
+class TestRunE2ETestOptions < MiniTest::Test
 
   def setup
     @test_dir = '_tests'
-    @run_tests_options = RunTestOptions.new(@test_dir)
+    @run_tests_options = RunE2ETestOptions.new(@test_dir)
     clear_env_variables
   end
 
@@ -51,7 +51,7 @@ class TestRunTestOptions < MiniTest::Test
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker))
     assert(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm test -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:ci --  --baseUrl=http://foo.com', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
@@ -60,9 +60,9 @@ class TestRunTestOptions < MiniTest::Test
   def test_docker_execution_specifying_update_github_status
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --update-github-status=123))
     assert(test_configuration[:docker])
-    assert_equal('npm test -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:ci --  --baseUrl=http://foo.com', test_configuration[:run_tests_command])
     assert_equal('123', ENV['github_status_sha1'])
-    assert_equal('FE:node-e2e-tests', ENV['github_status_context'])
+    assert_equal('js-e2e-tests', ENV['github_status_context'])
     assert_equal('true', ENV['github_status_enabled'])
   end
 

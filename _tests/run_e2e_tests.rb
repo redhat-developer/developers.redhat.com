@@ -1,6 +1,6 @@
 require_relative '../_docker/lib/process_runner'
 require_relative '../_docker/lib/default_logger'
-require_relative 'run_test_options'
+require_relative 'run_e2e_test_options'
 require 'fileutils'
 require 'json'
 #
@@ -10,7 +10,7 @@ require 'json'
 #
 # Execute this script with -h to see the list of available command line options.
 #
-class RunTest
+class RunE2ETest
 
   def initialize(test_dir, process_runner, run_tests_options)
     @test_dir = test_dir
@@ -105,7 +105,7 @@ end
 if $PROGRAM_NAME == __FILE__
   base_dir = File.dirname(__FILE__)
   begin
-    run_tests = RunTest.new(base_dir, ProcessRunner.new, RunTestOptions.new(base_dir))
+    run_tests = RunE2ETest.new(base_dir, ProcessRunner.new, RunE2eTestOptions.new(base_dir))
     run_tests.execute_tests(ARGV)
     Kernel.exit(0)
   rescue

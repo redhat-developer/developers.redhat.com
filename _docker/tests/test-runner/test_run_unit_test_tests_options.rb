@@ -2,13 +2,13 @@ require 'minitest/autorun'
 require 'mocha/mini_test'
 
 require_relative '../test_helper'
-require_relative '../../../_tests/run_test_options'
+require_relative '../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/run_unit_test_options'
 
-class TestRunTestOptions < MiniTest::Test
+class TestRunUnitTestOptions < MiniTest::Test
 
   def setup
-    @test_dir = "#{File.dirname(__FILE__)}/../../_tests"
-    @run_tests_options = RunTestOptions.new(@test_dir)
+    @test_dir = "#{File.dirname(__FILE__)}/../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend"
+    @run_tests_options = RunUnitTestOptions.new(@test_dir)
     clear_env_variables
   end
 

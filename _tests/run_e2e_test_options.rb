@@ -7,7 +7,7 @@ require_relative '../_docker/lib/default_logger'
 # run-test.rb script.
 #
 #
-class RunTestOptions
+class RunE2ETestOptions
 
   def initialize(test_dir)
     @test_dir = test_dir
@@ -23,10 +23,6 @@ class RunTestOptions
     option_parser = OptionParser.new do |opts|
       opts.banner = 'Usage: run-tests.rb [options]'
       opts.separator 'Specific options:'
-
-      opts.on('--unit', 'Execute frontend unit-tests') do |opt|
-        test_configuration[:unit] = opt
-      end
 
       opts.on('--e2e', 'Execute frontend end-to-end tests') do |opt|
         test_configuration = create_default_test_configuration
@@ -81,10 +77,10 @@ class RunTestOptions
       puts e
       option_parser.parse(%w(-h))
     end
-    bind_test_type_environment_variable(test_configuration)
-    bind_github_status_environment_variables(test_configuration[:github_sha1], ENV['rhd_test'].to_s, test_configuration[:profile])
+    bind_environment_variable('rhd_test', 'e2e')
+    bind_github_status_environment_variables(test_configuration[:github_sha1], test_configuration[:profile])
     bind_browser_environment_variables(test_configuration[:browser]) if test_configuration[:e2e]
-    build_test_execution_command(test_configuration)
+    build_e2e_test_execution_cmd(test_configuration)
     test_configuration
   end
 
@@ -92,34 +88,15 @@ class RunTestOptions
   private
 
   #
-  # Create a generic environment variable for specified test type. Will be used
-  # within the run_tests.rb script in order to generate the correct test resources
-  # and run commands based on the test type.
-  #
-  def bind_test_type_environment_variable(test_configuration)
-    test_configuration[:unit] ? bind_environment_variable('rhd_test', 'unit') : bind_environment_variable('rhd_test', 'e2e')
-  end
-
-  #
-  # Builds the command that will be used to execute the specified tests
-  #
-  def build_test_execution_command(test_configuration)
-    test_configuration[:unit] ? build_unit_test_execution_cmd(test_configuration) : build_e2e_test_execution_cmd(test_configuration)
-  end
-
-  #
   # Should we wish to update GitHub statuses, this will set the required environment variables
   #
-  def bind_github_status_environment_variables(github_sha_1, test_type, profile)
+  def bind_github_status_environment_variables(github_sha_1, profile)
     return unless github_sha_1
     @logger.info("Enabling update of GitHub status for SHA1: '#{github_sha_1}'")
     bind_environment_variable('github_status_enabled', 'true')
     bind_environment_variable('github_status_sha1', github_sha_1)
-    bind_environment_variable('github_status_context', 'js-unit-tests') if test_type == 'unit'
-    if test_type == 'e2e'
-      bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
-      bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
-    end
+    bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
+    bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
   end
 
   #
@@ -128,13 +105,6 @@ class RunTestOptions
   def bind_environment_variable(env_variable_name, value)
     return if value.nil? || value.empty?
     ENV[env_variable_name] = value
-  end
-
-  #
-  # Builds unit-test command for local and inside docker testing
-  #
-  def build_unit_test_execution_cmd(test_configuration)
-    test_configuration[:run_tests_command] = 'npm test'
   end
 
   #

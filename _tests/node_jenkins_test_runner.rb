@@ -67,7 +67,7 @@ class NodeJenkinsTestRunner
   # we should send updates to GitHub and any Cucumber tags that should be applied.
   #
   def build_e2e_run_tests_command(profile)
-    command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
+    command = "ruby _tests/run_e2e_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('ghprbActualCommit')
     mocha_tags = read_env_variable('RHD_MOCHA_TAGS')
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'

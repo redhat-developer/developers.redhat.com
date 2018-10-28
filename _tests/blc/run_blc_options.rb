@@ -81,7 +81,7 @@ class RunBlcOptions
 
   #
   # Create a generic environment variable for specified test type. Will be used
-  # within the run_tests.rb script in order to generate the correct test resources
+  # within the run_e2e_tests.rb script in order to generate the correct test resources
   # and run commands based on the test type.
   #
   def bind_test_type_environment_variable(test_configuration)
