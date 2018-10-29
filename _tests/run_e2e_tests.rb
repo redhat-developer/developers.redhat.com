@@ -42,7 +42,6 @@ class RunE2ETest
   #
   def run_tests_in_docker(test_configuration)
     build_base_docker_image(@test_dir)
-    copy_required_project_resources(test_configuration)
     compose_project_name = docker_compose_project_name
     compose_environment_directory = "#{@test_dir}/#{ENV['rhd_test']}/environments"
 
