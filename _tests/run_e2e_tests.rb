@@ -29,23 +29,6 @@ class RunE2ETest
 
   private
 
-  # copy required test type resources in order to execute tests.
-  def copy_required_project_resources(test_configuration)
-    if test_configuration[:unit]
-      cleanup
-      # copy main package.json from project directory in order to use it in the unit-test
-      # docker container
-      parent_directory = File.dirname("_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/*")
-      FileUtils.cp_r("#{parent_directory}", "#{@test_dir}/unit/rhd-frontend")
-    end
-  end
-
-  # clear required resources before copying
-  # in case there has been an update to the file
-  def cleanup
-    FileUtils.rm_rf("#{@test_dir}/unit/rhd-frontend")
-  end
-
   #
   # Builds the unit/e2e test base Docker image
   #
