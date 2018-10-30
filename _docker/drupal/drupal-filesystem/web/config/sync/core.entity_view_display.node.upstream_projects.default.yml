@@ -1,0 +1,55 @@
+uuid: 00403b7c-5b49-4040-a9e2-9f3628a5b368
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.upstream_projects.field_link_to_project
+    - field.field.node.upstream_projects.field_link_to_repo
+    - field.field.node.upstream_projects.field_logo
+    - node.type.upstream_projects
+  module:
+    - link
+    - user
+id: node.upstream_projects.default
+targetEntityType: node
+bundle: upstream_projects
+mode: default
+content:
+  field_link_to_project:
+    weight: 102
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_link_to_repo:
+    weight: 103
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_logo:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

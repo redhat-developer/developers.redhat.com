@@ -1,0 +1,20 @@
+uuid: 8adf55ad-08b2-45a9-b296-50627f226ea5
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_upstream_projects
+field_name: field_upstream_projects
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

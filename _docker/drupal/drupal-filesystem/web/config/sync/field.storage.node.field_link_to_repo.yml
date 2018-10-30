@@ -1,0 +1,19 @@
+uuid: dd387bf1-da40-460a-a251-c38d5302b3ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_link_to_repo
+field_name: field_link_to_repo
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
