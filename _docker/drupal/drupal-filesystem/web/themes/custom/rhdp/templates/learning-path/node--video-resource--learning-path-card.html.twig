@@ -1,6 +1,6 @@
 {% set access = 'free-content' %}
 
-{# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
+{#  The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content  #}
 <div{{ attributes.addClass(['dp-content-card', access ]) }} 
     access="member" 
     duration="{{node.field_read_time.value}}" 
