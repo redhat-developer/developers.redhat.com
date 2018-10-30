@@ -19,7 +19,7 @@ third_party_settings:
       children:
         - field_features
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: details
       format_settings:
         id: ''
@@ -33,7 +33,7 @@ third_party_settings:
         - field_products
         - field_upstream_projects
       parent_name: ''
-      weight: 2
+      weight: 1
       format_type: details
       format_settings:
         id: ''
@@ -120,7 +120,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 9
+    weight: 6
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -134,14 +134,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -151,7 +151,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 6
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
