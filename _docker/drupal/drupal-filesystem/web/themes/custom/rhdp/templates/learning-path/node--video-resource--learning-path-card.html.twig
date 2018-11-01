@@ -1,6 +1,6 @@
 {% set access = 'free-content' %}
 
-{# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
+{#  The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content  #}
 <div{{ attributes.addClass(['dp-content-card', access ]) }} 
     access="member" 
     duration="{{node.field_read_time.value}}" 
@@ -49,11 +49,12 @@
     <h4 class="line-clamp-2">{{ node.title.value }}</h4>
     <p class="line-clamp-3">{{ node.body.value|striptags }}</p>
     <div class="bio">
-      {% if node.field_video_publish_date.value is not empty %}
-        <rh-datetime datetime="{{ node.field_video_publish_date.value|date("c")}}">{{node.field_video_publish_date.value|date("Y-m-d")}}</rh-datetime>
+      {% set calc_date = node.field_video_publish_date.value is not empty ? node.field_video_publish_date : node.published_at %}
+      {% if calc_date and calc_date.value is not empty %}
+        <rh-datetime datetime="{{calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
       {% endif %}
       <div class="dp-author">
-      {% if node.field_video_publish_date.value is not empty and node.field_speakers.value %}
+      {% if calc_date is not empty and node.field_speakers.value %}
       &nbsp;&mdash;&nbsp;
       {% endif %}
       {{node.field_speakers.value}}
