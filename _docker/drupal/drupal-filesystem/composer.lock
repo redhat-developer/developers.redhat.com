@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "88cc9702f2892dfff423d876478e6ac4",
+    "content-hash": "b651f8a1c3132ec3926ca2feb88b3a1d",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -157,7 +157,7 @@
             "version": "v5.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/enyo/dropzone.git",
+                "url": "git@github.com:enyo/dropzone.git",
                 "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9"
             },
             "dist": {
@@ -4840,6 +4840,68 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/pathauto"
             }
+        },
+        {
+            "name": "drupal/publication_date",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/publication_date",
+                "reference": "1824830318e3d3b9e1946ee6a4f219ee4c92c876"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-beta1+0-dev",
+                    "datestamp": "1527849184",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Clever Age",
+                    "homepage": "https://www.drupal.org/user/547746"
+                },
+                {
+                    "name": "Sheldon Rampton",
+                    "homepage": "https://www.drupal.org/user/13085"
+                },
+                {
+                    "name": "dgtlmoon",
+                    "homepage": "https://www.drupal.org/user/25027"
+                },
+                {
+                    "name": "jstoller",
+                    "homepage": "https://www.drupal.org/user/99012"
+                },
+                {
+                    "name": "tmarly",
+                    "homepage": "https://www.drupal.org/user/159040"
+                },
+                {
+                    "name": "webflo",
+                    "homepage": "https://www.drupal.org/user/254778"
+                }
+            ],
+            "description": "Add a field containing the publication date.",
+            "homepage": "https://www.drupal.org/project/publication_date",
+            "support": {
+                "source": "http://cgit.drupalcode.org/publication_date"
+            },
+            "time": "2018-07-25T16:28:42+00:00"
         },
         {
             "name": "drupal/redirect",
@@ -13667,7 +13729,8 @@
         "drupal/field_collection": 20,
         "drupal/field_group": 20,
         "drupal/inline_entity_form": 20,
-        "drupal/workbench": 20
+        "drupal/workbench": 20,
+        "drupal/publication_date": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
