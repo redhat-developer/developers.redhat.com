@@ -615,27 +615,25 @@ function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
 /**
  * Implements hook_library_info_alter().
  *
- * By default, we will load the Keycloak prod script. If we've specified a
- * different value in this environment's rhd.settings.yml file, we will alter
- * that library definition here.
+ * By default, we will load the Keycloak prod script. On our Stage environment
+ * we will set a config object, redhat_developers.keycloak.scriptUrl, that will
+ * be the URL path to the Keycloak stage script. If this config object exists,
+ * then we know to override the default prod Keycloak script with the Keycloak
+ * stage script.
  */
 function rhdp_library_info_alter(array &$libraries, $extension) {
+  // This should return the stage Keycloak script URL on our Stage environment,
+  // but otherwise, the config object will not be set, and this will be NULL.
   $keycloak_url = \Drupal::config('redhat_developers')->get('keycloak')['scriptUrl'];
-  $keycloak_url_default = 'https://developers.redhat.com/auth/js/keycloak.js';
 
-  if ($extension == 'rhdp') {
-    // Grab the key of each JS asset in the base-theme library.
-    $library_keys = array_keys($libraries['base-theme']['js']);
-
-    // If the scriptUrl specified in the redhat_developers.keycloak config
-    // object is not the prod url, we will unset the prod URL and add this
-    // environment's scriptUrl.
-    if (!in_array($keycloak_url, $library_keys)) {
-      unset($libraries['base-theme']['js'][$keycloak_url_default]);
-      $libraries['base-theme']['js'][$keycloak_url] = [
-        'type' => 'external',
-        'minified' => FALSE,
-      ];
-    }
+  // Keycloak_url is only set on the Stage environment. 
+  if ($extension == 'rhdp' && $keycloak_url !== NULL) {
+    // Remove the Prod Keycloak script URL from our library.
+    unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+    // Add the Stage Keycloak script URL to our library.
+    $libraries['base-theme']['js'][$keycloak_url] = [
+      'type' => 'external',
+      'minified' => FALSE,
+    ];
   }
 }
