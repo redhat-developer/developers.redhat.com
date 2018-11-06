@@ -612,17 +612,30 @@ function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
   );
 }
 
-function rhdp_library_info_alter(&$libraries, $extension) {
-  $env = \Drupal::config('redhat_developers')->get('environment');
-  $keycloak_url_prod = 'https://developers.redhat.com/auth/js/keycloak.js';
-  $keycloak_url_stage = 'https://developers.stage.redhat.com/auth/js/keycloak.js';
+/**
+ * Implements hook_library_info_alter().
+ *
+ * By default, we will load the Keycloak prod script. If we've specified a
+ * different value in this environment's rhd.settings.yml file, we will alter
+ * that library definition here.
+ */
+function rhdp_library_info_alter(array &$libraries, $extension) {
+  $keycloak_url = \Drupal::config('redhat_developers')->get('keycloak')['scriptUrl'];
+  $keycloak_url_default = 'https://developers.redhat.com/auth/js/keycloak.js';
 
-  // In the stage environment, we need to point to a stage version of Keycloak.
-  if ($env == 'stage' && $extension == 'rhdp') {
-    unset($libraries['base-theme']['js'][$keycloak_url_prod]);
-    $libraries['base-theme']['js'][$keycloak_url_stage] = array(
-      'type' => 'external',
-      'minified' => false
-    );
+  if ($extension == 'rhdp') {
+    // Grab the key of each JS asset in the base-theme library.
+    $library_keys = array_keys($libraries['base-theme']['js']);
+
+    // If the scriptUrl specified in the redhat_developers.keycloak config
+    // object is not the prod url, we will unset the prod URL and add this
+    // environment's scriptUrl.
+    if (!in_array($keycloak_url, $library_keys)) {
+      unset($libraries['base-theme']['js'][$keycloak_url_default]);
+      $libraries['base-theme']['js'][$keycloak_url] = [
+        'type' => 'external',
+        'minified' => FALSE,
+      ];
+    }
   }
 }
