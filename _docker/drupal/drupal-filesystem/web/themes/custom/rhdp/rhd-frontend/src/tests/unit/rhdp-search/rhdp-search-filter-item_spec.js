@@ -58,9 +58,6 @@ describe('Search Filter Item', function() {
             wc.setAttribute('inline', true);
         });
 
-        afterEach(function() {
-
-        });
         it('should set inline innertext', function() {
             expect(wc.innerText.trim()).toBe(name);
         });
@@ -69,12 +66,15 @@ describe('Search Filter Item', function() {
             clr.click();
             setTimeout(function() {
                 expect(wc.innerHTML).toBe('');
-            }, 500)
+            }, 2000);
         });
         it('should set active on clearItem click', function() {
             var clr = wc.querySelector('.clearItem');
             clr.click();
-            expect(wc.active).toBe(true);
+            setTimeout(function() {
+                expect(wc.active).toBe(true);
+            }, 2000);
+            
         });
 
     });

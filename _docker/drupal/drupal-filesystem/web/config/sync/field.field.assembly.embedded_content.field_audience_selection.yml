@@ -1,0 +1,21 @@
+uuid: fdb8053a-985b-4457-9e69-423b6c58a83f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.embedded_content
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.embedded_content.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: embedded_content
+label: 'Audience Selection'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,25 @@
+uuid: d16c2d02-19fb-42ab-9bce-7fe610b45e45
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - lightning_media_slideshow
+  module:
+    - block_content
+    - media
+_core:
+  default_config_hash: qZVgwfLqVT51mtZs2OuqUWmhd-nFrp5FaYIRsWEzZwE
+id: block_content.field_slideshow_items
+field_name: field_slideshow_items
+entity_type: block_content
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
