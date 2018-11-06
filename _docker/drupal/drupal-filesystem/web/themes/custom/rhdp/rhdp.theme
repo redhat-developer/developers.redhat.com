@@ -611,3 +611,18 @@ function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
     $variables['title']
   );
 }
+
+function rhdp_library_info_alter(&$libraries, $extension) {
+  $env = \Drupal::config('redhat_developers')->get('environment');
+  $keycloak_url_prod = 'https://developers.redhat.com/auth/js/keycloak.js';
+  $keycloak_url_stage = 'https://developers.stage.redhat.com/auth/js/keycloak.js';
+
+  // In the stage environment, we need to point to a stage version of Keycloak.
+  if ($env == 'stage' && $extension == 'rhdp') {
+    unset($libraries['base-theme']['js'][$keycloak_url_prod]);
+    $libraries['base-theme']['js'][$keycloak_url_stage] = array(
+      'type' => 'external',
+      'minified' => false
+    );
+  }
+}
