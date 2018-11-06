@@ -14,13 +14,13 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
             <div class="developer-materials large-24 columns" ng-controller="developerMaterialsController" ng-cloak>
                 <div class="row" id="developer-materials-filters"
                      ng-init="data.pageType = 'sitewide'">
-                    {% include '@rhd/includes/developer-materials-filters.html.twig' %}
+                    {% include '@rhdp/includes/developer-materials-filters.html.twig' %}
                 </div>
                 <div class="text-content row">
                     <div class="developer-materials-results-wrapper large-24 columns"
                          data-developer-materials-filter-project-code="{{ product_machine_name }}"
                          ng-init="filters.project = '{{ product_machine_name }}';filters.randomize = false; data.pageType = '{{ product_machine_name }}';">
-                        {% include '@rhd/includes/developer-materials-results.html.twig' %}
+                        {% include '@rhdp/includes/developer-materials-results.html.twig' %}
                     </div>
                 </div>
             </div>

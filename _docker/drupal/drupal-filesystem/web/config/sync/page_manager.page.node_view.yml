@@ -1,0 +1,18 @@
+uuid: 006d2ec2-a6b1-444e-a9ce-b6d9080f5726
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RCVWP-yHwxSNiQORMIabDgHMEVqOMW58w80BQgRFJ4k
+id: node_view
+label: 'Node view'
+description: 'When enabled, this overrides the default Drupal behavior for displaying nodes at <em>/node/{node}</em>. If you add variants, you may use selection criteria such as node type or language or user access to provide different views of nodes. If no variant is selected, the default Drupal node view will be used. This page only affects nodes viewed as pages, it will not affect nodes viewed in lists or at other locations.'
+use_admin_theme: false
+path: '/node/{node}'
+access_logic: and
+access_conditions: {  }
+parameters:
+  node:
+    machine_name: node
+    type: 'entity:node'
+    label: Node
