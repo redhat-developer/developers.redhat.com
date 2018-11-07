@@ -1,17 +1,17 @@
 version: '2'
 services:
   rhd_unit_testing:
-    build: ..
+    build: ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
     volumes:
     - ../../../:/home/unit/developers.redhat.com
     entrypoint: ruby /home/unit/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
-    working_dir: /home/unit
+    working_dir: /home/unit/developers.redhat.com/_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
     environment:
     - github_status_enabled
     - github_status_api_token
     - github_status_context
     - github_status_repo=redhat-developer/developers.redhat.com
-    - github_status_target_url=${BUILD_URL}artifact/_tests/unit/report/unit-test-report.html
+    - github_status_target_url=${BUILD_URL}artifact/_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/src/tests/unit/report/unit-test-report.html
     - github_status_sha1
     cap_add:
     - SYS_ADMIN
