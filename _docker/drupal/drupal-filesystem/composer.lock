@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaac6c59c7f7e91867273fe97d5fb56d",
+    "content-hash": "31ccd4063ac36cffd61312ba8ad02610",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1275,7 +1275,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -1297,10 +1297,6 @@
                 {
                     "name": "SteveEdwardsAcquia",
                     "homepage": "https://www.drupal.org/user/3556170"
-                },
-                {
-                    "name": "ayang",
-                    "homepage": "https://www.drupal.org/user/1777884"
                 },
                 {
                     "name": "dmitrii",
@@ -1471,7 +1467,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/assembly",
-                "reference": "69a07b1245494e1ff9f38c821308f119fbaa3929"
+                "reference": "1849928d2855d08c04ac5e9ace1733f54efcae5d"
             },
             "require": {
                 "drupal/core": "*",
@@ -1511,7 +1507,7 @@
                 "source": "http://cgit.drupalcode.org/assembly",
                 "issues": "https://www.drupal.org/project/issues/assembly"
             },
-            "time": "2018-04-26T21:46:21+00:00"
+            "time": "2018-11-08T15:28:22+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -1657,7 +1653,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -2153,10 +2149,6 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "joelpittet",
-                    "homepage": "https://www.drupal.org/user/160302"
-                },
-                {
                     "name": "merlinofchaos",
                     "homepage": "https://www.drupal.org/user/26979"
                 },
@@ -2198,16 +2190,12 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
+                    "datestamp": "1493401742"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -2229,10 +2217,6 @@
                 {
                     "name": "japerry",
                     "homepage": "https://www.drupal.org/user/45640"
-                },
-                {
-                    "name": "joelpittet",
-                    "homepage": "https://www.drupal.org/user/160302"
                 },
                 {
                     "name": "merlinofchaos",
@@ -2467,7 +2451,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -4051,16 +4035,20 @@
             ],
             "authors": [
                 {
+                    "name": "barraponto",
+                    "homepage": "https://www.drupal.org/user/511760"
+                },
+                {
                     "name": "frjo",
                     "homepage": "https://www.drupal.org/user/5546"
                 },
                 {
-                    "name": "gisle",
-                    "homepage": "https://www.drupal.org/user/409554"
+                    "name": "justin2pin",
+                    "homepage": "https://www.drupal.org/user/278450"
                 },
                 {
-                    "name": "markcarver",
-                    "homepage": "https://www.drupal.org/user/501638"
+                    "name": "sreynen",
+                    "homepage": "https://www.drupal.org/user/109890"
                 }
             ],
             "description": "Allows content to be submitted using Markdown, a simple plain-text syntax that is transformed into valid HTML.",
@@ -5857,7 +5845,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -6108,7 +6096,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -11502,6 +11490,12 @@
                 "type": "git",
                 "url": "https://git.drupal.org/project/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klausi/coder/zipball/984c54a7b1e8f27ff1c32348df69712afd86b17f",
+                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f",
+                "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
