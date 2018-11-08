@@ -1,14 +1,32 @@
 const BrowserManager = require('./browsers/BrowserManager');
+const commandlineArgs = require('minimist')(process.argv.slice(2));
 
-if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
-    process.env.RHD_JS_DRIVER = 'chrome'
+if (typeof commandlineArgs['testType'] === 'undefined') {
+    testType = 'export'
+} else {
+    testType = commandlineArgs['testType'];
 }
 
-if (typeof process.env.RHD_BASE_URL === 'undefined') {
+if (testType === 'drupal') {
+    exclude = 'export'
+} else {
+    exclude = 'drupal'
+}
+
+typeof process.env.RHD_JS_DRIVER === 'undefined' ? browser = 'chrome' : browser = process.env.RHD_JS_DRIVER;
+browserCaps = BrowserManager.createBrowser(browser);
+
+if (typeof commandlineArgs['base-url'] === 'undefined') {
     process.env.RHD_BASE_URL = 'http://docker:8888'
+} else {
+    if (commandlineArgs['base-url'].includes('developers-pr') && testType === 'drupal') {
+        let parsedUrl = require('url').parse('https://developers-pr.stage.redhat.com/pr/2705/export/');
+        let prNumber = parseInt(parsedUrl.pathname.split('/')[2]);
+        process.env.RHD_BASE_URL = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000 + prNumber)}`;
+    } else {
+        process.env.RHD_BASE_URL = commandlineArgs['base-url']
+    }
 }
-
-browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
 exports.config = {
 
@@ -18,9 +36,9 @@ exports.config = {
 
     capabilities: [browserCaps],
 
-    specs: ['specs/**/*.js'],
+    specs: `specs/${testType}/*.js`,
 
-    exclude: ['specs/support/**/*.js'],
+    exclude: [`specs/${exclude}/*.js`, `specs/support/**/*.js`],
 
     sync: true,
 
@@ -52,9 +70,6 @@ exports.config = {
     },
 
     before: function () {
-        /**
-         * Setup the Chai assertion framework
-         */
         const chai = require('chai');
         global.expect = chai.expect;
         global.assert = chai.assert;
@@ -68,6 +83,5 @@ exports.config = {
         global.logger.level = 'debug';
 
         process.env.RHD_BASE_URL = this.baseUrl;
-
     },
 };

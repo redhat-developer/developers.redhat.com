@@ -1,4 +1,4 @@
-import {Home} from './support/pages/website/Home.page';
+import {Home} from '../support/pages/website/Home.page';
 
 describe('Home Page', function () {
     this.retries(2);

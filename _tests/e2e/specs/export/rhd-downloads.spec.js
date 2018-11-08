@@ -1,9 +1,9 @@
-import {Login} from './support/pages/keycloak/Login.page';
-import {ProductOverview} from './support/pages/website/ProductOverview.page';
-import {CheatSheets} from './support/pages/website/CheatSheets.page';
-import {User} from './support/rest/keycloak/Site.user';
-import {DownloadDir} from './support/DownloadDir';
-import {Utils} from './support/Utils';
+import {Login} from '../support/pages/keycloak/Login.page';
+import {ProductOverview} from '../support/pages/website/ProductOverview.page';
+import {CheatSheets} from '../support/pages/website/CheatSheets.page';
+import {User} from '../support/rest/keycloak/Site.user';
+import {DownloadDir} from '../support/DownloadDir';
+import {Utils} from '../support/Utils';
 
 const tags = require('mocha-tags');
 
@@ -40,7 +40,7 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('dm')
-        .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
+        .it('@sanity @wip: should allow users to log-in and download advanced-linux-commands', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let login = new Login();
