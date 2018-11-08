@@ -2,192 +2,217 @@
 
 /**
  * @file
- * Functions to support theming in the RHD theme.
+ * Functions to support theming in the RHDP theme.
  */
-use Drupal\Core\Field\FieldItemBase;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\Link;
+
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
-use Drupal\field_collection\Entity\FieldCollectionItem;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
-use Drupal\views\ViewExecutable;
-use Drupal\assembly\Entity\Assembly;
 
-
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function rhdp_theme_suggestions_page_alter(array &$suggestions, array $variables) {
-    $node = \Drupal::request()->attributes->get('node');
-    if (!is_null($node) && method_exists($node, 'getType')) {
-        $new_suggestion = 'page__' . $node->getType();
+  $node = \Drupal::request()->attributes->get('node');
 
-        if (!in_array($new_suggestion, $suggestions)) {
-            $suggestions[] = $new_suggestion;
-        }
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $new_suggestion = 'page__' . $node->getType();
+
+    if (!in_array($new_suggestion, $suggestions)) {
+      $suggestions[] = $new_suggestion;
     }
+  }
 
-    return $suggestions;
+  return $suggestions;
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Ensures theme suggestions exist for every content type.
+ */
 function rhdp_theme_suggestions_node_alter(array &$suggestions, array $variables) {
-    $found_suggestion_matches = preg_grep("/node__\D+__/", $suggestions);
+  $found_suggestion_matches = preg_grep("/node__\D+__/", $suggestions);
 
-    // If we have found_suggestion_matches, just return those as they'll be more specific anyway
-    // This does feel kind of hacky, but not sure of a better solution
-    if (!is_null($found_suggestion_matches)) {
-        return $suggestions;
-    }
-
-    $node = \Drupal::request()->attributes->get('node');
-    if (!is_null($node) && method_exists($node, 'getType')) {
-        $new_suggestion = 'node__' . $node->getType();
-
-        if (!in_array($new_suggestion, $suggestions)) {
-            $suggestions[] = $new_suggestion;
-        }
-    }
-
+  // If we have found_suggestion_matches, just return those as they'll be more
+  // specific anyway. This does feel kind of hacky, but not sure of a better
+  // solution.
+  if (!is_null($found_suggestion_matches)) {
     return $suggestions;
+  }
+
+  $node = \Drupal::request()->attributes->get('node');
+
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $new_suggestion = 'node__' . $node->getType();
+
+    if (!in_array($new_suggestion, $suggestions)) {
+      $suggestions[] = $new_suggestion;
+    }
+  }
+
+  return $suggestions;
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function rhdp_theme_suggestions_block_alter(array &$suggestions, array $variables) {
-    $node = \Drupal::request()->attributes->get('node');
-    $suggestion = 'block';
-    $parts = explode(':', $variables['elements']['#plugin_id']);
+  $node = \Drupal::request()->attributes->get('node');
+  $suggestion = 'block';
+  $parts = explode(':', $variables['elements']['#plugin_id']);
 
-    if (!is_null($node) && method_exists($node, 'getType')) {
-          $suggestions[] = $suggestion .= '__' . $node->getType();
-    }
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $suggestions[] = $suggestion .= '__' . $node->getType();
+  }
 
-    while ($part = array_shift($parts)) {
-      $suggestions[] = $suggestion .= '__' . strtr($part, '-', '_');
-    }
-    return $suggestions;
+  while ($part = array_shift($parts)) {
+    $suggestions[] = $suggestion .= '__' . strtr($part, '-', '_');
+  }
+
+  return $suggestions;
 }
 
-function rhdp_preprocess_block(&$variables) {
+/**
+ * Implements hook_preprocess_block().
+ */
+function rhdp_preprocess_block(array &$variables) {
   $block_id = $variables['elements']['#id'];
+
   if ($block_id == 'rhdnavigation_mobile') {
     $variables['attributes']['class'][] = 'rhd-nav-mobile';
   }
+
   if ($block_id == 'rhdnavigation') {
     $variables['attributes']['class'][] = 'rhd-nav-fixed';
   }
 }
 
-
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function rhdp_theme_suggestions_toc_responsive_alter(array &$suggestions, array $variables) {
-    $node = \Drupal::request()->attributes->get('node');
-    $suggestion = 'toc_responsive';
-    $parts = explode(':', $variables['elements']['#plugin_id']);
+  $node = \Drupal::request()->attributes->get('node');
+  $suggestion = 'toc_responsive';
+  $parts = explode(':', $variables['elements']['#plugin_id']);
 
-    if (!is_null($node) && method_exists($node, 'getType')) {
-        $suggestions[] = $suggestion .= '__' . $node->getType();
-    }
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $suggestions[] = $suggestion .= '__' . $node->getType();
+  }
 
-    while ($part = array_shift($parts)) {
-        $suggestions[] = $suggestion .= '__' . strtr($part, '-', '_');
-    }
+  while ($part = array_shift($parts)) {
+    $suggestions[] = $suggestion .= '__' . strtr($part, '-', '_');
+  }
 
-    return $suggestions;
+  return $suggestions;
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function rhdp_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
-    $suggestion = 'taxonomy_term';
+  $suggestion = 'taxonomy_term';
+  $term = $variables['elements']['#taxonomy_term'];
+  $node = \Drupal::request()->attributes->get('node');
 
-    $term = $variables['elements']['#taxonomy_term'];
-    $node = \Drupal::request()->attributes->get('node');
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $suggestions[] = $suggestion .= '__' . $node->getType();
+  }
 
-    if (!is_null($node) && method_exists($node, 'getType')) {
-        $suggestions[] = $suggestion .= '__' . $node->getType();
-    }
+  $suggestions[] = $suggestion . '__' . $term->bundle();
+  $suggestions[] = $suggestion . '__' . $term->id();
 
-    $suggestions[] = $suggestion . '__' . $term->bundle();
-    $suggestions[] = $suggestion . '__' . $term->id();
-
-    return $suggestions;
+  return $suggestions;
 }
 
+/**
+ * Implements hook_preprocess_html().
+ */
 function rhdp_preprocess_html(array &$variables) {
-    $current_path = \Drupal::service('path.current')->getPath();
-    $environment = \Drupal::config('redhat_developers')->get('environment');
-    $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
-    $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
-    $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
-    $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
-    $rhd_base_url = \Drupal::config('redhat_developers')->get('rhd_base_url');
-    $rhd_final_base_url = \Drupal::config('redhat_developers')
-        ->get('rhd_final_base_url');
+  $current_path = \Drupal::service('path.current')->getPath();
+  $environment = \Drupal::config('redhat_developers')->get('environment');
+  $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
+  $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
+  $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
+  $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
+  $rhd_base_url = \Drupal::config('redhat_developers')->get('rhd_base_url');
+  $rhd_final_base_url = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
 
-    $variables['rhd_environment'] = $environment;
-    $variables['rhd_dtm_code'] = $dtm_code;
-    $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
-    $variables['rhd_sentry_track'] = $sentry_track;
-    $variables['rhd_sentry_script'] = $sentry_script;
-    $variables['rhd_sentry_code'] = $sentry_code;
-    $variables['rhd_base_url'] = $rhd_base_url;
-    $variables['rhd_final_base_url'] = $rhd_final_base_url;
-    $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  $variables['rhd_environment'] = $environment;
+  $variables['rhd_dtm_code'] = $dtm_code;
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_sentry_track'] = $sentry_track;
+  $variables['rhd_sentry_script'] = $sentry_script;
+  $variables['rhd_sentry_code'] = $sentry_code;
+  $variables['rhd_base_url'] = $rhd_base_url;
+  $variables['rhd_final_base_url'] = $rhd_final_base_url;
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
-    if ($environment != 'prod') {
-        $referrer = [
-        '#tag' => 'meta',
-        '#attributes' => [
-            'name' => 'referrer',      // Set name for element
-            'value' => 'unsafe-url'    // Set value for title
-        ],
-        ];
-        $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
-    }
+  if ($environment != 'prod') {
+    $referrer = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'referrer',      // Set name for element
+        'value' => 'unsafe-url',   // Set value for title
+      ],
+    ];
+
+    $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+  }
 }
 
-function rhdp_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
-    $env_settings = \Drupal::config('redhat_developers');
+/**
+ * Implements hook_js_settings_alter().
+ */
+function rhdp_js_settings_alter(array &$settings, AttachedAssetsInterface $assets) {
+  $env_settings = \Drupal::config('redhat_developers');
 
-    $settings['rhd'] = array();
-    $rhd_settings = &$settings['rhd'];
+  $settings['rhd'] = [];
+  $rhd_settings = &$settings['rhd'];
 
-    $rhd_settings['urls'] = array();
-    $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
+  $rhd_settings['urls'] = [];
+  $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
 
-    $rhd_settings['downloadManager'] = array();
-    $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
-    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
-        . $env_settings->get('searchisko')['port'];
+  $rhd_settings['downloadManager'] = [];
+  $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
+  $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
+      . $env_settings->get('searchisko')['port'];
 
-    $rhd_settings['keycloak'] = array();
-    $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
-    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak'] = [];
+  $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
+  $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
 
-    $theme_path = drupal_get_path('theme', 'rhdp');
+  $theme_path = drupal_get_path('theme', 'rhdp');
 
-    $rhd_settings['templates'] = array();
-    $template = file_get_contents($theme_path . '/templates/client-side/book.html.twig');
-    $rhd_settings['templates']['book'] = $template;
+  $rhd_settings['templates'] = [];
+  $template = file_get_contents($theme_path . '/templates/client-side/book.html.twig');
+  $rhd_settings['templates']['book'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/mini_buzz.html.twig');
-    $rhd_settings['templates']['miniBuzz'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/mini_buzz.html.twig');
+  $rhd_settings['templates']['miniBuzz'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/product_buzz.html.twig');
-    $rhd_settings['templates']['productBuzz'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/product_buzz.html.twig');
+  $rhd_settings['templates']['productBuzz'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/buzz.html.twig');
-    $rhd_settings['templates']['buzz'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/buzz.html.twig');
+  $rhd_settings['templates']['buzz'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/terms_conditions.html.twig');
-    $rhd_settings['templates']['termsConditions'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/terms_conditions.html.twig');
+  $rhd_settings['templates']['termsConditions'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/product_connector.html.twig');
-    $rhd_settings['templates']['connector'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/product_connector.html.twig');
+  $rhd_settings['templates']['connector'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/product_stackoverflow_template.html.twig');
-    $rhd_settings['templates']['productStackoverflowTemplate'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/product_stackoverflow_template.html.twig');
+  $rhd_settings['templates']['productStackoverflowTemplate'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/search_page_template.html.twig');
-    $rhd_settings['templates']['searchPageTemplate'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/search_page_template.html.twig');
+  $rhd_settings['templates']['searchPageTemplate'] = $template;
 
-    $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
-    $rhd_settings['templates']['stackoverflowTemplate'] = $template;
+  $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
+  $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
 
 /**
@@ -198,15 +223,16 @@ function rhdp_preprocess_page(&$variables) {
   $node = isset($variables['node']) ? $variables['node'] : FALSE;
 
   if ($node) {
-    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->id());
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->id());
+
     if ($alias == '/') {
-      $variables['is_front'] = true;
+      $variables['is_front'] = TRUE;
     }
   }
 
-  // Pull out assemblies to page level for solp
+  // Pull out assemblies to page level for solp.
   if ($node && $node->getType() == 'landing_page_single_offer') {
-    foreach(['sections', 'form'] as $field) {
+    foreach (['sections', 'form'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
         $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
@@ -221,15 +247,27 @@ function rhdp_preprocess_page(&$variables) {
 /**
  * Implements template_preprocess_node().
  */
-function rhdp_preprocess_node(&$variables) {
+function rhdp_preprocess_node(array &$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
 
-  if ($variables['view_mode'] == 'teaser' && $node->getType() == 'video_resource') {
-    $video_thumbnail_url = $node->get('field_video_thumbnail_url')->getValue();
-    $variables['video_thumbnail_url'] = ($video_thumbnail_url) ? $video_thumbnail_url[0]['value'] : FALSE;
+  // Video Resource content type.
+  if ($node->getType() == 'video_resource') {
+    // Teaser view mode.
+    if ($variables['view_mode'] == 'teaser') {
+      if (isset($node->field_video_thumbnail_url)) {
+        $video_thumbnail_url = $node->get('field_video_thumbnail_url')->getValue();
+        $variables['video_thumbnail_url'] = ($video_thumbnail_url) ? $video_thumbnail_url[0]['value'] : FALSE;
+      }
+    }
+    // Tile view mode.
+    if ($variables['view_mode'] == 'tile') {
+      $node_title = $node->label();
+      $variables['node_title'] = str_replace('"', '', $node_title);
+    }
   }
-  
+
+  // Author content type.
   if ($node->getType() == 'author') {
     $variables['author_name'] = $node->getTitle();
     $variables['author_articles'] = views_embed_view('author_articles');
@@ -249,6 +287,7 @@ function rhdp_preprocess_node(&$variables) {
     }
   }
 
+  // Article content type.
   if ($node->getType() == 'article') {
     $variables['has_hero'] = FALSE;
     $variables['author_location'] = 'left';
@@ -264,98 +303,117 @@ function rhdp_preprocess_node(&$variables) {
     $hide_toc = $node->get('field_hide_toc')->getValue();
     $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
   }
+
+  // Events content type.
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
-      $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
-      $node->hasField('field_more_details') ? $variables['event_url']=$node->get('field_more_details')->getValue()[0]['uri'] : '';
+    $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
+    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
-      // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
-      // Note: Also will not work properly without search and replace on export.
-      if ($node->hasField('field_event_background_image')) {
-          $image_value = $node->get('field_event_background_image')->getValue();
-          if ($image_value) {
-              $file_id = $image_value[0]['target_id'];
-              $uri = File::load($file_id)->getFileUri();
-              $variables['event_image_url'] = file_create_url($uri);
-          }
+    // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
+    // Note: Also will not work properly without search and replace on export.
+    if ($node->hasField('field_event_background_image')) {
+      $image_value = $node->get('field_event_background_image')->getValue();
+      if ($image_value) {
+        $file_id = $image_value[0]['target_id'];
+        $uri = File::load($file_id)->getFileUri();
+        $variables['event_image_url'] = file_create_url($uri);
       }
+    }
+
+    // Teaser view mode.
+    if ($variables['view_mode'] == 'teaser') {
+      $node_title = $node->label();
+      $variables['node_title'] = str_replace('"', '', $node_title);
+    }
   }
+
+  // Product content type.
   if ($node->getType() == 'product') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
     $product_code = $node->field_product_machine_name->value;
+
     if ($path_args[1] == 'node') {
       $pages = reset($node->field_product_pages);
       $overview_page_id = $pages[0]->target_id;
       $overview_page_paragraph = entity_load('paragraph', $overview_page_id);
       $overview_page_content = $overview_page_paragraph->field_overview_main_content->value;
+      $variables['main_content'] = $overview_page_content;
       $active_page = $overview_page_paragraph->field_overview_url->value;
     }
-    $variables['main_content'] = $overview_page_content;
+
     foreach ($node->field_product_pages as $product_page) {
       $product_pages_id = $product_page->target_id;
       $load_paragraph = entity_load('paragraph', $product_pages_id);
       $overview_url = $load_paragraph->field_overview_url->value;
       $url_string = str_replace(' ', '-', strtolower($overview_url));
-      $url = Url::fromRoute('rhd_common.main_page_controller', array(
+      $url = Url::fromRoute(
+        'rhd_common.main_page_controller',
+        [
           'product_code' => $product_code,
           'sub_page' => $url_string,
-        ), array('absolute' => TRUE))->toString();
+        ],
+        [
+          'absolute' => TRUE,
+        ]
+      )->toString();
+
       if ($active_page == $overview_url) {
-        $product_pages_url[] = array(
+        $product_pages_url[] = [
           'title' => $overview_url,
           'url' => $url,
           'active' => 1,
-        );
+        ];
       }
-      if ($active_page != $overview_url) {
-        $product_pages_url[] = array('title' => $overview_url, 'url' => $url);
+      else {
+        $product_pages_url[] = [
+          'title' => $overview_url,
+          'url' => $url,
+        ];
       }
     }
+
     $variables['product_pages'] = $product_pages_url;
   }
 
-  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'tile') {
-    $node_title = $node->label();
-    $variables['node_title'] = str_replace('"', '', $node_title);
-  }
-  
-  if ($node->getType() == 'events' && $variables['view_mode'] == 'teaser') {
-    $node_title = $node->label();
-    $variables['node_title'] = str_replace('"', '', $node_title);
-  }
-
+  // Product content type and Featured Tile view mode.
   if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
     $product_code = $node->get('field_product_machine_name')->getValue();
+
     if (count($product_code)) {
       $product_code = reset($product_code);
       $variables['logo_link'] = \Drupal::service('path.alias_manager')->getAliasByPath('/products/' . $product_code['value']);
     }
-    $variables['cta_url'] = false;
+
+    $variables['cta_url'] = FALSE;
     $variables['cta_title'] = ['#markup' => 'Learn More'];
     $cta_field = $node->get('field_call_to_action_link')->getValue();
+
     if (count($cta_field)) {
       $cta_field = reset($cta_field);
       $variables['cta_title']['#markup'] = $cta_field['title'];
       $url = Url::fromUri($cta_field['uri']);
       $variables['cta_url']['#markup'] = $url->toString();
+
       if (!$url->isExternal()) {
         $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath($url->toString());
       }
     }
   }
 
-  // Add icon for 'login required' resources
+  // Add icon for 'login required' resources.
   if ($variables['view_mode'] == 'card') {
-    $variables['login_req'] = false;
+    $variables['login_req'] = FALSE;
+
     foreach (['field_book_url', 'field_cheat_sheet_download_url', 'field_source_link', 'field_pdf_link', 'field_mobi_link', 'field_epub'] as $field) {
       if ($node->hasField($field)) {
         $ext_url = $node->get($field)->getValue();
         if (count($ext_url)) {
           $ext_url_uri = reset($ext_url)['uri'];
-          if (strpos($ext_url_uri, 'developers.redhat.com/download-manager/') !== false) {
-            $variables['login_req'] = true;
-            // we have a download-manager link break loop no need to continue!
+          if (strpos($ext_url_uri, 'developers.redhat.com/download-manager/') !== FALSE) {
+            $variables['login_req'] = TRUE;
+            // We have a download-manager link break loop no need to continue!
             break;
           }
         }
@@ -363,108 +421,110 @@ function rhdp_preprocess_node(&$variables) {
     }
   }
 
-  // Massage learning path content
+  // Learning Path content type and Card view mode.
   if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
     $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
     $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
     for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
       $ref = Node::load($lp_content[$i]['target_id']);
       $variables['content']['lessons'][] = [
         'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-        'title' => ['#markup' => $ref->label() ]
+        'title' => ['#markup' => $ref->label()],
       ];
     }
   }
-
 }
 
+/**
+ * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ */
 function redhat_www_ddo_default($node) {
-    $request = \Drupal::request();
-    $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
-    $errorType = "";
-    $errorMessage = "";
-    $ddo_language = "";
-    $ddo_pageID = "";
-    $ddo_title = "";
-    if(!is_null($node)) {
-        if ( $siteerror == '/node/'.$node->nid->value ) {
-            $errorType = "404";
-            $errorMessage = "404-error";
-        }
+  $request = \Drupal::request();
+  $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
+  $errorType = "";
+  $errorMessage = "";
+  $ddo_language = "";
+  $ddo_pageID = "";
+  $ddo_title = "";
 
-        $ddo_language = $node->langcode->value;
-        $ddo_pageID = $node->nid->value;
-        $ddo_title = $node->title->value;
+  if (!is_null($node)) {
+    if ($siteerror == '/node/' . $node->nid->value) {
+      $errorType = "404";
+      $errorMessage = "404-error";
     }
 
+    $ddo_language = $node->langcode->value;
+    $ddo_pageID = $node->nid->value;
+    $ddo_title = $node->title->value;
+  }
 
-    $ddo = array(
-        'page' => array(
-            'attributes' => array(
-                'queryParameters' => ''
-            ),
-            'category' => array(
-                'contentType' => '',
-                'contentSubType' => '',
-                'keyPage' => false,
-                'keyPageType' => '',
-                'pageType' => '',
-                'primaryCategory' => '',
-                'subCategories' => array(),
-            ),
-            'pageInfo' => array(
-                'breadCrumbs' => array(),
-                'cms' => 'RHD CMS 8',
-                'destinationURL' => '',
-                'errorMessage' => $errorMessage,
-                'errorType' => $errorType,
-                'language' => $ddo_language,
-                'pageID' => $ddo_pageID,
-                'contentID' => $ddo_pageID,
-                'pageName' => '',
-                'referringDomain' => '',
-                'referringURL' => '',
-                'syndicationIds' => array(),
-                'sysEnv' => '',
-                'title' => $ddo_title,
-            ),
-            'listing' => array(
-                'browseFilter' => '',
-                'query' => '',
-                'queryMethod' => '',
-                'refinementType' => '',
-                'refinementValue' => '',
-                'resultCount' => '',
-                'searchType' => '',
-            ),
-        ),
-        'user' => array(
-            array(
-                'profile' => array(
-                    array(
-                        'profileInfo' => array(
-                            'accountID' => '',
-                            'daysSinceLastPurchase' => '',
-                            'daysSinceRegistration' => '',
-                            'eloquaGUID' => 'POPULATE ELOQUA ID',
-                            'keyCloakID' => '',
-                            'loggedIn' => false,
-                            'profileID' => '',
-                            'registered' => false,
-                            'socialAccountsLinked' => array(),
-                            'subscriptionFrequency' => '',
-                            'subscriptionLevel' => '',
-                            'userAgent' => '',
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'event' => array(),
-    );
+  $ddo = [
+    'page' => [
+      'attributes' => [
+        'queryParameters' => '',
+      ],
+      'category' => [
+        'contentType' => '',
+        'contentSubType' => '',
+        'keyPage' => FALSE,
+        'keyPageType' => '',
+        'pageType' => '',
+        'primaryCategory' => '',
+        'subCategories' => [],
+      ],
+      'pageInfo' => [
+        'breadCrumbs' => [],
+        'cms' => 'RHD CMS 8',
+        'destinationURL' => '',
+        'errorMessage' => $errorMessage,
+        'errorType' => $errorType,
+        'language' => $ddo_language,
+        'pageID' => $ddo_pageID,
+        'contentID' => $ddo_pageID,
+        'pageName' => '',
+        'referringDomain' => '',
+        'referringURL' => '',
+        'syndicationIds' => [],
+        'sysEnv' => '',
+        'title' => $ddo_title,
+      ],
+      'listing' => [
+        'browseFilter' => '',
+        'query' => '',
+        'queryMethod' => '',
+        'refinementType' => '',
+        'refinementValue' => '',
+        'resultCount' => '',
+        'searchType' => '',
+      ],
+    ],
+    'user' => [
+      [
+        'profile' => [
+          [
+            'profileInfo' => [
+              'accountID' => '',
+              'daysSinceLastPurchase' => '',
+              'daysSinceRegistration' => '',
+              'eloquaGUID' => 'POPULATE ELOQUA ID',
+              'keyCloakID' => '',
+              'loggedIn' => FALSE,
+              'profileID' => '',
+              'registered' => FALSE,
+              'socialAccountsLinked' => [],
+              'subscriptionFrequency' => '',
+              'subscriptionLevel' => '',
+              'userAgent' => '',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'event' => [],
+  ];
 
-
-    return $ddo;
+  return $ddo;
 }
 
 /**
@@ -479,122 +539,153 @@ function redhat_www_ddo_default($node) {
  * @param $hook
  */
 function rhdp_preprocess_field(&$variables, $hook) {
-    if ($variables['field_type'] === 'video_embed_field') {
-        $variables['items'][0]['content']['#attached']['library'][] = 'rhdp/video_embed_field.responsive-video';
-    }
+  if ($variables['field_type'] === 'video_embed_field') {
+    $variables['items'][0]['content']['#attached']['library'][] = 'rhdp/video_embed_field.responsive-video';
+  }
 
-    // This shouldn't be how we display the related product on coding resources (should it be?)
-    if ($variables['field_name'] === 'field_related_product' && isset($variables['items'][0]['content']['#node'])) {
-      $node = $variables['items'][0]['content']['#node'];
-      $variables['product_name'] = $node->getTitle();
-      $variables['product_short_name'] = $node->field_product_short_name->value;
+  // This shouldn't be how we display the related product on coding resources (should it be?)
+  if ($variables['field_name'] === 'field_related_product' && isset($variables['items'][0]['content']['#node'])) {
+    $node = $variables['items'][0]['content']['#node'];
+    $variables['product_name'] = $node->getTitle();
+    $variables['product_short_name'] = $node->field_product_short_name->value;
 
-      $product_code = $node->field_product_machine_name->value;
-      $overview_url = $node->field_product_pages->referencedEntities()[0]->field_overview_url->value;
-      $url_string = str_replace(' ', '-', strtolower($overview_url));
-      $url = Url::fromRoute('rhd_common.main_page_controller', array(
-        'product_code' => $product_code,
-        'sub_page' => $url_string,
-      ), array('absolute' => TRUE))->toString();
-      $variables['overview_url'] = $url;
-    }
+    $product_code = $node->field_product_machine_name->value;
+    $overview_url = $node->field_product_pages->referencedEntities()[0]->field_overview_url->value;
+    $url_string = str_replace(' ', '-', strtolower($overview_url));
+    $url = Url::fromRoute('rhd_common.main_page_controller', [
+      'product_code' => $product_code,
+      'sub_page' => $url_string,
+    ], ['absolute' => TRUE])->toString();
+    $variables['overview_url'] = $url;
+  }
 
-    if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
-      $entity = $variables['items'][0]['content']['#options']['entity'];
+  if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+    $entity = $variables['items'][0]['content']['#options']['entity'];
 
-      $product_code = $entity->field_product_machine_name->value;
-      $overview_url = $entity->field_product_pages->referencedEntities()[0]->field_overview_url->value;
-      $url_string = str_replace(' ', '-', strtolower($overview_url));
-      $url = Url::fromRoute('rhd_common.main_page_controller', array(
-        'product_code' => $product_code,
-        'sub_page' => $url_string,
-      ), []);
+    $product_code = $entity->field_product_machine_name->value;
+    $overview_url = $entity->field_product_pages->referencedEntities()[0]->field_overview_url->value;
+    $url_string = str_replace(' ', '-', strtolower($overview_url));
+    $url = Url::fromRoute('rhd_common.main_page_controller', [
+      'product_code' => $product_code,
+      'sub_page' => $url_string,
+    ], []);
 
-      $variables['items'][0]['content']['#url'] = $url;
-    }
+    $variables['items'][0]['content']['#url'] = $url;
+  }
 }
 
+/**
+ * Implements hook_preprocess_assembly().
+ */
 function rhdp_preprocess_assembly(&$variables) {
-    $assembly = $variables['elements']['#assembly'];
-    $type = $assembly->bundle();
-    $variables['background_image_url'] = FALSE;
+  $assembly = $variables['elements']['#assembly'];
+  $type = $assembly->bundle();
+  $variables['background_image_url'] = FALSE;
 
-    if ($assembly->hasField('field_background_image')) {
-      $image_value = $assembly->get('field_background_image')->getValue();
-      if ($image_value) {
-        $file_id = $image_value[0]['target_id'];
-        $uri = File::load($file_id)->getFileUri();
-        $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-        $variables['attributes']->addClass('has-background');
-      }
+  if ($assembly->hasField('field_background_image')) {
+    $image_value = $assembly->get('field_background_image')->getValue();
+
+    if ($image_value) {
+      $file_id = $image_value[0]['target_id'];
+      $uri = File::load($file_id)->getFileUri();
+      $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+      $variables['attributes']->addClass('has-background');
     }
+  }
 
-    if ($assembly->hasField('field_audience_selection')) {
-      $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
-      $variables['audience_selection'] = '';
-      if ($field_audience_selection_values) {
-        $audience_selection_values = [];
-        foreach($field_audience_selection_values as $field_audience_selection_value) {
-          $audience_selection_values[] = $field_audience_selection_value['value'];
-        }
-        $audience_selection = implode(',', $audience_selection_values);
-        $variables['audience_selection'] = " data-audience={$audience_selection}";
+  if ($assembly->hasField('field_audience_selection')) {
+    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+    $variables['audience_selection'] = '';
+
+    if ($field_audience_selection_values) {
+      $audience_selection_values = [];
+
+      foreach ($field_audience_selection_values as $field_audience_selection_value) {
+        $audience_selection_values[] = $field_audience_selection_value['value'];
       }
-    }
 
-    if ($assembly->hasField('field_eloqua_json')) {
-      $eloqua_assembly_id = $assembly->id();
-      $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
-      if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
-        $parent = $variables['elements']['#parent'];
-        if ($parent['entity_type'] == 'assembly') {
-          if ($parent['entity']->bundle() == 'content_call_to_action') {
-            $options = ['options' => ['class' => []]];
-            $styles = $parent['entity']->get('visual_styles')->getValue();
-            $layout = 'inline';
-            if (!empty($styles)) {
-              foreach ($styles as $style) {
-                if ($style['value'] == 'sidebar') {
-                  $layout = 'stacked';
-                }
+      $audience_selection = implode(',', $audience_selection_values);
+      $variables['audience_selection'] = " data-audience={$audience_selection}";
+    }
+  }
+
+  if ($assembly->hasField('field_eloqua_json')) {
+    $eloqua_assembly_id = $assembly->id();
+    $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
+
+    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
+      $parent = $variables['elements']['#parent'];
+
+      if ($parent['entity_type'] == 'assembly') {
+        if ($parent['entity']->bundle() == 'content_call_to_action') {
+          $options = ['options' => ['class' => []]];
+          $styles = $parent['entity']->get('visual_styles')->getValue();
+          $layout = 'inline';
+
+          if (!empty($styles)) {
+            foreach ($styles as $style) {
+              if ($style['value'] == 'sidebar') {
+                $layout = 'stacked';
               }
             }
-            $options['class'][] = $layout;
-            $options['class'][] = 'cta';
-            if (!empty($options)) {
-              $variables['eloqua_assembly_options'] = '?' . http_build_query(['options' => $options]);
-            }
+          }
+
+          $options['class'][] = $layout;
+          $options['class'][] = 'cta';
+
+          if (!empty($options)) {
+            $variables['eloqua_assembly_options'] = '?' . http_build_query(['options' => $options]);
           }
         }
       }
     }
+  }
 
-    if ($assembly->hasField('field_code') && $type == 'code_snippet') {
-      $field_code = $assembly->get('field_code')->getValue()[0]['value'];
-	  $variables['code'] = $field_code;
+  // Code Snippet assembly type.
+  if ($type == 'code_snippet') {
+    // Code field.
+    if ($assembly->hasField('field_code')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_code)) {
+        $field_code = $assembly->get('field_code')->getValue()[0]['value'];
+        $variables['code'] = $field_code;
+      }
       $variables['#attached']['library'][] = 'rhdp/highlight-js';
     }
-
-    if ($assembly->hasField('field_programming_language') && $type == 'code_snippet') {
-      $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
-      $variables['language'] = isset($language) ? $language : '';
+    // Programming Language field.
+    if ($assembly->hasField('field_programming_language')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_programming_language)) {
+        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
+        $variables['language'] = isset($language) ? $language : '';
+      }
     }
+  }
 }
 
+/**
+ * Implements hook_preprocess_views_view().
+ */
 function rhdp_preprocess_views_view(&$variables) {
   $view = $variables['view'];
   $id = $view->storage->id();
+
+  // Taxonomy Term view.
   if ($id == 'taxonomy_term') {
     $variables['title'] = FALSE;
     $title = $view->getTitle();
+
     if ($title) {
       $variables['title'] = $title;
     }
-    
+
+    // TODO: This will throw an error and must be in the wrong place within this
+    // file. Where should this conditional be within this file?
     if ($type == 'embedded_content') {
       $field_url = $assembly->get('field_url')->getValue();
       $embed_url = $field_url[0]['uri'];
       $variables['embed_url'] = FALSE;
+
       if ($embed_url) {
         $variables['embed_url'] = $embed_url;
       }
@@ -602,6 +693,9 @@ function rhdp_preprocess_views_view(&$variables) {
   }
 }
 
+/**
+ * Preprocessor for the Product Groups views groups.
+ */
 function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
   // Replace Twig HTML comments and unwanted whitespace from the Twig title
   // variable.

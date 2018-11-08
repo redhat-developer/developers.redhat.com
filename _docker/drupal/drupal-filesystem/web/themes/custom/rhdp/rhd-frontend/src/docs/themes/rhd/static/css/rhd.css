@@ -42,7 +42,7 @@ body {
     .narrow#block-rhdp-local-tasks {
       max-width: 961px; } }
 
-h1, h2, h3, h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper h2, h5, h6 {
+h1, h2, h3, h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2, h5, h6 {
   color: #242424;
   font-weight: 500;
   line-height: 1.5;
@@ -78,11 +78,11 @@ h3 {
     h3 {
       font-size: 32px; } }
 
-h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper h2 {
+h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2 {
   font-size: 15px;
   font-weight: 600; }
   @media (min-width: 768px) {
-    h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper h2 {
+    h4, .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper h2 {
       font-size: 27px; } }
 
 h5 {
@@ -225,7 +225,7 @@ div.alert-box {
       display: inline;
       float: right;
       width: calc(100% - 4em); }
-      div.alert-box.alert-xl div.alert-content h1, div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h3, div.alert-box.alert-xl div.alert-content h4, div.alert-box.alert-xl div.alert-content .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h5, div.alert-box.alert-xl div.alert-content h6 {
+      div.alert-box.alert-xl div.alert-content h1, div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h3, div.alert-box.alert-xl div.alert-content h4, div.alert-box.alert-xl div.alert-content .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper div.alert-box.alert-xl div.alert-content h2, div.alert-box.alert-xl div.alert-content h5, div.alert-box.alert-xl div.alert-content h6 {
         font-weight: 400;
         margin-bottom: 0;
         margin-top: 0; }
@@ -334,14 +334,20 @@ button, .button {
         color: #CC0000; }
       button.heavy-cta.white:hover, button.heavy-cta.white:focus, .button.heavy-cta.white:hover, .button.heavy-cta.white:focus {
         background-color: #f0f0f0; }
+      button.heavy-cta.white.bordered, .button.heavy-cta.white.bordered {
+        border: 1px solid #CC0000; }
     button.heavy-cta.black, .button.heavy-cta.black {
       background: #000000;
       color: #FFFFFF; }
+      button.heavy-cta.black.bordered, .button.heavy-cta.black.bordered {
+        border: 1px solid #FFFFFF; }
     button.heavy-cta.blue, .button.heavy-cta.blue {
       background: #0066CC;
       color: #FFFFFF; }
       button.heavy-cta.blue:hover, button.heavy-cta.blue:focus, .button.heavy-cta.blue:hover, .button.heavy-cta.blue:focus {
         background-color: #0057ad; }
+      button.heavy-cta.blue.bordered, .button.heavy-cta.blue.bordered {
+        border: 1px solid #FFFFFF; }
   button.medium-cta, .button.medium-cta {
     border: 1px solid #CC0000;
     line-height: 1.44;
@@ -735,7 +741,7 @@ a.light-cta {
     background: #252525; }
     .assembly.assembly-dark a:not(.button) {
       color: #73BCF7; }
-    .assembly.assembly-dark, .assembly.assembly-dark h1, .assembly.assembly-dark h2, .assembly.assembly-dark h3, .assembly.assembly-dark h4, .assembly.assembly-dark .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark h5, .assembly.assembly-dark h6 {
+    .assembly.assembly-dark, .assembly.assembly-dark h1, .assembly.assembly-dark h2, .assembly.assembly-dark h3, .assembly.assembly-dark h4, .assembly.assembly-dark .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .assembly.assembly-dark h2, .assembly.assembly-dark h5, .assembly.assembly-dark h6 {
       color: white; }
   .assembly.assembly-space {
     padding-top: 80px;
@@ -1099,6 +1105,23 @@ a.light-cta {
   @media screen and (max-width: 768px) {
     .assembly-type-featured_products .grid {
       grid-template-columns: repeat(1, 300px); } }
+  .assembly-type-featured_products .cta-link {
+    margin-top: 2rem;
+    text-align: center; }
+    @media (min-width: 576px) {
+      .assembly-type-featured_products .cta-link {
+        grid-column-start: 1;
+        grid-column-end: 3; } }
+    @media (min-width: 1024px) {
+      .assembly-type-featured_products .cta-link {
+        grid-column-start: 1;
+        grid-column-end: 4; } }
+    .assembly-type-featured_products .cta-link .button {
+      display: inline-block;
+      width: 100%; }
+      @media (min-width: 576px) {
+        .assembly-type-featured_products .cta-link .button {
+          width: auto; } }
 
 .assembly-type-static_content_band {
   padding-top: 2rem;
@@ -1121,6 +1144,11 @@ a.light-cta {
   @media (min-width: 768px) {
     .assembly-type-static_content_band.four-up .field--name-field-content-list {
       grid-template-columns: 1fr 1fr 1fr 1fr; } }
+  .assembly-type-static_content_band .cta-link {
+    margin-top: 1rem;
+    text-align: center; }
+    .assembly-type-static_content_band .cta-link a {
+      display: inline-block; }
 
 .assembly-type-node_reference,
 .assembly-type-static_item,
@@ -1581,7 +1609,7 @@ a.light-cta {
     .assembly-type-learning_paths .content-card-list > li {
       list-style-type: none;
       margin: 0; }
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       .assembly-type-learning_paths .content-card-list {
         grid-template-columns: 1fr 1fr 1fr 1fr; } }
 
@@ -1642,6 +1670,14 @@ a.light-cta {
       border-top: 2px dotted #d2d3d4; }
     .event-list li.event-item:last-of-type {
       border-bottom: none; }
+  .event-list .cta-link {
+    margin-top: 2rem; }
+    .event-list .cta-link .button {
+      display: inline-block;
+      width: 100%; }
+      @media (min-width: 576px) {
+        .event-list .cta-link .button {
+          width: auto; } }
 
 .assembly-type-content_with_image {
   padding: 40px 0;
@@ -1872,7 +1908,6 @@ a.light-cta {
 .assembly-type-eloqua_form_embed .iframe-container {
   position: relative;
   overflow: hidden;
-  opacity: 0;
   height: 0px;
   margin-bottom: 20px; }
   .assembly-type-eloqua_form_embed .iframe-container iframe {
@@ -1882,6 +1917,140 @@ a.light-cta {
     height: 100%;
     width: 100%;
     border: 0; }
+
+.assembly-type-content_pull_quote {
+  margin-bottom: 15px;
+  border-top: 3px solid #CC0000;
+  padding: 15px;
+  font-size: 18px;
+  position: relative; }
+  .assembly-type-content_pull_quote svg {
+    position: absolute;
+    bottom: 0;
+    right: 0; }
+  @media (min-width: 768px) {
+    .assembly-type-content_pull_quote {
+      font-size: 24px;
+      line-height: 38px;
+      float: right;
+      z-index: 99;
+      width: 270px;
+      margin: 30px; } }
+  @media (min-width: 1024px) {
+    .assembly-type-content_pull_quote {
+      font-size: 32px;
+      line-height: 49px;
+      width: 370px;
+      margin-right: -300px; } }
+
+.assembly-type-embedded_content {
+  margin-bottom: 15px; }
+  @media (min-width: 1025px) {
+    .assembly-type-embedded_content {
+      width: 690px;
+      max-width: none; } }
+  @media (min-width: 1240px) {
+    .assembly-type-embedded_content {
+      width: 869px; } }
+  .assembly-type-embedded_content iframe,
+  .assembly-type-embedded_content object,
+  .assembly-type-embedded_content embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.assembly-type-content_call_to_action {
+  font-size: 12px;
+  line-height: 1.5;
+  background-color: #D5D5D4;
+  border-left: 4px solid #CC0000;
+  margin-bottom: 15px; }
+  @media (min-width: 1025px) {
+    .assembly-type-content_call_to_action {
+      width: 690px;
+      max-width: none; } }
+  @media (min-width: 1240px) {
+    .assembly-type-content_call_to_action {
+      width: 869px; } }
+  .assembly-type-content_call_to_action p {
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em; }
+  .assembly-type-content_call_to_action > div {
+    padding: 40px 20px;
+    position: relative;
+    top: -0.25em; }
+  .assembly-type-content_call_to_action h2 {
+    font-size: 18px;
+    margin-bottom: 0; }
+  .assembly-type-content_call_to_action p:first-child, .assembly-type-content_call_to_action ul:first-child, .assembly-type-content_call_to_action ol:first-child, .assembly-type-content_call_to_action h1:first-child, .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action h3:first-child, .assembly-type-content_call_to_action h4:first-child, .assembly-type-content_call_to_action .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper .assembly-type-content_call_to_action h2:first-child, .assembly-type-content_call_to_action h5:first-child, .assembly-type-content_call_to_action h6:first-child {
+    margin-top: 0; }
+  .assembly-type-content_call_to_action p:last-child, .assembly-type-content_call_to_action ul:last-child, .assembly-type-content_call_to_action ol:last-child, .assembly-type-content_call_to_action h1:last-child, .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action h3:last-child, .assembly-type-content_call_to_action h4:last-child, .assembly-type-content_call_to_action .page-node-type-books .disqus-thread-wrapper h2:last-child, .page-node-type-books .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action .page-node-type-cheat-sheet .disqus-thread-wrapper h2:last-child, .page-node-type-cheat-sheet .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action .page-node-type-video-resource .disqus-thread-wrapper h2:last-child, .page-node-type-video-resource .disqus-thread-wrapper .assembly-type-content_call_to_action h2:last-child, .assembly-type-content_call_to_action h5:last-child, .assembly-type-content_call_to_action h6:last-child {
+    margin-bottom: 0; }
+  .assembly-type-content_call_to_action .assembly {
+    background-color: transparent; }
+  .assembly-type-content_call_to_action .iframe-container {
+    padding: 0;
+    margin: -10px;
+    width: auto; }
+  .assembly-type-content_call_to_action.sidebar {
+    margin-bottom: 15px;
+    border-left: none;
+    padding: 0;
+    position: relative;
+    font-size: 13px;
+    line-height: 19px; }
+    .assembly-type-content_call_to_action.sidebar h2 {
+      font-size: 27px;
+      line-height: 42px;
+      margin-bottom: 15px; }
+    .assembly-type-content_call_to_action.sidebar p {
+      font-size: 13px;
+      line-height: 19px;
+      margin: 15px 0; }
+    .assembly-type-content_call_to_action.sidebar .align-center {
+      text-align: center; }
+    .assembly-type-content_call_to_action.sidebar .button {
+      display: block; }
+    @media (min-width: 768px) {
+      .assembly-type-content_call_to_action.sidebar {
+        float: right;
+        z-index: 99;
+        width: 239px;
+        margin: 15px 0 15px 15px; }
+        .assembly-type-content_call_to_action.sidebar > div {
+          padding: 20px; }
+        .assembly-type-content_call_to_action.sidebar h2 {
+          font-size: 24px;
+          line-height: 35px;
+          margin-bottom: 15px; } }
+    @media (min-width: 1025px) {
+      .assembly-type-content_call_to_action.sidebar {
+        margin: 0 -245px 0 0; }
+        .assembly-type-content_call_to_action.sidebar > div {
+          padding: 40px 20px; }
+        .assembly-type-content_call_to_action.sidebar h2 {
+          font-size: 27px;
+          line-height: 42px; } }
+    @media (min-width: 1240px) {
+      .assembly-type-content_call_to_action.sidebar {
+        width: 270px;
+        margin: 0 -300px 0 0; } }
+
+@media (min-width: 1025px) {
+  .assembly-type-content_image {
+    width: 690px;
+    max-width: none; } }
+
+@media (min-width: 1240px) {
+  .assembly-type-content_image {
+    width: 869px; } }
+
+code.hljs span {
+  font-family: monospace, serif; }
 
 .assembly[data-audience] {
   display: none; }
@@ -7620,7 +7789,7 @@ body.page-node-type-learning-path .wrapper {
           color: #00B9E4; }
         #rhd-learning-path .lp-cards-container .dp-content-card .dp-content-type i {
           margin-right: .25em; }
-      #rhd-learning-path .lp-cards-container .dp-content-card h4, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2 {
+      #rhd-learning-path .lp-cards-container .dp-content-card h4, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2 {
         font-size: 1.4375rem;
         font-weight: 600;
         margin: 15px 0;
@@ -7697,7 +7866,7 @@ body.page-node-type-learning-path .wrapper {
         padding: 15px; }
       #rhd-learning-path .lp-cards-container .dp-content-card p {
         display: none; }
-      #rhd-learning-path .lp-cards-container .dp-content-card h4, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2 {
+      #rhd-learning-path .lp-cards-container .dp-content-card h4, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2, #rhd-learning-path .lp-cards-container .dp-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-learning-path .lp-cards-container .dp-content-card h2 {
         font-size: 18px;
         line-height: 28px; }
       #rhd-learning-path .lp-cards-container .dp-content-card div.img {
@@ -7761,7 +7930,7 @@ div.mobile.product-color {
 .product p {
   font-style: italic; }
 
-.product h4, .product .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .product h2, .product .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .product h2, .product .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .product h2, .product .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .product h2 {
+.product h4, .product .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .product h2, .product .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .product h2, .product .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .product h2 {
   margin-bottom: 0;
   font-weight: normal; }
 
@@ -7784,7 +7953,7 @@ div.mobile.product-color {
   background-color: #ededed;
   border: none; }
 
-.product-video h4, .product-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .product-video h2, .product-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .product-video h2, .product-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .product-video h2, .product-video .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .product-video h2 {
+.product-video h4, .product-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .product-video h2, .product-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .product-video h2, .product-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .product-video h2 {
   display: none; }
 
 #product-features {
@@ -7798,7 +7967,7 @@ div.mobile.product-color {
       max-width: 160px; }
   #product-features .feature-text {
     text-align: center; }
-    #product-features .feature-text h4, #product-features .feature-text .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #product-features .feature-text h2, #product-features .feature-text .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #product-features .feature-text h2, #product-features .feature-text .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #product-features .feature-text h2, #product-features .feature-text .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #product-features .feature-text h2 {
+    #product-features .feature-text h4, #product-features .feature-text .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #product-features .feature-text h2, #product-features .feature-text .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #product-features .feature-text h2, #product-features .feature-text .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #product-features .feature-text h2 {
       font-size: 1em;
       text-transform: uppercase;
       color: #CC0000; }
@@ -8000,10 +8169,10 @@ ul.product-langs {
     margin: 10px auto;
     opacity: 0.4; }
 
-.latest-discussions h4, .latest-discussions .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .latest-discussions h2, .latest-discussions .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .latest-discussions h2, .latest-discussions .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .latest-discussions h2, .latest-discussions .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .latest-discussions h2, .top-qa h4, .top-qa .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .top-qa h2, .top-qa .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .top-qa h2, .top-qa .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .top-qa h2, .top-qa .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .top-qa h2 {
+.latest-discussions h4, .latest-discussions .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .latest-discussions h2, .latest-discussions .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .latest-discussions h2, .latest-discussions .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .latest-discussions h2, .top-qa h4, .top-qa .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .top-qa h2, .top-qa .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .top-qa h2, .top-qa .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .top-qa h2 {
   color: #CC0000; }
 
-.latest-discussions h4 i, .latest-discussions .page-node-type-books .disqus-thread-wrapper h2 i, .page-node-type-books .disqus-thread-wrapper .latest-discussions h2 i, .latest-discussions .page-node-type-cheat-sheet .disqus-thread-wrapper h2 i, .page-node-type-cheat-sheet .disqus-thread-wrapper .latest-discussions h2 i, .latest-discussions .page-node-type-video-resource .disqus-thread-wrapper h2 i, .page-node-type-video-resource .disqus-thread-wrapper .latest-discussions h2 i, .latest-discussions .page-node-type-article .disqus-thread-wrapper h2 i, .page-node-type-article .disqus-thread-wrapper .latest-discussions h2 i, .top-qa h4 i, .top-qa .page-node-type-books .disqus-thread-wrapper h2 i, .page-node-type-books .disqus-thread-wrapper .top-qa h2 i, .top-qa .page-node-type-cheat-sheet .disqus-thread-wrapper h2 i, .page-node-type-cheat-sheet .disqus-thread-wrapper .top-qa h2 i, .top-qa .page-node-type-video-resource .disqus-thread-wrapper h2 i, .page-node-type-video-resource .disqus-thread-wrapper .top-qa h2 i, .top-qa .page-node-type-article .disqus-thread-wrapper h2 i, .page-node-type-article .disqus-thread-wrapper .top-qa h2 i {
+.latest-discussions h4 i, .latest-discussions .page-node-type-books .disqus-thread-wrapper h2 i, .page-node-type-books .disqus-thread-wrapper .latest-discussions h2 i, .latest-discussions .page-node-type-cheat-sheet .disqus-thread-wrapper h2 i, .page-node-type-cheat-sheet .disqus-thread-wrapper .latest-discussions h2 i, .latest-discussions .page-node-type-video-resource .disqus-thread-wrapper h2 i, .page-node-type-video-resource .disqus-thread-wrapper .latest-discussions h2 i, .top-qa h4 i, .top-qa .page-node-type-books .disqus-thread-wrapper h2 i, .page-node-type-books .disqus-thread-wrapper .top-qa h2 i, .top-qa .page-node-type-cheat-sheet .disqus-thread-wrapper h2 i, .page-node-type-cheat-sheet .disqus-thread-wrapper .top-qa h2 i, .top-qa .page-node-type-video-resource .disqus-thread-wrapper h2 i, .page-node-type-video-resource .disqus-thread-wrapper .top-qa h2 i {
   color: #D5D5D5; }
 
 .latest-discussions a, .top-qa a {
@@ -8028,9 +8197,9 @@ rhdp-tryitnow .row {
     width: calc(100% - 335px);
     float: left;
     padding: 0 1em; }
-    rhdp-tryitnow .row .tryitnow-titles h4, rhdp-tryitnow .row .tryitnow-titles .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles h5 {
+    rhdp-tryitnow .row .tryitnow-titles h4, rhdp-tryitnow .row .tryitnow-titles .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles h5 {
       color: #FFFFFF; }
-    rhdp-tryitnow .row .tryitnow-titles h4, rhdp-tryitnow .row .tryitnow-titles .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2 {
+    rhdp-tryitnow .row .tryitnow-titles h4, rhdp-tryitnow .row .tryitnow-titles .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2, rhdp-tryitnow .row .tryitnow-titles .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-tryitnow .row .tryitnow-titles h2 {
       margin: 0; }
     rhdp-tryitnow .row .tryitnow-titles h5 {
       padding-top: 15px;
@@ -8177,7 +8346,7 @@ button.tiny, .button.tiny {
 .rh-downloads .view-older-downloads {
   margin-bottom: 20px; }
 
-.rh-downloads .download-link h4 a:before, .rh-downloads .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .rh-downloads .download-link h2 a:before, .rh-downloads .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .rh-downloads .download-link h2 a:before, .rh-downloads .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .rh-downloads .download-link h2 a:before, .rh-downloads .download-link .page-node-type-article .disqus-thread-wrapper h2 a:before, .page-node-type-article .disqus-thread-wrapper .rh-downloads .download-link h2 a:before {
+.rh-downloads .download-link h4 a:before, .rh-downloads .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .rh-downloads .download-link h2 a:before, .rh-downloads .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .rh-downloads .download-link h2 a:before, .rh-downloads .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .rh-downloads .download-link h2 a:before {
   font-family: 'FontAwesome';
   content: "\f01a";
   padding-right: 3px; }
@@ -8474,7 +8643,7 @@ button.tiny, .button.tiny {
       background: white;
       padding: 0 10px;
       color: #656565; }
-  .get-started-items h4, .get-started-items .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .get-started-items h2, .get-started-items .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .get-started-items h2, .get-started-items .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .get-started-items h2, .get-started-items .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .get-started-items h2 {
+  .get-started-items h4, .get-started-items .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .get-started-items h2, .get-started-items .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .get-started-items h2, .get-started-items .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .get-started-items h2 {
     text-transform: uppercase;
     color: #82a430;
     text-align: center; }
@@ -8546,28 +8715,36 @@ a.get-started-quickstart.button {
 ul.toc {
   margin: 0;
   width: 100%;
-  z-index: -1; }
+  z-index: 100; }
 
 .gsi-nav-fixed {
   position: fixed;
   top: 0;
   padding-top: 20px;
-  width: 11%;
-  max-width: 180px;
+  width: 25%;
   min-width: 125px; }
 
 .gsi-nav {
-  padding-left: 0; }
+  padding-left: 0;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-top: 8px solid #000;
+  transform: translateY(0);
+  transition: 150ms ease-in-out; }
+  .gsi-nav.gsi-nav-fixed {
+    transform: translateY(30px); }
+  .gsi-nav:empty {
+    opacity: 0.01;
+    background-color: transparent;
+    border-top: 8px solid transparent; }
   .gsi-nav li {
     list-style: none;
     padding-bottom: 10px; }
-    .gsi-nav li a.past-block:last-child {
-      color: #a5ab36; }
     .gsi-nav li a {
-      color: #027CBB; }
-      .gsi-nav li a:after {
-        content: "\203A";
-        margin-left: 5px; }
+      color: #196bcb; }
 
 .gsi h3 {
   border-bottom: 1px solid #d5d5d5;
@@ -8710,7 +8887,7 @@ ul.toc {
 #get-started h2 {
   margin-bottom: 1rem; }
 
-#get-started-instructions .gs-prerequisites h4 p, #get-started-instructions .gs-prerequisites .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-prerequisites .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-prerequisites .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-prerequisites .page-node-type-article .disqus-thread-wrapper h2 p, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-faq h4 p, #get-started-instructions .gs-faq .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p, #get-started-instructions .gs-faq .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p, #get-started-instructions .gs-faq .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p, #get-started-instructions .gs-faq .page-node-type-article .disqus-thread-wrapper h2 p, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p {
+#get-started-instructions .gs-prerequisites h4 p, #get-started-instructions .gs-prerequisites .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-prerequisites .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-prerequisites .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .gs-prerequisites h2 p, #get-started-instructions .gs-faq h4 p, #get-started-instructions .gs-faq .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p, #get-started-instructions .gs-faq .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p, #get-started-instructions .gs-faq .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .gs-faq h2 p {
   font-weight: 800;
   color: #252527;
   font-size: 1.4375rem;
@@ -8735,7 +8912,7 @@ ul.toc {
   transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
   min-height: 205px;
   height: 100%; }
-  #get-started-instructions .card h4, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .card h2 {
+  #get-started-instructions .card h4, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2 {
     color: #FFFFFF;
     margin-top: 0;
     margin-bottom: 8px;
@@ -8748,7 +8925,7 @@ ul.toc {
     #get-started-instructions .card .tabs-content .content {
       padding: 0; }
   @media only screen and (max-width: 1024px) {
-    #get-started-instructions .card h4, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .card h2 {
+    #get-started-instructions .card h4, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2 {
       padding-top: 15px; } }
   #get-started-instructions .card i {
     float: right;
@@ -8762,7 +8939,7 @@ ul.toc {
     background-color: #2d7195; }
     #get-started-instructions .card:hover .step-num {
       color: #3999cb; }
-    #get-started-instructions .card:hover .paragraph, #get-started-instructions .card:hover .paragraph p, #get-started-instructions .card:hover h4, #get-started-instructions .card:hover .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover i {
+    #get-started-instructions .card:hover .paragraph, #get-started-instructions .card:hover .paragraph p, #get-started-instructions .card:hover h4, #get-started-instructions .card:hover .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card:hover h2, #get-started-instructions .card:hover i {
       color: #a3dbe8; }
   #get-started-instructions .card .step-duration {
     position: relative;
@@ -8785,7 +8962,7 @@ ul.toc {
   border: none;
   padding: 5px 15px;
   margin: 20px 0; }
-  #get-started-instructions .step-header h4, #get-started-instructions .step-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .step-header h2, #get-started-instructions .step-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .step-header h2, #get-started-instructions .step-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .step-header h2, #get-started-instructions .step-header .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .step-header h2 {
+  #get-started-instructions .step-header h4, #get-started-instructions .step-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .step-header h2, #get-started-instructions .step-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .step-header h2, #get-started-instructions .step-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .step-header h2 {
     color: #FFFFFF;
     margin-bottom: 0;
     display: inline-block;
@@ -8844,7 +9021,7 @@ ul.toc {
   font-weight: inherit;
   font-style: inherit; }
 
-#get-started-instructions h4 p, #get-started-instructions .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .page-node-type-article .disqus-thread-wrapper h2 p, .page-node-type-article .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .card h4 > .paragraph p, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p, #get-started-instructions .card .page-node-type-article .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-article .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p {
+#get-started-instructions h4 p, #get-started-instructions .page-node-type-books .disqus-thread-wrapper h2 p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .page-node-type-cheat-sheet .disqus-thread-wrapper h2 p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .page-node-type-video-resource .disqus-thread-wrapper h2 p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions h2 p, #get-started-instructions .card h4 > .paragraph p, #get-started-instructions .card .page-node-type-books .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-books .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p, #get-started-instructions .card .page-node-type-cheat-sheet .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-cheat-sheet .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p, #get-started-instructions .card .page-node-type-video-resource .disqus-thread-wrapper h2 > .paragraph p, .page-node-type-video-resource .disqus-thread-wrapper #get-started-instructions .card h2 > .paragraph p {
   font-size: 1.4375rem;
   font-weight: 800;
   line-height: 1.2;
@@ -8896,7 +9073,7 @@ ul.toc {
 
 .download-completed .step-header {
   background-color: #d5d5d5 !important; }
-  .download-completed .step-header h2, .download-completed .step-header h4, .download-completed .step-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header i, .download-completed .step-header p, .download-completed .step-header .step-num {
+  .download-completed .step-header h2, .download-completed .step-header h4, .download-completed .step-header .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .download-completed .step-header h2, .download-completed .step-header i, .download-completed .step-header p, .download-completed .step-header .step-num {
     color: #afb1b2 !important; }
 
 .download-completed .step-num:before {
@@ -8921,7 +9098,7 @@ ul.toc {
 
 .download-completed-box a {
   background-color: #d5d5d5 !important; }
-  .download-completed-box a h2, .download-completed-box a h4, .download-completed-box a .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a i, .download-completed-box a p, .download-completed-box a .step-num {
+  .download-completed-box a h2, .download-completed-box a h4, .download-completed-box a .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .download-completed-box a h2, .download-completed-box a i, .download-completed-box a p, .download-completed-box a .step-num {
     color: #afb1b2 !important; }
   .download-completed-box a .fa-check-circle {
     color: #FFFFFF !important; }
@@ -9223,14 +9400,14 @@ table.developer-materials-grid {
 @media only screen and (max-width: 768px) {
   body.developer-materials .content-wrapper, body.developer-materials .wrapper, body.developer-materials .developer-materials-sidebar {
     padding: 0; }
-  .developer-materials-sidebar h4, .developer-materials-sidebar .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar h2, .developer-materials-sidebar .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar h2, .developer-materials-sidebar .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar h2, .developer-materials-sidebar .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .developer-materials-sidebar h2 {
+  .developer-materials-sidebar h4, .developer-materials-sidebar .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar h2, .developer-materials-sidebar .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar h2, .developer-materials-sidebar .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar h2 {
     background: #004C98;
     color: white;
     padding: 10px;
     text-align: center;
     border-radius: 0;
     margin: 10px; }
-    .developer-materials-sidebar h4:after, .developer-materials-sidebar .page-node-type-books .disqus-thread-wrapper h2:after, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar h2:after, .developer-materials-sidebar .page-node-type-cheat-sheet .disqus-thread-wrapper h2:after, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar h2:after, .developer-materials-sidebar .page-node-type-video-resource .disqus-thread-wrapper h2:after, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar h2:after, .developer-materials-sidebar .page-node-type-article .disqus-thread-wrapper h2:after, .page-node-type-article .disqus-thread-wrapper .developer-materials-sidebar h2:after {
+    .developer-materials-sidebar h4:after, .developer-materials-sidebar .page-node-type-books .disqus-thread-wrapper h2:after, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar h2:after, .developer-materials-sidebar .page-node-type-cheat-sheet .disqus-thread-wrapper h2:after, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar h2:after, .developer-materials-sidebar .page-node-type-video-resource .disqus-thread-wrapper h2:after, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar h2:after {
       content: "\f078";
       font-family: 'FontAwesome';
       padding-left: 10px; }
@@ -9248,14 +9425,14 @@ table.developer-materials-grid {
     z-index: 9999; }
     .developer-materials-sidebar.open form {
       display: block; }
-    .developer-materials-sidebar.open h4, .developer-materials-sidebar.open .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar.open h2, .developer-materials-sidebar.open .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar.open h2, .developer-materials-sidebar.open .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar.open h2, .developer-materials-sidebar.open .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .developer-materials-sidebar.open h2 {
+    .developer-materials-sidebar.open h4, .developer-materials-sidebar.open .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar.open h2, .developer-materials-sidebar.open .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar.open h2, .developer-materials-sidebar.open .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar.open h2 {
       background: #004C98;
       color: white;
       font-size: 0;
       padding: 20px;
       cursor: pointer;
       text-align: left; }
-      .developer-materials-sidebar.open h4:before, .developer-materials-sidebar.open .page-node-type-books .disqus-thread-wrapper h2:before, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar.open h2:before, .developer-materials-sidebar.open .page-node-type-cheat-sheet .disqus-thread-wrapper h2:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar.open h2:before, .developer-materials-sidebar.open .page-node-type-video-resource .disqus-thread-wrapper h2:before, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar.open h2:before, .developer-materials-sidebar.open .page-node-type-article .disqus-thread-wrapper h2:before, .page-node-type-article .disqus-thread-wrapper .developer-materials-sidebar.open h2:before {
+      .developer-materials-sidebar.open h4:before, .developer-materials-sidebar.open .page-node-type-books .disqus-thread-wrapper h2:before, .page-node-type-books .disqus-thread-wrapper .developer-materials-sidebar.open h2:before, .developer-materials-sidebar.open .page-node-type-cheat-sheet .disqus-thread-wrapper h2:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .developer-materials-sidebar.open h2:before, .developer-materials-sidebar.open .page-node-type-video-resource .disqus-thread-wrapper h2:before, .page-node-type-video-resource .disqus-thread-wrapper .developer-materials-sidebar.open h2:before {
         content: 'Cancel';
         font-size: 14px; }
     .developer-materials-sidebar.open a.filters-clear {
@@ -9384,7 +9561,7 @@ table.developer-materials-grid {
     font-size: 1.25rem;
     font-weight: normal;
     margin-top: 0; }
-  .bomadvise h4, .bomadvise .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .bomadvise h2, .bomadvise .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .bomadvise h2, .bomadvise .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .bomadvise h2, .bomadvise .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .bomadvise h2 {
+  .bomadvise h4, .bomadvise .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .bomadvise h2, .bomadvise .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .bomadvise h2, .bomadvise .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .bomadvise h2 {
     font-size: 1rem; }
   .bomadvise p {
     margin-bottom: 0; }
@@ -9551,7 +9728,7 @@ input[type=text][name="buzz-filter-text"] {
   position: relative;
   /*margin-bottom:-42px; // PLM commented this out as it broke the layout without the sort ul*/ }
 
-h4.buzz-message.divider, .page-node-type-books .disqus-thread-wrapper h2.buzz-message.divider, .page-node-type-cheat-sheet .disqus-thread-wrapper h2.buzz-message.divider, .page-node-type-video-resource .disqus-thread-wrapper h2.buzz-message.divider, .page-node-type-article .disqus-thread-wrapper h2.buzz-message.divider {
+h4.buzz-message.divider, .page-node-type-books .disqus-thread-wrapper h2.buzz-message.divider, .page-node-type-cheat-sheet .disqus-thread-wrapper h2.buzz-message.divider, .page-node-type-video-resource .disqus-thread-wrapper h2.buzz-message.divider {
   float: left;
   width: 100%;
   margin: 20px 0 40px 0; }
@@ -9648,25 +9825,25 @@ h2.large-title#buzz i {
 
 .page-middleware section:not(.footer-links):not(.footer-legal) {
   padding: 30px 0 60px 0; }
-  .page-middleware section:not(.footer-links):not(.footer-legal) h3, .page-middleware section:not(.footer-links):not(.footer-legal) h4, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2 {
+  .page-middleware section:not(.footer-links):not(.footer-legal) h3, .page-middleware section:not(.footer-links):not(.footer-legal) h4, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2 {
     margin-bottom: 1em;
     font-weight: 600; }
   .page-middleware section:not(.footer-links):not(.footer-legal) h3 {
     font-size: 27px;
     text-transform: uppercase; }
-  .page-middleware section:not(.footer-links):not(.footer-legal) h4, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2 {
+  .page-middleware section:not(.footer-links):not(.footer-legal) h4, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2, .page-middleware section:not(.footer-links):not(.footer-legal) .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) h2 {
     margin-bottom: 1em;
     font-size: 23px; }
   .page-middleware section:not(.footer-links):not(.footer-legal).green {
     background-color: #286322;
     padding: 30px 0 40px 0;
     color: #FFFFFF; }
-    .page-middleware section:not(.footer-links):not(.footer-legal).green h3, .page-middleware section:not(.footer-links):not(.footer-legal).green h4, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2 {
+    .page-middleware section:not(.footer-links):not(.footer-legal).green h3, .page-middleware section:not(.footer-links):not(.footer-legal).green h4, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2, .page-middleware section:not(.footer-links):not(.footer-legal).green .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal).green h2 {
       margin-bottom: 8px;
       color: #FFFFFF; }
   .page-middleware section:not(.footer-links):not(.footer-legal).grey {
     background-color: #e6e7e8; }
-  .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h4, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2 {
+  .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h4, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2, .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .page-middleware section:not(.footer-links):not(.footer-legal) .enterprise-ready h2 {
     margin-bottom: 8px; }
   .page-middleware section:not(.footer-links):not(.footer-legal) .video-col {
     position: relative;
@@ -9808,7 +9985,7 @@ ul.featured-projects-results {
     .project-details-list li a[href*="jboss.org"] svg[data-icon="external-link"] {
       display: none; }
 
-.project-filters h4, .project-filters .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .project-filters h2 {
+.project-filters h4, .project-filters .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .project-filters h2, .project-filters .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .project-filters h2 {
   font-size: 23px;
   font-weight: 600; }
 
@@ -9932,7 +10109,7 @@ ul.book-list li:last-child {
     padding: 5px;
     border: 1px solid #D5D5D5;
     background: white; }
-  .book h4, .book .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .book h2, .book .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .book h2, .book .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .book h2, .book .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .book h2 {
+  .book h4, .book .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .book h2, .book .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .book h2, .book .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .book h2 {
     padding-top: .5em;
     margin-bottom: 0; }
   .book p {
@@ -9987,7 +10164,7 @@ p.desc {
     border: 1px solid #b8e3ed;
     padding: 20px 30px;
     margin: 40px 0 20px 0; }
-    #rhd-cheat-sheet .cs-excerpt h4, #rhd-cheat-sheet .cs-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .cs-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .cs-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .cs-excerpt .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .book-excerpt h4, #rhd-cheat-sheet .book-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-cheat-sheet .book-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-cheat-sheet .book-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-cheat-sheet .book-excerpt .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-book .cs-excerpt h4, #rhd-book .cs-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .cs-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .cs-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .cs-excerpt .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .book-excerpt h4, #rhd-book .book-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-book .book-excerpt h2, #rhd-book .book-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-book .book-excerpt h2, #rhd-book .book-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-book .book-excerpt h2, #rhd-book .book-excerpt .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #rhd-book .book-excerpt h2 {
+    #rhd-cheat-sheet .cs-excerpt h4, #rhd-cheat-sheet .cs-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .cs-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .cs-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-cheat-sheet .cs-excerpt h2, #rhd-cheat-sheet .book-excerpt h4, #rhd-cheat-sheet .book-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-cheat-sheet .book-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-cheat-sheet .book-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-cheat-sheet .book-excerpt h2, #rhd-book .cs-excerpt h4, #rhd-book .cs-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .cs-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .cs-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-book .cs-excerpt h2, #rhd-book .book-excerpt h4, #rhd-book .book-excerpt .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-book .book-excerpt h2, #rhd-book .book-excerpt .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-book .book-excerpt h2, #rhd-book .book-excerpt .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-book .book-excerpt h2 {
       margin-bottom: 15px; }
     #rhd-cheat-sheet .cs-excerpt span, #rhd-cheat-sheet .book-excerpt span, #rhd-book .cs-excerpt span, #rhd-book .book-excerpt span {
       display: inline-block;
@@ -10049,14 +10226,6 @@ p.desc {
     #rhd-book .book-tags .field--name-field-tags .field__item {
       display: inline-block;
       color: #424242; }
-      #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item a,
-      #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item a,
-      #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item a,
-      #rhd-cheat-sheet .book-tags .field--name-field-tags .field__item a, #rhd-book .cs-tags .field--name-field-cheat-sheet-tags .field__item a,
-      #rhd-book .cs-tags .field--name-field-tags .field__item a,
-      #rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item a,
-      #rhd-book .book-tags .field--name-field-tags .field__item a {
-        color: #424242; }
       #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:after,
       #rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:after,
       #rhd-cheat-sheet .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
@@ -10227,7 +10396,7 @@ p.desc {
 .video-page .related-content-card {
   margin: 15px;
   width: calc(25% - 28px); }
-  .video-page .related-content-card h4, .video-page .related-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .video-page .related-content-card h2, .video-page .related-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-page .related-content-card h2, .video-page .related-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .video-page .related-content-card h2, .video-page .related-content-card .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .video-page .related-content-card h2 {
+  .video-page .related-content-card h4, .video-page .related-content-card .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .video-page .related-content-card h2, .video-page .related-content-card .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-page .related-content-card h2, .video-page .related-content-card .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .video-page .related-content-card h2 {
     min-height: 65px; }
   .video-page .related-content-card:first-child {
     margin-left: 0; }
@@ -10287,7 +10456,7 @@ section.related-content {
     margin: 0 15px; }
   .video-page .field--name-field-video-related-links {
     margin-left: 15px; }
-  .video-page #video-related-cont > h4, .video-page .page-node-type-books .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-books .disqus-thread-wrapper .video-page #video-related-cont > h2, .video-page .page-node-type-cheat-sheet .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-page #video-related-cont > h2, .video-page .page-node-type-video-resource .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-video-resource .disqus-thread-wrapper .video-page #video-related-cont > h2, .video-page .page-node-type-article .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-article .disqus-thread-wrapper .video-page #video-related-cont > h2 {
+  .video-page #video-related-cont > h4, .video-page .page-node-type-books .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-books .disqus-thread-wrapper .video-page #video-related-cont > h2, .video-page .page-node-type-cheat-sheet .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-page #video-related-cont > h2, .video-page .page-node-type-video-resource .disqus-thread-wrapper #video-related-cont > h2, .page-node-type-video-resource .disqus-thread-wrapper .video-page #video-related-cont > h2 {
     margin-left: 15px; } }
 
 @media only screen and (max-width: 480px) {
@@ -10321,7 +10490,7 @@ section.related-content {
   .page-node-type-video-resource .disqus-thread-wrapper h2 {
     text-transform: uppercase; }
 
-.wide h1, .wide h2, .wide h3, .wide h4, .wide .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .wide h2, .wide .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .wide h2, .wide .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .wide h2, .wide .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .wide h2, .wide h5, .wide h6 {
+.wide h1, .wide h2, .wide h3, .wide h4, .wide .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .wide h2, .wide .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .wide h2, .wide .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .wide h2, .wide h5, .wide h6 {
   color: #424242; }
 
 .microsite-icon-points {
@@ -10612,7 +10781,105 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     padding-right: 20px; } }
 
 #rhd-article {
+  padding: 1em;
   padding-top: 2em; }
+  @media (min-width: 576px) {
+    #rhd-article {
+      font-size: 18px;
+      line-height: 2.22rem; } }
+  #rhd-article pre {
+    font-size: 14px;
+    line-height: 1.5; }
+  #rhd-article .pre-body {
+    margin-bottom: 30px; }
+    @media (min-width: 1025px) {
+      #rhd-article .pre-body {
+        margin-bottom: 0; } }
+  #rhd-article .article-hero {
+    margin-top: -2em; }
+    @media only screen and (max-width: 1170px) {
+      #rhd-article .article-hero {
+        margin-top: -15px; } }
+    @media only screen and (min-width: 1171px) {
+      #rhd-article .article-hero {
+        margin-left: -3px;
+        margin-right: -3px; } }
+    #rhd-article .article-hero img {
+      margin-bottom: 40px; }
+    #rhd-article .article-hero figcaption {
+      font-size: 10px;
+      text-align: right;
+      margin-top: -40px; }
+      #rhd-article .article-hero figcaption p, #rhd-article .article-hero figcaption ol, #rhd-article .article-hero figcaption ul {
+        margin-top: 1em;
+        margin-bottom: 1em; }
+  @media (min-width: 1024px) {
+    #rhd-article .article-highlights {
+      margin-bottom: 40px; } }
+  #rhd-article .a2a_kit {
+    margin-left: -10px; }
+    #rhd-article .a2a_kit a {
+      background-color: #f3f3f3;
+      border-radius: 100%;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+      margin-right: 10px;
+      margin-top: 10px;
+      float: none !important; }
+      @media (min-width: 768px) {
+        #rhd-article .a2a_kit a {
+          margin-top: 0; } }
+      #rhd-article .a2a_kit a:hover > div {
+        opacity: 0.7; }
+  #rhd-article .a2a_count {
+    display: none; }
+  #rhd-article .a2a_svg {
+    background-color: transparent !important;
+    border: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: auto !important;
+    transform: translateX(-50%) translateY(-50%); }
+    #rhd-article .a2a_svg path {
+      fill: #000 !important; }
+    #rhd-article .a2a_svg svg {
+      width: 18px; }
+  #rhd-article .gsi ul, #rhd-article .gsi ol {
+    padding-left: 1em; }
+    #rhd-article .gsi ul li, #rhd-article .gsi ol li {
+      margin-left: 1em;
+      padding-left: 0.75em; }
+  #rhd-article .article-type {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #9B9B9B;
+    margin: 0;
+    letter-spacing: 0.025em; }
+  #rhd-article .topics {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    color: #444444;
+    margin-bottom: 20px; }
+    #rhd-article .topics a:after {
+      content: ', ';
+      color: #444444; }
+    #rhd-article .topics a:last-of-type:after {
+      content: ' '; }
+  #rhd-article p {
+    font-size: inherit;
+    line-height: inherit; }
+  #rhd-article .row {
+    width: auto;
+    max-width: none;
+    margin-left: -1em;
+    margin-right: -1em; }
   #rhd-article .large-5.medium-5.columns, #rhd-article .large-5.medium-5.developer-materials-sidebar, #rhd-article .large-5.medium-5.developer-materials-main, #rhd-article .large-5.medium-5.microsite-nav {
     position: absolute;
     float: right;
@@ -10620,32 +10887,147 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
   #rhd-article .article-tags {
     padding-bottom: 15px;
     padding-right: 15px;
-    position: absolute; }
+    line-height: 1.5;
+    font-weight: bold;
+    font-size: 14px; }
+    #rhd-article .article-tags span {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: bold; }
     @media only screen and (max-width: 1024px) {
       #rhd-article .article-tags {
         position: relative; } }
   #rhd-article .article-info {
+    padding: 0;
     border: none;
-    background: #D5D5D5;
-    padding: 7px 5px;
-    margin-bottom: 2.5em; }
+    background-color: transparent;
+    color: #444444;
+    padding: 0 20px;
+    overflow: hidden;
+    max-width: 568px; }
+    @media (min-width: 576px) {
+      #rhd-article .article-info {
+        display: flex; } }
     #rhd-article .article-info ul {
-      margin-top: 0;
-      padding: 0 5px 5px 5px; }
-      #rhd-article .article-info ul li {
+      padding: 0;
+      margin: 0;
+      margin-left: -40px;
+      margin-right: -40px;
+      font-size: 0;
+      line-height: 1.75; }
+      #rhd-article .article-info ul > li {
+        display: inline-block;
         width: auto;
-        margin-right: 15px; }
-      #rhd-article .article-info ul .field--name-field-content-author {
-        display: inline-block; }
-  #rhd-article .article-content h2 {
-    border-bottom: 1px solid #d5d5d5;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    font-weight: 100;
-    font-size: 16px; }
-    @media (min-width: 768px) {
-      #rhd-article .article-content h2 {
-        font-size: 32px; } }
+        float: none;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px; }
+  #rhd-article.author-right .pre-body {
+    margin-bottom: 40px; }
+    @media (min-width: 1024px) {
+      #rhd-article.author-right .pre-body {
+        margin-bottom: 70px; } }
+  #rhd-article.author-right .article-highlights {
+    margin-top: -40px; }
+    @media (min-width: 1024px) {
+      #rhd-article.author-right .article-highlights {
+        margin-top: -60px; } }
+  #rhd-article.author-right .article-info {
+    max-width: 100%; }
+    @media (min-width: 576px) {
+      #rhd-article.author-right .article-info ul > li {
+        font-size: 18px; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .article-info-wrapper {
+      display: flex;
+      align-items: flex-start; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .article-info-left {
+      padding-right: 50px; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .authors {
+      width: 190px;
+      text-align: center;
+      margin-top: 20px; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .authors .author.short-teaser {
+      float: none;
+      margin-right: 0; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .authors .author.short-teaser .author-name {
+      font-size: 20px;
+      padding: 12px 13px; } }
+  @media (min-width: 1024px) {
+    #rhd-article.author-right .authors .author.short-teaser img {
+      width: 110px;
+      margin-bottom: 20px; } }
+  @media (min-width: 576px) {
+    #rhd-article.author-right .a2a_kit a {
+      margin-right: 5px;
+      margin-left: 5px; } }
+  #rhd-article.author-right .share-buttons {
+    margin-bottom: 25px; }
+  #rhd-article .article-info-left .share-buttons {
+    margin-left: -20px;
+    margin-right: -20px; }
+    @media (min-width: 576px) {
+      #rhd-article .article-info-left .share-buttons {
+        margin: 0;
+        padding-left: 60px;
+        padding-right: 20px; } }
+  #rhd-article .authors {
+    float: left;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 20px; }
+    #rhd-article .authors.no-image {
+      margin-top: 0; }
+    #rhd-article .authors .author.short-teaser {
+      float: left;
+      margin-right: 20px; }
+      #rhd-article .authors .author.short-teaser img {
+        width: 80px;
+        margin-bottom: 15px; }
+      #rhd-article .authors .author.short-teaser .author-name {
+        background-color: #F9F9F9;
+        margin: 5px 0;
+        padding: 7px;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: bold; }
+    @media (min-width: 1024px) {
+      #rhd-article .authors {
+        margin-top: 40px; } }
+  @media (min-width: 1024px) {
+    #rhd-article .floated-image {
+      margin-top: 20px; } }
+  #rhd-article figure {
+    margin: 0; }
+    #rhd-article figure figcaption {
+      font-size: 13px;
+      line-height: 19px; }
+      #rhd-article figure figcaption p, #rhd-article figure figcaption ol, #rhd-article figure figcaption ul {
+        margin-top: 18px;
+        margin-bottom: 18px; }
+  #rhd-article .field--name-field-article-highlights {
+    margin: 15px 0; }
+    #rhd-article .field--name-field-article-highlights .article-highlight {
+      color: #242424;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 28px;
+      border-left: 4px solid #CC0000;
+      padding-left: 12px;
+      margin: 15px 0;
+      float: left;
+      width: 100%; }
+      @media (min-width: 768px) {
+        #rhd-article .field--name-field-article-highlights .article-highlight {
+          font-size: 24px;
+          line-height: 34px; } }
+  @media all and (min-width: 1025px) {
+    #rhd-article .article-content {
+      margin-right: 25%; } }
   #rhd-article .article-content h3 {
     border-bottom: none;
     font-size: 15px;
@@ -10654,8 +11036,12 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     @media (min-width: 768px) {
       #rhd-article .article-content h3 {
         font-size: 27px; } }
+  #rhd-article .article-content h1:first-child, #rhd-article .article-content h2:first-child, #rhd-article .article-content h3:first-child, #rhd-article .article-content h4:first-child, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content h5:first-child, #rhd-article .article-content h6:first-child {
+    margin-top: 0; }
   #rhd-article .a2a_kit {
-    margin-bottom: 30px; }
+    width: 187px;
+    max-width: 100%;
+    margin: 0; }
   #rhd-article .field--name-field-tags {
     display: inline; }
     #rhd-article .field--name-field-tags .field__item {
@@ -10674,8 +11060,39 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     padding: 15px; } }
 
 .page-node-type-article .disqus-thread-wrapper {
-  padding-top: 40px;
-  border-top: #E4E4E4 1px solid; }
+  margin-top: 40px;
+  margin-bottom: 40px; }
+  @media (min-width: 1024px) {
+    .page-node-type-article .disqus-thread-wrapper {
+      margin-top: 80px;
+      margin-bottom: 80px; } }
+
+.related-article-header {
+  font-weight: normal;
+  margin-bottom: 16px; }
+
+#rhd-article .related-articles h5 {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0; }
+  @media (min-width: 768px) {
+    #rhd-article .related-articles h5 {
+      font-size: 24px;
+      line-height: 37px;
+      margin-top: 16px;
+      margin-bottom: 12px; } }
+
+#rhd-article .related-articles p {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #242424; }
+  @media (min-width: 768px) {
+    #rhd-article .related-articles p {
+      margin-top: 14px;
+      margin-bottom: 50px; } }
 
 .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats {
   padding-top: 5px; }
@@ -10690,7 +11107,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     padding-top: 15px; }
     .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div p {
       font-size: .8em; }
-    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2 {
+    .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div h2 {
       margin-bottom: 0;
       line-height: 1; }
     .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.answer-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.answer-count {
@@ -10698,13 +11115,13 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
     .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer {
       background-color: #8ed300;
       color: #FFFFFF; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2 {
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.accepted-answer h2 {
         color: #FFFFFF; }
     .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count {
       border: 2px solid #CCCCCC;
       background-color: #CCCCCC;
       color: #FFFFFF; }
-      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
+      .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-product-update .update .qtn-stats div.views-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.votes-count p, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h4, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count h2, .stackoverflow-results-container .stackoverflow-update .update .qtn-stats div.views-count p {
         color: #FFFFFF; }
 
 .stackoverflow-results-container .stackoverflow-product-update .update .so-author, .stackoverflow-results-container .stackoverflow-update .update .so-author {
@@ -10988,7 +11405,7 @@ h3.downloads-header {
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
-    #downloads .download-list .category-label h4, #downloads .download-list .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #downloads .download-list .category-label h2 {
+    #downloads .download-list .category-label h4, #downloads .download-list .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #downloads .download-list .category-label h2 {
       text-transform: uppercase;
       color: white;
       font-size: 25px;
@@ -11025,13 +11442,13 @@ div.download-loading.loading {
 
 .has-download, .no-download {
   display: none; }
-  .has-download h4.caps, .has-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-article .disqus-thread-wrapper h2.caps, .page-node-type-article .disqus-thread-wrapper .has-download h2.caps, .no-download h4.caps, .no-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-article .disqus-thread-wrapper h2.caps, .page-node-type-article .disqus-thread-wrapper .no-download h2.caps {
+  .has-download h4.caps, .has-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .has-download h2.caps, .no-download h4.caps, .no-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .no-download h2.caps {
     text-transform: uppercase; }
 
 .download-links a + a {
   margin-left: 10px; }
 
-.download-link h4 a:before, .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-article .disqus-thread-wrapper h2 a:before, .page-node-type-article .disqus-thread-wrapper .download-link h2 a:before {
+.download-link h4 a:before, .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .download-link h2 a:before {
   font-family: 'FontAwesome';
   content: "\f01a";
   padding-right: 3px; }
@@ -11067,7 +11484,7 @@ a.download-link:before {
     margin-right: 0;
     width: 100%;
     margin-bottom: 0; }
-  .popular-download-box h4, .popular-download-box .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .popular-download-box h2 {
+  .popular-download-box h4, .popular-download-box .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .popular-download-box h2 {
     font-size: 17px;
     min-height: 60px; }
   .popular-download-box p {
@@ -11154,9 +11571,9 @@ ul.featured-connectors-results a.image-link img {
 .about-sec1 {
   padding: 50px 0;
   background: cdn("../images/design/about/about_our_mission_bg_lines.png") left top/auto no-repeat; }
-  .about-sec1 h2, .about-sec1 h4, .about-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec1 h2, .about-sec1 p {
+  .about-sec1 h2, .about-sec1 h4, .about-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec1 h2, .about-sec1 p {
     text-align: center; }
-  .about-sec1 h4, .about-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec1 h2 {
+  .about-sec1 h4, .about-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec1 h2, .about-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec1 h2 {
     font-weight: 100;
     font-style: italic; }
   .about-sec1 p {
@@ -11190,9 +11607,9 @@ ul.featured-connectors-results a.image-link img {
 .about-sec3 {
   padding: 50px 0;
   background: cdn("../images/design/about/about_who_should_join_bg_lines.png") right bottom/auto no-repeat; }
-  .about-sec3 h2, .about-sec3 h4, .about-sec3 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec3 h2, .about-sec3 p {
+  .about-sec3 h2, .about-sec3 h4, .about-sec3 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec3 h2, .about-sec3 p {
     text-align: center; }
-  .about-sec3 h4, .about-sec3 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec3 h2 {
+  .about-sec3 h4, .about-sec3 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec3 h2, .about-sec3 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec3 h2 {
     font-weight: 100;
     font-style: italic; }
   .about-sec3 a.button {
@@ -11212,7 +11629,7 @@ ul.featured-connectors-results a.image-link img {
     color: #FFFFFF;
     text-transform: uppercase;
     margin-bottom: 0; }
-  .about-sec4 span h4, .about-sec4 span .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span h5 {
+  .about-sec4 span h4, .about-sec4 span .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec4 span h2, .about-sec4 span h5 {
     display: inline; }
   .about-sec4 span h5 {
     font-weight: 100; }
@@ -11234,7 +11651,7 @@ ul.featured-connectors-results a.image-link img {
 
 .about-sec5 {
   padding: 50px 0; }
-  .about-sec5 h2, .about-sec5 h4, .about-sec5 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec5 h2, .about-sec5 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec5 h2, .about-sec5 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec5 h2, .about-sec5 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec5 h2, .about-sec5 h5, .about-sec5 p {
+  .about-sec5 h2, .about-sec5 h4, .about-sec5 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec5 h2, .about-sec5 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec5 h2, .about-sec5 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec5 h2, .about-sec5 h5, .about-sec5 p {
     text-align: center; }
   .about-sec5 h2 {
     margin-bottom: 0; }
@@ -11248,7 +11665,7 @@ ul.featured-connectors-results a.image-link img {
     display: block;
     margin: 0 auto 20px auto;
     font-weight: 600; }
-  .about-sec5 .about-icon h4, .about-sec5 .about-icon .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec5 .about-icon h2, .about-sec5 .about-icon .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec5 .about-icon h2, .about-sec5 .about-icon .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec5 .about-icon h2, .about-sec5 .about-icon .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec5 .about-icon h2 {
+  .about-sec5 .about-icon h4, .about-sec5 .about-icon .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec5 .about-icon h2, .about-sec5 .about-icon .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec5 .about-icon h2, .about-sec5 .about-icon .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec5 .about-icon h2 {
     color: #CC0000; }
   .about-sec5 .about-icon p {
     text-align: left;
@@ -11281,7 +11698,7 @@ ul.featured-connectors-results a.image-link img {
   .about-sec7 h2 {
     margin-bottom: 0;
     text-align: center; }
-  .about-sec7 h4, .about-sec7 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec7 h2, .about-sec7 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec7 h2, .about-sec7 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec7 h2, .about-sec7 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec7 h2 {
+  .about-sec7 h4, .about-sec7 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec7 h2, .about-sec7 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec7 h2, .about-sec7 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec7 h2 {
     font-weight: 100;
     text-align: center; }
   .about-sec7 p {
@@ -11319,7 +11736,7 @@ ul.featured-connectors-results a.image-link img {
     color: #FFFFFF;
     text-transform: uppercase;
     margin-bottom: 0; }
-  .about-sec8 h4, .about-sec8 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec8 h2, .about-sec8 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec8 h2, .about-sec8 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec8 h2, .about-sec8 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .about-sec8 h2 {
+  .about-sec8 h4, .about-sec8 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .about-sec8 h2, .about-sec8 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .about-sec8 h2, .about-sec8 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .about-sec8 h2 {
     font-weight: 200;
     color: #FFFFFF; }
   .about-sec8 ul.social-links {
@@ -11375,7 +11792,7 @@ ul.featured-connectors-results a.image-link img {
 
 .contributors-main {
   background: url("https://static.jboss.org/rhd/images/rhdev_pageheader_contributors_desktop.png") top center/cover no-repeat; }
-  .contributors-main h2, .contributors-main h3, .contributors-main h4, .contributors-main .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributors-main h2, .contributors-main .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributors-main h2, .contributors-main .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributors-main h2, .contributors-main .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .contributors-main h2, .contributors-main h5, .contributors-main p {
+  .contributors-main h2, .contributors-main h3, .contributors-main h4, .contributors-main .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributors-main h2, .contributors-main .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributors-main h2, .contributors-main .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributors-main h2, .contributors-main h5, .contributors-main p {
     color: #FFFFFF; }
   .contributors-main .contrubutors-title {
     padding: 3em 0; }
@@ -11401,7 +11818,7 @@ ul.featured-connectors-results a.image-link img {
 
 .contributers-sec1 {
   padding: 50px 0; }
-  .contributers-sec1 h4, .contributers-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributers-sec1 h2, .contributers-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributers-sec1 h2, .contributers-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributers-sec1 h2, .contributers-sec1 .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .contributers-sec1 h2 {
+  .contributers-sec1 h4, .contributers-sec1 .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributers-sec1 h2, .contributers-sec1 .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributers-sec1 h2, .contributers-sec1 .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributers-sec1 h2 {
     margin-bottom: 10px; }
   .contributers-sec1 .text {
     font-size: 1.2em; }
@@ -11447,7 +11864,7 @@ ul.featured-connectors-results a.image-link img {
   padding: 2.3em;
   margin-left: 10px;
   margin-top: 30px; }
-  .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block h3, .contributers-sec3 .answer-block h4, .contributers-sec3 .answer-block .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block p {
+  .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block h3, .contributers-sec3 .answer-block h4, .contributers-sec3 .answer-block .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .contributers-sec3 .answer-block h2, .contributers-sec3 .answer-block p {
     color: #000000;
     font-weight: 400; }
   .contributers-sec3 .answer-block p {
@@ -11728,7 +12145,7 @@ ul.ytlist {
     margin-bottom: 2em; }
   #devnation2016-microsite .event-video {
     margin-top: 2em; }
-    #devnation2016-microsite .event-video h4, #devnation2016-microsite .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devnation2016-microsite .event-video h2, #devnation2016-microsite .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devnation2016-microsite .event-video h2, #devnation2016-microsite .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devnation2016-microsite .event-video h2, #devnation2016-microsite .event-video .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devnation2016-microsite .event-video h2 {
+    #devnation2016-microsite .event-video h4, #devnation2016-microsite .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devnation2016-microsite .event-video h2, #devnation2016-microsite .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devnation2016-microsite .event-video h2, #devnation2016-microsite .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devnation2016-microsite .event-video h2 {
       display: none; }
   #devnation2016-microsite iframe.embedded-chat {
     margin-top: 2em;
@@ -11783,7 +12200,7 @@ ul.ytlist {
     float: left;
     width: calc(100% - 370px);
     margin-right: 20px; }
-    #videoModal .event-video h4, #videoModal .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #videoModal .event-video h2 {
+    #videoModal .event-video h4, #videoModal .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #videoModal .event-video h2 {
       display: block; }
   #videoModal .chat {
     display: inline-block;
@@ -11820,7 +12237,7 @@ ul.ytlist {
   #devoxx-be-microsite section.inverse {
     background-color: #0d5884;
     padding: 25px 0; }
-    #devoxx-be-microsite section.inverse p, #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse h3, #devoxx-be-microsite section.inverse h4, #devoxx-be-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse h5, #devoxx-be-microsite section.inverse h6 {
+    #devoxx-be-microsite section.inverse p, #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse h3, #devoxx-be-microsite section.inverse h4, #devoxx-be-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxx-be-microsite section.inverse h2, #devoxx-be-microsite section.inverse h5, #devoxx-be-microsite section.inverse h6 {
       color: #FFFFFF; }
     #devoxx-be-microsite section.inverse a {
       color: #FFFFFF;
@@ -11859,7 +12276,7 @@ ul.ytlist {
   #devoxx-be-microsite ul.speakers-list li .speaker-img {
     max-width: 80px; }
 
-#devoxx-be-microsite ul.speakers-list p, #devoxx-be-microsite ul.speakers-list h4, #devoxx-be-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2, #devoxx-be-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2, #devoxx-be-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2, #devoxx-be-microsite ul.speakers-list .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2 {
+#devoxx-be-microsite ul.speakers-list p, #devoxx-be-microsite ul.speakers-list h4, #devoxx-be-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2, #devoxx-be-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2, #devoxx-be-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxx-be-microsite ul.speakers-list h2 {
   margin-bottom: 0;
   margin-top: 0; }
 
@@ -11909,7 +12326,7 @@ ul.devoxx-list {
   ul.devoxx-list li {
     padding-left: 1em; }
 
-.video-embed h4, .video-embed .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .video-embed h2, .video-embed .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-embed h2, .video-embed .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .video-embed h2, .video-embed .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .video-embed h2 {
+.video-embed h4, .video-embed .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .video-embed h2, .video-embed .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .video-embed h2, .video-embed .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .video-embed h2 {
   display: none; }
 
 .eventsdevoxxfrance2016 .wrapper {
@@ -11952,11 +12369,11 @@ ul.devoxx-list {
   padding: 35px 0; }
   #devoxxfrance-microsite section.dark-blue {
     background-color: #0088C3; }
-    #devoxxfrance-microsite section.dark-blue p, #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue h3, #devoxxfrance-microsite section.dark-blue h4, #devoxxfrance-microsite section.dark-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue h5, #devoxxfrance-microsite section.dark-blue h6 {
+    #devoxxfrance-microsite section.dark-blue p, #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue h3, #devoxxfrance-microsite section.dark-blue h4, #devoxxfrance-microsite section.dark-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite section.dark-blue h2, #devoxxfrance-microsite section.dark-blue h5, #devoxxfrance-microsite section.dark-blue h6 {
       color: #FFFFFF; }
   #devoxxfrance-microsite section.pale-blue {
     background-color: #A3DBE8; }
-    #devoxxfrance-microsite section.pale-blue p, #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue h3, #devoxxfrance-microsite section.pale-blue h4, #devoxxfrance-microsite section.pale-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue h5, #devoxxfrance-microsite section.pale-blue h6, #devoxxfrance-microsite section.pale-blue i {
+    #devoxxfrance-microsite section.pale-blue p, #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue h3, #devoxxfrance-microsite section.pale-blue h4, #devoxxfrance-microsite section.pale-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite section.pale-blue h2, #devoxxfrance-microsite section.pale-blue h5, #devoxxfrance-microsite section.pale-blue h6, #devoxxfrance-microsite section.pale-blue i {
       color: #242424; }
 
 #devoxxfrance-microsite .site-header p {
@@ -11984,7 +12401,7 @@ ul.devoxx-list {
 #devoxxfrance-microsite ul.speakers-list .speaker-info strong {
   color: #FFFFFF; }
 
-#devoxxfrance-microsite ul.speakers-list h4, #devoxxfrance-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2, #devoxxfrance-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2, #devoxxfrance-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2, #devoxxfrance-microsite ul.speakers-list .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2 {
+#devoxxfrance-microsite ul.speakers-list h4, #devoxxfrance-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2, #devoxxfrance-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2, #devoxxfrance-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #devoxxfrance-microsite ul.speakers-list h2 {
   display: inline-block;
   margin-bottom: 10px;
   margin-top: 0; }
@@ -12028,7 +12445,7 @@ h3.downloads-header {
     padding: 20px;
     background-size: 1000px;
     background-position: center right -300px; }
-    #downloads .download-list .category-label h4, #downloads .download-list .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #downloads .download-list .category-label h2 {
+    #downloads .download-list .category-label h4, #downloads .download-list .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #downloads .download-list .category-label h2, #downloads .download-list .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #downloads .download-list .category-label h2 {
       text-transform: uppercase;
       color: white;
       font-size: 25px;
@@ -12065,13 +12482,13 @@ div.download-loading.loading {
 
 .has-download, .no-download {
   display: none; }
-  .has-download h4.caps, .has-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-article .disqus-thread-wrapper h2.caps, .page-node-type-article .disqus-thread-wrapper .has-download h2.caps, .no-download h4.caps, .no-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-article .disqus-thread-wrapper h2.caps, .page-node-type-article .disqus-thread-wrapper .no-download h2.caps {
+  .has-download h4.caps, .has-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .has-download h2.caps, .has-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .has-download h2.caps, .no-download h4.caps, .no-download .page-node-type-books .disqus-thread-wrapper h2.caps, .page-node-type-books .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-cheat-sheet .disqus-thread-wrapper h2.caps, .page-node-type-cheat-sheet .disqus-thread-wrapper .no-download h2.caps, .no-download .page-node-type-video-resource .disqus-thread-wrapper h2.caps, .page-node-type-video-resource .disqus-thread-wrapper .no-download h2.caps {
     text-transform: uppercase; }
 
 .download-links a + a {
   margin-left: 10px; }
 
-.download-link h4 a:before, .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-article .disqus-thread-wrapper h2 a:before, .page-node-type-article .disqus-thread-wrapper .download-link h2 a:before {
+.download-link h4 a:before, .download-link .page-node-type-books .disqus-thread-wrapper h2 a:before, .page-node-type-books .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-cheat-sheet .disqus-thread-wrapper h2 a:before, .page-node-type-cheat-sheet .disqus-thread-wrapper .download-link h2 a:before, .download-link .page-node-type-video-resource .disqus-thread-wrapper h2 a:before, .page-node-type-video-resource .disqus-thread-wrapper .download-link h2 a:before {
   font-family: 'FontAwesome';
   content: "\f01a";
   padding-right: 3px; }
@@ -12107,7 +12524,7 @@ a.download-link:before {
     margin-right: 0;
     width: 100%;
     margin-bottom: 0; }
-  .popular-download-box h4, .popular-download-box .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .popular-download-box h2 {
+  .popular-download-box h4, .popular-download-box .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .popular-download-box h2, .popular-download-box .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .popular-download-box h2 {
     font-size: 17px;
     min-height: 60px; }
   .popular-download-box p {
@@ -12177,7 +12594,7 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
   background-color: #424242;
   padding: 10px;
   margin-bottom: 15px; }
-  .forums-product-categories .product-category .category-label h4, .forums-product-categories .product-category .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2, .forums-product-categories .product-category .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2, .forums-product-categories .product-category .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2, .forums-product-categories .product-category .category-label .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2 {
+  .forums-product-categories .product-category .category-label h4, .forums-product-categories .product-category .category-label .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2, .forums-product-categories .product-category .category-label .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2, .forums-product-categories .product-category .category-label .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .forums-product-categories .product-category .category-label h2 {
     color: #FFFFFF;
     margin-bottom: 0; }
 
@@ -12187,7 +12604,7 @@ rhdp-downloads-all-item .large-9.center.columns, rhdp-downloads-all-item .large-
   .forums-product-categories .product-category .development-tool i {
     float: left;
     margin-right: 10px; }
-  .forums-product-categories .product-category .development-tool h4.read-only, .forums-product-categories .product-category .development-tool .page-node-type-books .disqus-thread-wrapper h2.read-only, .page-node-type-books .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only, .forums-product-categories .product-category .development-tool .page-node-type-cheat-sheet .disqus-thread-wrapper h2.read-only, .page-node-type-cheat-sheet .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only, .forums-product-categories .product-category .development-tool .page-node-type-video-resource .disqus-thread-wrapper h2.read-only, .page-node-type-video-resource .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only, .forums-product-categories .product-category .development-tool .page-node-type-article .disqus-thread-wrapper h2.read-only, .page-node-type-article .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only {
+  .forums-product-categories .product-category .development-tool h4.read-only, .forums-product-categories .product-category .development-tool .page-node-type-books .disqus-thread-wrapper h2.read-only, .page-node-type-books .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only, .forums-product-categories .product-category .development-tool .page-node-type-cheat-sheet .disqus-thread-wrapper h2.read-only, .page-node-type-cheat-sheet .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only, .forums-product-categories .product-category .development-tool .page-node-type-video-resource .disqus-thread-wrapper h2.read-only, .page-node-type-video-resource .disqus-thread-wrapper .forums-product-categories .product-category .development-tool h2.read-only {
     color: #656565;
     margin-top: 0; }
 
@@ -12274,7 +12691,7 @@ ul.product-forums-latest {
   #javaone-microsite section.inverse {
     background-color: #0d5884;
     padding: 25px 0; }
-    #javaone-microsite section.inverse p, #javaone-microsite section.inverse h2, #javaone-microsite section.inverse h3, #javaone-microsite section.inverse h4, #javaone-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse h5, #javaone-microsite section.inverse h6 {
+    #javaone-microsite section.inverse p, #javaone-microsite section.inverse h2, #javaone-microsite section.inverse h3, #javaone-microsite section.inverse h4, #javaone-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #javaone-microsite section.inverse h2, #javaone-microsite section.inverse h5, #javaone-microsite section.inverse h6 {
       color: #FFFFFF; }
 
 #javaone-microsite .session-list .session {
@@ -12315,7 +12732,7 @@ ul.product-forums-latest {
 #javaone-microsite ul.speakers-list .speaker-info strong {
   color: #FFFFFF; }
 
-#javaone-microsite ul.speakers-list p, #javaone-microsite ul.speakers-list h4, #javaone-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2, #javaone-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2, #javaone-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2, #javaone-microsite ul.speakers-list .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2 {
+#javaone-microsite ul.speakers-list p, #javaone-microsite ul.speakers-list h4, #javaone-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2, #javaone-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2, #javaone-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #javaone-microsite ul.speakers-list h2 {
   margin-bottom: 0;
   margin-top: 0; }
 
@@ -12429,7 +12846,7 @@ ul.product-forums-latest {
     margin-bottom: 2em; }
   #vJBug-microsite .event-video {
     margin-top: 2em; }
-    #vJBug-microsite .event-video h4, #vJBug-microsite .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #vJBug-microsite .event-video h2, #vJBug-microsite .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #vJBug-microsite .event-video h2, #vJBug-microsite .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #vJBug-microsite .event-video h2, #vJBug-microsite .event-video .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #vJBug-microsite .event-video h2 {
+    #vJBug-microsite .event-video h4, #vJBug-microsite .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #vJBug-microsite .event-video h2, #vJBug-microsite .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #vJBug-microsite .event-video h2, #vJBug-microsite .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #vJBug-microsite .event-video h2 {
       display: none; }
   #vJBug-microsite iframe.embedded-chat {
     margin-top: 2em;
@@ -12484,7 +12901,7 @@ ul.product-forums-latest {
     float: left;
     width: calc(100% - 370px);
     margin-right: 20px; }
-    #videoModal .event-video h4, #videoModal .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #videoModal .event-video h2 {
+    #videoModal .event-video h4, #videoModal .event-video .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #videoModal .event-video h2, #videoModal .event-video .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #videoModal .event-video h2 {
       display: block; }
   #videoModal .chat {
     display: inline-block;
@@ -12914,7 +13331,7 @@ rhdp-search-result {
     margin-left: 20px; }
   rhdp-search-result div:first-child {
     flex: 1 1 auto; }
-  rhdp-search-result h4, rhdp-search-result .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-search-result h2, rhdp-search-result .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-search-result h2, rhdp-search-result .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-search-result h2, rhdp-search-result .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper rhdp-search-result h2 {
+  rhdp-search-result h4, rhdp-search-result .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper rhdp-search-result h2, rhdp-search-result .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper rhdp-search-result h2, rhdp-search-result .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper rhdp-search-result h2 {
     font-weight: 600;
     font-style: normal;
     font-size: 20px;
@@ -13157,7 +13574,7 @@ rhdp-search-onebox ul.slots {
   #judcon-brno-microsite section.inverse {
     background-color: #0d5884;
     padding: 25px 0; }
-    #judcon-brno-microsite section.inverse p, #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse h3, #judcon-brno-microsite section.inverse h4, #judcon-brno-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse h5, #judcon-brno-microsite section.inverse h6, #judcon-brno-microsite section.inverse ul, #judcon-brno-microsite section.inverse li {
+    #judcon-brno-microsite section.inverse p, #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse h3, #judcon-brno-microsite section.inverse h4, #judcon-brno-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #judcon-brno-microsite section.inverse h2, #judcon-brno-microsite section.inverse h5, #judcon-brno-microsite section.inverse h6, #judcon-brno-microsite section.inverse ul, #judcon-brno-microsite section.inverse li {
       color: #FFFFFF; }
     #judcon-brno-microsite section.inverse a {
       color: #FFFFFF;
@@ -13204,11 +13621,11 @@ rhdp-search-onebox ul.slots {
   padding: 35px 0; }
   #gids-microsite section.dark-blue {
     background-color: #0088C3; }
-    #gids-microsite section.dark-blue p, #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue h3, #gids-microsite section.dark-blue h4, #gids-microsite section.dark-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue h5, #gids-microsite section.dark-blue h6 {
+    #gids-microsite section.dark-blue p, #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue h3, #gids-microsite section.dark-blue h4, #gids-microsite section.dark-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite section.dark-blue h2, #gids-microsite section.dark-blue h5, #gids-microsite section.dark-blue h6 {
       color: #FFFFFF; }
   #gids-microsite section.pale-blue {
     background-color: #A3DBE8; }
-    #gids-microsite section.pale-blue p, #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue h3, #gids-microsite section.pale-blue h4, #gids-microsite section.pale-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue h5, #gids-microsite section.pale-blue h6, #gids-microsite section.pale-blue i {
+    #gids-microsite section.pale-blue p, #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue h3, #gids-microsite section.pale-blue h4, #gids-microsite section.pale-blue .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite section.pale-blue h2, #gids-microsite section.pale-blue h5, #gids-microsite section.pale-blue h6, #gids-microsite section.pale-blue i {
       color: #242424; }
 
 #gids-microsite .site-header p {
@@ -13236,7 +13653,7 @@ rhdp-search-onebox ul.slots {
 #gids-microsite ul.speakers-list .speaker-info strong {
   color: #FFFFFF; }
 
-#gids-microsite ul.speakers-list h4, #gids-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite ul.speakers-list h2, #gids-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite ul.speakers-list h2, #gids-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite ul.speakers-list h2, #gids-microsite ul.speakers-list .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #gids-microsite ul.speakers-list h2 {
+#gids-microsite ul.speakers-list h4, #gids-microsite ul.speakers-list .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #gids-microsite ul.speakers-list h2, #gids-microsite ul.speakers-list .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #gids-microsite ul.speakers-list h2, #gids-microsite ul.speakers-list .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #gids-microsite ul.speakers-list h2 {
   display: inline-block;
   margin-bottom: 10px;
   margin-top: 0; }
@@ -13281,7 +13698,7 @@ rhdp-search-onebox ul.slots {
     background-color: #0d5884;
     padding: 25px 0;
     background-image: none; }
-    #msbuild-microsite section.inverse p, #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse h3, #msbuild-microsite section.inverse h4, #msbuild-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse h5, #msbuild-microsite section.inverse h6 {
+    #msbuild-microsite section.inverse p, #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse h3, #msbuild-microsite section.inverse h4, #msbuild-microsite section.inverse .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #msbuild-microsite section.inverse h2, #msbuild-microsite section.inverse h5, #msbuild-microsite section.inverse h6 {
       color: #FFFFFF; }
 
 #msbuild-microsite .site-header p {
@@ -13371,6 +13788,268 @@ rhdp-search-onebox ul.slots {
 .page-node-type-landing-page-single-offer footer {
   float: left;
   width: 100%; }
+
+.node--type-author .pre-body {
+  margin-top: 75px; }
+  @media (min-width: 576px) {
+    .node--type-author .pre-body {
+      margin-top: 105px; } }
+  .node--type-author .pre-body h2 {
+    margin: 0;
+    font-size: 2em; }
+    @media (min-width: 576px) {
+      .node--type-author .pre-body h2 {
+        font-size: 50px;
+        line-height: 62px; } }
+  .node--type-author .pre-body .field--name-field-position-title {
+    margin: 0;
+    font-size: 1.5em; }
+    @media (min-width: 576px) {
+      .node--type-author .pre-body .field--name-field-position-title {
+        font-size: 32px;
+        line-height: 49px; } }
+  .node--type-author .pre-body .bio {
+    margin-top: 55px; }
+    .node--type-author .pre-body .bio .social-links a {
+      background-color: #f3f3f3;
+      border-radius: 100%;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+      margin-right: 8px;
+      margin-bottom: 10px; }
+      @media (min-width: 768px) {
+        .node--type-author .pre-body .bio .social-links a {
+          margin-bottom: 0; } }
+      .node--type-author .pre-body .bio .social-links a:hover > div {
+        opacity: 0.7; }
+      .node--type-author .pre-body .bio .social-links a .a2a_svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 18px;
+        width: 18px;
+        transform: translateX(-50%) translateY(-50%); }
+        .node--type-author .pre-body .bio .social-links a .a2a_svg svg {
+          width: 18px; }
+          .node--type-author .pre-body .bio .social-links a .a2a_svg svg.youtube, .node--type-author .pre-body .bio .social-links a .a2a_svg svg.github {
+            width: 14px;
+            margin: 0 0 1px 2px; }
+      .node--type-author .pre-body .bio .social-links a .a2a_label {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: polygon(0 0, 0 0, 0 0);
+        -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+        overflow: hidden;
+        height: 1px;
+        width: 1px; }
+    .node--type-author .pre-body .bio p {
+      margin: 0;
+      color: #242424;
+      font-size: 16px;
+      line-height: 24px; }
+    .node--type-author .pre-body .bio .github-link {
+      margin-top: 30px;
+      font-size: 16px;
+      line-height: 5px;
+      font-weight: bold; }
+  @media only screen and (max-width: 768px) {
+    .node--type-author .pre-body .field--name-field-headshot {
+      text-align: center; } }
+  .node--type-author .pre-body .field--name-field-headshot img {
+    height: auto;
+    height: auto !important;
+    border-radius: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    display: block; }
+    @media only screen and (max-width: 768px) {
+      .node--type-author .pre-body .field--name-field-headshot img {
+        max-width: 75%;
+        display: inline-block;
+        margin-top: 45px; } }
+
+.node--type-author .body-row {
+  padding-top: 45px;
+  margin-top: 45px;
+  border-top: 3px solid #f5f5f5; }
+  @media (min-width: 576px) {
+    .node--type-author .body-row {
+      padding-top: 85px;
+      margin-top: 85px; } }
+  .node--type-author .body-row h4, .node--type-author .body-row .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .node--type-author .body-row h2, .node--type-author .body-row .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .node--type-author .body-row h2, .node--type-author .body-row .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .node--type-author .body-row h2 {
+    margin: 0 0 50px 0;
+    color: #242424;
+    font-size: 32px;
+    line-height: 49px;
+    font-weight: normal; }
+  .node--type-author .body-row .views-row {
+    margin-bottom: 75px; }
+    .node--type-author .body-row .views-row .article-teaser-image {
+      margin-bottom: 0; }
+      @media only screen and (max-width: 768px) {
+        .node--type-author .body-row .views-row .article-teaser-image {
+          margin-bottom: 15px;
+          text-align: center; } }
+    .node--type-author .body-row .views-row h5 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 27px;
+      line-height: 42px; }
+      .node--type-author .body-row .views-row h5 a {
+        color: #242424; }
+        .node--type-author .body-row .views-row h5 a:hover {
+          color: #0066CC; }
+    .node--type-author .body-row .views-row p {
+      margin: 0;
+      color: #242424;
+      font-size: 16px;
+      line-height: 24px; }
+
+.node--type-author .pager {
+  margin: 20px 0 45px 0; }
+  .node--type-author .pager ul {
+    padding: 0;
+    margin: 0; }
+
+.view-taxonomy-term h1 {
+  margin-top: 45px;
+  margin-bottom: 0;
+  font-size: 2em; }
+  @media (min-width: 576px) {
+    .view-taxonomy-term h1 {
+      margin-top: 90px;
+      font-size: 50px; } }
+
+.view-taxonomy-term .view-content {
+  border-top: 2px solid #F5F5F5;
+  padding-top: 45px;
+  margin-top: 45px; }
+  @media (min-width: 576px) {
+    .view-taxonomy-term .view-content {
+      padding-top: 90px;
+      margin-top: 75px; } }
+  .view-taxonomy-term .view-content .views-row {
+    float: left;
+    width: 100%;
+    margin-bottom: 75px; }
+    .view-taxonomy-term .view-content .views-row .article-teaser-image {
+      margin-bottom: 0; }
+      @media only screen and (max-width: 768px) {
+        .view-taxonomy-term .view-content .views-row .article-teaser-image {
+          margin-bottom: 15px;
+          text-align: center; } }
+    .view-taxonomy-term .view-content .views-row h5 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 27px;
+      line-height: 42px; }
+      .view-taxonomy-term .view-content .views-row h5 a {
+        color: #242424; }
+        .view-taxonomy-term .view-content .views-row h5 a:hover {
+          color: #0066CC; }
+    .view-taxonomy-term .view-content .views-row p {
+      margin: 0;
+      color: #242424;
+      font-size: 16px;
+      line-height: 24px; }
+    .view-taxonomy-term .view-content .views-row .event-item {
+      list-style: none; }
+      @media only screen and (max-width: 768px) {
+        .view-taxonomy-term .view-content .views-row .event-item {
+          text-align: center; } }
+      .view-taxonomy-term .view-content .views-row .event-item .event-thumbnail {
+        width: 25%;
+        float: left;
+        padding-left: 1em;
+        padding-right: 1em;
+        position: relative; }
+        @media only screen and (max-width: 768px) {
+          .view-taxonomy-term .view-content .views-row .event-item .event-thumbnail {
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 15px;
+            float: none;
+            padding: 0; } }
+      .view-taxonomy-term .view-content .views-row .event-item .event-info {
+        width: 75%;
+        float: right;
+        padding-left: 1em;
+        padding-right: 1em;
+        position: relative; }
+        @media only screen and (max-width: 768px) {
+          .view-taxonomy-term .view-content .views-row .event-item .event-info {
+            width: 100%; } }
+        .view-taxonomy-term .view-content .views-row .event-item .event-info .event-title {
+          display: block;
+          margin-top: 0;
+          margin-bottom: 15px;
+          font-size: 27px;
+          line-height: 42px;
+          color: #242424;
+          font-weight: 600;
+          font-size: 27px;
+          line-height: 42px; }
+          .view-taxonomy-term .view-content .views-row .event-item .event-info .event-title:hover {
+            color: #0066CC; }
+        .view-taxonomy-term .view-content .views-row .event-item .event-info .event-date {
+          display: none; }
+        .view-taxonomy-term .view-content .views-row .event-item .event-info p {
+          margin: 0;
+          color: #242424;
+          font-size: 16px;
+          line-height: 24px; }
+    .view-taxonomy-term .view-content .views-row .rhd-list-entry {
+      display: block;
+      float: left;
+      width: 100%;
+      margin: 0; }
+      @media only screen and (max-width: 768px) {
+        .view-taxonomy-term .view-content .views-row .rhd-list-entry {
+          display: flex;
+          flex-wrap: wrap; } }
+      .view-taxonomy-term .view-content .views-row .rhd-list-entry .rhd-list-entry--image {
+        float: left;
+        width: 25%; }
+        @media only screen and (max-width: 768px) {
+          .view-taxonomy-term .view-content .views-row .rhd-list-entry .rhd-list-entry--image {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+            order: 1; } }
+      .view-taxonomy-term .view-content .views-row .rhd-list-entry .text-content {
+        float: right;
+        width: 75%; }
+        .view-taxonomy-term .view-content .views-row .rhd-list-entry .text-content .rhd-list-entry--title {
+          font-size: 27px;
+          line-height: 42px;
+          font-weight: 600; }
+          .view-taxonomy-term .view-content .views-row .rhd-list-entry .text-content .rhd-list-entry--title a {
+            color: #242424; }
+        .view-taxonomy-term .view-content .views-row .rhd-list-entry .text-content .rhd-list-entry--summary {
+          display: block !important;
+          color: #242424;
+          font-size: 16px;
+          line-height: 24px; }
+        @media only screen and (max-width: 768px) {
+          .view-taxonomy-term .view-content .views-row .rhd-list-entry .text-content {
+            width: 100%;
+            order: 2; } }
+      .view-taxonomy-term .view-content .views-row .rhd-list-entry .rhd-list-entry--comment-link,
+      .view-taxonomy-term .view-content .views-row .rhd-list-entry .rhd-play-button {
+        display: none; }
+
+.view-taxonomy-term .pager {
+  margin-bottom: 30px; }
+  .view-taxonomy-term .pager ul {
+    padding: 0;
+    margin: 0; }
+
+.view-taxonomy-term .feed-icons {
+  margin-bottom: 90px; }
 
 [data-rhd-grid="normal"] {
   display: flex;
@@ -13721,8 +14400,6 @@ code {
 
 .share-sm {
   margin-top: 2px; }
-  .share-sm .a2a_button_google_plusone {
-    height: 24px; }
 
 @media only screen and (max-width: 1024px) {
   .page-info-bar .share-sm {
@@ -13851,7 +14528,7 @@ body.overlay-open .overlay {
     color: #FFFFFF;
     text-transform: uppercase;
     margin-bottom: 0; }
-  .connect-with-us h4, .connect-with-us .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .connect-with-us h2, .connect-with-us .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .connect-with-us h2, .connect-with-us .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .connect-with-us h2, .connect-with-us .page-node-type-article .disqus-thread-wrapper h2, .page-node-type-article .disqus-thread-wrapper .connect-with-us h2 {
+  .connect-with-us h4, .connect-with-us .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper .connect-with-us h2, .connect-with-us .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper .connect-with-us h2, .connect-with-us .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper .connect-with-us h2 {
     font-weight: 200;
     color: #FFFFFF; }
   .connect-with-us ul.social-links {

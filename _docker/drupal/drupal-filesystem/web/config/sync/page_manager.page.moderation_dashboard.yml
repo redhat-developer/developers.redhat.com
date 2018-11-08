@@ -1,0 +1,33 @@
+uuid: cecb921e-086d-4df5-bdfc-92ec96fb232b
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - moderation_dashboard
+  module:
+    - moderation_dashboard
+_core:
+  default_config_hash: VfPvbl_yRuurg4Y5V0nK1u43hSwdwxOZE1RFP81BGSQ
+id: moderation_dashboard
+label: 'Moderation Dashboard'
+description: ''
+use_admin_theme: false
+path: '/user/{user}/moderation/dashboard'
+access_logic: and
+access_conditions:
+  -
+    id: has_moderated_content_type
+    negate: false
+    context_mapping: {  }
+  -
+    id: moderation_dashboard_access
+    negate: false
+    context_mapping:
+      dashboard_user: user
+      current_user: current_user
+parameters:
+  user:
+    machine_name: user
+    type: 'entity:user'
+    label: User

@@ -58,7 +58,6 @@ function rhd_common_preprocess_paragraph__overview(&$variables)
 function build_feature_grouping($feature)
 {
   $builder = Drupal::entityTypeManager()->getViewBuilder('media');
-  $feature->field_media_reference->referencedEntities()[0];
 
   $image_array = $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']);
 

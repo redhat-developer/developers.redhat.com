@@ -1,0 +1,42 @@
+uuid: 74f2cea6-00a6-4016-accf-146bf1925cae
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.media_slideshow
+    - field.field.block_content.media_slideshow.field_slideshow_items
+  module:
+    - slick_entityreference
+_core:
+  default_config_hash: hVHMNQ6SuxyBzrEV2AJkwdHKAxQ7btc6JPGH548r9_E
+id: block_content.media_slideshow.default
+targetEntityType: block_content
+bundle: media_slideshow
+mode: default
+content:
+  field_slideshow_items:
+    type: slick_entityreference_vanilla
+    weight: 0
+    label: visually_hidden
+    settings:
+      optionset: default
+      skin: default
+      view_mode: default
+      cache: 0
+      current_view_mode: default
+      override: false
+      overridables:
+        arrows: '0'
+        autoplay: '0'
+        dots: '0'
+        draggable: '0'
+        infinite: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      skin_arrows: ''
+      skin_dots: ''
+      style: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

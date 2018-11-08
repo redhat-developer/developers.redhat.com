@@ -5025,7 +5025,7 @@ app.products = {
 };
 app.products.downloads = {
     "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.6.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.6.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.6.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};
@@ -10641,9 +10641,6 @@ app.connectors = {
         $('body').removeClass('overlay-open');
         $('.overlay-content').empty();
     },
-    fallbackImage: function (el) {
-        el.src = "#{cdn( site.base_url + '/images/design/default_connector_200x150.png')}";
-    },
     hideCodeSnippetIfEmpty: function (snippet_elem) {
         var snippet_value = snippet_elem.find('.snippet-value');
         if (!snippet_value.val()) {
@@ -10733,8 +10730,8 @@ app.connectors = {
         var html = "";
         for (var i = 0; i < hits.length; i++) {
             var props = hits[i]._source;
-            props.img_path_thumb = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = app.connectors.fallbackImage(this);
+            props.img_path_thumb = (typeof props.thumbnail__target_id !== 'undefined' && props.thumbnail__target_id !== '') ? props.thumbnail__target_id : "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
+            props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
             if (!('sys_content' in props)) {
                 props.sys_content = props.sys_description;
             }
@@ -16463,7 +16460,9 @@ app.relatedContent.fetch = function () {
     $("div.video-related-content.video-related-content-list").addClass('loading');
     var contentCount = $('#video-related-cont').find('.field--name-field-related-content .related-content-card').length;
     contentCount = 4 - contentCount;
+    var typeString = '&sys_type=cheatsheet&sys_type=video&sys_type=book&sys_type=article&sys_type=blogpost';
     var tags = ($('#video-related-cont').data('tags') || "");
+    var tagsString = "";
     try {
         tags = JSON.parse(tags.replace(/'/g, "\""));
     }
@@ -16471,7 +16470,6 @@ app.relatedContent.fetch = function () {
         tags = "";
     }
     if (tags) {
-        var tagsString = "";
         for (var i = 0; i < tags.length; i++) {
             if (i > 0) {
                 tags[i] = "&tag=" + tags[i];
@@ -16479,7 +16477,7 @@ app.relatedContent.fetch = function () {
             tagsString += (tags[i]).toLowerCase();
         }
     }
-    $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&filter_out_excluded=true&size10=true&tag=' + tagsString, function (data) {
+    $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&filter_out_excluded=true&size10=true&tag=' + tagsString + typeString, function (data) {
         if (data.hits && data.hits.hits) {
             data.hits.hits.length = contentCount;
             app.relatedContent.render(data.hits.hits);
