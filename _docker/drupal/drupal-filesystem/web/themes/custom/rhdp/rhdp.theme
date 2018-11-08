@@ -439,7 +439,7 @@ function rhdp_preprocess_node(array &$variables) {
 /**
  * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
  */
-function redhat_www_ddo_default(Node $node) {
+function redhat_www_ddo_default($node) {
   $request = \Drupal::request();
   $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
   $errorType = "";
