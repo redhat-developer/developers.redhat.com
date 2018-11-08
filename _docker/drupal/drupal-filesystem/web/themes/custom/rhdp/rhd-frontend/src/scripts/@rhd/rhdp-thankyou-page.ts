@@ -97,7 +97,19 @@ export default class RHDPThankyou extends HTMLElement {
             results = regex.exec(this.url);
         if (!results) return null;
         if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+        var i:number = 0;
+        var result:string = results[2];
+        var tmpResult:string = decodeURIComponent(result);
+        var decodedResult:string = decodeURIComponent(tmpResult);
+
+        //keep decoding until the results match or we have tried 5 times
+        do {
+            i = i + 1;
+            tmpResult = decodeURIComponent(decodedResult);
+            decodedResult = decodeURIComponent(tmpResult);
+        } while (tmpResult != decodedResult && i <= 5);
+
+        return decodedResult.replace(/\+/g, " ");
     }
 
 
