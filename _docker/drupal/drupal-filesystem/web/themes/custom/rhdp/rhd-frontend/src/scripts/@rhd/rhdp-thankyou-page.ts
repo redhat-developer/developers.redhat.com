@@ -38,7 +38,7 @@ export default class RHDPThankyou extends HTMLElement {
         super();
     }
 
-    template = (strings, name, directLink, recentDownload, boldMsg, normMsg) => {
+    template = (strings, name, directLink, recentDownload, boldMsg, normMsg, dnlMsg) => {
         return `<div class="row">
                     <div class="large-24 medium-24 small-24 columns">
                         <div class="alert-box alert-info">
@@ -49,15 +49,14 @@ export default class RHDPThankyou extends HTMLElement {
                             </div>
                         </div>
                 
-                        <div class="large-24 medium-16 small-24 columns thankyou">
-                                <h2>Thank you for downloading the:</h2>
+                        <div class="large-24 medium-24 small-24 columns thankyou">
+                                <h2>${dnlMsg}</h2>
                                 <h2>${name}</h2>
                             ${recentDownload ? '' : `<iframe src="${directLink}"></iframe>`}
                         </div>
-                        <div class="large-24 medium-16 small-24 columns">
+                        <div class="large-24 medium-24 small-24 columns">
                             <div class="thankyou-button">
-                                <a href="/" class="button heavy-cta">Continue
-                                    to Homepage</a>
+                                <a href="/" class="button heavy-cta">Continue to Homepage</a>
                             </div>
                         </div>
                 
@@ -69,7 +68,7 @@ export default class RHDPThankyou extends HTMLElement {
         this._recentDownload = this.checkRecentDownload();
         this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
         this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = this.template`${this.mediaName}${this.directLink}${this._recentDownload}${this.getCorrectMsgTextForBoldMsg()}${this.getCorrectMsgTextForNormMsg()}`;
+        this.innerHTML = this.template`${this.mediaName}${this.directLink}${this._recentDownload}${this.getCorrectMsgTextForBoldMsg()}${this.getCorrectMsgTextForNormMsg()}${this.getCorrectMsgTextForDnlMsg()}`;
     }
 
     static get observedAttributes() {
@@ -110,9 +109,21 @@ export default class RHDPThankyou extends HTMLElement {
         return os;
       }
       
+    getCorrectMsgTextForDnlMsg() {
+        var desktopDnlMsg: string = "Thank you for downloading the:";
+        var mobileDnlMsg: string = "Use the direct link above to download:";
+        var testOS: string = this.getOS();
+
+        if (testOS === "iOS" || testOS === "Android") {
+            return mobileDnlMsg;
+        } else {
+            return desktopDnlMsg;
+        }
+    }
+
     getCorrectMsgTextForBoldMsg() {
         var desktopBoldMsg: string = "Your download should start automatically.";
-        var mobileBoldMsg: string = "To download on your mobile.";
+        var mobileBoldMsg: string = "To download on your mobile,";
         var testOS: string = this.getOS();
 
         if (testOS === "iOS" || testOS === "Android") {
