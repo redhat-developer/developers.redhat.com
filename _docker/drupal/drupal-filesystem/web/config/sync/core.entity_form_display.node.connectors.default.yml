@@ -234,6 +234,12 @@ content:
     third_party_settings: {  }
     type: moderation_state_default
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
