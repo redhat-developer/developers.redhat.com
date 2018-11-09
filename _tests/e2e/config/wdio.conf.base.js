@@ -1,16 +1,31 @@
 const BrowserManager = require('./browsers/BrowserManager');
 
-if (typeof process.env.RHD_WEBSITE_TYPE === 'undefined') {
+if (typeof process.env.RHD_DRUPAL_ADMIN === 'undefined') {
     testType = 'export'
 }
 
-if (testType === 'export') {
-    exclude = 'drupal'
+if (typeof process.env.RHD_TEST_PROFILE === 'undefined') {
+    testProfile = 'desktop';
+    testType = 'export';
 } else {
-    exclude = 'export'
+    if (process.env.RHD_TEST_PROFILE === 'drupal') {
+        testType = 'drupal';
+        testProfile = 'drupal-desktop'
+    } else {
+        if (process.env.RHD_TEST_PROFILE === 'mobile') {
+            testProfile = 'mobile'
+        } else {
+            testProfile = 'desktop'
+        }
+        testType = 'export';
+    }
 }
 
-typeof process.env.RHD_TEST_PROFILE === 'undefined' ? testProfile = 'desktop' : testProfile = process.env.RHD_TEST_PROFILE;
+if (testType === 'drupal') {
+    exclude = 'export'
+} else {
+    exclude = 'drupal'
+}
 
 typeof process.env.RHD_JS_DRIVER === 'undefined' ? browser = 'chrome' : browser = process.env.RHD_JS_DRIVER;
 browserCaps = BrowserManager.createBrowser(browser);

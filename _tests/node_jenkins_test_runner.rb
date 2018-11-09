@@ -21,13 +21,11 @@ class NodeJenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    if @test_type == 'e2e' || @test_type == 'kc'
-      %w(desktop mobile).each do |profile|
+    if @test_type == 'e2e'
+      %w(desktop mobile drupal).each do |profile|
         tests_passed &= execute_e2e(profile)
         tests_passed
       end
-    elsif @test_type == 'dm'
-      tests_passed &= execute_e2e('desktop')
     elsif @test_type == 'sanity'
       tests_passed &= execute_e2e('desktop')
     else
@@ -82,17 +80,13 @@ class NodeJenkinsTestRunner
       command += "  --mocha-tags=mochaOpts.grep=@sanity"
     else
       if mocha_tags.nil?
-        if profile == 'desktop'
+        if profile == ('desktop' || 'drupal')
           command += '  --mocha-tags=tags=not:stage'
         else
           command += ' --mocha-tags=tags=not:desktop'
         end
       else
-        if profile == 'desktop'
-          command += "  --mocha-tags=tags=#{mocha_tags}"
-        else
-          command += "  --mocha-tags=tags=#{mocha_tags}"
-        end
+        command += "  --mocha-tags=tags=#{mocha_tags}"
       end
     end
     command
@@ -116,7 +110,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w(e2e dm kc sanity)
+  available_test_types = %w(e2e sanity)
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"

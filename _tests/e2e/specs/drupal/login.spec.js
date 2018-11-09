@@ -14,7 +14,7 @@ describe('Drupal Login Page', function () {
         let login = new Login();
         let home = new Home();
         login.open();
-        login.with('automated-tests-user', '9T4bpjG3cKCYS6ce');
+        login.with(process.env.RHD_DRUPAL_ADMIN_USERNAME, process.env.RHD_DRUPAL_ADMIN_PASSWORD);
         expect(home.loggedInUser()).to.include('automated-tests-user');
     });
 });

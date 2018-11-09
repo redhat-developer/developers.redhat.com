@@ -5,6 +5,14 @@ if (typeof commandlineArgs['testType'] === 'undefined') {
     testType = 'export'
 } else {
     testType = commandlineArgs['testType'];
+    if (testType === 'drupal') {
+        // user must set log in creds
+        if (typeof commandlineArgs['user'] === 'undefined') {
+            throw new Error('drupal admin user name and password must be set, for example; npm run e2e -- --testType=drupal --user=foo --password=bar')
+        }
+        process.env.RHD_DRUPAL_ADMIN_USERNAME = commandlineArgs['user'];
+        process.env.RHD_DRUPAL_ADMIN_PASSWORD = commandlineArgs['password']
+    }
 }
 
 if (testType === 'drupal') {

@@ -33,10 +33,6 @@ class RunTestOptions
         test_configuration[:e2e] = opt
       end
 
-      opts.on('--website-type', 'Execute tests for site-export or drupal [default=export]') do |opt|
-        test_configuration[:website_type] = opt
-      end
-
       opts.on('--base-url RHD_BASE_URL', String, 'Run the tests against the specified host e.g http://developers.stage.redhat.com') do |host|
         test_configuration[:base_url] = host
       end
@@ -123,6 +119,7 @@ class RunTestOptions
     if test_type == 'e2e'
       bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
       bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
+      bind_environment_variable('github_status_context', 'js-drupal-e2e-tests') if profile == 'drupal-admin'
     end
   end
 
@@ -153,8 +150,8 @@ class RunTestOptions
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
     bind_environment_variable('RHD_MOCHA_TAGS', test_configuration[:mocha_tags]) if test_configuration[:mocha_tags]
-    bind_environment_variable('RHD_WEBSITE_TYPE', test_configuration[:website_type]) if test_configuration[:website_type]
 
+    run_tests_command += " --baseUrl=#{test_configuration[:base_url]}"
     run_tests_command += " --#{test_configuration[:mocha_tags]}" if test_configuration[:mocha_tags]
     if test_configuration[:docker]
       if test_configuration[:browserstack]
