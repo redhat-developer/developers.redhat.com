@@ -34,20 +34,18 @@ export default class RHDPThankyou extends HTMLElement {
         this.setAttribute('direct-download', this._directLink);
     }
 
-
-
     constructor() {
         super();
     }
 
-    template = (strings, name, directLink, recentDownload) => {
+    template = (strings, name, directLink, recentDownload, boldMsg, normMsg) => {
         return `<div class="row">
                     <div class="large-24 medium-24 small-24 columns">
                         <div class="alert-box alert-info">
                             <div class="icon"></div>
                             <div class="alert-content">
-                                <strong>Your download should start automatically.</strong>
-                                <p>If you have any problems with the download, please use the <a id="download-link" href="${directLink}">direct link.</a></p>
+                                <strong>${boldMsg}</strong>
+                                <p>${normMsg}<a id="download-link" href="${directLink}">direct link.</a></p>
                             </div>
                         </div>
                 
@@ -65,14 +63,13 @@ export default class RHDPThankyou extends HTMLElement {
                 
                     </div>
                 </div>`;
-
     };
 
     connectedCallback() {
         this._recentDownload = this.checkRecentDownload();
         this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
         this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-        this.innerHTML = this.template`${this.mediaName}${this.directLink}${this._recentDownload}`;
+        this.innerHTML = this.template`${this.mediaName}${this.directLink}${this._recentDownload}${this.getCorrectMsgTextForBoldMsg()}${this.getCorrectMsgTextForNormMsg()}`;
     }
 
     static get observedAttributes() {
@@ -87,8 +84,57 @@ export default class RHDPThankyou extends HTMLElement {
         if (name){
             name = name.replace(/Media:[\s]/g, "");
         }
-       return name;
+        return name;
     }
+
+    getOS() {
+        var userAgent = window.navigator.userAgent,
+            platform = window.navigator.platform,
+            macPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+            os = "unknown";
+      
+        if (macPlatforms.indexOf(platform) !== -1) {
+          os = 'Mac OS';
+        } else if (iosPlatforms.indexOf(platform) !== -1) {
+          os = 'iOS';
+        } else if (windowsPlatforms.indexOf(platform) !== -1) {
+          os = 'Windows';
+        } else if (/Android/.test(userAgent)) {
+          os = 'Android';
+        } else if (!os && /Linux/.test(platform)) {
+          os = 'Linux';
+        }
+      
+        return os;
+      }
+      
+    getCorrectMsgTextForBoldMsg() {
+        var desktopBoldMsg: string = "Your download should start automatically.";
+        var mobileBoldMsg: string = "To download on your mobile.";
+        var testOS: string = this.getOS();
+
+        if (testOS === "iOS" || testOS === "Android") {
+            return mobileBoldMsg;
+        } else {
+            return desktopBoldMsg;
+        }
+    }
+
+    getCorrectMsgTextForNormMsg() {
+        var desktopNormMsg: string = "If you have any problems with the download, please use the ";
+        var mobileNormMsg: string = "Please use the ";
+        var testOS: string = this.getOS();
+
+        if (testOS === "iOS" || testOS === "Android") {
+            return mobileNormMsg;
+        } else {
+            return desktopNormMsg;
+        }
+    }
+        
+    
 
     getParameterByName(urlName) {
         this.url = this.url ? this.url : window.location.href;
@@ -136,8 +182,6 @@ export default class RHDPThankyou extends HTMLElement {
 
         }
     }
-
-
 }
 
 window.addEventListener('WebComponentsReady', function() {
