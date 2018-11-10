@@ -1,7 +1,10 @@
 version: '2'
 services:
   drupal:
-    build: ../../drupal
+    build:
+      context: ../../drupal
+      args:
+        composer_profile: production
     environment:
       - FORTAWESOME_REGISTRY
     ports:
