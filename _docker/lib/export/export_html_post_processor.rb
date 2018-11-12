@@ -186,8 +186,9 @@ class ExportHtmlPostProcessor
 
       hide_drupal = remove_drupal_host_identifying_markup?(drupal_host, html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
+      rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
 
-      if hide_drupal || rewrite_forms
+      if hide_drupal || rewrite_forms || rewrite_keycloak_src
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
         File.open(html_file, 'w') do |file|
           file.write(html_doc.to_html)
@@ -269,7 +270,7 @@ class ExportHtmlPostProcessor
           :rewrite_links_for_trailing_slash_url_structure,
           :rewrite_form_target_urls?, :relocate_index_html,
           :remove_drupal_host_identifying_markup?,
-          :post_process_html_dom, :fetch_additional_static_resources
+          :post_process_html_dom, :rewrite_keycloak_src, :fetch_additional_static_resources
 
 end
 
