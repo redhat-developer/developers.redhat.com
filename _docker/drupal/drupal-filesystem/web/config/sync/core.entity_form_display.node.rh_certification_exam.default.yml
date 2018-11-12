@@ -208,6 +208,12 @@ content:
     weight: 9
     region: content
     third_party_settings: {  }
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:

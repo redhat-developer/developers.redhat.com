@@ -1,0 +1,23 @@
+uuid: 560a2982-d278-4169-97c2-429fcf033adf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_has_try_it_experience
+    - node.type.product
+id: node.product.field_has_try_it_experience
+field_name: field_has_try_it_experience
+entity_type: node
+bundle: product
+label: 'Has Try It experience'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

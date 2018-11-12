@@ -5,3 +5,11 @@ rhd_assemblies.wppost_autocomplete:
     _format: json
   requirements:
     _access: 'TRUE'
+
+rhd_assemblies.products_downloads:
+  path: '/products/{product_url_name}/downloads'
+  defaults:
+    _controller: '\Drupal\rhd_assemblies\Controller\ProductsDownloadsController::content'
+  requirements:
+    _permission: 'access content'
+

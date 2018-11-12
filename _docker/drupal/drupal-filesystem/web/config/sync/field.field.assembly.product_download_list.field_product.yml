@@ -1,0 +1,28 @@
+uuid: 4cd02341-5837-4ece-9e23-f3b84be7afbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_list
+    - field.storage.assembly.field_product
+    - node.type.product
+id: assembly.product_download_list.field_product
+field_name: field_product
+entity_type: assembly
+bundle: product_download_list
+label: Product
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

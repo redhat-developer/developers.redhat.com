@@ -328,55 +328,6 @@ function rhdp_preprocess_node(array &$variables) {
     }
   }
 
-  // Product content type.
-  if ($node->getType() == 'product') {
-    $current_path = \Drupal::service('path.current')->getPath();
-    $path_args = explode('/', $current_path);
-    $product_code = $node->field_product_machine_name->value;
-
-    if ($path_args[1] == 'node') {
-      $pages = reset($node->field_product_pages);
-      $overview_page_id = $pages[0]->target_id;
-      $overview_page_paragraph = entity_load('paragraph', $overview_page_id);
-      $overview_page_content = $overview_page_paragraph->field_overview_main_content->value;
-      $variables['main_content'] = $overview_page_content;
-      $active_page = $overview_page_paragraph->field_overview_url->value;
-    }
-
-    foreach ($node->field_product_pages as $product_page) {
-      $product_pages_id = $product_page->target_id;
-      $load_paragraph = entity_load('paragraph', $product_pages_id);
-      $overview_url = $load_paragraph->field_overview_url->value;
-      $url_string = str_replace(' ', '-', strtolower($overview_url));
-      $url = Url::fromRoute(
-        'rhd_common.main_page_controller',
-        [
-          'product_code' => $product_code,
-          'sub_page' => $url_string,
-        ],
-        [
-          'absolute' => TRUE,
-        ]
-      )->toString();
-
-      if ($active_page == $overview_url) {
-        $product_pages_url[] = [
-          'title' => $overview_url,
-          'url' => $url,
-          'active' => 1,
-        ];
-      }
-      else {
-        $product_pages_url[] = [
-          'title' => $overview_url,
-          'url' => $url,
-        ];
-      }
-    }
-
-    $variables['product_pages'] = $product_pages_url;
-  }
-
   // Product content type and Featured Tile view mode.
   if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
     $product_code = $node->get('field_product_machine_name')->getValue();
@@ -399,6 +350,28 @@ function rhdp_preprocess_node(array &$variables) {
       if (!$url->isExternal()) {
         $variables['cta_url']['#markup'] = \Drupal::service('path.alias_manager')->getAliasByPath($url->toString());
       }
+    }
+  }
+
+  // Product content type and Product Download Page view mode.
+  if ($node->getType() == 'product' && $variables['view_mode'] == 'product_download_page') {
+    if (isset($node->field_product_machine_name)) {
+      $product_code = $node->get('field_product_machine_name')->value;
+
+      // Retrieve the data on this product from Download Manager.
+      $content = \Drupal::service('rhd_assemblies.download_manager_api')->getContentById($product_code);
+
+      // Build an array of the versions of this product.
+      foreach ($content[0]->productVersions as $key => $version) {
+        $versions[$key] = $version;
+
+        foreach ($version->files as $file_key => $file) {
+          $versions[$key]->files[$file_key]->fileSize = format_size($file->fileSize)->__toString();
+        }
+      }
+
+      $variables['versions'] = $versions;
+      $variables['featured'] = $content[0]->featuredArtifact;
     }
   }
 
@@ -439,7 +412,7 @@ function rhdp_preprocess_node(array &$variables) {
 /**
  * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
  */
-function redhat_www_ddo_default(Node $node) {
+function redhat_www_ddo_default($node) {
   $request = \Drupal::request();
   $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
   $errorType = "";

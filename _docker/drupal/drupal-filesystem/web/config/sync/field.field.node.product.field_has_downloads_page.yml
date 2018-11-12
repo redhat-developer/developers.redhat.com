@@ -1,0 +1,23 @@
+uuid: 3b42cca1-ced0-4ce0-a510-59e4c2fa0d9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_has_downloads_page
+    - node.type.product
+id: node.product.field_has_downloads_page
+field_name: field_has_downloads_page
+entity_type: node
+bundle: product
+label: 'Has Downloads page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

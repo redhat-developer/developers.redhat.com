@@ -1,0 +1,38 @@
+uuid: 5f1f728b-c536-4d7e-a028-3fae3eb6abdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_hero
+    - field.field.assembly.product_download_hero.field_product
+  module:
+    - user
+id: assembly.product_download_hero.default
+targetEntityType: assembly
+bundle: product_download_hero
+mode: default
+content:
+  field_product:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
