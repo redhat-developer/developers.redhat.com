@@ -28,7 +28,7 @@ if (typeof commandlineArgs['base-url'] === 'undefined') {
     process.env.RHD_BASE_URL = 'http://docker:8888'
 } else {
     if (commandlineArgs['base-url'].includes('developers-pr') && testType === 'drupal') {
-        let parsedUrl = require('url').parse('https://developers-pr.stage.redhat.com/pr/2705/export/');
+        let parsedUrl = require('url').parse(commandlineArgs['base-url']);
         let prNumber = parseInt(parsedUrl.pathname.split('/')[2]);
         process.env.RHD_BASE_URL = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000 + prNumber)}`;
     } else {

@@ -1,5 +1,4 @@
 #!/bin/bash
-# wait-for-docker-selenium.sh
 
 set -e
 
