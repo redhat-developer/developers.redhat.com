@@ -231,6 +231,8 @@ class ExportHtmlPostProcessor
 
   end
 
+
+
   #
   # Re-writes the action attribute of any form on the page where the action is pointing to the host from
   # which we have exported the HTML content
@@ -249,6 +251,19 @@ class ExportHtmlPostProcessor
 
   end
 
+  #
+  # The src of keycloak is being rewritten somewhere, not really sure where or how, this fixes it
+  #
+  def rewrite_keycloak_src(html_doc, html_file_name)
+    src_to_modify = html_doc.css('script[src*=keycloak]')
+    modified = false
+    src_to_modify.each do |src|
+      @log.info("\tModifying keycloak link #{src_to_modify.attr('src')} to '/auth/js/keycloak.js'")
+      src.attributes['src'].value = '/auth/js/keycloak.js'
+      modified = true
+    end
+    modified
+  end
 
   private :final_base_url_location, :locate_index_link_href,
           :rewrite_links_for_trailing_slash_url_structure,
