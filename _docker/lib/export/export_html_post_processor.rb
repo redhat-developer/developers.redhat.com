@@ -186,9 +186,8 @@ class ExportHtmlPostProcessor
 
       hide_drupal = remove_drupal_host_identifying_markup?(drupal_host, html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
-      rewrite_keycloak_src = rewrite_keycloak_src(html_doc, html_file)
 
-      if hide_drupal || rewrite_forms || rewrite_keycloak_src
+      if hide_drupal || rewrite_forms
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
         File.open(html_file, 'w') do |file|
           file.write(html_doc.to_html)
@@ -250,26 +249,12 @@ class ExportHtmlPostProcessor
 
   end
 
-  #
-  # The src of keycloak is being rewritten somewhere, not really sure where or how, this fixes it
-  #
-  def rewrite_keycloak_src(html_doc, html_file_name)
-    src_to_modify = html_doc.css('script[src*=keycloak]')
-    modified = false
-    src_to_modify.each do |src|
-      @log.info("\tModifying keycloak link #{src_to_modify.attr('src')} to '/auth/js/keycloak.js'")
-      src.attributes['src'].value = '/auth/js/keycloak.js'
-      modified = true
-    end
-    modified
-  end
-
 
   private :final_base_url_location, :locate_index_link_href,
           :rewrite_links_for_trailing_slash_url_structure,
           :rewrite_form_target_urls?, :relocate_index_html,
           :remove_drupal_host_identifying_markup?,
-          :post_process_html_dom, :rewrite_keycloak_src, :fetch_additional_static_resources
+          :post_process_html_dom, :fetch_additional_static_resources
 
 end
 
