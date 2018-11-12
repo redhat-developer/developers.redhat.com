@@ -232,8 +232,6 @@ class ExportHtmlPostProcessor
 
   end
 
-
-
   #
   # Re-writes the action attribute of any form on the page where the action is pointing to the host from
   # which we have exported the HTML content
