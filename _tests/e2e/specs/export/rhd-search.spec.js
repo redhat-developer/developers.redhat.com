@@ -1,6 +1,6 @@
-import {Home} from './support/pages/website/Home.page';
-import {Search} from './support/pages/website/Search.page';
-import {NavigationBar} from './support/pages/website/NavigationBar.section';
+import {Home} from '../support/pages/website/Home.page';
+import {Search} from '../support/pages/website/Search.page';
+import {NavigationBar} from '../support/pages/website/NavigationBar.section';
 
 describe('Search Page', function () {
     this.retries(2);

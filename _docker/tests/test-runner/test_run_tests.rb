@@ -18,20 +18,6 @@ class TestRunTests < MiniTest::Test
     ENV['COMPOSE_PROJECT_NAME'] = nil
   end
 
-  def test_should_run_unit_tests_from_command_line_when_no_docker
-
-    ENV['rhd_test'] = 'unit'
-
-    test_configuration = {}
-    test_configuration[:docker] = false
-    test_configuration[:run_tests_command] = 'npm test'
-
-    @run_tests_options.expects(:parse_command_line).with(%w()).returns(test_configuration)
-    @process_runner.expects(:execute!).with('npm test')
-
-    @run_tests.execute_tests(%w())
-  end
-
   def test_should_run_unit_tests_from_docker_when_docker_specified
 
     ENV['rhd_test'] = 'unit'
@@ -67,20 +53,6 @@ class TestRunTests < MiniTest::Test
     @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p foo run --rm --no-deps rhd_unit_testing npm run test:docker')
 
     @run_tests.execute_tests(%w(--use-docker))
-  end
-
-  def test_should_run_e2e_tests_from_command_line_when_no_docker
-
-    ENV['rhd_test'] = 'e2e'
-
-    test_configuration = {}
-    test_configuration[:docker] = false
-    test_configuration[:run_tests_command] = 'npm run e2e'
-
-    @run_tests_options.expects(:parse_command_line).with(%w()).returns(test_configuration)
-    @process_runner.expects(:execute!).with('npm run e2e')
-
-    @run_tests.execute_tests(%w())
   end
 
   def test_should_run_e2e_tests_from_docker_when_docker_specified
