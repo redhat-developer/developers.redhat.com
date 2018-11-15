@@ -264,7 +264,6 @@ class ExportHtmlPostProcessor
     modified
   end
 
-
   private :final_base_url_location, :locate_index_link_href,
           :rewrite_links_for_trailing_slash_url_structure,
           :rewrite_form_target_urls?, :relocate_index_html,

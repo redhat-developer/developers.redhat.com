@@ -6,6 +6,7 @@ services:
      args:
        http_proxy: proxy01.util.phx2.redhat.com:8080
        https_proxy: proxy01.util.phx2.redhat.com:8080
+       composer_profile: production
     ports:
       - "80:80"
     restart: 'unless-stopped'
