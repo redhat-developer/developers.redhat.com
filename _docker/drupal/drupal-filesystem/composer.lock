@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31ccd4063ac36cffd61312ba8ad02610",
+    "content-hash": "4ae18aebe6f6ce4334d39f63018147f3",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -173,7 +173,7 @@
             "version": "3.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
             },
             "dist": {
@@ -2033,7 +2033,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/assembly",
-                "reference": "1849928d2855d08c04ac5e9ace1733f54efcae5d"
+                "reference": "69a07b1245494e1ff9f38c821308f119fbaa3929"
             },
             "require": {
                 "drupal/core": "*",
@@ -2073,7 +2073,7 @@
                 "source": "http://cgit.drupalcode.org/assembly",
                 "issues": "https://www.drupal.org/project/issues/assembly"
             },
-            "time": "2018-11-08T15:28:22+00:00"
+            "time": "2018-04-26T21:46:21+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -4895,7 +4895,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
-                    "datestamp": "1541456281",
+                    "datestamp": "1537899180",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
