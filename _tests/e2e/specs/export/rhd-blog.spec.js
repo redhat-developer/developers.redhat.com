@@ -1,4 +1,4 @@
-import {Blog} from './support/pages/website/Blog.page';
+import {Blog} from '../support/pages/website/Blog.page';
 
 describe('Red Hat Blog Page', function () {
     this.retries(2);

@@ -119,6 +119,7 @@ class RunTestOptions
     if test_type == 'e2e'
       bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
       bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
+      bind_environment_variable('github_status_context', 'js-drupal-e2e-tests') if profile == 'drupal'
     end
   end
 

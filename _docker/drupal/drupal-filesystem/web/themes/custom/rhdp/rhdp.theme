@@ -705,3 +705,29 @@ function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
     $variables['title']
   );
 }
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * By default, we will load the Keycloak prod script. On our Stage environment
+ * we will set a config object, redhat_developers.keycloak.scriptUrl, that will
+ * be the URL path to the Keycloak stage script. If this config object exists,
+ * then we know to override the default prod Keycloak script with the Keycloak
+ * stage script.
+ */
+function rhdp_library_info_alter(array &$libraries, $extension) {
+  // This should return the stage Keycloak script URL on our Stage environment,
+  // but otherwise, the config object will not be set, and this will be NULL.
+  $keycloak_url = \Drupal::config('redhat_developers')->get('keycloak')['scriptUrl'];
+
+  // Keycloak_url is only set on the Stage environment. 
+  if ($extension == 'rhdp' && $keycloak_url !== NULL) {
+    // Remove the Prod Keycloak script URL from our library.
+    unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+    // Add the Stage Keycloak script URL to our library.
+    $libraries['base-theme']['js'][$keycloak_url] = [
+      'type' => 'external',
+      'minified' => FALSE,
+    ];
+  }
+}

@@ -1,4 +1,4 @@
-import {GeneralErrorPage} from './support/pages/website/General-error.page';
+import {GeneralErrorPage} from '../support/pages/website/General-error.page';
 
 describe('General Error Page', function () {
     this.retries(2);

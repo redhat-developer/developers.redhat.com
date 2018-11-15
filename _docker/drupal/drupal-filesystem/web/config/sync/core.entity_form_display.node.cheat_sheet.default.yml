@@ -277,6 +277,12 @@ content:
     weight: 11
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:

@@ -1,4 +1,4 @@
-import {Error404Page} from './support/pages/website/404-error.page';
+import {Error404Page} from '../support/pages/website/404-error.page';
 
 describe('404 Error Page', function () {
     this.retries(2);
