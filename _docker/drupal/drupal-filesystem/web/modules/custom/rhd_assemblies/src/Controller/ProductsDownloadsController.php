@@ -63,70 +63,48 @@ class ProductsDownloadsController extends ControllerBase {
   }
 
   /**
-   * Retrieves the product downloads data from Download Manager.
+   * Determines if thie Product node should have a Downloads page.
+   *
+   * A Product node needs to have a field_product_machine_name value and a
+   * field_downloads_page_content value in order to require a Downloads page
+   * and route.
    */
-  protected function getProductDownloads($product_url_name) {
-    $products = $this->downloadManagerApi->getProductNodesByProductUrlName($product_url_name);
-
-    // Grab the first (and should be only) product loaded from the query.
-    if ($product = reset($products)) {
-      // Verify that the Product machine name field is set.
-      if (isset($product->field_product_machine_name)) {
-        // Make sure that the Has Download Page field has been checked (bool).
-        if (isset($product->field_has_downloads_page) && $product->get('field_has_downloads_page')->value === '1') {
-          // Retrieve data for this product from Download manager.
-          $this->productDownloads = $this->downloadManagerApi->getContentById(
-            $product->get('field_product_machine_name')->value
-          );
-
-          return $this->productDownloads;
-        }
-      }
+  protected function hasDownloadsPage($product) {
+    // Verify that the Product machine name field is set and make sure that the
+    // Downloads Page Content field isn't null.
+    if (!isset($product->field_product_machine_name) || !isset($product->field_downloads_page_content)) {
+      // Log an error and throw a 404 NotFoundHttpException.
+      \Drupal::logger('rhd_assemblies')->error(
+        "Failed to retrieve product downloads from Download Manager for @label",
+       ['@label' => $product->label()]
+      );
+      throw new NotFoundHttpException();
     }
 
-    // If we cannot successfully retrieve a product, log an error and throw a
-    // 404 NotFoundHttpException.
-    \Drupal::logger('rhd_assemblies')->error("Failed to retrieve product downloads from Download Manager for field_url_product_name: " . $product_url_name);
-    // We will throw a 404 exception if no product is loaded.
-    throw new NotFoundHttpException();
+    return TRUE;
   }
 
   /**
    * Build and return the content of a Product's Downloads page.
    */
   public function content($product_url_name) {
-    $versions = [];
-
-    // Retrieve the product downloads from Download Manager if productDownloads
-    // isn't already set.
-    if (!isset($this->productDownloads)) {
-      $this->getProductDownloads($product_url_name);
-    }
-
-    // Build an array to pass to the Twig template of all the versions of this
-    // product.
-    foreach ($this->productDownloads[0]->productVersions as $key => $version) {
-      $versions[$key] = $version;
-    }
-
     // Retrieves an array of nids of nodes with a Product URL Name equal to
     // $product_url_name. This field should be unique, so there should be 1.
     $products = $this->downloadManagerApi->getProductNodesByProductUrlName($product_url_name);
 
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
-      // Get the render array for this Product and the product_download_page
-      // entity view display.
-      $product_view = $this->entityTypeManager
-        ->getViewBuilder('node')
-        ->view($product, 'product_download_page');
+      if ($this->hasDownloadsPage($product)) {
+        // Get the render array for this Product and the product_download_page
+        // entity view display.
+        $product_view = $this->entityTypeManager
+          ->getViewBuilder('node')
+          ->view($product, 'product_download_page');
+      }
     }
 
-    // Generate the Markup using the $product_view render array.
-    $product_markup = $this->renderer->render($product_view);
-
     return [
-      '#markup' => $product_markup,
+      '#markup' => $this->renderer->render($product_view),
     ];
   }
 
