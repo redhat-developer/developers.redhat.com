@@ -1,0 +1,28 @@
+<div class="product-featured row">
+   <div class="product-version small-16 columns">
+
+    <h2>{{ content.field_title }}</h2>
+    {{ content.field_content }}
+    <a href="{{ content.field_learn_more_link.value }}">Learn More</a>
+
+    {# Adjust for 13-digit Unix timestamp #}
+    {% set featuredReleaseDate = elements.featured.releaseDate / 1000 %}
+
+    <div class="product-version__file">
+      <span>
+        <a href={{ elements.featured.url }}>{{ elements.featured.label }}</a>
+      </span>
+    </div>
+
+    <p class="product-version__version-name">
+      Version {{ elements.featured.versionName }}
+    </p>
+    <p class="product-version__release-date">
+      Release Date: {{ featuredReleaseDate|date("F d, Y") }}
+    </p>
+  </div>
+
+  <div class="product-image small-8 columns">
+    {{ content.field_image }}
+  </div>
+</div>

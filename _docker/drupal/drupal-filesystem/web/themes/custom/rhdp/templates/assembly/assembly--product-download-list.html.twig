@@ -1,23 +1,5 @@
-<div class="product-featured">
-   <div class="product-version">
-     <span class="product-version__version-name">Version {{ featured.versionName }}</span>
-
-    {# Adjust for 13-digit Unix timestamp #}
-    {% set featuredReleaseDate = featured.releaseDate / 1000 %}
-
-    <span class="product-version__release-date">Release Date: {{ featuredReleaseDate|date("F d, Y") }}</span>
-    <div class="product-version__files">
-      <div class="product-version__file">
-        <span>
-          <a href={{ featured.url }}>{{ featured.label }}</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="product-versions row">
-  {% for version in versions %}
+  {% for version in elements.versions %}
     <div class="product-version">
       <h3 class="product-version__version-name">Version {{ version.versionName }}</h3>
 

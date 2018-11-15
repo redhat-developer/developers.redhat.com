@@ -1,27 +1,28 @@
-uuid: 5f1f728b-c536-4d7e-a028-3fae3eb6abdf
+uuid: 414303cb-0bdc-4506-9e0b-e6cf6797e4cf
 langcode: en
 status: true
 dependencies:
   config:
-    - assembly.assembly_type.product_download_hero
-    - field.field.assembly.product_download_hero.field_background_image
-    - field.field.assembly.product_download_hero.field_content
-    - field.field.assembly.product_download_hero.field_image
-    - field.field.assembly.product_download_hero.field_learn_more_link
-    - field.field.assembly.product_download_hero.field_title
+    - assembly.assembly_type.product_try_it_hero
+    - field.field.assembly.product_try_it_hero.field_background_image
+    - field.field.assembly.product_try_it_hero.field_content
+    - field.field.assembly.product_try_it_hero.field_image
+    - field.field.assembly.product_try_it_hero.field_learn_more_link
+    - field.field.assembly.product_try_it_hero.field_title
+    - field.field.assembly.product_try_it_hero.field_try_it_link
     - image.style.large
   module:
     - fences
     - image
     - link
     - text
-id: assembly.product_download_hero.default
+id: assembly.product_try_it_hero.default
 targetEntityType: assembly
-bundle: product_download_hero
+bundle: product_try_it_hero
 mode: default
 content:
   field_background_image:
-    weight: 5
+    weight: 0
     label: visually_hidden
     settings:
       image_style: ''
@@ -30,14 +31,14 @@ content:
     type: image
     region: content
   field_content:
-    weight: 3
+    weight: 4
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_image:
-    weight: 6
+    weight: 1
     label: visually_hidden
     settings:
       image_style: large
@@ -53,7 +54,7 @@ content:
     type: image
     region: content
   field_learn_more_link:
-    weight: 4
+    weight: 3
     label: visually_hidden
     settings:
       trim_length: 80
@@ -65,20 +66,25 @@ content:
     type: link
     region: content
   field_title:
-    weight: 1
+    weight: 5
     label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  name:
+  field_try_it_link:
+    weight: 6
     label: visually_hidden
-    type: string
-    weight: 0
-    region: content
     settings:
-      link_to_entity: false
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
+    type: link
+    region: content
 hidden:
+  name: true
   user_id: true

@@ -1,17 +1,16 @@
-uuid: cd84d63e-b3d6-47a0-8548-ae3a4f415c07
+uuid: 739b4943-c485-437a-89e7-fd3ebdf65b0b
 langcode: en
 status: true
 dependencies:
   module:
     - assembly
-    - node
-id: assembly.field_product
-field_name: field_product
+    - link
+id: assembly.field_learn_more_link
+field_name: field_learn_more_link
 entity_type: assembly
-type: entity_reference
-settings:
-  target_type: node
-module: core
+type: link
+settings: {  }
+module: link
 locked: false
 cardinality: 1
 translatable: true

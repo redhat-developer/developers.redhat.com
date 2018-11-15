@@ -6,8 +6,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
-    - field.field.node.product.field_has_downloads_page
-    - field.field.node.product.field_has_try_it_experience
+    - field.field.node.product.field_downloads_page_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -30,11 +29,13 @@ dependencies:
     - field.field.node.product.field_tax_promotion
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
+    - field.field.node.product.field_try_it_page_content
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
     - content_moderation
     - entity_browser
+    - entity_reference_revisions
     - field_group
     - link
     - metatag
@@ -111,19 +112,14 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_has_downloads_page:
-    weight: 16
+  field_downloads_page_content:
+    weight: 29
     settings:
-      display_label: true
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_has_try_it_experience:
-    weight: 17
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
+    type: entity_reference_revisions_autocomplete
     region: content
   field_image:
     type: entity_browser_file
@@ -286,6 +282,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_try_it_page_content:
+    weight: 30
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_autocomplete
     region: content
   field_url_product_name:
     weight: 11

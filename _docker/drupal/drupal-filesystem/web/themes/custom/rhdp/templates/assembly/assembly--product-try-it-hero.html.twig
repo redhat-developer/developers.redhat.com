@@ -1,0 +1,14 @@
+<div class="product-try-it row">
+  {{ content.field_background_image }}
+
+  <div class="product-try-it__content small-16 columns">
+    <h2>{{ content.field_title }}</h2>
+    {{ content.field_content }}
+    <a href="{{ content.field_learn_more_link.value }}">Learn More</a>
+    <a href={{ content.field_try_it_link.value }}>Try It</a>
+  </div>
+
+  <div class="product-try-it__image small-8 columns">
+    {{ content.field_image }}
+  </div>
+</div>

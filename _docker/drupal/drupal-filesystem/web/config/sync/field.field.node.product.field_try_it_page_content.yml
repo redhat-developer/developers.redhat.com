@@ -1,0 +1,30 @@
+uuid: 3f78c444-87d9-45db-8f2c-9f4c6d10b20a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.node.field_try_it_page_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_try_it_page_content
+field_name: field_try_it_page_content
+entity_type: node
+bundle: product
+label: 'Try It Page Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      product_try_it_hero: product_try_it_hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

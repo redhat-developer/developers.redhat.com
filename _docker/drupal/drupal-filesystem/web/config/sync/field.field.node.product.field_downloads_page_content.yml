@@ -1,0 +1,32 @@
+uuid: 3839298d-a808-412f-bf11-060cbc234efe
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_download_list
+    - field.storage.node.field_downloads_page_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_downloads_page_content
+field_name: field_downloads_page_content
+entity_type: node
+bundle: product
+label: 'Downloads Page Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      product_download_hero: product_download_hero
+      product_download_list: product_download_list
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: product_download_hero
+field_type: entity_reference_revisions

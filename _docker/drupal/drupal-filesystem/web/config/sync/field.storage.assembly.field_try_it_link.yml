@@ -1,15 +1,16 @@
-uuid: 3b9c5abd-8cb7-4399-8d15-48a3c471fa0f
+uuid: 2f25da7a-bd11-4d53-94a1-c4f00c49ee39
 langcode: en
 status: true
 dependencies:
   module:
-    - node
-id: node.field_has_try_it_experience
-field_name: field_has_try_it_experience
-entity_type: node
-type: boolean
+    - assembly
+    - link
+id: assembly.field_try_it_link
+field_name: field_try_it_link
+entity_type: assembly
+type: link
 settings: {  }
-module: core
+module: link
 locked: false
 cardinality: 1
 translatable: true

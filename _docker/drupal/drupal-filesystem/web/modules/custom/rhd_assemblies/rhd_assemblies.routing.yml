@@ -13,3 +13,9 @@ rhd_assemblies.products_downloads:
   requirements:
     _permission: 'access content'
 
+rhd_assemblies.products_getting_started:
+  path: '/products/{product_url_name}/getting-started'
+  defaults:
+    _controller: '\Drupal\rhd_assemblies\Controller\ProductsGettingStartedController::content'
+  requirements:
+    _permission: 'access content'
