@@ -1,0 +1,124 @@
+uuid: aa451618-0296-40c4-844a-a115b30073a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.moderation_dashboard
+    - views.view.content_moderation_dashboard_in_review
+    - views.view.moderation_dashboard_recent_changes
+    - views.view.moderation_dashboard_recently_created
+  enforced:
+    module:
+      - moderation_dashboard
+  module:
+    - moderation_dashboard
+    - panels
+    - views
+_core:
+  default_config_hash: XHjA0_Myfby6ldNgF6_8QmhgM1dfSjKsAVM1yot-FRQ
+id: moderation_dashboard-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    810cd29f-e1c6-46ec-9eaa-dec914cfd4f4:
+      id: 'views_block:content_moderation_dashboard_in_review-block_1'
+      label: 'Content in review'
+      provider: views
+      label_display: visible
+      views_label: 'Content in review'
+      items_per_page: none
+      region: left
+      weight: -3
+      uuid: 810cd29f-e1c6-46ec-9eaa-dec914cfd4f4
+      context_mapping: {  }
+    bcc91274-24b8-4755-9bf5-e6f104674898:
+      id: 'views_block:moderation_dashboard_recent_changes-block_1'
+      label: 'Recent updates'
+      provider: views
+      label_display: visible
+      views_label: 'Recent updates'
+      items_per_page: none
+      region: middle
+      weight: -10
+      uuid: bcc91274-24b8-4755-9bf5-e6f104674898
+      context_mapping: {  }
+    1a06173d-634b-4475-a80b-d23a9773083b:
+      id: 'views_block:moderation_dashboard_recently_created-block_1'
+      label: 'Recently created'
+      provider: views
+      label_display: visible
+      views_label: 'Recently created'
+      items_per_page: none
+      region: middle
+      weight: -9
+      uuid: 1a06173d-634b-4475-a80b-d23a9773083b
+      context_mapping: {  }
+    6f599e3c-e949-490d-8fee-a467d3094ac9:
+      id: 'views_block:content_moderation_dashboard_in_review-block_2'
+      label: 'Content drafts'
+      provider: views
+      label_display: visible
+      views_label: 'Content drafts'
+      items_per_page: none
+      region: left
+      weight: -2
+      uuid: 6f599e3c-e949-490d-8fee-a467d3094ac9
+      context_mapping: {  }
+    e5cd0b52-53b0-4745-be70-85484005ba08:
+      id: moderation_dashboard_activity
+      label: 'Editor activity for the last 30 days'
+      provider: moderation_dashboard
+      label_display: visible
+      region: left
+      weight: 0
+      uuid: e5cd0b52-53b0-4745-be70-85484005ba08
+      context_mapping: {  }
+    6c424801-a4e1-4e86-a65f-73020e68e1d3:
+      id: 'views_block:content_moderation_dashboard_in_review-block_3'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: right
+      weight: -3
+      uuid: 6c424801-a4e1-4e86-a65f-73020e68e1d3
+      context_mapping: {  }
+    1fbb2fbb-d06a-4682-8fb3-07b37de946b8:
+      id: 'views_block:moderation_dashboard_recent_changes-block_2'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: right
+      weight: -2
+      uuid: 1fbb2fbb-d06a-4682-8fb3-07b37de946b8
+      context_mapping: {  }
+    518a6aee-1b2a-471a-b775-797daf438992:
+      id: 'views_block:moderation_dashboard_recently_created-block_2'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: right
+      weight: 0
+      uuid: 518a6aee-1b2a-471a-b775-797daf438992
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 4267dc51-27a4-4f19-bb07-19fe044527fa
+  label: null
+  weight: 0
+  layout: moderation_dashboard
+  layout_settings: {  }
+  page_title: 'Moderation Dashboard'
+  storage_type: page_manager
+  storage_id: moderation_dashboard-panels_variant-0
+  builder: standard
+page: moderation_dashboard
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

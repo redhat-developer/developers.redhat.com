@@ -1,0 +1,44 @@
+uuid: 2fc67f44-8d0f-4e07-87f7-095a5c7b3b84
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.media_slideshow
+    - field.storage.block_content.field_slideshow_items
+    - media.type.audio_file
+    - media.type.document
+    - media.type.file
+    - media.type.image
+    - media.type.instagram
+    - media.type.tweet
+    - media.type.video
+    - media.type.video_file
+_core:
+  default_config_hash: PHlMEKa3j0BnPe03007CexqVYd5yP3YvojlDSyNaFw0
+id: block_content.media_slideshow.field_slideshow_items
+field_name: field_slideshow_items
+entity_type: block_content
+bundle: media_slideshow
+label: 'Media items'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      audio_file: audio_file
+      document: document
+      file: file
+      image: image
+      instagram: instagram
+      tweet: tweet
+      video: video
+      video_file: video_file
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

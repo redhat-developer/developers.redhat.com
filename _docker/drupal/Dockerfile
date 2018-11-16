@@ -3,6 +3,7 @@ MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy
 ARG https_proxy
+ARG composer_profile="production"
 
 LABEL version="dev"
 
@@ -54,7 +55,12 @@ COPY logrotate/httpd /etc/logrotate.d/httpd
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
 COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch drupal-filesystem/view_render_patch.patch /var/www/drupal/
-RUN /usr/local/bin/composer install -n
+# Only install dev dependencies on dev environments
+RUN if [ "$composer_profile" = "development" ]; \ 
+    then /usr/local/bin/composer install --no-interaction; \
+    else /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; \
+    fi
+
 ENV PATH=$PATH:/var/www/drupal/vendor/bin
 
 # Set working directory and CMD
