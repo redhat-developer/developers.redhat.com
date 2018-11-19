@@ -15,6 +15,16 @@ targetEntityType: media
 bundle: video
 mode: media_library
 content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
   thumbnail:
     type: image
     region: content
@@ -23,6 +33,13 @@ content:
       image_style: thumbnail
       image_link: ''
     weight: 0
+    third_party_settings: {  }
+  uid:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   field_media_in_library: true

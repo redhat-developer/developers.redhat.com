@@ -1,7 +1,10 @@
 version: '2'
 services:
   drupal:
-    build: ../../drupal
+    build:
+      context: ../../drupal
+      args:
+        composer_profile: development
     ports:
       - "80:80"
     links:

@@ -9,6 +9,7 @@ This directory contains the UI Tests for the developers.redhat.com website, thes
 
 * js-e2e-tests 
 * js-mobile-e2e-tests
+* js-drupal-e2e-tests
         
 ## What is e2e testing?
 
@@ -19,7 +20,7 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 
 ![http://www.agilenutshell.com/episodes/41-testing-pyramid](rules-of-thumb.png)
 
-## What do we test?
+## What do we test on site-export?
 * Search Page (DCP)
 * RHEL download (Download Manager, Keycloak login)
 * RHEL advanced linux cheatsheet (Download Manager, Keycloak login)
@@ -27,8 +28,11 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 * Home and Blog pages contain unique string for site monitoring.
 * 404 pages
 
+## What do we test on drupal site?
+* Admin succesful login
+
 ## Testing of pull-requests
-The pull request pipeline consists of both desktop and mobile end-to-end tests. The desktop tests excute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
+The pull request pipeline consists of desktop (export and drupal) and mobile end-to-end tests (export). The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
 
 ## Production sanity checks
 As well as testing on PR's we also test in production. These tests are a sub-set of the e2e tests, and are used to monitor the status of keycloak, download manager, and DCP. 
@@ -57,9 +61,13 @@ If in doubt, contact Ian Hamilton on slack.
 
 You can, and **should** test your changes locally before raising a PR. Please ensure you have a local build running and `http://docker:8888` is accessible in a browser. 
 
-In the root of the project directory execute the following command:
+In the root of the project directory execute the following command for site export tests:
 
         cd _tests/e2e && npm run e2e
+        
+In the root of the project directory execute the following command for site export tests:
+        
+        cd _tests/e2e && npm run e2e -- --testType=drupal --user=your-drupal-test-account-username-goes-here --password=your-drupal-test-account-password-goes-here
         
 ## Run Single feature, or test
 Add a unique tag to the test(s) `it.` description, for example to execute the following scenario:
