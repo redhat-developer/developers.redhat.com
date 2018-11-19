@@ -1,0 +1,100 @@
+uuid: c6b1b870-d9a8-4e31-ad2c-f3f52a799140
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.cta_form
+    - entity_browser.browser.image_browser
+    - field.field.assembly.cta_form.field_audience_selection
+    - field.field.assembly.cta_form.field_background_image
+    - field.field.assembly.cta_form.field_content
+    - field.field.assembly.cta_form.field_form
+    - field.field.assembly.cta_form.field_title
+  module:
+    - entity_browser
+    - entity_browser_entity_form
+    - inline_entity_form
+    - text
+id: assembly.cta_form.default
+targetEntityType: assembly
+bundle: cta_form
+mode: default
+content:
+  field_audience_selection:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_background_image:
+    type: entity_browser_file
+    weight: 4
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_content:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_form:
+    weight: 7
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_title:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

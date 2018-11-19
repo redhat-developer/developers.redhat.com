@@ -1,0 +1,19 @@
+uuid: 58e6b073-a899-4dad-b35f-07586a4f05bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.cta_form
+    - field.storage.assembly.field_title
+id: assembly.cta_form.field_title
+field_name: field_title
+entity_type: assembly
+bundle: cta_form
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

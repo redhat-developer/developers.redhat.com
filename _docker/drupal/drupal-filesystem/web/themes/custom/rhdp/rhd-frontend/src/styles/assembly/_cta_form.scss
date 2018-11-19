@@ -1,0 +1,16 @@
+.assembly-type-cta_form {
+  padding: 45px 0;
+  @include tablet-landscape {
+    padding: 70px 0;
+  }
+  .assembly-type-eloqua_form_embed .iframe-container {
+    max-width: 714px;
+  }
+  .field--name-field-title,
+  .header {
+    margin-top: 0;
+  }
+  .assembly-type-eloqua_form_embed {
+    background-color: transparent;
+  }
+}
