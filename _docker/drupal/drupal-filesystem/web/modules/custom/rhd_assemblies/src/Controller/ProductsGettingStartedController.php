@@ -66,7 +66,7 @@ class ProductsGettingStartedController extends ControllerBase {
    * Determines if thie Product node should have a Getting Started page.
    */
   protected function hasGettingStartedPage($product) {
-    if (!isset($product->field_product_machine_name) || !isset($product->field_try_it_page_content)) {
+    if (!isset($product->field_product_machine_name) || !isset($product->field_getting_started_content)) {
       // Log an error and throw a 404 NotFoundHttpException.
       \Drupal::logger('rhd_assemblies')->error(
         "Failed to retrieve product downloads from Download Manager for @label",
@@ -93,7 +93,7 @@ class ProductsGettingStartedController extends ControllerBase {
         // entity view display.
         $product_view = $this->entityTypeManager
           ->getViewBuilder('node')
-          ->view($product, 'product_try_it_page');
+          ->view($product, 'product_getting_started_page');
       }
     }
 

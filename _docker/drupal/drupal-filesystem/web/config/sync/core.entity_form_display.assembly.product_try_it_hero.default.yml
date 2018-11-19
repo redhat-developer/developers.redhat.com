@@ -5,17 +5,14 @@ dependencies:
   config:
     - assembly.assembly_type.product_try_it_hero
     - entity_browser.browser.image_browser
-    - field.field.assembly.product_try_it_hero.field_background_image
     - field.field.assembly.product_try_it_hero.field_content
     - field.field.assembly.product_try_it_hero.field_image
     - field.field.assembly.product_try_it_hero.field_learn_more_link
     - field.field.assembly.product_try_it_hero.field_title
     - field.field.assembly.product_try_it_hero.field_try_it_link
-    - image.style.thumbnail
   module:
     - content_moderation
     - entity_browser
-    - image
     - link
     - text
 id: assembly.product_try_it_hero.default
@@ -23,14 +20,6 @@ targetEntityType: assembly
 bundle: product_try_it_hero
 mode: default
 content:
-  field_background_image:
-    weight: 5
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_content:
     weight: 2
     settings:

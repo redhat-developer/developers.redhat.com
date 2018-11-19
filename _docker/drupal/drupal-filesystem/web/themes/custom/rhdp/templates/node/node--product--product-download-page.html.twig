@@ -83,13 +83,6 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
 
-  {{ title_prefix }}
-  {% if not page %}
-    {# The Title of Product Downloads Pages should always be 'All Downloads' #}
-    <h2{{ title_attributes }}>All Downloads</h2>
-  {% endif %}
-  {{ title_suffix }}
-
   {% if display_submitted %}
     <footer class="node__meta">
       {{ author_picture }}

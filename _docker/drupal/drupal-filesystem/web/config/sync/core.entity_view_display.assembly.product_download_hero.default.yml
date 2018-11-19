@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_download_hero
-    - field.field.assembly.product_download_hero.field_background_image
     - field.field.assembly.product_download_hero.field_content
     - field.field.assembly.product_download_hero.field_image
     - field.field.assembly.product_download_hero.field_learn_more_link
@@ -20,15 +19,6 @@ targetEntityType: assembly
 bundle: product_download_hero
 mode: default
 content:
-  field_background_image:
-    weight: 5
-    label: visually_hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_content:
     weight: 3
     label: visually_hidden

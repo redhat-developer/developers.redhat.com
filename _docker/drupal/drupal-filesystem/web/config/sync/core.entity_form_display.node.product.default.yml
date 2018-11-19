@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
     - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -29,7 +30,6 @@ dependencies:
     - field.field.node.product.field_tax_promotion
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
-    - field.field.node.product.field_try_it_page_content
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
@@ -114,6 +114,15 @@ content:
     region: content
   field_downloads_page_content:
     weight: 29
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_autocomplete
+    region: content
+  field_getting_started_content:
+    weight: 30
     settings:
       match_operator: CONTAINS
       size: 60
@@ -282,15 +291,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_try_it_page_content:
-    weight: 30
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
     region: content
   field_url_product_name:
     weight: 11

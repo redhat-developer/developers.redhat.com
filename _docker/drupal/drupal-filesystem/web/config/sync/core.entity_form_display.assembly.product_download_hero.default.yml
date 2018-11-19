@@ -5,7 +5,6 @@ dependencies:
   config:
     - assembly.assembly_type.product_download_hero
     - entity_browser.browser.image_browser
-    - field.field.assembly.product_download_hero.field_background_image
     - field.field.assembly.product_download_hero.field_content
     - field.field.assembly.product_download_hero.field_image
     - field.field.assembly.product_download_hero.field_learn_more_link
@@ -20,19 +19,6 @@ targetEntityType: assembly
 bundle: product_download_hero
 mode: default
 content:
-  field_background_image:
-    type: entity_browser_file
-    weight: 5
-    settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
-      preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-    region: content
-    third_party_settings: {  }
   field_content:
     weight: 3
     settings:

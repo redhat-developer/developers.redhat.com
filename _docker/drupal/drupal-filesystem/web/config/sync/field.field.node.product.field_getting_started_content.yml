@@ -1,18 +1,18 @@
-uuid: 3f78c444-87d9-45db-8f2c-9f4c6d10b20a
+uuid: 69c49e0c-883e-4b5b-86c9-efa9497a5507
 langcode: en
 status: true
 dependencies:
   config:
     - assembly.assembly_type.product_try_it_hero
-    - field.storage.node.field_try_it_page_content
+    - field.storage.node.field_getting_started_content
     - node.type.product
   module:
     - entity_reference_revisions
-id: node.product.field_try_it_page_content
-field_name: field_try_it_page_content
+id: node.product.field_getting_started_content
+field_name: field_getting_started_content
 entity_type: node
 bundle: product
-label: 'Try It Page Content'
+label: 'Getting Started Page Content'
 description: ''
 required: false
 translatable: false

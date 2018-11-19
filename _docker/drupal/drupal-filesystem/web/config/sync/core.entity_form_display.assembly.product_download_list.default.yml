@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_download_list
+    - field.field.assembly.product_download_list.field_title
   module:
     - content_moderation
 id: assembly.product_download_list.default
@@ -11,6 +12,14 @@ targetEntityType: assembly
 bundle: product_download_list
 mode: default
 content:
+  field_title:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   moderation_state:
     type: moderation_state_default
     weight: 5

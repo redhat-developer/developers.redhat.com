@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_try_it_hero
-    - field.field.assembly.product_try_it_hero.field_background_image
     - field.field.assembly.product_try_it_hero.field_content
     - field.field.assembly.product_try_it_hero.field_image
     - field.field.assembly.product_try_it_hero.field_learn_more_link
@@ -21,15 +20,6 @@ targetEntityType: assembly
 bundle: product_try_it_hero
 mode: default
 content:
-  field_background_image:
-    weight: 0
-    label: visually_hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_content:
     weight: 4
     label: visually_hidden
