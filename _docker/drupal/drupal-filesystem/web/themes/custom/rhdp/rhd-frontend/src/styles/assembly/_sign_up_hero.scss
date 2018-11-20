@@ -1,0 +1,40 @@
+.assembly-type-sign_up_hero {
+  padding: 40px 0;
+  @include desktop-small {
+    padding: 100px 0;
+    padding-bottom: 120px;
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: $gutter $gutter;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .signup-hero-content {
+    h1.field--name-field-title {
+      font-size: 50px;
+      line-height: 1.2;
+      text-align: left;
+    }
+  }
+  .signup-box {
+    text-align: center;
+    height: auto;
+    margin: 1rem auto;
+    padding: 2rem;
+    -moz-box-shadow: 0px 1px 2px 2px #bdbdbd;
+    -webkit-box-shadow: 0px 1px 2px 2px #bdbdbd;
+    box-shadow: 0px 1px 2px 2px #bdbdbd;
+    border-top: 5px solid $red;
+    h3 {
+      font-weight: 400;
+    }
+  }
+
+  .rh-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+}

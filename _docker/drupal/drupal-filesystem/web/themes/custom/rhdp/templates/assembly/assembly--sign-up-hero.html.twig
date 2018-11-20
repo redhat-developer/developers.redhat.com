@@ -1,0 +1,40 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  <div class="container">
+    
+    <div class="grid">
+      <div class="signup-hero-content">
+        {{ content.field_title }}
+        {% if content %}
+          {{ content.field_content }}
+        {% endif %}
+      </div>
+      <div class="signup-box-wrapper">
+        <div class="signup-box">
+          <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page"><img class="rh-logo" alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/Red_Hat_RGB.svg"></a>
+          {{ content.field_sign_up_box_title }}
+          {{ content.field_sign_up_box_content }}
+          <a href="" class="button heavy-cta">Sign Up</a>
+          <p>Already have an account? <a href="">Sign in now</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

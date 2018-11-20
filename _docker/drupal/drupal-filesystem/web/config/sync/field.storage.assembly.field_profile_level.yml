@@ -1,0 +1,36 @@
+uuid: defc6cba-8653-4e86-a54f-cbd49939ab43
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_profile_level
+field_name: field_profile_level
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: rhdmin
+      label: 'Basic user'
+    -
+      value: rhdfull
+      label: 'Full user'
+    -
+      value: rhdsupportable
+      label: 'Supportable user'
+    -
+      value: rhdbulkinvite
+      label: 'Bulk invite user'
+    -
+      value: rhdsolp
+      label: 'SOLP (Simple Offer Landing Page) user'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
