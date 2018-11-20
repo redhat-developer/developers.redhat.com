@@ -71,8 +71,12 @@ class ProductsDownloadsController extends ControllerBase {
    */
   protected function hasDownloadsPage($product) {
     // Verify that the Product machine name field is set and make sure that the
-    // Downloads Page Content field isn't null.
-    if (!isset($product->field_product_machine_name) || !isset($product->field_downloads_page_content)) {
+    // Downloads Page Content field isn't null. Also, verify that the Use New
+    // Product Page boolean field isset and is checked.
+    if (!isset($product->field_product_machine_name)
+      || !isset($product->field_downloads_page_content)
+      || !isset($product->field_use_new_product_page)
+      || (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1')) {
       // Log an error and throw a 404 NotFoundHttpException.
       \Drupal::logger('rhd_assemblies')->error(
         "Failed to retrieve product downloads from Download Manager for @label",
