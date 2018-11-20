@@ -105,10 +105,14 @@ other methods (such as node.delete) will result in an exception.
                 </span>
             </div>
         {% endif %}
+        {% if (content.field_book_url[0]|render|striptags|trim is not empty) or (content.field_pdf_link[0]|render|striptags|trim is not empty) %}
         <div class="cta-label">
             <strong>Want to see more? Get the entire book.</strong>
         </div>
+        {% endif %}
+        {% if content.field_pdf_link[0]|render|striptags|trim is not empty %}
         <a class="button hidden-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Log in to download</a>
+        {% endif %}
         <div class="other-book-formats">
             <p>
                 {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
@@ -125,7 +129,12 @@ other methods (such as node.delete) will result in an exception.
                 {% endif %}
             </p>
         </div>
+        {% if content.field_pdf_link[0]|render|striptags|trim is not empty %}
         <a class="button shown-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Download PDF</a>
+        {% endif %}
+        {% if (content.field_book_url[0]|render|striptags|trim is not empty) and (content.field_pdf_link[0]|render|striptags|trim is empty) %}
+        <a class="" href="{{ content.field_book_url[0]['#url'] }}">{{ content.field_book_url[0]['#title'] ?? content.field_book_url[0]['#url'] }}</a>
+        {% endif %}
     </div>
     <div class="large-6 medium-7 columns book-tags">
         {% if content.field_tags|render|striptags|trim is not empty %}
