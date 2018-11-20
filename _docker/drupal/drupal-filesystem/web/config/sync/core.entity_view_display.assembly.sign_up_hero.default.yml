@@ -1,0 +1,97 @@
+uuid: d5ae8b54-f697-49eb-a3f1-274d99552a38
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.sign_up_hero
+    - field.field.assembly.sign_up_hero.field_audience_selection
+    - field.field.assembly.sign_up_hero.field_content
+    - field.field.assembly.sign_up_hero.field_profile_level
+    - field.field.assembly.sign_up_hero.field_sign_up_box_content
+    - field.field.assembly.sign_up_hero.field_sign_up_box_title
+    - field.field.assembly.sign_up_hero.field_title
+  module:
+    - fences
+    - options
+    - text
+id: assembly.sign_up_hero.default
+targetEntityType: assembly
+bundle: sign_up_hero
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_profile_level:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: list_key
+    region: content
+  field_sign_up_box_content:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_sign_up_box_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h3
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h1
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+hidden:
+  field_audience_selection: true
+  name: true
+  user_id: true

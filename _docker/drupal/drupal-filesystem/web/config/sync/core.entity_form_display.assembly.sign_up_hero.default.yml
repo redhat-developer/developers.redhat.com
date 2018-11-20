@@ -1,0 +1,88 @@
+uuid: 405dc2b6-0f7b-4926-b30a-d184f62e828e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.sign_up_hero
+    - field.field.assembly.sign_up_hero.field_audience_selection
+    - field.field.assembly.sign_up_hero.field_content
+    - field.field.assembly.sign_up_hero.field_profile_level
+    - field.field.assembly.sign_up_hero.field_sign_up_box_content
+    - field.field.assembly.sign_up_hero.field_sign_up_box_title
+    - field.field.assembly.sign_up_hero.field_title
+  module:
+    - text
+id: assembly.sign_up_hero.default
+targetEntityType: assembly
+bundle: sign_up_hero
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_content:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_profile_level:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sign_up_box_content:
+    weight: 7
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_sign_up_box_title:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
