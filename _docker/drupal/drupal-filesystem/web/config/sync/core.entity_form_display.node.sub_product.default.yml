@@ -8,8 +8,10 @@ dependencies:
     - field.field.node.sub_product.field_logo
     - node.type.sub_product
   module:
+    - content_moderation
     - entity_browser
     - link
+    - publication_date
 id: node.sub_product.default
 targetEntityType: node
 bundle: sub_product
@@ -38,19 +40,16 @@ content:
     region: content
     third_party_settings: {  }
   moderation_state:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
+    type: moderation_state_default
     weight: 4
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  published_at:
+    type: publication_date_timestamp
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -64,6 +63,7 @@ hidden:
   created: true
   path: true
   promote: true
+  status: true
   sticky: true
   uid: true
   url_redirects: true
