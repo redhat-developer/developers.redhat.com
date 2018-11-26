@@ -54,12 +54,31 @@ echo "\nAdding the active config from the prod dump"
 rm -rf ${WEB}/config/active
 mkdir ${WEB}/config/active
 
-sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/config/active ${WEB}/config
-sudo chown -R ${USER}:${GROUP} ${WEB}/config/active
+# Get the running docker full name from partial name
+runingDockerName=$(docker ps --format '{{.Names}}' --filter 'name=drupaldev_drupalmysql_' | head -n 1)
 
-echo "Adding site/files"
-sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
-sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
+
+if [$runingDockerName == ""]
+then
+    echo "No Container found"
+    exit 1
+else
+    echo "Found Container: $runingDockerName"
+fi
+
+#Test contaner found starts with correct name exit script if not
+if [[ $runingDockerName == drupaldev_drupalmysql_* ]]
+then
+    echo "We have a container of the correct name"
+    sudo docker cp $runingDockerName:/var/www/drupal/web/config/active ${WEB}/config
+    sudo chown -R ${USER}:${GROUP} ${WEB}/config/active
+    echo "Adding site/files"
+    sudo docker cp $runingDockerName:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
+    sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
+else
+    echo "Cant find Docker container starting with drupaldev_drupalmysql_"
+    exit 1
+fi
 
 echo "Building css/js for theme"
 cd ${THEME}/rhd-frontend
