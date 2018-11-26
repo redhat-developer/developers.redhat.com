@@ -57,8 +57,7 @@ mkdir ${WEB}/config/active
 # Get the running docker full name from partial name
 runingDockerName=$(docker ps --format '{{.Names}}' --filter 'name=drupaldev_drupalmysql_' | head -n 1)
 
-
-if [$runingDockerName == ""]
+if [ $runingDockerName == "" ]
 then
     echo "No Container found"
     exit 1
