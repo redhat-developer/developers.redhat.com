@@ -1,0 +1,19 @@
+uuid: e63eb43d-8917-4a7d-b5d5-d630c94c15f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_hero
+    - field.storage.assembly.field_title
+id: assembly.product_download_hero.field_title
+field_name: field_title
+entity_type: assembly
+bundle: product_download_hero
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 2f25da7a-bd11-4d53-94a1-c4f00c49ee39
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_try_it_link
+field_name: field_try_it_link
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

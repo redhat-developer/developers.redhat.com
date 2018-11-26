@@ -1,0 +1,33 @@
+uuid: 803dd09a-f755-4746-933c-69464a9ac41c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_articles
+    - field.field.assembly.featured_articles.field_articles
+  module:
+    - fences
+id: assembly.featured_articles.default
+targetEntityType: assembly
+bundle: featured_articles
+mode: default
+content:
+  field_articles:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: visually_hidden
+    settings:
+      view_mode: card
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+hidden:
+  name: true
+  user_id: true

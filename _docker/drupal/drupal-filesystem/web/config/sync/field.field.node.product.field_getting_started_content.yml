@@ -1,0 +1,32 @@
+uuid: 69c49e0c-883e-4b5b-86c9-efa9497a5507
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_articles
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.node.field_getting_started_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_getting_started_content
+field_name: field_getting_started_content
+entity_type: node
+bundle: product
+label: 'Getting Started Page Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      featured_articles: featured_articles
+      product_try_it_hero: product_try_it_hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: featured_articles
+field_type: entity_reference_revisions
