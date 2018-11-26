@@ -66,11 +66,6 @@ cd ${THEME}/rhd-frontend
 npm install && npm run-script build 
 cd ${PROJ}
 
-echo "Running DB Migrations"
-cd ${DRUPAL_FILESYSTEM}
-vendor/bin/phinx migrate
-cd ${PROJ}
-
 echo "Sanitizing the database"
 ${WEB}/../vendor/bin/drush --root=${WEB} sqlsan --sanitize-password=drupal --sanitize-email=user+%uid@example.com
 
@@ -92,6 +87,11 @@ ${WEB}/../vendor/bin/drush --root=${WEB} cr
 
 echo "Running drush cim"
 ${WEB}/../vendor/bin/drush --root=${WEB} -y cim
+
+echo "Running DB Migrations"
+cd ${DRUPAL_FILESYSTEM}
+vendor/bin/phinx migrate
+cd ${PROJ}
 
 echo "Starting the server"
 ${WEB}/../vendor/bin/drush --root=${WEB} rs
