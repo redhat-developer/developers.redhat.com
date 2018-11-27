@@ -40,6 +40,11 @@
     @media screen and (max-width: 1024px) {
       max-width: 70%;
     }
+    @media screen and (max-width: 500px) {
+      .signup-link {
+        display: block;
+      }
+    }
   }
 
   .rh-logo {
