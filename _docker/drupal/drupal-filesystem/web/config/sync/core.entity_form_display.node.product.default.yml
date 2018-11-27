@@ -85,7 +85,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 19
+      weight: 24
       format_type: details
       format_settings:
         id: ''
@@ -93,6 +93,21 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+    group_new_product_page_fields:
+      children:
+        - field_use_new_product_page
+        - field_content
+        - field_downloads_page_content
+        - field_getting_started_content
+      parent_name: ''
+      weight: 16
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'New Product Page Fields'
 _core:
   default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
 id: node.product.default
@@ -117,7 +132,7 @@ content:
     type: link_default
     region: content
   field_content:
-    weight: 20
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -126,7 +141,7 @@ content:
     type: entity_reference_revisions_autocomplete
     region: content
   field_downloads_page_content:
-    weight: 21
+    weight: 19
     settings:
       form_mode: default
       label_singular: ''
@@ -144,7 +159,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_getting_started_content:
-    weight: 22
+    weight: 20
     settings:
       form_mode: default
       label_singular: ''
@@ -175,7 +190,7 @@ content:
     region: content
     third_party_settings: {  }
   field_meta_tags:
-    weight: 16
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -332,14 +347,14 @@ content:
     type: string_textfield
     region: content
   field_use_new_product_page:
-    weight: 29
+    weight: 17
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   moderation_state:
-    weight: 17
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -359,7 +374,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 18
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
