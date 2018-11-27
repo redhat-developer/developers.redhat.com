@@ -38,7 +38,6 @@ dependencies:
     - content_moderation
     - entity_browser
     - entity_browser_entity_form
-    - entity_reference_revisions
     - field_group
     - inline_entity_form
     - link
@@ -134,11 +133,20 @@ content:
   field_content:
     weight: 18
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
     region: content
   field_downloads_page_content:
     weight: 19
