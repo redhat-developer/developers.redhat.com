@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.sub_product.field_logo
     - node.type.sub_product
   module:
+    - fences
     - link
     - user
 id: node.sub_product.default
@@ -15,8 +16,8 @@ bundle: sub_product
 mode: default
 content:
   field_cta:
-    weight: 102
-    label: above
+    weight: 0
+    label: visually_hidden
     settings:
       trim_length: 80
       url_only: false
@@ -28,17 +29,20 @@ content:
     region: content
   field_logo:
     type: entity_reference_entity_view
-    weight: 103
-    label: above
+    weight: 1
+    label: visually_hidden
     settings:
-      view_mode: default
+      view_mode: thumbnail
       link: false
-    third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     region: content
 hidden:
+  links: true
   published_at: true

@@ -10,15 +10,14 @@ dependencies:
     - field.field.assembly.product_comparison_table.field_upstream_projects
   module:
     - entity_reference_revisions
-    - user
 id: assembly.product_comparison_table.default
 targetEntityType: assembly
 bundle: product_comparison_table
 mode: default
 content:
   field_features:
-    weight: 1
-    label: above
+    weight: 0
+    label: visually_hidden
     settings:
       view_mode: default
       link: ''
@@ -26,42 +25,32 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_products:
-    weight: 3
-    label: above
+    weight: 2
+    label: visually_hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_sub_products:
-    weight: 2
-    label: above
+    weight: 1
+    label: visually_hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_upstream_projects:
-    weight: 4
-    label: above
+    weight: 3
+    label: visually_hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
-  name:
-    label: above
-    type: string
-    weight: -4
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  name: true
+  user_id: true

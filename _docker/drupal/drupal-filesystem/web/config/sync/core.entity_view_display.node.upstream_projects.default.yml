@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.upstream_projects.field_logo
     - node.type.upstream_projects
   module:
+    - fences
     - link
     - user
 id: node.upstream_projects.default
@@ -16,8 +17,8 @@ bundle: upstream_projects
 mode: default
 content:
   field_link_to_project:
-    weight: 102
-    label: above
+    weight: 0
+    label: visually_hidden
     settings:
       trim_length: 80
       url_only: false
@@ -28,8 +29,8 @@ content:
     type: link
     region: content
   field_link_to_repo:
-    weight: 103
-    label: above
+    weight: 1
+    label: visually_hidden
     settings:
       trim_length: 80
       url_only: false
@@ -40,17 +41,21 @@ content:
     type: link
     region: content
   field_logo:
-    weight: 104
-    label: above
+    weight: 2
+    label: visually_hidden
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+      view_mode: thumbnail
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
 hidden:
+  links: true
   published_at: true
