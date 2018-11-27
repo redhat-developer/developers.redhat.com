@@ -7,7 +7,7 @@ rhd_assemblies.wppost_autocomplete:
     _access: 'TRUE'
 
 rhd_assemblies.products_downloads:
-  path: '/products/{product_url_name}/downloads'
+  path: '/products/{product_url_name}/download'
   defaults:
     _controller: '\Drupal\rhd_assemblies\Controller\ProductsDownloadsController::content'
   requirements:
