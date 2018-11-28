@@ -41,7 +41,7 @@
     <h4 class="line-clamp-2">{{ node.title.value }}</h4>
     <p class="line-clamp-3">{{ node.field_book_description.value|striptags }}</p>
     <div class="bio">
-      {% set calc_date = node.field_published_date.value is not empty ? node.field_published_date : node.published_at %}
+      {% set calc_date = node.published_at %}
       {% if calc_date and calc_date.value is not empty %}
       <rh-datetime datetime="{{ calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
       {% endif %}
