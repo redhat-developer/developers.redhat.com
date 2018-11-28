@@ -2,7 +2,6 @@
   <div class="container">
     <div class="grid">
      <div class="product-version">
-
       {{ content.field_title }}
       {{ content.field_content }}
       <a href="{{ content.field_learn_more_link.value }}">Learn More <span class="fa fa-caret-right"></span></a>
@@ -17,7 +16,6 @@
           </span>
         </div>
       </div>
-
       {% if content.field_image %}
         <div class="product-image">
           {{ content.field_image }}
@@ -28,5 +26,4 @@
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
   {% endif %}
-
 </section>
