@@ -1,7 +1,7 @@
 .assembly-type-product_download_hero,
 .assembly-type-product_try_it_hero {
   padding: 100px 15px;
-  background-image: url('/images/design/product-hero-light.png');
+  background-image: url('https://developers.redhat.com/images/design/product-hero-light.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom left;
@@ -36,13 +36,13 @@
   }
 
   &.product-hero--dark {
-    background-image: url('/images/design/product-hero-dark.png');
+    background-image: url('https://developers.redhat.com/images/design/product-hero-dark.png');
     h1, p, a, span {
       color: $white;
     }
   }
   &.product-hero--dark-centered {
-    background-image: url('/images/design/product-hero-dark.png');
+    background-image: url('https://developers.redhat.com/images/design/product-hero-dark.png');
     text-align: center;
     h1, p, a, span {
       color: $white;
@@ -60,10 +60,10 @@
     }
   }
   &.product-hero--light {
-    background-image: url('/images/design/product-hero-light.png');
+    background-image: url('https://developers.redhat.com/images/design/product-hero-light.png');
   }
   &.product-hero--light-centered {
-    background-image: url('/images/design/product-hero-light.png');
+    background-image: url('https://developers.redhat.com/images/design/product-hero-light.png');
     text-align: center;
    .grid {
       grid-template-columns: 1fr;
