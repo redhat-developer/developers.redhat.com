@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\rhd_assemblies\Service\DownloadManagerApi;
+use Drupal\rhd_common\Controller\ProductPageController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -36,6 +37,14 @@ class ProductsDownloadsController extends ControllerBase {
   protected $productDownloads;
 
   /**
+   * The rhd_common product page controller.
+   *
+   * @var \Drupal\rhd_common\Controller\ProductPageController
+   */
+  protected $productPageController;
+
+
+  /**
    * The renderer service.
    *
    * @var \Drupal\Core\Render\Renderer
@@ -45,9 +54,10 @@ class ProductsDownloadsController extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(DownloadManagerApi $download_manager_api, EntityTypeManagerInterface $entity_type_manager, Renderer $renderer) {
+  public function __construct(DownloadManagerApi $download_manager_api, EntityTypeManagerInterface $entity_type_manager, ProductPageController $product_page_controller, Renderer $renderer) {
     $this->downloadManagerApi = $download_manager_api;
     $this->entityTypeManager = $entity_type_manager;
+    $this->productPageController = $product_page_controller;
     $this->renderer = $renderer;
   }
 
@@ -57,9 +67,10 @@ class ProductsDownloadsController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     $download_manager_api = $container->get('rhd_assemblies.download_manager_api');
     $entity_type_manager = $container->get('entity_type.manager');
+    $product_page_controller = $container->get('rhd_common.product_page_controller');
     $renderer = $container->get('renderer');
 
-    return new static($download_manager_api, $entity_type_manager, $renderer);
+    return new static($download_manager_api, $entity_type_manager, $product_page_controller, $renderer);
   }
 
   /**
@@ -70,13 +81,15 @@ class ProductsDownloadsController extends ControllerBase {
    * and route.
    */
   protected function hasDownloadsPage($product) {
+    // If the Use New Product Page field is unchecked, return FALSE.
+    if (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1') {
+      return FALSE;
+    }
     // Verify that the Product machine name field is set and make sure that the
-    // Downloads Page Content field isn't null. Also, verify that the Use New
-    // Product Page boolean field isset and is checked.
-    if (!isset($product->field_product_machine_name)
+    // Downloads Page Content field isn't null.
+    elseif (!isset($product->field_product_machine_name)
       || !isset($product->field_downloads_page_content)
-      || !isset($product->field_use_new_product_page)
-      || (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1')) {
+      || !isset($product->field_use_new_product_page)) {
       // Log an error and throw a 404 NotFoundHttpException.
       \Drupal::logger('rhd_assemblies')->error(
         "Failed to retrieve product downloads from Download Manager for @label",
@@ -100,10 +113,16 @@ class ProductsDownloadsController extends ControllerBase {
     if ($product = reset($products)) {
       if ($this->hasDownloadsPage($product)) {
         // Get the render array for this Product and the product_download_page
-        // entity view display.
+        // view mode.
         $product_view = $this->entityTypeManager
           ->getViewBuilder('node')
           ->view($product, 'product_download_page');
+      }
+      else {
+        $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
+        return [
+          '#markup' => $this->renderer->render($product_downloads_render_array),
+        ];
       }
     }
 

@@ -85,10 +85,13 @@ class ProductPageController extends ControllerBase {
   /**
    * Router callback function.
    *
-   * @param string $product_code Product URL Name
-   * @param string $sub_page sub page paragraph name
+   * @param string $product_code
+   *   Product URL Name.
+   * @param string $sub_page
+   *   Sub page paragraph name.
    *
-   * @return array Render array for the page
+   * @return array
+   *   Render array for the page.
    */
   public function productPage($product_code, $sub_page) {
     $build = [];
@@ -96,37 +99,50 @@ class ProductPageController extends ControllerBase {
 
     // If the Use New Product Page field value is '1', then we don't want to
     // utilize this old, paragraph-based Product page approach.
-    if (isset($active_product->field_use_new_product_page) && $active_product->get('field_use_new_product_page')->value === '1') {
-      // Get the render array for this Product and the new_product_page
-      // entity view display.
-      $product_view = $this->entityTypeManager
-        ->getViewBuilder('node')
-        ->view($active_product, 'new_product_page');
+    if (isset($active_product->field_use_new_product_page)
+      && $active_product->get('field_use_new_product_page')->value === '1') {
+      // The New Product Pages only have the /download and /getting-started
+      // sub-pages / sub routes.
+      if (!in_array($sub_page, ['download', 'getting-started', 'overview'])) {
+        throw new NotFoundHttpException();
+      }
+      elseif ($sub_page == 'overview') {
+        // Get the render array for this Product and the product_download_page
+        // view mode.
+        $product_view = $this->entityTypeManager
+          ->getViewBuilder('node')
+          ->view($active_product, 'new_product_page');
 
-      return [
-        '#markup' => $this->renderer->render($product_view),
-      ];
+        return [
+          '#markup' => $this->renderer->render($product_view),
+        ];
+      }
+      else {
+        return [
+          '#markup' => '',
+        ];
+      }
     }
     else {
       \Drupal::request()->attributes->add(['node' => $active_product]);
 
-      // This render array will hold the left side navigation links
+      // This render array will hold the left side navigation links.
       $page_links = [
         '#theme' => 'item_list',
         '#list_type' => 'ul',
         '#items' => [
           [
             '#markup' => '<a href="#">Menu</a>',
-            '#wrapper_attributes' => ['class' => 'side-nav-toggle']
-          ]
+            '#wrapper_attributes' => ['class' => 'side-nav-toggle'],
+          ],
         ],
         '#attributes' => [
-          'class' => ['side-nav', 'rhd-sub-nav']
-        ]
+          'class' => ['side-nav', 'rhd-sub-nav'],
+        ],
       ];
 
-      // Iterate over all the product sub pages configured for this product
-      // Find the active one, create links for the left side nav
+      // Iterate over all the product sub pages configured for this product.
+      // Find the active one, create links for the left side nav.
       $stmt = $this->connection->query('SELECT field_product_pages_target_id, field_product_pages_target_revision_id
   FROM
     {node_revision},
@@ -139,7 +155,7 @@ class ProductPageController extends ControllerBase {
     AND {node_revision}.nid = :nid AND {node_revision}.vid = :vid',
         [
           ':nid' => $active_product->id(),
-          ':vid' => $active_product->getRevisionId()
+          ':vid' => $active_product->getRevisionId(),
         ]);
 
       $returns = NULL;
@@ -168,8 +184,8 @@ class ProductPageController extends ControllerBase {
             '#context' => [
               'text' => t(strpos($sub_page_paragraph->field_overview_url->value,
                 'Hello') === FALSE ?
-                $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!')
-            ]
+                $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!'),
+            ],
           ],
           '#url' => Url::fromRoute('rhd_common.main_page_controller', [
             'product_code' => $product_code,
@@ -185,7 +201,7 @@ class ProductPageController extends ControllerBase {
             else {
               return [];
             }
-          })()
+          })(),
         ];
       }
 
@@ -204,18 +220,18 @@ class ProductPageController extends ControllerBase {
       $build['#product_summary'] = $active_product->field_product_summary->view(['label' => 'hidden']);
       $build['#product_title'] = $active_product->getTitle();
 
-      // Also product category
+      // Also product category.
       if ($active_product->hasField('field_product_category')) {
         $product_category = $active_product->field_product_category->value;
         $build['#product_category'] = $product_category;
       }
 
-      // URL product name
+      // URL product name.
       if ($active_product->hasField('field_url_product_name')) {
         $build['#url_product_name'] = $active_product->field_url_product_name->value;
       }
 
-      // Helper for twig to know if there are corresponding product subpages
+      // Helper for twig to know if there are corresponding product subpages.
       $product_pages = $active_product->field_product_pages->referencedEntities();
       $build['#has_community'] = count(array_filter($product_pages,
           function ($entity) {
@@ -230,7 +246,8 @@ class ProductPageController extends ControllerBase {
               return strtolower($entity->field_overview_url->value) === 'hello world';
             })) > 0;
 
-      $build['#cache']['max-age'] = 0; // Disable caching of these product pages
+      // Disable caching of these product pages.
+      $build['#cache']['max-age'] = 0;
 
       return $build;
     }
@@ -238,8 +255,10 @@ class ProductPageController extends ControllerBase {
 
   /**
    * Returns the title for the page.
+   *
    * @param string $product_code
    * @param string $sub_page
+   *
    * @return string
    */
   public function getPageTitle($product_code, $sub_page) {
@@ -248,17 +267,20 @@ class ProductPageController extends ControllerBase {
   }
 
   /**
-   * @param string $url_name URL Product Name
+   * @param string $url_name
+   *   URL Product Name.
+   *
    * @return \Drupal\Core\Entity\EntityInterface|NULL
    */
   private function findProduct($url_name) {
     $query = $this->entityQuery->get('node', 'AND');
     $query->condition('field_url_product_name', $url_name)
-      ->accessCheck(true);
+      ->accessCheck(TRUE);
 
     if ($this->currentUser()->hasPermission('view product revisions')) {
       $query->latestRevision();
-    } else {
+    }
+    else {
       $query->currentRevision();
     }
 
@@ -273,4 +295,5 @@ class ProductPageController extends ControllerBase {
       ->getStorage('node')
       ->loadRevision($version);
   }
+
 }
