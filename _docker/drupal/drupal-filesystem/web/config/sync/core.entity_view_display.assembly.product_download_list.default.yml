@@ -1,0 +1,23 @@
+uuid: 6aab5ea3-cbfb-40aa-8e19-06336eeb74ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_list
+    - field.field.assembly.product_download_list.field_title
+id: assembly.product_download_list.default
+targetEntityType: assembly
+bundle: product_download_list
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  name: true
+  user_id: true

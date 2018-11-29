@@ -6,6 +6,9 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_content
+    - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -29,14 +32,18 @@ dependencies:
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
+    - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
     - content_moderation
     - entity_browser
+    - entity_browser_entity_form
     - field_group
+    - inline_entity_form
     - link
     - metatag
     - paragraphs
+    - publication_date
 third_party_settings:
   field_group:
     group_sub_pages:
@@ -57,7 +64,7 @@ third_party_settings:
       children:
         - group_sub_pages
       parent_name: ''
-      weight: 13
+      weight: 14
       format_type: tabs
       format_settings:
         id: ''
@@ -77,7 +84,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 18
+      weight: 24
       format_type: details
       format_settings:
         id: ''
@@ -85,6 +92,21 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+    group_new_product_page_fields:
+      children:
+        - field_use_new_product_page
+        - field_content
+        - field_downloads_page_content
+        - field_getting_started_content
+      parent_name: ''
+      weight: 16
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'New Product Page Fields'
 _core:
   default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
 id: node.product.default
@@ -93,7 +115,7 @@ bundle: product
 mode: default
 content:
   field_call_to_action_link:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -101,12 +123,66 @@ content:
     type: link_default
     region: content
   field_card_image:
-    weight: 12
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_content:
+    weight: 18
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_downloads_page_content:
+    weight: 19
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_getting_started_content:
+    weight: 20
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
     region: content
   field_image:
     type: entity_browser_file
@@ -122,7 +198,7 @@ content:
     region: content
     third_party_settings: {  }
   field_meta_tags:
-    weight: 15
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -183,7 +259,7 @@ content:
     region: content
   field_share_image:
     type: entity_browser_file
-    weight: 14
+    weight: 15
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -271,15 +347,22 @@ content:
     type: options_select
     region: content
   field_url_product_name:
-    weight: 10
+    weight: 11
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_use_new_product_page:
+    weight: 17
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   moderation_state:
-    weight: 16
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -299,7 +382,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 17
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }

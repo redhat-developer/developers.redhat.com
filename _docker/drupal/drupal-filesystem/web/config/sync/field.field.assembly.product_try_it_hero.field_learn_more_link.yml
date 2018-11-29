@@ -1,0 +1,23 @@
+uuid: 4ddcf70d-1642-4578-9ce4-5b979ce57107
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.assembly.field_learn_more_link
+  module:
+    - link
+id: assembly.product_try_it_hero.field_learn_more_link
+field_name: field_learn_more_link
+entity_type: assembly
+bundle: product_try_it_hero
+label: 'Learn More Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

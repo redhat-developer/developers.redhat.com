@@ -1,0 +1,4 @@
+services:
+  rhd_common.product_page_controller:
+    class: Drupal\rhd_common\Controller\ProductPageController
+    arguments: ['@entity.query', '@database', '@entity_type.manager', '@renderer']

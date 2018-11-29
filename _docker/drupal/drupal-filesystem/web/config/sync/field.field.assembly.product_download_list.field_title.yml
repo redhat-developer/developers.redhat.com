@@ -1,0 +1,19 @@
+uuid: 405b84e2-19d4-4153-94cc-b72ef5213e58
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_list
+    - field.storage.assembly.field_title
+id: assembly.product_download_list.field_title
+field_name: field_title
+entity_type: assembly
+bundle: product_download_list
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

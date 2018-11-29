@@ -1,0 +1,35 @@
+<div class="product-versions row">
+  {% for version in elements.versions %}
+    <div class="product-version">
+      <h3 class="product-version__version-name">Version {{ version.versionName }}</h3>
+
+      {# Adjust for 13-digit Unix timestamp #}
+      {% set versionReleaseDate = version.releaseDate / 1000 %}
+
+      <div class="product-version__files">
+        {% for file in version.files %}
+          <div class="product-version__file row">
+            <div class="small-6 columns">
+              <p class="product-version__file-label">{{ file.label }}</p>
+            </div>
+            <div class="small-8 columns">
+              <p class="product-version__file-description">{{ file.description }}</p>
+            </div>
+            <div class="small-4 columns">
+              <h5 class="product-version__release-date-header">Release Date</h5>
+              <p class="product-version__release-date">{{ versionReleaseDate|date("F d, Y") }}</p>
+            </div>
+            <div class="small-6 columns">
+              <button class="production-version__file-button">
+                <p>
+                  <a href={{ file.url }}>Download</a>
+                </span>
+                <span>{{ file.fileSize }}</span>
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
