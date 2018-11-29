@@ -1,0 +1,28 @@
+uuid: c4e6c2fa-9bdd-42bd-9dc8-f96da0d9694a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.cta_form
+    - assembly.assembly_type.eloqua_form_embed
+    - field.storage.assembly.field_form
+id: assembly.cta_form.field_form
+field_name: field_form
+entity_type: assembly
+bundle: cta_form
+label: Form
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      eloqua_form_embed: eloqua_form_embed
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
