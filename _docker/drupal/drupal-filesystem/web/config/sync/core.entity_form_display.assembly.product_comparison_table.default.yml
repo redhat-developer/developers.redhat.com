@@ -1,0 +1,158 @@
+uuid: 1f67f673-5845-4ac6-855a-2861745fd02c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.field.assembly.product_comparison_table.field_features
+    - field.field.assembly.product_comparison_table.field_products
+    - field.field.assembly.product_comparison_table.field_sub_products
+    - field.field.assembly.product_comparison_table.field_upstream_projects
+  module:
+    - content_moderation
+    - entity_browser_entity_form
+    - field_group
+    - inline_entity_form
+third_party_settings:
+  field_group:
+    group_table_rows:
+      children:
+        - field_features
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'Table rows'
+    group_table_columns:
+      children:
+        - field_sub_products
+        - field_products
+        - field_upstream_projects
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'Table columns'
+id: assembly.product_comparison_table.default
+targetEntityType: assembly
+bundle: product_comparison_table
+mode: default
+content:
+  field_features:
+    weight: 2
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: feature
+      label_plural: features
+      collapsible: true
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_products:
+    weight: 4
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: product
+      label_plural: products
+      collapsible: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_new: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_sub_products:
+    weight: 3
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: sub-product
+      label_plural: sub-products
+      collapsible: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_new: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_upstream_projects:
+    weight: 5
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'upstream project'
+      label_plural: 'upstream projects'
+      collapsible: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_new: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 6
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

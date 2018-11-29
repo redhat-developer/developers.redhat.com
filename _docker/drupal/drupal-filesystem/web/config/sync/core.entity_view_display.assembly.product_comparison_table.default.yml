@@ -1,0 +1,56 @@
+uuid: 16509ecb-bf54-487e-90e9-7b4c998771da
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.field.assembly.product_comparison_table.field_features
+    - field.field.assembly.product_comparison_table.field_products
+    - field.field.assembly.product_comparison_table.field_sub_products
+    - field.field.assembly.product_comparison_table.field_upstream_projects
+  module:
+    - entity_reference_revisions
+id: assembly.product_comparison_table.default
+targetEntityType: assembly
+bundle: product_comparison_table
+mode: default
+content:
+  field_features:
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_products:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_sub_products:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_upstream_projects:
+    weight: 3
+    label: visually_hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  name: true
+  user_id: true

@@ -1,0 +1,18 @@
+uuid: b6eb0dbc-9d5a-415d-8e49-d7639bc2720a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Sub-Product
+type: sub_product
+description: 'A product under a parent product, like FUSE Online, FUSE on Openshift and FUSE Standalone are to FUSE'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

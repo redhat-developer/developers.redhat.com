@@ -1,0 +1,54 @@
+uuid: 0293afac-17e6-40be-beca-ae5e5e1e75b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.feature
+    - field.field.assembly.feature.field_link_to_project
+    - field.field.assembly.feature.field_products_and_projects
+    - field.field.assembly.feature.field_release
+    - field.field.assembly.feature.field_title
+  module:
+    - link
+id: assembly.feature.default
+targetEntityType: assembly
+bundle: feature
+mode: default
+content:
+  field_link_to_project:
+    weight: 0
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_products_and_projects:
+    weight: 3
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+  field_release:
+    weight: 1
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+  field_title:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  name: true
+  user_id: true

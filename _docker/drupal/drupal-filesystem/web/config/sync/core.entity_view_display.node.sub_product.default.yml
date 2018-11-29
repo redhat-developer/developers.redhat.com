@@ -1,0 +1,48 @@
+uuid: 30816f77-d598-44bd-a2af-e16e8b8f38b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sub_product.field_cta
+    - field.field.node.sub_product.field_logo
+    - node.type.sub_product
+  module:
+    - fences
+    - link
+    - user
+id: node.sub_product.default
+targetEntityType: node
+bundle: sub_product
+mode: default
+content:
+  field_cta:
+    weight: 0
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_logo:
+    type: entity_reference_entity_view
+    weight: 1
+    label: visually_hidden
+    settings:
+      view_mode: thumbnail
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    region: content
+hidden:
+  links: true
+  published_at: true
