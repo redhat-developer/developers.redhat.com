@@ -1,0 +1,30 @@
+uuid: ec678869-f576-43af-9e12-295ba666bdc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.feature
+    - assembly.assembly_type.product_comparison_table
+    - field.storage.assembly.field_features
+  module:
+    - entity_reference_revisions
+id: assembly.product_comparison_table.field_features
+field_name: field_features
+entity_type: assembly
+bundle: product_comparison_table
+label: Features
+description: 'The list of features that you want to compare in this table'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      feature: feature
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

@@ -1,0 +1,61 @@
+uuid: 00403b7c-5b49-4040-a9e2-9f3628a5b368
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.upstream_projects.field_link_to_project
+    - field.field.node.upstream_projects.field_link_to_repo
+    - field.field.node.upstream_projects.field_logo
+    - node.type.upstream_projects
+  module:
+    - fences
+    - link
+    - user
+id: node.upstream_projects.default
+targetEntityType: node
+bundle: upstream_projects
+mode: default
+content:
+  field_link_to_project:
+    weight: 0
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_link_to_repo:
+    weight: 1
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_logo:
+    weight: 2
+    label: visually_hidden
+    settings:
+      view_mode: thumbnail
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  links: true
+  published_at: true

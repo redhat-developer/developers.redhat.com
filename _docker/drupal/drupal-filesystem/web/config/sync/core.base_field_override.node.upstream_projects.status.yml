@@ -1,0 +1,22 @@
+uuid: eabb0d37-7141-4b13-9d20-875b27b570cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.upstream_projects
+id: node.upstream_projects.status
+field_name: status
+entity_type: node
+bundle: upstream_projects
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

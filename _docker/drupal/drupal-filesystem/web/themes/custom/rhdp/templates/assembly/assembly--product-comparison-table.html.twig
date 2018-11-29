@@ -1,0 +1,110 @@
+<table>
+  {# Title #}
+  <tr>
+    <th> </th>
+    {# Products #}
+    {% for product in products %}
+      <th>{{ product.title }}</th>
+    {% endfor %}
+    {# Sub-Products #}
+    {% for sub_product in sub_products %}
+      <th>{{ sub_product.title }}</th>
+    {% endfor %}
+    {# Upstream Projects #}
+    {% for upstream_project in upstream_projects %}
+      <th>{{ upstream_project.title }}</th>
+    {% endfor %}
+  </tr>
+
+  {# Link to Project #}
+  <tr>
+    <th> </th>
+    {# Products #}
+    {% for product in products %}
+      <th> </th>
+    {% endfor %}
+    {# Sub-Products #}
+    {% for sub_product in sub_products %}
+      <th> </th>
+    {% endfor %}
+    {# Upstream Projects #}
+    {% for upstream_project in upstream_projects %}
+      <th>{{ link(upstream_project.link_to_project.title, upstream_project.link_to_project.uri, upstream_project.link_to_project.options) }}</th>
+    {% endfor %}
+  </tr>
+
+  {# CTA #}
+  <tr>
+    <th> </th>
+    {# Products #}
+    {% for product in products %}
+      <th>{{ link(product.cta.title, product.cta.uri, product.cta.options) }}</th>
+    {% endfor %}
+    {# Sub-Products #}
+    {% for sub_product in sub_products %}
+      <th>{{ link(sub_product.cta.title, sub_product.cta.uri, sub_product.cta.options) }}</th>
+    {% endfor %}
+    {# Upstream Projects #}
+    {% for upstream_project in upstream_projects %}
+      <th>{{ link(upstream_project.link_to_repo.title, upstream_project.link_to_repo.uri, upstream_project.link_to_repo.options) }}</th>
+    {% endfor %}
+  </tr>
+
+  {# Logo #}
+  <tr>
+    <th> </th>
+    {# Products #}
+    {% for product in products %}
+      <th>{{ product.logo }}</th>
+    {% endfor %}
+    {# Sub-Products #}
+    {% for sub_product in sub_products %}
+      <th>{{ sub_product.logo }}</th>
+    {% endfor %}
+    {# Upstream Projects #}
+    {% for upstream_project in upstream_projects %}
+      <th>{{ upstream_project.logo }}</th>
+    {% endfor %}
+  </tr>
+
+  {# Table body #}
+  {% for key, release in features %}
+    <tr>
+      <td colspan={{ colspan }}>{{ releases[key] }}</td>
+    </tr>
+    {% for feature in release %}
+      <tr>
+        {% if feature.link %}
+          <td>{{ link(feature.title, feature.link.uri, feature.link.options) }}</td>
+        {% else %}
+          <td>{{ feature.title }}</td>
+        {% endif %}
+
+        {# Products #}
+        {% for key, product in products %}
+          {% if key in feature.products_and_projects %}
+            <td>1</td>
+          {% else %}
+            <td>0</td>
+          {% endif %}
+        {% endfor %}
+        {# Sub-Products #}
+        {% for key, sub_product in sub_products %}
+          {% if key in feature.products_and_projects %}
+            <td>1</td>
+          {% else %}
+            <td>0</td>
+          {% endif %}
+        {% endfor %}
+        {# Upstream Projects #}
+        {% for key, upstream_project in upstream_projects %}
+          {% if key in feature.products_and_projects %}
+            <td>1</td>
+          {% else %}
+            <td>0</td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  {% endfor %}
+</table>

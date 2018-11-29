@@ -5,6 +5,7 @@
  * Functions to support theming in the RHDP theme.
  */
 
+use Drupal\assembly\Entity\Assembly;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -633,6 +634,158 @@ function rhdp_preprocess_assembly(&$variables) {
         $variables['language'] = isset($language) ? $language : '';
       }
     }
+  }
+
+  // Product Features assembly type.
+  if ($type == 'product_comparison_table') {
+    // To track the number of columns in the table. We start counting at 1 to
+    // account for the release labels.
+    $colspan = 1;
+
+    // Features, entity reference revisions (assembly) field.
+    if ($assembly->hasField('field_features')) {
+      // Create variables to store the features and releases.
+      $variables['features'] = [];
+      $variables['releases'] = [];
+
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_features)) {
+        $features = $assembly->get('field_features')->getValue();
+        foreach ($features as $key => $feature) {
+          // Retrieve this revision of this assembly.
+          $feature_revision = \Drupal::entityTypeManager()
+            ->getStorage('assembly')
+            ->loadRevision($feature['target_revision_id']);
+
+          // Get the Release term ID from the assembly entity.
+          $tid = $feature_revision->get('field_release')->getValue()[0]['target_id'];
+          $term = \Drupal::entityTypeManager()
+            ->getStorage('taxonomy_term')
+            ->load($tid);
+          $term_name = $term->getName();
+
+          $variables['releases'][$tid] = $term_name;
+
+          if (isset($feature_revision->field_title)) {
+            $title = $feature_revision->get('field_title')->getValue()[0]['value'];
+            $variables['features'][$tid][$key]['title'] = $title;
+          }
+          if (isset($feature_revision->field_link_to_project)) {
+            $link = $feature_revision->get('field_link_to_project')->getValue()[0];
+            $variables['features'][$tid][$key]['link'] = $link;
+          }
+          if (isset($feature_revision->field_products_and_projects)) {
+            $products_and_projects = $feature_revision->get('field_products_and_projects')->getValue();
+            $nids = [];
+            // Iterate over the products and projects referenced by this field
+            // and assign the nids in an array.
+            foreach ($products_and_projects as $entity) {
+              $nids[] = $entity['target_id'];
+            }
+
+            $variables['features'][$tid][$key]['products_and_projects'] = $nids;
+          }
+        }
+      }
+    }
+    // Products, entity reference (node) field.
+    if ($assembly->hasField('field_products')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_products)) {
+        $nids = [];
+        $variables['products'] = [];
+        $products = $assembly->get('field_products')->getValue();
+
+        foreach ($products as $product) {
+          $nids[] = $product['target_id'];
+          // Keep track of how many columns we will have.
+          $colspan += 1;
+        }
+
+        $nodes = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->loadMultiple($nids);
+
+        foreach ($nodes as $node) {
+          $variables['products'][$node->id()] = [];
+          $variables['products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
+          $variables['products'][$node->id()]['cta'] = $node->get('field_call_to_action_link')->getValue()[0];
+          $mid = $node->get('field_image')->getValue()[0]['target_id'];
+          $variables['products'][$node->id()]['logo'] = $mid;
+        }
+      }
+    }
+    // Sub-Products, entity reference (node) field.
+    if ($assembly->hasField('field_sub_products')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_sub_products)) {
+        $nids = [];
+        $variables['sub_products'] = [];
+        $sub_products = $assembly->get('field_sub_products')->getValue();
+
+        foreach ($sub_products as $sub_product) {
+          $nids[] = $sub_product['target_id'];
+          // Keep track of how many columns we will have.
+          $colspan += 1;
+        }
+
+        $nodes = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->loadMultiple($nids);
+
+        foreach ($nodes as $node) {
+          $variables['sub_products'][$node->id()] = [];
+          $variables['sub_products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
+          $variables['sub_products'][$node->id()]['cta'] = $node->get('field_cta')->getValue()[0];
+          if (isset($node->field_logo) && isset($node->get('field_logo')->getValue()[0])) {
+            // Get the Media entity target_id.
+            $mid = $node->get('field_logo')->getValue()[0]['target_id'];
+            // Load the media entity from the id.
+            $media_entity = \Drupal::entityTypeManager()
+              ->getStorage('media')
+              ->load($mid);
+            // Build the render array for the logo.
+            $logo = \Drupal::entityTypeManager()
+              ->getViewBuilder('media')
+              ->view($media_entity, 'thumbnail');
+
+            $variables['sub_products'][$node->id()]['logo'] = $logo;
+          }
+          else {
+            $variables['sub_products'][$node->id()]['logo'] = NULL;
+          }
+        }
+      }
+    }
+    // Upstream Projects, entity reference (node) field.
+    if ($assembly->hasField('field_upstream_projects')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_upstream_projects)) {
+        $nids = [];
+        $upstream_projects = $assembly->get('field_upstream_projects')->getValue();
+
+        foreach ($upstream_projects as $upstream_project) {
+          $nids[] = $upstream_project['target_id'];
+          // Keep track of how many columns we will have.
+          $colspan += 1;
+        }
+
+        $nodes = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->loadMultiple($nids);
+
+        foreach ($nodes as $node) {
+          $variables['upstream_projects'][$node->id()] = [];
+          $variables['upstream_projects'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
+          $variables['upstream_projects'][$node->id()]['link_to_project'] = $node->get('field_link_to_project')->getValue()[0];
+          $variables['upstream_projects'][$node->id()]['link_to_repo'] = $node->get('field_link_to_repo')->getValue()[0];
+          $mid = $node->get('field_logo')->getValue()[0]['target_id'];
+          $variables['upstream_projects'][$node->id()]['logo'] = $mid;
+        }
+      }
+    }
+
+    $variables['colspan'] = $colspan;
   }
 }
 
