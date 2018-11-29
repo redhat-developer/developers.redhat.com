@@ -1,0 +1,40 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  <div class="container">
+    
+    <div class="grid">
+      <div class="signup-hero-content">
+        {{ content.field_title }}
+        {% if content %}
+          {{ content.field_content }}
+        {% endif %}
+      </div>
+      <div class="signup-box-wrapper">
+        <div class="signup-box">
+          <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page"><img class="rh-logo" alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/Red_Hat_RGB.svg"></a>
+          {{ content.field_sign_up_box_title }}
+          {{ content.field_sign_up_box_content }}
+          <a href="https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/registrations?client_id=web&redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F%2Fconfirmation&state=9631c0f0-e1d7-43e9-bef5-f3a8607918b1&nonce=e75bf243-0dd1-41cc-85c3-23a6ba430d32&response_mode=fragment&response_type=code&user-profile-level={{content.field_profile_level.0}}" class="button heavy-cta">Sign Up</a>
+          <p>Already have an account? <a class="signup-link" href="https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/auth?client_id=web&redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F&state=a004b532-582e-46b5-815c-e8dc282ebb69&nonce=63fcf606-12ba-4856-bc3c-c3f068c1c349&response_mode=fragment&response_type=code&scope=openid">Sign in now</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

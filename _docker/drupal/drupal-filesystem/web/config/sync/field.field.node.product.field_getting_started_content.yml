@@ -1,0 +1,56 @@
+uuid: 69c49e0c-883e-4b5b-86c9-efa9497a5507
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.dynamic_content_list
+    - assembly.assembly_type.featured_resources
+    - assembly.assembly_type.hero
+    - assembly.assembly_type.learning_paths
+    - assembly.assembly_type.on_page_navigation
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_try_it_hero
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.video_hero
+    - field.storage.node.field_getting_started_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_getting_started_content
+field_name: field_getting_started_content
+entity_type: node
+bundle: product
+label: 'Getting Started Page Content'
+description: 'This assembly reference field displays content at the URL pattern /products/[url-product-code]/getting-started e.g. /products/rhamt/getting-started when the Use New Product Pages field is checked.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      call_to_action: call_to_action
+      static_content_band: static_content_band
+      dynamic_content_feed: dynamic_content_feed
+      dynamic_content_list: dynamic_content_list
+      featured_resources: featured_resources
+      hero: hero
+      learning_paths: learning_paths
+      on_page_navigation: on_page_navigation
+      product_download_hero: product_download_hero
+      product_try_it_hero: product_try_it_hero
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+      content_with_image: content_with_image
+      video_hero: video_hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: call_to_action
+field_type: entity_reference_revisions

@@ -1,0 +1,23 @@
+uuid: f8b4ce69-72ee-437e-a0cd-636c39d2b44a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.assembly.field_try_it_link
+  module:
+    - link
+id: assembly.product_try_it_hero.field_try_it_link
+field_name: field_try_it_link
+entity_type: assembly
+bundle: product_try_it_hero
+label: 'Try It Link'
+description: 'It is recommend that you use “Try It” here, as this is what will be displayed for the Call-to-Action.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

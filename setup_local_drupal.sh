@@ -21,7 +21,7 @@ php <<'DBCHECK'
 $conn = NULL;
 while ($conn === NULL) {
     try {
-        $conn = new PDO('mysql:host=docker;dbname=drupal', 'drupal', 'drupal');
+        $conn = new PDO('mysql:host=docker;dbname=rhd_mysql', 'drupal', 'drupal');
         $conn->query('SELECT 1;');
     } catch (PDOException $exception) {
         sleep(5);
