@@ -82,6 +82,20 @@ class ProductsGettingStartedController extends ControllerBase {
   }
 
   /**
+   * Retrieves the page title for this entity.
+   */
+  public function getTitle($product_url_name) {
+    // Retrieves an array of nids of nodes with a Product URL Name equal to
+    // $product_url_name. This field should be unique, so there should be 1.
+    $products = $this->downloadManagerApi->getProductNodesByProductUrlName($product_url_name);
+
+    // Grab the first (and should be only) product loaded from the query.
+    if ($product = reset($products)) {
+      return $product->label() . ' Getting Started';
+    }
+  }
+
+  /**
    * Build and return the content of a Product's Getting Started page.
    */
   public function content($product_url_name) {
