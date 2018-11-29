@@ -22,7 +22,7 @@ services:
     environment:
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=drupal
-      - MYSQL_DATABASE=drupal
+      - MYSQL_DATABASE=rhd_mysql
       - MYSQL_ROOT_PASSWORD=superdupersecret
     volumes:
       - ./mariadb/my.cnf:/etc/mysql/my.cnf
