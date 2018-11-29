@@ -12,7 +12,7 @@ $settings['install_profile'] = 'standard';
 $config_directories['sync'] = 'sites/default/files/config_BbPlfGDu86LJqlRwhA9RbCf38VZMDijNF-owvfhuzVL73hk7BtWwy3kfIlqKLXeiSgTA-MHeVw/sync';
 
 $databases['default']['default'] = array (
-  'database' => 'drupal',
+  'database' => 'rhd_mysql',
   'username' => 'drupal',
   'password' => 'drupal',
   'prefix' => 'lightning_',
