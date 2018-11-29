@@ -19,7 +19,7 @@ if (file_exists(__DIR__ . '/rhd.settings.yml')) {
 }
 
 $databases['default']['default'] = array (
-  'database' => 'drupal',
+  'database' => 'rhd_mysql',
   'username' => 'drupal',
   'password' => 'drupal',
   'prefix' => 'lightning_',
