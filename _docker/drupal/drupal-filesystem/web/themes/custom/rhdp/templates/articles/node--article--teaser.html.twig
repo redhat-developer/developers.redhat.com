@@ -1,18 +1,24 @@
-<div class="row">
-  {% set content_class = (content.field_image|render) ? 'medium-18' : 'small-24' %}
-
-  {% if content.field_image|render %}
-    <div class="article-teaser-image columns medium-6">
-      {{ content.field_image }}
+{% set classes = [
+    'rhd-list-entry',
+] %}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+    <div class="text-content">
+        <h3 class="rhd-list-entry--title"><a href="{{ url }}">{{ label }}</a></h3>
+        <div class="rhd-list-entry--date">{{ node.createdtime|format_date('date_only') }}</div>
+        <div class="rhd-list-entry--summary">
+        {% if content.field_long_description|render %}
+          <p>{{content.field_long_description}}</p>
+        {% elseif content.field_short_description|render %}
+          <p>{{content.field_short_description}}</p>
+        {% endif %}
+        {{ content|without('field_long_description', 'field_short_description', 'field_image') }}
+        <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>
+        </div>
     </div>
-  {% endif %}
-
-  <div class="article-teaser-content columns {{ content_class }}">
-    <h5><a href="{{ url }}">{{ label }}</a></h5>
-    {% if content.field_long_description|render %}
-      <p>{{content.field_long_description}}</p>
-    {% elseif content.field_short_description|render %}
-      <p>{{content.field_short_description}}</p>
+    {% if content.field_image|render %}
+        <div class="rhd-list-entry--image">
+          {{ content.field_image }}
+        </div>
     {% endif %}
-  </div>
-</div>
+</article>
