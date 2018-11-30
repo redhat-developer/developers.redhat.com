@@ -1,0 +1,47 @@
+uuid: 85fadf80-7359-4cb2-a05f-08deec16a9b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.storage.assembly.field_drupal_term_filter
+    - taxonomy.vocabulary.audience_segment
+    - taxonomy.vocabulary.business_unit
+    - taxonomy.vocabulary.campaign
+    - taxonomy.vocabulary.lifecycle
+    - taxonomy.vocabulary.product
+    - taxonomy.vocabulary.product_line
+    - taxonomy.vocabulary.project
+    - taxonomy.vocabulary.promotion
+    - taxonomy.vocabulary.region
+    - taxonomy.vocabulary.stage
+id: assembly.collection.field_drupal_term_filter
+field_name: field_drupal_term_filter
+entity_type: assembly
+bundle: collection
+label: 'Purpose Attributes'
+description: 'Choose one or more purpose attributes to filter the content displayed.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      audience_segment: audience_segment
+      business_unit: business_unit
+      campaign: campaign
+      lifecycle: lifecycle
+      product: product
+      product_line: product_line
+      project: project
+      promotion: promotion
+      region: region
+      stage: stage
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: audience_segment
+field_type: entity_reference

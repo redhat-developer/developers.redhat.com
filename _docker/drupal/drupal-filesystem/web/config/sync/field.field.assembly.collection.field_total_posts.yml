@@ -1,0 +1,23 @@
+uuid: 22c18362-bf05-42ab-9e56-95a61f3780dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.storage.assembly.field_total_posts
+  module:
+    - options
+id: assembly.collection.field_total_posts
+field_name: field_total_posts
+entity_type: assembly
+bundle: collection
+label: 'Items to Display'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '4'
+default_value_callback: ''
+settings: {  }
+field_type: list_string
