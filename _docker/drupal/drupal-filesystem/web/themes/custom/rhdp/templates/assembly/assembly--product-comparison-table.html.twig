@@ -15,9 +15,11 @@
                   <h5>{{ product.title }}</h5>
                 {% endif %}
                 {% if product.cta is not empty %}
-                  <span class="heading-link">
-                    {{ link(product.cta.title, product.cta.uri, product.cta.options) }} <i class="fas fa-caret-right"></i>
-                  </span>
+                  {% if product.cta.uri is not empty %}
+                    <span class="heading-link">
+                      {{ link(product.cta.title, product.cta.uri, product.cta.options) }} <i class="fas fa-caret-right"></i>
+                    </span>
+                  {% endif %}
                 {% endif %}
               </div>
             </th>
@@ -32,9 +34,11 @@
                   <h5>{{ sub_product.title }}</h5>
                 {% endif %}
                 {% if sub_product.cta is not empty %}
-                  <span class="heading-link">
-                    <i class="fas fa-external-link-alt"></i> {{ link(sub_product.cta.title, sub_product.cta.uri, sub_product.cta.options) }}
-                  </span>
+                  {% if sub_product.cta.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fas fa-external-link-alt"></i> {{ link(sub_product.cta.title, sub_product.cta.uri, sub_product.cta.options) }}
+                    </span>
+                  {% endif %}
                 {% endif %}
               </div>
             </th>
@@ -50,16 +54,19 @@
                 {% endif %}
                 {# Link to Project #}
                 {% if upstream_project.link_to_project is not empty %}
-                  <span class="heading-link">
-                    <i class="fas fa-external-link-alt"></i> {{ link(upstream_project.link_to_project.title, upstream_project.link_to_project.uri, upstream_project.link_to_project.options) }}
-                  </span>
+                  {% if upstream_project.link_to_project.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fas fa-external-link-alt"></i> {{ link(upstream_project.link_to_project.title, upstream_project.link_to_project.uri, upstream_project.link_to_project.options) }}
+                    </span>
+                  {% endif %}
                 {% endif %}
                 {# Link to GitHub Repo #}
                 {% if upstream_project.link_to_repo is not empty %}
-                  <span class="heading-link">
-                    <i class="fab fa-github"></i> {{ link(upstream_project.link_to_repo.title, upstream_project.link_to_repo.uri, upstream_project.link_to_repo.options) }}
-                  </span>
-
+                  {% if upstream_project.link_to_repo.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fab fa-github"></i> {{ link(upstream_project.link_to_repo.title, upstream_project.link_to_repo.uri, upstream_project.link_to_repo.options) }}
+                    </span>
+                  {% endif %}
                 {% endif %}
               </div>
             </th>
