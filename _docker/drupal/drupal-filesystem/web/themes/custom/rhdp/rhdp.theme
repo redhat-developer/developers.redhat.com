@@ -787,6 +787,17 @@ function rhdp_preprocess_assembly(&$variables) {
 
     $variables['colspan'] = $colspan;
   }
+
+  // Embedded Content assembly type.
+  if ($type == 'embedded_content') {
+    $field_url = $assembly->get('field_url')->getValue();
+    $embed_url = $field_url[0]['uri'];
+    $variables['embed_url'] = FALSE;
+
+    if ($embed_url) {
+      $variables['embed_url'] = $embed_url;
+    }
+  }
 }
 
 /**
@@ -803,18 +814,6 @@ function rhdp_preprocess_views_view(&$variables) {
 
     if ($title) {
       $variables['title'] = $title;
-    }
-
-    // TODO: This will throw an error and must be in the wrong place within this
-    // file. Where should this conditional be within this file?
-    if ($type == 'embedded_content') {
-      $field_url = $assembly->get('field_url')->getValue();
-      $embed_url = $field_url[0]['uri'];
-      $variables['embed_url'] = FALSE;
-
-      if ($embed_url) {
-        $variables['embed_url'] = $embed_url;
-      }
     }
   }
 }
