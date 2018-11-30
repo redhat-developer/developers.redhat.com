@@ -22,6 +22,16 @@ dependencies:
     - field.field.node.article.field_related_articles
     - field.field.node.article.field_short_description
     - field.field.node.article.field_tags
+    - field.field.node.article.field_tax_audience_segment
+    - field.field.node.article.field_tax_business_unit
+    - field.field.node.article.field_tax_campaign
+    - field.field.node.article.field_tax_lifecycle
+    - field.field.node.article.field_tax_product
+    - field.field.node.article.field_tax_product_line
+    - field.field.node.article.field_tax_project
+    - field.field.node.article.field_tax_promotion
+    - field.field.node.article.field_tax_region
+    - field.field.node.article.field_tax_stage
     - field.field.node.article.field_topics
     - image.style.large
     - node.type.article
@@ -42,6 +52,22 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_author_evangelist:
+    type: entity_reference_entity_view
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      view_mode: tile
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_image:
     type: image
     weight: 1
@@ -95,7 +121,6 @@ hidden:
   body: true
   field_article_highlights: true
   field_article_type: true
-  field_author_evangelist: true
   field_author_name: true
   field_card_image: true
   field_content: true

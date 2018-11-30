@@ -5,6 +5,8 @@ dependencies:
   config:
     - assembly.assembly_type.dynamic_content_list
     - field.storage.assembly.field_drupal_term_filter
+    - taxonomy.vocabulary.product
+    - taxonomy.vocabulary.tags
     - taxonomy.vocabulary.topics
 id: assembly.dynamic_content_list.field_drupal_term_filter
 field_name: field_drupal_term_filter
@@ -20,10 +22,12 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
+      product: product
+      tags: tags
       topics: topics
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: product
 field_type: entity_reference

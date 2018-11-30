@@ -8,6 +8,7 @@
     <h3 {{ title_attributes.addClass(['rhd-list-entry--title']) }}><a {{ content_attributes }} href="{{ url }}">{{ label }}</a></h3>
     {{ title_suffix }}
     <div {{ content_attributes.addClass('rhd-list-entry--summary') }}>{{ content.field_short_description }}</div>
+    <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>
   </div>
   {% if video_thumbnail_url %}
     <div class="rhd-list-entry--image">
@@ -17,5 +18,4 @@
       <div class="rhd-play-button"><span>►</span></div>
     </div>
   {% endif %}
-  <div class="rhd-list-entry--comment-link"><a href="{{ url }}#comments"><span class="fa fa-comment"></span> Leave a comment</a></div>
 </article>
