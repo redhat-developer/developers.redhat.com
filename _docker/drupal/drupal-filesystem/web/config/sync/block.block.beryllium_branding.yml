@@ -1,0 +1,25 @@
+uuid: 18b56d38-8564-4bc5-870c-dd81c921d52d
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: juCWi7ykYE3dDXqMD1BJOshQs88zKHvsJZed-_LFYp4
+id: beryllium_branding
+theme: beryllium
+region: header
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

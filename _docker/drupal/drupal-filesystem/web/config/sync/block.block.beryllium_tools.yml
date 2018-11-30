@@ -1,0 +1,26 @@
+uuid: 4c053750-94a8-4043-9fd9-80db0ad454ce
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: gRGE27jUsBQ9VAwx0bRLXL0Uhl0qruEsBNjlYKQvvqk
+id: beryllium_tools
+theme: beryllium
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

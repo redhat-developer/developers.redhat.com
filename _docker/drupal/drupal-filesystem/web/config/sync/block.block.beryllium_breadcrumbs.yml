@@ -1,0 +1,22 @@
+uuid: 9c65c6e8-d050-4945-ba24-8b239810d309
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: WSzvZw63QLZuvZXJC8DV-zoyKpIqtfRtY0QQGUtcNjo
+id: beryllium_breadcrumbs
+theme: beryllium
+region: header
+weight: -100
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

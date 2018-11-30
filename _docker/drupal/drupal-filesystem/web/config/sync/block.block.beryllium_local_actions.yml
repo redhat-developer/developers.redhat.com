@@ -1,0 +1,20 @@
+uuid: 0eaabdc7-aae1-4151-a6a6-5f16fae1d0e8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - beryllium
+_core:
+  default_config_hash: nuu0NkCQpBhlPu6Gb6DQ44rE8bFLdXkHB7I20wEFWKk
+id: beryllium_local_actions
+theme: beryllium
+region: header
+weight: -6
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
