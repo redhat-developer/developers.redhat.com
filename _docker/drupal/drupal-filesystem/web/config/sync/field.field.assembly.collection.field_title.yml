@@ -1,0 +1,19 @@
+uuid: 0047eacc-0948-4041-819f-597af5feb630
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.storage.assembly.field_title
+id: assembly.collection.field_title
+field_name: field_title
+entity_type: assembly
+bundle: collection
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

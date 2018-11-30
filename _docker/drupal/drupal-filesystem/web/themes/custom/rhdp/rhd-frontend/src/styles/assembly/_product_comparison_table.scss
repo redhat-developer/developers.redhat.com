@@ -1,0 +1,109 @@
+.assembly-type-product_comparison_table {
+  .container {
+    overflow: hidden;
+  }
+  .table {
+    overflow: auto;
+  }
+  table {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border: collapse;
+    background-color: $grey-1;
+  }
+  thead > tr > th::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+  }
+  th {
+    text-align: center;
+    padding: 5px;
+    top: 0;
+    position: sticky;
+    min-width: 15rem;
+    max-width: 15rem;
+    svg,
+    a ~ svg {
+      color: $link;
+    }
+    .th-content {
+      background-color: $white;
+      height: initial;
+      min-height: 175px;
+      padding: 20px;
+
+    }
+    &:first-of-type {
+      background-color: $white;
+      left: 0;
+      z-index: 3;
+    }
+  }
+  th:first-child,
+  td:first-child {
+    min-width: 15rem;
+    @media screen and (max-width: 768px) {
+      min-width: 9rem;
+    }
+  }
+  td {
+    border-top: 1px solid $grey-2;
+    border-bottom: 1px solid $grey-2;
+    border-right: 4px solid $white;
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+
+    &.checked {
+      color: $green;
+      font-size: 1.5rem;
+    }
+    &.unchecked {
+      color: $gray-4;
+      font-size: 1.5rem;
+    }
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+  th:first-of-type,
+  td:first-of-type {
+    top: 0;
+    left: 0;
+    position: sticky;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -1px;
+      height: 100%;
+    }
+  }
+  tr {
+    background-color: $grey-1;
+    &.release-row td:first-of-type {
+      font-weight: 800;
+    }
+    &.release-row td:first-of-type,
+    &.feature-row td:first-of-type {
+      background-color: $white;
+      padding: 20px 30px 20px 0;
+      text-align: left;
+      border-right: 4px solid #fff;
+    }
+  }
+  tr:last-of-type td {
+      border-bottom: none;
+  }
+  h5 {
+    margin: 0;
+  }
+  .heading-link {
+    display: block;
+    margin-top: 8px;
+  }
+}

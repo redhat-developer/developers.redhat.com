@@ -125,21 +125,24 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     }
 
     $valid_node_types = [
-      'video_resource'
+      'video_resource',
+      'article',
     ];
 
-    $query = \Drupal::database()->select('node__field_topics', 't');
-    $query->fields('t', ['entity_id']);
-    $query->condition('t.field_topics_target_id', $terms, 'in');
-    $query->leftJoin('node', 'n', 'n.nid = t.entity_id');
+    $query = \Drupal::database()->select('taxonomy_index', 't');
+    $query->fields('t', ['nid']);
+    $query->condition('t.tid', $terms, 'in');
+    $query->leftJoin('node', 'n', 'n.nid = t.nid');
     $query->condition('n.type', $valid_node_types, 'in');
+    $query->join('node_field_data', 'nfd', 'n.nid = nfd.nid');
+    $query->condition('nfd.status', 1);
     $query->range(0, $count);
-    $query->orderBy('t.entity_id', 'desc');
+    $query->orderBy('nfd.created', 'desc');
     $results = $query->execute();
 
     $nodes = [];
     foreach ($results as $result) {
-      $node_id = $result->entity_id;
+      $node_id = $result->nid;
       $nodes[$node_id] = Node::load($node_id);
     }
 
