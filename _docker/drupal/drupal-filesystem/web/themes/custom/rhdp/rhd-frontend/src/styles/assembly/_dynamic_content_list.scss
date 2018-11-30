@@ -47,6 +47,7 @@
     &>li {
       margin: 0;
       border-bottom: 1px dashed #CCC;
+      margin-bottom: 10px;
       &:last-child {
         border-bottom: none;
       }
@@ -150,7 +151,7 @@
     line-height: 1.5;
   }
 
-  @include tablet-portrait {
+  @include desktop-small {
     grid-template-rows: unset;
     grid-template-columns: 35% auto;
     align-items: start;
@@ -231,7 +232,7 @@
 .rhd-list-entry--image {
   position: relative;
   margin-bottom: 10px;
-  @include tablet-portrait {
+  @include desktop-small {
     grid-column: 1;
     grid-row: 1;
     margin-bottom: 0;
