@@ -14,8 +14,9 @@
                 {% endif %}
             </li>
             <li>
-                {% if node.field_video_publish_date.value %}
-                    <small>Published: {{ node.field_video_publish_date.value|date('D, m/d/Y') }}</small>
+                {% set calc_date = node.field_video_publish_date.value is not empty ? node.field_video_publish_date : node.published_at %}
+                {% if calc_date and calc_date.value is not empty %}
+                    <small>Published: <rh-datetime datetime="{{calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime></small>
                 {% endif %}
             </li>
             <li class="right share-sm">
