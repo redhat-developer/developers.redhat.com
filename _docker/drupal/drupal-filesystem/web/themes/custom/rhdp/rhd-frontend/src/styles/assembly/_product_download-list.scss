@@ -1,0 +1,58 @@
+.assembly-type-product_download_list {
+  h2 {
+    margin: 100px 15px;
+  }
+  .product-version {
+    margin: 15px;
+  }
+  .product-version__version-name {
+    margin-bottom: 30px;
+  }
+  .product-version__file.row {
+    border: 1px solid $grey-3;
+    padding: 20px 30px;
+    margin: 30px 0 0 0;
+    &:last-child {
+      margin-bottom: 50px;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .file-label-wrapper {
+    border-right: 1px solid $grey-3;
+    @media screen and (max-width: 1024px) {
+      border-right: none;
+    }
+  }
+  .product-version__file-label {
+    @media screen and (max-width: 1024px) {
+      margin: 0;
+    }    
+  }
+  .product-version__release-date-header {
+    display: block;
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+  .product-version__release-date, .file-size {
+    color: #808080;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .production-version__file-button,
+  .production-version__file-button .file-size {
+    display: block;
+    margin: 0 auto;
+    max-width: 245px;
+  }
+  .production-version__file-button:hover,
+  .production-version__file-button:active,
+  .production-version__file-button:focus,
+  .production-version__file-button:hover .file-size,
+  .production-version__file-button:active .file-size,
+  .production-version__file-button:focus .file-size{
+    color: $white;
+  }
+}

@@ -1,0 +1,70 @@
+uuid: b483fb5c-acff-42d3-94d2-0730deabfac0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content
+    - assembly.assembly_type.content_image
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.cta_form
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.dynamic_content_list
+    - assembly.assembly_type.featured_products
+    - assembly.assembly_type.featured_resources
+    - assembly.assembly_type.hero
+    - assembly.assembly_type.learning_paths
+    - assembly.assembly_type.node_reference
+    - assembly.assembly_type.on_page_navigation
+    - assembly.assembly_type.product_comparison_table
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_download_list
+    - assembly.assembly_type.product_try_it_hero
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.video_hero
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.node.field_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_content
+field_name: field_content
+entity_type: node
+bundle: product
+label: Content
+description: 'This assembly reference field will display content on the Product page if the Use New Product Page field is checked.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      cta_form: cta_form
+      content: content
+      content_image: content_image
+      static_content_band: static_content_band
+      featured_products: featured_products
+      dynamic_content_feed: dynamic_content_feed
+      dynamic_content_list: dynamic_content_list
+      featured_resources: featured_resources
+      hero: hero
+      learning_paths: learning_paths
+      node_reference: node_reference
+      on_page_navigation: on_page_navigation
+      product_download_hero: product_download_hero
+      product_download_list: product_download_list
+      product_comparison_table: product_comparison_table
+      product_try_it_hero: product_try_it_hero
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+      content_with_image: content_with_image
+      video_hero: video_hero
+      wordpress_post_reference: wordpress_post_reference
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: cta_form
+field_type: entity_reference_revisions

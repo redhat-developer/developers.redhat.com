@@ -1,0 +1,28 @@
+uuid: 08569c56-53a5-4ff2-8b0c-147ade4da474
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.storage.assembly.field_products
+    - node.type.product
+id: assembly.product_comparison_table.field_products
+field_name: field_products
+entity_type: assembly
+bundle: product_comparison_table
+label: Products
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

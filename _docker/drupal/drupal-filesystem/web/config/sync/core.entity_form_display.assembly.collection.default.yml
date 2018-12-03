@@ -1,0 +1,69 @@
+uuid: fa454f3c-6637-4a1d-a0f5-7fdcae2a3fb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.field.assembly.collection.field_audience_selection
+    - field.field.assembly.collection.field_drupal_term_filter
+    - field.field.assembly.collection.field_show_pagination
+    - field.field.assembly.collection.field_title
+    - field.field.assembly.collection.field_total_posts
+id: assembly.collection.default
+targetEntityType: assembly
+bundle: collection
+mode: default
+content:
+  field_drupal_term_filter:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_show_pagination:
+    weight: 6
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_total_posts:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_audience_selection: true
+  moderation_state: true
+  user_id: true

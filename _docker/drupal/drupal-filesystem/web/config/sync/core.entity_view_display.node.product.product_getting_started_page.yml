@@ -1,0 +1,97 @@
+uuid: 8153d994-4e5d-4cc2-b989-b3aa79a3cde7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.product_getting_started_page
+    - field.field.node.product.field_call_to_action_link
+    - field.field.node.product.field_card_image
+    - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
+    - field.field.node.product.field_image
+    - field.field.node.product.field_meta_tags
+    - field.field.node.product.field_product_categories
+    - field.field.node.product.field_product_category
+    - field.field.node.product.field_product_machine_name
+    - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
+    - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_share_image
+    - field.field.node.product.field_short_description
+    - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_tax_audience_segment
+    - field.field.node.product.field_tax_business_unit
+    - field.field.node.product.field_tax_campaign
+    - field.field.node.product.field_tax_lifecycle
+    - field.field.node.product.field_tax_product
+    - field.field.node.product.field_tax_product_line
+    - field.field.node.product.field_tax_project
+    - field.field.node.product.field_tax_promotion
+    - field.field.node.product.field_tax_region
+    - field.field.node.product.field_tax_stage
+    - field.field.node.product.field_url_product_name
+    - node.type.product
+  module:
+    - entity_reference_revisions
+    - metatag
+    - user
+_core:
+  default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
+id: node.product.product_getting_started_page
+targetEntityType: node
+bundle: product
+mode: product_getting_started_page
+content:
+  field_getting_started_content:
+    weight: 1
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_meta_tags:
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
+    region: content
+  workbench_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_call_to_action_link: true
+  field_card_image: true
+  field_content: true
+  field_downloads_page_content: true
+  field_image: true
+  field_product_categories: true
+  field_product_category: true
+  field_product_machine_name: true
+  field_product_pages: true
+  field_product_short_name: true
+  field_product_summary: true
+  field_product_technology_group: true
+  field_share_image: true
+  field_short_description: true
+  field_stackoverflow_product_refe: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_url_product_name: true
+  field_use_new_product_page: true
+  links: true
+  published_at: true

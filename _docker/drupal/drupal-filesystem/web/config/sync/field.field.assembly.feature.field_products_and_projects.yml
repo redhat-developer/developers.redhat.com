@@ -1,0 +1,32 @@
+uuid: 972f6b35-f028-41b5-b65d-91e07fa65c3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.feature
+    - field.storage.assembly.field_products_and_projects
+    - node.type.product
+    - node.type.sub_product
+    - node.type.upstream_projects
+id: assembly.feature.field_products_and_projects
+field_name: field_products_and_projects
+entity_type: assembly
+bundle: feature
+label: 'Products and Projects with feature'
+description: 'All of the Sub-Products, Products and Upstream Projects that have this feature'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      product: product
+      sub_product: sub_product
+      upstream_projects: upstream_projects
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: product
+field_type: entity_reference

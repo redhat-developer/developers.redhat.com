@@ -21,7 +21,7 @@ php <<'DBCHECK'
 $conn = NULL;
 while ($conn === NULL) {
     try {
-        $conn = new PDO('mysql:host=docker;dbname=drupal', 'drupal', 'drupal');
+        $conn = new PDO('mysql:host=docker;dbname=rhd_mysql', 'drupal', 'drupal');
         $conn->query('SELECT 1;');
     } catch (PDOException $exception) {
         sleep(5);
@@ -54,21 +54,34 @@ echo "\nAdding the active config from the prod dump"
 rm -rf ${WEB}/config/active
 mkdir ${WEB}/config/active
 
-sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/config/active ${WEB}/config
-sudo chown -R ${USER}:${GROUP} ${WEB}/config/active
+# Get the running docker full name from partial name
+runingDockerName=$(docker ps --format '{{.Names}}' --filter 'name=drupaldev_drupalmysql_' | head -n 1)
 
-echo "Adding site/files"
-sudo docker cp drupaldev_drupal_data_1:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
-sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
+if [ $runingDockerName == "" ]
+then
+    echo "No Container found"
+    exit 1
+else
+    echo "Found Container: $runingDockerName"
+fi
+
+#Test contaner found starts with correct name exit script if not
+if [[ $runingDockerName == drupaldev_drupalmysql_* ]]
+then
+    echo "We have a container of the correct name"
+    sudo docker cp $runingDockerName:/var/www/drupal/web/config/active ${WEB}/config
+    sudo chown -R ${USER}:${GROUP} ${WEB}/config/active
+    echo "Adding site/files"
+    sudo docker cp $runingDockerName:/var/www/drupal/web/sites/default/files ${WEB}/sites/default
+    sudo chown -R ${USER}:${GROUP} ${WEB}/sites/default/files
+else
+    echo "Cant find Docker container starting with drupaldev_drupalmysql_"
+    exit 1
+fi
 
 echo "Building css/js for theme"
 cd ${THEME}/rhd-frontend
 npm install && npm run-script build 
-cd ${PROJ}
-
-echo "Running DB Migrations"
-cd ${DRUPAL_FILESYSTEM}
-vendor/bin/phinx migrate
 cd ${PROJ}
 
 echo "Sanitizing the database"
@@ -92,6 +105,11 @@ ${WEB}/../vendor/bin/drush --root=${WEB} cr
 
 echo "Running drush cim"
 ${WEB}/../vendor/bin/drush --root=${WEB} -y cim
+
+echo "Running DB Migrations"
+cd ${DRUPAL_FILESYSTEM}
+vendor/bin/phinx migrate
+cd ${PROJ}
 
 echo "Starting the server"
 ${WEB}/../vendor/bin/drush --root=${WEB} rs

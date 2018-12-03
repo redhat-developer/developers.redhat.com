@@ -1,0 +1,19 @@
+uuid: 92a8d164-3a3d-4add-a592-fc003c47382f
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_link_to_project
+field_name: field_link_to_project
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

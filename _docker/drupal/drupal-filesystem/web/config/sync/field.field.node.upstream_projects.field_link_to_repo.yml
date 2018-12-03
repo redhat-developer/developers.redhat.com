@@ -1,0 +1,23 @@
+uuid: ad371163-c381-40e4-b4a4-db8b4e55bc4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link_to_repo
+    - node.type.upstream_projects
+  module:
+    - link
+id: node.upstream_projects.field_link_to_repo
+field_name: field_link_to_repo
+entity_type: node
+bundle: upstream_projects
+label: 'Link to repo'
+description: 'A link to the project''s git repository'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

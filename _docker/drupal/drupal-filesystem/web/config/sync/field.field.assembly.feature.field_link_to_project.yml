@@ -1,0 +1,23 @@
+uuid: 9ffbb310-ac1e-4d4f-82b7-d041bf664c74
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.feature
+    - field.storage.assembly.field_link_to_project
+  module:
+    - link
+id: assembly.feature.field_link_to_project
+field_name: field_link_to_project
+entity_type: assembly
+bundle: feature
+label: 'Link to more information on this feature'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

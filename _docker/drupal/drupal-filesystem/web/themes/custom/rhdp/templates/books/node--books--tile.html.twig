@@ -1,0 +1,17 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <a href="{{ url }}">
+  {% if content.field_cover_image|render %}
+    <div class="tile-image-wrapper">
+      {{ content.field_cover_image }}
+    </div>
+  {% endif %}
+    <h3 class="tile-title">{{ label }}</h3>
+  </a>
+</article>

@@ -1,0 +1,23 @@
+uuid: 47184755-c89b-4022-9775-d3b1342449b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.collection
+    - field.storage.assembly.field_show_pagination
+id: assembly.collection.field_show_pagination
+field_name: field_show_pagination
+entity_type: assembly
+bundle: collection
+label: 'Show Pager'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: bd8bfc8d-5071-413a-94f8-29e4d3d79cc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cta
+    - node.type.sub_product
+  module:
+    - link
+id: node.sub_product.field_cta
+field_name: field_cta
+entity_type: node
+bundle: sub_product
+label: CTA
+description: 'A call-to-action link for this sub-product e.g. "Try It" or "Download Latest"'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

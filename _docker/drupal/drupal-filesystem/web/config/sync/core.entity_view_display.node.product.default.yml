@@ -5,6 +5,9 @@ dependencies:
   config:
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_content
+    - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -28,6 +31,7 @@ dependencies:
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
+    - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
     - entity_reference_revisions
@@ -70,6 +74,33 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_content:
+    weight: 14
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_downloads_page_content:
+    weight: 12
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_getting_started_content:
+    weight: 13
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
   field_meta_tags:
     weight: 11
@@ -140,6 +171,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_use_new_product_page:
+    weight: 15
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   workbench_moderation_control:
     weight: 0

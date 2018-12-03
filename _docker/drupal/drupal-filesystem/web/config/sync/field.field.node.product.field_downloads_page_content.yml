@@ -1,0 +1,40 @@
+uuid: 3839298d-a808-412f-bf11-060cbc234efe
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_download_list
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - field.storage.node.field_downloads_page_content
+    - node.type.product
+  module:
+    - entity_reference_revisions
+id: node.product.field_downloads_page_content
+field_name: field_downloads_page_content
+entity_type: node
+bundle: product
+label: 'Downloads Page Content'
+description: 'This assembly reference field displays content at the url pattern /products/[url-product-code]/downloads e.g. /products/rhamt/downloads when the Use New Product Page field is checked.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      call_to_action: call_to_action
+      product_download_hero: product_download_hero
+      product_download_list: product_download_list
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+      content_with_image: content_with_image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: product_download_hero
+field_type: entity_reference_revisions

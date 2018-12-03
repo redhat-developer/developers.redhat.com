@@ -1,0 +1,23 @@
+uuid: ce948147-4846-40a6-9ffb-5259d15f3be8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.sign_up_hero
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.sign_up_hero.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: sign_up_hero
+label: 'Audience Selection'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: unauthenticated
+default_value_callback: ''
+settings: {  }
+field_type: list_string

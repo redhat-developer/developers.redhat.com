@@ -1,0 +1,21 @@
+uuid: 8eae5591-6a11-4517-be44-c9fff44bd434
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.product_try_it_hero.field_content
+field_name: field_content
+entity_type: assembly
+bundle: product_try_it_hero
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,23 @@
+uuid: 920d628d-d226-4c7d-a50f-2adf737fd405
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link_to_project
+    - node.type.upstream_projects
+  module:
+    - link
+id: node.upstream_projects.field_link_to_project
+field_name: field_link_to_project
+entity_type: node
+bundle: upstream_projects
+label: 'Link to project'
+description: 'A link to the project''s website'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
