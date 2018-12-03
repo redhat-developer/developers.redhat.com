@@ -3710,7 +3710,7 @@ System.register("@rhd/rhdp-search/rhdp-search-result-count", [], function (expor
                 });
                 RHDPSearchResultCount.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
-                    this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
+                    this.innerHTML = this.count + " results found" + (this.term ? " for " + this.term : '');
                 };
                 RHDPSearchResultCount.prototype._setText = function (e) {
                     if (e.detail) {
@@ -10547,11 +10547,15 @@ app.equalizeBottoms = function ($selector) {
     $selector.first().trigger('resize');
 };
 app.stickyNav = function (className, headerElement) {
-    var nav = $('.' + className + '-nav'), win = $(window);
+    var nav = $('.' + className + '-nav');
     if (!nav.length) {
         return;
     }
-    var html = "", top = nav.offset().top, select = $("<select>").append('<option selected value="">Choose a section</option>');
+    var win = $(window);
+    var resizeTimer;
+    var html = "";
+    var top = nav.offset().top;
+    var select = $("<select>").append('<option selected value="">Choose a section</option>');
     $('.' + className + ' ' + headerElement).each(function (i, el) {
         var replace_id = $(this).text().replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
         $(this).attr('id', replace_id);
@@ -10560,7 +10564,15 @@ app.stickyNav = function (className, headerElement) {
     });
     nav.html(html);
     nav.after(select);
-    win.on("scroll", function () {
+    win.on("resize", function (e) {
+        nav.removeClass(className + "-nav-fixed").css('width', 'auto');
+        top = nav.offset().top;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            positionNav();
+        }, 500);
+    });
+    function positionNav() {
         if (win.scrollTop() >= (top)) {
             var width = nav.parent().width();
             nav.addClass(className + "-nav-fixed").css('width', width);
@@ -10568,8 +10580,9 @@ app.stickyNav = function (className, headerElement) {
         else {
             nav.removeClass(className + "-nav-fixed").css('width', 'auto');
         }
-        $('.' + className + ' ' + headerElement).each(function (i, el) {
-            var el = $(this), top = el.offset().top, id = el.attr('id');
+        $('.' + className + ' ' + headerElement).each(function () {
+            var el = $(this);
+            var id = el.attr('id');
             if (win.scrollTop() >= (el.offset().top - 15)) {
                 $('a[href="#' + id + '"]').addClass('past-block');
             }
@@ -10578,6 +10591,9 @@ app.stickyNav = function (className, headerElement) {
             }
         });
         $('.past-block').not(':last').removeClass('past-block');
+    }
+    win.on("scroll", function () {
+        positionNav();
     });
     $(select).on('change', function () {
         var header = $(this).find('option:selected').val();
@@ -10589,9 +10605,14 @@ app.stickyNav = function (className, headerElement) {
     });
 };
 app.stickyFooter = function () {
-    var bodyHeight = $('body').height(), windowHeight = $(window).height(), wrapper = $('.wrapper');
+    var bodyHeight = $('body').height();
+    var windowHeight = $(window).height();
+    var wrapper = $('.wrapper');
     if (bodyHeight < windowHeight) {
-        var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight(), footerHeight = $('footer.bottom').outerHeight(), devHeight = $('.under-development').outerHeight(), wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
+        var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight();
+        var footerHeight = $('footer.bottom').outerHeight();
+        var devHeight = $('.under-development').outerHeight();
+        var wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
         wrapper.css('min-height', wrapperHeight);
     }
 };
@@ -10604,7 +10625,7 @@ app.sideNav = function () {
 $(function () {
     app.init();
     app.sideNav();
-    stickySections = { 'faq': 'h2', 'gsi': 'h2' };
+    var stickySections = { 'faq': 'h2', 'gsi': 'h2' };
     for (var key in stickySections) {
         app.stickyNav(key, stickySections[key]);
     }

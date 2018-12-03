@@ -243,8 +243,8 @@ div.alert-box {
   text-align: center; }
   .author.short-teaser .author-name {
     font-size: 14px;
-    background-color: #FFF;
-    color: #0066CC;
+    background-color: #FFFFFF;
+    color: #424242;
     padding: 6px 13px;
     text-transform: uppercase;
     display: inline-block;
@@ -2049,7 +2049,7 @@ a.light-cta {
   .assembly-type-content_image {
     width: 869px; } }
 
-code.hljs span {
+.hljs span {
   font-family: monospace, serif; }
 
 .assembly[data-audience] {
@@ -8843,7 +8843,9 @@ ul.toc {
       border-bottom: 0;
       margin: 0; }
       .multipath-tabs-sm ul.tabs.nav-tabs li.active {
-        border-color: #BDBDBD;
+        border-left: 1px solid #BDBDBD;
+        border-top: 1px solid #BDBDBD;
+        border-right: 1px solid #BDBDBD;
         border-bottom: 1px solid #fff;
         position: relative;
         bottom: -1px; }
@@ -11038,6 +11040,16 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         font-size: 27px; } }
   #rhd-article .article-content h1:first-child, #rhd-article .article-content h2:first-child, #rhd-article .article-content h3:first-child, #rhd-article .article-content h4:first-child, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2:first-child, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2:first-child, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2:first-child, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2:first-child, #rhd-article .article-content h5:first-child, #rhd-article .article-content h6:first-child {
     margin-top: 0; }
+  #rhd-article .article-content h2, #rhd-article .article-content h3, #rhd-article .article-content h4, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2 {
+    margin-top: 1.5em; }
+  #rhd-article .article-content h3 {
+    font-weight: 500; }
+  #rhd-article .article-content h4, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2 {
+    font-size: 23px;
+    font-weight: 500; }
+    @media (min-width: 576px) {
+      #rhd-article .article-content h4, #rhd-article .article-content .page-node-type-books .disqus-thread-wrapper h2, .page-node-type-books .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-cheat-sheet .disqus-thread-wrapper h2, .page-node-type-cheat-sheet .disqus-thread-wrapper #rhd-article .article-content h2, #rhd-article .article-content .page-node-type-video-resource .disqus-thread-wrapper h2, .page-node-type-video-resource .disqus-thread-wrapper #rhd-article .article-content h2 {
+        font-size: 15px; } }
   #rhd-article .a2a_kit {
     width: 187px;
     max-width: 100%;
@@ -11068,7 +11080,7 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
       margin-bottom: 80px; } }
 
 .related-article-header {
-  font-weight: normal;
+  font-weight: 500;
   margin-bottom: 16px; }
 
 #rhd-article .related-articles h5 {
@@ -14050,6 +14062,51 @@ rhdp-search-onebox ul.slots {
 
 .view-taxonomy-term .feed-icons {
   margin-bottom: 90px; }
+
+.layout-container--katacoda--learning-course h1 {
+  text-align: center; }
+
+.layout-container--katacoda--learning-course .field.field--name-body .field__item {
+  text-align: center; }
+
+.layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-gap: 30px 30px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(min-content, max-content); }
+  @media only screen and (max-width: 480px) {
+    .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios {
+      width: 90%;
+      grid-gap: 10px 30px;
+      padding-left: 0;
+      padding-right: 0;
+      grid-gap: 30px 0; } }
+  .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item {
+    grid-column: span 4; }
+    @media only screen and (max-width: 1024px) {
+      .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item {
+        grid-column: span 6; } }
+    @media only screen and (max-width: 768px) {
+      .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item {
+        grid-column: span 12; } }
+    .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item article.node--type-katacoda-individual-scenario {
+      background-color: #0066CC;
+      padding: 1rem;
+      height: 100%;
+      text-align: center; }
+      .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item article.node--type-katacoda-individual-scenario h2 {
+        text-align: center;
+        margin-top: 0; }
+        .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item article.node--type-katacoda-individual-scenario h2 a {
+          color: #fff; }
+      .layout-container--katacoda--learning-course .field--name-field-katacoda-course-scenarios div.field__item article.node--type-katacoda-individual-scenario div.node__content {
+        color: #fff; }
 
 [data-rhd-grid="normal"] {
   display: flex;
