@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.cheat_sheet.field_difficulty
     - field.field.node.cheat_sheet.field_exclude_from_search
     - field.field.node.cheat_sheet.field_meta_tags
-    - field.field.node.cheat_sheet.field_published_date
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
@@ -157,12 +156,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
-  field_published_date:
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_read_time:
     weight: 15

@@ -11,7 +11,6 @@ dependencies:
     - field.field.assembly.product_try_it_hero.field_title
     - field.field.assembly.product_try_it_hero.field_try_it_link
   module:
-    - content_moderation
     - entity_browser
     - link
     - text
@@ -21,7 +20,7 @@ bundle: product_try_it_hero
 mode: default
 content:
   field_content:
-    weight: 2
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -30,7 +29,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 6
+    weight: 7
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -42,7 +41,7 @@ content:
     region: content
     third_party_settings: {  }
   field_learn_more_link:
-    weight: 3
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -50,7 +49,7 @@ content:
     type: link_default
     region: content
   field_title:
-    weight: 1
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -58,19 +57,13 @@ content:
     type: string_textfield
     region: content
   field_try_it_link:
-    weight: 7
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 11
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -81,25 +74,18 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 10
+    weight: 2
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  user_id:
-    type: entity_reference_autocomplete
-    weight: 9
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
-    third_party_settings: {  }
   visual_styles:
     type: options_select
     multiple: true
-    weight: 8
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  moderation_state: true
+  user_id: true
