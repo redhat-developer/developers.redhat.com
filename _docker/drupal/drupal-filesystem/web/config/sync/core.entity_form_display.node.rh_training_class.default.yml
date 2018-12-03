@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.rh_training_class.field_image
     - field.field.node.rh_training_class.field_level
     - field.field.node.rh_training_class.field_long_description
-    - field.field.node.rh_training_class.field_published_date
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
     - field.field.node.rh_training_class.field_tax_audience_segment
@@ -117,12 +116,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
-    region: content
-  field_published_date:
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_short_description:
     weight: 3

@@ -21,15 +21,15 @@ bundle: product_try_it_hero
 mode: default
 content:
   field_content:
-    weight: 4
-    label: visually_hidden
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_image:
-    weight: 1
-    label: visually_hidden
+    weight: 4
+    label: hidden
     settings:
       image_style: large
       image_link: ''
@@ -44,8 +44,8 @@ content:
     type: image
     region: content
   field_learn_more_link:
-    weight: 3
-    label: visually_hidden
+    weight: 2
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -56,16 +56,23 @@ content:
     type: link
     region: content
   field_title:
-    weight: 5
-    label: visually_hidden
+    weight: 0
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h1
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   field_try_it_link:
-    weight: 6
-    label: visually_hidden
+    weight: 3
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
