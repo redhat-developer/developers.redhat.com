@@ -6,7 +6,9 @@ use Drupal\Core\Entity\EntityTypeManager;
 use GuzzleHttp\ClientInterface;
 
 /**
- * Class DownloadManagerApi.
+ * Retrieves data from Download Manager endpoints.
+ *
+ * This is used to populate download data on Product nodes/pages.
  */
 class DownloadManagerApi {
 
@@ -34,8 +36,10 @@ class DownloadManagerApi {
   /**
    * Constructor.
    *
-   * @var GuzzleHttp\ClientInterface $client
+   * @param GuzzleHttp\ClientInterface $client
    *   The Guzzle client.
+   * @param Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   *   Drupal's entity type manager.
    */
   public function __construct(ClientInterface $client, EntityTypeManager $entity_type_manager) {
     $this->apiUrl = 'https://developers.redhat.com/download-manager/rest/available/';
@@ -46,18 +50,28 @@ class DownloadManagerApi {
   /**
    * Retrieve Download Manager results by Product ID/code.
    *
-   * @var string $id
+   * @param string $id
    *   The Product ID/code.
+   *
+   * @return array|false
+   *   Returns an array of the JSON response from Download Manager if
+   *   sucessful. Otherwise, returns FALSE.
    */
   public function getContentById($id) {
     try {
       $feed_url = $this->apiUrl . $id;
       $request = $this->client->request('GET', $feed_url);
       $response = $request->getBody()->getContents();
+
       return json_decode($response);
     }
     catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error("Exception while calling Download Manager API: " . $e->getMessage());
+      \Drupal::logger('rhd_assemblies')->error(
+        "Exception while calling Download Manager API: @message", [
+          '@message' => $e->getMessage(),
+        ]
+      );
+
       return FALSE;
     }
   }
@@ -65,7 +79,11 @@ class DownloadManagerApi {
   /**
    * Gets an array of Product nodes from the field_url_product_name field.
    *
-   * @var string $product_url_name
+   * @param string $product_url_name
+   *   The value of the field_url_product_name field.
+   *
+   * @return array
+   *   An array of Product nodes.
    */
   public function getProductNodesByProductUrlName($product_url_name) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();

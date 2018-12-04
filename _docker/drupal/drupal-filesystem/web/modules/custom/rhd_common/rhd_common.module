@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Add various functionalities here.
@@ -7,56 +8,50 @@
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\AlertCommand;
 use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\rhd_common\Ajax\CKEditorSetDataCommand;
+use Madcoda\Youtube\Youtube;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_form_alter().
  */
-function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-    // If Article add form, add custom form validator.
-    if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
-        $pathauto = $form['path']['widget'][0]['pathauto'];
-        if ($form_id != 'node_article_edit_form') {
-            $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
-        }
-        $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
-        // Override default validator with custom validator.
-        if (!empty($form['path'])) {
-            // Check if widget array is not empty.
-            if (!empty($form['path']['widget'])) {
-                $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
-            }
-        }
+function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // If Article add form, add custom form validator.
+  if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
+    $pathauto = $form['path']['widget'][0]['pathauto'];
+    if ($form_id != 'node_article_edit_form') {
+      $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
     }
-
-    // Require a revision log message
-    if (isset($form['revision_log'])) {
-      unset($form['revision_log']['#group']);
-
-      $form['revision_log']['widget']['#required'] = TRUE;
-      $form['revision_log']['widget'][0]['#required'] = TRUE;
-      $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
-
+    $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
+    // Override default validator with custom validator.
+    if (!empty($form['path'])) {
+      // Check if widget array is not empty.
+      if (!empty($form['path']['widget'])) {
+        $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
+      }
     }
+  }
+
+  // Require a revision log message.
+  if (isset($form['revision_log'])) {
+    unset($form['revision_log']['#group']);
+
+    $form['revision_log']['widget']['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+  }
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
- *
- * Modify the revision overview form for better ease of use.
- *
- * @param $form render array for form
- * @param \Drupal\Core\Form\FormStateInterface $form_state state of the form elements
- * @param $form_id name of form
  */
 function rhd_common_form_revision_overview_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Modify the revision overview form for better ease of use.
   $form['node_revisions_table']['#header']['select_column_two'] = 'Right Side';
   $form['node_revisions_table']['#header']['select_column_one'] = 'Left Side';
   $form['submit']['#weight'] = -100;
@@ -65,143 +60,152 @@ function rhd_common_form_revision_overview_form_alter(&$form, FormStateInterface
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function rhd_common_form_node_video_resource_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
-{
-    $form['field_video_resource']['widget'][0]['value']['#attached']['library'][] = 'rhd_common/ckeditor_commands';
-    $form['field_video_resource']['widget'][0]['value']['#ajax'] = [
-      'callback' => 'rhd_common_ajax_test',
-      'event' => 'change'
-    ];
+function rhd_common_form_node_video_resource_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['field_video_resource']['widget'][0]['value']['#attached']['library'][] = 'rhd_common/ckeditor_commands';
+  $form['field_video_resource']['widget'][0]['value']['#ajax'] = [
+    'callback' => 'rhd_common_ajax_test',
+    'event' => 'change',
+  ];
 }
 
+/**
+ * Callback function for the form_node_video_resource field_video_resource.
+ */
 function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
-    $response = new AjaxResponse();
+  $response = new AjaxResponse();
+  $key = \Drupal::config('redhat_developers')->get('google_api_key');
 
-    $key = \Drupal::config('redhat_developers')->get('google_api_key');
-
-    // Send error if no config, developers can fix this
-    if (is_null($key)) {
-        $response->addCommand(new AlertCommand('No Google API Key configured'));
-        return $response;
-    }
-
-    // I hate having to do this, but it's better than magic numbers IMO
-    $video_url = current(current($form_state->getValue('field_video_resource')));
-
-    if (!empty($video_url)) {
-        $video = NULL;
-        try {
-            $youtube = new Madcoda\Youtube\Youtube(array('key' => $key));
-            $video = $youtube->getVideoInfo(getYouTubeVideoId($video_url));
-        } catch (Exception $e) {
-            $response->addCommand(new AlertCommand($e->getMessage()));
-            return $response;
-        }
-
-        // Each of these are values we're pulling from the data feed from the provider
-        $response->addCommand(new CKEditorSetDataCommand($video->snippet->description, 'edit-body-0-value'));
-        $response->addCommand(new InvokeCommand('#edit-title-0-value', 'val', [$video->snippet->title]));
-        $response->addCommand(new InvokeCommand('#edit-field-views-0-value', 'val', [$video->statistics->viewCount]));
-        $response->addCommand(new InvokeCommand('#edit-field-likes-0-value', 'val', [$video->statistics->likeCount]));
-        $published_date = new DateTime($video->snippet->publishedAt);
-        $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-date', 'val', [$published_date->format('Y-m-d')]));
-        $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-time', 'val', [$published_date->format('H:m:s')]));
-        $response->addCommand(new InvokeCommand('#edit-field-video-thumbnail-url-0-value', 'val',
-          [$video->snippet->thumbnails->standard->url]));
-
-        // Set seconds, minutes, hours in that order
-        $duration = new DateInterval($video->contentDetails->duration); // ->h // ->i // ->s
-        $response->addCommand(new InvokeCommand('#edit-field-duration-0-interval', 'val', [$duration->s]));
-        $response->addCommand(new InvokeCommand('#edit-field-duration-1-interval', 'val', [$duration->i]));
-        $response->addCommand(new InvokeCommand('#edit-field-duration-1-period', 'val', ['minute']));
-        $response->addCommand(new InvokeCommand('#edit-field-duration-2-interval', 'val', [$duration->h]));
-        $response->addCommand(new InvokeCommand('#edit-field-duration-2-period', 'val', ['hour']));
-
-        // Build the url alias and set that
-        $response->addCommand(new InvokeCommand('#edit-path-0-alias', 'val',
-          ['/videos/youtube/' . getYouTubeVideoId($video_url)]));
-    }
-
+  // Send error if no config, developers can fix this.
+  if (is_null($key)) {
+    $response->addCommand(new AlertCommand('No Google API Key configured'));
     return $response;
+  }
+
+  // I hate having to do this, but it's better than magic numbers IMO.
+  $video_url = current(current($form_state->getValue('field_video_resource')));
+
+  if (!empty($video_url)) {
+    $video = NULL;
+    try {
+      $youtube = new Youtube(['key' => $key]);
+      $video = $youtube->getVideoInfo(getYouTubeVideoId($video_url));
+    }
+    catch (Exception $e) {
+      $response->addCommand(new AlertCommand($e->getMessage()));
+      return $response;
+    }
+
+    // Each of these are values we're pulling from the data feed from the provider.
+    $response->addCommand(new CKEditorSetDataCommand($video->snippet->description, 'edit-body-0-value'));
+    $response->addCommand(new InvokeCommand('#edit-title-0-value', 'val', [$video->snippet->title]));
+    $response->addCommand(new InvokeCommand('#edit-field-views-0-value', 'val', [$video->statistics->viewCount]));
+    $response->addCommand(new InvokeCommand('#edit-field-likes-0-value', 'val', [$video->statistics->likeCount]));
+    $published_date = new DateTime($video->snippet->publishedAt);
+    $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-date', 'val', [$published_date->format('Y-m-d')]));
+    $response->addCommand(new InvokeCommand('#edit-field-video-publish-date-0-value-time', 'val', [$published_date->format('H:m:s')]));
+    $response->addCommand(new InvokeCommand('#edit-field-video-thumbnail-url-0-value', 'val',
+      [$video->snippet->thumbnails->standard->url])
+    );
+
+    // Set seconds, minutes, hours in that order.
+    $duration = new DateInterval($video->contentDetails->duration); // ->h // ->i // ->s
+    $response->addCommand(new InvokeCommand('#edit-field-duration-0-interval', 'val', [$duration->s]));
+    $response->addCommand(new InvokeCommand('#edit-field-duration-1-interval', 'val', [$duration->i]));
+    $response->addCommand(new InvokeCommand('#edit-field-duration-1-period', 'val', ['minute']));
+    $response->addCommand(new InvokeCommand('#edit-field-duration-2-interval', 'val', [$duration->h]));
+    $response->addCommand(new InvokeCommand('#edit-field-duration-2-period', 'val', ['hour']));
+
+    // Build the url alias and set that.
+    $response->addCommand(new InvokeCommand('#edit-path-0-alias', 'val',
+      ['/videos/youtube/' . getYouTubeVideoId($video_url)])
+    );
+  }
+
+  return $response;
 }
 
 /**
  * Obtains and returns the video id from a YouTube URL.
- * @param string $url Raw YouTube url
- * @return string the discovered id.
+ *
+ * @param string $url
+ *   Raw YouTube url.
+ *
+ * @return string
+ *   The discovered id.
  */
 function getYouTubeVideoId(string $url) {
-    $id = [];
-    $parsed_url = parse_url($url);
+  $id = [];
+  $parsed_url = parse_url($url);
 
-    if (isset($parsed_url['query'])) {
-        parse_str($parsed_url['query'], $id);
-        $id = $id['v'];
-    } else {
-        $id = substr($parsed_url['path'], 1);
-    }
-    return $id;
+  if (isset($parsed_url['query'])) {
+    parse_str($parsed_url['query'], $id);
+    $id = $id['v'];
+  }
+  else {
+    $id = substr($parsed_url['path'], 1);
+  }
+
+  return $id;
 }
 
 /**
  * Implements hook_theme().
  */
-function rhd_common_theme($existing, $type, $theme, $path)
-{
-    return [
-      'product-pages' => [
-        'render element' => 'elements',
-        'variables' => [
-          'product_summary' => NULL,
-          'product_title' => NULL,
-          'page_links' => NULL,
-          'active_paragraph' => NULL,
-          'product_category' => NULL,
-          'url_product_name' => NULL,
-          'has_community' => FALSE,
-          'has_download' => FALSE,
-          'has_hello_world' => FALSE,
-          'product_machine_name' => NULL
-        ]
+function rhd_common_theme($existing, $type, $theme, $path) {
+  return [
+    'product-pages' => [
+      'render element' => 'elements',
+      'variables' => [
+        'product_summary' => NULL,
+        'product_title' => NULL,
+        'page_links' => NULL,
+        'active_paragraph' => NULL,
+        'product_category' => NULL,
+        'url_product_name' => NULL,
+        'has_community' => FALSE,
+        'has_download' => FALSE,
+        'has_hello_world' => FALSE,
+        'product_machine_name' => NULL,
       ],
-      'get_started_tabs' => [
-        'variables' => ['items' => []]
-      ]
-    ];
+    ],
+    'get_started_tabs' => [
+      'variables' => ['items' => []],
+    ],
+  ];
 }
 
 /**
  * Implements hook_node_view().
  */
-function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode)
-{
-    if ($view_mode == 'full' && $node->getType() === 'product') {
-        $current_path = \Drupal::service('path.current')->getPath();
-        $path_args = explode('/', $current_path);
-        if ($path_args[1] == 'node') {
-            $product_code = $node->field_url_product_name->value;
-            if (!empty($product_code)) {
-                $url = Url::fromRoute('rhd_common.main_page_controller', array(
-                  'product_code' => $product_code,
-                  'sub_page' => 'overview',
-                ), array('absolute' => true))->toString();
-                $response = new RedirectResponse($url);
-                $response->send();
-            }
-        }
+function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  // Product node using the full view mode.
+  if ($view_mode == 'full' && $node->getType() === 'product') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[1] == 'node') {
+      $product_code = $node->field_url_product_name->value;
+      if (!empty($product_code)) {
+        $url = Url::fromRoute('rhd_common.main_page_controller', [
+          'product_code' => $product_code,
+          'sub_page' => 'overview',
+        ], ['absolute' => TRUE])->toString();
+        $response = new RedirectResponse($url);
+        $response->send();
+      }
     }
+  }
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
 function rhd_common_preprocess_node(&$variables) {
-  // For videos, we need tags to send to DCP
+  // For videos, we need tags to send to DCP.
   if ($variables['node']->getType() === 'video_resource') {
     video_tags($variables);
   }
 
-  // Add `is_front` at the node level
+  // Add `is_front` at the node level.
   $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
 }
 
