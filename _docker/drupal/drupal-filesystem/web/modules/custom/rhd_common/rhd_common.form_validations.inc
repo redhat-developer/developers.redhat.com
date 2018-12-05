@@ -1,97 +1,108 @@
 <?php
+
+/**
+ * @file
+ * Provides custom form validation for various forms.
+ */
+
 use Drupal\Core\Form\FormStateInterface;
 
-
 /**
- * Implements hook_form_FORM_ID_alter().
- * @param array $form
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
+ * Implements hook_form_alter().
  */
-function rhd_common_form_node_events_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_events_validations';
+function rhd_common_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'node_events_form':
+      $form['#validate'][] = 'add_events_validations';
+      break;
+
+    case 'node_events_edit_form':
+      $form['#validate'][] = 'add_events_validations';
+      break;
+
+    case 'node_books_form':
+      $form['#validate'][] = 'add_books_validations';
+      break;
+
+    case 'node_books_edit_form':
+      $form['#validate'][] = 'add_books_validations';
+      break;
+
+    case 'node_connectors_form':
+      $form['#validate'][] = 'add_connectors_validations';
+      break;
+
+    case 'node_connectors_edit_form':
+      $form['#validate'][] = 'add_connectors_validations';
+      break;
+
+    case 'node_learning_path_form':
+      $form['#validate'][] = 'add_learning_path_validations';
+      break;
+
+    case 'node_learning_path_edit_form':
+      $form['#validate'][] = 'add_learning_path_validations';
+      break;
+
+  }
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
- * @param array $form
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_events_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_events_validations';
-}
-
-/**
+ * Validation for node_events_form and node_events_edit_form.
+ *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function add_events_validations(array &$form, FormStateInterface $form_state)
-{
-  // Basic date comparison
+function add_events_validations(array &$form, FormStateInterface $form_state) {
+  // Basic date comparison.
   $end_before_start = $form_state->getValue('field_end_date')[0]['value']->getTimeStamp() < $form_state->getValue('field_start_date')[0]['value']->getTimeStamp();
-  if ($end_before_start === TRUE)
-  {
-    $form_state->setErrorByName('field_end_date', t('End Date must be after Start Date')); // Create the error
+
+  if ($end_before_start === TRUE) {
+    // Create the error.
+    $form_state->setErrorByName(
+      'field_end_date',
+      t('End Date must be after Start Date')
+    );
   }
 
   $title = $form_state->getValue('title')[0]['value'];
 
-  if (strlen($title) < 5 || strlen($title) > 45)
-  {
-    $form_state->setErrorByName('title', t('Title must be greater than 5 characters and less than 45'));
+  if (strlen($title) < 5 || strlen($title) > 45) {
+    $form_state->setErrorByName(
+      'title',
+      t('Title must be greater than 5 characters and less than 45')
+    );
   }
 
   $desc = $form_state->getValue('field_description')[0]['value'];
 
-  if (strlen($desc) < 50 || strlen($desc) > 400)
-  {
-    $form_state->setErrorByName('field_description', t('Description must be greater than 50 characters and less than 400'));
+  if (strlen($desc) < 50 || strlen($desc) > 400) {
+    $form_state->setErrorByName(
+      'field_description',
+      t('Description must be greater than 50 characters and less than 400')
+    );
   }
 }
 
 /**
- * @param array $form
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_books_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_books_validations';
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- * @param array $form
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_books_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_books_validations';
-}
-
-/**
+ * Validation for node_books_form and node_books_edit_form.
+ *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function add_books_validations(array &$form, FormStateInterface $form_state)
-{
+function add_books_validations(array &$form, FormStateInterface $form_state) {
   // Retrieve the value of the ISBN field in the form state.
   $isbn_number = $form_state->getValue('field_isbn')[0]['value'];
 
-  if (!is_numeric($isbn_number) && !empty($isbn_number))
-  {
+  if (!is_numeric($isbn_number) && !empty($isbn_number)) {
     // Set an error if the ISBN value is set and isn't numeric.
     $form_state->setErrorByName(
       'field_isbn',
       t('The ISBN field must be a number!')
     );
   }
-  if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number))
-  {
+
+  if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number)) {
     // Set an error if the ISBN value is set and isn't 10 or 13 digits.
     $form_state->setErrorByName(
       'field_isbn',
@@ -125,103 +136,76 @@ function add_books_validations(array &$form, FormStateInterface $form_state)
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
- * @param $form array
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_connectors_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_connectors_validations';
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- * @param $form array
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_connectors_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_connectors_validations';
-}
-
-/**
+ * Validation for node_connectors_form and node_connectors_edit_form.
+ *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function add_connectors_validations(array &$form, FormStateInterface $form_state)
-{
+function add_connectors_validations(array &$form, FormStateInterface $form_state) {
   $title = $form_state->getValue('title')[0]['value'];
 
-  if (strlen($title) < 1 || strlen($title) > 50)
-  {
-    $form_state->setErrorByName('title', t('Title must be greater than 1 character and less than 50'));
+  if (strlen($title) < 1 || strlen($title) > 50) {
+    $form_state->setErrorByName(
+      'title',
+      t('Title must be greater than 1 character and less than 50')
+    );
   }
 
-  // Check that Short Description is between 50 and 150 characters long
+  // Check that Short Description is between 50 and 150 characters long.
   $short_description = $form_state->getValue('field_connector_short_descriptio')[0]['value'];
 
-  if (strlen($short_description) < 50 || strlen($short_description) > 150)
-  {
-    $form_state->setErrorByName('field_connector_short_descriptio', t('Short description must be greater than 50 characters and less than 150'));
+  if (strlen($short_description) < 50 || strlen($short_description) > 150) {
+    $form_state->setErrorByName(
+      'field_connector_short_descriptio',
+      t('Short description must be greater than 50 characters and less than 150')
+    );
   }
 
-  // Check that Long Description is between 50 and 150 characters long
+  // Check that Long Description is between 50 and 150 characters long.
   $long_description = $form_state->getValue('field_connector_long_description')[0]['value'];
 
-  if (strlen($long_description) < 100 || strlen($long_description) > 500)
-  {
-    $form_state->setErrorByName('field_connector_long_description', t('Long description must be greater than 100 characters and less than 500'));
+  if (strlen($long_description) < 100 || strlen($long_description) > 500) {
+    $form_state->setErrorByName(
+      'field_connector_long_description',
+      t('Long description must be greater than 100 characters and less than 500')
+    );
   }
 }
 
-function rhd_common_form_node_learning_path_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_learning_path_validations';
-}
-
 /**
- * Implements hook_form_FORM_ID_alter().
- * @param $form array
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param string $form_id
- */
-function rhd_common_form_node_learning_path_edit_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
-  $form['#validate'][] = 'add_learning_path_validations';
-}
-
-/**
+ * Validation for node_learning_path_form and node_learning_path_edit_form.
+ *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function add_learning_path_validations(array &$form, FormStateInterface $form_state)
-{
-    $short_description = $form_state->getValue('field_short_description')[0]['value'];
+function add_learning_path_validations(array &$form, FormStateInterface $form_state) {
+  $short_description = $form_state->getValue('field_short_description')[0]['value'];
 
-    if (strlen($short_description) > 140)
-    {
-        $form_state->setErrorByName('field_short_description', t('The short description must be less than 140 characters!'));
-    }
+  if (strlen($short_description) > 140) {
+    $form_state->setErrorByName(
+      'field_short_description',
+      t('The short description must be less than 140 characters!')
+    );
+  }
 
-  // Check that Short Description is between 50 and 150 characters long
-    $long_description = $form_state->getValue('field_long_description')[0]['value'];
+  // Check that Short Description is between 50 and 150 characters long.
+  $long_description = $form_state->getValue('field_long_description')[0]['value'];
 
-    if (strlen($long_description) > 500)
-    {
-        $form_state->setErrorByName('field_long_description', t('The long description must be less than 500 characters!'));
-    }
+  if (strlen($long_description) > 500) {
+    $form_state->setErrorByName(
+      'field_long_description',
+      t('The long description must be less than 500 characters!')
+    );
+  }
 }
-
 
 /**
  * Custom form validator.
+ *
  * @param array $element
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function rhd_common_custom_form_validator(array &$element, FormStateInterface $form_state)
-{
+function rhd_common_custom_form_validator(array &$element, FormStateInterface $form_state) {
   // Trim the submitted value of whitespace and slashes.
   $alias = rtrim(trim($element['alias']['#value']), " \\/");
   $element['alias']['#attached']['library'][] = 'rhd_common/sample_library';
