@@ -90,9 +90,11 @@ app.connectors = {
      * @param {Array.<string>=} featuredIDs
      */
     connectorFilter : function(query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp.url.connectors;
+        var url = '/drupal/connectors';
 
-        var request_data = {};
+        var request_data = {
+          _format: 'json'
+        };
 
         if (query) {
             request_data.query = query;
@@ -137,30 +139,22 @@ app.connectors = {
      * @param {string} thumbnailSize
      */
     format: function (data, container, thumbnailSize) {
-        if (data.responses) {
-            var hits = data.responses[0].hits.hits;
-        } else {
-            var hits = data.hits.hits;
-        }
-
         var html = "";
-        // loop over every hit
-        for (var i = 0; i < hits.length; i++) {
-            var props = hits[i]._source;
 
-            // Set the img_path_thumb to the DCP thumbnail endpoint, and set the
-            // fallback image to the thumbnail on static.jboss.org.
-            props.img_path_thumb = (typeof props.thumbnail__target_id !== 'undefined' && props.thumbnail__target_id !== '') ? props.thumbnail__target_id : "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
+        // loop over every hit
+        for (var i = 0; i < data.length; i++) {
+            var props = data[i];
+
+            props.img_path_thumb = props.thumbnail__target_id;
 
             //If no 'long description', use the short one (before it is truncated)
-            if (!('sys_content' in props)) {
-                props.sys_content = props.sys_description;
+            if (!('field_connector_long_description' in props)) {
+                props.field_connector_long_description = props.field_connector_short_descriptio;
             }
             
             //Limit the short description length, in-case the source data is invalid.
-            if (props.sys_description.length > 150 ) {
-                props.sys_description = props.sys_description.slice(0,146).concat(' ...');
+            if (props.field_connector_short_descriptio.length > 150 ) {
+                props.field_connector_short_descriptio = props.field_connector_short_descriptio.slice(0,146).concat(' ...');
             }
             
             //The templating fails if these values are undefined. There's probably a better way to do this.
@@ -184,9 +178,30 @@ app.connectors = {
             
             // @TODO This app.templates variable should be null since the Slim
             // template no longer exists.
-            var connectorTemplate = app.templates.connectorTemplate;
-            html += connectorTemplate.template(props);
-
+            // var connectorTemplate = app.templates.connectorTemplate;
+            // html += connectorTemplate.template(props);
+            html += `<li class="connector">
+              <a href="#" class="fn-open-connector">
+                <img src="${props.img_path_thumb}" alt="logo" class="connector-logo">
+              </a>
+              <h3><a href="#" class="fn-open-connector">${props.title}</a></h3>
+              <p>${props.field_connector_long_description}</p>
+              <div class="connector-overlay-content">
+                <div class="row">
+                  <div class="large-7 columns">
+                    <img src="${props.img_path_thumb}" alt="Logo" class="connector-logo">
+                  </div>
+                  <div class="large-17 columns">
+                    <p>${props.field_connector_short_descriptio}</p>
+                    <p class="link_1_text">
+                      <a href="${props.link_1_url}" class="link_1">${props.link_1_text}</a><br>
+                      <a href=${props.link_2_url}"" class="link_2"${props.link_2_text}></a>
+                    </p>
+                    <p class="docs-link-text">For more details, view the <a href="${props.more_details_url}" class="docs-link">Product Documentation</a></p>
+                  </div>
+                </div>
+              </div>
+            </li>`;
         }
 
         container.html(html).removeClass('loading');
