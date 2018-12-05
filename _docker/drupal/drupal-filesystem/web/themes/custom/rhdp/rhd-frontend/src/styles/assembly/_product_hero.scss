@@ -20,18 +20,29 @@
     margin-top: 50px;
   }
   .product-version__version-name {
-    width: 190px;
     display: block;
     text-align: center;
     margin-top: 15px;
+    font-size: 14px;
+    font-weight: 100;
+    max-width: 193px;
+    white-space: nowrap;
+    overflow: visible;
   }
   .product-image {
     img {
       margin: 0 auto;
       display: block;
     }
-    @media screen and (max-width: 768px){
-      display: none;
+  }
+
+  @media screen and (max-width: 768px){
+    .product-image {
+      order: 1;
+    }
+    .product-version,
+    .product-try-it {
+      order: 2;
     }
   }
 
