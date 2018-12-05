@@ -63,7 +63,6 @@ app.connectors = {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
         app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
-
         $('.connectors-order a').removeClass('active');
         $('.order-priority').addClass('active');
     },
@@ -100,19 +99,6 @@ app.connectors = {
             request_data.query = query;
         }
 
-        if (target_product) {
-            request_data.target_product = target_product;
-        }
-
-        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
-            request_data.sortAlpha = true;
-        }
-
-        //And specify the connector IDs if specified.
-        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
-            request_data.id = featuredIDs;
-        }
-
         // append loading class to wrapper
         $("ul.connector-results").addClass('loading');
 
@@ -128,8 +114,53 @@ app.connectors = {
         }).done(function(data){
             var container = this.container || $('ul.connector-results');
             var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
+            app.connectors.sort(data, container, thumbnailSize, orderBy);
         });
+    },
+
+    /**
+     *
+     * @param {*} data
+     * @param {!HTMLElement} container
+     * @param {string} thumbnailSize
+     * @param {string} orderBy
+     */
+    sort: function (data, container, thumbnailSize, orderBy) {
+        var html = "";
+
+        if (orderBy) {
+            if (orderBy == app.connectors.orderBy.SYS_TITLE) {
+                data
+                    // Sort the connector by their titles.
+                    .sort((a, b) => {
+                        if (a.title.toUpperCase() < b.title.toUpperCase()) {
+                          return -1;
+                        }
+                        else if (a.title.toUpperCase() > b.title.toUpperCase()) {
+                          return 1;
+                        }
+
+                        return 0; 
+                    })
+                    // Get the formatted HTML output for each sorted connector.
+                    .forEach((data) => {
+                        html += app.connectors.format(data, container, thumbnailSize);
+                    }
+                ); 
+            }
+            else if (orderBy == app.connectors.orderBy.PRIORITY) {
+                data
+                    // Sort the connectors by their priority/importance.
+                    .sort((a, b) => a.field_connector_priority - b.field_connector_priority)
+                    // Get the formatted HTML output for each sorted connector.
+                    .forEach((data) => {
+                        html += app.connectors.format(data, container, thumbnailSize);
+                    }
+                );
+            }
+        }
+
+        container.html(html).removeClass('loading');
     },
 
     /**
@@ -139,72 +170,68 @@ app.connectors = {
      * @param {string} thumbnailSize
      */
     format: function (data, container, thumbnailSize) {
-        var html = "";
+        var html = '';
+        var props = data;
 
-        // loop over every hit
-        for (var i = 0; i < data.length; i++) {
-            var props = data[i];
+        props.img_path_thumb = props.thumbnail__target_id;
 
-            props.img_path_thumb = props.thumbnail__target_id;
-
-            //If no 'long description', use the short one (before it is truncated)
-            if (!('field_connector_long_description' in props)) {
-                props.field_connector_long_description = props.field_connector_short_descriptio;
-            }
-            
-            //Limit the short description length, in-case the source data is invalid.
-            if (props.field_connector_short_descriptio.length > 150 ) {
-                props.field_connector_short_descriptio = props.field_connector_short_descriptio.slice(0,146).concat(' ...');
-            }
-            
-            //The templating fails if these values are undefined. There's probably a better way to do this.
-            if (!props.code_snippet_1) {
-                props.code_snippet_1 = '';
-            }
-            if (!props.code_snippet_2) {
-                props.code_snippet_2 = '';
-            }
-            if (!props.more_details_url) {
-                props.more_details_url = '';
-            }
-            if(!props.link_1_text || !props.link_1_url){
-               props.link_1_text = '';
-                props.link_1_url = '';
-            }
-            if(!props.link_2_text || !props.link_2_url){
-                props.link_2_text = '';
-                props.link_2_url = '';
-            }
-            
-            // @TODO This app.templates variable should be null since the Slim
-            // template no longer exists.
-            // var connectorTemplate = app.templates.connectorTemplate;
-            // html += connectorTemplate.template(props);
-            html += `<li class="connector">
-              <a href="#" class="fn-open-connector">
-                <img src="${props.img_path_thumb}" alt="logo" class="connector-logo">
-              </a>
-              <h3><a href="#" class="fn-open-connector">${props.title}</a></h3>
-              <p>${props.field_connector_long_description}</p>
-              <div class="connector-overlay-content">
-                <div class="row">
-                  <div class="large-7 columns">
-                    <img src="${props.img_path_thumb}" alt="Logo" class="connector-logo">
-                  </div>
-                  <div class="large-17 columns">
-                    <p>${props.field_connector_short_descriptio}</p>
-                    <p class="link_1_text">
-                      <a href="${props.link_1_url}" class="link_1">${props.link_1_text}</a><br>
-                      <a href=${props.link_2_url}"" class="link_2"${props.link_2_text}></a>
-                    </p>
-                    <p class="docs-link-text">For more details, view the <a href="${props.more_details_url}" class="docs-link">Product Documentation</a></p>
-                  </div>
-                </div>
-              </div>
-            </li>`;
+        //If no 'long description', use the short one (before it is truncated)
+        if (!('field_connector_long_description' in props)) {
+            props.field_connector_long_description = props.field_connector_short_descriptio;
+        }
+        
+        //Limit the short description length, in-case the source data is invalid.
+        if (props.field_connector_short_descriptio.length > 150 ) {
+            props.field_connector_short_descriptio = props.field_connector_short_descriptio.slice(0,146).concat(' ...');
+        }
+        
+        //The templating fails if these values are undefined. There's probably a better way to do this.
+        if (!props.code_snippet_1) {
+            props.code_snippet_1 = '';
+        }
+        if (!props.code_snippet_2) {
+            props.code_snippet_2 = '';
+        }
+        if (!props.more_details_url) {
+            props.more_details_url = '';
+        }
+        if(!props.link_1_text || !props.link_1_url){
+           props.link_1_text = '';
+            props.link_1_url = '';
+        }
+        if(!props.link_2_text || !props.link_2_url){
+            props.link_2_text = '';
+            props.link_2_url = '';
         }
 
-        container.html(html).removeClass('loading');
+        // @TODO This app.templates variable should be null since the Slim
+        // template no longer exists.
+        // var connectorTemplate = app.templates.connectorTemplate;
+        // html += connectorTemplate.template(props);
+        html += `<li class="connector">
+          <a href="#" class="fn-open-connector">
+            <img src="${props.img_path_thumb}" alt="logo" class="connector-logo">
+          </a>
+          <h3><a href="#" class="fn-open-connector">${props.title}</a></h3>
+          <p>${props.field_connector_long_description}</p>
+          <div class="connector-overlay-content">
+            <div class="row">
+              <div class="large-7 columns">
+                <img src="${props.img_path_thumb}" alt="Logo" class="connector-logo">
+              </div>
+              <div class="large-17 columns">
+                <p>${props.field_connector_short_descriptio}</p>
+                <p class="link_1_text">
+                  <a href="${props.link_1_url}" class="link_1">${props.link_1_text}</a><br>
+                  <a href=${props.link_2_url}"" class="link_2"${props.link_2_text}></a>
+                </p>
+                <p class="docs-link-text">For more details, view the <a href="${props.more_details_url}" class="docs-link">Product Documentation</a></p>
+              </div>
+            </div>
+          </div>
+        </li>`;
+
+        return html;
     }
 };
 
