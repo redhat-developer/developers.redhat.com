@@ -120,6 +120,8 @@ app.searchpage = {
     var name = loc.substring(loc.indexOf("=")+1).replace('\/','');
 
     // Begin initial search
+    // @TODO This app.template variable should be null since the Slim template
+    // no longer exists.
     app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 4);
 
     app.searchpage.infiniteScrollCalled = false;
@@ -141,6 +143,8 @@ app.searchpage = {
             app.searchpage.infiniteScrollCalled = true;
             var from = $('.searchpage-results-container > div').length;
 
+            // @TODO This app.template variable should be null since the Slim template
+            // no longer exists.
             app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 8, true, from, function() {
                 if(win.scrollTop() < 400){
                     win.scrollTop(scrollTop);

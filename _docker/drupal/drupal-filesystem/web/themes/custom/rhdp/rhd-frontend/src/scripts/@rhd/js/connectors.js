@@ -182,6 +182,8 @@ app.connectors = {
                 props.link_2_url = '';
             }
             
+            // @TODO This app.templates variable should be null since the Slim
+            // template no longer exists.
             var connectorTemplate = app.templates.connectorTemplate;
             html += connectorTemplate.template(props);
 

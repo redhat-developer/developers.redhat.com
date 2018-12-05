@@ -139,6 +139,8 @@ app.termsAndConditions = {
       // create banner, maybe modal? saying when they signed tac.acceptanceTimestamp
       var dateParsed = new Date(data.tac.acceptanceTimestamp);
       data.tac.acceptanceTimestamp = dateParsed.toISOString().substr(0,10);
+      // @TODO This app.templates variable should be null since the Slim
+      // template no longer exists.
       var newHtml = app.templates.termsAndConditionsTemplate.template(data.tac);
       $('#_developer_program_terms_conditions').before(newHtml);
     }

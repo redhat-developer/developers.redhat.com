@@ -44,6 +44,8 @@ app.books = {
     });
   },
   performFilter : function() {
+    // @TODO This app.templates variable should be null since the Slim template
+    // doesn't exist.
     var bookTemplate = app.templates.bookTemplate;
     var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
             "<a class=\"name link-sm\"><!=normalizedAuthor!></a>" +

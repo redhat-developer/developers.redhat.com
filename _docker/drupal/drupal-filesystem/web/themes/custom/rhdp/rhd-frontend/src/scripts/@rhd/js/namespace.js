@@ -19,21 +19,6 @@ app.downloadManagerBaseUrl = "#{site.download_manager_base_url}";
 */
 app.cache = {};
 
-
-/*
-  JS templates
-*/
-app.templates = {};
-app.templates.searchpageTemplate = '#{partial "searchpage.html.slim"}';
-app.templates.miniBuzzTemplate = '#{partial "mini_buzz_template.html.slim"}';
-app.templates.productBuzzTemplate = '#{partial "product_buzz_template.html.slim"}';
-app.templates.buzzTemplate = '#{partial "buzz_template.html.slim"}';
-app.templates.termsAndConditionsTemplate = '#{partial "terms_and_conditions.html.slim"}';
-app.templates.bookTemplate = '#{partial "book.html.slim"}';
-app.templates.connectorTemplate = '#{partial "product-connectors-item.html.slim"}';
-
-app.templates.productStackoverflowTemplate = '#{partial "product_stackoverflow_template.html.slim"}';
-app.templates.stackoverflowTemplate = '#{partial "stackoverflow_template.html.slim"}';
 /*
   FastClick variable for faster tapping on touch devices
 */
@@ -42,7 +27,6 @@ app.fastClick = false;
 /*
   DCP setup
 */
-
 app.dcp = {};
 app.dcp.url = {};
 app.dcp.url.search = '#{site.dcp_base_protocol_relative_url}v2/rest/search';
