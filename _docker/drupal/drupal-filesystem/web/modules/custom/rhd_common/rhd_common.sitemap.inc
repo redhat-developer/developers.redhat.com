@@ -84,7 +84,7 @@ function build_subpage_link_entry($sub_page, $template) {
 }
 
 /**
- * Returns an array af links which are for product nodes.
+ * Returns an array of links which are for product nodes.
  *
  * @param array $links
  *   Links in the sitemap.

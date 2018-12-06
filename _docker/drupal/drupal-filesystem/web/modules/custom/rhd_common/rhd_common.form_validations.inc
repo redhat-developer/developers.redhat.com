@@ -13,37 +13,49 @@ use Drupal\Core\Form\FormStateInterface;
 function rhd_common_form_alter(&$form, &$form_state, $form_id) {
   switch ($form_id) {
     case 'node_events_form':
-      $form['#validate'][] = 'add_events_validations';
-      break;
-
     case 'node_events_edit_form':
       $form['#validate'][] = 'add_events_validations';
       break;
 
     case 'node_books_form':
-      $form['#validate'][] = 'add_books_validations';
-      break;
-
     case 'node_books_edit_form':
       $form['#validate'][] = 'add_books_validations';
       break;
 
     case 'node_connectors_form':
-      $form['#validate'][] = 'add_connectors_validations';
-      break;
-
     case 'node_connectors_edit_form':
       $form['#validate'][] = 'add_connectors_validations';
       break;
 
     case 'node_learning_path_form':
-      $form['#validate'][] = 'add_learning_path_validations';
-      break;
-
     case 'node_learning_path_edit_form':
       $form['#validate'][] = 'add_learning_path_validations';
       break;
 
+    // Form element validation for the path alias of Articles.
+    case 'node_article_form':
+    case 'node_article_edit_form':
+      if ($form_id != 'node_article_edit_form') {
+        $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
+      }
+      $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
+      // Override default validator with custom validator.
+      if (!empty($form['path'])) {
+        // Check if widget array is not empty.
+        if (!empty($form['path']['widget'])) {
+          $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
+        }
+      }
+      break;
+  }
+
+  // Require a revision log message.
+  if (isset($form['revision_log'])) {
+    unset($form['revision_log']['#group']);
+
+    $form['revision_log']['widget']['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
   }
 }
 

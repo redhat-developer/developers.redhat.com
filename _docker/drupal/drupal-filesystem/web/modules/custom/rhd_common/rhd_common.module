@@ -18,36 +18,6 @@ use Madcoda\Youtube\Youtube;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Implements hook_form_alter().
- */
-function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  // If Article add form, add custom form validator.
-  if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
-    $pathauto = $form['path']['widget'][0]['pathauto'];
-    if ($form_id != 'node_article_edit_form') {
-      $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
-    }
-    $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
-    // Override default validator with custom validator.
-    if (!empty($form['path'])) {
-      // Check if widget array is not empty.
-      if (!empty($form['path']['widget'])) {
-        $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
-      }
-    }
-  }
-
-  // Require a revision log message.
-  if (isset($form['revision_log'])) {
-    unset($form['revision_log']['#group']);
-
-    $form['revision_log']['widget']['#required'] = TRUE;
-    $form['revision_log']['widget'][0]['#required'] = TRUE;
-    $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
-  }
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  */
 function rhd_common_form_revision_overview_form_alter(&$form, FormStateInterface $form_state, $form_id) {
