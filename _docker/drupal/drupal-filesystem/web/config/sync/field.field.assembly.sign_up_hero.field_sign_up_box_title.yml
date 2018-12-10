@@ -1,0 +1,21 @@
+uuid: a2a95dea-e5cf-4fa2-9eac-2a5a1b592d72
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.sign_up_hero
+    - field.storage.assembly.field_sign_up_box_title
+id: assembly.sign_up_hero.field_sign_up_box_title
+field_name: field_sign_up_box_title
+entity_type: assembly
+bundle: sign_up_hero
+label: 'Sign-up Box Title'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 'Sign up for a Red Hat account'
+default_value_callback: ''
+settings: {  }
+field_type: string

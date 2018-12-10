@@ -1,0 +1,29 @@
+uuid: 07761922-2d68-4c11-9ab9-e3d0d774ff98
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.feature
+    - field.storage.assembly.field_release
+    - taxonomy.vocabulary.releases
+id: assembly.feature.field_release
+field_name: field_release
+entity_type: assembly
+bundle: feature
+label: Release
+description: 'NOTE: Please contact a Content Admin if the release you’re looking for is not available or if you need a new one added.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      releases: releases
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

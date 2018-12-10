@@ -1,0 +1,28 @@
+uuid: 3d1ea79a-7a59-4758-bcdb-93181b4cfb6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.storage.assembly.field_sub_products
+    - node.type.sub_product
+id: assembly.product_comparison_table.field_sub_products
+field_name: field_sub_products
+entity_type: assembly
+bundle: product_comparison_table
+label: Sub-Products
+description: 'NOTE: Please contact a Content Admin if the sub-product you’re looking for is not available.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sub_product: sub_product
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -2,3 +2,6 @@ services:
   rhd_assemblies.wordpress_api:
     class: Drupal\rhd_assemblies\Service\WordpressApi
     arguments: ['@http_client']
+  rhd_assemblies.download_manager_api:
+    class: Drupal\rhd_assemblies\Service\DownloadManagerApi
+    arguments: ['@http_client', '@entity_type.manager']

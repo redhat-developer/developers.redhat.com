@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
     - field.field.node.books.field_preview_url
-    - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
@@ -201,15 +200,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_published_date:
-    weight: 3
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_publisher:
     weight: 9

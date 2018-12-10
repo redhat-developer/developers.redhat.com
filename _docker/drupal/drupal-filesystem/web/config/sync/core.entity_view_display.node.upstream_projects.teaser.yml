@@ -1,0 +1,26 @@
+uuid: 8adcff50-1e33-4cce-9f9e-fdbe5168e663
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.upstream_projects.field_link_to_project
+    - field.field.node.upstream_projects.field_link_to_repo
+    - node.type.upstream_projects
+  module:
+    - user
+id: node.upstream_projects.teaser
+targetEntityType: node
+bundle: upstream_projects
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_link_to_project: true
+  field_link_to_repo: true
+  field_logo: true
+  published_at: true

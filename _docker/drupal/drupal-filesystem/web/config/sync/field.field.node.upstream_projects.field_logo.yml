@@ -1,0 +1,28 @@
+uuid: 0a635862-8c1f-4882-a570-7e7039823415
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_logo
+    - media.type.image
+    - node.type.upstream_projects
+id: node.upstream_projects.field_logo
+field_name: field_logo
+entity_type: node
+bundle: upstream_projects
+label: Logo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

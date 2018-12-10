@@ -6,6 +6,7 @@ downloadManager:
 keycloak:
   accountUrl: 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
   authUrl: 'https://developers.stage.redhat.com/auth/'
+  scriptUrl: 'https://developers.redhat.com/auth/js/keycloak.js'
 drupal:
   host: docker
   port: "80"
@@ -23,7 +24,7 @@ database:
   port: '3306'
   username: 'drupal'
   password: 'drupal'
-  name: 'drupal'
+  name: 'rhd_mysql'
 dtm_code: https://www.redhat.com/dtm-staging.js
 sentry_track: false
 sentry_script: 'https://cdn.ravenjs.com/3.24.0/raven.min.js'

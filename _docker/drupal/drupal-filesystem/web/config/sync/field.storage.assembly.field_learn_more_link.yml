@@ -1,0 +1,19 @@
+uuid: 739b4943-c485-437a-89e7-fd3ebdf65b0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_learn_more_link
+field_name: field_learn_more_link
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

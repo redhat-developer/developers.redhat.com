@@ -26,11 +26,13 @@ function rhd_assemblies_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
 function rhd_assemblies_theme_registry_alter(&$theme_registry) {
   $path = drupal_get_path('module', 'rhd_assemblies');
 
-  // Assembly types with a default template
-  // defined in this module
+  // Assembly types with a default template defined in this module.
   $types = [
     'blog_posts',
   ];
@@ -45,8 +47,13 @@ function rhd_assemblies_theme_registry_alter(&$theme_registry) {
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
 function rhd_assemblies_theme($existing, $type, $theme, $path) {
   $theme = [];
+
+  // Registers a custom template and variables for Wordpress Post Teaser.
   $theme['wordpress_post_teaser'] = [
     'template' => 'wordpress-post-teaser',
     'variables' => [
@@ -56,6 +63,8 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
       'date' => NULL,
     ],
   ];
+
+  // Registers a custom template and variables for Wordpress Post Teaser.
   $theme['wordpress_post_tile'] = [
     'template' => 'wordpress-post-tile',
     'variables' => [
@@ -63,12 +72,21 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
       'media' => NULL,
     ],
   ];
+
   return $theme;
 }
 
+/**
+ * Implements hook_entity_presave().
+ */
 function rhd_assemblies_entity_presave(EntityInterface $entity) {
+  // The entity is either a Node Reference or Wordpress Post Reference assembly.
   if ($entity->getEntityTypeId() == 'assembly' && in_array($entity->bundle(), ['node_reference', 'wordpress_post_reference'])) {
+
+    // Node Reference assembly.
     if ($entity->bundle() == 'node_reference') {
+      // Set the name of the Node Reference assembly using the title/label of
+      // referenced node.
       $field = $entity->get('field_node_reference')->getValue();
       $node_id = reset($field)['target_id'];
       $node = Node::load($node_id);
@@ -76,7 +94,10 @@ function rhd_assemblies_entity_presave(EntityInterface $entity) {
       $entity->set('name', $title);
     }
 
+    // Wordpress Post Reference assembly.
     if ($entity->bundle() == 'wordpress_post_reference') {
+      // Set the name of the Wordpress Post Reference assembly using the
+      // title/label of the reference Wordpress post.
       $field = $entity->get('field_post_reference')->getValue();
       $title = reset($field)['title'];
       $entity->set('name', $title);
@@ -84,10 +105,15 @@ function rhd_assemblies_entity_presave(EntityInterface $entity) {
   }
 }
 
+/**
+ * Implements hook_preprocess_assembly().
+ */
 function rhd_assemblies_preprocess_assembly(&$variables) {
-  // Make assembly ID match pattern used for on page navigation
+  // Retrieve the parent entity of this assembly.
   $parent = $variables['elements']['#parent'];
+
   if ($parent) {
+    // Make assembly ID match pattern used for on page navigation.
     $id = $variables['elements']['#assembly']->id();
     $css_id = Html::cleanCssIdentifier('assembly-' . $parent['field_name'] . '-' . $id);
     $variables['attributes']->offsetSet('id', $css_id);

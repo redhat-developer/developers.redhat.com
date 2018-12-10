@@ -1,0 +1,87 @@
+uuid: 414303cb-0bdc-4506-9e0b-e6cf6797e4cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.field.assembly.product_try_it_hero.field_content
+    - field.field.assembly.product_try_it_hero.field_image
+    - field.field.assembly.product_try_it_hero.field_learn_more_link
+    - field.field.assembly.product_try_it_hero.field_title
+    - field.field.assembly.product_try_it_hero.field_try_it_link
+    - image.style.large
+  module:
+    - fences
+    - image
+    - link
+    - text
+id: assembly.product_try_it_hero.default
+targetEntityType: assembly
+bundle: product_try_it_hero
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_image:
+    weight: 4
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: image
+    region: content
+  field_learn_more_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h1
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  field_try_it_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  name: true
+  user_id: true

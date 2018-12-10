@@ -1,0 +1,28 @@
+uuid: d31d4fdc-99cc-4394-ac5a-c4318e03a435
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.storage.assembly.field_upstream_projects
+    - node.type.upstream_projects
+id: assembly.product_comparison_table.field_upstream_projects
+field_name: field_upstream_projects
+entity_type: assembly
+bundle: product_comparison_table
+label: 'Upstream projects'
+description: 'NOTE: Please contact a Content Admin if the upstream project you’re looking for is not available.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      upstream_projects: upstream_projects
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

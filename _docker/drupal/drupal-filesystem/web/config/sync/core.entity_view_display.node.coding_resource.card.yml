@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.coding_resource.field_contributors
     - field.field.node.coding_resource.field_description
     - field.field.node.coding_resource.field_level
-    - field.field.node.coding_resource.field_published_date
     - field.field.node.coding_resource.field_related_product
     - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
@@ -32,11 +31,21 @@ hidden:
   field_contributors: true
   field_description: true
   field_level: true
-  field_published_date: true
   field_related_product: true
   field_resource_type: true
   field_source_link: true
   field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_technologies: true
   field_version: true
   links: true
+  published_at: true

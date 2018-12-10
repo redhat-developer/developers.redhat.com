@@ -20,7 +20,6 @@ dependencies:
     - field.field.node.books.field_needs_own_page
     - field.field.node.books.field_pdf_link
     - field.field.node.books.field_preview_url
-    - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
@@ -81,7 +80,6 @@ hidden:
   field_needs_own_page: true
   field_pdf_link: true
   field_preview_url: true
-  field_published_date: true
   field_publisher: true
   field_pull_from_google: true
   field_read_time: true
@@ -89,8 +87,19 @@ hidden:
   field_share_image: true
   field_short_description: true
   field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_thumbnail_url: true
   field_topics: true
   field_web_reader_url: true
   links: true
+  published_at: true
   workbench_moderation_control: true

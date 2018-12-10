@@ -1,0 +1,116 @@
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
+  <div class="container">
+    <div class="table">
+      <table>
+        {# Title #}
+        <tr>
+          <th> </th>
+          {# Products #}
+          {% for product in products %}
+            <th>
+              <div class="th-content">
+                {% if product.field_image %}
+                  {{ product.field_image }}
+                {% else %}
+                  <h5>{{ product.title }}</h5>
+                {% endif %}
+                {% if product.cta is not empty %}
+                  {% if product.cta.uri is not empty %}
+                    <span class="heading-link">
+                      {{ link(product.cta.title, product.cta.uri, product.cta.options) }} <i class="fas fa-caret-right"></i>
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </th>
+          {% endfor %}
+          {# Sub-Products #}
+          {% for sub_product in sub_products %}
+            <th>
+              <div class="th-content">
+                {% if sub_product.field_image %}
+                  {{ sub_product.field_image }}
+                {% else %}
+                  <h5>{{ sub_product.title }}</h5>
+                {% endif %}
+                {% if sub_product.cta is not empty %}
+                  {% if sub_product.cta.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fas fa-external-link-alt"></i> {{ link(sub_product.cta.title, sub_product.cta.uri, sub_product.cta.options) }}
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </th>
+          {% endfor %}
+          {# Upstream Projects #}
+          {% for upstream_project in upstream_projects %}
+            <th>
+              <div class="th-content">
+                {% if upstream_project.field_image %}
+                  {{ upstream_project.field_image }}
+                {% else %}
+                  <h5>{{ upstream_project.title }}</h5>
+                {% endif %}
+                {# Link to Project #}
+                {% if upstream_project.link_to_project is not empty %}
+                  {% if upstream_project.link_to_project.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fas fa-external-link-alt"></i> {{ link(upstream_project.link_to_project.title, upstream_project.link_to_project.uri, upstream_project.link_to_project.options) }}
+                    </span>
+                  {% endif %}
+                {% endif %}
+                {# Link to GitHub Repo #}
+                {% if upstream_project.link_to_repo is not empty %}
+                  {% if upstream_project.link_to_repo.uri is not empty %}
+                    <span class="heading-link">
+                      <i class="fab fa-github"></i> {{ link(upstream_project.link_to_repo.title, upstream_project.link_to_repo.uri, upstream_project.link_to_repo.options) }}
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </th>
+            
+          {% endfor %}
+        </tr>
+
+        {# Table body #}
+        {% for key, release in features %}
+          <tr class="release-row">
+            <td>{{ releases[key] }}</td>
+          </tr>
+          {% for feature in release %}
+            <tr class="feature-row">
+              <td>{{ feature.title }}</td>
+
+              {# Products #}
+              {% for key, product in products %}
+                {% if key in feature.products_and_projects %}
+                  <td class="checked"><i class="fas fa-check"></i></td>
+                {% else %}
+                  <td class="unchecked">&mdash;</td>
+                {% endif %}
+              {% endfor %}
+              {# Sub-Products #}
+              {% for key, sub_product in sub_products %}
+                {% if key in feature.products_and_projects %}
+                  <td class="checked"><i class="fas fa-check"></i></td>
+                {% else %}
+                  <td class="unchecked">&mdash;</td>
+                {% endif %}
+              {% endfor %}
+              {# Upstream Projects #}
+              {% for key, upstream_project in upstream_projects %}
+                {% if key in feature.products_and_projects %}
+                  <td class="checked"><i class="fas fa-check"></i></td>
+                {% else %}
+                  <td class="unchecked">&mdash;</td>
+                {% endif %}
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</section>

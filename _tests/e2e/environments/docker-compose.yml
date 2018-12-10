@@ -4,7 +4,7 @@ services:
     build: ..
     volumes:
     - ../../../:/home/e2e/developers.redhat.com
-    entrypoint: ruby /home/e2e/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
+    entrypoint: /home/e2e/developers.redhat.com/_tests/e2e/wait-for-docker-selenium.sh
     working_dir: /home/e2e/developers.redhat.com/_tests/e2e
     environment:
     - github_status_enabled

@@ -1,0 +1,82 @@
+uuid: e1d3e229-30a0-439d-852b-b1e078c27487
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_download_hero
+    - entity_browser.browser.image_browser
+    - field.field.assembly.product_download_hero.field_content
+    - field.field.assembly.product_download_hero.field_image
+    - field.field.assembly.product_download_hero.field_learn_more_link
+    - field.field.assembly.product_download_hero.field_title
+  module:
+    - entity_browser
+    - link
+    - text
+id: assembly.product_download_hero.default
+targetEntityType: assembly
+bundle: product_download_hero
+mode: default
+content:
+  field_content:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_image:
+    type: entity_browser_file
+    weight: 6
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  field_learn_more_link:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true

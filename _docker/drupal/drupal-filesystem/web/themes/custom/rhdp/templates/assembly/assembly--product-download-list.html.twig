@@ -1,0 +1,39 @@
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  <div class="container">
+    <h2>All Downloads</h2>
+    <ul class="rhd-accordion">
+
+      {% for version in elements.versions %}
+
+        {# Adjust for 13-digit Unix timestamp #}
+        {% set versionReleaseDate = version.releaseDate / 1000 %}
+
+        <li>
+          <input type="checkbox" checked>
+          <i></i>
+          <h3 class="section-header">{{ version.versionName }}</h3>
+          <div class="section-content">
+            {% for file in version.files %}
+              <div class="version-row grid">
+                <div class="product-version__file-label-wrapper">
+                  <h5 class="product-version__file-label">{{ file.label }}</h5>
+                </div>
+                <p class="product-version__file-description">{{ file.description }}</p>
+                <div class="release-date-wrapper">
+                  <span class="product-version__release-date-header">
+                    <span class="fa fa-calendar-alt"></span> Release Date
+                  </span>
+                  <span class="product-version__release-date">{{ versionReleaseDate|date("F d, Y") }}</span>
+                </div>
+                <a class="production-version__file-button button medium-cta blue" href="{{ file.url }}">
+                  <span class="fa fa-download"></span> Download
+                  <span class="file-size">{{ file.fileSize }}</span>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

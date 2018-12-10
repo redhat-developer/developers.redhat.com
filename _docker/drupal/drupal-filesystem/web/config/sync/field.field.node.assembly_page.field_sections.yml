@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.all_products_listing
     - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.collection
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.dynamic_content_list
@@ -18,8 +19,10 @@ dependencies:
     - assembly.assembly_type.learning_paths
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.product_categories
+    - assembly.assembly_type.product_comparison_table
     - assembly.assembly_type.rich_text
     - assembly.assembly_type.rich_text_columns
+    - assembly.assembly_type.sign_up_hero
     - assembly.assembly_type.static_content_band
     - assembly.assembly_type.video_hero
     - field.storage.node.field_sections
@@ -42,7 +45,9 @@ settings:
     target_bundles:
       all_products_listing: all_products_listing
       call_to_action: call_to_action
+      collection: collection
       static_content_band: static_content_band
+      featured_products: featured_products
       dynamic_content_feed: dynamic_content_feed
       dynamic_content_list: dynamic_content_list
       eloqua_form_embed: eloqua_form_embed
@@ -50,14 +55,15 @@ settings:
       events_list: events_list
       product_categories: product_categories
       featured_evangelists: featured_evangelists
-      featured_products: featured_products
       featured_resources: featured_resources
       hero: hero
       learning_paths: learning_paths
       on_page_navigation: on_page_navigation
+      product_comparison_table: product_comparison_table
       rich_text: rich_text
       rich_text_columns: rich_text_columns
       content_with_image: content_with_image
+      sign_up_hero: sign_up_hero
       video_hero: video_hero
     sort:
       field: _none

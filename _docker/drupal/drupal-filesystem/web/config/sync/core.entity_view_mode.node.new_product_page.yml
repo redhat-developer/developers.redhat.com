@@ -1,0 +1,14 @@
+uuid: d2bab3f8-9c9a-40c4-b015-62cae937bbca
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: ''
+id: node.new_product_page
+label: 'New Product Page'
+targetEntityType: node
+cache: true

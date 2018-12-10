@@ -1,0 +1,19 @@
+uuid: dc18e7ac-49d3-4652-afd1-9f86673bff61
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_try_it_hero
+    - field.storage.assembly.field_title
+id: assembly.product_try_it_hero.field_title
+field_name: field_title
+entity_type: assembly
+bundle: product_try_it_hero
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
