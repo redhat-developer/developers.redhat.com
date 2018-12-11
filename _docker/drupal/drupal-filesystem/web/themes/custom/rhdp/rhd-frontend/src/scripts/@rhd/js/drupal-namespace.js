@@ -135,7 +135,7 @@ app.products = {
 
 app.products.downloads = {
     "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
-    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.6.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.6.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.6.0-1-minishift-linux-amd64"}
+    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-linux-amd64"}
 };
 
 /*
