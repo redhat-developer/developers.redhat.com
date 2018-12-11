@@ -31,7 +31,10 @@
       <div class="dp-duration">
           <i class="far fa-clock"></i> 
           {% for intvl in node.field_read_time|reverse %}
-          {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {# Verify that the array key exists before referencing it. #}
+            {% if intvl.interval is defined %}
+              {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
+            {% endif %}
           {% endfor %}
       </div>
       {% endif %}

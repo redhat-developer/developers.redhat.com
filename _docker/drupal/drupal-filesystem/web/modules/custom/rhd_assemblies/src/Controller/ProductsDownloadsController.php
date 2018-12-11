@@ -74,11 +74,23 @@ class ProductsDownloadsController extends ControllerBase {
   }
 
   /**
-   * Determines if thie Product node should have a Downloads page.
+   * Determines if this Product node should have a Downloads page.
    *
    * A Product node needs to have a field_product_machine_name value and a
    * field_downloads_page_content value in order to require a Downloads page
    * and route.
+   *
+   * @param Node $product
+   *   A Product node.
+   *
+   * @return bool
+   *   Returns FALSE if we are not using the new product page. If we are and
+   *   there is content for the Download Page field and the Product Machine Name
+   *   field is set, returns TRUE.
+   *
+   * @throws NotFoundHttpException
+   *   If someone hits this route, but we do not have the content necessary to
+   *   fetch data from download, manager, we throw a 404.
    */
   protected function hasDownloadsPage($product) {
     // If the Use New Product Page field is unchecked, return FALSE.
@@ -95,6 +107,7 @@ class ProductsDownloadsController extends ControllerBase {
         "Failed to retrieve product downloads from Download Manager for @label",
        ['@label' => $product->label()]
       );
+
       throw new NotFoundHttpException();
     }
 
@@ -103,6 +116,12 @@ class ProductsDownloadsController extends ControllerBase {
 
   /**
    * Retrieves the page title for this entity.
+   *
+   * @param string $product_url_name
+   *   The value of field_url_product_name for this Product node.
+   *
+   * @return string
+   *   The page title for this entity.
    */
   public function getTitle($product_url_name) {
     // Retrieves an array of nids of nodes with a Product URL Name equal to
@@ -117,6 +136,12 @@ class ProductsDownloadsController extends ControllerBase {
 
   /**
    * Build and return the content of a Product's Downloads page.
+   *
+   * @param string $product_url_name
+   *   The value of field_url_product_name for this Product node.
+   *
+   * @return array
+   *   The render array.
    */
   public function content($product_url_name) {
     // Retrieves an array of nids of nodes with a Product URL Name equal to

@@ -70,7 +70,13 @@ If there is anything missing in this guide please submit a PR.
 
 ### Install and Setup
 
-There are some requirements for running Drupal locally: php, and some extensions, composer, and optionally mysql/mariadb.
+There are some requirements for running Drupal locally: php, and some extensions, composer, and optionally mysql/mariadb. 
+If you install mysql v8.0 or greater you will need to modify the my.cnf to avoid a connection error.
+
+You need to add this line:-
+default-authentication-plugin = mysql_native_password
+
+And comment out the bind-address line.
 
 ##### Mac
 

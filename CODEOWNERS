@@ -1,0 +1,14 @@
+# DevOps
+_lib                                            @robpblake @lightguard
+_docker/*                                       @robpblake @lightguard  # More specific rules will override these
+
+# Drupal
+remove_local_drupal.sh                          @lightguard @jordanpagewhite
+setup_local_drupal.sh                           @lightguard @jordanpagewhite
+_docker/drupal/drupal-filesystem/*              @lightgaurd @jordanpagewhite
+
+# Tests
+_tests/*                                        @RubyGemTSL
+
+# Front-end
+_docker/drupal/drupal-filesystem/web/themes/*   @KamiQuasi @adelasofia @lightgaurd @jordanpagewhite

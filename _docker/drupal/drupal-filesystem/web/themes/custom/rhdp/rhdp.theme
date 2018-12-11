@@ -5,7 +5,6 @@
  * Functions to support theming in the RHDP theme.
  */
 
-use Drupal\assembly\Entity\Assembly;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -133,13 +132,17 @@ function rhdp_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $
  */
 function rhdp_preprocess_html(array &$variables) {
   $current_path = \Drupal::service('path.current')->getPath();
-  $environment = \Drupal::config('redhat_developers')->get('environment');
-  $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
-  $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
-  $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
-  $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
-  $rhd_base_url = \Drupal::config('redhat_developers')->get('rhd_base_url');
-  $rhd_final_base_url = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
+  // Retrieve the redhat_developers config configuration object once.
+  $rhd_config = \Drupal::config('redhat_developers');
+
+  // Retrieve individual config values from the config object.
+  $environment = $rhd_config->get('environment');
+  $dtm_code = $rhd_config->get('dtm_code');
+  $sentry_track = $rhd_config->get('sentry_track');
+  $sentry_script = $rhd_config->get('sentry_script');
+  $sentry_code = $rhd_config->get('sentry_code');
+  $rhd_base_url = $rhd_config->get('rhd_base_url');
+  $rhd_final_base_url = $rhd_config->get('rhd_final_base_url');
 
   $variables['rhd_environment'] = $environment;
   $variables['rhd_dtm_code'] = $dtm_code;
@@ -155,8 +158,10 @@ function rhdp_preprocess_html(array &$variables) {
     $referrer = [
       '#tag' => 'meta',
       '#attributes' => [
-        'name' => 'referrer',      // Set name for element
-        'value' => 'unsafe-url',   // Set value for title
+        // Set name for element.
+        'name' => 'referrer',
+        // Set value for title.
+        'value' => 'unsafe-url',
       ],
     ];
 
@@ -174,7 +179,7 @@ function rhdp_js_settings_alter(array &$settings, AttachedAssetsInterface $asset
   $rhd_settings = &$settings['rhd'];
 
   $rhd_settings['urls'] = [];
-  $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
+  $rhd_settings['urls']['final_base_url'] = $env_settings->get('rhd_final_base_url');
 
   $rhd_settings['downloadManager'] = [];
   $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
@@ -504,8 +509,9 @@ function redhat_www_ddo_default($node) {
 /**
  * Implements template_preprocess_field.
  *
- * Adding our css modifications to the video_embed_field type. Had to modify some things mostly due to
- * our site css so we could get the responsive video to work.
+ * Adding our css modifications to the video_embed_field type. Had to modify
+ * some things mostly due to our site css so we could get the responsive
+ * video to work.
  *
  * Adding another edit for embedded products.
  *
@@ -787,6 +793,17 @@ function rhdp_preprocess_assembly(&$variables) {
 
     $variables['colspan'] = $colspan;
   }
+
+  // Embedded Content assembly type.
+  if ($type == 'embedded_content') {
+    $field_url = $assembly->get('field_url')->getValue();
+    $embed_url = $field_url[0]['uri'];
+    $variables['embed_url'] = FALSE;
+
+    if ($embed_url) {
+      $variables['embed_url'] = $embed_url;
+    }
+  }
 }
 
 /**
@@ -803,18 +820,6 @@ function rhdp_preprocess_views_view(&$variables) {
 
     if ($title) {
       $variables['title'] = $title;
-    }
-
-    // TODO: This will throw an error and must be in the wrong place within this
-    // file. Where should this conditional be within this file?
-    if ($type == 'embedded_content') {
-      $field_url = $assembly->get('field_url')->getValue();
-      $embed_url = $field_url[0]['uri'];
-      $variables['embed_url'] = FALSE;
-
-      if ($embed_url) {
-        $variables['embed_url'] = $embed_url;
-      }
     }
   }
 }
@@ -842,18 +847,29 @@ function rhdp_preprocess_views_view_grouping__product_groups(&$variables) {
  * stage script.
  */
 function rhdp_library_info_alter(array &$libraries, $extension) {
-  // This should return the stage Keycloak script URL on our Stage environment,
-  // but otherwise, the config object will not be set, and this will be NULL.
-  $keycloak_url = \Drupal::config('redhat_developers')->get('keycloak')['scriptUrl'];
+  $rhd_config = \Drupal::config('redhat_developers');
 
-  // Keycloak_url is only set on the Stage environment. 
-  if ($extension == 'rhdp' && $keycloak_url !== NULL) {
-    // Remove the Prod Keycloak script URL from our library.
-    unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
-    // Add the Stage Keycloak script URL to our library.
-    $libraries['base-theme']['js'][$keycloak_url] = [
-      'type' => 'external',
-      'minified' => FALSE,
-    ];
+  // Verify that the Keycloak config key/value exists and the scriptUrl index
+  // exists within that config key/value pair.
+  //
+  // NOTE: If this is not set, then the library will not be altered, and
+  // whatever key/values provides in the RHDP theme's libraries.yml file will
+  // be used.
+  if ($rhd_config->get('keycloak') && isset($rhd_config->get('keycloak')['scriptUrl'])) {
+    // This should return the stage Keycloak script URL on our Stage
+    // environment, but otherwise, the config object will not be set, and this
+    // will be NULL.
+    $keycloak_url = $rhd_config->get('keycloak')['scriptUrl'];
+
+    // Keycloak_url is only set on the Stage environment.
+    if ($extension == 'rhdp' && $keycloak_url !== NULL) {
+      // Remove the Prod Keycloak script URL from our library.
+      unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+      // Add the Stage Keycloak script URL to our library.
+      $libraries['base-theme']['js'][$keycloak_url] = [
+        'type' => 'external',
+        'minified' => FALSE,
+      ];
+    }
   }
 }
