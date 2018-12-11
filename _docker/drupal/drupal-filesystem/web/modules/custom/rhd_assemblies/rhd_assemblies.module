@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\node\Entity\Node;
@@ -123,31 +124,42 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
 /**
  * Implements hook_form_alter().
  */
-function rhd_assemblies_form_alter(&$form, &$form_state, $form_id) {
+function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
   switch ($form_id) {
     case 'node_product_form':
     case 'node_product_edit_form':
-      // The value of field_url_product_name attempting to be submitted to this
-      // node product form.
-      $url_product_name = $form_state->getValue('field_url_product_name')[0]['value'];
-      // This query will try to find an existing Product node that has a value
-      // of $url_product_name set for the field_url_product_name field.
-      $is_url_product_name_already_used = \Drupal::entityQuery('node')
-        ->condition('type', 'product')
-        ->condition('field_url_product_name', $url_product_name)
-        ->count()
-        ->execute();
-
-      if ($is_url_product_name_already_used) {
-        // If an existing Product is already using the value provided for
-        // field_url_product_name in $form_state, then we will set an error on
-        // the field.
-        $form_state->setErrorByName(
-          'field_url_product_name',
-          t('The value you entered for URL Product Name is already used by an existing Product. This field must be unique across all Products to prevent routing conflicts.')
-        );
-      }
-
+      $form['#validate'][] = 'product_url_name_validation';
       break;
+  }
+}
+
+/**
+ * Custom validation hook for the Product node and node edit forms.
+ *
+ * Verifies that the field_url_product_name submitted in the $form_state is not
+ * already being used by an existing Product node. This is necessary because if
+ * a duplicate field_url_product_name exists, there will be a routing conflict.
+ */
+function product_url_name_validation(array &$form, FormStateInterface &$form_state) {
+  // The value of field_url_product_name attempting to be submitted to this
+  // node product form.
+  $url_product_name = $form_state->getValue('field_url_product_name')[0]['value'];
+
+  // This query will try to find an existing Product node that has a value
+  // of $url_product_name set for the field_url_product_name field.
+  $is_url_product_name_already_used = \Drupal::entityQuery('node')
+    ->condition('type', 'product')
+    ->condition('field_url_product_name', $url_product_name)
+    ->count()
+    ->execute();
+
+  if ($is_url_product_name_already_used) {
+    // If an existing Product is already using the value provided for
+    // field_url_product_name in $form_state, then we will set an error on
+    // the field.
+    $form_state->setErrorByName(
+      'field_url_product_name',
+      t('The value you entered for URL Product Name is already used by an existing Product. This field must be unique across all Products to prevent routing conflicts.')
+    );
   }
 }
