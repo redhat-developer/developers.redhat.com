@@ -9,7 +9,6 @@ dependencies:
     - assembly.assembly_type.content_image
     - assembly.assembly_type.content_pull_quote
     - assembly.assembly_type.embedded_content
-    - assembly.assembly_type.product_comparison_table
     - field.storage.node.field_content
     - node.type.article
   module:
@@ -34,7 +33,6 @@ settings:
       content_image: content_image
       content_pull_quote: content_pull_quote
       embedded_content: embedded_content
-      product_comparison_table: product_comparison_table
     sort:
       field: _none
     auto_create: false
