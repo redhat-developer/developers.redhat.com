@@ -19,6 +19,24 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/select2",
+                "version": "4.0.3",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "jquery.select2"
+                },
+                "dist": {
+                    "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "~1.0"
+                }
+            }
         }
     ],
     "require": {
@@ -54,7 +72,8 @@
         "drush/drush": "9.4.0",
         "drupal/publication_date": "2.x-dev",
         "drupal/beryllium": "1.x-dev",
-        "drupal/bootstrap": "^3.15"
+        "drupal/bootstrap": "^3.15",
+        "jquery/select2": "4.0.3"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa6a9f67f9f8a1610f3c6dc7d1fa37d3",
+    "content-hash": "559136abc4c82eabbba04121d7d17df7",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -8042,6 +8042,23 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jquery/select2",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "jquery.select2"
+            }
         },
         {
             "name": "kriswallsmith/assetic",
