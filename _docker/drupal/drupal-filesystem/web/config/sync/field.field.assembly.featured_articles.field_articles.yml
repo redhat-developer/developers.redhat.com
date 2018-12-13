@@ -1,0 +1,28 @@
+uuid: 8078685d-9364-4c85-9239-1f5a170b190e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_articles
+    - field.storage.assembly.field_articles
+    - node.type.article
+id: assembly.featured_articles.field_articles
+field_name: field_articles
+entity_type: assembly
+bundle: featured_articles
+label: Articles
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
