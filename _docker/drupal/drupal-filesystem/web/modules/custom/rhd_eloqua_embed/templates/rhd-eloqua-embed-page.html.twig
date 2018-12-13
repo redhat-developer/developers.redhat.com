@@ -10,9 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script>
-  </head>
-  <body{{ attributes.addClass(body_classes) }}>
-    <style>
+<style>
       #GatedFormContainer .rh-logo { display: none; }
       #GatedFormContainer .form-header h1 {
         color: #333;
@@ -29,6 +27,9 @@
       }
       .cta, .cta-stacked {
         font-size: 13px;
+      }
+      .cta #GatedFormContainer .col-sm-10.controls {
+        margin-left: 0 !important;
       }
       .cta #GatedFormContainer #FormSubmitButton {
         background-color: #FFF;
@@ -67,6 +68,8 @@
         }
       }
     </style>
+  </head>
+  <body{{ attributes.addClass(body_classes) }}>
     <div id="GatedFormContainer"></div>
     <script>
       $.when(dynamicForm.Util.CheckPlugins()).then(function() {
