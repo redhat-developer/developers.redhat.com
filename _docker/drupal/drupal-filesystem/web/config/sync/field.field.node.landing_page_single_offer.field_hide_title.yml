@@ -1,0 +1,23 @@
+uuid: bc69493c-08ba-4e0c-8f8a-19a27b42a16b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hide_title
+    - node.type.landing_page_single_offer
+id: node.landing_page_single_offer.field_hide_title
+field_name: field_hide_title
+entity_type: node
+bundle: landing_page_single_offer
+label: 'Hide Title'
+description: 'Prevent the title from being displayed to site visitors. Use this feature if you are providing a Heading 1 element in an assembly or elsewhere on the page.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
