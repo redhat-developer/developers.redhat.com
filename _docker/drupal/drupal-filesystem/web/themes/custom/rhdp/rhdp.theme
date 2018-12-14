@@ -5,6 +5,7 @@
  * Functions to support theming in the RHDP theme.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -414,6 +415,18 @@ function rhdp_preprocess_node(array &$variables) {
       ];
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__PARAGRAPH_TYPE().
+ */
+function rhdp_preprocess_paragraph__connectors(&$variables) {
+  $block = Block::load('views_block__connectors_rest_export_connectors_rest_export_block');
+  $render = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+
+  $variables['connectors_block'] = $render;
 }
 
 /**
