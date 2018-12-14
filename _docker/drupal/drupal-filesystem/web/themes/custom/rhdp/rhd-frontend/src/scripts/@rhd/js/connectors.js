@@ -62,8 +62,8 @@ app.connectors = {
     orderByPriority: function(e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
-
+        var thumbnailSize = this.thumbnailSize || "200x150";
+        app.connectors.sort($('ul.connector-results'), thumbnailSize, app.connectors.orderBy.PRIORITY);
         $('.connectors-order a').removeClass('active');
         $('.order-priority').addClass('active');
     },
@@ -71,126 +71,38 @@ app.connectors = {
     orderByAlpha: function(e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
+        var thumbnailSize = this.thumbnailSize || "200x150";
+        app.connectors.sort($('ul.connector-results'), thumbnailSize, app.connectors.orderBy.SYS_TITLE);
         $('.connectors-order a').removeClass('active');
         $('.order-alpha').addClass('active');
     },
 
     /**
-     * Parameters 'query', 'target_product', 'orderBy' and 'featuredIDs' determine input parameters
-     * for connectors query (see [1]).
      *
-     * [1] https://github.com/searchisko/configuration/blob/master/data/query/connectors.md
-     *
-     * @param {string} query
      * @param {!HTMLElement} container
-     * @param {string} target_product
      * @param {string} thumbnailSize
-     * @param {string=} orderBy
-     * @param {Array.<string>=} featuredIDs
+     * @param {string} orderBy
      */
-    connectorFilter : function(query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp.url.connectors;
-
-        var request_data = {};
-
-        if (query) {
-            request_data.query = query;
-        }
-
-        if (target_product) {
-            request_data.target_product = target_product;
-        }
-
-        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
-            request_data.sortAlpha = true;
-        }
-
-        //And specify the connector IDs if specified.
-        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
-            request_data.id = featuredIDs;
-        }
-
+    sort: function (container, thumbnailSize, orderBy) {
         // append loading class to wrapper
-        $("ul.connector-results").addClass('loading');
+        container.addClass('loading');
 
-        $.ajax({
-            url : url,
-            dataType: 'json',
-            data : request_data,
-            container : container,
-            thumbnailSize : thumbnailSize,
-            error : function() {
-                $('ul.connector-results').html(app.dcp.error_message);
-            }
-        }).done(function(data){
-            var container = this.container || $('ul.connector-results');
-            var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
-        });
+        if (orderBy == app.connectors.orderBy.SYS_TITLE) {
+            container.find('.connector')
+                // Sort the connector by their titles.
+                .sort((a, b) => (a.dataset.connectortitle.toUpperCase() < b.dataset.connectortitle.toUpperCase()) ? -1 : (a.dataset.connectortitle.toUpperCase() > b.dataset.connectortitle.toUpperCase()) ? 1 : 0)
+                .appendTo('ul.connector-results');
+        }
+        else if (orderBy == app.connectors.orderBy.PRIORITY) {
+            container.find('.connector')
+                // Sort the connectors by their priority/importance.
+                .sort((a, b) => a.dataset.connectorpriority - b.dataset.connectorpriority)
+                .appendTo('ul.connector-results');
+        }
+
+        container.removeClass('loading');
     },
-
-    /**
-     *
-     * @param {*} data
-     * @param {!HTMLElement} container
-     * @param {string} thumbnailSize
-     */
-    format: function (data, container, thumbnailSize) {
-        if (data.responses) {
-            var hits = data.responses[0].hits.hits;
-        } else {
-            var hits = data.hits.hits;
-        }
-
-        var html = "";
-        // loop over every hit
-        for (var i = 0; i < hits.length; i++) {
-            var props = hits[i]._source;
-
-            // Set the img_path_thumb to the DCP thumbnail endpoint, and set the
-            // fallback image to the thumbnail on static.jboss.org.
-            props.img_path_thumb = (typeof props.thumbnail__target_id !== 'undefined' && props.thumbnail__target_id !== '') ? props.thumbnail__target_id : "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-
-            //If no 'long description', use the short one (before it is truncated)
-            if (!('sys_content' in props)) {
-                props.sys_content = props.sys_description;
-            }
-            
-            //Limit the short description length, in-case the source data is invalid.
-            if (props.sys_description.length > 150 ) {
-                props.sys_description = props.sys_description.slice(0,146).concat(' ...');
-            }
-            
-            //The templating fails if these values are undefined. There's probably a better way to do this.
-            if (!props.code_snippet_1) {
-                props.code_snippet_1 = '';
-            }
-            if (!props.code_snippet_2) {
-                props.code_snippet_2 = '';
-            }
-            if (!props.more_details_url) {
-                props.more_details_url = '';
-            }
-            if(!props.link_1_text || !props.link_1_url){
-               props.link_1_text = '';
-                props.link_1_url = '';
-            }
-            if(!props.link_2_text || !props.link_2_url){
-                props.link_2_text = '';
-                props.link_2_url = '';
-            }
-            
-            var connectorTemplate = app.templates.connectorTemplate;
-            html += connectorTemplate.template(props);
-
-        }
-
-        container.html(html).removeClass('loading');
-    }
 };
-
 
 $(function () {
 
@@ -202,27 +114,4 @@ $(function () {
     
     $('.overlay-close').on('click', app.connectors.close);
 
-    var targetProductFilter = $('[data-target-product]').data('target-product');
-    var orderBy = $('[data-order-by]').data('order-by');
-    
-    /*
-        All Connectors
-     */
-    var connectorResults = $('.connector-results');
-    if(connectorResults.length) {
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
-    }
-
-    
-    /*
-        Featured Connectors
-     */
-    var featuredConnectorIds = $('.featured-connector-ids');
-    if(featuredConnectorIds.length) {
-        var featuredIds = JSON.parse(featuredConnectorIds.text());
-        if ($.isArray(featuredIds) && featuredIds.length > 0) {
-            app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
-        }
-    }
 });
-
