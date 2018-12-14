@@ -77,12 +77,22 @@
     not node.isPublished() ? 'node--unpublished'
   ]
 %}
-
+{%
+  set title_tag = page ? 'h1' : 'h2'
+%}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-
-  <div{{ content_attributes.addClass('node__content row') }}>
-    {{ content|without('field_sections', 'field_form') }}
+  {% if not node.field_hide_title.value %}
+  <div class="container">
+      {{ title_prefix }}
+        <{{title_tag}}{{ title_attributes }}>{{ label }}</{{title_tag}}>
+      {{ title_suffix }}
   </div>
+  {% endif %}
+  <div{{ content_attributes.addClass('node__content row') }}>
+    {{ content|without('field_sections', 'field_hero') }}
+  </div>
+
+  {{ content.field_sections }}
 
 </article>

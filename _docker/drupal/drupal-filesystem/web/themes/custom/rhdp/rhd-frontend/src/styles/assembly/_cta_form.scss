@@ -8,9 +8,34 @@
   }
   .field--name-field-title,
   .header {
-    margin-top: 0;
+    font-size: 18px;
+    @include tablet-portrait {
+      font-size: 38px;
+    }
+    text-align: left;
+    .centered & {
+      text-align: center;
+    }
+    .use-h1 & {
+      font-size: 23px;
+      line-height: 1.24;
+      @include tablet-portrait {
+        font-size: 50px;
+      }
+    }
   }
   .assembly-type-eloqua_form_embed {
     background-color: transparent;
   }
+
+  &.sidebar-form  .column-container {
+    @include tablet-landscape {
+      display: grid;
+      grid-template-columns: 66% 33%;
+      > .cta-content{
+        padding-right: 40px;
+      }
+    }
+  }
+
 }

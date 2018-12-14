@@ -144,22 +144,24 @@ function product_url_name_validation(array &$form, FormStateInterface &$form_sta
   // The value of field_url_product_name attempting to be submitted to this
   // node product form.
   $url_product_name = $form_state->getValue('field_url_product_name')[0]['value'];
+  $form_nid = $form_state->getFormObject()->getEntity()->id();
 
   // This query will try to find an existing Product node that has a value
   // of $url_product_name set for the field_url_product_name field.
-  $is_url_product_name_already_used = \Drupal::entityQuery('node')
+  $query_nids = \Drupal::entityQuery('node')
     ->condition('type', 'product')
     ->condition('field_url_product_name', $url_product_name)
-    ->count()
     ->execute();
 
-  if ($is_url_product_name_already_used) {
-    // If an existing Product is already using the value provided for
-    // field_url_product_name in $form_state, then we will set an error on
-    // the field.
-    $form_state->setErrorByName(
-      'field_url_product_name',
-      t('The value you entered for URL Product Name is already used by an existing Product. This field must be unique across all Products to prevent routing conflicts.')
-    );
+  foreach ($query_nids as $query_nid) {
+    if ($query_nid != $form_nid) {
+      // If an existing Product is already using the value provided for
+      // field_url_product_name in $form_state, then we will set an error on
+      // the field.
+      $form_state->setErrorByName(
+        'field_url_product_name',
+        t('The value you entered for URL Product Name is already used by an existing Product. This field must be unique across all Products to prevent routing conflicts.')
+      );
+    }
   }
 }
