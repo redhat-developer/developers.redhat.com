@@ -4,7 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.landing_page_single_offer.body
-    - field.field.node.landing_page_single_offer.field_form
+    - field.field.node.landing_page_single_offer.field_hero
+    - field.field.node.landing_page_single_offer.field_hide_title
     - field.field.node.landing_page_single_offer.field_meta_tags
     - field.field.node.landing_page_single_offer.field_sections
     - field.field.node.landing_page_single_offer.field_tax_audience_segment
@@ -25,6 +26,7 @@ dependencies:
     - inline_entity_form
     - metatag
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -41,7 +43,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 20
+      weight: 12
       format_type: details
       format_settings:
         id: ''
@@ -56,7 +58,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 4
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
@@ -69,16 +71,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_form:
-    weight: 6
+  field_hero:
+    weight: 5
     settings:
       form_mode: default
-      label_singular: ''
-      label_plural: ''
+      override_labels: true
+      label_singular: hero
+      label_plural: heroes
       allow_new: true
       allow_existing: true
       match_operator: CONTAINS
-      override_labels: false
       collapsible: false
       collapsed: false
       allow_duplicate: false
@@ -86,6 +88,13 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
+    region: content
+  field_hide_title:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_meta_tags:
     weight: 9
@@ -207,7 +216,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -4,7 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.landing_page_single_offer.body
-    - field.field.node.landing_page_single_offer.field_form
+    - field.field.node.landing_page_single_offer.field_hero
+    - field.field.node.landing_page_single_offer.field_hide_title
     - field.field.node.landing_page_single_offer.field_meta_tags
     - field.field.node.landing_page_single_offer.field_sections
     - field.field.node.landing_page_single_offer.field_tax_audience_segment
@@ -30,26 +31,33 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
   content_moderation_control:
-    weight: -20
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_form:
+  field_hero:
     weight: 1
     label: hidden
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_revisions_entity_view
     region: content
   field_sections:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: default
@@ -63,6 +71,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hide_title: true
   field_meta_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true

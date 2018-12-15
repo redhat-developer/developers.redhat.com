@@ -17,9 +17,16 @@
 #}
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <div class="container">
-  {% if content %}
-    {{- content -}}
-  {% endif %}
+    <div class="column-container">
+    {% if content %}
+      <div class="cta-content">
+      {{- content|without('field_form') -}}
+      </div>
+      <div class="cta-form">
+      {{- content.field_form -}}
+      </div>
+    {% endif %}
+    </div>
   </div>
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
