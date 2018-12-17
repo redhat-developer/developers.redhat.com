@@ -1,0 +1,19 @@
+uuid: c129ed7a-aa3c-40a7-a819-abdba421c95f
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - link
+id: assembly.field_image_link
+field_name: field_image_link
+entity_type: assembly
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
