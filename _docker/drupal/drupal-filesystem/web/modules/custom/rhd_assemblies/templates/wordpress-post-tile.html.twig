@@ -4,7 +4,13 @@
       <div class="tile-image {{ media.scale_orientation }}">
         <div class="image-table">
           <div class="image-cell">
-            <img src="{{ media.source_url }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+            {% set tmpUrl = media.source_url %}
+            {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+              {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
+              {{ cacheImg }}
+            {% else %}
+              <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+            {% endif %}
           </div>
         </div>
       </div>
