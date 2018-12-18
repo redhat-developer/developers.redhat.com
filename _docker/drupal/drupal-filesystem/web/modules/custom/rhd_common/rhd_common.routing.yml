@@ -5,7 +5,7 @@ rhd_common.main_page_controller:
     _title_callback: '\Drupal\rhd_common\Controller\ProductPageController::getPageTitle'
     _entity_view: 'product.full'
   requirements:
-    _permission: 'access content'
+    _permission: 'access content, view product revisions'
 rhd_common.product_overview:
   path: '/products/{product_code}'
   defaults:
@@ -14,5 +14,4 @@ rhd_common.product_overview:
     _entity_view: 'product.full'
     sub_page: 'overview'
   requirements:
-    _permission: 'access content'
-
+    _permission: 'access content, view product revisions'

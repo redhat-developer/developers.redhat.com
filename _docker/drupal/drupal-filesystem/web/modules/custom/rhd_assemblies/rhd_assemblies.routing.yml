@@ -12,7 +12,7 @@ rhd_assemblies.products_downloads:
     _controller: '\Drupal\rhd_assemblies\Controller\ProductsDownloadsController::content'
     _title_callback: '\Drupal\rhd_assemblies\Controller\ProductsDownloadsController::getTitle'
   requirements:
-    _permission: 'access content'
+    _permission: 'access content, view product revisions'
 
 rhd_assemblies.products_getting_started:
   path: '/products/{product_url_name}/getting-started'
@@ -20,4 +20,4 @@ rhd_assemblies.products_getting_started:
     _controller: '\Drupal\rhd_assemblies\Controller\ProductsGettingStartedController::content'
     _title_callback: '\Drupal\rhd_assemblies\Controller\ProductsGettingStartedController::getTitle'
   requirements:
-    _permission: 'access content'
+    _permission: 'access content, view product revisions'
