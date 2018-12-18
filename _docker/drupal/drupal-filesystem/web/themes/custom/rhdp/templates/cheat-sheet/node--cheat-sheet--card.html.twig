@@ -14,7 +14,7 @@
     <div class="card-image">
       <div class="table">
         <div class="cell">
-          {{ content.field_cover_image }}
+          {{ content.field_cover_image.0 | with('#image_style', 'card_small') }}
         </div>
       </div>
     </div>

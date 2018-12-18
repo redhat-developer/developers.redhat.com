@@ -1,0 +1,40 @@
+uuid: adc70108-b60d-47e5-b35d-6d46f100f14b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_articles
+    - field.field.assembly.featured_articles.field_articles
+id: assembly.featured_articles.default
+targetEntityType: assembly
+bundle: featured_articles
+mode: default
+content:
+  field_articles:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  moderation_state: true
+  user_id: true
+  visual_styles: true

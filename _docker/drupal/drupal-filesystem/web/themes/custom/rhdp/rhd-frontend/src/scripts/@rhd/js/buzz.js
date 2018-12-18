@@ -167,6 +167,8 @@ app.buzz = {
     var dataIndex = 0;
 
     if($mbuzz.length) {
+      // @TODO This app.templates variable should be null since the Slim
+      // template no longer exists.
       app.buzz.filter(app.templates.miniBuzzTemplate, $mbuzz);
     }
 
@@ -176,6 +178,8 @@ app.buzz = {
     var $buzz = $('.buzz-container, .product-buzz-container');
 
     if($buzz.length) {
+      // @TODO This app.templates variable should be null since the Slim
+      // template no longer exists.
       app.buzz.filter(app.templates.buzzTemplate, $buzz, 8);
 
       // infinite scroll for full buzz page
@@ -201,6 +205,8 @@ app.buzz = {
 
           dataIndex += 8;
           // load in more
+          // @TODO This app.templates variable should be null since the Slim
+          // template no longer exists.
           app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, dataIndex, function() {
             if(win.scrollTop() < 400){
               win.scrollTop(scrollTop);
@@ -216,6 +222,8 @@ app.buzz = {
     var $pbuzz = $('.product-buzz-container');
 
     if($pbuzz.length) {
+      // @TODO This app.templates variable should be null since the Slim
+      // template no longer exists.
       app.buzz.filter(app.templates.productBuzzTemplate, $pbuzz);
     }
 
@@ -232,6 +240,8 @@ app.buzz = {
       timeOut = setTimeout(function() {
         var $buzz = $('.buzz-container');
         if(lastSearch !== query) {
+          // @TODO This app.templates variable should be null since the Slim
+          // template no longer exists.
           app.buzz.filter(app.templates.buzzTemplate, $buzz);
           app.utils.updatePageHash(el);
         }

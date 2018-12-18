@@ -121,8 +121,21 @@
   }
 
   p {
-    font-size: inherit;
+    font-size: 13px;
     line-height: inherit;
+    @include tablet-portrait {
+      font-size: 18px;
+    }
+    @include tablet-landscape {
+      font-size: 22px;
+    }
+    @include desktop-small {
+      font-size: 20px;
+    }
+    @include desktop-large {
+      font-size: 18px;
+    }
+
   }
 
   .row {
@@ -425,5 +438,6 @@
       margin-top: 14px;
       margin-bottom: 50px;
     }
+
   }
 }
