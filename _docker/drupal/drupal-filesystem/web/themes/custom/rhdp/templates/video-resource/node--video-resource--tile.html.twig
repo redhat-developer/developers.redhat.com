@@ -14,10 +14,16 @@
     <div class="tile-image">
       <div class="image-table">
         <div class="image-cell">
-          <img{{create_attribute({
-              'src': content.field_video_thumbnail_url['#items'][0].value
-            })
-          }} alt="{{ node_title }}"/>
+            {% set tmpUrl = content.field_video_thumbnail_url['#items'][0].value %}
+            {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+              {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':node_title, } %}
+              {{ cacheImg }}
+            {% else %}
+              <img src="{{ tmpUrl }}" alt="{{ node_title }}" />
+            {% endif %}
+
+          
+
           <div class="play-button">►</div>
         </div>
       </div>

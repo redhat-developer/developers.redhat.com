@@ -3,7 +3,7 @@
     <div class="tile-image">
       <div class="image-table">
         <div class="image-cell">
-          {{ content.field_image }}
+          {{ content.field_image.0 | with('#image_style', 'static_item') }}
         </div>
       </div>
     </div>
