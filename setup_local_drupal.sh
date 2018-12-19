@@ -49,6 +49,11 @@ then
   sudo ln -s ${ENVIRON}/rhd.settings.yml ${WEB}/sites/default/rhd.settings.yml
 fi
 
+if [ ! -d "${WEB}/images" ]
+then
+  sudo ln -s ${PROJ}/images/ ${WEB}/images
+fi
+
 # ADD from docker active config, files
 echo "\nAdding the active config from the prod dump"
 rm -rf ${WEB}/config/active
