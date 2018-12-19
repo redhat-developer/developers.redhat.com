@@ -86,4 +86,14 @@
     @include tablet-portrait {
     }
   }
+  &.assembly-bigger-image {
+    .assembly-content + .assembly-image {
+      @include desktop-small {
+        max-width: 500px;
+        img {
+          max-width: 500px;
+        }
+      }
+    }
+  }
 }
