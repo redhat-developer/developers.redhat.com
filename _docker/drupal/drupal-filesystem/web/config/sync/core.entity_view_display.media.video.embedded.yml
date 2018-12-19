@@ -8,7 +8,13 @@ dependencies:
     - field.field.media.video.field_media_video_embed_field
     - media.type.video
   module:
+    - field_layout
+    - layout_discovery
     - video_embed_field
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: pCyOYJ-kpTluUnUP9MbX1DLjksZ1hYisO4myHIRA5zw
 id: media.video.embedded

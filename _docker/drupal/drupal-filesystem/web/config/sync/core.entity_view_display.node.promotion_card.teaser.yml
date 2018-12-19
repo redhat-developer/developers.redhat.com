@@ -9,9 +9,15 @@ dependencies:
     - field.field.node.promotion_card.field_containers_short_summary
     - node.type.promotion_card
   module:
+    - field_layout
+    - layout_discovery
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 4Dlmw1416kLOK5ONyTDTzuDaHW42rlINIOq4XAU-pEo
 id: node.promotion_card.teaser
@@ -51,3 +57,4 @@ content:
 hidden:
   field_container_tags: true
   links: true
+  published_at: true

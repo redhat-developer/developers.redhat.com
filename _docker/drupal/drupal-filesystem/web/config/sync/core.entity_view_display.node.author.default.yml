@@ -24,10 +24,16 @@ dependencies:
     - node.type.author
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.author.default
 targetEntityType: node
 bundle: author

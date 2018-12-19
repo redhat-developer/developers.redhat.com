@@ -7,6 +7,8 @@ dependencies:
     - paragraphs.paragraphs_type.main_content
   module:
     - field_group
+    - field_layout
+    - layout_discovery
     - text
 third_party_settings:
   field_group:
@@ -23,6 +25,9 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: lXRA_jur1FNkkbCR-8lsipT8h6wryz1VOOYINAEYl_o
 id: paragraph.main_content.default

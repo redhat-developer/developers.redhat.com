@@ -31,13 +31,15 @@ dependencies:
     - node.type.cheat_sheet
   module:
     - content_moderation
-    - datetime
     - entity_browser
     - field_group
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - metatag
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -62,6 +64,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: hK6VqyuwHGWREmF7Yh7eR1qaswdJJrxpzxWQSNUlHkw
 id: node.cheat_sheet.default

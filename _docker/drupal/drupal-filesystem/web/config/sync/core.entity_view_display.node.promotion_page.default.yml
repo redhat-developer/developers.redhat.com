@@ -11,10 +11,16 @@ dependencies:
     - field.field.node.promotion_page.field_promotion_page_left_image
     - node.type.promotion_page
   module:
+    - field_layout
     - image
+    - layout_discovery
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: MRfiCHbDJCiBmTJw_gUOYKPNfwtbE3HIRSOi6sUjWHw
 id: node.promotion_page.default
@@ -93,3 +99,4 @@ content:
     third_party_settings: {  }
 hidden:
   links: true
+  published_at: true

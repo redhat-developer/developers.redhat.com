@@ -9,6 +9,12 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 3KEtclm2Znn53hmVYKmkafRaI1f0EuiAaBNaLH97BkQ
 id: block_content.media_slideshow.default

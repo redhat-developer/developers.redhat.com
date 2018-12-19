@@ -13,7 +13,13 @@ dependencies:
     - field.field.assembly.dynamic_content_feed.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.dynamic_content_feed.default
 targetEntityType: assembly
 bundle: dynamic_content_feed

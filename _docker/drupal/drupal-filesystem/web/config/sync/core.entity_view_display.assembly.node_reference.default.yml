@@ -8,6 +8,12 @@ dependencies:
     - field.field.assembly.node_reference.field_node_reference
   module:
     - fences
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.node_reference.default
 targetEntityType: assembly
 bundle: node_reference

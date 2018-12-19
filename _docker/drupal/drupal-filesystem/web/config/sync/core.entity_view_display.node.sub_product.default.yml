@@ -8,8 +8,14 @@ dependencies:
     - node.type.sub_product
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - link
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.sub_product.default
 targetEntityType: node
 bundle: sub_product

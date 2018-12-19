@@ -8,7 +8,13 @@ dependencies:
     - field.field.assembly.eloqua_form_embed.field_eloqua_json
     - field.field.assembly.eloqua_form_embed.field_url
   module:
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.eloqua_form_embed.default
 targetEntityType: assembly
 bundle: eloqua_form_embed

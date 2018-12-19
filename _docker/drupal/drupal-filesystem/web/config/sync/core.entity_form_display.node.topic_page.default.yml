@@ -24,9 +24,12 @@ dependencies:
     - entity_browser
     - entity_browser_entity_form
     - field_group
+    - field_layout
     - inline_entity_form
+    - layout_discovery
     - metatag
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -51,6 +54,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.topic_page.default
 targetEntityType: node
 bundle: topic_page

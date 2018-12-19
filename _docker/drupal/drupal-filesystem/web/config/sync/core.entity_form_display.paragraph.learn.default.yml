@@ -9,7 +9,13 @@ dependencies:
     - field.field.paragraph.learn.field_page_description
     - paragraphs.paragraphs_type.learn
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: Npi1y80mVB5GdrZ_cd9RjnI4uJm0zfoCY226KVzW43U
 id: paragraph.learn.default

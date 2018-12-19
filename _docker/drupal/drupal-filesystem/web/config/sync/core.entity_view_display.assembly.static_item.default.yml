@@ -11,8 +11,14 @@ dependencies:
     - image.style.large
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.static_item.default
 targetEntityType: assembly
 bundle: static_item

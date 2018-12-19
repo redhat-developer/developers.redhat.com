@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.rich_text_columns.field_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.rich_text_columns.default
 targetEntityType: assembly
 bundle: rich_text_columns

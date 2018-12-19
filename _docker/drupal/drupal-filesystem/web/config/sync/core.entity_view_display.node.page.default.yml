@@ -7,9 +7,15 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - field_layout
+    - layout_discovery
     - metatag
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: Kfxnq5Imio9VFBoNa_PIkzXoTmjz_T-EY3mOrwDTddU
 id: node.page.default
@@ -44,4 +50,5 @@ content:
   workbench_moderation_control:
     weight: -20
     region: content
-hidden: {  }
+hidden:
+  published_at: true

@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.all_products_listing.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.all_products_listing.default
 targetEntityType: assembly
 bundle: all_products_listing

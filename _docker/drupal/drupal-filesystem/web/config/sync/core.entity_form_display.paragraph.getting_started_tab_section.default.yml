@@ -8,8 +8,14 @@ dependencies:
     - field.field.paragraph.getting_started_tab_section.field_title
     - paragraphs.paragraphs_type.getting_started_tab_section
   module:
+    - field_layout
+    - layout_discovery
     - paragraphs
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: fxpbQrICpaqPt2oHgFL6W9HxOC9E6FUUdwDBycKxYPo
 id: paragraph.getting_started_tab_section.default

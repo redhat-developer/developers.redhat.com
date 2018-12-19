@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.events_list.field_navigation_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.events_list.default
 targetEntityType: assembly
 bundle: events_list

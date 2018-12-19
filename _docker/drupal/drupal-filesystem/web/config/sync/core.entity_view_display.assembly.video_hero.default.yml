@@ -12,7 +12,13 @@ dependencies:
     - field.field.assembly.video_hero.field_video_resource
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.video_hero.default
 targetEntityType: assembly
 bundle: video_hero

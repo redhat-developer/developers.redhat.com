@@ -9,8 +9,14 @@ dependencies:
     - field.field.node.rhd_solution_overview.field_solution_tag_line
     - node.type.rhd_solution_overview
   module:
+    - field_layout
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: FxiFp_Ad1QtDpQSMH33f22LYUEL3i7ZOZSVnNXJtq5E
 id: node.rhd_solution_overview.teaser
@@ -42,3 +48,4 @@ content:
 hidden:
   field_solution_name: true
   field_solution_tag_line: true
+  published_at: true

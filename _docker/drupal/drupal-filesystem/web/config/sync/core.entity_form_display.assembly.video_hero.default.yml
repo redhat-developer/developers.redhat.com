@@ -14,7 +14,13 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.video_hero.default
 targetEntityType: assembly
 bundle: video_hero

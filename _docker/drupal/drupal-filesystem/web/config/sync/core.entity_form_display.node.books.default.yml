@@ -43,13 +43,15 @@ dependencies:
     - node.type.books
   module:
     - content_moderation
-    - datetime
     - entity_browser
     - field_group
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - metatag
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -74,6 +76,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
 id: node.books.default

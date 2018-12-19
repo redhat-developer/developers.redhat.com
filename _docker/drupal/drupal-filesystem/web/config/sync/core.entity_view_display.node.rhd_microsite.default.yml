@@ -6,8 +6,14 @@ dependencies:
     - field.field.node.rhd_microsite.body
     - node.type.rhd_microsite
   module:
+    - field_layout
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: EKW2OJXCJqaTu85DAwSXfESnSDP5rHyuDPP1xJPIhk4
 id: node.rhd_microsite.default
@@ -35,4 +41,5 @@ content:
   workbench_moderation_control:
     weight: -20
     region: content
-hidden: {  }
+hidden:
+  published_at: true

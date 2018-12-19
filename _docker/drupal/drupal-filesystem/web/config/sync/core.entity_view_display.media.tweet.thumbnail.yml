@@ -9,7 +9,13 @@ dependencies:
     - image.style.medium
     - media.type.tweet
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 5pv083fNbh3DVIvTdTrOWxd232mXQ1zz6EA3nq3Xk0o
 id: media.tweet.thumbnail

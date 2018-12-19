@@ -8,9 +8,16 @@ dependencies:
     - node.type.page
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - metatag
     - path
+    - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: L1fBdp2a9eZINN76KMcEIrHmz-zZVpQ9GSSqy5QtyiU
 id: node.page.default
@@ -58,6 +65,12 @@ content:
     weight: 3
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:

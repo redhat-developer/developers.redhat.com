@@ -12,8 +12,14 @@ dependencies:
     - field.field.assembly.product_try_it_hero.field_try_it_link
   module:
     - entity_browser
+    - field_layout
+    - layout_discovery
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.product_try_it_hero.default
 targetEntityType: assembly
 bundle: product_try_it_hero

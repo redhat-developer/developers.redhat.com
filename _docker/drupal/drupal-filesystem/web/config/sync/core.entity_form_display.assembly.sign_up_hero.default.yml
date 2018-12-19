@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.sign_up_hero.field_sign_up_box_title
     - field.field.assembly.sign_up_hero.field_title
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.sign_up_hero.default
 targetEntityType: assembly
 bundle: sign_up_hero

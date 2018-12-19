@@ -11,7 +11,13 @@ dependencies:
     - paragraphs.paragraphs_type.paragraph_with_image
   module:
     - entity_browser
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: uXioo3YMgVIXIiPXhvOmWiNpv-6NTEBc-AHE7n0H-1o
 id: paragraph.paragraph_with_image.default

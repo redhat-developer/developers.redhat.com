@@ -8,8 +8,14 @@ dependencies:
     - field.field.assembly.content.field_content
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - options
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.content.default
 targetEntityType: assembly
 bundle: content

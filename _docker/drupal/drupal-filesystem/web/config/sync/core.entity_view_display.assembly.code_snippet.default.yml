@@ -8,7 +8,13 @@ dependencies:
     - field.field.assembly.code_snippet.field_code
     - field.field.assembly.code_snippet.field_programming_language
   module:
+    - field_layout
+    - layout_discovery
     - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.code_snippet.default
 targetEntityType: assembly
 bundle: code_snippet

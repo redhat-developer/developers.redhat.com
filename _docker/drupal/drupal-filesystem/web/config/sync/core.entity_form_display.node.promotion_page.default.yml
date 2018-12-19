@@ -15,10 +15,17 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_layout
     - image
+    - layout_discovery
     - link
     - path
+    - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: agLIqZUYV1z7GHlCu9pbbxKdaRYuItUMAUkTYqAitg8
 id: node.promotion_page.default
@@ -92,6 +99,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0

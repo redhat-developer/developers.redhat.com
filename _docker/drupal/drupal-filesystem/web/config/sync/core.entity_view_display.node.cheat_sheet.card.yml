@@ -17,13 +17,29 @@ dependencies:
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_tax_audience_segment
+    - field.field.node.cheat_sheet.field_tax_business_unit
+    - field.field.node.cheat_sheet.field_tax_campaign
+    - field.field.node.cheat_sheet.field_tax_lifecycle
+    - field.field.node.cheat_sheet.field_tax_product
+    - field.field.node.cheat_sheet.field_tax_product_line
+    - field.field.node.cheat_sheet.field_tax_project
+    - field.field.node.cheat_sheet.field_tax_promotion
+    - field.field.node.cheat_sheet.field_tax_region
+    - field.field.node.cheat_sheet.field_tax_stage
     - field.field.node.cheat_sheet.field_topics
     - image.style.large
     - node.type.cheat_sheet
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
 id: node.cheat_sheet.card
@@ -65,6 +81,17 @@ hidden:
   field_read_time: true
   field_share_image: true
   field_short_description: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_topics: true
   links: true
+  published_at: true
   workbench_moderation_control: true

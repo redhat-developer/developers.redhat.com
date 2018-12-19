@@ -9,8 +9,14 @@ dependencies:
     - node.type.upstream_projects
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - link
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.upstream_projects.default
 targetEntityType: node
 bundle: upstream_projects

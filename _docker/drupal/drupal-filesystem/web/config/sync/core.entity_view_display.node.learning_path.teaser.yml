@@ -17,14 +17,30 @@ dependencies:
     - field.field.node.learning_path.field_related_topic_s_
     - field.field.node.learning_path.field_requirements_an_or_pre_req
     - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_tax_audience_segment
+    - field.field.node.learning_path.field_tax_business_unit
+    - field.field.node.learning_path.field_tax_campaign
+    - field.field.node.learning_path.field_tax_lifecycle
+    - field.field.node.learning_path.field_tax_product
+    - field.field.node.learning_path.field_tax_product_line
+    - field.field.node.learning_path.field_tax_project
+    - field.field.node.learning_path.field_tax_promotion
+    - field.field.node.learning_path.field_tax_region
+    - field.field.node.learning_path.field_tax_stage
     - field.field.node.learning_path.field_topics
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.learning_path.teaser
 targetEntityType: node
 bundle: learning_path

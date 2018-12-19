@@ -37,13 +37,19 @@ dependencies:
   module:
     - entity_reference_revisions
     - fences
+    - field_layout
     - image
     - interval
+    - layout_discovery
     - link
     - metatag
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.default

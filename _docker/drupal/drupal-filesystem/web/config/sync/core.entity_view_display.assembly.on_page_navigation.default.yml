@@ -5,6 +5,13 @@ dependencies:
   config:
     - assembly.assembly_type.on_page_navigation
     - field.field.assembly.on_page_navigation.field_audience_selection
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.on_page_navigation.default
 targetEntityType: assembly
 bundle: on_page_navigation

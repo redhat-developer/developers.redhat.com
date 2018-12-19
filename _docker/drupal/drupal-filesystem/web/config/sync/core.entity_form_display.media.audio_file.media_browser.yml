@@ -9,8 +9,14 @@ dependencies:
     - media.type.audio_file
   module:
     - content_moderation
+    - field_layout
     - file
+    - layout_discovery
     - path
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: Vrdgai9kwD_ZilqzZCL2xnDI9c4_3s9ccRacwMQgOLc
 id: media.audio_file.media_browser

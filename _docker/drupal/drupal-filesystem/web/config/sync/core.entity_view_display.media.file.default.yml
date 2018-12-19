@@ -7,7 +7,13 @@ dependencies:
     - field.field.media.file.field_media_in_library
     - media.type.file
   module:
+    - field_layout
     - file
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: ur5IEgEgeoNAE7ppqt6usimLP8WHe6WPKuZul582QUM
 id: media.file.default

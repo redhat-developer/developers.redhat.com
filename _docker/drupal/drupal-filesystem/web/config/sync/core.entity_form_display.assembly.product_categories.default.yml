@@ -9,6 +9,12 @@ dependencies:
     - field.field.assembly.product_categories.field_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.product_categories.default
 targetEntityType: assembly
 bundle: product_categories

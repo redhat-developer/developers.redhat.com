@@ -12,9 +12,15 @@ dependencies:
     - image.style.large
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.product_try_it_hero.default
 targetEntityType: assembly
 bundle: product_try_it_hero

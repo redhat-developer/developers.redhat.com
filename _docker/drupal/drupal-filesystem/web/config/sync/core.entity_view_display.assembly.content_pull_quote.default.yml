@@ -8,7 +8,13 @@ dependencies:
     - field.field.assembly.content_pull_quote.field_content_pull_quote
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.content_pull_quote.default
 targetEntityType: assembly
 bundle: content_pull_quote

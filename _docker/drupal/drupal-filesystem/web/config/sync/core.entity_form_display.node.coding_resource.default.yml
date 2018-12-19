@@ -27,10 +27,12 @@ dependencies:
     - node.type.coding_resource
   module:
     - content_moderation
-    - datetime
     - field_group
+    - field_layout
+    - layout_discovery
     - link
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -55,6 +57,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 0Wd1Zcfm8wzSJi23BRSe-NJZa11B3ykczVFt1rAzmW8
 id: node.coding_resource.default

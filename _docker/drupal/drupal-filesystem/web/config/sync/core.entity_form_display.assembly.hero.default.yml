@@ -12,8 +12,14 @@ dependencies:
     - image.style.thumbnail
   module:
     - content_moderation
+    - field_layout
     - image
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.hero.default
 targetEntityType: assembly
 bundle: hero

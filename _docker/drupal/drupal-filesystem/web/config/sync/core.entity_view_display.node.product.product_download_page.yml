@@ -6,7 +6,9 @@ dependencies:
     - core.entity_view_mode.node.product_download_page
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_content
     - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -30,11 +32,18 @@ dependencies:
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
+    - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - metatag
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
 id: node.product.product_download_page

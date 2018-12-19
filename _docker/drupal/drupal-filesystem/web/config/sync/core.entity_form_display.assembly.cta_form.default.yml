@@ -13,8 +13,14 @@ dependencies:
   module:
     - entity_browser
     - entity_browser_entity_form
+    - field_layout
     - inline_entity_form
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.cta_form.default
 targetEntityType: assembly
 bundle: cta_form

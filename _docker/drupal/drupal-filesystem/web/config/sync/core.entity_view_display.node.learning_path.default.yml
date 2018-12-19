@@ -30,11 +30,17 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.learning_path.default
 targetEntityType: node
 bundle: learning_path

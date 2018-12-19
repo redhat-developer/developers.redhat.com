@@ -7,7 +7,13 @@ dependencies:
     - field.field.assembly.wordpress_post_reference.field_audience_selection
     - field.field.assembly.wordpress_post_reference.field_post_reference
   module:
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.wordpress_post_reference.default
 targetEntityType: assembly
 bundle: wordpress_post_reference

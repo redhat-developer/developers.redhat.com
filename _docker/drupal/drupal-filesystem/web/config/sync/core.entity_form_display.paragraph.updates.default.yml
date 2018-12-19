@@ -9,7 +9,13 @@ dependencies:
     - field.field.paragraph.updates.field_page_description
     - paragraphs.paragraphs_type.updates
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 0Tr_1G2yLJR2f7ELeQbWtD1gJWoOlXFujGbwI2eb2Fc
 id: paragraph.updates.default

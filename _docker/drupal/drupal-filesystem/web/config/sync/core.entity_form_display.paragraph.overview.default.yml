@@ -13,9 +13,15 @@ dependencies:
     - field.field.paragraph.overview.field_video_caption
     - paragraphs.paragraphs_type.overview
   module:
+    - field_layout
+    - layout_discovery
     - paragraphs
     - text
     - video_embed_field
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: aX03NCj6p8VTFSKUermHxSSvCuolg5gLRZtlS7t5JOg
 id: paragraph.overview.default

@@ -9,7 +9,13 @@ dependencies:
     - image.style.medium
     - media.type.video_file
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: media.video_file.thumbnail
 targetEntityType: media
 bundle: video_file

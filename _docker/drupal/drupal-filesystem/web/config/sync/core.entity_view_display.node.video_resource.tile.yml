@@ -16,6 +16,16 @@ dependencies:
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tax_audience_segment
+    - field.field.node.video_resource.field_tax_business_unit
+    - field.field.node.video_resource.field_tax_campaign
+    - field.field.node.video_resource.field_tax_lifecycle
+    - field.field.node.video_resource.field_tax_product
+    - field.field.node.video_resource.field_tax_product_line
+    - field.field.node.video_resource.field_tax_project
+    - field.field.node.video_resource.field_tax_promotion
+    - field.field.node.video_resource.field_tax_region
+    - field.field.node.video_resource.field_tax_stage
     - field.field.node.video_resource.field_topics
     - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
@@ -28,8 +38,14 @@ dependencies:
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
+    - field_layout
+    - layout_discovery
     - link
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
 id: node.video_resource.tile
@@ -81,6 +97,16 @@ hidden:
   field_short_description: true
   field_slideshare_source: true
   field_speakers: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_topics: true
   field_video_author: true
   field_video_publish_date: true
@@ -91,4 +117,5 @@ hidden:
   field_video_transcript: true
   field_views: true
   links: true
+  published_at: true
   workbench_moderation_control: true

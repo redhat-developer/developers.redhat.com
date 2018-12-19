@@ -36,8 +36,14 @@ dependencies:
     - node.type.product
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - metatag
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
 id: node.product.new_product_page

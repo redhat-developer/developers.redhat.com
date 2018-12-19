@@ -10,7 +10,13 @@ dependencies:
     - field.field.paragraph.buzz.field_page_description
     - paragraphs.paragraphs_type.buzz
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: UnrKPW60S6YPMHuVnbLK1Wkq7gKilwJ8-CmqfR1JAcc
 id: paragraph.buzz.default

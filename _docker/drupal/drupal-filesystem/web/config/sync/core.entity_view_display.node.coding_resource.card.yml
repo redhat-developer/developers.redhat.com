@@ -13,11 +13,27 @@ dependencies:
     - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
     - field.field.node.coding_resource.field_tags
+    - field.field.node.coding_resource.field_tax_audience_segment
+    - field.field.node.coding_resource.field_tax_business_unit
+    - field.field.node.coding_resource.field_tax_campaign
+    - field.field.node.coding_resource.field_tax_lifecycle
+    - field.field.node.coding_resource.field_tax_product
+    - field.field.node.coding_resource.field_tax_product_line
+    - field.field.node.coding_resource.field_tax_project
+    - field.field.node.coding_resource.field_tax_promotion
+    - field.field.node.coding_resource.field_tax_region
+    - field.field.node.coding_resource.field_tax_stage
     - field.field.node.coding_resource.field_technologies
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
+    - field_layout
+    - layout_discovery
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: MUBX8_AuOPpetxoN1KE_aD0EdmVebkcUiD0SK-MDMK4
 id: node.coding_resource.card

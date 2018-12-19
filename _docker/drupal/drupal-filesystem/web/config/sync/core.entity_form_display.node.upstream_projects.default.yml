@@ -11,8 +11,14 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_layout
+    - layout_discovery
     - link
     - publication_date
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.upstream_projects.default
 targetEntityType: node
 bundle: upstream_projects

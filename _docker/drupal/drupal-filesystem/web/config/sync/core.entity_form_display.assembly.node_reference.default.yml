@@ -6,6 +6,13 @@ dependencies:
     - assembly.assembly_type.node_reference
     - field.field.assembly.node_reference.field_audience_selection
     - field.field.assembly.node_reference.field_node_reference
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.node_reference.default
 targetEntityType: assembly
 bundle: node_reference

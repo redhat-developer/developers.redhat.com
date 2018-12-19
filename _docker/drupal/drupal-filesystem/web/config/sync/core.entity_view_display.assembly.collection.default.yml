@@ -11,6 +11,12 @@ dependencies:
     - field.field.assembly.collection.field_total_posts
   module:
     - fences
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.collection.default
 targetEntityType: assembly
 bundle: collection

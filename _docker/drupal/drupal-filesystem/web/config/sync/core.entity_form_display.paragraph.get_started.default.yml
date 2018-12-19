@@ -11,8 +11,14 @@ dependencies:
     - field.field.paragraph.get_started.field_tabs
     - paragraphs.paragraphs_type.get_started
   module:
+    - field_layout
+    - layout_discovery
     - paragraphs
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: saVBWxb6eP9b1SlQwou-AUXSo6wAV2qrymKoBfcwLcU
 id: paragraph.get_started.default

@@ -32,7 +32,10 @@ dependencies:
     - content_moderation
     - entity_browser
     - field_group
+    - field_layout
+    - layout_discovery
     - link
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -57,6 +60,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: SRpnm57aZnGL6k9j_zdNeKUPEorqLQLhXWCSQFZ-MzQ
 id: node.connectors.default

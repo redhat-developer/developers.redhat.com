@@ -9,7 +9,13 @@ dependencies:
     - field.field.paragraph.resources.field_page_description
     - paragraphs.paragraphs_type.resources
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: PSYeHrtF1C1qiy4dlihduF7oGDUhY5xpwYccdY0n2hE
 id: paragraph.resources.default

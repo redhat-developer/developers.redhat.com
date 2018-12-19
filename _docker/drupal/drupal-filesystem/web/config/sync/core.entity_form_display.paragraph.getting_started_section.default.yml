@@ -9,7 +9,13 @@ dependencies:
     - field.field.paragraph.getting_started_section.field_title
     - paragraphs.paragraphs_type.getting_started_section
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: HAJm5o7cRHTgTEQJ4VoID80LfSZPJW_rx6OcIkMFGjU
 id: paragraph.getting_started_section.default

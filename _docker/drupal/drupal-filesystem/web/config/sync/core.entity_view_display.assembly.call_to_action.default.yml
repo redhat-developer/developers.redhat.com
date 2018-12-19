@@ -12,8 +12,14 @@ dependencies:
     - field.field.assembly.call_to_action.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.call_to_action.default
 targetEntityType: assembly
 bundle: call_to_action

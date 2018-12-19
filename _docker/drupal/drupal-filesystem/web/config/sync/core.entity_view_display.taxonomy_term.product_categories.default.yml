@@ -6,8 +6,14 @@ dependencies:
     - field.field.taxonomy_term.product_categories.field_product_group_icon_svg
     - taxonomy.vocabulary.product_categories
   module:
+    - field_layout
     - file
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: taxonomy_term.product_categories.default
 targetEntityType: taxonomy_term
 bundle: product_categories

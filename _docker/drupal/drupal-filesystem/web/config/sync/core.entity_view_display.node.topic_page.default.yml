@@ -20,8 +20,14 @@ dependencies:
     - node.type.topic_page
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.topic_page.default
 targetEntityType: node
 bundle: topic_page

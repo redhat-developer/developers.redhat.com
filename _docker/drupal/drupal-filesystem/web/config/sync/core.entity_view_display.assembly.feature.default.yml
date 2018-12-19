@@ -9,7 +9,13 @@ dependencies:
     - field.field.assembly.feature.field_release
     - field.field.assembly.feature.field_title
   module:
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.feature.default
 targetEntityType: assembly
 bundle: feature

@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.featured_evangelists.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.featured_evangelists.default
 targetEntityType: assembly
 bundle: featured_evangelists

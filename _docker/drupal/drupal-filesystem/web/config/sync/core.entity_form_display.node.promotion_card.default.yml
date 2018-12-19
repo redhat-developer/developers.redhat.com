@@ -9,9 +9,16 @@ dependencies:
     - node.type.promotion_card
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - link
     - path
+    - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: WlUkit8ZmwD59VFmt2jGDl54Ty1abjf-K61pnhGos8w
 id: node.promotion_card.default
@@ -56,6 +63,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0

@@ -32,9 +32,12 @@ dependencies:
   module:
     - content_moderation
     - field_group
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -59,6 +62,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.learning_path.default
 targetEntityType: node
 bundle: learning_path

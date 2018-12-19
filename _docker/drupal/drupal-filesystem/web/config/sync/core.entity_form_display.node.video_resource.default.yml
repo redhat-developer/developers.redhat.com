@@ -42,10 +42,13 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - metatag
     - path
+    - publication_date
     - text
     - video_embed_field
 third_party_settings:
@@ -71,6 +74,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: usEN6FRM_guH0aZiSFAjZiF7zzRF6KUkXbSFHvD0iv8
 id: node.video_resource.default

@@ -9,8 +9,15 @@ dependencies:
     - node.type.rhd_solution_overview
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - path
+    - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: qm1Wiq5PN5keMPqvN3b1DQjravPxpYrX4aEHjd-0lWs
 id: node.rhd_solution_overview.default
@@ -55,6 +62,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0

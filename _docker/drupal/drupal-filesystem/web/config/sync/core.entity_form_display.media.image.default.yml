@@ -8,7 +8,13 @@ dependencies:
     - media.type.image
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - path
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: media.image.default
 targetEntityType: media
 bundle: image

@@ -9,7 +9,13 @@ dependencies:
     - image.style.thumbnail
     - media.type.instagram
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: H1EgOkDqYIIvR7cxkNnfvTbc95tFI_HwDu5rm7LdhNI
 id: media.instagram.media_library

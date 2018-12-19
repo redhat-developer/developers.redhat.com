@@ -19,10 +19,16 @@ dependencies:
     - field.field.node.topic.field_topic_sub_title
     - node.type.topic
   module:
+    - field_layout
+    - layout_discovery
     - link
     - metatag
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 _core:
   default_config_hash: Zz26d7tH-jXNMErZUAg4x5lGfrZNZFKr99wh5cAXd-E
 id: node.topic.default
@@ -159,3 +165,4 @@ content:
     region: content
 hidden:
   links: true
+  published_at: true

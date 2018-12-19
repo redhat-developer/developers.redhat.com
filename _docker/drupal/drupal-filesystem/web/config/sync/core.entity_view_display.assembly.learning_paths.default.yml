@@ -10,8 +10,14 @@ dependencies:
     - field.field.assembly.learning_paths.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: assembly.learning_paths.default
 targetEntityType: assembly
 bundle: learning_paths
