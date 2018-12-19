@@ -36,6 +36,7 @@ dependencies:
     - node.type.article
   module:
     - compose
+    - content_moderation
     - entity_browser
     - entity_browser_entity_form
     - field_group
@@ -166,7 +167,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_difficulty:
     weight: 13
     settings: {  }
@@ -241,7 +242,7 @@ content:
     type: string_textarea
     region: fields
   field_tags:
-    type: entity_reference_autocomplete
+    type: entity_reference_autocomplete_tags
     weight: 7
     settings:
       match_operator: CONTAINS
@@ -251,110 +252,75 @@ content:
     region: fields
   field_tax_audience_segment:
     weight: 20
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_business_unit:
     weight: 21
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_campaign:
     weight: 22
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_lifecycle:
     weight: 23
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_product:
     weight: 24
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_product_line:
     weight: 25
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_project:
     weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_promotion:
     weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_region:
     weight: 28
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_tax_stage:
     weight: 29
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: fields
   field_topics:
     weight: 6
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   moderation_state:
     weight: 25
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: moderation_state_default
     region: settings
   path:
     type: path
