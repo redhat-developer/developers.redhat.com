@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.content_with_image.field_background_image
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
+    - field.field.assembly.content_with_image.field_image_link
     - field.field.assembly.content_with_image.field_navigation_title
     - field.field.assembly.content_with_image.field_title
     - image.style.large
@@ -54,6 +55,7 @@ content:
 hidden:
   field_audience_selection: true
   field_background_image: true
+  field_image_link: true
   field_navigation_title: true
   name: true
   user_id: true
