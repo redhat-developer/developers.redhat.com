@@ -22,7 +22,13 @@
       {{- content|without('field_image') -}}
       </div>
       <div class="assembly-image">
+        {% if assembly.field_image_link[0].url %}
+        <a href={{ assembly.field_image_link[0].url }}>
+        {% endif %}
         {{- content.field_image -}}
+        {% if assembly.field_image_link[0].url %}
+        </a>
+        {% endif %}
       </div>
     {% endif %}
   </div>

@@ -9,13 +9,11 @@
   .field--name-field-title,
   .header {
     font-size: 18px;
+    margin-bottom: 14px;
     @include tablet-portrait {
       font-size: 38px;
     }
     text-align: left;
-    .centered & {
-      text-align: center;
-    }
     .use-h1 & {
       font-size: 23px;
       line-height: 1.24;
@@ -23,6 +21,16 @@
         font-size: 50px;
       }
     }
+  }
+  &.centered {
+    text-align: center;
+    .field--name-field-title,
+    .header {
+      text-align: center;
+    }
+  }
+  &.background-gray {
+    background: #e4e4e6;
   }
   .assembly-type-eloqua_form_embed {
     background-color: transparent;
