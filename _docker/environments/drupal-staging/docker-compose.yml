@@ -62,7 +62,6 @@ services:
       - /credentials/rsync:/home/jenkins_developer/.ssh
       - /credentials/akamai/edgerc:/home/jenkins_developer/.edgerc
       - ../../../:/home/jenkins_developer/developer.redhat.com
-      - ../../../images:/home/jenkins_developer/developer.redhat.com/_docker/lib/export/static/images:ro
     environment:
      - drupal.export.fail_on_missing
      - drupal.export.final_base_url=https://developers.stage.redhat.com/
