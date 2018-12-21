@@ -24,11 +24,11 @@ dependencies:
     - field.field.node.author.field_youtube
     - node.type.author
   module:
+    - compose
     - content_moderation
     - entity_browser
     - field_group
     - field_layout
-    - layout_discovery
     - link
     - path
     - publication_date
@@ -48,7 +48,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 15
+      weight: 9
       format_type: details
       format_settings:
         id: ''
@@ -56,8 +56,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+      region: fields
   field_layout:
-    id: layout_onecol
+    id: compose_tabs
     settings: {  }
 id: node.author.default
 targetEntityType: node
@@ -66,7 +67,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -75,29 +76,29 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 9
-    region: content
+    weight: 11
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_facebook:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: fields
+  field_github:
     weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_github:
-    weight: 6
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
+    region: fields
   field_headshot:
     type: entity_browser_file
-    weight: 12
+    weight: 2
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -109,13 +110,13 @@ content:
     region: content
     third_party_settings: {  }
   field_linkedin:
-    weight: 5
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_position_title:
     weight: 1
     settings:
@@ -129,101 +130,101 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product:
     weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_project:
     weight: 22
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_region:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_stage:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_twitter:
-    weight: 3
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_youtube:
     weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
+  field_youtube:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: fields
   moderation_state:
-    weight: 13
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   path:
     type: path
-    weight: 11
-    region: content
+    weight: 14
+    region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 12
+    region: settings
     settings: {  }
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
-    region: content
+    weight: 13
+    region: settings
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -235,16 +236,16 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
+    region: settings
     third_party_settings: {  }
   url_redirects:
-    weight: 14
-    region: content
+    weight: 16
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
