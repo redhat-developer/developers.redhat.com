@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "394cabe86d808ede4b072130e513f3fd",
+    "content-hash": "5458b41297c5973f4054e6a2382c33ae",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1841,7 +1841,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -1863,6 +1863,10 @@
                 {
                     "name": "SteveEdwardsAcquia",
                     "homepage": "https://www.drupal.org/user/3556170"
+                },
+                {
+                    "name": "ayang",
+                    "homepage": "https://www.drupal.org/user/1777884"
                 },
                 {
                     "name": "dmitrii",
@@ -2107,10 +2111,10 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc3",
-                    "datestamp": "1538045580",
+                    "datestamp": "1545235980",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -2227,7 +2231,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -2721,6 +2725,10 @@
                     "role": "Maintainer"
                 },
                 {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
+                },
+                {
                     "name": "merlinofchaos",
                     "homepage": "https://www.drupal.org/user/26979"
                 },
@@ -2762,12 +2770,16 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742"
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -2789,6 +2801,10 @@
                 {
                     "name": "japerry",
                     "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
                 },
                 {
                     "name": "merlinofchaos",
@@ -3023,7 +3039,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3304,8 +3320,16 @@
                     "homepage": "https://www.drupal.org/user/3260690"
                 },
                 {
+                    "name": "Wim Leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                },
+                {
                     "name": "cs_shadow",
                     "homepage": "https://www.drupal.org/user/2828287"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "slashrsm",
@@ -3847,7 +3871,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.23",
-                    "datestamp": "1532084496",
+                    "datestamp": "1545243863",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3981,7 +4005,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.7",
-                    "datestamp": "1535722380",
+                    "datestamp": "1545249181",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4227,7 +4251,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.4",
-                    "datestamp": "1535556181",
+                    "datestamp": "1545263881",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4365,7 +4389,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.1",
-                    "datestamp": "1538573880",
+                    "datestamp": "1544729280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4488,7 +4512,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.1",
-                    "datestamp": "1538155380",
+                    "datestamp": "1545276780",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4658,20 +4682,16 @@
             ],
             "authors": [
                 {
-                    "name": "barraponto",
-                    "homepage": "https://www.drupal.org/user/511760"
-                },
-                {
                     "name": "frjo",
                     "homepage": "https://www.drupal.org/user/5546"
                 },
                 {
-                    "name": "justin2pin",
-                    "homepage": "https://www.drupal.org/user/278450"
+                    "name": "gisle",
+                    "homepage": "https://www.drupal.org/user/409554"
                 },
                 {
-                    "name": "sreynen",
-                    "homepage": "https://www.drupal.org/user/109890"
+                    "name": "markcarver",
+                    "homepage": "https://www.drupal.org/user/501638"
                 }
             ],
             "description": "Allows content to be submitted using Markdown, a simple plain-text syntax that is transformed into valid HTML.",
@@ -4705,7 +4725,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0-alpha1",
-                    "datestamp": "1506671645",
+                    "datestamp": "1537264380",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -4952,7 +4972,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
-                    "datestamp": "1537899180",
+                    "datestamp": "1541456281",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -5214,7 +5234,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc2",
-                    "datestamp": "1532563381",
+                    "datestamp": "1545018184",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5807,6 +5827,65 @@
             "time": "2018-07-25T16:28:42+00:00"
         },
         {
+            "name": "drupal/readonlymode",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/readonlymode",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/readonlymode-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "d0ec15c851bb985453831ae15d7082f8343e9110"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1541691203",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "BarisW",
+                    "homepage": "https://www.drupal.org/user/107229"
+                },
+                {
+                    "name": "Sharique",
+                    "homepage": "https://www.drupal.org/user/73545"
+                },
+                {
+                    "name": "petew",
+                    "homepage": "https://www.drupal.org/user/1009366"
+                },
+                {
+                    "name": "rakeshfalke",
+                    "homepage": "https://www.drupal.org/user/660062"
+                }
+            ],
+            "description": "This module will lock your site for any form postings.",
+            "homepage": "https://www.drupal.org/project/readonlymode",
+            "support": {
+                "source": "http://cgit.drupalcode.org/readonlymode"
+            }
+        },
+        {
             "name": "drupal/redirect",
             "version": "1.3.0",
             "source": {
@@ -6219,7 +6298,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.12",
-                    "datestamp": "1523203180",
+                    "datestamp": "1542505221",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6281,7 +6360,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1495746183",
+                    "datestamp": "1545236281",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6778,7 +6857,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -8076,7 +8155,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -12329,12 +12408,6 @@
                 "type": "git",
                 "url": "https://git.drupal.org/project/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/klausi/coder/zipball/984c54a7b1e8f27ff1c32348df69712afd86b17f",
-                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f",
-                "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
