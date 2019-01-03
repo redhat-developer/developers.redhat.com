@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content
     - assembly.assembly_type.content_image
     - assembly.assembly_type.content_with_image
@@ -44,6 +45,7 @@ settings:
   handler_settings:
     target_bundles:
       cta_form: cta_form
+      call_to_action: call_to_action
       content: content
       content_image: content_image
       static_content_band: static_content_band
