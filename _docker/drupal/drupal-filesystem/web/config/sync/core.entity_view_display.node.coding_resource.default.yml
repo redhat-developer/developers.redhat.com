@@ -26,15 +26,15 @@ dependencies:
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
+    - compose
     - field_layout
-    - layout_discovery
     - link
     - options
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: MUBX8_AuOPpetxoN1KE_aD0EdmVebkcUiD0SK-MDMK4
