@@ -25,16 +25,16 @@ dependencies:
     - image.style.large
     - node.type.author
   module:
+    - compose
     - fences
     - field_layout
     - image
-    - layout_discovery
     - link
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.author.teaser
 targetEntityType: node
@@ -58,9 +58,9 @@ content:
     region: content
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_facebook:
     type: link
     weight: 2

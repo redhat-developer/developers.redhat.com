@@ -35,12 +35,12 @@ dependencies:
     - field.field.node.article.field_topics
     - node.type.article
   module:
+    - compose
     - field_layout
-    - layout_discovery
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: qV1LCCei98zsOxAWnq4l6JazV7VzJ4_D64Dib-UrxEo
@@ -51,9 +51,9 @@ mode: rss
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content

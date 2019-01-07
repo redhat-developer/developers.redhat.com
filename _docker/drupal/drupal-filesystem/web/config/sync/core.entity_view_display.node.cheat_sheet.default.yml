@@ -29,9 +29,9 @@ dependencies:
     - field.field.node.cheat_sheet.field_topics
     - node.type.cheat_sheet
   module:
+    - compose
     - field_layout
     - interval
-    - layout_discovery
     - link
     - metatag
     - options
@@ -39,7 +39,7 @@ dependencies:
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0

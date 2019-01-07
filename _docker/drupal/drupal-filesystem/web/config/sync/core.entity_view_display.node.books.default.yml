@@ -41,9 +41,9 @@ dependencies:
     - field.field.node.books.field_web_reader_url
     - node.type.books
   module:
+    - compose
     - field_layout
     - interval
-    - layout_discovery
     - link
     - metatag
     - options
@@ -51,7 +51,7 @@ dependencies:
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: 6xYjc_xUKetNHubcZQ-HCVjelYp7JE6bmEGVhegbJT4

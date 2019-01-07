@@ -31,15 +31,15 @@ dependencies:
     - image.style.medium
     - node.type.cheat_sheet
   module:
+    - compose
     - fences
     - field_layout
     - image
-    - layout_discovery
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
