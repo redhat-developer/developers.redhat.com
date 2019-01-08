@@ -7,6 +7,15 @@ keycloak:
   accountUrl: 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
   authUrl: 'https://developers.stage.redhat.com/auth/'
   scriptUrl: 'https://developers.redhat.com/auth/js/keycloak.js'
+  content_editor_sso:
+    redirect_url: 'hi'
+    client_id: 'hello'
+    client_secret: 'wazzup'
+    keycloak_base: 'wassup'
+    keycloak_realm: 'hai'
+    authorization_endpoint_kc: 'howdy'
+    token_endpoint_kc: 'hows it goin'
+    userinfo_endpoint_kc: 'hey'
 drupal:
   host: docker
   port: "80"
