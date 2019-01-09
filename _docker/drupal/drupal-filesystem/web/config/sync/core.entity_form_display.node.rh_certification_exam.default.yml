@@ -24,12 +24,12 @@ dependencies:
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
+    - compose
     - content_moderation
     - entity_browser
     - field_group
     - field_layout
     - interval
-    - layout_discovery
     - link
     - path
     - publication_date
@@ -49,7 +49,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 16
+      weight: 17
       format_type: details
       format_settings:
         id: ''
@@ -57,8 +57,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+      region: fields
   field_layout:
-    id: layout_onecol
+    id: compose_tabs
     settings: {  }
 id: node.rh_certification_exam.default
 targetEntityType: node
@@ -68,7 +69,7 @@ content:
   created:
     type: datetime_timestamp
     weight: 7
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_completion_time:
@@ -79,7 +80,7 @@ content:
     type: interval_default
     region: content
   field_exclude_from_search:
-    weight: 12
+    weight: 13
     settings:
       display_label: true
     third_party_settings: {  }
@@ -87,7 +88,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 13
+    weight: 14
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -134,61 +135,61 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product:
     weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 22
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_project:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_region:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_stage:
     weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_topics:
     weight: 1
     settings: {  }
@@ -196,15 +197,15 @@ content:
     type: options_buttons
     region: content
   moderation_state:
-    weight: 14
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   path:
     type: path
-    weight: 11
-    region: content
+    weight: 12
+    region: settings
     settings: {  }
     third_party_settings: {  }
   promote:
@@ -216,8 +217,8 @@ content:
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 11
+    region: settings
     settings: {  }
     third_party_settings: {  }
   sticky:
@@ -225,7 +226,7 @@ content:
     settings:
       display_label: true
     weight: 10
-    region: content
+    region: settings
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -242,11 +243,11 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
+    region: settings
     third_party_settings: {  }
   url_redirects:
-    weight: 15
-    region: content
+    weight: 16
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:

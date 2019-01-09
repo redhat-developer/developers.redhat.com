@@ -23,17 +23,17 @@ dependencies:
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
+    - compose
     - field_layout
     - image
     - interval
-    - layout_discovery
     - link
     - options
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.rh_certification_exam.default
 targetEntityType: node
