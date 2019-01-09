@@ -34,16 +34,16 @@ dependencies:
     - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
+    - compose
     - entity_reference_revisions
     - field_layout
-    - layout_discovery
     - link
     - metatag
     - options
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw

@@ -36,15 +36,15 @@ dependencies:
     - image.style.large
     - node.type.product
   module:
+    - compose
     - fences
     - field_layout
     - image
-    - layout_discovery
     - link
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw

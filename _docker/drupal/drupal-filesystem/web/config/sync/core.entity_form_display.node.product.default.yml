@@ -35,13 +35,13 @@ dependencies:
     - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
+    - compose
     - content_moderation
     - entity_browser
     - entity_browser_entity_form
     - field_group
     - field_layout
     - inline_entity_form
-    - layout_discovery
     - link
     - metatag
     - paragraphs
@@ -62,6 +62,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Individual Sub Pages'
+      region: content
     group_product_info:
       children:
         - group_sub_pages
@@ -73,6 +74,7 @@ third_party_settings:
         classes: ''
         direction: horizontal
       label: 'Product Information'
+      region: content
     group_purpose_attributes:
       children:
         - field_tax_audience_segment
@@ -86,7 +88,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 24
+      weight: 20
       format_type: details
       format_settings:
         id: ''
@@ -94,6 +96,7 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+      region: fields
     group_new_product_page_fields:
       children:
         - field_use_new_product_page
@@ -109,8 +112,9 @@ third_party_settings:
         open: true
         required_fields: true
       label: 'New Product Page Fields'
+      region: content
   field_layout:
-    id: layout_onecol
+    id: compose_tabs
     settings: {  }
 _core:
   default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
@@ -203,11 +207,11 @@ content:
     region: content
     third_party_settings: {  }
   field_meta_tags:
-    weight: 21
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: settings
   field_product_categories:
     type: options_buttons
     weight: 3
@@ -296,61 +300,61 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 22
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_project:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_region:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_stage:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_url_product_name:
     weight: 11
     settings:
@@ -367,15 +371,15 @@ content:
     type: boolean_checkbox
     region: content
   moderation_state:
-    weight: 22
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   published_at:
     type: publication_date_timestamp
     weight: 10
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -387,8 +391,8 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 23
-    region: content
+    weight: 19
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
