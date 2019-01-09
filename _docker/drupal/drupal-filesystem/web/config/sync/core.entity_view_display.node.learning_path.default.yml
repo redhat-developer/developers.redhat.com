@@ -30,16 +30,16 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - compose
     - field_layout
     - interval
-    - layout_discovery
     - link
     - options
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.learning_path.default
 targetEntityType: node

@@ -30,11 +30,11 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - compose
     - content_moderation
     - field_group
     - field_layout
     - interval
-    - layout_discovery
     - link
     - path
     - publication_date
@@ -54,7 +54,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 22
+      weight: 23
       format_type: details
       format_settings:
         id: ''
@@ -62,8 +62,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+      region: fields
   field_layout:
-    id: layout_onecol
+    id: compose_tabs
     settings: {  }
 id: node.learning_path.default
 targetEntityType: node
@@ -72,8 +73,8 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 16
-    region: content
+    weight: 17
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_audience:
@@ -83,24 +84,24 @@ content:
     type: options_buttons
     region: content
   field_card_image:
-    weight: 14
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_completion_time:
     weight: 7
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: content
+    region: fields
   field_learning_path_content_item:
     type: entity_reference_autocomplete
-    weight: 13
-    region: content
+    weight: 14
+    region: fields
     settings:
       match_operator: CONTAINS
       size: 60
@@ -123,7 +124,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_related_product_s_:
     weight: 10
     settings:
@@ -132,13 +133,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_related_programming_langua:
-    weight: 12
+    weight: 13
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
+    type: options_select
+    region: fields
   field_related_red_hat_certificat:
     weight: 8
     settings:
@@ -147,16 +148,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
-    region: content
+    region: fields
   field_related_topic_s_:
-    weight: 11
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_requirements_an_or_pre_req:
     weight: 4
     settings:
@@ -173,73 +174,73 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-    region: content
+    region: fields
   field_tax_audience_segment:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_project:
     weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_region:
     weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_tax_stage:
     weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_topics:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_value_proposition:
     weight: 6
     settings:
@@ -248,38 +249,38 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
-    region: content
+    region: fields
   moderation_state:
-    weight: 20
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   path:
     type: path
-    weight: 19
-    region: content
+    weight: 20
+    region: settings
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 17
-    region: content
+    weight: 18
+    region: settings
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 11
+    region: settings
     settings: {  }
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 18
-    region: content
+    weight: 19
+    region: settings
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -291,16 +292,16 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
+    region: settings
     third_party_settings: {  }
   url_redirects:
-    weight: 21
-    region: content
+    weight: 22
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:

@@ -31,15 +31,15 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - compose
     - fences
     - field_layout
-    - layout_discovery
     - link
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.learning_path.teaser
 targetEntityType: node
