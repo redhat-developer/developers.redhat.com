@@ -1,3 +1,8 @@
 #user-login-form {
     @extend .container;
 }
+
+#block-openidconnectlogin {
+    display: none;
+    @extend .container;
+}
