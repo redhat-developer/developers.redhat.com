@@ -7,14 +7,14 @@ dependencies:
     - field.field.node.sub_product.field_logo
     - node.type.sub_product
   module:
+    - compose
     - fences
     - field_layout
-    - layout_discovery
     - link
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.sub_product.default
 targetEntityType: node
