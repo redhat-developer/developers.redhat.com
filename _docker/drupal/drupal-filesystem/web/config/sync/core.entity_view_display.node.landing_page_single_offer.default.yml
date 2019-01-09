@@ -20,14 +20,14 @@ dependencies:
     - field.field.node.landing_page_single_offer.field_tax_stage
     - node.type.landing_page_single_offer
   module:
+    - compose
     - entity_reference_revisions
     - field_layout
-    - layout_discovery
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.landing_page_single_offer.default
 targetEntityType: node
