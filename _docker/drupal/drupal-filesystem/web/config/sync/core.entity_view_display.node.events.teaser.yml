@@ -36,18 +36,18 @@ dependencies:
     - field.field.node.events.field_topics
     - node.type.events
   module:
+    - compose
     - datetime
     - fences
     - field_layout
     - image
-    - layout_discovery
     - link
     - options
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
