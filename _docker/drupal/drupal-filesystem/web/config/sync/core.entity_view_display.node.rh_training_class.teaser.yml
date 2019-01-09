@@ -25,12 +25,12 @@ dependencies:
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
+    - compose
     - field_layout
-    - layout_discovery
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 id: node.rh_training_class.teaser
 targetEntityType: node
@@ -39,9 +39,9 @@ mode: teaser
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content
