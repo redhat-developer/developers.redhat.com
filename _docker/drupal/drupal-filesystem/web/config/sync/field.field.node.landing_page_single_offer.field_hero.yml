@@ -1,0 +1,38 @@
+uuid: 0d0846d8-662b-4e20-a7b0-d3ea4d85875a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.cta_form
+    - assembly.assembly_type.hero
+    - assembly.assembly_type.sign_up_hero
+    - assembly.assembly_type.video_hero
+    - field.storage.node.field_hero
+    - node.type.landing_page_single_offer
+  module:
+    - entity_reference_revisions
+id: node.landing_page_single_offer.field_hero
+field_name: field_hero
+entity_type: node
+bundle: landing_page_single_offer
+label: Hero
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      cta_form: cta_form
+      hero: hero
+      content_with_image: content_with_image
+      sign_up_hero: sign_up_hero
+      video_hero: video_hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: cta_form
+field_type: entity_reference_revisions

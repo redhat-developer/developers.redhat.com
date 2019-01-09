@@ -9,12 +9,14 @@ dependencies:
     - field.field.assembly.content_with_image.field_background_image
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
+    - field.field.assembly.content_with_image.field_image_link
     - field.field.assembly.content_with_image.field_navigation_title
     - field.field.assembly.content_with_image.field_title
   module:
     - entity_browser
     - field_layout
     - layout_discovery
+    - link
     - text
 third_party_settings:
   field_layout:
@@ -45,7 +47,7 @@ content:
     region: content
     third_party_settings: {  }
   field_content:
-    weight: 7
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
@@ -65,6 +67,14 @@ content:
       selection_mode: selection_append
     region: content
     third_party_settings: {  }
+  field_image_link:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_navigation_title:
     weight: 3
     settings:
@@ -91,7 +101,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true

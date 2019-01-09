@@ -5,6 +5,7 @@
  * Functions to support theming in the RHDP theme.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -238,7 +239,7 @@ function rhdp_preprocess_page(&$variables) {
 
   // Pull out assemblies to page level for solp.
   if ($node && $node->getType() == 'landing_page_single_offer') {
-    foreach (['sections', 'form'] as $field) {
+    foreach (['hero'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
         $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
@@ -248,6 +249,7 @@ function rhdp_preprocess_page(&$variables) {
       }
     }
   }
+
 }
 
 /**
@@ -413,6 +415,18 @@ function rhdp_preprocess_node(array &$variables) {
       ];
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__PARAGRAPH_TYPE().
+ */
+function rhdp_preprocess_paragraph__connectors(&$variables) {
+  $block = Block::load('views_block__connectors_rest_export_connectors_rest_export_block');
+  $render = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+
+  $variables['connectors_block'] = $render;
 }
 
 /**
@@ -590,35 +604,29 @@ function rhdp_preprocess_assembly(&$variables) {
   }
 
   if ($assembly->hasField('field_eloqua_json')) {
-    $eloqua_assembly_id = $assembly->id();
-    $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
-
+    $variables['eloqua_assembly_id'] = $assembly->id();
+    $options = [];
     if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
       $parent = $variables['elements']['#parent'];
+      if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {
+        $options = ['options' => ['class' => []]];
+        $styles = $parent['entity']->get('visual_styles')->getValue();
 
-      if ($parent['entity_type'] == 'assembly') {
-        if ($parent['entity']->bundle() == 'content_call_to_action') {
-          $options = ['options' => ['class' => []]];
-          $styles = $parent['entity']->get('visual_styles')->getValue();
-          $layout = 'inline';
-
-          if (!empty($styles)) {
-            foreach ($styles as $style) {
-              if ($style['value'] == 'sidebar') {
-                $layout = 'stacked';
-              }
+        if (!empty($styles)) {
+          foreach ($styles as $style) {
+            if (in_array($style['value'], ['sidebar', 'sidebar-form'])) {
+              echo $style['value'];
+              $options['class'][] = 'cta'; // this is a stupid name now. Should be "sidebar" i think
             }
-          }
-
-          $options['class'][] = $layout;
-          $options['class'][] = 'cta';
-
-          if (!empty($options)) {
-            $variables['eloqua_assembly_options'] = '?' . http_build_query(['options' => $options]);
+            if (in_array($style['value'], ['inline'])) {
+              $options['class'][] = 'inline';
+            }
           }
         }
       }
     }
+
+    $variables['eloqua_iframe_url'] = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
   }
 
   // Code Snippet assembly type.

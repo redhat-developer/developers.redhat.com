@@ -45,32 +45,26 @@
  * @ingroup themeable
  */
 #}
-<div class="layout-container">
+<div class="layout-container {{ (page.hero|render) ? 'has-hero' : '' }}">
 
-  <header class="container">
+  <header class="container solp-header-container">
     <a class="rh-logo-wrapper" href="/" title="Red Hat Developer Page">
       <img class="rh-header-logo" alt="Red Hat Logo" src="/themes/custom/rhdp/logo.svg">
     </a>
   </header>
 
-  <main role="main" class="container rhd-solp column-container">
-    <div class="row">
-      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-      <article class="column main-content">
-        {{ page.title }}
-        {{ page.content }}
-      </article>{# /.layout-content #}
-      <aside class="column sidebar">
-        {{ page.form }}
-      </aside>
-    </div>{# /.row #}
-  </main>
+  {{ page.hero }}
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-  {{ page.sections }}
+    <div class="layout-content">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+  </main>
 
   {% if page.rhd_footer %}
     <footer role="contentinfo">
-      {{ page.rhd_footer }}
+      {{ page.rhd_footer|without('rhdfooter') }}
     </footer>
   {% endif %}
 

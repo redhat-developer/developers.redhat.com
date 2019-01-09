@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.featured_articles
     - assembly.assembly_type.product_download_hero
     - assembly.assembly_type.product_download_list
     - assembly.assembly_type.rich_text
@@ -28,6 +29,7 @@ settings:
   handler_settings:
     target_bundles:
       call_to_action: call_to_action
+      featured_articles: featured_articles
       product_download_hero: product_download_hero
       product_download_list: product_download_list
       rich_text: rich_text
