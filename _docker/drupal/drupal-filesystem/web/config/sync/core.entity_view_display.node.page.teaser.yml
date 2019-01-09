@@ -8,13 +8,13 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - compose
     - field_layout
-    - layout_discovery
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: 5LgpWwg6HIBQ1CW3MZaz81YFkqmyQEc2RakDWut74EY

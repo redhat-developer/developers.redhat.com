@@ -9,13 +9,13 @@ dependencies:
     - field.field.node.rhd_solution_overview.field_solution_tag_line
     - node.type.rhd_solution_overview
   module:
+    - compose
     - field_layout
-    - layout_discovery
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: FxiFp_Ad1QtDpQSMH33f22LYUEL3i7ZOZSVnNXJtq5E
@@ -34,9 +34,9 @@ content:
     region: content
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content

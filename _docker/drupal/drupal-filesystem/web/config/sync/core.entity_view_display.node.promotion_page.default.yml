@@ -11,15 +11,15 @@ dependencies:
     - field.field.node.promotion_page.field_promotion_page_left_image
     - node.type.promotion_page
   module:
+    - compose
     - field_layout
     - image
-    - layout_discovery
     - link
     - text
     - user
 third_party_settings:
   field_layout:
-    id: layout_onecol
+    id: compose_frontend
     settings: {  }
 _core:
   default_config_hash: MRfiCHbDJCiBmTJw_gUOYKPNfwtbE3HIRSOi6sUjWHw
@@ -37,9 +37,9 @@ content:
     region: content
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_call_to_action_link:
     weight: 103
     label: visually_hidden
