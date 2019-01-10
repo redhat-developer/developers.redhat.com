@@ -22,7 +22,7 @@ default_value_callback: ''
 settings:
   file_directory: ''
   file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
+  max_filesize: '1024 KB'
   max_resolution: ''
   min_resolution: ''
   alt_field: true
@@ -30,7 +30,7 @@ settings:
   title_field: false
   title_field_required: false
   default_image:
-    uuid: null
+    uuid: ''
     alt: ''
     title: ''
     width: null
