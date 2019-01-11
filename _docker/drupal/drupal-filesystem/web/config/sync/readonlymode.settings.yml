@@ -1,0 +1,23 @@
+enabled: 0
+url: ''
+messages:
+  default: '[site:name] is currently in maintenance. During this maintenance it is not possible to change site content (like comments, pages and users).'
+  not_saved: 'Data not saved. [site:name] is currently in maintenance. During maintenance it is not possible to change content. Please make a note of your changes and try again later.'
+forms:
+  default:
+    edit:
+      - read_only
+      - user_pass
+      - user_login_form
+      - search_form
+      - search_block_form
+      - system_modules
+      - system_site_maintenance_mode
+    view:
+      - node_admin_content
+      - comment_admin_overview
+  additional:
+    edit: ''
+    view: ''
+_core:
+  default_config_hash: VxaCqdJsbhWNMsXd4T2aqdDqpAgIasry9-EIxPKlK-s
