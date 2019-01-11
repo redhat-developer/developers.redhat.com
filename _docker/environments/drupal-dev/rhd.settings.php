@@ -52,14 +52,14 @@ if ((isset($content_editor_sso_config["redirect_url"]) && !empty($content_editor
     && (isset($content_editor_sso_config["userinfo_endpoint_kc"]) && !empty($content_editor_sso_config["userinfo_endpoint_kc"]))) {
 
   // Set the OpenID config object using data from our redhat_developers config.
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["redirect_url"] = $content_editor_sso_config["redirect_url"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["client_id"] = $content_editor_sso_config["client_id"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["client_secret"] = $content_editor_sso_config["client_secret"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["keycloak_base"] = $content_editor_sso_config["keycloak_base"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["keycloak_realm"] = $content_editor_sso_config["keycloak_realm"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["authorization_endpoint_kc"] = $content_editor_sso_config["authorization_endpoint_kc"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["token_endpoint_kc"] = $content_editor_sso_config["token_endpoint_kc"];
-  $config["openid_connect"]["settings"]["keycloak"]["settings"]["userinfo_endpoint_kc"] = $content_editor_sso_config["userinfo_endpoint_kc"];
+  $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = $content_editor_sso_config["redirect_url"];
+  $config["openid_connect.settings.keycloak"]["settings"]["client_id"] = $content_editor_sso_config["client_id"];
+  $config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = $content_editor_sso_config["client_secret"];
+  $config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = $content_editor_sso_config["keycloak_base"];
+  $config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = $content_editor_sso_config["keycloak_realm"];
+  $config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = $content_editor_sso_config["authorization_endpoint_kc"];
+  $config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = $content_editor_sso_config["token_endpoint_kc"];
+  $config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = $content_editor_sso_config["userinfo_endpoint_kc"];
 }
 else {
   // The array keys of the SSO config variables.
