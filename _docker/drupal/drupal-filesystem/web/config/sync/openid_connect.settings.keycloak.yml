@@ -1,21 +1,14 @@
-enabled: false
+enabled: keycloak
 settings:
-  client_id: null
-  client_secret: null
+  redirect_url: ''
+  client_id: ''
+  client_secret: ''
   keycloak_base: 'https://example.com/auth'
   keycloak_realm: example_realm
   authorization_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/auth'
   token_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/token'
   userinfo_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/userinfo'
-  sign_out_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/logout'
-  check_session_iframe_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/login-status-iframe.html'
+  userinfo_update_email: 0
   keycloak_i18n: false
-  keycloak_i18n_mapping:
-    -
-      langcode: zh-hans
-      target: zh-CN
-    -
-      langcode: zh-hant
-      target: zh-HK
 _core:
   default_config_hash: tHgaZtYNBvFIKvqZfcFO3ymqz_OJFnSAaPGXkBAFElw
