@@ -1,13 +1,13 @@
 enabled: keycloak
 settings:
   redirect_url: ''
-  client_id: ''
-  client_secret: ''
-  keycloak_base: 'https://example.com/auth'
-  keycloak_realm: example_realm
-  authorization_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/auth'
-  token_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/token'
-  userinfo_endpoint_kc: 'https://example.com/auth/realms/example-realm/protocol/openid-connect/userinfo'
+  client_id: 'Set with config override: check rhd.settings.yml'
+  client_secret: 'Set with config override: check rhd.settings.yml'
+  keycloak_base: 'Set with config override: check rhd.settings.yml'
+  keycloak_realm: 'Set with config override: check rhd.settings.yml'
+  authorization_endpoint_kc: 'Set with config override: check rhd.settings.yml'
+  token_endpoint_kc: 'Set with config override: check rhd.settings.yml'
+  userinfo_endpoint_kc: 'Set with config override: check rhd.settings.yml'
   userinfo_update_email: 0
   keycloak_i18n: false
 _core:
