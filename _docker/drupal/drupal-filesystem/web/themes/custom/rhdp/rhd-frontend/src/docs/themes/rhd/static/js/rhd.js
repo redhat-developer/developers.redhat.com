@@ -606,8 +606,8 @@ System.register("@rhd/rhdp-thankyou-page", [], function (exports_7, context_7) {
                 __extends(RHDPThankyou, _super);
                 function RHDPThankyou() {
                     var _this = _super.call(this) || this;
-                    _this.template = function (strings, name, directLink, recentDownload) {
-                        return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
+                    _this.template = function (strings, name, directLink, recentDownload, boldMsg, normMsg, dnlMsg) {
+                        return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>" + boldMsg + "</strong>\n                                <p>" + normMsg + "<a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-24 small-24 columns thankyou\">\n                                <h2>" + dnlMsg + "</h2>\n                                <h2>" + name + "</h2>\n                            " + (recentDownload ? '' : "<iframe src=\"" + directLink + "\"></iframe>") + "\n                        </div>\n                        <div class=\"large-24 medium-24 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
                     };
                     return _this;
                 }
@@ -653,7 +653,7 @@ System.register("@rhd/rhdp-thankyou-page", [], function (exports_7, context_7) {
                     this._recentDownload = this.checkRecentDownload();
                     this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
                     this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
-                    this.innerHTML = this.template(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", "", "", ""], ["", "", "", ""])), this.mediaName, this.directLink, this._recentDownload);
+                    this.innerHTML = this.template(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""])), this.mediaName, this.directLink, this._recentDownload, this.getCorrectMsgTextForBoldMsg(), this.getCorrectMsgTextForNormMsg(), this.getCorrectMsgTextForDnlMsg());
                 };
                 Object.defineProperty(RHDPThankyou, "observedAttributes", {
                     get: function () {
@@ -671,6 +671,58 @@ System.register("@rhd/rhdp-thankyou-page", [], function (exports_7, context_7) {
                     }
                     return name;
                 };
+                RHDPThankyou.prototype.getOS = function () {
+                    var userAgent = window.navigator.userAgent, platform = window.navigator.platform, macPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'], windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'], iosPlatforms = ['iPhone', 'iPad', 'iPod'], os = "unknown";
+                    if (macPlatforms.indexOf(platform) !== -1) {
+                        os = 'Mac OS';
+                    }
+                    else if (iosPlatforms.indexOf(platform) !== -1) {
+                        os = 'iOS';
+                    }
+                    else if (windowsPlatforms.indexOf(platform) !== -1) {
+                        os = 'Windows';
+                    }
+                    else if (/Android/.test(userAgent)) {
+                        os = 'Android';
+                    }
+                    else if (!os && /Linux/.test(platform)) {
+                        os = 'Linux';
+                    }
+                    return os;
+                };
+                RHDPThankyou.prototype.getCorrectMsgTextForDnlMsg = function () {
+                    var desktopDnlMsg = "Thank you for downloading the:";
+                    var mobileDnlMsg = "Use the direct link above to download:";
+                    var testOS = this.getOS();
+                    if (testOS === "iOS" || testOS === "Android") {
+                        return mobileDnlMsg;
+                    }
+                    else {
+                        return desktopDnlMsg;
+                    }
+                };
+                RHDPThankyou.prototype.getCorrectMsgTextForBoldMsg = function () {
+                    var desktopBoldMsg = "Your download should start automatically.";
+                    var mobileBoldMsg = "To download on your mobile,";
+                    var testOS = this.getOS();
+                    if (testOS === "iOS" || testOS === "Android") {
+                        return mobileBoldMsg;
+                    }
+                    else {
+                        return desktopBoldMsg;
+                    }
+                };
+                RHDPThankyou.prototype.getCorrectMsgTextForNormMsg = function () {
+                    var desktopNormMsg = "If you have any problems with the download, please use the ";
+                    var mobileNormMsg = "Please use the ";
+                    var testOS = this.getOS();
+                    if (testOS === "iOS" || testOS === "Android") {
+                        return mobileNormMsg;
+                    }
+                    else {
+                        return desktopNormMsg;
+                    }
+                };
                 RHDPThankyou.prototype.getParameterByName = function (urlName) {
                     this.url = this.url ? this.url : window.location.href;
                     urlName = urlName.replace(/[\[\]]/g, "\\$&");
@@ -679,7 +731,16 @@ System.register("@rhd/rhdp-thankyou-page", [], function (exports_7, context_7) {
                         return null;
                     if (!results[2])
                         return '';
-                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                    var i = 0;
+                    var result = results[2];
+                    var tmpResult = decodeURIComponent(result);
+                    var decodedResult = decodeURIComponent(tmpResult);
+                    do {
+                        i = i + 1;
+                        tmpResult = decodeURIComponent(decodedResult);
+                        decodedResult = decodeURIComponent(tmpResult);
+                    } while (tmpResult != decodedResult && i <= 5);
+                    return decodedResult.replace(/\+/g, " ");
                 };
                 RHDPThankyou.prototype.checkRecentDownload = function () {
                     var storageExpiration = 30000, storageName = 'media-download-url';
@@ -1757,16 +1818,6 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exp
                                 "description": "For container development, includes RHEL and OpenShift 3.",
                                 "version": "",
                                 "learnMoreLink": "/products/cdk/overview/"
-                            }, {
-                                "productName": "Red Hat Development Suite",
-                                "groupHeading": "DEVELOPER TOOLS",
-                                "productCode": "devsuite",
-                                "featured": true,
-                                "dataFallbackUrl": "https://access.redhat.com/downloads",
-                                "downloadLink": "",
-                                "description": "A fully integrated development environment for modern enterprise development.",
-                                "version": "",
-                                "learnMoreLink": "/products/devsuite/overview/"
                             }, {
                                 "productName": "Red Hat JBoss Developer Studio",
                                 "groupHeading": "DEVELOPER TOOLS",
@@ -3710,7 +3761,7 @@ System.register("@rhd/rhdp-search/rhdp-search-result-count", [], function (expor
                 });
                 RHDPSearchResultCount.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
-                    this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
+                    this.innerHTML = this.count + " results found" + (this.term ? " for " + this.term : '');
                 };
                 RHDPSearchResultCount.prototype._setText = function (e) {
                     if (e.detail) {
@@ -4822,7 +4873,6 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                                     { key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt'] },
                                     { key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk'] },
                                     { key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset'] },
-                                    { key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite'] },
                                     { key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel'] },
                                     { key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform'] },
                                     { key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift'] },
@@ -5025,7 +5075,7 @@ app.products = {
 };
 app.products.downloads = {
     "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
-    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.6.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.6.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.6.0-1-minishift-linux-amd64" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.7.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.7.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.7.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};
@@ -10547,11 +10597,15 @@ app.equalizeBottoms = function ($selector) {
     $selector.first().trigger('resize');
 };
 app.stickyNav = function (className, headerElement) {
-    var nav = $('.' + className + '-nav'), win = $(window);
+    var nav = $('.' + className + '-nav');
     if (!nav.length) {
         return;
     }
-    var html = "", top = nav.offset().top, select = $("<select>").append('<option selected value="">Choose a section</option>');
+    var win = $(window);
+    var resizeTimer;
+    var html = "";
+    var top = nav.offset().top;
+    var select = $("<select>").append('<option selected value="">Choose a section</option>');
     $('.' + className + ' ' + headerElement).each(function (i, el) {
         var replace_id = $(this).text().replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
         $(this).attr('id', replace_id);
@@ -10560,7 +10614,15 @@ app.stickyNav = function (className, headerElement) {
     });
     nav.html(html);
     nav.after(select);
-    win.on("scroll", function () {
+    win.on("resize", function (e) {
+        nav.removeClass(className + "-nav-fixed").css('width', 'auto');
+        top = nav.offset().top;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            positionNav();
+        }, 500);
+    });
+    function positionNav() {
         if (win.scrollTop() >= (top)) {
             var width = nav.parent().width();
             nav.addClass(className + "-nav-fixed").css('width', width);
@@ -10568,8 +10630,9 @@ app.stickyNav = function (className, headerElement) {
         else {
             nav.removeClass(className + "-nav-fixed").css('width', 'auto');
         }
-        $('.' + className + ' ' + headerElement).each(function (i, el) {
-            var el = $(this), top = el.offset().top, id = el.attr('id');
+        $('.' + className + ' ' + headerElement).each(function () {
+            var el = $(this);
+            var id = el.attr('id');
             if (win.scrollTop() >= (el.offset().top - 15)) {
                 $('a[href="#' + id + '"]').addClass('past-block');
             }
@@ -10578,6 +10641,9 @@ app.stickyNav = function (className, headerElement) {
             }
         });
         $('.past-block').not(':last').removeClass('past-block');
+    }
+    win.on("scroll", function () {
+        positionNav();
     });
     $(select).on('change', function () {
         var header = $(this).find('option:selected').val();
@@ -10589,9 +10655,14 @@ app.stickyNav = function (className, headerElement) {
     });
 };
 app.stickyFooter = function () {
-    var bodyHeight = $('body').height(), windowHeight = $(window).height(), wrapper = $('.wrapper');
+    var bodyHeight = $('body').height();
+    var windowHeight = $(window).height();
+    var wrapper = $('.wrapper');
     if (bodyHeight < windowHeight) {
-        var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight(), footerHeight = $('footer.bottom').outerHeight(), devHeight = $('.under-development').outerHeight(), wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
+        var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight();
+        var footerHeight = $('footer.bottom').outerHeight();
+        var devHeight = $('.under-development').outerHeight();
+        var wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
         wrapper.css('min-height', wrapperHeight);
     }
 };
@@ -10604,7 +10675,7 @@ app.sideNav = function () {
 $(function () {
     app.init();
     app.sideNav();
-    stickySections = { 'faq': 'h2', 'gsi': 'h2' };
+    var stickySections = { 'faq': 'h2', 'gsi': 'h2' };
     for (var key in stickySections) {
         app.stickyNav(key, stickySections[key]);
     }
@@ -10678,88 +10749,33 @@ app.connectors = {
     orderByPriority: function (e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
+        var thumbnailSize = this.thumbnailSize || "200x150";
+        app.connectors.sort($('ul.connector-results'), thumbnailSize, app.connectors.orderBy.PRIORITY);
         $('.connectors-order a').removeClass('active');
         $('.order-priority').addClass('active');
     },
     orderByAlpha: function (e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
+        var thumbnailSize = this.thumbnailSize || "200x150";
+        app.connectors.sort($('ul.connector-results'), thumbnailSize, app.connectors.orderBy.SYS_TITLE);
         $('.connectors-order a').removeClass('active');
         $('.order-alpha').addClass('active');
     },
-    connectorFilter: function (query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp.url.connectors;
-        var request_data = {};
-        if (query) {
-            request_data.query = query;
+    sort: function (container, thumbnailSize, orderBy) {
+        container.addClass('loading');
+        if (orderBy == app.connectors.orderBy.SYS_TITLE) {
+            container.find('.connector')
+                .sort(function (a, b) { return (a.dataset.connectortitle.toUpperCase() < b.dataset.connectortitle.toUpperCase()) ? -1 : (a.dataset.connectortitle.toUpperCase() > b.dataset.connectortitle.toUpperCase()) ? 1 : 0; })
+                .appendTo('ul.connector-results');
         }
-        if (target_product) {
-            request_data.target_product = target_product;
+        else if (orderBy == app.connectors.orderBy.PRIORITY) {
+            container.find('.connector')
+                .sort(function (a, b) { return a.dataset.connectorpriority - b.dataset.connectorpriority; })
+                .appendTo('ul.connector-results');
         }
-        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
-            request_data.sortAlpha = true;
-        }
-        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
-            request_data.id = featuredIDs;
-        }
-        $("ul.connector-results").addClass('loading');
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            data: request_data,
-            container: container,
-            thumbnailSize: thumbnailSize,
-            error: function () {
-                $('ul.connector-results').html(app.dcp.error_message);
-            }
-        }).done(function (data) {
-            var container = this.container || $('ul.connector-results');
-            var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
-        });
+        container.removeClass('loading');
     },
-    format: function (data, container, thumbnailSize) {
-        if (data.responses) {
-            var hits = data.responses[0].hits.hits;
-        }
-        else {
-            var hits = data.hits.hits;
-        }
-        var html = "";
-        for (var i = 0; i < hits.length; i++) {
-            var props = hits[i]._source;
-            props.img_path_thumb = (typeof props.thumbnail__target_id !== 'undefined' && props.thumbnail__target_id !== '') ? props.thumbnail__target_id : "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            props.fallback_img = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
-            if (!('sys_content' in props)) {
-                props.sys_content = props.sys_description;
-            }
-            if (props.sys_description.length > 150) {
-                props.sys_description = props.sys_description.slice(0, 146).concat(' ...');
-            }
-            if (!props.code_snippet_1) {
-                props.code_snippet_1 = '';
-            }
-            if (!props.code_snippet_2) {
-                props.code_snippet_2 = '';
-            }
-            if (!props.more_details_url) {
-                props.more_details_url = '';
-            }
-            if (!props.link_1_text || !props.link_1_url) {
-                props.link_1_text = '';
-                props.link_1_url = '';
-            }
-            if (!props.link_2_text || !props.link_2_url) {
-                props.link_2_text = '';
-                props.link_2_url = '';
-            }
-            var connectorTemplate = app.templates.connectorTemplate;
-            html += connectorTemplate.template(props);
-        }
-        container.html(html).removeClass('loading');
-    }
 };
 $(function () {
     $('ul.connector-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
@@ -10767,19 +10783,6 @@ $(function () {
     $('.link-list').on('click', 'a.order-priority', app.connectors.orderByPriority);
     $('.link-list').on('click', 'a.order-alpha', app.connectors.orderByAlpha);
     $('.overlay-close').on('click', app.connectors.close);
-    var targetProductFilter = $('[data-target-product]').data('target-product');
-    var orderBy = $('[data-order-by]').data('order-by');
-    var connectorResults = $('.connector-results');
-    if (connectorResults.length) {
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
-    }
-    var featuredConnectorIds = $('.featured-connector-ids');
-    if (featuredConnectorIds.length) {
-        var featuredIds = JSON.parse(featuredConnectorIds.text());
-        if ($.isArray(featuredIds) && featuredIds.length > 0) {
-            app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
-        }
-    }
 });
 app.overlay = {};
 app.overlay.open = function (html) {

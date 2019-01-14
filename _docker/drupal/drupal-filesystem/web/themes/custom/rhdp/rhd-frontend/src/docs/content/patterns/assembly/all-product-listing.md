@@ -9,11 +9,8 @@ draft: true
 
 {{< code >}}
 <div class="view-content grid all-products-listing" data-rhd-grid="normal">
-          <div class="views-row">
-    <div class="views-field views-field-title"><span class="field-content"><a href="/products/dotnet/overview">.NET Core 2.0</a></span></div>
-  </div>
     <div class="views-row">
-    <div class="views-field views-field-title"><span class="field-content"><a href="/products/devsuite/overview">Red Hat Development Suite</a></span></div>
+    <div class="views-field views-field-title"><span class="field-content"><a href="/products/dotnet/overview">.NET Core 2.0</a></span></div>
   </div>
     <div class="views-row">
     <div class="views-field views-field-title"><span class="field-content"><a href="/products/cdk/overview">Red Hat Container Development Kit</a></span></div>

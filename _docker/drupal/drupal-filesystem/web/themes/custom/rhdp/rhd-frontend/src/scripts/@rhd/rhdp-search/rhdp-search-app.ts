@@ -113,7 +113,6 @@ export default class RHDPSearchApp extends HTMLElement {
                 {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
                 {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
                 {key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset']},
-                {key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite']},
                 {key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel']},
                 {key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform']},
                 {key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift']},
