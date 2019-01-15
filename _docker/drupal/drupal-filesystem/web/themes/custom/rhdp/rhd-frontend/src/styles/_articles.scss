@@ -297,6 +297,12 @@
         font-size: 14px;
         line-height: 22px;
         font-weight: bold;
+        color: $gray-6;
+      }
+      a {
+        .author-name {
+          color: $link;
+        }
       }
     }
     @include desktop-small {
