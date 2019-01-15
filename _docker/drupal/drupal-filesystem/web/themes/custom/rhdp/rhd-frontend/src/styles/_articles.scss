@@ -400,6 +400,11 @@
       }
     }
   }
+  .publish-date,
+  .changed-date {
+    font-size: 14px;
+    color: $gray-5;
+  }
 }
 @include desktop-and-down {
   #rhd-article {
