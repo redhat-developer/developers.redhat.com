@@ -51,7 +51,7 @@ class Export
 
 end
 
-@DEFAULT_STATIC_RESOURCES = File.expand_path('static',File.dirname(__FILE__))
+@DEFAULT_STATIC_RESOURCES = File.expand_path('../../drupal/drupal-filesystem/static',File.dirname(__FILE__))
 @DEFAULT_EXPORT_LOCATION = "/export"
 @DEFAULT_EXPORT_ARCHIVE_LOCATION = "/export/export-archives"
 
