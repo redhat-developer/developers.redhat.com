@@ -6,4 +6,4 @@ draft: true
 tags: ["component"]
 ---
 
-{{< code >}}<rhdp-downlads url="https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1"></rhdp-downloads>{{</ code >}}
+{{< code >}}<rhdp-downlads url="https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet,migrationtoolkit?nv=1"></rhdp-downloads>{{</ code >}}
