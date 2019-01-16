@@ -99,13 +99,8 @@ other methods (such as node.delete) will result in an exception.
                             <div class="gsi-meta article-info">
                                 <ul class="date-info">
                                     <li>
-                                        <span class="publish-date">Published: {{ node.createdtime|date(' F j, Y, H:i') }}</span>
+                                        <span class="publish-date">{{ node.createdtime|date(' F j, Y') }}</span>
                                     </li>
-                                    {% if node.createdtime != node.changedtime %}
-                                    <li>
-                                        <span class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y, H:i') }}</span>
-                                    </li>
-                                    {% endif %}
                                 </ul>
                                 {% if author_location == 'left' %}
                                 <div class="share-buttons">
@@ -185,6 +180,9 @@ other methods (such as node.delete) will result in an exception.
                 {{ content.field_tags }}
             </div>
             {% endif %}
+        {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
+            <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
+        {% endif %}
         </div>
     </div>
     <div class="row disqus-comments">
@@ -203,3 +201,4 @@ other methods (such as node.delete) will result in an exception.
     </div>
     {% endif %}
 </div>
+<a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>

@@ -54,7 +54,7 @@ COPY logrotate/httpd /etc/logrotate.d/httpd
 
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
-COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch drupal-filesystem/view_render_patch.patch /var/www/drupal/
+COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/drupal/
 # Only install dev dependencies on dev environments
 RUN if [ "$composer_profile" = "development" ]; \ 
     then /usr/local/bin/composer install --no-interaction; \
@@ -66,6 +66,9 @@ ENV PATH=$PATH:/var/www/drupal/vendor/bin
 # Set working directory and CMD
 WORKDIR /var/www/drupal/web
 CMD ["/var/www/drupal/run-httpd.sh"]
+
+# Copy in static resources
+COPY drupal-filesystem/static/ /var/www/drupal/web/
 
 # Copy in scripts for start-up
 COPY drupal-filesystem/scripts/drupal_install_checker.rb drupal-filesystem/scripts/run-httpd.sh drupal-filesystem/scripts/phinx.rb /var/www/drupal/
