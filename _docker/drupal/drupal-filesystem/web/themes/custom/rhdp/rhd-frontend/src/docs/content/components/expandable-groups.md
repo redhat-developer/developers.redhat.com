@@ -77,6 +77,11 @@ tags: ["component"]
 <dp-category name="Developer Tools" image="/rhd-frontend/img/Icon_RH_Software_Command_RGB_Black.svg" >
     <dp-category-item-list >
         <dp-category-item >
+            <dp-product-short-teaser name="Red Hat Development Suite" link="/products/devsuite" download-link="/products/devsuite/download" >
+                A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
+            </dp-product-short-teaser>
+        </dp-category-item>
+        <dp-category-item >
             <dp-product-short-teaser name="Red Hat Container Development Kit" link="/products/cdk" download-link="/products/cdk/download" >
                 Red Hat Container Development Kit provides Red Hat OpenShift Container Platform running on Red Hat Enterprise Linux to help you develop container-based applications quickly. 
             </dp-product-short-teaser>

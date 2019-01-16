@@ -59,7 +59,7 @@ class DownloadManager {
         if (productCode === 'cdk' || productCode === 'devsuite') {
             return this.downloadByOS('devsuite');
         } else {
-            return [productCode, downloadVersion, downloadUrl];
+            return [productCode, downloadVersion, downloadUrl]
         }
     }
 
@@ -77,7 +77,7 @@ class DownloadManager {
                 downloadUrl = productVersions[i]['url'];
             }
         }
-        return ['devsuite', downloadVersion, downloadUrl];
+        return ['devsuite', downloadVersion, downloadUrl]
     }
 
     /**
