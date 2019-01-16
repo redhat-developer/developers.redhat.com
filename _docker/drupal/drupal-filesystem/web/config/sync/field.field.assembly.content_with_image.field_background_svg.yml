@@ -1,0 +1,27 @@
+uuid: d48c5f1b-dd13-4468-86d4-853dbeb38b85
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - field.storage.assembly.field_background_svg
+  module:
+    - file
+id: assembly.content_with_image.field_background_svg
+field_name: field_background_svg
+entity_type: assembly
+bundle: content_with_image
+label: 'Background SVG'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: svg
+  max_filesize: '512 KB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
