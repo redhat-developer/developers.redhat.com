@@ -87,29 +87,6 @@ describe('Downloads All Product Items', function () {
             expect(wc.platform).toEqual(OSName);
 
         });
-        it('should update the platform with the appropriate text for devsuite', function () {
-            wc.productId = 'devsuite';
-            document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('.large-9.center.columns p').innerText.trim()).toEqual('Version: 1.0.0 for ' + OSName);
-        });
-        it('should update the downloadURL with the appropriate text for devsuite', function () {
-            wc.productId = 'devsuite';
-            wc.platformType = OSName;
-            document.body.insertBefore(wc, document.body.firstChild);
-            var productDownloadURL = '';
-            switch(wc.platformType){
-                case 'Windows':
-                    productDownloadURL = "/download-manager/file/devsuite-2.3.0-GA-bundle-installer.exe";
-                    break;
-                case 'MacOS':
-                    productDownloadURL = "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg";
-                    break;
-                case "RHEL" :
-                    productDownloadURL = "/products/devsuite/hello-world/#fndtn-rhel";
-
-            }
-            expect(wc.querySelector('.large-5.columns a').href).toContain(productDownloadURL);
-        });
 
     });
     describe('with valid data', function () {
