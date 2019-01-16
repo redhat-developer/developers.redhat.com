@@ -11539,7 +11539,10 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         padding: 7px;
         font-size: 14px;
         line-height: 22px;
-        font-weight: bold; }
+        font-weight: bold;
+        color: #424242; }
+      #rhd-article .authors .author.short-teaser a .author-name {
+        color: #0066CC; }
     @media (min-width: 1024px) {
       #rhd-article .authors {
         margin-top: 40px; } }
@@ -11609,6 +11612,10 @@ body.microsite-multi-page nav.top-bar, body.microsite nav.top-bar {
         position: relative; }
       #rhd-article .field--name-field-tags .field__item:last-child:after {
         display: none; }
+  #rhd-article .publish-date,
+  #rhd-article .changed-date {
+    font-size: 14px;
+    color: #656565; }
 
 @media only screen and (max-width: 1170px) {
   #rhd-article {
@@ -15083,3 +15090,25 @@ body.overlay-open .overlay {
 
 .caption > figcaption {
   margin-top: 10px; }
+
+a#scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  line-height: 24px;
+  vertical-align: middle;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 13px;
+  text-decoration: none;
+  z-index: 1;
+  opacity: 0.8;
+  display: none; }
+  a#scroll-to-top:focus, a#scroll-to-top:active, a#scroll-to-top:hover {
+    outline: none;
+    opacity: 1; }
