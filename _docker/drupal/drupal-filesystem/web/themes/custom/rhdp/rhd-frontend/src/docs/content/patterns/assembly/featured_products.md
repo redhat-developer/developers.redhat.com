@@ -32,16 +32,5 @@ draft: true
       </div>
     </div>
   </article>
-
-  <article data-quickedit-entity-id="node/33765" role="article" class="contextual-region node node--type-product node--view-mode-featured-tile" about="/products/devsuite" data-quickedit-entity-instance-id="0">
-    <h2>
-      <a href="/products/devsuite" rel="bookmark"><span data-quickedit-field-id="node/33765/title/en/featured_tile" class="field field--name-title field--type-string field--label-hidden quickedit-field">Red Hat Development Suite</span></a>
-    </h2>
-    <div class="node__content">
-      <div class="description field field--name-field-short-description field--type-string-long field--label-hidden field__items quickedit-field" data-quickedit-field-id="node/33765/field_short_description/en/featured_tile">
-        A curated, integrated set of desktop tools especially suited for developing Linux container-based microservices.
-      </div>
-    </div>
-  </article>
 </section>
 {{</ code >}}

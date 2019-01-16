@@ -84,11 +84,6 @@ app.downloads.createDownloadLink = function(data) {
   if (data[0].productCode === "rhoar") {
     return "";
   }
-  else if (data[0].productCode === "devsuite") {
-    data[0].featuredWindowsArtifact = app.products.downloads.devsuite.windowsUrl;
-    data[0].featuredMacArtifact = app.products.downloads.devsuite.macUrl;
-    data[0].featuredRhelArtifact = app.products.downloads.devsuite.rhelUrl;
-  }
   else if (data[0].productCode === "cdk") {
     data[0].featuredWindowsArtifact = app.products.downloads.cdk.windowsUrl;
     data[0].featuredMacArtifact = app.products.downloads.cdk.macUrl;
