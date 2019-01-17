@@ -99,7 +99,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 name:'PRODUCT', 
                 key: 'project', 
                 items: [
-                {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
+                {key: 'dotnet', name: '.NET Core', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
                 {key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam','bpmsuite']},
                 {key: 'brms', name: 'Red Hat Decision Manager', value: ['brms']},

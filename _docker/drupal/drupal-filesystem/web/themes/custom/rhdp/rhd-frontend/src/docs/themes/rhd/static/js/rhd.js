@@ -379,7 +379,6 @@ System.register("@rhd/rhdp-os-download", [], function (exports_6, context_6) {
                     _this._winURL = "";
                     _this.stage_download_url = 'https://developers.stage.redhat.com';
                     _this.productDownloads = {
-                        "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
                         "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
                     };
                     _this.template = function (strings, product, downloadUrl, platform, version) {
@@ -551,11 +550,6 @@ System.register("@rhd/rhdp-os-download", [], function (exports_6, context_6) {
                 };
                 RHDPOSDownload.prototype.setOSURL = function (productId) {
                     switch (productId) {
-                        case 'devsuite':
-                            this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
-                            this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
-                            this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
-                            break;
                         case 'cdk':
                             this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
                             this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
@@ -1464,7 +1458,7 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-all-item", ["@rhd/rhdp-os-do
                     configurable: true
                 });
                 RHDPDownloadsAllItem.prototype.connectedCallback = function () {
-                    if (this.productId === 'devsuite' || this.productId === 'cdk') {
+                    if (this.productId === 'cdk') {
                         this.osVersionExtract(this.productId);
                         this.innerHTML = this.template(templateObject_4 || (templateObject_4 = __makeTemplateObject(["", "", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", "", ""])), this.name, this.productId, this.dataFallbackUrl, this.downloadUrl, this.learnMore, this.description, this.version, this.platform);
                     }
@@ -1818,16 +1812,6 @@ System.register("@rhd/rhdp-downloads/rhdp-downloads-products", [], function (exp
                                 "description": "For container development, includes RHEL and OpenShift 3.",
                                 "version": "",
                                 "learnMoreLink": "/products/cdk/overview/"
-                            }, {
-                                "productName": "Red Hat Development Suite",
-                                "groupHeading": "DEVELOPER TOOLS",
-                                "productCode": "devsuite",
-                                "featured": true,
-                                "dataFallbackUrl": "https://access.redhat.com/downloads",
-                                "downloadLink": "",
-                                "description": "A fully integrated development environment for modern enterprise development.",
-                                "version": "",
-                                "learnMoreLink": "/products/devsuite/overview/"
                             }, {
                                 "productName": "Red Hat JBoss Developer Studio",
                                 "groupHeading": "DEVELOPER TOOLS",
@@ -4869,7 +4853,7 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                                 name: 'PRODUCT',
                                 key: 'project',
                                 items: [
-                                    { key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
+                                    { key: 'dotnet', name: '.NET Core', value: ['dotnet'] },
                                     { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
                                     { key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam', 'bpmsuite'] },
                                     { key: 'brms', name: 'Red Hat Decision Manager', value: ['brms'] },
@@ -4883,7 +4867,6 @@ System.register("@rhd/rhdp-search/rhdp-search-app", ["@rhd/rhdp-search/rhdp-sear
                                     { key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt'] },
                                     { key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk'] },
                                     { key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset'] },
-                                    { key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite'] },
                                     { key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel'] },
                                     { key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform'] },
                                     { key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift'] },
@@ -5069,7 +5052,6 @@ app.products = {
     "datavirt": { "upstream": ["teiid", "teiiddesigner", "modeshape"], "stackoverflow": "redhat-datavirt", "buzz_tags": ["datavirt", "jboss datavirt"] },
     "developertoolset": { "upstream": null, "stackoverflow": { "AND": { "tag_set_one": ["redhat-dts", "gcc"], "tag_set_two": ["redhat-dts", "redhat", "rhel", "red hat"] } }, "buzz_tags": ["developertoolset"] },
     "devstudio": { "upstream": ["jbosstools"], "stackoverflow": "jboss-developer-studio", "buzz_tags": ["jbds", "JBoss DevStudio"] },
-    "devsuite": { "upstream": null, "stackoverflow": "_none", "buzz_tags": "devsuite" },
     "dotnet": { "upstream": null, "stackoverflow": "rhel.net", "buzz_tags": "dotnet" },
     "eap": { "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"], "stackoverflow": ["jboss-eap-6", "jboss-eap-7"], "buzz_tags": ["eap", "jboss eap"] },
     "fuse": { "upstream": ["camel", "karaf", "activemq", "cxf", "fabric8", "switchyard", "hawtio"], "stackoverflow": ["jbossfuse"], "buzz_tags": ["fuse", "jboss fuse"] },
@@ -5085,7 +5067,6 @@ app.products = {
     "migrationtoolkit": { "upstream": null, "stackoverflow": ["rhamt"], "buzz_tags": ["windup", "rhamt"] }
 };
 app.products.downloads = {
-    "devsuite": { "windowsUrl": "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl": "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl": "/products/devsuite/hello-world/#fndtn-rhel" },
     "cdk": { "windowsUrl": "/download-manager/file/cdk-3.7.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.7.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.7.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
@@ -10990,11 +10971,6 @@ app.downloads.bytesToSize = function (bytes) {
 app.downloads.createDownloadLink = function (data) {
     if (data[0].productCode === "rhoar") {
         return "";
-    }
-    else if (data[0].productCode === "devsuite") {
-        data[0].featuredWindowsArtifact = app.products.downloads.devsuite.windowsUrl;
-        data[0].featuredMacArtifact = app.products.downloads.devsuite.macUrl;
-        data[0].featuredRhelArtifact = app.products.downloads.devsuite.rhelUrl;
     }
     else if (data[0].productCode === "cdk") {
         data[0].featuredWindowsArtifact = app.products.downloads.cdk.windowsUrl;

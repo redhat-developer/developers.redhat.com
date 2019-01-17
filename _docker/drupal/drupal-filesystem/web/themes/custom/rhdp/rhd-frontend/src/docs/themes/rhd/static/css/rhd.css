@@ -2488,6 +2488,72 @@ a.light-cta {
     .assembly-type-sign_up_hero.product-signup-hero--dark .signup-hero-content {
       color: #FFFFFF; }
 
+.assembly-type-featured_articles {
+  padding: 100px 15px; }
+  .assembly-type-featured_articles h2 {
+    text-align: center;
+    margin-bottom: 50px; }
+  .assembly-type-featured_articles .featured-article {
+    border: 1px solid #E6E6E6;
+    border-top: 6px solid #000000;
+    padding: 30px;
+    min-height: 430px;
+    margin: 20px; }
+    @media screen and (max-width: 768px) {
+      .assembly-type-featured_articles .featured-article {
+        min-height: auto; } }
+  .assembly-type-featured_articles .article-type {
+    text-transform: uppercase; }
+  .assembly-type-featured_articles .article-content {
+    height: 300px; }
+    .assembly-type-featured_articles .article-content .field--name-field-short-description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 5; }
+    @media screen and (max-width: 768px) {
+      .assembly-type-featured_articles .article-content {
+        height: auto;
+        margin-bottom: 30px; } }
+  .assembly-type-featured_articles .tile-title,
+  .assembly-type-featured_articles .tile-title a {
+    color: #242424;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 15px 0; }
+  .assembly-type-featured_articles .authors .field--name-field-headshot {
+    display: inline;
+    float: left;
+    max-width: 60px;
+    width: 30%;
+    margin-right: 10px; }
+    @media screen and (max-width: 1240px) and (min-width: 768px) {
+      .assembly-type-featured_articles .authors .field--name-field-headshot {
+        display: none; } }
+    @media screen and (max-width: 430px) {
+      .assembly-type-featured_articles .authors .field--name-field-headshot {
+        display: none; } }
+  .assembly-type-featured_articles .authors .author-name {
+    width: 70%;
+    padding: 8px 0 0 0;
+    float: left;
+    background-color: transparent; }
+    .assembly-type-featured_articles .authors .author-name .field--name-title {
+      float: left;
+      text-transform: none; }
+  .assembly-type-featured_articles .changed-date {
+    color: #CCCCCC;
+    font-size: 12px;
+    line-height: 1.2;
+    bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden; }
+  .assembly-type-featured_articles .article-info {
+    bottom: 30px;
+    width: 100%;
+    min-height: 55px; }
+
 .assembly[data-audience] {
   display: none; }
 
