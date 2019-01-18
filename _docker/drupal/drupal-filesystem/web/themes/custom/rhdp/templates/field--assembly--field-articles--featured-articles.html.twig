@@ -68,7 +68,7 @@
   <div{{ attributes.addClass(classes) }}>
     <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
     {% if multiple %}
-      <div class="field__items row">
+      <div class="field__items row centered-tiles ">
     {% endif %}
     {% for item in items %}
       <div{{ item.attributes.addClass('large-8 medium-12 small-24 columns end field__item') }}>{{ item.content }}</div>
