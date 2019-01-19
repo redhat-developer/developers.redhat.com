@@ -102,7 +102,7 @@ Add a unique tag to the test(s) `it.` description, for example to execute the fo
  
  The default baseUrl when running tests locally is set to `http://docker:8888`. To override this, you can execute:
  
-              RHD_BASE_URL=https://developers.redhat.com npm run e2e --  --mochaOpts.grep=@wip
+              npm run e2e -- --base-url=https://developers.redhat.com --mochaOpts.grep=@wip
               
 ## Run tests inside docker using docker-selenium (build scripts - same as Jenkins)
 

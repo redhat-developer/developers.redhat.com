@@ -11,6 +11,7 @@ tags('desktop').describe('Download Manager', function () {
     this.retries(2);
 
     beforeEach(function () {
+        new Utils().logout();
         let downloadDir = new DownloadDir();
         downloadDir.clear();
     });
@@ -40,7 +41,7 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('dm')
-        .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
+        .it('@wip @sanity : should allow users to log-in and download advanced-linux-commands', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let login = new Login();
