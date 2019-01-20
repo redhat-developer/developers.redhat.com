@@ -52,8 +52,7 @@ export class SearchFilter extends Page {
     }
 
     _showMore(groupIndex) {
-        this.click(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/a`)
-        return this.pause(1000)
+        return this.click(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/a`)
     }
 
     _clickOpenMobileFilter() {
