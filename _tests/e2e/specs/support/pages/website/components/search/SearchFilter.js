@@ -40,7 +40,8 @@ export class SearchFilter extends Page {
         if (isMobile) {
             filter = this.element(`//*[@id="cover"]//label[contains(text(), '${filterOption}')]`);
         } else {
-            filter = this.element(`//*[@id="control"]//label[contains(text(), '${filterOption}')]`);
+            this._showMore(groupIndex);
+            filter = this.element(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]//rhdp-search-filter-item//label[contains(text(), '${filterOption}')]`);
         }
         this.click(filter);
         if (isMobile) {
@@ -48,6 +49,10 @@ export class SearchFilter extends Page {
             // wait a second for the filter to close
             this.pause(1000);
         }
+    }
+
+    _showMore(groupIndex) {
+        return this.click(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/a`)
     }
 
     _clickOpenMobileFilter() {

@@ -19,6 +19,9 @@ export class CheatSheets extends Page {
     }
 
     awaitDownload() {
+        //wait for frontend js issue (double page refresh causing stale element exception)
+        //sleeps are bad, never use sleeps, this is a hack for a longstanding frontend issue
+        this.pause(6000);
         return this.awaitDownloadConfirmation() && this.awaitDownloadThankYou();
     }
 
