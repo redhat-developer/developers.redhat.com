@@ -36,14 +36,19 @@ export class SearchFilter extends Page {
 
     _selectFilter(groupIndex, filterOption) {
         let filter;
+        let parentId = "control";;
         let isMobile = this._clickOpenMobileFilter();
+
         if (isMobile) {
-            filter = this.element(`//*[@id="cover"]//label[contains(text(), '${filterOption}')]`);
-        } else {
-            this._showMore(groupIndex);
-            filter = this.element(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]//rhdp-search-filter-item//label[contains(text(), '${filterOption}')]`);
-        }
+            parentId = "cover";
+        } 
+
+        this._showMore(groupIndex, parentId);
+        
+        filter = this.element(`//*[@id="${parentId}"]/div[2]/rhdp-search-filter-group[${groupIndex}]//rhdp-search-filter-item//label[contains(text(), '${filterOption}')]`);
+        
         this.click(filter);
+        
         if (isMobile) {
             this._clickApplyMobileFilter();
             // wait a second for the filter to close
@@ -51,8 +56,8 @@ export class SearchFilter extends Page {
         }
     }
 
-    _showMore(groupIndex) {
-        return this.click(`//*[@id="control"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/a`)
+    _showMore(groupIndex, parentId) {
+        return this.click(`//*[@id="${parentId}"]/div[2]/rhdp-search-filter-group[${groupIndex}]/div/a`)
     }
 
     _clickOpenMobileFilter() {
