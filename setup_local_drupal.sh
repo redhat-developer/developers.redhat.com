@@ -49,9 +49,16 @@ then
   sudo ln -s ${ENVIRON}/rhd.settings.yml ${WEB}/sites/default/rhd.settings.yml
 fi
 
+# Symlink the static images directory
 if [ ! -d "${WEB}/images" ]
 then
   sudo ln -s ${DRUPAL_FILESYSTEM}/static/images/ ${WEB}/images
+fi
+
+# Symlink the static rhdp-apps folder
+if [ ! -d "${WEB}/rhdp-apps" ]
+then
+  sudo ln -s ${DRUPAL_FILESYSTEM}/static/rhdp-apps/ ${WEB}/rhdp-apps
 fi
 
 # ADD from docker active config, files
