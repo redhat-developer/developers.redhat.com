@@ -90,10 +90,10 @@ describe('OS detection component', function () {
 
         });
         it('should set platform URLs based on product id', function () {
-            wc.setOSURL('devsuite')
-            expect(wc.rhelURL).toEqual(wc.productDownloads.devsuite.rhelUrl);
-            expect(wc.winURL).toEqual(wc.productDownloads.devsuite.windowsUrl);
-            expect(wc.macURL).toEqual(wc.productDownloads.devsuite.macUrl);
+            //wc.setOSURL('devsuite')
+            //expect(wc.rhelURL).toEqual(wc.productDownloads.devsuite.rhelUrl);
+            //expect(wc.winURL).toEqual(wc.productDownloads.devsuite.windowsUrl);
+            //expect(wc.macURL).toEqual(wc.productDownloads.devsuite.macUrl);
             wc.setOSURL('cdk')
             expect(wc.rhelURL).toEqual(wc.productDownloads.cdk.rhelUrl);
             expect(wc.winURL).toEqual(wc.productDownloads.cdk.windowsUrl);
