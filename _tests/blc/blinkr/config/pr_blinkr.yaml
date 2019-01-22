@@ -1,0 +1,28 @@
+verbose: true
+
+remote: true
+
+skips:
+- !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/quickstarts\.*\/.*/
+- !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/boms\/eap\/jboss-javaee\-(.*)/
+
+# the below pages need to be ignored in the PR environment due to missing re-directs in the PR environment
+# - !ruby/regexp /^https:\/\/developers\-pr\.stage\.redhat\.com\/pr\/(.*)\/export\/products\/(.*)\//
+
+ignores:
+- code: 202
+- code: 203
+- code: 403
+- code: 502
+
+environments:
+- http://developer-drupal.web.prod.ext.phx2.redhat.com
+- https://developer-drupal.web.prod.ext.phx2.redhat.com
+- http://rhdp-drupal.stage.redhat.com
+- https://rhdp-drupal.stage.redhat.com
+
+ignore_external: true
+
+report: blinkr.html
+
+threads: 8

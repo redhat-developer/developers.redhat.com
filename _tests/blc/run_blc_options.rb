@@ -48,8 +48,8 @@ class RunBlcOptions
         test_configuration[:ignore_external] = opt
       end
 
-      opts.on('--ignore-ssl', 'Disable SSL certificate checking for staging environments') do |opt|
-        test_configuration[:ignore_ssl] = opt
+      opts.on('--update-github-status SHA1', String, 'The SHA to report test results for on GitHub') do |sha1|
+        test_configuration[:github_sha1] = sha1
       end
 
       #
@@ -72,16 +72,16 @@ class RunBlcOptions
       option_parser.parse(%w(-h))
     end
     bind_test_type_environment_variable(test_configuration)
+    bind_github_status_environment_variables(test_configuration)
     build_test_execution_command(test_configuration)
     test_configuration
   end
-
 
   private
 
   #
   # Create a generic environment variable for specified test type. Will be used
-  # within the run_tests.rb script in order to generate the correct test resources
+  # within the run_checks.rb script in order to generate the correct test resources
   # and run commands based on the test type.
   #
   def bind_test_type_environment_variable(test_configuration)
@@ -97,6 +97,17 @@ class RunBlcOptions
     test_configuration[:blinkr] ?
         test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) :
         test_configuration[:run_tests_command] = build_dcp_test_execution_cmd(test_configuration)
+  end
+
+
+  #
+  # Should we wish to update GitHub statuses, this will set the required environment variables
+  #
+  def bind_github_status_environment_variables(test_configuration)
+    return unless test_configuration[:github_sha1]
+    @logger.info("Enabling update of GitHub status for SHA1: '#{test_configuration[:github_sha1]}'")
+    bind_environment_variable('github_status_enabled', 'true')
+    bind_environment_variable('github_status_context', 'broken-link-checks') if test_configuration[:blinkr]
   end
 
   #

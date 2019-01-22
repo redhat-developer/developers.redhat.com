@@ -2,7 +2,6 @@ verbose: true
 base_url: https://developers.redhat.com
 remote: true
 skips:
-- !ruby/regexp /^https:\/\/redhat.com\/.*/
 - !ruby/regexp /^http:\/\/registry.access.redhat\.com\/.*/
 - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
 - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -73,7 +72,6 @@ environments:
 - http://rhdp-drupal.stage.redhat.com
 - https://rhdp-drupal.stage.redhat.com
 
-max_page_retys: 6
-max_retrys: 6
-threads: 10
 report: blinkr.html
+
+threads: 10
