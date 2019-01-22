@@ -167,11 +167,11 @@ export default class RHDPSearchResult extends HTMLElement {
         if(result.highlight && result.highlight.sys_description) {
             description = result.highlight.sys_description[0];
         } else if( result.highlight && result.highlight.sys_content_plaintext) {
-            description = result.highlight.sys_content_plaintext[0];               
+            description = result.highlight.sys_content_plaintext[0];         
         } else if (result.fields && result.fields.sys_description) {
             description = result.fields.sys_description[0];
         } else {
-            description = result.fields.sys_content_plaintext[0];
+            description = result.fields.sys_content_plaintext ? result.fields.sys_content_plaintext[0] : '';
         }
 
         // Removes all HTML tags from description
