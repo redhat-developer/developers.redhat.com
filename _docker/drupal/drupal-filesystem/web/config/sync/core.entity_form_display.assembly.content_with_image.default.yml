@@ -7,6 +7,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.assembly.content_with_image.field_audience_selection
     - field.field.assembly.content_with_image.field_background_image
+    - field.field.assembly.content_with_image.field_background_svg
     - field.field.assembly.content_with_image.field_content
     - field.field.assembly.content_with_image.field_image
     - field.field.assembly.content_with_image.field_image_link
@@ -16,6 +17,7 @@ dependencies:
     - entity_browser
     - field_layout
     - layout_discovery
+    - file
     - link
     - text
 third_party_settings:
@@ -46,6 +48,13 @@ content:
       selection_mode: selection_append
     region: content
     third_party_settings: {  }
+  field_background_svg:
+    weight: 5
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
   field_content:
     weight: 8
     settings:

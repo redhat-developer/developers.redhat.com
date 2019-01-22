@@ -13,7 +13,6 @@ export default class RHDPOSDownload extends HTMLElement {
 
     stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
-        "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
         "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64"}
     };
 
@@ -180,11 +179,6 @@ export default class RHDPOSDownload extends HTMLElement {
 
     setOSURL(productId){
         switch(productId){
-            case 'devsuite':
-                this.winURL = this.getDownloadOrigin(this.productDownloads.devsuite.windowsUrl);
-                this.macURL = this.getDownloadOrigin(this.productDownloads.devsuite.macUrl);
-                this.rhelURL = this.getDownloadOrigin(this.productDownloads.devsuite.rhelUrl);
-                break;
             case 'cdk':
                 this.winURL = this.getDownloadOrigin(this.productDownloads.cdk.windowsUrl);
                 this.macURL = this.getDownloadOrigin(this.productDownloads.cdk.macUrl);
