@@ -1,0 +1,15 @@
+diff --git a/openid_connect.module b/openid_connect.module
+index ec7a465..75580f0 100644
+--- a/openid_connect.module
++++ b/openid_connect.module
+@@ -414,6 +414,10 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+   $user_data = $client->decodeIdToken($tokens['id_token']);
+   $userinfo = $client->retrieveUserInfo($tokens['access_token']);
+ 
++  echo '<pre>', var_dump($user_data), '</pre>';
++  echo '<pre>', var_dump($userinfo), '</pre>';
++  die();
++
+   $context = [
+     'user_data' => $user_data,
+   ];
