@@ -11,6 +11,7 @@ tags('desktop').describe('Download Manager', function () {
     this.retries(2);
 
     beforeEach(function () {
+        new Utils().logout();
         let downloadDir = new DownloadDir();
         downloadDir.clear();
     });
