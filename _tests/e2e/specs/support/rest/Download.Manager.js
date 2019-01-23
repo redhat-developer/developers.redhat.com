@@ -56,8 +56,8 @@ class DownloadManager {
         let downloadVersion = downloadData[0]['featuredArtifact']['versionName'];
         let downloadUrl = downloadData[0]['featuredArtifact']['url'];
 
-        if (productCode === 'cdk' || productCode === 'devsuite') {
-            return this.downloadByOS('devsuite');
+        if (productCode === 'cdk') {
+            return this.downloadByOS('cdk');
         } else {
             return [productCode, downloadVersion, downloadUrl]
         }
@@ -77,7 +77,7 @@ class DownloadManager {
                 downloadUrl = productVersions[i]['url'];
             }
         }
-        return ['devsuite', downloadVersion, downloadUrl]
+        return ['cdk', downloadVersion, downloadUrl]
     }
 
     /**

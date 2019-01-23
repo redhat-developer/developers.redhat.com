@@ -123,7 +123,7 @@ export default class RHDPDownloadsAllItem extends HTMLElement {
     };
 
     connectedCallback() {
-        if(this.productId === 'devsuite' || this.productId === 'cdk'){
+        if(this.productId === 'cdk'){
             this.osVersionExtract(this.productId);
             this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}${this.platform}`;
 

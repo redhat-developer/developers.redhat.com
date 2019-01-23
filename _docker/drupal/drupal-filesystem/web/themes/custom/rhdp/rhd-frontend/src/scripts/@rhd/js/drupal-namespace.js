@@ -117,7 +117,6 @@ app.products = {
   "datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "redhat-datavirt", "buzz_tags": ["datavirt","jboss datavirt"]},
   "developertoolset": {"upstream": null,"stackoverflow": {"AND" : {"tag_set_one" : ["redhat-dts","gcc"], "tag_set_two" :["redhat-dts","redhat","rhel","red hat"]}}, "buzz_tags": ["developertoolset"]},
   "devstudio": {"upstream": ["jbosstools"],"stackoverflow": "jboss-developer-studio", "buzz_tags": ["jbds","JBoss DevStudio"]},
-  "devsuite": {"upstream": null,"stackoverflow": "_none", "buzz_tags": "devsuite"},
   "dotnet": {"upstream": null,"stackoverflow": "rhel.net", "buzz_tags": "dotnet"},
   "eap": {"upstream": ["wildfly","jgroups","hibernate","hornetq","jbossclustering","jbossmc","narayana","jbossweb","jbossws","ironjacamar","jgroups","mod_cluster","jbossas_osgi","jbosssso","picketlink","resteasy","weld","wise","xnio"],"stackoverflow": ["jboss-eap-6","jboss-eap-7"], "buzz_tags": ["eap","jboss eap"]},
   "fuse": {"upstream": ["camel","karaf","activemq","cxf","fabric8","switchyard","hawtio"],"stackoverflow": ["jbossfuse"], "buzz_tags": ["fuse","jboss fuse"]},
@@ -134,7 +133,6 @@ app.products = {
 };
 
 app.products.downloads = {
-    "devsuite" : {"windowsUrl" : "/download-manager/file/devsuite-2.3.0-GA-installer.exe", "macUrl" : "/download-manager/file/devsuite-2.3.0-GA-bundle-installer-mac.dmg", "rhelUrl" : "/products/devsuite/hello-world/#fndtn-rhel"},
     "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.7.0-1-minishift-linux-amd64"}
 };
 

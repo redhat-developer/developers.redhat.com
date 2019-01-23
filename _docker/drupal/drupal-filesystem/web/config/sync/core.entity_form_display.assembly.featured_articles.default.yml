@@ -34,7 +34,12 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   moderation_state: true
   user_id: true
-  visual_styles: true

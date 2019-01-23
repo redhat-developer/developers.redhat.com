@@ -99,7 +99,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 name:'PRODUCT', 
                 key: 'project', 
                 items: [
-                {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
+                {key: 'dotnet', name: '.NET Core', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
                 {key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam','bpmsuite']},
                 {key: 'brms', name: 'Red Hat Decision Manager', value: ['brms']},
@@ -113,7 +113,6 @@ export default class RHDPSearchApp extends HTMLElement {
                 {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
                 {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
                 {key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset']},
-                {key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite']},
                 {key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel']},
                 {key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform']},
                 {key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift']},

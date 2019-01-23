@@ -51,16 +51,6 @@ export default class RHDPDownloadsProducts extends HTMLElement {
             "version": "",
             "learnMoreLink": "/products/cdk/overview/"
         }, {
-            "productName": "Red Hat Development Suite",
-            "groupHeading": "DEVELOPER TOOLS",
-            "productCode": "devsuite",
-            "featured": true,
-            "dataFallbackUrl": "https://access.redhat.com/downloads",
-            "downloadLink": "",
-            "description": "A fully integrated development environment for modern enterprise development.",
-            "version": "",
-            "learnMoreLink": "/products/devsuite/overview/"
-        }, {
             "productName": "Red Hat JBoss Developer Studio",
             "groupHeading": "DEVELOPER TOOLS",
             "productCode": "devstudio",
