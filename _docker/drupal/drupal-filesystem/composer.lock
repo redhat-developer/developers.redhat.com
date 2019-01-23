@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "075b52d4ca315b4923896a4fa705eee4",
+    "content-hash": "e16667c4b4560658f5ac25d945e3fb22",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -211,22 +211,22 @@
         },
         {
             "name": "caxy/php-htmldiff",
-            "version": "v0.1.7",
+            "version": "v0.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caxy/php-htmldiff.git",
-                "reference": "48c70a963e803b93fe68a191e62d0770b5446f0b"
+                "reference": "6f39bc3717f1d3f915542e431c6c30e43bfe6b7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caxy/php-htmldiff/zipball/48c70a963e803b93fe68a191e62d0770b5446f0b",
-                "reference": "48c70a963e803b93fe68a191e62d0770b5446f0b",
+                "url": "https://api.github.com/repos/caxy/php-htmldiff/zipball/6f39bc3717f1d3f915542e431c6c30e43bfe6b7c",
+                "reference": "6f39bc3717f1d3f915542e431c6c30e43bfe6b7c",
                 "shasum": ""
             },
             "require": {
                 "ezyang/htmlpurifier": "^4.7",
-                "php": ">=5.3.3",
-                "sunra/php-simple-html-dom-parser": "^1.5"
+                "kub-at/php-simple-html-dom-parser": "^1.7",
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "doctrine/cache": "~1.0",
@@ -263,7 +263,7 @@
                 "diff",
                 "html"
             ],
-            "time": "2018-03-15T21:23:44+00:00"
+            "time": "2019-01-15T19:49:36+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -2192,6 +2192,57 @@
             "time": "2018-11-28T18:55:45+00:00"
         },
         {
+            "name": "drupal/beryllium",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/beryllium",
+                "reference": "a75ff547af5865fe365385a77fe89160aa817b5d"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "select2/select2": "^4.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1542736680",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "delzhand",
+                    "homepage": "https://www.drupal.org/user/177088"
+                },
+                {
+                    "name": "fearlsgroove",
+                    "homepage": "https://www.drupal.org/user/364178"
+                },
+                {
+                    "name": "kerrivader",
+                    "homepage": "https://www.drupal.org/user/3418623"
+                }
+            ],
+            "description": "Alloy Magnetic's Drupal 8 admin theme",
+            "homepage": "https://www.drupal.org/project/beryllium",
+            "support": {
+                "source": "http://cgit.drupalcode.org/beryllium"
+            },
+            "time": "2018-11-26T14:43:19+00:00"
+        },
+        {
             "name": "drupal/blazy",
             "version": "1.0.0-rc4",
             "source": {
@@ -2252,6 +2303,71 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/blazy",
                 "issues": "https://drupal.org/project/issues/blazy"
+            }
+        },
+        {
+            "name": "drupal/bootstrap",
+            "version": "3.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/bootstrap",
+                "reference": "8.x-3.17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.17.zip",
+                "reference": "8.x-3.17",
+                "shasum": "7fec8e6bc1435b97952844315035b36c2dbc07b2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.17",
+                    "datestamp": "1548102180",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Carver (markcarver)",
+                    "homepage": "https://www.drupal.org/u/markcarver",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "John McCormick (neardark)",
+                    "homepage": "https://www.drupal.org/u/neardark",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "Fabiano Sant'Ana (wundo)",
+                    "homepage": "https://www.drupal.org/u/wundo",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "wundo",
+                    "homepage": "https://www.drupal.org/user/25523"
+                }
+            ],
+            "description": "Built to use Bootstrap, a sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "homepage": "https://www.drupal.org/project/bootstrap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/bootstrap",
+                "docs": "https://drupal-bootstrap.org",
+                "issues": "https://www.drupal.org/project/issues/bootstrap",
+                "irc": "irc://irc.freenode.org/drupal-bootstrap"
             }
         },
         {
@@ -2683,6 +2799,7 @@
                 },
                 "patches_applied": {
                     "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
+                    "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2018-09-24/2815221-109.patch",
@@ -3618,11 +3735,11 @@
         },
         {
             "name": "drupal/field_group",
-            "version": "dev-1.x",
+            "version": "dev-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/field_group",
-                "reference": "8d3bdce51c5d0a35ab88a08383ccac9f5efc9794"
+                "reference": "c7b3194f0655eb9c0b37d9a0dd1b36f6e40b4c94"
             },
             "require": {
                 "drupal/core": "*"
@@ -3630,11 +3747,11 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-1.x": "1.x-dev"
+                    "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc6+13-dev",
-                    "datestamp": "1499981942",
+                    "version": "8.x-3.0-beta1+21-dev",
+                    "datestamp": "1533551284",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3672,7 +3789,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/field_group"
             },
-            "time": "2017-07-13T21:36:25+00:00"
+            "time": "2018-11-26T18:27:09+00:00"
         },
         {
             "name": "drupal/image_widget_crop",
@@ -3930,17 +4047,17 @@
         },
         {
             "name": "drupal/jsonapi",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/jsonapi",
-                "reference": "8.x-2.0"
+                "reference": "8.x-2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/jsonapi-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "223dfe947f61503c759e5aca68ab73fe1a04716f"
+                "url": "https://ftp.drupal.org/files/projects/jsonapi-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "8173e0f44cd86752b055f069ce55c5bf7632e719"
             },
             "require": {
                 "drupal/core": "^8.5.4"
@@ -3956,8 +4073,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1546977002",
+                    "version": "8.x-2.1",
+                    "datestamp": "1548087544",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8288,6 +8405,146 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "jquery/select2",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "jquery.select2"
+            }
+        },
+        {
+            "name": "kriswallsmith/assetic",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/assetic.git",
+                "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1",
+                "symfony/process": "~2.1|~3.0"
+            },
+            "conflict": {
+                "twig/twig": "<1.27"
+            },
+            "require-dev": {
+                "leafo/lessphp": "^0.3.7",
+                "leafo/scssphp": "~0.1",
+                "meenie/javascript-packer": "^1.1",
+                "mrclay/minify": "<2.3",
+                "natxet/cssmin": "3.0.4",
+                "patchwork/jsqueeze": "~1.0|~2.0",
+                "phpunit/phpunit": "~4.8 || ^5.6",
+                "psr/log": "~1.0",
+                "ptachoire/cssembed": "~1.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0",
+                "twig/twig": "~1.23|~2.0",
+                "yfix/packager": "dev-master"
+            },
+            "suggest": {
+                "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
+                "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
+                "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
+                "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
+                "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
+                "twig/twig": "Assetic provides the integration with the Twig templating engine"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Assetic": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Asset Management for PHP",
+            "homepage": "https://github.com/kriswallsmith/assetic",
+            "keywords": [
+                "assets",
+                "compression",
+                "minification"
+            ],
+            "time": "2016-11-11T18:43:20+00:00"
+        },
+        {
+            "name": "kub-at/php-simple-html-dom-parser",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kub-AT/php-simple-html-dom-parser.git",
+                "reference": "7a745b20157efb0f1be3021394769bd6b8e9ed4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kub-AT/php-simple-html-dom-parser/zipball/7a745b20157efb0f1be3021394769bd6b8e9ed4e",
+                "reference": "7a745b20157efb0f1be3021394769bd6b8e9ed4e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "KubAT\\PhpSimple\\HtmlDomParser": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "S.C. Chen",
+                    "email": "me578022@gmail.com"
+                },
+                {
+                    "name": "Jakub Stawowy",
+                    "email": "Kub-AT@users.noreply.github.com"
+                }
+            ],
+            "description": "PHP Simple HTML DOM Parser with namespace and PHP 7.3 compatible",
+            "homepage": "http://simplehtmldom.sourceforge.net/",
+            "keywords": [
+                "Simple",
+                "dom",
+                "html"
+            ],
+            "time": "2019-01-02T14:33:28+00:00"
+        },
+        {
             "name": "lcobucci/jwt",
             "version": "3.2.5",
             "source": {
@@ -9507,6 +9764,54 @@
             "time": "2016-02-11T07:05:27+00:00"
         },
         {
+            "name": "robloach/component-installer",
+            "version": "0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RobLoach/component-installer.git",
+                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "kriswallsmith/assetic": "1.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "composer/composer": "1.*@alpha",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                },
+                "class": "ComponentInstaller\\ComponentInstallerPlugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "ComponentInstaller": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Loach",
+                    "homepage": "http://robloach.net"
+                }
+            ],
+            "description": "Allows installation of Components via Composer.",
+            "time": "2015-08-10T12:35:38+00:00"
+        },
+        {
             "name": "robmorgan/phinx",
             "version": "v0.8.0",
             "source": {
@@ -9571,6 +9876,47 @@
                 "phinx"
             ],
             "time": "2017-02-28T18:34:31+00:00"
+        },
+        {
+            "name": "select2/select2",
+            "version": "4.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/select2/select2.git",
+                "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/select2/select2/zipball/ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
+                "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
+                "shasum": ""
+            },
+            "require": {
+                "robloach/component-installer": "*"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "dist/js/select2.js"
+                    ],
+                    "styles": [
+                        "dist/css/select2.css"
+                    ],
+                    "files": [
+                        "dist/js/select2.js",
+                        "dist/js/i18n/*.js",
+                        "dist/css/select2.css"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Select2 is a jQuery based replacement for select boxes.",
+            "homepage": "https://select2.org/",
+            "time": "2017-10-25T22:08:18+00:00"
         },
         {
             "name": "solarium/solarium",
@@ -9678,54 +10024,6 @@
                 "stack"
             ],
             "time": "2017-11-18T14:57:29+00:00"
-        },
-        {
-            "name": "sunra/php-simple-html-dom-parser",
-            "version": "v1.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sunra/php-simple-html-dom-parser.git",
-                "reference": "75b9b1cb64502d8f8c04dc11b5906b969af247c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sunra/php-simple-html-dom-parser/zipball/75b9b1cb64502d8f8c04dc11b5906b969af247c6",
-                "reference": "75b9b1cb64502d8f8c04dc11b5906b969af247c6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Sunra\\PhpSimple\\HtmlDomParser": "Src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sunra",
-                    "email": "sunra@yandex.ru",
-                    "homepage": "https://github.com/sunra"
-                },
-                {
-                    "name": "S.C. Chen",
-                    "homepage": "http://sourceforge.net/projects/simplehtmldom/"
-                }
-            ],
-            "description": "Composer adaptation of: A HTML DOM parser written in PHP5+ let you manipulate HTML in a very easy way! Require PHP 5+. Supports invalid HTML. Find tags on an HTML page with selectors just like jQuery. Extract contents from HTML in a single line.",
-            "homepage": "https://github.com/sunra/php-simple-html-dom-parser",
-            "keywords": [
-                "dom",
-                "html",
-                "parser"
-            ],
-            "time": "2016-11-22T22:57:47+00:00"
         },
         {
             "name": "swagger-api/swagger-ui",
@@ -11889,16 +12187,16 @@
         },
         {
             "name": "behat/gherkin",
-            "version": "v4.5.1",
+            "version": "v4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "74ac03d52c5e23ad8abd5c5cce4ab0e8dc1b530a"
+                "reference": "ab0a02ea14893860bca00f225f5621d351a3ad07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/74ac03d52c5e23ad8abd5c5cce4ab0e8dc1b530a",
-                "reference": "74ac03d52c5e23ad8abd5c5cce4ab0e8dc1b530a",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/ab0a02ea14893860bca00f225f5621d351a3ad07",
+                "reference": "ab0a02ea14893860bca00f225f5621d351a3ad07",
                 "shasum": ""
             },
             "require": {
@@ -11906,8 +12204,8 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.5|~5",
-                "symfony/phpunit-bridge": "~2.7|~3",
-                "symfony/yaml": "~2.3|~3"
+                "symfony/phpunit-bridge": "~2.7|~3|~4",
+                "symfony/yaml": "~2.3|~3|~4"
             },
             "suggest": {
                 "symfony/yaml": "If you want to parse features, represented in YAML files"
@@ -11944,7 +12242,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2017-08-30T11:04:43+00:00"
+            "time": "2019-01-16T14:22:17+00:00"
         },
         {
             "name": "behat/mink",
@@ -14414,16 +14712,16 @@
         },
         {
             "name": "stecman/symfony-console-completion",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stecman/symfony-console-completion.git",
-                "reference": "cd738867503477e91dbe84173dfabd431c883431"
+                "reference": "bd07a24190541de2828c1d6469a8ddce599d3c5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stecman/symfony-console-completion/zipball/cd738867503477e91dbe84173dfabd431c883431",
-                "reference": "cd738867503477e91dbe84173dfabd431c883431",
+                "url": "https://api.github.com/repos/stecman/symfony-console-completion/zipball/bd07a24190541de2828c1d6469a8ddce599d3c5a",
+                "reference": "bd07a24190541de2828c1d6469a8ddce599d3c5a",
                 "shasum": ""
             },
             "require": {
@@ -14455,7 +14753,7 @@
                 }
             ],
             "description": "Automatic BASH completion for Symfony Console Component based applications.",
-            "time": "2018-02-10T04:28:01+00:00"
+            "time": "2019-01-19T21:25:25+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -14633,7 +14931,8 @@
         "drupal/field_group": 20,
         "drupal/inline_entity_form": 20,
         "drupal/workbench": 20,
-        "drupal/publication_date": 20
+        "drupal/publication_date": 20,
+        "drupal/beryllium": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -72,7 +72,7 @@
         "drush/drush": "9.4.0",
         "drupal/publication_date": "2.x-dev",
         "drupal/beryllium": "1.x-dev",
-        "drupal/bootstrap": "^3.15",
+        "drupal/bootstrap": "3.x",
         "jquery/select2": "4.0.3",
         "drupal/twig_tweak": "^2.1",
         "drupal/imagecache_external": "^1.0",
@@ -150,10 +150,6 @@
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
-          },
-          "drupal/bootstrap": {
-            "Fix nested js modals": "https://www.drupal.org/files/issues/2018-10-26/0001-Fix-nested-js-modals.patch",
-            "Pass dialogClass to top of modal DOM": "https://www.drupal.org/files/issues/2018-10-26/0001-Pass-dialogClass-to-top-of-modal-DOM.patch"
           }
         }
     }
