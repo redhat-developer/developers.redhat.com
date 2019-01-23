@@ -9,6 +9,7 @@
 namespace Drupal\rhd_guzzle_throttle;
 
 use DateTime;
+use Drupal\Core\Site\Settings;
 use function GuzzleHttp\Psr7\copy_to_string;
 use function GuzzleHttp\Psr7\stream_for;
 use hamburgscleanest\GuzzleAdvancedThrottle\Cache\Helpers\RequestHelper;
@@ -31,6 +32,8 @@ class DrupalLaravelAdapter implements StorageInterface {
   private $_ttl;
   /** @var \Illuminate\Contracts\Cache\Store */
   private $store;
+  /** @var string */
+  private $supportedUrl;
 
   /**
    * StorageInterface constructor.
@@ -46,6 +49,7 @@ class DrupalLaravelAdapter implements StorageInterface {
     $conn = $config->get('cache')['options']['connection'];
     $table = $config->get('cache')['options']['table'];
     $this->store = new DatabaseStore($conn, $table);
+    $this->supportedUrl = Settings::get('wp_loc') ?? 'https://origin-developers.redhat.com';
   }
 
   /**
@@ -54,20 +58,23 @@ class DrupalLaravelAdapter implements StorageInterface {
    */
   public function saveResponse(RequestInterface $request,
     ResponseInterface $response): void {
-    // We need to know when we cached this
-    $currentTimeStamp = (new DateTime())->getTimestamp();
-    $cachedResponse = $response->withAddedHeader('cached-datetime', $currentTimeStamp);
 
-    // Resist the body
-    $body = $response->getBody()->getContents();
+    if ($this->_isSupportedUrl($request)) {
+      // We need to know when we cached this
+      $currentTimeStamp = (new DateTime())->getTimestamp();
+      $cachedResponse = $response->withAddedHeader('cached-datetime', $currentTimeStamp);
 
-    // Rewind if possible
-    if ($response->getBody()->isSeekable()) {
-      $response->getBody()->rewind();
+      // Resist the body
+      $body = $response->getBody()->getContents();
+
+      // Rewind if possible
+      if ($response->getBody()->isSeekable()) {
+        $response->getBody()->rewind();
+      }
+
+      $this->store->forever($this->_buildResponseKey($request), $cachedResponse);
+      $this->store->forever($this->_buildBodyKey($request), $body);
     }
-
-    $this->store->forever($this->_buildResponseKey($request), $cachedResponse);
-    $this->store->forever($this->_buildBodyKey($request), $body);
   }
 
   /**
@@ -159,5 +166,10 @@ class DrupalLaravelAdapter implements StorageInterface {
     [$host, $path] = RequestHelper::getHostAndPath($request);
 
     return self::BDY_STORAGE_KEY . '.' . \sha1($host . '.' . $path . '.' . RequestHelper::getStorageKey($request));
+  }
+
+  private function _isSupportedURL(RequestInterface $request) {
+    [$host, $path] = RequestHelper::getHostAndPath($request);
+    return $this->supportedUrl == $host;
   }
 }
