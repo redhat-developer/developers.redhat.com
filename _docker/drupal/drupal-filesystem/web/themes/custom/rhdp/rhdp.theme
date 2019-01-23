@@ -229,7 +229,7 @@ function rhdp_preprocess_page(&$variables) {
 
   $node = isset($variables['node']) ? $variables['node'] : FALSE;
 
-  if ($node) {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node') {
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->id());
 
     if ($alias == '/') {
@@ -238,7 +238,7 @@ function rhdp_preprocess_page(&$variables) {
   }
 
   // Pull out assemblies to page level for solp.
-  if ($node && $node->getType() == 'landing_page_single_offer') {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node' && $node->getType() == 'landing_page_single_offer') {
     foreach (['hero'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
