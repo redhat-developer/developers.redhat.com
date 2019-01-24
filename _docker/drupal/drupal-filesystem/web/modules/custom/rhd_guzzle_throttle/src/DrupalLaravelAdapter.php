@@ -72,6 +72,13 @@ class DrupalLaravelAdapter implements StorageInterface {
         $response->getBody()->rewind();
       }
 
+      $env = \Drupal::config('redhat_developers')->get('environment');
+      if($env !== 'prod' && $env !== 'stage') {
+        $logger = \Drupal::logger('blog_cache');
+        [$host, $path] = RequestHelper::getHostAndPath($request);
+        $logger->info("Caching request to blog for URL [" . $host . $path ."]");
+      }
+
       $this->store->forever($this->_buildResponseKey($request), $cachedResponse);
       $this->store->forever($this->_buildBodyKey($request), $body);
     }
@@ -186,6 +193,6 @@ class DrupalLaravelAdapter implements StorageInterface {
   }
 
   private function _isSupportedURL(string $host) {
-    return strpos($this->supportedUrl, $host) == 0;
+    return $this->supportedUrl === $host;
   }
 }
