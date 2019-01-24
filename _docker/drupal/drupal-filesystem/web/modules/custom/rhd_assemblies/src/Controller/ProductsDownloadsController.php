@@ -150,18 +150,44 @@ class ProductsDownloadsController extends ControllerBase {
 
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
-      if ($this->hasDownloadsPage($product)) {
-        // Get the render array for this Product and the product_download_page
-        // view mode.
-        $product_view = $this->entityTypeManager
-          ->getViewBuilder('node')
-          ->view($product, 'product_download_page');
+      // Display the latest revision of the Product node.
+      if ($this->currentUser()->hasPermission('view all revisions')) {
+        $revision_ids = $this->entityTypeManager
+          ->getStorage('node')
+          ->revisionIds($product);
+        $latest_revision_id = end($revision_ids);
+        $latest_revision = $this->entityTypeManager
+          ->getStorage('node')
+          ->loadRevision($latest_revision_id);
+
+        if ($this->hasDownloadsPage($latest_revision)) {
+          // Get the render array for this Product and the product_download_page
+          // view mode.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($latest_revision, 'product_download_page');
+        }
+        else {
+          $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
+          return [
+            '#markup' => $this->renderer->render($product_downloads_render_array),
+          ];
+        }
       }
       else {
-        $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
-        return [
-          '#markup' => $this->renderer->render($product_downloads_render_array),
-        ];
+        if ($this->hasDownloadsPage($product)) {
+          // Get the render array for this Product and the product_download_page
+          // view mode.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($product, 'product_download_page');
+        }
+        else {
+          $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
+          return [
+            '#markup' => $this->renderer->render($product_downloads_render_array),
+          ];
+        }
       }
     }
 

@@ -1,12 +1,14 @@
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <a href={{ content.field_url['#items'][0].uri }}>
-    <div class="tile-image">
-      <div class="image-table">
-        <div class="image-cell">
-          {{ content.field_image.0 | with('#image_style', 'static_item') }}
+    {% if content.field_image.0 %}
+      <div class="tile-image">
+        <div class="image-table">
+          <div class="image-cell">
+            {{ content.field_image.0 | with('#image_style', 'static_item') }}
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
     <h3 class="tile-title">{{ content.field_title }}</h3>
   </a>
   {% if absolute_url and rhd_domain %}

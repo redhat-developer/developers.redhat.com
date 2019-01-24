@@ -66,52 +66,34 @@ other methods (such as node.delete) will result in an exception.
 */
 #}
 
-{% set article_classes = (hide_toc == TRUE) ? ["large-12", "medium-12", "medium-offset-7", "large-offset-6", "columns", "gsi", "fetch-toc", "article-content"] : [ "medium-17", "large-12", "columns", "gsi", "fetch-toc", "article-content"] %}
-<div{{ attributes.addClass(["container", "content"]).setAttribute("id", "rhd-article") }}>
-  <div class="row pre-body">
-    <div class="medium-24 columns">
-      {% if content.field_article_type|render %}
-        <p class="article-type">{{ content.field_article_type }}</p>
-      {% endif %}
-      <div class="article-info-wrapper">
-        <div class="article-info-left">
-          {{ title_prefix }}
-          <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
-          {{ title_suffix }}
-          <div class="gsi-meta article-info">
-            <ul class="date-info">
-              <li>
-                <span class="publish-date">Published: {{ node.createdtime|date('m/j/Y') }}</span>
-              </li>
-              {% if node.createdtime != node.changedtime %}
-                <li>
-                  <span class="changed-date">Last updated: {{ node.changedtime|date('m/j/Y') }}</span>
-                </li>
-              {% endif %}
-            </ul>
+<div{{ attributes.addClass(["featured-article"]) }}>
+  <div class="article-content">
+    {% if content.field_article_type|render %}
+      <p class="article-type"><i class="far fa-newspaper"></i> {{ content.field_article_type }} {% if node.field_article_type[0].value != 'article' %}Article {% endif %}</p>
+    {% endif %}
+    {{ title_prefix }}
+      <p{{ title_attributes.addClass(["tile-title"]) }}><a href="{{ url }}">{{ label }}</a></p>
+    {{ title_suffix }}
+    <div{{ content_attributes.addClass(article_classes) }}>{{ content.field_short_description }}</div>
+  </div>
+  <div class="article-info">
+    {% if content.field_author_evangelist|render %}
+      <div class="authors">
+        {{ content.field_author_evangelist }}
+      </div>
+    {% elseif content.field_content_author|render %}
+      <div class="authors no-image">
+        <div class="authors-inner">
+          <div class="author short-teaser">
+            <span class="author-name">
+              {{ content.field_name }}
+            </span>
           </div>
         </div>
-        {% if content.field_author_evangelist|render %}
-          <div class="authors">
-            {{ content.field_author_evangelist }}
-          </div>
-        {% elseif content.field_content_author|render %}
-          <div class="authors no-image">
-            <div class="authors-inner">
-              <div class="author short-teaser">
-                <span class="author-name">
-                  {{ content.field_content_author }}
-                </span>
-              </div>
-            </div>
-          </div>
-        {% endif %}
       </div>
-      <div class="row body-row">
-        <div{{ content_attributes.addClass(article_classes) }}>
-          {{ content.field_short_description }}
-        </div>
-      </div>
-    </div>
+    {% endif %}
+    {% if node.createdtime != node.changedtime %}
+      <span class="changed-date">Last updated {{ node.changedtime|date('m/j/Y') }}</span>
+    {% endif %}
   </div>
 </div>

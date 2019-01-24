@@ -8,14 +8,14 @@ keycloak:
   authUrl: 'https://developers.stage.redhat.com/auth/'
   scriptUrl: 'https://developers.redhat.com/auth/js/keycloak.js'
   content_editor_sso:
-    redirect_url: 'hi'
-    client_id: 'hello'
-    client_secret: 'wazzup'
-    keycloak_base: 'wassup'
-    keycloak_realm: 'hai'
-    authorization_endpoint_kc: 'howdy'
-    token_endpoint_kc: 'hows it goin'
-    userinfo_endpoint_kc: 'hey'
+    redirect_url: 'http://localhost'
+    client_id: 'rhd-web-cms-localdev'
+    client_secret: 'not-a-secret'
+    keycloak_base: 'https://developers.stage.redhat.com/auth'
+    keycloak_realm: 'rhd'
+    authorization_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/auth'
+    token_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/token'
+    userinfo_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo'
 drupal:
   host: docker
   port: "80"
@@ -24,10 +24,10 @@ drupal:
     password: 'admin'
     mail: 'admin@example.com'
 searchisko:
-  protocol: 'http'
+  protocol: 'https'
   host: dcp.stage.jboss.org
-  port: "80"
-  baseProtocolRelativeUrl: 'dcp.stage.jboss.org:80'
+  port: "443"
+  baseProtocolRelativeUrl: 'dcp.stage.jboss.org:443'
 database:
   host:  drupalmysql
   port: '3306'

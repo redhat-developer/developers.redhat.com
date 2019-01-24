@@ -129,12 +129,33 @@ class ProductsGettingStartedController extends ControllerBase {
 
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
-      if ($this->hasGettingStartedPage($product)) {
-        // Get the render array for this Product and the product_download_page
-        // entity view display.
-        $product_view = $this->entityTypeManager
-          ->getViewBuilder('node')
-          ->view($product, 'product_getting_started_page');
+      // Display the latest revision of the Product node.
+      if ($this->currentUser()->hasPermission('view all revisions')) {
+        $revision_ids = $this->entityTypeManager
+          ->getStorage('node')
+          ->revisionIds($product);
+        $latest_revision_id = end($revision_ids);
+        $latest_revision = $this->entityTypeManager
+          ->getStorage('node')
+          ->loadRevision($latest_revision_id);
+
+        if ($this->hasGettingStartedPage($latest_revision)) {
+          // Get the render array for the latest revision of this Product and
+          // the product_getting_started_page entity view display.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($latest_revision, 'product_getting_started_page');
+        }
+      }
+      // Display the default revision of the Product node.
+      else {
+        if ($this->hasGettingStartedPage($product)) {
+          // Get the render array for this Product and the product_download_page
+          // entity view display.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($product, 'product_getting_started_page');
+        }
       }
     }
 

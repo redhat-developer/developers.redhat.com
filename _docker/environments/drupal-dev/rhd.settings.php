@@ -83,7 +83,7 @@ else {
   }
 
   // Log a notice that denotes any unset, but required, SSO config variable(s).
-  \Drupal::logger('rhd_build')->notice(
+  \Drupal::logger('content_editor_sso')->error(
     'Skipping SSO configuration as the following required variables are not set: @unset_variables.', [
       '@unset_variables' => implode(', ', $unset_array_keys)
     ]

@@ -54,7 +54,9 @@ COPY logrotate/httpd /etc/logrotate.d/httpd
 
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
-COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch drupal-filesystem/view_render_patch.patch /var/www/drupal/
+COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/drupal/
+COPY drupal-filesystem/patches /var/www/drupal/patches
+
 # Only install dev dependencies on dev environments
 RUN if [ "$composer_profile" = "development" ]; \ 
     then /usr/local/bin/composer install --no-interaction; \
@@ -66,6 +68,9 @@ ENV PATH=$PATH:/var/www/drupal/vendor/bin
 # Set working directory and CMD
 WORKDIR /var/www/drupal/web
 CMD ["/var/www/drupal/run-httpd.sh"]
+
+# Copy in static resources
+COPY drupal-filesystem/static/ /var/www/drupal/web/
 
 # Copy in scripts for start-up
 COPY drupal-filesystem/scripts/drupal_install_checker.rb drupal-filesystem/scripts/run-httpd.sh drupal-filesystem/scripts/phinx.rb /var/www/drupal/
@@ -83,3 +88,9 @@ COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
 RUN gem install asciidoctor
+
+# Add RH IT certificate chain
+RUN cd /etc/pki/ca-trust/source/anchors \
+    && curl -k https://gitlab.cee.redhat.com/redhat-developer/rhdp-docker-base/raw/master/docker/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -o RH-IT-pki-validation-chain.pem \
+    && update-ca-trust force-enable \
+    && update-ca-trust extract
