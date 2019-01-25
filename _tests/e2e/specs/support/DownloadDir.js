@@ -13,22 +13,15 @@ export class DownloadDir {
     };
 
     get() {
-        let downloadCount = 0;
+        let i = 0;
         let downloads = [];
         do {
+            i = i + 1;
             fs.readdirSync(global.downloadDir).forEach(file => {
                 downloads.push(file);
             });
-            this.sleep(1000);
-            downloadCount++;
-            if (downloads.length > 0 || downloadCount === 15) return downloads;
 
-        }
-        while (downloads.length === 0) ;
-    }
-
-    sleep(delay) {
-        let start = new Date().getTime();
-        while (new Date().getTime() < start + delay) ;
+        } while (downloads.length === 0 || i < 30);
+        return downloads;
     }
 }
