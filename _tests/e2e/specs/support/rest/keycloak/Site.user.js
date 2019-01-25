@@ -38,7 +38,7 @@ export class User {
             firstName: 'Automated',
             lastName: 'Test-User',
             email: 'redhat-developers-testers@redhat.com',
-            username: 'redhat-developers-tester',
+            username: 'redhat-developers-testers',
             password: 'P@$$word01',
             company: 'Red Hat',
             phoneNumber: '019197544950',

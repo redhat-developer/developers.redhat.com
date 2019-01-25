@@ -17,7 +17,7 @@ tags('desktop').describe('Download Manager', function () {
     }, 2);
 
     tags('dm')
-        .it('@wip @sanity : should allow users to login in and download RHEL', function () {
+        .it('@sanity : should allow users to login in and download RHEL', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let login = new Login();
@@ -35,7 +35,7 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('dm')
-        .it('@wip @sanity : should allow users to log-in and download advanced-linux-commands', function () {
+        .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
             let login = new Login();
