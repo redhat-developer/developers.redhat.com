@@ -68,7 +68,9 @@ app.stickyNav = function (className, headerElement) {
   var win = $(window);
   var resizeTimer;
   var html = "";
+  var extraOffset = 120;
   var top = nav.offset().top;
+  var bottom = nav.height() + extraOffset;
   var select = $("<select>").append('<option selected value="">Choose a section</option>');
 
   $('.' + className + ' ' + headerElement).each(function (i, el) {
@@ -85,6 +87,7 @@ app.stickyNav = function (className, headerElement) {
     //resize so make nav not sticky so sizes can be calculated correctly
     nav.removeClass(className + "-nav-fixed").css('width', 'auto');
     top = nav.offset().top;
+    bottom = nav.height() + extraOffset;
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
       //resize ended re-enable sticky nav 
@@ -93,11 +96,21 @@ app.stickyNav = function (className, headerElement) {
   });
 
   function positionNav() {
-    if (win.scrollTop() >= (top)) {
-      var width = nav.parent().width();
-      nav.addClass(className + "-nav-fixed").css('width', width);
+    var footerOffsetTop = $("#block-rhdfooter").offset().top;
+    var width = nav.parent().width();
+    var navTop = 0;
+    var tmpScrollTop = win.scrollTop() + ( bottom );
+
+    if (tmpScrollTop >= footerOffsetTop) {
+      navTop = footerOffsetTop - tmpScrollTop;
     } else {
-      nav.removeClass(className + "-nav-fixed").css('width', 'auto');
+      navTop = 0;
+    }
+
+    if (win.scrollTop() >= (top)) {
+      nav.addClass(className + "-nav-fixed").css({'width': width, 'top': navTop});
+    } else {
+      nav.removeClass(className + "-nav-fixed").css({'width': 'auto', 'top': 0});
     }
 
     // Sticky headers on the faqs
