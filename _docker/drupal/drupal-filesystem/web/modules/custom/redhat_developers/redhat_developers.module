@@ -30,6 +30,7 @@ function redhat_developers_theme() {
   $theme = [];
   $theme['rhd_search_block'] = [
     'template' => 'rhd-search-block',
+    'variables' => []
   ];
   return $theme;
 }
