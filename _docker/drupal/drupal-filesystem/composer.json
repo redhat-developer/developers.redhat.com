@@ -133,7 +133,8 @@
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
           },
           "drupal/openid_connect": {
-            "Change Keycloak LoginForm button text": "patches/openid_connect/change-keycloak-button-text.patch"
+            "Change Keycloak LoginForm button text": "patches/openid_connect/change-keycloak-button-text.patch",
+            "Add logging to openid_connect to support SSO debug": "patches/openid_connect/openid_connect.module-logging.patch"
           }
         }
     }
