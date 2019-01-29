@@ -163,8 +163,10 @@ export class PageExtension {
     }
 
     hideCookieBanner() {
-        browser.execute(function () {
-            return document.getElementById('redhat-cookie-privacy-banner').style.display = 'none'
-        });
+        if (this.displayed('#redhat-cookie-privacy-banner')) {
+            browser.execute(function () {
+                return document.getElementById('redhat-cookie-privacy-banner').style.display = 'none'
+            });
+        }
     }
 }
