@@ -76,9 +76,11 @@ class JenkinsBlcRunner
   # we should send updates to GitHub
   #
   def build_blc_run_tests_command
+    github_sha1 = read_env_variable('PULL_REQUEST_GIT_COMMIT_SHA1')
     config = read_env_variable('CONFIG')
     command = "ruby _tests/blc/run_checks.rb --blinkr -c #{config} --base-url=#{@host_to_test}"
     command += ' --use-docker'
+    command += " --update-github-status=#{github_sha1}" if github_sha1
     command
   end
 
