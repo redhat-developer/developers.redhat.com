@@ -20,6 +20,9 @@ export class Page extends PageExtension {
         if (this.pageTitle) {
             return this.waitForPageTitle(this.pageTitle, 30000);
         }
+
+        this.hideCookieBanner();
+
         return res;
     }
 
@@ -43,15 +46,5 @@ export class Page extends PageExtension {
         } catch (e) {
             throw Error('user was not logged in after 80 seconds!');
         }
-    }
-
-    userLogout() {
-        let loggedInName = '.logged-in-name';
-        let menu = 'nav > ul.rhd-menu.rh-universal-login > li.logged-in > ul';
-        let logout = 'li.logged-in > ul > li:nth-child(2) > a';
-        this.awaitIsVisible(loggedInName);
-        this.click(loggedInName);
-        this.awaitIsVisible(menu);
-        return this.click(logout)
     }
 }

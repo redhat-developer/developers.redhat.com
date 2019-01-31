@@ -3,7 +3,7 @@
 {#  The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content  #}
 <div{{ attributes.addClass(['dp-content-card', access ]) }} 
     access="member" 
-    duration="{{node.field_read_time.value}}" 
+    duration="{{ interval }}" 
     image="{{ learning_path_card['card_image_url']|default('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?ixlib=rb-0.3.5&s=50ddd59eb6185b3805e29472a70c4096&auto=format&fit=crop&w=1052&q=80') }}"
     level="{{(node.field_difficulty.value ?? 'unclassified')|capitalize}}" 
     title="{{node.title.value}}" 
@@ -25,21 +25,17 @@
   <div class="card-info">
     <div class="card-details">
       <div class="dp-content-type {{ node.type.entity.get('type') }}">
-          <i class="fab fa-youtube"></i> {{node.type.entity.label}}
+        <i class="fab fa-youtube"></i> {{node.type.entity.label}}
       </div>
-      {% if node.field_duration %}
+      {% if interval is not null and interval is not empty %}
       <div class="dp-duration">
-          <i class="far fa-clock"></i> 
-          {% for intvl in node.field_duration|reverse %}
-            {% if intvl.period != "second" %}
-              {{ intvl.interval }} {{ intvl.period }}{% if intvl.interval > 1 %}s{% endif %}
-            {% endif %}
-          {% endfor %}
+        <i class="far fa-clock"></i> 
+        {{ interval }}
       </div>
       {% endif %}
       {% if node.field_difficulty.value %}
       <div class="dp-level">
-        {% if node.field_duration %}
+        {% if interval is not null and interval is not empty %}
         &nbsp;|&nbsp;
         {% endif %}
         {{node.field_difficulty.value|capitalize}}
