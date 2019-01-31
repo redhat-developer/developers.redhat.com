@@ -20,6 +20,9 @@ export class Page extends PageExtension {
         if (this.pageTitle) {
             return this.waitForPageTitle(this.pageTitle, 30000);
         }
+
+        this.hideCookieBanner();
+
         return res;
     }
 
