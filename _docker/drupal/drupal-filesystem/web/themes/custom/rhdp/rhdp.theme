@@ -415,6 +415,51 @@ function rhdp_preprocess_node(array &$variables) {
       ];
     }
   }
+
+  // Katacoda Course Page
+  // Adds the body/description content of an entity reference to the lesson display list individual content items.
+  if( $node->getType() == 'katacoda_course') {
+     
+    if(!$node->field_katacoda_course_lessons->isEmpty()) {
+
+      // Get page title
+      $course_title       = $node->title->value;
+      $course_description = $node->body->value;
+      
+      $variables['katacoda_course_info']['course_title']       = $course_title;
+      $variables['katacoda_course_info']['course_description'] = $course_description;
+      
+      // Set the array for included Katacoda scenarios
+      $course_content = [];
+
+      // Retrieve the IDs of the included Katacoda Courses to display information and links
+      $lessons = $node->field_katacoda_course_lessons->getValue();
+      $lesson_ids = [];
+      foreach($lessons as $lesson) {
+        $lesson_ids[] = $lesson['target_id'];
+      }
+    
+      // Retrieve Lesson IDs
+      $lesson_entity = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($lesson_ids);
+      // Gather information for each lesson node
+      foreach($lesson_entity as $k=>$v) {
+       /** 
+        * Retrieve a path alias. Can also be accomplished this way:
+        * $nid = $v->nid->value;
+        * $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
+        */
+        $url_path_alias = $v->toUrl()->toString();
+       
+        $katacoda_scenarios[] = 
+        [
+         'title'              => $v->title->value,
+         'description'        => $v->body->value,
+         'lesson_path_alias'  => $url_path_alias,
+        ];
+      }
+      $variables['katacoda_course_info']['courses'] = $katacoda_scenarios;
+    }
+  }
 }
 
 /**

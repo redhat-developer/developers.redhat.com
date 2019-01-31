@@ -1,0 +1,260 @@
+// Set Katacoda specific variables & mixins
+
+// Imported variables
+$desktop-large:     1240px;
+$desktop-small:     992px;
+$tablet-landscape:  768px;
+$tablet-portrait:    576px;
+
+// Imported Breakpoint settings
+$large-screen-breakpoint:         1240px;
+$medium-large-screen-breakpoint:  1040px;
+$smallest-large-screen-breakpoint: 992px;
+$medium-screen-breakpoint:        920px;
+$small-screen-breakpoint:         768px;
+$small-phone-breakpoint:          576px;
+$wp-admin-bar-small-break:        600px; // This is a breakpoint specific to the WP Admin Bar – required for spacing edits in phone breakpoints
+$xtra-small-screen-breakpoint:    480px;
+
+
+
+@mixin katacoda-content-layout-width() {
+
+    @media (min-width:$desktop-large) {
+        width:1200px;
+    }
+
+    @media (max-width:$desktop-large) and (min-width:$medium-large-screen-breakpoint) {
+        width:1020px;
+    }
+
+    @media (max-width:$medium-large-screen-breakpoint) and (min-width:$medium-screen-breakpoint) {
+        width:900px;
+    }
+    @media (max-width:$medium-screen-breakpoint) {
+        width:90%;
+    }
+
+    @media (max-width:$small-screen-breakpoint) {
+        width:96%;
+    }
+}
+
+@mixin katacoda-grid-container() {
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+
+@mixin katacoda-grid-element() {
+    grid-column: span 4;
+
+    @media (max-width:$medium-screen-breakpoint) {
+        grid-column: span 6;
+    }
+
+    @media (max-width:$tablet-portrait) {
+        grid-column: span 12;
+    }
+}
+
+
+.layout-container {
+    &.katacoda-courses {
+        header {
+            @include katacoda-content-layout-width();
+            margin:1rem auto;
+                div.rhd-masthead {
+                
+                nav {
+                    @media(max-width:$small-screen-breakpoint) {
+                        display:none;
+                    }
+                    ul {
+                        @include flexbox();
+                        flex-flow:row nowrap;
+                        justify-content: space-between;
+                        li {
+                            margin:0 .5rem;
+                        }
+                    }
+                }
+                }
+        }
+
+        main {
+            div.layout-content {
+                .region-content {
+                    .block-system-breadcrumb-block {
+                        @include katacoda-content-layout-width();
+                        margin:0 auto;
+                    }
+                    
+                    .block-system-main-block {
+                        .views-element-container {
+
+                            // ALL COURSES DISPLAY PAGE
+                            .view-katacoda-all-courses {
+                                @include katacoda-content-layout-width();
+                                margin:1rem auto;
+                                .view-content {
+                                    @include katacoda-grid-container();
+                                    div {
+                                        @include katacoda-grid-element();
+                                        text-align:center;
+                                        background:$grey-4-5;
+                                        a {
+                                            color:white;
+                                            text-transform:uppercase;
+                                            font-weight:700;
+                                            display:block;
+                                            padding:9px 20px;
+                                        }
+                                        span.views-field-title {
+                                            span.field-content {
+                                                a {
+                                                    padding:18px 20px;
+                                                    background:$red;
+                                                    width:100%;
+                                                    &:hover {
+                                                        background:$dark-red;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        div.views-field-view-node {
+                                            span.field-content {
+                                                a {
+                                                    &:hover {
+                                                        color:$gray-5;
+                                                    } 
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    article {
+                        // THE INDIVIDUAL COURSE PAGES
+                        &.node--type-katacoda-course {                       
+                            footer.node__meta {
+                                display:none;
+                            }
+
+                            div.node__content {
+                                @include katacoda-content-layout-width();
+                                margin:1rem auto;
+                                div.field--name-body  {
+                                    text-align:center;
+                                }
+
+                                div.field--name-field-katacoda-course-url-slug {
+                                    display:none;
+                                }
+
+                                div.field--type-published-at {
+                                    display:none;
+                                }
+
+                                // GRID FOR INDIVIDUAL SCENARIO DISPLAYS
+                                div.katacoda-lesson-grid {
+                                    @include katacoda-grid-container();
+
+                                    div.katacoda-lesson {
+                                        @include katacoda-grid-element();
+                                        
+                                        background:$grey-4-5;
+
+                                        a {
+                                            font-weight:700;
+                                            display:block;
+                                            text-transform: uppercase;
+                                            color:#fff;
+                                            text-align:center;
+                                            padding:9px 20px;
+                                        }
+                                        position: relative;
+                                       
+                                        div.lesson {
+                                            
+                                            text-align:center;
+                                            width:100%;
+                                            clear:both;
+                                            &--title {
+                                                a {
+                                                    width:100%;
+                                                    padding:18px 20px;
+                                                    background:$red;   
+                                                }
+                                            }
+
+                                            &--description {
+                                                color:#fff;
+                                                p {
+                                                    padding:9px 20px;
+                                                }
+                                        
+                                            }
+
+                                            &--link {
+                                                a {
+                                                    margin:0 auto;
+                                                }
+                                            }
+                                        }
+                            
+                                    }
+                                }
+
+                            }
+                            
+                            div.field--name-field-katacoda-course-lessons {
+                                
+                                @include katacoda-grid-container();
+                                
+                                div.field__item {
+                                    @include katacoda-grid-element();
+                                    text-align:center;
+                                
+                                    a {
+                                        background:$grey-4-5;
+                                        width:100%;
+                                        display:block;
+                                        padding: 18px 20px;
+                                        text-transform:uppercase;
+                                        color:white;
+                                        &:hover {
+                                            background:$grey-5;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                        &.node--type-katacoda-individual-lesson {
+                            div.node__content {
+                                div.field--name-body {
+                                    margin-bottom:1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // KATACODA COURSES (ALL COURSES PAGE ) HEADER
+            .katacoda-all-courses-header {
+                @include katacoda-content-layout-width();
+                margin:1rem auto;
+            }
+        }
+    }
+}
