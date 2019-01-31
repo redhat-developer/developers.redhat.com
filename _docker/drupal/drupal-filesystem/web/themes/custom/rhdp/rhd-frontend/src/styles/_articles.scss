@@ -8,6 +8,10 @@
   pre {
     font-size: 14px;
     line-height: 1.5;
+    padding-bottom: 15px;
+    white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
   }
   .pre-body {
     margin-bottom: 30px;
@@ -297,6 +301,12 @@
         font-size: 14px;
         line-height: 22px;
         font-weight: bold;
+        color: $gray-6;
+      }
+      a {
+        .author-name {
+          color: $link;
+        }
       }
     }
     @include desktop-small {
@@ -393,6 +403,11 @@
         }
       }
     }
+  }
+  .publish-date,
+  .changed-date {
+    font-size: 14px;
+    color: $gray-5;
   }
 }
 @include desktop-and-down {

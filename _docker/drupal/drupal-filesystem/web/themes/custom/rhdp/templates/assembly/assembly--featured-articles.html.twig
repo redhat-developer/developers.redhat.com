@@ -1,0 +1,21 @@
+{%
+  set classes = [
+    'assembly',
+    content.field_links|render ? 'has-links' : 'no-links'
+  ]
+%}
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
+  <div class="container">
+    {% if content.field_title|render %}
+      <h2>{{ content.field_title }}</h2>
+    {% else %}
+      <h2>Featured Articles</h2>
+    {% endif %}
+    {% if content %}
+      {{- content|without('field_title') -}}
+    {% endif %}
+  </div>
+  {% if background_image_url %}
+    <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section>

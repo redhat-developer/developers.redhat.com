@@ -229,7 +229,7 @@ function rhdp_preprocess_page(&$variables) {
 
   $node = isset($variables['node']) ? $variables['node'] : FALSE;
 
-  if ($node) {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node') {
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->id());
 
     if ($alias == '/') {
@@ -238,7 +238,7 @@ function rhdp_preprocess_page(&$variables) {
   }
 
   // Pull out assemblies to page level for solp.
-  if ($node && $node->getType() == 'landing_page_single_offer') {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node' && $node->getType() == 'landing_page_single_offer') {
     foreach (['hero'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
@@ -416,6 +416,7 @@ function rhdp_preprocess_node(array &$variables) {
     }
   }
 
+<<<<<<< HEAD
   // Katacoda Course Page
   // Adds the body/description content of an entity reference to the lesson display list individual content items.
   if( $node->getType() == 'katacoda_course') {
@@ -458,6 +459,58 @@ function rhdp_preprocess_node(array &$variables) {
         ];
       }
       $variables['katacoda_course_info']['courses'] = $katacoda_scenarios;
+=======
+  // Books content type and Learning Path Card view mode.
+  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
+    $variables['interval'] = '';
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Cheat Sheet content type and Learning Path Card view mode.
+  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // RH Training Class content type and Learning Path Card view mode.
+  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_completion_time')->getValue()) {
+      $completion_time = $node->get('field_completion_time')->getValue();
+      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($completion_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Video Resource content type and Learning Path Card view mode.
+  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_duration')->getValue()) {
+      $duration = $node->get('field_duration')->getValue();
+      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($duration[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+>>>>>>> upstream/master
     }
   }
 }
@@ -620,17 +673,29 @@ function rhdp_preprocess_assembly(&$variables) {
   $assembly = $variables['elements']['#assembly'];
   $type = $assembly->bundle();
   $variables['background_image_url'] = FALSE;
+  $image_value = FALSE;
+  $svg_value = FALSE;
 
   if ($assembly->hasField('field_background_image')) {
     $image_value = $assembly->get('field_background_image')->getValue();
-
-    if ($image_value) {
-      $file_id = $image_value[0]['target_id'];
-      $uri = File::load($file_id)->getFileUri();
-      $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-      $variables['attributes']->addClass('has-background');
-    }
   }
+
+  if ($assembly->hasField('field_background_svg')) {
+    $svg_value = $assembly->get('field_background_svg')->getValue();
+  }
+
+  if ($svg_value) {
+    $file_id = $svg_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = file_create_url($uri);
+    $variables['attributes']->addClass('has-background');
+  } else if ($image_value) {
+    $file_id = $image_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+    $variables['attributes']->addClass('has-background');
+  }
+  
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();

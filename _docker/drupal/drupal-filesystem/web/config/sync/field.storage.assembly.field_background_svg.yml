@@ -1,0 +1,23 @@
+uuid: 5eecaa7c-2519-4aa7-b102-c240d2871259
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - file
+id: assembly.field_background_svg
+field_name: field_background_svg
+entity_type: assembly
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
