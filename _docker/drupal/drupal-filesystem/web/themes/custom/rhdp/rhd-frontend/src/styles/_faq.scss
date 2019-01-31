@@ -67,12 +67,16 @@
 
 
 @include tablet-landscape-768-and-down {
-  .faq-nav-fixed {
+  .faq-nav-fixed, .gsi-nav {
     position: relative; // on mobile we don't want a fixed nav
     width:100%;
+    &.gsi-nav-fixed {
+      transform: translateY(0);
+      width:100% !important;
+    }
   }
 
-  ul.faq-nav, .gsi-nav {
+  ul.faq-nav {
     display: none;
   }
 

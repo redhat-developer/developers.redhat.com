@@ -5,19 +5,37 @@ dependencies:
   config:
     - assembly.assembly_type.featured_articles
     - field.field.assembly.featured_articles.field_articles
+    - field.field.assembly.featured_articles.field_navigation_title
+    - field.field.assembly.featured_articles.field_title
 id: assembly.featured_articles.default
 targetEntityType: assembly
 bundle: featured_articles
 mode: default
 content:
   field_articles:
-    weight: 1
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_navigation_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield
@@ -29,14 +47,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   visual_styles:
     type: options_select
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

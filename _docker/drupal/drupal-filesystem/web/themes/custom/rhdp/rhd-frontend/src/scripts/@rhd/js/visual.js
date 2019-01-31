@@ -81,7 +81,9 @@ app.stickyNav = function (className, headerElement) {
   });
 
   nav.html(html);
-  nav.after(select);
+  if (className !== "gsi") {
+    nav.after(select);
+  }
 
   win.on("resize", function (e) {
     //resize so make nav not sticky so sizes can be calculated correctly
