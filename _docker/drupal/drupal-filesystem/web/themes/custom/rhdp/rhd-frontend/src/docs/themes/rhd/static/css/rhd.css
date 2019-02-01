@@ -746,6 +746,19 @@ a.light-cta {
     padding-bottom: 80px; }
   .assembly.assembly-center * {
     text-align: center; }
+  .assembly.assembly-slim {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: none; }
+    .assembly.assembly-slim .text-formatted p:first-child {
+      margin-top: 0; }
+    .assembly.assembly-slim .text-formatted p:last-child {
+      margin-bottom: 0; }
+  .assembly.assembly-no-bkg {
+    background-image: none; }
+  .assembly.assembly-narrow > .container, .assembly-type-eloqua_form_embed .assembly.assembly-narrow > .iframe-container, .assembly.assembly-narrow > #user-login-form, .node__content.assembly.assembly-narrow > .field--name-body,
+  .assembly.assembly-narrow > #block-rhdp-local-tasks {
+    max-width: 820px; }
   .assembly .background {
     position: absolute;
     z-index: 0;
@@ -2489,19 +2502,25 @@ a.light-cta {
       color: #FFFFFF; }
 
 .assembly-type-featured_articles {
-  padding: 100px 15px; }
+  padding-bottom: 2rem;
+  padding-top: 3rem; }
   .assembly-type-featured_articles h2 {
     text-align: center;
     margin-bottom: 50px; }
   .assembly-type-featured_articles .featured-article {
     border: 1px solid #E6E6E6;
     border-top: 6px solid #000000;
+    background-color: #FFFFFF;
     padding: 30px;
     min-height: 430px;
     margin: 20px; }
     @media screen and (max-width: 768px) {
       .assembly-type-featured_articles .featured-article {
         min-height: auto; } }
+  .assembly-type-featured_articles.assembly-center .centered-tiles {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   .assembly-type-featured_articles .article-type {
     text-transform: uppercase; }
   .assembly-type-featured_articles .article-content {

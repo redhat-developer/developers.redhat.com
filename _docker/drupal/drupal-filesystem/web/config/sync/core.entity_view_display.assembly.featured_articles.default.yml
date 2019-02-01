@@ -5,6 +5,8 @@ dependencies:
   config:
     - assembly.assembly_type.featured_articles
     - field.field.assembly.featured_articles.field_articles
+    - field.field.assembly.featured_articles.field_navigation_title
+    - field.field.assembly.featured_articles.field_title
   module:
     - fences
 id: assembly.featured_articles.default
@@ -13,7 +15,7 @@ bundle: featured_articles
 mode: default
 content:
   field_articles:
-    weight: 0
+    weight: 1
     label: visually_hidden
     settings:
       view_mode: card
@@ -28,6 +30,22 @@ content:
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
 hidden:
+  field_navigation_title: true
   name: true
   user_id: true

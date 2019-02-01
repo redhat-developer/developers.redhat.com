@@ -4493,7 +4493,7 @@ System.register("@rhd/rhdp-search/rhdp-search-result", [], function (exports_28,
                         description = result.fields.sys_description[0];
                     }
                     else {
-                        description = result.fields.sys_content_plaintext[0];
+                        description = result.fields.sys_content_plaintext ? result.fields.sys_content_plaintext[0] : '';
                     }
                     var tempDiv = document.createElement("div");
                     tempDiv.innerHTML = description;

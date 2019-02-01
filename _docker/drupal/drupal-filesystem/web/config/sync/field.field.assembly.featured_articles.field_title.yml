@@ -1,0 +1,19 @@
+uuid: af7e8018-4348-4fad-b87c-cb2f41bc8c30
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_articles
+    - field.storage.assembly.field_title
+id: assembly.featured_articles.field_title
+field_name: field_title
+entity_type: assembly
+bundle: featured_articles
+label: Title
+description: 'Optional title text displayed to the end user. If left empty, default title <i>Featured Articles</i> will be displayed.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
