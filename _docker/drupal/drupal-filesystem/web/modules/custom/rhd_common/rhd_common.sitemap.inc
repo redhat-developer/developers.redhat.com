@@ -39,9 +39,58 @@ function product_node_sitemap_entries(&$links) {
   // this add all the sub pages to the list of links and unsets the one with the node entry.
   $callback = function ($product_node_link, $product_node_link_index) use (&$links) {
     $product = Node::load($links[$product_node_link_index]['meta']['entity_info']['id']);
-    $sub_pages = $product->field_product_pages->referencedEntities();
-    $entries = array_map('build_subpage_link_entry', $sub_pages,
-      array_fill(0, count($sub_pages), $links[$product_node_link_index]));
+
+    // The product page is using the new, assembly-based approach.
+    if ($product->hasField('field_use_new_product_page')
+      && !empty($product->field_use_new_product_page->value)
+      && $product->field_use_new_product_page->value == '1') {
+      /** @var \Drupal\Core\Config\ImmutableConfig $rhd_config */
+      $rhd_drupal_config = \Drupal::config('redhat_developers')->get('drupal');
+      $drupal_env = \Drupal::config('redhat_developers')->get('environment');
+      $url_product_name = $product->field_url_product_name->value;
+      $entries = [];
+
+      $base_url = ($drupal_env === 'pr')
+        ? "http://{$rhd_drupal_config['host']}:{$rhd_drupal_config['port']}"
+        : $rhd_drupal_config['host'];
+
+      // If there is content for the Overview subpage.
+      if (!empty($product->field_content->referencedEntities())) {
+        // Add a sitemap entry.
+        $overview = $links[$product_node_link_index];
+        $overview['path'] = "/products/$url_product_name/overview";
+        $overview['url'] = "$base_url/products/$url_product_name/overview";
+        $overview['alternate_urls']['en'] = "$base_url/products/$url_product_name/overview";
+        $entries[] = $overview;
+      }
+
+      // If there is content for the Getting Started subpage.
+      if (!empty($product->field_getting_started_content->referencedEntities())) {
+        // Add a sitemap entry.
+        $getting_started = $links[$product_node_link_index];
+        $getting_started['path'] = "/products/$url_product_name/getting-started";
+        $getting_started['url'] = "$base_url/products/$url_product_name/getting-started";
+        $getting_started['alternate_urls']['en'] = "$base_url/products/$url_product_name/getting-started";
+        $entries[] = $getting_started;
+      }
+
+      // If there is content for the Download subpage.
+      if (!empty($product->field_downloads_page_content->referencedEntities())) {
+        // Add a sitemap entry.
+        $download = $links[$product_node_link_index];
+        $download['path'] = "/products/$url_product_name/download";
+        $download['url'] = "$base_url/products/$url_product_name/download";
+        $download['alternate_urls']['en'] = "$base_url/products/$url_product_name/download";
+        $entries[] = $download;
+      }
+    }
+    // The product page is using the old, paragraph-based approach.
+    else {
+      $sub_pages = $product->field_product_pages->referencedEntities();
+      $entries = array_map('build_subpage_link_entry', $sub_pages,
+        array_fill(0, count($sub_pages), $links[$product_node_link_index]));
+    }
+
     $links = array_merge($links, $entries);
     $links[$product_node_link_index] = NULL;
   };
