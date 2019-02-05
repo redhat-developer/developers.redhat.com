@@ -79,7 +79,7 @@ export class PageExtension {
     }
 
     type(input, selector) {
-        this.awaitExists(selector);
+        this.awaitIsVisible(selector);
         if (typeof selector === 'string') {
             return browser.setValue(selector, input);
         } else {
@@ -88,6 +88,7 @@ export class PageExtension {
     }
 
     click(selector) {
+        this.hideCookieBanner();
         this.awaitExists(selector);
         if (typeof selector === 'string') {
             return browser.click(selector);
@@ -159,5 +160,13 @@ export class PageExtension {
 
     source() {
         return browser.getSource();
+    }
+
+    hideCookieBanner() {
+        if (this.displayed('#redhat-cookie-privacy-banner')) {
+            browser.execute(function () {
+                return document.getElementById('redhat-cookie-privacy-banner').style.display = 'none'
+            });
+        }
     }
 }

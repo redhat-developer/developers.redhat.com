@@ -8,6 +8,10 @@
   pre {
     font-size: 14px;
     line-height: 1.5;
+    padding-bottom: 15px;
+    white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
   }
   .pre-body {
     margin-bottom: 30px;
@@ -121,8 +125,21 @@
   }
 
   p {
-    font-size: inherit;
+    font-size: 13px;
     line-height: inherit;
+    @include tablet-portrait {
+      font-size: 18px;
+    }
+    @include tablet-landscape {
+      font-size: 22px;
+    }
+    @include desktop-small {
+      font-size: 20px;
+    }
+    @include desktop-large {
+      font-size: 18px;
+    }
+
   }
 
   .row {
@@ -284,6 +301,12 @@
         font-size: 14px;
         line-height: 22px;
         font-weight: bold;
+        color: $gray-6;
+      }
+      a {
+        .author-name {
+          color: $link;
+        }
       }
     }
     @include desktop-small {
@@ -381,6 +404,11 @@
       }
     }
   }
+  .publish-date,
+  .changed-date {
+    font-size: 14px;
+    color: $gray-5;
+  }
 }
 @include desktop-and-down {
   #rhd-article {
@@ -425,5 +453,6 @@
       margin-top: 14px;
       margin-bottom: 50px;
     }
+
   }
 }

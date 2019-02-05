@@ -1,0 +1,23 @@
+uuid: b1c51889-6ed6-48d4-8eb3-6af710182cf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.content_with_image
+    - field.storage.assembly.field_image_link
+  module:
+    - link
+id: assembly.content_with_image.field_image_link
+field_name: field_image_link
+entity_type: assembly
+bundle: content_with_image
+label: 'Image link'
+description: 'Link the image to a URL'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

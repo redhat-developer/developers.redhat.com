@@ -1,21 +1,28 @@
 <?php
 
 /**
- * Implements hook_token_info
+ * @file
+ * Implements some cusotm functionality for tokens.
+ */
+
+use Drupal\Core\Render\BubbleableMetadata;
+
+/**
+ * Implements hook_token_info().
  */
 function rhd_common_token_info() {
   $types['node'] = [
     'name' => t('Node'),
-    'needs-data' => 'node'
+    'needs-data' => 'node',
   ];
 
   $tokens['initiator'] = [
     'name' => 'initiator',
-    'description' => 'User who initiated the change.'
+    'description' => 'User who initiated the change.',
   ];
   $tokens['related_product_code'] = [
     'name' => 'related_product_code',
-    'description' => 'Product code for the associated product'
+    'description' => 'Product code for the associated product',
   ];
 
   return [
@@ -25,10 +32,9 @@ function rhd_common_token_info() {
 }
 
 /**
- * Implements hook_tokens
+ * Implements hook_tokens().
  */
-function rhd_common_tokens($type, $tokens, array $data, array $options,
-  \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+function rhd_common_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
   $replacements = [];
 
   if (empty($data['node']) && empty($data['entity'])) {

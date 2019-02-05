@@ -1,0 +1,15 @@
+uuid: 9e20c5ff-9b06-4845-bf44-21d29d40254d
+langcode: en
+status: true
+dependencies: {  }
+name: static_item
+label: 'Static Item ( Scale and crop to 356x200 )'
+effects:
+  63235018-5bc5-4ef6-aa14-3d0bb3e1648d:
+    uuid: 63235018-5bc5-4ef6-aa14-3d0bb3e1648d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 356
+      height: 200
+      anchor: center-center

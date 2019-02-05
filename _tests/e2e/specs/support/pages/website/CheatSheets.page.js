@@ -18,16 +18,8 @@ export class CheatSheets extends Page {
         return this.awaitIsVisible(this.getSelector('cheatSheetPage'));
     }
 
-    awaitDownload() {
-        return this.awaitDownloadConfirmation() && this.awaitDownloadThankYou();
-    }
-
-    awaitDownloadConfirmation() {
-        return this.waitForUrlContaining('media-download-confirmation', 60000);
-    }
-
     awaitDownloadThankYou() {
-        this.awaitIsVisible(this.getSelector('thankYou'), 60000);
+        this.awaitExists(this.getSelector('thankYou'), 60000);
     }
 
     loginToDownload() {

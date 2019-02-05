@@ -9,7 +9,7 @@
   <a href="{{ url }}">
     {% if content.field_image|render %}
       <div class="tile-image-wrapper">
-        {{ content.field_image }}
+          {{ content.field_image.0 | with('#image_style', 'static_item') }}
       </div>
     {% endif %}
     <h3 class="tile-title">{{ label }}</h3>

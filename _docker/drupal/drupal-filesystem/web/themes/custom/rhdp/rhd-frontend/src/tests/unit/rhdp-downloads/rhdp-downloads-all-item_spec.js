@@ -87,6 +87,7 @@ describe('Downloads All Product Items', function () {
             expect(wc.platform).toEqual(OSName);
 
         });
+        /*
         it('should update the platform with the appropriate text for devsuite', function () {
             wc.productId = 'devsuite';
             document.body.insertBefore(wc, document.body.firstChild);
@@ -110,7 +111,7 @@ describe('Downloads All Product Items', function () {
             }
             expect(wc.querySelector('.large-5.columns a').href).toContain(productDownloadURL);
         });
-
+        */
     });
     describe('with valid data', function () {
 

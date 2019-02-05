@@ -18,7 +18,7 @@
     </div>
     {% if content.field_image|render %}
         <div class="rhd-list-entry--image">
-          {{ content.field_image }}
+            {{ content.field_image.0 | with('#image_style', 'teaser') }}
         </div>
     {% endif %}
 </article>

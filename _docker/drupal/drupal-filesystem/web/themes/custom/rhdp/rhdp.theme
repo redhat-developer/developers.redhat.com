@@ -5,6 +5,7 @@
  * Functions to support theming in the RHDP theme.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -228,7 +229,7 @@ function rhdp_preprocess_page(&$variables) {
 
   $node = isset($variables['node']) ? $variables['node'] : FALSE;
 
-  if ($node) {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node') {
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->id());
 
     if ($alias == '/') {
@@ -237,8 +238,8 @@ function rhdp_preprocess_page(&$variables) {
   }
 
   // Pull out assemblies to page level for solp.
-  if ($node && $node->getType() == 'landing_page_single_offer') {
-    foreach (['sections', 'form'] as $field) {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node' && $node->getType() == 'landing_page_single_offer') {
+    foreach (['hero'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
         $viewBuilder = \Drupal::entityTypeManager()->getViewBuilder('node');
@@ -248,6 +249,7 @@ function rhdp_preprocess_page(&$variables) {
       }
     }
   }
+
 }
 
 /**
@@ -413,6 +415,71 @@ function rhdp_preprocess_node(array &$variables) {
       ];
     }
   }
+
+  // Books content type and Learning Path Card view mode.
+  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
+    $variables['interval'] = '';
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Cheat Sheet content type and Learning Path Card view mode.
+  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // RH Training Class content type and Learning Path Card view mode.
+  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_completion_time')->getValue()) {
+      $completion_time = $node->get('field_completion_time')->getValue();
+      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($completion_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Video Resource content type and Learning Path Card view mode.
+  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_duration')->getValue()) {
+      $duration = $node->get('field_duration')->getValue();
+      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($duration[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__PARAGRAPH_TYPE().
+ */
+function rhdp_preprocess_paragraph__connectors(&$variables) {
+  $block = Block::load('views_block__connectors_rest_export_connectors_rest_export_block');
+  $render = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+
+  $variables['connectors_block'] = $render;
 }
 
 /**
@@ -561,17 +628,29 @@ function rhdp_preprocess_assembly(&$variables) {
   $assembly = $variables['elements']['#assembly'];
   $type = $assembly->bundle();
   $variables['background_image_url'] = FALSE;
+  $image_value = FALSE;
+  $svg_value = FALSE;
 
   if ($assembly->hasField('field_background_image')) {
     $image_value = $assembly->get('field_background_image')->getValue();
-
-    if ($image_value) {
-      $file_id = $image_value[0]['target_id'];
-      $uri = File::load($file_id)->getFileUri();
-      $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-      $variables['attributes']->addClass('has-background');
-    }
   }
+
+  if ($assembly->hasField('field_background_svg')) {
+    $svg_value = $assembly->get('field_background_svg')->getValue();
+  }
+
+  if ($svg_value) {
+    $file_id = $svg_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = file_create_url($uri);
+    $variables['attributes']->addClass('has-background');
+  } else if ($image_value) {
+    $file_id = $image_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+    $variables['attributes']->addClass('has-background');
+  }
+  
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
@@ -590,35 +669,29 @@ function rhdp_preprocess_assembly(&$variables) {
   }
 
   if ($assembly->hasField('field_eloqua_json')) {
-    $eloqua_assembly_id = $assembly->id();
-    $variables['eloqua_assembly_id'] = $eloqua_assembly_id;
-
+    $variables['eloqua_assembly_id'] = $assembly->id();
+    $options = [];
     if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
       $parent = $variables['elements']['#parent'];
+      if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {
+        $options = ['options' => ['class' => []]];
+        $styles = $parent['entity']->get('visual_styles')->getValue();
 
-      if ($parent['entity_type'] == 'assembly') {
-        if ($parent['entity']->bundle() == 'content_call_to_action') {
-          $options = ['options' => ['class' => []]];
-          $styles = $parent['entity']->get('visual_styles')->getValue();
-          $layout = 'inline';
-
-          if (!empty($styles)) {
-            foreach ($styles as $style) {
-              if ($style['value'] == 'sidebar') {
-                $layout = 'stacked';
-              }
+        if (!empty($styles)) {
+          foreach ($styles as $style) {
+            if (in_array($style['value'], ['sidebar', 'sidebar-form'])) {
+              echo $style['value'];
+              $options['class'][] = 'cta'; // this is a stupid name now. Should be "sidebar" i think
             }
-          }
-
-          $options['class'][] = $layout;
-          $options['class'][] = 'cta';
-
-          if (!empty($options)) {
-            $variables['eloqua_assembly_options'] = '?' . http_build_query(['options' => $options]);
+            if (in_array($style['value'], ['inline'])) {
+              $options['class'][] = 'inline';
+            }
           }
         }
       }
     }
+
+    $variables['eloqua_iframe_url'] = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
   }
 
   // Code Snippet assembly type.

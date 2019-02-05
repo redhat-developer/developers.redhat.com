@@ -42,11 +42,11 @@
     "require": {
         "drupal-composer/drupal-scaffold": "2.5.4",
         "cweagans/composer-patches": "1.6.5",
-        "acquia/lightning": "3.2.2",
+        "acquia/lightning": "3.2.3",
         "drupal/admin_toolbar": "1.25",
         "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
         "drupal/asciidoc": "1.2",
-        "drupal/core": "8.6.3",
+        "drupal/core": "8.6.5",
         "drupal/content_moderation_edit_notify": "1.0",
         "drupal/content_moderation_notifications": "3.0-rc2",
         "drupal/editor_advanced_link": "1.4",
@@ -71,6 +71,9 @@
         "drupal/redirect": "1.3",
         "drush/drush": "9.4.0",
         "drupal/publication_date": "2.x-dev",
+        "drupal/twig_tweak": "^2.1",
+        "drupal/imagecache_external": "1.x-dev#901b9b0a9cfd728e76da016b56757a24fc45fde0",
+        "drupal/readonlymode": "^1.0",
         "drupal/beryllium": "1.x-dev",
         "drupal/bootstrap": "^3.15",
         "jquery/select2": "4.0.3"
@@ -139,6 +142,7 @@
             ]
         },
         "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
             "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",

@@ -13,7 +13,13 @@
   {% if video_thumbnail_url %}
     <div class="rhd-list-entry--image">
       <a href="{{ url }}">
-        <img src="{{ video_thumbnail_url }}" alt="Video Thumbnail">
+      {% set tmpUrl = video_thumbnail_url %}
+      {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+        {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'teaser', '#alt':'Video Thumbnail', } %}
+        {{ cacheImg }}
+      {% else %}
+        <img src="{{ tmpUrl }}" alt="Video Thumbnail" />
+      {% endif %}
       </a>
       <div class="rhd-play-button"><span>►</span></div>
     </div>

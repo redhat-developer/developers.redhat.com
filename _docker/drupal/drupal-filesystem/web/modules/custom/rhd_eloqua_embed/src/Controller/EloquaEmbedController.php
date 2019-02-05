@@ -16,7 +16,8 @@ class EloquaEmbedController {
 
   public function getForm(Assembly $assembly) {
     if($assembly->hasField('field_eloqua_json')) {
-      $options = $_GET['options'];
+      $options = \Drupal::request()->query->get('options');
+
       $eloqua_json = $assembly->get('field_eloqua_json')->value;
       if(!$eloqua_json) {
         throw new NotFoundHttpException();

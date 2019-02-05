@@ -1,6 +1,6 @@
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <div class="iframe-container">
-    <iframe id="iframe-{{ eloqua_assembly_id }}" class="eloqua-iframe" src="/rhd/rhd_eloqua_embed/{{ eloqua_assembly_id }}{{ eloqua_assembly_options }}" scrolling="no"></iframe>
+    <iframe id="iframe-{{ eloqua_assembly_id }}" class="eloqua-iframe" src="{{ eloqua_iframe_url|raw }}" scrolling="no"></iframe>
   </div>
 </section>
 <script>

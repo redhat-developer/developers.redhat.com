@@ -12,14 +12,9 @@ tags('desktop').describe('Download Manager', function () {
 
     beforeEach(function () {
         let downloadDir = new DownloadDir();
-        downloadDir.clear();
-    });
-
-    afterEach(function () {
-        let downloadDir = new DownloadDir();
         downloadDir.clear(global.downloadDir);
-        new Utils().logout();
-    });
+        new Utils().cleanSession();
+    }, 2);
 
     tags('dm')
         .it('@sanity : should allow users to login in and download RHEL', function () {
@@ -54,8 +49,14 @@ tags('desktop').describe('Download Manager', function () {
             login
                 .with(siteUser);
             cheatSheet
-                .awaitDownload();
+                .awaitDownloadThankYou();
             let downloadName = downloadDir.get();
             expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
         });
+
+    afterEach(function () {
+        let downloadDir = new DownloadDir();
+        downloadDir.clear(global.downloadDir);
+        new Utils().cleanSession();
+    }, 2);
 });
