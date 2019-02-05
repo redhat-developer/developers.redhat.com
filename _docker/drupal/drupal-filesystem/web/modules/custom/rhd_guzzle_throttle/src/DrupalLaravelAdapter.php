@@ -9,6 +9,7 @@
 namespace Drupal\rhd_guzzle_throttle;
 
 use DateTime;
+use Drupal\Core\Site\Settings;
 use function GuzzleHttp\Psr7\copy_to_string;
 use function GuzzleHttp\Psr7\stream_for;
 use hamburgscleanest\GuzzleAdvancedThrottle\Cache\Helpers\RequestHelper;
@@ -31,6 +32,8 @@ class DrupalLaravelAdapter implements StorageInterface {
   private $_ttl;
   /** @var \Illuminate\Contracts\Cache\Store */
   private $store;
+  /** @var string */
+  private $supportedUrl;
 
   /**
    * StorageInterface constructor.
@@ -46,6 +49,7 @@ class DrupalLaravelAdapter implements StorageInterface {
     $conn = $config->get('cache')['options']['connection'];
     $table = $config->get('cache')['options']['table'];
     $this->store = new DatabaseStore($conn, $table);
+    $this->supportedUrl = Settings::get('wp_loc') ?? 'https://origin-developers.redhat.com';
   }
 
   /**
@@ -54,20 +58,30 @@ class DrupalLaravelAdapter implements StorageInterface {
    */
   public function saveResponse(RequestInterface $request,
     ResponseInterface $response): void {
-    // We need to know when we cached this
-    $currentTimeStamp = (new DateTime())->getTimestamp();
-    $cachedResponse = $response->withAddedHeader('cached-datetime', $currentTimeStamp);
 
-    // Resist the body
-    $body = $response->getBody()->getContents();
+    if ($this->_isSupportedURLByRequest($request)) {
+      // We need to know when we cached this
+      $currentTimeStamp = (new DateTime())->getTimestamp();
+      $cachedResponse = $response->withAddedHeader('cached-datetime', $currentTimeStamp);
 
-    // Rewind if possible
-    if ($response->getBody()->isSeekable()) {
-      $response->getBody()->rewind();
+      // Resist the body
+      $body = $response->getBody()->getContents();
+
+      // Rewind if possible
+      if ($response->getBody()->isSeekable()) {
+        $response->getBody()->rewind();
+      }
+
+      $env = \Drupal::config('redhat_developers')->get('environment');
+      if($env !== 'prod' && $env !== 'stage') {
+        $logger = \Drupal::logger('blog_cache');
+        [$host, $path] = RequestHelper::getHostAndPath($request);
+        $logger->info("Caching request to blog for URL [" . $host . $path ."]");
+      }
+
+      $this->store->forever($this->_buildResponseKey($request), $cachedResponse);
+      $this->store->forever($this->_buildBodyKey($request), $body);
     }
-
-    $this->store->forever($this->_buildResponseKey($request), $cachedResponse);
-    $this->store->forever($this->_buildBodyKey($request), $body);
   }
 
   /**
@@ -76,30 +90,35 @@ class DrupalLaravelAdapter implements StorageInterface {
    * @throws \Exception
    */
   public function getResponse(RequestInterface $request): ?ResponseInterface {
-    $env = \Drupal::config('redhat_developers')->get('environment');
-    $anHourAgoTimestamp = new DateTime('1 hour ago');
 
-    /** @var ResponseInterface $response */
-    $response = $this->store->get($this->_buildResponseKey($request));
-    $body = $this->store->get($this->_buildBodyKey($request));
+    if($this->_isSupportedURLByRequest($request)) {
 
-    if (isset($response) && isset($body)) {
-      // Add the body to the request
-      $response = $response->withBody(stream_for($body));
+      $env = \Drupal::config('redhat_developers')->get('environment');
+      $anHourAgoTimestamp = new DateTime('1 hour ago');
 
-      // Remove if we're in prod and data is old, otherwise return cached copy
-      if ($env === 'prod') {
-        $cachedDateTime = (new DateTime())->setTimestamp($response->getHeader('cached-datetime')[0]);
+      /** @var ResponseInterface $response */
+      $response = $this->store->get($this->_buildResponseKey($request));
+      $body = $this->store->get($this->_buildBodyKey($request));
 
-        if ($cachedDateTime < $anHourAgoTimestamp) {
-          $this->store->forget($this->_buildResponseKey($request));
-          $this->store->forget($this->_buildBodyKey($request));
-          return NULL;
+      if (isset($response) && isset($body)) {
+        // Add the body to the request
+        $response = $response->withBody(stream_for($body));
+
+        // Remove if we're in prod and data is old, otherwise return cached copy
+        if ($env === 'prod') {
+          $cachedDateTime = (new DateTime())->setTimestamp($response->getHeader('cached-datetime')[0]);
+
+          if ($cachedDateTime < $anHourAgoTimestamp) {
+            $this->store->forget($this->_buildResponseKey($request));
+            $this->store->forget($this->_buildBodyKey($request));
+            return NULL;
+          }
+        } else {
+          return $response;
         }
-      } else {
-        return $response;
       }
     }
+
     return NULL;
   }
 
@@ -112,11 +131,15 @@ class DrupalLaravelAdapter implements StorageInterface {
    */
   public function save(string $host, string $key, int $requestCount,
     DateTime $expiresAt, int $remainingSeconds) : void {
-    $this->store->put(
-      $this->_buildKey($host, $key),
-      RequestInfo::create($requestCount, $expiresAt->getTimestamp(), $remainingSeconds),
-      $remainingSeconds / 60
-    );
+
+    if($this->_isSupportedURL($host)) {
+      $this->store->put(
+        $this->_buildKey($host, $key),
+        RequestInfo::create($requestCount, $expiresAt->getTimestamp(), $remainingSeconds),
+        $remainingSeconds / 60
+      );
+    }
+
   }
 
   /**
@@ -126,7 +149,10 @@ class DrupalLaravelAdapter implements StorageInterface {
    */
   public function get(string $host, string $key): ?RequestInfo {
     /** @noinspection PhpIncompatibleReturnTypeInspection */
-    return $this->store->get($this->_buildKey($host, $key));
+    if($this->_isSupportedURL($host)) {
+      return $this->store->get($this->_buildKey($host, $key));
+    }
+    return NULL;
   }
 
   /**
@@ -159,5 +185,14 @@ class DrupalLaravelAdapter implements StorageInterface {
     [$host, $path] = RequestHelper::getHostAndPath($request);
 
     return self::BDY_STORAGE_KEY . '.' . \sha1($host . '.' . $path . '.' . RequestHelper::getStorageKey($request));
+  }
+
+  private function _isSupportedURLByRequest(RequestInterface $request) {
+    [$host, $path] = RequestHelper::getHostAndPath($request);
+    return $this->_isSupportedURL($host);
+  }
+
+  private function _isSupportedURL(string $host) {
+    return $this->supportedUrl === $host;
   }
 }
