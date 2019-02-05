@@ -38,6 +38,6 @@ else
 fi
 
 # Start the export process
-docker exec rhdpr${ghprbPullId}_drupal_1 drush cron
+docker exec rhdpr${ghprbPullId}_drupal_1 bash -c "source /etc/scl_enable && drush cron"
 ruby ./control.rb -e drupal-pull-request --export rhd@filemgmt.jboss.org:/stg_htdocs/it-rhd-stg[/pr/${ghprbPullId}/export] --no-decrypt --no-kill
 
