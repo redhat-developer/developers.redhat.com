@@ -511,15 +511,6 @@ display:
           required: true
           entity_type: taxonomy_term
           plugin_id: entity_reverse
-        field_product_category_image:
-          id: field_product_category_image
-          table: taxonomy_term__field_product_category_image
-          field: field_product_category_image
-          relationship: none
-          group_type: group
-          admin_label: 'field_product_category_image: Media'
-          required: false
-          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
