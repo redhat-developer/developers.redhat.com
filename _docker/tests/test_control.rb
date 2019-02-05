@@ -44,7 +44,7 @@ class TestControl < Minitest::Test
 
     environment.expects(:get_docker_host).returns('127.0.0.1')
     expects(:check_supported_service_requested).with(supporting_services, 'drupal').returns(true)
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', '80/tcp').returns('80')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', '8080/tcp').returns('80')
 
     bind_drupal_container_details_into_environment(environment, supporting_services)
 
