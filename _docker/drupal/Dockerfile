@@ -8,6 +8,7 @@ ARG composer_profile="production"
 EXPOSE 8080
 
 WORKDIR /var/www/drupal
+RUN gem install asciidoctor -v 1.5.8
 COPY apache/drupal.conf /opt/rh/httpd24/root/etc/httpd/conf.d/drupal.conf
 
 # Run composer to install Drupal and required dependencies
@@ -49,4 +50,3 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
-RUN gem install asciidoctor
