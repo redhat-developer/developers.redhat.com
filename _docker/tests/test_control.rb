@@ -120,7 +120,7 @@ class TestControl < Minitest::Test
     environment = mock()
     supporting_services = %w(drupal)
 
-    expects(:wait_for_supporting_service_to_start).with(environment, 'drupal','80/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg').returns(%w(127.0.0.1 8080))
+    expects(:wait_for_supporting_service_to_start).with(environment, 'drupal','8080/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg').returns(%w(127.0.0.1 8080))
 
     wait_for_drupal_to_start(environment, supporting_services)
   end
