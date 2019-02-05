@@ -1,25 +1,26 @@
-uuid: b3e70b3f-e209-42ed-a52d-c03d545d3702
+uuid: afcd9d00-6203-4e4f-95fe-eca3bbb476c3
 langcode: en
 status: true
 dependencies:
   module:
+    - openid_connect
     - system
   theme:
     - rhdp
-id: rhdp_messages
+id: openidconnectlogin
 theme: rhdp
 region: content
-weight: -9
+weight: -8
 provider: null
-plugin: system_messages_block
+plugin: openid_connect_login
 settings:
-  id: system_messages_block
-  label: 'Status messages'
-  provider: system
+  id: openid_connect_login
+  label: 'OpenID Connect login'
+  provider: openid_connect
   label_display: '0'
 visibility:
   request_path:
     id: request_path
-    pages: '/user/*'
+    pages: /user/login
     negate: false
     context_mapping: {  }

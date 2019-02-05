@@ -1,0 +1,40 @@
+diff --git a/src/Form/LoginForm.php b/src/Form/LoginForm.php
+index 57e1fa4..bfcc8e9 100644
+--- a/src/Form/LoginForm.php
++++ b/src/Form/LoginForm.php
+@@ -75,15 +75,26 @@ class LoginForm extends FormBase implements ContainerInjectionInterface {
+         continue;
+       }
+ 
+-      $form['openid_connect_client_' . $client_id . '_login'] = [
+-        '#type' => 'submit',
+-        '#value' => t('Log in with @client_title', [
+-          '@client_title' => $client['label'],
+-        ]),
+-        '#name' => $client_id,
+-        '#prefix' => '<div>',
+-        '#suffix' => '</div>',
+-      ];
++      if ($client_id == 'keycloak') {
++        $form['openid_connect_client_' . $client_id . '_login'] = [
++          '#type' => 'submit',
++          '#value' => t('Log in with your developer account'),
++          '#name' => $client_id,
++          '#prefix' => '<div>',
++          '#suffix' => '</div>',
++        ];
++      }
++      else {
++        $form['openid_connect_client_' . $client_id . '_login'] = [
++          '#type' => 'submit',
++          '#value' => t('Log in with @client_title', [
++            '@client_title' => $client['label'],
++          ]),
++          '#name' => $client_id,
++          '#prefix' => '<div>',
++          '#suffix' => '</div>',
++        ];
++      }
+     }
+     return $form;
+   }
