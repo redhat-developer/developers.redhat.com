@@ -15,11 +15,11 @@
       {% endif %}
       {% if content.field_try_it_link|render %}
         <div class="product-try-it-cta">
-          <a class="button heavy-cta" href={{ content.field_try_it_link.value }}><span class="fa fa-bell"></span>
-            {% if content.field_try_it_link.0['#title'] %}
-              &nbsp;{{ content.field_try_it_link.0['#title'] }}
+          <a class="button heavy-cta" href={{ content.field_try_it_link.value }}>
+            {% if ( content.field_try_it_link.0['#title'] ) and ( content.field_try_it_link.0['#title'] != "Try It" ) %}
+              {{ content.field_try_it_link.0['#title'] }}
             {% else %}
-              &nbsp;Try It
+              <span class="fa fa-bell"></span>&nbsp;Try It
             {% endif %}
           </a>
         </div>
