@@ -4,11 +4,10 @@ status: true
 dependencies:
   module:
     - node
-    - user
 id: out_of_date_content
 label: 'Out of date content'
 module: views
-description: 'Content not changed in 12 months'
+description: 'Latest content revisions filter by from - to dates'
 tag: ''
 base_table: node_field_revision
 base_field: vid
@@ -21,9 +20,8 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
-        options:
-          perm: 'view all revisions'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -563,7 +561,7 @@ display:
             operator: changed_op
             identifier: date-changed
             required: false
-            remember: false
+            remember: true
             multiple: false
             remember_roles:
               authenticated: authenticated
@@ -626,7 +624,6 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
       tags: {  }
   page_1:
     display_plugin: page
@@ -645,5 +642,4 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
       tags: {  }
