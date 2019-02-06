@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e16667c4b4560658f5ac25d945e3fb22",
+    "content-hash": "3d735a38ea968d868a7bad5bf953813a",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -80,6 +80,40 @@
             ],
             "description": "The best of Drupal, curated by Acquia",
             "time": "2018-12-20T13:34:53+00:00"
+        },
+        {
+            "name": "alloy/beryllium",
+            "version": "dev-compose-changes-2",
+            "source": {
+                "type": "git",
+                "url": "git@code.kilpho.st:alloy/beryllium.git",
+                "reference": "2db6838a9d03cc44945854b919f53840f0d9f037"
+            },
+            "require": {
+                "select2/select2": "^4.0"
+            },
+            "type": "drupal-theme",
+            "description": "Alloy Magnetic's Drupal 8 admin theme",
+            "time": "2019-01-10T15:18:00+00:00"
+        },
+        {
+            "name": "alloy/compose",
+            "version": "dev-field_layout",
+            "source": {
+                "type": "git",
+                "url": "git@code.kilpho.st:alloy/compose.git",
+                "reference": "3b7a0180e1bfda1c2165bf467702e218d0bd40ed"
+            },
+            "type": "drupal-module",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Improved content editing UI",
+            "homepage": "https://code.kilpho.st/alloy/compose",
+            "keywords": [
+                "Drupal"
+            ],
+            "time": "2019-02-06T21:48:25+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -192,7 +226,7 @@
             "version": "v1.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kenwheeler/slick.git",
+                "url": "git@github.com:kenwheeler/slick.git",
                 "reference": "0f40c9d6a02a5c08b5f4dd80fdada3a854a59bee"
             },
             "dist": {
@@ -2192,57 +2226,6 @@
             "time": "2018-11-28T18:55:45+00:00"
         },
         {
-            "name": "drupal/beryllium",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/beryllium",
-                "reference": "a75ff547af5865fe365385a77fe89160aa817b5d"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "select2/select2": "^4.0"
-            },
-            "type": "drupal-theme",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1542736680",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "delzhand",
-                    "homepage": "https://www.drupal.org/user/177088"
-                },
-                {
-                    "name": "fearlsgroove",
-                    "homepage": "https://www.drupal.org/user/364178"
-                },
-                {
-                    "name": "kerrivader",
-                    "homepage": "https://www.drupal.org/user/3418623"
-                }
-            ],
-            "description": "Alloy Magnetic's Drupal 8 admin theme",
-            "homepage": "https://www.drupal.org/project/beryllium",
-            "support": {
-                "source": "http://cgit.drupalcode.org/beryllium"
-            },
-            "time": "2018-11-26T14:43:19+00:00"
-        },
-        {
             "name": "drupal/blazy",
             "version": "1.0.0-rc4",
             "source": {
@@ -2800,6 +2783,7 @@
                 "patches_applied": {
                     "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
                     "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
+                    "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/3e9e4c12686610c4cf1cd8d7f7ba4633/raw/3159ae332d9b383bed5b5d7dc8d07e86ca9a2535/fieldlayoutdisabledefault.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2018-09-24/2815221-109.patch",
@@ -14932,7 +14916,8 @@
         "drupal/inline_entity_form": 20,
         "drupal/workbench": 20,
         "drupal/publication_date": 20,
-        "drupal/beryllium": 20
+        "alloy/beryllium": 20,
+        "alloy/compose": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

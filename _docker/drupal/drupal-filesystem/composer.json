@@ -21,6 +21,10 @@
             "url": "https://asset-packagist.org"
         },
         {
+            "type": "composer",
+            "url": "https://composer.kilpho.st"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "jquery/select2",
@@ -71,9 +75,10 @@
         "drupal/redirect": "1.3",
         "drush/drush": "9.4.0",
         "drupal/publication_date": "2.x-dev",
-        "drupal/beryllium": "1.x-dev",
+        "alloy/beryllium": "dev-compose-changes-2#2db6838a9d03cc44945854b919f53840f0d9f037",
         "drupal/bootstrap": "3.x",
         "jquery/select2": "4.0.3",
+        "alloy/compose": "dev-field_layout#3b7a0180e1bfda1c2165bf467702e218d0bd40ed",
         "drupal/twig_tweak": "^2.1",
         "drupal/imagecache_external": "^1.0",
         "drupal/readonlymode": "^1.0"
@@ -146,7 +151,8 @@
         "patches": {
           "drupal/core": {
             "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
-            "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch"
+            "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
+            "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/3e9e4c12686610c4cf1cd8d7f7ba4633/raw/3159ae332d9b383bed5b5d7dc8d07e86ca9a2535/fieldlayoutdisabledefault.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
