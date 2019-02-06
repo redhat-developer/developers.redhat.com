@@ -7,6 +7,10 @@ dependencies:
     - field.field.assembly.featured_articles.field_articles
   module:
     - fences
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.featured_articles.default
 targetEntityType: assembly
 bundle: featured_articles
