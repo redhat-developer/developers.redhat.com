@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - node
+    - user
 id: out_of_date_content
 label: 'Out of date content'
 module: views
@@ -20,8 +21,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'view all revisions'
       cache:
         type: tag
         options: {  }
@@ -624,6 +626,7 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
+        - user.permissions
       tags: {  }
   page_1:
     display_plugin: page
@@ -642,4 +645,5 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
+        - user.permissions
       tags: {  }
