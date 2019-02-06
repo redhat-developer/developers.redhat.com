@@ -5,6 +5,15 @@ downloadManager:
 keycloak:
   accountUrl: 'https://developers.redhat.com/auth/realms/rhd/account/'
   authUrl: 'https://developers.redhat.com/auth/'
+  content_editor_sso:
+    redirect_url: "http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>"
+    client_id: 'rhd-web-cms-localdev'
+    client_secret: 'not-a-secret'
+    keycloak_base: 'https://developers.stage.redhat.com/auth'
+    keycloak_realm: 'rhd'
+    authorization_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/auth'
+    token_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/token'
+    userinfo_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo'
 drupal:
   host: rhdp-jenkins-slave.lab4.eng.bos.redhat.com
   port: "<%=ENV['DRUPAL_HOST_PORT']%>"

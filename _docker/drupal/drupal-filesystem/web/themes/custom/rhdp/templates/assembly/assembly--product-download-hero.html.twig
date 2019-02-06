@@ -4,7 +4,15 @@
      <div class="product-version">
       {{ content.field_title }}
       {{ content.field_content }}
-      <a href="{{ content.field_learn_more_link.value }}">Learn More <span class="fa fa-caret-right"></span></a>
+      {% if content.field_learn_more_link|render %}
+        <a href="{{ content.field_learn_more_link.0['#url'] }}">
+        {% if content.field_learn_more_link.0['#title'] %}
+          {{ content.field_learn_more_link.0['#title'] }}
+        {% else %}
+          Learn More
+        {% endif %}
+        &nbsp;<span class="fa fa-caret-right"></span></a>
+      {% endif %}
 
       {# Adjust for 13-digit Unix timestamp #}
       {% set featuredReleaseDate = elements.featured.releaseDate / 1000 %}
