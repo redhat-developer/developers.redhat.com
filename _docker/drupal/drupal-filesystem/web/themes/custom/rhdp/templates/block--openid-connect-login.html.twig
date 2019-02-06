@@ -33,15 +33,14 @@
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  <details>
-    <summary>Login with your developer account</summary>
-    {{ title_prefix }}
-    {% if label %}
-      <h2{{ title_attributes }}>{{ label }}</h2>
-    {% endif %}
-    {{ title_suffix }}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </details>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <p>Content editors should now log in by clicking this button, which will direct you to log in with your Keycloak credentials. Please ensure you use a Keycloak account that is associated to the same email address you have associated to your Drupal account. For assistance, please contact the RHD developers at Rhd-drupal-admin@redhat.com.</p>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+  <button id="drupalUserLoginToggleVisibility">Reveal old login form</button>
 </div>
