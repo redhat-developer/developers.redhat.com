@@ -11,6 +11,7 @@ dependencies:
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.dynamic_content_list
     - assembly.assembly_type.events_hero
+    - assembly.assembly_type.featured_articles
     - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.featured_products
     - assembly.assembly_type.featured_resources
@@ -45,11 +46,12 @@ settings:
       call_to_action: call_to_action
       collection: collection
       static_content_band: static_content_band
+      featured_products: featured_products
       dynamic_content_feed: dynamic_content_feed
       dynamic_content_list: dynamic_content_list
       events_hero: events_hero
+      featured_articles: featured_articles
       featured_evangelists: featured_evangelists
-      featured_products: featured_products
       featured_resources: featured_resources
       hero: hero
       learning_paths: learning_paths
