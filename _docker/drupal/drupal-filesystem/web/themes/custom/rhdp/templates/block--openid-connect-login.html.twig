@@ -38,9 +38,10 @@
     <h2{{ title_attributes }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
-  <p>Content editors should now log in by clicking this button, which will direct you to log in with your Keycloak credentials. Please ensure you use a Keycloak account that is associated to the same email address you have associated to your Drupal account. For assistance, please contact the RHD developers at Rhd-drupal-admin@redhat.com.</p>
+  <p>Content editors should now log in using their Red Hat Developer account.</p>
+  <p>Please ensure that your Red Hat Developer account has the same email address as used by your account in Drupal. For assistance, please contact the RHD developers.</p>
   {% block content %}
     {{ content }}
   {% endblock %}
-  <button id="drupalUserLoginToggleVisibility">Reveal old login form</button>
+  <button id="drupalUserLoginToggleVisibility">Legacy login</button>
 </div>
