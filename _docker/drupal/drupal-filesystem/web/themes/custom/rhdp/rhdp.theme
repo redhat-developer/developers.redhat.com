@@ -416,7 +416,6 @@ function rhdp_preprocess_node(array &$variables) {
     }
   }
 
-<<<<<<< HEAD
   // Katacoda Course Page
   // Adds the body/description content of an entity reference to the lesson display list individual content items.
   if( $node->getType() == 'katacoda_course') {
@@ -459,7 +458,6 @@ function rhdp_preprocess_node(array &$variables) {
         ];
       }
       $variables['katacoda_course_info']['courses'] = $katacoda_scenarios;
-=======
   // Books content type and Learning Path Card view mode.
   if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
     $variables['interval'] = '';
@@ -510,7 +508,6 @@ function rhdp_preprocess_node(array &$variables) {
       if ($duration[0]['interval'] > 1) {
         $variables['interval'] .= 's';
       }
->>>>>>> upstream/master
     }
   }
 }

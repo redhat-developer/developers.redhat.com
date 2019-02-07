@@ -36,7 +36,7 @@ use Drupal\Core\Render\BubbleableMetadata;
  }
  
  /**
-  * Implements hook_tokens().
+  * Implements hook_tokens()
   * 
   * Find the parent content type course entry of a child content type lesson entry by
   * way of a data query and insert the URL slug value of the parent as the rendered.
