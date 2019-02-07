@@ -8,8 +8,8 @@ dependencies:
     - rhdp
 id: rhdp_messages
 theme: rhdp
-region: title
-weight: -3
+region: content
+weight: -9
 provider: null
 plugin: system_messages_block
 settings:
@@ -17,4 +17,9 @@ settings:
   label: 'Status messages'
   provider: system
   label_display: '0'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '/user/*'
+    negate: false
+    context_mapping: {  }

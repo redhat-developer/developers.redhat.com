@@ -229,7 +229,7 @@ function rhdp_preprocess_page(&$variables) {
 
   $node = isset($variables['node']) ? $variables['node'] : FALSE;
 
-  if ($node) {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node') {
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $node->id());
 
     if ($alias == '/') {
@@ -238,7 +238,7 @@ function rhdp_preprocess_page(&$variables) {
   }
 
   // Pull out assemblies to page level for solp.
-  if ($node && $node->getType() == 'landing_page_single_offer') {
+  if ($node && get_class($node) === 'Drupal\node\Entity\Node' && $node->getType() == 'landing_page_single_offer') {
     foreach (['hero'] as $field) {
       $fieldname = 'field_' . $field;
       if (isset($node->$fieldname)) {
@@ -413,6 +413,59 @@ function rhdp_preprocess_node(array &$variables) {
         'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
         'title' => ['#markup' => $ref->label()],
       ];
+    }
+  }
+
+  // Books content type and Learning Path Card view mode.
+  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
+    $variables['interval'] = '';
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Cheat Sheet content type and Learning Path Card view mode.
+  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // RH Training Class content type and Learning Path Card view mode.
+  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_completion_time')->getValue()) {
+      $completion_time = $node->get('field_completion_time')->getValue();
+      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($completion_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Video Resource content type and Learning Path Card view mode.
+  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_duration')->getValue()) {
+      $duration = $node->get('field_duration')->getValue();
+      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($duration[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
     }
   }
 }

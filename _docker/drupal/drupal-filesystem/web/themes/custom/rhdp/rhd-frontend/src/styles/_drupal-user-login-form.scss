@@ -1,3 +1,11 @@
 #user-login-form {
     @extend .container;
 }
+
+#block-openidconnectlogin {
+    @extend .container;
+}
+
+.page-user-login .messages {
+    @extend .container;
+}

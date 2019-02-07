@@ -1,0 +1,16 @@
+session_limit_max: 3
+session_limit_masquerade_ignore: false
+session_limit_behaviour: 1
+session_limit_logged_out_message_severity: warning
+session_limit_roles:
+  authenticated: 0
+  media_manager: 0
+  layout_manager: 0
+  content_creator: 0
+  content_team: 0
+  content_admin: 0
+  coding_resource_creator: 0
+  coding_resource_reviewer: 0
+  administrator: 0
+_core:
+  default_config_hash: 6LIpKkpajaLVzp7vCiTE8WQxllcMEoQ3vrFIq4FRYSE
