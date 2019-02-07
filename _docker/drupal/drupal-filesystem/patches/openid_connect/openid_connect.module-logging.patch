@@ -71,13 +71,13 @@ index ec7a465..28d3d42 100644
  
    if ($account) {
      // An existing account was found. Save user claims.
-+    $logger->info("Found an existing account in authmap for email address [" . $userinfo['email'] . "]...");
++    $logger->info("Found an existing account in authmap for email address [@email]...", ['@email' => $userinfo['email']]);
      if (\Drupal::config('openid_connect.settings')->get('always_save_userinfo')) {
        openid_connect_save_userinfo($account, $userinfo);
      }
    }
    else {
-+    $logger->info("No account found in existing authmap for email address [" . $userinfo['email'] . "], attempt to load account from Drupal...");
++    $logger->info("No account found in existing authmap for email address [@email], attempt to load account from Drupal...", ['@email' => $userinfo['email']]);
      // Check whether the e-mail address is valid.
      if (!\Drupal::service('email.validator')->isValid($userinfo['email'])) {
        drupal_set_message(
@@ -85,7 +85,7 @@ index ec7a465..28d3d42 100644
          ->get('connect_existing_users');
        if ($connect_existing_users) {
          // Connect existing user account with this sub.
-+        $logger->info("Found Drupal account for email address [" . $userinfo['email'] . "], connecting account...");
++        $logger->info("Found Drupal account for email address [@email], connecting account...", ['@email' => $userinfo['email']]);
          openid_connect_connect_account($account, $client->getPluginId(), $sub);
        }
        else {
@@ -93,7 +93,7 @@ index ec7a465..28d3d42 100644
        switch ($register) {
          case USER_REGISTER_ADMINISTRATORS_ONLY:
            // Deny user registration.
-+          $logger->error("No account found in Drupal for email [" . $userinfo['email'] . "] and registration can only be completed by admin. Failing login.");
++          $logger->error("No account found in Drupal for email [@email] and registration can only be completed by admin. Failing login.", ['@email' => $userinfo['email']]);
            drupal_set_message(t('Only administrators can register new accounts.'), 'error');
            return FALSE;
  
@@ -101,9 +101,9 @@ index ec7a465..28d3d42 100644
      $authmap->createAssociation($account, $client->getPluginId(), $sub);
    }
  
-+  $logger->info("Everything complete for OpenId login for email [" . $userinfo['email'] . "] handing off to Drupal authentication...");
++  $logger->info("Everything complete for OpenId login for email [@email] handing off to Drupal authentication...", ['@email' => $userinfo['email']]);
    openid_connect_login_user($account);
-+  $logger->info("Drupal authentication complete for [" . $userinfo['email'] . "].");
++  $logger->info("Drupal authentication complete for [@email].", ['@email' => $userinfo['email']]);
  
    \Drupal::moduleHandler()->invokeAll(
      'openid_connect_post_authorize',
@@ -118,8 +118,8 @@ index ec7a465..28d3d42 100644
    $user_data = $client->decodeIdToken($tokens['id_token']);
    $userinfo = $client->retrieveUserInfo($tokens['access_token']);
  
-+  $logger->error('user_data after client->decodeIdToken: ' . print_r($user_data, TRUE));
-+  $logger->error('userInfo after client->retrieveUserInfo: ' . print_r($userinfo, TRUE));
++  $logger->error('user_data after client->decodeIdToken: @userdata', ['@userdata' => print_r($user_data, TRUE)]);
++  $logger->error('userInfo after client->retrieveUserInfo: @userinfo', ['@userinfo' => print_r($userinfo, TRUE)]);
 +
    $context = [
      'user_data' => $user_data,
@@ -127,8 +127,8 @@ index ec7a465..28d3d42 100644
    \Drupal::moduleHandler()->alter('openid_connect_userinfo', $userinfo, $context);
  
 -  $logger = \Drupal::logger('openid_connect');
-+  $logger->error('user_data after alter: ' . print_r($user_data, TRUE));
-+  $logger->error('userInfo after alter: ' . print_r($userinfo, TRUE));
++  $logger->error('user_data after alter: @userdata', ['@userdata' => print_r($user_data, TRUE)]);
++  $logger->error('userInfo after alter: @userinfo', ['@userinfo' => print_r($userinfo, TRUE)]);
 +
    $provider_param = ['@provider' => $client->getPluginId()];
  
