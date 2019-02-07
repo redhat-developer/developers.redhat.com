@@ -946,3 +946,12 @@ function rhdp_library_info_alter(array &$libraries, $extension) {
     }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp/drupal-user-login-form';
+  }
+}
