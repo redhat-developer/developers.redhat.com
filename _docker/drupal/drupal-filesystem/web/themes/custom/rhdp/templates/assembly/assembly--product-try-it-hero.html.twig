@@ -4,10 +4,26 @@
      <div class="product-try-it">
       {{ content.field_title }}
       {{ content.field_content }}
-      <a href="{{ content.field_learn_more_link.value }}">Learn More <span class="fa fa-caret-right"></span></a>
-      <div class="product-try-it-cta">
-        <a class="button heavy-cta" href={{ content.field_try_it_link.value }}><span class="fa fa-bell"></span> Try It</a>
-      </div>
+      {% if content.field_learn_more_link|render %}
+        <a href="{{ content.field_learn_more_link.0['#url'] }}">
+        {% if content.field_learn_more_link.0['#title'] %}
+          {{ content.field_learn_more_link.0['#title'] }}
+        {% else %}
+        Learn More
+        {% endif %}
+        &nbsp;<span class="fa fa-caret-right"></span></a>
+      {% endif %}
+      {% if content.field_try_it_link|render %}
+        <div class="product-try-it-cta">
+          <a class="button heavy-cta" href={{ content.field_try_it_link.value }}>
+            {% if ( content.field_try_it_link.0['#title'] ) and ( content.field_try_it_link.0['#title'] != "Try It" ) %}
+              {{ content.field_try_it_link.0['#title'] }}
+            {% else %}
+              <span class="fa fa-bell"></span>&nbsp;Try It
+            {% endif %}
+          </a>
+        </div>
+      {% endif %}
      </div>
       {% if content.field_image %}
         <div class="product-image">
