@@ -80,14 +80,17 @@ function rhdp_theme_suggestions_block_alter(array &$suggestions, array $variable
  * Implements hook_preprocess_block().
  */
 function rhdp_preprocess_block(array &$variables) {
-  $block_id = $variables['elements']['#id'];
+  // Verify that the #id has some non-empty value prior to using it.
+  if (!empty($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
 
-  if ($block_id == 'rhdnavigation_mobile') {
-    $variables['attributes']['class'][] = 'rhd-nav-mobile';
-  }
+    if ($block_id == 'rhdnavigation_mobile') {
+      $variables['attributes']['class'][] = 'rhd-nav-mobile';
+    }
 
-  if ($block_id == 'rhdnavigation') {
-    $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    if ($block_id == 'rhdnavigation') {
+      $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
   }
 }
 
