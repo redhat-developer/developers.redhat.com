@@ -1,0 +1,14 @@
+enabled: keycloak
+settings:
+  redirect_url: ''
+  client_id: 'Set with config override: check rhd.settings.yml'
+  client_secret: 'Set with config override: check rhd.settings.yml'
+  keycloak_base: 'Set with config override: check rhd.settings.yml'
+  keycloak_realm: 'Set with config override: check rhd.settings.yml'
+  authorization_endpoint_kc: 'Set with config override: check rhd.settings.yml'
+  token_endpoint_kc: 'Set with config override: check rhd.settings.yml'
+  userinfo_endpoint_kc: 'Set with config override: check rhd.settings.yml'
+  userinfo_update_email: 0
+  keycloak_i18n: false
+_core:
+  default_config_hash: tHgaZtYNBvFIKvqZfcFO3ymqz_OJFnSAaPGXkBAFElw

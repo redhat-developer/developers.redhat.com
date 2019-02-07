@@ -1,0 +1,135 @@
+diff --git a/openid_connect.module b/openid_connect.module
+index ec7a465..28d3d42 100644
+--- a/openid_connect.module
++++ b/openid_connect.module
+@@ -115,6 +115,10 @@ function openid_connect_form_user_profile_form_alter(&$form, &$form_state) {
+  *   An array with information about the user.
+  */
+ function openid_connect_save_userinfo(UserInterface $account, array $userinfo) {
++
++  $logger = \Drupal::logger('openid_connect');
++  $logger->info("Updating Drupal account for email [". $userinfo['email'] . "] with UserInfo received from Keycloak..");
++
+   $properties = \Drupal::entityManager()->getFieldDefinitions('user', 'user');
+   $properties_skip = _openid_connect_user_properties_to_skip();
+   foreach ($properties as $property_name => $property) {
+@@ -379,6 +383,7 @@ function openid_connect_disconnect_account($account, $client_name) {
+  *   The sub, or FALSE if there was an error.
+  */
+ function openid_connect_extract_sub(array $user_data, array $userinfo) {
++
+   if (!isset($user_data['sub']) && !isset($userinfo['sub'])) {
+     return FALSE;
+   }
+@@ -409,30 +414,32 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+     throw new \RuntimeException('User already logged in');
+   }
+ 
++    $logger = \Drupal::logger('openid_connect');
++
+   /* @var \Drupal\openid_connect\Authmap $authmap */
+-  $authmap = \Drupal::service('openid_connect.authmap');
+-  $user_data = $client->decodeIdToken($tokens['id_token']);
+-  $userinfo = $client->retrieveUserInfo($tokens['access_token']);
++    $authmap = \Drupal::service('openid_connect.authmap');
++    $user_data = $client->decodeIdToken($tokens['id_token']);
++    $userinfo = $client->retrieveUserInfo($tokens['access_token']);
+ 
+-  $context = [
++    $context = [
+     'user_data' => $user_data,
+-  ];
+-  \Drupal::moduleHandler()->alter('openid_connect_userinfo', $userinfo, $context);
+-
+-  $logger = \Drupal::logger('openid_connect');
++    ];
++    \Drupal::moduleHandler()->alter('openid_connect_userinfo', $userinfo, $context);
+ 
+-  if ($userinfo && empty($userinfo['email'])) {
+-    $message = 'No e-mail address provided by @provider';
++    if ($userinfo && empty($userinfo['email'])) {
++    $message = 'No e-mail address received in UserInfo from @provider.';
+     $variables = ['@provider' => $client->getPluginId()];
+-    $logger->error($message . ' (@code @error). Details: @details', $variables);
++    $logger->error($message, $variables);
+     return FALSE;
+   }
+ 
++  $logger->info("Attempting authorisation for email address [". $userinfo['email'] ."]...");
++
+   $sub = openid_connect_extract_sub($user_data, $userinfo);
+   if (empty($sub)) {
+-    $message = 'No "sub" found from @provider';
++    $message = 'UserInfo did not contain the "sub" field or it did not match that found in UserData from @provider';
+     $variables = ['@provider' => $client->getPluginId()];
+-    $logger->error($message . ' (@code @error). Details: @details', $variables);
++    $logger->error($message, $variables);
+     return FALSE;
+   }
+ 
+@@ -460,11 +467,13 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+ 
+   if ($account) {
+     // An existing account was found. Save user claims.
++    $logger->info("Found an existing account in authmap for email address [@email]...", ['@email' => $userinfo['email']]);
+     if (\Drupal::config('openid_connect.settings')->get('always_save_userinfo')) {
+       openid_connect_save_userinfo($account, $userinfo);
+     }
+   }
+   else {
++    $logger->info("No account found in existing authmap for email address [@email], attempt to load account from Drupal...", ['@email' => $userinfo['email']]);
+     // Check whether the e-mail address is valid.
+     if (!\Drupal::service('email.validator')->isValid($userinfo['email'])) {
+       drupal_set_message(
+@@ -485,6 +494,7 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+         ->get('connect_existing_users');
+       if ($connect_existing_users) {
+         // Connect existing user account with this sub.
++        $logger->info("Found Drupal account for email address [@email], connecting account...", ['@email' => $userinfo['email']]);
+         openid_connect_connect_account($account, $client->getPluginId(), $sub);
+       }
+       else {
+@@ -514,6 +524,7 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+       switch ($register) {
+         case USER_REGISTER_ADMINISTRATORS_ONLY:
+           // Deny user registration.
++          $logger->error("No account found in Drupal for email [@email] and registration can only be completed by admin. Failing login.", ['@email' => $userinfo['email']]);
+           drupal_set_message(t('Only administrators can register new accounts.'), 'error');
+           return FALSE;
+ 
+@@ -536,7 +547,9 @@ function openid_connect_complete_authorization($client, array $tokens, &$destina
+     $authmap->createAssociation($account, $client->getPluginId(), $sub);
+   }
+ 
++  $logger->info("Everything complete for OpenId login for email [@email] handing off to Drupal authentication...", ['@email' => $userinfo['email']]);
+   openid_connect_login_user($account);
++  $logger->info("Drupal authentication complete for [@email].", ['@email' => $userinfo['email']]);
+ 
+   \Drupal::moduleHandler()->invokeAll(
+     'openid_connect_post_authorize',
+@@ -566,17 +579,24 @@ function openid_connect_connect_current_user($client, array $tokens) {
+     throw new \RuntimeException('User not logged in');
+   }
+ 
++  $logger = \Drupal::logger('openid_connect');
++
+   /* @var \Drupal\openid_connect\Authmap $authmap */
+   $authmap = \Drupal::service('openid_connect.authmap');
+   $user_data = $client->decodeIdToken($tokens['id_token']);
+   $userinfo = $client->retrieveUserInfo($tokens['access_token']);
+ 
++  $logger->error('user_data after client->decodeIdToken: @userdata', ['@userdata' => print_r($user_data, TRUE)]);
++  $logger->error('userInfo after client->retrieveUserInfo: @userinfo', ['@userinfo' => print_r($userinfo, TRUE)]);
++
+   $context = [
+     'user_data' => $user_data,
+   ];
+   \Drupal::moduleHandler()->alter('openid_connect_userinfo', $userinfo, $context);
+ 
+-  $logger = \Drupal::logger('openid_connect');
++  $logger->error('user_data after alter: @userdata', ['@userdata' => print_r($user_data, TRUE)]);
++  $logger->error('userInfo after alter: @userinfo', ['@userinfo' => print_r($userinfo, TRUE)]);
++
+   $provider_param = ['@provider' => $client->getPluginId()];
+ 
+   if ($userinfo && empty($userinfo['email'])) {

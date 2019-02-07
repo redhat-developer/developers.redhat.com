@@ -14,6 +14,8 @@ COPY apache/drupal.conf /opt/rh/httpd24/root/etc/httpd/conf.d/drupal.conf
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
 COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/drupal/
+COPY drupal-filesystem/patches /var/www/drupal/patches
+
 # Only install dev dependencies on dev environments
 RUN if [ "$composer_profile" = "development" ]; \ 
     then /usr/local/bin/composer install --no-interaction; \
