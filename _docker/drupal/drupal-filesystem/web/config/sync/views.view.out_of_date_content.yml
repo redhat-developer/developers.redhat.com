@@ -594,6 +594,59 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: date
+        revision_uid:
+          id: revision_uid
+          table: node_revision
+          field: revision_uid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: revision_uid_op
+            label: 'Revision user ID'
+            description: ''
+            use_operator: false
+            operator: revision_uid_op
+            identifier: revision_uid
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              media_manager: '0'
+              layout_manager: '0'
+              content_creator: '0'
+              content_team: '0'
+              content_admin: '0'
+              coding_resource_creator: '0'
+              coding_resource_reviewer: '0'
+              administrator: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: revision_uid
+          plugin_id: numeric
       sorts:
         changed:
           id: changed
@@ -617,7 +670,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      group_by: true
+      group_by: false
     cache_metadata:
       max-age: -1
       contexts:
