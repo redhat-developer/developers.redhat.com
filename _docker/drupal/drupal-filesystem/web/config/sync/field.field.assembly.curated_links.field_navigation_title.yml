@@ -1,0 +1,19 @@
+uuid: fd0e99b5-9f71-4567-a782-de92ff181af4
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.curated_links
+    - field.storage.assembly.field_navigation_title
+id: assembly.curated_links.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: curated_links
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

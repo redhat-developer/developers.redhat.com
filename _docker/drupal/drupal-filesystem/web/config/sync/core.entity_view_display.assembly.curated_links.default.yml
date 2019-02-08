@@ -1,0 +1,37 @@
+uuid: b7f581af-e417-41a4-bf61-dc7a13dd6987
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.curated_links
+    - field.field.assembly.curated_links.field_audience_selection
+    - field.field.assembly.curated_links.field_content_list
+    - field.field.assembly.curated_links.field_navigation_title
+    - field.field.assembly.curated_links.field_title
+id: assembly.curated_links.default
+targetEntityType: assembly
+bundle: curated_links
+mode: default
+content:
+  field_content_list:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_audience_selection: true
+  field_navigation_title: true
+  name: true
+  user_id: true

@@ -8,6 +8,7 @@ dependencies:
     - assembly.assembly_type.content_call_to_action
     - assembly.assembly_type.content_image
     - assembly.assembly_type.content_pull_quote
+    - assembly.assembly_type.curated_links
     - assembly.assembly_type.embedded_content
     - field.storage.node.field_content
     - node.type.article
@@ -32,6 +33,7 @@ settings:
       content_call_to_action: content_call_to_action
       content_image: content_image
       content_pull_quote: content_pull_quote
+      curated_links: curated_links
       embedded_content: embedded_content
     sort:
       field: _none
