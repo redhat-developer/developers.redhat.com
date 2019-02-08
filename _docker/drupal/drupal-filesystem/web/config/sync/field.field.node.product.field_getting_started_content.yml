@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.call_to_action
     - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.curated_links
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.dynamic_content_list
     - assembly.assembly_type.featured_articles
@@ -38,6 +39,7 @@ settings:
     target_bundles:
       call_to_action: call_to_action
       static_content_band: static_content_band
+      curated_links: curated_links
       dynamic_content_feed: dynamic_content_feed
       dynamic_content_list: dynamic_content_list
       featured_articles: featured_articles
