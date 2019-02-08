@@ -309,7 +309,14 @@ function rhdp_preprocess_node(array &$variables) {
       }
     }
     $hide_toc = $node->get('field_hide_toc')->getValue();
-    $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+
+    // Verify that getValue() retrieves a field with a set value.
+    if (isset($hide_toc[0])) {
+      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+    }
+    else {
+      $variables['hide_toc'] = FALSE;
+    }
   }
 
   // Events content type.
