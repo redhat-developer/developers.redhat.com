@@ -80,3 +80,18 @@
     }
   }
 }
+
+.assembly-type-video_hero.full-width-video {
+  padding: 0;
+  background-color: transparent;
+  .container {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+  .background-image,
+  .content {
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+uuid: f9823dea-47d4-4b8e-9f16-926252c600ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.curated_links
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.curated_links.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: curated_links
+label: 'Audience Selection'
+description: 'Check the user types above to show this assembly to. Leave unchecked to show for all users.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
