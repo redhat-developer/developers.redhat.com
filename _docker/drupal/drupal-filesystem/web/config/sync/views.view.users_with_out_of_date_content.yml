@@ -343,21 +343,13 @@ display:
           entity_field: changed
           plugin_id: date
       sorts:
-        changed:
-          id: changed
-          table: node_field_revision
-          field: changed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          granularity: day
+        revision_uid:
+          id: revision_uid
+          table: node_revision
+          field: revision_uid
           entity_type: node
-          entity_field: changed
-          plugin_id: date
+          entity_field: revision_uid
+          plugin_id: standard
       title: 'Users with out of date content'
       header: {  }
       footer: {  }
