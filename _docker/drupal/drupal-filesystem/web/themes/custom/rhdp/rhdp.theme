@@ -616,7 +616,9 @@ function rhdp_preprocess_field(&$variables, $hook) {
     $variables['overview_url'] = $url;
   }
 
-  if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+  if ($variables['field_name'] === 'field_related_product'
+    && isset($variables['items'][0]['content']['#type'])
+    && $variables['items'][0]['content']['#type'] === 'link') {
     $entity = $variables['items'][0]['content']['#options']['entity'];
 
     $product_code = $entity->field_product_machine_name->value;
