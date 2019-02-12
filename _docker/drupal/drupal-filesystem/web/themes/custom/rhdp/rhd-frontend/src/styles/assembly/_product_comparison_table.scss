@@ -1,31 +1,32 @@
 .assembly-type-product_comparison_table {
+  margin: 100px 0;
   .container {
     overflow: hidden;
   }
-  .table {
-    overflow: auto;
+  .table-header {
+    font-size: 18px;
+    background-color:  $grey-1;
+    margin-left: 15rem;
+    text-align: center;
+    padding: 16px;
+    border-bottom: 4px solid $white;
+    @media screen and (max-width: 768px) {
+      margin-left: 9rem;
+    }
   }
+
   table {
-    width: 100%;
-    margin-top: 100px;
-    margin-bottom: 100px;
     border: collapse;
     background-color: $grey-1;
-  }
-  thead > tr > th::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 100%;
+    margin-bottom: 0;
   }
   th {
     text-align: center;
     padding: 5px;
     top: 0;
     position: sticky;
-    min-width: 15rem;
-    max-width: 15rem;
+    min-width: 11.2rem;
+    max-width: 11.2rem;
     svg,
     a ~ svg {
       color: $link;
@@ -35,32 +36,40 @@
       height: initial;
       min-height: 175px;
       padding: 20px;
+      position: relative;
 
     }
-    &:first-of-type {
-      background-color: $white;
-      left: 0;
-      z-index: 3;
+    .th-links {
+      position: absolute;
+      bottom: 16px;
+      width: 80%;
+      .link {
+        display: block;
+        margin-top: 8px;
+        font-weight: 400;
+      }
     }
-  }
-  th:first-child,
-  td:first-child {
-    min-width: 15rem;
-    @media screen and (max-width: 768px) {
-      min-width: 9rem;
+    &:not(:last-of-type) {
+      border-right: 4px solid #fff;
     }
   }
   td {
     border-top: 1px solid $grey-2;
     border-bottom: 1px solid $grey-2;
     border-right: 4px solid $white;
+    height: 85px;
     text-align: center;
     vertical-align: middle;
-    padding: 20px;
 
     &.checked {
       color: $green;
       font-size: 1.5rem;
+      line-height: 1.2;
+      small {
+        display: block;
+        color: $gray-7;
+        font-size: 12px;
+      }
     }
     &.unchecked {
       color: $gray-4;
@@ -70,40 +79,89 @@
       border-right: none;
     }
   }
-  th:first-of-type,
-  td:first-of-type {
-    top: 0;
-    left: 0;
-    position: sticky;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -1px;
-      height: 100%;
-    }
-  }
   tr {
     background-color: $grey-1;
-    &.release-row td:first-of-type {
-      font-weight: 800;
+    &:nth-of-type(2n) {
+      background-color: $grey-1;
     }
-    &.release-row td:first-of-type,
-    &.feature-row td:first-of-type {
+    &.feature-row td {
       background-color: $white;
-      padding: 20px 30px 20px 0;
       text-align: left;
-      border-right: 4px solid #fff;
+      font-size: 16px;
+      @media screen and (max-width: 768px) {
+        font-size: 12px;
+      }
     }
   }
   tr:last-of-type td {
-      border-bottom: none;
+    border-bottom: none;
   }
   h5 {
     margin: 0;
   }
-  .heading-link {
-    display: block;
-    margin-top: 8px;
+  .outside-table {
+    width: 15rem;
+    float: left;
+    margin-top: 185px;
+    @media screen and (max-width: 768px) {
+      width: 9rem;
+    }
+  }
+  .inside-table {
+    width: calc(100% - 15rem);
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #f9f9f9;
+    @media screen and (max-width: 768px) {
+      width: calc(100% - 9rem);
+    }
+    float: right;
+    .scroll-left,
+    .scroll-right {
+      z-index: 1;
+      button {
+        background: $grey-1;
+        color: $black;
+        height: 100%;
+        padding: 15px;
+        cursor: pointer;
+        position: relative;
+        &:focus {outline:0;}
+      }
+    }
+    .scroll-left {
+      float: left;
+      button {
+        -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.02);
+        -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.02);
+        box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.02);
+
+        &:hover {
+          -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.12);
+          -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.12);
+          box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.12);  
+        }
+      }
+    }
+    .scroll-right{
+      float: right;
+      button {
+        -webkit-box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.02);
+        -moz-box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.02);
+        box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.02);
+
+        &:hover {
+          -webkit-box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.12);
+          -moz-box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.12);
+          box-shadow: -3px 0px 3px 0px rgba(0,0,0,0.12);  
+        }
+      }
+    }
+    .center{
+      float: left; 
+      min-width: calc(100% - 80px);
+      overflow: auto;
+    }
   }
 }
