@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_video_resource_tags
     - node.type.video_resource
+    - taxonomy.vocabulary.audience_segment
     - taxonomy.vocabulary.tags
 _core:
   default_config_hash: yO19oSy-9kcLG5Ug5S1PvufSBLs0ak0FWhylyCKM_Cw
@@ -22,9 +23,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
+      audience_segment: audience_segment
       tags: tags
     sort:
       field: _none
     auto_create: true
-    auto_create_bundle: ''
+    auto_create_bundle: audience_segment
 field_type: entity_reference
