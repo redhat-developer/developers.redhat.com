@@ -18,7 +18,7 @@ index 57e1fa4..bfcc8e9 100644
 +      if ($client_id == 'keycloak') {
 +        $form['openid_connect_client_' . $client_id . '_login'] = [
 +          '#type' => 'submit',
-+          '#value' => t('Log in with your developer account'),
++          '#value' => t('Log in with your Red Hat Account'),
 +          '#name' => $client_id,
 +          '#prefix' => '<div>',
 +          '#suffix' => '</div>',
