@@ -616,7 +616,9 @@ function rhdp_preprocess_field(&$variables, $hook) {
     $variables['overview_url'] = $url;
   }
 
-  if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+  if ($variables['field_name'] === 'field_related_product'
+    && isset($variables['items'][0]['content']['#type'])
+    && $variables['items'][0]['content']['#type'] === 'link') {
     $entity = $variables['items'][0]['content']['#options']['entity'];
 
     $product_code = $entity->field_product_machine_name->value;
@@ -799,8 +801,23 @@ function rhdp_preprocess_assembly(&$variables) {
           $variables['products'][$node->id()] = [];
           $variables['products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
           $variables['products'][$node->id()]['cta'] = $node->get('field_call_to_action_link')->getValue()[0];
-          $mid = $node->get('field_image')->getValue()[0]['target_id'];
-          $variables['products'][$node->id()]['logo'] = $mid;
+          if (isset($node->field_image) && isset($node->get('field_image')->getValue()[0])) {
+            // Get the Media entity target_id.
+            $mid = $node->get('field_image')->getValue()[0]['target_id'];
+            // Load the media entity from the id.
+            $media_entity = \Drupal::entityTypeManager()
+              ->getStorage('media')
+              ->load($mid);
+            // Build the render array for the logo.
+            $logo = \Drupal::entityTypeManager()
+              ->getViewBuilder('media')
+              ->view($media_entity, 'thumbnail');
+
+            $variables['products'][$node->id()]['logo'] = $logo;
+          }
+          else {
+            $variables['products'][$node->id()]['logo'] = NULL;
+          }
         }
       }
     }
@@ -868,8 +885,23 @@ function rhdp_preprocess_assembly(&$variables) {
           $variables['upstream_projects'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
           $variables['upstream_projects'][$node->id()]['link_to_project'] = $node->get('field_link_to_project')->getValue()[0];
           $variables['upstream_projects'][$node->id()]['link_to_repo'] = $node->get('field_link_to_repo')->getValue()[0];
-          $mid = $node->get('field_logo')->getValue()[0]['target_id'];
-          $variables['upstream_projects'][$node->id()]['logo'] = $mid;
+          if (isset($node->field_logo) && isset($node->get('field_logo')->getValue()[0])) {
+            // Get the Media entity target_id.
+            $mid = $node->get('field_logo')->getValue()[0]['target_id'];
+            // Load the media entity from the id.
+            $media_entity = \Drupal::entityTypeManager()
+              ->getStorage('media')
+              ->load($mid);
+            // Build the render array for the logo.
+            $logo = \Drupal::entityTypeManager()
+              ->getViewBuilder('media')
+              ->view($media_entity, 'thumbnail');
+
+            $variables['upstream_projects'][$node->id()]['logo'] = $logo;
+          }
+          else {
+            $variables['upstream_projects'][$node->id()]['logo'] = NULL;
+          }
         }
       }
     }
@@ -954,5 +986,14 @@ function rhdp_library_info_alter(array &$libraries, $extension) {
         'minified' => FALSE,
       ];
     }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp/drupal-user-login-form';
   }
 }
