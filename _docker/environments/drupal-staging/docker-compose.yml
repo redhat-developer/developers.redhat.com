@@ -57,7 +57,8 @@ services:
         https_proxy: proxy01.util.phx2.redhat.com:8080
     entrypoint: "ruby _docker/lib/export/export.rb rhdp-drupal.stage.redhat.com"
     volumes:
-      - /data/drupal-export:/export
+      - /drupal-export-workspace:/export
+      - /data/drupal-export/export-archives:/export/export-archives
       - /credentials/rsync:/home/jenkins_developer/.ssh
       - /credentials/akamai/edgerc:/home/jenkins_developer/.edgerc
       - ../../../:/home/jenkins_developer/developer.redhat.com
