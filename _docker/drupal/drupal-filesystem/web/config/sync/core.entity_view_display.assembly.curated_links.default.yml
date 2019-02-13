@@ -8,6 +8,10 @@ dependencies:
     - field.field.assembly.curated_links.field_content_list
     - field.field.assembly.curated_links.field_navigation_title
     - field.field.assembly.curated_links.field_title
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.curated_links.default
 targetEntityType: assembly
 bundle: curated_links
