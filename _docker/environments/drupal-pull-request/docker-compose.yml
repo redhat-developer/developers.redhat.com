@@ -8,7 +8,7 @@ services:
     environment:
       - FORTAWESOME_REGISTRY
     ports:
-      - "${DRUPAL_HOST_PORT}:80"
+      - "${DRUPAL_HOST_PORT}:8080"
     links:
       - drupalmysql
     volumes:
