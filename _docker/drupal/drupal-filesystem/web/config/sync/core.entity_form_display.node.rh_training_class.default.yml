@@ -80,35 +80,35 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: fields
+    region: content
   field_completion_time:
     weight: 6
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: fields
+    region: content
   field_exclude_from_search:
     weight: 14
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: settings
+    region: content
   field_image:
     type: image_image
     weight: 15
     settings:
       preview_image_style: thumbnail
       progress_indicator: throbber
-    region: fields
+    region: content
     third_party_settings: {  }
   field_level:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: fields
+    region: content
   field_long_description:
     weight: 3
     settings:
@@ -125,7 +125,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-    region: fields
+    region: content
   field_source_link:
     weight: 4
     settings:
@@ -133,7 +133,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: fields
+    region: content
   field_tax_audience_segment:
     weight: 18
     settings: {  }
@@ -212,25 +212,11 @@ content:
     region: settings
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 11
-    region: settings
-    third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
     weight: 9
     region: settings
     settings: {  }
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 12
-    region: settings
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -240,19 +226,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 8
-    region: settings
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   url_redirects:
     weight: 17
     region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
+  promote: true
   status: true
+  sticky: true
+  uid: true

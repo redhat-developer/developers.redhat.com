@@ -196,15 +196,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: settings
-    third_party_settings: {  }
   url_redirects:
     weight: 10
     region: settings
@@ -214,3 +205,4 @@ hidden:
   promote: true
   status: true
   sticky: true
+  uid: true

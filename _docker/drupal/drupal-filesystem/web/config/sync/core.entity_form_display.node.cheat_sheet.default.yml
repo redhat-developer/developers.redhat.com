@@ -30,12 +30,11 @@ dependencies:
     - field.field.node.cheat_sheet.field_topics
     - node.type.cheat_sheet
   module:
-    - content_moderation
+    - compose
     - entity_browser
     - field_group
     - field_layout
     - interval
-    - layout_discovery
     - link
     - metatag
     - path
@@ -64,8 +63,9 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Purpose Attributes'
+      region: fields
   field_layout:
-    id: layout_disabled
+    id: compose_tabs
     settings: {  }
 _core:
   default_config_hash: hK6VqyuwHGWREmF7Yh7eR1qaswdJJrxpzxWQSNUlHkw
@@ -88,7 +88,7 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: settings
   field_card_image:
     weight: 17
     settings:
@@ -129,7 +129,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_cover_image:
     type: entity_browser_file
     weight: 18
@@ -141,6 +141,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_difficulty:
@@ -161,7 +162,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: settings
   field_read_time:
     weight: 15
     settings:
@@ -180,6 +181,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_short_description:
@@ -192,64 +194,94 @@ content:
     region: content
   field_tax_audience_segment:
     weight: 23
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_business_unit:
     weight: 24
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_campaign:
     weight: 25
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_lifecycle:
     weight: 26
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_product:
     weight: 27
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_product_line:
     weight: 28
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_project:
     weight: 29
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_promotion:
     weight: 30
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_region:
     weight: 31
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_stage:
     weight: 32
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
-    region: content
+    type: entity_reference_autocomplete
+    region: fields
   field_topics:
     weight: 2
     settings: {  }
@@ -258,36 +290,24 @@ content:
     region: content
   moderation_state:
     weight: 21
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: moderation_state_default
-    region: content
+    type: string_textfield
+    region: settings
   path:
     type: path
     weight: 13
     settings: {  }
     third_party_settings: {  }
-    region: content
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 11
-    third_party_settings: {  }
-    region: content
+    region: settings
   published_at:
     type: publication_date_timestamp
     weight: 10
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 12
-    third_party_settings: {  }
-    region: content
   title:
     type: string_textfield
     weight: 0
@@ -296,19 +316,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-  uid:
-    type: entity_reference_autocomplete
-    weight: 9
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
   url_redirects:
     weight: 21
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
+  promote: true
   status: true
+  sticky: true
+  uid: true

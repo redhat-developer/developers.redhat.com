@@ -43,7 +43,6 @@ dependencies:
     - node.type.books
   module:
     - compose
-    - content_moderation
     - field_group
     - field_layout
     - image
@@ -87,6 +86,12 @@ targetEntityType: node
 bundle: books
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 25
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_author:
     weight: 4
     settings:
@@ -312,13 +317,15 @@ content:
     region: fields
   moderation_state:
     weight: 23
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: moderation_state_default
+    type: string_textfield
     region: settings
   path:
     type: path
-    weight: 25
+    weight: 26
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -337,12 +344,11 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 26
+    weight: 27
     region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   field_average_rating: true
   field_categories: true
   field_preview_url: true

@@ -81,6 +81,12 @@ targetEntityType: node
 bundle: events
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_data_tags:
     weight: 18
     settings:
@@ -262,6 +268,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_topics:
@@ -296,7 +303,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   field_event_type: true
   field_title: true
   path: true

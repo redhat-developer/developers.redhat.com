@@ -77,6 +77,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_author:
     weight: 1
     settings:
@@ -92,7 +98,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: fields
+    region: content
   field_description:
     weight: 9
     settings:
@@ -100,7 +106,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: fields
+    region: content
   field_level:
     weight: 2
     settings: {  }
@@ -121,7 +127,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: fields
+    region: content
   field_source_link:
     weight: 5
     settings:
@@ -214,7 +220,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: fields
+    region: content
   moderation_state:
     weight: 15
     settings: {  }
@@ -247,7 +253,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   promote: true
   status: true
   sticky: true

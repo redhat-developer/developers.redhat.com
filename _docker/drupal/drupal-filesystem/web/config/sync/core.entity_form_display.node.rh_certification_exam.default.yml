@@ -97,6 +97,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_level:
@@ -221,13 +222,6 @@ content:
     region: settings
     settings: {  }
     third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 10
-    region: settings
-    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -236,15 +230,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 8
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: settings
-    third_party_settings: {  }
   url_redirects:
     weight: 16
     region: settings
@@ -252,3 +237,5 @@ content:
     third_party_settings: {  }
 hidden:
   status: true
+  sticky: true
+  uid: true

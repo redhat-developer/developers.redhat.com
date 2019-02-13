@@ -123,6 +123,12 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_content:
     weight: 18
     settings:
@@ -340,7 +346,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   field_call_to_action_link: true
   field_card_image: true
   field_image: true

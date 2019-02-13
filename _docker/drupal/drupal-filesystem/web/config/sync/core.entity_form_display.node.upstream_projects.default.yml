@@ -24,6 +24,12 @@ targetEntityType: node
 bundle: upstream_projects
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_link_to_project:
     weight: 1
     settings:
@@ -52,6 +58,7 @@ content:
       field_widget_display_settings:
         view_mode: thumbnail
       open: true
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   moderation_state:
@@ -74,11 +81,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  url_redirects:
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  created: true
   path: true
   promote: true
   status: true
   sticky: true
   uid: true
-  url_redirects: true
