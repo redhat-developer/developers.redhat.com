@@ -29,6 +29,7 @@
  * @see template_preprocess_views_view_fields()
  */
 #}
+
 <li class="connector" data-connectorpriority="{{ row._entity.field_connector_priority.value }}" data-connectortitle="{{ row._entity.title.value }}">
   <a href="#" class="fn-open-connector">
     <img src="{{ fields.thumbnail__target_id.content }}" alt="logo" class="connector-logo">
@@ -42,11 +43,22 @@
       </div>
       <div class="large-17 columns">
         {{ fields.field_connector_short_descriptio.content }}
-        <p class="link_1_text">
-          <a href="{{ fields.field_connector_link_1_url.content }}" class="link_1">{{ fields.field_connector_link_1.content }}</a><br>
-          <a href="{{ fields.field_connector_link_2_url.content }}" class="link_2">{{ fields.field_connector_link_2.content }}</a>
-        </p>
-        <p class="docs-link-text">For more details, view the <a href="{{ row._entity.field_connector_details_url.value }}" class="docs-link">Product Documentation</a></p>
+
+        {% if (connector_link_1_url is not empty and connector_link_1_text is not empty) or (connector_link_2_url is not empty and connector_link_2_text is not empty) %}
+          <p class="link_1_text">
+            {% if (connector_link_1_url is not empty and connector_link_1_text is not empty) %}
+              <a href="{{ connector_link_1_url }}" class="link_1">{{ connector_link_1_text }}</a><br>
+            {% endif %}
+            {% if (connector_link_2_url is not empty and connector_link_2_text is not empty) %}
+              <a href="{{ connector_link_2_url }}" class="link_2">{{ connector_link_2_text }}</a>
+            {% endif %}
+          </p>
+        {% endif %}
+
+        {# Product documentation link #}
+        {% if connector_details_url_link is not empty %}
+          <p class="docs-link-text">For more details, view the <a href="{{ connector_details_url_link }}" class="docs-link">Product Documentation</a></p>
+        {% endif %}
       </div>
     </div>
   </div>
