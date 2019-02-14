@@ -9,6 +9,7 @@ dependencies:
     - field.storage.node.field_image
     - field.storage.node.field_short_description
     - image.style.medium
+    - taxonomy.vocabulary.tags
   module:
     - image
     - node
@@ -136,10 +137,11 @@ display:
             type: 'entity:taxonomy_term'
             fail: 'not found'
           validate_options:
+            bundles:
+              tags: tags
             access: true
             operation: view
             multiple: 0
-            bundles: {  }
           break_phrase: false
           add_table: false
           require_value: false
