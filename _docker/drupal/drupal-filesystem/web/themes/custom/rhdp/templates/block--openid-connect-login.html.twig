@@ -33,15 +33,15 @@
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  <details>
-    <summary>Login with your developer account</summary>
-    {{ title_prefix }}
-    {% if label %}
-      <h2{{ title_attributes }}>{{ label }}</h2>
-    {% endif %}
-    {{ title_suffix }}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </details>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <p>Content editors should now log in using their Red Hat account.</p>
+  <p>Please ensure that your Red Hat account has the same email address as used by your account in Drupal. For assistance, please contact the RHDP Engineering team or use the 'report a website issue' link in the footer below.</p>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+  <button id="drupalUserLoginToggleVisibility">Legacy login</button>
 </div>
