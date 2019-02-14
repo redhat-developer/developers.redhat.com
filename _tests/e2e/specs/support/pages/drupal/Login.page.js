@@ -11,7 +11,8 @@ export class Login extends Page {
         this.addSelectors({
             usernameField: '#edit-name',
             passwordField: '#edit-pass',
-            loginButton: '#edit-submit'
+            loginButton: '#edit-submit',
+            legacyLoginButton: '#drupalUserLoginToggleVisibility'
         });
     }
 
@@ -21,6 +22,7 @@ export class Login extends Page {
     }
 
     with(user, password) {
+        this.click(this.getSelector("legacyLoginButton"));
         this.type(user, this.getSelector('usernameField'));
         this.type(password, this.getSelector('passwordField'));
         this.click(this.getSelector('loginButton'));
