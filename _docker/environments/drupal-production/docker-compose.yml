@@ -13,7 +13,6 @@ services:
     volumes:
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-      - /credentials/akamai/edgerc:/credentials/akamai/edgerc
       - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
       - /data/drupal-logs/lightning:/var/log/httpd

@@ -12,7 +12,6 @@ services:
     links:
       - drupalmysql
     volumes:
-      - /credentials/akamai/edgerc:/credentials/akamai/edgerc
       - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
     volumes_from:
