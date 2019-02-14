@@ -31,6 +31,7 @@ dependencies:
     - node.type.cheat_sheet
   module:
     - compose
+    - content_moderation
     - entity_browser
     - field_group
     - field_layout
@@ -58,10 +59,11 @@ third_party_settings:
       weight: 22
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
       region: fields
   field_layout:
@@ -199,7 +201,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_business_unit:
     weight: 24
@@ -208,7 +210,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_campaign:
     weight: 25
@@ -217,7 +219,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_lifecycle:
     weight: 26
@@ -226,7 +228,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_product:
     weight: 27
@@ -235,7 +237,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_product_line:
     weight: 28
@@ -244,7 +246,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_project:
     weight: 29
@@ -253,7 +255,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_promotion:
     weight: 30
@@ -262,7 +264,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_region:
     weight: 31
@@ -271,7 +273,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_tax_stage:
     weight: 32
@@ -280,7 +282,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: fields
   field_topics:
     weight: 2

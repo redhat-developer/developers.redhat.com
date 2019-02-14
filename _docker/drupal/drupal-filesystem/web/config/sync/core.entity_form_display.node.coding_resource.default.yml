@@ -52,10 +52,11 @@ third_party_settings:
       weight: 12
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
       region: fields
   field_layout:
@@ -149,61 +150,61 @@ content:
     weight: 17
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_business_unit:
     weight: 18
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_campaign:
     weight: 19
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_lifecycle:
     weight: 20
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product:
     weight: 21
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product_line:
     weight: 22
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_project:
     weight: 23
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_promotion:
     weight: 24
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_region:
     weight: 25
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_stage:
     weight: 26
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_technologies:
     weight: 3

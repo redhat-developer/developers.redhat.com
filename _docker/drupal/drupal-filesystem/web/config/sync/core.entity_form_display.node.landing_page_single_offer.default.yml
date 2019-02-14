@@ -48,10 +48,11 @@ third_party_settings:
       weight: 6
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
       region: fields
   field_layout:
@@ -130,61 +131,61 @@ content:
     weight: 26
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_business_unit:
     weight: 27
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_campaign:
     weight: 28
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_lifecycle:
     weight: 29
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product:
     weight: 30
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product_line:
     weight: 31
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_project:
     weight: 32
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_promotion:
     weight: 33
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_region:
     weight: 34
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_stage:
     weight: 35
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   moderation_state:
     type: moderation_state_default

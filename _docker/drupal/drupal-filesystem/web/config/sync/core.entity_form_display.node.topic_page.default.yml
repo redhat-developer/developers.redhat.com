@@ -49,10 +49,11 @@ third_party_settings:
       weight: 4
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
       region: fields
   field_layout:
@@ -107,68 +108,70 @@ content:
     weight: 3
     settings:
       preview_image_style: thumbnail
-      progress_indicator: throbber
+      open: true
+      selection_mode: selection_append
+      field_widget_replace: false
     region: fields
     third_party_settings: {  }
   field_tax_audience_segment:
     weight: 11
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_business_unit:
     weight: 12
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_campaign:
     weight: 13
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_lifecycle:
     weight: 14
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product:
     weight: 15
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_product_line:
     weight: 16
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_project:
     weight: 17
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_promotion:
     weight: 18
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_region:
     weight: 19
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   field_tax_stage:
     weight: 20
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: fields
   moderation_state:
     weight: 9
