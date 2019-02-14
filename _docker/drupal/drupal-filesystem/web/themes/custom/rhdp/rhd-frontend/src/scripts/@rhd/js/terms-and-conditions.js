@@ -144,7 +144,7 @@ app.termsAndConditions = {
     function checkRecentDownload() {
         // Set storage expiration time to 10 minutes
         var storageExpiration = 600000;
-        if(window.location.href.indexOf('download-manager')>0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)){
+        if(app.termsAndConditions.isDownloadPage()){
             if(window.localStorage.getItem('recent-download-url')){
                 var recentDownload,timeOfRefer, currentTime;
                 recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
@@ -200,7 +200,12 @@ app.termsAndConditions = {
 // Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
 $(function() {
   //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
-
+  if(app.termsAndConditions) {
+    // app.termsAndConditions.isDownloadPage() test for tcDownloadURL is not empty, tcDownloadFileName is not empty and tcSourceLink (contains 'download-manager') 
+    if(app.termsAndConditions.isDownloadPage()) {
+        app.termsAndConditions.download();
+    }
+}
   //Display the Ts&Cs banner
   if ($('#_developer_program_terms_conditions').length) {
     app.termsAndConditions.banner();
