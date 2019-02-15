@@ -73,9 +73,7 @@ app.termsAndConditions = {
     }
     messageTemplate = messageTemplate + '</div>';
 
-    if($('#downloadContainerId').length){
-      $('#downloadContainerId').html($.parseHTML(messageTemplate));
-    } else if($('section.product-header').length) {
+    if($('section.product-header').length) {
       $('section.product-header').append($.parseHTML('<div class="row">'+messageTemplate+'</div>'));
     } else if($('#rhd-article').length) {
       $('#rhd-article > div.pre-body').after($.parseHTML('<div class="row">'+messageTemplate+'</div>'));
@@ -200,7 +198,7 @@ app.termsAndConditions = {
 // Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
 $(function() {
   //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
-  
+
   //Display the Ts&Cs banner
   if ($('#_developer_program_terms_conditions').length) {
     app.termsAndConditions.banner();
