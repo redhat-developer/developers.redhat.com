@@ -80,14 +80,17 @@ function rhdp_theme_suggestions_block_alter(array &$suggestions, array $variable
  * Implements hook_preprocess_block().
  */
 function rhdp_preprocess_block(array &$variables) {
-  $block_id = $variables['elements']['#id'];
+  // Verify that the #id has some non-empty value prior to using it.
+  if (!empty($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
 
-  if ($block_id == 'rhdnavigation_mobile') {
-    $variables['attributes']['class'][] = 'rhd-nav-mobile';
-  }
+    if ($block_id == 'rhdnavigation_mobile') {
+      $variables['attributes']['class'][] = 'rhd-nav-mobile';
+    }
 
-  if ($block_id == 'rhdnavigation') {
-    $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    if ($block_id == 'rhdnavigation') {
+      $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
   }
 }
 
@@ -309,7 +312,14 @@ function rhdp_preprocess_node(array &$variables) {
       }
     }
     $hide_toc = $node->get('field_hide_toc')->getValue();
-    $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+
+    // Verify that getValue() retrieves a field with a set value.
+    if (isset($hide_toc[0])) {
+      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+    }
+    else {
+      $variables['hide_toc'] = FALSE;
+    }
   }
 
   // Events content type.
@@ -648,7 +658,9 @@ function rhdp_preprocess_field(&$variables, $hook) {
     $variables['overview_url'] = $url;
   }
 
-  if ($variables['field_name'] === 'field_related_product' && $variables['items'][0]['content']['#type'] === 'link') {
+  if ($variables['field_name'] === 'field_related_product'
+    && isset($variables['items'][0]['content']['#type'])
+    && $variables['items'][0]['content']['#type'] === 'link') {
     $entity = $variables['items'][0]['content']['#options']['entity'];
 
     $product_code = $entity->field_product_machine_name->value;
@@ -831,8 +843,23 @@ function rhdp_preprocess_assembly(&$variables) {
           $variables['products'][$node->id()] = [];
           $variables['products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
           $variables['products'][$node->id()]['cta'] = $node->get('field_call_to_action_link')->getValue()[0];
-          $mid = $node->get('field_image')->getValue()[0]['target_id'];
-          $variables['products'][$node->id()]['logo'] = $mid;
+          if (isset($node->field_image) && isset($node->get('field_image')->getValue()[0])) {
+            // Get the Media entity target_id.
+            $mid = $node->get('field_image')->getValue()[0]['target_id'];
+            // Load the media entity from the id.
+            $media_entity = \Drupal::entityTypeManager()
+              ->getStorage('media')
+              ->load($mid);
+            // Build the render array for the logo.
+            $logo = \Drupal::entityTypeManager()
+              ->getViewBuilder('media')
+              ->view($media_entity, 'thumbnail');
+
+            $variables['products'][$node->id()]['logo'] = $logo;
+          }
+          else {
+            $variables['products'][$node->id()]['logo'] = NULL;
+          }
         }
       }
     }
@@ -900,8 +927,23 @@ function rhdp_preprocess_assembly(&$variables) {
           $variables['upstream_projects'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
           $variables['upstream_projects'][$node->id()]['link_to_project'] = $node->get('field_link_to_project')->getValue()[0];
           $variables['upstream_projects'][$node->id()]['link_to_repo'] = $node->get('field_link_to_repo')->getValue()[0];
-          $mid = $node->get('field_logo')->getValue()[0]['target_id'];
-          $variables['upstream_projects'][$node->id()]['logo'] = $mid;
+          if (isset($node->field_logo) && isset($node->get('field_logo')->getValue()[0])) {
+            // Get the Media entity target_id.
+            $mid = $node->get('field_logo')->getValue()[0]['target_id'];
+            // Load the media entity from the id.
+            $media_entity = \Drupal::entityTypeManager()
+              ->getStorage('media')
+              ->load($mid);
+            // Build the render array for the logo.
+            $logo = \Drupal::entityTypeManager()
+              ->getViewBuilder('media')
+              ->view($media_entity, 'thumbnail');
+
+            $variables['upstream_projects'][$node->id()]['logo'] = $logo;
+          }
+          else {
+            $variables['upstream_projects'][$node->id()]['logo'] = NULL;
+          }
         }
       }
     }
@@ -986,5 +1028,59 @@ function rhdp_library_info_alter(array &$libraries, $extension) {
         'minified' => FALSE,
       ];
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function rhdp_preprocess_views_view_fields(&$variables) {
+  // Properly validates and retrieves the URL and string values that will be
+  // used to render links in the connectors_rest_export views_view_fields Twig
+  // template.
+  //
+  // @see views-view-fields--connectors_rest_export--connectors_rest_export_block.html.twig
+  if ($variables['view']->id() == 'connectors_rest_export') {
+    if (isset($variables['row'])) {
+      // Get the Connector Node object.
+      $connector = $variables['row']->_entity;
+
+      // field_connector_link_1
+      if ($connector->hasField('field_connector_link_1') && !empty($connector->get('field_connector_link_1')[0])) {
+        $field_connector_link_1 = $connector->get('field_connector_link_1');
+        $field_connector_link_1_url = $field_connector_link_1[0]->getUrl()->toString();
+        $field_connector_link_1_text = $connector->get('field_connector_link_1_text')->value;
+      }
+
+      // field_connector_link_2
+      if ($connector->hasField('field_connector_link_2') && !empty($connector->get('field_connector_link_2')[0])) {
+        $field_connector_link_2 = $connector->get('field_connector_link_2');
+        $field_connector_link_2_url = $field_connector_link_2[0]->getUrl()->toString();
+        $field_connector_link_2_text = $connector->get('field_connector_link_2_text')->value;
+      }
+
+      // field_connector_details_url
+      if ($connector->hasField('field_connector_details_url') && !empty($connector->get('field_connector_details_url')[0])) {
+        $field_connector_details_url = $connector->get('field_connector_details_url');
+        $field_connector_details_url_link = $field_connector_details_url[0]->getUrl()->toString();
+
+      }
+    }
+
+    // Set variables that will be used to render links in the Twig template.
+    $variables['connector_link_1_url'] = isset($field_connector_link_1_url) ? $field_connector_link_1_url : null;
+    $variables['connector_link_1_text'] = isset($field_connector_link_1_text) ? $field_connector_link_1_text : null;
+    $variables['connector_link_2_url'] = isset($field_connector_link_2_url) ? $field_connector_link_2_url : null;
+    $variables['connector_link_2_text'] = isset($field_connector_link_2_text) ? $field_connector_link_2_text : null;
+    $variables['connector_details_url_link'] = isset($field_connector_details_url_link) ? $field_connector_details_url_link : null;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp/drupal-user-login-form';
   }
 }

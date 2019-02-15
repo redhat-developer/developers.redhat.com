@@ -58,7 +58,10 @@
         "drupal/twig_tweak": "^2.1",
         "drupal/imagecache_external": "1.x-dev#901b9b0a9cfd728e76da016b56757a24fc45fde0",
         "drupal/readonlymode": "^1.0",
-        "drupal/session_limit": "^1.0@beta"
+        "drupal/session_limit": "^1.0@beta",
+        "drupal/seckit": "1.1",
+        "drupal/login_security": "1.5",
+        "drupal/restui": "1.16"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",
@@ -66,7 +69,7 @@
         "behat/mink-goutte-driver": "1.2.1",
         "jcalderonzumba/gastonjs": "1.0.3",
         "drupal/coder": "8.2.12",
-        "mikey179/vfsStream": "1.6.5",
+        "mikey179/vfsstream": "1.6.5",
         "phpunit/phpunit": "4.8.36",
         "symfony/css-selector": "2.8.45",
         "behat/behat": "3.5.0",
@@ -127,7 +130,8 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch"
+            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
+            "Fix module does not exist error": "https://www.drupal.org/files/issues/2018-10-11/3000677-30.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
