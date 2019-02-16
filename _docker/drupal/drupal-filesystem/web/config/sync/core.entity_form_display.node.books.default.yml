@@ -43,13 +43,13 @@ dependencies:
     - node.type.books
   module:
     - content_moderation
-    - datetime
     - entity_browser
     - field_group
     - interval
     - link
     - metatag
     - path
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -69,10 +69,11 @@ third_party_settings:
       weight: 26
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
 _core:
   default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
@@ -133,6 +134,7 @@ content:
       preview_image_style: thumbnail
       field_widget_edit: true
       view_mode: default
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_difficulty:
@@ -221,6 +223,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_short_description:
@@ -244,61 +247,61 @@ content:
     weight: 27
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_business_unit:
     weight: 28
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_campaign:
     weight: 29
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_lifecycle:
     weight: 30
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_product:
     weight: 31
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_product_line:
     weight: 32
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_project:
     weight: 33
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_promotion:
     weight: 34
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_region:
     weight: 35
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_stage:
     weight: 36
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_thumbnail_url:
     weight: 16
