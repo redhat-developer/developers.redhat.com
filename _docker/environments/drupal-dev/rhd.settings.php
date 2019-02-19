@@ -32,7 +32,6 @@ $databases['default']['default'] = array (
 
 $settings['hash_salt'] = 'xuAWpK0fmrZ6UGofFcP3lBkcmdpdumWMLqvCbnYjFY85OgRXYvEKPItJDH66vs4UpeYORQXLHQ';
 $config_directories['sync'] = 'config/sync';
-$settings['install_profile'] = 'lightning';
 
 /* Increase default memory settings for Drupal to 256 meg. Taken from: https://www.drupal.org/docs/7/managing-site-performance-and-scalability/changing-php-memory-limits */
 ini_set('memory_limit', '256M');
@@ -89,3 +88,10 @@ else {
     ]
   );
 }
+
+
+#
+# Set the Akamai network that purge requests should go to
+#
+$config['akamai.settings']['domain']['production'] = false;
+$config['akamai.settings']['domain']['staging'] = true;

@@ -61,7 +61,8 @@
         "drupal/session_limit": "^1.0@beta",
         "drupal/seckit": "1.1",
         "drupal/login_security": "1.5",
-        "drupal/restui": "1.16"
+        "drupal/restui": "1.16",
+        "drupal/akamai": "3.0-alpha3"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",
@@ -139,6 +140,9 @@
           "drupal/openid_connect": {
             "Change Keycloak LoginForm button text": "patches/openid_connect/change-keycloak-button-text.patch",
             "Add logging to openid_connect to support SSO debug": "patches/openid_connect/openid_connect.module-logging.patch"
+          },
+          "drupal/akamai": {
+            "Change text on the button to refresh content in Akamai": "patches/akamai/change-button-text.patch"
           }
         }
     }
