@@ -50,12 +50,17 @@ function rhd_common_form_alter(&$form, &$form_state, $form_id) {
   }
 
   // Require a revision log message.
-  if (isset($form['revision_log'])) {
-    unset($form['revision_log']['#group']);
+  if (isset($form['revision_log']) && isset($form['moderation_state'])) {
+    $entity = $form_state->getFormObject()->getEntity();
+    $is_published = ($entity->get('moderation_state')->getValue()[0]['value'] === 'published');
 
-    $form['revision_log']['widget']['#required'] = TRUE;
-    $form['revision_log']['widget'][0]['#required'] = TRUE;
-    $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+    if ($is_published) {
+      $form['revision_log']['widget']['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+    }
+
+    unset($form['revision_log']['#group']);
   }
 }
 
