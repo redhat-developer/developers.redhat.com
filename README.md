@@ -379,12 +379,20 @@ You can contact Jason Porter, Adela Arreola, Luke Dary or Dan Coughlin (all avai
 
 ## Drupal Module Development
 
+#### Custom module development
+
 All module development must happen in the `_docker/drupal/drupal-filesystem/web/modules/custom/<module name>` directory.
 Work is typically done using PhpStorm or text editor.
 If you are modifying the yaml files of an existing module you may need to restart the Drupal container for everything to be correctly picked up and applied.
 You could also attempt to use the `drush updatedb` command, though it may not pick up everything.
 
-New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
+#### Installing contrib module(s)
+
+First, we must require the module with Composer by executing `composer require drupal/modulename` in the `_docker/drupal/drupal-filesystem` directory. It must be executed in this directory because this is where our project's composer.json and composer.lock files are
+
+Next, you can enable/install the module either by using the drush command line tool: `drush en modulename` or by logging into the admin interface of Drupal and navigating to /admin/modules, locating `modulename`, checking the checkbox next to the name to enable it and clicking the Install submit button at the very bottom of the page/form.
+
+Lastly, the module might have some configuration that needs to be exported (stored in code). To do this, execute `drush cex`. If there is any configuration to export, it will be exported to YAML files that you can include in your PR to install the contrib module.
 
 ## Updating the Staging Integration Branch
 developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak.

@@ -43,6 +43,7 @@ dependencies:
     - field_group
     - image
     - link
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -62,10 +63,11 @@ third_party_settings:
       weight: 21
       format_type: details
       format_settings:
+        label: 'Purpose Attributes'
+        open: true
+        required_fields: true
         id: ''
         classes: ''
-        open: false
-        required_fields: true
       label: 'Purpose Attributes'
 _core:
   default_config_hash: GGP4WPf7fQzefk1CREJvQ0AQ0fL2jddPAwQ2_EEAbBk
@@ -188,61 +190,61 @@ content:
     weight: 22
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_business_unit:
     weight: 23
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_campaign:
     weight: 24
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_lifecycle:
     weight: 25
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_product:
     weight: 26
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_product_line:
     weight: 27
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_project:
     weight: 28
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_promotion:
     weight: 29
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_region:
     weight: 30
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tax_stage:
     weight: 31
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_tile_thumbnail:
     type: entity_browser_file
@@ -255,6 +257,7 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_topics:

@@ -990,6 +990,51 @@ function rhdp_library_info_alter(array &$libraries, $extension) {
 }
 
 /**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function rhdp_preprocess_views_view_fields(&$variables) {
+  // Properly validates and retrieves the URL and string values that will be
+  // used to render links in the connectors_rest_export views_view_fields Twig
+  // template.
+  //
+  // @see views-view-fields--connectors_rest_export--connectors_rest_export_block.html.twig
+  if ($variables['view']->id() == 'connectors_rest_export') {
+    if (isset($variables['row'])) {
+      // Get the Connector Node object.
+      $connector = $variables['row']->_entity;
+
+      // field_connector_link_1
+      if ($connector->hasField('field_connector_link_1') && !empty($connector->get('field_connector_link_1')[0])) {
+        $field_connector_link_1 = $connector->get('field_connector_link_1');
+        $field_connector_link_1_url = $field_connector_link_1[0]->getUrl()->toString();
+        $field_connector_link_1_text = $connector->get('field_connector_link_1_text')->value;
+      }
+
+      // field_connector_link_2
+      if ($connector->hasField('field_connector_link_2') && !empty($connector->get('field_connector_link_2')[0])) {
+        $field_connector_link_2 = $connector->get('field_connector_link_2');
+        $field_connector_link_2_url = $field_connector_link_2[0]->getUrl()->toString();
+        $field_connector_link_2_text = $connector->get('field_connector_link_2_text')->value;
+      }
+
+      // field_connector_details_url
+      if ($connector->hasField('field_connector_details_url') && !empty($connector->get('field_connector_details_url')[0])) {
+        $field_connector_details_url = $connector->get('field_connector_details_url');
+        $field_connector_details_url_link = $field_connector_details_url[0]->getUrl()->toString();
+
+      }
+    }
+
+    // Set variables that will be used to render links in the Twig template.
+    $variables['connector_link_1_url'] = isset($field_connector_link_1_url) ? $field_connector_link_1_url : null;
+    $variables['connector_link_1_text'] = isset($field_connector_link_1_text) ? $field_connector_link_1_text : null;
+    $variables['connector_link_2_url'] = isset($field_connector_link_2_url) ? $field_connector_link_2_url : null;
+    $variables['connector_link_2_text'] = isset($field_connector_link_2_text) ? $field_connector_link_2_text : null;
+    $variables['connector_details_url_link'] = isset($field_connector_details_url_link) ? $field_connector_details_url_link : null;
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
