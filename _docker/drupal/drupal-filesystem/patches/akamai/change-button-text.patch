@@ -1,0 +1,13 @@
+diff --git a/src/Form/ClearUrlForm.php b/src/Form/ClearUrlForm.php
+index b985a97..e0d743a 100644
+--- a/src/Form/ClearUrlForm.php
++++ b/src/Form/ClearUrlForm.php
+@@ -62,7 +62,7 @@ class ClearUrlForm extends FormBase {
+     ];
+     $form['submit'] = [
+       '#type'  => 'submit',
+-      '#value' => $this->t('Refresh Akamai Cache'),
++      '#value' => $this->t('Refresh Page in Akamai'),
+     ];
+ 
+     return $form;
