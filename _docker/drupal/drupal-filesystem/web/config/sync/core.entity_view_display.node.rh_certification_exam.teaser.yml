@@ -11,6 +11,16 @@ dependencies:
     - field.field.node.rh_certification_exam.field_long_description
     - field.field.node.rh_certification_exam.field_short_description
     - field.field.node.rh_certification_exam.field_source_link
+    - field.field.node.rh_certification_exam.field_tax_audience_segment
+    - field.field.node.rh_certification_exam.field_tax_business_unit
+    - field.field.node.rh_certification_exam.field_tax_campaign
+    - field.field.node.rh_certification_exam.field_tax_lifecycle
+    - field.field.node.rh_certification_exam.field_tax_product
+    - field.field.node.rh_certification_exam.field_tax_product_line
+    - field.field.node.rh_certification_exam.field_tax_project
+    - field.field.node.rh_certification_exam.field_tax_promotion
+    - field.field.node.rh_certification_exam.field_tax_region
+    - field.field.node.rh_certification_exam.field_tax_stage
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
@@ -41,4 +51,16 @@ hidden:
   field_long_description: true
   field_short_description: true
   field_source_link: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_topics: true
+  langcode: true
+  published_at: true
