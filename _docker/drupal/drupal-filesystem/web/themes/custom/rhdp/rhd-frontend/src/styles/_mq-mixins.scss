@@ -2,7 +2,7 @@ $mq-mobile-portrait: 320px;
 $mq-mobile-landscape: 480px;
 $mq-tablet-portrait: 576px;
 $mq-tablet-landscape: 768px;
-$mq-desktop-extra-small: 992px;
+$mq-desktop-extra-small: 1007px;
 $mq-desktop-small: 1024px;
 $mq-desktop: 1170px;
 $mq-desktop-large: 1240px;
@@ -18,7 +18,7 @@ $mq-desktop-large: 1240px;
     @content;
   }
 }
-@mixin desktop-extra-small { // > 992px
+@mixin desktop-extra-small { // > 1007px
   @media (min-width: #{$mq-desktop-extra-small}) {
     @content;
   }
@@ -59,7 +59,7 @@ $mq-desktop-large: 1240px;
   }
 }
 
-@mixin desktop-extra-small-and-down { // < 992px
+@mixin desktop-extra-small-and-down { // < 1007px
   @media only screen and (max-width: #{$mq-desktop-extra-small}) {
     @content;
   }
