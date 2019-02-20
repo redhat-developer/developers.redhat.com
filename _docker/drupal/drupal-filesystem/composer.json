@@ -24,11 +24,11 @@
     "require": {
         "drupal-composer/drupal-scaffold": "2.5.4",
         "cweagans/composer-patches": "1.6.5",
-        "acquia/lightning": "3.2.4",
-        "drupal/admin_toolbar": "1.25",
+        "acquia/lightning": "3.2.5",
+        "drupal/admin_toolbar": "1.26",
         "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
         "drupal/asciidoc": "1.2",
-        "drupal/core": "8.6.7",
+        "drupal/core": "8.6.10",
         "drupal/content_moderation_edit_notify": "1.0",
         "drupal/content_moderation_notifications": "3.0-rc2",
         "drupal/editor_advanced_link": "1.4",
@@ -41,7 +41,7 @@
         "drupal/linkit": "5.0-beta8",
         "drupal/markdown": "1.2.0",
         "drupal/openid_connect": "1.0-beta5",
-        "drupal/paragraphs": "1.5",
+        "drupal/paragraphs": "1.6",
         "drupal/simple_sitemap": "2.12",
         "drupal/smtp": "1.0.0-beta4",
         "drupal/subpathauto": "1.0-rc1",
@@ -131,8 +131,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
-            "Fix module does not exist error": "https://www.drupal.org/files/issues/2018-10-11/3000677-30.patch"
+            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
