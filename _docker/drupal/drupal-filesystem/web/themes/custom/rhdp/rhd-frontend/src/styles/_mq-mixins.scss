@@ -2,6 +2,7 @@ $mq-mobile-portrait: 320px;
 $mq-mobile-landscape: 480px;
 $mq-tablet-portrait: 576px;
 $mq-tablet-landscape: 768px;
+$mq-tablet-landscape-min: 769px; //current 789px still applies to tablet portrait 769px is landscape but not portrait 
 $mq-desktop-small: 1024px;
 $mq-desktop: 1170px;
 $mq-desktop-large: 1240px;
@@ -12,8 +13,8 @@ $mq-desktop-large: 1240px;
     @content;
   }
 }
-@mixin tablet-landscape { // > 768px
-  @media (min-width: #{$mq-tablet-landscape}) {
+@mixin tablet-landscape { // > 769px
+  @media (min-width: #{$mq-tablet-landscape-min}) {
     @content;
   }
 }
