@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ec7eaa67bfca2eb8f2007b100976840",
+    "content-hash": "dd8c4439dfb88fe7d8bec3412f239e70",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -81,6 +81,117 @@
             ],
             "description": "The best of Drupal, curated by Acquia",
             "time": "2019-01-16T22:23:25+00:00"
+        },
+        {
+            "name": "akamai-open/edgegrid-auth",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akamai/AkamaiOPEN-edgegrid-php.git",
+                "reference": "7ff4d64153cf432bacfa3ffd70393bea3a930f36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akamai/AkamaiOPEN-edgegrid-php/zipball/7ff4d64153cf432bacfa3ffd70393bea3a930f36",
+                "reference": "7ff4d64153cf432bacfa3ffd70393bea3a930f36",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.9",
+                "kherge/box": "^2.5",
+                "phpunit/phpunit": "~4.7",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "suggest": {
+                "akamai-open/edgegrid-client": "Provide a fully featured HTTP client & CLI pre-configured with EdgeGrid authentication. (PHP 5.5+)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Akamai\\Open\\EdgeGrid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Davey Shafik",
+                    "email": "dshafik@akamai.com"
+                }
+            ],
+            "description": "Implements the Akamai {OPEN} EdgeGrid Authentication specified by https://developer.akamai.com/introduction/Client_Auth.html",
+            "homepage": "https://github.com/akamai-open/AkamaiOPEN-edgegrid-php",
+            "keywords": [
+                "Authentication",
+                "akamai",
+                "edgegrid",
+                "open"
+            ],
+            "time": "2017-09-01T07:02:30+00:00"
+        },
+        {
+            "name": "akamai-open/edgegrid-client",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akamai/AkamaiOPEN-edgegrid-php-client.git",
+                "reference": "a368473f0f73fab96ffee03ee40d2f18694ff526"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akamai/AkamaiOPEN-edgegrid-php-client/zipball/a368473f0f73fab96ffee03ee40d2f18694ff526",
+                "reference": "a368473f0f73fab96ffee03ee40d2f18694ff526",
+                "shasum": ""
+            },
+            "require": {
+                "akamai-open/edgegrid-auth": "^1.0.0",
+                "guzzlehttp/guzzle": "^6.1.1",
+                "league/climate": "~3.2",
+                "monolog/monolog": "^1.15",
+                "php": ">=5.5",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.0.0",
+                "friendsofphp/php-cs-fixer": "^1.9",
+                "kherge/box": "^2.5",
+                "phpunit/phpunit": "~4.7",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "bin": [
+                "bin/http"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Akamai\\Open\\EdgeGrid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Davey Shafik",
+                    "email": "dshafik@akamai.com"
+                }
+            ],
+            "description": "Implements the Akamai {OPEN} EdgeGrid Authentication specified by https://developer.akamai.com/introduction/Client_Auth.html",
+            "homepage": "https://github.com/akamai-open/AkamaiOPEN-edgegrid-php",
+            "keywords": [
+                "Authentication",
+                "akamai",
+                "client",
+                "edgegrid",
+                "open"
+            ],
+            "time": "2017-09-01T07:23:52+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1949,7 +2060,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.15",
-                    "datestamp": "1547038684",
+                    "datestamp": "1549478497",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2086,6 +2197,109 @@
             }
         },
         {
+            "name": "drupal/akamai",
+            "version": "3.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/akamai",
+                "reference": "8.x-3.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/akamai-8.x-3.0-alpha3.zip",
+                "reference": "8.x-3.0-alpha3",
+                "shasum": "a6f74443717babbeb3c3daac13caf84ca58c96e5"
+            },
+            "require": {
+                "akamai-open/edgegrid-auth": "~1.0.1",
+                "akamai-open/edgegrid-client": "~1.0.0",
+                "drupal/core": "~8.5"
+            },
+            "require-dev": {
+                "drupal/key": "~1.8",
+                "drupal/purge": "3.0-beta8"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1548627481",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                },
+                "patches_applied": {
+                    "Change text on the button to refresh content in Akamai": "patches/akamai/change-button-text.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Barrett",
+                    "homepage": "https://www.drupal.org/user/52745"
+                },
+                {
+                    "name": "Bluff",
+                    "homepage": "https://www.drupal.org/user/3535221"
+                },
+                {
+                    "name": "Cameron Tod",
+                    "homepage": "https://www.drupal.org/user/129588"
+                },
+                {
+                    "name": "Elijah Lynn",
+                    "homepage": "https://www.drupal.org/user/353190"
+                },
+                {
+                    "name": "WidgetsBurritos",
+                    "homepage": "https://www.drupal.org/user/2508346"
+                },
+                {
+                    "name": "bighappyface",
+                    "homepage": "https://www.drupal.org/user/2513682"
+                },
+                {
+                    "name": "febbraro",
+                    "homepage": "https://www.drupal.org/user/43670"
+                },
+                {
+                    "name": "jtsnow",
+                    "homepage": "https://www.drupal.org/user/171614"
+                },
+                {
+                    "name": "pobster",
+                    "homepage": "https://www.drupal.org/user/25159"
+                },
+                {
+                    "name": "tobby",
+                    "homepage": "https://www.drupal.org/user/154797"
+                }
+            ],
+            "description": "Cache Control integration with Akamai CDN. Akamai is a registered trademark of Akamai Technologies, Inc.",
+            "homepage": "https://github.com/d8-contrib-modules/akamai",
+            "keywords": [
+                "Akamai",
+                "CDN",
+                "Drupal",
+                "Purge"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/akamai"
+            }
+        },
+        {
             "name": "drupal/asciidoc",
             "version": "1.2.0",
             "source": {
@@ -2156,7 +2370,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1541691181",
+                    "datestamp": "1543440481",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2279,7 +2493,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.8",
-                    "datestamp": "1549175284",
+                    "datestamp": "1549832280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2796,7 +3010,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
+                    "datestamp": "1549603381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2879,7 +3093,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
+                    "datestamp": "1549603381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3349,12 +3563,20 @@
                     "role": "contributor"
                 },
                 {
+                    "name": "Drupal Media Team",
+                    "homepage": "https://www.drupal.org/user/3260690"
+                },
+                {
                     "name": "Primsi",
                     "homepage": "https://www.drupal.org/user/282629"
                 },
                 {
                     "name": "marcingy",
                     "homepage": "https://www.drupal.org/user/77320"
+                },
+                {
+                    "name": "oknate",
+                    "homepage": "https://www.drupal.org/user/471638"
                 },
                 {
                     "name": "samuel.mortenson",
@@ -3596,7 +3818,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.x-dev",
-                    "datestamp": "1549378684",
+                    "datestamp": "1549379580",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4838,6 +5060,73 @@
             }
         },
         {
+            "name": "drupal/login_security",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/login_security",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/login_security-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "f903d4335282a178f6c73bb4f580ac876852ba73"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1528723384",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "cYu",
+                    "homepage": "https://www.drupal.org/user/202205"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "deetergp",
+                    "homepage": "https://www.drupal.org/user/1134002"
+                },
+                {
+                    "name": "ilo",
+                    "homepage": "https://www.drupal.org/user/118449"
+                },
+                {
+                    "name": "jribeiro",
+                    "homepage": "https://www.drupal.org/user/1975716"
+                },
+                {
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
+                }
+            ],
+            "description": "Enable security options in the login flow of the site.",
+            "homepage": "https://www.drupal.org/project/login_security",
+            "support": {
+                "source": "http://cgit.drupalcode.org/login_security"
+            }
+        },
+        {
             "name": "drupal/markdown",
             "version": "1.2.0",
             "source": {
@@ -5332,7 +5621,7 @@
                     "datestamp": "1532303581",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -6208,6 +6497,65 @@
             }
         },
         {
+            "name": "drupal/restui",
+            "version": "1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/restui",
+                "reference": "8.x-1.16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/restui-8.x-1.16.zip",
+                "reference": "8.x-1.16",
+                "shasum": "60d2c7ecf6bb439e528c367753df9c94684b8894"
+            },
+            "require": {
+                "drupal/core": "^8.2.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.16",
+                    "datestamp": "1541330284",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "-enzo-",
+                    "homepage": "https://www.drupal.org/user/294937"
+                },
+                {
+                    "name": "clemens.tolboom",
+                    "homepage": "https://www.drupal.org/user/125814"
+                },
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
+                }
+            ],
+            "description": "Provides a user interface to manage REST resources",
+            "homepage": "https://www.drupal.org/project/restui",
+            "support": {
+                "source": "http://cgit.drupalcode.org/restui"
+            }
+        },
+        {
             "name": "drupal/schemata",
             "version": "1.0.0-alpha5",
             "source": {
@@ -6483,7 +6831,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.2",
-                    "datestamp": "1545483044",
+                    "datestamp": "1549962207",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6526,6 +6874,70 @@
                 "source": "http://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/seckit",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/seckit",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/seckit-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "bf7756d1a6a2d64ff35147b7a464cbd7f1acffcc"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1539600180",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "badjava",
+                    "homepage": "https://www.drupal.org/user/83372"
+                },
+                {
+                    "name": "jweowu",
+                    "homepage": "https://www.drupal.org/user/152788"
+                },
+                {
+                    "name": "mcdruid",
+                    "homepage": "https://www.drupal.org/user/255969"
+                },
+                {
+                    "name": "p0deje",
+                    "homepage": "https://www.drupal.org/user/529960"
+                }
+            ],
+            "description": "SecKit provides Drupal with various security-hardening options.",
+            "homepage": "https://www.drupal.org/project/seckit",
+            "keywords": [
+                "Drupal",
+                "security"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/seckit",
+                "issues": "http://drupal.org/project/issues/seckit"
             }
         },
         {
@@ -6605,7 +7017,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.13",
-                    "datestamp": "1546204080",
+                    "datestamp": "1549832280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6647,7 +7059,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.13",
-                    "datestamp": "1546204080",
+                    "datestamp": "1549832280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8585,6 +8997,67 @@
             "time": "2018-11-11T12:22:26+00:00"
         },
         {
+            "name": "league/climate",
+            "version": "3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/climate.git",
+                "reference": "0d2fdbf8829f60f6ba6433df68d6f3fe1271b8e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/0d2fdbf8829f60f6ba6433df68d6f3fe1271b8e6",
+                "reference": "0d2fdbf8829f60f6ba6433df68d6f3fe1271b8e6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/log": "^1.0",
+                "seld/cli-prompt": "^1.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.4",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^5.7.16"
+            },
+            "suggest": {
+                "ext-mbstring": "If ext-mbstring is not available you MUST install symfony/polyfill-mbstring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\CLImate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig Duncan",
+                    "email": "git@duncanc.co.uk",
+                    "homepage": "https://github.com/duncan3dc",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Joe Tannenbaum",
+                    "email": "hey@joe.codes",
+                    "homepage": "http://joe.codes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP's best friend for the terminal. CLImate allows you to easily output colored text, special formats, and more.",
+            "keywords": [
+                "cli",
+                "colors",
+                "command",
+                "php",
+                "terminal"
+            ],
+            "time": "2019-02-10T18:25:19+00:00"
+        },
+        {
             "name": "league/commonmark",
             "version": "0.15.7",
             "source": {
@@ -9034,6 +9507,84 @@
                 "html"
             ],
             "time": "2016-07-25T17:07:32+00:00"
+        },
+        {
+            "name": "monolog/monolog",
+            "version": "1.24.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "~1.0"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^2.4.9 || ^3.0",
+                "doctrine/couchdb": "~1.0@dev",
+                "graylog2/gelf-php": "~1.0",
+                "jakub-onderka/php-parallel-lint": "0.9",
+                "php-amqplib/php-amqplib": "~2.4",
+                "php-console/php-console": "^3.1.3",
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "2.3.0",
+                "ruflin/elastica": ">=0.90 <3.0",
+                "sentry/sentry": "^0.13",
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+                "php-console/php-console": "Allow sending log messages to Google Chrome",
+                "rollbar/rollbar": "Allow sending log messages to Rollbar",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+                "sentry/sentry": "Allow sending log messages to a Sentry server"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Monolog\\": "src/Monolog"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+            "homepage": "http://github.com/Seldaek/monolog",
+            "keywords": [
+                "log",
+                "logging",
+                "psr-3"
+            ],
+            "time": "2018-11-05T09:00:11+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -9810,6 +10361,54 @@
                 "phinx"
             ],
             "time": "2017-02-28T18:34:31+00:00"
+        },
+        {
+            "name": "seld/cli-prompt",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/cli-prompt.git",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seld\\CliPrompt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be"
+                }
+            ],
+            "description": "Allows you to prompt for user input on the command line, and optionally hide the characters they type",
+            "keywords": [
+                "cli",
+                "console",
+                "hidden",
+                "input",
+                "prompt"
+            ],
+            "time": "2017-03-18T11:32:45+00:00"
         },
         {
             "name": "solarium/solarium",
@@ -10703,7 +11302,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

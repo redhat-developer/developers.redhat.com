@@ -75,11 +75,13 @@
       }
     }
   }
-  .field--name-field-speakers {
+  .field--name-field-speakers,
+  .field--name-field-speakers .field__item {
     display: inline-block;
   }
-  .field--name-field-speakers .field__items>.field__item:not(:only-child):not(:last-child) {
+  .field--name-field-speakers.field__items>.field__item:not(:only-child):not(:last-child) {
     &:after {
+      margin-left: -3px;
       content: ',';
     }
   }

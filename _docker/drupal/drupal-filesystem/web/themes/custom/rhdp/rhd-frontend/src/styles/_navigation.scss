@@ -24,7 +24,7 @@
   @include desktop-small {
     max-width: 1400px;
     grid-column-gap: 0;
-    grid-template-columns: 145px 1fr;
+    grid-template-columns: 145px 1fr 185px;
   }
   @media screen and (max-width: 991px) and (min-width: 768px) {
     max-width: none;
