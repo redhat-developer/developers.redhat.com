@@ -10,8 +10,8 @@ class TestExportInspector < MiniTest::Test
 
     links = <<EOD
 http://developer-drupal.web.stage.ext.phx2.redhat.com/
-http://developer-drupal.web.stage.ext.phx2.redhat.com/about
-http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016
+http://developer-drupal.web.stage.ext.phx2.redhat.com/about/
+http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016/
 http://developer-drupal.web.stage.ext.phx2.redhat.com/community/contributor/signup
 http://developer-drupal.web.stage.ext.phx2.redhat.com/articles/rhel-what-you-need-to-know
 EOD
@@ -77,8 +77,8 @@ EOD
     expected_output = <<EOD
 ================================ EXPORT SUMMARY ================================
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/' at expected path: '#{@export_directory}/index.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/about' at expected path: '#{@export_directory}/about/index.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016' at expected path: '#{@export_directory}/events/devnation/2016/index.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/about/' at expected path: '#{@export_directory}/about/index.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016/' at expected path: '#{@export_directory}/events/devnation/2016/index.html'
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/community/contributor/signup' at expected path: '#{@export_directory}/community/contributor/signup/index.html'
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/articles/rhel-what-you-need-to-know' at expected path: '#{@export_directory}/articles/rhel-what-you-need-to-know/index.html'
 WARNING: Of '5' pages, '5' are not found in the export.
