@@ -20,12 +20,13 @@
         }
 
         var link = $(commentCountContainer).attr('data-disqus-thread-link');
+        var liveLink = "developers.redhat.com";
         params['thread:link'] = link;
 
-        // check if link is on current domain or live domain
-        var a = document.createElement('a');
-        a.href = link;
-        getThreadInfo(params, commentCountSuccess);
+        // check if link is on same domain or or live domain
+        if(link.indexOf(liveLink) >= 0) {
+          getThreadInfo(params, commentCountSuccess);
+        }
       });
     }
   };
