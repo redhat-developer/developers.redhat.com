@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_browser
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
     - field.field.node.product.field_content
@@ -33,14 +32,15 @@ dependencies:
     - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
     - field.field.node.product.field_use_new_product_page
+    - image.style.thumbnail
     - node.type.product
   module:
     - compose
     - content_moderation
-    - entity_browser
     - entity_browser_entity_form
     - field_group
     - field_layout
+    - image
     - inline_entity_form
     - metatag
     - paragraphs
@@ -61,19 +61,19 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Individual Sub Pages'
-      region: content
+      region: fields
     group_product_info:
       children:
         - group_sub_pages
       parent_name: ''
-      weight: 14
+      weight: 7
       format_type: tabs
       format_settings:
         id: ''
         classes: ''
         direction: horizontal
       label: 'Product Information'
-      region: content
+      region: fields
     group_purpose_attributes:
       children:
         - field_product_categories
@@ -88,7 +88,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 20
+      weight: 8
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -105,7 +105,7 @@ third_party_settings:
         - field_downloads_page_content
         - field_getting_started_content
       parent_name: ''
-      weight: 16
+      weight: 1
       format_type: details
       format_settings:
         id: ''
@@ -126,7 +126,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 0
+    weight: 9
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -185,7 +185,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_meta_tags:
-    weight: 17
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -197,13 +197,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_product_machine_name:
-    weight: 8
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_product_pages:
     type: entity_reference_paragraphs
     weight: 4
@@ -215,33 +215,27 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
-    region: content
+    region: fields
   field_product_summary:
-    weight: 4
+    weight: 3
     settings:
       placeholder: ''
       size: 60
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_share_image:
-    type: entity_browser_file
-    weight: 15
+    type: image_image
+    weight: 6
     settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
       preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-      field_widget_replace: false
-    region: content
+      progress_indicator: throbber
+    region: fields
     third_party_settings: {  }
   field_short_description:
     type: string_textarea
     weight: 2
-    region: content
+    region: fields
     settings:
       rows: 5
       placeholder: ''
@@ -307,13 +301,13 @@ content:
     type: options_buttons
     region: fields
   field_url_product_name:
-    weight: 11
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_use_new_product_page:
     weight: 17
     settings:
@@ -322,7 +316,7 @@ content:
     type: boolean_checkbox
     region: content
   moderation_state:
-    weight: 18
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -342,7 +336,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 19
+    weight: 13
     region: settings
     settings: {  }
     third_party_settings: {  }
