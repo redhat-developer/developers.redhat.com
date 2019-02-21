@@ -3,6 +3,7 @@
 namespace Drupal\rhd_common\Controller;
 
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -53,6 +54,13 @@ class ProductPageController extends ControllerBase {
   protected $renderer;
 
   /**
+   * The config factory service.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * ProductPageController constructor.
    *
    * @param QueryFactory $queryFactory
@@ -62,12 +70,14 @@ class ProductPageController extends ControllerBase {
     QueryFactory $queryFactory,
     Connection $connection,
     EntityTypeManagerInterface $entity_type_manager,
-    Renderer $renderer
+    Renderer $renderer,
+    ConfigFactoryInterface $config_factory
   ) {
     $this->entityQuery = $queryFactory;
     $this->connection = $connection;
     $this->entityTypeManager = $entity_type_manager;
     $this->renderer = $renderer;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -78,7 +88,8 @@ class ProductPageController extends ControllerBase {
       $container->get('entity.query'),
       $container->get('database'),
       $container->get('entity_type.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('config.factory')
     );
   }
 
@@ -160,6 +171,13 @@ class ProductPageController extends ControllerBase {
 
       $returns = NULL;
 
+      //$sub_pages_urls = [];
+
+      // Load the trailing_slash.settings config object. We will be adding these
+      // programmatically generated Product sub-page routes to this module's
+      // config below in the while statement.
+      $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
+
       while (($returns = $stmt->fetchAssoc()) !== FALSE) {
         $product_pages_id = $returns['field_product_pages_target_revision_id'];
 
@@ -176,6 +194,14 @@ class ProductPageController extends ControllerBase {
           $active_paragraph = $sub_page_paragraph;
         }
 
+        $url = Url::fromUri("internal:/products/$product_code/$sub_page_url_string/");
+
+        // $sub_pages_urls[] = $url->toString();
+
+        $url_string = $url->toString();
+        $trailing_slash_paths = $trailing_slash_settings->get('paths');
+        $trailing_slash_settings->set('paths', $trailing_slash_paths . "\n$url_string");
+
         $page_links['#items'][] = [
           '#type' => 'link',
           '#title' => [
@@ -187,10 +213,7 @@ class ProductPageController extends ControllerBase {
                 $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!'),
             ],
           ],
-          '#url' => Url::fromRoute('rhd_common.main_page_controller', [
-            'product_code' => $product_code,
-            'sub_page' => $sub_page_url_string,
-          ]),
+          '#url' => $url,
           '#wrapper_attributes' => (function () use (
             $sub_page,
             $sub_page_url_string
@@ -204,6 +227,12 @@ class ProductPageController extends ControllerBase {
           })(),
         ];
       }
+
+      // Load the trailing_slash.settings config object. We will be adding these
+      // programmatically generated Product sub-page routes to this module's
+      // config below in the while statement.
+      // $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
+      // $trailing_slash_settings->set('paths', implode("\n", $sub_pages_urls));
 
       if (empty($active_paragraph)) {
         throw new NotFoundHttpException();
