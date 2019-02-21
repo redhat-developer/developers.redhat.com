@@ -25,10 +25,10 @@ export class ProductOverview extends Page {
     }
 
     awaitHelloWorldPage() {
-        return this.waitForUrlContaining(`/products/${this.productCode}/hello-world/`, 60000);
+        return this.waitForUrlContaining(`${process.env.RHD_BASE_URL}/products/${this.productCode}/hello-world/`, 10000);
     }
 
     awaitDownloadThankYou() {
-        return this.awaitIsVisible(this.getSelector('downloadThankYou'), 60000);
+        return this.awaitIsVisible(this.getSelector('downloadThankYou'), 10000);
     }
 }
