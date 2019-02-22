@@ -127,7 +127,13 @@
             </div>
             <div class="large-24 columns products-content">
                 <div class="large-4 medium-7 small-24 columns nav-breakpoint">
-                    {{ page_links }}
+                  <ul class="side-nav rhd-sub-nav">
+                    {% for link in page_links %}
+                      <li{{ link.attributes }}>
+                        <a href={{ link.url }}>{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </div>
                 <div class="large-20 medium-17 small-24 columns">
                     {{ active_paragraph }}
