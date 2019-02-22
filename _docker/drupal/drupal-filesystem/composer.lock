@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "458fea9929b74c62fd026ac5229d3ed9",
+    "content-hash": "408e6d3f33f8be95c4ae11bf85830f95",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -324,16 +324,16 @@
         },
         {
             "name": "caxy/php-htmldiff",
-            "version": "v0.1.8",
+            "version": "v0.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caxy/php-htmldiff.git",
-                "reference": "6f39bc3717f1d3f915542e431c6c30e43bfe6b7c"
+                "reference": "4bad5c6a4ecc76954d37764e6a29273b6b7bf1f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caxy/php-htmldiff/zipball/6f39bc3717f1d3f915542e431c6c30e43bfe6b7c",
-                "reference": "6f39bc3717f1d3f915542e431c6c30e43bfe6b7c",
+                "url": "https://api.github.com/repos/caxy/php-htmldiff/zipball/4bad5c6a4ecc76954d37764e6a29273b6b7bf1f8",
+                "reference": "4bad5c6a4ecc76954d37764e6a29273b6b7bf1f8",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,7 @@
                 "diff",
                 "html"
             ],
-            "time": "2019-01-15T19:49:36+00:00"
+            "time": "2019-02-20T18:52:14+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -2398,7 +2398,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1541691181",
+                    "datestamp": "1543440481",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2578,7 +2578,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3038,7 +3038,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
+                    "datestamp": "1549603381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3074,6 +3074,10 @@
                     "name": "Daniel Wehner (dawehner)",
                     "homepage": "https://www.drupal.org/u/dawehner",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
                 },
                 {
                     "name": "merlinofchaos",
@@ -3117,12 +3121,16 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742"
+                    "datestamp": "1549603381",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3144,6 +3152,10 @@
                 {
                     "name": "japerry",
                     "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
                 },
                 {
                     "name": "merlinofchaos",
@@ -3378,7 +3390,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3547,7 +3559,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0",
-                    "datestamp": "1536328684",
+                    "datestamp": "1550236984",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3579,12 +3591,20 @@
                     "role": "contributor"
                 },
                 {
+                    "name": "Drupal Media Team",
+                    "homepage": "https://www.drupal.org/user/3260690"
+                },
+                {
                     "name": "Primsi",
                     "homepage": "https://www.drupal.org/user/282629"
                 },
                 {
                     "name": "marcingy",
                     "homepage": "https://www.drupal.org/user/77320"
+                },
+                {
+                    "name": "oknate",
+                    "homepage": "https://www.drupal.org/user/471638"
                 },
                 {
                     "name": "samuel.mortenson",
@@ -3659,8 +3679,16 @@
                     "homepage": "https://www.drupal.org/user/3260690"
                 },
                 {
+                    "name": "Wim Leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                },
+                {
                     "name": "cs_shadow",
                     "homepage": "https://www.drupal.org/user/2828287"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "slashrsm",
@@ -3818,7 +3846,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.x-dev",
-                    "datestamp": "1536176580",
+                    "datestamp": "1549379580",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3831,6 +3859,31 @@
             ],
             "authors": [
                 {
+                    "name": "Renato Gonçalves H (RenatoG)",
+                    "homepage": "https://www.drupal.org/u/RenatoG",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nedjo Rogers (nedjo)",
+                    "homepage": "https://www.drupal.org/u/nedjo",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Joel Farris (Senpai)",
+                    "homepage": "https://www.drupal.org/u/senpai",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Lee Rowlands (larowlan)",
+                    "homepage": "https://www.drupal.org/u/larowlan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ra Mänd (ram4nd)",
+                    "homepage": "https://www.drupal.org/u/ram4nd",
+                    "role": "Maintainer"
+                },
+                {
                     "name": "Wolfgang Ziegler (fago)",
                     "homepage": "https://www.drupal.org/u/fago",
                     "role": "Maintainer"
@@ -3839,25 +3892,14 @@
                     "name": "Joel Muzzerall (jmuzz)",
                     "homepage": "https://www.drupal.org/u/jmuzz",
                     "role": "Co-maintainer"
-                },
-                {
-                    "name": "jmuzz",
-                    "homepage": "https://www.drupal.org/user/2607886"
-                },
-                {
-                    "name": "larowlan",
-                    "homepage": "https://www.drupal.org/user/395439"
-                },
-                {
-                    "name": "ram4nd",
-                    "homepage": "https://www.drupal.org/user/601534"
                 }
             ],
             "description": "Provides a field collection field, to which any number of fields can be attached.",
             "homepage": "https://drupal.org/project/field_collection",
             "support": {
-                "source": "http://cgit.drupalcode.org/field_collection",
-                "issues": "https://drupal.org/project/issues/field_collection"
+                "source": "https://cgit.drupalcode.org/modal_page",
+                "issues": "https://drupal.org/project/issues/field_collection",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             },
             "time": "2018-09-06T12:58:26+00:00"
         },
@@ -4197,7 +4239,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.3",
-                    "datestamp": "1550692492",
+                    "datestamp": "1550761645",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5149,20 +5191,16 @@
             ],
             "authors": [
                 {
-                    "name": "barraponto",
-                    "homepage": "https://www.drupal.org/user/511760"
-                },
-                {
                     "name": "frjo",
                     "homepage": "https://www.drupal.org/user/5546"
                 },
                 {
-                    "name": "justin2pin",
-                    "homepage": "https://www.drupal.org/user/278450"
+                    "name": "gisle",
+                    "homepage": "https://www.drupal.org/user/409554"
                 },
                 {
-                    "name": "sreynen",
-                    "homepage": "https://www.drupal.org/user/109890"
+                    "name": "markcarver",
+                    "homepage": "https://www.drupal.org/user/501638"
                 }
             ],
             "description": "Allows content to be submitted using Markdown, a simple plain-text syntax that is transformed into valid HTML.",
@@ -5500,6 +5538,10 @@
             ],
             "authors": [
                 {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
+                },
+                {
                     "name": "samuel.mortenson",
                     "homepage": "https://www.drupal.org/user/2582268"
                 }
@@ -5605,7 +5647,7 @@
                     "datestamp": "1532303581",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -6815,7 +6857,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.2",
-                    "datestamp": "1545483044",
+                    "datestamp": "1549962207",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7094,7 +7136,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.12",
-                    "datestamp": "1523203180",
+                    "datestamp": "1542505221",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7175,6 +7217,10 @@
                 {
                     "name": "gausarts",
                     "homepage": "https://www.drupal.org/user/159062"
+                },
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
                 }
             ],
             "description": "Slick carousel, the last carousel you'll ever need.",
@@ -7708,7 +7754,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -9021,7 +9067,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -13572,12 +13618,6 @@
                 "type": "git",
                 "url": "https://git.drupal.org/project/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/klausi/coder/zipball/984c54a7b1e8f27ff1c32348df69712afd86b17f",
-                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f",
-                "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
