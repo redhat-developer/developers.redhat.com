@@ -171,8 +171,6 @@ class ProductPageController extends ControllerBase {
 
       $returns = NULL;
 
-      //$sub_pages_urls = [];
-
       // Load the trailing_slash.settings config object. We will be adding these
       // programmatically generated Product sub-page routes to this module's
       // config below in the while statement.
@@ -194,10 +192,9 @@ class ProductPageController extends ControllerBase {
           $active_paragraph = $sub_page_paragraph;
         }
 
+        // Get the Product subpage URL object, and then add the URL string to our
+        // trailing_slash.settings.path config item.
         $url = Url::fromUri("internal:/products/$product_code/$sub_page_url_string/");
-
-        // $sub_pages_urls[] = $url->toString();
-
         $url_string = $url->toString();
         $trailing_slash_paths = $trailing_slash_settings->get('paths');
         $trailing_slash_settings->set('paths', $trailing_slash_paths . "\n$url_string");
@@ -227,12 +224,6 @@ class ProductPageController extends ControllerBase {
           })(),
         ];
       }
-
-      // Load the trailing_slash.settings config object. We will be adding these
-      // programmatically generated Product sub-page routes to this module's
-      // config below in the while statement.
-      // $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
-      // $trailing_slash_settings->set('paths', implode("\n", $sub_pages_urls));
 
       if (empty($active_paragraph)) {
         throw new NotFoundHttpException();
