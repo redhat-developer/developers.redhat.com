@@ -27,7 +27,6 @@ class ExportInspector
     if page_path == '/'
       '/index.html'
     else
-      page_path = page_path[0...-1] if page_path.end_with?('/')
       "#{page_path}/index.html"
     end
   end
