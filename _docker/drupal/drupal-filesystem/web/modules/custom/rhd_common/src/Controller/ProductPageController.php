@@ -143,7 +143,7 @@ class ProductPageController extends ControllerBase {
       $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
       $trailing_slash_enabled = $trailing_slash_settings->get('enabled');
 
-      if ($trailing_slash_enabled) {
+      if ($trailing_slash_enabled === TRUE) {
         $page_links = [];
       }
       else {
@@ -198,7 +198,7 @@ class ProductPageController extends ControllerBase {
           $active_paragraph = $sub_page_paragraph;
         }
 
-        if ($trailing_slash_enabled) {
+        if ($trailing_slash_enabled === TRUE) {
           // Get the Product subpage URL object, and then add the URL string to our
           // trailing_slash.settings.path config item.
           $url = Url::fromUri("internal:/products/$product_code/$sub_page_url_string/");
@@ -209,13 +209,12 @@ class ProductPageController extends ControllerBase {
             $sub_page_paragraph->field_overview_url->value :
             $sub_page_paragraph->field_overview_url->value . '!'
           );
-          $attributes = new Attribute();
-          $attributes['class'] = ($sub_page_url_string == $sub_page) ? ['active'] : [];
+          $active_class = ($sub_page_url_string == $sub_page) ? 'active' : '';
 
           $page_links[] = [
-            'title' => $title,
+            'title' => $title->__toString(),
             'url' => "$url_string/",
-            'attributes' => $attributes
+            'active_class' => $active_class
           ];
         }
         else {
@@ -255,7 +254,7 @@ class ProductPageController extends ControllerBase {
 
       $build['#theme'] = 'product-pages';
       $build['#page_links'] = $page_links;
-      $build['#trailing_slash_enabled'] = $trailing_slash_enabled;
+      $build['#trailing_slash_enabled'] = ($trailing_slash_enabled === TRUE);
       $build['#product_machine_name'] = $active_product->field_product_machine_name->value;
 
       $build['#active_paragraph'] = $this->entityTypeManager()
