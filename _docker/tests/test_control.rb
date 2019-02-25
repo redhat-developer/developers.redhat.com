@@ -44,7 +44,7 @@ class TestControl < Minitest::Test
 
     environment.expects(:get_docker_host).returns('127.0.0.1')
     expects(:check_supported_service_requested).with(supporting_services, 'drupal').returns(true)
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', '80/tcp').returns('80')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', '8080/tcp').returns('80')
 
     bind_drupal_container_details_into_environment(environment, supporting_services)
 
@@ -120,7 +120,7 @@ class TestControl < Minitest::Test
     environment = mock()
     supporting_services = %w(drupal)
 
-    expects(:wait_for_supporting_service_to_start).with(environment, 'drupal','80/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg').returns(%w(127.0.0.1 8080))
+    expects(:wait_for_supporting_service_to_start).with(environment, 'drupal','8080/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg').returns(%w(127.0.0.1 8080))
 
     wait_for_drupal_to_start(environment, supporting_services)
   end
