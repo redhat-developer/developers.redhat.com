@@ -1,56 +1,15 @@
-FROM developer.redhat.com/ruby:2.4.0
+FROM registry.paas.redhat.com/rhdp/developer-base
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy
 ARG https_proxy
 ARG composer_profile="production"
 
-LABEL version="dev"
-
-ADD remi-release-6.rpm /root/
-
-# Install Node 8
-RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-
-RUN rpm -Uvh /root/remi-release-6.rpm
-RUN yum-config-manager --enable remi-php71; \
-    yum -y update; \
-    yum -y install \
-           httpd.x86_64 \
-           mysql \
-           nodejs \
-           php \
-           php-cli \
-           php-common \
-           php-gd \
-           php-pdo \
-           php-mbstring \
-           php-mysql \
-           php-mysqlnd \
-           php-opcache \
-           php-xml \
-           sendmail \
-           tar \
-           logrotate \
-    yum clean all
-
-RUN { \
-		echo 'opcache.memory_consumption=128'; \
-		echo 'opcache.interned_strings_buffer=8'; \
-		echo 'opcache.max_accelerated_files=4000'; \
-		echo 'opcache.revalidate_freq=60'; \
-		echo 'opcache.fast_shutdown=1'; \
-		echo 'opcache.enable_cli=1'; \
-	} > /etc/php.d/opcache-recommended.ini
-
-EXPOSE 80
-
-# Install latest composer
-RUN curl https://getcomposer.org/installer > composer-installer && php composer-installer && mv composer.phar /usr/local/bin/composer 
+EXPOSE 8080
 
 WORKDIR /var/www/drupal
-COPY apache/drupal.conf /etc/httpd/conf.d/drupal.conf
-COPY logrotate/httpd /etc/logrotate.d/httpd
+RUN gem install asciidoctor -v 1.5.8
+COPY apache/drupal.conf /opt/rh/httpd24/root/etc/httpd/conf.d/drupal.conf
 
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
@@ -85,12 +44,11 @@ COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 COPY drupal-filesystem/phinx.yml /var/www/drupal/phinx.yml
 COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
 
+# Build the theme
+RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
+    && npm install \
+    && npm run-script build \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
+
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
-RUN gem install asciidoctor
-
-# Add RH IT certificate chain
-RUN cd /etc/pki/ca-trust/source/anchors \
-    && curl -k https://gitlab.cee.redhat.com/redhat-developer/rhdp-docker-base/raw/master/docker/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -o RH-IT-pki-validation-chain.pem \
-    && update-ca-trust force-enable \
-    && update-ca-trust extract
