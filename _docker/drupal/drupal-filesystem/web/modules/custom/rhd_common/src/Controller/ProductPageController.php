@@ -141,7 +141,10 @@ class ProductPageController extends ControllerBase {
       // programmatically generated Product sub-page routes to this module's
       // config below in the while statement.
       $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
-      $trailing_slash_enabled = $trailing_slash_settings->get('enabled');
+      // This immutable config variable will respect config overrides. The
+      // config object returned from getEditable (above) will not.
+      $trailing_slash_settings_immutable = $this->configFactory->get('trailing_slash.settings');
+      $trailing_slash_enabled = $trailing_slash_settings_immutable->get('enabled');
 
       if ($trailing_slash_enabled === TRUE) {
         $page_links = [];
@@ -203,7 +206,9 @@ class ProductPageController extends ControllerBase {
           // trailing_slash.settings.path config item.
           $url = Url::fromUri("internal:/products/$product_code/$sub_page_url_string/");
           $url_string = $url->toString();
-          $trailing_slash_paths = $trailing_slash_settings->get('paths');
+          // We have to use $trailing_slash_settings_immutable to ensure config
+          // overrides are respected.
+          $trailing_slash_paths = $trailing_slash_settings_immutable->get('paths');
           $trailing_slash_settings->set('paths', $trailing_slash_paths . "\n$url_string");
           $title = t(strpos($sub_page_paragraph->field_overview_url->value, 'Hello') === FALSE ?
             $sub_page_paragraph->field_overview_url->value :
