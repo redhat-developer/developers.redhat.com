@@ -1,0 +1,18 @@
+paths:
+    migrations: db-migrations
+
+environments:
+    default_migration_table: phinxlog
+    default_database: automated
+    automated:
+        adapter: mysql
+        host: {{ drupal_db_host }}
+        name: {{ deployment_dbs[0] }}
+        user: {{ drupal_db_user }}
+        pass: {{ drupal_db_password }}
+        port: 3306
+        charset: utf8
+        mysql_attr_ssl_ca: /etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem
+        mysql_attr_ssl_verify_server_cert: false
+
+version_order: creation

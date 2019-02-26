@@ -1,0 +1,45 @@
+version: '3'
+services:
+
+  bootstrap_env:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    command: ["/bin/bash", "-c", "ansible-playbook bootstrap-env.yml"]
+    working_dir: "/ansible"
+    user: root
+    environment:
+     - DEPLOYMENT_ID=1
+    volumes:
+     - ../../:/ansible
+     - ../env.yml:/credentials/ansible/env.yml
+     - drupal_workspace:/drupal-workspace
+    depends_on:
+     - mysql
+
+  cleanup_env:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    entrypoint: ["/bin/bash"]
+    working_dir: "/ansible"
+    user: root
+    environment:
+     - DEPLOYMENT_ID=1
+    volumes:
+     - ../../:/ansible
+     - ../env.yml:/credentials/ansible/env.yml
+     - drupal_workspace:/drupal-workspace
+    depends_on:
+     - mysql
+
+  mysql:
+    image: mariadb:10.3.9-bionic
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    expose:
+    - 3306
+
+volumes:
+  drupal_workspace:
+    driver: local

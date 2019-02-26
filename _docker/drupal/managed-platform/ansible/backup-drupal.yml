@@ -1,0 +1,79 @@
+---
+- hosts: localhost
+  connection: local
+  become: no
+  vars_files:
+    - "vars/common/drupal/vars.yml"
+    - "/credentials/ansible/env.yml"
+  tasks:
+    - name: Generate timestamp for run of backup
+      set_fact:
+        backup_name: "{{ drupal_deployment_dir }}-{{ '%Y-%m-%d-%H-%M-%S' | strftime(ansible_date_time.epoch) }}"
+      when: backup_name is undefined
+
+    - name: Create backup directory name
+      set_fact:
+        backup_dir: "/tmp/{{ backup_name }}"
+
+    - debug:
+        msg: "The backup directory will be '{{ backup_dir }}'"
+
+    - name: Create the directory to store backup artifacts
+      file:
+        path: '{{ backup_dir }}'
+        group: 'root'
+        state: directory
+        recurse: yes
+        mode: 0770
+
+    - name: Record the name of backup
+      copy:
+        content: "{{ backup_name }}"
+        dest: "{{ backup_dir }}/current.backup"
+        force: no
+        group: 'root'
+        mode: '0770'
+
+    - name: Perform a backup of the Drupal database using Drush
+      shell: "drush sql:dump --gzip --result-file='{{ backup_dir }}/drupal-db.sql'"
+      args:
+        chdir: '/var/www/drupal'
+
+    - name: Perform a backup of the Drupal filesystem using tar
+      shell: "tar -cvzf {{ backup_dir }}/drupal-filesystem.tar.gz -C /var/www/drupal/web config/active sites/default/files"
+
+    #
+    # Ideally we'd be using the Ansible aws_s3 module to perform the uploads, but it makes certain assumptions about your
+    # S3 permissions that are not compatible with everyone:
+    #
+    # https://github.com/ansible/ansible/issues/48050
+    #
+    # Instead we will use the aws cli to perform uploads to S3
+    #
+
+    - name: Upload database backup to S3
+      shell: "aws s3 cp {{ backup_dir }}/drupal-db.sql.gz s3://{{ drupal_s3_bucket }}/{{ backup_name }}/drupal-db.sql.gz"
+      environment:
+        - AWS_ACCESS_KEY_ID: "{{ drupal_s3_access_key }}"
+        - AWS_SECRET_ACCESS_KEY: "{{ drupal_s3_secret_key }}"
+      when: drupal_backup_push
+
+    - name: Upload filesystem backup to S3
+      shell: "aws s3 cp {{ backup_dir }}/drupal-filesystem.tar.gz s3://{{ drupal_s3_bucket }}/{{ backup_name }}/drupal-filesystem.tar.gz"
+      environment:
+      - AWS_ACCESS_KEY_ID: "{{ drupal_s3_access_key }}"
+      - AWS_SECRET_ACCESS_KEY: "{{ drupal_s3_secret_key }}"
+      when: drupal_backup_push
+
+    - name: Record the latest backup in S3
+      shell: "aws s3 cp {{ backup_dir }}/current.backup s3://{{ drupal_s3_bucket }}/current.backup"
+      environment:
+      - AWS_ACCESS_KEY_ID: "{{ drupal_s3_access_key }}"
+      - AWS_SECRET_ACCESS_KEY: "{{ drupal_s3_secret_key }}"
+      when: drupal_backup_push
+
+    - name: Cleanup backup directory
+      file:
+        path: '{{ backup_dir }}'
+        state: absent
+      when: drupal_backup_clean
