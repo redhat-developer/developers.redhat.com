@@ -1,0 +1,19 @@
+#
+# List of tasks to run cron on Drupal via drush
+#
+---
+- name: Run Cron
+  shell: 'drush cron'
+  register: drush_cron
+  args:
+   chdir: '/var/www/drupal'
+
+- debug:
+   msg:
+    - "{{ drush_cron.stdout_lines }}"
+    - "{{ drush_cron.stderr_lines }}"
+  when: drush_cron.changed
+
+- debug:
+   var: drush_cron.stdout_lines
+  when: not drush_cron.changed

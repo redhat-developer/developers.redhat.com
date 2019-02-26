@@ -1,0 +1,58 @@
+#
+# List of tasks to be included if we are bootstrapping the Drupal environment using backups from S3.
+#
+---
+- name: "Seed: Determine if we have already selected a backup to seed this environment."
+  stat:
+   path: '{{ work_dir }}/current.backup'
+  register: chosen_backup
+
+- name: "Seed: Download current.backup pointer from S3"
+  aws_s3:
+    bucket: '{{ drupal_s3_bucket }}'
+    object: 'current.backup'
+    dest: '{{ work_dir }}/current.backup'
+    mode: get
+    aws_access_key: '{{ drupal_s3_access_key }}'
+    aws_secret_key: '{{ drupal_s3_secret_key }}'
+  when: chosen_backup.stat.exists == false
+
+- name: "Seed: Read details of the previously chosen backup for this environment."
+  set_fact:
+    drupal_seed: "{{lookup('file', '{{ work_dir }}/current.backup')}}"
+
+- debug:
+    msg: 'Using backup [{{ drupal_seed }}] to seed this environment.'
+
+- name: "Seed: Determine if we have already successfully downloaded from S3."
+  stat:
+    path: "{{ work_dir }}/drupal.s3.DO_NOT_DELETE"
+  register: s3_downloads
+
+- name: "Seed: Download drupal-filesystem.tar.gz from S3"
+  aws_s3:
+    bucket: '{{ drupal_s3_bucket }}'
+    object: '{{ drupal_seed }}/drupal-filesystem.tar.gz'
+    dest: '{{ work_dir }}/drupal-filesystem.tar.gz'
+    mode: get
+    aws_access_key: '{{ drupal_s3_access_key }}'
+    aws_secret_key: '{{ drupal_s3_secret_key }}'
+  when: s3_downloads.stat.exists == false
+
+- name: "Seed: Download drupal-db.sql.gz from S3"
+  aws_s3:
+    bucket: '{{ drupal_s3_bucket }}'
+    object: '{{ drupal_seed }}/drupal-db.sql.gz'
+    dest: '{{ work_dir }}/drupal-db.sql.gz'
+    mode: get
+    aws_access_key: '{{ drupal_s3_access_key }}'
+    aws_secret_key: '{{ drupal_s3_secret_key }}'
+  when: s3_downloads.stat.exists == false
+
+- name: "Seed: Record download of artifacts from S3"
+  copy:
+    content: ""
+    dest: '{{ work_dir }}/drupal.s3.DO_NOT_DELETE'
+    force: no
+    group: 'root'
+    mode: '0770'

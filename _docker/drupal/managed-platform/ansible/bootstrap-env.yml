@@ -1,0 +1,185 @@
+#
+# This playbook gets the environment ready to the point where we can start to bootstrap Drupal. It ensures
+# we have a working directory for our deployment, creates a database for the deployment and templates any
+# required files for mounting into the Drupal container.
+#
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+    - "/credentials/ansible/env.yml"
+    - 'vars/common/drupal/vars.yml'
+  become: no
+  tasks:
+    - name: "Create the working directory structure for this deployment of Drupal."
+      file:
+        path: '{{ item }}'
+        group: 'root'
+        state: directory
+        recurse: yes
+        mode: 0775
+      with_items:
+      - '{{ work_dir }}'
+      - '{{ drupal_dir }}/credentials'
+      - '{{ drupal_dir }}/apache'
+
+    #
+    # If drupal_s3_boostrap is true, then the environment will be boostrapped using the latest backups in S3. This is typically
+    # set to true apart from local development which relies still on the drupal data images.
+    #
+    - include: 's3-bootstrap-env.yml'
+      when: drupal_s3_bootstrap
+
+    - name: "Seed: Extract the Drupal filesystem backup into the working directory of this deployment."
+      unarchive:
+        src: "{{ work_dir }}/drupal-filesystem.tar.gz"
+        dest: "{{ drupal_dir }}"
+        group: 'root'
+        mode: '0770'
+        creates: "{{ work_dir }}/drupal.unarchive.DO_NOT_DELETE"
+
+    - name: "Seed: Record extraction of Drupal configuration was successful"
+      copy:
+        content: ""
+        dest: "{{ work_dir }}/drupal.unarchive.DO_NOT_DELETE"
+        force: no
+        group: 'root'
+        mode: '0770'
+
+    #
+    # Deployments have multiple replicas and need to be idempotent. The first replica will chose the db to be used
+    # by this deployment and therefore we need to write the choice to disk to prevent a deployment claiming a
+    # database-per-replica.
+    #
+    # The database choice will be written to the file {{ work_dir }}/db_name.DO_NOT_DELETE, so here we check to see
+    # if that file exists
+    #
+    - name: "Database: Determine if we have already chosen the database for this deployment."
+      stat:
+        path: "{{ db_name_file }}"
+      register: chosen_db
+
+    #
+    # If the file {{ work_dir }}/db_name.DO_NOT_DELETE doesn't exist, work out what databases are already in use
+    #
+    - name: "Database: Determine which databases are already being used by other deployments in this environment."
+      shell: "mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -sN -h {{ drupal_db_host }} -u {{ drupal_db_user }} -p{{ drupal_db_password }} -e \"select schema_name from INFORMATION_SCHEMA.SCHEMATA where schema_name like 'developer_drupal%' order by schema_name asc\""
+      register: used_dbs
+      when: chosen_db.stat.exists == false
+
+    #
+    # Select a database name from the list of available names in this environment. We only do this if
+    # {{ work_dir }}/db_name.DO_NOT_DELETE does not exist
+    #
+    - name: "Database: Set the variable for the database name if have not yet chosen for this deployment."
+      set_fact:
+        deployment_dbs: "{{ (usable_db_names | difference(used_dbs.stdout_lines))}}"
+      when: chosen_db.stat.exists == false
+
+    #
+    # If {{ work_dir }}/db_name.DO_NOT_DELETE does exist, read in the database name from the file
+    #
+    - name: "Database: Set the variable for the database name if we have already chosen the database for this deployment"
+      set_fact:
+        deployment_dbs: "{{[lookup('file', db_name_file)]}}"
+      when: chosen_db.stat.exists
+
+    #
+    # If we've been unable to choose a database, then fail this deployment. We can't proceed.
+    #
+    - name: "Database: Fail the deployment if we are unable to select a database."
+      fail:
+        msg: "There are no available databases for this deployment. 'developer_drupal_1' through 'developer_drupal_10' are all in use"
+      when: (deployment_dbs | length) == 0
+
+    #
+    # Create our chosen database
+    #
+    - name: "Database: Create the database for this deployment of Drupal."
+      mysql_db:
+        name: '{{ deployment_dbs[0] }}'
+        state: present
+        login_password: '{{ drupal_db_password }}'
+        login_user: '{{ drupal_db_user }}'
+        login_host: '{{ drupal_db_host }}'
+        ssl_ca: '/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem'
+
+    #
+    # MWES-2877 - Attempt to create a table within the database. If this fails then another deployment has claimed the database at the same
+    # time as us and we need to fail the deployment and try again.
+    #
+    - name: "Database: Optimistically lock the database for this deployment"
+      shell: "mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -h {{ drupal_db_host }} -p{{ drupal_db_password }} -u {{ drupal_db_user }} -e \"create table db_claimed_by(deployment_id varchar(255)); insert into db_claimed_by(deployment_id) values ('Deployment {{ drupal_deployment_id }}')\" {{ deployment_dbs[0] }}"
+      when: chosen_db.stat.exists == false
+
+    #
+    # Ensure that the name of our chosen database is written to disk. This only occurs if {{ work_dir }}/db_name.DO_NOT_DELETE
+    # does not already exist.
+    #
+    - name: "Database: Persist the chosen database for this deployment to disk."
+      copy:
+        content: "{{ deployment_dbs[0] }}"
+        dest: "{{ db_name_file }}"
+        group: 'root'
+        mode: '0770'
+      when: chosen_db.stat.exists == false
+
+    - debug:
+        msg: "Database: The database being used by this deployment is '{{ deployment_dbs[0] }}'"
+
+    #
+    # Check to see if we've already successfully run the DB import
+    #
+    - name: "Database: Check for presence of Drupal tables in the database to see if we need to import the SQL dump."
+      stat:
+        path: "{{ work_dir }}/drupal.dbimport.DO_NOT_DELETE"
+      register: db_imported
+
+    #
+    # Import the latest production database backup into the database for this deployment.
+    # We should be using the mysql_db module for this, but there is a bug in it which means it does not handle
+    # ssl_ca correctly when importing. I've filed an issue with Ansible: https://github.com/ansible/ansible/issues/50096
+    #
+    - name: "Database: Import the most recent Drupal database dump into the database for this deployment."
+      shell: "gunzip -c {{ work_dir }}/drupal-db.sql.gz | mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -h {{ drupal_db_host }} -p{{ drupal_db_password }} -u {{ drupal_db_user }} {{ deployment_dbs[0] }}"
+      when: db_imported.stat.exists == false
+
+    - name: "Database: Record successful import of database"
+      copy:
+        content: ""
+        dest: "{{ work_dir }}/drupal.dbimport.DO_NOT_DELETE"
+        force: no
+        group: 'root'
+        mode: '0770'
+
+    - name: Template the rhd.settings.php for mounting into Drupal
+      template:
+        src: 'templates/{{ rhdp_environment }}/drupal/rhd.settings.php.j2'
+        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/rhd.settings.php'
+        group: 'root'
+        mode: 0770
+        force: no
+
+    - name: Template the rhd.settings.yml for mounting into Drupal
+      template:
+        src: 'templates/{{ rhdp_environment }}/drupal/rhd.settings.yml.j2'
+        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/rhd.settings.yml'
+        group: 'root'
+        mode: 0770
+        force: no
+
+    - name: Template phinx.yml for mounting into Drupal
+      template:
+        src: 'templates/{{ rhdp_environment }}/drupal/phinx.yml.j2'
+        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/phinx.yml'
+        group: 'root'
+        mode: 0770
+        force: no
+
+    - name: Template drupal.conf for mounting into Drupal
+      template:
+        src: 'templates/common/apache/drupal.conf.j2'
+        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/apache/drupal.conf'
+        group: 'root'
+        mode: 0770
+        force: no
