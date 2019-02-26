@@ -397,7 +397,8 @@ display:
     display_title: 'REST export'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
       path: drupal/taxonomy/tags
       pager:
         type: none
@@ -406,9 +407,8 @@ display:
       style:
         type: serializer
         options:
-          grouping: {  }
-          uses_fields: false
-          formats: {  }
+          formats:
+            json: json
       row:
         type: data_field
         options:
