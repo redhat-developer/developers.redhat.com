@@ -17,7 +17,6 @@ dependencies:
     - node.type.video_resource
   module:
     - datetime
-    - hal
     - interval
     - node
     - rest
@@ -991,14 +990,13 @@ display:
     display_title: 'REST export'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
       path: drupal/videos
       style:
         type: serializer
         options:
-          uses_fields: false
           formats:
-            hal_json: hal_json
             json: json
       defaults:
         style: false
