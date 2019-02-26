@@ -6,6 +6,9 @@ dependencies:
     - core.entity_view_mode.node.featured_tile
     - field.field.node.product.field_call_to_action_link
     - field.field.node.product.field_card_image
+    - field.field.node.product.field_content
+    - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
     - field.field.node.product.field_image
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_product_categories
@@ -18,7 +21,18 @@ dependencies:
     - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_tax_audience_segment
+    - field.field.node.product.field_tax_business_unit
+    - field.field.node.product.field_tax_campaign
+    - field.field.node.product.field_tax_lifecycle
+    - field.field.node.product.field_tax_product
+    - field.field.node.product.field_tax_product_line
+    - field.field.node.product.field_tax_project
+    - field.field.node.product.field_tax_promotion
+    - field.field.node.product.field_tax_region
+    - field.field.node.product.field_tax_stage
     - field.field.node.product.field_url_product_name
+    - field.field.node.product.field_use_new_product_page
     - image.style.large
     - node.type.product
   module:
@@ -97,6 +111,9 @@ content:
     third_party_settings: {  }
 hidden:
   field_card_image: true
+  field_content: true
+  field_downloads_page_content: true
+  field_getting_started_content: true
   field_meta_tags: true
   field_product_categories: true
   field_product_category: true
@@ -107,5 +124,18 @@ hidden:
   field_product_technology_group: true
   field_share_image: true
   field_stackoverflow_product_refe: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_use_new_product_page: true
+  langcode: true
   links: true
+  published_at: true
   workbench_moderation_control: true

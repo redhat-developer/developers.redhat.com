@@ -10,6 +10,16 @@ dependencies:
     - field.field.node.author.field_headshot
     - field.field.node.author.field_linkedin
     - field.field.node.author.field_position_title
+    - field.field.node.author.field_tax_audience_segment
+    - field.field.node.author.field_tax_business_unit
+    - field.field.node.author.field_tax_campaign
+    - field.field.node.author.field_tax_lifecycle
+    - field.field.node.author.field_tax_product
+    - field.field.node.author.field_tax_product_line
+    - field.field.node.author.field_tax_project
+    - field.field.node.author.field_tax_promotion
+    - field.field.node.author.field_tax_region
+    - field.field.node.author.field_tax_stage
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
     - image.style.square_small
@@ -55,6 +65,18 @@ hidden:
   field_github: true
   field_linkedin: true
   field_position_title: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_twitter: true
   field_youtube: true
+  langcode: true
   links: true
+  published_at: true

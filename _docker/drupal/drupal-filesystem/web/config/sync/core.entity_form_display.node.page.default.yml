@@ -10,6 +10,7 @@ dependencies:
     - content_moderation
     - metatag
     - path
+    - publication_date
     - text
 _core:
   default_config_hash: L1fBdp2a9eZINN76KMcEIrHmz-zZVpQ9GSSqy5QtyiU
@@ -39,6 +40,13 @@ content:
     weight: 7
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     weight: 26
     settings: {  }
@@ -58,6 +66,12 @@ content:
     weight: 3
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:

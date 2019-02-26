@@ -10,6 +10,7 @@ dependencies:
     - media.type.video
   module:
     - image
+    - user
 id: media.video.media_library
 targetEntityType: media
 bundle: video
@@ -44,4 +45,5 @@ content:
 hidden:
   field_media_in_library: true
   field_media_video_embed_field: true
+  langcode: true
   name: true
