@@ -1,0 +1,55 @@
+#
+# Playbook that deletes all resources associated with a Drupal Deployment.
+#
+---
+- hosts: localhost
+  connection: local
+  become: no
+  vars_files:
+    - "/credentials/ansible/env.yml"
+    - "vars/common/drupal/vars.yml"
+  tasks:
+    #
+    # If the deployment has a database, it will be at recorded at db_name_file: "{{ work_dir }}/db_name.DO_NOT_DELETE".
+    # We need to be able to read this file in order to drop the database for this deployment.
+    #
+    - name: Check to see if the database name file exists
+      stat:
+        path: "{{ db_name_file }}"
+      register: db_name
+    - debug:
+        msg: "There is no database name file at '{{ db_name_file }}' for this deployment. Unable to drop database.'"
+      when: db_name.stat.exists == false
+
+    #
+    # Read in the name of the database that we need to drop
+    #
+    - name: Read the name of the database used by this deployment
+      set_fact:
+        deployment_db: "{{lookup('file', db_name_file)}}"
+      when: db_name.stat.exists
+
+    - debug:
+        msg: "Dropping database '{{ deployment_db }}'..."
+      when: db_name.stat.exists
+
+    #
+    # Drop the database
+    #
+    - name: Drop the database for this deployment
+      mysql_db:
+        login_host: "{{ drupal_db_host }}"
+        login_user: "{{ drupal_db_user }}"
+        login_password: "{{ drupal_db_password }}"
+        name: "{{ deployment_db }}"
+        state: absent
+        ssl_ca: '/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem'
+      when: db_name.stat.exists
+
+    #
+    # Delete the working directory for this deployment
+    #
+    - name: Delete the working directory for this deployment
+      shell: "/bin/rm -rf /drupal-workspace/{{ drupal_deployment_dir }}/*"
+      args:
+        warn: false

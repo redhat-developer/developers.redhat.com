@@ -17,7 +17,6 @@ dependencies:
     - field.storage.node.field_web_reader_url
     - node.type.books
   module:
-    - datetime
     - link
     - node
     - options
@@ -1135,9 +1134,8 @@ display:
       style:
         type: serializer
         options:
-          grouping: {  }
-          uses_fields: false
-          formats: {  }
+          formats:
+            json: json
       row:
         type: data_field
         options:

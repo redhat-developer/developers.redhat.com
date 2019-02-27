@@ -1,20 +1,20 @@
 seckit_xss:
   csp:
-    checkbox: false
-    report-only: false
-    default-src: ''
-    script-src: ''
-    object-src: ''
-    img-src: ''
-    media-src: ''
-    frame-src: ''
+    checkbox: true
+    report-only: true
+    default-src: 'https:'
+    script-src: '''unsafe-inline'' ''unsafe-eval'' https:'
+    object-src: 'https:'
+    img-src: 'https:'
+    media-src: 'https:'
+    frame-src: 'https:'
     frame-ancestors: ''
     child-src: ''
-    font-src: ''
-    connect-src: ''
+    font-src: 'https: data:'
+    connect-src: 'https:'
     report-uri: /report-csp-violation
     policy-uri: ''
-    style-src: ''
+    style-src: '''unsafe-inline'' https:'
   x_xss:
     seckit_x_xss_option_disable: Disabled
     seckit_x_xss_option_0: '0'
