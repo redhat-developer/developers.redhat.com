@@ -45,18 +45,13 @@ The scripts assume you can run the `docker` command WITHOUT sudo.
 Mac: Docker compose will have been installed as part of the Docker for Mac install.
 Linux: Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 
-### Register at DockerHub
+### Request Access to the Project Data Images
 
-The project uses private Docker repositories for certain images and to access these you will need to register at [DockerHub](https://hub.docker.com). Once you have registered, give your
-username to a member of the project team who can grant you access privileges on the private repositories for the project
+The project uses private Docker repositories for certain images and to access these you will need to ask a RHDP team member with sufficient
+privileges to add your account. 
 
-Additionally you need to ensure that the Docker daemon on your local machine is authenticated with your new DockerHub account. To do this run the following:
-
-```
-docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
-```
-
-For the above, replace `$DOCKER_HUB_USERNAME` and `$DOCKER_HUB_PASSWORD` with your account details.
+Please read the [following documentation](https://mojo.redhat.com/docs/DOC-1192810-developersredhatcom-giving-a-dev-team-member-access-to-data-images) on the steps required to get
+access to the internal data image repositories for this project.
 
 ### Sanity test
 At this point you must be able to run the following commands without error:
