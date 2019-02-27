@@ -17,6 +17,13 @@
 #}
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   {% if content %}
-    {{- content -}}
+    {{- content|without('field_cta_link') -}}
+  {% endif %}
+
+  {# CTA is separated from content so it's displayed under dp-category-list component #}
+  {% if content.field_cta_link %}
+    <div class="cta-link">
+      {{ content.field_cta_link }}
+    </div>
   {% endif %}
 </section>
