@@ -5,12 +5,14 @@ dependencies:
   config:
     - assembly.assembly_type.product_categories
     - field.field.assembly.product_categories.field_audience_selection
+    - field.field.assembly.product_categories.field_cta_link
     - field.field.assembly.product_categories.field_navigation_title
     - field.field.assembly.product_categories.field_title
   module:
     - fences
     - field_layout
     - layout_discovery
+    - rhd_assemblies
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -20,6 +22,26 @@ targetEntityType: assembly
 bundle: product_categories
 mode: default
 content:
+  field_cta_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: '80'
+      class: 'button heavy-cta'
+      url_only: false
+      url_plain: false
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
+    region: content
   field_title:
     weight: 0
     label: hidden
@@ -38,5 +60,6 @@ content:
 hidden:
   field_audience_selection: true
   field_navigation_title: true
+  langcode: true
   name: true
   user_id: true

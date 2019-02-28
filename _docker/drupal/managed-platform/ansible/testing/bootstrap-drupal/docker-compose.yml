@@ -1,0 +1,56 @@
+---
+version: '3'
+services:
+
+  local_seed:
+    build:
+      context: ../rhdp-data-seed
+    environment:
+    - DEPLOYMENT_ID=1
+    volumes:
+    - ./drupal-workspace:/drupal-workspace
+    depends_on:
+      - mysql
+
+  bootstrap_env:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    command: ["/bin/bash","-c", "ansible-playbook bootstrap-env.yml"]
+    working_dir: "/ansible"
+    environment:
+    - DEPLOYMENT_ID=1
+    volumes:
+     - ../../:/ansible
+     - ../env.yml:/credentials/ansible/env.yml
+     - ./drupal-workspace:/drupal-workspace
+    depends_on:
+     - mysql
+
+  bootstrap_drupal:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    command: ["/bin/bash"]
+    working_dir: "/ansible"
+    environment:
+      - DEPLOYMENT_ID=1
+    volumes:
+      - ../../:/ansible
+      - ../env.yml:/credentials/ansible/env.yml
+      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
+      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
+      - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
+      - ./drupal-workspace:/drupal-workspace
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mariadb:10.3.9-bionic
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    ports:
+    - "3306:3306"
+    expose:
+    - 3306

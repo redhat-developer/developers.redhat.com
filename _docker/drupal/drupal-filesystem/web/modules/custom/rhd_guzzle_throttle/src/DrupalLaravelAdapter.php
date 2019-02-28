@@ -74,9 +74,7 @@ class DrupalLaravelAdapter implements StorageInterface {
 
       $env = \Drupal::config('redhat_developers')->get('environment');
       if($env !== 'prod' && $env !== 'stage') {
-        $logger = \Drupal::logger('blog_cache');
         [$host, $path] = RequestHelper::getHostAndPath($request);
-        $logger->info("Caching request to blog for URL [" . $host . $path ."]");
       }
 
       $this->store->forever($this->_buildResponseKey($request), $cachedResponse);

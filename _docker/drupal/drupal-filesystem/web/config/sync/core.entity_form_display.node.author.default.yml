@@ -203,6 +203,13 @@ content:
     third_party_settings: {  }
     type: link_default
     region: fields
+  langcode:
+    type: language_select
+    weight: 2
+    region: fields
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     weight: 15
     settings: {  }

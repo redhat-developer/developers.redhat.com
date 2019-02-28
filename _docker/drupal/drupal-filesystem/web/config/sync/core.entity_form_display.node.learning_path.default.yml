@@ -254,6 +254,13 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     weight: 21
     settings: {  }

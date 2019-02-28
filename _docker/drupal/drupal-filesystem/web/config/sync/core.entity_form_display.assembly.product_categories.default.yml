@@ -5,12 +5,14 @@ dependencies:
   config:
     - assembly.assembly_type.product_categories
     - field.field.assembly.product_categories.field_audience_selection
+    - field.field.assembly.product_categories.field_cta_link
     - field.field.assembly.product_categories.field_navigation_title
     - field.field.assembly.product_categories.field_title
   module:
     - content_moderation
     - field_layout
     - layout_discovery
+    - link
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -26,8 +28,16 @@ content:
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_navigation_title:
+  field_cta_link:
     weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_navigation_title:
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -42,8 +52,15 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -58,7 +75,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true

@@ -1,0 +1,142 @@
+# Setting drupal/web as the main location to host from
+<VirtualHost *:8080>
+    ServerName {{ drupal_url }}
+    ServerAlias {{ drupal_previous_url }}
+    ServerAlias {{ drupal_next_url }}
+    #
+    # We do not support connections over HTTP. Everything over HTTP is redirected to HTTPS
+    #
+    RewriteEngine on
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+</VirtualHost>
+
+<VirtualHost *:8443>
+    ServerName {{ drupal_url }}
+    ServerAlias {{ drupal_previous_url }}
+    ServerAlias {{ drupal_next_url }}
+
+    DocumentRoot "/var/www/drupal/web"
+
+    #
+    # Enable SSL connections
+    #
+    SSLEngine on
+    SSLCertificateFile "/ssl/tls.crt"
+    SSLCertificateKeyFile "/ssl/tls.key"
+
+    <Directory "/var/www/drupal/web">
+        #
+        # Disable overrides to prevent directory scanning
+        #
+        AllowOverride None
+        Options Indexes FollowSymLinks
+        Require all granted
+
+        #
+        # Include specific .htaccess to avoid directory scanning
+        #
+        Include "/var/www/drupal/.htaccess"
+
+        #
+        # Enable gzip compression for our most commonly served resources
+        #
+        <IfModule mod_deflate.c>
+          <FilesMatch "\.(xml|html|htm|css|js|php|json|ico|eot|otf|ttf|md|png|svg|jpg|gif)$">
+            SetOutputFilter DEFLATE
+          </FilesMatch>
+        </IfModule>
+
+        #
+        # Removes specific headers from the Drupal response
+        #
+        <IfModule mod_headers.c>
+            Header unset link
+            Header unset x-drupal-cache
+            Header unset x-drupal-cache-tags
+            Header unset x-drupal-cache-contexts
+            Header unset x-drupal-dynamic-cache
+            Header unset x-generator
+            Header unset x-powered-by
+            Header unset x-ua-compatible
+            #
+            # MWES-2462: Removes the Expires header to better support integration with Akamai
+            #
+            Header unset Expires
+        </IfModule>
+
+        #
+        # MWES-2894: Disable unsupported HTTP methods,
+        #
+        RewriteCond %{REQUEST_METHOD} ^(DELETE|OPTIONS|PUT|COPY|LINK|UNLINK|PURGE|LOCK|UNLOCK|PROPFIND|VIEW)
+        RewriteRule .* - [F]
+
+        #
+        # MWES-2900: Disable PATCH unless it's from our allowed host
+        #
+        RewriteCond %{REQUEST_METHOD} ^PATCH
+        RewriteCond %{HTTP_HOST} !^origin-developers.redhat.com [NC]
+        RewriteRule .* - [F]
+
+    </Directory>
+
+    <Directory "/var/www/drupal/web/config/sync">
+        AllowOverride None
+        #
+        # Include specific .htaccess to avoid directory scanning
+        #
+        Include "/var/www/drupal/web/config/sync/.htaccess"
+    </Directory>
+
+    <Directory "/var/www/drupal/web/sites/default/files">
+        AllowOverride None
+        Include "/var/www/drupal/.htaccess-files"
+    </Directory>
+
+</VirtualHost>
+
+#
+# MWES-2911: Update Apache log file structure as per-legacy deployment
+#
+<IfModule log_config_module>
+    # LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{True-Client-IP}i\" TrueClientIP=\"%{True-Client-IP}i\" XForwardedFor=\"%{X-Forwarded-For}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+
+    <IfModule logio_module>
+      # LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O TrueClientIP=\"%{True-Client-IP}i\" XForwardedFor=\"%{X-Forwarded-For}i\"" combinedio
+    </IfModule>
+
+
+    # Exclude localhost/ OpenShift Health-Checks from access log
+    SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+
+    # Exclude F5 Health-Checks from access log
+    SetEnvIf User-Agent "^f5-health-monitor" dontlog
+
+    # Exclude Nagios check_http from access log
+    SetEnvIf User-Agent "^check_http" dontlog
+
+    CustomLog "/dev/stdout" combined env=!dontlog
+</IfModule>
+
+#
+# Configure mpm_prefork settings to be running on MP. At the minute this is hard-coded to expect a Drupal container
+# memory allocation of 2Gi. If that changes, then these settings should be adjusted to better support traffic.
+#
+<IfModule mpm_prefork_module>
+  #
+  # Rule of thumb is that ServerLimit should be (Total RAM - Memory for OS) / Apache Process Size
+  #
+  # Leave ~400mb for the OS and to determine Apache process size it's: ps aux | grep 'httpd' | awk '{print $6/1024 " MB";}'
+  # Drupal on MP seems to be consuming ~55Mb per Apache process, so by my maths:
+  # (2048-400)/55 = 29.9, so rounding it up to 30 workers.
+  #
+  MaxRequestWorkers       30
+
+  # Drupal container on MP has max 2 CPU units.
+  StartServers            2
+  MaxConnectionsPerChild  1000
+  GracefulShutdownTimeout 15
+</IfModule>
+

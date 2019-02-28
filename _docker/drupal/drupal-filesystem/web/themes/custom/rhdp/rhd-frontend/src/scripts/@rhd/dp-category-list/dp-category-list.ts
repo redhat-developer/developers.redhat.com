@@ -9,7 +9,7 @@ export default class DPCategoryList extends RHElement {
     :host {
         position: relative;
         background-color: #F9F9F9;
-        padding: 30px 0;
+        padding: 30px 0 15px 0;
         display: block;
     }
 

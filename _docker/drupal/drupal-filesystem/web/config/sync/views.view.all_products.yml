@@ -143,7 +143,7 @@ display:
             alter_text: true
             text: '{{ title__value }}'
             make_link: true
-            path: '/products/{{ field_url_product_name }}/overview'
+            path: '/products/{{ field_url_product_name }}/overview/'
             absolute: false
             external: false
             replace_spaces: false

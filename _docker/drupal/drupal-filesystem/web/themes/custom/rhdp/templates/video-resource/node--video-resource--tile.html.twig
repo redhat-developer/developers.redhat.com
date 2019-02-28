@@ -30,5 +30,13 @@
     </div>
     <h3 class="tile-title">{{ label }}</h3>
   </a>
-  <div class="tile-comment-count hidden" data-disqus-thread-link="{{ url('entity.node.canonical', {'node': node.id}) }}" data-disqus-comment-count><a href="{{ url }}#comments"><span class="fa fa-comment"></span><span class="comment-number" data-disqus-comment-count-number></span> <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span></a></div>
+  {% if "developers.redhat.com" in url('entity.node.canonical', {'node': node.id}) %}
+  <div class="tile-comment-count hidden" data-disqus-thread-link="{{ url('entity.node.canonical', {'node': node.id}) }}" data-disqus-comment-count>
+    <a href="{{ url }}#comments">
+      <span class="fa fa-comment"></span>
+      <span class="comment-number" data-disqus-comment-count-number></span> 
+      <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span>
+    </a>
+  </div>
+  {% endif %}
 </article>
