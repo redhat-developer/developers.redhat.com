@@ -19,7 +19,8 @@ describe('Search Page', function () {
     });
 
     it("should default result sorting should be 'Relevance'", function () {
-        search.open();
+        home.open('/');
+        siteNav.searchFor('hello world');
         let resultSort = search.resultSort.get();
         expect(resultSort).to.equal('relevance');
     });
