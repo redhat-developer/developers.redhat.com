@@ -2,25 +2,25 @@
   text-align: center;
   background-color: #F9F9F9;
   padding: 40px 0;
-  @include tablet-landscape {
+  @include tablet-portrait {
     padding: 100px;
   }
   .caret-right {
     font-size: 16px;
   }
   .field--name-field-title {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 0;
-    @include tablet-landscape {
+    @include tablet-portrait {
       font-size: 32px;
       margin-bottom: 16px;
     }
   }
-  .field--name-field-content * {
+  .field--name-field-content * { 
     font-size: 16px;
-    @include tablet-landscape {
+    @include desktop-extra-small {
       font-size: 20px;
     }
     *:first-child {
@@ -31,12 +31,20 @@
     }
   }
   .field--name-field-columns {
-    @include tablet-landscape {
+    @include desktop-extra-small-and-down {
+      .field__item {
+          max-width: 480px;
+          margin-left: auto;
+          margin-right: auto;
+      } 
+    }
+
+    @include desktop-extra-small {
       display: grid;
       grid-column-gap: 30px;
       grid-row-gap: 70px;
       grid-template-columns: repeat(3, 1fr);
-      margin-top: 70px;
+      margin-top: 35px;
     }
     @include desktop-small {
       grid-template-columns: repeat(4, 1fr);
@@ -46,7 +54,7 @@
     }
     > div {
       margin-top: 40px;
-      @include tablet-landscape {
+      @include desktop-extra-small {
         margin-top: 0;
       }
       *:first-child {
@@ -58,7 +66,7 @@
     }
     h3 {
       font-size: 14px;
-      @include tablet-landscape {
+      @include desktop-extra-small {
         font-size: 18px;
         margin-top: 26px;
       }

@@ -33,7 +33,7 @@ services:
 
   # Drupal production data
   drupal_data:
-   image: redhatdeveloper/drupal-data-lite:latest
+   image: docker-registry.engineering.redhat.com/developers/drupal-data:latest
    volumes:
     - /var/www/drupal/web/config/active
     - /var/www/drupal/web/sites/default/files

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.image_browser
+    - field.field.node.assembly_page.field_hide_title
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
@@ -42,7 +43,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 9
+      weight: 11
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -62,14 +63,21 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_hide_title:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_meta_tags:
-    weight: 6
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_sections:
-    weight: 4
+    weight: 6
     settings:
       form_mode: default
       override_labels: true
@@ -88,7 +96,7 @@ content:
     region: content
   field_share_image:
     type: entity_browser_file
-    weight: 5
+    weight: 7
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -168,26 +176,26 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 7
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: content
   path:
     type: path
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 3
+    weight: 4
     region: content
     settings:
       size: 60
@@ -203,7 +211,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 8
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
