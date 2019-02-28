@@ -1,11 +1,10 @@
-import {Page} from "../Page"
+import {Page} from "./Page"
 
-export class Login extends Page {
+export class Keycloak extends Page {
 
     constructor() {
         super({
-            path: '/login',
-            pageTitle: 'Log In | Red Hat Developer Program',
+            path: '/login/',
         });
 
         this.addSelectors({
@@ -31,8 +30,7 @@ export class Login extends Page {
         return this.displayed(this.getSelector('usernameField'));
     }
 
-    with(user) {
-        this.awaitLogin();
+    loginWith(user) {
         this.type(user['email'], this.getSelector('usernameField'));
         this.click(this.getSelector('nextBtn'));
         this.awaitStepTwo();
