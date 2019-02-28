@@ -26,6 +26,38 @@
     <!-- / End Katacoda Scenario Embed -->
   {% endfor %}
 </div>
+
+<script type="text/javascript">
+  var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+  var windowEvent = window[eventMethod];
+  var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+  
+  windowEvent(messageEvent,function(e) {
+    var d = e.data;
+    if(e && e.origin && e.origin.indexOf('katacoda.com') >= 0) {
+      // Make data object
+      var t = {
+        'Event':'katacoda-scenario',
+        'eventName':"katacoda-" +d.scenario,
+        'eventAction':d.action,
+        'eventLabel':d.label
+      }
+    }
+  },false);
+</script>
+
+{# Smallscreen breakpoint HTML to direct user to use a larger screen #}
+<div class="screen-size-note">
+  <h1>Sorry for the Inconvenience!</h1>
+  <p>
+    For the best Katacoda experience, we recommend viewing this page on a larger screen size to complete the scenario.
+  </p>
+  <p>On a mobile device? No problem! Feel free to explore the courses we offer.</p>
+  <a href="{{ base_url }}/courses" class="mobile-learn-more" alt="Visit Katacoda Courses">Visit Katacoda Courses</a>
+
+  <img src="{{ base_url }}/themes/custom/rhdp/images/design/katacoda/katacodalogo.png" title="Katacoda" />
+</div>
   
     
   

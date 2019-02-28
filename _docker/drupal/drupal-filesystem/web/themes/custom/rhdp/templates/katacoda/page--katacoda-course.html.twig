@@ -3,12 +3,8 @@
           <div class="rhd-masthead">
             <div class="container">
               <div class="rhd-masthead-inner">
-              
-                {{ page.rhd_katacoda_header }}
-                {{ page.rhd_katacoda_mobile_tray }}
-                <div class="menu-toggle-wrapper">
-                  <button class="menu-toggle">Menu<span class="icon"><i class="far fa-bars"></i></span></button>
-                </div>
+                  {{ page.rhd_katacoda_header }}
+                
               </div>
             </div>
           </div>
@@ -18,11 +14,14 @@
       
         <main role="main">
           <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-      
           <div class="layout-content">
-            {{ page.content }}
+                  {{ page.content }}
           </div>{# /.layout-content #}
         </main>
       
-      
+        {% if page.rhd_footer %}
+        <footer role="contentinfo">
+          {{ page.rhd_footer }}
+        </footer>
+      {% endif %}
       </div>{# /.layout-container #}

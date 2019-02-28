@@ -48,10 +48,11 @@
 <div class="layout-container katacoda-courses">
   <header role="banner">
     <div class="rhd-masthead">
+        {{ page.rh_universal_header }}
       <div class="container">
         <div class="rhd-masthead-inner">
-          {{ page.rhd_katacoda_header }}
-          {{ page.rhd_katacoda_mobile_tray }}
+            {{ page.rhd_header }}
+            {{ page.mobile_tray }}
           <div class="menu-toggle-wrapper">
             <button class="menu-toggle">Menu<span class="icon"><i class="far fa-bars"></i></span></button>
           </div>
@@ -64,15 +65,35 @@
 
   <main role="main">
     <div class="katacoda-all-courses-header">
-        <h1>All Courses</h1>
+        
     </div>
   
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
+    <div class="katacoda-hero all-courses-page">
+      <div class="container">
+        <div class="content-area">
+            <h1>
+                Training For Developers and IT
+              </h1>
+              <h2>
+                Katacoda Courses
+              </h2>
+              <p>
+                This is a general description of a collection of Katacoda Courses. This text and the above titles are coded into the All Courses Page twig template.
+              </p>
+              <a class="katacoda-learn-more-link" href="https://www.developers.redhat.com" alt="Read More">Learn More &gt;</a>
+        </div>
+          
+      </div>
+    </div>
     <div class="layout-content">
-      {{ page.content }}
+        <div class="container katacoda-courses-container">{{ page.content }}</div>
     </div>{# /.layout-content #}
   </main>
-
+  {% if page.rhd_footer %}
+  <footer role="contentinfo">
+    {{ page.rhd_footer }}
+  </footer>
+{% endif %}
 
 </div>{# /.layout-container #}
