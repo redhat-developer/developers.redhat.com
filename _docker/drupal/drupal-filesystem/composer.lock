@@ -2618,7 +2618,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/compose",
-                "reference": "f9f94dab8404fd59770a1159d9b93da28336b8ff"
+                "reference": "ea3592492b58e6353024cca3525af9141977305f"
             },
             "require": {
                 "drupal/core": "*"
@@ -2630,7 +2630,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1549664880",
+                    "datestamp": "1551377886",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2656,13 +2656,14 @@
                 }
             ],
             "description": "Improved content editing UI",
-            "homepage": "https://code.kilpho.st/alloy/compose",
+            "homepage": "https://www.drupal.org/project/compose",
             "keywords": [
                 "Drupal"
             ],
             "support": {
                 "source": "http://cgit.drupalcode.org/compose"
-            }
+            },
+            "time": "2019-02-28T19:10:27+00:00"
         },
         {
             "name": "drupal/consumers",
@@ -13054,25 +13055,6 @@
             "type": "drupal-theme",
             "description": "Alloy Magnetic's Drupal 8 admin theme",
             "time": "2019-01-10T15:18:00+00:00"
-        },
-        {
-            "name": "alloy/compose",
-            "version": "dev-field_layout",
-            "source": {
-                "type": "git",
-                "url": "git@code.kilpho.st:alloy/compose.git",
-                "reference": "3b7a0180e1bfda1c2165bf467702e218d0bd40ed"
-            },
-            "type": "drupal-module",
-            "license": [
-                "proprietary"
-            ],
-            "description": "Improved content editing UI",
-            "homepage": "https://code.kilpho.st/alloy/compose",
-            "keywords": [
-                "Drupal"
-            ],
-            "time": "2019-02-06T21:48:25+00:00"
         },
         {
             "name": "behat/behat",
