@@ -27,6 +27,7 @@ services:
     - RHD_KEYCLOAK_ADMIN_PASSWORD
     - GRID_HOST=chrome
     - GRID_PORT=4444
+    - PULL_REQUEST_ID
 
   chrome:
     image: selenium/standalone-chrome:3.141.0-actinium

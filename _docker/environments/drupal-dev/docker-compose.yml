@@ -37,20 +37,6 @@ services:
     volumes_from:
       - drupal_data
 
-  apache:
-   image: httpd:2.4.20
-   command: "sh -c 'rm -f /usr/local/apache2/htdocs/index.html && httpd-foreground'"
-   links:
-    - drupal:docker
-   expose:
-    - 80
-    - 9000
-   ports:
-    - "9000:9000"
-   volumes:
-    - export:/usr/local/apache2/htdocs
-    - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
-    - ./apache/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
 
   # Drupal production data
   drupal_data:
@@ -61,21 +47,6 @@ services:
     - /docker-entrypoint-initdb.d
 
   #
-  # Environment actions
-  #
-  export:
-    links:
-     - drupal:docker
-    build: ../../export
-    volumes:
-     - ../../../:/home/jenkins_developer/developer.redhat.com
-     - export:/export
-    entrypoint: "ruby _docker/lib/export/export.rb docker"
-    environment:
-     - drupal.export.fail_on_missing
-     - drupal.export.final_base_url=http://docker:9000/
-
-  #
   # Testing
   #
   unit_tests:
@@ -83,10 +54,3 @@ services:
    volumes:
     - ../../../:/home/awestruct/developer.redhat.com
    entrypoint: "bundle exec rake test"
-
-#
-# Volumes
-#
-volumes:
- export:
-  driver: local

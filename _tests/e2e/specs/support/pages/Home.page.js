@@ -1,18 +1,16 @@
-import {Page} from "../Page";
+import {Page} from "./Page";
 
 export class Home extends Page {
     constructor() {
         super({
             path: '/',
         });
-
         this.addSelectors({
             toolbarItemUser: '#toolbar-item-user',
         });
     }
 
-    loggedInUser() {
+    loggedInAdmin() {
         return this.textOf(this.getSelector('toolbarItemUser'))
     }
-
 }

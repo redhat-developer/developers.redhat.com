@@ -11,6 +11,7 @@ var browserstackConfig = Object.assign(baseConfig, {
     user: process.env.RHD_BS_USERNAME,
     key: process.env.RHD_BS_AUTHKEY,
     browserstackLocal: true,
+    baseUrl: process.env.RHD_BASE_URL,
 
     capabilities: [{
         'acceptSslCerts': 'true',

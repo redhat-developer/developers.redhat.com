@@ -1,4 +1,4 @@
-import {Page} from "../Page";
+import {Page} from "./Page";
 
 export class Error404Page extends Page {
     constructor() {

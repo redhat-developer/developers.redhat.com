@@ -1,11 +1,10 @@
-import {Page} from "../Page"
+import {Page} from "./Page"
 
-export class Login extends Page {
+export class Drupal extends Page {
 
     constructor() {
         super({
-            path: '/user/login',
-            pageTitle: 'Red Hat Developer | Log in',
+            path: '/user/login'
         });
 
         this.addSelectors({
@@ -16,12 +15,7 @@ export class Login extends Page {
         });
     }
 
-    isDisplayed() {
-        this.awaitLogin();
-        return this.displayed(this.getSelector('usernameField'));
-    }
-
-    with(user, password) {
+    loginWith(user, password) {
         this.click(this.getSelector("legacyLoginButton"));
         this.type(user, this.getSelector('usernameField'));
         this.type(password, this.getSelector('passwordField'));

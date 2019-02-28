@@ -61,15 +61,12 @@ If in doubt, contact Ian Hamilton on slack.
 
 You can, and **should** test your changes locally before raising a PR. Please ensure you have a local build running and `http://docker:8888` is accessible in a browser. 
 
-In the root of the project directory execute the following command for site export tests:
+In the root of the project directory execute the following command for e2e tests:
 
-        cd _tests/e2e && npm run e2e
-        
-In the root of the project directory execute the following command for site export tests:
-        
-        cd _tests/e2e && npm run e2e -- --testType=drupal --user=your-drupal-test-account-username-goes-here --password=your-drupal-test-account-password-goes-here
+    cd _tests/e2e && npm run e2e
         
 ## Run Single feature, or test
+
 Add a unique tag to the test(s) `it.` description, for example to execute the following scenario:
 
 ```nodejs
@@ -114,10 +111,6 @@ In the root of the project directory execute the following command:
 
     ruby _tests/node_jenkins_test_runner.rb e2e https://developers.redhat.com
 
-### Sanity (desktop browser only)
-
-    ruby _tests/node_jenkins_test_runner.rb sanity https://developers.redhat.com
-    
 ## Approach to writing tests
 
 ### Spec Classes
@@ -135,7 +128,7 @@ describe('Search Page', function () {
         search = new Search();
     });
 
-    it('@sanity : should allow users to search for content via site-nav search field', function () {
+    it('should allow users to search for content via site-nav search field', function () {
         home.open('/');
         siteNav.searchFor('hello world');
         expect(search.results.all().value.length).to.be.gt(0);
@@ -251,7 +244,7 @@ Screen classes should only do the following:
 Example:
 
 ```nodejs
-import {Page} from "../Page";
+import {Page} from "./Page";
 
 export class CheatSheets extends Base {
 

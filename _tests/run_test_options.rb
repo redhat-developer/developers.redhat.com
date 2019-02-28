@@ -65,6 +65,10 @@ class RunTestOptions
         test_configuration[:github_sha1] = sha1
       end
 
+      opts.on('--pr-id PR_ID', String, 'The ID of the pull request, in order to generate the drupal host') do |sha1|
+        test_configuration[:pr_id] = sha1
+      end
+
       opts.on('--profile PROFILE', String, 'Used to determine the git status context for e2e tests') do |profile|
         test_configuration[:profile] = profile
       end
@@ -119,7 +123,6 @@ class RunTestOptions
     if test_type == 'e2e'
       bind_environment_variable('github_status_context', 'js-e2e-tests') if profile == 'desktop'
       bind_environment_variable('github_status_context', 'js-mobile-e2e-tests') if profile == 'mobile'
-      bind_environment_variable('github_status_context', 'js-drupal-e2e-tests') if profile == 'drupal'
     end
   end
 
@@ -146,6 +149,7 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
+    bind_environment_variable('PULL_REQUEST_ID', test_configuration[:pr_id])
     bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]

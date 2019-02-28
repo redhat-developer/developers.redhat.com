@@ -1,9 +1,9 @@
-import {Login} from '../support/pages/keycloak/Login.page';
-import {ProductOverview} from '../support/pages/website/ProductOverview.page';
-import {CheatSheets} from '../support/pages/website/CheatSheets.page';
-import {User} from '../support/rest/keycloak/Site.user';
-import {DownloadDir} from '../support/DownloadDir';
-import {Utils} from '../support/Utils';
+import {Login} from './support/pages/Login.page';
+import {ProductOverview} from './support/pages/ProductOverview.page';
+import {CheatSheets} from './support/pages/CheatSheets.page';
+import {User} from './support/rest/keycloak/Site.user';
+import {DownloadDir} from './support/DownloadDir';
+import {Utils} from './support/Utils';
 
 const tags = require('mocha-tags');
 
@@ -17,17 +17,17 @@ tags('desktop').describe('Download Manager', function () {
     }, 2);
 
     tags('dm')
-        .it('@sanity : should allow users to login in and download RHEL', function () {
+        .it('@sanity should allow users to login in and download RHEL', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
-            let login = new Login();
+            let loginPage = new Login();
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
                 .open();
             productOverview
                 .download();
-            login
-                .with(siteUser);
+            loginPage.keycloak
+                .loginWith(siteUser);
             productOverview
                 .awaitDownload();
             let downloadName = downloadDir.get();
@@ -35,10 +35,10 @@ tags('desktop').describe('Download Manager', function () {
         });
 
     tags('dm')
-        .it('@sanity : should allow users to log-in and download advanced-linux-commands', function () {
+        .it('@sanity should allow users to log-in and download advanced-linux-commands', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
-            let login = new Login();
+            let loginPage = new Login();
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
                 .open();
@@ -46,8 +46,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitLoaded();
             cheatSheet
                 .loginToDownload();
-            login
-                .with(siteUser);
+            loginPage.keycloak
+                .loginWith(siteUser);
             cheatSheet
                 .awaitDownloadThankYou();
             let downloadName = downloadDir.get();

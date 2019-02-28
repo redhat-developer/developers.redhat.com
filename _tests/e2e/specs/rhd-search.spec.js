@@ -1,6 +1,6 @@
-import {Home} from '../support/pages/website/Home.page';
-import {Search} from '../support/pages/website/Search.page';
-import {NavigationBar} from '../support/pages/website/NavigationBar.section';
+import {Home} from './support/pages/Home.page';
+import {Search} from './support/pages/Search.page';
+import {NavigationBar} from './support/pages/NavigationBar.section';
 
 describe('Search Page', function () {
     this.retries(2);
@@ -12,14 +12,15 @@ describe('Search Page', function () {
         search = new Search();
     });
 
-    it('@sanity : should allow users to search for content via site-nav search field', function () {
+    it('@sanity should allow users to search for content via site-nav search field', function () {
         home.open('/');
         siteNav.searchFor('hello world');
         expect(search.results.all().value.length).to.be.gt(0);
     });
 
     it("should default result sorting should be 'Relevance'", function () {
-        search.open();
+        home.open('/');
+        siteNav.searchFor('hello world');
         let resultSort = search.resultSort.get();
         expect(resultSort).to.equal('relevance');
     });
