@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  become: no
+  vars_files:
+    - "/credentials/ansible/env.yml"
+    - "vars/common/drupal/vars.yml"
+  tasks:
+    - include: 'cron-tasks.yml'

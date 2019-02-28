@@ -16,6 +16,16 @@ dependencies:
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tax_audience_segment
+    - field.field.node.video_resource.field_tax_business_unit
+    - field.field.node.video_resource.field_tax_campaign
+    - field.field.node.video_resource.field_tax_lifecycle
+    - field.field.node.video_resource.field_tax_product
+    - field.field.node.video_resource.field_tax_product_line
+    - field.field.node.video_resource.field_tax_project
+    - field.field.node.video_resource.field_tax_promotion
+    - field.field.node.video_resource.field_tax_region
+    - field.field.node.video_resource.field_tax_stage
     - field.field.node.video_resource.field_topics
     - field.field.node.video_resource.field_video_author
     - field.field.node.video_resource.field_video_publish_date
@@ -210,6 +220,18 @@ hidden:
   field_exclude_from_search: true
   field_meta_tags: true
   field_share_image: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   field_video_author: true
+  langcode: true
   links: true
+  published_at: true
   workbench_moderation_control: true

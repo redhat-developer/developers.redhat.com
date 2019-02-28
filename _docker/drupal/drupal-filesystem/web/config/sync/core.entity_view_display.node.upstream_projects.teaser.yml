@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.upstream_projects.field_link_to_project
     - field.field.node.upstream_projects.field_link_to_repo
+    - field.field.node.upstream_projects.field_logo
     - node.type.upstream_projects
   module:
     - user
@@ -23,4 +24,5 @@ hidden:
   field_link_to_project: true
   field_link_to_repo: true
   field_logo: true
+  langcode: true
   published_at: true

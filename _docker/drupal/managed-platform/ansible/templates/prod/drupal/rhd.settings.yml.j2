@@ -1,0 +1,37 @@
+environment: 'prod'
+broker: 'https://broker.redhat.com/partner/drc/userMapping?redirect='
+dtm_code: 'https://www.redhat.com/dtm.js'
+sentry_track: true
+sentry_script: 'https://cdn.ravenjs.com/3.23.1/raven.min.js'
+sentry_code: '{{ drupal_sentry_code }}'
+google_api_key: {{ drupal_google_api_key }}
+rhd_base_url: 'developers.redhat.com'
+rhd_final_base_url: 'developers.redhat.com'
+downloadManager:
+  baseUrl: 'https://developers.redhat.com'
+  fileBaseUrl: '/developers.redhat.com/download-manager/file/'
+keycloak:
+  accountUrl: 'https://developers.redhat.com/auth/realms/rhd/account/'
+  authUrl: 'https://developers.redhat.com/auth/'
+  content_editor_sso:
+    redirect_url: 'https://developers.redhat.com/openid-connect/keycloak'
+    client_id: {{ drupal_content_editor_sso_client_id }}
+    client_secret: {{ drupal_content_editor_sso_client_secret }}
+    keycloak_base: 'https://developers.redhat.com/auth'
+    keycloak_realm: 'rhd'
+    authorization_endpoint_kc: 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/auth'
+    token_endpoint_kc: 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/token'
+    userinfo_endpoint_kc: 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo'
+drupal:
+  host: https://developers.redhat.com
+searchisko:
+  protocol: 'https'
+  host: dcp2.jboss.org
+  port: "443"
+  baseProtocolRelativeUrl: '//dcp2.jboss.org'
+database:
+  host: '{{ drupal_db_host }}'
+  port: '3306'
+  username: '{{ drupal_db_user }}'
+  password: '{{ drupal_db_password }}'
+  name: '{{ deployment_dbs[0] }}'

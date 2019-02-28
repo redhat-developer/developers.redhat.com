@@ -22,6 +22,7 @@ dependencies:
     - link
     - metatag
     - path
+    - publication_date
     - text
 _core:
   default_config_hash: XA0dCIs1tYyDwHASuw9Pq-smSPEXWA_1zWrAAcgTvh4
@@ -147,6 +148,13 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     weight: 26
     settings:
@@ -162,6 +170,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0

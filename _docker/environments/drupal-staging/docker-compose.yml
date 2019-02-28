@@ -8,13 +8,12 @@ services:
         https_proxy: proxy01.util.phx2.redhat.com:8080
         composer_profile: production
     ports:
-      - "80:80"
+      - "80:8080"
     restart: 'unless-stopped'
     volumes:
       - /credentials/akamai/edgerc:/credentials/akamai/edgerc
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-      - /data/drupal-logs:/var/log/httpd
     volumes_from:
       - drupal_data
     environment:
@@ -24,7 +23,7 @@ services:
 
   # Drupal production data
   drupal_data:
-    image: redhatdeveloper/drupal-data:latest
+    image: docker-registry.engineering.redhat.com/developers/drupal-data:latest
     volumes:
       - /var/www/drupal/web/config/active
       - /var/www/drupal/web/sites/default/files
@@ -59,7 +58,8 @@ services:
         https_proxy: proxy01.util.phx2.redhat.com:8080
     entrypoint: "ruby _docker/lib/export/export.rb rhdp-drupal.stage.redhat.com"
     volumes:
-      - /data/drupal-export:/export
+      - /drupal-export-workspace:/export
+      - /data/drupal-export/export-archives:/export/export-archives
       - /credentials/rsync:/home/jenkins_developer/.ssh
       - /credentials/akamai/edgerc:/home/jenkins_developer/.edgerc
       - ../../../:/home/jenkins_developer/developer.redhat.com

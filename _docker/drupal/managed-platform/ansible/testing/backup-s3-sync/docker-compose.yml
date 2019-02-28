@@ -1,0 +1,55 @@
+---
+version: '2'
+services:
+
+  local_seed:
+    build:
+      context: ../rhdp-data-seed
+      dockerfile: Dockerfile.full
+    environment:
+    - DEPLOYMENT_ID=sync
+    volumes:
+    - ./drupal-workspace:/drupal-workspace
+    depends_on:
+    - mysql
+
+  bootstrap_env:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    entrypoint: ["/bin/bash", "-c", "ansible-playbook bootstrap-env.yml"]
+    working_dir: "/ansible"
+    user: root
+    environment:
+    - DEPLOYMENT_ID=sync
+    volumes:
+    - ./env.yml:/credentials/ansible/env.yml
+    - ./drupal-workspace:/drupal-workspace
+    depends_on:
+    - mysql
+
+  backup_drupal:
+    build:
+      context: ../../../../
+      dockerfile: Dockerfile.mp
+    entrypoint: ["/bin/bash", "-c", "ansible-playbook backup-drupal.yml"]
+    working_dir: "/ansible"
+    user: root
+    environment:
+    - DEPLOYMENT_ID=sync
+    volumes:
+    - ./env.yml:/credentials/ansible/env.yml
+    - ./drupal-workspace/drupal_sync/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
+    - ./drupal-workspace/drupal_sync/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+    - ./drupal-workspace/drupal_sync/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
+    - ./drupal-workspace/drupal_sync/drupal/config/active:/var/www/drupal/web/config/active
+    depends_on:
+    - mysql
+
+  mysql:
+    image: mariadb:10.3.9-bionic
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=drupal_1
+    expose:
+    - 3306

@@ -3,11 +3,13 @@
 namespace Drupal\rhd_common\Controller;
 
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Render\Renderer;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -53,6 +55,13 @@ class ProductPageController extends ControllerBase {
   protected $renderer;
 
   /**
+   * The config factory service.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * ProductPageController constructor.
    *
    * @param QueryFactory $queryFactory
@@ -62,12 +71,14 @@ class ProductPageController extends ControllerBase {
     QueryFactory $queryFactory,
     Connection $connection,
     EntityTypeManagerInterface $entity_type_manager,
-    Renderer $renderer
+    Renderer $renderer,
+    ConfigFactoryInterface $config_factory
   ) {
     $this->entityQuery = $queryFactory;
     $this->connection = $connection;
     $this->entityTypeManager = $entity_type_manager;
     $this->renderer = $renderer;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -78,7 +89,8 @@ class ProductPageController extends ControllerBase {
       $container->get('entity.query'),
       $container->get('database'),
       $container->get('entity_type.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('config.factory')
     );
   }
 
@@ -125,21 +137,34 @@ class ProductPageController extends ControllerBase {
     }
     else {
       \Drupal::request()->attributes->add(['node' => $active_product]);
+      // Load the trailing_slash.settings config object. We will be adding these
+      // programmatically generated Product sub-page routes to this module's
+      // config below in the while statement.
+      $trailing_slash_settings = $this->configFactory->getEditable('trailing_slash.settings');
+      // This immutable config variable will respect config overrides. The
+      // config object returned from getEditable (above) will not.
+      $trailing_slash_settings_immutable = $this->configFactory->get('trailing_slash.settings');
+      $trailing_slash_enabled = $trailing_slash_settings_immutable->get('enabled');
 
-      // This render array will hold the left side navigation links.
-      $page_links = [
-        '#theme' => 'item_list',
-        '#list_type' => 'ul',
-        '#items' => [
-          [
-            '#markup' => '<a href="#">Menu</a>',
-            '#wrapper_attributes' => ['class' => 'side-nav-toggle'],
+      if ($trailing_slash_enabled === TRUE) {
+        $page_links = [];
+      }
+      else {
+        // This render array will hold the left side navigation links.
+        $page_links = [
+          '#theme' => 'item_list',
+          '#list_type' => 'ul',
+          '#items' => [
+            [
+              '#markup' => '<a href="#">Menu</a>',
+              '#wrapper_attributes' => ['class' => 'side-nav-toggle'],
+            ],
           ],
-        ],
-        '#attributes' => [
-          'class' => ['side-nav', 'rhd-sub-nav'],
-        ],
-      ];
+          '#attributes' => [
+            'class' => ['side-nav', 'rhd-sub-nav'],
+          ],
+        ];
+      }
 
       // Iterate over all the product sub pages configured for this product.
       // Find the active one, create links for the left side nav.
@@ -176,33 +201,56 @@ class ProductPageController extends ControllerBase {
           $active_paragraph = $sub_page_paragraph;
         }
 
-        $page_links['#items'][] = [
-          '#type' => 'link',
-          '#title' => [
-            '#type' => 'inline_template',
-            '#template' => "{{text}}",
-            '#context' => [
-              'text' => t(strpos($sub_page_paragraph->field_overview_url->value,
-                'Hello') === FALSE ?
-                $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!'),
+        if ($trailing_slash_enabled === TRUE) {
+          // Get the Product subpage URL object, and then add the URL string to our
+          // trailing_slash.settings.path config item.
+          $url = Url::fromUri("internal:/products/$product_code/$sub_page_url_string/");
+          $url_string = $url->toString();
+          // We have to use $trailing_slash_settings_immutable to ensure config
+          // overrides are respected.
+          $trailing_slash_paths = $trailing_slash_settings_immutable->get('paths');
+          $trailing_slash_settings->set('paths', $trailing_slash_paths . "\n$url_string");
+          $title = t(strpos($sub_page_paragraph->field_overview_url->value, 'Hello') === FALSE ?
+            $sub_page_paragraph->field_overview_url->value :
+            $sub_page_paragraph->field_overview_url->value . '!'
+          );
+          $active_class = ($sub_page_url_string == $sub_page) ? 'active' : '';
+
+          $page_links[] = [
+            'title' => $title->__toString(),
+            'url' => "$url_string/",
+            'active_class' => $active_class
+          ];
+        }
+        else {
+          $page_links['#items'][] = [
+            '#type' => 'link',
+            '#title' => [
+              '#type' => 'inline_template',
+              '#template' => "{{text}}",
+              '#context' => [
+                'text' => t(strpos($sub_page_paragraph->field_overview_url->value,
+                  'Hello') === FALSE ?
+                  $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!'),
+              ],
             ],
-          ],
-          '#url' => Url::fromRoute('rhd_common.main_page_controller', [
-            'product_code' => $product_code,
-            'sub_page' => $sub_page_url_string,
-          ]),
-          '#wrapper_attributes' => (function () use (
-            $sub_page,
-            $sub_page_url_string
-          ) {
-            if ($sub_page_url_string == $sub_page) {
-              return ['class' => 'active'];
-            }
-            else {
-              return [];
-            }
-          })(),
-        ];
+            '#url' => Url::fromRoute('rhd_common.main_page_controller', [
+              'product_code' => $product_code,
+              'sub_page' => $sub_page_url_string,
+            ]),
+            '#wrapper_attributes' => (function () use (
+              $sub_page,
+              $sub_page_url_string
+            ) {
+              if ($sub_page_url_string == $sub_page) {
+                return ['class' => 'active'];
+              }
+              else {
+                return [];
+              }
+            })(),
+          ];
+        }
       }
 
       if (empty($active_paragraph)) {
@@ -211,6 +259,7 @@ class ProductPageController extends ControllerBase {
 
       $build['#theme'] = 'product-pages';
       $build['#page_links'] = $page_links;
+      $build['#trailing_slash_enabled'] = ($trailing_slash_enabled === TRUE);
       $build['#product_machine_name'] = $active_product->field_product_machine_name->value;
 
       $build['#active_paragraph'] = $this->entityTypeManager()

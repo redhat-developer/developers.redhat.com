@@ -113,7 +113,7 @@ def wait_for_drupal_to_start(environment, supporting_services)
 
   if check_supported_service_requested(supporting_services, 'drupal')
 
-    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','80/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg')
+    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','8080/tcp','themes/custom/rhdp/images/branding/RHLogo_white.svg')
 
   else
     puts 'Not waiting for Drupal to start as it is not a required supporting_service'
@@ -255,7 +255,7 @@ end
 def bind_drupal_container_details_into_environment(environment, supporting_services)
   if check_supported_service_requested(supporting_services, 'drupal')
     drupal_host = environment.get_docker_host
-    drupal_port = get_host_mapped_port_for_container(environment, 'drupal', '80/tcp')
+    drupal_port = get_host_mapped_port_for_container(environment, 'drupal', '8080/tcp')
 
     # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
     # Add the drupal cdn prefix - TODO not sure why this is here?

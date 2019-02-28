@@ -1,0 +1,35 @@
+---
+options:
+  root: '/var/www/drupal/web'
+command:
+  sql:
+    dump:
+      options:
+        skip-tables-key: 'skip-table'
+        structure-tables-key: 'structure-only'
+        extra-dump: '--single-transaction'
+sql:
+  skip-tables:
+    skip-table:
+      - 'db_claimed_by'
+  structure-tables:
+    structure-only:
+      - 'lightning_watchdog'
+      - 'laravel_cache'
+      - 'lightning_cache_bootstrap'
+      - 'lightning_cache_config'
+      - 'lightning_cache_container'
+      - 'lightning_cache_data'
+      - 'lightning_cache_default'
+      - 'lightning_cache_discovery'
+      - 'lightning_cache_dynamic_page_cache'
+      - 'lightning_cache_entity'
+      - 'lightning_cache_instagram_posts'
+      - 'lightning_cache_library'
+      - 'lightning_cache_menu'
+      - 'lightning_cache_page'
+      - 'lightning_cache_render'
+      - 'lightning_cache_rest'
+      - 'lightning_cache_toolbar'
+      - 'lightning_cache_tweets'
+      - 'lightning_cachetags'
