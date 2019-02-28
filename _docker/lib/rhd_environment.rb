@@ -158,10 +158,8 @@ class RhdEnvironment
     supporting_services = []
 
     case @environment_name
-      when 'drupal-dev-local-dcp'
-        supporting_services+= %w(apache mysql searchisko drupalmysql drupal)
       when 'drupal-dev'
-        supporting_services+= %w(apache drupalmysql drupal)
+        supporting_services+= %w(drupalmysql drupal)
       when 'drupal-pull-request'
          supporting_services+= %w(drupalmysql drupal)
       when 'drupal-staging', 'drupal-production'

@@ -40,26 +40,6 @@ services:
     - /docker-entrypoint-initdb.d
 
   #
-  # Environment actions
-  #
-  export:
-   build: ../../export
-   volumes:
-    - ../../../:/home/jenkins_developer/developer.redhat.com
-    - ../../awestruct/overlay/ssh-key:/home/jenkins_developer/.ssh
-   entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'ruby _docker/lib/export/export.rb rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}'"
-   network_mode: "host"
-   environment:
-    - github_status_enabled=true
-    - github_status_api_token
-    - github_status_context=exported-site-preview
-    - github_status_repo=redhat-developer/developers.redhat.com
-    - github_status_target_url=${export_destination}
-    - github_status_sha1=${ghprbActualCommit}
-    - drupal.export.fail_on_missing
-    - drupal.export.final_base_url=${export_destination}
-
-  #
   # Testing
   #
   unit_tests:
@@ -74,4 +54,4 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=build-unit-tests,js-unit-tests,js-e2e-tests,js-mobile-e2e-tests,exported-site-preview,drupal-site,js-drupal-e2e-tests
+    - github_status_initialise=build-unit-tests,js-unit-tests,js-e2e-tests,js-mobile-e2e-tests,drupal-site,js-drupal-e2e-tests

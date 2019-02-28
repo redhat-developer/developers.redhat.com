@@ -1,13 +1,6 @@
 #!/bin/bash --login -e
 set -e
 
-# Needed so we can pull data-container-lite
-docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
-
-# Needed for rsync
-cp /home/jenkins_developer/id_rsa $WORKSPACE/_docker/awestruct/overlay/ssh-key/
-cp /home/jenkins_developer/known_hosts $WORKSPACE/_docker/awestruct/overlay/ssh-key/
-
 bundle
 
 cd _docker/
@@ -37,7 +30,5 @@ else
   }"
 fi
 
-# Start the export process
+# Run Cron on Drupal
 docker exec rhdpr${ghprbPullId}_drupal_1 bash -c "source /etc/scl_enable && drush cron"
-ruby ./control.rb -e drupal-pull-request --export rhd@filemgmt.jboss.org:/stg_htdocs/it-rhd-stg[/pr/${ghprbPullId}/export] --no-decrypt --no-kill
-
