@@ -1,4 +1,4 @@
-import {Page} from '../Page';
+import {Page} from './Page';
 import {Search} from "./Search.page";
 
 export class NavigationBar extends Page {

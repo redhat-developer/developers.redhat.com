@@ -1,47 +1,20 @@
 const BrowserManager = require('./browsers/BrowserManager');
+const path = require('path');
 
-if (typeof process.env.RHD_DRUPAL_ADMIN === 'undefined') {
-    testType = 'export'
-}
 
 if (typeof process.env.RHD_TEST_PROFILE === 'undefined') {
     testProfile = 'desktop';
-    testType = 'export';
 } else {
-    if (process.env.RHD_TEST_PROFILE === 'drupal') {
-        testType = 'drupal';
-        testProfile = 'drupal'
+    if (process.env.RHD_TEST_PROFILE === 'mobile') {
+        testProfile = 'mobile'
     } else {
-        if (process.env.RHD_TEST_PROFILE === 'mobile') {
-            testProfile = 'mobile'
-        } else {
-            testProfile = 'desktop'
-        }
-        testType = 'export';
+        testProfile = 'desktop'
     }
-}
-
-if (testType === 'drupal') {
-    exclude = 'export'
-} else {
-    exclude = 'drupal'
 }
 
 typeof process.env.RHD_JS_DRIVER === 'undefined' ? browser = 'chrome' : browser = process.env.RHD_JS_DRIVER;
 browserCaps = BrowserManager.createBrowser(browser);
 
-if (typeof process.env.RHD_BASE_URL === 'undefined') {
-    process.env.RHD_BASE_URL = 'http://docker:8888'
-} else {
-    if (process.env.RHD_BASE_URL.includes('developers-pr') && testType === 'drupal') {
-        let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
-        let prNumber = parseInt(parsedUrl.pathname.split('/')[2]);
-        process.env.RHD_BASE_URL = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000 + prNumber)}`;
-        console.log(`Drupal url: ${process.env.RHD_BASE_URL}`)
-    }
-}
-
-const path = require('path');
 if (process.env.RHD_TEST_CONFIG === 'docker') {
     nodeModulePath = '/home/e2e/';
 } else {
@@ -50,9 +23,7 @@ if (process.env.RHD_TEST_CONFIG === 'docker') {
 
 exports.config = {
 
-    specs: `specs/${testType}/*.js`,
-
-    exclude: [`specs/${exclude}/*.js`, `specs/support/**/*.js`],
+    specs: 'specs/*.js',
 
     sync: true,
 
@@ -61,8 +32,6 @@ exports.config = {
     logLevel: 'silent',
 
     coloredLogs: true,
-
-    baseUrl: process.env.RHD_BASE_URL,
 
     waitforTimeout: 15000,
 

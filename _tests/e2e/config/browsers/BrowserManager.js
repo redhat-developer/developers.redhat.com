@@ -28,7 +28,7 @@ class BrowserManager {
                 acceptInsecureCerts: true,
 
                 chromeOptions: {
-                    args: ['start-fullscreen', 'disable-web-security', 'user-agent=Red Hat Developers Testing'],
+                    args: ['disable-web-security', 'user-agent=Red Hat Developers Testing'],
                     prefs: {
                         "download": {
                             "default_directory": pathToChromeDownloads,

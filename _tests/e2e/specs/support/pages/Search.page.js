@@ -1,4 +1,4 @@
-import {Page} from '../Page';
+import {Page} from './Page';
 import {SearchFilter} from './components/search/SearchFilter';
 import {SearchOneBox} from './components/search/SearchOneBox';
 import {SearchResults} from './components/search/SearchResults';

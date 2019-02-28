@@ -1,4 +1,4 @@
-import {Page} from "../Page";
+import {Page} from "./Page";
 
 export class GeneralErrorPage extends Page {
     constructor() {
