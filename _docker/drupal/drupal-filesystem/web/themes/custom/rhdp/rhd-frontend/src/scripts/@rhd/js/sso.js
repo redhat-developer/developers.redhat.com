@@ -177,8 +177,11 @@ app.sso = function () {
         saveTokens();
         checkIfProtectedPage();
 
-        if ($('.downloadthankyou').length && app.termsAndConditions) {
-            app.termsAndConditions.download();
+        if(app.termsAndConditions) {
+            // app.termsAndConditions.isDownloadPage() test for tcDownloadURL is not empty, tcDownloadFileName is not empty and tcSourceLink (contains 'download-manager') 
+            if(app.termsAndConditions.isDownloadPage()) {
+                app.termsAndConditions.download();
+            }
         }
 
     }).error(function () {

@@ -8,15 +8,14 @@ services:
        https_proxy: proxy01.util.phx2.redhat.com:8080
        composer_profile: production
     ports:
-      - "80:80"
+      - "80:8080"
     restart: 'unless-stopped'
     volumes:
+      - /credentials/akamai/edgerc:/credentials/akamai/edgerc
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - /data/drupal/config/lightning:/var/www/drupal/web/config/active
-      - /data/drupal-logs/lightning:/var/log/httpd
-      - /data/drupal/npm-cache:/root/.npm
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080

@@ -6,7 +6,7 @@ services:
       args:
         composer_profile: development
     ports:
-      - "80:80"
+      - "80:8080"
     environment:
       - FORTAWESOME_REGISTRY
     links:
@@ -18,7 +18,6 @@ services:
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../drupal/drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
-      - ./drupal-logs:/var/log/httpd
     volumes_from:
       - drupal_data
 
@@ -55,7 +54,7 @@ services:
 
   # Drupal production data
   drupal_data:
-   image: redhatdeveloper/drupal-data-lite:latest
+   image: docker-registry.engineering.redhat.com/developers/drupal-data:latest
    volumes:
     - /var/www/drupal/web/config/active
     - /var/www/drupal/web/sites/default/files

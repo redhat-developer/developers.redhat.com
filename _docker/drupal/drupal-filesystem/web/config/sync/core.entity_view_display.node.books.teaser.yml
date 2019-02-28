@@ -27,6 +27,16 @@ dependencies:
     - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
+    - field.field.node.books.field_tax_audience_segment
+    - field.field.node.books.field_tax_business_unit
+    - field.field.node.books.field_tax_campaign
+    - field.field.node.books.field_tax_lifecycle
+    - field.field.node.books.field_tax_product
+    - field.field.node.books.field_tax_product_line
+    - field.field.node.books.field_tax_project
+    - field.field.node.books.field_tax_promotion
+    - field.field.node.books.field_tax_region
+    - field.field.node.books.field_tax_stage
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
@@ -120,6 +130,7 @@ hidden:
   field_thumbnail_url: true
   field_topics: true
   field_web_reader_url: true
+  langcode: true
   links: true
   published_at: true
   workbench_moderation_control: true

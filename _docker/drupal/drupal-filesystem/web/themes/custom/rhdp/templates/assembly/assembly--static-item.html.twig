@@ -11,7 +11,13 @@
     {% endif %}
     <h3 class="tile-title">{{ content.field_title }}</h3>
   </a>
-  {% if absolute_url and rhd_domain %}
-  <div class="tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count><a href="{{ absolute_url }}#disqus_thread"><span class="fa fa-comment"></span><span class="comment-number" data-disqus-comment-count-number></span> <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span></a></div>
+  {% if absolute_url and rhd_domain and "developers.redhat.com" in absolute_url %}
+    <div class="tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
+      <a href="{{ absolute_url }}#disqus_thread">
+        <span class="fa fa-comment"></span>
+        <span class="comment-number" data-disqus-comment-count-number></span> 
+        <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span>
+      </a>
+    </div>
   {% endif %}
 </section>

@@ -753,6 +753,5 @@ if (file_exists(__DIR__ . '/rhd.settings.php')) {
   include __DIR__ . '/rhd.settings.php';
 }
 
-$settings['install_profile'] = 'lightning';
 $config_directories['active'] = 'config/active';
 $config_directories['sync'] = 'config/sync';

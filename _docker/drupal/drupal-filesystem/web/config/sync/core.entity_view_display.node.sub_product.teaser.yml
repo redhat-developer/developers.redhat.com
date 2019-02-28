@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.sub_product.field_cta
+    - field.field.node.sub_product.field_logo
     - node.type.sub_product
   module:
     - user
@@ -21,4 +22,5 @@ content:
 hidden:
   field_cta: true
   field_logo: true
+  langcode: true
   published_at: true

@@ -26,7 +26,6 @@ dependencies:
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
-    - datetime
     - link
     - options
     - text
@@ -137,5 +136,6 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  langcode: true
   links: true
   published_at: true

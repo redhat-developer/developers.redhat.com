@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.landing_page_single_offer.body
     - field.field.node.landing_page_single_offer.field_hero
+    - field.field.node.landing_page_single_offer.field_hide_title
     - field.field.node.landing_page_single_offer.field_meta_tags
     - field.field.node.landing_page_single_offer.field_sections
     - field.field.node.landing_page_single_offer.field_tax_audience_segment
@@ -59,4 +60,5 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  langcode: true
   published_at: true

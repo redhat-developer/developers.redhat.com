@@ -15,6 +15,9 @@
     grid-gap: 30px 30px;
     grid-template-columns: 1fr 1fr;
     @include tablet-landscape {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include desktop-small {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .views-row {

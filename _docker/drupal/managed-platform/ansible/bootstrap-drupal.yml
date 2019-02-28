@@ -1,0 +1,89 @@
+#
+# This playbook runs within the context of a fully bootstrapped Drupal container and performs any
+# Drupal specific deployment steps. In the context of RHDP, this is mostly running drush commands
+# and Phinx database migrations.
+#
+---
+- hosts: localhost
+  connection: local
+  become: no
+  vars_files:
+    - "/credentials/ansible/env.yml"
+    - "vars/common/drupal/vars.yml"
+  tasks:
+    - name: "Database: Read the database name for this deployment."
+      set_fact:
+        deployment_dbs: "{{[lookup('file', db_name_file)]}}"
+
+    - name: Rebuild the Drupal Cache
+      shell: 'drush cr && touch {{ work_dir }}/drupal.cr.do.not.delete'
+      register: drush_rc
+      args:
+        chdir: '/var/www/drupal/web'
+        creates: "{{ work_dir }}/drupal.cr.do.not.delete"
+    - debug:
+        msg: "{{ (drush_rc.changed) | ternary(drush_rc.stderr_lines, drush_rc.stdout_lines) }}"
+
+    - name: Run Drupal Module Database Updates
+      shell: 'drush -y --entity-updates updb && drush cr && touch {{ work_dir }}/drupal.updb.do.not.delete'
+      register: entity_updates
+      args:
+        chdir: '/var/www/drupal/web'
+        creates: "{{ work_dir }}/drupal.updb.do.not.delete"
+    - debug:
+       msg: "{{ (entity_updates.changed) | ternary(entity_updates.stderr_lines, entity_updates.stdout_lines) }}"
+
+#    - name: Apply Lightning Profile Updates
+#      shell: 'drush update:lightning --no-interaction && drush cr && touch {{ work_dir }}/drupal.lightning.do.not.delete'
+#      register: lightning_updates
+#      args:
+#        chdir: '/var/www/drupal/web'
+#        creates: "{{ work_dir }}/drupal.lightning.do.not.delete"
+#    - debug:
+#        msg:
+#          - "{{ lightning_updates.stdout_lines }}q"
+#          - "{{ lightning_updates.stderr_lines}}"
+#      when: lightning_updates.changed
+#    - debug:
+#        var: lightning_updates.stdout_lines
+#      when: not lightning_updates.changed
+
+    - name: Import the latest Drupal configuration
+      shell: 'drush -y cim && drush cr && touch {{ work_dir }}/drupal.cim.do.not.delete'
+      register: drush_cim
+      args:
+        chdir: '/var/www/drupal/web'
+        creates: "{{ work_dir }}/drupal.cim.do.not.delete"
+    - debug:
+        msg:
+          - "{{ drush_cim.stdout_lines }}"
+          - "{{ drush_cim.stderr_lines }}"
+      when: drush_cim.changed
+    - debug:
+       var: drush_cim.stdout_lines
+      when: not drush_cim.changed
+
+    - name: Run Phinx Database Migrations
+      shell: 'phinx migrate -e automated && touch {{ work_dir }}/drupal.phinx.do.not.delete'
+      register: phinx_migrate
+      args:
+        chdir: '/var/www/drupal'
+        creates: "{{ work_dir }}/drupal.phinx.do.not.delete"
+    - debug:
+       var: phinx_migrate.stdout_lines
+
+    - name: Check to see if cron has run
+      stat:
+        path: "{{ work_dir }}/drupal.cron.do.not.delete"
+      register: run_cron
+
+    - include: 'cron-tasks.yml'
+      when: run_cron.stat.exists == false
+
+    - name: Record that we have run cron
+      copy:
+        content: ""
+        dest: "{{ work_dir }}/drupal.cron.do.not.delete"
+        force: no
+        group: 'root'
+        mode: '0770'

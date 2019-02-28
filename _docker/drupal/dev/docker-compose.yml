@@ -1,0 +1,101 @@
+version: '2'
+services:
+  update-composer:
+    image: registry.paas.redhat.com/rhdp/developer-base
+    user: root
+    volumes:
+      - ../drupal-filesystem/composer.json:/drupal/composer.json
+      - ../drupal-filesystem/composer.lock:/drupal/composer.lock
+      - ../drupal-filesystem/patches:/drupal/patches
+      - ../drupal-filesystem/scripts/ScriptHandler.php:/drupal/scripts/ScriptHandler.php
+    entrypoint: ["/bin/bash", "-c", "composer update"]
+    environment:
+      - https_proxy
+      - http_proxy
+    working_dir: /drupal
+
+  seed_env:
+    build:
+      context: ../managed-platform/ansible/testing/rhdp-data-seed
+    environment:
+      - DEPLOYMENT_ID=1
+    volumes:
+      - ./drupal-workspace:/drupal-workspace
+    depends_on:
+      - mysql
+
+  bootstrap_env:
+    build:
+      context: ../
+      dockerfile: Dockerfile.mp
+    entrypoint: ["/bin/bash", "-c", "ansible-playbook bootstrap-env.yml"]
+    user: root
+    working_dir: "/ansible"
+    environment:
+    - DEPLOYMENT_ID=1
+    - http_proxy
+    - https_proxy
+    volumes:
+    - ./env.yml:/credentials/ansible/env.yml
+    - ./drupal-workspace:/drupal-workspace
+    depends_on:
+    - mysql
+
+  bootstrap_drupal:
+    build:
+      context: ../
+      dockerfile: Dockerfile.mp
+    command: ["/bin/bash", "-c", "ansible-playbook bootstrap-drupal.yml"]
+    working_dir: "/ansible"
+    environment:
+    - DEPLOYMENT_ID=1
+    - https_proxy
+    - http_proxy
+    volumes:
+    - ./env.yml:/credentials/ansible/env.yml
+    - ./edgerc:/credentials/akamai/edgerc
+    - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
+    - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+    - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
+    - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
+    - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
+    - ./drupal-workspace:/drupal-workspace
+    depends_on:
+    - mysql
+
+  drupal:
+    build:
+     context: ../
+     dockerfile: Dockerfile.mp
+    command: ["/bin/bash", "-c", "/var/www/drupal/run-httpd.sh"]
+    user: root
+    ports:
+      - "80:8080"
+      - "443:8443"
+    environment:
+      - DEPLOYMENT_ID=1
+      - https_proxy
+      - http_proxy
+    volumes:
+      - ./env.yml:/credentials/ansible/env.yml
+      - ./edgerc:/credentials/akamai/edgerc
+      - ./localhost.pem:/ssl/tls.crt
+      - ./localhost-key.pem:/ssl/tls.key
+      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
+      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
+      - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
+      - ./drupal-workspace/drupal_1/drupal/apache/drupal.conf:/opt/rh/httpd24/root/etc/httpd/conf.d/drupal.conf
+      - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
+      - ./drupal-workspace:/drupal-workspace
+      - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+      - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
+
+  mysql:
+    image: mariadb:10.3.9-bionic
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    ports:
+    - "3306:3306"
+    expose:
+    - 3306

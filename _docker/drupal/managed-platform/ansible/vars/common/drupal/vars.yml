@@ -1,0 +1,18 @@
+drupal_deployment_id: "{{ lookup('env', 'DEPLOYMENT_ID') }}"
+drupal_deployment_dir: 'drupal_{{ drupal_deployment_id }}'
+work_dir: "/drupal-workspace/{{ drupal_deployment_dir }}/work"
+drupal_dir: "/drupal-workspace/{{ drupal_deployment_dir }}/drupal"
+db_name_file: "{{ work_dir }}/db_name.DO_NOT_DELETE"
+drupal_backup_clean: true
+drupal_backup_push: true
+usable_db_names:
+  - 'developer_drupal_1'
+  - 'developer_drupal_2'
+  - 'developer_drupal_3'
+  - 'developer_drupal_4'
+  - 'developer_drupal_5'
+  - 'developer_drupal_6'
+  - 'developer_drupal_7'
+  - 'developer_drupal_8'
+  - 'developer_drupal_9'
+  - 'developer_drupal_10'

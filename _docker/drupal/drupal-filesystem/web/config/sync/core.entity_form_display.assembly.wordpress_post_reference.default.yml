@@ -20,6 +20,13 @@ content:
     third_party_settings: {  }
     type: wppost_autocomplete
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
 hidden:
   field_audience_selection: true
   moderation_state: true
