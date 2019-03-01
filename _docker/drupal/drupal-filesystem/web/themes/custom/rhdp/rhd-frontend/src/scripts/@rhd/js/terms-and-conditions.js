@@ -15,9 +15,24 @@ app.termsAndConditions = {
       return null;
     }
   },
-  download: function () {
+  isDownloadPage: function () {
+    var returnVal = false;
+    var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
+    var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
+    var tcSourceLink = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcSrcLink'));
+    if (tcDownloadURL !== "" && tcDownloadFileName !== "" && tcSourceLink.indexOf('download-manager')>0) {
+      returnVal = true;
+    }
+    return returnVal;
+  },
 
+  hideDownloadMessage: function () {
+    $('div#downloadthankyou').hide('slow');
+  },
+
+  download: function () {
     var tcUser = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcUser'));
+    var isRhel = window.location.href.indexOf("/rhel/") > -1 ? true : false;
     // set when signed to blank when we do not require a login
     var whenSigned = app.termsAndConditions.urlParam('tcWhenSigned') || '';
     var tcWhenSigned = $.encoder.canonicalize(whenSigned).replace(/\+/g, ' ');
@@ -26,15 +41,46 @@ app.termsAndConditions = {
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
     var product = $.encoder.canonicalize(app.termsAndConditions.urlParam('p'));
     var tcProduct = $.encoder.canonicalize(product) || '';
+    var messageTemplate = "";
+    var tmpTcEndsIn = "";
+    var tmpTcWhenSigned = tcWhenSigned ? $.encoder.encodeForHTML(tcWhenSigned) : "";
     tcProduct = tcProduct.replace(/\+/g, ' ');
 
-
-    if (tcWhenSigned) {
-      $("#tcWhenSigned").html($.encoder.encodeForHTML(tcWhenSigned));
+    if (tcEndsIn) {
+      if (tcEndsIn == "1") {
+        tmpTcEndsIn = "one day ";
+      } else {
+        tmpTcEndsIn = $.encoder.encodeForHTML(tcEndsIn) + " days ";
+      }
     }
 
-    if (tcProduct) {
-      $("h2#thank-you").append($.encoder.encodeForHTML(" " + tcProduct));
+    //create template string for thankyou message
+    messageTemplate = messageTemplate + '<div class="downloadthankyou hide" id="downloadthankyou">';
+    messageTemplate = messageTemplate + '<div class="thankyouclose"><a href="#" onclick="app.termsAndConditions.hideDownloadMessage();"><i class="fas fa-times"></i></a></div>';
+    messageTemplate = messageTemplate + '<h2 id="thank-you">Thank you for downloading ' + $.encoder.encodeForHTML(tcProduct) + '</h2>';
+    messageTemplate = messageTemplate + '<p id="download-problems" style="display: block;">Your download should start automatically. If you have any problems with the download, please use the<a id="tcDownloadLink" href="'+ tcDownloadURL +'"> direct link</a>.</p>';
+    messageTemplate = messageTemplate + '<br>';
+    if(!isRhel) {
+      messageTemplate = messageTemplate + '<br>';
+      messageTemplate = messageTemplate + '<div class="large-24 thankyoupanels" style="display: none;">';
+      messageTemplate = messageTemplate + '<div class="row">';
+      messageTemplate = messageTemplate + '<div class="large-2 columns"><i class="far fa-file-alt fa-2x"></i></div>';
+      messageTemplate = messageTemplate + '<div class="large-22 columns">';
+      messageTemplate = messageTemplate + '<p style="display: none;">By downloading this product you have agreed with our <a href="/terms-and-conditions/">terms and conditions </a>on <span id="tcWhenSigned">' + tmpTcWhenSigned + '</span>. You will be notified again in <span id="tcEndsIn">'+ tmpTcEndsIn +'</span> after your subscription ends. </p>';
+      messageTemplate = messageTemplate + '</div>';
+      messageTemplate = messageTemplate + '</div>';
+      messageTemplate = messageTemplate + '</div>';
+    }
+    messageTemplate = messageTemplate + '</div>';
+
+    if($('section.product-header').length) {
+      $('section.product-header').append($.parseHTML('<div class="row">'+messageTemplate+'</div>'));
+    } else if($('#rhd-article').length) {
+      $('#rhd-article > div.pre-body').after($.parseHTML('<div class="row">'+messageTemplate+'</div>'));
+    } else if($('section.assembly-type-product_download_hero').length) {
+      $('section.assembly-type-product_download_hero').after($.parseHTML('<div class="field__item" style="margin-top: 30px;"><div class="row">'+messageTemplate+'</div></div>'));
+    } else {
+      $('main').prepend($.parseHTML('<article style="margin-top: 30px;"><section><div class="row">'+messageTemplate+'</div></section></article>'));
     }
 
     if(!tcWhenSigned) {
@@ -42,20 +88,10 @@ app.termsAndConditions = {
       $('#download-problems').show();
     }
 
-    if (tcEndsIn) {
-      if (tcEndsIn == "1") {
-        $("#tcEndsIn").html("one day ");
-      } else {
-        $("#tcEndsIn").html($.encoder.encodeForHTML(tcEndsIn) + " days ");
-      }
-    }
-
     if (tcDownloadFileName) {
       $('div#downloadthankyou').show('slow');
       $('.pending-download-box').addClass('download-completed-box');
       $('.pending-download').removeClass('active').addClass('download-completed');
-      // $('.download-completed-box').removeClass('pending-download-box');
-      // $('.download-completed').removeClass('pending-download');
     }
 
     if (tcDownloadURL &&
@@ -106,7 +142,7 @@ app.termsAndConditions = {
     function checkRecentDownload() {
         // Set storage expiration time to 10 minutes
         var storageExpiration = 600000;
-        if(window.location.href.indexOf('download-manager')>0 && window.location.pathname.match(/.*\/products\/.*\/hello-world\/?/g)){
+        if(app.termsAndConditions.isDownloadPage()){
             if(window.localStorage.getItem('recent-download-url')){
                 var recentDownload,timeOfRefer, currentTime;
                 recentDownload = JSON.parse(window.localStorage.getItem('recent-download-url'));
@@ -155,16 +191,12 @@ app.termsAndConditions = {
       }
     });
   }
-
-
-
 };
 
 
 
 // Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
 $(function() {
-
   //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
 
   //Display the Ts&Cs banner
