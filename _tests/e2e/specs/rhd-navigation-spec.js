@@ -1,23 +1,24 @@
 import {Home} from './support/pages/Home.page'
 import {NavigationBar} from './support/pages/NavigationBar.section'
-import {Login} from './support/pages/Login.page'
+import {Login} from './support/pages/Keycloak.Login.page'
 
 describe('Navigation bar', function () {
     this.retries(2);
-    let home, navBar, loginPage;
+    let home, navBar, login;
 
     beforeEach(function () {
         home = new Home();
         navBar = new NavigationBar();
-        loginPage = new Login();
+        login = new Login();
     });
 
-    it("should navigate users to the Keycloak Login page", function () {
+    it("@sanity : should navigate users to the Keycloak Login page", function () {
         home
             .open('/');
         navBar
             .clickLogin();
-        loginPage.keycloak.awaitLogin();
-        expect(loginPage.keycloak.isDisplayed()).to.be.true
+        login
+            .awaitLogin();
+        expect(login.isDisplayed()).to.be.true
     });
 });

@@ -30,7 +30,7 @@ export class Keycloak extends Page {
         return this.displayed(this.getSelector('usernameField'));
     }
 
-    loginWith(user) {
+    with(user) {
         this.type(user['email'], this.getSelector('usernameField'));
         this.click(this.getSelector('nextBtn'));
         this.awaitStepTwo();

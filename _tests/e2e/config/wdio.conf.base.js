@@ -21,7 +21,14 @@ if (process.env.RHD_TEST_CONFIG === 'docker') {
     nodeModulePath = path.resolve(process.cwd());
 }
 
+if (process.env.PULL_REQUEST_ID) {
+    let port = 35000 + parseInt(process.env.PULL_REQUEST_ID);
+    rhdBaseUrl = `${process.env.RHD_BASE_URL}:${port}`;
+}
+
 exports.config = {
+
+    baseUrl: rhdBaseUrl,
 
     specs: 'specs/*.js',
 
@@ -76,6 +83,8 @@ exports.config = {
         const log4js = require('log4js');
         global.logger = log4js.getLogger();
         global.logger.level = 'debug';
+
+        process.env.RHD_BASE_URL = this.baseUrl
 
     },
 

@@ -11,10 +11,10 @@ describe('Drupal Login Page', function () {
     });
 
     it("should allow an admin to successfully log in to their account", function () {
-        let loginPage = new Login();
+        let login = new Login().drupal;
         let home = new Home();
-        loginPage.drupal.open();
-        loginPage.drupal.loginWith(process.env.RHD_DRUPAL_ADMIN_USERNAME, process.env.RHD_DRUPAL_ADMIN_PASSWORD);
+        login.open();
+        login.with(process.env.RHD_DRUPAL_ADMIN_USERNAME, process.env.RHD_DRUPAL_ADMIN_PASSWORD);
         expect(home.loggedInAdmin()).to.include(process.env.RHD_DRUPAL_ADMIN_USERNAME);
     });
 });

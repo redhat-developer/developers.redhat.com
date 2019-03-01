@@ -28,6 +28,10 @@ export class PageExtension {
         return browser.getTitle();
     }
 
+    url() {
+        return browser.getUrl()
+    }
+
     waitForUrlContaining(string, timeout = 10000) {
         browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1

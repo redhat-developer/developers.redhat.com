@@ -12,15 +12,14 @@ describe('Search Page', function () {
         search = new Search();
     });
 
-    it('@sanity should allow users to search for content via site-nav search field', function () {
+    it('@sanity : should allow users to search for content via site-nav search field', function () {
         home.open('/');
         siteNav.searchFor('hello world');
         expect(search.results.all().value.length).to.be.gt(0);
     });
 
     it("should default result sorting should be 'Relevance'", function () {
-        home.open('/');
-        siteNav.searchFor('hello world');
+        search.open();
         let resultSort = search.resultSort.get();
         expect(resultSort).to.equal('relevance');
     });

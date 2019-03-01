@@ -20,14 +20,14 @@ tags('desktop').describe('Download Manager', function () {
         .it('@sanity should allow users to login in and download RHEL', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
-            let loginPage = new Login();
+            let login = new Login().keycloak;
             let productOverview = new ProductOverview('rhel', 'download', 'Red Hat Enterprise Linux');
             productOverview
                 .open();
             productOverview
                 .download();
-            loginPage.keycloak
-                .loginWith(siteUser);
+            login
+                .with(siteUser);
             productOverview
                 .awaitDownload();
             let downloadName = downloadDir.get();
@@ -38,7 +38,7 @@ tags('desktop').describe('Download Manager', function () {
         .it('@sanity should allow users to log-in and download advanced-linux-commands', function () {
             let downloadDir = new DownloadDir();
             let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
-            let loginPage = new Login();
+            let login = new Login().keycloak;
             let cheatSheet = new CheatSheets('advanced-linux-commands');
             cheatSheet
                 .open();
@@ -46,8 +46,8 @@ tags('desktop').describe('Download Manager', function () {
                 .awaitLoaded();
             cheatSheet
                 .loginToDownload();
-            loginPage.keycloak
-                .loginWith(siteUser);
+            login
+                .with(siteUser);
             cheatSheet
                 .awaitDownloadThankYou();
             let downloadName = downloadDir.get();
