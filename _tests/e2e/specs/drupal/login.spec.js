@@ -1,4 +1,4 @@
-import {Login} from '../support/pages/drupal/Login.page';
+import {DrupalLogin} from '../support/pages/drupal/Drupal-login.page';
 import {Home} from '../support/pages/drupal/Home.page';
 import {Page} from "../support/pages/Page";
 
@@ -11,7 +11,7 @@ describe('Drupal Login Page', function () {
     });
 
     it("@drupal : should allow an admin to successfully log in to their account", function () {
-        let login = new Login();
+        let login = new DrupalLogin();
         let home = new Home();
         login.open();
         login.with(process.env.RHD_DRUPAL_ADMIN_USERNAME, process.env.RHD_DRUPAL_ADMIN_PASSWORD);
