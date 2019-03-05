@@ -7,12 +7,12 @@ export class Home extends Page {
         });
 
         this.addSelectors({
-            toolbarItemUser: '#toolbar-item-user',
+            drupalAdminToolBar: '#toolbar-bar',
         });
     }
 
-    loggedInUser() {
-        return this.textOf(this.getSelector('toolbarItemUser'))
+    isAdminLoggedIn() {
+        return this.displayed(this.getSelector('drupalAdminToolBar'))
     }
 
 }

@@ -13,8 +13,12 @@ describe('Drupal Login Page', function () {
     it("@drupal : should allow an admin to successfully log in to their account", function () {
         let login = new DrupalLogin();
         let home = new Home();
+        let user = {
+            email: process.env.RHD_DRUPAL_ADMIN_USERNAME,
+            password: process.env.RHD_DRUPAL_ADMIN_PASSWORD,
+        };
         login.open();
-        login.with(process.env.RHD_DRUPAL_ADMIN_USERNAME, process.env.RHD_DRUPAL_ADMIN_PASSWORD);
-        expect(home.loggedInUser()).to.include('automated-tests-user');
+        login.with(user);
+        expect(home.isAdminLoggedIn()).to.be.true;
     });
 });

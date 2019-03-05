@@ -15,9 +15,9 @@ export class DrupalLogin extends Page {
         });
     }
 
-    with(user, password) {
+    with(user) {
         this.click(this.getSelector("redHatLoginButton"));
         let kcLogin = new Login();
-        kcLogin.with(user, password);
+        return kcLogin.with(user);
     }
 }
