@@ -5,9 +5,9 @@ typeof process.env.RHD_JS_DRIVER === 'undefined' ? browser = 'chrome' : browser 
 browserCaps = BrowserManager.createBrowser(browser);
 
 if (typeof commandlineArgs['base-url'] === 'undefined') {
-    process.env.RHD_BASE_URL = 'http://docker:8888'
+    process.env.RHD_DRUPAL_BASE_URL = 'http://docker:8888'
 } else {
-    process.env.RHD_BASE_URL = commandlineArgs['base-url']
+    process.env.RHD_DRUPAL_BASE_URL = commandlineArgs['base-url']
 }
 
 exports.config = {
@@ -28,7 +28,7 @@ exports.config = {
 
     coloredLogs: true,
 
-    baseUrl: process.env.RHD_BASE_URL,
+    baseUrl: process.env.RHD_DRUPAL_BASE_URL,
 
     waitforTimeout: 15000,
 
@@ -62,6 +62,6 @@ exports.config = {
         global.logger = log4js.getLogger();
         global.logger.level = 'debug';
 
-        process.env.RHD_BASE_URL = this.baseUrl;
+        process.env.RHD_DRUPAL_BASE_URL = this.baseUrl;
     },
 };

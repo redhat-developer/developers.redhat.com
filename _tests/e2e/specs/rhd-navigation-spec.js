@@ -9,7 +9,7 @@ describe('Navigation bar', function () {
     beforeEach(function () {
         home = new Home();
         navBar = new NavigationBar();
-        login = new Login();
+        login = new Login().keycloak;
     });
 
     it("@sanity : should navigate users to the Keycloak Login page", function () {

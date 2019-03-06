@@ -9,8 +9,7 @@ This directory contains the UI Tests for the developers.redhat.com website, thes
 
 * js-e2e-tests 
 * js-mobile-e2e-tests
-* js-drupal-e2e-tests
-        
+
 ## What is e2e testing?
 
 > *“End-to-end testing is a methodology used to test whether the flow of an application is performing as designed from start to finish. The purpose of carrying out end-to-end tests is to identify system dependencies and to ensure that the right information is passed between various system components and systems.”*
@@ -22,20 +21,14 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 
 ## What do we test on site-export?
 * Search Page (DCP)
-* RHEL download (Download Manager, Keycloak login)
+* RHEL download (Download Manager, Keycloak login, drupal admin login)
 * RHEL advanced linux cheatsheet (Download Manager, Keycloak login)
 * Keycloak pages (site navigation bar navigates users to login/register pages)
 * Home and Blog pages contain unique string for site monitoring.
 * 404 pages
 
-## What do we test on drupal site?
-* Admin succesful login
-
 ## Testing of pull-requests
-The pull request pipeline consists of desktop (export and drupal) and mobile end-to-end tests (export). The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
-
-## Production sanity checks
-As well as testing on PR's we also test in production. These tests are a sub-set of the e2e tests, and are used to monitor the status of keycloak, download manager, and DCP. 
+The pull request pipeline consists of desktop (export and drupal) and mobile end-to-end tests (export). The desktop tests execute in a chrome browser, and the mobile tests use a mobile emulated browser (currently iPhone X). 
 
 ## Retry strategy
 As we're not mocking and using live services, test sometimes fail. In an attempt to combat this we decided to add retry logic to tests.
@@ -70,9 +63,9 @@ In the root of the project directory execute the following command for e2e tests
 Add a unique tag to the test(s) `it.` description, for example to execute the following scenario:
 
 ```nodejs
-.it('@wip @sanity : should allow users to log-in and download advanced-linux-commands', function () {
+.it('@wip : should allow users to log-in and download advanced-linux-commands', function () {
     this.retries(2)
-    let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
+    let siteUser = new User(process.env.RHD_DRUPAL_BASE_URL).rhdAccountDetails();
     let cheatSheet = new CheatSheets('advanced-linux-commands');
     cheatSheet
          .open();
@@ -224,7 +217,7 @@ Simple Logic Examples:
 For example:
 
 ```nodejs
-     it('@sanity: should allow users to search for content via site-nav search field', function () {
+     it('should allow users to search for content via site-nav search field', function () {
             home.open('/');
             siteNav.searchFor('hello world');
             expect(search.results.all().value.length).to.be.gt(0);

@@ -7,7 +7,7 @@ export class Page extends PageExtension {
                     pageTitle
                 } = {}) {
         super();
-        this.urlBase = process.env.RHD_BASE_URL;
+        this.urlBase = process.env.RHD_DRUPAL_BASE_URL;
         this.path = path;
         this.pageTitle = pageTitle;
         this.selectors = {};

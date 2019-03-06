@@ -6,7 +6,7 @@ export class Utils extends Page {
 
     cleanSession() {
         let logoutLink;
-        let baseUrl = process.env.RHD_BASE_URL;
+        let baseUrl = process.env.RHD_DRUPAL_BASE_URL;
         let encodedURL = qs.escape(baseUrl);
         if (baseUrl === 'https://developers.stage.redhat.com') {
             logoutLink = `https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`

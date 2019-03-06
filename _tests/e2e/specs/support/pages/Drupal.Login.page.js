@@ -14,7 +14,7 @@ export class Drupal extends Page {
     }
 
     open() {
-        this.visit(`${process.env.RHD_BASE_URL}/user/login`)
+        this.visit(`${process.env.RHD_DRUPAL_BASE_URL}/user/login`)
     }
 
     with(user, password) {

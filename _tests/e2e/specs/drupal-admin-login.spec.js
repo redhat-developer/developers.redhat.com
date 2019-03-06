@@ -7,7 +7,7 @@ describe('Drupal Login Page', function () {
 
     afterEach(function () {
         let page = new Page();
-        page.visit(`${process.env.RHD_BASE_URL}/user/logout`)
+        page.visit(`${process.env.RHD_DRUPAL_BASE_URL}/user/logout`)
     });
 
     it("should allow an admin to successfully log in to their account", function () {
