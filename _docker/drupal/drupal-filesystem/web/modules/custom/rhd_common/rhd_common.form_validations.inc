@@ -49,13 +49,40 @@ function rhd_common_form_alter(&$form, &$form_state, $form_id) {
       break;
   }
 
-  // Require a revision log message.
-  if (isset($form['revision_log'])) {
-    unset($form['revision_log']['#group']);
+  // Require a revision log message for published nodes.
+  if (isset($form['revision_log']) && isset($form['moderation_state'])) {
+    $form['#validate'][] = 'check_moderation_state_validations';
 
+    $entity = $form_state->getFormObject()->getEntity();
+    $is_published = ($entity->get('moderation_state')->getValue()[0]['value'] === 'published');
+
+    if ($is_published) {
+      $form['revision_log']['widget']['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['#required'] = TRUE;
+      $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+    }
+
+    unset($form['revision_log']['#group']);
+  }
+}
+
+/**
+ * Validation for node_form and node_edit_form.
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function check_moderation_state_validations(array &$form, FormStateInterface $form_state) {
+  $is_published = ($form_state->getValue('moderation_state')[0]['value'] === 'published');
+  if ($is_published) {
     $form['revision_log']['widget']['#required'] = TRUE;
     $form['revision_log']['widget'][0]['#required'] = TRUE;
     $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+
+    if (empty($form_state->getValue('revision_log')[0]['value'])) {
+      $form_state->setErrorByName('revision_log', 'Revision Log is required.');
+    }
+
   }
 }
 
