@@ -33,7 +33,10 @@ class ProductDownloadHeroBuild extends AssemblyBuildBase implements AssemblyBuil
       if (isset($product_downloads)) {
         $featured = $product_downloads[0]->featuredArtifact;
         $featured->fileSize = format_size($featured->fileSize);
-        $build['featured'] = $featured;
+        $build['featured'] = [];
+        $build['featured']['releaseDate'] = $featured->releaseDate;
+        $build['featured']['url'] = $featured->url;
+        $build['featured']['versionName'] = $featured->versionName;
       }
     }
   }
