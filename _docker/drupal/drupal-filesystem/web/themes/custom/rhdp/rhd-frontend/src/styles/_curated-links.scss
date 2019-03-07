@@ -1,6 +1,10 @@
+
 .curated-links {
   @extend .container;
   padding: 40px 15px;
+  .nav-menu & {
+    padding: 0;
+  }
 }
 
 .curated-links__list {
@@ -8,11 +12,27 @@
   border-bottom: 1px solid #e9e9e9;
   padding: 20px 0;
   list-style: none;
+  .nav-menu & {
+    display: flex;
+    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: left;
+  }
 }
 
 .curated-links__list-item {
   line-height: 40px;
   padding-left: 12px;
+  .nav-menu & {
+    padding-left: 0;
+    padding-right: 12px;
+    display: inline-block;
+    max-width: 15rem;
+    line-height: 1.3;
+    a {
+      font-size: 14px;
+    }
+  }
 
   @include desktop-small-and-down {
     line-height: 24px;
