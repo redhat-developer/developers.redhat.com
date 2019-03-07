@@ -25,7 +25,7 @@ Brew is like apt-get or yum for mac.
 
 ### Docker
 
-For Linux, follow these instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/).
+For Linux, follow these instructions to install the latest docker for your system [here](https://docs.docker.com/installation/).
 
 The native 'Docker for Mac' is now recommended for those working on macOS. If you are using Docker for Mac, allocate 4GB of RAM to Docker in the Docker for Mac Preferences > Advanced. Be sure to Apply & Restart after making this change. Also, you will need to add the following entry to your `/etc/hosts` file:
 
