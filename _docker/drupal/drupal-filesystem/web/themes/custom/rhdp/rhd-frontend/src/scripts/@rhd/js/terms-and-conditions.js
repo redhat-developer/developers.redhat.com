@@ -20,7 +20,12 @@ app.termsAndConditions = {
     var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
     var tcSourceLink = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcSrcLink'));
-    if (tcDownloadURL !== "" && tcDownloadFileName !== "" && tcSourceLink.indexOf('download-manager')>0) {
+    var tcDownloadManagerCheck = false; 
+    
+    if(tcSourceLink) {
+      tcDownloadManagerCheck = tcSourceLink.indexOf('download-manager') >= 0 ? true : false;
+    }
+    if (tcDownloadURL !== "" && tcDownloadFileName !== "" && tcDownloadManagerCheck ) {
       returnVal = true;
     }
     return returnVal;
