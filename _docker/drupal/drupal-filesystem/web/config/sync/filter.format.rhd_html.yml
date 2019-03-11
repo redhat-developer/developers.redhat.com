@@ -46,7 +46,8 @@ filters:
     provider: token_filter
     status: true
     weight: -50
-    settings: {  }
+    settings:
+      replace_empty: '0'
   filter_autop:
     id: filter_autop
     provider: filter
