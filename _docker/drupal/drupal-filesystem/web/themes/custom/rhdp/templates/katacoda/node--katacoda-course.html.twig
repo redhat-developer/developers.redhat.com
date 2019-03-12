@@ -1,0 +1,107 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Note that this template relies upon a display preprocess function that is found within rhdp_preprocess_node()
+ * at the comment line: 
+ // Katacoda Course Page – Additional Field Display
+ *
+ * 
+ */
+#}
+{%
+    set classes = [
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    ]
+  %}
+  {{ attach_library('classy/node') }}
+  <article{{ attributes.addClass(classes) }}>
+  
+    {{ title_prefix }}
+    {% if not page %}
+      <h2{{ title_attributes }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
+    {% endif %}
+    {{ title_suffix }}
+  
+    {% if display_submitted %}
+      <footer class="node__meta">
+        {{ author_picture }}
+        <div{{ author_attributes.addClass('node__submitted') }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+          {{ metadata }}
+        </div>
+      </footer>
+    {% endif %}
+    
+    <div{{ content_attributes.addClass('node__content') }}>
+        {% set base_url = render_var(url('<front>'))  %}
+          <div class="katacoda-hero individual-course">
+        <div class="container">
+          <div class="content-area">
+              <h1>{{ katacoda_course_info.course_title |raw }}</h1>
+              {{ katacoda_course_info.course_description |raw }}
+              {% if (katacoda_course_info.course_read_more) is not empty %}
+                <a class="katacoda-learn-more-link" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Learn More ></a>
+              {% endif %}
+          </div>
+         </div>
+        </div>
+        
+        <div class="container">
+          <div class="katacoda-lesson-grid">
+          {% for lesson in katacoda_course_info.courses %}
+              <div class="katacoda-lesson">
+                  <div class="info-outer">
+                      <div class="lesson--title">
+                          <a href="{{ base_url }}{{ lesson.lesson_path_alias }}">{{ lesson.title |raw }}</a>
+                      </div>
+                      <div class="lesson--time-level">
+                        {%	if lesson.scenario_time|render|trim is not empty %}
+                         <span class="time-clock"><img src="/{{ active_theme_path() }}/images/design/katacoda/clock.svg" /></span> {{ lesson.scenario_time }} minutes
+                        {% endif %}
+                        {% if (lesson.scenario_time|render|trim is not empty) and (lesson.skill_level|render|trim is not empty)  %}
+                         | 
+                        {% endif %}
+                        {% if lesson.skill_level|render|trim is not empty %}
+                          {{ lesson.skill_level }}
+                        {% endif %}
+                      </div>
+                      <div class="lesson--description">
+                              {{ lesson.description |raw }}
+                      </div>
+                      <div class="lesson--publish-meta">
+                        <p>
+                          Published {{ node.created.value|date('d M Y') }} by 
+                          {% if (lesson.display_author|render|trim) is not empty %}
+                             {{ lesson.display_author }}
+                            {% else %}
+                              {{ author_name }}
+                          {% endif %}
+                        </p>
+                        {{ user.name.0.value }}
+                      </div>
+                  </div>
+                  
+                  <div class="lesson-link">
+                          <a href="{{ base_url }}{{ lesson.lesson_path_alias }}">Start</a>
+                  </div>
+                  
+              
+              </div>
+          {% endfor %}
+          </div>
+        </div>
+
+
+    </div>
+ 
+  </article>
+  
