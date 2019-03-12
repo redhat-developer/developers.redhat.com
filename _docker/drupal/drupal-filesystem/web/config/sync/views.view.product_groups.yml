@@ -495,6 +495,53 @@ display:
           entity_type: taxonomy_term
           entity_field: status
           plugin_id: boolean
+        status_1:
+          id: status_1
+          table: node_field_revision
+          field: status
+          relationship: reverse__node__field_product_categories
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: Published
+            description: ''
+            use_operator: false
+            operator: status_1_op
+            identifier: status_1
+            required: true
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              media_manager: '0'
+              layout_manager: '0'
+              content_creator: '0'
+              content_team: '0'
+              content_admin: '0'
+              coding_resource_creator: '0'
+              coding_resource_reviewer: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
       sorts: {  }
       title: 'product groups'
       header: {  }
