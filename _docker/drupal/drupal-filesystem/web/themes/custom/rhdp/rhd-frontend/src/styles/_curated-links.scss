@@ -25,6 +25,9 @@
     padding: 0;
     margin: 0 0 15px 0;
     text-align: left;
+    @include desktop-extra-small-and-down {
+      flex-direction: column;
+    }
   }
 }
 
@@ -39,6 +42,12 @@
     line-height: 1.3;
     a {
       font-size: 14px;
+    }
+    @include desktop-extra-small-and-down {
+      display: block;
+      max-width: 100%;
+      line-height: 24px;
+      margin-bottom: 8px;
     }
   }
 
