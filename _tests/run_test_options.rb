@@ -33,7 +33,7 @@ class RunTestOptions
         test_configuration[:e2e] = opt
       end
 
-      opts.on('--base-url RHD_DRUPAL_BASE_URL', String, 'Run the tests against the specified host e.g http://developers.stage.redhat.com') do |host|
+      opts.on('--base-url RHD_BASE_URL', String, 'Run the tests against the specified host e.g http://developers.stage.redhat.com') do |host|
         test_configuration[:base_url] = host
       end
 
@@ -148,7 +148,7 @@ class RunTestOptions
     run_tests_command = ''
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
-    bind_environment_variable('RHD_DRUPAL_BASE_URL', test_configuration[:base_url])
+    bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
     bind_environment_variable('PULL_REQUEST_ID', test_configuration[:pr_id])
     bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
     bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]

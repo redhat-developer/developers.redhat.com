@@ -23,7 +23,7 @@ if (process.env.RHD_TEST_CONFIG === 'docker') {
 
 if (process.env.PULL_REQUEST_ID) {
     let port = 35000 + parseInt(process.env.PULL_REQUEST_ID);
-    rhdBaseUrl = `${process.env.RHD_DRUPAL_BASE_URL}:${port}`;
+    rhdBaseUrl = `${process.env.RHD_BASE_URL}:${port}`;
 }
 
 exports.config = {
@@ -84,7 +84,7 @@ exports.config = {
         global.logger = log4js.getLogger();
         global.logger.level = 'debug';
 
-        process.env.RHD_DRUPAL_BASE_URL = this.baseUrl
+        process.env.RHD_BASE_URL = this.baseUrl
 
     },
 

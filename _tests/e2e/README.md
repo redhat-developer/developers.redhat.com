@@ -65,7 +65,7 @@ Add a unique tag to the test(s) `it.` description, for example to execute the fo
 ```nodejs
 .it('@wip : should allow users to log-in and download advanced-linux-commands', function () {
     this.retries(2)
-    let siteUser = new User(process.env.RHD_DRUPAL_BASE_URL).rhdAccountDetails();
+    let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
     let cheatSheet = new CheatSheets('advanced-linux-commands');
     cheatSheet
          .open();
