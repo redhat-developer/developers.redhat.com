@@ -1,4 +1,4 @@
-uuid: fec5ac1f-7909-4b05-8d9a-3cd86b96ac16
+uuid: 9a27fbb9-ef21-4283-bb2f-8e3775af3953
 langcode: en
 status: true
 dependencies:
@@ -7,48 +7,23 @@ dependencies:
     - taxonomy.vocabulary.topics
   module:
     - link
-    - path
-    - text
 id: taxonomy_term.topics.default
 targetEntityType: taxonomy_term
 bundle: topics
 mode: default
 content:
-  description:
-    type: text_textarea
-    weight: 1
-    region: content
-    settings:
-      placeholder: ''
-      rows: 5
-    third_party_settings: {  }
   field_alt_landing:
-    type: link_default
-    weight: 4
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  name:
-    type: string_textfield
+    type: link
     weight: 0
     region: content
+    label: above
     settings:
-      size: 60
-      placeholder: ''
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  description: true
+  langcode: true
