@@ -126,7 +126,7 @@
               for (var i=0; i<mutation.addedNodes.length; i++) {
                 var $search = $(mutation.addedNodes[i]);
                 {% if redirect_url %}
-                if ($('#DynamicFormThankYou', $search).length > 0) {
+                if ($search.attr('id') == 'DynamicFormThankYou' || $('#DynamicFormThankYou', $search).length > 0) {
                   window.top.location.replace('{{ redirect_url }}');
                 }
                 {% endif %}
