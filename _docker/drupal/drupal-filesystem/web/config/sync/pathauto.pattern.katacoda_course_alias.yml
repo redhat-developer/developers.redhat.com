@@ -1,0 +1,22 @@
+uuid: 69303e67-aeb8-42f6-ac1e-379b72a6989e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: katacoda_course_alias
+label: 'Katacoda Course Alias'
+type: 'canonical_entities:node'
+pattern: '/courses/[node:field_katacoda_course_url_slug]'
+selection_criteria:
+  328bb591-559b-4cd0-8100-2c407c3642f4:
+    id: node_type
+    bundles:
+      katacoda_course: katacoda_course
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 328bb591-559b-4cd0-8100-2c407c3642f4
+selection_logic: and
+weight: -5
+relationships: {  }

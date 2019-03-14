@@ -1,0 +1,21 @@
+uuid: 5fa1ef38-b92b-4cbe-906f-5d831d0dcd95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_skill_level
+    - node.type.katacoda_individual_lesson
+  module:
+    - options
+id: node.katacoda_individual_lesson.field_katacoda_skill_level
+field_name: field_katacoda_skill_level
+entity_type: node
+bundle: katacoda_individual_lesson
+label: 'Skill Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,22 @@
+uuid: 13a2dd63-e3a2-4260-be9a-75a633d55aa0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.katacoda_individual_lesson
+  module:
+    - text
+id: node.katacoda_individual_lesson.body
+field_name: body
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

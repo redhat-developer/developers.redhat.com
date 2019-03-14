@@ -1,0 +1,55 @@
+uuid: 62f65f5e-7b09-41ef-8f25-08b9049ad3dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.katacoda_course.body
+    - field.field.node.katacoda_course.field_katacoda_course_audience
+    - field.field.node.katacoda_course.field_katacoda_course_lessons
+    - field.field.node.katacoda_course.field_katacoda_course_url_slug
+    - field.field.node.katacoda_course.field_katacoda_hero_more_link
+    - node.type.katacoda_course
+  module:
+    - user
+id: node.katacoda_course.default
+targetEntityType: node
+bundle: katacoda_course
+mode: default
+content:
+  field_katacoda_course_audience:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_katacoda_course_lessons:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_katacoda_course_url_slug:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_katacoda_hero_more_link:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  body: true
+  langcode: true
+  links: true
+  published_at: true

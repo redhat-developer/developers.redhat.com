@@ -51,15 +51,18 @@ function rhd_common_form_alter(&$form, &$form_state, $form_id) {
 
   // Require a revision log message for published nodes.
   if (isset($form['revision_log']) && isset($form['moderation_state'])) {
-    $form['#validate'][] = 'check_moderation_state_validations';
-
     $entity = $form_state->getFormObject()->getEntity();
-    $is_published = ($entity->get('moderation_state')->getValue()[0]['value'] === 'published');
 
-    if ($is_published) {
-      $form['revision_log']['widget']['#required'] = TRUE;
-      $form['revision_log']['widget'][0]['#required'] = TRUE;
-      $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+    // We need to verify that this form has a moderation_state field.
+    if ($entity->hasField('moderation_state') && !empty($entity->get('moderation_state')->getValue())) {
+      $form['#validate'][] = 'check_moderation_state_validations';
+      $is_published = ($entity->get('moderation_state')->getValue()[0]['value'] === 'published');
+
+      if ($is_published) {
+        $form['revision_log']['widget']['#required'] = TRUE;
+        $form['revision_log']['widget'][0]['#required'] = TRUE;
+        $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+      }
     }
 
     unset($form['revision_log']['#group']);

@@ -1,0 +1,29 @@
+uuid: 2484153b-c08d-4eb5-a774-7d10f37b72ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools_block
+  theme:
+    - rhdp
+id: title
+theme: rhdp
+region: rhd_katacoda_header
+weight: -10
+provider: null
+plugin: 'entity_field:node:title'
+settings:
+  id: 'entity_field:node:title'
+  label: Title
+  provider: ctools_block
+  label_display: '0'
+  formatter:
+    label: hidden
+    type: string
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility: {  }

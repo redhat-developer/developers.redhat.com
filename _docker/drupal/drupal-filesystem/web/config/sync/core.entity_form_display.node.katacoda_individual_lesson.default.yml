@@ -1,0 +1,116 @@
+uuid: 1c96a902-8743-4792-be3b-bb9101b347ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.katacoda_individual_lesson.body
+    - field.field.node.katacoda_individual_lesson.field_katacoda_embed_id
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
+    - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - node.type.katacoda_individual_lesson
+  module:
+    - content_moderation
+    - path
+    - publication_date
+    - text
+id: node.katacoda_individual_lesson.default
+targetEntityType: node
+bundle: katacoda_individual_lesson
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 5
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_katacoda_embed_id:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_katacoda_scenario_author:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_katacoda_scenario_time:
+    weight: 7
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_katacoda_skill_level:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 10
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  published_at:
+    type: publication_date_timestamp
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  promote: true
+  status: true
+  sticky: true
