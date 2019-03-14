@@ -25,9 +25,12 @@
 #}
 
 {% if not page %}
-  {% if content.field_alt_landing %}
+  {% if content.field_alt_landing|render %}
     {{ content.field_alt_landing }}
   {% else %}
-    <a href="{{ url }}">{{ name }}</a>
+    {% set tmpName %}
+      {{ name }}
+    {% endset %}
+    <a href="{{ url }}">{{ tmpName|striptags }}</a>
   {% endif %}
 {% endif %}
