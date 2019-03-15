@@ -1,28 +1,6 @@
+{{ attach_library('rhd_eloqua_embed/resize-eloqua-embed') }}
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
   <div class="iframe-container">
     <iframe id="iframe-{{ eloqua_assembly_id }}" class="eloqua-iframe" src="{{ eloqua_iframe_url|raw }}" scrolling="no"></iframe>
   </div>
 </section>
-<script>
-  resizeUnloadedIframe();
-  $(window).resize(function() {
-    resizeLoadedIframe();
-  });
-  function resizeUnloadedIframe() {
-    $('iframe.eloqua-iframe').each(function() {
-      $(this).load(function() {
-        var gatedFormHeight = $(this).contents().find('#GatedFormContainer').height();
-        $(this).parent().height(gatedFormHeight+10);
-      });
-    });
-  }
-  function resizeLoadedIframe() {
-    $('iframe.eloqua-iframe').each(function() {
-      var gatedFormHeight = $(this).contents().find('#GatedFormContainer').height();
-      $(this).parent().height(gatedFormHeight);
-      console.log('gatedFormHeight');
-      console.log(gatedFormHeight);
-      console.log('iframe id: ' + $(this).attr('id'));
-    });
-  }
-</script>

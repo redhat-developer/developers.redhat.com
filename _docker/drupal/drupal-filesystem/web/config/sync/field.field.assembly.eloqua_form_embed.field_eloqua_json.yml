@@ -10,10 +10,12 @@ field_name: field_eloqua_json
 entity_type: assembly
 bundle: eloqua_form_embed
 label: 'Eloqua JSON'
-description: ''
-required: false
+description: "Available fields to hide/show:\r\n\"first name\", \"last name\", \"address\", \"address 2\", \"address 3\", \"city\", \"state\", \"state/province\", \"zip/postal code\", \"country\", \"salutation\", \"work email\", \"work phone\", \"mobile phone\", \"fax\", \"company\", \"department\", \"job role\", \"job title\", \"industry\", \"annual revenue\", \"number of employees\", \"area of interest\", \"additional information\""
+required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: "{\r\n  \"showAdditionalFields\": [],\r\n  \"hideStandardFields\": [\"work phone\", \"company\", \"department\", \"job role\", \"country\"],\r\n  \"CustomQuestions\": [],\r\n  \"offer_id\": \"INSERT_ORACLE_OFFER_ID\",\r\n  \"language\": \"en\",\r\n  \"FormTitle\": \"Newsletter Signup\",\r\n  \"FormIntro\": \"\",\r\n  \"NameOrder\": \"western\",\r\n  \"FormCallToAction\": \"SIGN UP\",\r\n  \"ThanksTitle\": \"Thank you\",\r\n  \"ThanksText\": \"You are now registered for our newsletter.\",\r\n  \"ShowThanksButton\": \"true\",\r\n  \"leadActivity\": 1,\r\n  \"disableVisitorContactLookups\": false\r\n}"
 default_value_callback: ''
 settings: {  }
 field_type: string_long

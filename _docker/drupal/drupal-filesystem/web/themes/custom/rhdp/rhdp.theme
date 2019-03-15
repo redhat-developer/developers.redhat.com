@@ -662,7 +662,7 @@ function rhdp_preprocess_assembly(&$variables) {
     $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
     $variables['attributes']->addClass('has-background');
   }
-  
+
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
@@ -680,6 +680,7 @@ function rhdp_preprocess_assembly(&$variables) {
     }
   }
 
+  // @todo this should be in rhd_eloqua_embed
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
     $options = [];
@@ -697,6 +698,9 @@ function rhdp_preprocess_assembly(&$variables) {
             }
             if (in_array($style['value'], ['inline'])) {
               $options['class'][] = 'inline';
+            }
+            if (in_array($style['value'], ['overlabel'])) {
+              $options['class'][] = 'overlabel';
             }
           }
         }

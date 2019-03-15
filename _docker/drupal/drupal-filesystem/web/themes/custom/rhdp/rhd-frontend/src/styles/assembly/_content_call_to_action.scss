@@ -1,7 +1,7 @@
 .assembly-type-content_call_to_action {
   font-size: 12px;
   line-height: 1.5;
-  background-color: #D5D5D4;
+  background-color: #f5f5f5;
   border-left: 4px solid #CC0000;
   margin-bottom: 15px;
   @media (min-width: 1025px) {
@@ -19,12 +19,22 @@
   }
   > div {
     padding: 40px 20px;
-    position: relative;
-    top: -0.25em;
+  }
+  &.inline > div {
+    padding: 32px 20px;
   }
   h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 0;
+  }
+  // stupid #rhd-article
+  #rhd-article & {
+    p {
+      font-size: 16px;
+    }
+    h2 {
+      font-size: 20px;
+    }
   }
   p, ul, ol, h1, h2, h3, h4, h5, h6 {
     &:first-child {
