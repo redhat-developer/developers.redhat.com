@@ -1,0 +1,28 @@
+uuid: 00350d85-8686-487a-a8bd-fb3c54b2b29f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_course_lessons
+    - node.type.katacoda_course
+    - node.type.katacoda_individual_lesson
+id: node.katacoda_course.field_katacoda_course_lessons
+field_name: field_katacoda_course_lessons
+entity_type: node
+bundle: katacoda_course
+label: 'Katacoda Course Lessons'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      katacoda_individual_lesson: katacoda_individual_lesson
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

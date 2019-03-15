@@ -1,0 +1,36 @@
+uuid: 3de3e3a2-9ada-49d1-a890-88fea86b29ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.katacoda_individual_lesson.body
+    - node.type.katacoda_individual_lesson
+  module:
+    - text
+    - user
+id: node.katacoda_individual_lesson.teaser
+targetEntityType: node
+bundle: katacoda_individual_lesson
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_katacoda_embed_id: true
+  field_katacoda_scenario_author: true
+  field_katacoda_scenario_time: true
+  field_katacoda_skill_level: true
+  langcode: true
+  published_at: true

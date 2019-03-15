@@ -1,0 +1,22 @@
+uuid: 6e6cef94-557b-492c-99a2-7dce6b22695f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.katacoda_course
+id: node.katacoda_course.promote
+field_name: promote
+entity_type: node
+bundle: katacoda_course
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

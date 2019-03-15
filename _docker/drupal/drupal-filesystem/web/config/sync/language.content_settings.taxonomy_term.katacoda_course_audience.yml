@@ -1,0 +1,11 @@
+uuid: 7f38015d-a5d4-4df4-b682-dd3abf71664c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.katacoda_course_audience
+id: taxonomy_term.katacoda_course_audience
+target_entity_type_id: taxonomy_term
+target_bundle: katacoda_course_audience
+default_langcode: site_default
+language_alterable: false

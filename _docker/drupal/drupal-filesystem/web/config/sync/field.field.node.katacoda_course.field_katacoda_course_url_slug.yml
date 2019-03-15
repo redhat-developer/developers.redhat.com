@@ -1,0 +1,19 @@
+uuid: 627b9344-f987-4011-ad0f-cb379745c7d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_course_url_slug
+    - node.type.katacoda_course
+id: node.katacoda_course.field_katacoda_course_url_slug
+field_name: field_katacoda_course_url_slug
+entity_type: node
+bundle: katacoda_course
+label: 'Katacoda Course URL Slug'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 082a3d4d-b048-44ed-aee3-4f732a2d99c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_scenario_time
+    - node.type.katacoda_individual_lesson
+id: node.katacoda_individual_lesson.field_katacoda_scenario_time
+field_name: field_katacoda_scenario_time
+entity_type: node
+bundle: katacoda_individual_lesson
+label: 'Scenario Time To Complete'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: minutes
+field_type: integer
