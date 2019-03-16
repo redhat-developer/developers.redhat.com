@@ -17,7 +17,7 @@ class EloquaEmbedController {
   public function getForm(Assembly $assembly) {
     if($assembly->hasField('field_eloqua_json')) {
       $options = \Drupal::request()->query->get('options');
-
+      $visual_styles = $assembly->get('visual_styles')->getValue();
       $eloqua_json = $assembly->get('field_eloqua_json')->value;
       if(!$eloqua_json) {
         throw new NotFoundHttpException();
@@ -28,6 +28,7 @@ class EloquaEmbedController {
         '#theme' => 'rhd_eloqua_embed_page',
         '#eloqua_json' => $eloqua_json,
         '#redirect_url' => $redirect_url,
+        '#overlabel' => isset($options['class']) && is_array($options['class']) && in_array('overlabel', $options['class']),
       ];
       if (is_array($options) && isset($options['class'])) {
         $attributes = new Attribute(['class' => $options['class']]);
