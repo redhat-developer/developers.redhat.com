@@ -7,7 +7,13 @@ dependencies:
     - field.field.media.audio_file.field_media_in_library
     - media.type.audio_file
   module:
+    - field_layout
     - file
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: wMzduiuDbWrYcz6jGzCh_F4KHD41TnSkANACMNB4kbY
 id: media.audio_file.default

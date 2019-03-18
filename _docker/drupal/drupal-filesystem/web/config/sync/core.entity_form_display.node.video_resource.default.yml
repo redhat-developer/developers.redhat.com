@@ -38,10 +38,11 @@ dependencies:
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
-    - content_moderation
+    - compose
     - datetime
     - entity_browser
     - field_group
+    - field_layout
     - interval
     - link
     - metatag
@@ -73,6 +74,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 _core:
   default_config_hash: usEN6FRM_guH0aZiSFAjZiF7zzRF6KUkXbSFHvD0iv8
 id: node.video_resource.default
@@ -89,6 +94,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_card_image:
     weight: 19
     settings:
@@ -129,7 +140,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: settings
   field_related_content:
     weight: 20
     settings:
@@ -179,64 +190,94 @@ content:
     region: content
   field_tax_audience_segment:
     weight: 27
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 28
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 29
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 30
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 31
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 32
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 33
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 34
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 35
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 36
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_topics:
     weight: 1
     settings: {  }
@@ -322,10 +363,12 @@ content:
     third_party_settings: {  }
   moderation_state:
     weight: 24
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: moderation_state_default
-    region: content
+    type: string_textfield
+    region: settings
   path:
     type: path
     weight: 4
@@ -335,7 +378,7 @@ content:
   published_at:
     type: publication_date_timestamp
     weight: 10
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -348,11 +391,10 @@ content:
     region: content
   url_redirects:
     weight: 25
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   promote: true
   status: true
   sticky: true

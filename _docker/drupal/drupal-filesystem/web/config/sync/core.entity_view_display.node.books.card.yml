@@ -43,9 +43,15 @@ dependencies:
     - image.style.large
     - node.type.books
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 6xYjc_xUKetNHubcZQ-HCVjelYp7JE6bmEGVhegbJT4
 id: node.books.card

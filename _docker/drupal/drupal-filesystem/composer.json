@@ -19,6 +19,24 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/select2",
+                "version": "4.0.3",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "jquery.select2"
+                },
+                "dist": {
+                    "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "~1.0"
+                }
+            }
         }
     ],
     "require": {
@@ -34,7 +52,7 @@
         "drupal/editor_advanced_link": "1.4",
         "drupal/entity_reference_revisions": "^1.4",
         "drupal/field_collection": "3.x-dev#56eca91817d5fe6e261cb56d427e4c5431aa61a3",
-        "drupal/field_group": "1.x-dev#8d3bdce51c5d0a35ab88a08383ccac9f5efc9794",
+        "drupal/field_group": "3.x-dev#c7b3194f0655eb9c0b37d9a0dd1b36f6e40b4c94",
         "drupal/inline_entity_form": "1.x-dev#f94bbca4a9db359658e0614dad677eb6f28ec4e5",
         "drupal/interval": "1.2",
         "drupal/keycloak": "1.3",
@@ -55,6 +73,7 @@
         "drupal/redirect": "1.3",
         "drush/drush": "9.4.0",
         "drupal/publication_date": "2.x-dev",
+        "jquery/select2": "4.0.3",
         "drupal/twig_tweak": "^2.1",
         "drupal/imagecache_external": "1.x-dev#901b9b0a9cfd728e76da016b56757a24fc45fde0",
         "drupal/readonlymode": "^1.0",
@@ -63,7 +82,10 @@
         "drupal/login_security": "1.5",
         "drupal/restui": "1.16",
         "drupal/akamai": "3.0-alpha3",
-        "drupal/trailing_slash": "^1.0"
+        "drupal/trailing_slash": "^1.0",
+        "drupal/bootstrap": "3.17",
+        "drupal/compose": "1.x",
+        "drupal/beryllium": "1.x"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",
@@ -132,7 +154,9 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch"
+            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
+            "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
+            "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"

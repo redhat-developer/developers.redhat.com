@@ -12,8 +12,14 @@ dependencies:
     - field.field.assembly.dynamic_content_feed.field_number_of_posts
     - field.field.assembly.dynamic_content_feed.field_title
   module:
+    - field_layout
+    - layout_discovery
     - link
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.dynamic_content_feed.default
 targetEntityType: assembly
 bundle: dynamic_content_feed

@@ -1,0 +1,26 @@
+uuid: b6d20f6b-1af6-480f-99e7-26401fa29c61
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: xkj0w7B9YtbYN5HkeEeUoBdZ3QPaTMgSFrub_a0I4hk
+id: beryllium_account_menu
+theme: beryllium
+region: navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

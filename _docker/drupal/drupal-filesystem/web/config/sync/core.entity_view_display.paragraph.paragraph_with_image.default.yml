@@ -9,8 +9,14 @@ dependencies:
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_title
     - paragraphs.paragraphs_type.paragraph_with_image
   module:
+    - field_layout
     - image
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: KJ13HfalVwGcuKjsw7uZmTBgOC8NPmU3K625A-r2nCo
 id: paragraph.paragraph_with_image.default

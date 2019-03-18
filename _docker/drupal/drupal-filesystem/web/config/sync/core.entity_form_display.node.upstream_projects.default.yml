@@ -9,15 +9,27 @@ dependencies:
     - field.field.node.upstream_projects.field_logo
     - node.type.upstream_projects
   module:
+    - compose
     - content_moderation
     - entity_browser
+    - field_layout
     - link
     - publication_date
+third_party_settings:
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 id: node.upstream_projects.default
 targetEntityType: node
 bundle: upstream_projects
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_link_to_project:
     weight: 1
     settings:
@@ -46,6 +58,7 @@ content:
       field_widget_display_settings:
         view_mode: thumbnail
       open: true
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   langcode:
@@ -59,12 +72,12 @@ content:
     type: moderation_state_default
     weight: 5
     settings: {  }
-    region: content
+    region: settings
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
     weight: 4
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -75,11 +88,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  url_redirects:
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  created: true
   path: true
   promote: true
   status: true
   sticky: true
   uid: true
-  url_redirects: true

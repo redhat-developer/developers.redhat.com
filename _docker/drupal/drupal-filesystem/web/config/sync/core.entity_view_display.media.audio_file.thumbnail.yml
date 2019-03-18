@@ -9,7 +9,13 @@ dependencies:
     - image.style.medium
     - media.type.audio_file
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: ZkdF5ut1PZ1MPJH9FMPRDYMyuI42lGa5R3QGTTU-LdY
 id: media.audio_file.thumbnail

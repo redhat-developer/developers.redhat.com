@@ -24,12 +24,18 @@ dependencies:
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
+    - compose
+    - field_layout
     - image
     - interval
     - link
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.rh_training_class.default
 targetEntityType: node
 bundle: rh_training_class

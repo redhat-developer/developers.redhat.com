@@ -8,7 +8,13 @@ dependencies:
     - field.field.media.tweet.field_media_in_library
     - media.type.tweet
   module:
+    - field_layout
+    - layout_discovery
     - path
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: WYt7qUipUVviLaZYZEdzc047DMFB_ghGY8gwU0OenB0
 id: media.tweet.media_browser

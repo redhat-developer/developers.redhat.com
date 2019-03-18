@@ -8,8 +8,14 @@ dependencies:
     - image.style.thumbnail
     - media.type.image
   module:
+    - field_layout
     - image
+    - layout_discovery
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: media.image.default
 targetEntityType: media
 bundle: image

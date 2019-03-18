@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_browser
     - field.field.node.assembly_page.field_hide_title
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
@@ -20,10 +19,12 @@ dependencies:
     - field.field.node.assembly_page.field_tax_stage
     - node.type.assembly_page
   module:
+    - compose
     - content_moderation
     - entity_browser
     - entity_browser_entity_form
     - field_group
+    - field_layout
     - inline_entity_form
     - metatag
     - path
@@ -52,6 +53,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 id: node.assembly_page.default
 targetEntityType: node
 bundle: assembly_page
@@ -59,8 +64,8 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 1
-    region: content
+    weight: 5
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_hide_title:
@@ -75,7 +80,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: settings
   field_sections:
     weight: 6
     settings:
@@ -98,80 +103,80 @@ content:
     type: entity_browser_file
     weight: 7
     settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
       field_widget_replace: false
-    region: content
+      entity_browser: null
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+    region: fields
     third_party_settings: {  }
   field_tax_audience_segment:
     weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   langcode:
     type: language_select
     weight: 2
-    region: content
+    region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
@@ -180,17 +185,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   path:
     type: path
     weight: 3
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
     weight: 12
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -204,15 +209,15 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 0
+    region: settings
     settings:
-      match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
+      match_operator: CONTAINS
     third_party_settings: {  }
   url_redirects:
     weight: 10
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:

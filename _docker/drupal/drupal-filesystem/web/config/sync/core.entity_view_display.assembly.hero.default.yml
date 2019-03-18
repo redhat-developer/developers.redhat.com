@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.hero.field_navigation_title
     - field.field.assembly.hero.field_title
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.hero.default
 targetEntityType: assembly
 bundle: hero

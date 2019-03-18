@@ -24,7 +24,13 @@ dependencies:
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
+    - compose
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.rh_certification_exam.teaser
 targetEntityType: node
 bundle: rh_certification_exam
@@ -32,9 +38,9 @@ mode: teaser
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content

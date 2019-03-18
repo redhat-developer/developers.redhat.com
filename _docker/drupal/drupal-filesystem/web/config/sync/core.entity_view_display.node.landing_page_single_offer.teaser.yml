@@ -21,8 +21,14 @@ dependencies:
     - field.field.node.landing_page_single_offer.field_tax_stage
     - node.type.landing_page_single_offer
   module:
+    - field_layout
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.landing_page_single_offer.teaser
 targetEntityType: node
 bundle: landing_page_single_offer
@@ -46,6 +52,7 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_form: true
   field_hero: true
   field_hide_title: true
   field_meta_tags: true

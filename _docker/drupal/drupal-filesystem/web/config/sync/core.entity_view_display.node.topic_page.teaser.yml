@@ -20,7 +20,13 @@ dependencies:
     - field.field.node.topic_page.field_tax_stage
     - node.type.topic_page
   module:
+    - compose
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.topic_page.teaser
 targetEntityType: node
 bundle: topic_page
@@ -28,9 +34,9 @@ mode: teaser
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content

@@ -6,7 +6,13 @@ dependencies:
     - field.field.paragraph.main_content.field_product_main_page_content
     - paragraphs.paragraphs_type.main_content
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: QwBmridvjj4q8KQEj98O4Zv2KONXDa6KZpT2HjZDqnY
 id: paragraph.main_content.default

@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.rich_text.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.rich_text.default
 targetEntityType: assembly
 bundle: rich_text

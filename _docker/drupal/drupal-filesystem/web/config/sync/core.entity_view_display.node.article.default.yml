@@ -35,8 +35,10 @@ dependencies:
     - image.style.article_floated
     - node.type.article
   module:
+    - compose
     - entity_reference_revisions
     - fences
+    - field_layout
     - image
     - interval
     - link
@@ -44,6 +46,10 @@ dependencies:
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.default

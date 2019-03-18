@@ -9,7 +9,13 @@ dependencies:
     - image.style.medium
     - media.type.instagram
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: RkAZzP2xy_PFoNyBBcKJ__BDBQfXtNhvQVcatJyzyOc
 id: media.instagram.thumbnail

@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.static_item.field_url
   module:
     - entity_browser
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.static_item.default
 targetEntityType: assembly
 bundle: static_item

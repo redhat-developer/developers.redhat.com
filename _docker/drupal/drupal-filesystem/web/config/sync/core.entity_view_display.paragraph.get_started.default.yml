@@ -12,7 +12,13 @@ dependencies:
     - paragraphs.paragraphs_type.get_started
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: DfW-aEoTbEjvWSAbAkSxy46_MOVyGKFiQOaLfVfjxZw
 id: paragraph.get_started.default

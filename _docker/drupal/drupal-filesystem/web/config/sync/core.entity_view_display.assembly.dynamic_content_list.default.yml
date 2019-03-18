@@ -13,8 +13,14 @@ dependencies:
     - field.field.assembly.dynamic_content_list.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - link
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.dynamic_content_list.default
 targetEntityType: assembly
 bundle: dynamic_content_list

@@ -9,8 +9,14 @@ dependencies:
     - field.field.assembly.content_call_to_action.field_form
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - options
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.content_call_to_action.default
 targetEntityType: assembly
 bundle: content_call_to_action

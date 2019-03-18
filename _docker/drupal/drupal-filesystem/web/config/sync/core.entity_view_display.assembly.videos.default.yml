@@ -8,6 +8,13 @@ dependencies:
     - field.field.assembly.videos.field_navigation_title
     - field.field.assembly.videos.field_tags
     - field.field.assembly.videos.field_title
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.videos.default
 targetEntityType: assembly
 bundle: videos
