@@ -1,0 +1,23 @@
+uuid: 99d5a0b5-4eac-4d9e-b378-309c72564c2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_alt_landing
+    - taxonomy.vocabulary.topics
+  module:
+    - link
+id: taxonomy_term.topics.field_alt_landing
+field_name: field_alt_landing
+entity_type: taxonomy_term
+bundle: topics
+label: 'Alternate Landing'
+description: 'Provide  link to an alternate landing page for topic'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
