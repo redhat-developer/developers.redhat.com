@@ -53,6 +53,12 @@
       max-width: 820px;
     }
   }
+  &.assembly-image-left {
+    @include desktop-small {
+      .assembly-content{ order: 2; }
+      .assembly-image{ order: 1; }
+    }
+  }
   .background {
     position: absolute;
     z-index: 0;
