@@ -68,11 +68,16 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+
   .field--name-field-title, .header {
-    font-size: 22px;
-    line-height: 1.5;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    margin-top: 0;
+    @include desktop-small {
+      font-weight: bold;
+      font-size: 36px;
+    }
   }
 
   &.no-padding-top {

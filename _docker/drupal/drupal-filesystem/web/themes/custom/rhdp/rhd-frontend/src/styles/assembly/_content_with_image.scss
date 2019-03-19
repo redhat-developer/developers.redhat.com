@@ -1,6 +1,5 @@
 .assembly-type-content_with_image {
   text-align: center;
-  padding: 30px 0;
   @include desktop-small {
     text-align: left;
   }
@@ -8,17 +7,11 @@
   h2 {
     font-size: 50px;
   }
+
   .header {
-    text-align: center;
-    margin-bottom: 16px;
-    font-size: 18px;
-    margin-top: 0;
-    @include desktop-small {
-      font-weight: bold;
-      font-size: 36px;
-      text-align: left;
-    }
+    text-align: left;
   }
+
   .container {
     flex-flow: row wrap-reverse;
     display: flex;
