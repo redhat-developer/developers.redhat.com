@@ -15,11 +15,17 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_layout
     - image
+    - layout_discovery
     - link
     - path
     - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: agLIqZUYV1z7GHlCu9pbbxKdaRYuItUMAUkTYqAitg8
 id: node.promotion_page.default

@@ -23,12 +23,18 @@ dependencies:
     - field.field.node.rh_certification_exam.field_topics
     - node.type.rh_certification_exam
   module:
+    - compose
+    - field_layout
     - image
     - interval
     - link
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.rh_certification_exam.default
 targetEntityType: node
 bundle: rh_certification_exam

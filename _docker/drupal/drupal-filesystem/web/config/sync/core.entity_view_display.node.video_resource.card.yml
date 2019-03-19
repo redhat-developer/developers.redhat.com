@@ -39,12 +39,18 @@ dependencies:
     - node.type.video_resource
   module:
     - datetime
+    - field_layout
     - interval
+    - layout_discovery
     - link
     - options
     - text
     - user
     - video_embed_field
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
 id: node.video_resource.card

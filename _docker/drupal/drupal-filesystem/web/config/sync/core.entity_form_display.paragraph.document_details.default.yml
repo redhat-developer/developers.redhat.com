@@ -8,7 +8,13 @@ dependencies:
     - field.field.paragraph.document_details.field_formats
     - paragraphs.paragraphs_type.document_details
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: gW6q0ZHEUbk4RnyoCnUqNlcZhn16ohbtNwHAEliRqdQ
 id: paragraph.document_details.default

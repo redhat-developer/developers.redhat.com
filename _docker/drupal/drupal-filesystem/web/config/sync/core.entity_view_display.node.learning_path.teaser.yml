@@ -31,10 +31,16 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - compose
     - fences
+    - field_layout
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.learning_path.teaser
 targetEntityType: node
 bundle: learning_path

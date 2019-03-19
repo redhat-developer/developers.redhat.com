@@ -10,8 +10,14 @@ dependencies:
     - field.field.assembly.learning_paths.field_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.learning_paths.default
 targetEntityType: assembly
 bundle: learning_paths

@@ -28,10 +28,16 @@ dependencies:
     - field.field.node.connectors.field_tax_stage
     - node.type.connectors
   module:
+    - compose
+    - field_layout
     - link
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: zQfEnSZfYMrha2gScuXvEE1nTF-EXr_n1aKO7C7TiuM
 id: node.connectors.default

@@ -6,6 +6,13 @@ dependencies:
     - assembly.assembly_type.content_pull_quote
     - field.field.assembly.content_pull_quote.field_audience_selection
     - field.field.assembly.content_pull_quote.field_content_pull_quote
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.content_pull_quote.default
 targetEntityType: assembly
 bundle: content_pull_quote

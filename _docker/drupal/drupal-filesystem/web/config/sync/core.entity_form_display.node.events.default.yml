@@ -37,10 +37,12 @@ dependencies:
     - image.style.thumbnail
     - node.type.events
   module:
+    - compose
     - content_moderation
     - datetime
     - entity_browser
     - field_group
+    - field_layout
     - image
     - link
     - publication_date
@@ -60,7 +62,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 21
+      weight: 22
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -69,6 +71,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 _core:
   default_config_hash: GGP4WPf7fQzefk1CREJvQ0AQ0fL2jddPAwQ2_EEAbBk
 id: node.events.default
@@ -76,8 +82,14 @@ targetEntityType: node
 bundle: events
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 0
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_data_tags:
-    weight: 17
+    weight: 18
     settings:
       size: 60
       placeholder: ''
@@ -99,7 +111,7 @@ content:
     type: datetime_default
     region: content
   field_event_background_image:
-    weight: 13
+    weight: 14
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -107,13 +119,13 @@ content:
     type: image_image
     region: content
   field_event_format:
-    weight: 10
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_event_image:
-    weight: 12
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -133,7 +145,7 @@ content:
     type: link_default
     region: content
   field_on_homepage:
-    weight: 14
+    weight: 15
     settings:
       display_label: true
     third_party_settings: {  }
@@ -149,7 +161,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_region:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -163,13 +175,13 @@ content:
     type: string_textarea
     region: content
   field_site:
-    weight: 18
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_solution_type:
-    weight: 16
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -181,7 +193,7 @@ content:
     type: datetime_default
     region: content
   field_target_product:
-    weight: 15
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -191,61 +203,61 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tile_thumbnail:
     type: entity_browser_file
     weight: 9
@@ -274,15 +286,15 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 19
+    weight: 20
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   published_at:
     type: publication_date_timestamp
     weight: 10
-    region: content
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -294,12 +306,11 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 20
-    region: content
+    weight: 21
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   field_event_type: true
   field_title: true
   path: true

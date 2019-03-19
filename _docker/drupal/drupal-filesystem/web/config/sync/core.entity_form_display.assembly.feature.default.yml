@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.feature.field_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.feature.default
 targetEntityType: assembly
 bundle: feature

@@ -6,7 +6,13 @@ dependencies:
     - block_content.type.media_slideshow
     - field.field.block_content.media_slideshow.field_slideshow_items
   module:
+    - field_layout
+    - layout_discovery
     - slick_entityreference
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: hVHMNQ6SuxyBzrEV2AJkwdHKAxQ7btc6JPGH548r9_E
 id: block_content.media_slideshow.default

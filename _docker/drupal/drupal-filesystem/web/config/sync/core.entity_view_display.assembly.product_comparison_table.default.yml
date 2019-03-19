@@ -10,6 +10,12 @@ dependencies:
     - field.field.assembly.product_comparison_table.field_upstream_projects
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.product_comparison_table.default
 targetEntityType: assembly
 bundle: product_comparison_table

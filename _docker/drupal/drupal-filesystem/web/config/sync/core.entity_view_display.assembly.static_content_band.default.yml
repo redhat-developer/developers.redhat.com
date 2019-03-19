@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.static_content_band.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.static_content_band.default
 targetEntityType: assembly
 bundle: static_content_band

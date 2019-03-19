@@ -15,8 +15,14 @@ dependencies:
     - image.style.large
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.content_with_image.default
 targetEntityType: assembly
 bundle: content_with_image

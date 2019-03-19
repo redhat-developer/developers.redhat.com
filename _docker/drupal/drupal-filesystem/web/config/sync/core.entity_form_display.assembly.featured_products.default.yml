@@ -11,7 +11,13 @@ dependencies:
     - field.field.assembly.featured_products.field_title
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.featured_products.default
 targetEntityType: assembly
 bundle: featured_products

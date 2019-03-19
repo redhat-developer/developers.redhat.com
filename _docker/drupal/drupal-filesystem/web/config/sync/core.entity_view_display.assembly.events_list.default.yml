@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.events_list.field_navigation_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.events_list.default
 targetEntityType: assembly
 bundle: events_list

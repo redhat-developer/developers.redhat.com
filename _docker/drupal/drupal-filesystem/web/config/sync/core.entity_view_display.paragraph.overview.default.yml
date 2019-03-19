@@ -14,8 +14,14 @@ dependencies:
     - paragraphs.paragraphs_type.overview
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - text
     - video_embed_field
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: PxW64nA_yRbooLmvy-mQMixICYTovYU_PE-u4FAmaXg
 id: paragraph.overview.default

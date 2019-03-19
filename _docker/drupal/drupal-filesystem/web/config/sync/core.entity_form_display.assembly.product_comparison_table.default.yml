@@ -12,7 +12,9 @@ dependencies:
     - content_moderation
     - entity_browser_entity_form
     - field_group
+    - field_layout
     - inline_entity_form
+    - layout_discovery
 third_party_settings:
   field_group:
     group_table_rows:
@@ -41,6 +43,9 @@ third_party_settings:
         open: true
         required_fields: true
       label: 'Table columns'
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.product_comparison_table.default
 targetEntityType: assembly
 bundle: product_comparison_table

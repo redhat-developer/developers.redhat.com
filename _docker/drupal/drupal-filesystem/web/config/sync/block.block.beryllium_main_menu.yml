@@ -1,0 +1,26 @@
+uuid: de346166-08b1-4324-bb93-27087667d0a0
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: oyIZSSgdFiHwwHEkE7ovDbL2THGthV7-wrRjpYCYh44
+id: beryllium_main_menu
+theme: beryllium
+region: navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

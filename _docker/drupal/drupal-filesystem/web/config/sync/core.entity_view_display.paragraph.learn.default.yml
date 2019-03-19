@@ -9,7 +9,13 @@ dependencies:
     - field.field.paragraph.learn.field_page_description
     - paragraphs.paragraphs_type.learn
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: yCulbfIdf0uhNkavHAKnDKzXAV0Lo9a8IIm9Ot-6KzA
 id: paragraph.learn.default

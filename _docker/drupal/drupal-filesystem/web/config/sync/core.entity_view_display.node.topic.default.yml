@@ -19,10 +19,16 @@ dependencies:
     - field.field.node.topic.field_topic_sub_title
     - node.type.topic
   module:
+    - compose
+    - field_layout
     - link
     - metatag
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: Zz26d7tH-jXNMErZUAg4x5lGfrZNZFKr99wh5cAXd-E
 id: node.topic.default
@@ -32,9 +38,9 @@ mode: default
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_blue_card_description:
     type: text_default
     weight: 0
@@ -150,9 +156,10 @@ content:
   field_topic_sub_title:
     weight: 101
     label: visually_hidden
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    type: text_default
+    type: string
     region: content
   workbench_moderation_control:
     weight: -20

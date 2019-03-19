@@ -37,9 +37,15 @@ dependencies:
     - image.style.crop_thumbnail
     - node.type.events
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
 id: node.events.tile

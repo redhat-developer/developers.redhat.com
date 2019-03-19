@@ -8,8 +8,14 @@ dependencies:
     - field.field.node.rhd_solution_overview.field_solution_tag_line
     - node.type.rhd_solution_overview
   module:
+    - compose
+    - field_layout
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: nH0EcMAp6wSinBzwNjPwIBPEtWkFNpz3dX1LaiGo2ww
 id: node.rhd_solution_overview.default
@@ -26,9 +32,9 @@ content:
     region: content
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_solution_name:
     type: string
     weight: 2
