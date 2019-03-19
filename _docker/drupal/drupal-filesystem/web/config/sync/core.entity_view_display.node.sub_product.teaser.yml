@@ -8,7 +8,13 @@ dependencies:
     - field.field.node.sub_product.field_logo
     - node.type.sub_product
   module:
+    - compose
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.sub_product.teaser
 targetEntityType: node
 bundle: sub_product
@@ -16,9 +22,9 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_cta: true
   field_logo: true

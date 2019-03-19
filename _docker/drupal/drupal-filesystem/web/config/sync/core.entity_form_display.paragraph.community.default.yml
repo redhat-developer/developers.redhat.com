@@ -10,7 +10,13 @@ dependencies:
     - field.field.paragraph.community.field_page_description
     - paragraphs.paragraphs_type.community
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: giGOVZtzjXT6xwCOgEe2uVJPqmo58ZLagjz67o5FF28
 id: paragraph.community.default

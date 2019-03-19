@@ -7,9 +7,15 @@ dependencies:
     - node.type.rhd_microsite
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - path
     - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: dIotB7LsuqwMk24OiXlVZivKbDsH1kT6lBeKbfXGSoQ
 id: node.rhd_microsite.default

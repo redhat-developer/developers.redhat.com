@@ -13,8 +13,14 @@ dependencies:
     - field.field.assembly.events_hero.field_title
   module:
     - fences
+    - field_layout
     - image
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.events_hero.default
 targetEntityType: assembly
 bundle: events_hero

@@ -11,8 +11,14 @@ dependencies:
     - field.field.assembly.static_content_band.field_title
   module:
     - entity_browser_entity_form
+    - field_layout
     - inline_entity_form
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.static_content_band.default
 targetEntityType: assembly
 bundle: static_content_band

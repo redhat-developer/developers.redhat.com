@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_browser
     - field.field.node.books.field_author
     - field.field.node.books.field_average_rating
     - field.field.node.books.field_book_description
@@ -40,11 +39,15 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
+    - image.style.thumbnail
     - node.type.books
   module:
+    - compose
     - content_moderation
     - entity_browser
     - field_group
+    - field_layout
+    - image
     - interval
     - link
     - metatag
@@ -66,7 +69,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 26
+      weight: 22
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -75,6 +78,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 _core:
   default_config_hash: VUy0dPHJv_1LT0nt8y5fDc9AunmaNjE26cX570wva-s
 id: node.books.default
@@ -82,16 +89,22 @@ targetEntityType: node
 bundle: books
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 25
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   field_author:
-    weight: 2
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_book_description:
-    weight: 6
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
@@ -100,7 +113,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_book_excerpt:
-    weight: 7
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -108,41 +121,37 @@ content:
     type: text_textarea
     region: content
   field_book_url:
-    weight: 17
+    weight: 16
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_card_image:
-    weight: 20
+    weight: 19
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_cover_image:
-    type: entity_browser_file
-    weight: 21
+    type: image_image
+    weight: 5
     settings:
-      entity_browser: image_browser
-      field_widget_remove: true
-      open: true
-      selection_mode: selection_append
       preview_image_style: thumbnail
       field_widget_edit: true
       view_mode: default
       field_widget_replace: false
-    region: content
+    region: fields
     third_party_settings: {  }
   field_difficulty:
-    weight: 19
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_epub:
     weight: 14
     settings:
@@ -150,21 +159,21 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_isbn:
-    weight: 5
+    weight: 9
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_meta_tags:
-    weight: 23
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: fields
   field_mobi_link:
     weight: 13
     settings:
@@ -172,16 +181,16 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_needs_own_page:
-    weight: 4
+    weight: 8
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: content
+    region: fields
   field_pdf_link:
-    weight: 12
+    weight: 3
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -189,52 +198,21 @@ content:
     type: link_default
     region: content
   field_publisher:
-    weight: 8
+    weight: 10
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_read_time:
-    weight: 18
+    weight: 17
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
     type: interval_default
-    region: content
+    region: fields
   field_related_product:
-    weight: 10
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_share_image:
-    type: entity_browser_file
-    weight: 22
-    settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
-      preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-      field_widget_replace: false
-    region: content
-    third_party_settings: {  }
-  field_short_description:
-    weight: 3
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_tags:
     weight: 11
     settings:
       match_operator: CONTAINS
@@ -242,104 +220,133 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
+  field_share_image:
+    type: image_image
+    weight: 20
+    settings:
+      preview_image_style: thumbnail
+      open: true
+      selection_mode: selection_append
+      field_widget_replace: false
+    region: fields
+    third_party_settings: {  }
+  field_short_description:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: fields
+  field_tags:
+    weight: 12
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_audience_segment:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 35
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 36
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_thumbnail_url:
-    weight: 16
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_topics:
-    weight: 1
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   langcode:
     type: language_select
     weight: 2
-    region: content
+    region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 24
-    settings: {  }
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: moderation_state_default
-    region: content
+    type: string_textfield
+    region: settings
   path:
     type: path
-    weight: 15
-    region: content
+    weight: 26
+    region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 24
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
@@ -351,12 +358,11 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 25
-    region: content
+    weight: 27
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
-  created: true
   field_average_rating: true
   field_categories: true
   field_preview_url: true

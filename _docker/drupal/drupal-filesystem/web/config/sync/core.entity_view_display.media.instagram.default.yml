@@ -7,7 +7,13 @@ dependencies:
     - field.field.media.instagram.field_media_in_library
     - media.type.instagram
   module:
+    - field_layout
+    - layout_discovery
     - media_entity_instagram
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: mW_bQ87HP6xyVkJgG9HGVDEYUSCYzVgNDcRuhjRtcbk
 id: media.instagram.default

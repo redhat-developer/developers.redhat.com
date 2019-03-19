@@ -30,8 +30,10 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
+    - compose
     - content_moderation
     - field_group
+    - field_layout
     - interval
     - link
     - path
@@ -52,7 +54,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 22
+      weight: 23
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -61,6 +63,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 id: node.learning_path.default
 targetEntityType: node
 bundle: learning_path
@@ -68,8 +74,8 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 16
-    region: content
+    weight: 17
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_audience:
@@ -79,7 +85,7 @@ content:
     type: options_buttons
     region: content
   field_card_image:
-    weight: 14
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -95,7 +101,7 @@ content:
     region: content
   field_learning_path_content_item:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -130,10 +136,10 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_related_programming_langua:
-    weight: 12
+    weight: 13
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_related_red_hat_certificat:
     weight: 8
@@ -145,7 +151,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_related_topic_s_:
-    weight: 11
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -175,66 +181,69 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_topics:
     weight: 1
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_value_proposition:
     weight: 6
@@ -253,36 +262,22 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 20
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
-    region: content
+    region: settings
   path:
     type: path
-    weight: 19
-    region: content
+    weight: 20
+    region: settings
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 17
-    region: content
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 11
+    region: settings
     settings: {  }
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 18
-    region: content
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -292,20 +287,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 15
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
-    third_party_settings: {  }
   url_redirects:
-    weight: 21
-    region: content
+    weight: 22
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
   body: true
+  promote: true
   status: true
+  sticky: true
+  uid: true

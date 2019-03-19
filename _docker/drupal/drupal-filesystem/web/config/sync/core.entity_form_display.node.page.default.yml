@@ -8,10 +8,16 @@ dependencies:
     - node.type.page
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - metatag
     - path
     - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: L1fBdp2a9eZINN76KMcEIrHmz-zZVpQ9GSSqy5QtyiU
 id: node.page.default

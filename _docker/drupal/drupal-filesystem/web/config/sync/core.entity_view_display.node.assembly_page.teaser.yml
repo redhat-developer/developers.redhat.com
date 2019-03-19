@@ -19,8 +19,14 @@ dependencies:
     - field.field.node.assembly_page.field_tax_stage
     - node.type.assembly_page
   module:
+    - compose
     - entity_reference_revisions
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.assembly_page.teaser
 targetEntityType: node
 bundle: assembly_page
@@ -41,6 +47,7 @@ content:
       link: ''
     third_party_settings: {  }
 hidden:
+  field_hide_title: true
   field_meta_tags: true
   field_share_image: true
   field_tax_audience_segment: true

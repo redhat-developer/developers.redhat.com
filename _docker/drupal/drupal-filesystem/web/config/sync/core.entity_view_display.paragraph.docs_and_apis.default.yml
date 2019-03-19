@@ -11,7 +11,13 @@ dependencies:
     - field.field.paragraph.docs_and_apis.field_supported_configurations
     - paragraphs.paragraphs_type.docs_and_apis
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 656QuYJLXu_LkrRHqXCFye8UeVBTKJ4uY5H2Iq0xjlw
 id: paragraph.docs_and_apis.default

@@ -9,6 +9,13 @@ dependencies:
     - field.field.assembly.collection.field_show_pagination
     - field.field.assembly.collection.field_title
     - field.field.assembly.collection.field_total_posts
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.collection.default
 targetEntityType: assembly
 bundle: collection

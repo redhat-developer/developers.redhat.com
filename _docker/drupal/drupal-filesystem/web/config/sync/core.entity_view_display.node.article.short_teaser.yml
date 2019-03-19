@@ -35,8 +35,14 @@ dependencies:
     - field.field.node.article.field_topics
     - node.type.article
   module:
+    - compose
     - fences
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.short_teaser

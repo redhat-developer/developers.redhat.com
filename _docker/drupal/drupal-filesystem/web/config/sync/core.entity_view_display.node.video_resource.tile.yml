@@ -38,8 +38,14 @@ dependencies:
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
+    - field_layout
+    - layout_discovery
     - link
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
 id: node.video_resource.tile

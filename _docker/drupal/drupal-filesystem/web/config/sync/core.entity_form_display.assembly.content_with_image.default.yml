@@ -15,9 +15,15 @@ dependencies:
     - field.field.assembly.content_with_image.field_title
   module:
     - entity_browser
+    - field_layout
+    - layout_discovery
     - file
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.content_with_image.default
 targetEntityType: assembly
 bundle: content_with_image

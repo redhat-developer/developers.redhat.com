@@ -14,8 +14,14 @@ dependencies:
     - field.field.paragraph.download.field_xpaas_link
     - paragraphs.paragraphs_type.download
   module:
+    - field_layout
+    - layout_discovery
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 8kDVZ69EfUirNdqE8bWKgUaD4FPJInhl-cl9kjXiulc
 id: paragraph.download.default

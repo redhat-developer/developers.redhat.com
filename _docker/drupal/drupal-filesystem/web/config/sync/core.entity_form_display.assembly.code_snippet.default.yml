@@ -9,6 +9,12 @@ dependencies:
     - field.field.assembly.code_snippet.field_programming_language
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.code_snippet.default
 targetEntityType: assembly
 bundle: code_snippet

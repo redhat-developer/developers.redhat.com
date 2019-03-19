@@ -9,7 +9,13 @@ dependencies:
     - image.style.medium
     - media.type.image
   module:
+    - field_layout
     - image
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: tcIUp7H9BB5rX3B6bGCk-z2kFNtOtAtZY9UwikN6XjI
 id: media.image.thumbnail

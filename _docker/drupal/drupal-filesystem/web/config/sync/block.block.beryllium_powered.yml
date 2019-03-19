@@ -1,0 +1,22 @@
+uuid: 8b2f3db8-42bf-436b-8b96-8526a3f9ebec
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - beryllium
+_core:
+  default_config_hash: S0x3ydhH2rd9ivzw8omcDZkYQHiVT3OyGQoK0yu7V2k
+id: beryllium_powered
+theme: beryllium
+region: navigation
+weight: -7
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

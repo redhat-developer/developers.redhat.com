@@ -6,8 +6,14 @@ dependencies:
     - field.field.node.rhd_microsite.body
     - node.type.rhd_microsite
   module:
+    - compose
+    - field_layout
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: EKW2OJXCJqaTu85DAwSXfESnSDP5rHyuDPP1xJPIhk4
 id: node.rhd_microsite.default
@@ -24,14 +30,14 @@ content:
     region: content
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   workbench_moderation_control:
     weight: -20
     region: content

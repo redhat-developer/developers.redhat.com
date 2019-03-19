@@ -36,9 +36,15 @@ dependencies:
     - image.style.large
     - node.type.article
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.tile

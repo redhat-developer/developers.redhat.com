@@ -1,0 +1,22 @@
+uuid: 7f1591d4-4144-4b3f-985f-f3c5251a0dd6
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - beryllium
+_core:
+  default_config_hash: 0npeXQL5ef8-Wb6bIo_g-exiOOOt_33iSmpWxLIlMnE
+id: beryllium_help
+theme: beryllium
+region: help
+weight: -6
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

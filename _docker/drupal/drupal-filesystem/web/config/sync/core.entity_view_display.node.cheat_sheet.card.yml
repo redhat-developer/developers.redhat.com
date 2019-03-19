@@ -31,9 +31,15 @@ dependencies:
     - image.style.large
     - node.type.cheat_sheet
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
 id: node.cheat_sheet.card

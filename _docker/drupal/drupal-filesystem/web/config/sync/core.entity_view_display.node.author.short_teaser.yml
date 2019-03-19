@@ -25,9 +25,15 @@ dependencies:
     - image.style.square_small
     - node.type.author
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.author.short_teaser
 targetEntityType: node
 bundle: author
@@ -35,9 +41,9 @@ mode: short_teaser
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_headshot:
     weight: 0
     label: hidden

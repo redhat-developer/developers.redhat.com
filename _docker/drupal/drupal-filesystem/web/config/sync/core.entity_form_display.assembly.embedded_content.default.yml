@@ -7,7 +7,13 @@ dependencies:
     - field.field.assembly.embedded_content.field_audience_selection
     - field.field.assembly.embedded_content.field_url
   module:
+    - field_layout
+    - layout_discovery
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.embedded_content.default
 targetEntityType: assembly
 bundle: embedded_content
