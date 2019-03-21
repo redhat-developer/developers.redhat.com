@@ -11,7 +11,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  *   id = "node_type",
  *   label = @Translation("Red Hate: Node Type"),
  *   description = @Translation("Drupal Content Type"),
- *   name = "node-type",
+ *   name = "rhd:node-type",
  *   group = "red_hat",
  *   weight = 3,
  *   type = "string",

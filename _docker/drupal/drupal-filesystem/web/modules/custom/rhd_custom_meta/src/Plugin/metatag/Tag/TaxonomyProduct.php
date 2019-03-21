@@ -11,7 +11,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  *   id = "taxonomy_product",
  *   label = @Translation("Red Hat: Product"),
  *   description = @Translation("Related Product"),
- *   name = "taxonomy-product",
+ *   name = "rhd:taxonomy-product",
  *   group = "red_hat",
  *   weight = 3,
  *   type = "string",

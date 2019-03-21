@@ -11,7 +11,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  *   id = "taxonomy_page_sub_type",
  *   label = @Translation("Red Hat: Page Sub Type"),
  *   description = @Translation("Sub type of a page"),
- *   name = "taxonomy-page-sub-type",
+ *   name = "rhd:taxonomy-page-sub-type",
  *   group = "red_hat",
  *   weight = 3,
  *   type = "string",

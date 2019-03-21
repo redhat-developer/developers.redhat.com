@@ -11,7 +11,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  *   id = "taxonomy_topic",
  *   label = @Translation("Red Hate: Topic"),
  *   description = @Translation("The topic of the node"),
- *   name = "taxonomy-topic",
+ *   name = "rhd:taxonomy-topic",
  *   group = "red_hat",
  *   weight = 3,
  *   type = "string",
