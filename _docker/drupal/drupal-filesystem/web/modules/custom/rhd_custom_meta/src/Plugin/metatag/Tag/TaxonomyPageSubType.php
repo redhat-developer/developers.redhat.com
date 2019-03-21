@@ -8,7 +8,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  * Provides a plugin for the 'TaxonomyTopic' meta tag.
  *
  * @MetatagTag(
- *   id = "taxonomy_page_sub_type",
+ *   id = "rhd_taxonomy_page_sub_type",
  *   label = @Translation("Red Hat: Page Sub Type"),
  *   description = @Translation("Sub type of a page"),
  *   name = "rhd:taxonomy-page-sub-type",

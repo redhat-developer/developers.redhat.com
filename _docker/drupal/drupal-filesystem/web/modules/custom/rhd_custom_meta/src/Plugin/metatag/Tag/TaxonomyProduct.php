@@ -8,7 +8,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  * Provides a plugin for the 'TaxonomyTopic' meta tag.
  *
  * @MetatagTag(
- *   id = "taxonomy_product",
+ *   id = "rhd_taxonomy_product",
  *   label = @Translation("Red Hat: Product"),
  *   description = @Translation("Related Product"),
  *   name = "rhd:taxonomy-product",

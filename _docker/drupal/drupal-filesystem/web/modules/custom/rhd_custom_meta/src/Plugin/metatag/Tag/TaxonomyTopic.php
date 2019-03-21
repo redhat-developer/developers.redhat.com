@@ -8,7 +8,7 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  * Provides a plugin for the 'TaxonomyTopic' meta tag.
  *
  * @MetatagTag(
- *   id = "taxonomy_topic",
+ *   id = "rhd_taxonomy_topic",
  *   label = @Translation("Red Hate: Topic"),
  *   description = @Translation("The topic of the node"),
  *   name = "rhd:taxonomy-topic",
