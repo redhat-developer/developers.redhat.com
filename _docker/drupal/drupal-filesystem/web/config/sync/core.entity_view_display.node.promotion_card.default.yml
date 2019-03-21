@@ -8,9 +8,15 @@ dependencies:
     - field.field.node.promotion_card.field_containers_short_summary
     - node.type.promotion_card
   module:
+    - compose
+    - field_layout
     - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: wMqZ1mT1GdXTo840DrwWR116c-eb5poVDN3EhgXGywI
 id: node.promotion_card.default
@@ -20,9 +26,9 @@ mode: default
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_container_external_link:
     weight: 103
     label: visually_hidden

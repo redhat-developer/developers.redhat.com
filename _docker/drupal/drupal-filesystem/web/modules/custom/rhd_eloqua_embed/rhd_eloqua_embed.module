@@ -13,6 +13,7 @@ function rhd_eloqua_embed_theme($existing, $type, $theme, $path) {
         'eloqua_json' => NULL,
         'html_attributes' => NULL,
         'redirect_url' => NULL,
+        'overlabel'=> FALSE,
       ],
       'template' => 'rhd-eloqua-embed-page',
     ],

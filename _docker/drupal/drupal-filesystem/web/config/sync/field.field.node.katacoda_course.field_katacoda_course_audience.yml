@@ -1,0 +1,29 @@
+uuid: 3cda21ba-68c2-4633-9a60-65b87dfa85d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_course_audience
+    - node.type.katacoda_course
+    - taxonomy.vocabulary.katacoda_course_audience
+id: node.katacoda_course.field_katacoda_course_audience
+field_name: field_katacoda_course_audience
+entity_type: node
+bundle: katacoda_course
+label: 'Katacoda Course Audience'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      katacoda_course_audience: katacoda_course_audience
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

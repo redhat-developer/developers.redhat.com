@@ -11,6 +11,8 @@ dependencies:
   module:
     - entity_browser
     - field_group
+    - field_layout
+    - layout_discovery
     - path
     - text
     - user
@@ -33,6 +35,9 @@ third_party_settings:
         description: ''
         required_fields: true
       label: 'User Profile'
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user

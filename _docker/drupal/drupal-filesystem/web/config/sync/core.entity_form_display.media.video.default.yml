@@ -7,8 +7,14 @@ dependencies:
     - field.field.media.video.field_media_video_embed_field
     - media.type.video
   module:
+    - field_layout
+    - layout_discovery
     - path
     - video_embed_field
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: BMG8OQWV1nbWdUtXRCu6Hje117RiS58dpHj2nI8wNdc
 id: media.video.default

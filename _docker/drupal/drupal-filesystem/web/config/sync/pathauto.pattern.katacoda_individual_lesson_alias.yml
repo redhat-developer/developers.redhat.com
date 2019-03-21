@@ -1,0 +1,22 @@
+uuid: a3a26771-f1b5-4b15-9c27-5d893c40210b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: katacoda_individual_lesson_alias
+label: 'Katacoda Individual Lesson Alias'
+type: 'canonical_entities:node'
+pattern: '/courses/[node:rhd_katacoda_parent_course_token]/[node:title]'
+selection_criteria:
+  63b7b16d-41c6-4759-b3b3-2e0bf477074d:
+    id: node_type
+    bundles:
+      katacoda_individual_lesson: katacoda_individual_lesson
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 63b7b16d-41c6-4759-b3b3-2e0bf477074d
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -10,7 +10,13 @@ dependencies:
     - field.field.paragraph.connectors.field_page_description
     - paragraphs.paragraphs_type.connectors
   module:
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: WguabPM5UXiMEIS7HpQB3eUhkcBzYZKQox_np1dsoSo
 id: paragraph.connectors.default

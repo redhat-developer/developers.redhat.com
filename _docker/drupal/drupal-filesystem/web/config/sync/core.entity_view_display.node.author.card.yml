@@ -24,9 +24,15 @@ dependencies:
     - field.field.node.author.field_youtube
     - node.type.author
   module:
+    - compose
     - fences
+    - field_layout
     - image
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.author.card
 targetEntityType: node
 bundle: author

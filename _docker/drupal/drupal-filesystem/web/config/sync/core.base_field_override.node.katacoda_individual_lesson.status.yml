@@ -1,0 +1,22 @@
+uuid: 81cc35e9-531d-4d96-91a0-9e7b746a5b8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.katacoda_individual_lesson
+id: node.katacoda_individual_lesson.status
+field_name: status
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -10,7 +10,13 @@ dependencies:
     - field.field.assembly.product_categories.field_title
   module:
     - fences
+    - field_layout
+    - layout_discovery
     - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.product_categories.default
 targetEntityType: assembly
 bundle: product_categories

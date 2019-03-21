@@ -1,0 +1,33 @@
+uuid: 9a27fbb9-ef21-4283-bb2f-8e3775af3953
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.topics.field_alt_landing
+    - taxonomy.vocabulary.topics
+  module:
+    - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.topics.default
+targetEntityType: taxonomy_term
+bundle: topics
+mode: default
+content:
+  field_alt_landing:
+    type: link
+    weight: 0
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true

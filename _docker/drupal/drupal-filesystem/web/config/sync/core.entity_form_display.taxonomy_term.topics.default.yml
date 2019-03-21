@@ -1,0 +1,50 @@
+uuid: fec5ac1f-7909-4b05-8d9a-3cd86b96ac16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.topics.field_alt_landing
+    - taxonomy.vocabulary.topics
+  module:
+    - link
+    - path
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.topics.default
+targetEntityType: taxonomy_term
+bundle: topics
+mode: default
+content:
+  field_alt_landing:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true

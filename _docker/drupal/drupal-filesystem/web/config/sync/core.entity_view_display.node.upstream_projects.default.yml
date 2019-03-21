@@ -8,9 +8,15 @@ dependencies:
     - field.field.node.upstream_projects.field_logo
     - node.type.upstream_projects
   module:
+    - compose
     - fences
+    - field_layout
     - link
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.upstream_projects.default
 targetEntityType: node
 bundle: upstream_projects

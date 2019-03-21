@@ -12,9 +12,15 @@ dependencies:
     - field.field.assembly.call_to_action.field_title
     - image.style.thumbnail
   module:
+    - field_layout
     - image
+    - layout_discovery
     - link
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.call_to_action.default
 targetEntityType: assembly
 bundle: call_to_action

@@ -5,6 +5,13 @@ dependencies:
   config:
     - assembly.assembly_type.product_download_list
     - field.field.assembly.product_download_list.field_title
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: assembly.product_download_list.default
 targetEntityType: assembly
 bundle: product_download_list

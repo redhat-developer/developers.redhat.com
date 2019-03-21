@@ -1,0 +1,12 @@
+jquery-iframe-auto-height:
+  js:
+    js/iframeResizer.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+resize-eloqua-embed:
+  js:
+    js/resize-eloqua-embed.js: {}
+  dependencies:
+    - rhd_eloqua_embed/jquery-iframe-auto-height

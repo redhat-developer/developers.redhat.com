@@ -8,8 +8,14 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - compose
+    - field_layout
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: 5LgpWwg6HIBQ1CW3MZaz81YFkqmyQEc2RakDWut74EY
 id: node.page.teaser

@@ -37,10 +37,16 @@ dependencies:
     - node.type.events
   module:
     - datetime
+    - field_layout
     - image
+    - layout_discovery
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
 id: node.events.card

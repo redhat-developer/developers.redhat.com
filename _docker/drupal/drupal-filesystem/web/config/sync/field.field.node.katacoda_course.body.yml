@@ -1,0 +1,22 @@
+uuid: 5c9bda61-ab65-4d7a-8e8d-253f45678b93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.katacoda_course
+  module:
+    - text
+id: node.katacoda_course.body
+field_name: body
+entity_type: node
+bundle: katacoda_course
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

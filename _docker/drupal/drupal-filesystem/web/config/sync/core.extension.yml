@@ -50,6 +50,7 @@ module:
   fences: 0
   field: 0
   field_group: 0
+  field_layout: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -119,9 +120,11 @@ module:
   restui: 0
   rhd_assemblies: 0
   rhd_common: 0
+  rhd_custom_meta: 0
   rhd_disqus: 0
   rhd_eloqua_embed: 0
   rhd_guzzle_throttle: 0
+  rhd_katacoda: 0
   rhd_microsite: 0
   rhd_solution_overview: 0
   schemata: 0
@@ -159,6 +162,7 @@ module:
   menu_link_content: 1
   pathauto: 1
   trailing_slash: 1
+  compose: 10
   views: 10
   paragraphs: 11
   publication_date: 99
@@ -170,6 +174,8 @@ theme:
   bartik: 0
   seven: 0
   rhdp: 0
+  bootstrap: 0
+  beryllium: 0
 profile: lightning
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

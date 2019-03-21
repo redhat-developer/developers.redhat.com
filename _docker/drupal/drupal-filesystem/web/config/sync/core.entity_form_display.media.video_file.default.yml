@@ -8,8 +8,14 @@ dependencies:
     - media.type.video_file
   module:
     - content_moderation
+    - field_layout
     - file
+    - layout_discovery
     - path
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: media.video_file.default
 targetEntityType: media
 bundle: video_file

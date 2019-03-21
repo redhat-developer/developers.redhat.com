@@ -35,8 +35,10 @@ dependencies:
     - image.style.article_floated
     - node.type.article
   module:
+    - compose
     - entity_reference_revisions
     - fences
+    - field_layout
     - image
     - interval
     - link
@@ -44,6 +46,10 @@ dependencies:
     - options
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
 id: node.article.default
@@ -230,6 +236,7 @@ content:
     label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -238,7 +245,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   links:
     weight: 6

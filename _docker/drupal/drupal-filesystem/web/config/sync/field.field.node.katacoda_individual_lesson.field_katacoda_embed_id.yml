@@ -1,0 +1,19 @@
+uuid: 01f0b86c-1d9e-499d-8cb3-626d4c927b51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_katacoda_embed_id
+    - node.type.katacoda_individual_lesson
+id: node.katacoda_individual_lesson.field_katacoda_embed_id
+field_name: field_katacoda_embed_id
+entity_type: node
+bundle: katacoda_individual_lesson
+label: 'Katacoda Embed ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

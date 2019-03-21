@@ -1,0 +1,18 @@
+uuid: bcfaba2a-0083-43a9-af95-914dcdd16330
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Katacoda Individual Lesson'
+type: katacoda_individual_lesson
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

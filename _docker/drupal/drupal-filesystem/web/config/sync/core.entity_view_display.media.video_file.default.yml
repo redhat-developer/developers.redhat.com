@@ -7,7 +7,13 @@ dependencies:
     - field.field.media.video_file.field_media_video_file
     - media.type.video_file
   module:
+    - field_layout
     - file
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: media.video_file.default
 targetEntityType: media
 bundle: video_file

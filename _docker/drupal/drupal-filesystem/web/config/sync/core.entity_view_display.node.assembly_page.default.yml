@@ -19,8 +19,14 @@ dependencies:
     - field.field.node.assembly_page.field_tax_stage
     - node.type.assembly_page
   module:
+    - compose
     - entity_reference_revisions
+    - field_layout
     - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: node.assembly_page.default
 targetEntityType: node
 bundle: assembly_page

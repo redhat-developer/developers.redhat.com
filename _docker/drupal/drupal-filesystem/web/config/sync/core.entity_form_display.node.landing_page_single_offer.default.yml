@@ -20,9 +20,11 @@ dependencies:
     - field.field.node.landing_page_single_offer.field_tax_stage
     - node.type.landing_page_single_offer
   module:
+    - compose
     - content_moderation
     - entity_browser_entity_form
     - field_group
+    - field_layout
     - inline_entity_form
     - metatag
     - path
@@ -43,7 +45,7 @@ third_party_settings:
         - field_tax_region
         - field_tax_stage
       parent_name: ''
-      weight: 12
+      weight: 6
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -52,6 +54,10 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Purpose Attributes'
+      region: fields
+  field_layout:
+    id: compose_tabs
+    settings: {  }
 id: node.landing_page_single_offer.default
 targetEntityType: node
 bundle: landing_page_single_offer
@@ -59,7 +65,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 6
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -68,12 +74,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 1
-    region: content
+    weight: 8
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_hero:
-    weight: 5
+    weight: 2
     settings:
       form_mode: default
       override_labels: true
@@ -91,20 +97,20 @@ content:
     type: inline_entity_form_complex
     region: content
   field_hide_title:
-    weight: 4
+    weight: 1
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_meta_tags:
-    weight: 9
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
-    region: content
+    region: fields
   field_sections:
-    weight: 7
+    weight: 4
     settings:
       form_mode: default
       label_singular: ''
@@ -126,109 +132,101 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_business_unit:
     weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_campaign:
     weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_lifecycle:
     weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_product_line:
     weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_project:
     weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_promotion:
     weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_region:
     weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_tax_stage:
     weight: 35
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   langcode:
     type: language_select
     weight: 2
-    region: content
+    region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 8
+    weight: 10
     settings: {  }
-    region: content
+    region: settings
     third_party_settings: {  }
   path:
     type: path
-    weight: 2
-    region: content
+    weight: 9
+    region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 10
-    region: content
+    weight: 11
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
     weight: 0
+    region: content
     settings:
-      match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 11
-    region: content
+    weight: 12
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
   promote: true
   status: true
   sticky: true
+  uid: true

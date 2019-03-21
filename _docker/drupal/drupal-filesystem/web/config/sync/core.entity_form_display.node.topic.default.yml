@@ -19,11 +19,17 @@ dependencies:
     - field.field.node.topic.field_topic_sub_title
     - node.type.topic
   module:
+    - field_layout
+    - layout_discovery
     - link
     - metatag
     - path
     - publication_date
     - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 _core:
   default_config_hash: XA0dCIs1tYyDwHASuw9Pq-smSPEXWA_1zWrAAcgTvh4
 id: node.topic.default
