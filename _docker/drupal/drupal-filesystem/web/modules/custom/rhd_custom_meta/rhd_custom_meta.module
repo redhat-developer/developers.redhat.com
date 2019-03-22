@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_custom_meta.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rhd_custom_meta_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rhd_custom_meta module.
+    case 'help.page.rhd_custom_meta':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom Meta Tags for Red Hat Developers') . '</p>';
+      return $output;
+
+    default:
+  }
+}
