@@ -1,9 +1,11 @@
-<div class="event-info">
-  <p class="rhd-list-entry--date">{{ content.field_start_date }}</p>
-  <h3>{{ event_title }}</h3>
-  {{ content.field_short_description }}
+<div class="events-featured-tile">
+  <div class="event-info">
+    <h3>{{ event_title }}</h3>
+    <p class="rhd-list-entry--date">{{ content.field_start_date }}</p>
+    <p class="short-description">{{ content.field_short_description }}</p>
+  </div>
+  <div class="event-presenters">
+    {{ content.field_presenter_s_ }}
+  </div>
+  <a href="{{ event_url }}" class="button heavy-cta">Sign Up</a>
 </div>
-<div class="event-presenters">
-  {{ content.field_presenter_s_ }}
-</div>
-<a href="{{ event_url }}" class="button heavy-cta">Sign Up</a>
