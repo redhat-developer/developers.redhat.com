@@ -1,71 +1,38 @@
 .assembly-type-events_hero {
-  color: #242424;
-  background-color: #00B9E4;
-  background-image: url('/images/Blue_Background@2x.png');
+  color: $white;
+  background-color: $black;
+  background-image: url('/images/Event-HeroBackground.png');
   background-repeat: no-repeat;
-  background-size: 1060px auto;
-  background-position: bottom left;
+  background-size: cover;
+  background-position: top left;
   position: relative;
   overflow: hidden;
-  @include tablet-portrait {
-    background-size: 1440px auto;
-  }
   .container {
     display: block;
     @include desktop-small {
       display: flex;
     }
+    h2.section-title {
+      font-weight: bold;
+      margin: 70px 0 0 0;
+    }
+    h2, h3, h4, h5, h6, p, a {
+      color: $white;
+    }
     .primary-event {
       padding: 30px 0;
-      @include tablet-portrait {
-        padding: 70px 0;
+      width: 70%;
+      @include desktop-extra-small-and-down {
+        width: 100%;
       }
-      h2.section-title {
-        font-weight: bold;
-        margin: 0 0 15px;
-        @include tablet-portrait {
-          margin: 0 0 45px;
-        }
+      @include tablet-portrait {
+        padding: 50px 0;
       }
       .event-info {
-        .rhd-list-entry--date {
-          font-weight: 800;
-          text-transform: uppercase;
-          margin: 0 0 10px;
-          @include tablet-portrait {
-            margin: 0 0 20px;
-          }
-        }
-        h3 {
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 18px;
-          margin: 0 0 10px;
-          @include tablet-portrait {
-            margin: 0 0 20px;
-            font-size: 27px;
-            line-height: 27px;
-          }
-        }
         .field--name-field-short-description {
           font-size: 16px;
           line-height: 24px;
-          color: #424242;
-        }
-      }
-      .event-presenters {
-        float: left;
-        width: 100%;
-        .short-teaser {
-          margin-top: 35px;
-          @include tablet-portrait {
-            float: left;
-            margin-right: 40px;
-            max-width: 200px;
-            &:last-of-type {
-              margin-right: 0;
-            }
-          }
+          color: $white;
         }
       }
       .button {
@@ -74,29 +41,27 @@
     }
     &.has-sidebar {
       .primary-event {
-        width: 100%;
-        @include desktop-small {
-          padding-right: 70px;
-          width: 50%;
+        width: 50%;
+        padding-right: 2rem;
+        @include desktop-extra-small-and-down {
+          width: 100%;
           flex-grow: 2;
         }
       }
       .secondary-events {
-        background-color: #d5d5d5;
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        padding: 30px;
-        z-index: 2;
+        width: 50%;
         @include desktop-small {
-          width: 50%;
-          max-width: 320px;
           flex-grow: 1;
-          padding: 70px 0 70px 70px;
+          left: 50%;
+          padding: 50px 0 0 0;
           left: auto;
           right: auto;
           margin: 0;
+        }
+        @include desktop-extra-small-and-down {
+          width: 100%;
+          left: 0;
+          margin-left: 0;
         }
         h5 {
           text-transform: uppercase;
@@ -107,32 +72,59 @@
           }
         }
         article {
-          float: left;
-          width: 48%;
-          &:first-of-type {
-            margin-right: 4%;
-          }
+          margin-bottom: 25px;
           @include desktop-small {
-            float: none;
-            width: 100%;
             &:first-of-type {
-              margin-bottom: 50px;
               margin-right: 0;
             }
           }
         }
-        .tile-image {
-          background-color: transparent;
+
+        .events-featured-tile {
+          .short-description,
+          .event-presenters {
+            display: none;
+          }
+
+          a.button {
+            border: 1px solid $red;
+            line-height: 1.44;
+            color: $red;
+            background-color: transparent;
+            padding: 8px 40px;
+            border-color:$white;
+            color:$white;
+            &:hover, &:focus {
+              background-color: $white;
+              color: $red;
+            }
+          }
+
+          &:only-of-type {
+            .short-description,
+            .event-presenters {
+              display: block;
+            }
+            a.button {
+              background: $red;
+              -webkit-transition: background .2s ease-in 0s;
+              transition:background .2s ease-in 0s;
+              color: $white;
+              font-weight: bold;
+              border: none;
+              &:hover, &:focus {
+                color: $white;
+                background-color: darken( $red, 12% );
+              }
+            }
+          }
         }
-        .tile-title {
-          font-weight: bold;
-        }
+
         .more-link {
-          clear: both;
-          width: 100%;
+          margin-bottom: 3rem;
           a {
-            color: #0066CC;
             margin-right: 20px;
+            margin-bottom: 3rem;
             padding-right: 5px;
             position: relative;
             &:after {
@@ -143,7 +135,7 @@
               height: 0;
               width: 0;
               position: absolute;
-              border-left-color: #0066CC;
+              border-left-color: $white;
               border-width: 5px;
               margin-top: -5px;
             }
@@ -151,15 +143,52 @@
         }
       }
     }
-  }
-  .background-sidebar {
-    @include desktop-small {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 30%;
-      height: 100%;
-      background-color: #d5d5d5;
+    .field--name-field-start-date,
+    .rhd-list-entry--date {
+      text-transform: uppercase;
+      margin: 0 0 10px;
+      @include tablet-portrait {
+        margin: 0 0 20px;
+      }
+    }
+    .event-presenters {
+      float: left;
+      width: 100%;
+      h3 {
+        color: $blue;
+      }
+      .short-teaser {
+        margin-top: 25px;
+        max-width: 400px !important;
+
+        > a {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .field--name-field-headshot {
+          justify-self: center;
+          grid-column: span 1;
+          max-width: 60px;
+        }
+        .author-name {
+          align-self: center;
+          grid-column: span 2;
+          color: $blue;
+          background-color: transparent;
+          > .field--name-title {
+            background-color: $white;
+            padding: 5px 10px;
+          }
+        }
+        @include tablet-portrait {
+          float: left;
+          margin-right: 40px;
+          max-width: 200px;
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 }

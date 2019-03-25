@@ -16,19 +16,22 @@
  */
 #}
 {% set sidebar_class = '' %}
-{% if content.field_secondary_events %}
+{% set has_sidebar = FALSE %}
+
+{% if content.field_secondary_events[0] is not empty %}
+  {% set has_sidebar = TRUE %}
   {% set sidebar_class = ' has-sidebar' %}
 {% endif %}
 
-{% set has_sidebar = FALSE %}
-{% if content.field_secondary_events[0] is not empty %}
-  {% set has_sidebar = TRUE %}
-{% endif %}
-
 <section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+    
+  {% if content.field_title|render %}
+    <div class="container">
+      <h2 class="section-title">{{ content.field_title }}</h2>
+    </div>
+  {% endif %}
   <div class="container{{ sidebar_class }}">
     <div class="primary-event">
-      <h2 class="section-title">{{ content.field_title }}</h2>
       {{ content.field_primary_event }}
     </div>
     {% if has_sidebar %}
@@ -43,8 +46,5 @@
   </div>
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
-  {% endif %}
-  {% if has_sidebar %}
-    <div class="background-sidebar"></div>
   {% endif %}
 </section>

@@ -7,6 +7,10 @@ dependencies:
     - taxonomy.vocabulary.topics
   module:
     - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
 id: taxonomy_term.topics.default
 targetEntityType: taxonomy_term
 bundle: topics
