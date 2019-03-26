@@ -1,13 +1,8 @@
 .assembly-type-sign_up_hero {
-  padding: 40px 0;
   background-color: $grey-1;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom left;
-  @include desktop-small {
-    padding: 100px 0;
-    padding-bottom: 120px;
-  }
 
   .grid {
     display: grid;

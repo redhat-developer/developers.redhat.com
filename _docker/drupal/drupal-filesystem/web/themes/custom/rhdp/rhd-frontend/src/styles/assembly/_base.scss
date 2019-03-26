@@ -1,5 +1,9 @@
 .assembly {
   background-color: #FFF;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
   &.has-background {
     position: relative;
     .container {
@@ -23,8 +27,8 @@
     }
   }
   &.assembly-space {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
   &.assembly-center {
     * {
@@ -44,7 +48,7 @@
         margin-bottom: 0;
       }
     }
-  }
+  } 
   &.assembly-no-bkg {
     background-image: none;
   }
@@ -78,17 +82,31 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+
   .field--name-field-title, .header {
-    font-size: 22px;
-    line-height: 1.5;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    margin-top: 0;
+    @include desktop-small {
+      font-weight: bold;
+      font-size: 36px;
+    }
   }
 
   &.no-padding-top {
-    padding-top: 0 !important;
+    padding-top: 5px;
   }
   &.no-padding-bottom {
-    padding-bottom: 0 !important;
+    padding-bottom: 5px;
+  }
+  &.assembly-no-space-top {
+    margin-top: 0;
+  }
+  &.assembly-no-space-bottom {
+    margin-bottom: 0;
+  }
+  &[data-audience] {
+    display: none;
   }
 }
