@@ -1,4 +1,4 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,15 +13,19 @@ System.register([], function (exports_1, context_1) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var RHDPSearchURL;
+    var pfelement_js_1, DPSearchURL;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [],
+        setters: [
+            function (pfelement_js_1_1) {
+                pfelement_js_1 = pfelement_js_1_1;
+            }
+        ],
         execute: function () {
-            RHDPSearchURL = (function (_super) {
-                __extends(RHDPSearchURL, _super);
-                function RHDPSearchURL() {
-                    var _this = _super.call(this) || this;
+            DPSearchURL = (function (_super) {
+                __extends(DPSearchURL, _super);
+                function DPSearchURL() {
+                    var _this = _super.call(this, DPSearchURL) || this;
                     _this._uri = new URL(window.location.href);
                     _this._term = _this.uri.searchParams.get('t');
                     _this._filters = _this._setFilters(_this.uri.searchParams.getAll('f'));
@@ -32,7 +36,17 @@ System.register([], function (exports_1, context_1) {
                     _this._popState = _this._popState.bind(_this);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchURL.prototype, "uri", {
+                Object.defineProperty(DPSearchURL.prototype, "html", {
+                    get: function () { return ''; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchURL, "tag", {
+                    get: function () { return 'dp-search-url'; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchURL.prototype, "uri", {
                     get: function () {
                         return this._uri;
                     },
@@ -44,16 +58,9 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchURL.prototype, "term", {
+                Object.defineProperty(DPSearchURL.prototype, "term", {
                     get: function () {
-                        var ua = window.navigator.userAgent;
-                        var trident = ua.indexOf('Trident/');
-                        var isIE = trident > 0;
-                        var tmpTerm = this._term;
-                        if (isIE) {
-                            tmpTerm = tmpTerm.replace("+", " ");
-                        }
-                        return tmpTerm;
+                        return this._term;
                     },
                     set: function (val) {
                         if (this._term === val)
@@ -65,7 +72,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchURL.prototype, "filters", {
+                Object.defineProperty(DPSearchURL.prototype, "filters", {
                     get: function () {
                         return this._filters;
                     },
@@ -73,14 +80,14 @@ System.register([], function (exports_1, context_1) {
                         var _this = this;
                         this._filters = val;
                         this.uri.searchParams.delete('f');
-                        Object.keys(this._filters).forEach(function (group) {
-                            _this.uri.searchParams.append('f', group + "~" + _this._filters[group].join(' '));
+                        this._filters.forEach(function (val, key) {
+                            _this.uri.searchParams.append('f', key + "~" + Array.from(val).reduce(function (acc, curr) { return acc + ' ' + curr; }));
                         });
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchURL.prototype, "sort", {
+                Object.defineProperty(DPSearchURL.prototype, "sort", {
                     get: function () {
                         return this._sort;
                     },
@@ -94,7 +101,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchURL.prototype, "qty", {
+                Object.defineProperty(DPSearchURL.prototype, "qty", {
                     get: function () {
                         return this._qty;
                     },
@@ -107,7 +114,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchURL.prototype, "init", {
+                Object.defineProperty(DPSearchURL.prototype, "init", {
                     get: function () {
                         return this._init;
                     },
@@ -119,23 +126,27 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchURL.prototype.connectedCallback = function () {
+                DPSearchURL.prototype.connectedCallback = function () {
+                    _super.prototype.connectedCallback.call(this);
                     top.addEventListener('search-complete', this._changeAttr);
                     top.addEventListener('clear-filters', this._changeAttr);
                     top.window.addEventListener('popstate', this._popState);
                     this._paramsReady();
                 };
-                Object.defineProperty(RHDPSearchURL, "observedAttributes", {
+                Object.defineProperty(DPSearchURL, "observedAttributes", {
                     get: function () {
                         return ['sort', 'term', 'qty'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchURL.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchURL.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
-                RHDPSearchURL.prototype._popState = function (e) {
+                DPSearchURL.prototype._getValueArray = function (vals) {
+                    var str = '';
+                };
+                DPSearchURL.prototype._popState = function (e) {
                     this.uri = new URL(document.location.href);
                     this.term = this.uri.searchParams.get('t') || null;
                     this.filters = this._setFilters(this.uri.searchParams.getAll('f'));
@@ -143,30 +154,27 @@ System.register([], function (exports_1, context_1) {
                     this.qty = this.uri.searchParams.get('r');
                     this._paramsReady();
                 };
-                RHDPSearchURL.prototype._paramsReady = function () {
-                    this.dispatchEvent(new CustomEvent('params-ready', {
+                DPSearchURL.prototype._paramsReady = function () {
+                    var evt = {
                         detail: {
                             term: this.term,
                             filters: this.filters,
                             sort: this.sort,
                             qty: this.qty
                         },
-                        bubbles: true
-                    }));
+                        bubbles: true,
+                        composed: true
+                    };
+                    this.dispatchEvent(new CustomEvent('params-ready', evt));
                 };
-                RHDPSearchURL.prototype._setFilters = function (filtersQS) {
-                    var filters = {};
-                    filtersQS.forEach(function (filter) {
-                        var kv = filter.split('~'), k = kv[0], v = kv[1].split(' ');
-                        filters[k] = v;
-                    });
-                    return filters;
+                DPSearchURL.prototype._setFilters = function (filtersQS) {
+                    return new Map(filtersQS.map(function (o) { return [o.split('~')[0], new Set(o.split('~')[1].split(' '))]; }));
                 };
-                RHDPSearchURL.prototype._changeAttr = function (e) {
+                DPSearchURL.prototype._changeAttr = function (e) {
                     switch (e.type) {
                         case 'clear-filters':
                             this.uri.searchParams.delete('f');
-                            this.filters = {};
+                            this.filters.clear();
                             break;
                         case 'load-more':
                             break;
@@ -186,22 +194,22 @@ System.register([], function (exports_1, context_1) {
                             }
                     }
                     if (e.detail && typeof e.detail.invalid === 'undefined') {
-                        history.pushState({}, "RHDP Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
+                        history.pushState({}, "RHD Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
                     }
                     else {
                         this.term = '';
-                        this.filters = {};
+                        this.filters.clear();
                         this.sort = 'relevance';
                         this.uri.searchParams.delete('t');
                         this.uri.searchParams.delete('f');
                         this.uri.searchParams.delete('s');
-                        history.replaceState({}, 'RHDP Search Error', "" + this.uri.pathname + this.uri.search);
+                        history.replaceState({}, 'RHD Search Error', "" + this.uri.pathname + this.uri.search);
                     }
                 };
-                return RHDPSearchURL;
-            }(HTMLElement));
-            exports_1("default", RHDPSearchURL);
-            customElements.define('rhdp-search-url', RHDPSearchURL);
+                return DPSearchURL;
+            }(pfelement_js_1.default));
+            exports_1("default", DPSearchURL);
+            pfelement_js_1.default.create(DPSearchURL);
         }
     };
 });

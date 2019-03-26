@@ -13,7 +13,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var index_es_js_1, index_es_js_2, pfelement_js_1, timesIcon, RHDPSearchFilterActiveItem;
+    var index_es_js_1, index_es_js_2, pfelement_js_1, timesIcon, DPSearchFilterActiveItem;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
@@ -30,10 +30,10 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
         execute: function () {
             index_es_js_1.library.add(index_es_js_2.faTimes);
             timesIcon = index_es_js_1.icon(index_es_js_2.faTimes).html;
-            RHDPSearchFilterActiveItem = (function (_super) {
-                __extends(RHDPSearchFilterActiveItem, _super);
-                function RHDPSearchFilterActiveItem() {
-                    var _this = _super.call(this, RHDPSearchFilterActiveItem, { delayRender: true }) || this;
+            DPSearchFilterActiveItem = (function (_super) {
+                __extends(DPSearchFilterActiveItem, _super);
+                function DPSearchFilterActiveItem() {
+                    var _this = _super.call(this, DPSearchFilterActiveItem, { delayRender: true }) || this;
                     _this._active = false;
                     _this._inline = false;
                     _this._bubble = true;
@@ -44,19 +44,19 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     _this._updateFacet = _this._updateFacet.bind(_this);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "html", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "html", {
                     get: function () {
                         return "" + (this.active ? "\n        <style>\n            :host {\n                font-size: 16px;\n                font-weight: 600;\n                flex: 0 0 auto;\n                list-style: none;\n                order: 2;\n                background-color: #8c8f91;\n                border: 1px solid #8c8f91;\n                color: #fff;\n                cursor: default;\n                display: inline-block;\n                line-height: 1em;\n                margin-bottom: .5em;\n                margin-right: .5em;\n                padding: .5em .7em;\n            }\n            \n            " + index_es_js_1.dom.css() + "\n\n            svg.svg-inline--fa { \n                margin-left: .25em;\n            }\n        </style>\n        <slot></slot>" + timesIcon : '');
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem, "tag", {
-                    get: function () { return 'rhdp-search-filter-active-item'; },
+                Object.defineProperty(DPSearchFilterActiveItem, "tag", {
+                    get: function () { return 'dp-search-filter-active-item'; },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "name", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "name", {
                     get: function () {
                         return this._name;
                     },
@@ -70,7 +70,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "key", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "key", {
                     get: function () {
                         return this._key;
                     },
@@ -84,7 +84,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "group", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "group", {
                     get: function () {
                         return this._group;
                     },
@@ -97,7 +97,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "inline", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "inline", {
                     get: function () {
                         return this._inline;
                     },
@@ -110,7 +110,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "bubble", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "bubble", {
                     get: function () {
                         return this._bubble;
                     },
@@ -122,7 +122,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "bounce", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "bounce", {
                     get: function () {
                         return this._bounce;
                     },
@@ -134,7 +134,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "active", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "active", {
                     get: function () {
                         return this._active;
                     },
@@ -167,7 +167,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchFilterActiveItem.prototype, "value", {
+                Object.defineProperty(DPSearchFilterActiveItem.prototype, "value", {
                     get: function () {
                         return this._value;
                     },
@@ -180,7 +180,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchFilterActiveItem.prototype.connectedCallback = function () {
+                DPSearchFilterActiveItem.prototype.connectedCallback = function () {
                     _super.prototype.connectedCallback.call(this);
                     this.shadowRoot.addEventListener('click', this._updateFacet);
                     top.addEventListener('filter-item-change', this._checkChange);
@@ -188,23 +188,23 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     top.addEventListener('clear-filters', this._clearFilters);
                     _super.prototype.render.call(this);
                 };
-                Object.defineProperty(RHDPSearchFilterActiveItem, "observedAttributes", {
+                Object.defineProperty(DPSearchFilterActiveItem, "observedAttributes", {
                     get: function () {
                         return ['name', 'active', 'value', 'inline', 'key', 'group'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchFilterActiveItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchFilterActiveItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
-                RHDPSearchFilterActiveItem.prototype._updateFacet = function (e) {
+                DPSearchFilterActiveItem.prototype._updateFacet = function (e) {
                     if (e.target['nodeName'] !== 'SLOT') {
                         this.bounce = false;
                         this.active = !this.active;
                     }
                 };
-                RHDPSearchFilterActiveItem.prototype._checkParams = function (e) {
+                DPSearchFilterActiveItem.prototype._checkParams = function (e) {
                     if (e.detail && e.detail.filters) {
                         this.bounce = true;
                         if (e.detail.filters.has(this.group) && e.detail.filters.get(this.group).has(this.key)) {
@@ -212,21 +212,21 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                         }
                     }
                 };
-                RHDPSearchFilterActiveItem.prototype._checkChange = function (e) {
+                DPSearchFilterActiveItem.prototype._checkChange = function (e) {
                     if (e.detail && e.detail.facet) {
                         if (this.group === e.detail.facet.group && this.key === e.detail.facet.key) {
                             this.active = e.detail.facet.active;
                         }
                     }
                 };
-                RHDPSearchFilterActiveItem.prototype._clearFilters = function (e) {
+                DPSearchFilterActiveItem.prototype._clearFilters = function (e) {
                     this.bounce = true;
                     this.active = false;
                 };
-                return RHDPSearchFilterActiveItem;
+                return DPSearchFilterActiveItem;
             }(pfelement_js_1.default));
-            exports_1("default", RHDPSearchFilterActiveItem);
-            pfelement_js_1.default.create(RHDPSearchFilterActiveItem);
+            exports_1("default", DPSearchFilterActiveItem);
+            pfelement_js_1.default.create(DPSearchFilterActiveItem);
         }
     };
 });

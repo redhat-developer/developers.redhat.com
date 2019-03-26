@@ -1,4 +1,4 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,15 +13,21 @@ System.register([], function (exports_1, context_1) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var RHDPSearchQuery;
+    var pfelement_js_1, DPSearchQuery;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [],
+        setters: [
+            function (pfelement_js_1_1) {
+                pfelement_js_1 = pfelement_js_1_1;
+            }
+        ],
         execute: function () {
-            RHDPSearchQuery = (function (_super) {
-                __extends(RHDPSearchQuery, _super);
-                function RHDPSearchQuery() {
-                    var _this = _super.call(this) || this;
+            DPSearchQuery = (function (_super) {
+                __extends(DPSearchQuery, _super);
+                function DPSearchQuery() {
+                    var _this = _super.call(this, DPSearchQuery) || this;
+                    _this._filters = { term: '', facets: {} };
+                    _this._activeFilters = new Map();
                     _this._limit = 10;
                     _this._from = 0;
                     _this._sort = 'relevance';
@@ -31,12 +37,22 @@ System.register([], function (exports_1, context_1) {
                         if (sort === 'most-recent') {
                             order = '&newFirst=true';
                         }
-                        return url + "?tags_or_logic=true&filter_out_excluded=true&from=" + from + order + "&query=" + term + "&query_highlight=true&size" + limit + "=true" + types + tags + sys_types;
+                        return url + "?start=" + from + "&q=" + term + "&hl=true&hl.fl=description&rows=" + limit + "&" + types + "&" + tags + "&" + sys_types;
                     };
                     _this._changeAttr = _this._changeAttr.bind(_this);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchQuery.prototype, "filters", {
+                Object.defineProperty(DPSearchQuery.prototype, "html", {
+                    get: function () { return ''; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchQuery, "tag", {
+                    get: function () { return 'dp-search-query'; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchQuery.prototype, "filters", {
                     get: function () {
                         return this._filters;
                     },
@@ -48,7 +64,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "activeFilters", {
+                Object.defineProperty(DPSearchQuery.prototype, "activeFilters", {
                     get: function () {
                         return this._activeFilters;
                     },
@@ -56,11 +72,12 @@ System.register([], function (exports_1, context_1) {
                         if (this._activeFilters === val)
                             return;
                         this._activeFilters = val;
+                        this.filters.facets = this._activeFilters;
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "from", {
+                Object.defineProperty(DPSearchQuery.prototype, "from", {
                     get: function () {
                         return this._from;
                     },
@@ -73,7 +90,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "limit", {
+                Object.defineProperty(DPSearchQuery.prototype, "limit", {
                     get: function () {
                         return this._limit;
                     },
@@ -86,7 +103,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "sort", {
+                Object.defineProperty(DPSearchQuery.prototype, "sort", {
                     get: function () {
                         return this._sort;
                     },
@@ -99,7 +116,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "results", {
+                Object.defineProperty(DPSearchQuery.prototype, "results", {
                     get: function () {
                         return this._results;
                     },
@@ -107,23 +124,25 @@ System.register([], function (exports_1, context_1) {
                         if (this._results === val)
                             return;
                         this._results = val;
-                        this.from = this.results && this.results.hits && typeof this.results.hits.hits !== 'undefined' ? this.from + this.results.hits.hits.length : 0;
-                        this.dispatchEvent(new CustomEvent('search-complete', {
+                        this.from = this.results && this.results.response && typeof this.results.response.docs !== 'undefined' ? this.from + this.results.response.docs.length : 0;
+                        var evt = {
                             detail: {
                                 term: this.term,
                                 filters: this.activeFilters,
                                 sort: this.sort,
                                 limit: this.limit,
                                 from: this.from,
-                                results: this.results,
+                                results: this.results.response,
                             },
-                            bubbles: true
-                        }));
+                            bubbles: true,
+                            composed: true
+                        };
+                        this.dispatchEvent(new CustomEvent('search-complete', evt));
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "term", {
+                Object.defineProperty(DPSearchQuery.prototype, "term", {
                     get: function () {
                         return this._term;
                     },
@@ -131,12 +150,13 @@ System.register([], function (exports_1, context_1) {
                         if (this._term === val)
                             return;
                         this._term = val;
+                        this.filters.term = this._term;
                         this.setAttribute('term', val.toString());
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "url", {
+                Object.defineProperty(DPSearchQuery.prototype, "url", {
                     get: function () {
                         return this._url;
                     },
@@ -149,7 +169,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchQuery.prototype, "valid", {
+                Object.defineProperty(DPSearchQuery.prototype, "valid", {
                     get: function () {
                         return this._valid;
                     },
@@ -161,7 +181,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchQuery.prototype.filterString = function (facets) {
+                DPSearchQuery.prototype.filterString = function (facets) {
                     var len = facets.length, filterArr = [];
                     for (var i = 0; i < len; i++) {
                         for (var j = 0; j < facets[i].items.length; j++) {
@@ -176,7 +196,8 @@ System.register([], function (exports_1, context_1) {
                     }
                     return filterArr.join(', ');
                 };
-                RHDPSearchQuery.prototype.connectedCallback = function () {
+                DPSearchQuery.prototype.connectedCallback = function () {
+                    _super.prototype.connectedCallback.call(this);
                     top.addEventListener('params-ready', this._changeAttr);
                     top.addEventListener('term-change', this._changeAttr);
                     top.addEventListener('filter-item-change', this._changeAttr);
@@ -184,38 +205,36 @@ System.register([], function (exports_1, context_1) {
                     top.addEventListener('clear-filters', this._changeAttr);
                     top.addEventListener('load-more', this._changeAttr);
                 };
-                Object.defineProperty(RHDPSearchQuery, "observedAttributes", {
+                Object.defineProperty(DPSearchQuery, "observedAttributes", {
                     get: function () {
                         return ['term', 'sort', 'limit', 'results', 'url'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchQuery.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchQuery.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
-                RHDPSearchQuery.prototype._setFilters = function (item) {
-                    var _this = this;
+                DPSearchQuery.prototype._setFilters = function (item) {
                     var add = item.active;
                     if (add) {
-                        this.activeFilters[item.group] = this.activeFilters[item.group] || [];
-                        this.activeFilters[item.group].push(item.key);
+                        if (this.activeFilters.has(item.group)) {
+                            this.activeFilters.get(item.group).add(item.key);
+                        }
+                        else {
+                            this.activeFilters.set(item.group, new Set([item.key]));
+                        }
                     }
                     else {
-                        Object.keys(this.activeFilters).forEach(function (group) {
-                            if (group === item.group) {
-                                var idx = _this.activeFilters[group].indexOf(item.key);
-                                if (idx >= 0) {
-                                    _this.activeFilters[group].splice(idx, 1);
-                                    if (_this.activeFilters[group].length === 0) {
-                                        delete _this.activeFilters[group];
-                                    }
-                                }
+                        if (this.activeFilters.has(item.group)) {
+                            this.activeFilters.get(item.group).delete(item.key);
+                            if (this.activeFilters.get(item.group).size === 0) {
+                                this.activeFilters.delete(item.group);
                             }
-                        });
+                        }
                     }
                 };
-                RHDPSearchQuery.prototype._changeAttr = function (e) {
+                DPSearchQuery.prototype._changeAttr = function (e) {
                     switch (e.type) {
                         case 'term-change':
                             if (e.detail && e.detail.term && e.detail.term.length > 0) {
@@ -245,7 +264,7 @@ System.register([], function (exports_1, context_1) {
                             this.search();
                             break;
                         case 'clear-filters':
-                            this.activeFilters = {};
+                            this.activeFilters.clear();
                             this.search();
                             break;
                         case 'params-ready':
@@ -259,41 +278,26 @@ System.register([], function (exports_1, context_1) {
                                 this.activeFilters = e.detail.filters;
                             }
                             this.from = 0;
-                            if (Object.keys(e.detail.filters).length > 0 || e.detail.term !== null || e.detail.sort !== null || e.detail.qty !== null) {
+                            if (this.activeFilters.size > 0 || e.detail.term !== null || e.detail.sort !== null || e.detail.qty !== null) {
                                 this.search();
                             }
                             break;
                     }
                 };
-                RHDPSearchQuery.prototype.search = function () {
+                DPSearchQuery.prototype.search = function () {
                     var _this = this;
-                    this.dispatchEvent(new CustomEvent('search-start', { bubbles: true }));
-                    if (Object.keys(this.activeFilters).length > 0 || (this.term !== null && this.term !== '' && typeof this.term !== 'undefined')) {
+                    var evt = { bubbles: true, composed: true };
+                    this.dispatchEvent(new CustomEvent('search-start', evt));
+                    if (this.url && ((this.activeFilters && this.activeFilters.size > 0) || (this.term !== null && this.term !== '' && typeof this.term !== 'undefined'))) {
                         var qURL_1 = new URL(this.url);
-                        qURL_1.searchParams.set('tags_or_logic', 'true');
-                        qURL_1.searchParams.set('filter_out_excluded', 'true');
-                        qURL_1.searchParams.set('from', this.from.toString());
-                        if (this.sort === 'most-recent') {
-                            qURL_1.searchParams.set('newFirst', 'true');
-                        }
-                        qURL_1.searchParams.set('query', this.term || '');
-                        qURL_1.searchParams.set('query_highlight', 'true');
-                        qURL_1.searchParams.set('size' + this.limit.toString(), 'true');
-                        if (this.activeFilters) {
-                            Object.keys(this.activeFilters).forEach(function (filtergroup) {
-                                _this.filters.facets.forEach(function (group) {
-                                    if (group.key === filtergroup) {
-                                        group.items.forEach(function (facet) {
-                                            if (_this.activeFilters[group.key].indexOf(facet.key) >= 0) {
-                                                facet.value.forEach(function (fval) {
-                                                    qURL_1.searchParams.append(group.key, fval);
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                            });
-                        }
+                        qURL_1.searchParams.set('start', this.from.toString());
+                        qURL_1.searchParams.set('q', this.term || '');
+                        qURL_1.searchParams.set('hl', 'true');
+                        qURL_1.searchParams.set('hl.fl', 'description');
+                        qURL_1.searchParams.set('rows', this.limit.toString());
+                        this.activeFilters.forEach(function (filters, group) {
+                            qURL_1.searchParams.set(group, Array.from(filters).join(','));
+                        });
                         fetch(qURL_1.toString())
                             .then(function (resp) { return resp.json(); })
                             .then(function (data) {
@@ -301,13 +305,14 @@ System.register([], function (exports_1, context_1) {
                         });
                     }
                     else {
-                        this.dispatchEvent(new CustomEvent('search-complete', { detail: { invalid: true }, bubbles: true }));
+                        var evt_1 = { detail: { invalid: true }, bubbles: true, composed: true };
+                        this.dispatchEvent(new CustomEvent('search-complete', evt_1));
                     }
                 };
-                return RHDPSearchQuery;
-            }(HTMLElement));
-            exports_1("default", RHDPSearchQuery);
-            customElements.define('rhdp-search-query', RHDPSearchQuery);
+                return DPSearchQuery;
+            }(pfelement_js_1.default));
+            exports_1("default", DPSearchQuery);
+            pfelement_js_1.default.create(DPSearchQuery);
         }
     };
 });
