@@ -1,4 +1,4 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,28 +13,37 @@ System.register([], function (exports_1, context_1) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-        return cooked;
-    };
-    var RHDPSearchResult, templateObject_1;
+    var pfelement_js_1, DPSearchResult;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [],
+        setters: [
+            function (pfelement_js_1_1) {
+                pfelement_js_1 = pfelement_js_1_1;
+            }
+        ],
         execute: function () {
-            RHDPSearchResult = (function (_super) {
-                __extends(RHDPSearchResult, _super);
-                function RHDPSearchResult() {
-                    var _this = _super.call(this) || this;
-                    _this.template = function (strings, url, title, kind, created, description, premium, thumbnail) {
-                        return "<div>\n            <h4>" + (url ? "<a href=\"" + url + "\">" + title + "</a>" : title) + "</h4>\n            <p " + (premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"') + ">\n                <span class=\"caps\">" + kind + "</span>\n                " + (created ? "- <rh-datetime datetime=\"" + created + "\" type=\"local\" day=\"numeric\" month=\"long\" year=\"numeric\">" + created + "</rh-datetime>" : '') + "\n            </p>\n            <p class=\"result-description\">" + description + "</p>\n        </div>\n        " + (thumbnail ? "<div class=\"thumb\"><img src=\"" + thumbnail.replace('http:', 'https:') + "\"></div>" : '');
-                    };
+            DPSearchResult = (function (_super) {
+                __extends(DPSearchResult, _super);
+                function DPSearchResult() {
+                    var _this = _super.call(this, DPSearchResult, { delayRender: true }) || this;
+                    _this._url = ['', ''];
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchResult.prototype, "url", {
+                Object.defineProperty(DPSearchResult.prototype, "html", {
                     get: function () {
-                        var stage = window.location.href.indexOf('stage') >= 0 || window.location.href.indexOf('developers') < 0 ? '.stage' : '';
-                        return !this.premium ? this._url : "https://broker" + stage + ".redhat.com/partner/drc/userMapping?redirect=" + encodeURIComponent(this._url);
+                        return "\n        <style>\n:host {\n    font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n    margin-bottom: 25px;\n    padding-bottom: 25px;\n    border-bottom: 1px solid #d5d5d5;\n    display: flex;\n    flex-direction: row;\n}\n    .subscription-required {\n        &:before {\n            content: '';\n            background: url('https://static.jboss.org/rhd/images/icons/subscription-required.svg') no-repeat;\n            background-size:cover;\n            position:absolute;\n            margin-top: 5px;\n            width: .9em;\n            height: .9em;\n        }\n        .caps {\n            margin-left: 20px;\n        }\n\n    }\n\n    div:first-child { flex: 1 1 auto; }\n\n    h4 {\n        font-weight: 600;\n        font-style: normal;\n        font-size: 20px;\n        line-height: 1.4;\n        margin: 0;\n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n    }\n\n    h4 a {\n        color: #06c;\n        cursor: pointer;\n        text-decoration: none;\n    }\n\n    p { margin: 0; \n        color: #424242;\n        font-family: \"Overpass\", \"Open Sans\", Arial, Helvetica, sans-serif;\n        }\n    .result-info span{\n        font-size: .9rem;\n        color: $grey-6;\n    }\n\n    .caps {\n        text-transform: uppercase;\n        font-size: 16px;\n        font-weight: normal;\n        line-height: 24px;\n        -webkit-font-smoothing: antialiased;\n    }\n    .result-description {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        max-height: 45px;\n        margin-bottom: 25px;\n    }\n    div {\n        flex: 1 1 auto;\n    }\n    div.thumb { \n        flex: 0 0 130px; \n        margin-left: 1em;\n    }\n\n    .thumb img {\n        height: auto;\n        max-width: 100%;\n    }\n\n    .hlt { font-weight: 600; }\n        </style>\n<div>\n    <h4>" + (this.url ? "<a href=\"" + this.url + "\">" + this.title + "</a>" : this.title) + "</h4>\n    <p " + (this.premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"') + ">\n        <span class=\"caps\">" + this.kind + "</span>\n        " + (this.created ? "- <pfe-datetime datetime=\"" + this.created + "\" type=\"local\" day=\"numeric\" month=\"long\" year=\"numeric\">" + this.created + "</pfe-datetime>" : '') + "\n    </p>\n    <p class=\"result-description\">" + this.description + "</p>\n</div>\n" + (this.thumbnail ? "<div class=\"thumb\"><img src=\"" + this.thumbnail.replace('http:', 'https:') + "\"></div>" : '');
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchResult, "tag", {
+                    get: function () { return 'dp-search-result'; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchResult.prototype, "url", {
+                    get: function () {
+                        return this._url;
                     },
                     set: function (val) {
                         if (this._url === val)
@@ -44,7 +53,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "title", {
+                Object.defineProperty(DPSearchResult.prototype, "title", {
                     get: function () {
                         return this._title;
                     },
@@ -56,7 +65,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "kind", {
+                Object.defineProperty(DPSearchResult.prototype, "kind", {
                     get: function () {
                         return this._kind;
                     },
@@ -68,7 +77,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "created", {
+                Object.defineProperty(DPSearchResult.prototype, "created", {
                     get: function () {
                         return this._created;
                     },
@@ -80,19 +89,19 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "description", {
+                Object.defineProperty(DPSearchResult.prototype, "description", {
                     get: function () {
                         return this._description;
                     },
                     set: function (val) {
                         if (this._description === val)
                             return;
-                        this._description = val.replace('>', '&gt;').replace('<', '&lt;');
+                        this._description = val;
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "premium", {
+                Object.defineProperty(DPSearchResult.prototype, "premium", {
                     get: function () {
                         return this._premium;
                     },
@@ -104,7 +113,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "thumbnail", {
+                Object.defineProperty(DPSearchResult.prototype, "thumbnail", {
                     get: function () {
                         return this._thumbnail;
                     },
@@ -116,7 +125,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResult.prototype, "result", {
+                Object.defineProperty(DPSearchResult.prototype, "result", {
                     get: function () {
                         return this._result;
                     },
@@ -124,39 +133,38 @@ System.register([], function (exports_1, context_1) {
                         if (this._result === val)
                             return;
                         this._result = val;
-                        this.computeTitle(val);
-                        this.computeKind(val);
-                        this.computeCreated(val);
-                        this.computeDescription(val);
-                        this.computeURL(val);
-                        this.computePremium(val);
-                        this.computeThumbnail(val);
+                        this.title = this._result.title[0] ? this._result.title[0] : 'Default Title';
+                        this.description = (this._result.description && this._result.description[0]) ? this._result.description[0] : 'Default Description';
+                        this.url = this._result.id;
+                        this.kind = this._result.type[0] ? this._result.type[0] : 'webpage';
                         this.renderResult();
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchResult.prototype.connectedCallback = function () {
+                DPSearchResult.prototype.connectedCallback = function () {
+                    _super.prototype.connectedCallback.call(this);
+                    _super.prototype.render.call(this);
                 };
-                Object.defineProperty(RHDPSearchResult, "observedAttributes", {
+                Object.defineProperty(DPSearchResult, "observedAttributes", {
                     get: function () {
                         return ['result'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchResult.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchResult.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
-                RHDPSearchResult.prototype.renderResult = function () {
-                    this.innerHTML = this.template(templateObject_1 || (templateObject_1 = __makeTemplateObject(["", "", "", "", "", "", "", ""], ["", "", "", "", "", "", "", ""])), this.url, this.title, this.kind, this.created, this.description, this.premium, this.thumbnail);
+                DPSearchResult.prototype.renderResult = function () {
+                    _super.prototype.render.call(this);
                 };
-                RHDPSearchResult.prototype.computeThumbnail = function (result) {
+                DPSearchResult.prototype.computeThumbnail = function (result) {
                     if (result.fields.thumbnail) {
                         this.thumbnail = result.fields.thumbnail[0];
                     }
                 };
-                RHDPSearchResult.prototype.computeTitle = function (result) {
+                DPSearchResult.prototype.computeTitle = function (result) {
                     var title = '';
                     if (result.highlight && result.highlight.sys_title) {
                         title = result.highlight.sys_title[0];
@@ -166,7 +174,7 @@ System.register([], function (exports_1, context_1) {
                     }
                     this.title = title;
                 };
-                RHDPSearchResult.prototype.computeKind = function (result) {
+                DPSearchResult.prototype.computeKind = function (result) {
                     var kind = result.fields.sys_type || "webpage", map = {
                         jbossdeveloper_archetype: 'Archetype',
                         article: 'Article',
@@ -188,10 +196,10 @@ System.register([], function (exports_1, context_1) {
                     };
                     this.kind = map[kind] || 'Web Page';
                 };
-                RHDPSearchResult.prototype.computeCreated = function (result) {
+                DPSearchResult.prototype.computeCreated = function (result) {
                     this.created = result.fields.sys_created && result.fields.sys_created.length > 0 ? result.fields.sys_created[0] : '';
                 };
-                RHDPSearchResult.prototype.computeDescription = function (result) {
+                DPSearchResult.prototype.computeDescription = function (result) {
                     var description = '';
                     if (result.highlight && result.highlight.sys_description) {
                         description = result.highlight.sys_description[0];
@@ -203,32 +211,32 @@ System.register([], function (exports_1, context_1) {
                         description = result.fields.sys_description[0];
                     }
                     else {
-                        description = result.fields.sys_content_plaintext[0];
+                        description = result.fields.sys_content_plaintext ? result.fields.sys_content_plaintext[0] : '';
                     }
                     var tempDiv = document.createElement("div");
                     tempDiv.innerHTML = description;
                     description = tempDiv.innerText;
                     this.description = description;
                 };
-                RHDPSearchResult.prototype.computeURL = function (result) {
+                DPSearchResult.prototype.computeURL = function (result) {
                     if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
-                        this.url = result.fields.field_book_url ? result.fields.field_book_url : '';
+                        this.url = result.fields.field_book_url;
                     }
                     else {
                         this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
                     }
                 };
-                RHDPSearchResult.prototype.computePremium = function (result) {
+                DPSearchResult.prototype.computePremium = function (result) {
                     var premium = false;
                     if (result._type === "rht_knowledgebase_article" || result._type === "rht_knowledgebase_solution") {
                         premium = true;
                     }
                     this.premium = premium;
                 };
-                return RHDPSearchResult;
-            }(HTMLElement));
-            exports_1("default", RHDPSearchResult);
-            customElements.define('rhdp-search-result', RHDPSearchResult);
+                return DPSearchResult;
+            }(pfelement_js_1.default));
+            exports_1("default", DPSearchResult);
+            pfelement_js_1.default.create(DPSearchResult);
         }
     };
 });

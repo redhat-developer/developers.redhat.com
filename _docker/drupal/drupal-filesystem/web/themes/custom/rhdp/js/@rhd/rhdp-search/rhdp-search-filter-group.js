@@ -1,4 +1,4 @@
-System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@fortawesome/pro-solid-svg-icons/index.es.js", "../../@patternfly/pfelement/pfelement.js"], function (exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,44 +13,27 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var index_es_js_1, index_es_js_2, pfelement_js_1, chevronRightIcon, RHDPSearchFilterGroup;
+    var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+    var RHDPSearchFilterGroup, templateObject_1;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [
-            function (index_es_js_1_1) {
-                index_es_js_1 = index_es_js_1_1;
-            },
-            function (index_es_js_2_1) {
-                index_es_js_2 = index_es_js_2_1;
-            },
-            function (pfelement_js_1_1) {
-                pfelement_js_1 = pfelement_js_1_1;
-            }
-        ],
+        setters: [],
         execute: function () {
-            index_es_js_1.library.add(index_es_js_2.faChevronRight);
-            chevronRightIcon = index_es_js_1.icon(index_es_js_2.faChevronRight).html;
             RHDPSearchFilterGroup = (function (_super) {
                 __extends(RHDPSearchFilterGroup, _super);
                 function RHDPSearchFilterGroup() {
-                    var _this = _super.call(this, RHDPSearchFilterGroup, { delayRender: true }) || this;
-                    _this._items = [];
+                    var _this = _super.call(this) || this;
                     _this._toggle = false;
                     _this._more = false;
+                    _this.template = function (strings, name) {
+                        return "<h6 class=\"showFilters heading\"><span class=\"group-name\">" + name + "</span><span class=\"toggle\"><i class='fa fa-chevron-right' aria-hidden='true'></i></span></h6>\n        <div class=\"group hide\">\n            <div class=\"primary\"></div>\n            <div class=\"secondary hide\"></div>\n            <a href=\"#\" class=\"more\">Show More</a>\n        </div>";
+                    };
+                    _this.innerHTML = _this.template(templateObject_1 || (templateObject_1 = __makeTemplateObject(["", ""], ["", ""])), _this.name);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchFilterGroup.prototype, "html", {
-                    get: function () {
-                        return "\n        <style>\n            :host {\n                cursor: pointer;\n                display: block;\n                margin: 0 1em .5em;\n                position: relative;\n            }\n\n            .secondary {\n                display: none;\n            }\n\n            h6 {\n                border-bottom: 1px solid #8c8f91;\n                font-weight: 600;\n                margin: .5em 0;\n                padding-bottom: .3em;\n                text-transform: uppercase;\n                color: #242424;\n            }\n\n            .toggle {\n                float: right;\n                font-weight: 600;\n            }\n\n            .toggle.expand {\n                transform: rotate(90deg);\n                transition: .1s ease-in-out;\n            }\n\n            a.more {\n                color: #06c;\n                cursor: pointer;\n                text-decoration: none;\n                font-size: 14px;\n                display: block;\n                margin-bottom: 10px;\n                margin-left: 2.3em;\n                margin-top: 10px;\n            }\n            a.more:hover {\n                color: #004c98;\n            }\n            .hide, a.more.hide, [data-hide] {\n                display: none;\n            }\n\n            " + index_es_js_1.dom.css() + "\n\n        </style>\n        <h6 class=\"showFilters heading\"><span class=\"group-name\">" + this.name + "</span><span class=\"toggle\">" + chevronRightIcon + "</span></h6>\n        <div class=\"group\">\n            <div class=\"primary\">\n                <slot></slot>\n            </div>\n            <div class=\"secondary\">\n                <slot name=\"secondary\"></slot>\n            </div>\n            <a href=\"#\" class=\"more\" data-hide>Show More</a>\n        </div>";
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(RHDPSearchFilterGroup, "tag", {
-                    get: function () { return 'rhdp-search-filter-group'; },
-                    enumerable: true,
-                    configurable: true
-                });
                 Object.defineProperty(RHDPSearchFilterGroup.prototype, "key", {
                     get: function () {
                         return this._key;
@@ -71,9 +54,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                         if (this._name === val)
                             return;
                         this._name = val;
-                        if (this.shadowRoot.querySelector('.group-name')) {
-                            this.shadowRoot.querySelector('.group-name').innerHTML = this._name;
-                        }
+                        this.querySelector('.group-name').innerHTML = this._name;
                     },
                     enumerable: true,
                     configurable: true
@@ -86,16 +67,6 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                         if (this._items === val)
                             return;
                         this._items = val;
-                        if (this._items.length > 5) {
-                            if (!this.shadowRoot.querySelector('.more')) {
-                                this.shadowRoot.querySelector(".moreBtn").removeAttribute('data-hide');
-                            }
-                        }
-                        else {
-                            if (this.shadowRoot.querySelector('.more')) {
-                                this.shadowRoot.removeChild(this.shadowRoot.lastChild);
-                            }
-                        }
                     },
                     enumerable: true,
                     configurable: true
@@ -108,8 +79,8 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                         if (this._toggle === val)
                             return;
                         this._toggle = val;
-                        this.shadowRoot.querySelector('.group').className = this.toggle ? 'group' : 'group hide';
-                        this.shadowRoot.querySelector('.toggle').className = this.toggle ? 'toggle expand' : 'toggle';
+                        this.querySelector('.group').className = this.toggle ? 'group' : 'group hide';
+                        this.querySelector('.toggle').className = this.toggle ? 'toggle expand' : 'toggle';
                     },
                     enumerable: true,
                     configurable: true
@@ -122,30 +93,21 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                         if (this._more === val)
                             return;
                         this._more = val;
-                        this.shadowRoot.querySelector('.more')['innerText'] = this.more ? 'Show Less' : 'Show More';
-                        this.shadowRoot.querySelector('.secondary')['style'].display = this.more ? 'block' : 'none';
+                        this.querySelector('.more').innerHTML = this.more ? 'Show Less' : 'Show More';
+                        this.querySelector('.secondary').className = this.more ? 'secondary' : 'secondary hide';
                     },
                     enumerable: true,
                     configurable: true
                 });
                 RHDPSearchFilterGroup.prototype.connectedCallback = function () {
                     var _this = this;
-                    _super.prototype.connectedCallback.call(this);
-                    _super.prototype.render.call(this);
-                    this.shadowRoot.querySelector('h6').addEventListener('click', function (e) {
+                    this.querySelector('h6').addEventListener('click', function (e) {
                         e.preventDefault();
                         _this.toggle = !_this.toggle;
                     });
-                    this.shadowRoot.querySelector('.group').addEventListener('click', function (e) {
-                        if (e.target['className'].indexOf('more') > -1) {
-                            e.preventDefault();
-                            _this.more = !_this.more;
-                        }
+                    this.querySelector('.more').addEventListener('click', function (e) {
+                        _this.more = !_this.more;
                     });
-                    var slotItems = this.querySelectorAll('rhdp-search-filter-item[slot]').length;
-                    if (slotItems === 0) {
-                        this.shadowRoot.querySelector('.more').setAttribute('data-hide', '');
-                    }
                     this.toggle = true;
                 };
                 Object.defineProperty(RHDPSearchFilterGroup, "observedAttributes", {
@@ -159,9 +121,9 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                     this[name] = newVal;
                 };
                 return RHDPSearchFilterGroup;
-            }(pfelement_js_1.default));
+            }(HTMLElement));
             exports_1("default", RHDPSearchFilterGroup);
-            pfelement_js_1.default.create(RHDPSearchFilterGroup);
+            customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
         }
     };
 });

@@ -1,4 +1,4 @@
-System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filter-active-item.js"], function (exports_1, context_1) {
+System.register(["../../@patternfly/pfelement/pfelement.js", "./dp-search-filter-active-item.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,22 +13,22 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var pfelement_js_1, rhdp_search_filter_active_item_js_1, RHDPSearchActiveFilters;
+    var pfelement_js_1, dp_search_filter_active_item_js_1, DPSearchActiveFilters;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
             function (pfelement_js_1_1) {
                 pfelement_js_1 = pfelement_js_1_1;
             },
-            function (rhdp_search_filter_active_item_js_1_1) {
-                rhdp_search_filter_active_item_js_1 = rhdp_search_filter_active_item_js_1_1;
+            function (dp_search_filter_active_item_js_1_1) {
+                dp_search_filter_active_item_js_1 = dp_search_filter_active_item_js_1_1;
             }
         ],
         execute: function () {
-            RHDPSearchActiveFilters = (function (_super) {
-                __extends(RHDPSearchActiveFilters, _super);
-                function RHDPSearchActiveFilters() {
-                    var _this = _super.call(this, RHDPSearchActiveFilters, { delayRender: true }) || this;
+            DPSearchActiveFilters = (function (_super) {
+                __extends(DPSearchActiveFilters, _super);
+                function DPSearchActiveFilters() {
+                    var _this = _super.call(this, DPSearchActiveFilters, { delayRender: true }) || this;
                     _this._title = 'Active Filters:';
                     _this._toggle = false;
                     _this._clearFilters = _this._clearFilters.bind(_this);
@@ -36,19 +36,19 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                     _this._checkActive = _this._checkActive.bind(_this);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchActiveFilters.prototype, "html", {
+                Object.defineProperty(DPSearchActiveFilters.prototype, "html", {
                     get: function () {
                         return "\n        <style>\n            :host {\n                display: flex;\n                flex-direction: row;\n                margin-bottom: 1em;\n            }\n\n            strong {\n                flex: 0 1 auto;\n                font-size: 1.2em;\n                font-weight: 600;\n                margin: .3em .7em 0 0;\n                order: 1;\n                white-space: nowrap;\n            }\n\n            .clearFilters {\n                color: #06c;\n                flex: 0 1 auto;\n                font-size: 14px;\n                font-weight: 100;\n                margin-top: .3em;\n                order: 3;\n                text-decoration: none;\n                white-space: nowrap;\n                cursor: pointer;\n            }\n\n            @media only screen and (max-width: 768px) {\n                strong {\n                    display: none;\n                }\n            }\n        </style>\n        <strong>" + this.title + "</strong>\n        <slot></slot>\n        <a href=\"#\" class=\"clearFilters\">Clear Filters</a>";
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchActiveFilters, "tag", {
-                    get: function () { return 'rhdp-search-active-filters'; },
+                Object.defineProperty(DPSearchActiveFilters, "tag", {
+                    get: function () { return 'dp-search-active-filters'; },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchActiveFilters.prototype, "title", {
+                Object.defineProperty(DPSearchActiveFilters.prototype, "title", {
                     get: function () {
                         return this._title;
                     },
@@ -60,7 +60,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchActiveFilters.prototype, "filters", {
+                Object.defineProperty(DPSearchActiveFilters.prototype, "filters", {
                     get: function () {
                         return this._filters;
                     },
@@ -72,7 +72,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchActiveFilters.prototype.connectedCallback = function () {
+                DPSearchActiveFilters.prototype.connectedCallback = function () {
                     var _this = this;
                     _super.prototype.connectedCallback.call(this);
                     _super.prototype.render.call(this);
@@ -101,19 +101,19 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                         }
                     });
                 };
-                Object.defineProperty(RHDPSearchActiveFilters, "observedAttributes", {
+                Object.defineProperty(DPSearchActiveFilters, "observedAttributes", {
                     get: function () {
                         return ['title'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchActiveFilters.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchActiveFilters.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
                 };
-                RHDPSearchActiveFilters.prototype._checkActive = function (e) {
+                DPSearchActiveFilters.prototype._checkActive = function (e) {
                     if (e.detail) {
-                        var chk = top.document.querySelectorAll('rhdp-search-filter-item[active]');
+                        var chk = top.document.querySelectorAll('dp-search-filter-item[active]');
                         if (chk.length > 0) {
                             this.style.display = 'block';
                         }
@@ -122,7 +122,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                         }
                     }
                 };
-                RHDPSearchActiveFilters.prototype._initActive = function (e, group_key, item) {
+                DPSearchActiveFilters.prototype._initActive = function (e, group_key, item) {
                     if (e.detail && e.detail.filters) {
                         Object.keys(e.detail.filters).forEach(function (group) {
                             e.detail.filters[group].forEach(function (facet) {
@@ -136,12 +136,12 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                     }
                     return false;
                 };
-                RHDPSearchActiveFilters.prototype._addFilters = function () {
+                DPSearchActiveFilters.prototype._addFilters = function () {
                     var groups = this.filters && this.filters.facets ? this.filters.facets : [];
                     for (var i = 0; i < groups.length; i++) {
                         var items = groups[i].items;
                         for (var j = 0; j < items.length; j++) {
-                            var item = new rhdp_search_filter_active_item_js_1.default();
+                            var item = new dp_search_filter_active_item_js_1.default();
                             item.name = items[j].name;
                             item.value = items[j].value;
                             item.inline = true;
@@ -152,20 +152,20 @@ System.register(["../../@patternfly/pfelement/pfelement.js", "./rhdp-search-filt
                         }
                     }
                 };
-                RHDPSearchActiveFilters.prototype.applyFilters = function () {
+                DPSearchActiveFilters.prototype.applyFilters = function () {
                     var evt = {
                         bubbles: true,
                         composed: true
                     };
                     this.dispatchEvent(new CustomEvent('apply-filters', evt));
                 };
-                RHDPSearchActiveFilters.prototype._clearFilters = function (e) {
+                DPSearchActiveFilters.prototype._clearFilters = function (e) {
                     this.style.display = 'none';
                 };
-                return RHDPSearchActiveFilters;
+                return DPSearchActiveFilters;
             }(pfelement_js_1.default));
-            exports_1("default", RHDPSearchActiveFilters);
-            pfelement_js_1.default.create(RHDPSearchActiveFilters);
+            exports_1("default", DPSearchActiveFilters);
+            pfelement_js_1.default.create(DPSearchActiveFilters);
         }
     };
 });

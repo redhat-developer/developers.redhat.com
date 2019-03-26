@@ -1,4 +1,4 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = function (d, b) {
@@ -13,25 +13,38 @@ System.register([], function (exports_1, context_1) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var RHDPSearchResultCount;
+    var pfelement_js_1, DPSearchResultCount;
     var __moduleName = context_1 && context_1.id;
     return {
-        setters: [],
+        setters: [
+            function (pfelement_js_1_1) {
+                pfelement_js_1 = pfelement_js_1_1;
+            }
+        ],
         execute: function () {
-            RHDPSearchResultCount = (function (_super) {
-                __extends(RHDPSearchResultCount, _super);
-                function RHDPSearchResultCount() {
-                    var _this = _super.call(this) || this;
+            DPSearchResultCount = (function (_super) {
+                __extends(DPSearchResultCount, _super);
+                function DPSearchResultCount() {
+                    var _this = _super.call(this, DPSearchResultCount, { delayRender: true }) || this;
                     _this._count = 0;
                     _this._term = '';
                     _this._loading = true;
-                    _this.template = function (strings, count, term) {
-                        return count + " results found for " + term.replace('<', '&lt;').replace('>', '&gt;');
-                    };
                     _this._setText = _this._setText.bind(_this);
                     return _this;
                 }
-                Object.defineProperty(RHDPSearchResultCount.prototype, "count", {
+                Object.defineProperty(DPSearchResultCount.prototype, "html", {
+                    get: function () {
+                        return "\n        " + (this.term || this.count ? "\n        <style>\n        :host {\n            grid-column: 5 / span 9;\n            font-weight: 600;\n            font-size: 1.2em;\n            display: block;\n            margin-bottom: 1em;\n        }\n\n        @media only screen and (max-width: 768px) {\n            :host { border-bottom: 1px solid #d5d5d5; }\n        }\n        </style>\n        <span>" + this.count + " results found " + (this.term ? 'for' : '') + " " + this.term.replace('<', '&lt;').replace('>', '&gt;') + "</span>" : '');
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchResultCount, "tag", {
+                    get: function () { return 'dp-search-result-count'; },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(DPSearchResultCount.prototype, "count", {
                     get: function () {
                         return this._count;
                     },
@@ -44,7 +57,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResultCount.prototype, "term", {
+                Object.defineProperty(DPSearchResultCount.prototype, "term", {
                     get: function () {
                         return this._term;
                     },
@@ -58,7 +71,7 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(RHDPSearchResultCount.prototype, "loading", {
+                Object.defineProperty(DPSearchResultCount.prototype, "loading", {
                     get: function () {
                         return this._loading;
                     },
@@ -70,24 +83,26 @@ System.register([], function (exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchResultCount.prototype.connectedCallback = function () {
+                DPSearchResultCount.prototype.connectedCallback = function () {
                     var _this = this;
+                    _super.prototype.connectedCallback.call(this);
                     top.addEventListener('params-ready', this._setText);
                     top.addEventListener('search-start', function (e) { _this.loading = true; _this._setText(e); });
                     top.addEventListener('search-complete', function (e) { _this.loading = false; _this._setText(e); });
+                    _super.prototype.render.call(this);
                 };
-                Object.defineProperty(RHDPSearchResultCount, "observedAttributes", {
+                Object.defineProperty(DPSearchResultCount, "observedAttributes", {
                     get: function () {
                         return ['count', 'term'];
                     },
                     enumerable: true,
                     configurable: true
                 });
-                RHDPSearchResultCount.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+                DPSearchResultCount.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
-                    this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
+                    _super.prototype.render.call(this);
                 };
-                RHDPSearchResultCount.prototype._setText = function (e) {
+                DPSearchResultCount.prototype._setText = function (e) {
                     if (e.detail) {
                         if (typeof e.detail.invalid === 'undefined') {
                             if (e.detail.term && e.detail.term.length > 0) {
@@ -96,32 +111,32 @@ System.register([], function (exports_1, context_1) {
                             else {
                                 this.term = '';
                             }
-                            if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
-                                this.count = e.detail.results.hits.total;
+                            if (e.detail.results && e.detail.results.numFound && e.detail.results.numFound) {
+                                this.count = e.detail.results.numFound;
                             }
                             else {
                                 this.count = 0;
                             }
                             if (!this.loading) {
-                                this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
+                                _super.prototype.render.call(this);
                             }
                         }
                         else {
                             this.term = '';
                             this.count = 0;
-                            this.innerHTML = '';
+                            this.shadowRoot.innerHTML = '';
                         }
                     }
                     else {
                         this.term = '';
                         this.count = 0;
-                        this.innerHTML = '';
+                        this.shadowRoot.innerHTML = '';
                     }
                 };
-                return RHDPSearchResultCount;
-            }(HTMLElement));
-            exports_1("default", RHDPSearchResultCount);
-            customElements.define('rhdp-search-result-count', RHDPSearchResultCount);
+                return DPSearchResultCount;
+            }(pfelement_js_1.default));
+            exports_1("default", DPSearchResultCount);
+            pfelement_js_1.default.create(DPSearchResultCount);
         }
     };
 });
