@@ -33,6 +33,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                     _this._clearFilters = _this._clearFilters.bind(_this);
                     _this._checkChange = _this._checkChange.bind(_this);
                     _this._updateFacet = _this._updateFacet.bind(_this);
+                    _this._updateName = _this._updateName.bind(_this);
                     return _this;
                 }
                 Object.defineProperty(DPSearchFilterItem.prototype, "html", {
@@ -159,6 +160,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                     top.addEventListener('filter-item-change', this._checkChange);
                     top.addEventListener('params-ready', this._checkParams);
                     top.addEventListener('clear-filters', this._clearFilters);
+                    top.addEventListener('search-complete', this._updateName);
                 };
                 Object.defineProperty(DPSearchFilterItem, "observedAttributes", {
                     get: function () {
@@ -169,6 +171,25 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                 });
                 DPSearchFilterItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
+                };
+                DPSearchFilterItem.prototype._updateName = function (e) {
+                    if (e.detail && e.detail.facets && e.detail.facets.facet_fields) {
+                        var facets = e.detail.facets.facet_fields;
+                        if (facets[this.group] && facets[this.group].indexOf(this.value[0]) >= 0) {
+                            if (this.name.indexOf('(') > 0) {
+                                this.name = this.name.replace(/\([0-9]+\)/, "(" + facets[this.group][facets[this.group].indexOf(this.value[0]) + 1] + ")");
+                            }
+                            else {
+                                this.name = this.name + " (" + facets[this.group][facets[this.group].indexOf(this.value[0]) + 1] + ")";
+                            }
+                        }
+                        else {
+                            this.name = this.name.replace(/\([0-9]+\)/, '');
+                        }
+                    }
+                    else {
+                        this.name = this.name.replace(/\([0-9]+\)/, '');
+                    }
                 };
                 DPSearchFilterItem.prototype._updateFacet = function (e) {
                     this.bounce = false;
