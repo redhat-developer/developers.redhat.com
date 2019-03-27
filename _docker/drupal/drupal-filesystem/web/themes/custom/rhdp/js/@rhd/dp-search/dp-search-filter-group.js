@@ -142,7 +142,7 @@ System.register(["../../@fortawesome/fontawesome-svg-core/index.es.js", "../../@
                             _this.more = !_this.more;
                         }
                     });
-                    var slotItems = this.querySelectorAll('rhdp-search-filter-item[slot]').length;
+                    var slotItems = this.querySelectorAll('dp-search-filter-item[slot]').length;
                     if (slotItems === 0) {
                         this.shadowRoot.querySelector('.more').setAttribute('data-hide', '');
                     }
