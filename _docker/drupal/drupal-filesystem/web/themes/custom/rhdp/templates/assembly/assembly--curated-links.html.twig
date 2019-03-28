@@ -14,22 +14,50 @@
  */
 #}
 {% if content|render %}
-<section{{ attributes.addClass('assembly') }}{{ audience_selection }}> 
-  <div class="curated-links"> 
-    {% if content.field_title and 'nav-menu' not in attributes.class %}
-    <h3 class="curated-links__title">{{ content.field_title }}</h3>
-    {% endif %}
-    {% if elements.links %}
-    <ul class="curated-links__list fa-ul">
-      {% for link in elements.links %}
-        {% if 'nav-menu' in attributes.class %}
-        <li class="curated-links__list-item">{{ link }}</li>
-        {% else %}
-        <li class="curated-links__list-item"><i class="fa-li far fa-arrow-alt-circle-right"></i> {{ link }}</li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
-</section>  
+
+  {# Decalre default render variables #}
+  {% set renderArrow = true %}
+  {% set renderAside = false %}
+  {% set remClasses = [] %}
+  {% set menuClass = "curated-links__list fa-ul"%}
+
+  {# Calculate type of render based on class set and set appropriate variable values #}
+  {% if attributes.hasClass('nav-menu') %}
+    {% set remClasses = ['link-side-nav', 'two-col'] %}
+    {% set renderArrow = false %}
+  {% elseif attributes.hasClass('two-col') %}
+    {% set remClasses = ['nav-menu', 'link-side-nav'] %}
+  {% elseif attributes.hasClass('link-side-nav') %}
+    {% set remClasses = ['two-col', 'nav-menu'] %}
+    {% set renderAside = true %}
+    {% set menuClass = "side-bar-nav curated-links__list fa-ul"%}
+  {% endif %}
+
+  {# Begin html render #}
+  {% if renderAside %}
+  <aside{{ attributes.addClass('assembly').removeClass(remClasses) }}{{ audience_selection }}> 
+  {% else %}
+  <section{{ attributes.addClass('assembly').removeClass(remClasses) }}{{ audience_selection }}> 
+  {% endif %}
+    <div class="curated-links"> 
+      {% if content.field_title and renderArrow %}
+      <h3 class="curated-links__title">{{ content.field_title }}</h3>
+      {% endif %}
+      {% if elements.links %}
+        <ul class="{{menuClass}}">
+          {% for link in elements.links %}
+            {% if renderArrow %}
+            <li class="curated-links__list-item"><i class="fa-li far fa-arrow-alt-circle-right"></i> {{ link }}</li>
+            {% else %}
+            <li class="curated-links__list-item">{{ link }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% if renderAside %}
+  </aside> 
+  {% else %}
+  </section>  
+  {% endif %}
 {% endif %}

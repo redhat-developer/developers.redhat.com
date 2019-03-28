@@ -10,7 +10,9 @@ dependencies:
     - field.field.assembly.curated_links.field_title
   module:
     - entity_browser_entity_form
+    - field_layout
     - inline_entity_form
+    - layout_discovery
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -83,7 +85,7 @@ content:
       display_label: true
     third_party_settings: {  }
   visual_styles:
-    type: options_select
+    type: options_buttons
     multiple: true
     weight: 2
     region: content
