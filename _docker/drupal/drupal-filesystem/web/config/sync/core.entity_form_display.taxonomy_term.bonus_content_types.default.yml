@@ -1,0 +1,56 @@
+uuid: 8f8f78b6-3cfe-42a6-a532-11d8f0e1e4b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.image_browser
+    - field.field.taxonomy_term.bonus_content_types.field_content_type_icon_style
+    - field.field.taxonomy_term.bonus_content_types.field_content_type_image
+    - taxonomy.vocabulary.bonus_content_types
+  module:
+    - entity_browser
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.bonus_content_types.default
+targetEntityType: taxonomy_term
+bundle: bonus_content_types
+mode: default
+content:
+  field_content_type_icon_style:
+    weight: -3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_content_type_image:
+    type: entity_browser_file
+    weight: -4
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      field_widget_replace: false
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true

@@ -1,0 +1,54 @@
+uuid: e034d087-748a-4f70-aa2d-6185c95cf4c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.bonus_content_list
+    - field.field.assembly.bonus_content_list.field_audience_selection
+    - field.field.assembly.bonus_content_list.field_content_list
+  module:
+    - field_layout
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.bonus_content_list.default
+targetEntityType: assembly
+bundle: bonus_content_list
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_content_list:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
