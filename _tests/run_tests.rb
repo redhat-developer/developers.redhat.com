@@ -24,7 +24,7 @@ class RunTest
   #
   def execute_tests(args = [])
     test_configuration = @run_tests_options.parse_command_line(args)
-    test_configuration[:docker] ? run_tests_in_docker(test_configuration) : run_tests_from_command_line(test_configuration)
+    run_tests_in_docker(test_configuration)
   end
 
   private
@@ -59,13 +59,6 @@ class RunTest
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
     @log.info("Completed run of #{ENV['rhd_test']} tests.")
-  end
-
-  def run_tests_from_command_line(test_configuration)
-    @log.info("Running #{ENV['rhd_test']} tests from the command line...")
-    @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh") if test_configuration[:browserstack]
-    @process_runner.execute!(test_configuration[:run_tests_command])
-    @log.info("Completed command line run of #{ENV['rhd_test']} tests.")
   end
 
   #

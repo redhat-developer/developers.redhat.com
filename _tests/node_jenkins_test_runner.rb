@@ -43,12 +43,14 @@ class NodeJenkinsTestRunner
     success = true
     test_execution_command = build_e2e_run_tests_command(profile)
     create_download_dir
+    clear_report_dir
     begin
       @process_runner.execute!(test_execution_command)
     rescue
       puts "Run of test profile '#{profile}' failed."
       success = false
     end
+    generate_allure_report(profile)
     success
   end
 
@@ -67,29 +69,26 @@ class NodeJenkinsTestRunner
   def build_e2e_run_tests_command(profile)
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('PULL_REQUEST_GIT_COMMIT_SHA1')
-    mocha_tags = read_env_variable('RHD_MOCHA_TAGS')
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
-    if profile == 'mobile'
-      command += " --browser='iPhone X'"
-    else
-      command += " --browser=#{rhd_js_driver}"
-    end
+    (profile == 'mobile') ? command += " --browser=mobile" : command += " --browser=#{rhd_js_driver}"
     command += " --profile=#{profile}"
-    if @test_type == 'sanity'
-      command += "  --mocha-tags=mochaOpts.grep=@sanity"
-    else
-      if mocha_tags.nil?
-        if profile == ('desktop' || 'drupal')
-          command += '  --mocha-tags=tags=not:stage'
-        else
-          command += ' --mocha-tags=tags=not:desktop'
-        end
-      else
-        command += "  --mocha-tags=tags=#{mocha_tags}"
-      end
-    end
+    (profile == 'drupal') ? test_type = 'drupal' : test_type = 'export'
+    command += " --test-type=#{test_type}"
+    command += ' --tags=not:desktop' if profile == 'mobile'
     command
+  end
+
+  def clear_report_dir
+    FileUtils.rm_rf("#{@control_script_directory}/e2e/report")
+  end
+
+  def generate_allure_report(profile)
+    begin
+      @process_runner.execute!("allure generate #{@control_script_directory}/e2e/report/#{profile}-results -o #{@control_script_directory}/e2e/report/#{profile}-report")
+    rescue
+      @log.warn("Failed to generate #{profile} report")
+    end
   end
 
   def create_download_dir
