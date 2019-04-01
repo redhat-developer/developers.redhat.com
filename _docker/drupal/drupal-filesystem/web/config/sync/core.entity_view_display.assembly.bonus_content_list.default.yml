@@ -6,11 +6,10 @@ dependencies:
     - assembly.assembly_type.bonus_content_list
     - field.field.assembly.bonus_content_list.field_audience_selection
     - field.field.assembly.bonus_content_list.field_content_list
+    - field.field.assembly.bonus_content_list.field_title
   module:
     - field_layout
     - layout_discovery
-    - options
-    - user
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -20,35 +19,25 @@ targetEntityType: assembly
 bundle: bonus_content_list
 mode: default
 content:
-  field_audience_selection:
-    weight: 1
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_content_list:
-    weight: 2
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
-  name:
-    label: above
-    type: string
-    weight: -4
-    region: content
+  field_title:
+    weight: 0
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
+    type: string
     region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_audience_selection: true
   langcode: true
+  name: true
+  user_id: true

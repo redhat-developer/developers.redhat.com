@@ -1,0 +1,19 @@
+uuid: 1125734f-1954-4ad4-bc06-363ca9b094aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.bonus_content_item
+    - field.storage.assembly.field_title
+id: assembly.bonus_content_item.field_title
+field_name: field_title
+entity_type: assembly
+bundle: bonus_content_item
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
