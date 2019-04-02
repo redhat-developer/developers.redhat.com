@@ -1,5 +1,35 @@
 .assembly {
     &.assembly-type-bonus_content_item {
+        grid-template-columns: 96px 24px calc(100% - 120px);
+        grid-template-rows: auto;
+        justify-items: start;
+        align-items: center;
+        justify-content: stretch;
+        align-content: center;	
+        display: grid;
+        .image-style-bonus-thumb {
+            margin: 0;
+            grid-column-start: 1;
+            grid-column-end: 1;
+            grid-row-start: 1;
+            grid-row-end: 1;
+        }
 
+        .bonus-type {
+            grid-column-start: 2;
+            grid-column-end: 2;
+            margin: 0;
+        }
+
+        .bonus-type-name {
+            grid-column-start: 3;
+            grid-column-end: 3;
+        }
+
+        a {
+            grid-column-start: 3;
+            grid-column-end: 3;
+            margin-left: -24px;
+        }
     }
 }

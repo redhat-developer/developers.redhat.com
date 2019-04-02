@@ -6,7 +6,6 @@ dependencies:
     - assembly.assembly_type.bonus_content_item
     - field.field.assembly.bonus_content_item.field_audience_selection
     - field.field.assembly.bonus_content_item.field_bonus_content_type
-    - field.field.assembly.bonus_content_item.field_title
     - field.field.assembly.bonus_content_item.field_url
   module:
     - content_moderation
@@ -33,14 +32,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_url:
     weight: 8
