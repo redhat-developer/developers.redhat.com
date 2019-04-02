@@ -25,9 +25,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
             DPSearchResult = (function (_super) {
                 __extends(DPSearchResult, _super);
                 function DPSearchResult() {
-                    var _this = _super.call(this, DPSearchResult, { delayRender: true }) || this;
-                    _this._url = ['', ''];
-                    return _this;
+                    return _super.call(this, DPSearchResult, { delayRender: true }) || this;
                 }
                 Object.defineProperty(DPSearchResult.prototype, "html", {
                     get: function () {
@@ -43,7 +41,8 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                 });
                 Object.defineProperty(DPSearchResult.prototype, "url", {
                     get: function () {
-                        return this._url;
+                        var stage = window.location.href.indexOf('stage') >= 0 || window.location.href.indexOf('developers') < 0 ? '.stage' : '';
+                        return !this.premium ? this._url : "https://broker" + stage + ".redhat.com/partner/drc/userMapping?redirect=" + encodeURIComponent(this._url);
                     },
                     set: function (val) {
                         if (this._url === val)

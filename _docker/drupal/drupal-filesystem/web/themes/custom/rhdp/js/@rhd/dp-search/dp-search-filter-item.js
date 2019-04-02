@@ -79,6 +79,19 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                     enumerable: true,
                     configurable: true
                 });
+                Object.defineProperty(DPSearchFilterItem.prototype, "facet", {
+                    get: function () {
+                        return this._facet ? this._facet : this.group;
+                    },
+                    set: function (val) {
+                        if (this._facet === val)
+                            return;
+                        this._facet = val;
+                        this.setAttribute('facet', this._facet);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 Object.defineProperty(DPSearchFilterItem.prototype, "group", {
                     get: function () {
                         return this._group;
@@ -164,7 +177,7 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                 };
                 Object.defineProperty(DPSearchFilterItem, "observedAttributes", {
                     get: function () {
-                        return ['name', 'active', 'value', 'inline', 'key', 'group'];
+                        return ['name', 'active', 'value', 'inline', 'key', 'group', 'facet'];
                     },
                     enumerable: true,
                     configurable: true
@@ -181,6 +194,14 @@ System.register(["../../@patternfly/pfelement/pfelement.js"], function (exports_
                             }
                             else {
                                 this.name = this.name + " (" + facets[this.group][facets[this.group].indexOf(this.value[0]) + 1] + ")";
+                            }
+                        }
+                        else if (facets[this.facet] && facets[this.facet].indexOf(this.value[0]) >= 0) {
+                            if (this.name.indexOf('(') > 0) {
+                                this.name = this.name.replace(/\([0-9]+\)/, "(" + facets[this.facet][facets[this.facet].indexOf(this.value[0]) + 1] + ")");
+                            }
+                            else {
+                                this.name = this.name + " (" + facets[this.facet][facets[this.facet].indexOf(this.value[0]) + 1] + ")";
                             }
                         }
                         else {
