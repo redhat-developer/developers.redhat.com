@@ -1,0 +1,107 @@
+uuid: 9b01b171-4905-4da2-b733-0160c0ed9fa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.all_products_listing
+    - assembly.assembly_type.blog_posts
+    - assembly.assembly_type.bonus_content_item
+    - assembly.assembly_type.bonus_content_list
+    - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.code_snippet
+    - assembly.assembly_type.collection
+    - assembly.assembly_type.content
+    - assembly.assembly_type.content_call_to_action
+    - assembly.assembly_type.content_image
+    - assembly.assembly_type.content_pull_quote
+    - assembly.assembly_type.cta_form
+    - assembly.assembly_type.curated_links
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.dynamic_content_list
+    - assembly.assembly_type.eloqua_form_embed
+    - assembly.assembly_type.embedded_content
+    - assembly.assembly_type.events_hero
+    - assembly.assembly_type.events_list
+    - assembly.assembly_type.feature
+    - assembly.assembly_type.featured_articles
+    - assembly.assembly_type.featured_evangelists
+    - assembly.assembly_type.featured_products
+    - assembly.assembly_type.featured_resources
+    - assembly.assembly_type.hero
+    - assembly.assembly_type.learning_paths
+    - assembly.assembly_type.node_reference
+    - assembly.assembly_type.on_page_navigation
+    - assembly.assembly_type.product_categories
+    - assembly.assembly_type.product_comparison_table
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_download_list
+    - assembly.assembly_type.product_try_it_hero
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - assembly.assembly_type.sign_up_hero
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.static_item
+    - assembly.assembly_type.video_hero
+    - assembly.assembly_type.videos
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.assembly.field_additional_content
+id: assembly.curated_links.field_additional_content
+field_name: field_additional_content
+entity_type: assembly
+bundle: curated_links
+label: 'Additional Assembly Content'
+description: 'Add additional content assembly here if you want to use this curated list as a side nav'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      all_products_listing: all_products_listing
+      blog_posts: blog_posts
+      bonus_content_item: bonus_content_item
+      bonus_content_list: bonus_content_list
+      cta_form: cta_form
+      call_to_action: call_to_action
+      code_snippet: code_snippet
+      collection: collection
+      content: content
+      content_call_to_action: content_call_to_action
+      content_image: content_image
+      content_pull_quote: content_pull_quote
+      static_content_band: static_content_band
+      curated_links: curated_links
+      featured_products: featured_products
+      dynamic_content_feed: dynamic_content_feed
+      dynamic_content_list: dynamic_content_list
+      eloqua_form_embed: eloqua_form_embed
+      embedded_content: embedded_content
+      events_hero: events_hero
+      events_list: events_list
+      product_categories: product_categories
+      feature: feature
+      featured_articles: featured_articles
+      featured_evangelists: featured_evangelists
+      featured_resources: featured_resources
+      hero: hero
+      learning_paths: learning_paths
+      node_reference: node_reference
+      on_page_navigation: on_page_navigation
+      product_download_hero: product_download_hero
+      product_download_list: product_download_list
+      product_comparison_table: product_comparison_table
+      product_try_it_hero: product_try_it_hero
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+      sign_up_hero: sign_up_hero
+      static_item: static_item
+      video_hero: video_hero
+      videos: videos
+      wordpress_post_reference: wordpress_post_reference
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: all_products_listing
+field_type: entity_reference

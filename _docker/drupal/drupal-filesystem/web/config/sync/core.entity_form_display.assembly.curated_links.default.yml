@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.curated_links
+    - field.field.assembly.curated_links.field_additional_content
     - field.field.assembly.curated_links.field_audience_selection
     - field.field.assembly.curated_links.field_content_list
     - field.field.assembly.curated_links.field_navigation_title
@@ -22,6 +23,15 @@ targetEntityType: assembly
 bundle: curated_links
 mode: default
 content:
+  field_additional_content:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_audience_selection:
     weight: 1
     settings: {  }
@@ -29,7 +39,7 @@ content:
     type: options_buttons
     region: content
   field_content_list:
-    weight: 5
+    weight: 6
     settings:
       form_mode: default
       label_singular: ''
@@ -47,7 +57,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_navigation_title:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -55,7 +65,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -79,7 +89,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 8
     region: content
     settings:
       display_label: true
@@ -87,7 +97,7 @@ content:
   visual_styles:
     type: options_buttons
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
