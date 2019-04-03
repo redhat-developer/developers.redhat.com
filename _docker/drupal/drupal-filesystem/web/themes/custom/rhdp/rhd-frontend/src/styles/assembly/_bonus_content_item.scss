@@ -1,35 +1,54 @@
 .assembly {
     &.assembly-type-bonus_content_item {
-        grid-template-columns: 96px 24px calc(100% - 120px);
-        grid-template-rows: auto;
-        justify-items: start;
-        align-items: center;
-        justify-content: stretch;
-        align-content: center;	
-        display: grid;
-        .image-style-bonus-thumb {
+        margin: 30px 0;
+        padding: 0;
+        .inner-grid {
+            height: 80px;
             margin: 0;
-            grid-column-start: 1;
-            grid-column-end: 1;
-            grid-row-start: 1;
-            grid-row-end: 1;
-        }
+            padding: 0;
+            grid-template-columns: 96px 24px calc(100% - 120px);
+            grid-template-rows: auto auto;
+            justify-items: start;
+            align-items: center;
+            justify-content: stretch;
+            align-content: center;	
+            display: grid;
+            .image-style-bonus-thumb {
+                margin: 0;
+                align-self: center;
+                grid-column-start: 1;
+                grid-column-end: 1;
+                grid-row-start: 1;
+                grid-row-end: span 2;
+            }
 
-        .bonus-type {
-            grid-column-start: 2;
-            grid-column-end: 2;
-            margin: 0;
-        }
+            .bonus-type {
+                align-self: center;
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                margin-top: 16px;
+                font-size: 16px;
+            }
 
-        .bonus-type-name {
-            grid-column-start: 3;
-            grid-column-end: 3;
-        }
+            .bonus-type-name {
+                align-self: center;
+                grid-column-start: 3;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                padding: 16px 0 0 0;
+                font-size: 16px;
+            }
 
-        a {
-            grid-column-start: 3;
-            grid-column-end: 3;
-            margin-left: -24px;
+            a {
+                font-size: 18px;
+                align-self: center;
+                grid-column-start: 3;
+                grid-column-end: 3;
+                grid-row-start: 2;
+                padding: 0 0 8px 0;
+                margin-left: -24px;
+            }
         }
     }
 }

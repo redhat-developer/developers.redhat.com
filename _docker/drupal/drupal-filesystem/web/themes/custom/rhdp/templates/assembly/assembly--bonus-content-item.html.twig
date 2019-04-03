@@ -16,8 +16,10 @@
  */
 #}
 <div{{ attributes.addClass('assembly') }}{{ audience_selection }}>
-  {% if content %}
-    {{ content.field_bonus_content_type }}
-    {{ content.field_url }}
-  {% endif %}
+  <div class="inner-grid">
+    {% if content %}
+      {{ content.field_bonus_content_type }}
+      {{ content.field_url }}
+    {% endif %}
+  </div>
 </div>
