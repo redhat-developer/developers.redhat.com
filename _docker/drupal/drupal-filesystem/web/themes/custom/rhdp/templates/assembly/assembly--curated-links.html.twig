@@ -25,11 +25,14 @@
   {% if attributes.hasClass('nav-menu') %}
     {% set remClasses = ['two-col'] %}
     {% set renderArrow = false %}
+    {% set renderAside = false %}
   {% elseif attributes.hasClass('two-col') %}
     {% set remClasses = ['nav-menu'] %}
+    {% set renderArrow = true %}
+    {% set renderAside = false %}
   {% endif %}
 
-  {% if content.field_additional_content %}
+  {% if content.field_additional_content.0 %}
     {% set remClasses = ['two-col', 'nav-menu'] %}
     {% set renderAside = true %}
     {% set renderArrow = true %}
