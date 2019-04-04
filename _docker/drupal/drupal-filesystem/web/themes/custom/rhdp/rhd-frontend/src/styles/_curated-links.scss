@@ -19,7 +19,17 @@
     }
   }
   &.link-side-nav {
+    
     > .container {
+      .assembly {
+        background-color: transparent !important;
+        &.has-background {
+          .background {
+            background-image: none;
+            display: none;
+          }
+        }
+      }
       display: grid;
       grid-template-columns: 2fr 1fr;
       @include mobile-landscape-and-down {
@@ -64,6 +74,7 @@
   border-bottom: 1px solid #e9e9e9;
   padding: 20px 0;
   list-style: none;
+  margin-left: 0;
   .two-col & { 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -86,8 +97,7 @@
 }
 
 .curated-links__list-item {
-  line-height: 40px;
-  padding: 0;
+  padding: 10px 0 10px 0;
   a {
     display: inline-block;
     padding: 0 2rem;
@@ -107,22 +117,23 @@
     @include desktop-extra-small-and-down {
       display: block;
       max-width: 100%;
-      line-height: 24px;
-      margin-bottom: 8px;
     }
   }
 
   @include desktop-small-and-down {
-    line-height: 24px;
-    margin-bottom: 8px;
+    padding: 6px 0 6px 0;
   }
 }
 
 .curated-links__list-item .fa-arrow-alt-circle-right {
   color: #999;
-  height: 100%;
-  font-size: 8px;
-  left: 0;
+  font-size: 20px;
+  left: -5px;
+  top: 15px;
+  @include desktop-small-and-down {
+    font-size: 16px;
+    top: 10px;
+  }
 }
 
 .curated-links__list-item > a {
