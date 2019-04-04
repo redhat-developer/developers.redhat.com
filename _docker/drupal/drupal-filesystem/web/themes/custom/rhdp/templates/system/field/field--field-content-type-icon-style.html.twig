@@ -7,7 +7,7 @@
 
 {% for item in items %}   
     {% if item.content %}
-        <i class="bonus-type far fa-{{ item.content }}"></i>
+        <i class="bonus-type {{ item.content }}"></i>
     {% endif %}
 {% endfor %}
 
