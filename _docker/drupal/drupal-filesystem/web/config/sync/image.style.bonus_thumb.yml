@@ -1,0 +1,15 @@
+uuid: 455a218e-45a6-42dc-a9e1-1eb25f82f562
+langcode: en
+status: true
+dependencies: {  }
+name: bonus_thumb
+label: 'Bonus Thumb'
+effects:
+  a8f9a9fc-00ff-4b5f-81a0-a68b4c0f2273:
+    uuid: a8f9a9fc-00ff-4b5f-81a0-a68b4c0f2273
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 80
+      height: 80
+      anchor: center-center

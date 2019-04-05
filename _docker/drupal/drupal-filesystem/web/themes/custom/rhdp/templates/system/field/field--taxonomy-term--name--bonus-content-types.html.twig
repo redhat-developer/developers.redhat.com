@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+
+{% for item in items %}   
+    {% if item.content %}
+        <span class="bonus-type-name">{{ item.content }}</span>
+    {% endif %}
+{% endfor %}
+

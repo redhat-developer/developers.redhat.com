@@ -1,0 +1,29 @@
+uuid: 8eda8cd4-e88b-4163-9476-30ff9f53c37d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.bonus_content_item
+    - field.storage.assembly.field_bonus_content_type
+    - taxonomy.vocabulary.bonus_content_types
+id: assembly.bonus_content_item.field_bonus_content_type
+field_name: field_bonus_content_type
+entity_type: assembly
+bundle: bonus_content_item
+label: 'Bonus content type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      bonus_content_types: bonus_content_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: bonus_content_types
+field_type: entity_reference
