@@ -1,18 +1,10 @@
 .assembly-type-cta_form {
-  padding: 45px 0;
-  @include tablet-landscape {
-    padding: 70px 0;
-  }
+
   .assembly-type-eloqua_form_embed .iframe-container {
     max-width: 740px;
   }
   .field--name-field-title,
   .header {
-    font-size: 18px;
-    margin-bottom: 14px;
-    @include tablet-portrait {
-      font-size: 38px;
-    }
     text-align: left;
     .use-h1 & {
       font-size: 23px;

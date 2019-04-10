@@ -1,0 +1,19 @@
+uuid: a79d458e-c796-40cc-b247-50d8c8224e69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_content_type_icon_style
+    - taxonomy.vocabulary.bonus_content_types
+id: taxonomy_term.bonus_content_types.field_content_type_icon_style
+field_name: field_content_type_icon_style
+entity_type: taxonomy_term
+bundle: bonus_content_types
+label: 'Content type icon style'
+description: 'Enter the Font awesome icon name'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

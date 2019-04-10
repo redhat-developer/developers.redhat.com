@@ -1,0 +1,25 @@
+.assembly {
+    &.assembly-type-bonus_content_list {
+        padding: 10px 0;
+        hr {
+            background-color: #f0f0f0;
+            border: none;
+            height: 4px;
+            margin: 0;
+        }
+        .container {
+            .field__item {
+                &:first-child {
+                    @include desktop-small-and-down {
+                        padding-top: 4px;
+                    }
+                }
+                &:last-child {
+                    @include desktop-small-and-down {
+                        padding-bottom: 4px;
+                    }
+                }
+            }
+        }
+    }
+}

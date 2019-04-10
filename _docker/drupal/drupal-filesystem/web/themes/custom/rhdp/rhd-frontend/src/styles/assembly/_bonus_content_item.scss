@@ -1,0 +1,80 @@
+.assembly {
+    &.assembly-type-bonus_content_item {
+        margin: 30px 0;
+        padding: 0;
+        @include desktop-small-and-down {
+            margin: 0 0 12px 0;
+            padding: 12px 0 0 0;
+        }
+        .inner-grid {
+            height: 80px;
+            margin: 0;
+            padding: 0;
+            grid-template-columns: 96px 24px calc(100% - 120px);
+            grid-template-rows: auto auto;
+            justify-items: start;
+            align-items: center;
+            justify-content: stretch;
+            align-content: center;	
+            display: grid;
+            @include desktop-small-and-down {
+                height: 60px;
+                grid-template-columns: 72px 16px calc(100% - 88px);
+            }
+            .image-style-bonus-thumb {
+                margin: 0;
+                align-self: center;
+                grid-column-start: 1;
+                grid-column-end: 1;
+                grid-row-start: 1;
+                grid-row-end: span 2;
+                @include desktop-small-and-down {
+                    width: 60px;  
+                    height: 60px;  
+                }
+            }
+
+            .bonus-type {
+                align-self: center;
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                margin-top: 16px;
+                font-size: 16px;
+                color: #656565;
+                @include desktop-small-and-down {
+                    margin-top: 12px;
+                    font-size: 12px;
+                }
+            }
+
+            .bonus-type-name {
+                align-self: center;
+                grid-column-start: 3;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                padding: 16px 0 0 0;
+                font-size: 16px;
+                color: #656565;
+                @include desktop-small-and-down {
+                    padding: 12px 0 0 0;
+                    font-size: 12px;
+                }
+            }
+
+            a {
+                font-size: 18px;
+                align-self: center;
+                grid-column-start: 3;
+                grid-column-end: 3;
+                grid-row-start: 2;
+                padding: 0 0 8px 0;
+                margin-left: -24px;
+                @include desktop-small-and-down {
+                    margin-left: -16px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

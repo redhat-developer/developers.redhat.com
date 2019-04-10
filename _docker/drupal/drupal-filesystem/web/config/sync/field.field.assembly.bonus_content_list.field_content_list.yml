@@ -1,0 +1,28 @@
+uuid: e4652fd8-0f04-4dc4-9f82-8044be49bdd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.bonus_content_item
+    - assembly.assembly_type.bonus_content_list
+    - field.storage.assembly.field_content_list
+id: assembly.bonus_content_list.field_content_list
+field_name: field_content_list
+entity_type: assembly
+bundle: bonus_content_list
+label: 'Bonus content List'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      bonus_content_item: bonus_content_item
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
