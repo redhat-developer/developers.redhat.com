@@ -430,29 +430,35 @@
   margin-bottom: 16px;
 }
 
-#rhd-article .related-articles {
-  h5 {
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
+#rhd-article .cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 4rem;
+  margin-top: 2rem;
+  
+  @media screen and (max-width: 1240px){
+    grid-template-columns: repeat(2,1fr);
+  }
+  
+  @media screen and (max-width: 768px){
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 2rem;
+  }
+  
+  .featured-article {
     margin: 0;
-    @include tablet-landscape {
-      font-size: 24px;
-      line-height: 37px;
-      margin-top: 16px;
-      margin-bottom: 12px;
+    border-top: 1px solid $gray-2;
+    font-size: 1rem;
+    p.article-card-type {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 1240px) and (min-width: 768px) {
+      .card-authors .field--name-field-headshot {
+        display: inline;
+      }
     }
   }
-  p {
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 14px;
-    line-height: 20px;
-    color: $dark-gray;
-    @include tablet-landscape {
-      margin-top: 14px;
-      margin-bottom: 50px;
-    }
-
+  .article-card-content {
+    line-height: 1.5;
   }
 }

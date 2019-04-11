@@ -1,5 +1,7 @@
-.assembly-type-featured_articles {
-
+.assembly-type-featured_articles,
+.related-articles {
+  padding-bottom: 2rem;
+  padding-top: 3rem;
   h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -22,10 +24,10 @@
     justify-content: center;
   }
 
-  .article-type {
+  .article-card-type {
     text-transform: uppercase;
   }
-  .article-content {
+  .article-card-content {
     height: 300px;
     .field--name-field-short-description {
       overflow: hidden;
@@ -46,7 +48,7 @@
     font-weight: 600;
     margin: 15px 0;
   }
-  .authors {
+  .card-authors {
     .field--name-field-headshot {
       display: inline;
       float: left;
@@ -79,7 +81,7 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  .article-info {
+  .article-card-info {
     bottom: 30px;
     width: 100%;
     min-height: 55px;
