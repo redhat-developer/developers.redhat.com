@@ -1,0 +1,11 @@
+uuid: c2b79053-8858-455d-89a4-d4c46179ecfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.bonus_content_types
+id: taxonomy_term.bonus_content_types
+target_entity_type_id: taxonomy_term
+target_bundle: bonus_content_types
+default_langcode: site_default
+language_alterable: false

@@ -48,6 +48,14 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
   &.justify-center {
     justify-content: center;
     display: flex;
+    @include mobile-landscape-and-down {
+      display: block;
+    }
+  }
+  .xsmall {
+    @include mobile-landscape-and-down {
+      width: 100%;
+    }
   }
 }
 

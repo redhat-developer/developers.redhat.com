@@ -1,0 +1,38 @@
+uuid: 39fb0378-e782-4066-a0b2-cd4e3793df3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_content_type_image
+    - taxonomy.vocabulary.bonus_content_types
+  module:
+    - image
+id: taxonomy_term.bonus_content_types.field_content_type_image
+field_name: field_content_type_image
+entity_type: taxonomy_term
+bundle: bonus_content_types
+label: 'Content type image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: 40KB
+  max_resolution: 160x160
+  min_resolution: 160x160
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

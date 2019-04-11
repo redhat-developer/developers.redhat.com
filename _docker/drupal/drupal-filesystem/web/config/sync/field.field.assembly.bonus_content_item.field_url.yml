@@ -1,0 +1,23 @@
+uuid: 14b117d4-1981-4627-9cb2-dd94e25fe861
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.bonus_content_item
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.bonus_content_item.field_url
+field_name: field_url
+entity_type: assembly
+bundle: bonus_content_item
+label: 'Link URL'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
