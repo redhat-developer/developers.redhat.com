@@ -50,6 +50,11 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
     display: flex;
     @include mobile-landscape-and-down {
       display: block;
+      .columns {
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+      }
     }
   }
   .xsmall {
