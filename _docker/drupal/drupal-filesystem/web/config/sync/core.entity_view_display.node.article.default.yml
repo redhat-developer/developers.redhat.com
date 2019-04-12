@@ -35,12 +35,12 @@ dependencies:
     - image.style.article_floated
     - node.type.article
   module:
-    - compose
     - entity_reference_revisions
     - fences
     - field_layout
     - image
     - interval
+    - layout_discovery
     - link
     - metatag
     - options
@@ -212,7 +212,7 @@ content:
     weight: 17
     label: hidden
     settings:
-      view_mode: short_teaser
+      view_mode: card
       link: false
     third_party_settings:
       fences:
