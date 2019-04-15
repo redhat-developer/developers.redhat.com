@@ -32,19 +32,8 @@
       }
     }
   }
-  p {
-    font-size: 13px;
-    @include tablet-landscape {
-      font-size: 16px;
-    }
-    &:first-child {
-      margin-top: 0;
-    }
-    @include desktop-small-and-down {
-      text-align: left;
-    }
-  }
-  ol, ul {
+  
+  p, ol, ul {
     font-size: 13px;
     @include tablet-landscape {
       font-size: 16px;
