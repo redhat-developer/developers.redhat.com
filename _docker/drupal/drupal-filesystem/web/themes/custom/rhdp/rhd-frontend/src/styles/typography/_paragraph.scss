@@ -1,8 +1,9 @@
 p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
-  @include tablet-landscape {
-    font-size: 16px;
+  font-weight: 400;
+  @include mobile-landscape-and-down {
+    font-size: 14px;
   }
   &.sm {
     font-size: 12px;
