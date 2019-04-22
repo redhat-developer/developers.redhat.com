@@ -462,6 +462,20 @@
             "time": "2019-03-07T06:10:55+00:00"
         },
         {
+            "name": "ckeditor/indentblock",
+            "version": "4.11.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://download.ckeditor.com/indentblock/releases/indentblock_4.11.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "composer/installers",
             "version": "v1.6.0",
             "source": {
@@ -2697,6 +2711,60 @@
                 "docs": "https://drupal-bootstrap.org",
                 "issues": "https://www.drupal.org/project/issues/bootstrap",
                 "irc": "irc://irc.freenode.org/drupal-bootstrap"
+            }
+        },
+        {
+            "name": "drupal/ckeditor_indentblock",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_indentblock.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_indentblock-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "3841d9e9f15d6e143715aa518dd92033febf6443"
+            },
+            "require": {
+                "drupal/ckeditor": "*",
+                "drupal/core": "^8.1.0",
+                "drupal/libraries": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1507249143",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Meilinger (meichr)",
+                    "homepage": "https://www.drupal.org/u/meichr",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides integration of the CKEditor IndentBlock plugin with the Drupal 8 CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor_indentblock",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/ckeditor_indentblock/",
+                "issues": "https://www.drupal.org/project/issues/ckeditor_indentblock"
             }
         },
         {
