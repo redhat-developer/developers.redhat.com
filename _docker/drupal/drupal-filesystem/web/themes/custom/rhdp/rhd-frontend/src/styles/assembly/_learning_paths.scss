@@ -37,7 +37,13 @@
     margin: 0;
     display: grid;
     grid-gap: $gutter $gutter;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    @include tablet-portrait { 
+      grid-template-columns: 1fr 1fr;
+    }
+    @include tablet-landscape { 
+      grid-template-columns: 1fr 1fr 1fr;
+    }
     @include desktop-small {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
