@@ -2,7 +2,6 @@ $mq-mobile-portrait: 320px;
 $mq-mobile-landscape: 480px;
 $mq-tablet-portrait: 576px;
 $mq-tablet-landscape: 768px;
-$mq-desktop-extra-small: 1023px;
 $mq-desktop-small: 1024px;
 $mq-desktop: 1170px;
 $mq-desktop-large: 1240px;
@@ -14,12 +13,12 @@ $mq-desktop-large: 1240px;
   }
 }
 @mixin tablet-landscape { // > 769px
-  @media (min-width: #{$mq-tablet-landscape}) {
+  @media (min-width: #{($mq-tablet-landscape + 1)}) {
     @content;
   }
 }
 @mixin desktop-extra-small { // > 1023px
-  @media (min-width: #{$mq-desktop-extra-small}) {
+  @media (min-width: #{($mq-desktop-small - 1)}) {
     @content;
   }
 }
@@ -48,7 +47,7 @@ $mq-desktop-large: 1240px;
 }
 
 @mixin mobile-landscape-and-up { // > 481px | duplicate of tablet-portrait-and-up. Instances tablet-portrait-and-up renamed 
-  @media only screen and (min-width: #{$mq-mobile-landscape + 1}) {
+  @media only screen and (min-width: #{($mq-mobile-landscape + 1)}) {
     @content;
   }
 }
@@ -60,7 +59,7 @@ $mq-desktop-large: 1240px;
 }
 
 @mixin desktop-extra-small-and-down { // < 1023px
-  @media only screen and (max-width: #{$mq-desktop-extra-small}) {
+  @media only screen and (max-width: #{($mq-desktop-small - 1)}) {
     @content;
   }
 }
