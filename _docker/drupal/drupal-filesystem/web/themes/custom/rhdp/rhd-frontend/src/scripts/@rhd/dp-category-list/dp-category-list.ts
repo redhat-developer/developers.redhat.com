@@ -110,27 +110,25 @@ export default class DPCategoryList extends RHElement {
     windowRedrawComponent() {    
        if(this.active != 0) {
         this.lastActive = this.active;
-        this.dpCategorySelected({ index: this.lastActive });
+        this.dpCategorySelected({ index: this.active });
        }
     }
 
     dpCategorySelected(detail: { index: number; }) {
         console.log("dpCategorySelected");
-        if (!detail) {
-            return;
-        }
-        
+        console.log("new active: " + detail.index + " " + "current active: " + this.active);
+
         let cols = this.calculateColumns();
         let len = this.querySelectorAll('dp-category').length+1;
         let list = this.querySelector('dp-category-item-list[visible]');
         let calc = 1 + (Math.ceil(detail.index / cols) * cols);
         let idx = calc <= len ? calc : len;
-
+        
         if (list) {
             list.removeAttribute('visible');
             this.removeChild(list);
         }
-        console.log("new active: " + detail.index + " " + "current active: " + this.active);
+
         if (detail.index === this.active) {
             let a = this.querySelector('dp-category[visible]');
             if (a) {
