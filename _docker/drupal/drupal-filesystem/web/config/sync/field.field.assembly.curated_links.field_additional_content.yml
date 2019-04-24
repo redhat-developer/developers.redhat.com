@@ -1,0 +1,34 @@
+uuid: 9b01b171-4905-4da2-b733-0160c0ed9fa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.curated_links
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - assembly.assembly_type.static_content_band
+    - field.storage.assembly.field_additional_content
+id: assembly.curated_links.field_additional_content
+field_name: field_additional_content
+entity_type: assembly
+bundle: curated_links
+label: 'Additional Assembly Content'
+description: 'Add additional content assembly here if you want to use this curated list as a side nav'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      static_content_band: static_content_band
+      dynamic_content_feed: dynamic_content_feed
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: static_content_band
+field_type: entity_reference

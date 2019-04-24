@@ -5,7 +5,7 @@
     access="member" 
     duration="{{ interval }}" 
     image="{{ learning_path_card['card_image_url']|default('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?ixlib=rb-0.3.5&s=50ddd59eb6185b3805e29472a70c4096&auto=format&fit=crop&w=1052&q=80') }}"
-    level="{{(node.field_difficulty.value ?? 'unclassified')|capitalize}}" 
+    level="{{ ((node.field_difficulty.value is not empty) ? node.field_difficulty.value : 'unclassified')|capitalize }}" 
     title="{{node.title.value}}" 
     modified="{{node.changed.value|date('Y-m-d')}}" 
     author="{{node.field_author.value}}"

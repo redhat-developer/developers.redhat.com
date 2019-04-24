@@ -1,20 +1,10 @@
 .assembly-type-featured_resources {
-  padding-top: 38px;
-  padding-bottom: 38px;
-  @include tablet-landscape {
-    padding-top: 85px;
-    padding-bottom: 85px;
-  }
+
   background: #E5E5E5;
   background-image: url(/images/gray_diamond_background.png);
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
-
-  .header {
-    text-align: center;
-    margin-top: 0;
-  }
 
   .grid {
     display: grid;
@@ -27,7 +17,14 @@
     margin: 0;
     display: grid;
     grid-gap: $gutter $gutter;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    @include tablet-portrait { 
+      grid-template-columns: 1fr 1fr;
+    }
+    @include tablet-landscape { 
+      grid-template-columns: 1fr 1fr 1fr;
+    }
     @include desktop-small {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }

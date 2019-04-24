@@ -4,10 +4,14 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.curated_links
+    - field.field.assembly.curated_links.field_additional_content
     - field.field.assembly.curated_links.field_audience_selection
     - field.field.assembly.curated_links.field_content_list
     - field.field.assembly.curated_links.field_navigation_title
     - field.field.assembly.curated_links.field_title
+  module:
+    - field_layout
+    - layout_discovery
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -17,6 +21,22 @@ targetEntityType: assembly
 bundle: curated_links
 mode: default
 content:
+  field_additional_content:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
   field_content_list:
     weight: 1
     label: hidden

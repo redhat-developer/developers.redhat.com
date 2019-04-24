@@ -35,11 +35,11 @@ dependencies:
     - field.field.node.events.field_topics
     - node.type.events
   module:
-    - compose
     - datetime
     - fences
     - field_layout
     - image
+    - layout_discovery
     - link
     - options
     - text
@@ -65,7 +65,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
     type: string
     region: content
   field_description:
@@ -190,10 +197,17 @@ content:
     weight: 3
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
+      date_format: 'F jS, Y'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: datetime_custom
     region: content
   field_target_product:
     weight: 16

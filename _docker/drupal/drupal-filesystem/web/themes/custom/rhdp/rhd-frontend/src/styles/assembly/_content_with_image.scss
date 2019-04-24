@@ -1,24 +1,21 @@
 .assembly-type-content_with_image {
-  padding: 40px 0;
   text-align: center;
   @include desktop-small {
     text-align: left;
-    padding: 100px 0;
   }
+
   h2 {
     font-size: 50px;
   }
-  .header {
-    text-align: center;
-    margin-bottom: 16px;
-    font-size: 18px;
-    margin-top: 0;
-    @include desktop-small {
-      font-weight: bold;
-      font-size: 36px;
+  @include desktop-small-and-down {
+    h1,h2,h3,h4,h5,h6 {
       text-align: left;
     }
   }
+  .header {
+    text-align: left;
+  }
+
   .container {
     flex-flow: row wrap-reverse;
     display: flex;
@@ -35,6 +32,7 @@
       }
     }
   }
+  
   p, ol, ul {
     font-size: 13px;
     @include tablet-landscape {
@@ -43,7 +41,11 @@
     &:first-child {
       margin-top: 0;
     }
+    @include desktop-small-and-down {
+      text-align: left;
+    }
   }
+
   .assembly-content {
     width: 100%;
     @include desktop-small {
