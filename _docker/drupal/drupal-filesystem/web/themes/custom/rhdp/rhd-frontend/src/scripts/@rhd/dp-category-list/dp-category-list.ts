@@ -116,8 +116,6 @@ export default class DPCategoryList extends RHElement {
     }
 
     dpCategorySelected(detail: { index: number; }) {
-        console.log("dpCategorySelected");
-        console.log("new active: " + detail.index + " " + "current active: " + this.active);
 
         let cols = this.calculateColumns();
         let len = this.querySelectorAll('dp-category').length+1;
@@ -159,7 +157,6 @@ export default class DPCategoryList extends RHElement {
 
             list.setAttribute('visible','');
         }
-        console.log("After update current active: " + this.active);
     }
 
     _setVisibleCategories(index: any) {
