@@ -108,9 +108,10 @@ export default class DPCategoryList extends RHElement {
     }
 
     windowRedrawComponent() {    
-       if(this.active != 0) {
+       if(this.active !== 0) {
         this.lastActive = this.active;
         this.dpCategorySelected({ index: this.active });
+        this.dpCategorySelected({ index: this.lastActive });
        }
     }
 
@@ -146,6 +147,7 @@ export default class DPCategoryList extends RHElement {
             }
             
             this.active = detail.index;
+            
             list = this.querySelector(`dp-category:nth-child(${this.active})`).querySelector('dp-category-item-list');
             
             if (idx < len) {
