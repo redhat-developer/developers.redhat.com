@@ -26,7 +26,7 @@ export default class DPCategoryItemList extends RHElement {
                 padding-left: 15px;
             }
 
-            @media (min-width: 500px) {
+            @media (min-width: 576px) {
                 :host {
                     grid-column: span 2;
                     margin-bottom: 30px;
@@ -37,7 +37,7 @@ export default class DPCategoryItemList extends RHElement {
                 }
             }
 
-            @media (min-width: 800px) {
+            @media (min-width: 768px) {
                 :host {
                     grid-column: span 3;
                 }
@@ -47,9 +47,11 @@ export default class DPCategoryItemList extends RHElement {
                 }
             }
 
-            @media (min-width: 1200px) {
+            @media (min-width: 1024px) {
                 :host {
                     grid-column: span 4;
+                    margin-left: 30px;
+                    margin-right: 30px;
                 }
 
                 div {
