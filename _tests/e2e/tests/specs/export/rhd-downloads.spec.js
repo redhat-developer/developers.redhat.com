@@ -14,7 +14,7 @@ tags('desktop').describe('Download Manager', function() {
         Utils.cleanSession();
     }, 2);
 
-    it('should allow users to login in and download RHEL', () => {
+    it('@wip should allow users to login in and download RHEL', () => {
             const siteUser = new User().rhdAccountDetails();
             ProductOverview
                 .open('rhel', 'download')

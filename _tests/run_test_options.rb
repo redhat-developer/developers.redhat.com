@@ -146,9 +146,9 @@ class RunTestOptions
   # Builds e2e test command for local, browserstack, and inside docker testing
   #
   def build_e2e_test_execution_cmd(test_configuration)
-    run_tests_command = ''
-    # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
+    bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile])
+    run_tests_command = ''
     run_tests_command += " --browser=#{test_configuration[:browser]}"
     run_tests_command += " --base-url=#{test_configuration[:base_url]}"
     run_tests_command += " --profile=#{test_configuration[:profile]}"

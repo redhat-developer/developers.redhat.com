@@ -20,6 +20,7 @@ class NodeJenkinsTestRunner
   # Run the tests based on user specified test type
   #
   def run_tests
+    clear_report_dir
     tests_passed = true
     if @test_type == 'e2e'
       %w(desktop mobile drupal).each do |profile|
@@ -43,7 +44,6 @@ class NodeJenkinsTestRunner
     success = true
     test_execution_command = build_e2e_run_tests_command(profile)
     create_download_dir
-    clear_report_dir
     begin
       @process_runner.execute!(test_execution_command)
     rescue

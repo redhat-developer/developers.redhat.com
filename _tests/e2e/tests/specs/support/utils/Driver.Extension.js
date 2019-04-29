@@ -69,8 +69,8 @@ export default class Driver {
         return selector.waitForExist(timeout);
     }
 
-    static awaitIsDisplayed(selector, timeout = DEFAULT_TIMEOUT, isShown = true) {
-        return selector.waitForDisplayed(timeout, !isShown);
+    static awaitIsDisplayed(selector, timeout = DEFAULT_TIMEOUT) {
+        return selector.waitForDisplayed(timeout);
     }
 
     static hideCookieBanner() {

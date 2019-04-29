@@ -20,11 +20,11 @@ class ProductOverview extends Page {
     }
 
     awaitHelloWorldPage(productCode) {
-        return Driver.waitForUrlContaining(`${config.baseUrl}/products/${productCode}/hello-world/`);
+        return Driver.waitForUrlContaining(`${config.baseUrl}/products/${productCode}/hello-world/`, 30000);
     }
 
     awaitDownloadThankYou() {
-        return Driver.awaitIsDisplayed(this.downloadThankYou);
+        return Driver.awaitIsDisplayed(this.downloadThankYou, 30000);
     }
 }
 
