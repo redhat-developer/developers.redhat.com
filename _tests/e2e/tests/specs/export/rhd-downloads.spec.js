@@ -5,7 +5,7 @@ import User from '../support/rest/keycloak/Site.user';
 import DownloadDir from '../support/utils/DownloadDir';
 import Utils from '../support/utils/Utils';
 
-tags('desktop').describe('Download Manager', function() {
+global.tags('desktop').describe('Download Manager', function() {
     // eslint-disable-next-line no-invalid-this
     this.retries(2);
 
@@ -14,7 +14,7 @@ tags('desktop').describe('Download Manager', function() {
         Utils.cleanSession();
     }, 2);
 
-    it('@wip should allow users to login in and download RHEL', () => {
+    it('should allow users to login in and download RHEL', function() {
             const siteUser = new User().rhdAccountDetails();
             ProductOverview
                 .open('rhel', 'download')
@@ -25,7 +25,7 @@ tags('desktop').describe('Download Manager', function() {
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
-    it('should allow users to log-in and download advanced-linux-commands', () => {
+    it('should allow users to log-in and download advanced-linux-commands', function() {
             const siteUser = new User().rhdAccountDetails();
             CheatSheets
                 .open('advanced-linux-commands')

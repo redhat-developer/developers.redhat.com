@@ -15,7 +15,7 @@ class Login extends Page {
     }
 
     awaitLogin() {
-        return Driver.awaitExists(this.loginPage, 30000);
+        return Driver.awaitExists(this.loginPage);
     }
 
     awaitStepTwo() {

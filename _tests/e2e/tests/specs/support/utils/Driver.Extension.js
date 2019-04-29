@@ -54,6 +54,7 @@ export default class Driver {
     }
 
     static textOf(selector) {
+        this.awaitExists(selector);
         return selector.getText();
     }
 
@@ -69,8 +70,8 @@ export default class Driver {
         return selector.waitForExist(timeout);
     }
 
-    static awaitIsDisplayed(selector, timeout = DEFAULT_TIMEOUT) {
-        return selector.waitForDisplayed(timeout);
+    static awaitIsDisplayed(selector, timeout = DEFAULT_TIMEOUT, isShown = true) {
+        return selector.waitForDisplayed(timeout, !isShown);
     }
 
     static hideCookieBanner() {
