@@ -31,7 +31,7 @@ class WordpressApi implements RemoteContentApiInterface {
     // This URL bypasses Akamai. If, for some reason, we do not want to bypass
     // Akamai, change the value of this attribute to
     // 'https://developers.redhat.com/blog'.
-    $this->apiUrl = 'https://origin-developers.redhat.com/blog';
+    $this->apiUrl = 'https://developers.redhat.com/blog';
     $this->client = $client;
   }
 
