@@ -18,11 +18,23 @@
       padding: 0;
     }
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    @include tablet-portrait {
+      &.count-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      &.count-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @include tablet-landscape {
       &.count-3 {
         grid-template-columns: 1fr 1fr 1fr;
       }
+
       &.count-4 {
         grid-template-columns: 1fr 1fr 1fr 1fr;
       }
@@ -32,6 +44,7 @@
   .cta-link {
     margin-top: 1rem;
     text-align: center;
+
     a {
       display: inline-block;
     }
