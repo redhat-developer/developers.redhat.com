@@ -5,7 +5,8 @@ import User from '../support/rest/keycloak/Site.user';
 import DownloadDir from '../support/utils/DownloadDir';
 import Utils from '../support/utils/Utils';
 
-global.tags('desktop').describe('Download Manager', function() {
+// eslint-disable-next-line no-undef
+tags('desktop').describe('Download Manager', function() {
     // eslint-disable-next-line no-invalid-this
     this.retries(2);
 
