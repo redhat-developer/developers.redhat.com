@@ -94,6 +94,41 @@ button, .button {
       }
     }
   }
+  &.light-cta{
+    color: $link;
+    font-weight: 800;
+    background-color: transparent;
+    &:after {
+      padding-left:2px;
+      content: "\25B8";
+    }
+    &:hover, &:focus {
+      color: $linkhover;
+    }
+    &.black {
+      color: $black;
+      &:hover, &:focus {
+        color: $link;
+      }
+    }
+    &.white {
+      color: $white;
+      &:hover, &:focus {
+        color: $linkhover-dark-background;
+      }
+    }
+    &.blue {
+      border-color: transparent;
+      color: $blue;
+      &:hover, &:focus {
+        background-color: transparent;
+        color: $linkhover;
+      }
+    }
+    &.external-link:after {
+      vertical-align: baseline;
+    }
+  }
   &.large {
     padding: 0.6em 0.9em;
   }
@@ -146,6 +181,7 @@ a.light-cta{
   }
   &:hover, &:focus {
     color: $linkhover;
+    border-bottom: none !important;
   }
   &.black {
     color: $black;
