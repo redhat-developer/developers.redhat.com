@@ -126,6 +126,55 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
  */
 function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
   switch ($form_id) {
+    case 'node_article_form':
+    case 'node_article_edit_form':
+    case 'node_assembly_page_form':
+    case 'node_assembly_page_edit_form':
+    case 'node_author_form':
+    case 'node_author_edit_form':
+    case 'node_books_form':
+    case 'node_books_edit_form':
+    case 'node_cheat_sheet_form':
+    case 'node_cheat_sheet_edit_form':
+    case 'node_coding_resource_form':
+    case 'node_coding_resource_edit_form':
+    case 'node_connectors_form':
+    case 'node_connectors_edit_form':
+    case 'node_events_form':
+    case 'node_events_edit_form':
+    case 'node_katacoda_course_form':
+    case 'node_katacoda_course_edit_form':
+    case 'node_katacoda_individual_lesson_form':
+    case 'node_katacoda_individual_lesson_edit_form':
+    case 'node_landing_page_single_offer_form':
+    case 'node_landing_page_single_offer_edit_form':
+    case 'node_learning_path_form':
+    case 'node_learning_path_edit_form':
+    case 'node_page_form':
+    case 'node_page_edit_form':
+    case 'node_promotion_card_form':
+    case 'node_promotion_card_edit_form':
+    case 'node_promotion_page_form':
+    case 'node_promotion_page_edit_form':
+    case 'node_rh_certification_exam_form':
+    case 'node_rh_certification_exam_edit_form':
+    case 'node_rh_training_class_form':
+    case 'node_rh_training_class_edit_form':
+    case 'node_rhd_microsite_form':
+    case 'node_rhd_microsite_edit_form':
+    case 'node_rhd_solution_overview_form':
+    case 'node_rhd_solution_overview_edit_form':
+    case 'node_sub_product_form':
+    case 'node_sub_product_edit_form':
+    case 'node_topic_page_form':
+    case 'node_topic_page_edit_form':
+    case 'node_topic_form':
+    case 'node_topic_edit_form':
+    case 'node_upstream_projects_form':
+    case 'node_upstream_projects_edit_form':
+    case 'node_video_resource_form':
+    case 'node_video_resource_edit_form':
+      $form['#validate'][] = 'node_product_route_validation';
     case 'node_product_form':
     case 'node_product_edit_form':
       $form['#validate'][] = 'product_url_name_validation';
@@ -161,6 +210,40 @@ function product_url_name_validation(array &$form, FormStateInterface &$form_sta
       $form_state->setErrorByName(
         'field_url_product_name',
         t('The value you entered for URL Product Name is already used by an existing Product. This field must be unique across all Products to prevent routing conflicts.')
+      );
+    }
+  }
+}
+
+/*
+ * Custom validation hook for non-Products nodes to verify a non-Product URL.
+ *
+ * Verifies that non-Product nodes are not using a route/URL pattern that might
+ * conflict with our Product nodes i.e.
+ * /products/rhel/overview or
+ * /products/rhamt/download or
+ * /products/openjdk/getting-started
+ *
+ * @see rhd_common.routing.yml
+ * @see rhd_assemblies.routing.yml
+ */
+function node_product_route_validation(array &$form, FormStateInterface &$form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  $node_type = $node->getType();
+
+  if ($node_type !== 'product') {
+    $url_alias = $form_state->getValue('path')[0]['alias'];
+    // Remove preceding '/' character if one exists.
+    $url_alias =  ($url_alias[0] === '/') ? substr($url_alias, 1) : $url_alias;
+    $url_alias_array = explode('/', $url_alias);
+    $reserved_product_subpages = ['overview', 'download', 'getting-started', 'hello-world'];
+
+    // If this route matches the pattern of one of our reservered product
+    // subpages, then we will set an error on the URL Alias field.
+    if (is_array($url_alias_array) && count($url_alias_array) === 3 && $url_alias_array[0] === 'products' && in_array($url_alias_array[2], $reserved_product_subpages)) {
+      $form_state->setErrorByName(
+        'path',
+        t('The value you entered for URL Alias conflicts with the URL pattern for either the overview, download or getting-started Product subpage. Please choose a different URL Alias or contact the developers.redhat.com development team for assistance.')
       );
     }
   }
