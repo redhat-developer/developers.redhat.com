@@ -42,6 +42,7 @@ dependencies:
     - field_layout
     - image
     - inline_entity_form
+    - link
     - metatag
     - paragraphs
     - publication_date
@@ -130,6 +131,14 @@ content:
     region: settings
     settings: {  }
     third_party_settings: {  }
+  field_call_to_action_link:
+    type: link_default
+    weight: 0
+    region: fields
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_content:
     weight: 18
     settings:
@@ -184,6 +193,14 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
+  field_image:
+    type: image_image
+    weight: 0
+    settings:
+      preview_image_style: thumbnail
+      progress_indicator: throbber
+    region: fields
+    third_party_settings: {  }
   field_meta_tags:
     weight: 11
     settings: {  }
@@ -348,9 +365,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_call_to_action_link: true
   field_card_image: true
-  field_image: true
   field_product_category: true
   field_product_short_name: true
   field_product_technology_group: true
