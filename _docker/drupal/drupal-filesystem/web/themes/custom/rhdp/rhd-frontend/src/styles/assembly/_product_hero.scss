@@ -47,14 +47,14 @@
 
   &.product-hero--dark {
     background-image: url('https://developers.redhat.com/images/design/product-hero-dark.png');
-    h1, p, a, span {
+    h1,h2, h3, p, a, span {
       color: $white;
     }
   }
   &.product-hero--dark-centered {
     background-image: url('https://developers.redhat.com/images/design/product-hero-dark.png');
     text-align: center;
-    h1, p, a, span {
+    h1, h2, h3, p, a, span {
       color: $white;
     }
    .grid {
