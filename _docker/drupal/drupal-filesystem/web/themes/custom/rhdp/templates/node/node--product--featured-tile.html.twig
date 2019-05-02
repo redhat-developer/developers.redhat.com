@@ -8,8 +8,9 @@
   <a href="{{ logo_link }}">
     {% if content.field_image %}
       {{ content.field_image }}
+    {% else %}
+      <p class="tile-title">{{ label }}</p>
     {% endif %}
-    <p class="tile-title">{{ label }}</p>
   </a>
     {{ content.field_short_description }}
     {% if cta_url %}
