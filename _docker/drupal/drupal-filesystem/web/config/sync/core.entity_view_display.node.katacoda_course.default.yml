@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.katacoda_course.field_katacoda_hero_more_link
     - node.type.katacoda_course
   module:
+    - fences
     - field_layout
     - layout_discovery
     - user
@@ -34,9 +35,17 @@ content:
     weight: 3
     label: hidden
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
+      view_mode: card
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
   field_katacoda_course_url_slug:
     weight: 0
