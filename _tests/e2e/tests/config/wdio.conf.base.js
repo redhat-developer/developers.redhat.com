@@ -58,4 +58,14 @@ exports.config = {
           browser.takeScreenshot();
         }
     },
+
+    onComplete: function() {
+        try {
+            const {execSync} = require('child_process');
+             execSync(`allure generate ./report/${testProfile}-results -o ./report/${testProfile}-report`)
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.log(error);
+        }
+    },
 };

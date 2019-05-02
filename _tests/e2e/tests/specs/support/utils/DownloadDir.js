@@ -21,7 +21,7 @@ class DownloadDir {
                     downloads.push(file);
                 }
             });
-        } while (downloads.length === 0 && i < 6);
+        } while (downloads.length === 0 && i < 10);
         return downloads;
     }
 }
