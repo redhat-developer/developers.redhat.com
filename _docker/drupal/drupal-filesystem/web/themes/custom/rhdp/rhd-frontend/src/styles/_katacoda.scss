@@ -507,7 +507,7 @@ $katacoda-grid-title-size:23px;
     }
 }
 
-.node--type-katacoda-individual-lesson {
+.node--type-katacoda-individual-lesson.node--view-mode-card {
     // Set flex to push the start button to the bottom
     display:flex;
     flex-flow: column;
@@ -600,7 +600,7 @@ $katacoda-grid-title-size:23px;
     }
 }
 
-.node--type-katacoda-course {
+.node--type-katacoda-course.node--view-mode-card {
     @include border-radius();
     
     display:flex;
