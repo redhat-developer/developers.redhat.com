@@ -498,6 +498,15 @@ $katacoda-grid-title-size:23px;
     }
 }
 
+.view-katacoda-all-courses.view-display-id-block_1 .view-content {
+		margin:3em auto 5em auto;
+		@include katacoda-grid-container();
+
+    & .views-row {
+      @include katacoda-grid-element();
+    }
+}
+
 .node--type-katacoda-individual-lesson {
     // Set flex to push the start button to the bottom
     display:flex;
