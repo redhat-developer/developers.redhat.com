@@ -105,7 +105,7 @@
         <h2{{ title_attributes }}><a href="{{ path('entity.node.canonical', {'node': node.nid.value}) }}">{{ node.title.value }}</a><h2/>
       </div>
       <div class="lesson--time-level">
-        <span class="time-clock"><img src="/{{ active_theme_path() }}/images/design/katacoda/clock.svg" /></span> {{ scenario_time }}
+        <span class="time-clock fas fa-clock"></span> {{ scenario_time }}
         {% if (scenario_time is not empty) and (skill_level is not empty)  %}
            | {{ skill_level }}
         {% endif %}
