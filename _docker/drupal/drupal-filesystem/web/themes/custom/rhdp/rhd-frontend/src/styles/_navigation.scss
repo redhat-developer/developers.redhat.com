@@ -90,6 +90,7 @@
 .rh-header-logo {
   max-width: 100px;
   padding: 5px;
+  height: 50px;
 }
 
 .rh-universal-header .rh-universal-login {
@@ -847,7 +848,6 @@
     height: auto;
   }
   @include desktop-small {
-    margin: -20px 0 -20px 0;
     img {
       width: 100%;
     }
