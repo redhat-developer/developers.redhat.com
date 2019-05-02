@@ -38,7 +38,7 @@
           <span>{{ num_courses }} {% if num_courses == 1 %}LESSON{% else %}LESSONS{% endif %}</span>
         </div>
         <div class="katacoda-course__body">
-          {{ katacoda_course_info.course_description|raw }}
+          {{ content.body.0 }}
         </div>
         <div class="katacoda-course__meta">
           {# Audiences #}
