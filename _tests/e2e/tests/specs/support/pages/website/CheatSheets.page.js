@@ -22,7 +22,7 @@ export class CheatSheets extends Page {
     }
 
     awaitDownloadThankYou() {
-        return Driver.awaitExists(this.thankYou);
+        return Driver.awaitIsDisplayed(this.thankYou);
     }
 }
 export default new CheatSheets;
