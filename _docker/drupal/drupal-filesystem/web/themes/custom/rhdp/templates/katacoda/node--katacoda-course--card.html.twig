@@ -32,7 +32,7 @@
           <span>>_</span>
         </div>
         <div class="katacoda-course__title">
-          <h2{{ title_attributes }}><a href="{{ katacoda_course_info.course_read_more }}">{{ katacoda_course_info.course_title|raw }}</a></h2>
+          <h2{{ title_attributes }}><a href="{{ path('entity.node.canonical', {'node': node.nid.value}) }}">{{ katacoda_course_info.course_title|raw }}</a></h2>
         </div>
         <div class="katacoda-course__num-lessons">
           <span>{{ num_courses }} {% if num_courses == 1 %}LESSON{% else %}LESSONS{% endif %}</span>
@@ -56,9 +56,7 @@
         </div>
       </div>
       <div class="katacoda-course__cta">
-        {% if (katacoda_course_info.course_read_more) is not empty %}
-          <a class="katacoda-learn-more-link" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Start Course</a>
-        {% endif %}
+        <a class="katacoda-learn-more-link" href="{{ path('entity.node.canonical', {'node': node.nid.value}) }}" alt="Read More">Start Course</a>
       </div>
     </div>
  
