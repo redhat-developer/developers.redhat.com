@@ -1,0 +1,40 @@
+uuid: 0bfc00ac-2faa-49d5-96da-356a53ec5602
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_assembly
+    - field.field.assembly.combo_item_assembly.field_assembly_item
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.combo_item_assembly.default
+targetEntityType: assembly
+bundle: combo_item_assembly
+mode: default
+content:
+  field_assembly_item:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  langcode: true
+  name: true
+  user_id: true

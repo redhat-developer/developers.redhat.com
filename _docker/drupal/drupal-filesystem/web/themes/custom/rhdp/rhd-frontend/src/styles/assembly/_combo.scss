@@ -1,0 +1,66 @@
+.assembly {
+  &.assembly-type-combo {
+    &.gray-bg {
+      background-color: #e5e5e5;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    .combo-fields {
+      @include tablet-landscape {
+        display: flex;
+      }
+      .combo-content {
+        @include tablet-landscape {
+          width: 50%;
+        }
+      }
+      .combo-cards {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        @include mobile-landscape-and-down {
+          display: block;
+        }
+        @include tablet-landscape {
+          justify-content: flex-start;
+          margin-top: 0;
+        }
+        .combo-card {
+          &:last-child {
+            padding-left: 15px;
+          }
+          @include mobile-landscape-and-down {
+            padding-bottom: 15px;
+            &:last-child {
+              padding-left: 0;
+            }
+          }
+          @include tablet-landscape {
+            padding-left: 30px;
+          }
+          .assembly {
+            padding: 0;
+            .container {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+    .assembly-type-combo_item_manual {
+      .image {
+        text-align: center;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      a {
+        display: block;
+        padding: 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+uuid: 4d7d8383-1571-4b42-aa53-6befcfa91add
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo
+    - field.field.assembly.combo.field_audience_selection
+    - field.field.assembly.combo.field_background_image
+    - field.field.assembly.combo.field_cards
+    - field.field.assembly.combo.field_content
+    - field.field.assembly.combo.field_title
+  module:
+    - entity_reference_revisions
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.combo.default
+targetEntityType: assembly
+bundle: combo
+mode: default
+content:
+  field_cards:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: combo-cards
+        fences_field_item_tag: div
+        fences_field_item_classes: combo-card
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: combo-content
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: h2
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+hidden:
+  field_audience_selection: true
+  field_background_image: true
+  langcode: true
+  name: true
+  user_id: true
