@@ -19,7 +19,7 @@ bundle: katacodas
 mode: default
 content:
   field_katacodas:
-    weight: 102
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -28,7 +28,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_title:
-    weight: 101
+    weight: 3
     settings:
       size: 60
       placeholder: ''
