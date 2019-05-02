@@ -1,8 +1,9 @@
-uuid: 62f65f5e-7b09-41ef-8f25-08b9049ad3dd
+uuid: dbf309f5-3f8d-4bb4-bd48-8d6eb828fd8b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.field.node.katacoda_course.body
     - field.field.node.katacoda_course.field_katacoda_course_audience
     - field.field.node.katacoda_course.field_katacoda_course_lessons
@@ -17,19 +18,11 @@ third_party_settings:
   field_layout:
     id: layout_disabled
     settings: {  }
-id: node.katacoda_course.default
+id: node.katacoda_course.card
 targetEntityType: node
 bundle: katacoda_course
-mode: default
+mode: card
 content:
-  field_katacoda_course_audience:
-    weight: 1
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_katacoda_course_lessons:
     weight: 3
     label: hidden
@@ -57,6 +50,7 @@ content:
 hidden:
   body: true
   content_moderation_control: true
+  field_katacoda_course_audience: true
   langcode: true
   links: true
   published_at: true

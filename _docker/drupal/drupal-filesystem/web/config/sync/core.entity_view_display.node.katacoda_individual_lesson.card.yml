@@ -1,8 +1,9 @@
-uuid: 378302a4-32b0-4c05-8644-2cdb7b803711
+uuid: 9f7a5096-01ac-4258-bed0-2b7b2ee3ddb7
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.field.node.katacoda_individual_lesson.body
     - field.field.node.katacoda_individual_lesson.field_katacoda_embed_id
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
@@ -18,19 +19,11 @@ third_party_settings:
   field_layout:
     id: layout_disabled
     settings: {  }
-id: node.katacoda_individual_lesson.default
+id: node.katacoda_individual_lesson.card
 targetEntityType: node
 bundle: katacoda_individual_lesson
-mode: default
+mode: card
 content:
-  field_katacoda_embed_id:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_katacoda_scenario_author:
     weight: 4
     label: hidden
@@ -63,5 +56,6 @@ content:
 hidden:
   body: true
   content_moderation_control: true
+  field_katacoda_embed_id: true
   langcode: true
   published_at: true
