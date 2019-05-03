@@ -2,22 +2,29 @@
   &.short-teaser {
     font-size: 14px;
     text-align: center;
+    display: grid;
+    grid-template-columns: 70px auto;
+    .author-info {
+      text-align: left;
+      margin-left: 1rem;
+      align-self: center;
+    }
     .author-name {
-      font-size: 14px;
+      font-size: 12px;
       background-color: $white;
       color: $gray-6;
       padding: 6px 13px;
       text-transform: uppercase;
       display: inline-block;
       line-height: 1.6;
+      margin: 0 0 .5rem 0;
       .field--name-title {
         margin-bottom: 0;
       }
     }
     .field--name-field-headshot img {
-      width: 90px;
-      height: auto !important;
       border-radius: 100%;
+      align-self: center;
     }
   }
 }

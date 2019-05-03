@@ -22,11 +22,30 @@
     </div>
     {% if content|without('video')|render %}
     <div class="content">
-      <h2 class="section-title"><a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a></h2>
-      {{- content|without('video', 'field_title') -}}
+      <h2 class="section-title">
+        <a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a>
+      </h2>
+      <div class="video-description">{{ content.field_description }}</div>
+      {{ content.authors }}
     </div>
     {% endif %}
   </div>
+  {% if content.secondary_video %}
+  <div class="container">
+    <div class="video">
+      {{ content.secondary_video }}
+    </div>
+    {% if content|without('secondary_video')|render %}
+    <div class="content">
+      <h2 class="section-title">
+        <a href="{{ path('entity.node.canonical', {'node': assembly.field_secondary_video_resource.entity.id }) }}">{{ content.field_secondary_video_title }}</a>
+      </h2>
+      <div class="video-description">{{ content.field_secondary_video_descriptio }}</div>
+      {{ content.secondary_video_authors }}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
   {% if background_image_url %}
     <div class="background" style="background-image: url({{ background_image_url }});"></div>
   {% endif %}
