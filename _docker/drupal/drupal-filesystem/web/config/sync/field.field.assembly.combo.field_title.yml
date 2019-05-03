@@ -1,0 +1,19 @@
+uuid: 1db9ca6a-f801-45f0-a48d-7e9835dca9ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo
+    - field.storage.assembly.field_title
+id: assembly.combo.field_title
+field_name: field_title
+entity_type: assembly
+bundle: combo
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

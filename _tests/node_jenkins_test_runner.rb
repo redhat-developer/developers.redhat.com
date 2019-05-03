@@ -50,7 +50,6 @@ class NodeJenkinsTestRunner
       puts "Run of test profile '#{profile}' failed."
       success = false
     end
-    generate_allure_report(profile)
     success
   end
 
@@ -81,14 +80,6 @@ class NodeJenkinsTestRunner
 
   def clear_report_dir
     FileUtils.rm_rf("#{@control_script_directory}/e2e/report")
-  end
-
-  def generate_allure_report(profile)
-    begin
-      @process_runner.execute!("allure generate #{@control_script_directory}/e2e/report/#{profile}-results -o #{@control_script_directory}/e2e/report/#{profile}-report")
-    rescue
-      @log.warn("Failed to generate #{profile} report")
-    end
   end
 
   def create_download_dir

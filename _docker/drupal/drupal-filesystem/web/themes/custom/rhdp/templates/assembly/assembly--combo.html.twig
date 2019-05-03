@@ -1,0 +1,30 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+  <div class="container">
+    {{ content.field_title }}
+    <div class="combo-fields">
+      {% if content %}
+      {{- content|without('field_title') -}}
+      {% endif %}
+    </div>
+  </div>
+  {% if background_image_url %}
+  <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section>

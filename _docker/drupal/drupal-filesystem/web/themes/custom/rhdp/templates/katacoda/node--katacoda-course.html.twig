@@ -57,6 +57,8 @@
         
         <div class="container">
           <div class="katacoda-lesson-grid">
+            {{ content.field_katacoda_course_lessons }}
+            {#
           {% for lesson in katacoda_course_info.courses %}
               <div class="katacoda-lesson">
                   <div class="info-outer">
@@ -97,6 +99,7 @@
               
               </div>
           {% endfor %}
+          #}
           </div>
         </div>
 

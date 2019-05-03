@@ -5,7 +5,6 @@ import User from '../support/rest/keycloak/Site.user';
 import DownloadDir from '../support/utils/DownloadDir';
 import Utils from '../support/utils/Utils';
 
-// eslint-disable-next-line no-undef
 tags('desktop').describe('Download Manager', function() {
     // eslint-disable-next-line no-invalid-this
     this.retries(2);
@@ -21,7 +20,8 @@ tags('desktop').describe('Download Manager', function() {
                 .open('rhel', 'download')
                 .download();
             Login.with(siteUser);
-            ProductOverview.awaitDownload('rhel');
+            ProductOverview.awaitHelloWorldPage('rhel');
+            ProductOverview.awaitDownloadThankYou();
             const downloadName = DownloadDir.get();
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });

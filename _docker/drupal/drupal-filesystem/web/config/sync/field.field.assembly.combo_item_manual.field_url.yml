@@ -1,0 +1,23 @@
+uuid: 6407d464-cb44-4764-a8a7-9c2512cf3a55
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_manual
+    - field.storage.assembly.field_url
+  module:
+    - link
+id: assembly.combo_item_manual.field_url
+field_name: field_url
+entity_type: assembly
+bundle: combo_item_manual
+label: 'Link URL'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
