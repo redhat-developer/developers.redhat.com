@@ -102,17 +102,8 @@ $katacoda-grid-title-size:23px;
 .katacoda-hero {
     background:black;
     
-    
     .container {
-        padding-top:2em;
-        padding-bottom:2em;
-
-        height:470px;
-        max-height:470px;
         @include katacoda-grid-container();
-        background: url('../images/design/katacoda/rhd-katacoda-header-1410x940.jpg') no-repeat;
-        background-size: contain;
-        background-position: right;
 
         @media(max-width:$large-phone-breakpoint) {
             height:auto;
@@ -124,14 +115,17 @@ $katacoda-grid-title-size:23px;
             h1,h2,h3 {
                 color:white;
             }
+            h1 {
+              font-size: 36px;
+              font-weight: 700;
+            }
 
             // Katacoda Learn More Link in Hero
             a.katacoda-learn-more-link {
-                color:white;
-                display:block;
-                margin-top:2em;
-                &:hover {
-                    color:$gray-2;
+                color: $link-dark-background;
+
+                &:not(.button):hover {
+                    border-bottom: 1px solid #dcdcdc;
                 }
             }
         }
