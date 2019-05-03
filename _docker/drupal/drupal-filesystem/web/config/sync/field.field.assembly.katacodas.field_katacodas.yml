@@ -1,0 +1,30 @@
+uuid: 95528f22-08ab-406c-b15e-d87dc80a72b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.katacodas
+    - field.storage.assembly.field_katacodas
+    - node.type.katacoda_course
+    - node.type.katacoda_individual_lesson
+id: assembly.katacodas.field_katacodas
+field_name: field_katacodas
+entity_type: assembly
+bundle: katacodas
+label: Katacodas
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      katacoda_course: katacoda_course
+      katacoda_individual_lesson: katacoda_individual_lesson
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: katacoda_course
+field_type: entity_reference

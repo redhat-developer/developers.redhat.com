@@ -139,352 +139,217 @@ $katacoda-grid-title-size:23px;
     }
 }
 
-// Grid and other display layout content
-.layout-container {
-    &.katacoda-courses {
-        header {
-            div.rhd-masthead {
-                nav {
-                    
-                    ul {
-                        @include flexbox();
-                        flex-flow:row nowrap;
-                        justify-content: space-between;
-                        li {
-                            margin:0 .5rem;
-                        }
-                    }
-                }
+.assembly-type-katacodas .field--name-field-katacodas,
+.page-node-type-katacoda-course .field--name-field-katacoda-course-lessons {
+		margin:3em auto 5em auto;
+		@include katacoda-grid-container();
 
-                // Add a thick bottom border {
-                @media(max-width:$large-phone-breakpoint) {
-                    border-bottom-width: 32px;
+    & .field__item {
+      @include katacoda-grid-element();
+    }
+}
+
+.view-katacoda-all-courses.view-display-id-block_1 .view-content {
+		margin:3em auto 5em auto;
+		@include katacoda-grid-container();
+
+    & .views-row {
+      @include katacoda-grid-element();
+    }
+}
+
+.node--type-katacoda-individual-lesson.node--view-mode-card {
+    // Set flex to push the start button to the bottom
+    display:flex;
+    flex-flow: column;
+    justify-content: space-between;
+    position: relative;
+
+    a {
+        font-weight:700;
+        display:block;
+    }
+
+    .info-outer {
+
+        flex-grow:1;
+        border:2px solid $grey-2;
+        @include border-radius-top();
+        border-bottom:none;
+        padding:20px;
+
+        // Add flex to extend last info box to bottom of tile
+        display:flex;
+        flex-flow: column;
+
+        .lesson {
+            width:100%;
+            &--title {
+                a {
+                    font-size: $katacoda-grid-title-size;
+                    font-weight: 700;
+                    width:100%;
+                    color:black;
                 }
             }
-        }
+            &--description {
+                font-weight:300;
+                // Expand description to fill space and put the publish meta at the bottom   
+                flex-grow:1;
+            }
+            // This is the author name and publish date
+            &--time-level,
+            &--publish-meta {
+                font-weight:300;
+                font-size:.8125rem;
+                color:$gray-4-5;
+            }
 
-        main {
-            div.layout-content {
-                .container.katacoda-courses-container {
-                    margin:3em auto 5em auto;
+            &--publish-meta {
+                p {
+                    font-size:.8125rem; 
                 }
+            }
 
-                .region-content {
-                    .block-system-breadcrumb-block {     
-                        margin:0 auto;
-                    }
-                    
-                    .block-system-main-block {
-                        .views-element-container {
-                            // ALL COURSES DISPLAY PAGE
-                            .view-katacoda-all-courses {    
-                                .view-content {
-                                    @include katacoda-grid-container();
-                                    // Individual tiles on courses grid
-                                    div {    
-                                        @include border-radius();
-                                        
-                                        @include katacoda-grid-element();
-                                        
-                                        display:flex;
-                                        flex-flow: column;
-                                        justify-content: space-between;
+            &--time-level {
+               span.time-clock { 
+                   display:inline-block;
+                   width:.75rem;
+                   height:.75rem;
+               }     
+            }
 
-                                        background:$red;
-                                        a {
-                                            color:white;
-                                        }
+        }
+    }
 
-                                        span.views-field-title {
-                                            font-size: $katacoda-grid-title-size;
-                                            display:block;
-                                            padding:20px 20px 0 20px;
-                                        }
+    .lesson-link {
 
-                                        div.views-field {
-                                          
-                                            padding:0;
-                                            &.views-field-body {
-                                                color:white;
-                                                font-weight:300;
-                                                padding:0 20px;
-                                                // Set this to push the button below it to the bottom
-                                                flex-grow:1;
-                            
-                                            }
-                                            &.views-field-view-node {
-                                    
-                                                text-align:center;
-                                                span.field-content {
-                                                    a {
-                                                        display:block;
-                                                        width:100%;
-                                                        text-transform: uppercase;
-                                                        background:white;
-                                                        color:$red;
-                                                        @include border-radius-bottom(10px);
-                                                        border:2px solid $red;
-                                                        padding:10px 0;
-                                                        &:hover {
-                                                            color:darken($red,20%);
-                                                        } 
-                                                    }
-                                                }
-                                            }
-                                            div.field-content {
-                                                padding:0;
-                                            }
-                                        }
-                                       
-                                    }
-                                }
-                            }
-                        }
-                    }
+        text-align:center;
 
+        a {
+            background:$red;
+            @include border-radius-bottom(10px);
+            border-left:2px solid $red;
+            border-right:2px solid $red;
+            border-bottom:2px solid $red;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: normal;
+            padding: 15px 0;
+            color:white;
+            margin:0 auto;
+            
+            &:hover {
+                background:darken($red,10%);
+                border-left-color:darken($red,10%);
+                border-right-color:darken($red,10%);
+                border-bottom-color:darken($red,10%);
 
-                    article {
-                        // THE INDIVIDUAL COURSE PAGES
+            }
+        }
+    }
+}
 
-                  
-                        &.node--type-katacoda-course {                       
-                            footer.node__meta {
-                                display:none;
-                            }
-
-                           
-
-                            div.node__content {
-                                // Margin fix for mobile breakpoint for hero 
-                                @media(max-width:$large-phone-breakpoint) {
-                                    margin-top:0;   
-                                }
-                                
-                                margin:1rem auto;
-                                div.field--name-body  {
-                                    text-align:center;
-                                }
-
-                                div.field--name-field-katacoda-course-url-slug {
-                                    display:none;
-                                }
-
-                                div.field--type-published-at {
-                                    display:none;
-                                }
-
-                                // GRID FOR INDIVIDUAL SCENARIO DISPLAYS
-                                /**
-                                * This is styled differently than on the All course page.
-                                * Reason for this is that the All Courses page is displayed in View defaults
-                                * whereas Invidivudual Course uses some customized content 
-                                * See 'Katacoda Course Page' section of rhdp_preprocess_node() in rhdp.theme
-                                */
-                                div.katacoda-lesson-grid {
-                                    margin:3em auto 5em auto;
-                                    @include katacoda-grid-container();
-
-                                    div.katacoda-lesson {
-                                        @include katacoda-grid-element();
-                                    
-                                        // Set flex to push the start button to the bottom
-                                        display:flex;
-                                        flex-flow: column;
-                                        justify-content: space-between;
-                                        a {
-                                            font-weight:700;
-                                            display:block;
-                    
-                                        }
-                                        position: relative;
-                                        div.info-outer {
-                                
-                                            flex-grow:1;
-                                            border:2px solid $grey-2;
-                                            @include border-radius-top();
-                                            border-bottom:none;
-                                            padding:20px;
-
-                                            // Add flex to extend last info box to bottom of tile
-                                            display:flex;
-                                            flex-flow: column;
-                                            div.lesson {
-                                                width:100%;
-                                                &--title {
-                                                    a {
-                                                        width:100%;
-                                                        color:black;
-                                                    }
-                                                }
-                                                &--description {
-                                                    font-weight:300;
-                                                    // Expand description to fill space and put the publish meta at the bottom   
-                                                    flex-grow:1;
-                                                }
-                                                // This is the author name and publish date
-                                                &--time-level,
-                                                &--publish-meta {
-                                                    font-weight:300;
-                                                    font-size:.8125rem;
-                                                    color:$gray-4-5;
-                                                }
-
-                                                &--publish-meta {
-                                                    p {
-                                                        font-size:.8125rem; 
-                                                    }
-                                                }
-
-                                                &--time-level {
-                                                   span.time-clock { 
-                                                       display:inline-block;
-                                                       width:.75rem;
-                                                       height:.75rem;
-                                                   }     
-                                                }
+.node--type-katacoda-course.node--view-mode-card {
+    @include border-radius();
     
-                                            }
-                                        }
+    display:flex;
+    flex-flow: column;
+    justify-content: space-between;
+    background:$red;
 
-                                        .lesson-link {
+    a {
+        color:white;
+    }
 
-                                            text-align:center;
-                                            a {
-                                                background:$red;
-                                                @include border-radius-bottom();
-                                                border-left:2px solid $red;
-                                                border-right:2px solid $red;
-                                                border-bottom:2px solid $red;
-                                                text-align: center;
-                                                text-transform: uppercase;
-                                                font-size:1rem;
-                                                font-weight:normal;
-                                                padding:20px 0;
-                                                color:white;
-                                                margin:0 auto;
-                                                
-                                                &:hover {
-                                                    background:darken($red,10%);
-                                                    border-left-color:darken($red,10%);
-                                                    border-right-color:darken($red,10%);
-                                                    border-bottom-color:darken($red,10%);
+    .info-outer {
 
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+        flex-grow:1;
+        @include border-radius-top();
+        border-bottom:none;
+        padding:20px;
 
-                            }
-                            
-                            div.field--name-field-katacoda-course-lessons {
-                                
-                                @include katacoda-grid-container();
-                                
-                                div.field__item {
-                                    @include katacoda-grid-element();
-                                    text-align:center;
-                                
-                                    a {
-                                        background:$grey-4-5;
-                                        width:100%;
-                                        display:block;
-                                        padding: 18px 20px;
-                                        text-transform:uppercase;
-                                        color:white;
-                                        &:hover {
-                                            background:$grey-5;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+        // Add flex to extend last info box to bottom of tile
+        display:flex;
+        flex-flow: column;
+    }
 
-
-                        // INDIVIDUAL LESSON  NODE
-                        &.node--type-katacoda-individual-lesson {
-                            div.node__content {
-
-                                // Margin fix for mobile breakpoint for hero 
-                                @media(max-width:$large-phone-breakpoint) {
-                                    margin-top:0;   
-                                }
-                                div.field--name-body {
-                                    margin-bottom:1rem;
-                                }
-
-                                // Hide lesson at screen widths that are smaller
-                                
-                                .screen-size-note {
-                                    width:80%;
-                                    margin:1em auto;
-                                    text-align:center;
-                                    padding:1em;
-                                    display:none;
-                                }
-                                @media(max-width:$large-phone-breakpoint) {
-                                    .katacoda-lesson {
-                                        display:none;
-                                    }
-                                    .screen-size-note {
-                                        display:block;
-                                        text-align:center;
-                                        h1 {
-                                            font-size:42px;
-                                            clear:both;
-                                        }
-                                        p {
-                                            clear:both;
-                                        }
-                                        
-                                        a {
-                                            color:white;
-                                            &.mobile-learn-more {
-                                               background:#cc0000;
-                                               display:block;
-                                               margin:2em auto 0 auto;
-                                               width:70%;
-                                               text-transform:uppercase;
-                                               padding:.5rem;
-                                               &:hover {
-                                                   background:darken(#cc0000,10%);
-                                               }
-
-                                           } 
-                                        }
-
-                                        img {
-                                            max-width:178px;
-                                            height:auto;
-                                            margin-top:2rem;
-                                        }
-                                    }
-                                }
-
-                                @media(max-width:$small-phone-breakpoint) {
-                                    .screen-size-note {
-                                        width:70%;
-                                        h1 {
-                                            font-size:2rem;
-                                        }
-                                    }
-                                }
-                            }
-
-                            // Hide display of the time, difficulty and time/author fields on individual scenario page
-                            .field--name-field-katacoda-scenario-time,
-                            .field--name-published-at,
-                            .field.field--name-field-katacoda-skill-level,
-                            .field--name-field-katacoda-scenario-author {
-                                display:none;
-                            }
-
-                            
-                        }
-                    }
-                }
-            }
-        
+    .katacoda-course__pre-title {
+        span {
+            font-size: $katacoda-grid-title-size;
+            font-weight: 700;
+            color: white;
         }
+    }
+
+    .katacoda-course__title {
+        h2 {
+            font-size: $katacoda-grid-title-size;
+            font-weight: 700;
+        }
+    }
+
+    .katacoda-course__num-lessons {
+        span {
+            font-weight: 700;
+            color: white;
+        }
+    }
+
+    .katacoda-course__body {
+        color:white;
+        font-weight:300;
+        padding:0;
+        // Set this to push the button below it to the bottom
+        flex-grow:1;
+    }
+
+    .katacoda-course__meta {
+        color: white;
+        font-weight:300;
+        font-size:.8125rem;
+
+        .audience,
+        .time-clock {
+             display: inline-block;
+             width: .75rem;
+             height: .75rem;
+        }
+
+        .katacoda-course__audience {
+            display: inline-block;
+        }
+
+        .katacoda-course__time-clock {
+            display: inline-block;
+            float: right;
+        }
+    }
+
+    .katacoda-course__cta {
+				text-align:center;
+        padding: 0;
+
+        a {
+            display:block;
+            width:100%;
+            text-transform: uppercase;
+            background:white;
+            color:$red;
+            @include border-radius-bottom(10px);
+            font-size:1rem;
+            border-left:2px solid $red;
+            border-bottom:2px solid $red;
+            border-right:2px solid $red;
+            padding: 15px 0;
+
+            &:hover {
+                color:darken($red,20%);
+                border-left-color:darken($red,20%);
+                border-bottom-color:darken($red,20%);
+                border-right-color:darken($red,20%);
+            } 
+				}
     }
 }
