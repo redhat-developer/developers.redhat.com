@@ -1,0 +1,19 @@
+uuid: 012076be-9389-4af5-92e1-e53d0c2a82ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_assembly_item
+field_name: field_assembly_item
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: assembly
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

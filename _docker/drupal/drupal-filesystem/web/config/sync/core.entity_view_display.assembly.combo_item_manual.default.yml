@@ -1,0 +1,63 @@
+uuid: 12db2d83-1c41-44b3-8657-7b46b4aabbd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_manual
+    - field.field.assembly.combo_item_manual.field_image
+    - field.field.assembly.combo_item_manual.field_url
+    - image.style.medium
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.combo_item_manual.default
+targetEntityType: assembly
+bundle: combo_item_manual
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: image
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: image
+    region: content
+  field_url:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link
+    region: content
+hidden:
+  langcode: true
+  name: true
+  user_id: true

@@ -1,0 +1,42 @@
+uuid: 54dc2975-6933-4272-ba9a-b30de3bc5b95
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_node
+    - field.storage.assembly.field_node_item
+    - node.type.article
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.coding_resource
+    - node.type.katacoda_course
+    - node.type.katacoda_individual_lesson
+    - node.type.learning_path
+    - node.type.video_resource
+id: assembly.combo_item_node.field_node_item
+field_name: field_node_item
+entity_type: assembly
+bundle: combo_item_node
+label: 'Node Item'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+      books: books
+      cheat_sheet: cheat_sheet
+      coding_resource: coding_resource
+      katacoda_course: katacoda_course
+      katacoda_individual_lesson: katacoda_individual_lesson
+      learning_path: learning_path
+      video_resource: video_resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: article
+field_type: entity_reference

@@ -1,0 +1,20 @@
+uuid: 07b616fe-0c0a-4fc2-ba8d-df4473f6aaae
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - entity_reference_revisions
+id: assembly.field_cards
+field_name: field_cards
+entity_type: assembly
+type: entity_reference_revisions
+settings:
+  target_type: assembly
+module: entity_reference_revisions
+locked: false
+cardinality: 2
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
