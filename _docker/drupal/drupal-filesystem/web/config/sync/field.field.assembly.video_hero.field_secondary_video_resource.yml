@@ -1,0 +1,28 @@
+uuid: ec71173b-3a50-44bf-9f54-9fc74ad0177b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_secondary_video_resource
+    - node.type.video_resource
+id: assembly.video_hero.field_secondary_video_resource
+field_name: field_secondary_video_resource
+entity_type: assembly
+bundle: video_hero
+label: 'Secondary Video Resource'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      video_resource: video_resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
