@@ -347,3 +347,26 @@ $katacoda-grid-title-size:23px;
 				}
     }
 }
+
+.screen-size-note {
+  text-align: center;
+
+  @media(min-width: 812px) {
+    display: none;
+  }
+
+  &__logo {
+    display: block;
+    margin: 20px auto;
+  }
+}
+
+.katacoda-lesson {
+  @media(max-width: 812px) {
+    display: none;
+  }
+}
+
+.mobile-learn-more {
+  margin: 20px auto;
+}
