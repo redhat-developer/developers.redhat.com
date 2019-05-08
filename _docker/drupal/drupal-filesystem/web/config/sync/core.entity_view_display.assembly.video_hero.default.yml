@@ -8,6 +8,9 @@ dependencies:
     - field.field.assembly.video_hero.field_background_image
     - field.field.assembly.video_hero.field_description
     - field.field.assembly.video_hero.field_navigation_title
+    - field.field.assembly.video_hero.field_secondary_video_descriptio
+    - field.field.assembly.video_hero.field_secondary_video_resource
+    - field.field.assembly.video_hero.field_secondary_video_title
     - field.field.assembly.video_hero.field_title
     - field.field.assembly.video_hero.field_video_resource
   module:
@@ -38,6 +41,35 @@ content:
         fences_label_classes: ''
     type: text_default
     region: content
+  field_secondary_video_descriptio:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  field_secondary_video_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
   field_title:
     weight: 0
     label: hidden
@@ -57,6 +89,7 @@ hidden:
   field_audience_selection: true
   field_background_image: true
   field_navigation_title: true
+  field_secondary_video_resource: true
   field_video_resource: true
   langcode: true
   name: true

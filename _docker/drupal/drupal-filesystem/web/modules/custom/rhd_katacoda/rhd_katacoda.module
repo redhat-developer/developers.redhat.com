@@ -6,6 +6,8 @@
  * For initial use, this only imports a script to handle Katacoda-specific token functionality
  */
 
+use Drupal\taxonomy\Entity\Term;
+
  include_once 'rhd_katacoda.tokens.inc';
 
 /**
@@ -20,21 +22,30 @@ function rhd_katacoda_preprocess_node(array &$variables) {
   // Adds the body/description content of an entity reference to the lesson
   // display list individual content cards.
   if ($node->getType() == 'katacoda_course') {
+    // Get page title.
+    $course_title = $node->title->value;
+    // Get description for the hero.
+    $course_description = $node->body->value;
+    // Course 'read more' link.
+    $course_read_more_link = $node->field_katacoda_hero_more_link->value;
+    // We will use this variable to add up the entire time of a course.
+    $course_time = 0;
+
+    $audiences = $node->field_katacoda_course_audience->getValue();
+    $audience_names = [];
+
+    foreach ($audiences as $audience) {
+      $audience_names[] = Term::load($audience['target_id'])->getName();
+    }
+
+    $variables['katacoda_course_info']['course_title']       = $course_title;
+    $variables['katacoda_course_info']['course_description'] = $course_description;
+    $variables['katacoda_course_info']['course_read_more']   = $course_read_more_link;
+
+    // Set the array for included Katacoda scenarios.
+    $course_content = [];
+
     if (!$node->field_katacoda_course_lessons->isEmpty()) {
-      // Get page title.
-      $course_title = $node->title->value;
-      // Get description for the hero.
-      $course_description = $node->body->value;
-      // Course 'read more' link.
-      $course_read_more_link = $node->field_katacoda_hero_more_link->value;
-
-      $variables['katacoda_course_info']['course_title']       = $course_title;
-      $variables['katacoda_course_info']['course_description'] = $course_description;
-      $variables['katacoda_course_info']['course_read_more']   = $course_read_more_link;
-
-      // Set the array for included Katacoda scenarios.
-      $course_content = [];
-
       // Retrieve the IDs of the included Katacoda Courses to display information and links.
       $lessons = $node->field_katacoda_course_lessons->getValue();
       $lesson_ids = [];
@@ -69,10 +80,16 @@ function rhd_katacoda_preprocess_node(array &$variables) {
          'skill_level'        => $v->field_katacoda_skill_level->value,
          'display_author'     => $v->field_katacoda_scenario_author->value,
         ];
+
+        // Add each scenario_time to the total course_time.
+        $course_time += (int) $v->field_katacoda_scenario_time->value;
       }
 
       $variables['katacoda_course_info']['courses'] = $katacoda_scenarios;
     }
+
+    $variables['katacoda_course_info']['audiences'] = $audience_names;
+    $variables['katacoda_course_info']['course_time'] = $course_time;
   }
 }
 

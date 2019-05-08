@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Note that this template relies upon a display preprocess function that is found within rhdp_preprocess_node()
+ * at the comment line: 
+ // Katacoda Course Page – Additional Field Display
+ *
+ * 
+ */
+#}
+{%
+    set classes = [
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    ]
+  %}
+  {{ attach_library('classy/node') }}
+  <article{{ attributes.addClass(classes) }}>
+
+    {% set num_courses = katacoda_course_info.courses|length %}
+  
+    <div{{ content_attributes.addClass('node__content') }}>
+      {% set base_url = render_var(url('<front>'))  %}
+      <div class="info-outer">
+        <div class="katacoda-course__pre-title">
+          <span>>_</span>
+        </div>
+        <div class="katacoda-course__title">
+          <h2{{ title_attributes }}><a href="{{ path('entity.node.canonical', {'node': node.nid.value}) }}">{{ katacoda_course_info.course_title|raw }}</a></h2>
+        </div>
+        <div class="katacoda-course__num-lessons">
+          <span>{{ num_courses }} {% if num_courses == 1 %}LESSON{% else %}LESSONS{% endif %}</span>
+        </div>
+        <div class="katacoda-course__body">
+          {{ content.body.0 }}
+        </div>
+        <div class="katacoda-course__meta">
+          {# Audiences #}
+          {% if katacoda_course_info.audiences|length == 1 %}
+            <div class="katacoda-course__audience"><span class="audience fas fa-user"></span> {{ katacoda_course_info.audiences[0] }}</div>
+          {% elseif katacoda_course_info.audiences|length > 1 %}
+            <div class="katacoda-course__audience"><span class="audience fas fa-users"></span></div>
+            {% for audience in katacoda_course_info.audiences %}
+              {{ audience }}
+            {% endfor %}
+          {% endif %}
+
+          {# Course Time #}
+          <div class="katacoda-course__time-clock"><span class="time-clock fas fa-clock"></span> {{ katacoda_course_info.course_time }} minutes</div>
+        </div>
+      </div>
+      <div class="katacoda-course__cta">
+        <a class="katacoda-learn-more-link" href="{{ path('entity.node.canonical', {'node': node.nid.value}) }}" alt="Read More">Start Course</a>
+      </div>
+    </div>
+ 
+  </article>

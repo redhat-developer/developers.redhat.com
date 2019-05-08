@@ -1,0 +1,48 @@
+uuid: 916ebef5-59d1-4191-88b3-8e6a8361b4af
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_node
+    - field.field.assembly.combo_item_node.field_node_item
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.combo_item_node.default
+targetEntityType: assembly
+bundle: combo_item_node
+mode: default
+content:
+  field_node_item:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  moderation_state: true
+  user_id: true
+  visual_styles: true

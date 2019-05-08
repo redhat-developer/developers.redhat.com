@@ -9,18 +9,40 @@ dependencies:
     - field.field.assembly.video_hero.field_background_image
     - field.field.assembly.video_hero.field_description
     - field.field.assembly.video_hero.field_navigation_title
+    - field.field.assembly.video_hero.field_secondary_video_descriptio
+    - field.field.assembly.video_hero.field_secondary_video_resource
+    - field.field.assembly.video_hero.field_secondary_video_title
     - field.field.assembly.video_hero.field_title
     - field.field.assembly.video_hero.field_video_resource
   module:
+    - compose
     - content_moderation
     - entity_browser
+    - field_group
     - field_layout
-    - layout_discovery
     - text
 third_party_settings:
   field_layout:
-    id: layout_disabled
+    id: compose_tabs
     settings: {  }
+  field_group:
+    group_secondary_video:
+      children:
+        - field_secondary_video_descriptio
+        - field_secondary_video_resource
+        - field_secondary_video_title
+      parent_name: ''
+      weight: 9
+      format_type: accordion
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+        effect: none
+        open: false
+      label: 'Secondary Video'
+      region: content
 id: assembly.video_hero.default
 targetEntityType: assembly
 bundle: video_hero
@@ -34,7 +56,7 @@ content:
     region: content
   field_background_image:
     type: entity_browser_file
-    weight: 8
+    weight: 14
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -43,10 +65,11 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_description:
-    weight: 7
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
@@ -54,14 +77,6 @@ content:
     type: text_textarea
     region: content
   field_navigation_title:
-    weight: 5
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_title:
     weight: 4
     settings:
       size: 60
@@ -69,8 +84,41 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_video_resource:
+  field_secondary_video_descriptio:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_secondary_video_resource:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_secondary_video_title:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
     weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_video_resource:
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -86,7 +134,7 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 9
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -101,7 +149,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 5
     region: content
     settings:
       display_label: true
@@ -109,7 +157,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

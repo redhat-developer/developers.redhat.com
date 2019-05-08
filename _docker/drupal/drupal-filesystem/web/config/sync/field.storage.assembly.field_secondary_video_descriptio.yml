@@ -1,0 +1,19 @@
+uuid: 2a2c0d86-036a-46c4-91db-0dd3739ef24f
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - text
+id: assembly.field_secondary_video_descriptio
+field_name: field_secondary_video_descriptio
+entity_type: assembly
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

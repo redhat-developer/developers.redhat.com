@@ -1,0 +1,72 @@
+uuid: dbf309f5-3f8d-4bb4-bd48-8d6eb828fd8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.katacoda_course.body
+    - field.field.node.katacoda_course.field_katacoda_course_audience
+    - field.field.node.katacoda_course.field_katacoda_course_lessons
+    - field.field.node.katacoda_course.field_katacoda_course_url_slug
+    - field.field.node.katacoda_course.field_katacoda_hero_more_link
+    - node.type.katacoda_course
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.katacoda_course.card
+targetEntityType: node
+bundle: katacoda_course
+mode: card
+content:
+  body:
+    type: text_summary_or_trimmed
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_katacoda_course_lessons:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_katacoda_course_url_slug:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_katacoda_hero_more_link:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  content_moderation_control: true
+  field_katacoda_course_audience: true
+  langcode: true
+  links: true
+  published_at: true

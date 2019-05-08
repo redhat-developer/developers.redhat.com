@@ -1,0 +1,21 @@
+uuid: a5225dbd-349b-4a74-a771-4faa6b984415
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo
+    - field.storage.assembly.field_content
+  module:
+    - text
+id: assembly.combo.field_content
+field_name: field_content
+entity_type: assembly
+bundle: combo
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

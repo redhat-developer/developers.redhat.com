@@ -1,0 +1,36 @@
+uuid: 324cd6f9-2c6f-48af-bed6-6aa1e0b08685
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_assembly
+    - assembly.assembly_type.curated_links
+    - assembly.assembly_type.featured_products
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.static_item
+    - assembly.assembly_type.wordpress_post_reference
+    - field.storage.assembly.field_assembly_item
+id: assembly.combo_item_assembly.field_assembly_item
+field_name: field_assembly_item
+entity_type: assembly
+bundle: combo_item_assembly
+label: 'Assembly Item'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      static_content_band: static_content_band
+      curated_links: curated_links
+      featured_products: featured_products
+      static_item: static_item
+      wordpress_post_reference: wordpress_post_reference
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: static_content_band
+field_type: entity_reference
