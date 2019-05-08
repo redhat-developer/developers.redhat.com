@@ -1,0 +1,29 @@
+uuid: d6c1a7e0-33a0-45d0-b7a8-6478cf869e8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topics
+    - node.type.katacoda_course
+    - taxonomy.vocabulary.topics
+id: node.katacoda_course.field_topics
+field_name: field_topics
+entity_type: node
+bundle: katacoda_course
+label: Topics
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topics: topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

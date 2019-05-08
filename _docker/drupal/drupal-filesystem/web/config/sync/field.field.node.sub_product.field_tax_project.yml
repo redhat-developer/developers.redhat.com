@@ -1,0 +1,29 @@
+uuid: a77a6c9b-8b55-4df4-995e-887a8b7a772e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_project
+    - node.type.sub_product
+    - taxonomy.vocabulary.project
+id: node.sub_product.field_tax_project
+field_name: field_tax_project
+entity_type: node
+bundle: sub_product
+label: Project
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project: project
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
