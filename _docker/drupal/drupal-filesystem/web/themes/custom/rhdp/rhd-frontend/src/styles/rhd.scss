@@ -682,3 +682,17 @@ a#scroll-to-top {
     opacity: 1;
   }
 }
+
+.align-center img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-left img {
+  margin-right: 1rem;
+  float: left;
+}
+.align-right img {
+  margin-left: 1rem;
+  float: right;
+}
