@@ -9,8 +9,11 @@ dependencies:
     - field.field.node.katacoda_course.field_katacoda_course_url_slug
     - field.field.node.katacoda_course.field_katacoda_hero_more_link
     - node.type.katacoda_course
+    - workflows.workflow.00c7e3ae
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - path
     - publication_date
     - text

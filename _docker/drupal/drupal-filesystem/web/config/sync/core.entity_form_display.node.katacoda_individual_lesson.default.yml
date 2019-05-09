@@ -9,8 +9,11 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
     - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
     - node.type.katacoda_individual_lesson
+    - workflows.workflow.00c7e3ae
   module:
     - content_moderation
+    - field_layout
+    - layout_discovery
     - path
     - publication_date
     - text

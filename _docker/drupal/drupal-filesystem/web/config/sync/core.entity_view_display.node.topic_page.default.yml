@@ -19,9 +19,9 @@ dependencies:
     - field.field.node.topic_page.field_tax_stage
     - node.type.topic_page
   module:
-    - compose
     - entity_reference_revisions
     - field_layout
+    - layout_discovery
     - text
     - user
 third_party_settings:

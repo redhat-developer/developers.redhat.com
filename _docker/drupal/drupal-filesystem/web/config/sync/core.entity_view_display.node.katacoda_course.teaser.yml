@@ -5,8 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.katacoda_course.body
+    - field.field.node.katacoda_course.field_katacoda_course_audience
+    - field.field.node.katacoda_course.field_katacoda_course_lessons
+    - field.field.node.katacoda_course.field_katacoda_course_url_slug
+    - field.field.node.katacoda_course.field_katacoda_hero_more_link
     - node.type.katacoda_course
   module:
+    - field_layout
+    - layout_discovery
     - text
     - user
 third_party_settings:

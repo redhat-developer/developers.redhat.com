@@ -11,12 +11,12 @@ _core:
   default_config_hash: D9N3yb_9pTuhS5RYJ2c7eFzHgtexTWA07Ij5oCyshpQ
 name: media_browser
 label: 'Media browser'
-display: iframe
+display: modal
 display_configuration:
-  width: 100%
-  height: '640'
-  link_text: 'Select entities'
-  auto_open: true
+  width: ''
+  height: ''
+  link_text: 'Add media'
+  auto_open: false
 selection_display: no_display
 selection_display_configuration: {  }
 widget_selector: tabs

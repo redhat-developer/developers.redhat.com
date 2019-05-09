@@ -25,8 +25,8 @@ dependencies:
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
-    - compose
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:

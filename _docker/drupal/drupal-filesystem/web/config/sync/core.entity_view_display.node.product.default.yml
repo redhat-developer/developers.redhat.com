@@ -34,9 +34,9 @@ dependencies:
     - field.field.node.product.field_use_new_product_page
     - node.type.product
   module:
-    - compose
     - entity_reference_revisions
     - field_layout
+    - layout_discovery
     - link
     - metatag
     - options

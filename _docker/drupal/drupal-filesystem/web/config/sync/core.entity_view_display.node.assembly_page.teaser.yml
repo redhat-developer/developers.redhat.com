@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.assembly_page.field_hide_title
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
@@ -19,9 +20,9 @@ dependencies:
     - field.field.node.assembly_page.field_tax_stage
     - node.type.assembly_page
   module:
-    - compose
     - entity_reference_revisions
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:

@@ -1,0 +1,50 @@
+uuid: 3cec1a08-1996-4983-bb04-63cfcf3222b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.field_long_bio
+    - field.field.user.user.field_short_bio
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_title
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - field_layout
+    - image
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  name:
+    type: string
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+    label: hidden
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  field_long_bio: true
+  field_short_bio: true
+  field_user_photo: true
+  field_user_title: true
+  langcode: true
+  member_for: true
