@@ -20,7 +20,9 @@ tags('desktop').describe('Download Manager', function() {
                 .open('rhel', 'download')
                 .download();
             Login.with(siteUser);
-            ProductOverview.awaitHelloWorldPage('rhel');
+            //download no longer returns to the hellp world page
+            //ProductOverview.awaitHelloWorldPage('rhel');
+            ProductOverview.awaitProductPage('rhel8');
             ProductOverview.awaitDownloadThankYou();
             const downloadName = DownloadDir.get();
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
