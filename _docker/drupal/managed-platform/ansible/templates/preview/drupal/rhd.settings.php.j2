@@ -16,11 +16,7 @@ $databases['default']['default'] = array (
   'host' => '{{ drupal_db_host }}',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-  'pdo' => [
-    \PDO::MYSQL_ATTR_SSL_CA => '/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem',
-    \PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
-  ]
+  'driver' => 'mysql'
 );
 
 $config['automated_cron.settings']['interval'] = 0;
