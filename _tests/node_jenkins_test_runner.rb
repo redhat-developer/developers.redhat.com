@@ -8,8 +8,7 @@ require 'fileutils'
 #
 class NodeJenkinsTestRunner
 
-  def initialize(test_type, host_to_test, control_script_directory, process_runner)
-    @test_type = test_type
+  def initialize(host_to_test, control_script_directory, process_runner)
     @host_to_test = host_to_test
     @control_script_directory = control_script_directory
     @process_runner = process_runner
@@ -22,15 +21,9 @@ class NodeJenkinsTestRunner
   def run_tests
     clear_report_dir
     tests_passed = true
-    if @test_type == 'e2e'
-      %w(desktop mobile drupal).each do |profile|
-        tests_passed &= execute_e2e(profile)
-        tests_passed
-      end
-    elsif @test_type == 'sanity'
-      tests_passed &= execute_e2e('desktop')
-    else
-      fail(StandardError, "#{@test_type} is not a recognised test type, please check and try again")
+    %w(desktop mobile).each do |profile|
+      tests_passed &= execute_e2e(profile)
+      tests_passed
     end
     tests_passed
   end
@@ -66,14 +59,12 @@ class NodeJenkinsTestRunner
   # we should send updates to GitHub and any Cucumber tags that should be applied.
   #
   def build_e2e_run_tests_command(profile)
-    command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
+    command = "ruby _tests/run_tests.rb --e2e --base-url=#{@host_to_test}"
     github_sha1 = read_env_variable('PULL_REQUEST_GIT_COMMIT_SHA1')
     rhd_js_driver = read_env_variable('RHD_JS_DRIVER') ? read_env_variable('RHD_JS_DRIVER') : 'chrome'
     command += " --update-github-status=#{github_sha1}" if github_sha1
     (profile == 'mobile') ? command += " --browser=mobile" : command += " --browser=#{rhd_js_driver}"
     command += " --profile=#{profile}"
-    (profile == 'drupal') ? test_type = 'drupal' : test_type = 'export'
-    command += " --test-type=#{test_type}"
     command += ' --tags=not:desktop' if profile == 'mobile'
     command
   end
@@ -84,10 +75,6 @@ class NodeJenkinsTestRunner
 
   def create_download_dir
     FileUtils.mkdir_p("#{@control_script_directory}/e2e/tmp_downloads")
-  end
-
-  def clear_download_dir
-    FileUtils.rm_rf("#{@control_script_directory}/e2e/tmp_downloads")
   end
 end
 
@@ -100,18 +87,12 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w(e2e sanity)
-  test_type = ARGV[0]
-  unless available_test_types.include?(test_type)
-    puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"
-    Kernel.exit(1)
-  end
-
+  test_type = ARGV[0] # to be removed
   host_to_test = ARGV[1]
   if host_to_test.nil? || host_to_test.empty?
     puts 'Please specify the host to test as the first argument to this script e.g. ruby node_jenkins_test_runner.rb https://developers.redhat.com'
     Kernel.exit(1)
   end
-  jenkins_test_runner = NodeJenkinsTestRunner.new(test_type, host_to_test, "#{__dir__}", ProcessRunner.new)
+  jenkins_test_runner = NodeJenkinsTestRunner.new(host_to_test, "#{__dir__}", ProcessRunner.new)
   execute(jenkins_test_runner)
 end

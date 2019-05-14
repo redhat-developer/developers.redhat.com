@@ -1,7 +1,7 @@
-import Page from '../../../Page';
-import Driver from '../../../../utils/Driver.Extension';
+import Page from '../../Page';
+import Driver from '../../../utils/Driver.Extension';
 
-class SearchResults extends Page {
+export class Results extends Page {
     get searchPage() {return $('rhdp-search-results');}
     get loadingSpinner() {return $('.loading');}
     get resultCount() {return $('rhdp-search-result-count');}
@@ -18,6 +18,7 @@ class SearchResults extends Page {
     }
 
     all() {
+        this.await();
         return this.allSearchResults;
     }
 
@@ -25,4 +26,3 @@ class SearchResults extends Page {
         return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//rh-datetime`).getAttribute('datetime');
     }
 }
-export default new SearchResults;

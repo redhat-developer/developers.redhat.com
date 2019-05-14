@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio tests/config/wdio.conf.local.js",
-    "e2e:ci": "npm install && wdio tests/config/wdio.conf.ci.js",
+    "e2e:ci": "wdio tests/config/wdio.conf.ci.js",
     "e2e:browserstack": "wdio test/config/wdio.conf.browserstack.js",
     "lint": "eslint config tests"
   },
@@ -50,6 +50,7 @@
     "allure-commandline": "^2.9.0",
     "mocha": "^6.0.2",
     "mocha-tags": "^1.0.1",
+    "shelljs": "^0.8.3",
     "webdriverio": "^5.7.5"
   },
   "babel": {

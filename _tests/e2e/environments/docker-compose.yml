@@ -1,11 +1,19 @@
-version: '2'
+version: '2.1'
 services:
   rhd_e2e_testing:
-    build: ..
+    build:
+      context: '..'
+    shm_size: '3gb'
+    user: '1000'
     volumes:
-    - ../../../:/home/e2e/developers.redhat.com
-    entrypoint: /home/e2e/developers.redhat.com/_tests/e2e/wait-for-docker-selenium.sh
-    working_dir: /home/e2e/developers.redhat.com/_tests/e2e
+    - ../../../:/developers.redhat.com
+    - ../tmp_downloads:/testing/tmp_downloads
+    - ../report:/testing/report
+    entrypoint:
+    - '/bin/bash'
+    - '-c'
+    - "source /etc/scl_enable && ./wait-for-docker-selenium.sh"
+    working_dir: /testing
     environment:
     - github_status_enabled
     - github_status_api_token
@@ -13,27 +21,25 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}artifact/_tests/e2e/report/${RHD_TEST_PROFILE}-report/index.html
     - github_status_sha1
-    - RHD_BS_AUTHKEY
-    - RHD_BS_USERNAME
-    - RHD_DOCKER_DRIVER
     - RHD_JS_DRIVER
-    - RHD_VERBOSE_OUTPUT
-    - RHD_TEST_CONFIG
     - RHD_BASE_URL
     - RHD_TEST_PROFILE
+    - RHD_TEST_TAGS
     - RHD_DRUPAL_ADMIN_USERNAME
     - RHD_DRUPAL_ADMIN_PASSWORD
     - RHD_KEYCLOAK_ADMIN_USERNAME
     - RHD_KEYCLOAK_ADMIN_PASSWORD
     - GRID_HOST=chrome
     - GRID_PORT=4444
+    - https_proxy
+    - http_proxy
 
   chrome:
     image: selenium/standalone-chrome:3.141.0-actinium
     volumes:
     - /dev/shm:/dev/shm
-    - ../tmp_downloads:/home/e2e/developers.redhat.com/_tests/e2e/tmp_downloads
+    - ../tmp_downloads:/testing/tmp_downloads
     ports:
-    - "5900"
+    - 4444:4444
     links:
     - rhd_e2e_testing

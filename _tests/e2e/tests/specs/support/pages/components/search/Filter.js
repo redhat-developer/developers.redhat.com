@@ -1,8 +1,8 @@
 /* eslint-disable no-magic-numbers */
-import Page from '../../../Page';
-import Driver from '../../../../utils/Driver.Extension';
+import Page from '../../Page';
+import Driver from '../../../utils/Driver.Extension';
 
-class SearchFilter extends Page {
+export class Filter extends Page {
     get showBtn() {return $('.showBtn');}
     get cover() {return $('.cover');}
     get applyFilters() {return $('.applyFilters');}
@@ -58,6 +58,8 @@ class SearchFilter extends Page {
         if (isMobile) {
             Driver.click(this.showBtn);
             Driver.awaitIsDisplayed(this.cover);
+            // wait for slider to complete
+            Driver.pause(1000);
             return true;
         }
         return false;
@@ -65,9 +67,8 @@ class SearchFilter extends Page {
 
     _clickApplyMobileFilter() {
         if (Driver.isVisible(this.applyFilters)) {
-            return Driver.click(this.applyFilters);
+            Driver.click(this.applyFilters);
+            Driver.pause(1000);
         }
     }
 }
-
-export default new SearchFilter;

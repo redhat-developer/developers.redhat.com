@@ -74,4 +74,4 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=build-unit-tests,js-unit-tests,js-e2e-tests,js-mobile-e2e-tests,exported-site-preview,drupal-site,js-drupal-e2e-tests
+    - github_status_initialise=build-unit-tests,js-unit-tests,js-e2e-tests,js-mobile-e2e-tests,exported-site-preview,drupal-site

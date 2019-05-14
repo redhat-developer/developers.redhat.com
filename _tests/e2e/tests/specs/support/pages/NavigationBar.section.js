@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-else-return */
-import Page from '../Page';
-import Driver from '../../utils/Driver.Extension';
+import Page from './Page';
+import Driver from '../utils/Driver.Extension';
 
 class NavigationBar extends Page {
     get mobileMenuOpen() {return $('.mobile-tray-open');}
