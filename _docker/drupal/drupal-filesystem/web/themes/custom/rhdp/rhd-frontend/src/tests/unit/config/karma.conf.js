@@ -15,7 +15,7 @@ module.exports = function (config) {
         frameworks: ['jasmine-ajax', 'jasmine'],
         reporters: ['progress', 'html'],
         htmlReporter: {
-            outputFile: '../report/unit-test-report.html',
+            outputFile: '../report/index.html',
             pageTitle: 'RHD frontend unit-test results'
         },
         failOnEmptyTestSuite: false,
