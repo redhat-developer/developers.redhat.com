@@ -4,10 +4,11 @@ services:
     build: ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
     volumes:
     - ../../../:/developers.redhat.com
+    - ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/src/tests/unit/report:/testing/src/tests/unit/report
     entrypoint:
       - '/bin/bash'
       - '-c'
-      - 'source /etc/scl_enable && ruby /developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb npm test'
+      - 'source /etc/scl_enable && ruby /developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb npm test && cp src/tests/unit/report/index.html src/tests/unit/report/unit-test-report.html'
     working_dir: /testing
     environment:
     - github_status_enabled
