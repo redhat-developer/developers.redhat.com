@@ -16,7 +16,7 @@ class ProductOverview extends Page {
     }
 
     awaitHelloWorldPage(productCode) {
-        return Driver.waitForUrlContaining(`${config.baseUrl}/products/${productCode}/hello-world/`);
+        return Driver.waitForUrlContaining(`${config.baseUrl}/${productCode}/`);
     }
 
     awaitDownloadThankYou() {
