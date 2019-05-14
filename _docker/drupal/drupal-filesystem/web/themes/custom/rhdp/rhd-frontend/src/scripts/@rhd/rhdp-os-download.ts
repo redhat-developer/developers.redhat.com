@@ -12,6 +12,8 @@ export default class RHDPOSDownload extends HTMLElement {
     private _displayOS;
 
     stage_download_url = 'https://developers.stage.redhat.com';
+    pr_stage_download_url = 'https://developers-pr.stage.redhat.com';
+
     productDownloads = {
         "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64"}
     };
@@ -170,8 +172,11 @@ export default class RHDPOSDownload extends HTMLElement {
 
 
     getDownloadOrigin(productUrl){
-        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0){
+        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
             productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
+        }
+        if(window.location.origin.indexOf('developers-pr.stage.redhat.com') > 0) {
+            productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.pr_stage_download_url);
         }
         return productUrl;
 
