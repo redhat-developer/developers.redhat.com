@@ -154,6 +154,7 @@ export default class RHDPOSDownload extends HTMLElement {
         return ['product-code','platform-type', 'download-url', 'name'];
     }
 
+
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
     }
@@ -167,8 +168,9 @@ export default class RHDPOSDownload extends HTMLElement {
 
     }
 
+
     getDownloadOrigin(productUrl){
-        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0 || window.location.origin.indexOf('developers-pr.stage.redhat.com') > 0) {
+        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
             productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
         }
         return productUrl;
