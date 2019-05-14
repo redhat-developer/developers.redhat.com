@@ -3,9 +3,12 @@ services:
   rhd_unit_testing:
     build: ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
     volumes:
-    - ../../../:/home/unit/developers.redhat.com
-    entrypoint: ruby /home/unit/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
-    working_dir: /home/unit/developers.redhat.com/_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
+    - ../../../:/developers.redhat.com
+    entrypoint:
+      - '/bin/bash'
+      - '-c'
+      - 'source /etc/scl_enable && ruby /developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb npm test'
+    working_dir: /testing
     environment:
     - github_status_enabled
     - github_status_api_token
@@ -13,5 +16,3 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}artifact/_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/src/tests/unit/report/unit-test-report.html
     - github_status_sha1
-    cap_add:
-    - SYS_ADMIN
