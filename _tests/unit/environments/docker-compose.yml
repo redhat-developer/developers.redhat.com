@@ -2,6 +2,7 @@ version: '2'
 services:
   rhd_unit_testing:
     build: ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend
+    user: '1000'
     volumes:
     - ../../../:/developers.redhat.com
     - ../../../_docker/drupal/drupal-filesystem/web/themes/custom/rhdp/rhd-frontend/src/tests/unit/report:/testing/src/tests/unit/report
