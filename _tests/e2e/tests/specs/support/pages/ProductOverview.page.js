@@ -1,5 +1,5 @@
-import Page from '../Page';
-import Driver from '../../utils/Driver.Extension';
+import Page from './Page';
+import Driver from '../utils/Driver.Extension';
 
 class ProductOverview extends Page {
     get downloadBtn() {return $('//rhdp-os-download/div/a');}
@@ -11,6 +11,7 @@ class ProductOverview extends Page {
     }
 
     download() {
+        this.downloadBtn.scrollIntoView();
         return Driver.click(this.downloadBtn);
     }
 

@@ -30,32 +30,16 @@ class RunTest
   private
 
   #
-  # Builds the unit/e2e test base Docker image
-  #
-  def build_base_docker_image(test_dir)
-    @process_runner.execute!("cd #{test_dir} && docker build -t test-base:2.3.0 .")
-  end
-
-  #
   # Runs the specified test type within Docker by executing
   # a number of Docker commands in sequence.
   #
   def run_tests_in_docker(test_configuration)
 
-    build_base_docker_image(@test_dir) unless test_configuration[:unit]
     compose_project_name = docker_compose_project_name
     compose_environment_directory = "#{@test_dir}/#{ENV['rhd_test']}/environments"
 
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build#{" --pull" if test_configuration[:unit]}")
-
-    if test_configuration[:e2e]
-      if test_configuration[:browserstack]
-        @process_runner.execute!("cd #{@test_dir}/e2e && sh start-browserstack.sh")
-      else
-        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d chrome")
-      end
-    end
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build --pull")
 
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")

@@ -4,6 +4,10 @@ import Driver from '../utils/Driver.Extension';
 
 
 class Utils {
+    allowDownloads() {
+        Driver.allowDownloads();
+    }
+
     cleanSession() {
         let logoutLink;
         const encodedURL = qs.escape(config.baseUrl);
@@ -17,3 +21,4 @@ class Utils {
 }
 
 export default new Utils;
+

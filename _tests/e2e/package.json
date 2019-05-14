@@ -4,9 +4,8 @@
   "description": "RHDP e2e testing",
   "main": "index.js",
   "scripts": {
-    "test": "wdio tests/config/wdio.conf.local.js",
-    "e2e:ci": "npm install && wdio tests/config/wdio.conf.ci.js",
-    "e2e:browserstack": "wdio test/config/wdio.conf.browserstack.js",
+    "test": "./node_modules/.bin/selenium-standalone install --config=tests/config/wdio.conf.js && wdio tests/config/wdio.conf.js",
+    "e2e:browserstack": "wdio tests/config/wdio.conf.browserstack.js",
     "lint": "eslint config tests"
   },
   "author": "Ian Hamilton (ihamilto@redhat.com)",
@@ -20,7 +19,6 @@
     "@wdio/allure-reporter": "^5.7.2",
     "@wdio/dot-reporter": "^5.7.2",
     "@wdio/reporter": "^5.7.2",
-    "@wdio/selenium-standalone-service": "^5.7.2",
     "@wdio/spec-reporter": "^5.7.2",
     "@wdio/sync": "^5.7.3",
     "chai": "^4.2.0",
@@ -47,10 +45,11 @@
     "@wdio/cli": "^5.7.5",
     "@wdio/local-runner": "^5.7.5",
     "@wdio/mocha-framework": "^5.7.3",
+    "@wdio/selenium-standalone-service": "^5.8.4",
     "allure-commandline": "^2.9.0",
     "mocha": "^6.0.2",
     "mocha-tags": "^1.0.1",
-    "webdriverio": "^5.7.5"
+    "webdriverio": "^5.9.1"
   },
   "babel": {
     "presets": [

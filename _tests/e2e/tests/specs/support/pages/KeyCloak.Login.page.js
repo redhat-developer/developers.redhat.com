@@ -1,5 +1,5 @@
-import Page from '../Page';
-import Driver from '../../utils/Driver.Extension';
+import Page from './Page';
+import Driver from '../utils/Driver.Extension';
 
 class Login extends Page {
     get loginPage() {return $('.kc-loginpage');}
@@ -22,13 +22,8 @@ class Login extends Page {
         return Driver.awaitIsDisplayed(this.step2);
     }
 
-    isCurrent() {
-        this.awaitLogin();
-        return Driver.isVisible(this.usernameField);
-    }
-
-    with(user, password) {
-        Driver.type(user, this.usernameField);
+    with(username, password) {
+        Driver.type(username, this.usernameField);
         Driver.click(this.nextBtn);
         this.awaitStepTwo();
         Driver.type(password, this.passwordField);

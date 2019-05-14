@@ -3,33 +3,35 @@ const fs = require('fs-extra');
 const path = require('path');
 
 class Browser {
-    constructor(browser, headlessMode) {
+    constructor(browser) {
         this.browser = browser;
-        this.headlessMode = headlessMode;
     }
 
     create() {
         switch (this.browser) {
             case 'chrome':
-                return this.chrome(this.headlessMode);
+                return this.chrome();
             case 'firefox':
-                return this.firefox(this.headlessMode);
+                return this.firefox();
             default:
-                return this.emulatedDevice(this.headlessMode);
+                return this.emulatedDevice();
         }
     }
 
-    chrome(browser, isHeadless) {
+    chrome() {
         const pathToChromeDownloads = path.resolve('tmp_downloads');
         if (!fs.existsSync(pathToChromeDownloads)) {
             fs.mkdirSync(pathToChromeDownloads);
         }
 
-        const chromeArgs = ['--disable-gpu', '--start-maximized', 'disable-extensions', '--disable-infobars',
-            '--disable-dev-shm-usage', 'disable-web-security', 'user-agent=Red Hat Developers Testing'];
-        if (isHeadless) {
-            chromeArgs.push('--headless');
-        }
+        const chromeArgs = [
+            '--start-maximized',
+            '--headless',
+            '--disable-gpu',
+            '--no-sandbox',
+            '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+            '--remote-debugging-port=3434',
+          ];
 
         return {
             "browserName": 'chrome',
@@ -38,12 +40,14 @@ class Browser {
                 args: chromeArgs,
                 useAutomationExtension: false,
                 prefs: {
+                    "safebrowsing.enabled": false,
+                    "safebrowsing.disable_download_protection": true,
                     "download": {
                         "default_directory": pathToChromeDownloads,
                         "prompt_for_download": false,
                     },
                     profile: {
-                        "default_content_setting_values": { "automatic_downloads": 1 },
+                        "default_content_setting_values": {"automatic_downloads": 1},
                     },
                 },
             },
@@ -52,9 +56,6 @@ class Browser {
 
     firefox() {
         const ffArgs = [];
-        if (this.headlessMode) {
-            ffArgs.push('--headless');
-        }
         return {
             "browserName": 'firefox',
             "maxInstances": 5,
@@ -64,17 +65,13 @@ class Browser {
         };
     }
 
-    emulatedDevice(isHeadless) {
-        const chromeArgs = ['--disable-gpu', 'disable-extensions', '--disable-infobars',
-            '--disable-dev-shm-usage', 'disable-web-security', 'user-agent=Red Hat Developers Testing'];
-        if (isHeadless) {
-            chromeArgs.push('--headless');
-        }
+    emulatedDevice() {
+        const chromeArgs = ['--headless', '--no-sandbox', '--incognito', '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'];
         return {
             browserName: 'chrome',
             acceptInsecureCerts: true,
             'goog:chromeOptions': {
-                mobileEmulation: { deviceName: 'iPhone X' },
+                mobileEmulation: {deviceName: 'iPhone X'},
                 args: chromeArgs,
             },
         };

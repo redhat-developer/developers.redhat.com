@@ -1,5 +1,5 @@
-import Page from '../Page';
-import Driver from '../../utils/Driver.Extension';
+import Page from './Page';
+import Driver from '../utils/Driver.Extension';
 
 export class CheatSheets extends Page {
     get cheatSheetPage() {return $('#rhd-cheat-sheet');}
@@ -7,7 +7,7 @@ export class CheatSheets extends Page {
     get thankYou() {return $('.thankyou');}
 
     open(cheatSheet) {
-        super.open(`/cheat-sheets/${cheatSheet}/`.toString());
+        super.open(`/cheat-sheets/${cheatSheet}/`);
         this.awaitLoaded();
         return this;
     }

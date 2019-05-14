@@ -1,5 +1,5 @@
-import {Page} from "../Page";
-import Driver from "../../utils/Driver.Extension";
+import {Page} from "./Page";
+import Driver from "../utils/Driver.Extension";
 
 class Register extends Page {
     get registerForm() {return $('#kc-register-form');}

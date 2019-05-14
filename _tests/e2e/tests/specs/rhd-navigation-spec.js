@@ -1,6 +1,6 @@
-import Home from '../support/pages/website/Home.page';
-import NavigationBar from '../support/pages/website/NavigationBar.section';
-import Login from '../support/pages/keycloak/Login.page';
+import Home from './support/pages/website/Home.page';
+import NavigationBar from './support/pages/website/NavigationBar.section';
+import Login from './support/pages/keycloak/Login.page';
 
 describe('Navigation bar', function() {
     // eslint-disable-next-line no-invalid-this
