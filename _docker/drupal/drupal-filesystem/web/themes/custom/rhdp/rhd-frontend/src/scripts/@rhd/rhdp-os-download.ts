@@ -170,7 +170,7 @@ export default class RHDPOSDownload extends HTMLElement {
 
 
     getDownloadOrigin(productUrl){
-        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0) {
+        if(window.location.origin.indexOf('developers.stage.redhat.com') > 0){
             productUrl = productUrl.replace(/http(s)?:\/\/developers.redhat.com/g, this.stage_download_url);
         }
         return productUrl;
