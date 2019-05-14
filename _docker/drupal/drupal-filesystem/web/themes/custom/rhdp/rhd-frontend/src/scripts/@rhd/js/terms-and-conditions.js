@@ -51,6 +51,10 @@ app.termsAndConditions = {
     var tmpTcWhenSigned = tcWhenSigned ? $.encoder.encodeForHTML(tcWhenSigned) : "";
     tcProduct = tcProduct.replace(/\+/g, ' ');
 
+    if ($('body.page-media-download-confirmation').length) {
+      return;
+    }
+
     if (tcEndsIn) {
       if (tcEndsIn == "1") {
         tmpTcEndsIn = "one day ";
