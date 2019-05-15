@@ -409,17 +409,6 @@
     font-size: 14px;
     color: $gray-5;
   }
-  article.align-center > img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  article.align-left > img {
-    margin-right: 1rem;
-  }
-  article.align-right > img {
-    margin-left: 1rem;
-  }
 }
 @include desktop-and-down {
   #rhd-article {
