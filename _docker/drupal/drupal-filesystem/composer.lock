@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54e562f20304ede067f6f3bddf55d32d",
+    "content-hash": "25ee63dd447884e681dbcf70ef816504",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -7874,6 +7874,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Add permission to administer Trailing Slash": "patches/trailing_slash/add-trailing-slash-permission.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7897,7 +7900,7 @@
             "description": "Adds trailing slashes to Drupal URLs.",
             "homepage": "https://www.drupal.org/project/trailing_slash",
             "support": {
-                "source": "http://cgit.drupalcode.org/trailing_slash"
+                "source": "https://git.drupalcode.org/project/trailing_slash"
             }
         },
         {
