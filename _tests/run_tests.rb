@@ -47,7 +47,7 @@ class RunTest
     compose_environment_directory = "#{@test_dir}/#{ENV['rhd_test']}/environments"
 
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build #{"--pull" if test_configuration[:unit]}")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build#{" --pull" if test_configuration[:unit]}")
 
     if test_configuration[:e2e]
       if test_configuration[:browserstack]
