@@ -24,13 +24,11 @@ class TestRunTests < MiniTest::Test
     test_configuration = {}
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'npm run test:docker'
+    test_configuration[:unit] = true
 
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
 
-    @process_runner.expects(:execute!).with('cd /tmp/_tests && docker build -t test-base:2.3.0 .')
-
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p rhd_unit_testing build')
-
+    @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p rhd_unit_testing build --pull')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p rhd_unit_testing run --rm --no-deps rhd_unit_testing npm run test:docker')
 
     @run_tests.execute_tests(%w(--use-docker))
@@ -43,13 +41,11 @@ class TestRunTests < MiniTest::Test
     test_configuration = {}
     test_configuration[:docker] = true
     test_configuration[:run_tests_command] = 'npm run test:docker'
+    test_configuration[:unit] = true
 
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
 
-    @process_runner.expects(:execute!).with('cd /tmp/_tests && docker build -t test-base:2.3.0 .')
-
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p foo build')
-
+    @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p foo build --pull')
     @process_runner.expects(:execute!).with('cd /tmp/_tests/unit/environments && docker-compose -p foo run --rm --no-deps rhd_unit_testing npm run test:docker')
 
     @run_tests.execute_tests(%w(--use-docker))
