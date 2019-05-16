@@ -41,12 +41,13 @@ class RunTest
   # a number of Docker commands in sequence.
   #
   def run_tests_in_docker(test_configuration)
-    build_base_docker_image(@test_dir)
+
+    build_base_docker_image(@test_dir) unless test_configuration[:unit]
     compose_project_name = docker_compose_project_name
     compose_environment_directory = "#{@test_dir}/#{ENV['rhd_test']}/environments"
 
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build#{" --pull" if test_configuration[:unit]}")
 
     if test_configuration[:e2e]
       if test_configuration[:browserstack]

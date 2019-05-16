@@ -1,17 +1,11 @@
-FROM test-base:2.3.0
+FROM images.paas.redhat.com/rhdp/developer-testing-base
 
-RUN curl -O -L https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
-    && yum -y install google-chrome-stable_current_x86_64.rpm \
-       liberation-mono-fonts \
-       liberation-narrow-fonts \
-       liberation-sans-fonts \
-       liberation-serif-fonts
+RUN mkdir /testing
+WORKDIR /testing
+COPY . /testing
 
-RUN groupadd -g 1000 unit \
-    && useradd -g unit -m -s /bin/bash -u 1000 unit
-WORKDIR /home/unit
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-USER unit
-ENV PATH /home/unit/node_modules/.bin:$PATH
+RUN npm install \
+    && chmod -R 777 /testing
+
+RUN gem install bundler:1.16.1 octokit:4.6.2 --no-rdoc --no-ri
+USER 1001
