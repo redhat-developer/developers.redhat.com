@@ -25,7 +25,7 @@
         msg: "{{ (drush_rc.changed) | ternary(drush_rc.stderr_lines, drush_rc.stdout_lines) }}"
 
     - name: Run Drupal Module Database Updates
-      shell: 'drush -y --entity-updates updb && drush cr && touch {{ work_dir }}/drupal.updb.do.not.delete'
+      shell: 'drush -y updb && drush cr && touch {{ work_dir }}/drupal.updb.do.not.delete'
       register: entity_updates
       args:
         chdir: '/var/www/drupal/web'

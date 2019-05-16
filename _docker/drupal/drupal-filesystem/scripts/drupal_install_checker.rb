@@ -108,7 +108,7 @@ class DrupalInstallChecker
 
   def drush_updb
     puts 'Executing drush updb...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web updb))
     drush_cache_rebuild
   end
 
