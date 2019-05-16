@@ -87,7 +87,7 @@ class DrupalInstallCheckerTest < Minitest::Test
 
 
     @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
-    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb)]
+    @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web updb)]
     @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
     @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web update:lightning --no-interaction)]
     @process_exec.expect :exec!, true, ['/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr)]
