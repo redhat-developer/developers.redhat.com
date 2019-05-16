@@ -1,0 +1,29 @@
+uuid: 8a1c2363-e3fb-406c-a11c-02783dd5fbf9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topics
+    - node.type.connectors
+    - taxonomy.vocabulary.topics
+id: node.connectors.field_topics
+field_name: field_topics
+entity_type: node
+bundle: connectors
+label: Topics
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topics: topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

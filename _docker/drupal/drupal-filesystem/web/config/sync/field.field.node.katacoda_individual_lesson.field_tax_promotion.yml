@@ -1,0 +1,29 @@
+uuid: 7bd0d6ef-49f0-4d77-9cea-3e17953b0a8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_promotion
+    - node.type.katacoda_individual_lesson
+    - taxonomy.vocabulary.promotion
+id: node.katacoda_individual_lesson.field_tax_promotion
+field_name: field_tax_promotion
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Promotion
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      promotion: promotion
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
