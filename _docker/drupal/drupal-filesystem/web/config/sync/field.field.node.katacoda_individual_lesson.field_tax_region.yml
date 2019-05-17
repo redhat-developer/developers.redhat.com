@@ -1,0 +1,29 @@
+uuid: c0d25b52-abc9-436e-9c71-2d75ce81e64d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_region
+    - node.type.katacoda_individual_lesson
+    - taxonomy.vocabulary.region
+id: node.katacoda_individual_lesson.field_tax_region
+field_name: field_tax_region
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Region
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      region: region
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

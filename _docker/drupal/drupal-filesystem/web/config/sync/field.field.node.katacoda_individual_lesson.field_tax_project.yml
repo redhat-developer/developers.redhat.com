@@ -1,0 +1,29 @@
+uuid: 5cc6d963-377e-48c1-bef3-4cd50308bd1e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_project
+    - node.type.katacoda_individual_lesson
+    - taxonomy.vocabulary.project
+id: node.katacoda_individual_lesson.field_tax_project
+field_name: field_tax_project
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Project
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project: project
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
