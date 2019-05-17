@@ -77,6 +77,7 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tags
       parent_name: ''
       weight: 15
       format_type: details
@@ -232,7 +233,7 @@ content:
     region: fields
   field_tags:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60

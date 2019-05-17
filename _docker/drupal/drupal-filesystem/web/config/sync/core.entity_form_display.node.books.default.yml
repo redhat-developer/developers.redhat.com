@@ -56,6 +56,7 @@ third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
         - field_tax_campaign
@@ -66,6 +67,7 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tags
       parent_name: ''
       weight: 22
       format_type: details
@@ -94,7 +96,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_author:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -119,7 +121,7 @@ content:
     type: text_textarea
     region: content
   field_book_url:
-    weight: 16
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -136,22 +138,20 @@ content:
     region: fields
   field_cover_image:
     type: image_image
-    weight: 5
+    weight: 6
     settings:
       preview_image_style: thumbnail
-      field_widget_edit: true
-      view_mode: default
-      field_widget_replace: false
+      progress_indicator: throbber
     region: fields
     third_party_settings: {  }
   field_difficulty:
-    weight: 18
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: fields
   field_epub:
-    weight: 14
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -173,7 +173,7 @@ content:
     type: metatag_firehose
     region: fields
   field_mobi_link:
-    weight: 13
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -204,7 +204,7 @@ content:
     type: string_textfield
     region: fields
   field_read_time:
-    weight: 17
+    weight: 16
     settings:
       allowed_periods: {  }
     third_party_settings: {  }
@@ -224,13 +224,11 @@ content:
     weight: 20
     settings:
       preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-      field_widget_replace: false
+      progress_indicator: throbber
     region: fields
     third_party_settings: {  }
   field_short_description:
-    weight: 6
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -238,7 +236,7 @@ content:
     type: string_textarea
     region: fields
   field_tags:
-    weight: 12
+    weight: 29
     settings:
       match_operator: CONTAINS
       size: 60
@@ -247,67 +245,67 @@ content:
     type: entity_reference_autocomplete
     region: fields
   field_tax_audience_segment:
-    weight: 27
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 28
+    weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 29
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 30
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 31
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 32
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 33
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 34
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 35
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 36
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_thumbnail_url:
-    weight: 15
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -315,14 +313,14 @@ content:
     type: link_default
     region: fields
   field_topics:
-    weight: 7
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: fields
     settings:
       include_locked: true

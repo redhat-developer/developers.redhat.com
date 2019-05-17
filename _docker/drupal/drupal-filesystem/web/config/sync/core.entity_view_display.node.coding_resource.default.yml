@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.coding_resource.field_tax_region
     - field.field.node.coding_resource.field_tax_stage
     - field.field.node.coding_resource.field_technologies
+    - field.field.node.coding_resource.field_topics
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
@@ -51,7 +52,7 @@ content:
     third_party_settings: {  }
     region: content
   field_author:
-    weight: 9
+    weight: 8
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -59,7 +60,7 @@ content:
     type: string
     region: content
   field_contributors:
-    weight: 4
+    weight: 3
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -74,7 +75,7 @@ content:
     type: text_default
     region: content
   field_level:
-    weight: 10
+    weight: 9
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
@@ -89,14 +90,14 @@ content:
     type: entity_reference_label
     region: content
   field_resource_type:
-    weight: 8
+    weight: 7
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_source_link:
-    weight: 6
+    weight: 5
     label: visually_hidden
     settings:
       trim_length: 80
@@ -108,7 +109,7 @@ content:
     type: link_separate
     region: content
   field_tags:
-    weight: 7
+    weight: 6
     label: visually_hidden
     settings:
       link: true
@@ -116,7 +117,7 @@ content:
     type: entity_reference_label
     region: content
   field_technologies:
-    weight: 11
+    weight: 10
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -124,7 +125,7 @@ content:
     type: string
     region: content
   field_version:
-    weight: 5
+    weight: 4
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -142,6 +143,7 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  field_topics: true
   langcode: true
   links: true
   published_at: true

@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_tags
     - field.field.node.cheat_sheet.field_tax_audience_segment
     - field.field.node.cheat_sheet.field_tax_business_unit
     - field.field.node.cheat_sheet.field_tax_campaign
@@ -44,6 +45,7 @@ third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
         - field_tax_campaign
@@ -54,6 +56,7 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tags
       parent_name: ''
       weight: 22
       format_type: details
@@ -193,93 +196,72 @@ content:
     third_party_settings: {  }
     type: string_textarea
     region: content
-  field_tax_audience_segment:
-    weight: 23
+  field_tags:
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
+  field_tax_audience_segment:
+    weight: 3
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 24
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 4
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 25
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 5
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 6
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 28
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 29
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 9
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 30
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 10
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 31
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 11
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 32
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 12
+    settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
@@ -288,7 +270,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   langcode:
     type: language_select
     weight: 2

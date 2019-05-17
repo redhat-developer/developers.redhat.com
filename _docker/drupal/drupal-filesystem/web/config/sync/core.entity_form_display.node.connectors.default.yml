@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.connectors.field_connector_target_product_1
     - field.field.node.connectors.field_connector_target_product_2
     - field.field.node.connectors.field_connector_target_product_3
+    - field.field.node.connectors.field_tags
     - field.field.node.connectors.field_tax_audience_segment
     - field.field.node.connectors.field_tax_business_unit
     - field.field.node.connectors.field_tax_campaign
@@ -27,6 +28,7 @@ dependencies:
     - field.field.node.connectors.field_tax_promotion
     - field.field.node.connectors.field_tax_region
     - field.field.node.connectors.field_tax_stage
+    - field.field.node.connectors.field_topics
     - node.type.connectors
     - workflows.workflow.00c7e3ae
   module:
@@ -42,6 +44,7 @@ third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
         - field_tax_campaign
@@ -52,6 +55,7 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tags
       parent_name: ''
       weight: 17
       format_type: details
@@ -184,62 +188,77 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_tags:
+    weight: 37
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_audience_segment:
-    weight: 16
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 17
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 18
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 19
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 20
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 21
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 22
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 23
+    weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 24
+    weight: 35
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 25
+    weight: 36
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_topics:
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons

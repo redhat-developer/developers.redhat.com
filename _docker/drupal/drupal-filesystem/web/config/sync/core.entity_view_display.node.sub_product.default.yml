@@ -5,6 +5,18 @@ dependencies:
   config:
     - field.field.node.sub_product.field_cta
     - field.field.node.sub_product.field_logo
+    - field.field.node.sub_product.field_tags
+    - field.field.node.sub_product.field_tax_audience_segment
+    - field.field.node.sub_product.field_tax_business_unit
+    - field.field.node.sub_product.field_tax_campaign
+    - field.field.node.sub_product.field_tax_lifecycle
+    - field.field.node.sub_product.field_tax_product
+    - field.field.node.sub_product.field_tax_product_line
+    - field.field.node.sub_product.field_tax_project
+    - field.field.node.sub_product.field_tax_promotion
+    - field.field.node.sub_product.field_tax_region
+    - field.field.node.sub_product.field_tax_stage
+    - field.field.node.sub_product.field_topics
     - node.type.sub_product
   module:
     - fences
@@ -50,6 +62,18 @@ content:
         fences_label_classes: ''
     region: content
 hidden:
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
   langcode: true
   links: true
   published_at: true
