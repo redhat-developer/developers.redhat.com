@@ -15,11 +15,10 @@ tags('desktop').describe('Download Manager', function() {
     }, 2);
 
     it('should allow users to login in and download RHEL', function() {
-            const siteUser = new User().rhdAccountDetails();
             ProductOverview
                 .open('rhel', 'download')
                 .download();
-            Login.with(siteUser);
+            Login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
             ProductOverview.awaitHelloWorldPage('rhel8');
             ProductOverview.awaitDownloadThankYou();
             const downloadName = DownloadDir.get();
@@ -27,11 +26,10 @@ tags('desktop').describe('Download Manager', function() {
         });
 
     it('should allow users to log-in and download advanced-linux-commands', function() {
-            const siteUser = new User().rhdAccountDetails();
             CheatSheets
                 .open('advanced-linux-commands')
                 .loginToDownload();
-            Login.with(siteUser);
+            Login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
             CheatSheets.awaitDownloadThankYou();
             const downloadName = DownloadDir.get();
             expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet');
