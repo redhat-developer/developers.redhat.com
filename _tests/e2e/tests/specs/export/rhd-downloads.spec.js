@@ -19,7 +19,6 @@ tags('desktop').describe('Download Manager', function() {
                 .open('rhel', 'download')
                 .download();
             Login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
-            ProductOverview.awaitHelloWorldPage('rhel8');
             ProductOverview.awaitDownloadThankYou();
             const downloadName = DownloadDir.get();
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');

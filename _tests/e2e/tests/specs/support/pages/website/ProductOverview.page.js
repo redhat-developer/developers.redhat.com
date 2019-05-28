@@ -15,11 +15,8 @@ class ProductOverview extends Page {
         return Driver.click(this.downloadBtn);
     }
 
-    awaitHelloWorldPage(productCode) {
-        return Driver.waitForUrlContaining(`${config.baseUrl}/${productCode}/`);
-    }
-
     awaitDownloadThankYou() {
+        Driver.waitForUrlContaining(`${config.baseUrl}/`);
         return Driver.awaitIsDisplayed(this.downloadThankYou);
     }
 }
