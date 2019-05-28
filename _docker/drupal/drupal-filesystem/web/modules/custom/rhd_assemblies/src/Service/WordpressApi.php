@@ -31,6 +31,9 @@ class WordpressApi implements RemoteContentApiInterface {
     // This URL bypasses Akamai. If, for some reason, we do not want to bypass
     // Akamai, change the value of this attribute to
     // 'https://developers.redhat.com/blog'.
+    // Used for local testing
+    //$this->apiUrl = 'http://localhost:8000';
+    //$this->apiUrl = 'https://developers.redhat.com/blog';
     $this->apiUrl = 'https://origin-developers.redhat.com/blog';
     $this->client = $client;
   }
@@ -65,21 +68,28 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   /**
-   * Fetches WP post(s) by their category. Returns as many as $count posts.
+   * Fetches WP post(s) by their category. Returns as many as $max_results posts.
    *
    * @param array $categories
    *   An array of strings of the WP post categories.
-   * @param string|int $count
+   * @param string|int $max_results
    *   Maximum number of items to be returned in result set.
-   *
+   * @param string $select_logic
+   *   Logic to be used for searching posts by categories can be 'and|or'.
    * @return array
    *   Returns an array of objects of the WP posts if the fetch is successful.
    *   Otherwise, returns an empty array.
    */
-  public function getContentByCategory($categories, $count) {
+  public function getContentByCategory($categories, $max_results, $select_logic) {
     $items = [];
-    $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
-    $query['per_page'] = $count;
+    $select_logic = $select_logic === "and" ? "and" : "or";
+
+    //$feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
+    //$feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
+    $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
+
+    $query['per_page'] = $max_results;
+    $query['logic'] = $select_logic;
 
     if (!empty($categories)) {
       $query['categories'] = $categories;
@@ -281,15 +291,17 @@ class WordpressApi implements RemoteContentApiInterface {
   private function getContentCategoryLinks($categories) {
     $links = [];
     $categories_list = $this->getCategories();
-
+    
     foreach ($categories as $category_id) {
-      $links[] = [
-        'link' => $categories_list[$category_id]->link,
-        'name' => $categories_list[$category_id]->name,
-      ];
+      if (array_key_exists($category_id, $categories_list)) {
+        $links[] = [
+          'link' => $categories_list[$category_id]->link,
+          'name' => $categories_list[$category_id]->name,
+        ];
+      }
     }
 
-    return $links;
+      return $links;
   }
 
 }
