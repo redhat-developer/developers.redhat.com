@@ -82,7 +82,7 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   public function getContentByCategory($categories, $max_results, $select_logic) {
     $items = [];
-    $select_logic = $select_logic === "and" ? "and" : "or";
+    $select_logic = $select_logic == "and" ? $select_logic : "or";
 
     //$feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
     //$feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
