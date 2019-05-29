@@ -1,4 +1,3 @@
-const config = require('../../../../config/wdio.conf.base').config;
 import Page from '../Page';
 import Driver from '../../utils/Driver.Extension';
 
@@ -13,10 +12,6 @@ class ProductOverview extends Page {
 
     download() {
         return Driver.click(this.downloadBtn);
-    }
-
-    awaitHelloWorldPage(productCode) {
-        return Driver.waitForUrlContaining(`${config.baseUrl}/${productCode}/`);
     }
 
     awaitDownloadThankYou() {
