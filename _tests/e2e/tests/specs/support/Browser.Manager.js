@@ -26,6 +26,7 @@ class Browser {
 
         const chromeArgs = [
             '--start-maximized',
+            '--incognito',
             '--headless',
             '--disable-gpu',
             '--no-sandbox',

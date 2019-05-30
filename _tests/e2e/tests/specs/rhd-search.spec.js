@@ -1,10 +1,10 @@
-import home from './support/pages/website/Home.page';
-import search from './support/pages/website/Search.page';
-import navigationBar from './support/pages/website/NavigationBar.section';
-import searchResults from './support/pages/website/components/search/SearchResults';
-import searchResultSort from './support/pages/website/components/search/SearchResultSort';
-import searchFilter from './support/pages/website/components/search/SearchFilter';
-import searchOneBox from './support/pages/website/components/search/SearchOneBox';
+import home from './support/pages/Home.page';
+import search from './support/pages/Search.page';
+import navigationBar from './support/pages/NavigationBar.section';
+import searchResults from './support/pages/components/search/SearchResults';
+import searchResultSort from './support/pages/components/search/SearchResultSort';
+import searchFilter from './support/pages/components/search/SearchFilter';
+import searchOneBox from './support/pages/components/search/SearchOneBox';
 
 describe('Search Page', function() {
     // eslint-disable-next-line no-invalid-this

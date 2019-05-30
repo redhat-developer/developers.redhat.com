@@ -1,6 +1,6 @@
-import Page from '../../../Page';
+import Page from '../../Page';
+import Driver from '../../../../support/utils/Driver.Extension';
 import SearchResults from './SearchResults';
-import Driver from '../../../../utils/Driver.Extension';
 
 class SearchResultSort extends Page {
     get resultSort() {return $('//rhdp-search-sort-page/p/select');}

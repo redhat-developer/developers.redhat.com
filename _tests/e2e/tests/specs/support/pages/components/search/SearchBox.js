@@ -1,5 +1,5 @@
-import Page from '../../../Page';
-import Driver from '../../../../utils/Driver.Extension';
+import Page from '../../Page';
+import Driver from '../../../../support/utils/Driver.Extension';
 
 class SearchBox extends Page {
     get searchField() {return $('#query');}

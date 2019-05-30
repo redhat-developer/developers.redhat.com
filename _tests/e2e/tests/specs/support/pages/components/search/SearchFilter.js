@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import Page from '../../../Page';
-import Driver from '../../../../utils/Driver.Extension';
+import Page from '../../Page';
+import Driver from '../../../../support/utils/Driver.Extension';
 
 class SearchFilter extends Page {
     get showBtn() {return $('.showBtn');}
