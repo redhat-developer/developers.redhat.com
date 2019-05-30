@@ -7,11 +7,11 @@ sentry_code: '{{ drupal_sentry_code }}'
 rhd_base_url: '{{ drupal_url }}'
 rhd_final_base_url: '{{ drupal_url }}'
 downloadManager:
-  baseUrl: 'https://developers.stage.redhat.com'
-  fileBaseUrl: '//developers.stage.redhat.com/download-manager/file/'
+  baseUrl: 'https://developers.redhat.com'
+  fileBaseUrl: '//developers.redhat.com/download-manager/file/'
 keycloak:
-  accountUrl: 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
-  authUrl: 'https://developers.stage.redhat.com/auth/'
+  accountUrl: 'https://developers.redhat.com/auth/realms/rhd/account/'
+  authUrl: 'https://developers.redhat.com/auth/'
   content_editor_sso:
     redirect_url: 'https://{{ drupal_url }}/openid-connect/keycloak'
     client_id: {{ drupal_content_editor_sso_client_id }}
@@ -22,12 +22,12 @@ keycloak:
     token_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/token'
     userinfo_endpoint_kc: 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo'
 drupal:
-  host: https://developers.dev.redhat.com
+  host: '{{ drupal_url }}'
 searchisko:
   protocol: 'https'
-  host: dcp.stage.jboss.org
+  host: dcp.jboss.org
   port: "443"
-  baseProtocolRelativeUrl: 'dcp.stage.jboss.org:443'
+  baseProtocolRelativeUrl: 'dcp.jboss.org:443'
 database:
   host: '{{ drupal_db_host }}'
   port: '3306'
