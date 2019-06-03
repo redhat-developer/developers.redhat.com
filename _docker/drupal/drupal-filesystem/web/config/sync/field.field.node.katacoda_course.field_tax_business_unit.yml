@@ -1,0 +1,29 @@
+uuid: c209feb1-6d74-4d44-b62d-658f2d48daa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_business_unit
+    - node.type.katacoda_course
+    - taxonomy.vocabulary.business_unit
+id: node.katacoda_course.field_tax_business_unit
+field_name: field_tax_business_unit
+entity_type: node
+bundle: katacoda_course
+label: 'Business Unit (BU)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      business_unit: business_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: def208d2-e1f2-4c5b-ba37-d500db502344
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_list
+    - field.storage.assembly.field_wordpress_category_logic
+id: assembly.dynamic_content_list.field_wordpress_category_logic
+field_name: field_wordpress_category_logic
+entity_type: assembly
+bundle: dynamic_content_list
+label: 'Wordpress category use ''and'' logic'
+description: 'Default unselected is an "OR" filter, Selected is an "AND" filter'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
