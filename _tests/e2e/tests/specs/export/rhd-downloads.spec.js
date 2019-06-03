@@ -24,15 +24,23 @@ tags('desktop').describe('Download Manager', function() {
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
+    /*
+        Disabling this in managed paas environments until we can work out how to support downloads of content in lower environments
+     */
     it('should allow users to log-in and download advanced-linux-commands', function() {
-            CheatSheets
-                .open('advanced-linux-commands')
-                .loginToDownload();
-            Login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
-            CheatSheets.awaitDownloadThankYou();
-            const downloadName = DownloadDir.get();
-            expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet');
-        });
+
+        if(Utils.isManagedPaasEnvironment() === false) {
+
+                CheatSheets
+                    .open('advanced-linux-commands')
+                    .loginToDownload();
+                Login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
+                CheatSheets.awaitDownloadThankYou();
+                const downloadName = DownloadDir.get();
+                expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet');
+
+            }
+    });
 
     afterEach(function() {
         DownloadDir.clear(global.downloadDir);
