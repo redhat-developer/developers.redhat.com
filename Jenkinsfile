@@ -14,7 +14,7 @@ properties([
 
 node('cic-rhd-01') {
 
-    timeout(10) {
+    timeout(60) {
 
         stage("Sanity Check") {
 
@@ -27,12 +27,15 @@ node('cic-rhd-01') {
             }
         }
 
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'robpblake-github-token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+        def cause = "${params.PULL_REQUEST_REF}-${env.BUILD_NUMBER}"
 
-            waitForMpBuildToStart(gitRepository: 'robpblake/developers.redhat.com', pullRequestRef: "${params.PULL_REQUEST_REF}", cause: "The CI Build is complete.", gitApiCredentials: "${env.PASSWORD}") {
-                echo "Waiting for build for pull request '${params.PULL_REQUEST_ID}' at ref '${params.PULL_REQUEST_REF}' to start..."
-            }
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'redhat-developer-automated', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            String jenkinsJob = "https://jenkins.paas.redhat.com/generic-webhook-trigger/invoke?token=rhdp-pr-build"
+            scheduleMpBuild(pullRequestId: "${params.PULL_REQUEST_ID}", cause: cause, jenkinsJob: jenkinsJob, jenkinsUser: env.USERNAME, jenkinsPassword: env.PASSWORD)
         }
 
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'robpblake-github-token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            waitForMpBuildToStart(gitRepository: 'robpblake/developers.redhat.com', pullRequestRef: "${params.PULL_REQUEST_REF}", cause: cause, gitApiCredentials: "${env.PASSWORD}")
+        }
     }
 }
