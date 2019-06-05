@@ -1,4 +1,4 @@
-version: v2
+version: v3
 disabled: false
 storage_method: file
 rest_api_url: 'https://xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx.luna.akamaiapis.net/'
@@ -26,3 +26,4 @@ edge_cache_tag_header: false
 purge_urls_with_hostname: null
 _core:
   default_config_hash: FS9IbMae7Ke5Vu9RLEwWkVYkOpV-CMthvHq9dVWQ1Hg
+edge_cache_tag_header_blacklist: {  }
