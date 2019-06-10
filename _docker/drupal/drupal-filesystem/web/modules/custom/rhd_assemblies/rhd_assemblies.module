@@ -234,7 +234,7 @@ function node_product_route_validation(array &$form, FormStateInterface &$form_s
   if ($node_type !== 'product') {
     $url_alias = $form_state->getValue('path')[0]['alias'];
     // Remove preceding '/' character if one exists.
-    $url_alias =  ($url_alias[0] === '/') ? substr($url_alias, 1) : $url_alias;
+    $url_alias = (isset($url_alias[0]) && $url_alias[0] === '/') ? substr($url_alias, 1) : $url_alias;
     $url_alias_array = explode('/', $url_alias);
     $reserved_product_subpages = ['overview', 'download', 'getting-started', 'hello-world'];
 
