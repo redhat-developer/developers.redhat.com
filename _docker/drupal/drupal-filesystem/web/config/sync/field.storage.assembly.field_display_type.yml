@@ -1,0 +1,27 @@
+uuid: 92b509cf-2e7a-4e2c-80fe-ee168988e762
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_display_type
+field_name: field_display_type
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'nav-menu|Render as horizontal nav'
+      label: 'Render as horizontal navigation'
+    -
+      value: 'two-col|Render Two Columns'
+      label: 'Render as two columns'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

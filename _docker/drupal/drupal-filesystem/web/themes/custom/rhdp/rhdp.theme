@@ -923,6 +923,21 @@ function rhdp_preprocess_assembly(&$variables) {
       $variables['embed_url'] = $embed_url;
     }
   }
+
+  // Add Display Type variables for templates
+  if ($assembly->hasField('field_display_type')) {
+    $variables['display_type'] = '';
+    // Verify that the field isset before retrieving the value.
+    if (isset($assembly->field_display_type)) {
+      $display_type = $assembly->get('field_display_type')->getValue()[0]['value'];
+      if (strpos($display_type, 'two-col') !== FALSE) {
+        $variables['display_type'] = 'two-col';
+      }
+      else if (strpos($display_type, 'nav-menu') !== FALSE) {
+        $variables['display_type'] = 'nav-menu';
+      }
+    }
+  }
 }
 
 /**
