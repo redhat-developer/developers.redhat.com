@@ -23,12 +23,12 @@
   {% set menuClass = "curated-links__list fa-ul"%}
 
   {# Calculate type of render based on class set and set appropriate variable values #}
-  {% if display_type == 'nav-menu' || attributes.hasClass('nav-menu') %}
+  {% if (display_type == 'nav-menu') or (attributes.hasClass('nav-menu')) %}
     {% set addClasses = ['nav-menu'] %}
     {% set remClasses = ['two-col'] %}
     {% set renderArrow = false %}
     {% set renderAside = false %}
-  {% elseif display_type == 'two-col' || attributes.hasClass('two-col') %}
+  {% elseif (display_type == 'two-col') or (attributes.hasClass('two-col')) %}
     {% set addClasses = ['two-col'] %}
     {% set remClasses = ['nav-menu'] %}
     {% set renderArrow = true %}
