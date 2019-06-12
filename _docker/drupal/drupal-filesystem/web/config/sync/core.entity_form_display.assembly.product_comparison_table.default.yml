@@ -21,7 +21,7 @@ third_party_settings:
       children:
         - field_features
       parent_name: ''
-      weight: 2
+      weight: 4
       format_type: details
       format_settings:
         id: ''
@@ -29,13 +29,14 @@ third_party_settings:
         open: true
         required_fields: true
       label: 'Table rows'
+      region: content
     group_table_columns:
       children:
         - field_sub_products
         - field_products
         - field_upstream_projects
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: details
       format_settings:
         id: ''
@@ -43,6 +44,7 @@ third_party_settings:
         open: true
         required_fields: true
       label: 'Table columns'
+      region: content
   field_layout:
     id: layout_disabled
     settings: {  }
@@ -125,14 +127,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 6
+    weight: 7
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -146,14 +148,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -163,7 +165,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 3
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
