@@ -28,9 +28,9 @@ third_party_settings:
   field_group:
     group_secondary_video:
       children:
-        - field_secondary_video_descriptio
-        - field_secondary_video_resource
         - field_secondary_video_title
+        - field_secondary_video_resource
+        - field_secondary_video_descriptio
       parent_name: ''
       weight: 9
       format_type: accordion
@@ -56,7 +56,7 @@ content:
     region: content
   field_background_image:
     type: entity_browser_file
-    weight: 14
+    weight: 11
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -110,7 +110,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 6
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -128,13 +128,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 13
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -149,7 +149,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -157,7 +157,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

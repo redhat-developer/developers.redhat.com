@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.combo.field_background_image
     - field.field.assembly.combo.field_cards
     - field.field.assembly.combo.field_content
+    - field.field.assembly.combo.field_navigation_title
     - field.field.assembly.combo.field_title
   module:
     - entity_reference_revisions
@@ -72,6 +73,7 @@ content:
 hidden:
   field_audience_selection: true
   field_background_image: true
+  field_navigation_title: true
   langcode: true
   name: true
   user_id: true

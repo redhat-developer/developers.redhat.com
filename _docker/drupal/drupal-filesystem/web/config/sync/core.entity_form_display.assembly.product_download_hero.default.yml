@@ -10,12 +10,10 @@ dependencies:
     - field.field.assembly.product_download_hero.field_image
     - field.field.assembly.product_download_hero.field_learn_more_link
     - field.field.assembly.product_download_hero.field_title
-    - image.style.thumbnail
   module:
     - entity_browser
     - field_layout
     - layout_discovery
-    - image
     - link
     - text
 third_party_settings:
@@ -29,7 +27,7 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 26
+    weight: 8
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -42,7 +40,7 @@ content:
     region: content
     third_party_settings: {  }
   field_content:
-    weight: 4
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -51,7 +49,7 @@ content:
     region: content
   field_image:
     type: entity_browser_file
-    weight: 6
+    weight: 7
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -60,10 +58,11 @@ content:
       preview_image_style: thumbnail
       open: true
       selection_mode: selection_append
+      field_widget_replace: false
     region: content
     third_party_settings: {  }
   field_learn_more_link:
-    weight: 5
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -71,7 +70,7 @@ content:
     type: link_default
     region: content
   field_title:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -80,7 +79,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     region: content
     settings:
       include_locked: true
@@ -95,7 +94,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 4
     region: content
     settings:
       display_label: true

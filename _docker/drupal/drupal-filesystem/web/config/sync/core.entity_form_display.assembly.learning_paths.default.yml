@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.learning_paths.field_audience_selection
     - field.field.assembly.learning_paths.field_cta_link
     - field.field.assembly.learning_paths.field_description
+    - field.field.assembly.learning_paths.field_navigation_title
     - field.field.assembly.learning_paths.field_title
   module:
     - content_moderation
@@ -30,7 +31,7 @@ content:
     type: options_buttons
     region: content
   field_cta_link:
-    weight: 7
+    weight: 9
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -38,15 +39,23 @@ content:
     type: link_default
     region: content
   field_description:
-    weight: 6
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_navigation_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -55,13 +64,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 8
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -76,14 +85,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60

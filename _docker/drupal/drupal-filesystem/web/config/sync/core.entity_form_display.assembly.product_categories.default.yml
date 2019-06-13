@@ -29,7 +29,7 @@ content:
     type: options_buttons
     region: content
   field_cta_link:
-    weight: 4
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -37,7 +37,7 @@ content:
     type: link_default
     region: content
   field_navigation_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -45,7 +45,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -54,13 +54,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -75,7 +75,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -83,7 +83,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }

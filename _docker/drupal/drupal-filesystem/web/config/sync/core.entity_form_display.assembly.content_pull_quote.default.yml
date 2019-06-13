@@ -19,13 +19,13 @@ bundle: content_pull_quote
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_content_pull_quote:
-    weight: 3
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -34,7 +34,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: content
     settings:
       include_locked: true
@@ -49,12 +49,17 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   moderation_state: true
   user_id: true
-  visual_styles: true
