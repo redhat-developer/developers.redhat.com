@@ -924,20 +924,42 @@ function rhdp_preprocess_assembly(&$variables) {
     }
   }
 
-  // Add Display Type variables for templates
-  if ($assembly->hasField('field_display_type')) {
+  // Add Display Type variables for curated_links
+  if ($type == 'curated_links'
+      && $assembly->hasField('field_display_type_curated_links')) {
     $variables['display_type'] = '';
-    // Verify that the field isset before retrieving the value.
-    if (isset($assembly->field_display_type)) {
-      $display_type = $assembly->get('field_display_type')->getValue()[0]['value'];
-      if (strpos($display_type, 'two-col') !== FALSE) {
-        $variables['display_type'] = 'two-col';
-      }
-      else if (strpos($display_type, 'nav-menu') !== FALSE) {
-        $variables['display_type'] = 'nav-menu';
-      }
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
+    if (strpos($display_type, 'two-col') !== FALSE) {
+      $variables['display_type'] = 'two-col';
+    }
+    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+      $variables['display_type'] = 'nav-menu';
     }
   }
+
+  // Add Display Type variables for featured_products
+  if ($type == 'featured_products'
+      && $assembly->hasField('field_display_type_featured_prod')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_featured_prod')->getValue()[0]['value'];
+    if (strpos($display_type, 'basic') !== FALSE) {
+      $variables['display_type'] = 'basic';
+    }
+    else if (strpos($display_type, 'featured') !== FALSE) {
+      $variables['display_type'] = 'featured';
+    }
+  }
+
+  // Add Display Type variables for featured_products
+  if ($type == 'video_hero'
+      && $assembly->hasField('field_display_type_video_hero')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_video_hero')->getValue()[0]['value'];
+    if (strpos($display_type, 'full-width-video') !== FALSE) {
+      $variables['display_type'] = 'full-width-video';
+    }
+  }
+
 }
 
 /**

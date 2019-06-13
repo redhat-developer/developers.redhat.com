@@ -7,7 +7,7 @@ dependencies:
     - field.field.assembly.curated_links.field_additional_content
     - field.field.assembly.curated_links.field_audience_selection
     - field.field.assembly.curated_links.field_content_list
-    - field.field.assembly.curated_links.field_display_type
+    - field.field.assembly.curated_links.field_display_type_curated_links
     - field.field.assembly.curated_links.field_navigation_title
     - field.field.assembly.curated_links.field_title
   module:
@@ -25,7 +25,7 @@ bundle: curated_links
 mode: default
 content:
   field_additional_content:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -40,7 +40,7 @@ content:
     type: options_buttons
     region: content
   field_content_list:
-    weight: 7
+    weight: 8
     settings:
       form_mode: default
       label_singular: ''
@@ -57,14 +57,14 @@ content:
         entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
-  field_display_type:
-    weight: 4
+  field_display_type_curated_links:
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_navigation_title:
-    weight: 6
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -72,7 +72,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 5
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -96,7 +96,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 10
     region: content
     settings:
       display_label: true
