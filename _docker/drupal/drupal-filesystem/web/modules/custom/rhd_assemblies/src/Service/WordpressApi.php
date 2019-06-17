@@ -82,25 +82,35 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   public function getContentByCategory($categories, $max_results, $select_logic) {
     $items = [];
-    $select_logic = $select_logic == "and" ? $select_logic : "or";
+
+    $select_logic_tmp = "or";
+
+    if($select_logic) {
+      $select_logic_tmp = $select_logic[0]['value'] == "1" ? "and" : "or";
+    }
 
     //$feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
     //$feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
     $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
 
     $query['per_page'] = $max_results;
-    $query['logic'] = $select_logic;
+    $query['logic'] = $select_logic_tmp;
 
-    if (!empty($categories)) {
-      $query['categories'] = $categories;
+    if($categories){
+      if (count($categories) > 0) {
+        $query['categories'] = implode(",", $categories);
+      }
     }
 
     try {
       // Retrieve the WP posts from the $feed_url and decode the JSON into a
       // $results array.
       $request = $this->client->request('GET', $feed_url, ['query' => $query]);
+
       $response = $request->getBody()->getContents();
+
       $results = json_decode($response);
+
 
       // Iterate of the WP results returned in $results, and get the
       // processed/formatted results from getContentComposite().
