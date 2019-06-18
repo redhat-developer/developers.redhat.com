@@ -26,8 +26,8 @@ s.setAttribute('data-timestamp', +new Date());
 
 var disqus_config = function() {
 		this.callbacks.onNewComment = [function(comment) { 
-			$.post("/{{ moduleUrl }}/src/callback/sendnotification.php", { comment: comment.id, post: "{{ postId }}" }, function(result){
-				alert(result);
+			$.post("/{{ moduleUrl }}/src/Callback/DisqusEmail.php", { comment: comment.id, post: "{{ postId }}" }, function(result){
+				console.log(result);
 			});
 		}];
 };

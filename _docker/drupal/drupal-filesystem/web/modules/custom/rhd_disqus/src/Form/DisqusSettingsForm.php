@@ -38,6 +38,13 @@ class DisqusSettingsForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('rhd_disqus_api_key'),
     ];
+    $form['rhd_disqus_secret_key'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Disqus API Secret'),
+      '#maxlength' => 64,
+      '#size' => 64,
+      '#default_value' => $config->get('rhd_disqus_secret_key'),
+    ];
     $form['rhd_disqus_shortname'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Disqus Shortname'),
@@ -64,6 +71,7 @@ class DisqusSettingsForm extends ConfigFormBase {
     $this->config('rhd_disqus.disqussettings')
       ->set('rhd_disqus_shortname', $form_state->getValue('rhd_disqus_shortname'))
       ->set('rhd_disqus_api_key', $form_state->getValue('rhd_disqus_api_key'))
+      ->set('rhd_disqus_secret_key', $form_state->getValue('rhd_disqus_secret_key'))
       ->save();
   }
 

@@ -90,7 +90,6 @@ function rhd_disqus_assembly_view_alter(array &$build, EntityInterface $entity, 
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
     $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
-
     $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
   }
 }
