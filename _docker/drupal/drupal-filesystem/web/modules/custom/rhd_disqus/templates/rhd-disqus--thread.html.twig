@@ -26,7 +26,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 var disqus_config = function() {
 		this.callbacks.onNewComment = [function(comment) { 
-			$.post("/{{ moduleUrl }}/src/Callback/DisqusEmail.php", { comment: comment.id, post: "{{ postId }}" }, function(result){
+			$.post("/rhd_disqus/callback/rhd_disqus_email", { comment: comment.id, post: "{{ postId }}" }, function(result){
 				console.log(result);
 			});
 		}];
