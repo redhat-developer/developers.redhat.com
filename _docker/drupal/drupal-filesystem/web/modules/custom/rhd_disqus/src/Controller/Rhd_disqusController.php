@@ -2,7 +2,8 @@
 namespace Drupal\rhd_disqus\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Rhd_disqusController extends ControllerBase {
 
@@ -12,7 +13,10 @@ class Rhd_disqusController extends ControllerBase {
     public function rhd_disqus_email() {
 
         $tmp_output = "";
-        
+
+        //temp array for output
+        $build = array();
+
         //Disqus config
         $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
         $disqus_secret_key = $disqus_config->get('rhd_disqus_secret_key') ?: "";
@@ -23,6 +27,9 @@ class Rhd_disqusController extends ControllerBase {
         $postId = $_POST['post'];
         $postAuthorEmail = "";
 
+        $build['postId'] = $postId;
+        $build['commentId'] = $commentId;
+
         // Load the node from the $postId
         $nid = (int) $postId;
         if($nid) {
@@ -30,12 +37,14 @@ class Rhd_disqusController extends ControllerBase {
             $node = $node_storage->load($nid);
         }
 
-        if($node) {
+        if($node != NULL) {
             $postTitle = $node->get('title')->value;
             $author = $node->getOwner();
             $postAuthor = $author->getDisplayName(); 
             $postAuthorEmail = $author->getEmail(); 
         }
+
+        $build['articleTitle'] = $postTitle;
 
         //check we have a valid email and return error if not
         if (filter_var($postAuthorEmail, FILTER_VALIDATE_EMAIL)) {
@@ -50,10 +59,10 @@ class Rhd_disqusController extends ControllerBase {
 
             // Handle errors otherwise send the email
             if ($results === NULL)  {
-                $tmp_output = 'Error: Failed to get comment information from Disqus';
+                $build['error'] = 'Failed to get comment information from Disqus';
             } else {
                 if ($results->code !== 0) {
-                    $tmp_output = 'Error: '.$results->response;
+                    $build['error'] = $results->response;
                 } else {
                     if ($results->response) {
                         //set the comment details
@@ -71,23 +80,15 @@ class Rhd_disqusController extends ControllerBase {
                         // Send the email		
                         mail($postAuthor,$subject,$message,$headers);
                         // Success
-                        $tmp_output = "Post: " . $postTitle . ", author notified";
+                        $build['success'] = "Post: " . $postTitle . ", author notified";
                     }
                 }
             }
         } else {
-            $tmp_output =  'Error: no email associated with this content item:'.$postTitle;
+            $build['error'] =  'no email associated with this content item:';
         }
         
-        //create build array
-        $build = array(
-            '#markup' => $tmp_output,
-        );
-
-        $output = \Drupal::service('renderer')->renderRoot($build);
-        $module_output = new Response();
-        $module_output->setContent($output);
-        return $module_output;
+        return new JsonResponse( $build );
     }
 
   }
