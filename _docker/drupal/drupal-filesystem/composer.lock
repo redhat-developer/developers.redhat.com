@@ -2758,6 +2758,52 @@
             }
         },
         {
+            "name": "drupal/ckeditor_styles_js",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_styles_js.git",
+                "reference": "c99cafa9655aef72253c03d8ee7f66ca4fc2fb0a"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1498678743",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "fearlsgroove",
+                    "homepage": "https://www.drupal.org/user/364178"
+                }
+            ],
+            "description": "Define a CKEditor style set in your theme",
+            "homepage": "https://www.drupal.org/project/ckeditor_styles_js",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/ckeditor_styles_js",
+                "issues": "https://www.drupal.org/project/issues/ckeditor_styles_js"
+            },
+            "time": "2017-06-28T19:34:55+00:00"
+        },
+        {
             "name": "drupal/compose",
             "version": "dev-1.x",
             "source": {
@@ -16084,7 +16130,8 @@
         "drupal/workbench": 20,
         "drupal/publication_date": 20,
         "drupal/imagecache_external": 20,
-        "drupal/session_limit": 10
+        "drupal/session_limit": 10,
+        "drupal/ckeditor_styles_js": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
