@@ -1,4 +1,4 @@
-<div class="disqus-thread-wrapper" id="comments">
+<div class="disqus-thread-wrapper" id="comments" data-content-id="{{ postId }}">
   {% if title %}
     <h2>{{ title }}</h2>
   {% endif %}
@@ -25,11 +25,11 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 
 var disqus_config = function() {
-		this.callbacks.onNewComment = [function(comment) { 
-			$.post("/rhd_disqus/callback/rhd_disqus_email", { comment: comment.id, post: "{{ postId }}" }, function(result){
-				console.log(result);
-			});
-		}];
+	this.callbacks.onNewComment = [function(comment) { 
+		$.post("/rhd_disqus/callback/rhd_disqus_email", { comment: comment.id, post: "{{ postId }}" }, function(result){
+			console.log(result);
+		});
+	}];
 };
 
 </script>

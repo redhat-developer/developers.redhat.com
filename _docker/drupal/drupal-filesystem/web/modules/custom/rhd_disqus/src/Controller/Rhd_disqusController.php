@@ -19,10 +19,7 @@ class Rhd_disqusController extends ControllerBase {
 
         //Disqus config
         $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
-        $disqus_secret_key = $disqus_config->get('rhd_disqus_secret_key') ?: "";
-
-        //My custom code here can now access the entire Drupal API
-        $disqusApiSecret = $disqus_secret_key; 
+        $disqusApiSecret = $disqus_config->get('rhd_disqus_secret_key') ?: "";
         $commentId = $_POST['comment'];
         $postId = $_POST['post'];
         $postAuthorEmail = "";
@@ -87,7 +84,7 @@ class Rhd_disqusController extends ControllerBase {
         } else {
             $build['error'] =  'no email associated with this content item:';
         }
-        
+
         return new JsonResponse( $build );
     }
 

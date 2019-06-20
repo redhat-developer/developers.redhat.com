@@ -43,11 +43,9 @@ function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDi
   }
   if ($view_mode == 'tile' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
     $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
-
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
     $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
-
     $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
   }
 }
@@ -98,7 +96,7 @@ function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');
   $nid = "";
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  if ($node) {
     // Get the nid
     $nid = $node->id();
   }
