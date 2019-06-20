@@ -94,19 +94,13 @@ function rhd_disqus_assembly_view_alter(array &$build, EntityInterface $entity, 
 
 function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');
-  $nid = "";
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node) {
-    // Get the nid
-    $nid = $node->id();
-  }
+
   return [
     'rhd_disqus__thread' => [
       'template' => 'rhd-disqus--thread',
       'variables' => [
         'thread' => NULL,
         'moduleUrl' => $path,
-        'postId' => $nid,
         'shortname' => $config->get('rhd_disqus_shortname') ?: NULL,
         'title' => t('Comments'),
       ],

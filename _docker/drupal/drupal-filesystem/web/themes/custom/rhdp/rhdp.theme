@@ -171,6 +171,11 @@ function rhdp_preprocess_html(array &$variables) {
 
     $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
   }
+
+  //get the node id for the page for adding to the body tag in the main template (used by Disqus to id the page)
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    $variables['attributes']['data-node-id'][] = $node->id();
+  }
 }
 
 /**
