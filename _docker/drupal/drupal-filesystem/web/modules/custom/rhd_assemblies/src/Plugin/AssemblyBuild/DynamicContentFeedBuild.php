@@ -96,9 +96,9 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
 
     // get category logic
     if($entity->hasField('field_wordpress_category_logic')) {
-      $category_logic = $entity->get('field_wordpress_category_logic')->getValue() ? "and" : "or";
+      $category_logic = $entity->get('field_wordpress_category_logic')->getValue();
     } else {
-      $category_logic = "or";
+      $category_logic = NULL;
     }
     
     // grab category ids
