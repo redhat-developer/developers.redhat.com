@@ -9,6 +9,7 @@ dependencies:
     - field.field.assembly.combo.field_background_image
     - field.field.assembly.combo.field_cards
     - field.field.assembly.combo.field_content
+    - field.field.assembly.combo.field_navigation_title
     - field.field.assembly.combo.field_title
   module:
     - content_moderation
@@ -27,14 +28,14 @@ bundle: combo
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_background_image:
     type: entity_browser_file
-    weight: 5
+    weight: 7
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -47,7 +48,7 @@ content:
     region: content
     third_party_settings: {  }
   field_cards:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       form_mode: default
@@ -63,15 +64,23 @@ content:
     type: inline_entity_form_complex
     region: content
   field_content:
-    weight: 7
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_navigation_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_title:
-    weight: 6
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -80,14 +89,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 4
+    weight: 6
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 9
+    weight: 10
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -101,7 +110,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 5
     region: content
     settings:
       display_label: true
@@ -109,7 +118,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

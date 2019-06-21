@@ -1,0 +1,19 @@
+uuid: a286c27e-b35b-4124-b397-6a56ad643e7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.learning_paths
+    - field.storage.assembly.field_navigation_title
+id: assembly.learning_paths.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: learning_paths
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

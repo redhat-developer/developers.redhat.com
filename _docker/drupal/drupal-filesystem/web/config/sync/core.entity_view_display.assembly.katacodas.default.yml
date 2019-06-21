@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.katacodas
     - field.field.assembly.katacodas.field_katacodas
+    - field.field.assembly.katacodas.field_navigation_title
     - field.field.assembly.katacodas.field_title
   module:
     - fences
@@ -20,7 +21,7 @@ bundle: katacodas
 mode: default
 content:
   field_katacodas:
-    weight: 2
+    weight: 1
     label: hidden
     settings:
       view_mode: card
@@ -36,7 +37,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_title:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
@@ -44,6 +45,7 @@ content:
     type: string
     region: content
 hidden:
+  field_navigation_title: true
   langcode: true
   name: true
   user_id: true

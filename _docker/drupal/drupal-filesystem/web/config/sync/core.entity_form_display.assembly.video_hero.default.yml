@@ -57,7 +57,7 @@ content:
     region: content
   field_background_image:
     type: entity_browser_file
-    weight: 12
+    weight: 11
     settings:
       entity_browser: image_browser
       field_widget_edit: true
@@ -117,7 +117,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 7
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -135,13 +135,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 11
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -164,7 +164,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

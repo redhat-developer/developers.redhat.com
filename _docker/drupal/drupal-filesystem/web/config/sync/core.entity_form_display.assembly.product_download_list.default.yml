@@ -19,7 +19,7 @@ bundle: product_download_list
 mode: default
 content:
   field_title:
-    weight: 26
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -56,18 +56,12 @@ content:
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
     third_party_settings: {  }
-  visual_styles:
-    type: options_select
-    multiple: true
-    weight: 1
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  visual_styles: true

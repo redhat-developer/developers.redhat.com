@@ -22,7 +22,7 @@ bundle: bonus_content_list
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -44,7 +44,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_title:
-    weight: 1
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -74,7 +74,7 @@ content:
     third_party_settings: {  }
   visual_styles:
     type: options_select
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

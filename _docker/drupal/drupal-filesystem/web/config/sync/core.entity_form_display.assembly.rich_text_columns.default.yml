@@ -30,7 +30,7 @@ content:
     type: options_buttons
     region: content
   field_columns:
-    weight: 7
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
@@ -38,7 +38,7 @@ content:
     type: text_textarea
     region: content
   field_content:
-    weight: 6
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -54,7 +54,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -63,13 +63,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -84,7 +84,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 6
     region: content
     settings:
       display_label: true

@@ -19,7 +19,7 @@ bundle: content_pull_quote
 mode: default
 content:
   field_audience_selection:
-    weight: 3
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -34,7 +34,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: content
     settings:
       include_locked: true
@@ -49,14 +49,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   visual_styles:
     type: options_select
-    weight: 4
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
