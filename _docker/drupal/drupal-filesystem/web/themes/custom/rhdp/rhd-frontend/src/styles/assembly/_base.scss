@@ -48,7 +48,7 @@
         margin-bottom: 0;
       }
     }
-  } 
+  }
   &.assembly-no-bkg {
     background-image: none;
   }
@@ -108,5 +108,25 @@
   }
   &[data-audience] {
     display: none;
+  }
+
+  &.left {
+    text-align: left !important;
+    float: none !important;
+    .field__item {
+      text-align: left !important;
+    }
+  }
+
+  &.gray-bg {
+    background-color: #e5e5e5;
+  }
+
+  &.dark {
+    background-color: #242424;
+    color: #fff !important;
+    .field__item {
+      color: #fff !important;
+    }
   }
 }

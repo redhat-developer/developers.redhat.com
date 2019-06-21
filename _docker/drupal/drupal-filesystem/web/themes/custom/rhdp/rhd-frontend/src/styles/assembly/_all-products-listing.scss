@@ -1,6 +1,12 @@
 .assembly-type-all_products_listing {
   background-color: $grey-1;
 
+  &.dark {
+    .field-content a {
+      color: #fff !important;
+    }
+  }
+
   header .field__item {
     font-size: 32px;
     color: $grey-8;
