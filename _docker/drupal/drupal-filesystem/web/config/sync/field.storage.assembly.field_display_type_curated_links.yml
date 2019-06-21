@@ -1,0 +1,27 @@
+uuid: 52e8b322-791a-4eb3-91a1-8e043d326b3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_display_type_curated_links
+field_name: field_display_type_curated_links
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: nav-menu
+      label: 'Render as horizontal nav'
+    -
+      value: two-col
+      label: 'Render Two Columns'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

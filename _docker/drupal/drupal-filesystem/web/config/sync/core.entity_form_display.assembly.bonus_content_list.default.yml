@@ -28,7 +28,7 @@ content:
     type: options_buttons
     region: content
   field_content_list:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       form_mode: default
@@ -53,7 +53,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 5
+    weight: 6
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -67,12 +67,17 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   user_id: true
-  visual_styles: true
