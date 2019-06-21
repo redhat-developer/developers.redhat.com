@@ -24,8 +24,8 @@ class Rhd_disqusController extends ControllerBase {
         $postId = $_POST['post'];
         $postAuthorEmail = "";
 
-        $build['postId'] = $postId;
-        $build['commentId'] = $commentId;
+        //$build['postId'] = $postId;
+        //$build['commentId'] = $commentId;
 
         // Load the node from the $postId
         $nid = (int) $postId;
@@ -36,12 +36,12 @@ class Rhd_disqusController extends ControllerBase {
 
         if($node != NULL) {
             $postTitle = $node->get('title')->value;
-            $author = $node->getOwner();
-            $postAuthor = $author->getDisplayName(); 
-            $postAuthorEmail = $author->getEmail(); 
+            $authorTmp = $node->getOwner();
+            $postAuthor = $authorTmp->getDisplayName(); 
+            $postAuthorEmail = $authorTmp->getEmail(); 
         }
 
-        $build['articleTitle'] = $postTitle;
+        //$build['articleTitle'] = $postTitle;
 
         //check we have a valid email and return error if not
         if (filter_var($postAuthorEmail, FILTER_VALIDATE_EMAIL)) {
@@ -75,7 +75,7 @@ class Rhd_disqusController extends ControllerBase {
                         $message = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
                         
                         // Send the email		
-                        mail($postAuthor,$subject,$message,$headers);
+                        mail($postAuthorEmail,$subject,$message,$headers);
                         // Success
                         $build['success'] = "Post: " . $postTitle . ", author notified";
                     }
