@@ -252,7 +252,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
     {% endif %}
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes.addClass(body_classes) }} {{ attributes.data-node-id }} id="rhd-page-body">
+  <body{{ attributes.addClass(body_classes) }} data-node-id='{{ data-node-id }}' id="rhd-page-body">
     {% if (rhd_environment == 'prod') %}
     <script type="text/javascript">
       dataLayer = [{'channel' : 'developer'}];

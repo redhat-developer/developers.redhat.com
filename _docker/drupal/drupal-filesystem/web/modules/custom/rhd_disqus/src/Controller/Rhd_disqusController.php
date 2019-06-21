@@ -68,16 +68,32 @@ class Rhd_disqusController extends ControllerBase {
                         $comment = $results->response->raw_message;
 
                         // Build the email message
-                        $headers  = 'MIME-Version: 1.0' . "\r\n";
-                        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                        $headers .= 'From:developers-redhat-com@redhat.com' . '\r\n';
-                        $subject = 'New comment on ' . $thread->title;
-                        $message = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
+                        //$headers  = 'MIME-Version: 1.0' . "\r\n";
+                        //$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                        //$headers .= 'From:developers-redhat-com@redhat.com' . '\r\n';
+                        //$subject = 'New comment on ' . $thread->title;
+                        //$message = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
                         
                         // Send the email		
-                        mail($postAuthorEmail,$subject,$message,$headers);
+                        //mail($postAuthorEmail,$subject,$message,$headers);
                         // Success
-                        $build['success'] = "Post: " . $postTitle . ", author notified";
+                        //$build['success'] = "Post: " . $postTitle . ", author notified";
+
+                        $mailManager = \Drupal::service('plugin.manager.mail');
+                        $module = 'rhd_disqus';
+                        $key = 'disqus_comment_mail';
+                        $to = $postAuthorEmail;
+                        $params['message'] = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
+                        $params['subject'] = $thread->title;
+                        $langcode = \Drupal::currentUser()->getPreferredLangcode();
+                        $send = true;
+                        $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+                        if ($result['result'] !== true) {
+                            $build['error'] = 'There was a problem sending your message and it was not sent.';
+                        }
+                        else {
+                            $build['success'] = "Post: " . $postTitle . ", author notified";
+                        }
                     }
                 }
             }
@@ -87,6 +103,7 @@ class Rhd_disqusController extends ControllerBase {
 
         return new JsonResponse( $build );
     }
+    
 
   }
 ?>

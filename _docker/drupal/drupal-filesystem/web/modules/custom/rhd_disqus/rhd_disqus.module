@@ -92,6 +92,19 @@ function rhd_disqus_assembly_view_alter(array &$build, EntityInterface $entity, 
   }
 }
 
+function rhd_disqus_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+    case 'disqus_comment_mail':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('New comment on: @subject', ['@subject' => $params['subject']], $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+ }
+
 function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');
 
