@@ -6,11 +6,24 @@ dependencies:
     - entity_browser.browser.media_browser
     - field.field.node.sub_product.field_cta
     - field.field.node.sub_product.field_logo
+    - field.field.node.sub_product.field_tags
+    - field.field.node.sub_product.field_tax_audience_segment
+    - field.field.node.sub_product.field_tax_business_unit
+    - field.field.node.sub_product.field_tax_campaign
+    - field.field.node.sub_product.field_tax_lifecycle
+    - field.field.node.sub_product.field_tax_product
+    - field.field.node.sub_product.field_tax_product_line
+    - field.field.node.sub_product.field_tax_project
+    - field.field.node.sub_product.field_tax_promotion
+    - field.field.node.sub_product.field_tax_region
+    - field.field.node.sub_product.field_tax_stage
+    - field.field.node.sub_product.field_topics
     - node.type.sub_product
   module:
     - compose
     - content_moderation
     - entity_browser
+    - field_group
     - field_layout
     - link
     - publication_date
@@ -18,6 +31,31 @@ third_party_settings:
   field_layout:
     id: compose_tabs
     settings: {  }
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_topics
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+        - field_tags
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'Purpose Attributes'
+      region: fields
 id: node.sub_product.default
 targetEntityType: node
 bundle: sub_product
@@ -52,6 +90,81 @@ content:
       field_widget_replace: false
     region: content
     third_party_settings: {  }
+  field_tags:
+    weight: 37
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
+  field_tax_audience_segment:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_business_unit:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_campaign:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_lifecycle:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product:
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product_line:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_project:
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_promotion:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_region:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_stage:
+    weight: 36
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_topics:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
   langcode:
     type: language_select
     weight: 2

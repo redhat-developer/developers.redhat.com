@@ -1,0 +1,59 @@
+uuid: 7b840a0d-1b73-423a-91eb-9594dca0acd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo_item_manual
+    - field.field.assembly.combo_item_manual.field_image
+    - field.field.assembly.combo_item_manual.field_url
+    - image.style.thumbnail
+  module:
+    - field_layout
+    - image
+    - layout_discovery
+    - link
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.combo_item_manual.default
+targetEntityType: assembly
+bundle: combo_item_manual
+mode: default
+content:
+  field_image:
+    weight: 2
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_url:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  moderation_state: true
+  user_id: true
+  visual_styles: true

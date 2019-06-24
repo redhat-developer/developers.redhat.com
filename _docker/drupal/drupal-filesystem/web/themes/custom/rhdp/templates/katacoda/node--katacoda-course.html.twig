@@ -42,66 +42,24 @@
     {% endif %}
     
     <div{{ content_attributes.addClass('node__content') }}>
-        {% set base_url = render_var(url('<front>'))  %}
-          <div class="katacoda-hero individual-course">
+      <div class="katacoda-hero individual-course assembly has-background">
         <div class="container">
           <div class="content-area">
-              <h1>{{ katacoda_course_info.course_title |raw }}</h1>
-              {{ katacoda_course_info.course_description |raw }}
-              {% if (katacoda_course_info.course_read_more) is not empty %}
-                <a class="katacoda-learn-more-link" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Learn More ></a>
-              {% endif %}
+            <h1>{{ katacoda_course_info.course_title |raw }}</h1>
+            {{ katacoda_course_info.course_description |raw }}
+            {% if (katacoda_course_info.course_read_more) is not empty %}
+              <p><a class="katacoda-learn-more-link" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Learn More ></a></p>
+            {% endif %}
           </div>
          </div>
+          <div class="background" style="background-image: url(/{{ base_path ~ directory }}/images/design/katacoda/rhd-katacoda-header-1410x940.jpg);"></div>
         </div>
-        
         <div class="container">
           <div class="katacoda-lesson-grid">
-          {% for lesson in katacoda_course_info.courses %}
-              <div class="katacoda-lesson">
-                  <div class="info-outer">
-                      <div class="lesson--title">
-                          <a href="{{ base_url }}{{ lesson.lesson_path_alias }}">{{ lesson.title |raw }}</a>
-                      </div>
-                      <div class="lesson--time-level">
-                        {%	if lesson.scenario_time|render|trim is not empty %}
-                         <span class="time-clock"><img src="/{{ active_theme_path() }}/images/design/katacoda/clock.svg" /></span> {{ lesson.scenario_time }} minutes
-                        {% endif %}
-                        {% if (lesson.scenario_time|render|trim is not empty) and (lesson.skill_level|render|trim is not empty)  %}
-                         | 
-                        {% endif %}
-                        {% if lesson.skill_level|render|trim is not empty %}
-                          {{ lesson.skill_level }}
-                        {% endif %}
-                      </div>
-                      <div class="lesson--description">
-                              {{ lesson.description |raw }}
-                      </div>
-                      <div class="lesson--publish-meta">
-                        <p>
-                          Published {{ node.created.value|date('d M Y') }} by 
-                          {% if (lesson.display_author|render|trim) is not empty %}
-                             {{ lesson.display_author }}
-                            {% else %}
-                              {{ author_name }}
-                          {% endif %}
-                        </p>
-                        {{ user.name.0.value }}
-                      </div>
-                  </div>
-                  
-                  <div class="lesson-link">
-                          <a href="{{ base_url }}{{ lesson.lesson_path_alias }}">Start</a>
-                  </div>
-                  
-              
-              </div>
-          {% endfor %}
+            {{ content.field_katacoda_course_lessons }}
           </div>
         </div>
-
-
+      </div>
     </div>
- 
   </article>
   

@@ -1,5 +1,7 @@
-.assembly-type-featured_articles {
-
+.assembly-type-featured_articles,
+.related-articles {
+  padding-bottom: 2rem;
+  padding-top: 3rem;
   h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -22,10 +24,10 @@
     justify-content: center;
   }
 
-  .article-type {
+  .article-card-type {
     text-transform: uppercase;
   }
-  .article-content {
+  .article-card-content {
     height: 300px;
     .field--name-field-short-description {
       overflow: hidden;
@@ -39,37 +41,8 @@
       margin-bottom: 30px;
     }
   }
-  .tile-title, 
   .tile-title a {
     color: $gray-8;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 15px 0;
-  }
-  .authors {
-    .field--name-field-headshot {
-      display: inline;
-      float: left;
-      max-width: 60px;
-      width: 30%;
-      margin-right: 10px;
-      @media screen and (max-width: 1240px) and (min-width: 768px) {
-        display: none;
-      }
-      @media screen and (max-width: 430px) {
-        display: none;
-      }
-    }
-    .author-name {
-      width: 70%;
-      padding: 8px 0 0 0;
-      float: left;
-      background-color: transparent;
-      .field--name-title {
-        float: left;
-        text-transform: none;
-      }
-    }
   }
   .changed-date {
     color: $gray-4;
@@ -78,10 +51,5 @@
     bottom: 10px;
     white-space: nowrap;
     overflow: hidden;
-  }
-  .article-info {
-    bottom: 30px;
-    width: 100%;
-    min-height: 55px;
   }
 }

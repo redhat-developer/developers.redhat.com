@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.connectors.field_connector_target_product_1
     - field.field.node.connectors.field_connector_target_product_2
     - field.field.node.connectors.field_connector_target_product_3
+    - field.field.node.connectors.field_tags
     - field.field.node.connectors.field_tax_audience_segment
     - field.field.node.connectors.field_tax_business_unit
     - field.field.node.connectors.field_tax_campaign
@@ -26,10 +27,11 @@ dependencies:
     - field.field.node.connectors.field_tax_promotion
     - field.field.node.connectors.field_tax_region
     - field.field.node.connectors.field_tax_stage
+    - field.field.node.connectors.field_topics
     - node.type.connectors
   module:
-    - compose
     - field_layout
+    - layout_discovery
     - link
     - options
     - text
@@ -72,7 +74,7 @@ content:
     region: content
   field_connector_image:
     type: entity_reference_entity_view
-    weight: 13
+    weight: 14
     label: above
     settings:
       view_mode: default
@@ -172,6 +174,7 @@ content:
     weight: -20
     region: content
 hidden:
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true
@@ -182,5 +185,6 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  field_topics: true
   langcode: true
   published_at: true

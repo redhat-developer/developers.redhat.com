@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+
+{% for item in items %}   
+    {% if item.content %}
+        {{ item.content | with('#image_style', 'bonus_thumb') }}
+    {% endif %}
+{% endfor %}
+

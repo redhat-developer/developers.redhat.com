@@ -5,6 +5,9 @@
   @include desktop-small {
     text-align: left;
   }
+  @include mobile-landscape-and-down{
+    display:none;
+  }
   a {
     color: inherit;
     text-decoration: none;

@@ -91,11 +91,17 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   }
 
   protected function getWordpressPosts(EntityInterface $entity, $count) {
+    // get selected categories
     $category_filters = $entity->get('field_category_filter')->getValue();
-    if (empty($category_filters)) {
-      return [];
-    }
 
+    // get category logic
+    if($entity->hasField('field_wordpress_category_logic')) {
+      $category_logic = $entity->get('field_wordpress_category_logic')->getValue();
+    } else {
+      $category_logic = NULL;
+    }
+    
+    // grab category ids
     $categories = [];
     if (!empty($category_filters)) {
       foreach ($category_filters as $category_filter) {
@@ -103,44 +109,56 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
       }
     }
 
-    if (count($categories)) {
-      $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, $count);
-      return $posts;
-    }
+    $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, $count, $category_logic);
 
-    return [];
+    return $posts;
   }
 
   protected function getDrupalNodes(EntityInterface $entity, $count) {
     $term_filters = $entity->get('field_drupal_term_filter')->getValue();
-    if (empty($term_filters)) {
-      return [];
-    }
-
     $terms = [];
+    $valid_node_types = [
+      'video_resource',
+      'article',
+    ];
+
     if (!empty($term_filters)) {
       foreach ($term_filters as $term_filter) {
         $terms[] = $term_filter['target_id'];
       }
     }
 
-    $valid_node_types = [
-      'video_resource',
-      'article',
-    ];
+    if (!empty($terms)) {
+      $query = \Drupal::database()->select('taxonomy_index', 't');
+      $query->fields('t', ['nid']);
+      $query->condition('t.tid', $terms, 'in');
+      $query->leftJoin('node', 'n', 'n.nid = t.nid');
+      $query->condition('n.type', $valid_node_types, 'in');
+      $query->join('node_field_data', 'nfd', 'n.nid = nfd.nid');
+      $query->condition('nfd.status', 1);
+      $query->range(0, $count);
+      $query->orderBy('nfd.created', 'desc');
+      $results = $query->execute();
+    }
+    else {
+      $query = \Drupal::entityQuery('node')
+          ->condition('status', 1)
+          ->condition('type', $valid_node_types, 'in')
+          ->range(0, $count)
+          ->sort('created' , 'DESC');
 
-    $query = \Drupal::database()->select('taxonomy_index', 't');
-    $query->fields('t', ['nid']);
-    $query->condition('t.tid', $terms, 'in');
-    $query->leftJoin('node', 'n', 'n.nid = t.nid');
-    $query->condition('n.type', $valid_node_types, 'in');
-    $query->join('node_field_data', 'nfd', 'n.nid = nfd.nid');
-    $query->condition('nfd.status', 1);
-    $query->range(0, $count);
-    $query->orderBy('nfd.created', 'desc');
-    $results = $query->execute();
+      $results = $query->execute();
+
+      // Format results in an array of stdClasses with a nid attribute.
+      foreach ($results as $key => $result) {
+        $nid = $result;
+        $results[$key] = new \stdClass;
+        $results[$key]->nid = $nid;
+      }
+    }
 
     $nodes = [];
+
     foreach ($results as $result) {
       $node_id = $result->nid;
       $nodes[$node_id] = Node::load($node_id);

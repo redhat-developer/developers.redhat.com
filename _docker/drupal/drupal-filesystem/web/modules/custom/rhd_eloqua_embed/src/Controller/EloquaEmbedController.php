@@ -23,7 +23,15 @@ class EloquaEmbedController {
         throw new NotFoundHttpException();
       }
       $field_url_array = $assembly->get('field_url')->getValue();
-      $redirect_url = ($field_url_array[0]['uri']) ? $field_url_array[0]['uri'] : FALSE;
+
+      // Verify that this array key isset before accessing it.
+      if (isset($field_url_array[0])) {
+        $redirect_url = ($field_url_array[0]['uri']) ? $field_url_array[0]['uri'] : FALSE;
+      }
+      else {
+        $redirect_url = FALSE;
+      }
+
       $build = [
         '#theme' => 'rhd_eloqua_embed_page',
         '#eloqua_json' => $eloqua_json,

@@ -1,0 +1,49 @@
+uuid: b7782a73-8de7-479b-a77b-b7bc9c62142b
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.katacodas
+    - field.field.assembly.katacodas.field_katacodas
+    - field.field.assembly.katacodas.field_title
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.katacodas.default
+targetEntityType: assembly
+bundle: katacodas
+mode: default
+content:
+  field_katacodas:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: card
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
+  name: true
+  user_id: true

@@ -11,6 +11,7 @@ dependencies:
     - field.field.assembly.dynamic_content_list.field_links
     - field.field.assembly.dynamic_content_list.field_navigation_title
     - field.field.assembly.dynamic_content_list.field_title
+    - field.field.assembly.dynamic_content_list.field_wordpress_category_logic
   module:
     - fences
     - field_layout
@@ -85,6 +86,7 @@ hidden:
   field_category_filter: true
   field_drupal_term_filter: true
   field_navigation_title: true
+  field_wordpress_category_logic: true
   langcode: true
   name: true
   user_id: true

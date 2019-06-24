@@ -1,0 +1,29 @@
+uuid: 021ebe6f-95ad-459b-ad94-0cc567183998
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_audience_segment
+    - node.type.katacoda_course
+    - taxonomy.vocabulary.audience_segment
+id: node.katacoda_course.field_tax_audience_segment
+field_name: field_tax_audience_segment
+entity_type: node
+bundle: katacoda_course
+label: Audience/Segment
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      audience_segment: audience_segment
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

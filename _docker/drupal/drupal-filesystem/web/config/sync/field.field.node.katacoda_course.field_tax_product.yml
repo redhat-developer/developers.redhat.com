@@ -1,0 +1,29 @@
+uuid: bf1709eb-836a-4c14-866f-3e0cd2cb541e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_product
+    - node.type.katacoda_course
+    - taxonomy.vocabulary.product
+id: node.katacoda_course.field_tax_product
+field_name: field_tax_product
+entity_type: node
+bundle: katacoda_course
+label: Product
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product: product
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

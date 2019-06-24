@@ -8,9 +8,22 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
     - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_tags
+    - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
+    - field.field.node.katacoda_individual_lesson.field_tax_business_unit
+    - field.field.node.katacoda_individual_lesson.field_tax_campaign
+    - field.field.node.katacoda_individual_lesson.field_tax_lifecycle
+    - field.field.node.katacoda_individual_lesson.field_tax_product
+    - field.field.node.katacoda_individual_lesson.field_tax_product_line
+    - field.field.node.katacoda_individual_lesson.field_tax_project
+    - field.field.node.katacoda_individual_lesson.field_tax_promotion
+    - field.field.node.katacoda_individual_lesson.field_tax_region
+    - field.field.node.katacoda_individual_lesson.field_tax_stage
+    - field.field.node.katacoda_individual_lesson.field_topics
     - node.type.katacoda_individual_lesson
   module:
-    - options
+    - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -29,29 +42,101 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_katacoda_scenario_author:
-    weight: 4
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_katacoda_scenario_time:
-    weight: 2
-    label: hidden
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
-    region: content
-  field_katacoda_skill_level:
+  field_tags:
     weight: 3
-    label: hidden
-    settings: {  }
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
-    type: list_default
+    type: entity_reference_label
+    region: content
+  field_tax_audience_segment:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_business_unit:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_campaign:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_lifecycle:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_product:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_product_line:
+    weight: 9
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_project:
+    weight: 10
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_promotion:
+    weight: 11
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_region:
+    weight: 12
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tax_stage:
+    weight: 13
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_topics:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 0
@@ -60,5 +145,9 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  content_moderation_control: true
+  field_katacoda_scenario_author: true
+  field_katacoda_scenario_time: true
+  field_katacoda_skill_level: true
   langcode: true
   published_at: true

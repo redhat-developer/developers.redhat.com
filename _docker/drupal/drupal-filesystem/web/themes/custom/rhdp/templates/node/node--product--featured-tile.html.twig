@@ -6,10 +6,11 @@
 %}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ logo_link }}">
-    {% if content.field_image %}
+    {% if content.field_image is defined and content.field_image|render|trim %}
       {{ content.field_image }}
+    {% else %} 
+      <p class="tile-title">{{ label }}</p>
     {% endif %}
-    <p class="tile-title">{{ label }}</p>
   </a>
     {{ content.field_short_description }}
     {% if cta_url %}

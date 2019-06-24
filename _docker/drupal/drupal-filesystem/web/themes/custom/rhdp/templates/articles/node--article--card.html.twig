@@ -67,22 +67,22 @@ other methods (such as node.delete) will result in an exception.
 #}
 
 <div{{ attributes.addClass(["featured-article"]) }}>
-  <div class="article-content">
+  <div class="article-card-content">
     {% if content.field_article_type|render %}
-      <p class="article-type"><i class="far fa-newspaper"></i> {{ content.field_article_type }} {% if node.field_article_type[0].value != 'article' %}Article {% endif %}</p>
+      <p class="article-card-type"><i class="far fa-newspaper"></i> {{ content.field_article_type }} {% if node.field_article_type[0].value != 'article' %}Article {% endif %}</p>
     {% endif %}
     {{ title_prefix }}
       <p{{ title_attributes.addClass(["tile-title"]) }}><a href="{{ url }}">{{ label }}</a></p>
     {{ title_suffix }}
     <div{{ content_attributes.addClass(article_classes) }}>{{ content.field_short_description }}</div>
   </div>
-  <div class="article-info">
+  <div class="article-card-info">
     {% if content.field_author_evangelist|render %}
-      <div class="authors">
+      <div class="card-authors">
         {{ content.field_author_evangelist }}
       </div>
     {% elseif content.field_content_author|render %}
-      <div class="authors no-image">
+      <div class="card-authors no-image">
         <div class="authors-inner">
           <div class="author short-teaser">
             <span class="author-name">

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.storage.node.body
     - node.type.katacoda_course
   module:
@@ -10,7 +11,7 @@ dependencies:
     - text
     - user
 id: katacoda_all_courses
-label: 'Katacoda All Courses'
+label: 'All Courses'
 module: views
 description: ''
 tag: ''
@@ -70,7 +71,10 @@ display:
       style:
         type: default
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
       fields:
         title:
           id: title
@@ -271,13 +275,14 @@ display:
           expose:
             label: ''
           granularity: second
-      title: 'Katacoda All Courses'
+      title: 'All Courses'
       header: {  }
       footer: {  }
       empty: {  }
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      css_class: 'container katacoda-courses-container'
     cache_metadata:
       max-age: -1
       contexts:
@@ -288,14 +293,14 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
-    position: 1
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: Block
+    position: 2
     display_options:
-      display_extenders: {  }
-      path: courses
+      display_extenders:
+        metatag_display_extender: {  }
     cache_metadata:
       max-age: -1
       contexts:

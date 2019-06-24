@@ -13,6 +13,7 @@
 @import "slick";
 @import "learning-paths";
 @import "rhd-accordion";
+@import "table-of-content";
 
 // Foundation dependent
 @import "products";
@@ -357,20 +358,6 @@ img {
   padding: 0;
 }
 
-.caret-right {
-  &:after {
-    color: inherit;
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z" fill="#0066CC"/></svg>');
-    width: 0.45em;
-    height: auto;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 0.5em;
-    position: relative;
-    top: 0.1em;
-  }
-}
-
 .mobile {
   display: none;
 }
@@ -694,4 +681,18 @@ a#scroll-to-top {
     outline: none;
     opacity: 1;
   }
+}
+
+.align-center img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-left img {
+  margin-right: 1rem;
+  float: left;
+}
+.align-right img {
+  margin-left: 1rem;
+  float: right;
 }
