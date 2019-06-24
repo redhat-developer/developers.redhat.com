@@ -8,7 +8,7 @@ const testType = typeof commandlineArgs.testType === 'undefined' ? 'export' : co
 const exclude = testType === 'export' ? 'drupal' : 'export';
 
 let host;
-if (commandlineArgs['base-url'].includes('developers-pr') && testType === 'drupal') {
+if (commandlineArgs['base-url'].includes('developers-pr.stage.redhat.com') && testType === 'drupal') {
     const parsedUrl = require('url').parse(commandlineArgs['base-url']);
     const prNumber = parseInt(parsedUrl.pathname.split('/')[2]);
     host = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000 + prNumber)}`;
