@@ -116,6 +116,9 @@
     .field__item {
       text-align: left !important;
     }
+    &.assembly-type-featured_products .grid {
+      justify-content: left;
+    }
   }
 
   &.gray-bg {
@@ -124,9 +127,18 @@
 
   &.dark {
     background-color: #242424;
-    color: #fff !important;
+    color: #fff;
     .field__item {
-      color: #fff !important;
+      color: #fff;
+    }
+    .node--type-product .field__items {
+      color: #333;
+    }
+  }
+  
+  &.4-up {
+    .grid {
+      grid-template-columns: repeat(4,280px);
     }
   }
 }
