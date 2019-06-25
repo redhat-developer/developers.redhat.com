@@ -1,4 +1,4 @@
-<div class="disqus-thread-wrapper" id="comments" data-content-id="{{ postId }}">
+<div class="disqus-thread-wrapper" id="comments">
   {% if title %}
     <h2>{{ title }}</h2>
   {% endif %}
@@ -24,7 +24,7 @@ s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
 
-var rhd_page_node_id = document.getElementById('rhd-page-body').getAttribute('data-node-id');
+var rhd_page_node_id = window.location.pathname;
 
 var disqus_config = function() {
 	this.callbacks.onNewComment = [function(comment) { 

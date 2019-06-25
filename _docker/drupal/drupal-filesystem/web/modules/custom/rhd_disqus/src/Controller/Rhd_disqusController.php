@@ -4,6 +4,7 @@ namespace Drupal\rhd_disqus\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use \Drupal\Core\Url;
 
 class Rhd_disqusController extends ControllerBase {
 
@@ -28,10 +29,14 @@ class Rhd_disqusController extends ControllerBase {
         //$build['commentId'] = $commentId;
 
         // Load the node from the $postId
-        $nid = (int) $postId;
-        if($nid) {
-            $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-            $node = $node_storage->load($nid);
+        $urlAlias = $postId;
+        if($urlAlias) {
+            $path = \Drupal::service('path.alias_manager')->getPathByAlias($urlAlias);
+            if(preg_match('/node\/(\d+)/', $path, $matches)) {
+                $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+                $node = $node_storage->load($matches[1]);
+                //$build['debug'] = $matches[1];
+            }
         }
 
         if($node != NULL) {
@@ -40,8 +45,6 @@ class Rhd_disqusController extends ControllerBase {
             $postAuthor = $authorTmp->getDisplayName(); 
             $postAuthorEmail = $authorTmp->getEmail(); 
         }
-
-        //$build['articleTitle'] = $postTitle;
 
         //check we have a valid email and return error if not
         if (filter_var($postAuthorEmail, FILTER_VALIDATE_EMAIL)) {
@@ -68,17 +71,6 @@ class Rhd_disqusController extends ControllerBase {
                         $comment = $results->response->raw_message;
 
                         // Build the email message
-                        //$headers  = 'MIME-Version: 1.0' . "\r\n";
-                        //$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                        //$headers .= 'From:developers-redhat-com@redhat.com' . '\r\n';
-                        //$subject = 'New comment on ' . $thread->title;
-                        //$message = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
-                        
-                        // Send the email		
-                        //mail($postAuthorEmail,$subject,$message,$headers);
-                        // Success
-                        //$build['success'] = "Post: " . $postTitle . ", author notified";
-
                         $mailManager = \Drupal::service('plugin.manager.mail');
                         $module = 'rhd_disqus';
                         $key = 'disqus_comment_mail';
