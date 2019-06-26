@@ -119,6 +119,11 @@
     &.assembly-type-featured_products .grid {
       justify-content: left;
     }
+    .field--name-field-title,
+    .header,
+    .cta-link {
+      text-align: left;
+    }
   }
 
   &.gray-bg {
@@ -128,11 +133,25 @@
   &.dark {
     background-color: #242424;
     color: #fff;
-    .field__item {
-      color: #fff;
-    }
     .node--type-product .field__items {
       color: #333;
+    }
+    h2,
+    .field__item,
+    .field__items {
+      color: #fff;
+    }
+    .cta-link a {
+      border-color: #fff;
+      color: #fff;
+      &:hover {
+        color: #06c;
+        background-color: #fff;
+      }
+    }
+    .item-list ul.content-tile-list > li {
+      background-color: #fff;
+      padding: 10px;
     }
   }
 
