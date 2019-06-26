@@ -1,0 +1,14 @@
+uuid: 0b4dda0e-5cb4-4b1f-bfac-eba6f29e6a35
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.redirect_manager
+  module:
+    - user
+id: user_add_role_action.redirect_manager
+label: 'Add the Redirect Manager role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: redirect_manager

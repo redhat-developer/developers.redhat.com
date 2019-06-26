@@ -1,0 +1,18 @@
+uuid: 20fd79da-b42a-4e17-912a-eba660a6a632
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+third_party_settings:
+  lightning_core:
+    description: 'This role allows users to create, edit and delete redirects.'
+id: redirect_manager
+label: 'Redirect Manager'
+weight: 0
+is_admin: null
+permissions:
+  - 'administer redirect settings'
+  - 'administer redirects'
+  - 'administer url aliases'
+  - 'create url aliases'
