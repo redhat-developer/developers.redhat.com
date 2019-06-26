@@ -37,10 +37,11 @@ class Rhd_disqusController extends ControllerBase {
         if($urlAlias) {
             $path = \Drupal::service('path.alias_manager')->getPathByAlias($urlAlias);
             $debug['drupalPath'] = $path;
-            if(preg_match('/node\/(\d+)/', $path, $matches)) {
+            $params = \Drupal::service('path.validator')->getUrlIfValid($path)->getRouteParameters();
+            $debug['drupalParams'] = $params;
+            if (isset($params['node'])) {
                 $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-                $node = $node_storage->load($matches[1]);
-                $debug['foundId'] = $matches[1];
+                $node = $node_storage->load($params['node']);
             }
         }
 
