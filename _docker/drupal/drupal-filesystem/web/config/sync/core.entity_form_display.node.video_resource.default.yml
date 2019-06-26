@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tags
     - field.field.node.video_resource.field_tax_audience_segment
     - field.field.node.video_resource.field_tax_business_unit
     - field.field.node.video_resource.field_tax_campaign
@@ -55,6 +56,7 @@ third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
         - field_tax_campaign
@@ -65,8 +67,9 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tags
       parent_name: ''
-      weight: 26
+      weight: 25
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -97,7 +100,7 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 0
+    weight: 26
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -137,7 +140,7 @@ content:
     type: number
     region: content
   field_meta_tags:
-    weight: 23
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -189,72 +192,81 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_tags:
+    weight: 34
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
   field_tax_audience_segment:
-    weight: 27
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 28
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 29
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 30
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 31
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 32
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 33
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 34
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 35
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 36
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_topics:
-    weight: 1
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: content
+    region: fields
   field_video_author:
     weight: 8
     settings:
@@ -327,13 +339,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 24
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
@@ -346,7 +358,7 @@ content:
     region: content
   published_at:
     type: publication_date_timestamp
-    weight: 10
+    weight: 27
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -359,7 +371,7 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 25
+    weight: 30
     region: settings
     settings: {  }
     third_party_settings: {  }

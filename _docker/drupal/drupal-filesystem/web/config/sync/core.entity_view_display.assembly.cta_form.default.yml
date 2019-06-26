@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.cta_form.field_background_image
     - field.field.assembly.cta_form.field_content
     - field.field.assembly.cta_form.field_form
+    - field.field.assembly.cta_form.field_navigation_title
     - field.field.assembly.cta_form.field_title
   module:
     - fences
@@ -64,6 +65,7 @@ content:
 hidden:
   field_audience_selection: true
   field_background_image: true
+  field_navigation_title: true
   langcode: true
   name: true
   user_id: true

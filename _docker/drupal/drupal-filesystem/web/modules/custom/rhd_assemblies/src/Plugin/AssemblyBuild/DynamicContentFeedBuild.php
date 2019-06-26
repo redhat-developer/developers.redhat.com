@@ -91,16 +91,25 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   }
 
   protected function getWordpressPosts(EntityInterface $entity, $count) {
+    // get selected categories
     $category_filters = $entity->get('field_category_filter')->getValue();
-    $categories = [];
 
+    // get category logic
+    if($entity->hasField('field_wordpress_category_logic')) {
+      $category_logic = $entity->get('field_wordpress_category_logic')->getValue();
+    } else {
+      $category_logic = NULL;
+    }
+    
+    // grab category ids
+    $categories = [];
     if (!empty($category_filters)) {
       foreach ($category_filters as $category_filter) {
         $categories[] = $category_filter['value'];
       }
     }
 
-    $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, $count);
+    $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, $count, $category_logic);
 
     return $posts;
   }

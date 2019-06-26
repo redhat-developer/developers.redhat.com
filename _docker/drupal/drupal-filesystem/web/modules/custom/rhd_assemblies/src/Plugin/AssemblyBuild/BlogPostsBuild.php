@@ -21,6 +21,13 @@ class BlogPostsBuild extends AssemblyBuildBase implements AssemblyBuildInterface
     // get selected categories
     $category_filters = $entity->get('field_category_filter')->getValue();
 
+    // get category logic
+    if($entity->hasField('field_wordpress_category_logic')) {
+      $category_logic = $entity->get('field_wordpress_category_logic')->getValue();
+    } else {
+      $category_logic = NULL;
+    }
+
     // grab category ids
     $categories = [];
     if (!empty($category_filters)) {
@@ -29,13 +36,8 @@ class BlogPostsBuild extends AssemblyBuildBase implements AssemblyBuildInterface
       }
     }
 
-    // Add the category filter if applicable
-    if (!empty($categories)) {
-      $query['categories'] = $categories;
-    }
-
     // Get the posts
-    $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, 3);
+    $posts = \Drupal::service('rhd_assemblies.wordpress_api')->getContentByCategory($categories, 3, $category_logic);
 
     // Build the posts
     if (!empty($posts)) {

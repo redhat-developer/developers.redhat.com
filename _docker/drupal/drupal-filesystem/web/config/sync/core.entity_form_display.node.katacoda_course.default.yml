@@ -8,16 +8,55 @@ dependencies:
     - field.field.node.katacoda_course.field_katacoda_course_lessons
     - field.field.node.katacoda_course.field_katacoda_course_url_slug
     - field.field.node.katacoda_course.field_katacoda_hero_more_link
+    - field.field.node.katacoda_course.field_tags
+    - field.field.node.katacoda_course.field_tax_audience_segment
+    - field.field.node.katacoda_course.field_tax_business_unit
+    - field.field.node.katacoda_course.field_tax_campaign
+    - field.field.node.katacoda_course.field_tax_lifecycle
+    - field.field.node.katacoda_course.field_tax_product
+    - field.field.node.katacoda_course.field_tax_product_line
+    - field.field.node.katacoda_course.field_tax_project
+    - field.field.node.katacoda_course.field_tax_promotion
+    - field.field.node.katacoda_course.field_tax_region
+    - field.field.node.katacoda_course.field_tax_stage
+    - field.field.node.katacoda_course.field_topics
     - node.type.katacoda_course
   module:
-    - content_moderation
+    - compose
+    - field_group
+    - field_layout
     - path
     - publication_date
     - text
 third_party_settings:
   field_layout:
-    id: layout_disabled
+    id: compose_tabs
     settings: {  }
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_topics
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_project
+        - field_tax_promotion
+        - field_tax_region
+        - field_tax_stage
+        - field_tags
+      parent_name: ''
+      weight: 18
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'Purpose Attributes'
+      region: fields
 id: node.katacoda_course.default
 targetEntityType: node
 bundle: katacoda_course
@@ -25,7 +64,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 5
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
@@ -34,72 +73,149 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 1
-    region: content
+    weight: 21
+    region: settings
     settings: {  }
     third_party_settings: {  }
   field_katacoda_course_audience:
-    weight: 8
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_katacoda_course_lessons:
-    weight: 9
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_katacoda_course_url_slug:
-    weight: 6
+    weight: 14
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_katacoda_hero_more_link:
-    weight: 7
+    weight: 15
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
+  field_tags:
+    weight: 13
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: fields
+  field_tax_audience_segment:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_business_unit:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_campaign:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_lifecycle:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product_line:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_project:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_promotion:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_region:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_stage:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_topics:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
   langcode:
     type: language_select
-    weight: 2
-    region: content
+    weight: 20
+    region: settings
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    type: moderation_state_default
-    weight: 10
-    settings: {  }
-    region: content
+    type: string_textfield
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    region: settings
     third_party_settings: {  }
   path:
     type: path
-    weight: 3
-    region: content
+    weight: 22
+    region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 12
-    region: content
+    weight: 25
+    region: settings
     settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 4
+    weight: 0
     region: content
     settings:
       size: 60
@@ -107,16 +223,16 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 0
-    region: content
+    weight: 19
+    region: settings
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 11
-    region: content
+    weight: 24
+    region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
