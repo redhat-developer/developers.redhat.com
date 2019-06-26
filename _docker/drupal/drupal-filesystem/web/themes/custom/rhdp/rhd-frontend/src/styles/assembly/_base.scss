@@ -135,10 +135,23 @@
       color: #333;
     }
   }
-  
-  &.4-up {
+
+  &.four-up {
     .grid {
-      grid-template-columns: repeat(4,280px);
+      grid-gap: 15px 15px;
+      grid-template-columns: repeat(4,230px);
+    }
+    @media screen and (max-width: 1024px) {
+      .grid {
+        grid-gap: $gutter $gutter;
+        grid-template-columns: repeat(2, 300px);
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .grid {
+        grid-gap: $gutter $gutter;
+        grid-template-columns: repeat(1, 300px);
+      }
     }
   }
 }
