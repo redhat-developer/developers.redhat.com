@@ -30,6 +30,7 @@ describe('Search Page', function() {
         NavigationBar.searchFor('cdk');
         SearchResults.await();
         SearchResultSort.select('Most Recent');
+        SearchResults.await();
         const sR = SearchResults.all();
         const firstResult = SearchResults.dateFor(1);
         for (let i = 1; i < sR.length; i++) {
