@@ -17,6 +17,8 @@ class Rhd_disqusController extends ControllerBase {
 
         //temp array for output
         $build = array();
+        $debug = array();
+        $isDebug = true;
 
         //Disqus config
         $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
@@ -25,19 +27,24 @@ class Rhd_disqusController extends ControllerBase {
         $postId = $_POST['post'];
         $postAuthorEmail = "";
 
-        //$build['postId'] = $postId;
-        //$build['commentId'] = $commentId;
+        $debug['postId'] = $postId;
+        $debug['commentId'] = $commentId;
 
         // Load the node from the $postId
         $urlAlias = $postId;
+        $debug['urlAlias'] = $urlAlias;
+        $node = NULL;
         if($urlAlias) {
             $path = \Drupal::service('path.alias_manager')->getPathByAlias($urlAlias);
+            $debug['drupalPath'] = $path;
             if(preg_match('/node\/(\d+)/', $path, $matches)) {
                 $node_storage = \Drupal::entityTypeManager()->getStorage('node');
                 $node = $node_storage->load($matches[1]);
-                //$build['debug'] = $matches[1];
+                $debug['foundId'] = $matches[1];
             }
         }
+
+        $debug['drupalNode'] = $node;
 
         if($node != NULL) {
             $postTitle = $node->get('title')->value;
@@ -47,6 +54,8 @@ class Rhd_disqusController extends ControllerBase {
         }
 
         //check we have a valid email and return error if not
+        $debug['authorEmail'] = $postAuthorEmail;
+
         if (filter_var($postAuthorEmail, FILTER_VALIDATE_EMAIL)) {
             //grab the comment info from Disqus
             $session = curl_init('http://disqus.com/api/3.0/posts/details.json?api_secret=' . $disqusApiSecret .'&post=' . $commentId . '&related=thread');
@@ -54,8 +63,12 @@ class Rhd_disqusController extends ControllerBase {
             $result = curl_exec($session);
             curl_close($session);
 
+            
+
             // decode the json data to make it easier to parse the php
             $results = json_decode($result);
+
+            $debug['disqusResults'] = $results;
 
             // Handle errors otherwise send the email
             if ($results === NULL)  {
@@ -90,7 +103,11 @@ class Rhd_disqusController extends ControllerBase {
                 }
             }
         } else {
-            $build['error'] =  'no email associated with this content item:';
+            $build['error'] =  'no valid email associated with this content item:';
+        }
+
+        if($isDebug) {
+            $build['debug'] = $debug;
         }
 
         return new JsonResponse( $build );
