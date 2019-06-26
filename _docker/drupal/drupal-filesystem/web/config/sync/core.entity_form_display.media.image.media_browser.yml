@@ -56,15 +56,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 101
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   name:
     type: string_textfield
     weight: 3

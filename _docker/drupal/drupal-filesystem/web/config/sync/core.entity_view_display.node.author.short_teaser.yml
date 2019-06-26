@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.author.field_headshot
     - field.field.node.author.field_linkedin
     - field.field.node.author.field_position_title
+    - field.field.node.author.field_tags
     - field.field.node.author.field_tax_audience_segment
     - field.field.node.author.field_tax_business_unit
     - field.field.node.author.field_tax_campaign
@@ -20,15 +21,16 @@ dependencies:
     - field.field.node.author.field_tax_promotion
     - field.field.node.author.field_tax_region
     - field.field.node.author.field_tax_stage
+    - field.field.node.author.field_topics
     - field.field.node.author.field_twitter
     - field.field.node.author.field_youtube
     - image.style.square_small
     - node.type.author
   module:
-    - compose
     - fences
     - field_layout
     - image
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -73,6 +75,7 @@ hidden:
   field_facebook: true
   field_github: true
   field_linkedin: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true
@@ -83,6 +86,7 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  field_topics: true
   field_twitter: true
   field_youtube: true
   langcode: true
