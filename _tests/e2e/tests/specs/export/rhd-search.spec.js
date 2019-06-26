@@ -15,6 +15,7 @@ describe('Search Page', function() {
     it('should allow users to search for content via site-nav search field', () => {
         Home.open('/');
         NavigationBar.searchFor('hello world');
+        SearchResults.await();
         expect(SearchResults.all().length).to.be.gt(0);
     });
 
@@ -27,7 +28,9 @@ describe('Search Page', function() {
     it("should sort results by 'Most Recent'", () => {
         Home.open('/');
         NavigationBar.searchFor('cdk');
+        SearchResults.await();
         SearchResultSort.select('Most Recent');
+        SearchResults.await();
         const sR = SearchResults.all();
         const firstResult = SearchResults.dateFor(1);
         for (let i = 1; i < sR.length; i++) {
@@ -41,6 +44,7 @@ describe('Search Page', function() {
     it('should filter results by Content Type', () => {
         Home.open('/');
         NavigationBar.searchFor('java');
+        SearchResults.await();
         SearchFilter.choose('Content Type', 'APIs and Docs');
         SearchResults.await();
         expect(SearchFilter.active().getText()).to.include('APIs and Docs');
@@ -49,6 +53,7 @@ describe('Search Page', function() {
     it('should filter results by Product', () => {
         Home.open('/');
         NavigationBar.searchFor('java');
+        SearchResults.await();
         SearchFilter.choose('Product', 'Red Hat Enterprise Linux');
         SearchResults.await();
         expect(SearchFilter.active().getText()).to.include('Red Hat Enterprise Linux');
@@ -57,6 +62,7 @@ describe('Search Page', function() {
     it('should filter results by Topic', () => {
         Home.open('/');
         NavigationBar.searchFor('java');
+        SearchResults.await();
         SearchFilter.choose('Topic', 'Containers');
         SearchResults.await();
         expect(SearchFilter.active().getText()).to.include('Containers');
@@ -65,6 +71,7 @@ describe('Search Page', function() {
     it('should clear search filters', () => {
         Home.open('/');
         NavigationBar.searchFor('java');
+        SearchResults.await();
         SearchFilter.choose('Topic', 'Containers');
         SearchResults.await();
         SearchFilter.clear();
