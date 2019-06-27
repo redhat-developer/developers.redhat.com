@@ -136,17 +136,20 @@ $katacoda-grid-title-size:23px;
 
 .assembly-type-katacodas .field--name-field-katacodas,
 .page-node-type-katacoda-course .field--name-field-katacoda-course-lessons {
-		margin:3em auto 5em auto;
-		@include katacoda-grid-container();
+    margin:3em auto 5em auto;
+    @include katacoda-grid-container();
 
     & .field__item {
       @include katacoda-grid-element();
     }
 }
+.assembly-type-katacodas.four-up .field--name-field-katacodas .field__item {
+  grid-column: span 3;
+}
 
 .view-katacoda-all-courses.view-display-id-block_1 .view-content {
-		margin:3em auto 5em auto;
-		@include katacoda-grid-container();
+    margin:3em auto 5em auto;
+    @include katacoda-grid-container();
 
     & .views-row {
       @include katacoda-grid-element();
@@ -196,7 +199,7 @@ $katacoda-grid-title-size:23px;
             }
             &--description {
                 font-weight:300;
-                // Expand description to fill space and put the publish meta at the bottom   
+                // Expand description to fill space and put the publish meta at the bottom
                 flex-grow:1;
             }
             // This is the author name and publish date
@@ -209,16 +212,16 @@ $katacoda-grid-title-size:23px;
 
             &--publish-meta {
                 p {
-                    font-size:.8125rem; 
+                    font-size:.8125rem;
                 }
             }
 
             &--time-level {
-               span.time-clock { 
+               span.time-clock {
                    display:inline-block;
                    width:.75rem;
                    height:.75rem;
-               }     
+               }
             }
 
         }
@@ -362,7 +365,7 @@ $katacoda-grid-title-size:23px;
                 border-left-color:darken($red,20%);
                 border-bottom-color:darken($red,20%);
                 border-right-color:darken($red,20%);
-            } 
+            }
 				}
     }
 }
