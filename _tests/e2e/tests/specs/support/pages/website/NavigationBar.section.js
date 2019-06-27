@@ -11,7 +11,7 @@ class NavigationBar extends Page {
     get searchBar() {return $$('.user-search');}
 
     toggle() {
-        const mobileNavToggle = Driver.isVisible(this.mobileNavToggle);
+        const mobileNavToggle = Driver.awaitIsDisplayed(this.mobileNavToggle);
         if (mobileNavToggle) {
             Driver.click(this.mobileNavToggle);
             // wait for modal to completely open
