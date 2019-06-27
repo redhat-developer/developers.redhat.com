@@ -13,7 +13,7 @@ properties([
                 [
                         [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: 'The id of the Pull Request that should be built.', name: 'PULL_REQUEST_ID'],
                         [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: 'The current ref that is being built.', name: 'PULL_REQUEST_REF'],
-                        [$class: 'hudson.model.StringParameterDefinition', defaultValue: 'rebuild this please', description: 'The current ref that is being built.', name: 'PULL_REQUEST_CONTEXT']
+                        [$class: 'hudson.model.StringParameterDefinition', defaultValue: 'rebuild this please', description: 'A context to be sent to the CI pipeline.', name: 'PULL_REQUEST_CONTEXT']
                 ]
         ]
 ])
