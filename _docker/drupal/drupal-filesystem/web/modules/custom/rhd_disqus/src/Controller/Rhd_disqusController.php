@@ -18,7 +18,7 @@ class Rhd_disqusController extends ControllerBase {
         //temp array for output
         $build = array();
         $debug = array();
-        $isDebug = true;
+        $isDebug = false;
 
         //Disqus config
         $disqus_config = \Drupal::config('rhd_disqus.disqussettings');
@@ -64,8 +64,6 @@ class Rhd_disqusController extends ControllerBase {
             $result = curl_exec($session);
             curl_close($session);
 
-            
-
             // decode the json data to make it easier to parse the php
             $results = json_decode($result);
 
@@ -89,22 +87,22 @@ class Rhd_disqusController extends ControllerBase {
                         $module = 'rhd_disqus';
                         $key = 'disqus_comment_mail';
                         $to = $postAuthorEmail;
-                        $params['message'] = '<h3>A comment was posted on <a href="' . $thread->link . '#comment-' . $commentId . '">' . $thread->title . '</a></h3><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p><a href="http://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '">Moderate comment</a></p>';
+                        $params['message'] = '<p>A comment was posted on' . $thread->link . '#comment-' . $commentId . '</p><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p>You can moderate the comment at' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '"></p>';
                         $params['subject'] = $thread->title;
                         $langcode = \Drupal::currentUser()->getPreferredLangcode();
                         $send = true;
                         $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
                         if ($result['result'] !== true) {
-                            $build['error'] = 'There was a problem sending your message and it was not sent.';
+                            $build['error'] = 'There was a problem';
                         }
                         else {
-                            $build['success'] = "Post: " . $postTitle . ", author notified";
+                            $build['success'] = "Author notified";
                         }
                     }
                 }
             }
         } else {
-            $build['error'] =  'no valid email associated with this content item:';
+            $build['error'] =  'There was a problem';
         }
 
         if($isDebug) {
