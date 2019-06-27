@@ -13,6 +13,7 @@ properties([
                 [
                         [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: 'The id of the Pull Request that should be built.', name: 'PULL_REQUEST_ID'],
                         [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: 'The current ref that is being built.', name: 'PULL_REQUEST_REF'],
+                        [$class: 'hudson.model.StringParameterDefinition', defaultValue: 'rebuild this please', description: 'The current ref that is being built.', name: 'PULL_REQUEST_CONTEXT']
                 ]
         ]
 ])
@@ -41,7 +42,7 @@ node('cic-rhd-01') {
          */
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'redhat-developer-automated', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             def jenkinsJob = "https://jenkins.paas.redhat.com/generic-webhook-trigger/invoke?token=rhdp-pr-build"
-            scheduleMpBuild(pullRequestId: "${params.PULL_REQUEST_ID}", cause: cause, jenkinsJob: jenkinsJob, jenkinsUser: env.USERNAME, jenkinsPassword: env.PASSWORD)
+            scheduleMpBuild(pullRequestId: "${params.PULL_REQUEST_ID}", cause: cause, jenkinsJob: jenkinsJob, jenkinsUser: env.USERNAME, jenkinsPassword: env.PASSWORD, context: "${params.PULL_REQUEST_CONTEXT}")
         }
 
         /*
