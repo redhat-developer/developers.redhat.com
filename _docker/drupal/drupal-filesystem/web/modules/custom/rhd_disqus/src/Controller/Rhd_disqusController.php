@@ -87,7 +87,7 @@ class Rhd_disqusController extends ControllerBase {
                         $module = 'rhd_disqus';
                         $key = 'disqus_comment_mail';
                         $to = $postAuthorEmail;
-                        $params['message'] = '<p>A comment was posted on' . $thread->link . '#comment-' . $commentId . '</p><p>' . $author->name . ' wrote:</p><blockquote>' . $comment .'</blockquote><p>You can moderate the comment at' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '</p>';
+                        $params['message'] = '<p>A comment was posted on ' . $thread->link . '#comment-' . $commentId . '</p><p>' . $author->name . ' wrote:</p><p>' . $comment .'</p><p>You can moderate the comment at https://' . $results->response->forum . '.disqus.com/admin/moderate/#/approved/search/id:' . $commentId . '</p>';
                         $params['subject'] = $thread->title;
                         $langcode = \Drupal::currentUser()->getPreferredLangcode();
                         $send = true;
