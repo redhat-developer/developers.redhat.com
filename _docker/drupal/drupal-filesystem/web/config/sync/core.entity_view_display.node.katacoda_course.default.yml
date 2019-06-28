@@ -8,8 +8,23 @@ dependencies:
     - field.field.node.katacoda_course.field_katacoda_course_lessons
     - field.field.node.katacoda_course.field_katacoda_course_url_slug
     - field.field.node.katacoda_course.field_katacoda_hero_more_link
+    - field.field.node.katacoda_course.field_tags
+    - field.field.node.katacoda_course.field_tax_audience_segment
+    - field.field.node.katacoda_course.field_tax_business_unit
+    - field.field.node.katacoda_course.field_tax_campaign
+    - field.field.node.katacoda_course.field_tax_lifecycle
+    - field.field.node.katacoda_course.field_tax_product
+    - field.field.node.katacoda_course.field_tax_product_line
+    - field.field.node.katacoda_course.field_tax_project
+    - field.field.node.katacoda_course.field_tax_promotion
+    - field.field.node.katacoda_course.field_tax_region
+    - field.field.node.katacoda_course.field_tax_stage
+    - field.field.node.katacoda_course.field_topics
     - node.type.katacoda_course
   module:
+    - fences
+    - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -32,9 +47,17 @@ content:
     weight: 3
     label: hidden
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
+      view_mode: card
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
     region: content
   field_katacoda_course_url_slug:
     weight: 0
@@ -55,6 +78,18 @@ content:
 hidden:
   body: true
   content_moderation_control: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
   langcode: true
   links: true
   published_at: true

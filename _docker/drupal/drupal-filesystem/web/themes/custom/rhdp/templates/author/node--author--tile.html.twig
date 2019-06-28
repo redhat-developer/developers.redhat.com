@@ -1,13 +1,13 @@
-<article{{ attributes.addClass('author short-teaser') }}>
-  <a href="{{ url }}">
+<article{{ attributes.addClass('author tile') }}>
+  <a class="author-url" href="{{ url }}">
     {{ content.field_headshot }}
-    {{ title_prefix }}
-    <span{{ title_attributes.addClass('author-name') }}>{{ label }}</span>
-    {{ title_suffix }}
+    <div class="author-info">
+      {{ title_prefix }}
+      <span{{ title_attributes.addClass('author-name') }}>{{ label }}</span>
+      {{ title_suffix }}
+      <span{{ content_attributes }}>
+        {{ content|without('field_headshot') }}
+      </span>
+    </div>
   </a>
-  {% if content|without('field_headshot') %}
-  <div{{ content_attributes }}>
-    {{ content|without('field_headshot') }}
-  </div>
-  {% endif %}
 </article>

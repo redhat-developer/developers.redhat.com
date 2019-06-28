@@ -37,6 +37,10 @@ class RunTestOptions
         test_configuration[:base_url] = host
       end
 
+      opts.on('--test-type TEST_TYPE', String, 'Run tests against export or drupal') do |test_type|
+        test_configuration[:test_type] = test_type
+      end
+
       opts.on('--verbose', 'Verbose output for debugging') do |opt|
         bind_environment_variable('RHD_VERBOSE_OUTPUT', 'true')
         test_configuration[:verbose] = opt
@@ -50,8 +54,8 @@ class RunTestOptions
         test_configuration[:browserstack] = true
       end
 
-      opts.on('--mocha-tags MOCHA_TAGS', String, 'The mocha tags to run or exclude in test run') do |mocha_tags|
-        test_configuration[:mocha_tags] = mocha_tags
+      opts.on('--tags MOCHA_TAGS', String, 'The mocha tags to run or exclude in test run') do |tags|
+        test_configuration[:tags] = tags
       end
 
       #
@@ -142,17 +146,15 @@ class RunTestOptions
   # Builds e2e test command for local, browserstack, and inside docker testing
   #
   def build_e2e_test_execution_cmd(test_configuration)
-    run_tests_command = ''
-    # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
-    bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
-    bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
-    bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
-    bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
-    bind_environment_variable('RHD_MOCHA_TAGS', test_configuration[:mocha_tags]) if test_configuration[:mocha_tags]
+    bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile])
+    run_tests_command = ''
+    run_tests_command += " --browser=#{test_configuration[:browser]}"
+    run_tests_command += " --base-url=#{test_configuration[:base_url]}"
+    run_tests_command += " --profile=#{test_configuration[:profile]}"
+    run_tests_command += " --testType=#{test_configuration[:test_type]}"
+    run_tests_command += " --tags=#{test_configuration[:tags]}" if test_configuration[:tags]
 
-    run_tests_command += " --baseUrl=#{test_configuration[:base_url]}"
-    run_tests_command += " --#{test_configuration[:mocha_tags]}" if test_configuration[:mocha_tags]
     if test_configuration[:docker]
       if test_configuration[:browserstack]
         test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"

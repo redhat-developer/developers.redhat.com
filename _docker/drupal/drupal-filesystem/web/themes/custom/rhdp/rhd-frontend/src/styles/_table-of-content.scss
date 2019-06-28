@@ -1,0 +1,94 @@
+// Styles used for Tables of Content (TOC) on Articles, Quickstarts, BOMS, and other resources.
+.gsi-meta {
+  background:$grey-1;
+  padding:12px;
+  border:1px solid $grey-2;
+  border-radius: $global-radius;
+  overflow: hidden;
+  margin-bottom: 20px;
+  ul {
+    margin-top: 0;
+    padding-left: 15px;
+    li {
+      width:33.33%;
+      float:left;
+      list-style:none;
+      strong {
+        margin-right: 3px;
+      }
+      a + a {
+        margin-left: 5px;
+      }
+    }
+  }
+  .field--name-field-related-product.field--type-entity-reference {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+ul.toc {
+  margin: 0;
+  width: 100%;
+  z-index: 100;
+}
+.gsi-nav-fixed {
+  position: fixed;
+  top:0;
+  padding-top: 20px;
+  width: 25%;
+  min-width: 125px;
+}
+
+.gsi-nav {
+  padding-left: 0;
+  background-color: $grey-1;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-top: 8px solid $black;
+  transform: translateY(0);
+  transition: none;
+  &.gsi-nav-fixed {
+    transform: translateY(30px);
+  }
+  &:empty {
+    //fix for not calculating top on display none div
+    opacity: 0.01;
+    background-color: transparent;
+    border-top: 8px solid transparent;
+  }
+  li {
+    list-style: none;
+    padding-bottom: 10px;
+    a {
+      color: $link;
+    }
+    a:hover, a:active, a.past-block {
+      color: $linkhover;
+    }
+  }
+}
+
+.gsi {
+  h3 {
+    border-bottom: 1px solid $gray-3;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+  }
+
+
+  ol li, ul li {
+    margin-left: 2em;
+  }
+
+}
+
+@include tablet-landscape-768-and-down {
+  .gsi-nav-fixed {
+    position: relative; // on mobile we don't want a fixed nav
+  }
+}

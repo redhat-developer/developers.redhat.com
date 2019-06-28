@@ -1,0 +1,29 @@
+uuid: 66ab5642-fde7-484e-b77a-8da90765cbfd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tags
+    - node.type.upstream_projects
+    - taxonomy.vocabulary.tags
+id: node.upstream_projects.field_tags
+field_name: field_tags
+entity_type: node
+bundle: upstream_projects
+label: 'Control Tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

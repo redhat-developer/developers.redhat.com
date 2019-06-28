@@ -1,0 +1,34 @@
+uuid: fd722dff-3cac-42bb-bd5d-da91eb0e9ba3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.combo
+    - assembly.assembly_type.combo_item_assembly
+    - assembly.assembly_type.combo_item_manual
+    - assembly.assembly_type.combo_item_node
+    - field.storage.assembly.field_cards
+  module:
+    - entity_reference_revisions
+id: assembly.combo.field_cards
+field_name: field_cards
+entity_type: assembly
+bundle: combo
+label: Cards
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      combo_item_assembly: combo_item_assembly
+      combo_item_manual: combo_item_manual
+      combo_item_node: combo_item_node
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: combo_item_assembly
+field_type: entity_reference_revisions

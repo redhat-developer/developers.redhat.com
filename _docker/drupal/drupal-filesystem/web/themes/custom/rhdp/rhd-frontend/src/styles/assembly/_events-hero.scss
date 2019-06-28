@@ -173,7 +173,7 @@
         .author-name {
           align-self: center;
           grid-column: span 2;
-          color: $blue;
+          color: $blue !important;
           background-color: transparent;
           > .field--name-title {
             background-color: $white;
@@ -189,6 +189,20 @@
           }
         }
       }
+    }
+  }
+  &.events-hero--light {
+    background-color: $white;
+    background-image: url('https://developers.redhat.com/images/design/product-hero-light.png');
+    h1, h2, h3, h4, h5, h6, p, div {
+      color: $gray-8;
+    }
+  }
+  &.events-hero--dark {
+    background-color: $black;
+    background-image: url('/images/Event-HeroBackground.png');
+    h1, h2, h3, h4, h5, h6, p {
+      color: $white;
     }
   }
 }

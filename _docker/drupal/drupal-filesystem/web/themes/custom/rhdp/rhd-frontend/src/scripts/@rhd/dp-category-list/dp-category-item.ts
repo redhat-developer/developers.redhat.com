@@ -5,7 +5,7 @@ export default class DPCategoryItem extends RHElement {
         const tpl = document.createElement("template");
         tpl.innerHTML = `
             <style>
-            
+                
             </style>
             <slot></slot>
             `;

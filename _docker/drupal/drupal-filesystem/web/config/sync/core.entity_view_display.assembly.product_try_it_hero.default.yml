@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.product_try_it_hero
+    - field.field.assembly.product_try_it_hero.field_background_image
     - field.field.assembly.product_try_it_hero.field_content
     - field.field.assembly.product_try_it_hero.field_image
     - field.field.assembly.product_try_it_hero.field_learn_more_link
@@ -26,6 +27,22 @@ targetEntityType: assembly
 bundle: product_try_it_hero
 mode: default
 content:
+  field_background_image:
+    weight: 5
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: image
+    region: content
   field_content:
     weight: 1
     label: hidden

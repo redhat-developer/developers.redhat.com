@@ -1,0 +1,77 @@
+uuid: 9f7a5096-01ac-4258-bed0-2b7b2ee3ddb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.katacoda_individual_lesson.body
+    - field.field.node.katacoda_individual_lesson.field_katacoda_embed_id
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
+    - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - node.type.katacoda_individual_lesson
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - options
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.katacoda_individual_lesson.card
+targetEntityType: node
+bundle: katacoda_individual_lesson
+mode: card
+content:
+  body:
+    type: text_summary_or_trimmed
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_katacoda_scenario_author:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_katacoda_scenario_time:
+    weight: 2
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_katacoda_skill_level:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_katacoda_embed_id: true
+  langcode: true
+  published_at: true
