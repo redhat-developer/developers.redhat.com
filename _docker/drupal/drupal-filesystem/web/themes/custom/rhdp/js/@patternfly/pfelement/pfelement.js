@@ -1,109 +1,346 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var __extends = (this && this.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
-    var t, s, o;
-    var __moduleName = context_1 && context_1.id;
-    function e() { t("[reveal] web components ready"), t("[reveal] elements ready, revealing the body"), window.document.body.removeAttribute("unresolved"); }
+/*
+ * Copyright 2019 Red Hat, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+*/
+
+let logger = () => null;
+
+function reveal() {
+  logger(`[reveal] elements ready, revealing the body`);
+  window.document.body.removeAttribute("unresolved");
+}
+
+function autoReveal(logFunction) {
+  logger = logFunction;
+  // If Web Components are already ready, run the handler right away.  If they
+  // are not yet ready, wait.
+  //
+  // see https://github.com/github/webcomponentsjs#webcomponents-loaderjs for
+  // info about web component readiness events
+  const polyfillPresent = window.WebComponents;
+  const polyfillReady = polyfillPresent && window.WebComponents.ready;
+
+  if (!polyfillPresent || polyfillReady) {
+    handleWebComponentsReady();
+  } else {
+    window.addEventListener("WebComponentsReady", handleWebComponentsReady);
+  }
+}
+
+function handleWebComponentsReady() {
+  logger("[reveal] web components ready");
+  reveal();
+}
+
+/*
+ * Copyright 2019 Red Hat, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+*/
+const prefix = "pfe-";
+
+class PFElement extends HTMLElement {
+  static create(pfe) {
+    window.customElements.define(pfe.tag, pfe);
+  }
+
+  static debugLog(preference = null) {
+    if (preference !== null) {
+      PFElement._debugLog = !!preference;
+    }
+    return PFElement._debugLog;
+  }
+
+  static log(...msgs) {
+    if (PFElement.debugLog()) {
+      console.log(...msgs);
+    }
+  }
+
+  static get PfeTypes() {
     return {
-        setters: [],
-        execute: function () {
-            t = function () { return null; };
-            s = "pfe-";
-            o = (function (_super) {
-                __extends(o, _super);
-                function o(t, _a) {
-                    var _b = _a === void 0 ? {} : _a, _c = _b.type, e = _c === void 0 ? null : _c, _d = _b.delayRender, s = _d === void 0 ? !1 : _d;
-                    var _this = this;
-                    _this = _super.call(this) || this, _this.connected = !1, _this._pfeClass = t, _this.tag = t.tag, _this.props = t.properties, _this._queue = [], _this.template = document.createElement("template"), _this.attachShadow({ mode: "open" }), e && _this._queueAction({ type: "setProperty", data: { name: "pfeType", value: e } }), s || _this.render();
-                    return _this;
-                }
-                o.create = function (t) { window.customElements.define(t.tag, t); };
-                o.debugLog = function (t) {
-                    if (t === void 0) { t = null; }
-                    return null !== t && (o._debugLog = !!t), o._debugLog;
-                };
-                o.log = function () {
-                    var t = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        t[_i] = arguments[_i];
-                    }
-                    o.debugLog() && console.log.apply(console, t);
-                };
-                Object.defineProperty(o, "PfeTypes", {
-                    get: function () { return { Container: "container", Content: "content", Combo: "combo" }; },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(o.prototype, "pfeType", {
-                    get: function () { return this.getAttribute(s + "type"); },
-                    set: function (t) { this.setAttribute(s + "type", t); },
-                    enumerable: true,
-                    configurable: true
-                });
-                o.prototype.has_slot = function (t) { return this.querySelector("[slot='" + t + "']"); };
-                o.prototype.has_slot = function (t) { return this.querySelector("[slot='" + t + "']"); };
-                o.prototype.connectedCallback = function () { this.connected = !0, window.ShadyCSS && window.ShadyCSS.styleElement(this), this.classList.add("PFElement"), "object" == typeof this.props && this._mapSchemaToProperties(this.tag, this.props), this._queue.length && this._processQueue(); };
-                o.prototype.disconnectedCallback = function () { this.connected = !1; };
-                o.prototype.attributeChangedCallback = function (t, e, s) { if (!this._pfeClass.cascadingAttributes)
-                    return; var o = this._pfeClass.cascadingAttributes[t]; o && this._copyAttribute(t, o); };
-                o.prototype._copyAttribute = function (t, e) { var s = this.querySelectorAll(e).concat(this.shadowRoot.querySelectorAll(e)), o = this.getAttribute(t), i = null == o ? "removeAttribute" : "setAttribute"; for (var _i = 0, s_1 = s; _i < s_1.length; _i++) {
-                    var e_1 = s_1[_i];
-                    e_1[i](t, o);
-                } };
-                o.prototype._mapSchemaToProperties = function (t, e) {
-                    var _this = this;
-                    Object.keys(e).forEach(function (o) { var i = e[o]; if (_this[o] = i, _this[o].value = null, _this.hasAttribute("" + s + o))
-                        _this[o].value = _this.getAttribute("" + s + o);
-                    else if (i.default) {
-                        var e_2 = _this._hasDependency(t, i.options), n = !i.options || i.options && !i.options.dependencies.length;
-                        (e_2 || n) && (_this.setAttribute("" + s + o, i.default), _this[o].value = i.default);
-                    } });
-                };
-                o.prototype._hasDependency = function (t, e) { var o = e ? e.dependencies : [], i = !1; for (var e_3 = 0; e_3 < o.length; e_3 += 1) {
-                    var n = "slot" === o[e_3].type && this.has_slot(t + "--" + o[e_3].id), r = "attribute" === o[e_3].type && this.getAttribute("" + s + o[e_3].id);
-                    if (n || r) {
-                        i = !0;
-                        break;
-                    }
-                } return i; };
-                o.prototype._queueAction = function (t) { this._queue.push(t); };
-                o.prototype._processQueue = function () {
-                    var _this = this;
-                    this._queue.forEach(function (t) { _this["_" + t.type](t.data); }), this._queue = [];
-                };
-                o.prototype._setProperty = function (_a) {
-                    var t = _a.name, e = _a.value;
-                    this[t] = e;
-                };
-                o.var = function (t, e) {
-                    if (e === void 0) { e = document.body; }
-                    return window.getComputedStyle(e).getPropertyValue(t).trim();
-                };
-                o.prototype.var = function (t) { return o.var(t, this); };
-                o.prototype.render = function () { this.shadowRoot.innerHTML = "", this.template.innerHTML = this.html, window.ShadyCSS && window.ShadyCSS.prepareTemplate(this.template, this.tag), this.shadowRoot.appendChild(this.template.content.cloneNode(!0)); };
-                o.prototype.log = function () {
-                    var t = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        t[_i] = arguments[_i];
-                    }
-                    o.log.apply(o, ["[" + this.tag + "]"].concat(t));
-                };
-                return o;
-            }(HTMLElement));
-            !function (s) { t = s; var o = window.WebComponents, i = o && window.WebComponents.ready; !o || i ? e() : window.addEventListener("WebComponentsReady", e); }(o.log);
-            exports_1("default", o);
-        }
+      Container: "container",
+      Content: "content",
+      Combo: "combo"
     };
-});
+  }
+
+  get pfeType() {
+    return this.getAttribute(`${prefix}type`);
+  }
+
+  set pfeType(value) {
+    this.setAttribute(`${prefix}type`, value);
+  }
+
+  // Returns a single element assigned to that slot; if multiple, it returns the first
+  has_slot(name) {
+    return this.querySelector(`[slot='${name}']`);
+  }
+
+  // Returns an array with all elements assigned to that slot
+  has_slots(name) {
+    return [...this.querySelectorAll(`[slot='${name}']`)];
+  }
+
+  constructor(pfeClass, { type = null, delayRender = false } = {}) {
+    super();
+
+    this.connected = false;
+    this._pfeClass = pfeClass;
+    this.tag = pfeClass.tag;
+    this.props = pfeClass.properties;
+    this.slots = pfeClass.slots;
+    this._queue = [];
+    this.template = document.createElement("template");
+
+    this.attachShadow({ mode: "open" });
+
+    if (type) {
+      this._queueAction({
+        type: "setProperty",
+        data: {
+          name: "pfeType",
+          value: type
+        }
+      });
+    }
+
+    if (!delayRender) {
+      this.render();
+    }
+  }
+
+  connectedCallback() {
+    this.connected = true;
+
+    if (window.ShadyCSS) {
+      window.ShadyCSS.styleElement(this);
+    }
+
+    // maybe we should use just the attribute instead of the class?
+    // https://github.com/angular/angular/issues/15399#issuecomment-318785677
+    this.classList.add("PFElement");
+    this.setAttribute("pfelement", "");
+
+    if (typeof this.props === "object") {
+      this._mapSchemaToProperties(this.tag, this.props);
+    }
+
+    if (typeof this.slots === "object") {
+      this._mapSchemaToSlots(this.tag, this.slots);
+    }
+
+    if (this._queue.length) {
+      this._processQueue();
+    }
+  }
+
+  disconnectedCallback() {
+    this.connected = false;
+  }
+
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (!this._pfeClass.cascadingAttributes) {
+      return;
+    }
+
+    const cascadeTo = this._pfeClass.cascadingAttributes[attr];
+    if (cascadeTo) {
+      this._copyAttribute(attr, cascadeTo);
+    }
+  }
+
+  _copyAttribute(name, to) {
+    const recipients = [
+      ...this.querySelectorAll(to),
+      ...this.shadowRoot.querySelectorAll(to)
+    ];
+    const value = this.getAttribute(name);
+    const fname = value == null ? "removeAttribute" : "setAttribute";
+    for (const node of recipients) {
+      node[fname](name, value);
+    }
+  }
+
+  // Map the imported properties json to real props on the element
+  // @notice static getter of properties is built via tooling
+  // to edit modify src/element.json
+  _mapSchemaToProperties(tag, properties) {
+    // Loop over the properties provided by the schema
+    Object.keys(properties).forEach(attr => {
+      let data = properties[attr];
+      // Prefix default is true
+      let hasPrefix = true;
+      let attrName = attr;
+      // Set the attribute's property equal to the schema input
+      this[attr] = data;
+      // Initialize the value to null
+      this[attr].value = null;
+
+      if (typeof this[attr].prefixed !== "undefined") {
+        hasPrefix = this[attr].prefixed;
+      }
+
+      if (hasPrefix) {
+        attrName = `${prefix}${attr}`;
+      }
+
+      // If the attribute exists on the host
+      if (this.hasAttribute(attrName)) {
+        // Set property value based on the existing attribute
+        this[attr].value = this.getAttribute(attrName);
+      }
+      // Otherwise, look for a default and use that instead
+      else if (data.default) {
+        const dependency_exists = this._hasDependency(tag, data.options);
+        const no_dependencies =
+          !data.options || (data.options && !data.options.dependencies.length);
+        // If the dependency exists or there are no dependencies, set the default
+        if (dependency_exists || no_dependencies) {
+          this.setAttribute(attrName, data.default);
+          this[attr].value = data.default;
+        }
+      }
+    });
+  }
+
+  // Test whether expected dependencies exist
+  _hasDependency(tag, opts) {
+    // Get any possible dependencies for this attribute to exist
+    let dependencies = opts ? opts.dependencies : [];
+    // Initialize the dependency return value
+    let hasDependency = false;
+    // Check that dependent item exists
+    // Loop through the dependencies defined
+    for (let i = 0; i < dependencies.length; i += 1) {
+      const slot_exists =
+        dependencies[i].type === "slot" &&
+        this.has_slots(`${tag}--${dependencies[i].id}`).length > 0;
+      const attribute_exists =
+        dependencies[i].type === "attribute" &&
+        this.getAttribute(`${prefix}${dependencies[i].id}`);
+      // If the type is slot, check that it exists OR
+      // if the type is an attribute, check if the attribute is defined
+      if (slot_exists || attribute_exists) {
+        // If the slot does exist, add the attribute with the default value
+        hasDependency = true;
+        // Exit the loop
+        break;
+      }
+    }
+    // Return a boolean if the dependency exists
+    return hasDependency;
+  }
+
+  // Map the imported slots json
+  // @notice static getter of properties is built via tooling
+  // to edit modify src/element.json
+  _mapSchemaToSlots(tag, slots) {
+    // Loop over the properties provided by the schema
+    Object.keys(slots).forEach(slot => {
+      let slotObj = slots[slot];
+      let slotExists = false;
+      // If it's a named slot, look for that slot definition
+      if (slotObj.namedSlot) {
+        if (this.has_slots(`${tag}--${slot}`).length > 0) {
+          slotExists = true;
+        }
+        // If it's the default slot, look for elements not assigned to a slot
+      } else {
+        if ([...this.querySelectorAll(":not([slot])")].length > 0) {
+          slotExists = true;
+        }
+      }
+
+      // If the slot exists, attach an attribute to the parent to indicate that
+      if (slotExists) {
+        this.setAttribute(`has_${slot}`, "");
+      } else {
+        this.removeAttribute(`has_${slot}`);
+      }
+    });
+  }
+
+  _queueAction(action) {
+    this._queue.push(action);
+  }
+
+  _processQueue() {
+    this._queue.forEach(action => {
+      this[`_${action.type}`](action.data);
+    });
+
+    this._queue = [];
+  }
+
+  _setProperty({ name, value }) {
+    this[name] = value;
+  }
+
+  static var(name, element = document.body) {
+    return window
+      .getComputedStyle(element)
+      .getPropertyValue(name)
+      .trim();
+  }
+
+  var(name) {
+    return PFElement.var(name, this);
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = "";
+    this.template.innerHTML = this.html;
+
+    if (window.ShadyCSS) {
+      window.ShadyCSS.prepareTemplate(this.template, this.tag);
+    }
+
+    this.shadowRoot.appendChild(this.template.content.cloneNode(true));
+  }
+
+  log(...msgs) {
+    PFElement.log(`[${this.tag}]`, ...msgs);
+  }
+}
+
+autoReveal(PFElement.log);
+
+export default PFElement;
+//# sourceMappingURL=pfelement.js.map

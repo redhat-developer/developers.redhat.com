@@ -1,0 +1,75 @@
+{
+  "_args": [
+    [
+      "@patternfly/pfe-cta@1.0.0-prerelease.16",
+      "/home/ldary/Projects/rh/rhd-frontend"
+    ]
+  ],
+  "_development": true,
+  "_from": "@patternfly/pfe-cta@1.0.0-prerelease.16",
+  "_id": "@patternfly/pfe-cta@1.0.0-prerelease.16",
+  "_inBundle": false,
+  "_integrity": "sha512-i3v8nveYLpxmbqARQ4rJ5jQ6+OYYq8BeKRNiPzTzdNUVvvoNNrPEhfsOe+MZb95qKfCpFOzAx6AyQjhCznV45A==",
+  "_location": "/@patternfly/pfe-cta",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@patternfly/pfe-cta@1.0.0-prerelease.16",
+    "name": "@patternfly/pfe-cta",
+    "escapedName": "@patternfly%2fpfe-cta",
+    "scope": "@patternfly",
+    "rawSpec": "1.0.0-prerelease.16",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0-prerelease.16"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@patternfly/pfe-cta/-/pfe-cta-1.0.0-prerelease.16.tgz",
+  "_spec": "1.0.0-prerelease.16",
+  "_where": "/home/ldary/Projects/rh/rhd-frontend",
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-elements/issues"
+  },
+  "contributors": [
+    {
+      "name": "Mark Caron",
+      "email": "mark@redhat.com",
+      "url": "https://github.com/markcaron"
+    }
+  ],
+  "dependencies": {
+    "@patternfly/pfe-sass": "^1.0.0-prerelease.16",
+    "@patternfly/pfelement": "^1.0.0-prerelease.16"
+  },
+  "description": "Call-to-actions for PatternFly Elements",
+  "generator-pfelement-version": "0.5.0",
+  "gitHead": "6ee18e0fe929f7d8161b22114882716b8bcdeff4",
+  "homepage": "https://github.com/patternfly/patternfly-elements#readme",
+  "keywords": [
+    "web-components",
+    "html"
+  ],
+  "license": "MIT",
+  "main": "pfe-cta.js",
+  "name": "@patternfly/pfe-cta",
+  "pfelement": {
+    "className": "PfeCta",
+    "elementName": "pfe-cta"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly/patternfly-elements.git",
+    "directory": "elements/pfe-cta"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/gulp && ../../node_modules/.bin/prettier --ignore-path ../../.prettierignore --write '**/*.{js,json}'",
+    "dev": "../../node_modules/.bin/gulp dev",
+    "test": "../../node_modules/.bin/wct --configFile ../../wct.conf.json elements/pfe-cta/test/"
+  },
+  "version": "1.0.0-prerelease.16"
+}

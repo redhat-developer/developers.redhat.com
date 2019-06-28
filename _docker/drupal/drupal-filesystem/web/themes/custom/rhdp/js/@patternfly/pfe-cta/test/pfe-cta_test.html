@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="/components/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="/components/web-component-tester/browser.js"></script>
+    <script type="module" src="../pfe-cta.js"></script>
+  </head>
+  <body>
+
+    <pfe-cta>
+      <a href="https://redhat.com">redhat.com</a>
+    </pfe-cta>
+
+    <script>
+      suite('<pfe-cta>', () => {
+        test('it should upgrade', () => {
+          assert.instanceOf(
+            document.querySelector('pfe-cta'),
+            customElements.get('pfe-cta'),
+            'the <pfe-cta> should be an instance of PfeCta'
+          );
+        });
+
+        test("it should log a warning if there are no children in the light DOM", done => {
+          const spy = sinon.spy(console, 'warn');
+          const pfeCta = document.createElement("pfe-cta");
+          pfeCta.textContent = "This is wrong";
+
+          document.body.appendChild(pfeCta);
+
+          flush(() => {
+            sinon.assert.calledWith(spy, 'pfe-cta:The first child in the light DOM must be an anchor tag (<a>)');
+            spy.restore();
+            done();
+          });
+        });
+
+        test("it should log a warning if the first child in the light DOM is not an anchor", done => {
+          const spy = sinon.spy(console, 'warn');
+          const pfeCta = document.createElement("pfe-cta");
+          pfeCta.innerHTML = `<p>Something</p><a href="#">A link</a>`;
+
+          document.body.appendChild(pfeCta);
+
+          flush(() => {
+            sinon.assert.calledWith(spy, 'pfe-cta:The first child in the light DOM must be an anchor tag (<a>)');
+            spy.restore();
+            done();
+          });
+        });
+
+        test("it should properly initialize when the contents of the slot change", done => {
+          const pfeCta = document.querySelector("pfe-cta");
+          assert.equal(pfeCta.link.getAttribute("href"), "https://redhat.com");
+
+          pfeCta.innerHTML = `<a href="https://access.redhat.com">Customer Portal</a>`;
+
+          flush(() => {
+            assert.equal(pfeCta.link.getAttribute("href"), "https://access.redhat.com");
+            done();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

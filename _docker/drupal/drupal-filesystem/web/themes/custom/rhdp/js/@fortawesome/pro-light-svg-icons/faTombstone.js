@@ -1,0 +1,29 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'tombstone';
+var width = 512;
+var height = 512;
+var ligatures = [];
+var unicode = 'f720';
+var svgPathData = 'M496 416h-48V200.05C448 94.92 366.99 3.24 261.9.09 153.17-3.17 64 84 64 192v224H16c-8.84 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h480c8.84 0 16-7.16 16-16v-64c0-8.84-7.16-16-16-16zM96 192c0-88.22 71.78-160 160-160s160 71.78 160 160v224H96V192zm383.95 288H32.01l.04-32h447.94l-.04 32zM336.02 144h-32v-32c0-8.84-7.16-16-16-16h-64.01c-8.85 0-16 7.16-16 16v32h-32c-8.85 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h32v96c0 8.84 7.16 16 16 16h64.01c8.85 0 16-7.16 16-16v-96h32c8.85 0 16-7.16 16-16v-64c0-8.84-7.15-16-16-16zm-16 64h-48.01v112h-32V208H192v-32h48.01v-48h32v48h48.01v32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    ligatures,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTombstone = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = ligatures;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;

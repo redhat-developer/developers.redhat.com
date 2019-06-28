@@ -1,0 +1,29 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'cheeseburger';
+var width = 512;
+var height = 512;
+var ligatures = [];
+var unicode = 'f7f1';
+var svgPathData = 'M464 256h-48l-96 64-96-64H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96zM58.6 224h394.7c34.6 0 54.6-43.9 34.8-75.9C448 83.2 359.5 32.1 256 32c-103.5.1-192 51.2-232.2 116.1-19.8 32 .3 75.9 34.8 75.9zM384 112a16 16 0 1 1-16 16 16 16 0 0 1 16-16zM256 80a16 16 0 1 1-16 16 16 16 0 0 1 16-16zm-128 32a16 16 0 1 1-16 16 16 16 0 0 1 16-16zm352 272H32a16 16 0 0 0-16 16v16a64.06 64.06 0 0 0 64 64h352a64.06 64.06 0 0 0 64-64v-16a16 16 0 0 0-16-16z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    ligatures,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCheeseburger = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = ligatures;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;

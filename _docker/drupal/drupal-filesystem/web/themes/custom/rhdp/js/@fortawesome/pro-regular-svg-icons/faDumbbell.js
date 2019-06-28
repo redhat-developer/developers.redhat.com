@@ -1,0 +1,29 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'dumbbell';
+var width = 640;
+var height = 512;
+var ligatures = [];
+var unicode = 'f44b';
+var svgPathData = 'M632 224h-24v-72c0-30.9-25.1-56-56-56h-32c-2.7 0-5.4.4-8 .8V88c0-30.9-25.1-56-56-56h-32c-30.9 0-56 25.1-56 56v136h-96V88c0-30.9-25.1-56-56-56h-32c-30.9 0-56 25.1-56 56v8.8c-2.6-.4-5.3-.8-8-.8H88c-30.9 0-56 25.1-56 56v72H8c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h24v72c0 30.9 25.1 56 56 56h32c2.7 0 5.4-.4 8-.8v8.8c0 30.9 25.1 56 56 56h32c30.9 0 56-25.1 56-56V288h96v136c0 30.9 25.1 56 56 56h32c30.9 0 56-25.1 56-56v-8.8c2.6.4 5.3.8 8 .8h32c30.9 0 56-25.1 56-56v-72h24c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zM120 368H88c-4.4 0-8-3.6-8-8V152c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8v208c0 4.4-3.6 8-8 8zm104 56c0 4.4-3.6 8-8 8h-32c-4.4 0-8-3.6-8-8V88c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8v336zm240 0c0 4.4-3.6 8-8 8h-32c-4.4 0-8-3.6-8-8V88c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8v336zm96-64c0 4.4-3.6 8-8 8h-32c-4.4 0-8-3.6-8-8V152c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8v208z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    ligatures,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDumbbell = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = ligatures;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;

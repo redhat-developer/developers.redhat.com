@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "moduleResolution": "node",
+        "target": "es5",
+        "noImplicitAny": false,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": false,
+        "removeComments": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "pretty": true,
+        "strictBindCallApply": false,
+        "baseUrl": "src/scripts",
+        "allowJs": true,
+        "rootDirs": ["node_modules", "src/scripts"],
+        "lib":[
+          "dom", "es5", "dom.iterable", "es6"
+        ],
+        //"outFile": "dist/js/rhd.js",
+        "outDir": "src/docs/static/js/@rhd/",
+        "paths": {
+            "@patternfly/pfelement/pfelement.umd": [
+                "@types/patternfly__pfelement"
+            ],
+            "@patternfly/pfelement/pfelement": [
+                "@types/patternfly__pfelement"
+            ]
+        }
+    },
+    "include": [
+        "src/scripts/@rhd/**/*.ts"       
+    ]
+}
