@@ -1,97 +1,212 @@
-System.register(["../pfelement/pfelement.js"], function (exports_1, context_1) {
-    "use strict";
-    var __extends = (this && this.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
-    var pfelement_js_1, e;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [
-            function (pfelement_js_1_1) {
-                pfelement_js_1 = pfelement_js_1_1;
-            }
-        ],
-        execute: function () {
-            e = (function (_super) {
-                __extends(e, _super);
-                function e() {
-                    var _this = this;
-                    _this = _super.call(this, e) || this, _this.type = _this.getAttribute("type") || "local";
-                    return _this;
-                }
-                Object.defineProperty(e.prototype, "html", {
-                    get: function () { return "<style>:host {\n  display: inline; }</style>\n<span></span>"; },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e, "tag", {
-                    get: function () { return "pfe-datetime"; },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e.prototype, "styleUrl", {
-                    get: function () { return "pfe-datetime.scss"; },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e.prototype, "templateUrl", {
-                    get: function () { return "pfe-datetime.html"; },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e.prototype, "type", {
-                    get: function () { return this._type; },
-                    set: function (t) { this._type !== t && (this._type = t); },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e.prototype, "timestamp", {
-                    get: function () { return this._timestamp; },
-                    set: function (t) { this._timestamp !== t && (this._timestamp = t, this.setDate(new Date(1e3 * t))); },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e.prototype, "datetime", {
-                    get: function () { return this._datetime; },
-                    set: function (t) { Date.parse(t) && (Date.parse(t) && this._datetime === Date.parse(t) || this.setDate(Date.parse(t))); },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(e, "observedAttributes", {
-                    get: function () { return ["datetime", "type", "timestamp"]; },
-                    enumerable: true,
-                    configurable: true
-                });
-                e.prototype.attributeChangedCallback = function (t, e, i) { this[t] = i; };
-                e.prototype.setDate = function (t) { this._datetime = t, this.shadowRoot.querySelector("span").innerText = window.Intl ? this._getTypeString() : t.toLocaleString(); };
-                e.prototype._getOptions = function () { var t = { weekday: { short: "short", long: "long" }, day: { numeric: "numeric", "2-digit": "2-digit" }, month: { short: "short", long: "long" }, year: { numeric: "numeric", "2-digit": "2-digit" }, hour: { numeric: "numeric", "2-digit": "2-digit" }, minute: { numeric: "numeric", "2-digit": "2-digit" }, second: { numeric: "numeric", "2-digit": "2-digit" }, timeZoneName: { short: "short", long: "long" } }; var e = {}; for (var i in t) {
-                    var s = t[i][this.getAttribute(i)];
-                    s && (e[i] = s);
-                } return e; };
-                e.prototype._getTypeString = function () { var t = this._getOptions(), e = this.getAttribute("locale") || navigator.language; var i = ""; switch (this.type) {
-                    case "local":
-                        i = new Intl.DateTimeFormat(e, t).format(this._datetime);
-                        break;
-                    case "relative":
-                        i = this._getTimeRelative(this._datetime - Date.now());
-                        break;
-                    default: i = this._datetime;
-                } return i; };
-                e.prototype._getTimeRelative = function (t) { var e = t > 0 ? "until" : "ago"; var i = "just now"; var s = Math.round(Math.abs(t) / 1e3), a = Math.round(s / 60), r = Math.round(a / 60), n = Math.round(r / 24), o = Math.round(n / 30), m = Math.round(o / 12); return o >= 18 ? i = m + " years" : o >= 12 ? i = "a year" : n >= 45 ? i = o + " months" : n >= 30 ? i = "a month" : r >= 36 ? i = n + " days" : r >= 24 ? i = "a day" : a >= 90 ? i = r + " hours" : a >= 45 ? i = "an hour" : s >= 90 ? i = a + " minutes" : s >= 45 ? i = "a minute" : s >= 10 && (i = s + " seconds"), "just now" !== i ? i + " " + e : i; };
-                return e;
-            }(pfelement_js_1.default));
-            pfelement_js_1.default.create(e);
-            exports_1("default", e);
-        }
+import PFElement from '../pfelement/pfelement.js';
+
+/*
+ * @license
+ * Copyright 2019 Red Hat, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+*/
+
+class PfeDatetime extends PFElement {
+
+  get html() {
+    return `<style>:host{display:inline}</style><span></span>`;
+  }
+  static get tag() {
+    return "pfe-datetime";
+  }
+
+  get styleUrl() {
+    return "pfe-datetime.scss";
+  }
+
+  get templateUrl() {
+    return "pfe-datetime.html";
+  }
+
+  constructor() {
+    super(PfeDatetime);
+
+    this.type = this.getAttribute("type") || "local";
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  set type(val) {
+    if (this._type === val) {
+      return;
+    }
+
+    this._type = val;
+  }
+
+  get timestamp() {
+    return this._timestamp;
+  }
+
+  set timestamp(val) {
+    if (this._timestamp === val) {
+      return;
+    }
+
+    this._timestamp = val;
+    this.setDate(new Date(val * 1000));
+  }
+
+  get datetime() {
+    return this._datetime;
+  }
+
+  set datetime(val) {
+    if (!Date.parse(val)) {
+      return;
+    }
+
+    if (Date.parse(val) && this._datetime === Date.parse(val)) {
+      return;
+    }
+
+    this.setDate(Date.parse(val));
+  }
+
+  static get observedAttributes() {
+    return ["datetime", "type", "timestamp"];
+  }
+
+  attributeChangedCallback(attr, oldVal, newVal) {
+    this[attr] = newVal;
+  }
+
+  setDate(date) {
+    this._datetime = date;
+    this.shadowRoot.querySelector("span").innerText = window.Intl
+      ? this._getTypeString()
+      : date.toLocaleString();
+  }
+
+  _getOptions() {
+    const props = {
+      weekday: {
+        short: "short",
+        long: "long"
+      },
+      day: {
+        numeric: "numeric",
+        "2-digit": "2-digit"
+      },
+      month: {
+        short: "short",
+        long: "long"
+      },
+      year: {
+        numeric: "numeric",
+        "2-digit": "2-digit"
+      },
+      hour: {
+        numeric: "numeric",
+        "2-digit": "2-digit"
+      },
+      minute: {
+        numeric: "numeric",
+        "2-digit": "2-digit"
+      },
+      second: {
+        numeric: "numeric",
+        "2-digit": "2-digit"
+      },
+      timeZoneName: {
+        short: "short",
+        long: "long"
+      }
     };
-});
+
+    let options = {};
+
+    for (const prop in props) {
+      const value = props[prop][this.getAttribute(prop)];
+      if (value) {
+        options[prop] = value;
+      }
+    }
+
+    return options;
+  }
+
+  _getTypeString() {
+    const options = this._getOptions();
+    const locale = this.getAttribute("locale") || navigator.language;
+    let dt = "";
+    switch (this.type) {
+      case "local":
+        dt = new Intl.DateTimeFormat(locale, options).format(this._datetime);
+        break;
+      case "relative":
+        dt = this._getTimeRelative(this._datetime - Date.now());
+        break;
+      default:
+        dt = this._datetime;
+    }
+    return dt;
+  }
+
+  _getTimeRelative(ms) {
+    const tense = ms > 0 ? "until" : "ago";
+    let str = "just now";
+    // Based off of Github Relative Time
+    // https://github.com/github/time-elements/blob/master/src/relative-time.js
+    const s = Math.round(Math.abs(ms) / 1000);
+    const min = Math.round(s / 60);
+    const h = Math.round(min / 60);
+    const d = Math.round(h / 24);
+    const m = Math.round(d / 30);
+    const y = Math.round(m / 12);
+    if (m >= 18) {
+      str = y + " years";
+    } else if (m >= 12) {
+      str = "a year";
+    } else if (d >= 45) {
+      str = m + " months";
+    } else if (d >= 30) {
+      str = "a month";
+    } else if (h >= 36) {
+      str = d + " days";
+    } else if (h >= 24) {
+      str = "a day";
+    } else if (min >= 90) {
+      str = h + " hours";
+    } else if (min >= 45) {
+      str = "an hour";
+    } else if (s >= 90) {
+      str = min + " minutes";
+    } else if (s >= 45) {
+      str = "a minute";
+    } else if (s >= 10) {
+      str = s + " seconds";
+    }
+    return str !== "just now" ? `${str} ${tense}` : str;
+  }
+}
+
+PFElement.create(PfeDatetime);
+
+export default PfeDatetime;
+//# sourceMappingURL=pfe-datetime.js.map

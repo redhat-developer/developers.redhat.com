@@ -1,0 +1,71 @@
+{
+  "_args": [
+    [
+      "@patternfly/pfe-layouts@1.0.0-prerelease.16",
+      "/home/ldary/Projects/rh/rhd-frontend"
+    ]
+  ],
+  "_development": true,
+  "_from": "@patternfly/pfe-layouts@1.0.0-prerelease.16",
+  "_id": "@patternfly/pfe-layouts@1.0.0-prerelease.16",
+  "_inBundle": false,
+  "_integrity": "sha512-v8gpOr7RFjZiSw9HJluLl4pakPFnVLkVQYhB9suUVY+2djULY8WXd0PLecXUjuk2P3plrVKARzqt5Dog+BNiTw==",
+  "_location": "/@patternfly/pfe-layouts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@patternfly/pfe-layouts@1.0.0-prerelease.16",
+    "name": "@patternfly/pfe-layouts",
+    "escapedName": "@patternfly%2fpfe-layouts",
+    "scope": "@patternfly",
+    "rawSpec": "1.0.0-prerelease.16",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0-prerelease.16"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@patternfly/pfe-layouts/-/pfe-layouts-1.0.0-prerelease.16.tgz",
+  "_spec": "1.0.0-prerelease.16",
+  "_where": "/home/ldary/Projects/rh/rhd-frontend",
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-elements/issues"
+  },
+  "contributors": [
+    {
+      "name": "Mark Caron",
+      "email": "mark@redhat.com",
+      "url": "https://github.com/markcaron"
+    }
+  ],
+  "dependencies": {
+    "@patternfly/pfe-sass": "^1.0.0-prerelease.16"
+  },
+  "description": "Layouts helper classes for PatternFly Elements",
+  "gitHead": "6ee18e0fe929f7d8161b22114882716b8bcdeff4",
+  "homepage": "https://github.com/patternfly/patternfly-elements#readme",
+  "keywords": [
+    "web-components",
+    "html"
+  ],
+  "license": "MIT",
+  "name": "@patternfly/pfe-layouts",
+  "pfelement": {
+    "className": "PfeLayouts",
+    "elementName": "pfe-layouts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly/patternfly-elements.git",
+    "directory": "elements/pfe-layouts"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/gulp",
+    "dev": "../../node_modules/.bin/gulp dev"
+  },
+  "version": "1.0.0-prerelease.16"
+}
