@@ -27,7 +27,7 @@ content:
     type: options_buttons
     region: content
   field_eloqua_json:
-    weight: 5
+    weight: 4
     settings:
       rows: 10
       placeholder: ''
@@ -35,7 +35,7 @@ content:
     type: string_textarea
     region: content
   field_url:
-    weight: 6
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -64,12 +64,7 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-  visual_styles:
-    type: options_select
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   moderation_state: true
   user_id: true
+  visual_styles: true
