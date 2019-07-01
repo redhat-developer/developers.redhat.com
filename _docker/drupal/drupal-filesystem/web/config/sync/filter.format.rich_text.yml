@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   module:
+    - asciidoc
     - editor
     - entity_embed
+    - token_filter
 _core:
   default_config_hash: Mc8Hl-Ya14lrbMXaUx7Ybmv-18vtqE4lw2DpgNHPj-s
 name: 'Rich Text'
@@ -75,3 +77,17 @@ filters:
     weight: -42
     settings:
       filter_url_length: 72
+  asccidoc_simple:
+    id: asccidoc_simple
+    provider: asciidoc
+    status: false
+    weight: 0
+    settings:
+      command: asciidoctor
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: false
+    weight: 0
+    settings:
+      replace_empty: '0'

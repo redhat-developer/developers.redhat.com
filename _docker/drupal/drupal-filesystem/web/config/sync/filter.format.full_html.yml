@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - asciidoc
     - editor
     - token_filter
 name: 'Full HTML'
@@ -38,4 +39,21 @@ filters:
     provider: token_filter
     status: true
     weight: 0
-    settings: {  }
+    settings:
+      replace_empty: '0'
+  asccidoc_simple:
+    id: asccidoc_simple
+    provider: asciidoc
+    status: false
+    weight: 0
+    settings:
+      command: asciidoctor
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: '<em> <strong> <cite> <blockquote cite> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <a href hreflang class="button caret-right"> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p> <h1> <pre> <code class="code-style"> <div class="box callout"> <span class="h1 h2 h3 h4 h5 h6">'
+      filter_html_help: true
+      filter_html_nofollow: false
