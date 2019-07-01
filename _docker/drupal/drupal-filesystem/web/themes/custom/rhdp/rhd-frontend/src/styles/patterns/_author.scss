@@ -27,6 +27,29 @@
       align-self: center;
     }
   }
+  &.tile > a {
+    font-size: 12px;
+    display: grid;
+    color: $gray-6;
+    grid-template-columns: 50px auto;
+    text-align: left;
+    .field--name-field-headshot {
+      align-self: center;
+      img {
+        border-radius: 100%;
+      }
+    }
+    .author-info {
+      padding: 1rem;
+      align-self: center;
+    }
+    .author-name {
+      text-transform: uppercase;
+      span {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 .node--type-author {
