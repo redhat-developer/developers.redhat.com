@@ -49,8 +49,7 @@
                     "type": "zip"
                 },
                 "require": {
-                    "composer/installers": "~1.0"
-                }
+                    "composer/installers": "~1.0" }
             }
         }
     ],
@@ -60,7 +59,7 @@
         "acquia/lightning": "~3.2.6",
         "ckeditor/indentblock": "4.11.4",
         "drupal/admin_toolbar": "1.26",
-        "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
+        "drupal/assembly": "1.x-dev",
         "drupal/asciidoc": "1.2",
         "drupal/ckeditor_indentblock": "1.0-beta1",
         "drupal/core": "8.6.15",
@@ -101,7 +100,7 @@
         "drupal/akamai": "3.0-alpha4",
         "drupal/trailing_slash": "^1.0",
         "drupal/bootstrap": "3.17",
-        "drupal/compose": "1.x",
+        "drupal/compose": "1.x-dev",
         "drupal/beryllium": "1.x",
         "drupal/search_api": "1.11"
     },
@@ -172,10 +171,13 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
+          "drupal/bootstrap": {
+            "Remove overflow style from modal": "https://www.drupal.org/files/issues/2019-05-24/modal-height-3048592-4.patch"
+          },
           "drupal/core": {
             "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
             "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
-            "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch"
+            "Add disabled layout": "https://www.drupal.org/files/issues/2019-05-23/core-add_disabled_layout-3056712-1-8.7.2.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
