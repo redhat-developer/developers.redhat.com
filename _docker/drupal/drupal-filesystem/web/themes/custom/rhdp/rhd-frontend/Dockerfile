@@ -6,3 +6,4 @@ COPY . /testing
 
 RUN npm install \
     && chmod -R 777 /testing
+USER 1001
