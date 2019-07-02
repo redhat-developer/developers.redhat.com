@@ -1,4 +1,4 @@
-FROM registry.paas.redhat.com/rhdp/developer-base
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.0
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy

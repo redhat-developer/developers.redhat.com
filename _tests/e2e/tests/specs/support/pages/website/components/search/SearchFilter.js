@@ -58,6 +58,11 @@ class SearchFilter extends Page {
         if (isMobile) {
             Driver.click(this.showBtn);
             Driver.awaitIsDisplayed(this.cover);
+            /*
+                Seems we need to wait for the menu to be fully displayed because we're at times getting partial menu displays in the test.
+                This solution is horrible. I've raised https://issues.jboss.org/browse/DEVELOPER-5896 for us to implement a better fix.
+             */
+            Driver.pause(3000)
             return true;
         }
         return false;
