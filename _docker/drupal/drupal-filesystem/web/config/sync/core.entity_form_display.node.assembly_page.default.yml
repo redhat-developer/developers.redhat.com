@@ -29,7 +29,6 @@ dependencies:
     - entity_browser_entity_form
     - field_group
     - field_layout
-    - inline_entity_form
     - metatag
     - path
     - publication_date
@@ -103,7 +102,7 @@ content:
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
-    type: inline_entity_form_complex
+    type: compose_widget
     region: content
   field_share_image:
     type: entity_browser_file
