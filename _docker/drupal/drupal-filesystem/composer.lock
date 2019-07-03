@@ -4036,6 +4036,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "2832504 - Send the CKEditor instance ID to the embed.preview route": "https://www.drupal.org/files/issues/2832504-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -16494,7 +16497,8 @@
         "drupal/workbench": 20,
         "drupal/publication_date": 20,
         "drupal/session_limit": 10,
-        "drupal/devel_debug_log": 10
+        "drupal/devel_debug_log": 10,
+        "drupal/compose": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
