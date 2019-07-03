@@ -1,0 +1,21 @@
+diff --git a/trailing_slash.permissions.yml b/trailing_slash.permissions.yml
+new file mode 100644
+index 0000000..fa6ed29
+--- /dev/null
++++ b/trailing_slash.permissions.yml
+@@ -0,0 +1,5 @@
++administer trailing slash:
++  title: 'Administer Trailing Slash'
++  description: 'Allow to access the administration form to configure Trailing Slash.'
++  restrict access: true
++
+diff --git a/trailing_slash.routing.yml b/trailing_slash.routing.yml
+index 09a96ad..675d975 100644
+--- a/trailing_slash.routing.yml
++++ b/trailing_slash.routing.yml
+@@ -4,4 +4,4 @@ trailing_slash.admin_settings_form:
+     _form: '\Drupal\trailing_slash\Form\SettingsForm'
+     _title: 'Trailing Slash settings'
+   requirements:
+-    _permission: 'access administration pages'
++    _permission: 'administer trailing slash'
