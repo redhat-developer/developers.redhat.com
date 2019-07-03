@@ -5,3 +5,7 @@ $gutter: 30px;
   font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
 }
 body { margin: 0; padding: 0; color: $grey-7; }
+
+:host {
+  @extend body;
+}
