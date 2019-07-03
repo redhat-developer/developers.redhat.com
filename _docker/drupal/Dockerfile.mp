@@ -1,4 +1,4 @@
-FROM registry.paas.redhat.com/rhdp/developer-base
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.0
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
@@ -42,8 +42,8 @@ COPY managed-platform/ /
 
 # Permissions here are required for us to run on Managed Platform
 RUN chown -R root:0 /opt/rh/httpd24/root/var/run/httpd \
-    && chmod -R 770 /opt/rh/httpd24/root/var/run/httpd
-RUN chgrp -R 0 /ansible \
+    && chmod -R 770 /opt/rh/httpd24/root/var/run/httpd \
+    && chgrp -R 0 /ansible \
     && chmod -R g=u /ansible
 
 USER 1001
