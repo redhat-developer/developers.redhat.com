@@ -39,35 +39,27 @@
       margin: 10px 0px;
     }
 
-    p:first-of-type.event-speaker{
-      grid-column: 2;
-      @media screen and (max-width: 768px) {
-        grid-column: 1;
-      }
-
-    }
-
-    p.event-speaker{
+    .event-presenters {
       display: grid;
-      grid-template-columns: 50px 1fr;
-      grid-auto-flow: column;
-      color: #656565;
+      grid-template-columns: 1fr;
+
+      @include tablet-portrait {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include desktop-small {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @include desktop-large {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
       img {
-        width: auto;
-        height: auto !important;
+        max-width: 3rem;
         border-radius: 100%;
       }
       span {
         margin-left:10px;
-        align-self: center;
-        color: $gray-5;
         font-size: 14px;
       }
-      @media screen and (max-width: 768px) {
-        grid-column: 1;
-      }
-
-
     }
 
     a.event-title{
