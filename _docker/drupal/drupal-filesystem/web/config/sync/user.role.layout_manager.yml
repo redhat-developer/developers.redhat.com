@@ -14,7 +14,9 @@ label: 'Layout manager'
 weight: -7
 is_admin: false
 permissions:
-  - 'administer node display'
+  - 'access image_browser entity browser pages'
+  - 'access media overview'
+  - 'access media_browser entity browser pages'
   - 'administer panelizer'
   - 'administer panelizer node article defaults'
   - 'administer panelizer node assembly_page defaults'
