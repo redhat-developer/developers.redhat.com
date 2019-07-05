@@ -4,8 +4,8 @@
         <a class="event-title" href="{{ event_url }}">{{ event_title }}</a>
         <p class="event-date">{{ content.field_start_date}}</p>
         <p class="event-desc">{{ event_description | striptags }}</p>
+        <div class="event-presenters">
+          {{ content.field_presenter_s_ }}
+        </div>
     </div>
-
-    {{ content.field_presenter_s_ }}
-
 </li>
