@@ -98,8 +98,8 @@ $config['akamai.settings']['domain']['staging'] = true;
 
 
 # DEVELOPER-5877: Added disqus settings to support emails to content author on new comments
-$config['rhd_disqus.disqussettings']['rhd_disqus_secret_key'] = '9KQmHzg3XJsHhxfWh227G2ank3hrAfJUvcCHLn2KBrCmhmHuIszdImmbo3DFraaR';
-$config['rhd_disqus.disqussettings']['rhd_disqus_api_key'] = 'QkGD1cb3wyqRhf55ws9IWLzFckuJvKgaRQ3Uf3B2NK8AYfOor7XeDAnVBbaUHS69';
+$config['rhd_disqus.disqussettings']['rhd_disqus_secret_key'] = '';
+$config['rhd_disqus.disqussettings']['rhd_disqus_api_key'] = '';
 $config['rhd_disqus.disqussettings']['rhd_disqus_shortname'] = 'red-hat-developers-localhost';
 $config['rhd_disqus.disqussettings']['rhd_disqus_email_author_enabled'] = false;
 $config['rhd_disqus.disqussettings']['rhd_disqus_email_author_debug'] = true;    
