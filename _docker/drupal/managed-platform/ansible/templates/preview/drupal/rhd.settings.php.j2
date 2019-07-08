@@ -97,3 +97,8 @@ $settings['omit_vary_cookie'] = TRUE;
 
 # MWES-2910: Enable trailing_slash module in MP-based deployments
 $config['trailing_slash.settings']['enabled'] = TRUE;
+
+# MWES-3338: Ensure that the Twig Cache is using local filesystem
+$settings['php_storage']['twig'] = array(
+    'directory' => '/cache/drupal/',
+);
