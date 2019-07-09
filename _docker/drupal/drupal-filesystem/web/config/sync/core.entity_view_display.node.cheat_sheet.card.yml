@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.cheat_sheet.field_read_time
     - field.field.node.cheat_sheet.field_share_image
     - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_tags
     - field.field.node.cheat_sheet.field_tax_audience_segment
     - field.field.node.cheat_sheet.field_tax_business_unit
     - field.field.node.cheat_sheet.field_tax_campaign
@@ -31,10 +32,10 @@ dependencies:
     - image.style.large
     - node.type.cheat_sheet
   module:
-    - compose
     - fences
     - field_layout
     - image
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -81,6 +82,7 @@ hidden:
   field_read_time: true
   field_share_image: true
   field_short_description: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true

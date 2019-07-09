@@ -9,7 +9,6 @@ dependencies:
     - field.field.assembly.all_products_listing.field_navigation_title
     - field.field.assembly.all_products_listing.field_title
   module:
-    - content_moderation
     - field_layout
     - layout_discovery
     - text
@@ -59,12 +58,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: moderation_state_default
-    region: content
   name:
     type: string_textfield
     weight: 0

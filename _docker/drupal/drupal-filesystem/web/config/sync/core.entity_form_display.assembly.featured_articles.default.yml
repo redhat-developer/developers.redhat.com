@@ -7,6 +7,9 @@ dependencies:
     - field.field.assembly.featured_articles.field_articles
     - field.field.assembly.featured_articles.field_navigation_title
     - field.field.assembly.featured_articles.field_title
+  module:
+    - field_layout
+    - layout_discovery
 third_party_settings:
   field_layout:
     id: layout_disabled

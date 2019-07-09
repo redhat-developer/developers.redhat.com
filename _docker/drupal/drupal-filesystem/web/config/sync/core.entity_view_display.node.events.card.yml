@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.events.field_site
     - field.field.node.events.field_solution_type
     - field.field.node.events.field_start_date
+    - field.field.node.events.field_tags
     - field.field.node.events.field_target_product
     - field.field.node.events.field_tax_audience_segment
     - field.field.node.events.field_tax_business_unit
@@ -199,6 +200,7 @@ content:
 hidden:
   field_event_location: true
   field_presenter_s_: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true

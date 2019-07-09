@@ -9,7 +9,6 @@ dependencies:
     - field.field.assembly.events_list.field_event
     - field.field.assembly.events_list.field_navigation_title
   module:
-    - content_moderation
     - field_layout
     - layout_discovery
     - link
@@ -60,12 +59,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 8
-    settings: {  }
-    third_party_settings: {  }
-    type: moderation_state_default
-    region: content
   name:
     type: string_textfield
     weight: 0
