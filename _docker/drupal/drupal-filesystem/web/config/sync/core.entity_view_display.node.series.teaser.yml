@@ -5,6 +5,19 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.series.body
+    - field.field.node.series.field_series_articles
+    - field.field.node.series.field_series_author
+    - field.field.node.series.field_series_image
+    - field.field.node.series.field_tax_audience_segment
+    - field.field.node.series.field_tax_business_unit
+    - field.field.node.series.field_tax_campaign
+    - field.field.node.series.field_tax_lifecycle
+    - field.field.node.series.field_tax_product
+    - field.field.node.series.field_tax_product_line
+    - field.field.node.series.field_tax_project
+    - field.field.node.series.field_tax_promotion
+    - field.field.node.series.field_tax_region
+    - field.field.node.series.field_tax_stage
     - node.type.series
   module:
     - field_layout
@@ -23,16 +36,47 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 0
     settings:
       trim_length: 600
     third_party_settings: {  }
     region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+  field_series_articles:
+    type: entity_reference_label
+    weight: 2
     region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_series_author:
+    type: entity_reference_label
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_series_image:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
 hidden:
+  content_moderation_control: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
   langcode: true
+  links: true
   published_at: true
