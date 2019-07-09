@@ -1,7 +1,7 @@
-import Page from '../../../Page';
-import Driver from '../../../../utils/Driver.Extension';
+import Page from '../../Page';
+import Driver from '../../../utils/Driver.Extension';
 
-class SearchBox extends Page {
+export class Box extends Page {
     get searchField() {return $('#query');}
 
     enterSearch(searchTerm) {
@@ -17,5 +17,3 @@ class SearchBox extends Page {
         return Driver.key("\uE007");
     }
 }
-
-export default new SearchBox;

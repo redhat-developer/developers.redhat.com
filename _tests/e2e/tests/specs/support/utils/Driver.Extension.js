@@ -2,17 +2,11 @@ import {DEFAULT_TIMEOUT} from '../utils/constants';
 
 export default class Driver {
     static visit(url) {
-        try {
-            return browser.url(url);
-        } catch (err) {
-            if (err && err.message.indexOf('stale element reference') >= 0) {
-                return browser.url(url);
-            }
-        }
+        browser.url(url);
     }
 
     static enter() {
-        return this.key("\uE007");
+        this.key("\uE007");
     }
 
     static pause(timeout = DEFAULT_TIMEOUT) {
@@ -24,9 +18,10 @@ export default class Driver {
     }
 
     static waitForUrlContaining(string, timeout = DEFAULT_TIMEOUT) {
-        browser.waitUntil(function() {
-            return browser.getUrl().indexOf(string) > -1;
-        }, timeout, `Timed out after ${timeout} seconds waiting for url to contain ${string}`);
+        browser.waitUntil(() => {
+            const pageUrl = browser.getUrl();
+            return pageUrl.indexOf(string) > -1;
+          }, timeout);
     }
 
     static isVisible(selector) {
@@ -35,13 +30,13 @@ export default class Driver {
 
     static type(input, selector) {
         this.awaitIsDisplayed(selector);
-        return selector.setValue(input);
+        selector.setValue(input);
     }
 
     static click(selector) {
         this.hideCookieBanner();
         this.awaitIsDisplayed(selector);
-        return selector.click();
+        selector.click();
     }
 
     static getValue(selector) {
@@ -50,28 +45,24 @@ export default class Driver {
 
     static selectByValue(selector, value) {
         this.awaitIsDisplayed(selector);
-        return selector.selectByAttribute('value', value);
+        selector.selectByAttribute('value', value);
     }
 
     static textOf(selector) {
-        this.awaitExists(selector);
+        this.awaitIsDisplayed(selector);
         return selector.getText();
     }
 
     static key(key) {
-        return browser.keys(key);
-    }
-
-    static getPageSource() {
-        return browser.getPageSource();
+        browser.keys(key);
     }
 
     static awaitExists(selector, timeout = DEFAULT_TIMEOUT) {
-        return selector.waitForExist(timeout);
+        selector.waitForExist(timeout);
     }
 
     static awaitIsDisplayed(selector, timeout = DEFAULT_TIMEOUT, isShown = true) {
-        return selector.waitForDisplayed(timeout, !isShown);
+        selector.waitForDisplayed(timeout, !isShown);
     }
 
     static hideCookieBanner() {
@@ -81,6 +72,14 @@ export default class Driver {
                 return document.getElementById('redhat-cookie-privacy-banner').style.display = 'none';
             });
         }
+    }
+
+    static allowDownloads() {
+        browser.sendCommand('Page.setDownloadBehavior', {'behavior': 'allow', 'downloadPath': global.downloadDir});
+    }
+
+    static takeScreenShot() {
+        browser.takeScreenshot();
     }
 }
 

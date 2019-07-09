@@ -4,6 +4,10 @@ import Driver from '../utils/Driver.Extension';
 
 
 class Utils {
+    allowDownloads() {
+        Driver.allowDownloads();
+    }
+
 
     isManagedPaasEnvironment() {
         return config.baseUrl.includes('.preprod.paas.redhat.com')

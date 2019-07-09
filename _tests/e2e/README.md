@@ -9,8 +9,7 @@ This directory contains the UI Tests for the developers.redhat.com website, thes
 
 * js-e2e-tests 
 * js-mobile-e2e-tests
-* js-drupal-e2e-tests
-        
+
 ## What is e2e testing?
 
 > *“End-to-end testing is a methodology used to test whether the flow of an application is performing as designed from start to finish. The purpose of carrying out end-to-end tests is to identify system dependencies and to ensure that the right information is passed between various system components and systems.”*
@@ -22,14 +21,10 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 
 ## What do we test on site-export?
 * Search Page (DCP)
-* RHEL download (Download Manager, Keycloak login)
-* RHEL advanced linux cheatsheet (Download Manager, Keycloak login)
+* RHEL download (Download Manager, Keycloak login, Drupal Admin Login)
 * Keycloak pages (site navigation bar navigates users to login/register pages)
 * Home and Blog pages contain unique string for site monitoring.
 * 404 pages
-
-## What do we test on drupal site?
-* Admin succesful login
 
 ## Testing of pull-requests
 The pull request pipeline consists of desktop (export and drupal) and mobile end-to-end tests (export). The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
@@ -63,46 +58,39 @@ You can, and **should** test your changes locally before raising a PR. Please en
 
 In the root of the project directory execute the following command for site export tests:
 
-        cd _tests/e2e && npm run e2e
+        cd _tests/e2e && npm test
         
-In the root of the project directory execute the following command for site export tests:
-        
-        cd _tests/e2e && npm run e2e -- --testType=drupal --user=your-drupal-test-account-username-goes-here --password=your-drupal-test-account-password-goes-here
-        
-## Run Single feature, or test
+        ## Run Single feature, or test
 Add a unique tag to the test(s) `it.` description, for example to execute the following scenario:
 
 ```nodejs
-.it('@wip @sanity : should allow users to log-in and download advanced-linux-commands', function () {
-    this.retries(2)
-    let siteUser = new User(process.env.RHD_BASE_URL).rhdAccountDetails();
-    let cheatSheet = new CheatSheets('advanced-linux-commands');
-    cheatSheet
-         .open();
-    cheatSheet
-         .awaitLoaded();
-    cheatSheet
-         .loginToDownload();
-    login
-         .with(siteUser);
-    cheatSheet
-         .awaitDownload();
-    downloadName = downloadDir.get();
-    expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet')
+it('should allow users to login in and download RHEL', function() {
+        productOverview
+            .open('rhel', 'download')
+            .download();
+        login.with(process.env.RHD_KEYCLOAK_ADMIN_USERNAME, process.env.RHD_KEYCLOAK_ADMIN_PASSWORD);
+        productOverview.awaitDownloadThankYou();
+        const downloadName = downloadDir.get();
+        expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
+    });
 });
 ```
                 
- Would be: **`npm run e2e --  --mochaOpts.grep=@wip`** 
+ Would be: **`npm test --  --mochaOpts.grep=@wip`** 
  
- ## Override the default browser (chrome):
+ ## How do I run ta specific spec file?
  
-              RHD_JS_DRIVER='iPhone X' npm run e2e   
+    npm test --  --spec=rhd-search.spec.js
+ 
+ ## Mobile emulation (chrome - default iPhone X):
+ 
+    npm test --  --browser=mobile 
   
  ## Override the default (local) url:
  
  The default baseUrl when running tests locally is set to `http://docker:8888`. To override this, you can execute:
  
-              npm run e2e -- --base-url=https://developers.redhat.com --mochaOpts.grep=@wip
+    npm test -- --baseUrl=https://developers.stage.redhat.com
               
 ## Run tests inside docker using docker-selenium (build scripts - same as Jenkins)
 
@@ -112,12 +100,8 @@ In the root of the project directory execute the following command:
 
 ### Full suite
 
-    ruby _tests/node_jenkins_test_runner.rb e2e https://developers.redhat.com
+    ruby _tests/node_jenkins_test_runner.rb e2e https://developers.stage.redhat.com
 
-### Sanity (desktop browser only)
-
-    ruby _tests/node_jenkins_test_runner.rb sanity https://developers.redhat.com
-    
 ## Approach to writing tests
 
 ### Spec Classes
@@ -251,39 +235,12 @@ Screen classes should only do the following:
 Example:
 
 ```nodejs
-import {Page} from "../Page";
+class Search extends Page {
+    get searchPage() {return $('.searchpage-middle');}
 
-export class CheatSheets extends Base {
-
-    constructor(cheatSheet) {
-        super({
-            path: `/cheat-sheets/${cheatSheet}/`.toString()
-        });
-
-        this.addSelectors({
-            cheatSheetPage: '#rhd-cheat-sheet',
-            loginToDownload: '.hidden-after-login',
-            thankYou: '.thankyou'
-        });
-    }
-
-    awaitLoaded() {
-        return this.awaitIsVisible(this.getSelector('cheatSheetPage'));
-    }
-
-    awaitDownloadConfirmation() {
-        return this.waitForUrlContaining('media-download-confirmation', 60000);
-    }
-
-    awaitDownloadThankYou() {
-        this.awaitIsVisible(this.getSelector('thankYou'), 60000);
-    }
-
-    loginToDownload() {
-        let downloadBtn = this.element(this.getSelector('loginToDownloadBtn'));
-        let location = downloadBtn.getLocationInView();
-        downloadBtn.scroll(location['x'], location['y']);
-        return this.clickOn(downloadBtn);
+    open() {
+        super.open('/search/');
+        return Driver.awaitIsDisplayed(this.searchPage);
     }
 }
 ```
@@ -295,7 +252,7 @@ In Page Classes when interacting with UI elements, do so via the helper methods 
 So for example:
 
 ```nodejs
-this.clickOn(selector)
+this.click(selector)
 ```
 
 Instead of:
@@ -306,13 +263,9 @@ selector.click()
 This is because the helper methods are configured to wait for an element to exist before desired action will execute:
 
 ```nodejs
-    click(selector) {
-            this.awaitExists(selector);
-            if (typeof selector === 'string') {
-                return browser.click(selector);
-            } else {
-                return selector.click();
-            }
+    static click(selector) {
+            this.awaitIsDisplayed(selector);
+            selector.click();
         }
 ```
 This will make your tests more robust.

@@ -11,6 +11,4 @@ do
   echo "$(date) - waiting for server to be up (attempt: $attempt)..."
   sleep 1
 done
-
-echo "Selenium-standalone is up - executing tests"
-exec ruby /home/e2e/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb $cmd
+exec ruby /developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb npm run e2e:ci -- --profile=$RHD_TEST_PROFILE --baseUrl=$RHD_BASE_URL --browser=$RHD_JS_DRIVER --tags=$RHD_TEST_TAGS
