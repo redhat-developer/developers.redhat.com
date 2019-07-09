@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.learning_path.field_related_topic_s_
     - field.field.node.learning_path.field_requirements_an_or_pre_req
     - field.field.node.learning_path.field_short_description
+    - field.field.node.learning_path.field_tags
     - field.field.node.learning_path.field_tax_audience_segment
     - field.field.node.learning_path.field_tax_business_unit
     - field.field.node.learning_path.field_tax_campaign
@@ -31,9 +32,9 @@ dependencies:
     - field.field.node.learning_path.field_value_proposition
     - node.type.learning_path
   module:
-    - compose
     - fences
     - field_layout
+    - layout_discovery
     - link
     - text
     - user
@@ -110,6 +111,7 @@ hidden:
   field_related_red_hat_certificat: true
   field_related_topic_s_: true
   field_requirements_an_or_pre_req: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true

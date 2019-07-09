@@ -7,10 +7,22 @@ dependencies:
     - field.field.node.upstream_projects.field_link_to_project
     - field.field.node.upstream_projects.field_link_to_repo
     - field.field.node.upstream_projects.field_logo
+    - field.field.node.upstream_projects.field_tags
+    - field.field.node.upstream_projects.field_tax_audience_segment
+    - field.field.node.upstream_projects.field_tax_business_unit
+    - field.field.node.upstream_projects.field_tax_campaign
+    - field.field.node.upstream_projects.field_tax_lifecycle
+    - field.field.node.upstream_projects.field_tax_product
+    - field.field.node.upstream_projects.field_tax_product_line
+    - field.field.node.upstream_projects.field_tax_project
+    - field.field.node.upstream_projects.field_tax_promotion
+    - field.field.node.upstream_projects.field_tax_region
+    - field.field.node.upstream_projects.field_tax_stage
+    - field.field.node.upstream_projects.field_topics
     - node.type.upstream_projects
   module:
-    - compose
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -30,5 +42,17 @@ hidden:
   field_link_to_project: true
   field_link_to_repo: true
   field_logo: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
   langcode: true
   published_at: true

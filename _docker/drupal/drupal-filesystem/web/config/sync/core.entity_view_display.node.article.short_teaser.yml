@@ -35,9 +35,9 @@ dependencies:
     - field.field.node.article.field_topics
     - node.type.article
   module:
-    - compose
     - fences
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:

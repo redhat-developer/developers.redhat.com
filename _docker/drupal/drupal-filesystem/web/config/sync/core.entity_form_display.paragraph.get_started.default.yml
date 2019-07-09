@@ -68,15 +68,6 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     region: content
-  moderation_state:
-    weight: 6
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
 hidden:
   created: true
   field_overview_url: true
