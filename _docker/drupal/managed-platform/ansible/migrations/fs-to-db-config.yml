@@ -1,0 +1,31 @@
+#
+# This list of tasks automates the switch of our configuration source from the FileSystem to the database. It's a one time
+# migration that we can remove at some point.
+#
+---
+- name: Check to see if we have completed the migration
+  stat:
+    path: "/var/www/drupal/web/sites/default/files/config.migrated.DO_NOT_DELETE"
+  register: migration_completed
+
+- name: Migrate Drupal from using filesystem storage for config to database storage
+  block:
+  - name: Take a backup of the current config table
+    shell: "mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -h {{ drupal_db_host }} -p{{ drupal_db_password }} -u {{ drupal_db_user }} -e \"create table lightning_config_backup like lightning_config; insert into lightning_config_backup select * from lightning_config\" {{ deployment_dbs[0] }}"
+
+  - name: Migrate the configuration from the filesystem to the database
+    shell: 'drush php:script MigrateFileSystemConfigToDb.php'
+    args:
+      chdir: '/var/www/drupal/fs-to-db-migration'
+
+  - name: Record the migration of the data
+    copy:
+      content: ""
+      dest: "/var/www/drupal/web/sites/default/files/config.migrated.DO_NOT_DELETE"
+      force: no
+      group: 'root'
+      mode: '0770'
+
+  - name: Rebuild the Drupal Cache
+    shell: 'drush cr'
+  when: migration_completed.stat.exists == false

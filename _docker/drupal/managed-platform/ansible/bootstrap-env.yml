@@ -28,7 +28,7 @@
     # set to true apart from local development which relies still on the drupal data images.
     #
     - include: 's3-bootstrap-env.yml'
-      when: drupal_s3_bootstrap
+      when: drupal_s3_bootstrap|bool
 
     - name: "Seed: Extract the Drupal filesystem backup into the working directory of this deployment."
       unarchive:

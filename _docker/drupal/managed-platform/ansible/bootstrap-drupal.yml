@@ -24,6 +24,11 @@
     - debug:
         msg: "{{ (drush_rc.changed) | ternary(drush_rc.stderr_lines, drush_rc.stdout_lines) }}"
 
+    #
+    # MWES-3342: Include the migration to move Drupal from filesystem storage of configuration to database storage
+    #
+    - include: 'migrations/fs-to-db-config.yml'
+
     - name: Run Drupal Module Database Updates
       shell: 'drush -y --entity-updates updb && drush cr && touch {{ work_dir }}/drupal.updb.do.not.delete'
       register: entity_updates
@@ -32,21 +37,6 @@
         creates: "{{ work_dir }}/drupal.updb.do.not.delete"
     - debug:
        msg: "{{ (entity_updates.changed) | ternary(entity_updates.stderr_lines, entity_updates.stdout_lines) }}"
-
-#    - name: Apply Lightning Profile Updates
-#      shell: 'drush update:lightning --no-interaction && drush cr && touch {{ work_dir }}/drupal.lightning.do.not.delete'
-#      register: lightning_updates
-#      args:
-#        chdir: '/var/www/drupal/web'
-#        creates: "{{ work_dir }}/drupal.lightning.do.not.delete"
-#    - debug:
-#        msg:
-#          - "{{ lightning_updates.stdout_lines }}q"
-#          - "{{ lightning_updates.stderr_lines}}"
-#      when: lightning_updates.changed
-#    - debug:
-#        var: lightning_updates.stdout_lines
-#      when: not lightning_updates.changed
 
     - name: Import the latest Drupal configuration
       shell: 'drush -y cim && drush cr && touch {{ work_dir }}/drupal.cim.do.not.delete'

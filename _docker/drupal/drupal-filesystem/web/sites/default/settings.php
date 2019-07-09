@@ -609,7 +609,7 @@ if ($settings['hash_salt']) {
  *   override in a services.yml file in the same directory as settings.php
  *   (definitions in this file will override service definition defaults).
  */
- $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
+ # $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
 
 /**
  * Configuration overrides.
@@ -667,7 +667,7 @@ if ($settings['hash_salt']) {
 /**
  * Load services definition file.
  */
-$settings['container_yamls'][] = __DIR__ . '/services.yml';
+# $settings['container_yamls'][] = __DIR__ . '/services.yml';
 
 /**
  * Override the default service container class.
@@ -739,6 +739,22 @@ $settings['file_scan_ignore_directories'] = [
   'bower_components',
 ];
 
+$config_directories['active'] = 'config/active';
+$config_directories['sync'] = 'config/sync';
+
+#
+# MWES-3342: This logic here supports the migration from filesystem based configuration storage to database configuration storage. As part of the migration
+# process we will create the ~sites/default/files/.config.migrated.DO_NOT_DELETE file. Once this file is in place, then Drupal knows that is should use the
+# database as it's source of configuration and not the filesystem.
+#
+if (!file_exists(__DIR__ . '/files/config.migrated.DO_NOT_DELETE')) {
+  $settings['container_yamls'][] = __DIR__ . '/services-fs.yml';
+  $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
+} else {
+  $settings['container_yamls'][] = __DIR__ . '/services.yml';
+}
+
+
 /**
  * Load local development override configuration, if available.
  *
@@ -753,5 +769,5 @@ if (file_exists(__DIR__ . '/rhd.settings.php')) {
   include __DIR__ . '/rhd.settings.php';
 }
 
-$config_directories['active'] = 'config/active';
-$config_directories['sync'] = 'config/sync';
+
+
