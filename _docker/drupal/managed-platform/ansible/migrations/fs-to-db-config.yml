@@ -2,30 +2,71 @@
 # This list of tasks automates the switch of our configuration source from the FileSystem to the database. It's a one time
 # migration that we can remove at some point.
 #
+# Essentially this playbook does the following:
+# - Copy the configuration as is from FileStorage into DatabaseStorage
+# - Archive the existing file-based storage and then delete it
+# - Place a flag on the filesystem to instruct Drupal to switch to using the database for configuration
+# - Flush the Drupal cache so that the rest of the Drupal bootstrap process can continue.
+#
 ---
-- name: Check to see if we have completed the migration
+- name: Determine if we have already performed the migration of the active configuration to the database
   stat:
-    path: "/var/www/drupal/web/sites/default/files/config.migrated.DO_NOT_DELETE"
+    path: "/var/www/drupal/web/config/active/config.migrated.DO_NOT_DELETE"
   register: migration_completed
 
 - name: Migrate Drupal from using filesystem storage for config to database storage
   block:
-  - name: Take a backup of the current config table
-    shell: "mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -h {{ drupal_db_host }} -p{{ drupal_db_password }} -u {{ drupal_db_user }} -e \"create table lightning_config_backup like lightning_config; insert into lightning_config_backup select * from lightning_config\" {{ deployment_dbs[0] }}"
+  - set_fact:
+      active_config_dir: '/var/www/drupal/web/config/active'
 
-  - name: Migrate the configuration from the filesystem to the database
-    shell: 'drush php:script MigrateFileSystemConfigToDb.php'
+  - name: Take a backup of the current config table in the database
+    shell: "mysql --ssl-ca=/etc/pki/ca-trust/source/anchors/RH-IT-pki-validation-chain.pem -h {{ drupal_db_host }} -p{{ drupal_db_password }} -u {{ drupal_db_user }} -e \"create table lightning_config_backup like lightning_config; insert into lightning_config_backup select * from lightning_config\" {{ deployment_dbs[0] }} && touch {{ active_config_dir }}/db.backup.DO_NOT_DELETE"
+    args:
+      creates: '{{ active_config_dir }}/db.backup.DO_NOT_DELETE'
+
+  - name: Migrate the active configuration from the filesystem to the database using drush
+    shell: 'drush php:script MigrateFileSystemConfigToDb.php && touch {{ active_config_dir }}/drush.php.DO_NOT_DELETE'
     args:
       chdir: '/var/www/drupal/fs-to-db-migration'
+      creates: '{{ active_config_dir }}/drush.php.DO_NOT_DELETE'
+    register: drush_php
 
-  - name: Record the migration of the data
+  - debug:
+      msg:
+        - "{{ drush_php.stdout_lines }}"
+        - "{{ drush_php.stderr_lines }}"
+    when: drush_php.changed
+
+  - name: Rebuild the Drupal Cache
+    shell: 'drush cr && touch {{ active_config_dir }}/drush.cr.DO_NOT_DELETE'
+    args:
+      creates: '{{ active_config_dir }}/drush.cr.DO_NOT_DELETE'
+    register: drush_cr
+
+  - debug:
+      msg:
+        - "{{ drush_cr.stdout_lines }}"
+        - "{{ drush_cr.stderr_lines }}"
+    when: drush_cr.changed
+
+  - name: Archive the old active files configuration in case we need to rollback
+    shell: "find config/active -name '*.yml' | tar -cvzf config/active/drupal-active-config-pre-migration.tar.gz --files-from - && touch {{ active_config_dir }}/archive.DO_NOT_DELETE"
+    args:
+      chdir: '/var/www/drupal/web'
+      creates: '{{ active_config_dir}}/archive.DO_NOT_DELETE'
+
+  - name: Delete the old active files to ensure they are not in use by Drupal
+    shell: 'rm -f *.yml && touch {{ active_config_dir}}/config.deleted.DO_NOT_DELETE'
+    args:
+      chdir: '{{ active_config_dir }}'
+      creates: '{{ active_config_dir }}/config.deleted.DO_NOT_DELETE'
+
+  - name: Record migration of active configuration from filesystem to database
     copy:
       content: ""
-      dest: "/var/www/drupal/web/sites/default/files/config.migrated.DO_NOT_DELETE"
+      dest: "/var/www/drupal/web/config/active/config.migrated.DO_NOT_DELETE"
       force: no
       group: 'root'
       mode: '0770'
 
-  - name: Rebuild the Drupal Cache
-    shell: 'drush cr'
   when: migration_completed.stat.exists == false

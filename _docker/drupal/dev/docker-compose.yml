@@ -12,6 +12,7 @@ services:
     environment:
       - https_proxy
       - http_proxy
+      - COMPOSER_MEMORY_LIMIT=-1
     working_dir: /drupal
 
   seed_env:

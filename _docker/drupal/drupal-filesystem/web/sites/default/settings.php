@@ -219,32 +219,6 @@
  * @endcode
  */
 
-/**
- * Location of the site configuration files.
- *
- * The $config_directories array specifies the location of file system
- * directories used for configuration data. On install, the "sync" directory is
- * created. This is used for configuration imports. The "active" directory is
- * not created by default since the default storage for active configuration is
- * the database rather than the file system. (This can be changed. See "Active
- * configuration settings" below).
- *
- * The default location for the "sync" directory is inside a randomly-named
- * directory in the public files path. The setting below allows you to override
- * the "sync" location.
- *
- * If you use files for the "active" configuration, you can tell the
- * Configuration system where this directory is located by adding an entry with
- * array key CONFIG_ACTIVE_DIRECTORY.
- *
- * Example:
- * @code
- *   $config_directories = array(
- *     CONFIG_SYNC_DIRECTORY => '/directory/outside/webroot',
- *   );
- * @endcode
- */
-$config_directories = array();
 
 /**
  * Settings:
@@ -558,18 +532,6 @@ if ($settings['hash_salt']) {
 # );
 
 /**
- * A custom theme for the offline page:
- *
- * This applies when the site is explicitly set to maintenance mode through the
- * administration page or when the database is inactive due to an error.
- * The template file should also be copied into the theme. It is located inside
- * 'core/modules/system/templates/maintenance-page.html.twig'.
- *
- * Note: This setting does not apply to installation and update pages.
- */
-# $settings['maintenance_theme'] = 'bartik';
-
-/**
  * PHP settings:
  *
  * To see what PHP settings are possible, including whether they can be set at
@@ -591,51 +553,6 @@ if ($settings['hash_salt']) {
  */
 # ini_set('pcre.backtrack_limit', 200000);
 # ini_set('pcre.recursion_limit', 200000);
-
-/**
- * Active configuration settings.
- *
- * By default, the active configuration is stored in the database in the
- * {config} table. To use a different storage mechanism for the active
- * configuration, do the following prior to installing:
- * - Create an "active" directory and declare its path in $config_directories
- *   as explained under the 'Location of the site configuration files' section
- *   above in this file. To enhance security, you can declare a path that is
- *   outside your document root.
- * - Override the 'bootstrap_config_storage' setting here. It must be set to a
- *   callable that returns an object that implements
- *   \Drupal\Core\Config\StorageInterface.
- * - Override the service definition 'config.storage.active'. Put this
- *   override in a services.yml file in the same directory as settings.php
- *   (definitions in this file will override service definition defaults).
- */
- # $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
-
-/**
- * Configuration overrides.
- *
- * To globally override specific configuration values for this site,
- * set them here. You usually don't need to use this feature. This is
- * useful in a configuration file for a vhost or directory, rather than
- * the default settings.php.
- *
- * Note that any values you provide in these variable overrides will not be
- * viewable from the Drupal administration interface. The administration
- * interface displays the values stored in configuration so that you can stage
- * changes to other environments that don't have the overrides.
- *
- * There are particular configuration values that are risky to override. For
- * example, overriding the list of installed modules in 'core.extension' is not
- * supported as module install or uninstall has not occurred. Other examples
- * include field storage configuration, because it has effects on database
- * structure, and 'core.menu.static_menu_link_overrides' since this is cached in
- * a way that is not config override aware. Also, note that changing
- * configuration values in settings.php will not fire any of the configuration
- * change events.
- */
-# $config['system.site']['name'] = 'My Drupal site';
-# $config['system.theme']['default'] = 'stark';
-# $config['user.settings']['anonymous'] = 'Visitor';
 
 /**
  * Fast 404 pages:
@@ -664,65 +581,6 @@ if ($settings['hash_salt']) {
 # $config['system.performance']['fast_404']['paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
 # $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
-/**
- * Load services definition file.
- */
-# $settings['container_yamls'][] = __DIR__ . '/services.yml';
-
-/**
- * Override the default service container class.
- *
- * This is useful for example to trace the service container for performance
- * tracking purposes, for testing a service container with an error condition or
- * to test a service container that throws an exception.
- */
-# $settings['container_base_class'] = '\Drupal\Core\DependencyInjection\Container';
-
-/**
- * Override the default yaml parser class.
- *
- * Provide a fully qualified class name here if you would like to provide an
- * alternate implementation YAML parser. The class must implement the
- * \Drupal\Component\Serialization\SerializationInterface interface.
- */
-# $settings['yaml_parser_class'] = NULL;
-
-/**
- * Trusted host configuration.
- *
- * Drupal core can use the Symfony trusted host mechanism to prevent HTTP Host
- * header spoofing.
- *
- * To enable the trusted host mechanism, you enable your allowable hosts
- * in $settings['trusted_host_patterns']. This should be an array of regular
- * expression patterns, without delimiters, representing the hosts you would
- * like to allow.
- *
- * For example:
- * @code
- * $settings['trusted_host_patterns'] = array(
- *   '^www\.example\.com$',
- * );
- * @endcode
- * will allow the site to only run from www.example.com.
- *
- * If you are running multisite, or if you are running your site from
- * different domain names (eg, you don't redirect http://www.example.com to
- * http://example.com), you should specify all of the host patterns that are
- * allowed by your site.
- *
- * For example:
- * @code
- * $settings['trusted_host_patterns'] = array(
- *   '^example\.com$',
- *   '^.+\.example\.com$',
- *   '^example\.org$',
- *   '^.+\.example\.org$',
- * );
- * @endcode
- * will allow the site to run off of all variants of example.com and
- * example.org, with all subdomains included.
- */
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
@@ -739,6 +597,33 @@ $settings['file_scan_ignore_directories'] = [
   'bower_components',
 ];
 
+/**
+ * Location of the site configuration files.
+ *
+ * The $config_directories array specifies the location of file system
+ * directories used for configuration data. On install, the "sync" directory is
+ * created. This is used for configuration imports. The "active" directory is
+ * not created by default since the default storage for active configuration is
+ * the database rather than the file system. (This can be changed. See "Active
+ * configuration settings" below).
+ *
+ * The default location for the "sync" directory is inside a randomly-named
+ * directory in the public files path. The setting below allows you to override
+ * the "sync" location.
+ *
+ * If you use files for the "active" configuration, you can tell the
+ * Configuration system where this directory is located by adding an entry with
+ * array key CONFIG_ACTIVE_DIRECTORY.
+ *
+ * Example:
+ * @code
+ *   $config_directories = array(
+ *     CONFIG_SYNC_DIRECTORY => '/directory/outside/webroot',
+ *   );
+ * @endcode
+ */
+
+$config_directories = array();
 $config_directories['active'] = 'config/active';
 $config_directories['sync'] = 'config/sync';
 
@@ -747,11 +632,11 @@ $config_directories['sync'] = 'config/sync';
 # process we will create the ~sites/default/files/.config.migrated.DO_NOT_DELETE file. Once this file is in place, then Drupal knows that is should use the
 # database as it's source of configuration and not the filesystem.
 #
-if (!file_exists(__DIR__ . '/files/config.migrated.DO_NOT_DELETE')) {
+if (file_exists('/var/www/drupal/web/config/active/config.migrated.DO_NOT_DELETE')) {
+  $settings['container_yamls'][] = __DIR__ . '/services.yml';
+} else {
   $settings['container_yamls'][] = __DIR__ . '/services-fs.yml';
   $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
-} else {
-  $settings['container_yamls'][] = __DIR__ . '/services.yml';
 }
 
 
@@ -768,6 +653,3 @@ if (!file_exists(__DIR__ . '/files/config.migrated.DO_NOT_DELETE')) {
 if (file_exists(__DIR__ . '/rhd.settings.php')) {
   include __DIR__ . '/rhd.settings.php';
 }
-
-
-
