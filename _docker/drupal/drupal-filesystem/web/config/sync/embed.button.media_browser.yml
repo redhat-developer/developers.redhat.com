@@ -6,7 +6,7 @@ dependencies:
     - media.type.image
     - media.type.video
   content:
-    - 'file:file:2df741a0-59cd-4177-9166-257a8d964232'
+    - 'file:file:33cf61af-ffc3-4394-a8d1-a5de5f3240fd'
   module:
     - entity_embed
     - image
@@ -17,6 +17,7 @@ label: 'Media browser'
 id: media_browser
 type_id: entity
 type_settings:
+  entity_browser: ckeditor_media_browser
   entity_type: media
   bundles:
     - image
@@ -25,7 +26,6 @@ type_settings:
     - 'view_mode:media.embedded'
     - 'view_mode:media.thumbnail'
     - media_image
-  entity_browser: media_browser
   entity_browser_settings:
     display_review: false
 icon_uuid: 33cf61af-ffc3-4394-a8d1-a5de5f3240fd

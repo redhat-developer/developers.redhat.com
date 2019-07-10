@@ -8,7 +8,6 @@ dependencies:
     - field.field.assembly.blog_posts.field_category_filter
     - field.field.assembly.blog_posts.field_navigation_title
   module:
-    - content_moderation
     - field_layout
     - layout_discovery
     - rhd_assemblies
@@ -48,12 +47,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: moderation_state_default
-    region: content
   name:
     type: string_textfield
     weight: 0

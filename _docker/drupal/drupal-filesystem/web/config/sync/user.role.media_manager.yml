@@ -14,6 +14,7 @@ label: 'Media Manager'
 weight: -8
 is_admin: null
 permissions:
+  - 'access ckeditor_media_browser entity browser pages'
   - 'access contextual links'
   - 'access image_browser entity browser pages'
   - 'access media overview'
