@@ -76,8 +76,6 @@ services:
       - DEPLOYMENT_ID=1
       - https_proxy
       - http_proxy
-    tmpfs:
-      - /cache/drupal
     volumes:
       - ./env.yml:/credentials/ansible/env.yml
       - ./edgerc:/credentials/akamai/edgerc
