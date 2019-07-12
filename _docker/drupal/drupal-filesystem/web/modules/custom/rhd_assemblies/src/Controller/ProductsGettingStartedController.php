@@ -78,10 +78,14 @@ class ProductsGettingStartedController extends ControllerBase {
    *   fetch data from download, manager, we throw a 404.
    */
   protected function hasGettingStartedPage($product) {
+    // If the Use New Product Page field is unchecked or the node is not
+    // published, return FALSE.
+    if (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1') {
+      return FALSE;
+    }
     if (!isset($product->field_product_machine_name)
       || !isset($product->field_getting_started_content)
-      || !isset($product->field_use_new_product_page)
-      || (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1')) {
+      || !isset($product->field_use_new_product_page)) {
       // Log an error and throw a 404 NotFoundHttpException.
       \Drupal::logger('rhd_assemblies')->error(
         "Failed to retrieve product downloads from Download Manager for @label",
@@ -129,8 +133,11 @@ class ProductsGettingStartedController extends ControllerBase {
 
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
+      if (!$this->currentUser()->hasPermission('view all revisions') && !$product->isPublished()) {
+        throw new NotFoundHttpException();
+      }
       // Display the latest revision of the Product node.
-      if ($this->currentUser()->hasPermission('view all revisions')) {
+      elseif ($this->currentUser()->hasPermission('view all revisions')) {
         $revision_ids = $this->entityTypeManager
           ->getStorage('node')
           ->revisionIds($product);

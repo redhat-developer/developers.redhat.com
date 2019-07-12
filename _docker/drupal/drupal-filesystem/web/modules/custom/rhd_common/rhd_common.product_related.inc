@@ -220,7 +220,7 @@ function rhd_common_page_attachments_alter(array &$attachments) {
     $nid = current($query->execute());
     $product = Node::load($nid);
 
-    if (isset($product)) {
+    if (isset($product) && (empty($product->get('field_use_new_product_page')->value))) {
       // Figure out which sub page we're on.
       $product_pages = $product->field_product_pages->referencedEntities();
       $filtered_paragraphs = array_filter($product_pages,

@@ -379,17 +379,23 @@ function rhdp_preprocess_node(array &$variables) {
       // Retrieve the data on this product from Download Manager.
       $content = \Drupal::service('rhd_assemblies.download_manager_api')->getContentById($product_code);
 
-      // Build an array of the versions of this product.
-      foreach ($content[0]->productVersions as $key => $version) {
-        $versions[$key] = $version;
+      if (isset($content[0]) && isset($content[0]->productVersions) && isset($content[0]->featuredArtifacts)) {
+        // Build an array of the versions of this product.
+        foreach ($content[0]->productVersions as $key => $version) {
+          $versions[$key] = $version;
 
-        foreach ($version->files as $file_key => $file) {
-          $versions[$key]->files[$file_key]->fileSize = format_size($file->fileSize)->__toString();
+          foreach ($version->files as $file_key => $file) {
+            $versions[$key]->files[$file_key]->fileSize = format_size($file->fileSize)->__toString();
+          }
         }
-      }
 
-      $variables['versions'] = $versions;
-      $variables['featured'] = $content[0]->featuredArtifact;
+        $variables['versions'] = $versions;
+        $variables['featured'] = $content[0]->featuredArtifact;
+      }
+      else {
+        $variables['versions'] = NULL;
+        $variables['featured'] = NULL;
+      }
     }
   }
 

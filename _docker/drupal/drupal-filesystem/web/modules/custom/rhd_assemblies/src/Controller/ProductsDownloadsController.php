@@ -8,6 +8,7 @@ use Drupal\Core\Render\Renderer;
 use Drupal\rhd_assemblies\Service\DownloadManagerApi;
 use Drupal\rhd_common\Controller\ProductPageController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -150,8 +151,13 @@ class ProductsDownloadsController extends ControllerBase {
 
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
+      // If a Product node is not published and the current User doesn't have
+      // permission to view all revisions, then throw an Access Denied exception.
+      if (!$this->currentUser()->hasPermission('view all revisions') && !$product->isPublished()) {
+        throw new NotFoundHttpException();
+      }
       // Display the latest revision of the Product node.
-      if ($this->currentUser()->hasPermission('view all revisions')) {
+      elseif ($this->currentUser()->hasPermission('view all revisions')) {
         $revision_ids = $this->entityTypeManager
           ->getStorage('node')
           ->revisionIds($product);
@@ -167,12 +173,6 @@ class ProductsDownloadsController extends ControllerBase {
             ->getViewBuilder('node')
             ->view($latest_revision, 'product_download_page');
         }
-        else {
-          $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
-          return [
-            '#markup' => $this->renderer->render($product_downloads_render_array),
-          ];
-        }
       }
       else {
         if ($this->hasDownloadsPage($product)) {
@@ -181,12 +181,6 @@ class ProductsDownloadsController extends ControllerBase {
           $product_view = $this->entityTypeManager
             ->getViewBuilder('node')
             ->view($product, 'product_download_page');
-        }
-        else {
-          $product_downloads_render_array = $this->productPageController->productPage($product_url_name, 'download');
-          return [
-            '#markup' => $this->renderer->render($product_downloads_render_array),
-          ];
         }
       }
     }

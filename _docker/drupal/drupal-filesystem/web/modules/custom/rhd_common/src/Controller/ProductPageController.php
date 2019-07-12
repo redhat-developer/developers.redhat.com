@@ -115,19 +115,39 @@ class ProductPageController extends ControllerBase {
       && $active_product->get('field_use_new_product_page')->value === '1') {
       // The New Product Pages only have the /download and /getting-started
       // sub-pages / sub routes.
-      if (!in_array($sub_page, ['download', 'getting-started', 'overview'])) {
+      if (!in_array($sub_page, ['download', 'getting-started', 'overview'])
+        || (!$this->currentUser()->hasPermission('view all revisions')
+        && !$active_product->isPublished())) {
         throw new NotFoundHttpException();
       }
       elseif ($sub_page == 'overview') {
-        // Get the render array for this Product and the product_download_page
-        // view mode.
-        $product_view = $this->entityTypeManager
-          ->getViewBuilder('node')
-          ->view($active_product, 'new_product_page');
+				// Display the latest revision of the Product node.
+				if ($this->currentUser()->hasPermission('view all revisions')) {
+					$revision_ids = $this->entityTypeManager
+						->getStorage('node')
+						->revisionIds($active_product);
+					$latest_revision_id = end($revision_ids);
+					$latest_revision = $this->entityTypeManager
+						->getStorage('node')
+						->loadRevision($latest_revision_id);
 
-        return [
-          '#markup' => $this->renderer->render($product_view),
-        ];
+          // Get the render array for the latest revision of this Product and
+          // the product_getting_started_page entity view display.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($latest_revision, 'new_product_page');
+				}
+        // Display the default revision of the Product node. We have already
+        // verified that the node is published above.
+				else {
+          // Get the render array for this Product and the product_download_page
+          // view mode.
+          $product_view = $this->entityTypeManager
+            ->getViewBuilder('node')
+            ->view($active_product, 'new_product_page');
+        }
+
+        return ['#markup' => $this->renderer->render($product_view)];
       }
       else {
         return [
