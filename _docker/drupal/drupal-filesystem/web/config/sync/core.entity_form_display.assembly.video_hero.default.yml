@@ -16,7 +16,6 @@ dependencies:
     - field.field.assembly.video_hero.field_video_resource
   module:
     - compose
-    - content_moderation
     - entity_browser
     - field_group
     - field_layout
@@ -133,12 +132,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 13
-    settings: {  }
-    third_party_settings: {  }
-    type: moderation_state_default
-    region: content
   name:
     type: string_textfield
     weight: 0

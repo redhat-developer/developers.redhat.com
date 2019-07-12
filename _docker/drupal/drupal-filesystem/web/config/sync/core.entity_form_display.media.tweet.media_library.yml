@@ -1,0 +1,38 @@
+uuid: 79e470a6-cf22-4097-b8ef-9c35bfba53ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.tweet.embed_code
+    - field.field.media.tweet.field_media_in_library
+    - media.type.tweet
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: media.tweet.media_library
+targetEntityType: media
+bundle: tweet
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    settings:
+      size: 60
+      placeholder: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  embed_code: true
+  field_media_in_library: true
+  langcode: true
+  path: true
+  preview: true
+  status: true
+  uid: true

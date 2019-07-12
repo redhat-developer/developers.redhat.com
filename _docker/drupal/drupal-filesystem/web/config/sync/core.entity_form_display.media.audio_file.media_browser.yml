@@ -8,7 +8,6 @@ dependencies:
     - field.field.media.audio_file.field_media_in_library
     - media.type.audio_file
   module:
-    - content_moderation
     - field_layout
     - file
     - layout_discovery
@@ -44,12 +43,6 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  moderation_state:
-    type: moderation_state_default
-    weight: 100
-    settings: {  }
-    region: content
     third_party_settings: {  }
   name:
     type: string_textfield

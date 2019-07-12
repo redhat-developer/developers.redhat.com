@@ -1,0 +1,37 @@
+uuid: f9d204ca-d203-4086-88f7-4756647b6fca
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.document.field_document
+    - field.field.media.document.field_media_in_library
+    - media.type.document
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: media.document.media_library
+targetEntityType: media
+bundle: document
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    settings:
+      size: 60
+      placeholder: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_document: true
+  field_media_in_library: true
+  langcode: true
+  path: true
+  status: true
+  uid: true
