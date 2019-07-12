@@ -28,13 +28,12 @@ class WordpressApi implements RemoteContentApiInterface {
    * {@inheritdoc}
    */
   public function __construct(ClientInterface $client) {
-    // This URL bypasses Akamai. If, for some reason, we do not want to bypass
-    // Akamai, change the value of this attribute to
-    // 'https://developers.redhat.com/blog'.
+    // If, for some reason, we want to bypass Akamai, change the value of this
+    // attribute to 'https://origin-developers.redhat.com/blog'.
     // Used for local testing
     //$this->apiUrl = 'http://localhost:8000';
     //$this->apiUrl = 'https://developers.redhat.com/blog';
-    $this->apiUrl = 'https://origin-developers.redhat.com/blog';
+    $this->apiUrl = 'https://developers.redhat.com/blog';
     $this->client = $client;
   }
 
@@ -114,9 +113,13 @@ class WordpressApi implements RemoteContentApiInterface {
 
       // Iterate of the WP results returned in $results, and get the
       // processed/formatted results from getContentComposite().
+      /*
       foreach ($results as $result) {
         $items[] = $this->getContentComposite($result);
       }
+      */
+
+      $items = $this->getContentCompositeMultiple($results);
 
       return $items;
     }
@@ -247,7 +250,7 @@ class WordpressApi implements RemoteContentApiInterface {
     $item->date = date('F j, Y', strtotime($content->date));
 
     if (isset($content->featured_media) && $content->featured_media) {
-      $item->media = $this->getContentMedia($content->featured_media);
+      $item->media = $this->getContentMedia([$content->featured_media]);
       $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
       $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
     }
@@ -259,19 +262,67 @@ class WordpressApi implements RemoteContentApiInterface {
     return $item;
   }
 
+  private function getContentCompositeMultiple($contents) {
+    $items = [];
+    $media_ids = [];
+    $category_ids = [];
+
+    for ($i = 0; $i < count($contents); $i++) {
+      $items[$i] = new \stdClass();
+      $items[$i]->content = $contents[$i];
+      $items[$i]->media = FALSE;
+      $items[$i]->categories = FALSE;
+      $items[$i]->date = date('F j, Y', strtotime($contents[$i]->date));
+      // Store the Media entity IDs and Category entity IDs which will be used
+      // to retrieve the entities from the Wordpress REST API.
+      $media_ids[] = (!empty($contents[$i]->featured_media)) ? $contents[$i]->featured_media : NULL;
+      $category_ids[] = (!empty($contents[$i]->categories)) ? $contents[$i]->categories : NULL;
+    }
+
+    $medias = $this->getContentMedia($media_ids);
+    $sorted_medias = [];
+
+    // We have to iterate through all of the Media entities in a nested for-loop
+    // to reindex the array such that it matches the sorting we originally set
+    // in $media_ids.
+    //
+    // We have to use count($contents) instead of count($medias) because
+    // multiple post entities could reference the same media entity.
+    for ($i = 0; $i < count($contents); $i++) {
+      for ($j = 0; $j < count($contents); $j++) {
+        if ($medias[$j]->id === $media_ids[$i]) {
+          $sorted_medias[$i] = $medias[$j];
+        }
+      }
+    }
+
+    for ($i = 0; $i < count($contents); $i++) {
+      if (!empty($contents[$i]->featured_media)) {
+        $items[$i]->media = $sorted_medias[$i];
+        $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
+        $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+      }
+    }
+
+    return $items;
+  }
+
   /**
-   * Retrieves WP media by the $id of the media.
+   * Retrieves WP media by the $ids of the media.
    *
-   * @param string $id
-   *   The ID of the WP media.
+   * @param array $ids
+   *   The IDs of the WP media.
    *
    * @return array
    *   Returns an array of metadata for the media entity if successfully
    *   fetched. Otherwise, returns an empty array.
    */
-  private function getContentMedia($id) {
+  private function getContentMedia($ids) {
     try {
-      $feed_url = $this->apiUrl . '/wp-json/wp/v2/media/' . $id;
+      // Filters out any values in $ids equivalent to FALSE and then implodes.
+      $ids_string = implode(",", array_filter($ids));
+      // Retrieves the WP Media entities by their IDs.
+      $feed_url = $this->apiUrl . '/wp-json/wp/v2/media?include=' . $ids_string;
       $request = $this->client->request('GET', $feed_url);
       $response = $request->getBody()->getContents();
 
