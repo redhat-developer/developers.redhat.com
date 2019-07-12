@@ -88,7 +88,6 @@ services:
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
-      - ./drupal-workspace/drupal_1/drupal/credentials/environment:/etc/bash.bashrc
 
   mysql:
     image: mariadb:10.3.9-bionic

@@ -2,9 +2,9 @@
 
 
 /**
-Setup environment specific host and service configuration. This configuration used to live in rhd.settings.yml, but
-has now been moved into here directly to avoid having to parse YAML on a per-request basis. We still need to determine
-if all of this configuration is actually still needed.
+    Setup environment specific host and service configuration. This configuration used to live in rhd.settings.yml, but
+    has now been moved into here directly to avoid having to parse YAML on a per-request basis. We still need to determine
+    if all of this configuration is actually still needed.
  */
 
 $config['redhat_developers']['environment'] = 'dev';
@@ -25,7 +25,7 @@ $config['redhat_developers']['searchisko']['port'] = '443';
 $config['redhat_developers']['searchisko']['baseProtocolRelativeUrl'] = 'dcp.stage.jboss.org:443';
 
 /**
-SSO Integration for Content Editor Authentication
+    SSO Integration for Content Editor Authentication
  */
 $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = 'http://localhost/openid-connect/keycloak';
 $config["openid_connect.settings.keycloak"]["settings"]["client_id"] = 'rhd-web-cms-localdev';
