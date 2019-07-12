@@ -54,7 +54,6 @@ services:
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
-    - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
     - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
     - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
@@ -81,7 +80,6 @@ services:
       - ./edgerc:/credentials/akamai/edgerc
       - ./localhost.pem:/ssl/tls.crt
       - ./localhost-key.pem:/ssl/tls.key
-      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
       - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
@@ -90,6 +88,7 @@ services:
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
+      - ./drupal-workspace/drupal_1/drupal/credentials/environment:/etc/bash.bashrc
 
   mysql:
     image: mariadb:10.3.9-bionic

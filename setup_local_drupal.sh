@@ -44,11 +44,6 @@ then
   sudo ln -s ${ENVIRON}/rhd.settings.php ${WEB}/sites/default/rhd.settings.php
 fi
 
-if [ ! -f "${WEB}/sites/default/rhd.settings.yml" ]
-then
-  sudo ln -s ${ENVIRON}/rhd.settings.yml ${WEB}/sites/default/rhd.settings.yml
-fi
-
 # Symlink the static images directory
 if [ ! -d "${WEB}/images" ]
 then
@@ -108,9 +103,6 @@ ${WEB}/../vendor/bin/drush --root=${WEB} -y updb --entity-updates
 
 echo "Running drush cr"
 ${WEB}/../vendor/bin/drush --root=${WEB} cr
-
-echo "Running drush update:lightning"
-${WEB}/../vendor/bin/drush --root=${WEB} update:lightning --no-interaction
 
 echo "Running drush cr"
 ${WEB}/../vendor/bin/drush --root=${WEB} cr
