@@ -110,15 +110,8 @@ class WordpressApi implements RemoteContentApiInterface {
 
       $results = json_decode($response);
 
-
-      // Iterate of the WP results returned in $results, and get the
-      // processed/formatted results from getContentComposite().
-      /*
-      foreach ($results as $result) {
-        $items[] = $this->getContentComposite($result);
-      }
-      */
-
+      // Pass the WP posts returned in $results, and get the processed/formatted
+      // results from getContentCompositeMultiple().
       $items = $this->getContentCompositeMultiple($results);
 
       return $items;
@@ -279,6 +272,9 @@ class WordpressApi implements RemoteContentApiInterface {
       $category_ids[] = (!empty($contents[$i]->categories)) ? $contents[$i]->categories : NULL;
     }
 
+    //
+    // Referenced Media entities
+    //
     $medias = $this->getContentMedia($media_ids);
     $sorted_medias = [];
 
@@ -289,7 +285,7 @@ class WordpressApi implements RemoteContentApiInterface {
     // We have to use count($contents) instead of count($medias) because
     // multiple post entities could reference the same media entity.
     for ($i = 0; $i < count($contents); $i++) {
-      for ($j = 0; $j < count($contents); $j++) {
+      for ($j = 0; $j < count($medias); $j++) {
         if ($medias[$j]->id === $media_ids[$i]) {
           $sorted_medias[$i] = $medias[$j];
         }
@@ -301,6 +297,26 @@ class WordpressApi implements RemoteContentApiInterface {
         $items[$i]->media = $sorted_medias[$i];
         $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
         $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+      }
+    }
+
+    //
+    // Referenced Category entities/terms
+    //
+    $links = [];
+    $categories_list = $this->getCategories();
+
+    for ($i = 0; $i < count($contents); $i++) {
+      if (isset($contents[$i]->categories) && count($contents[$i]->categories)) {
+
+        foreach ($contents[$i]->categories as $category_id) {
+          if (array_key_exists($category_id, $categories_list)) {
+            $items[$i]->categories[] = [
+              'link' => $categories_list[$category_id]->link,
+              'name' => $categories_list[$category_id]->name,
+            ];
+          }
+        }
       }
     }
 
