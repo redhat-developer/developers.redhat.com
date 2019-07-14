@@ -33,7 +33,7 @@ class WordpressApi implements RemoteContentApiInterface {
     // Used for local testing
     //$this->apiUrl = 'http://localhost:8000';
     //$this->apiUrl = 'https://developers.redhat.com/blog';
-    $this->apiUrl = 'https://developers.redhat.com/blog';
+    $this->apiUrl = 'https://origin-developers.redhat.com/blog';
     $this->client = $client;
   }
 
