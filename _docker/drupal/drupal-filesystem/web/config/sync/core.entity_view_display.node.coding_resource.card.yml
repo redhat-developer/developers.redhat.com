@@ -24,11 +24,12 @@ dependencies:
     - field.field.node.coding_resource.field_tax_region
     - field.field.node.coding_resource.field_tax_stage
     - field.field.node.coding_resource.field_technologies
+    - field.field.node.coding_resource.field_topics
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
-    - compose
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -62,6 +63,7 @@ hidden:
   field_tax_region: true
   field_tax_stage: true
   field_technologies: true
+  field_topics: true
   field_version: true
   langcode: true
   links: true

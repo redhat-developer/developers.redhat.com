@@ -5,8 +5,26 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.katacoda_individual_lesson.body
+    - field.field.node.katacoda_individual_lesson.field_katacoda_embed_id
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
+    - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_tags
+    - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
+    - field.field.node.katacoda_individual_lesson.field_tax_business_unit
+    - field.field.node.katacoda_individual_lesson.field_tax_campaign
+    - field.field.node.katacoda_individual_lesson.field_tax_lifecycle
+    - field.field.node.katacoda_individual_lesson.field_tax_product
+    - field.field.node.katacoda_individual_lesson.field_tax_product_line
+    - field.field.node.katacoda_individual_lesson.field_tax_project
+    - field.field.node.katacoda_individual_lesson.field_tax_promotion
+    - field.field.node.katacoda_individual_lesson.field_tax_region
+    - field.field.node.katacoda_individual_lesson.field_tax_stage
+    - field.field.node.katacoda_individual_lesson.field_topics
     - node.type.katacoda_individual_lesson
   module:
+    - field_layout
+    - layout_discovery
     - text
     - user
 third_party_settings:
@@ -37,5 +55,17 @@ hidden:
   field_katacoda_scenario_author: true
   field_katacoda_scenario_time: true
   field_katacoda_skill_level: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
   langcode: true
   published_at: true
