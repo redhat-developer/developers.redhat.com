@@ -99,7 +99,17 @@ $config['akamai.settings']['domain']['staging'] = true;
 */
 $settings['omit_vary_cookie'] = TRUE;
 
+
 /**
     MWES-2910: Enable trailing_slash module in MP-based deployments
 */
 $config['trailing_slash.settings']['enabled'] = TRUE;
+
+/**
+    DEVELOPER-5877: Added disqus settings to support emails to content author on new comments
+*/
+$config['rhd_disqus.disqussettings']['rhd_disqus_secret_key'] = "{{ drupal_disqus_secret_key }}";
+$config['rhd_disqus.disqussettings']['rhd_disqus_api_key'] = "{{ drupal_disqus_api_key }}";
+$config['rhd_disqus.disqussettings']['rhd_disqus_shortname'] = "{{ drupal_disqus_shortname }}";
+$config['rhd_disqus.disqussettings']['rhd_disqus_email_author_enabled'] = "{{ drupal_disqus_email_author_enabled }}";
+$config['rhd_disqus.disqussettings']['rhd_disqus_email_author_debug'] = "{{ drupal_disqus_email_author_debug }}";
