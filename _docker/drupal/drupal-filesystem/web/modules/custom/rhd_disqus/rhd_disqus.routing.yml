@@ -9,3 +9,11 @@ rhd_disqus.rhd_disqus_settings_form:
   options:
     _admin_route: TRUE
 
+rhd_disqus.rhd_disqus_email:
+  path: '/rhd_disqus/callback/rhd_disqus_email'
+  defaults:
+    _controller: '\Drupal\rhd_disqus\Controller\Rhd_disqusController::rhd_disqus_email'
+    _title: 'RHD Disqus Email'
+  requirements:
+    _permission: 'access content'
+  
