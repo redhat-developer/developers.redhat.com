@@ -1,7 +1,7 @@
 .assembly-type-events_hero {
   color: $white;
   background-color: $black;
-  background-image: url('/images/Event-HeroBackground.png');
+  background-image: url('/images/backgrounds/Event-HeroBackground.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top left;
@@ -189,7 +189,7 @@
   }
   &.events-hero--dark {
     background-color: $black;
-    background-image: url('/images/Event-HeroBackground.png');
+    background-image: url('/images/backgrounds/Event-HeroBackground.png');
     h1, h2, h3, h4, h5, h6, p {
       color: $white;
     }

@@ -77,6 +77,13 @@
         RewriteCond %{HTTP_HOST} !^origin-developers.redhat.com [NC]
         RewriteRule .* - [F]
 
+        #
+        # MWES-3345: Ensure that we are caching .ico files
+        #
+        <FilesMatch "\.(ico)$">
+            Header set Cache-Control "max-age=604800, public"
+        </FilesMatch>
+
     </Directory>
 
     <Directory "/var/www/drupal/web/config/sync">
