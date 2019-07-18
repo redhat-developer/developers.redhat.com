@@ -597,6 +597,15 @@ $settings['file_scan_ignore_directories'] = [
   'bower_components',
 ];
 
+$config_directories['active'] = 'config/active';
+$config_directories['sync'] = 'config/sync';
+
+# MWES-3338: Ensure that the Twig Cache is using local filesystem
+$settings['php_storage']['twig'] = array(
+  'directory' => '/tmp',
+);
+
+
 /**
  * Location of the site configuration files.
  *
