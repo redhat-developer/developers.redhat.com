@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.rh_training_class.field_long_description
     - field.field.node.rh_training_class.field_short_description
     - field.field.node.rh_training_class.field_source_link
+    - field.field.node.rh_training_class.field_tags
     - field.field.node.rh_training_class.field_tax_audience_segment
     - field.field.node.rh_training_class.field_tax_business_unit
     - field.field.node.rh_training_class.field_tax_campaign
@@ -25,8 +26,8 @@ dependencies:
     - field.field.node.rh_training_class.field_topics
     - node.type.rh_training_class
   module:
-    - compose
     - field_layout
+    - layout_discovery
     - user
 third_party_settings:
   field_layout:
@@ -59,6 +60,7 @@ hidden:
   field_long_description: true
   field_short_description: true
   field_source_link: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true

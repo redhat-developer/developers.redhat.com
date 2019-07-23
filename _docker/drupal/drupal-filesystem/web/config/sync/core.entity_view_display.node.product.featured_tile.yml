@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.product.field_share_image
     - field.field.node.product.field_short_description
     - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_tags
     - field.field.node.product.field_tax_audience_segment
     - field.field.node.product.field_tax_business_unit
     - field.field.node.product.field_tax_campaign
@@ -31,15 +32,16 @@ dependencies:
     - field.field.node.product.field_tax_promotion
     - field.field.node.product.field_tax_region
     - field.field.node.product.field_tax_stage
+    - field.field.node.product.field_topics
     - field.field.node.product.field_url_product_name
     - field.field.node.product.field_use_new_product_page
     - image.style.large
     - node.type.product
   module:
-    - compose
     - fences
     - field_layout
     - image
+    - layout_discovery
     - link
     - user
 third_party_settings:
@@ -130,6 +132,7 @@ hidden:
   field_product_technology_group: true
   field_share_image: true
   field_stackoverflow_product_refe: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true
@@ -140,6 +143,7 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  field_topics: true
   field_use_new_product_page: true
   langcode: true
   links: true

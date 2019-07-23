@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.video_resource.field_short_description
     - field.field.node.video_resource.field_slideshare_source
     - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tags
     - field.field.node.video_resource.field_tax_audience_segment
     - field.field.node.video_resource.field_tax_business_unit
     - field.field.node.video_resource.field_tax_campaign
@@ -226,6 +227,7 @@ hidden:
   field_exclude_from_search: true
   field_meta_tags: true
   field_share_image: true
+  field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true

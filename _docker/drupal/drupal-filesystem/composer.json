@@ -57,13 +57,13 @@
     "require": {
         "drupal-composer/drupal-scaffold": "2.5.4",
         "cweagans/composer-patches": "1.6.5",
-        "acquia/lightning": "~3.2.6",
+        "acquia/lightning": "~3.3.1",
         "ckeditor/indentblock": "4.11.4",
         "drupal/admin_toolbar": "1.26",
         "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
         "drupal/asciidoc": "1.2",
         "drupal/ckeditor_indentblock": "1.0-beta1",
-        "drupal/core": "8.6.15",
+        "drupal/core": "8.7.3",
         "drupal/content_moderation_edit_notify": "1.0",
         "drupal/content_moderation_notifications": "3.0-rc2",
         "drupal/editor_advanced_link": "1.4",
@@ -173,7 +173,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2018-03-09/drupal-use_view_output_for_entityreference_options-2174633-206.patch",
+            "Fix entity reference view": "https://www.drupal.org/files/issues/2019-06-21/2174633-309.patch",
             "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
             "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch"
           },
@@ -186,6 +186,9 @@
           },
           "drupal/akamai": {
             "Change text on the button to refresh content in Akamai": "patches/akamai/change-button-text.patch"
+          },
+          "drupal/trailing_slash": {
+            "Add permission to administer Trailing Slash": "patches/trailing_slash/add-trailing-slash-permission.patch"
           }
         }
     }

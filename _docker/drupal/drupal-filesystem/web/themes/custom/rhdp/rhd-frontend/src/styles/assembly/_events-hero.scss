@@ -1,7 +1,7 @@
 .assembly-type-events_hero {
   color: $white;
   background-color: $black;
-  background-image: url('/images/Event-HeroBackground.png');
+  background-image: url('/images/backgrounds/Event-HeroBackground.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top left;
@@ -87,12 +87,10 @@
           }
 
           a.button {
-            border: 1px solid $red;
+            border: 1px solid $white;
             line-height: 1.44;
-            color: $red;
             background-color: transparent;
             padding: 8px 40px;
-            border-color:$white;
             color:$white;
             &:hover, &:focus {
               background-color: $white;
@@ -152,42 +150,15 @@
       }
     }
     .event-presenters {
-      float: left;
-      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+
+      @include tablet-portrait {
+        grid-template-columns: 1fr 1fr;
+      }
+
       h3 {
         color: $blue;
-      }
-      .short-teaser {
-        margin-top: 25px;
-        max-width: 400px !important;
-
-        > a {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .field--name-field-headshot {
-          justify-self: center;
-          grid-column: span 1;
-          max-width: 60px;
-        }
-        .author-name {
-          align-self: center;
-          grid-column: span 2;
-          color: $blue !important;
-          background-color: transparent;
-          > .field--name-title {
-            background-color: $white;
-            padding: 5px 10px;
-          }
-        }
-        @include tablet-portrait {
-          float: left;
-          margin-right: 40px;
-          max-width: 200px;
-          &:last-of-type {
-            margin-right: 0;
-          }
-        }
       }
     }
   }
@@ -197,10 +168,28 @@
     h1, h2, h3, h4, h5, h6, p, div {
       color: $gray-8;
     }
+    .primary-event a.button {
+      background: $red;
+      color: $white;
+      border: none;
+      &:hover, &:focus {
+        color: $white;
+        background-color: darken( $red, 12% );
+      }
+    }
+    .secondary-events > .events-featured-tile {
+      a.button.heavy-cta {
+        border: 1px solid $red;
+        color:$red;
+        &:hover, &:focus {
+          border-color: $white;
+        }
+      }
+    }
   }
   &.events-hero--dark {
     background-color: $black;
-    background-image: url('/images/Event-HeroBackground.png');
+    background-image: url('/images/backgrounds/Event-HeroBackground.png');
     h1, h2, h3, h4, h5, h6, p {
       color: $white;
     }

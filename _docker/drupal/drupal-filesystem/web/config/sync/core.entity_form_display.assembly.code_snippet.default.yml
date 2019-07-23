@@ -8,7 +8,6 @@ dependencies:
     - field.field.assembly.code_snippet.field_code
     - field.field.assembly.code_snippet.field_programming_language
   module:
-    - content_moderation
     - field_layout
     - layout_discovery
 third_party_settings:
@@ -46,12 +45,6 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  moderation_state:
-    type: moderation_state_default
-    weight: 6
-    settings: {  }
-    region: content
     third_party_settings: {  }
   name:
     type: string_textfield

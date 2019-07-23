@@ -8,7 +8,6 @@ dependencies:
     - field.field.assembly.bonus_content_list.field_content_list
     - field.field.assembly.bonus_content_list.field_title
   module:
-    - content_moderation
     - field_layout
     - inline_entity_form
     - layout_discovery
@@ -51,12 +50,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 6
-    settings: {  }
-    region: content
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0

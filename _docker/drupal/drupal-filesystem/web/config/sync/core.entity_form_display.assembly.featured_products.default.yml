@@ -11,7 +11,6 @@ dependencies:
     - field.field.assembly.featured_products.field_products
     - field.field.assembly.featured_products.field_title
   module:
-    - content_moderation
     - field_layout
     - layout_discovery
     - link
@@ -76,12 +75,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  moderation_state:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    type: moderation_state_default
-    region: content
   name:
     type: string_textfield
     weight: 0

@@ -7,7 +7,6 @@ dependencies:
     - entity_browser.browser.media_browser
     - field.field.block_content.media_slideshow.field_slideshow_items
   module:
-    - content_moderation
     - entity_browser
     - field_layout
     - layout_discovery
@@ -50,11 +49,5 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  moderation_state:
-    type: moderation_state_default
-    weight: 100
-    settings: {  }
-    region: content
     third_party_settings: {  }
 hidden: {  }

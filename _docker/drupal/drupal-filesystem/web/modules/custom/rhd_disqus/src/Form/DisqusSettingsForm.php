@@ -30,17 +30,11 @@ class DisqusSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('rhd_disqus.disqussettings');
-    $form['rhd_disqus_api_key'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Disqus API Key'),
-      '#maxlength' => 64,
-      '#size' => 64,
-      '#default_value' => $config->get('rhd_disqus_api_key'),
-    ];
+    $config = \Drupal::config('rhd_disqus.disqussettings');
     $form['rhd_disqus_shortname'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Disqus Shortname'),
+      '#attributes' => array('readonly' => 'readonly'),
       '#maxlength' => 64,
       '#size' => 64,
       '#default_value' => $config->get('rhd_disqus_shortname'),
@@ -52,19 +46,12 @@ class DisqusSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
   }
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    parent::submitForm($form, $form_state);
-
-    $this->config('rhd_disqus.disqussettings')
-      ->set('rhd_disqus_shortname', $form_state->getValue('rhd_disqus_shortname'))
-      ->set('rhd_disqus_api_key', $form_state->getValue('rhd_disqus_api_key'))
-      ->save();
   }
 
 }

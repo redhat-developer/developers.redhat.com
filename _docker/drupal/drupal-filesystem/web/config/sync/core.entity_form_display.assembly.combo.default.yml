@@ -12,7 +12,6 @@ dependencies:
     - field.field.assembly.combo.field_navigation_title
     - field.field.assembly.combo.field_title
   module:
-    - content_moderation
     - entity_browser
     - field_layout
     - inline_entity_form
@@ -93,12 +92,6 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  moderation_state:
-    type: moderation_state_default
-    weight: 10
-    settings: {  }
-    region: content
     third_party_settings: {  }
   name:
     type: string_textfield
