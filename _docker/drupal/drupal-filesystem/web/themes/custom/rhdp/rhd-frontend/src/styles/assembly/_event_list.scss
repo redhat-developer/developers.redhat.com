@@ -46,19 +46,10 @@
       @include tablet-portrait {
         grid-template-columns: 1fr 1fr;
       }
-      @include desktop-small {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      @include desktop-large {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-      }
+
       img {
-        max-width: 3rem;
+        width: 50px;
         border-radius: 100%;
-      }
-      span {
-        margin-left:10px;
-        font-size: 14px;
       }
     }
 

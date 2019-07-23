@@ -3,11 +3,11 @@
     {{ content.field_headshot }}
     <div class="author-info">
       {{ title_prefix }}
-      <span{{ title_attributes.addClass('author-name') }}>{{ label }}</span>
+      <div{{ title_attributes.addClass('author-name') }}>{{ label }}</div>
       {{ title_suffix }}
-      <span{{ content_attributes }}>
+      <div{{ content_attributes }}>
         {{ content|without('field_headshot') }}
-      </span>
+      </div>
     </div>
   </a>
 </article>

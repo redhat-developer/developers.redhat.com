@@ -284,34 +284,6 @@
     width: 100%;
     margin-top: 0;
     margin-bottom: 20px;
-    &.no-image {
-      margin-top: 0;
-    }
-    .author.short-teaser {
-      float: left;
-      margin-right: 20px;
-      img {
-        width: 80px;
-        margin-bottom: 15px;
-      }
-      .author-name {
-        background-color: $grey-1;
-        margin: 5px 0;
-        padding: 7px;
-        font-size: 14px;
-        line-height: 22px;
-        font-weight: bold;
-        color: $gray-6;
-      }
-      a {
-        .author-name {
-          color: $link;
-        }
-      }
-    }
-    @include desktop-small {
-      margin-top: 40px;
-    }
   }
   .floated-image {
     @include desktop-small {
@@ -446,14 +418,5 @@
   }
   .article-card-content {
     line-height: 1.5;
-  }
-}
-
-#rhd-article .author.tile > a {
-  .author-info {
-    line-height: 1rem;
-  }
-  .author-name {
-    font-size: 14px;
   }
 }
