@@ -740,6 +740,8 @@ function rhdp_preprocess_assembly(&$variables) {
 
     $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
 
+
+    //adding a cache busting guit to the url to prevent Akami caching the page
     $tmpEloquaUrl->setOption('query', [
       'no_cache' => createGUID()
     ]);
