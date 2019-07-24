@@ -55,12 +55,6 @@
       chdir: '/var/www/drupal/web'
       creates: '{{ active_config_dir}}/archive.DO_NOT_DELETE'
 
-  - name: Delete the old active files to ensure they are not in use by Drupal
-    shell: 'rm -f *.yml && touch {{ active_config_dir}}/config.deleted.DO_NOT_DELETE'
-    args:
-      chdir: '{{ active_config_dir }}'
-      creates: '{{ active_config_dir }}/config.deleted.DO_NOT_DELETE'
-
   - name: Record migration of active configuration from filesystem to database
     copy:
       content: ""
