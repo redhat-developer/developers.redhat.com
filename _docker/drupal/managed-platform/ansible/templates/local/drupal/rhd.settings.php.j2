@@ -3,12 +3,6 @@
 $settings['hash_salt'] = 'xuAWpK0fmrZ6UGofFcP3lBkcmdpdumWMLqvCbnYjFY85OgRXYvEKPItJDH66vs4UpeYORQXLHQ';
 
 /**
-    Increase default memory settings for Drupal to 256 meg. Taken from: https://www.drupal.org/docs/7/managing-site-performance-and-scalability/changing-php-memory-limits
-*/
-
-ini_set('memory_limit', '256M');
-
-/**
     Setup environment specific host and service configuration. This configuration used to live in rhd.settings.yml, but
     has now been moved into here directly to avoid having to parse YAML on a per-request basis. We still need to determine
     if all of this configuration is actually still needed.
