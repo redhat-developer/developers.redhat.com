@@ -47,4 +47,5 @@ RUN chown -R root:0 /opt/rh/httpd24/root/var/run/httpd \
     && chmod -R g=u /ansible
 
 USER 1001
-ENV PATH=$PATH:/var/www/drupal/vendor/bin
+ENV PATH=$PATH:/var/www/drupal/vendor/bin \
+    HOME=/var/www/drupal
