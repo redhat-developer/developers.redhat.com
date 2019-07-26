@@ -2,8 +2,7 @@ FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.0
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
-EXPOSE 8080
-EXPOSE 8443
+EXPOSE 8080 8443
 WORKDIR /var/www/drupal
 RUN gem install asciidoctor -v 1.5.8
 

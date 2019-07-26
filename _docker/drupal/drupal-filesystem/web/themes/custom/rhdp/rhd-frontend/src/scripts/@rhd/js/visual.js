@@ -98,13 +98,13 @@ app.stickyNav = function (className, headerElement) {
   });
 
   function positionNav() {
-    var footerOffsetTop = $("#block-rhdfooter").offset().top;
-    var width = nav.parent().width();
-    var navTop = 0;
-    var tmpScrollTop = win.scrollTop() + ( bottom );
-
-    if (tmpScrollTop >= footerOffsetTop) {
-      navTop = footerOffsetTop - tmpScrollTop;
+    let contentBottom = $(".fetch-toc").height()+top;
+    let width = nav.parent().width();
+    let navTop = 0;
+    let tmpScrollTop = win.scrollTop()+bottom;
+    
+    if (tmpScrollTop >= contentBottom) {
+      navTop = contentBottom - tmpScrollTop;
     } else {
       navTop = 0;
     }
