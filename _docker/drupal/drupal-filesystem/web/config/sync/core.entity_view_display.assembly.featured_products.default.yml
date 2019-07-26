@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.featured_products
     - field.field.assembly.featured_products.field_audience_selection
     - field.field.assembly.featured_products.field_cta_link
+    - field.field.assembly.featured_products.field_display_type_featured_prod
     - field.field.assembly.featured_products.field_navigation_title
     - field.field.assembly.featured_products.field_products
     - field.field.assembly.featured_products.field_title
@@ -69,6 +70,7 @@ content:
     region: content
 hidden:
   field_audience_selection: true
+  field_display_type_featured_prod: true
   field_navigation_title: true
   langcode: true
   name: true

@@ -1,7 +1,8 @@
 {%
   set classes = [
     'assembly',
-    content.field_links|render ? 'has-links' : 'no-links'
+    content.field_links|render ? 'has-links' : 'no-links',
+    display_type
   ]
 %}
 <section{{ attributes.addClass(classes) }}{{ audience_selection }}>

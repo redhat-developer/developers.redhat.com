@@ -40,17 +40,11 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  visual_styles:
-    type: options_select
-    multiple: true
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   user_id: true
+  visual_styles: true

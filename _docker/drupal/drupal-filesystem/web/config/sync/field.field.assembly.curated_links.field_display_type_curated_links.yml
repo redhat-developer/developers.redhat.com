@@ -1,0 +1,21 @@
+uuid: 4a8eb4fc-5074-44c7-9492-7003019d56ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.curated_links
+    - field.storage.assembly.field_display_type_curated_links
+  module:
+    - options
+id: assembly.curated_links.field_display_type_curated_links
+field_name: field_display_type_curated_links
+entity_type: assembly
+bundle: curated_links
+label: 'Choose Display Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
