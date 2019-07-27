@@ -28,7 +28,7 @@ content:
     type: options_buttons
     region: content
   field_content:
-    weight: 4
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
@@ -36,7 +36,7 @@ content:
     type: text_textarea
     region: content
   field_navigation_title:
-    weight: 5
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -53,7 +53,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
@@ -68,7 +68,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true

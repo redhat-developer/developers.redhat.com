@@ -23,13 +23,13 @@ bundle: content_image
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_image:
-    weight: 3
+    weight: 5
     settings:
       entity_browser: image_browser
       field_widget_remove: true
@@ -38,11 +38,12 @@ content:
       preview_image_style: thumbnail
       field_widget_edit: true
       view_mode: default
+      field_widget_replace: false
     third_party_settings: {  }
     type: entity_browser_file
     region: content
   field_image_caption:
-    weight: 26
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
@@ -51,7 +52,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: content
     settings:
       include_locked: true
@@ -66,12 +67,17 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   moderation_state: true
   user_id: true
-  visual_styles: true

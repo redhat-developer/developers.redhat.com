@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.collection
     - field.field.assembly.collection.field_audience_selection
     - field.field.assembly.collection.field_drupal_term_filter
+    - field.field.assembly.collection.field_navigation_title
     - field.field.assembly.collection.field_show_pagination
     - field.field.assembly.collection.field_title
     - field.field.assembly.collection.field_total_posts
@@ -40,6 +41,7 @@ content:
 hidden:
   field_audience_selection: true
   field_drupal_term_filter: true
+  field_navigation_title: true
   field_show_pagination: true
   field_total_posts: true
   langcode: true

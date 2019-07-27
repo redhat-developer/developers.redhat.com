@@ -1,0 +1,19 @@
+uuid: 1da98c3f-e17d-4775-9136-6f985c36bce8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.katacodas
+    - field.storage.assembly.field_navigation_title
+id: assembly.katacodas.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: katacodas
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
