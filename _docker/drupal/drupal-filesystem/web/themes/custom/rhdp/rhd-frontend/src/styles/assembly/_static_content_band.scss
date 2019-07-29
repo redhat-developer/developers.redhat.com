@@ -25,6 +25,12 @@
       display: inline-block;
     }
   }
+
+  &.dark {
+    h3 {
+      color: #fff !important;
+    }
+  }
 }
 
 .assembly-type-node_reference,

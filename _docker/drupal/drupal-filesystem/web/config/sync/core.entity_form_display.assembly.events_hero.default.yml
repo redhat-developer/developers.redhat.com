@@ -81,7 +81,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 5
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -90,7 +90,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 3
+    weight: 4
     region: content
     settings:
       include_locked: true
@@ -105,7 +105,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true

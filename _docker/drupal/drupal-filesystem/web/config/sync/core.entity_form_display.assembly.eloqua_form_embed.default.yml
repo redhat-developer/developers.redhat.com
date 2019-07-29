@@ -21,13 +21,13 @@ bundle: eloqua_form_embed
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_eloqua_json:
-    weight: 3
+    weight: 4
     settings:
       rows: 10
       placeholder: ''
@@ -35,7 +35,7 @@ content:
     type: string_textarea
     region: content
   field_url:
-    weight: 26
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''

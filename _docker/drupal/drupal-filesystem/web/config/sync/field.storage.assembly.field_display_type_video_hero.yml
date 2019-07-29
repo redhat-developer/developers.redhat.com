@@ -1,0 +1,24 @@
+uuid: 33a4a31b-730c-4540-9c89-c93f4eda8e2f
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_display_type_video_hero
+field_name: field_display_type_video_hero
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: full-width-video
+      label: 'Full width video'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
