@@ -119,3 +119,22 @@ if($config['redhat_developers']['environment'] == 'local') {
     $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
     $settings['cache']['bins']['page'] = 'cache.backend.null';
 }
+
+if(getenv('DRUPAL_CACHE_ENGINE') == 'memcached') {
+
+    $settings['cache']['default'] = 'cache.backend.memcache';
+    $settings['memcache']['servers'] = [
+        'memcached:11211' => 'default',
+        'memcached2:11211' => 'default'
+    ];
+    $settings['memcache']['bins'] = ['default' => 'default'];
+    $settings['memcache']['key_prefix'] = 'drupal_1_';
+    $setting['memcache']['options'] = [
+        Memcached::OPT_DISTRIBUTION => Memcached::DISTRIBUTION_CONSISTENT,
+        Memcached::OPT_COMPRESSION => FALSE,
+        Memcached::OPT_TCP_NODELAY => TRUE,
+        Memcached::OPT_LIBKETAMA_COMPATIBLE => TRUE,
+        Memcached::OPT_NO_BLOCK => FALSE
+    ];
+    $settings['container_yamls'][] = 'modules/memcache/example.services.yml';
+}

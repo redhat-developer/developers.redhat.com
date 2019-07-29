@@ -8,10 +8,11 @@ services:
       - ../drupal-filesystem/composer.lock:/drupal/composer.lock
       - ../drupal-filesystem/patches:/drupal/patches
       - ../drupal-filesystem/scripts/ScriptHandler.php:/drupal/scripts/ScriptHandler.php
-    entrypoint: ["/bin/bash", "-c", "composer update"]
+    entrypoint: ["/bin/bash"]
     environment:
       - https_proxy
       - http_proxy
+      - COMPOSER_MEMORY_LIMIT=-1
     working_dir: /drupal
 
   seed_env:
@@ -51,6 +52,7 @@ services:
     - DEPLOYMENT_ID=1
     - https_proxy
     - http_proxy
+#    - DRUPAL_CACHE_ENGINE=memcached
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
@@ -75,6 +77,7 @@ services:
       - DEPLOYMENT_ID=1
       - https_proxy
       - http_proxy
+      - DRUPAL_CACHE_ENGINE=memcached
     volumes:
       - ./env.yml:/credentials/ansible/env.yml
       - ./edgerc:/credentials/akamai/edgerc
@@ -88,6 +91,16 @@ services:
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
+
+  memcached:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=512
+
+  memcached2:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=512
 
   mysql:
     image: mariadb:10.3.9-bionic
