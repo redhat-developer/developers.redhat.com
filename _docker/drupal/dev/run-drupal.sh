@@ -7,6 +7,7 @@ cd $DIR && docker-compose down -v
 cd $DIR && rm -rf $DIR/drupal-workspace
 cd $DIR && docker-compose build
 cd $DIR && mkcert localhost
+cd $DIR && mkdir -p drupal-workspace
 cd $DIR && docker-compose run --rm seed_env
 cd $DIR && docker-compose run --rm bootstrap_env
 cd $DIR && docker-compose run --rm bootstrap_drupal

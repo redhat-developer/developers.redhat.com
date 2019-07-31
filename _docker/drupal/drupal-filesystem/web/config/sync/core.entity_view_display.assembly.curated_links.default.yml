@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.curated_links.field_additional_content
     - field.field.assembly.curated_links.field_audience_selection
     - field.field.assembly.curated_links.field_content_list
+    - field.field.assembly.curated_links.field_display_type_curated_links
     - field.field.assembly.curated_links.field_navigation_title
     - field.field.assembly.curated_links.field_title
   module:
@@ -56,6 +57,7 @@ content:
     region: content
 hidden:
   field_audience_selection: true
+  field_display_type_curated_links: true
   field_navigation_title: true
   langcode: true
   name: true

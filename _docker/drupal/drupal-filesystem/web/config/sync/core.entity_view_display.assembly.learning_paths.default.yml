@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.learning_paths.field_audience_selection
     - field.field.assembly.learning_paths.field_cta_link
     - field.field.assembly.learning_paths.field_description
+    - field.field.assembly.learning_paths.field_navigation_title
     - field.field.assembly.learning_paths.field_title
   module:
     - fences
@@ -74,6 +75,7 @@ content:
         fences_label_classes: ''
 hidden:
   field_audience_selection: true
+  field_navigation_title: true
   langcode: true
   name: true
   user_id: true

@@ -1,6 +1,40 @@
 <?php
 
-use Symfony\Component\Yaml\Yaml;
+
+/**
+    Setup environment specific host and service configuration. This configuration used to live in rhd.settings.yml, but
+    has now been moved into here directly to avoid having to parse YAML on a per-request basis. We still need to determine
+    if all of this configuration is actually still needed.
+ */
+
+$config['redhat_developers']['environment'] = 'dev';
+$config['redhat_developers']['broker'] = 'https://broker.staging.redhat.com/partner/drc/userMapping?redirect=';
+$config['redhat_developers']['sentry_track'] = false;
+$config['redhat_developers']['sentry_script'] = 'https://cdn.ravenjs.com/3.24.0/raven.min.js';
+$config['redhat_developers']['sentry_code'] = 'https://cc00364690f241ffb2fcb39254d7f23f@sentry.io/115436';
+$config['redhat_developers']['rhd_base_url'] = 'docker';
+$config['redhat_developers']['rhd_final_base_url'] = 'docker';
+$config['redhat_developers']['downloadManager']['baseUrl'] = 'https://developers.stage.redhat.com';
+$config['redhat_developers']['downloadManager']['fileBaseUrl'] = '//developers.stage.redhat.com/download-manager/file/';
+$config['redhat_developers']['keycloak']['accountUrl'] = 'https://developers.stage.redhat.com/auth/realms/rhd/account/';
+$config['redhat_developers']['keycloak']['authUrl'] = 'https://developers.stage.redhat.com/auth/';
+$config['redhat_developers']['drupal']['host'] = 'http://docker';
+$config['redhat_developers']['searchisko']['protocol'] = 'https';
+$config['redhat_developers']['searchisko']['host'] = 'dcp.stage.jboss.org';
+$config['redhat_developers']['searchisko']['port'] = '443';
+$config['redhat_developers']['searchisko']['baseProtocolRelativeUrl'] = 'dcp.stage.jboss.org:443';
+
+/**
+    SSO Integration for Content Editor Authentication
+ */
+$config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = 'http://localhost/openid-connect/keycloak';
+$config["openid_connect.settings.keycloak"]["settings"]["client_id"] = 'rhd-web-cms-localdev';
+$config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = 'not-a-secret';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://developers.stage.redhat.com/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'rhd';
+$config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/token';
+$config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo';
 
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
@@ -13,11 +47,6 @@ $settings['cache']['bins']['render'] = 'cache.backend.null';
 $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 
 $settings['extension_discovery_scan_tests'] = TRUE;
-
-if (file_exists(__DIR__ . '/rhd.settings.yml')) {
-  $yml_settings = Yaml::parse(file_get_contents(__DIR__ . "/rhd.settings.yml"));
-  $config['redhat_developers'] = $yml_settings;
-}
 
 $databases['default']['default'] = array (
   'database' => 'rhd_mysql',
@@ -36,62 +65,16 @@ $config_directories['sync'] = 'config/sync';
 /* Increase default memory settings for Drupal to 256 meg. Taken from: https://www.drupal.org/docs/7/managing-site-performance-and-scalability/changing-php-memory-limits */
 ini_set('memory_limit', '256M');
 
-// Get the specific config object, as an array, that we will use to set the
-// OpenID Config object.
-$content_editor_sso_config = $config["redhat_developers"]["keycloak"]["content_editor_sso"];
-
-// Ensure that all of the necessary SSO config is available.
-if ((isset($content_editor_sso_config["redirect_url"]) && !empty($content_editor_sso_config["redirect_url"]))
-    && (isset($content_editor_sso_config["client_id"]) && !empty($content_editor_sso_config["client_id"]))
-    && (isset($content_editor_sso_config["client_secret"]) && !empty($content_editor_sso_config["client_secret"]))
-    && (isset($content_editor_sso_config["keycloak_base"]) && !empty($content_editor_sso_config["keycloak_base"]))
-    && (isset($content_editor_sso_config["keycloak_realm"]) && !empty($content_editor_sso_config["keycloak_realm"]))
-    && (isset($content_editor_sso_config["authorization_endpoint_kc"]) && !empty($content_editor_sso_config["authorization_endpoint_kc"]))
-    && (isset($content_editor_sso_config["token_endpoint_kc"]) && !empty($content_editor_sso_config["token_endpoint_kc"]))
-    && (isset($content_editor_sso_config["userinfo_endpoint_kc"]) && !empty($content_editor_sso_config["userinfo_endpoint_kc"]))) {
-
-  // Set the OpenID config object using data from our redhat_developers config.
-  $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = $content_editor_sso_config["redirect_url"];
-  $config["openid_connect.settings.keycloak"]["settings"]["client_id"] = $content_editor_sso_config["client_id"];
-  $config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = $content_editor_sso_config["client_secret"];
-  $config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = $content_editor_sso_config["keycloak_base"];
-  $config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = $content_editor_sso_config["keycloak_realm"];
-  $config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = $content_editor_sso_config["authorization_endpoint_kc"];
-  $config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = $content_editor_sso_config["token_endpoint_kc"];
-  $config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = $content_editor_sso_config["userinfo_endpoint_kc"];
-}
-else {
-  // The array keys of the SSO config variables.
-  $sso_array_keys = [
-    'redirect_url',
-    'client_id',
-    'client_secret',
-    'keycloak_base',
-    'keycloak_realm',
-    'authorization_endpoint_kc',
-    'token_endpoint_kc',
-    'userinfo_endpoint_kc'
-  ]; 
-  // Will hold a list of the SSO config variables keys had no value (or an empty value).
-  $unset_array_keys = [];
-
-  foreach ($sso_array_keys as $key) {
-    if (!isset($content_editor_sso_config[$key]) || empty($content_editor_sso_config[$key])) {
-      $unset_array_keys[] = $key;
-    }
-  }
-
-  // Log a notice that denotes any unset, but required, SSO config variable(s).
-  \Drupal::logger('content_editor_sso')->error(
-    'Skipping SSO configuration as the following required variables are not set: @unset_variables.', [
-      '@unset_variables' => implode(', ', $unset_array_keys)
-    ]
-  );
-}
-
-
 #
 # Set the Akamai network that purge requests should go to
 #
 $config['akamai.settings']['domain']['production'] = false;
 $config['akamai.settings']['domain']['staging'] = true;
+
+
+# DEVELOPER-5877: Added disqus settings to support emails to content author on new comments
+$config['rhd_disqus.disqussettings']['rhd_disqus_secret_key'] = '';
+$config['rhd_disqus.disqussettings']['rhd_disqus_api_key'] = '';
+$config['rhd_disqus.disqussettings']['rhd_disqus_shortname'] = 'red-hat-developers-localhost';
+$config['rhd_disqus.disqussettings']['rhd_disqus_email_author_enabled'] = false;
+$config['rhd_disqus.disqussettings']['rhd_disqus_email_author_debug'] = true;    

@@ -5,8 +5,10 @@ dependencies:
   config:
     - assembly.assembly_type.product_comparison_table
     - field.field.assembly.product_comparison_table.field_features
+    - field.field.assembly.product_comparison_table.field_navigation_title
     - field.field.assembly.product_comparison_table.field_products
     - field.field.assembly.product_comparison_table.field_sub_products
+    - field.field.assembly.product_comparison_table.field_title
     - field.field.assembly.product_comparison_table.field_upstream_projects
   module:
     - entity_reference_revisions
@@ -58,6 +60,8 @@ content:
     type: entity_reference_entity_view
     region: content
 hidden:
+  field_navigation_title: true
+  field_title: true
   langcode: true
   name: true
   user_id: true

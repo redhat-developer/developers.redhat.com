@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.video_hero.field_audience_selection
     - field.field.assembly.video_hero.field_background_image
     - field.field.assembly.video_hero.field_description
+    - field.field.assembly.video_hero.field_display_type_video_hero
     - field.field.assembly.video_hero.field_navigation_title
     - field.field.assembly.video_hero.field_secondary_video_descriptio
     - field.field.assembly.video_hero.field_secondary_video_resource
@@ -88,6 +89,7 @@ content:
 hidden:
   field_audience_selection: true
   field_background_image: true
+  field_display_type_video_hero: true
   field_navigation_title: true
   field_secondary_video_resource: true
   field_video_resource: true

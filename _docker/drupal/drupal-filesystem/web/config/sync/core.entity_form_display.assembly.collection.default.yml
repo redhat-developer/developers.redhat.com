@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.collection
     - field.field.assembly.collection.field_audience_selection
     - field.field.assembly.collection.field_drupal_term_filter
+    - field.field.assembly.collection.field_navigation_title
     - field.field.assembly.collection.field_show_pagination
     - field.field.assembly.collection.field_title
     - field.field.assembly.collection.field_total_posts
@@ -21,14 +22,28 @@ targetEntityType: assembly
 bundle: collection
 mode: default
 content:
+  field_audience_selection:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_drupal_term_filter:
-    weight: 4
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_navigation_title:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_show_pagination:
-    weight: 6
+    weight: 9
     settings:
       display_label: true
     third_party_settings: {  }
@@ -43,14 +58,14 @@ content:
     type: string_textfield
     region: content
   field_total_posts:
-    weight: 5
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 6
     region: content
     settings:
       include_locked: true
@@ -65,7 +80,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 5
     region: content
     settings:
       display_label: true
@@ -78,6 +93,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_audience_selection: true
   moderation_state: true
   user_id: true
