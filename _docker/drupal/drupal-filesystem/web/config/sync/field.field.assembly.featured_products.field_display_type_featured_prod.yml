@@ -1,0 +1,21 @@
+uuid: 49dcdbb6-b641-491c-9631-dfeeb96261e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.featured_products
+    - field.storage.assembly.field_display_type_featured_prod
+  module:
+    - options
+id: assembly.featured_products.field_display_type_featured_prod
+field_name: field_display_type_featured_prod
+entity_type: assembly
+bundle: featured_products
+label: 'Choose Display Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

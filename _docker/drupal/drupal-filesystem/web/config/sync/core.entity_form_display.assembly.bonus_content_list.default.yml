@@ -21,13 +21,13 @@ bundle: bonus_content_list
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_content_list:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       form_mode: default
@@ -43,7 +43,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_title:
-    weight: 1
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -60,12 +60,17 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   user_id: true
-  visual_styles: true

@@ -15,7 +15,13 @@
  * @ingroup themeable
  */
 #}
-<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+{%
+  set classes = [
+    'assembly',
+    display_type
+  ]
+%}
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
   <div class="container">
     <div class="video">
       {{ content.video }}
