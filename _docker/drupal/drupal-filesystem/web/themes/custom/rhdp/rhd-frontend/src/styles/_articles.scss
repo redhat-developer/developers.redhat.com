@@ -419,7 +419,7 @@
 #rhd-article .cards-wrapper {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  grid-gap: 4rem;
+  grid-gap: 3rem;
   margin-top: 2rem;
   
   @media screen and (max-width: 1240px){
@@ -435,6 +435,7 @@
     margin: 0;
     border-top: 1px solid $gray-2;
     font-size: 1rem;
+    height: 100%;
     p.article-card-type {
       font-size: 1rem;
     }
