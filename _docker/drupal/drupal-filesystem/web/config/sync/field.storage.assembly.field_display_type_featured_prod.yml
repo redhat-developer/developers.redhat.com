@@ -1,0 +1,27 @@
+uuid: 448ed8dc-d51b-49f0-bc9c-6ce1c82068c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_display_type_featured_prod
+field_name: field_display_type_featured_prod
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: basic
+      label: 'Basic Cards'
+    -
+      value: featured
+      label: 'Featured Cards'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

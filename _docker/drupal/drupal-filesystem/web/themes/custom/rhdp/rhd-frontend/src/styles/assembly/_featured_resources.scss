@@ -1,11 +1,5 @@
 .assembly-type-featured_resources {
 
-  background: #E5E5E5;
-  background-image: url(/images/backgrounds/gray_diamond_background.png);
-  background-position: top center;
-  background-size: contain;
-  background-repeat: no-repeat;
-
   .grid {
     display: grid;
     grid-gap: $gutter $gutter;
@@ -19,10 +13,10 @@
     grid-gap: $gutter $gutter;
     grid-template-columns: 1fr;
 
-    @include tablet-portrait { 
+    @include tablet-portrait {
       grid-template-columns: 1fr 1fr;
     }
-    @include tablet-landscape { 
+    @include tablet-landscape {
       grid-template-columns: 1fr 1fr 1fr;
     }
     @include desktop-small {

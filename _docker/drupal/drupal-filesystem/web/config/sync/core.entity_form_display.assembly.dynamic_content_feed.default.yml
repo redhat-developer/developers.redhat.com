@@ -32,13 +32,13 @@ content:
     type: options_buttons
     region: content
   field_category_filter:
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
     region: content
   field_cta_link:
-    weight: 8
+    weight: 9
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -46,7 +46,7 @@ content:
     type: link_default
     region: content
   field_drupal_term_filter:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -60,7 +60,7 @@ content:
     type: string_textfield
     region: content
   field_number_of_posts:
-    weight: 5
+    weight: 6
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -76,7 +76,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 5
     region: content
     settings:
       include_locked: true
@@ -91,7 +91,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 10
     region: content
     settings:
       display_label: true

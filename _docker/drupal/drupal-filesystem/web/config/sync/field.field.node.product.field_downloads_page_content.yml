@@ -21,7 +21,6 @@ dependencies:
     - assembly.assembly_type.embedded_content
     - assembly.assembly_type.events_hero
     - assembly.assembly_type.events_list
-    - assembly.assembly_type.feature
     - assembly.assembly_type.featured_articles
     - assembly.assembly_type.featured_evangelists
     - assembly.assembly_type.featured_products
@@ -29,7 +28,6 @@ dependencies:
     - assembly.assembly_type.hero
     - assembly.assembly_type.katacodas
     - assembly.assembly_type.learning_paths
-    - assembly.assembly_type.node_reference
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.product_categories
     - assembly.assembly_type.product_comparison_table
@@ -40,10 +38,7 @@ dependencies:
     - assembly.assembly_type.rich_text_columns
     - assembly.assembly_type.sign_up_hero
     - assembly.assembly_type.static_content_band
-    - assembly.assembly_type.static_item
     - assembly.assembly_type.video_hero
-    - assembly.assembly_type.videos
-    - assembly.assembly_type.wordpress_post_reference
     - field.storage.node.field_downloads_page_content
     - node.type.product
   module:
@@ -82,14 +77,12 @@ settings:
       events_hero: events_hero
       events_list: events_list
       product_categories: product_categories
-      feature: feature
       featured_articles: featured_articles
       featured_evangelists: featured_evangelists
       featured_resources: featured_resources
       hero: hero
       katacodas: katacodas
       learning_paths: learning_paths
-      node_reference: node_reference
       on_page_navigation: on_page_navigation
       product_download_hero: product_download_hero
       product_download_list: product_download_list
@@ -99,10 +92,7 @@ settings:
       rich_text_columns: rich_text_columns
       content_with_image: content_with_image
       sign_up_hero: sign_up_hero
-      static_item: static_item
       video_hero: video_hero
-      videos: videos
-      wordpress_post_reference: wordpress_post_reference
     sort:
       field: _none
     auto_create: false

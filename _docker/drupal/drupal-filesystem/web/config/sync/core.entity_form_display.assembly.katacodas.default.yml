@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.katacodas
     - field.field.assembly.katacodas.field_katacodas
+    - field.field.assembly.katacodas.field_navigation_title
     - field.field.assembly.katacodas.field_title
   module:
     - field_layout
@@ -19,7 +20,7 @@ bundle: katacodas
 mode: default
 content:
   field_katacodas:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -27,8 +28,16 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_title:
+  field_navigation_title:
     weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -37,14 +46,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 1
+    weight: 4
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: -4
+    weight: 0
     region: content
     settings:
       size: 60
@@ -52,7 +61,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 99
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -60,7 +69,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }

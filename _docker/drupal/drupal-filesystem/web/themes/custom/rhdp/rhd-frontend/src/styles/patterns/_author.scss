@@ -11,8 +11,8 @@
     }
     .author-name {
       font-size: 12px;
-      background-color: $white;
-      color: $gray-6;
+      font-weight: 700;
+      background-color: $grey-1;
       padding: 6px 13px;
       text-transform: uppercase;
       display: inline-block;
@@ -20,6 +20,9 @@
       margin: 0 0 .5rem 0;
       .field--name-title {
         margin-bottom: 0;
+      }
+      &:only-child {
+        min-width: 200px;
       }
     }
     .field--name-field-headshot img {
@@ -30,9 +33,10 @@
   &.tile > a {
     font-size: 12px;
     display: grid;
-    color: $gray-6;
     grid-template-columns: 50px auto;
     text-align: left;
+    line-height: 1.5rem;
+    color: $gray-6;
     .field--name-field-headshot {
       align-self: center;
       img {
@@ -45,10 +49,17 @@
     }
     .author-name {
       text-transform: uppercase;
+      margin-bottom: 5px;
       span {
-        margin-bottom: 0;
+        background-color: $grey-1;
+        display:inline-block;
+        padding: 6px 13px;
+        font-weight: 700;
       }
     }
+  }
+  &.tile > a .author-name span {
+    color: $link;
   }
 }
 
