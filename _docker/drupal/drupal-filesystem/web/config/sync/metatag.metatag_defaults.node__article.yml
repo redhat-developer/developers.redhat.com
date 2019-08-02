@@ -8,14 +8,15 @@ id: node__article
 label: 'Content: Article'
 tags:
   referrer: no-referrer
-  og_description: '[current-page:title]'
+  og_description: '[node:summary]'
+  og_image: '[node:field_image:share], https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'
   og_determiner: the
-  og_image: 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'
+  og_title: '[node:title]'
+  twitter_cards_title: '[node:title]'
+  twitter_cards_page_url: '[node:url]'
   og_site_name: '[site:name]'
-  og_title: '[current-page:title]'
   og_url: '[node:url]'
-  twitter_cards_description: '[current-page:title]'
-  twitter_cards_image: 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'
-  twitter_cards_site: '@rhdevelopers'
-  twitter_cards_title: '[current-page:title]'
   twitter_cards_type: summary
+  twitter_cards_image: '[node:field_image:share], https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'
+  twitter_cards_site: '@rhdevelopers'
+  twitter_cards_description: '[node:summary]'
