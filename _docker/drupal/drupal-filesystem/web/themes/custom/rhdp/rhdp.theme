@@ -640,6 +640,36 @@ function rhdp_preprocess_field(&$variables, $hook) {
 }
 
 /**
+ * Returns a new random guid.
+ */
+function createGUID() { 
+    
+  // Create a token
+  $token      = $_SERVER['HTTP_HOST'];
+  $token     .= $_SERVER['REQUEST_URI'];
+  $token     .= uniqid(rand(), true);
+  
+  // GUID is 128-bit hex
+  $hash        = strtoupper(md5($token));
+  
+  // Create formatted GUID
+  $guid        = '';
+  
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
+  $guid .= substr($hash,  0,  8) . 
+       '-' .
+       substr($hash,  8,  4) .
+       '-' .
+       substr($hash, 12,  4) .
+       '-' .
+       substr($hash, 16,  4) .
+       '-' .
+       substr($hash, 20, 12);
+          
+  return $guid;
+
+}
+/**
  * Implements hook_preprocess_assembly().
  */
 function rhdp_preprocess_assembly(&$variables) {
@@ -690,6 +720,7 @@ function rhdp_preprocess_assembly(&$variables) {
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
     $options = [];
+    
     if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
       $parent = $variables['elements']['#parent'];
       if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {
@@ -713,7 +744,15 @@ function rhdp_preprocess_assembly(&$variables) {
       }
     }
 
-    $variables['eloqua_iframe_url'] = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
+    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
+
+
+    //adding a cache busting guit to the url to prevent Akami caching the page
+    $tmpEloquaUrl->setOption('query', [
+      'no_cache' => createGUID()
+    ]);
+
+    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
   }
 
   // Code Snippet assembly type.
@@ -929,6 +968,43 @@ function rhdp_preprocess_assembly(&$variables) {
       $variables['embed_url'] = $embed_url;
     }
   }
+
+  // Add Display Type variables for curated_links
+  if ($type == 'curated_links'
+      && $assembly->hasField('field_display_type_curated_links')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
+    if (strpos($display_type, 'two-col') !== FALSE) {
+      $variables['display_type'] = 'two-col';
+    }
+    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+      $variables['display_type'] = 'nav-menu';
+    }
+  }
+
+  // Add Display Type variables for featured_products
+  if ($type == 'featured_products'
+      && $assembly->hasField('field_display_type_featured_prod')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_featured_prod')->getValue()[0]['value'];
+    if (strpos($display_type, 'basic') !== FALSE) {
+      $variables['display_type'] = 'basic';
+    }
+    else if (strpos($display_type, 'featured') !== FALSE) {
+      $variables['display_type'] = 'featured';
+    }
+  }
+
+  // Add Display Type variables for featured_products
+  if ($type == 'video_hero'
+      && $assembly->hasField('field_display_type_video_hero')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_video_hero')->getValue()[0]['value'];
+    if (strpos($display_type, 'full-width-video') !== FALSE) {
+      $variables['display_type'] = 'full-width-video';
+    }
+  }
+
 }
 
 /**

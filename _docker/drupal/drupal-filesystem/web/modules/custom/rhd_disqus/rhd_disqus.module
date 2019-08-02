@@ -43,11 +43,9 @@ function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDi
   }
   if ($view_mode == 'tile' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
     $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
-
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
     $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
-
     $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
   }
 }
@@ -90,18 +88,32 @@ function rhd_disqus_assembly_view_alter(array &$build, EntityInterface $entity, 
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
     $build['#attached']['drupalSettings']['rhdDisqus']['secretKey'] = $disqus_secret_key;
-
     $build['#attached']['drupalSettings']['rhdDisqus']['disqusCommentCounter'] = TRUE;
   }
 }
 
+function rhd_disqus_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+    case 'disqus_comment_mail':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('New comment on: @subject', ['@subject' => $params['subject']], $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+ }
+
 function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');
+
   return [
     'rhd_disqus__thread' => [
       'template' => 'rhd-disqus--thread',
       'variables' => [
         'thread' => NULL,
+        'moduleUrl' => $path,
         'shortname' => $config->get('rhd_disqus_shortname') ?: NULL,
         'title' => t('Comments'),
       ],

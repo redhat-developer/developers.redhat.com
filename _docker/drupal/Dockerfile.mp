@@ -2,8 +2,7 @@ FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.0
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
-EXPOSE 8080
-EXPOSE 8443
+EXPOSE 8080 8443
 WORKDIR /var/www/drupal
 RUN gem install asciidoctor -v 1.5.8
 
@@ -47,4 +46,5 @@ RUN chown -R root:0 /opt/rh/httpd24/root/var/run/httpd \
     && chmod -R g=u /ansible
 
 USER 1001
-ENV PATH=$PATH:/var/www/drupal/vendor/bin
+ENV PATH=$PATH:/var/www/drupal/vendor/bin \
+    HOME=/var/www/drupal
