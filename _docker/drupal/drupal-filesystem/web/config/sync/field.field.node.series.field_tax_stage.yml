@@ -1,0 +1,29 @@
+uuid: 4c6cf87a-8048-43b3-91e5-365198a80bdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_stage
+    - node.type.series
+    - taxonomy.vocabulary.stage
+id: node.series.field_tax_stage
+field_name: field_tax_stage
+entity_type: node
+bundle: series
+label: Stage
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      stage: stage
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
