@@ -1,0 +1,223 @@
+uuid: df5ab0d2-7459-4b78-a18e-207e593c46dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_browser
+    - field.field.node.series.body
+    - field.field.node.series.field_series_articles
+    - field.field.node.series.field_series_author
+    - field.field.node.series.field_series_image
+    - field.field.node.series.field_tax_audience_segment
+    - field.field.node.series.field_tax_business_unit
+    - field.field.node.series.field_tax_campaign
+    - field.field.node.series.field_tax_lifecycle
+    - field.field.node.series.field_tax_product
+    - field.field.node.series.field_tax_product_line
+    - field.field.node.series.field_tax_project
+    - field.field.node.series.field_tax_promotion
+    - field.field.node.series.field_tax_region
+    - field.field.node.series.field_tax_stage
+    - node.type.series
+  module:
+    - compose
+    - content_moderation
+    - entity_browser
+    - field_group
+    - field_layout
+    - path
+    - publication_date
+    - text
+third_party_settings:
+  field_layout:
+    id: compose_tabs
+    settings: {  }
+  field_group:
+    group_purpose_attributes:
+      children:
+        - field_tax_audience_segment
+        - field_tax_business_unit
+        - field_tax_campaign
+        - field_tax_lifecycle
+        - field_tax_product
+        - field_tax_product_line
+        - field_tax_promotion
+        - field_tax_project
+        - field_tax_region
+        - field_tax_stage
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Purpose Attributes'
+      region: fields
+id: node.series.default
+targetEntityType: node
+bundle: series
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 9
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
+  field_series_articles:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: entity_reference_autocomplete
+    region: content
+  field_series_author:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_series_image:
+    type: entity_browser_entity_reference
+    weight: 3
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+      field_widget_replace: false
+    region: content
+    third_party_settings: {  }
+  field_tax_audience_segment:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_business_unit:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_campaign:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_lifecycle:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_product_line:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_project:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_promotion:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_region:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_stage:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  langcode:
+    type: language_select
+    weight: 5
+    region: fields
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 10
+    settings: {  }
+    region: settings
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
+  published_at:
+    type: publication_date_timestamp
+    weight: 12
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: settings
+    third_party_settings: {  }
+  url_redirects:
+    weight: 11
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  promote: true
+  status: true
+  sticky: true

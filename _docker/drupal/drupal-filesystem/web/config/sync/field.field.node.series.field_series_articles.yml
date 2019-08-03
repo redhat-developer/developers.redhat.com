@@ -1,0 +1,30 @@
+uuid: 4872d9b0-f59d-4d4f-812b-9c19fdf51065
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_series_articles
+    - node.type.article
+    - node.type.assembly_page
+    - node.type.series
+id: node.series.field_series_articles
+field_name: field_series_articles
+entity_type: node
+bundle: series
+label: 'Series Articles'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+      assembly_page: assembly_page
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: article
+field_type: entity_reference

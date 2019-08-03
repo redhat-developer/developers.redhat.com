@@ -1,0 +1,97 @@
+uuid: 0553f882-7636-40f2-81b8-5dd02ca4faa4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.series.body
+    - field.field.node.series.field_series_articles
+    - field.field.node.series.field_series_author
+    - field.field.node.series.field_series_image
+    - field.field.node.series.field_tax_audience_segment
+    - field.field.node.series.field_tax_business_unit
+    - field.field.node.series.field_tax_campaign
+    - field.field.node.series.field_tax_lifecycle
+    - field.field.node.series.field_tax_product
+    - field.field.node.series.field_tax_product_line
+    - field.field.node.series.field_tax_project
+    - field.field.node.series.field_tax_promotion
+    - field.field.node.series.field_tax_region
+    - field.field.node.series.field_tax_stage
+    - node.type.series
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.series.default
+targetEntityType: node
+bundle: series
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_series_articles:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_series_author:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_series_image:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  content_moderation_control: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  langcode: true
+  links: true
+  published_at: true

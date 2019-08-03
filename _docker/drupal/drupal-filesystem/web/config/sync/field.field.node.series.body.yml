@@ -1,0 +1,22 @@
+uuid: 5d2e3e41-b36e-479e-b3c6-346f49ac4b18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.series
+  module:
+    - text
+id: node.series.body
+field_name: body
+entity_type: node
+bundle: series
+label: 'Series Description'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
