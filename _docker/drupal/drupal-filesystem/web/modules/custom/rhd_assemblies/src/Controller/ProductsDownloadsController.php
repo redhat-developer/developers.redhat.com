@@ -152,7 +152,7 @@ class ProductsDownloadsController extends ControllerBase {
     // Grab the first (and should be only) product loaded from the query.
     if ($product = reset($products)) {
       // If a Product node is not published and the current User doesn't have
-      // permission to view all revisions, then throw an Access Denied exception.
+      // permission to view all revisions, then throw a Not Found exception.
       if (!$this->currentUser()->hasPermission('view all revisions') && !$product->isPublished()) {
         throw new NotFoundHttpException();
       }
@@ -181,6 +181,11 @@ class ProductsDownloadsController extends ControllerBase {
           $product_view = $this->entityTypeManager
             ->getViewBuilder('node')
             ->view($product, 'product_download_page');
+        }
+        // This must be an old, paragraphs-based Product page, so we will
+        // serve the paragraphs-based Products download page.
+        else {
+          return $this->productPageController->productPage($product_url_name, 'download');
         }
       }
     }
