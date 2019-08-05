@@ -173,6 +173,11 @@ class ProductsDownloadsController extends ControllerBase {
             ->getViewBuilder('node')
             ->view($latest_revision, 'product_download_page');
         }
+        // This must be an old, paragraphs-based Product page, so we will
+        // serve the paragraphs-based Products download page.
+        else {
+          return $this->productPageController->productPage($product_url_name, 'download');
+        }
       }
       else {
         if ($this->hasDownloadsPage($product)) {

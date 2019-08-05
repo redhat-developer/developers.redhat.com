@@ -153,6 +153,10 @@ class ProductsGettingStartedController extends ControllerBase {
             ->getViewBuilder('node')
             ->view($latest_revision, 'product_getting_started_page');
         }
+        else {
+          // Throw a 404 if this Product doesn't have a Getting Started page.
+          throw new NotFoundHttpException();
+        }
       }
       // Display the default revision of the Product node.
       else {
@@ -162,6 +166,10 @@ class ProductsGettingStartedController extends ControllerBase {
           $product_view = $this->entityTypeManager
             ->getViewBuilder('node')
             ->view($product, 'product_getting_started_page');
+        }
+        else {
+          // Throw a 404 if this Product doesn't have a Getting Started page.
+          throw new NotFoundHttpException();
         }
       }
     }
