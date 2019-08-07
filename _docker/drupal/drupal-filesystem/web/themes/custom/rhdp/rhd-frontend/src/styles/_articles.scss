@@ -284,34 +284,6 @@
     width: 100%;
     margin-top: 0;
     margin-bottom: 20px;
-    &.no-image {
-      margin-top: 0;
-    }
-    .author.short-teaser {
-      float: left;
-      margin-right: 20px;
-      img {
-        width: 80px;
-        margin-bottom: 15px;
-      }
-      .author-name {
-        background-color: $grey-1;
-        margin: 5px 0;
-        padding: 7px;
-        font-size: 14px;
-        line-height: 22px;
-        font-weight: bold;
-        color: $gray-6;
-      }
-      a {
-        .author-name {
-          color: $link;
-        }
-      }
-    }
-    @include desktop-small {
-      margin-top: 40px;
-    }
   }
   .floated-image {
     @include desktop-small {
@@ -419,7 +391,7 @@
 #rhd-article .cards-wrapper {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  grid-gap: 4rem;
+  grid-gap: 3rem;
   margin-top: 2rem;
   
   @media screen and (max-width: 1240px){
@@ -435,6 +407,7 @@
     margin: 0;
     border-top: 1px solid $gray-2;
     font-size: 1rem;
+    height: 100%;
     p.article-card-type {
       font-size: 1rem;
     }
@@ -446,14 +419,5 @@
   }
   .article-card-content {
     line-height: 1.5;
-  }
-}
-
-#rhd-article .author.tile > a {
-  .author-info {
-    line-height: 1rem;
-  }
-  .author-name {
-    font-size: 14px;
   }
 }

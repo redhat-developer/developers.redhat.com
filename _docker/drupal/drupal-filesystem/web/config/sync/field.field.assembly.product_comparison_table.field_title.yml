@@ -1,0 +1,19 @@
+uuid: 866fafb0-f7da-47f9-a699-0fa3ddd7dc87
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.product_comparison_table
+    - field.storage.assembly.field_title
+id: assembly.product_comparison_table.field_title
+field_name: field_title
+entity_type: assembly
+bundle: product_comparison_table
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
