@@ -18,15 +18,18 @@
   {# Decalre default render variables #}
   {% set renderArrow = true %}
   {% set renderAside = false %}
+  {% set addClasses = [] %}
   {% set remClasses = [] %}
   {% set menuClass = "curated-links__list fa-ul"%}
 
   {# Calculate type of render based on class set and set appropriate variable values #}
-  {% if attributes.hasClass('nav-menu') %}
+  {% if (display_type == 'nav-menu') or (attributes.hasClass('nav-menu')) %}
+    {% set addClasses = ['nav-menu'] %}
     {% set remClasses = ['two-col'] %}
     {% set renderArrow = false %}
     {% set renderAside = false %}
-  {% elseif attributes.hasClass('two-col') %}
+  {% elseif (display_type == 'two-col') or (attributes.hasClass('two-col')) %}
+    {% set addClasses = ['two-col'] %}
     {% set remClasses = ['nav-menu'] %}
     {% set renderArrow = true %}
     {% set renderAside = false %}
@@ -36,16 +39,16 @@
     {% set remClasses = ['two-col', 'nav-menu'] %}
     {% set renderAside = true %}
     {% set renderArrow = true %}
-    {% set menuClass = "side-bar-nav curated-links__list fa-ul"%}
+    {% set menuClass = 'side-bar-nav curated-links__list fa-ul' %}
   {% endif %}
 
   {# Begin html render #}
   {% if renderAside %}
-  <section{{ attributes.addClass('assembly link-side-nav').removeClass(remClasses) }}{{ audience_selection }}> 
+  <section{{ attributes.addClass('link-side-nav', addClasses).removeClass(remClasses) }}{{ audience_selection }}>
     <div class="container">
       {{ content.field_additional_content }}
-      <aside> 
-        <div class="curated-links"> 
+      <aside>
+        <div class="curated-links">
           {% if content.field_title and renderArrow %}
           <h3 class="curated-links__title">{{ content.field_title }}</h3>
           {% endif %}
@@ -63,10 +66,10 @@
         </div>
       </aside>
     </div>
-  </section>  
+  </section>
   {% else %}
-  <section{{ attributes.addClass('assembly').removeClass(remClasses) }}{{ audience_selection }}> 
-    <div class="curated-links"> 
+  <section{{ attributes.addClass(addClasses).removeClass(remClasses) }}{{ audience_selection }}>
+    <div class="curated-links">
       {% if content.field_title and renderArrow %}
       <h3 class="curated-links__title">{{ content.field_title }}</h3>
       {% endif %}
@@ -82,6 +85,6 @@
         </ul>
       {% endif %}
     </div>
-  </section>  
+  </section>
   {% endif %}
 {% endif %}
