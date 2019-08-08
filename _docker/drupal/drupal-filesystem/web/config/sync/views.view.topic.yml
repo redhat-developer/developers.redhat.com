@@ -395,8 +395,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ view_node|trim(''/'', ''left'') }}'
             make_link: false
             path: ''
             absolute: false
@@ -421,7 +421,7 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: '0'
+          element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
