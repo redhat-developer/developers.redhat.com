@@ -20,7 +20,7 @@ dependencies:
 id: topic
 label: Topic
 module: views
-description: ''
+description: 'Display all content in a given topic'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -613,8 +613,7 @@ display:
         type: rss
         options:
           grouping: {  }
-          uses_fields: false
-          description: 'Content within a topic'
+          description: 'Content within a given topic'
       pager:
         type: mini
         options:
