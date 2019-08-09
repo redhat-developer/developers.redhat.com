@@ -52,7 +52,6 @@ services:
     - DEPLOYMENT_ID=1
     - https_proxy
     - http_proxy
-#    - DRUPAL_CACHE_ENGINE=memcached
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
@@ -77,7 +76,6 @@ services:
       - DEPLOYMENT_ID=1
       - https_proxy
       - http_proxy
-      - DRUPAL_CACHE_ENGINE=memcached
     volumes:
       - ./env.yml:/credentials/ansible/env.yml
       - ./edgerc:/credentials/akamai/edgerc
@@ -92,15 +90,15 @@ services:
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
 
-  memcached:
+  memcached-0:
     image: registry.redhat.io/rhel8/memcached
     environment:
-      - MEMCACHED_MAX_MEMORY=512
+      - MEMCACHED_MAX_MEMORY=256
 
-  memcached2:
+  memcached-1:
     image: registry.redhat.io/rhel8/memcached
     environment:
-      - MEMCACHED_MAX_MEMORY=512
+      - MEMCACHED_MAX_MEMORY=256
 
   mysql:
     image: mariadb:10.3.9-bionic

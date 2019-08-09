@@ -25,6 +25,7 @@ $config['redhat_developers']['searchisko']['protocol'] = 'https';
 $config['redhat_developers']['searchisko']['host'] = 'dcp.stage.jboss.org';
 $config['redhat_developers']['searchisko']['port'] = '443';
 $config['redhat_developers']['searchisko']['baseProtocolRelativeUrl'] = 'dcp.stage.jboss.org:443';
+$config['redhat_developers']['cache']['engine'] = 'database';
 
 /**
     SSO Integration for Content Editor Authentication
@@ -103,3 +104,83 @@ $config['rhd_disqus.disqussettings']['rhd_disqus_api_key'] = "{{ drupal_disqus_a
 $config['rhd_disqus.disqussettings']['rhd_disqus_shortname'] = "{{ drupal_disqus_shortname }}";
 $config['rhd_disqus.disqussettings']['rhd_disqus_email_author_enabled'] = "{{ drupal_disqus_email_author_enabled }}";
 $config['rhd_disqus.disqussettings']['rhd_disqus_email_author_debug'] = "{{ drupal_disqus_email_author_debug }}";
+
+/*
+    MWES-2871: Adds support for using Memcached as the cache engine instead of the database.
+*/
+if($config['redhat_developers']['cache']['engine'] == 'memcached') {
+
+    $settings['cache']['default'] = 'cache.backend.memcache';
+    $settings['memcache']['servers'] = [];
+    {% for number in range(0, drupal_memcached_nodes) %}
+$settings['memcache']['servers'] += [
+       '{{ drupal_memcached_node_name_pattern | format(number) }}:11211' => 'default'
+    ];
+    {% endfor %}
+
+    $settings['memcache']['bins'] = ['default' => 'default'];
+    $settings['memcache']['key_prefix'] = '{{ drupal_deployment_dir }}_';
+    $settings['memcache']['options'] = [
+        Memcached::OPT_DISTRIBUTION => Memcached::DISTRIBUTION_CONSISTENT,
+        Memcached::OPT_COMPRESSION => FALSE,
+        Memcached::OPT_TCP_NODELAY => TRUE,
+        Memcached::OPT_LIBKETAMA_COMPATIBLE => TRUE,
+        Memcached::OPT_NO_BLOCK => FALSE
+    ];
+
+    /*
+        Load the memcached services
+    */
+    $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/default/memcached.services.yml';
+
+    /*
+        Taken from: https://git.drupalcode.org/project/memcache/blob/8.x-2.x/README.txt
+    */
+
+    $class_loader->addPsr4('Drupal\\memcache\\', 'modules/contrib/memcache/src');
+    // Define custom bootstrap container definition to use Memcache for cache.container.
+    $settings['bootstrap_container_definition'] = [
+      'parameters' => [],
+      'services' => [
+        # Dependencies.
+        'settings' => [
+          'class' => 'Drupal\Core\Site\Settings',
+          'factory' => 'Drupal\Core\Site\Settings::getInstance',
+        ],
+        'memcache.settings' => [
+          'class' => 'Drupal\memcache\MemcacheSettings',
+          'arguments' => ['@settings'],
+        ],
+        'memcache.factory' => [
+          'class' => 'Drupal\memcache\Driver\MemcacheDriverFactory',
+          'arguments' => ['@memcache.settings'],
+        ],
+        'memcache.timestamp.invalidator.bin' => [
+          'class' => 'Drupal\memcache\Invalidator\MemcacheTimestampInvalidator',
+          # Adjust tolerance factor as appropriate when not running memcache on localhost.
+          'arguments' => ['@memcache.factory', 'memcache_bin_timestamps', 0.001],
+        ],
+        'memcache.timestamp.invalidator.tag' => [
+          'class' => 'Drupal\memcache\Invalidator\MemcacheTimestampInvalidator',
+          # Remember to update your main service definition in sync with this!
+          # Adjust tolerance factor as appropriate when not running memcache on localhost.
+          'arguments' => ['@memcache.factory', 'memcache_tag_timestamps', 0.001],
+        ],
+        'memcache.backend.cache.container' => [
+          'class' => 'Drupal\memcache\DrupalMemcacheInterface',
+          'factory' => ['@memcache.factory', 'get'],
+          # Actual cache bin to use for the container cache.
+          'arguments' => ['container'],
+        ],
+        # Define a custom cache tags invalidator for the bootstrap container.
+        'cache_tags_provider.container' => [
+          'class' => 'Drupal\memcache\Cache\TimestampCacheTagsChecksum',
+          'arguments' => ['@memcache.timestamp.invalidator.tag'],
+        ],
+        'cache.container' => [
+          'class' => 'Drupal\memcache\MemcacheBackend',
+          'arguments' => ['container', '@memcache.backend.cache.container', '@cache_tags_provider.container', '@memcache.timestamp.invalidator.bin'],
+        ],
+      ],
+    ];
+}
