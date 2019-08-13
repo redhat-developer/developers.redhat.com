@@ -2,7 +2,7 @@
 set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 docker pull docker-registry.engineering.redhat.com/developers/drupal-data:latest
-docker pull registry.paas.redhat.com/rhdp/developer-base
+docker pull images.paas.redhat.com/rhdp/developer-base:rhel-76.0
 cd $DIR && docker-compose down -v
 cd $DIR && rm -rf $DIR/drupal-workspace
 cd $DIR && docker-compose build

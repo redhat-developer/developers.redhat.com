@@ -20,7 +20,7 @@ RUN cd /var/www/drupal \
        fi
 
 # Copy in the custom things we create
-COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
+COPY drupal-filesystem/web/sites /var/www/drupal/web/sites
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 

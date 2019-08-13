@@ -1,4 +1,18 @@
 parameters:
+  cors.config:
+    enabled: true
+    # Specify allowed headers, like 'x-allowed-header'.
+    allowedHeaders: ['x-csrf-token','authorization','content-type','accept','origin','x-requested-with']
+    # Specify allowed request methods, specify ['*'] to allow all possible ones.
+    allowedMethods: ['GET', 'POST']
+    # Configure requests allowed from specific origins.
+    allowedOrigins: ['https://developers.redhat.com', 'https://developers.stage.redhat.com', 'https://developers.dev.redhat.com']
+    # Sets the Access-Control-Expose-Headers header.
+    exposedHeaders: false
+    # Sets the Access-Control-Max-Age header.
+    maxAge: false
+    # Sets the Access-Control-Allow-Credentials header.
+    supportsCredentials: false
   session.storage.options:
     # Default ini options for sessions.
     #
@@ -16,7 +30,7 @@ parameters:
     # collector. When a session is deleted, authenticated users are logged out,
     # and the contents of the user's $_SESSION variable is discarded.
     # @default 200000
-    gc_maxlifetime: 200000
+    gc_maxlifetime: 43200
     #
     # Set session cookie lifetime (in seconds), i.e. the time from the session
     # is created to the cookie expires, i.e. when the browser is expected to
@@ -131,13 +145,13 @@ parameters:
     # Default key/value storage service to use.
     # @default keyvalue.database
     # default: keyvalue.database
-    # Collection-specific overrides.
-    # state: keyvalue.database
+  # Collection-specific overrides.
+  # state: keyvalue.database
   factory.keyvalue.expirable:
     {}
     # Default key/value expirable storage service to use.
-    # @default keyvalue.database.expirable
-    # default: keyvalue.database.expirable
+  # @default keyvalue.database.expirable
+  # default: keyvalue.database.expirable
   # Allowed protocols for URL generation.
   filter_protocols:
     - http
@@ -153,10 +167,3 @@ parameters:
     - sftp
     - webcal
     - rtsp
-services:
-  config.storage:
-    class: Drupal\Core\Config\CachedStorage
-    arguments: ['@config.storage.active', '@cache.config']
-  config.storage.active:
-    class: Drupal\Core\Config\FileStorage
-    factory: Drupal\Core\Config\FileStorageFactory::getActive   

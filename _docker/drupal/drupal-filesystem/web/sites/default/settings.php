@@ -641,7 +641,7 @@ $config_directories['sync'] = 'config/sync';
 # process we will create the ~sites/default/files/.config.migrated.DO_NOT_DELETE file. Once this file is in place, then Drupal knows that is should use the
 # database as it's source of configuration and not the filesystem.
 #
-if (file_exists('/var/www/drupal/web/config/active/config.migrated.DO_NOT_DELETE')) {
+if (file_exists(DRUPAL_ROOT . '/config/active/config.migrated.DO_NOT_DELETE')) {
   $settings['container_yamls'][] = __DIR__ . '/services.yml';
 } else {
   $settings['container_yamls'][] = __DIR__ . '/services-fs.yml';
