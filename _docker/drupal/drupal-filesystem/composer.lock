@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a4554602e3cb8b45d30ed016ce171a4",
+    "content-hash": "f9807a3212d05dd260b4524bd6b94ffe",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -2492,7 +2492,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/assembly.git",
-                "reference": "767253d"
+                "reference": "8518b2a"
             },
             "require": {
                 "drupal/core": "*",
@@ -2506,7 +2506,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1562104086",
+                    "datestamp": "1565308381",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2540,7 +2540,7 @@
                 "source": "http://cgit.drupalcode.org/assembly",
                 "issues": "https://www.drupal.org/project/issues/assembly"
             },
-            "time": "2019-07-31T16:24:44+00:00"
+            "time": "2019-08-14T21:59:40+00:00"
         },
         {
             "name": "drupal/beryllium",
@@ -2548,7 +2548,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/beryllium.git",
-                "reference": "b4988a2e"
+                "reference": "c9103bea"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2560,7 +2560,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1565290386",
+                    "datestamp": "1565802187",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2590,7 +2590,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/beryllium"
             },
-            "time": "2019-08-13T23:26:59+00:00"
+            "time": "2019-08-14T21:39:12+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -2678,6 +2678,9 @@
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Remove overflow style from modal": "https://www.drupal.org/files/issues/2019-05-24/modal-height-3048592-4.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2771,7 +2774,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/compose.git",
-                "reference": "1d263de551fb83e443f88b9dabf20748fd6c60e0"
+                "reference": "4499fe1"
             },
             "require": {
                 "drupal/core": "*"
@@ -2783,7 +2786,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1562179087",
+                    "datestamp": "1565808185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2820,7 +2823,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/compose"
             },
-            "time": "2019-07-31T16:23:50+00:00"
+            "time": "2019-08-14T21:58:20+00:00"
         },
         {
             "name": "drupal/consumers",
