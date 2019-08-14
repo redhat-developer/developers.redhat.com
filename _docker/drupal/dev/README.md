@@ -16,6 +16,19 @@ SSL but not receiving any certificate warnings.
 
 Follow the instructions relevant to your operating environment.
 
+#### Effective user of the containers
+
+The local development environment is designed to map your current user id into the containers to ensure that any files written by Drupal or created
+as part of the Drupal bootstrap process are owned by you. To do this, the wrapper scripts set the variable `DUID` to your current `id` when
+you run the script.
+
+If you wish to run containers directly using `docker-compose` commands, then you will need to set this variable manually. The most effective way of doing this
+is adding the following to your `$HOME/.bashrc` file:
+
+```shell script
+export DUID=$(id -u)
+```
+
 ### Running `composer update`
 
 Ideally when we're updating the dependencies for the project through `composer`, they should be updated in an environment that matches
