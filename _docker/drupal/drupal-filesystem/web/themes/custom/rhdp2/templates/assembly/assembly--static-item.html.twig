@@ -1,0 +1,7 @@
+{% include "@components/card.twig" with {
+  'image': content.field_image.0 | with('#image_style', 'static_item'),
+  'title': {
+    'text': content.field_title,
+    'url': content.field_url['#items'][0].uri
+  }
+} only %}

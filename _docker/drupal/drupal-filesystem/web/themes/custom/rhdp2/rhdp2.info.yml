@@ -16,6 +16,10 @@ stylesheets-remove:
   - core/modules/views/css/views.module.css
 ckeditor_stylesheets:
   - css/base/app.css
+component-libraries:
+  components:
+    paths:
+      - components
 regions:
   rh_universal_header: 'RH Universal Header'
   rhd_header: 'RHD Header'
