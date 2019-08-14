@@ -87,6 +87,7 @@ services:
       - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+      - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
 
   mysql:
