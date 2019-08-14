@@ -1,0 +1,30 @@
+uuid: 966ac6c5-2cdd-4ba7-9153-2d180d5a73c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.topics-menu
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_topicnavigation
+theme: rhdp2
+region: rhd_post_header
+weight: -7
+provider: null
+plugin: 'system_menu_block:topics-menu'
+settings:
+  id: 'system_menu_block:topics-menu'
+  label: 'Topic navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    pages: harmonize/home
+    negate: true
+    context_mapping: {  }

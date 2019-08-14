@@ -1,0 +1,23 @@
+uuid: 30408115-72df-4911-99f8-d485814a6c26
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_branding
+theme: rhdp2
+region: rhd_header
+weight: -8
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

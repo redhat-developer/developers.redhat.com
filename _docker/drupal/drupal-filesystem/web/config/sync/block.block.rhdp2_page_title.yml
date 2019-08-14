@@ -1,0 +1,18 @@
+uuid: 9ad72d87-60bc-404b-a52b-e4e7bc74299d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - rhdp2
+id: rhdp2_page_title
+theme: rhdp2
+region: title
+weight: -2
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: 9b0b14d2-47a1-4477-8aaf-97310473f99c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - rhdp2
+id: rhdp2_local_tasks
+theme: rhdp2
+region: title
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,26 @@
+uuid: e2baa944-7af9-4153-842e-63dc3f2fac5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - openid_connect
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_openidconnectlogin
+theme: rhdp2
+region: content
+weight: -8
+provider: null
+plugin: openid_connect_login
+settings:
+  id: openid_connect_login
+  label: 'OpenID Connect login'
+  provider: openid_connect
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /user/login
+    negate: false
+    context_mapping: {  }
