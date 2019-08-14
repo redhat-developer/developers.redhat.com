@@ -105,9 +105,9 @@
         "drupal/restui": "1.16",
         "drupal/akamai": "3.0-alpha4",
         "drupal/trailing_slash": "^1.0",
-        "drupal/bootstrap": "3.20",
-        "drupal/compose": "1.x",
-        "drupal/beryllium": "1.x",
+        "drupal/bootstrap": "dev-3.x#92d816d7",
+        "drupal/compose": "dev-1.x#4499fe1",
+        "drupal/beryllium": "dev-1.x#c9103bea",
         "drupal/search_api": "1.11",
         "drupal/components": "1.1",
         "drupal/memcache": "2.0"
@@ -181,9 +181,6 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
-          "drupal/bootstrap": {
-            "Remove overflow style from modal": "https://www.drupal.org/files/issues/2019-05-24/modal-height-3048592-4.patch"
-          },
           "drupal/core": {
             "Fix entity reference view": "https://www.drupal.org/files/issues/2019-06-21/2174633-309.patch",
             "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",

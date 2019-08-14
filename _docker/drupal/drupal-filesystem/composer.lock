@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4a8229e3e0c5a3eca3d786d3b86b4b0",
+    "content-hash": "94e6d23470299a67b8f3bd090549835b",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1902,7 +1902,7 @@
         },
         {
             "name": "doctrine/lexer",
-            "version": "1.1.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
@@ -1915,17 +1915,15 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": ">=5.3.2"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
-                "phpstan/phpstan": "^0.11.8",
-                "phpunit/phpunit": "^8.2"
+                "phpunit/phpunit": "^4.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -1939,12 +1937,12 @@
             ],
             "authors": [
                 {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Johannes Schmitt",
@@ -1960,7 +1958,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-07-30T19:33:28+00:00"
+            "time": "2019-06-08T11:03:04+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -2653,17 +2651,11 @@
         },
         {
             "name": "drupal/bootstrap",
-            "version": "3.20.0",
+            "version": "dev-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bootstrap.git",
-                "reference": "8.x-3.20"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.20.zip",
-                "reference": "8.x-3.20",
-                "shasum": "dc8ecfca0b8e8e3598ba611e056f850f2ab497cb"
+                "reference": "92d816d7"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2674,11 +2666,11 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.20",
-                    "datestamp": "1561055630",
+                    "version": "8.x-3.20+7-dev",
+                    "datestamp": "1571761095",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 },
                 "patches_applied": {
@@ -2713,7 +2705,8 @@
                 "docs": "https://drupal-bootstrap.org",
                 "issues": "https://www.drupal.org/project/issues/bootstrap",
                 "irc": "irc://irc.freenode.org/drupal-bootstrap"
-            }
+            },
+            "time": "2019-07-31T16:21:07+00:00"
         },
         {
             "name": "drupal/ckeditor_indentblock",
@@ -16530,6 +16523,9 @@
         "drupal/workbench": 20,
         "drupal/publication_date": 20,
         "drupal/session_limit": 10,
+        "drupal/bootstrap": 20,
+        "drupal/compose": 20,
+        "drupal/beryllium": 20,
         "drupal/devel_debug_log": 10
     },
     "prefer-stable": true,
