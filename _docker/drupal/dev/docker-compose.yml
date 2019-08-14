@@ -1,7 +1,7 @@
 version: '2'
 services:
   update-composer:
-    image: registry.paas.redhat.com/rhdp/developer-base
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
     user: root
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
