@@ -24,6 +24,7 @@ $config['redhat_developers']['searchisko']['protocol'] = 'https';
 $config['redhat_developers']['searchisko']['host'] = 'dcp.stage.jboss.org';
 $config['redhat_developers']['searchisko']['port'] = '443';
 $config['redhat_developers']['searchisko']['baseProtocolRelativeUrl'] = 'dcp.stage.jboss.org:443';
+$config['redhat_developers']['cache']['engine'] = 'database';
 
 /**
     SSO Integration for Content Editor Authentication
@@ -185,24 +186,4 @@ $settings['memcache']['servers'] += [
         ],
       ],
     ];
-}
-
-
-if(getenv('DRUPAL_CACHE_ENGINE') == 'memcached') {
-
-    $settings['cache']['default'] = 'cache.backend.memcache';
-    $settings['memcache']['servers'] = [
-        'memcached-0.memcached-headless.rhdp--dev.svc.cluster.local:11211' => 'default',
-        'memcached-1.memcached-headless.rhdp--dev.svc.cluster.local:11211' => 'default'
-    ];
-    $settings['memcache']['bins'] = ['default' => 'default'];
-    $settings['memcache']['key_prefix'] = '{{ drupal_deployment_id }}_';
-    $setting['memcache']['options'] = [
-        Memcached::OPT_DISTRIBUTION => Memcached::DISTRIBUTION_CONSISTENT,
-        Memcached::OPT_COMPRESSION => FALSE,
-        Memcached::OPT_TCP_NODELAY => TRUE,
-        Memcached::OPT_LIBKETAMA_COMPATIBLE => TRUE,
-        Memcached::OPT_NO_BLOCK => FALSE
-    ];
-    $settings['container_yamls'][] = 'modules/memcache/example.services.yml';
 }
