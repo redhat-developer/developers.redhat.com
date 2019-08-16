@@ -11,6 +11,19 @@ In particular this directory provides you with:
 
 ### Before you start
 
+#### Provide registry.redhat.io login details
+
+The local development environment requires some Docker images from registry.redhat.io. To be able to pull these images, you need to provide your
+user account details for this registry.
+
+To do that, firstly visit registry.redhat.io and ensure that you can log in (you should be able to log in with your Red Hat Developer account)
+
+Next copy `local-config.sh.example` to `local-config.sh` and provide the values for your username and password. `local-config.sh` should not be committed
+to Git and is already set to be ignored.
+
+
+#### Install mkcert
+
 You will need to install [mkcert](https://github.com/FiloSottile/mkcert) on your local machine so that we can run Drupal locally using
 SSL but not receiving any certificate warnings.
 
@@ -51,6 +64,7 @@ This will:
     * password: password
 * Generate a set of SSL certificates on for your local machine
 * Start Drupal on port `443` on your local machine
+* Start two instances of [memcached](https://memcached.org) on your local machine and configure Drupal to use these
 
 Once the script has finished running, you can access Drupal at [https://localhost](https://localhost)
 

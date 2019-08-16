@@ -5,6 +5,11 @@
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.2.10"
+        }
+    },
     "authors": [
         {
             "name": "",
@@ -103,7 +108,8 @@
         "drupal/bootstrap": "3.20",
         "drupal/compose": "1.x",
         "drupal/beryllium": "1.x",
-        "drupal/search_api": "1.11"
+        "drupal/search_api": "1.11",
+        "drupal/memcache": "2.0"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",
