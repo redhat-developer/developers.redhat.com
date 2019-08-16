@@ -1,7 +1,7 @@
 version: '2'
 services:
   update-composer:
-    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.0
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
     user: ${DUID}:0
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
@@ -12,6 +12,7 @@ services:
     environment:
       - https_proxy
       - http_proxy
+      - COMPOSER_MEMORY_LIMIT=-1
     working_dir: /drupal
 
   seed_env:
@@ -88,6 +89,16 @@ services:
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
+
+  memcached-0:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=256
+
+  memcached-1:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=256
 
   mysql:
     image: mariadb:10.3.9-bionic
