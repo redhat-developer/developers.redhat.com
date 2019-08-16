@@ -17,6 +17,7 @@ managed-platform/ansible/testing/backup-drupal/drupal-workspace
 managed-platform/ansible/testing/cleanup-env/drupal-workspace
 managed-platform/ansible/testing/backup-s3-sync/env.yml
 
+# Ignore configuration files for local development
 dev/localhost.pem
 dev/localhost-key.pem
 dev/drupal-workspace

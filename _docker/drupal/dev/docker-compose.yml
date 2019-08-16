@@ -1,14 +1,14 @@
 version: '2'
 services:
   update-composer:
-    image: registry.paas.redhat.com/rhdp/developer-base
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
     user: root
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
       - ../drupal-filesystem/composer.lock:/drupal/composer.lock
       - ../drupal-filesystem/patches:/drupal/patches
       - ../drupal-filesystem/scripts/ScriptHandler.php:/drupal/scripts/ScriptHandler.php
-    entrypoint: ["/bin/bash", "-c", "composer update"]
+    entrypoint: ["/bin/bash"]
     environment:
       - https_proxy
       - http_proxy
@@ -88,6 +88,16 @@ services:
       - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+
+  memcached-0:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=256
+
+  memcached-1:
+    image: registry.redhat.io/rhel8/memcached
+    environment:
+      - MEMCACHED_MAX_MEMORY=256
 
   mysql:
     image: mariadb:10.3.9-bionic
