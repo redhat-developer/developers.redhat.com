@@ -10,8 +10,8 @@ then
     cd /var/www/drupal/web
     chown -R "$DUID":0 .
     tar czf "$WORK_DIR/drupal-filesystem.tar.gz" config sites
-    chown -R "$DUID":0 "$WORK_DIR"
-    chmod -R 775 "$WORK_DIR"
+    chown -R "$DUID":0 "/drupal-workspace/drupal_$DEPLOYMENT_ID"
+    chmod -R 775 "/drupal-workspace/drupal_$DEPLOYMENT_ID"
 else
     echo "Seed of environment has already been completed"
 fi
