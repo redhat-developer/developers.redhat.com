@@ -68,6 +68,16 @@ This will:
 
 Once the script has finished running, you can access Drupal at [https://localhost](https://localhost)
 
+#### Running Drupal with Memcached
+
+The local environment also has support for replacing Drupal's database cache with memcached. The database currently remains the default, but it is easy to replace this.
+
+Once you have Drupal running simply edit the `./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php` file and change
+the value of `$config['redhat_developers']['cache']['engine']` to `memcached`.
+
+Once you have done this, connect to the Drupal container using the `./run-drupal-connect.sh` script and execute `drush cr`. This will switch your environment to use
+Memcached for the cache. This change will last until you run `./run-drupal.sh` again.
+
 ### Exporting configuration from Drupal
 
 When you're ready to export changes from your running Drupal instance that you wish to submit in a pull request, simply
