@@ -2,7 +2,7 @@
 
 {% include '@components/card.twig' with {
   'tag': 'Cheat Sheet',
-  'content_image': content.field_cover_image.0 | with('#image_style', 'large'),
+  'content_image': content.field_cover_image,
   'title': {
     'text': node.label,
   },

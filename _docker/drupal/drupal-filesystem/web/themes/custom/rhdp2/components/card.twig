@@ -8,12 +8,14 @@
  * - title;
  *   - title.url; Typically a link to the node displayed in the card.
  *   - title.text; The title of the node displayed in the Card.
+ * - subtitle: A section for either a subtitle or metadata below the title.
  * - body: The body text for this Card. This could be a summary or otherwise
  *   trimmed version if the body text is too long.
  * - authors: (Array)
  *   - author.url: A URL to the Author's user node or any other page/URL that
  *     represents the author.
  *   - author.name: The author's name.
+ * - content_image: An image rendered within the content of the Card.
  * - comment_count: A string integer of the number of comments made on the
  *   content within the card.
  *
@@ -26,22 +28,33 @@
   {% endif %}
   
   {% if tag is defined %}
+    {% set fa_classes = 'fas ' ~ tag.class %}
     <div class="rhd-c-card__tag">
-      {# @todo determine how to dynamically figure out the FA class #}
-      <i class="fas fa-newspaper"></i>
-      {{ tag }}
+      <i class={{ fa_classes }}></i>
+      {{ tag.text }}
     </div>
   {% endif %}
 
   <div class="rhd-c-card-content">
     {% if title is defined %}
+      {# Set the appropriate title classes whether or not a hero_image exists #}
+      {% if hero_image is not defined %}
+        {% set title_classes = ['rhd-c-card__title', 'rhd-m-card-title__no-image'] %}
+      {% else %}
+        {% set title_classes = ['rhd-c-card__title'] %}
+      {% endif %}
+
       {% if title.url is defined %}
-        <h3 class="rhd-c-card__title">
+        <h3 class="{{ title_classes|join(' ') }}">
           <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
         </h3>
       {% elseif title.url is not defined and title.text is defined %}
-        <h3 class="rhd-c-card__title">{{ title.text }}</h3>
+        <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
       {% endif %}
+    {% endif %}
+
+    {% if subtitle is defined %}
+      <div class="rhd-c-card__subtitle">{{ subtitle }}</div>
     {% endif %}
 
     {% if body is defined %}

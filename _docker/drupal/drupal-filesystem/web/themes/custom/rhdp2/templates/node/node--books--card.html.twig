@@ -1,7 +1,11 @@
 {{ attach_library('classy/node') }}
 
 {% include '@components/card.twig' with {
-  'content_image': content.field_cover_image.0 | with('#image_style', 'large'),
+  'tag': {
+    'class': 'fa-book',
+    'text': 'Ebook'
+  },
+  'content_image': content.field_cover_image,
   'title': {
     'text': node.label,
     'url': url

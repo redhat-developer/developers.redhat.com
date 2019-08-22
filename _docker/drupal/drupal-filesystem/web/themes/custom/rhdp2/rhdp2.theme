@@ -4,3 +4,51 @@
  * @file
  * Functions to support theming in the RHDP2 theme.
  */
+
+/**
+ * Implements hook_preprocess_assembly().
+ */
+function rhdp2_preprocess_assembly(&$variables) {
+  $assembly = $variables['elements']['#assembly'];
+  $type = $assembly->bundle();
+
+  // Code Snippet assembly type.
+  if ($type == 'code_snippet') {
+    // Code field.
+    if ($assembly->hasField('field_code')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_code)) {
+        $field_code = $assembly->get('field_code')->getValue()[0]['value'];
+        $variables['code'] = $field_code;
+      }
+      $variables['#attached']['library'][] = 'rhdp2/highlight-js';
+    }
+    // Programming Language field.
+    if ($assembly->hasField('field_programming_language')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_programming_language)) {
+        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
+        $variables['language'] = isset($language) ? $language : '';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function rhdp2_preprocess_block(array &$variables) {
+  // Verify that the #id has some non-empty value prior to using it.
+  if (!empty($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
+
+    if ($block_id == 'rhdp2_rhdnavigation_mobile') {
+      $variables['attributes']['class'][] = 'rhd-nav-mobile';
+    }
+
+    if ($block_id == 'rhdp2_rhdnavigation') {
+      $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
+  }
+}
+

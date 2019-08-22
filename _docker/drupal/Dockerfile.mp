@@ -24,11 +24,18 @@ COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
-# Build the theme
+# Build the rhdp theme
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
     && npm run-script build \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
+
+# Build the rhdp2 theme
+RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
+    && npm install \
+    && npm run-script styles \
+    && npm run-script build \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/node_modules
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
