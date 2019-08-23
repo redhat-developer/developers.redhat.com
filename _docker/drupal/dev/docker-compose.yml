@@ -2,13 +2,13 @@ version: '2'
 services:
   update-composer:
     image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
-    user: root
+    user: ${DUID}:0
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
       - ../drupal-filesystem/composer.lock:/drupal/composer.lock
       - ../drupal-filesystem/patches:/drupal/patches
       - ../drupal-filesystem/scripts/ScriptHandler.php:/drupal/scripts/ScriptHandler.php
-    entrypoint: ["/bin/bash"]
+    command: ["/bin/bash"]
     environment:
       - https_proxy
       - http_proxy
@@ -20,6 +20,7 @@ services:
       context: ../managed-platform/ansible/testing/rhdp-data-seed
     environment:
       - DEPLOYMENT_ID=1
+      - DUID=${DUID}
     volumes:
       - ./drupal-workspace:/drupal-workspace
     depends_on:
@@ -29,9 +30,8 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile.mp
-    entrypoint: ["/bin/bash", "-c", "ansible-playbook bootstrap-env.yml"]
-    user: root
-    working_dir: "/ansible"
+    command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-env.yml"]
+    user: ${DUID}:0
     environment:
     - DEPLOYMENT_ID=1
     - http_proxy
@@ -46,8 +46,8 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile.mp
-    command: ["/bin/bash", "-c", "ansible-playbook bootstrap-drupal.yml"]
-    working_dir: "/ansible"
+    command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-drupal.yml"]
+    user: ${DUID}:0
     environment:
     - DEPLOYMENT_ID=1
     - https_proxy
@@ -68,7 +68,7 @@ services:
      context: ../
      dockerfile: Dockerfile.mp
     command: ["/bin/bash", "-c", "/var/www/drupal/run-httpd.sh"]
-    user: root
+    user: ${DUID}:0
     ports:
       - "80:8080"
       - "443:8443"

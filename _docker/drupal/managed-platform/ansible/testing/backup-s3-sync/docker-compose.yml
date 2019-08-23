@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile.full
     environment:
     - DEPLOYMENT_ID=sync
+    - DUID=${DUID}
     volumes:
     - ./drupal-workspace:/drupal-workspace
     depends_on:
