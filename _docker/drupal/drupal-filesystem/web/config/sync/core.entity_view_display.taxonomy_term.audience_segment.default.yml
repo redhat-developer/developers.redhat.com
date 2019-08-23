@@ -1,35 +1,29 @@
-uuid: 9a27fbb9-ef21-4283-bb2f-8e3775af3953
+uuid: fc24696f-1d70-4a04-b3fa-9b6239dd40fb
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.topics.field_alt_landing
-    - taxonomy.vocabulary.topics
+    - taxonomy.vocabulary.audience_segment
   module:
     - fences
     - field_layout
     - layout_discovery
-    - link
+    - text
 third_party_settings:
   field_layout:
     id: layout_disabled
     settings: {  }
-id: taxonomy_term.topics.default
+id: taxonomy_term.audience_segment.default
 targetEntityType: taxonomy_term
-bundle: topics
+bundle: audience_segment
 mode: default
 content:
-  field_alt_landing:
-    type: link
+  description:
+    label: hidden
+    type: text_default
     weight: 0
     region: content
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+    settings: {  }
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -39,5 +33,4 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
 hidden:
-  description: true
   langcode: true
