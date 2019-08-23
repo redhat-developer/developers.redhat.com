@@ -5,6 +5,11 @@
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.2.10"
+        }
+    },
     "authors": [
         {
             "name": "",
@@ -92,7 +97,7 @@
         "drupal/publication_date": "2.x-dev",
         "jquery/select2": "4.0.3",
         "drupal/twig_tweak": "^2.1",
-        "drupal/imagecache_external": "1.x-dev#901b9b0a9cfd728e76da016b56757a24fc45fde0",
+        "drupal/imagecache_external": "^1.1",
         "drupal/readonlymode": "^1.0",
         "drupal/session_limit": "^1.0@beta",
         "drupal/seckit": "1.1",
@@ -100,10 +105,11 @@
         "drupal/restui": "1.16",
         "drupal/akamai": "3.0-alpha4",
         "drupal/trailing_slash": "^1.0",
-        "drupal/bootstrap": "3.17",
+        "drupal/bootstrap": "3.20",
         "drupal/compose": "1.x",
         "drupal/beryllium": "1.x",
-        "drupal/search_api": "1.11"
+        "drupal/search_api": "1.11",
+        "drupal/memcache": "2.0"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",

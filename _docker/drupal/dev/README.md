@@ -11,10 +11,36 @@ In particular this directory provides you with:
 
 ### Before you start
 
+#### Provide registry.redhat.io login details
+
+The local development environment requires some Docker images from registry.redhat.io. To be able to pull these images, you need to provide your
+user account details for this registry.
+
+To do that, firstly visit registry.redhat.io and ensure that you can log in (you should be able to log in with your Red Hat Developer account)
+
+Next copy `local-config.sh.example` to `local-config.sh` and provide the values for your username and password. `local-config.sh` should not be committed
+to Git and is already set to be ignored.
+
+
+#### Install mkcert
+
 You will need to install [mkcert](https://github.com/FiloSottile/mkcert) on your local machine so that we can run Drupal locally using
 SSL but not receiving any certificate warnings.
 
 Follow the instructions relevant to your operating environment.
+
+#### Effective user of the containers
+
+The local development environment is designed to map your current user id into the containers to ensure that any files written by Drupal or created
+as part of the Drupal bootstrap process are owned by you. To do this, the wrapper scripts set the variable `DUID` to your current `id` when
+you run the script.
+
+If you wish to run containers directly using `docker-compose` commands, then you will need to set this variable manually. The most effective way of doing this
+is adding the following to your `$HOME/.bashrc` file:
+
+```shell script
+export DUID=$(id -u)
+```
 
 ### Running `composer update`
 
@@ -51,8 +77,19 @@ This will:
     * password: password
 * Generate a set of SSL certificates on for your local machine
 * Start Drupal on port `443` on your local machine
+* Start two instances of [memcached](https://memcached.org) on your local machine and configure Drupal to use these
 
 Once the script has finished running, you can access Drupal at [https://localhost](https://localhost)
+
+#### Running Drupal with Memcached
+
+The local environment also has support for replacing Drupal's database cache with memcached. The database currently remains the default, but it is easy to replace this.
+
+Once you have Drupal running simply edit the `./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php` file and change
+the value of `$config['redhat_developers']['cache']['engine']` to `memcached`.
+
+Once you have done this, connect to the Drupal container using the `./run-drupal-connect.sh` script and execute `drush cr`. This will switch your environment to use
+Memcached for the cache. This change will last until you run `./run-drupal.sh` again.
 
 ### Exporting configuration from Drupal
 
