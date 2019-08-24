@@ -3,6 +3,13 @@ set -e
 RED='\033[0;31m'
 NC='\033[0m'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+DUID="$(id -u)"; export DUID
+MKCERT="$(command -v mkcert)"
+
+if [[ "${MKCERT}" == "" ]]; then
+  echo "You must install 'mkcert' before using this script."
+  exit 1
+fi
 
 if [[ ! -e ${DIR}/local-config.sh ]]; then
     echo -e "${RED}ERROR: ${NC}Please create ${DIR}/local-config.sh before proceeding to allow logins to registry.redhat.io"
@@ -26,6 +33,6 @@ cd "${DIR}" && mkdir -p drupal-workspace
 cd "${DIR}" && docker-compose run --rm seed_env
 cd "${DIR}" && docker-compose run --rm bootstrap_env
 cd "${DIR}" && docker-compose run --rm bootstrap_drupal
-cd "${DIR}" && chmod -R 777 ./drupal-workspace/drupal_1/drupal/sites/default/files
+cd "${DIR}" && chmod -R 777 ./drupal-workspace/drupal_1/drupal/sites/default/files && chown -R "${DUID}" "${DIR}"/drupal-workspace
 cd "${DIR}" && docker-compose up -d drupal
 cd "${DIR}" && docker-compose logs -f drupal
