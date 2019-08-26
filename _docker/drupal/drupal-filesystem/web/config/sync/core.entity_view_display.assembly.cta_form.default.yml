@@ -28,7 +28,14 @@ content:
     weight: 1
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: text_default
     region: content
   field_form:
@@ -54,7 +61,7 @@ content:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h2
+        fences_field_tag: none
         fences_field_classes: ''
         fences_field_item_tag: none
         fences_field_item_classes: ''
