@@ -52,3 +52,11 @@ function rhdp2_preprocess_block(array &$variables) {
   }
 }
 
+/**
+ * Implements template_preprocess_field().
+ */
+function rhdp2_preprocess_field(&$variables, $hook) {
+  if ($variables['field_type'] === 'video_embed_field' && !empty($variables['items'][0])) {
+    $variables['items'][0]['content']['#attached']['library'][] = 'rhdp2/video_embed_field.responsive-video';
+  }
+}
