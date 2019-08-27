@@ -58,22 +58,34 @@ class DownloadManagerApi {
    *   sucessful. Otherwise, returns FALSE.
    */
   public function getContentById($id) {
-    try {
-      $feed_url = $this->apiUrl . $id;
-      $request = $this->client->request('GET', $feed_url);
-      $response = $request->getBody()->getContents();
+    $cid = 'download_manager_api:product:' . $id;
 
-      return json_decode($response);
+    // Serve the cached Download Manager data if available.
+    if ($cache = \Drupal::cache()->get($cid)) {
+      $data = $cache->data;
     }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Download Manager API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        $feed_url = $this->apiUrl . $id;
+        $request = $this->client->request('GET', $feed_url);
+        $response = $request->getBody()->getContents();
+        $data = json_decode($response);
+        // Persist this data to the download_manager_api cache bin for an hour.
+        \Drupal::cache()->set($cid, $data, time() + 3600);
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('rhd_assemblies')->error(
+          "Exception while calling Download Manager API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
 
-      return FALSE;
+        return FALSE;
+      }
     }
+
+    return $data;
   }
 
   /**
