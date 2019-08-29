@@ -42,27 +42,6 @@ services:
     depends_on:
     - mysql
 
-  drush_cex:
-    build:
-      context: ../
-      dockerfile: Dockerfile.mp
-    command: ["/bin/bash", "-c", "drush cex -y"]
-    user: ${DUID}:0
-    environment:
-      - DEPLOYMENT_ID=1
-      - https_proxy
-      - http_proxy
-    volumes:
-      - ./env.yml:/credentials/ansible/env.yml
-      - ./edgerc:/credentials/akamai/edgerc
-      - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-      - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
-      - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
-      - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
-    depends_on:
-      - mysql
-      - drupal
-
   bootstrap_drupal:
     build:
       context: ../
@@ -79,6 +58,7 @@ services:
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
     - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
     - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
+    - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
     - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
     - ./drupal-workspace:/drupal-workspace
     depends_on:
@@ -106,6 +86,7 @@ services:
       - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
       - ./drupal-workspace/drupal_1/drupal/apache/drupal.conf:/opt/rh/httpd24/root/etc/httpd/conf.d/drupal.conf
       - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
+      - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml

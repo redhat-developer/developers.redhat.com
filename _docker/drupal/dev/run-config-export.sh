@@ -14,4 +14,4 @@ then
   exit 1
 fi
 
-cd "$DIR" && docker-compose run --rm drush_cex
+docker exec dev_drupal_1 /bin/bash -c "drush cex -y"
