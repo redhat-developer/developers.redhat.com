@@ -76,7 +76,7 @@
         };
 
         var recentCommentsFail = function(response) {
-          if (comments === false) {
+          if (typeof(comments) === 'undefined' || comments === false) {
             $(instance.element).html('Oops! We were unable to retrieve comments at this time.');
           }
         }
