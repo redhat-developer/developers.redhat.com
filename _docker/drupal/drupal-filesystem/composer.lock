@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a22738c61fb4473d9aefc1078053a8e",
+    "content-hash": "7ca8dbf6798a299679e8bd4551a56e70",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -3016,6 +3016,9 @@
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Check user status": "https://www.drupal.org/files/issues/2019-08-29/content_moderation_notifications-check_user_status-3078110-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3035,7 +3038,7 @@
             "description": "Manage notifications for content moderation transitions.",
             "homepage": "https://www.drupal.org/project/content_moderation_notifications",
             "support": {
-                "source": "http://cgit.drupalcode.org/content_moderation_notifications",
+                "source": "https://git.drupalcode.org/project/content_moderation_notifications",
                 "issues": "https://www.drupal.org/project/issues/content_moderation_notifications"
             }
         },
@@ -12725,16 +12728,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.3.3",
+            "version": "v4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e4110b992d2cbe198d7d3b244d079c1c58761d07"
+                "reference": "641043e0f3e615990a0f29479f9c117e8a6698c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e4110b992d2cbe198d7d3b244d079c1c58761d07",
-                "reference": "e4110b992d2cbe198d7d3b244d079c1c58761d07",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/641043e0f3e615990a0f29479f9c117e8a6698c6",
+                "reference": "641043e0f3e615990a0f29479f9c117e8a6698c6",
                 "shasum": ""
             },
             "require": {
@@ -12797,7 +12800,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-07-27T06:42:46+00:00"
+            "time": "2019-08-26T08:26:39+00:00"
         },
         {
             "name": "symfony/yaml",
