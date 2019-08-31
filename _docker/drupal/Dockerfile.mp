@@ -13,6 +13,7 @@ COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
 COPY drupal-filesystem/patches /var/www/drupal/patches
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
 COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/drupal/
+
 RUN cd /var/www/drupal \
     && if [ "$composer_profile" = "development" ]; \
        then /usr/local/bin/composer install --no-interaction; \
@@ -31,7 +32,10 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
 
 # Build the rhdp2 theme
+ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
+    && npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
+    && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
     && npm install \
     && npm run-script styles \
     && npm run-script build \
