@@ -95,7 +95,7 @@ services:
       - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
-      - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
+      # - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
 
   memcached-0:
