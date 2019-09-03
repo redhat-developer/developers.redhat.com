@@ -179,12 +179,12 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2019-06-21/2174633-309.patch",
-            "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
-            "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch"
+            "Fix entity reference view": "patches/core/fix-entity-reference-view.patch",
+            "Fix add/remove group button in Bootstrap": "patches/core/fix-add-remove-group-button-bootstrap.patch",
+            "Add disabled layout to layout_discovery and use as default in field_layout": "patches/core/field-layout-disabled-default.patch"
           },
           "drupal/inline_entity_form": {
-            "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
+            "Support entity reference revisions": "patches/inline_entity_form/support_entity_revision.patch"
           },
           "drupal/openid_connect": {
             "Change Keycloak LoginForm button text": "patches/openid_connect/change-keycloak-button-text.patch",

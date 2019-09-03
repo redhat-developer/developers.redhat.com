@@ -1,0 +1,154 @@
+diff --git a/core/modules/field_layout/field_layout.install b/core/modules/field_layout/field_layout.install
+index 88882d3928..c55a77d4c7 100644
+--- a/core/modules/field_layout/field_layout.install
++++ b/core/modules/field_layout/field_layout.install
+@@ -36,7 +36,7 @@ function field_layout_uninstall() {
+   // the absence of layouts.
+   $entity_save = function (EntityDisplayInterface $entity) {
+     if ($entity instanceof EntityDisplayWithLayoutInterface) {
+-      $entity->setLayoutId('layout_onecol')->save();
++      $entity->setLayoutId('layout_disabled')->save();
+     }
+   };
+   array_map($entity_save, EntityViewDisplay::loadMultiple());
+diff --git a/core/modules/field_layout/field_layout.module b/core/modules/field_layout/field_layout.module
+index 713e7e4aac..a200a3cd8e 100644
+--- a/core/modules/field_layout/field_layout.module
++++ b/core/modules/field_layout/field_layout.module
+@@ -49,8 +49,10 @@ function field_layout_entity_type_alter(array &$entity_types) {
+  * Implements hook_entity_view_alter().
+  */
+ function field_layout_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+-  if ($display instanceof EntityDisplayWithLayoutInterface) {
+-    \Drupal::classResolver(FieldLayoutBuilder::class)->buildView($build, $display);
++  if ($display->getThirdPartySetting('field_layout', 'id') != 'layout_disabled') {
++    if ($display instanceof EntityDisplayWithLayoutInterface) {
++      \Drupal::classResolver(FieldLayoutBuilder::class)->buildView($build, $display);
++    }
+   }
+ }
+ 
+diff --git a/core/modules/field_layout/src/Display/EntityDisplayWithLayoutInterface.php b/core/modules/field_layout/src/Display/EntityDisplayWithLayoutInterface.php
+index 3bee65ec22..0eadad2b8d 100644
+--- a/core/modules/field_layout/src/Display/EntityDisplayWithLayoutInterface.php
++++ b/core/modules/field_layout/src/Display/EntityDisplayWithLayoutInterface.php
+@@ -69,10 +69,10 @@ public function getLayout();
+    *
+    * @param string $default_layout_id
+    *   (optional) The layout ID to use as a default. Defaults to
+-   *   'layout_onecol'.
++   *   'layout_disabled'.
+    *
+    * @return $this
+    */
+-  public function ensureLayout($default_layout_id = 'layout_onecol');
++  public function ensureLayout($default_layout_id = 'layout_disabled');
+ 
+ }
+diff --git a/core/modules/field_layout/src/Entity/FieldLayoutEntityDisplayTrait.php b/core/modules/field_layout/src/Entity/FieldLayoutEntityDisplayTrait.php
+index 59377bef03..faa9becab0 100644
+--- a/core/modules/field_layout/src/Entity/FieldLayoutEntityDisplayTrait.php
++++ b/core/modules/field_layout/src/Entity/FieldLayoutEntityDisplayTrait.php
+@@ -125,7 +125,7 @@ public function preSave(EntityStorageInterface $storage) {
+   /**
+    * {@inheritdoc}
+    */
+-  public function ensureLayout($default_layout_id = 'layout_onecol') {
++  public function ensureLayout($default_layout_id = 'layout_disabled') {
+     if (!$this->getLayoutId()) {
+       $this->setLayoutId($default_layout_id);
+     }
+diff --git a/core/modules/field_layout/tests/modules/field_layout_test/field_layout_test.module b/core/modules/field_layout/tests/modules/field_layout_test/field_layout_test.module
+index 6905c3daac..55b9030520 100644
+--- a/core/modules/field_layout/tests/modules/field_layout_test/field_layout_test.module
++++ b/core/modules/field_layout/tests/modules/field_layout_test/field_layout_test.module
+@@ -10,7 +10,7 @@
+  */
+ function field_layout_test_layout_alter(&$definitions) {
+   /** @var \Drupal\Core\Layout\LayoutDefinition[] $definitions */
+-  if (\Drupal::state()->get('field_layout_test.alter_regions') && isset($definitions['layout_onecol'])) {
+-    $definitions['layout_onecol']->setRegions(['foo' => ['label' => 'Foo']]);
++  if (\Drupal::state()->get('field_layout_test.alter_regions') && isset($definitions['layout_disabled'])) {
++    $definitions['layout_disabled']->setRegions(['foo' => ['label' => 'Foo']]);
+   }
+ }
+diff --git a/core/modules/field_layout/tests/src/Kernel/FieldLayoutEntityDisplayTest.php b/core/modules/field_layout/tests/src/Kernel/FieldLayoutEntityDisplayTest.php
+index 3ca5e596ea..aea7ca54dc 100644
+--- a/core/modules/field_layout/tests/src/Kernel/FieldLayoutEntityDisplayTest.php
++++ b/core/modules/field_layout/tests/src/Kernel/FieldLayoutEntityDisplayTest.php
+@@ -40,7 +40,7 @@ public function testPreSave() {
+       'dependencies' => [],
+       'third_party_settings' => [
+         'field_layout' => [
+-          'id' => 'layout_onecol',
++          'id' => 'layout_disabled',
+           'settings' => [],
+         ],
+       ],
+diff --git a/core/modules/layout_discovery/layout_discovery.layouts.yml b/core/modules/layout_discovery/layout_discovery.layouts.yml
+index 755a96b5f7..0d7e719cce 100644
+--- a/core/modules/layout_discovery/layout_discovery.layouts.yml
++++ b/core/modules/layout_discovery/layout_discovery.layouts.yml
+@@ -1,3 +1,13 @@
++layout_disabled:
++  label: 'Disabled'
++  path: layouts/disabled
++  template: layout--disabled
++  category: 'Default'
++  default_region: content
++  regions:
++    content:
++      label: Content
++
+ layout_onecol:
+   label: 'One column'
+   path: layouts/onecol
+diff --git a/core/modules/layout_discovery/layout_discovery.module b/core/modules/layout_discovery/layout_discovery.module
+index 3eed9fe2f9..4b06903771 100644
+--- a/core/modules/layout_discovery/layout_discovery.module
++++ b/core/modules/layout_discovery/layout_discovery.module
+@@ -37,14 +37,16 @@ function layout_discovery_theme() {
+  *     Properties used: #settings, #layout.
+  */
+ function template_preprocess_layout(&$variables) {
+-  $variables['settings'] = isset($variables['content']['#settings']) ? $variables['content']['#settings'] : [];
+-  $variables['layout'] = isset($variables['content']['#layout']) ? $variables['content']['#layout'] : [];
++  if ($variables['theme_hook_original'] != 'layout__disabled') {
++    $variables['settings'] = isset($variables['content']['#settings']) ? $variables['content']['#settings'] : [];
++    $variables['layout'] = isset($variables['content']['#layout']) ? $variables['content']['#layout'] : [];
+ 
+-  // Create an attributes variable for each region.
+-  foreach (Element::children($variables['content']) as $name) {
+-    if (!isset($variables['content'][$name]['#attributes'])) {
+-      $variables['content'][$name]['#attributes'] = [];
++    // Create an attributes variable for each region.
++    foreach (Element::children($variables['content']) as $name) {
++      if (!isset($variables['content'][$name]['#attributes'])) {
++        $variables['content'][$name]['#attributes'] = [];
++      }
++      $variables['region_attributes'][$name] = new Attribute($variables['content'][$name]['#attributes']);
+     }
+-    $variables['region_attributes'][$name] = new Attribute($variables['content'][$name]['#attributes']);
+   }
+ }
+diff --git a/core/modules/layout_discovery/layouts/disabled/layout--disabled.html.twig b/core/modules/layout_discovery/layouts/disabled/layout--disabled.html.twig
+new file mode 100644
+index 0000000000..7cd725fc8e
+--- /dev/null
++++ b/core/modules/layout_discovery/layouts/disabled/layout--disabled.html.twig
+@@ -0,0 +1,15 @@
++{#
++/**
++ * @file
++ * Default theme implementation to display no layout.
++ *
++ * Available variables:
++ * - content: The content for this layout.
++ * - attributes: HTML attributes for the layout <div>.
++ *
++ * @ingroup themeable
++ */
++#}
++{% if content %}
++  {{ content }}
++{% endif %}

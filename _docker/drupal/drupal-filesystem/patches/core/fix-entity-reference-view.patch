@@ -1,0 +1,860 @@
+diff --git a/core/lib/Drupal/Core/Entity/Element/EntityAutocomplete.php b/core/lib/Drupal/Core/Entity/Element/EntityAutocomplete.php
+index 0691239dfa..84019085b5 100644
+--- a/core/lib/Drupal/Core/Entity/Element/EntityAutocomplete.php
++++ b/core/lib/Drupal/Core/Entity/Element/EntityAutocomplete.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\Core\Entity\Element;
+ 
+ use Drupal\Component\Utility\Crypt;
++use Drupal\Component\Utility\Html;
+ use Drupal\Component\Utility\Tags;
+ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface;
+@@ -274,33 +275,55 @@ protected static function matchEntityByTitle(SelectionInterface $handler, $input
+     $entities = array_reduce($entities_by_bundle, function ($flattened, $bundle_entities) {
+       return $flattened + $bundle_entities;
+     }, []);
++
+     $params = [
+-      '%value' => $input,
+-      '@value' => $input,
++      '%input' => $input,
+     ];
+-    if (empty($entities)) {
+-      if ($strict) {
+-        // Error if there are no entities available for a required field.
+-        $form_state->setError($element, t('There are no entities matching "%value".', $params));
+-      }
+-    }
+-    elseif (count($entities) > 5) {
+-      $params['@id'] = key($entities);
+-      // Error if there are more than 5 matching entities.
+-      $form_state->setError($element, t('Many entities are called %value. Specify the one you want by appending the id in parentheses, like "@value (@id)".', $params));
+-    }
+-    elseif (count($entities) > 1) {
+-      // More helpful error if there are only a few matching entities.
+-      $multiples = [];
+-      foreach ($entities as $id => $name) {
+-        $multiples[] = $name . ' (' . $id . ')';
+-      }
+-      $params['@id'] = $id;
+-      $form_state->setError($element, t('Multiple entities match this reference; "%multiple". Specify the one you want by appending the id in parentheses, like "@value (@id)".', ['%multiple' => implode('", "', $multiples)] + $params));
+-    }
+-    else {
+-      // Take the one and only matching entity.
+-      return key($entities);
++
++    $count = count($entities);
++    switch ($count) {
++      case 0:
++        if ($strict) {
++          // Error if there are no entities available for a required field.
++          $form_state->setError($element, t('No entities match %input.', $params));
++        }
++        break;
++
++      case 1:
++        // Exactly one matching entity, so return the entity ID.
++        return key($entities);
++
++      case 2:
++      case 3:
++      case 4:
++      case 5:
++        // Detailed error if there are only a few matching entities.
++        $labels = [];
++        foreach ($entities as $id => $name) {
++          $labels[] = strip_tags(Html::decodeEntities($name)) . ' (' . $id . ')';
++        }
++        $params['%id'] = $id;
++        $params['@count'] = $count;
++
++        $message = [
++          '#prefix' => t('@count entities match %input:', $params),
++          [
++            '#theme' => 'item_list',
++            '#items' => $labels,
++          ],
++          '#suffix' => t('Specify the desired one by appending the entity ID in parentheses, like: %input (%id).', $params),
++        ];
++
++        $form_state->setError($element, \Drupal::service('renderer')->render($message));
++        break;
++
++      default:
++        // Simple error if there are more than 5 matching entities.
++        $params['%id'] = key($entities);
++        $params['@count'] = $count;
++        // Error if there are more than 5 matching entities.
++        $message = t('@count entities match %input.<br />Specify the desired one by appending the entity ID in parentheses, like: %input (%id).', $params);
++        $form_state->setError($element, $message);
+     }
+   }
+ 
+diff --git a/core/modules/field/tests/src/Functional/EntityReference/EntityReferenceAdminTest.php b/core/modules/field/tests/src/Functional/EntityReference/EntityReferenceAdminTest.php
+index 8510539c56..e63e40663f 100644
+--- a/core/modules/field/tests/src/Functional/EntityReference/EntityReferenceAdminTest.php
++++ b/core/modules/field/tests/src/Functional/EntityReference/EntityReferenceAdminTest.php
+@@ -9,6 +9,7 @@
+ use Drupal\taxonomy\Entity\Vocabulary;
+ use Drupal\Tests\BrowserTestBase;
+ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
++use Drupal\Component\Render\FormattableMarkup;
+ 
+ /**
+  * Tests for the administrative UI.
+@@ -160,7 +161,7 @@ public function testFieldAdminHandler() {
+     $this->drupalPostForm('node/add/' . $this->type, $edit, t('Save'));
+ 
+     // Assert that entity reference autocomplete field is validated.
+-    $this->assertText(t('There are no entities matching "@entity"', ['@entity' => 'Test']));
++    $this->assertText(new FormattableMarkup('No entities match @entity', ['@entity' => 'Test']));
+ 
+     $edit = [
+       'title[0][value]' => 'Test',
+@@ -170,10 +171,12 @@ public function testFieldAdminHandler() {
+ 
+     // Assert the results multiple times to avoid sorting problem of nodes with
+     // the same title.
+-    $this->assertText(t('Multiple entities match this reference;'));
+-    $this->assertText(t("@node1", ['@node1' => $node1->getTitle() . ' (' . $node1->id() . ')']));
+-    $this->assertText(t("@node2", ['@node2' => $node2->getTitle() . ' (' . $node2->id() . ')']));
+-    $this->assertText(t('Specify the one you want by appending the id in parentheses, like "@example".', ['@example' => $node2->getTitle() . ' (' . $node2->id() . ')']));
++    $this->assertSession()->elementTextContains('css', '.messages', new FormattableMarkup('2 entities match @label', ['@label' => 'Foo Node']));
++    foreach ([$node1, $node2] as $node) {
++      $html = '<li>' . new FormattableMarkup("@node", ['@node' => $node->getTitle() . ' (' . $node->id() . ')']) . '</li>';
++      $this->assertSession()->elementContains('css', '.item-list ul', $html);
++    }
++    $this->assertSession()->elementTextContains('css', '.messages', new FormattableMarkup('Specify the desired one by appending the entity ID in parentheses, like: @example.', ['@example' => $node2->getTitle() . ' (' . $node2->id() . ')']));
+ 
+     $edit = [
+       'title[0][value]' => 'Test',
+diff --git a/core/modules/field/tests/src/Functional/EntityReference/Views/SelectionTest.php b/core/modules/field/tests/src/Functional/EntityReference/Views/SelectionTest.php
+new file mode 100644
+index 0000000000..a90d0d0680
+--- /dev/null
++++ b/core/modules/field/tests/src/Functional/EntityReference/Views/SelectionTest.php
+@@ -0,0 +1,118 @@
++<?php
++
++namespace Drupal\Tests\field\Functional\EntityReference\Views;
++
++use Drupal\Component\Serialization\Json;
++use Drupal\Component\Utility\Crypt;
++use Drupal\Component\Utility\Html;
++use Drupal\Core\Site\Settings;
++use Drupal\Tests\BrowserTestBase;
++use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
++use Drupal\views\Views;
++
++/**
++ * Tests entity reference selection handler.
++ *
++ * @group entity_reference
++ */
++class SelectionTest extends BrowserTestBase {
++
++  use EntityReferenceTestTrait;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'node',
++    'views',
++    'entity_reference_test',
++    'entity_test',
++  ];
++
++  /**
++   * An array of node titles, keyed by content type and node ID.
++   *
++   * @var \Drupal\node\NodeInterface[]
++   */
++  protected $nodes = [];
++
++  /**
++   * The entity reference field to test.
++   *
++   * @var \Drupal\Core\Field\FieldDefinitionInterface
++   */
++  protected $field;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp() {
++    parent::setUp();
++
++    // Create content types and nodes.
++    $type1 = $this->drupalCreateContentType()->id();
++    $type2 = $this->drupalCreateContentType()->id();
++    // Add some characters that should be escaped but not double escaped.
++    $node1 = $this->drupalCreateNode(['type' => $type1, 'title' => 'Test first node &<>']);
++    $node2 = $this->drupalCreateNode(['type' => $type1, 'title' => 'Test second node &&&']);
++    $node3 = $this->drupalCreateNode(['type' => $type2, 'title' => 'Test third node <span />']);
++
++    foreach ([$node1, $node2, $node3] as $node) {
++      $this->nodes[$node->id()] = $node;
++    }
++
++    // Create an entity reference field.
++    $handler_settings = [
++      'view' => [
++        'view_name' => 'test_entity_reference',
++        'display_name' => 'entity_reference_1',
++      ],
++    ];
++    $this->field = $this->createEntityReferenceField('entity_test', 'test_bundle', 'test_field', $this->randomString(), 'node', 'views', $handler_settings);
++  }
++
++  /**
++   * Tests that the Views selection handles the views output properly.
++   */
++  public function testAutocompleteOutput() {
++    // Reset any internal static caching.
++    \Drupal::service('entity_type.manager')->getStorage('node')->resetCache();
++
++    $view = Views::getView('test_entity_reference');
++    $view->setDisplay();
++
++    // Enable the display of the 'type' field so we can test that the output
++    // does not contain only the entity label.
++    $fields = $view->displayHandlers->get('entity_reference_1')->getOption('fields');
++    $fields['type']['exclude'] = FALSE;
++    $view->displayHandlers->get('entity_reference_1')->setOption('fields', $fields);
++    $view->save();
++
++    // Prepare the selection settings key needed by the entity reference
++    // autocomplete route.
++    $target_type = 'node';
++    $selection_handler = $this->field->getSetting('handler');
++    $selection_settings = $this->field->getSetting('handler_settings');
++    $selection_settings_key = Crypt::hmacBase64(serialize($selection_settings) . $target_type . $selection_handler, Settings::getHashSalt());
++    \Drupal::keyValue('entity_autocomplete')->set($selection_settings_key, $selection_settings);
++
++    $result = Json::decode($this->drupalGet('entity_reference_autocomplete/' . $target_type . '/' . $selection_handler . '/' . $selection_settings_key, ['query' => ['q' => 't']]));
++
++    $expected = [
++      0 => [
++        'value' => $this->nodes[1]->bundle() . ': ' . $this->nodes[1]->label() . ' (' . $this->nodes[1]->id() . ')',
++        'label' => '<span class="views-field views-field-type"><span class="field-content">' . $this->nodes[1]->bundle() . '</span></span>: <span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[1]->label()) . '</span></span>',
++      ],
++      1 => [
++        'value' => $this->nodes[2]->bundle() . ': ' . $this->nodes[2]->label() . ' (' . $this->nodes[2]->id() . ')',
++        'label' => '<span class="views-field views-field-type"><span class="field-content">' . $this->nodes[2]->bundle() . '</span></span>: <span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[2]->label()) . '</span></span>',
++      ],
++      2 => [
++        'value' => $this->nodes[3]->bundle() . ': ' . $this->nodes[3]->label() . ' (' . $this->nodes[3]->id() . ')',
++        'label' => '<span class="views-field views-field-type"><span class="field-content">' . $this->nodes[3]->bundle() . '</span></span>: <span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[3]->label()) . '</span></span>',
++      ],
++    ];
++    $this->assertEqual($result, $expected, 'The autocomplete result of the Views entity reference selection handler contains the proper output.');
++  }
++
++}
+diff --git a/core/modules/field/tests/src/Kernel/EntityReference/Views/SelectionTest.php b/core/modules/field/tests/src/Kernel/EntityReference/Views/SelectionTest.php
+index 5a41448201..94d18de561 100644
+--- a/core/modules/field/tests/src/Kernel/EntityReference/Views/SelectionTest.php
++++ b/core/modules/field/tests/src/Kernel/EntityReference/Views/SelectionTest.php
+@@ -2,7 +2,7 @@
+ 
+ namespace Drupal\Tests\field\Kernel\EntityReference\Views;
+ 
+-use Drupal\field\Entity\FieldConfig;
++use Drupal\Component\Utility\Html;
+ use Drupal\KernelTests\KernelTestBase;
+ use Drupal\node\Entity\NodeType;
+ use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
+@@ -40,6 +40,13 @@ class SelectionTest extends KernelTestBase {
+    */
+   protected $nodes = [];
+ 
++  /**
++   * The selection handler.
++   *
++   * @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface
++   */
++  protected $selectionHandler;
++
+   /**
+    * {@inheritdoc}
+    */
+@@ -58,7 +65,7 @@ protected function setUp() {
+     $node3 = $this->createNode();
+ 
+     foreach ([$node1, $node2, $node3] as $node) {
+-      $this->nodes[$node->bundle()][$node->id()] = $node->label();
++      $this->nodes[$node->id()] = $node;
+     }
+ 
+     // Create an entity reference field.
+@@ -68,19 +75,16 @@ protected function setUp() {
+         'display_name' => 'entity_reference_1',
+       ],
+     ];
+-    $this->createEntityReferenceField('entity_test', 'test_bundle', 'test_field', $this->randomString(), 'node', 'views', $handler_settings);
++    $field = $this->createEntityReferenceField('entity_test', 'test_bundle', 'test_field', $this->randomString(), 'node', 'views', $handler_settings);
++    $this->selectionHandler = $this->container->get('plugin.manager.entity_reference_selection')->getSelectionHandler($field);
+   }
+ 
+   /**
+    * Tests the selection handler.
+    */
+   public function testSelectionHandler() {
+-    $field_config = FieldConfig::loadByName('entity_test', 'test_bundle', 'test_field');
+-    $selection_handler = $this->container->get('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config);
+-
+     // Tests the selection handler.
+-    $result = $selection_handler->getReferenceableEntities();
+-    $this->assertResults($result);
++    $this->assertResults($this->selectionHandler->getReferenceableEntities());
+ 
+     // Add a relationship to the view.
+     $view = Views::getView('test_entity_reference');
+@@ -110,8 +114,33 @@ public function testSelectionHandler() {
+     $view->save();
+ 
+     // Tests the selection handler with a relationship.
+-    $result = $selection_handler->getReferenceableEntities();
+-    $this->assertResults($result);
++    $this->assertResults($this->selectionHandler->getReferenceableEntities());
++  }
++
++  /**
++   * Tests the anchor tag stripping.
++   *
++   * Unstripped results based on the data above will result in output like so:
++   *   ...<a href="/node/1" hreflang="en">Test first node</a>...
++   *   ...<a href="/node/2" hreflang="en">Test second node</a>...
++   *   ...<a href="/node/3" hreflang="en">Test third node</a>...
++   * If we expect our output to not have the <a> tags, and this matches what's
++   * produced by the tag-stripping method, we'll know that it's working.
++   */
++  public function testAnchorTagStripping() {
++    $filtered_rendered_results_formatted = [];
++    foreach ($this->selectionHandler->getReferenceableEntities() as $subresults) {
++      $filtered_rendered_results_formatted += $subresults;
++    }
++
++    // Note the missing <a> tags.
++    $expected = [
++      1 => '<span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[1]->label()) . '</span></span>',
++      2 => '<span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[2]->label()) . '</span></span>',
++      3 => '<span class="views-field views-field-title"><span class="field-content">' . Html::escape($this->nodes[3]->label()) . '</span></span>',
++    ];
++
++    $this->assertEqual($filtered_rendered_results_formatted, $expected, 'Anchor tag stripping has failed.');
+   }
+ 
+   /**
+@@ -121,16 +150,12 @@ public function testSelectionHandler() {
+    *   Query results keyed by node type and nid.
+    */
+   protected function assertResults(array $result) {
+-    $success = FALSE;
+     foreach ($result as $node_type => $values) {
+       foreach ($values as $nid => $label) {
+-        if (!$success = $this->nodes[$node_type][$nid] == trim(strip_tags($label))) {
+-          // There was some error, so break.
+-          break;
+-        }
++        $this->assertSame($node_type, $this->nodes[$nid]->bundle());
++        $this->assertSame(trim(strip_tags($label)), Html::escape($this->nodes[$nid]->label()));
+       }
+     }
+-    $this->assertTrue($success, 'Views selection handler returned expected values.');
+   }
+ 
+ }
+diff --git a/core/modules/field/tests/src/Traits/EntityReferenceTestTrait.php b/core/modules/field/tests/src/Traits/EntityReferenceTestTrait.php
+index 26c4aaa81b..66a2212f73 100644
+--- a/core/modules/field/tests/src/Traits/EntityReferenceTestTrait.php
++++ b/core/modules/field/tests/src/Traits/EntityReferenceTestTrait.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Drupal\Tests\field\Traits;
+ 
++use Drupal\field\FieldConfigInterface;
+ use Drupal\field\Entity\FieldConfig;
+ use Drupal\field\Entity\FieldStorageConfig;
+ 
+@@ -20,7 +21,7 @@
+    * @param string $field_name
+    *   The name of the field; if it already exists, a new instance of the existing
+    *   field will be created.
+-   * @param string $field_label
++   * @param string|null $field_label
+    *   The label of the field.
+    * @param string $target_entity_type
+    *   The type of the referenced entity.
+@@ -32,9 +33,12 @@
+    * @param int $cardinality
+    *   The cardinality of the field.
+    *
+-   * @see \Drupal\Core\Entity\Plugin\EntityReferenceSelection\SelectionBase::buildConfigurationForm()
++   * @return \Drupal\field\FieldConfigInterface
++   *   The field.
++   *
++   * @see \Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection::buildConfigurationForm()
+    */
+-  protected function createEntityReferenceField($entity_type, $bundle, $field_name, $field_label, $target_entity_type, $selection_handler = 'default', $selection_handler_settings = [], $cardinality = 1) {
++  protected function createEntityReferenceField(string $entity_type, string $bundle, string $field_name, string $field_label = NULL, string $target_entity_type, string $selection_handler = 'default', array $selection_handler_settings = [], int $cardinality = 1): FieldConfigInterface {
+     // Look for or add the specified field to the requested entity bundle.
+     if (!FieldStorageConfig::loadByName($entity_type, $field_name)) {
+       FieldStorageConfig::create([
+@@ -47,8 +51,10 @@ protected function createEntityReferenceField($entity_type, $bundle, $field_name
+         ],
+       ])->save();
+     }
+-    if (!FieldConfig::loadByName($entity_type, $bundle, $field_name)) {
+-      FieldConfig::create([
++
++    $field = FieldConfig::loadByName($entity_type, $bundle, $field_name);
++    if (!$field) {
++      $field = FieldConfig::create([
+         'field_name' => $field_name,
+         'entity_type' => $entity_type,
+         'bundle' => $bundle,
+@@ -57,8 +63,11 @@ protected function createEntityReferenceField($entity_type, $bundle, $field_name
+           'handler' => $selection_handler,
+           'handler_settings' => $selection_handler_settings,
+         ],
+-      ])->save();
++      ]);
++      $field->save();
+     }
++
++    return $field;
+   }
+ 
+ }
+diff --git a/core/modules/node/tests/src/Functional/NodeEditFormTest.php b/core/modules/node/tests/src/Functional/NodeEditFormTest.php
+index 014f981363..ff5b830030 100644
+--- a/core/modules/node/tests/src/Functional/NodeEditFormTest.php
++++ b/core/modules/node/tests/src/Functional/NodeEditFormTest.php
+@@ -4,6 +4,7 @@
+ 
+ use Drupal\node\NodeInterface;
+ use Drupal\user\Entity\User;
++use Drupal\Component\Render\FormattableMarkup;
+ 
+ /**
+  * Create a node and test node edit functionality.
+@@ -250,7 +251,7 @@ protected function checkVariousAuthoredByValues(NodeInterface $node, $form_eleme
+       $form_element_name => 'invalid-name',
+     ];
+     $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, t('Save'));
+-    $this->assertRaw(t('There are no entities matching "%name".', ['%name' => 'invalid-name']));
++    $this->assertSession()->pageTextContains(new FormattableMarkup('No entities match @name.', ['@name' => 'invalid-name']));
+ 
+     // Change the authored by field to an empty string, which should assign
+     // authorship to the anonymous user (uid 0).
+diff --git a/core/modules/system/tests/modules/entity_reference_test/config/install/views.view.test_entity_reference.yml b/core/modules/system/tests/modules/entity_reference_test/config/install/views.view.test_entity_reference.yml
+index 1bcb19c455..334c3d6122 100644
+--- a/core/modules/system/tests/modules/entity_reference_test/config/install/views.view.test_entity_reference.yml
++++ b/core/modules/system/tests/modules/entity_reference_test/config/install/views.view.test_entity_reference.yml
+@@ -2,12 +2,11 @@ langcode: en
+ status: true
+ dependencies:
+   module:
+-    - entity_reference_test
+     - node
+     - user
+ id: test_entity_reference
+ label: 'Entity reference'
+-module: entity_reference_test
++module: views
+ description: ''
+ tag: ''
+ base_table: node_field_data
+@@ -35,6 +34,71 @@ display:
+       row:
+         type: fields
+       fields:
++        type:
++          id: type
++          table: node_field_data
++          field: type
++          relationship: none
++          group_type: group
++          admin_label: ''
++          label: ''
++          exclude: true
++          alter:
++            alter_text: false
++            text: ''
++            make_link: false
++            path: ''
++            absolute: false
++            external: false
++            replace_spaces: false
++            path_case: none
++            trim_whitespace: false
++            alt: ''
++            rel: ''
++            link_class: ''
++            prefix: ''
++            suffix: ''
++            target: ''
++            nl2br: false
++            max_length: 0
++            word_boundary: true
++            ellipsis: true
++            more_link: false
++            more_link_text: ''
++            more_link_path: ''
++            strip_tags: false
++            trim: false
++            preserve_tags: ''
++            html: false
++          element_type: ''
++          element_class: ''
++          element_label_type: ''
++          element_label_class: ''
++          element_label_colon: false
++          element_wrapper_type: ''
++          element_wrapper_class: ''
++          element_default_classes: true
++          empty: ''
++          hide_empty: false
++          empty_zero: false
++          hide_alter_empty: true
++          click_sort_column: target_id
++          type: entity_reference_label
++          settings:
++            link: false
++          group_column: target_id
++          group_columns: {  }
++          group_rows: true
++          delta_limit: 0
++          delta_offset: 0
++          delta_reversed: false
++          delta_first_last: false
++          multi_type: separator
++          separator: ', '
++          field_api_classes: false
++          entity_type: node
++          entity_field: type
++          plugin_id: field
+         title:
+           id: title
+           table: node_field_data
+@@ -99,14 +163,30 @@ display:
+           entity_type: node
+           entity_field: status
+       sorts:
+-        created:
+-          id: created
++        nid:
++          id: nid
+           table: node_field_data
+-          field: created
+-          order: DESC
+-          plugin_id: date
++          field: nid
++          relationship: none
++          group_type: group
++          admin_label: ''
++          order: ASC
++          exposed: false
++          expose:
++            label: ''
+           entity_type: node
+-          entity_field: created
++          entity_field: nid
++          plugin_id: standard
++      display_extenders: {  }
++    cache_metadata:
++      max-age: -1
++      contexts:
++        - 'languages:language_content'
++        - 'languages:language_interface'
++        - url.query_args
++        - 'user.node_grants:view'
++        - user.permissions
++      tags: {  }
+   entity_reference_1:
+     display_plugin: entity_reference
+     id: entity_reference_1
+@@ -123,3 +203,19 @@ display:
+         type: none
+         options:
+           offset: 0
++      display_extenders: {  }
++      row:
++        type: entity_reference
++        options:
++          default_field_elements: true
++          inline: {  }
++          separator: ': '
++          hide_empty: false
++    cache_metadata:
++      max-age: -1
++      contexts:
++        - 'languages:language_content'
++        - 'languages:language_interface'
++        - 'user.node_grants:view'
++        - user.permissions
++      tags: {  }
+diff --git a/core/modules/user/tests/src/Functional/Views/HandlerFilterUserNameTest.php b/core/modules/user/tests/src/Functional/Views/HandlerFilterUserNameTest.php
+index a5d271092a..d2ff3c5d87 100644
+--- a/core/modules/user/tests/src/Functional/Views/HandlerFilterUserNameTest.php
++++ b/core/modules/user/tests/src/Functional/Views/HandlerFilterUserNameTest.php
+@@ -5,6 +5,7 @@
+ use Drupal\views\Views;
+ use Drupal\Tests\views\Functional\ViewTestBase;
+ use Drupal\views\Tests\ViewTestData;
++use Drupal\Component\Render\FormattableMarkup;
+ 
+ /**
+  * Tests the handler of the user: name filter.
+@@ -98,7 +99,7 @@ public function testAdminUserInterface() {
+       'options[value]' => implode(', ', $users),
+     ];
+     $this->drupalPostForm($path, $edit, t('Apply'));
+-    $this->assertRaw(t('There are no entities matching "%value".', ['%value' => implode(', ', $users)]));
++    $this->assertSession()->pageTextContains(new FormattableMarkup('No entities match @value.', ['@value' => implode(', ', $users)]));
+ 
+     // Pass in an invalid username and a valid username.
+     $random_name = $this->randomMachineName();
+@@ -109,7 +110,7 @@ public function testAdminUserInterface() {
+     ];
+     $users = [$users[0]];
+     $this->drupalPostForm($path, $edit, t('Apply'));
+-    $this->assertRaw(t('There are no entities matching "%value".', ['%value' => implode(', ', $users)]));
++    $this->assertSession()->pageTextContains(new FormattableMarkup('No entities match @value.', ['@value' => implode(', ', $users)]));
+ 
+     // Pass in just valid usernames.
+     $users = $this->names;
+@@ -118,7 +119,7 @@ public function testAdminUserInterface() {
+       'options[value]' => implode(', ', $users),
+     ];
+     $this->drupalPostForm($path, $edit, t('Apply'));
+-    $this->assertNoRaw(t('There are no entities matching "%value".', ['%value' => implode(', ', $users)]));
++    $this->assertSession()->pageTextNotContains(new FormattableMarkup('No entities match @value.', ['@value' => implode(', ', $users)]));
+   }
+ 
+   /**
+@@ -134,7 +135,7 @@ public function testExposedFilter() {
+     $users = array_map('strtolower', $users);
+     $options['query']['uid'] = implode(', ', $users);
+     $this->drupalGet($path, $options);
+-    $this->assertRaw(t('There are no entities matching "%value".', ['%value' => implode(', ', $users)]));
++    $this->assertSession()->pageTextContains(new FormattableMarkup('No entities match @value.', ['@value' => implode(', ', $users)]));
+ 
+     // Pass in an invalid target_id in for the entity_autocomplete value format.
+     // There should be no errors, but all results should be returned as the
+@@ -154,7 +155,7 @@ public function testExposedFilter() {
+     $users = [$users[0]];
+ 
+     $this->drupalGet($path, $options);
+-    $this->assertRaw(t('There are no entities matching "%value".', ['%value' => implode(', ', $users)]));
++    $this->assertSession()->pageTextContains(new FormattableMarkup('No entities match @value.', ['@value' => implode(', ', $users)]));
+ 
+     // Pass in just valid usernames.
+     $users = $this->names;
+diff --git a/core/modules/views/src/Plugin/EntityReferenceSelection/ViewsSelection.php b/core/modules/views/src/Plugin/EntityReferenceSelection/ViewsSelection.php
+index 6def8d8fef..1551b513cb 100644
+--- a/core/modules/views/src/Plugin/EntityReferenceSelection/ViewsSelection.php
++++ b/core/modules/views/src/Plugin/EntityReferenceSelection/ViewsSelection.php
+@@ -2,14 +2,17 @@
+ 
+ namespace Drupal\views\Plugin\EntityReferenceSelection;
+ 
++use Drupal\Component\Utility\Xss;
+ use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+ use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginBase;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Extension\ModuleHandlerInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
++use Drupal\Core\Render\RendererInterface;
+ use Drupal\Core\Session\AccountInterface;
+ use Drupal\Core\Url;
++use Drupal\views\Render\ViewsRenderPipelineMarkup;
+ use Drupal\views\Views;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+@@ -24,6 +27,7 @@
+  * )
+  */
+ class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPluginInterface {
++
+   use DeprecatedServicePropertyTrait;
+ 
+   /**
+@@ -59,6 +63,13 @@ class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPlug
+    */
+   protected $currentUser;
+ 
++  /**
++   * The renderer.
++   *
++   * @var \Drupal\Core\Render\RendererInterface
++   */
++  protected $renderer;
++
+   /**
+    * Constructs a new ViewsSelection object.
+    *
+@@ -74,13 +85,21 @@ class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPlug
+    *   The module handler service.
+    * @param \Drupal\Core\Session\AccountInterface $current_user
+    *   The current user.
++   * @param \Drupal\Core\Render\RendererInterface|null $renderer
++   *   The renderer.
+    */
+-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, AccountInterface $current_user) {
++  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, AccountInterface $current_user, RendererInterface $renderer = NULL) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition);
+ 
+     $this->entityTypeManager = $entity_type_manager;
+     $this->moduleHandler = $module_handler;
+     $this->currentUser = $current_user;
++
++    if (!$renderer) {
++      @trigger_error('Calling ViewsSelection::__construct() with the $renderer argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0.', E_USER_DEPRECATED);
++      $renderer = \Drupal::service('renderer');
++    }
++    $this->renderer = $renderer;
+   }
+ 
+   /**
+@@ -93,7 +112,8 @@ public static function create(ContainerInterface $container, array $configuratio
+       $plugin_definition,
+       $container->get('entity_type.manager'),
+       $container->get('module_handler'),
+-      $container->get('current_user')
++      $container->get('current_user'),
++      $container->get('renderer')
+     );
+   }
+ 
+@@ -219,22 +239,68 @@ protected function initializeView($match = NULL, $match_operator = 'CONTAINS', $
+    * {@inheritdoc}
+    */
+   public function getReferenceableEntities($match = NULL, $match_operator = 'CONTAINS', $limit = 0) {
++    $entities = [];
++    if ($display_execution_results = $this->getDisplayExecutionResults($match, $match_operator, $limit)) {
++      $entities = $this->stripAdminAndAnchorTagsFromResults($display_execution_results);
++    }
++    return $entities;
++  }
++
++  /**
++   * Fetches the results of executing the display.
++   *
++   * @param string|null $match
++   *   (Optional) Text to match the label against. Defaults to NULL.
++   * @param string $match_operator
++   *   (Optional) The operation the matching should be done with. Defaults
++   *   to "CONTAINS".
++   * @param int $limit
++   *   Limit the query to a given number of items. Defaults to 0, which
++   *   indicates no limiting.
++   * @param array|null $ids
++   *   Array of entity IDs. Defaults to NULL.
++   *
++   * @return array
++   *   The results.
++   */
++  protected function getDisplayExecutionResults(string $match = NULL, string $match_operator = 'CONTAINS', int $limit = 0, array $ids = NULL): array {
+     $display_name = $this->getConfiguration()['view']['display_name'];
+     $arguments = $this->getConfiguration()['view']['arguments'];
+-    $result = [];
+-    if ($this->initializeView($match, $match_operator, $limit)) {
+-      // Get the results.
+-      $result = $this->view->executeDisplay($display_name, $arguments);
++    $results = [];
++    if ($this->initializeView($match, $match_operator, $limit, $ids)) {
++      $results = $this->view->executeDisplay($display_name, $arguments);
+     }
++    return $results;
++  }
+ 
+-    $return = [];
+-    if ($result) {
+-      foreach ($this->view->result as $row) {
+-        $entity = $row->_entity;
+-        $return[$entity->bundle()][$entity->id()] = $entity->label();
+-      }
++  /**
++   * Strips all admin and anchor tags from a result list.
++   *
++   * These results are usually displayed in an autocomplete field, which is
++   * surrounded by anchor tags. Most tags are allowed inside anchor tags, except
++   * for other anchor tags.
++   *
++   * @param array $results
++   *   The result list.
++   *
++   * @return array
++   *   The provided result list with anchor tags removed.
++   */
++  protected function stripAdminAndAnchorTagsFromResults(array $results): array {
++    $allowed_tags = Xss::getAdminTagList();
++    if (($key = array_search('a', $allowed_tags)) !== FALSE) {
++      unset($allowed_tags[$key]);
++    }
++
++    $stripped_results = [];
++    foreach ($results as $id => $row) {
++      $entity = $row['#row']->_entity;
++      $stripped_results[$entity->bundle()][$id] = ViewsRenderPipelineMarkup::create(
++        Xss::filter($this->renderer->renderPlain($row), $allowed_tags)
++      );
+     }
+-    return $return;
++
++    return $stripped_results;
+   }
+ 
+   /**
+@@ -249,15 +315,7 @@ public function countReferenceableEntities($match = NULL, $match_operator = 'CON
+    * {@inheritdoc}
+    */
+   public function validateReferenceableEntities(array $ids) {
+-    $display_name = $this->getConfiguration()['view']['display_name'];
+-    $arguments = $this->getConfiguration()['view']['arguments'];
+-    $result = [];
+-    if ($this->initializeView(NULL, 'CONTAINS', 0, $ids)) {
+-      // Get the results.
+-      $entities = $this->view->executeDisplay($display_name, $arguments);
+-      $result = array_keys($entities);
+-    }
+-    return $result;
++    return array_keys($this->getDisplayExecutionResults(NULL, 'CONTAINS', 0, $ids));
+   }
+ 
+   /**
+diff --git a/core/tests/Drupal/KernelTests/Core/Entity/Element/EntityAutocompleteElementFormTest.php b/core/tests/Drupal/KernelTests/Core/Entity/Element/EntityAutocompleteElementFormTest.php
+index dc121eaf56..4a5bc14fbb 100644
+--- a/core/tests/Drupal/KernelTests/Core/Entity/Element/EntityAutocompleteElementFormTest.php
++++ b/core/tests/Drupal/KernelTests/Core/Entity/Element/EntityAutocompleteElementFormTest.php
+@@ -11,6 +11,7 @@
+ use Drupal\entity_test\Entity\EntityTestStringId;
+ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
+ use Drupal\user\Entity\User;
++use Drupal\Component\Render\FormattableMarkup;
+ 
+ /**
+  * Tests the EntityAutocomplete Form API element.
+@@ -281,7 +282,7 @@ public function testInvalidEntityAutocompleteElement() {
+       ]);
+     $form_builder->submitForm($this, $form_state);
+     $this->assertEqual(count($form_state->getErrors()), 1);
+-    $this->assertEqual($form_state->getErrors()['single'], t('There are no entities matching "%value".', ['%value' => 'single - non-existent label']));
++    $this->assertEqual($form_state->getErrors()['single'], new FormattableMarkup('No entities match %value.', ['%value' => 'single - non-existent label']));
+ 
+     // Test 'single' with a entity ID that doesn't exist.
+     $form_state = (new FormState())
+@@ -304,7 +305,7 @@ public function testInvalidEntityAutocompleteElement() {
+     // The element without 'autocreate' support still has to emit a warning when
+     // the input doesn't end with an entity ID enclosed in parentheses.
+     $this->assertEqual(count($form_state->getErrors()), 1);
+-    $this->assertEqual($form_state->getErrors()['single_no_validate'], t('There are no entities matching "%value".', ['%value' => 'single - non-existent label']));
++    $this->assertEqual($form_state->getErrors()['single_no_validate'], new FormattableMarkup('No entities match %value.', ['%value' => 'single - non-existent label']));
+ 
+     $form_state = (new FormState())
+       ->setValues([

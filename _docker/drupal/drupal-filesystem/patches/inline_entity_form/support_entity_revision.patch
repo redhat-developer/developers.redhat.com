@@ -1,0 +1,862 @@
+From 2fb65bc35867ee98babeabb8d2109f360295b766 Mon Sep 17 00:00:00 2001
+From: William Hearn <sylus1984@gmail.com>
+Date: Thu, 1 Dec 2016 23:29:16 -0500
+Subject: [PATCH] Issue #2367235 by dawehner: Support entity revision 
+ references
+
+---
+ src/Element/InlineEntityForm.php                   |   2 +-
+ src/Form/EntityInlineForm.php                      |  42 +++++++-
+ src/Form/NodeInlineForm.php                        |   2 +
+ src/InlineFormInterface.php                        |   4 +-
+ .../Field/FieldWidget/InlineEntityFormComplex.php  |   3 +-
+ .../Field/FieldWidget/InlineEntityFormSimple.php   |   3 +-
+ src/Tests/ComplexWidgetRevisionsWebTest.php        | 115 +++++++++++++++++++++
+ src/WidgetSubmit.php                               |   5 +-
+ ...ase_field_override.node.err_level_1.promote.yml |  21 ++++
+ ...ase_field_override.node.err_level_2.promote.yml |  21 ++++
+ ...ase_field_override.node.err_level_3.promote.yml |  21 ++++
+ ...ntity_form_display.node.err_level_1.default.yml |  38 +++++++
+ ...ntity_form_display.node.err_level_2.default.yml |  38 +++++++
+ ...ntity_form_display.node.err_level_3.default.yml |  23 +++++
+ ...ntity_view_display.node.err_level_1.default.yml |  25 +++++
+ ...entity_view_display.node.err_level_1.teaser.yml |  16 +++
+ ...ntity_view_display.node.err_level_2.default.yml |  25 +++++
+ ...entity_view_display.node.err_level_2.teaser.yml |  16 +++
+ ...ntity_view_display.node.err_level_3.default.yml |  15 +++
+ ...entity_view_display.node.err_level_3.teaser.yml |  16 +++
+ ....field.node.err_level_1.field_level_2_items.yml |  29 ++++++
+ ....field.node.err_level_2.field_level_3_items.yml |  29 ++++++
+ .../field.storage.node.field_level_2_items.yml     |  19 ++++
+ .../field.storage.node.field_level_3_items.yml     |  19 ++++
+ .../config/optional/node.type.err_level_1.yml      |   9 ++
+ .../config/optional/node.type.err_level_2.yml      |   9 ++
+ .../config/optional/node.type.err_level_3.yml      |   9 ++
+ 27 files changed, 568 insertions(+), 6 deletions(-)
+ create mode 100644 src/Tests/ComplexWidgetRevisionsWebTest.php
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_1.promote.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_2.promote.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_3.promote.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_1.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_2.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_3.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.teaser.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.teaser.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.default.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.teaser.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_1.field_level_2_items.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_2.field_level_3_items.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_2_items.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_3_items.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/node.type.err_level_1.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/node.type.err_level_2.yml
+ create mode 100644 tests/modules/inline_entity_form_test/config/optional/node.type.err_level_3.yml
+
+diff --git a/src/Element/InlineEntityForm.php b/src/Element/InlineEntityForm.php
+index b55f781..5631c10 100644
+--- a/src/Element/InlineEntityForm.php
++++ b/src/Element/InlineEntityForm.php
+@@ -154,7 +154,7 @@ class InlineEntityForm extends RenderElement {
+     $inline_form_handler = static::getInlineFormHandler($entity_form['#entity_type']);
+     $inline_form_handler->entityFormSubmit($entity_form, $form_state);
+     if ($entity_form['#save_entity']) {
+-      $inline_form_handler->save($entity_form['#entity']);
++      $inline_form_handler->save($entity_form['#entity'], $form_state);
+     }
+   }
+ 
+diff --git a/src/Form/EntityInlineForm.php b/src/Form/EntityInlineForm.php
+index 06cbbdc..58033b4 100644
+--- a/src/Form/EntityInlineForm.php
++++ b/src/Form/EntityInlineForm.php
+@@ -8,11 +8,14 @@ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Entity\EntityFieldManagerInterface;
+ use Drupal\Core\Entity\EntityTypeInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Entity\RevisionableInterface;
++use Drupal\Core\Entity\RevisionLogInterface;
+ use Drupal\Core\Extension\ModuleHandlerInterface;
+ use Drupal\Core\Field\WidgetBase;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Render\Element;
+ use Drupal\inline_entity_form\InlineFormInterface;
++use Drupal\node\NodeInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+ /**
+@@ -224,7 +227,15 @@ class EntityInlineForm implements InlineFormInterface {
+   /**
+    * {@inheritdoc}
+    */
+-  public function save(EntityInterface $entity) {
++  public function save(EntityInterface $entity, FormStateInterface $form_state) {
++    if ($this->shouldSaveNewRevision($entity, $form_state)) {
++      $entity->setNewRevision();
++      if ($entity instanceof RevisionLogInterface) {
++        // If a new revision is created, save the current user as revision author.
++        $entity->setRevisionUserId(\Drupal::currentUser()->id());
++        $entity->setRevisionCreationTime(REQUEST_TIME);
++      }
++    }
+     $entity->save();
+   }
+ 
+@@ -305,4 +316,33 @@ class EntityInlineForm implements InlineFormInterface {
+     return EntityFormDisplay::collectRenderDisplay($entity, $form_mode);
+   }
+ 
++  /**
++   * Determines whether we should save a new revision.
++   *
++   * @param \Drupal\Core\Entity\EntityInterface $entity
++   *   The entity.
++   * @param \Drupal\Core\Form\FormStateInterface $form_state
++   *   The form state.
++   *
++   * @return bool
++   */
++  protected function shouldSaveNewRevision(EntityInterface $entity, FormStateInterface $form_state) {
++    $new_revision = FALSE;
++    if ($entity instanceof RevisionableInterface && $entity->getEntityType()->isRevisionable()) {
++      if ($entity->isNewRevision()) {
++        $new_revision = TRUE;
++      }
++
++      // Most of the time we don't know yet if the host entity is going to be
++      // saved as a new revision using RevisionableInterface::isNewRevision().
++      // Most entity types (at least nodes) however use a boolean property named
++      // "revision" to indicate whether a new revision should be saved. Use that
++      // property.
++      elseif ($form_state->getValue('revision')) {
++        $new_revision = TRUE;
++      }
++    }
++    return $new_revision;
++  }
++
+ }
+diff --git a/src/Form/NodeInlineForm.php b/src/Form/NodeInlineForm.php
+index 4f6c377..58ad438 100644
+--- a/src/Form/NodeInlineForm.php
++++ b/src/Form/NodeInlineForm.php
+@@ -2,8 +2,10 @@
+ 
+ namespace Drupal\inline_entity_form\Form;
+ 
++use Drupal\Core\Entity\RevisionableInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\StringTranslation\StringTranslationTrait;
++use Drupal\node\NodeInterface;
+ 
+ /**
+  * Node inline form handler.
+diff --git a/src/InlineFormInterface.php b/src/InlineFormInterface.php
+index fe56c16..2a8c78d 100644
+--- a/src/InlineFormInterface.php
++++ b/src/InlineFormInterface.php
+@@ -119,11 +119,13 @@ interface InlineFormInterface extends EntityHandlerInterface {
+    *
+    * @param \Drupal\Core\Entity\EntityInterface $entity
+    *   The entity.
++   * @param \Drupal\Core\Form\FormStateInterface $form_state
++   *   The form state of the parent form.
+    *
+    * @return int
+    *   Either SAVED_NEW or SAVED_UPDATED, depending on the operation performed.
+    */
+-  public function save(EntityInterface $entity);
++  public function save(EntityInterface $entity, FormStateInterface $form_state);
+ 
+   /**
+    * Delete permanently saved entities.
+diff --git a/src/Plugin/Field/FieldWidget/InlineEntityFormComplex.php b/src/Plugin/Field/FieldWidget/InlineEntityFormComplex.php
+index 0859058..ef75b18 100644
+--- a/src/Plugin/Field/FieldWidget/InlineEntityFormComplex.php
++++ b/src/Plugin/Field/FieldWidget/InlineEntityFormComplex.php
+@@ -22,7 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
+  *   id = "inline_entity_form_complex",
+  *   label = @Translation("Inline entity form - Complex"),
+  *   field_types = {
+- *     "entity_reference"
++ *     "entity_reference",
++ *     "entity_reference_revisions",
+  *   },
+  *   multiple_values = true
+  * )
+diff --git a/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php b/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
+index f8f4038..0fe641a 100644
+--- a/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
++++ b/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
+@@ -18,7 +18,8 @@ use Drupal\inline_entity_form\TranslationHelper;
+  *   id = "inline_entity_form_simple",
+  *   label = @Translation("Inline entity form - Simple"),
+  *   field_types = {
+- *     "entity_reference"
++ *     "entity_reference",
++ *     "entity_reference_revisions",
+  *   },
+  *   multiple_values = false
+  * )
+diff --git a/src/Tests/ComplexWidgetRevisionsWebTest.php b/src/Tests/ComplexWidgetRevisionsWebTest.php
+new file mode 100644
+index 0000000..c24b9dd
+--- /dev/null
++++ b/src/Tests/ComplexWidgetRevisionsWebTest.php
+@@ -0,0 +1,115 @@
++<?php
++
++namespace Drupal\inline_entity_form\Tests;
++use Drupal\Component\Utility\SafeMarkup;
++use Drupal\Core\Extension\MissingDependencyException;
++
++/**
++ * IEF complex entity reference revisions tests.
++ *
++ * @group inline_entity_form
++ */
++class ComplexWidgetRevisionsWebTest extends InlineEntityFormTestBase {
++
++  /**
++   * Modules to enable.
++   *
++   * @var array
++   */
++  public static $modules = [
++    'field',
++    'field_ui',
++    'entity_reference_revisions',
++    'inline_entity_form_test',
++  ];
++
++  /**
++   * URL to add new content.
++   *
++   * @var string
++   */
++  protected $formContentAddUrl;
++
++  /**
++   * Prepares environment for
++   */
++  protected function setUp() {
++    parent::setUp();
++
++    $this->user = $this->createUser([
++      'create err_level_1 content',
++      'edit any err_level_1 content',
++      'delete any err_level_1 content',
++      'create err_level_2 content',
++      'edit any err_level_2 content',
++      'delete any err_level_2 content',
++      'create err_level_3 content',
++      'edit any err_level_3 content',
++      'delete any err_level_3 content',
++      'view own unpublished content',
++      'administer content types',
++    ]);
++    $this->drupalLogin($this->user);
++
++    $this->formContentAddUrl = 'node/add/err_level_1';
++  }
++
++  /**
++   * Tests saving entity reference revisions' field types at depth.
++   */
++  public function testRevisionsAtDepth() {
++    $this->drupalGet($this->formContentAddUrl);
++
++    // Open up level 2 and 3 IEF forms.
++    $this->drupalPostAjaxForm(NULL, [], $this->getButtonName('//input[@type="submit" and @value="Add new node" and @data-drupal-selector="edit-field-level-2-items-actions-ief-add"]'));
++    $this->assertResponse(200, 'Opening level 2 items inline form was successful.');
++    $this->drupalPostAjaxForm(NULL, [], $this->getButtonName('//input[@type="submit" and @value="Add new node" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-field-level-3-items-actions-ief-add"]'));
++    $this->assertResponse(200, 'Opening level 3 items inline form was successful.');
++
++    // Save level 3 IEF form.
++    $edit = ['field_level_2_items[form][inline_entity_form][field_level_3_items][form][inline_entity_form][title][0][value]' => 'Level 3'];
++    $this->drupalPostAjaxForm(NULL, $edit, $this->getButtonName('//input[@type="submit" and @value="Create node" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-field-level-3-items-form-inline-entity-form-actions-ief-add-save"]'));
++    $this->assertResponse(200, 'Creating level 3 node via inline form was successful.');
++
++    // Save level 2 IEF form.
++    $edit = ['field_level_2_items[form][inline_entity_form][title][0][value]' => 'Level 2'];
++    $this->drupalPostAjaxForm(NULL, $edit, $this->getButtonName('//input[@type="submit" and @value="Create node" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-actions-ief-add-save"]'));
++    $this->assertResponse(200, 'Creating level 2 node via inline form was successful.');
++
++    // Save the top level entity.
++    $edit = ['title[0][value]' => 'Level 1'];
++    $this->drupalPostForm(NULL, $edit, t('Save'));
++    $this->assertResponse(200, 'Saving parent entity was successful.');
++
++    // Re-edit the created node to test for revisions
++    $node = $this->drupalGetNodeByTitle('Level 1');
++    $this->drupalGet('node/' . $node->id() . '/edit');
++
++    // Open up level 2 and 3 IEF forms.
++    $this->drupalPostAjaxForm(NULL, [], $this->getButtonName('//input[@type="submit" and @value="Edit" and @data-drupal-selector="edit-field-level-2-items-entities-0-actions-ief-entity-edit"]'));
++    $this->assertResponse(200, 'Opening level 2 items inline form was successful.');
++    $this->drupalPostAjaxForm(NULL, [], $this->getButtonName('//input[@type="submit" and @value="Edit" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-entities-0-form-field-level-3-items-entities-0-actions-ief-entity-edit"]'));
++    $this->assertResponse(200, 'Opening level 3 items inline form was successful.');
++
++    // Save level 3 IEF form.
++    $edit = ['field_level_2_items[form][inline_entity_form][entities][0][form][field_level_3_items][form][inline_entity_form][entities][0][form][title][0][value]' => 'Level 3.1'];
++    $this->drupalPostAjaxForm(NULL, $edit, $this->getButtonName('//input[@type="submit" and @value="Update node" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-entities-0-form-field-level-3-items-form-inline-entity-form-entities-0-form-actions-ief-edit-save"]'));
++    $this->assertResponse(200, 'Editing level 3 node via inline form was successful.');
++
++    // Save level 2 IEF form.
++    $edit = ['field_level_2_items[form][inline_entity_form][entities][0][form][title][0][value]' => 'Level 2.1'];
++    $this->drupalPostAjaxForm(NULL, $edit, $this->getButtonName('//input[@type="submit" and @value="Update node" and @data-drupal-selector="edit-field-level-2-items-form-inline-entity-form-entities-0-form-actions-ief-edit-save"]'));
++    $this->assertResponse(200, 'Editing level 2 node via inline form was successful.');
++
++    // Save the top level entity.
++    $edit = ['title[0][value]' => 'Level 1.1'];
++    $this->drupalPostForm(NULL, $edit, t('Save'));
++    $this->assertResponse(200, 'Saving parent entity was successful.');
++
++    // $this->drupalGet('node/' . $node->id());
++    // $this->assertText('Level 1.1', 'Top level node revision was saved and is active.');
++    // $this->assertText('Level 2.1', 'Second level node revisions was saved and is active');
++    // Issue #2721349: Nested inline entities should be saved in "inside-out" order
++    // $this->assertText('Level 3.1', 'Top level node revision was saved and is active.');
++  }
++}
+diff --git a/src/WidgetSubmit.php b/src/WidgetSubmit.php
+index 98921a4..5c5e8da 100644
+--- a/src/WidgetSubmit.php
++++ b/src/WidgetSubmit.php
+@@ -2,8 +2,11 @@
+ 
+ namespace Drupal\inline_entity_form;
+ 
++use Drupal\Core\Entity\RevisionableInterface;
++use Drupal\Core\Entity\RevisionLogInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\inline_entity_form\Element\InlineEntityForm;
++use Drupal\node\NodeInterface;
+ 
+ /**
+  * Performs widget submission.
+@@ -46,7 +49,7 @@ class WidgetSubmit {
+           /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+           $entity = $entity_item['entity'];
+           $handler = InlineEntityForm::getInlineFormHandler($entity->getEntityTypeId());
+-          $handler->save($entity);
++          $handler->save($entity, $form_state);
+           $widget_state['entities'][$delta]['needs_save'] = FALSE;
+         }
+       }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_1.promote.yml b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_1.promote.yml
+new file mode 100644
+index 0000000..4ddf2df
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_1.promote.yml
+@@ -0,0 +1,21 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - node.type.err_level_1
++id: node.err_level_1.promote
++field_name: promote
++entity_type: node
++bundle: err_level_1
++label: 'Promoted to front page'
++description: ''
++required: false
++translatable: true
++default_value:
++  -
++    value: 0
++default_value_callback: ''
++settings:
++  on_label: 'On'
++  off_label: 'Off'
++field_type: boolean
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_2.promote.yml b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_2.promote.yml
+new file mode 100644
+index 0000000..cb90dff
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_2.promote.yml
+@@ -0,0 +1,21 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - node.type.err_level_2
++id: node.err_level_2.promote
++field_name: promote
++entity_type: node
++bundle: err_level_2
++label: 'Promoted to front page'
++description: ''
++required: false
++translatable: true
++default_value:
++  -
++    value: 0
++default_value_callback: ''
++settings:
++  on_label: 'On'
++  off_label: 'Off'
++field_type: boolean
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_3.promote.yml b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_3.promote.yml
+new file mode 100644
+index 0000000..39c23b6
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.base_field_override.node.err_level_3.promote.yml
+@@ -0,0 +1,21 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - node.type.err_level_3
++id: node.err_level_3.promote
++field_name: promote
++entity_type: node
++bundle: err_level_3
++label: 'Promoted to front page'
++description: ''
++required: false
++translatable: true
++default_value:
++  -
++    value: 0
++default_value_callback: ''
++settings:
++  on_label: 'On'
++  off_label: 'Off'
++field_type: boolean
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_1.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_1.default.yml
+new file mode 100644
+index 0000000..88114a6
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_1.default.yml
+@@ -0,0 +1,38 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.field.node.err_level_1.field_level_2_items
++    - node.type.err_level_1
++  module:
++    - inline_entity_form
++id: node.err_level_1.default
++targetEntityType: node
++bundle: err_level_1
++mode: default
++content:
++  field_level_2_items:
++    weight: 31
++    settings:
++      match_operator: CONTAINS
++      form_mode: default
++      override_labels: false
++      label_singular: ''
++      label_plural: ''
++      allow_new: true
++      allow_existing: false
++    third_party_settings: {  }
++    type: inline_entity_form_complex
++  title:
++    type: string_textfield
++    weight: -5
++    settings:
++      size: 60
++      placeholder: ''
++    third_party_settings: {  }
++hidden:
++  created: true
++  path: true
++  promote: true
++  sticky: true
++  uid: true
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_2.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_2.default.yml
+new file mode 100644
+index 0000000..849b2b4
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_2.default.yml
+@@ -0,0 +1,38 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.field.node.err_level_2.field_level_3_items
++    - node.type.err_level_2
++  module:
++    - inline_entity_form
++id: node.err_level_2.default
++targetEntityType: node
++bundle: err_level_2
++mode: default
++content:
++  field_level_3_items:
++    weight: 1
++    settings:
++      match_operator: CONTAINS
++      form_mode: default
++      override_labels: false
++      label_singular: ''
++      label_plural: ''
++      allow_new: true
++      allow_existing: false
++    third_party_settings: {  }
++    type: inline_entity_form_complex
++  title:
++    type: string_textfield
++    weight: 0
++    settings:
++      size: 60
++      placeholder: ''
++    third_party_settings: {  }
++hidden:
++  created: true
++  path: true
++  promote: true
++  sticky: true
++  uid: true
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_3.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_3.default.yml
+new file mode 100644
+index 0000000..7d94d96
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_form_display.node.err_level_3.default.yml
+@@ -0,0 +1,23 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - node.type.err_level_3
++id: node.err_level_3.default
++targetEntityType: node
++bundle: err_level_3
++mode: default
++content:
++  title:
++    type: string_textfield
++    weight: -5
++    settings:
++      size: 60
++      placeholder: ''
++    third_party_settings: {  }
++hidden:
++  created: true
++  path: true
++  promote: true
++  sticky: true
++  uid: true
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.default.yml
+new file mode 100644
+index 0000000..887fc62
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.default.yml
+@@ -0,0 +1,25 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.field.node.err_level_1.field_level_2_items
++    - node.type.err_level_1
++  module:
++    - entity_reference_revisions
++    - user
++id: node.err_level_1.default
++targetEntityType: node
++bundle: err_level_1
++mode: default
++content:
++  field_level_2_items:
++    weight: 101
++    label: above
++    settings:
++      view_mode: default
++      link: ''
++    third_party_settings: {  }
++    type: entity_reference_revisions_entity_view
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.teaser.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.teaser.yml
+new file mode 100644
+index 0000000..ea334e8
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_1.teaser.yml
+@@ -0,0 +1,16 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - core.entity_view_mode.node.teaser
++    - node.type.err_level_1
++  module:
++    - user
++id: node.err_level_1.teaser
++targetEntityType: node
++bundle: err_level_1
++mode: teaser
++content:
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.default.yml
+new file mode 100644
+index 0000000..7a2e001
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.default.yml
+@@ -0,0 +1,25 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.field.node.err_level_2.field_level_3_items
++    - node.type.err_level_2
++  module:
++    - entity_reference_revisions
++    - user
++id: node.err_level_2.default
++targetEntityType: node
++bundle: err_level_2
++mode: default
++content:
++  field_level_3_items:
++    weight: 101
++    label: above
++    settings:
++      view_mode: default
++      link: ''
++    third_party_settings: {  }
++    type: entity_reference_revisions_entity_view
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.teaser.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.teaser.yml
+new file mode 100644
+index 0000000..8ccdf15
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_2.teaser.yml
+@@ -0,0 +1,16 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - core.entity_view_mode.node.teaser
++    - node.type.err_level_2
++  module:
++    - user
++id: node.err_level_2.teaser
++targetEntityType: node
++bundle: err_level_2
++mode: teaser
++content:
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.default.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.default.yml
+new file mode 100644
+index 0000000..d3de6a5
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.default.yml
+@@ -0,0 +1,15 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - node.type.err_level_3
++  module:
++    - user
++id: node.err_level_3.default
++targetEntityType: node
++bundle: err_level_3
++mode: default
++content:
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.teaser.yml b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.teaser.yml
+new file mode 100644
+index 0000000..c119fd3
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/core.entity_view_display.node.err_level_3.teaser.yml
+@@ -0,0 +1,16 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - core.entity_view_mode.node.teaser
++    - node.type.err_level_3
++  module:
++    - user
++id: node.err_level_3.teaser
++targetEntityType: node
++bundle: err_level_3
++mode: teaser
++content:
++  links:
++    weight: 100
++hidden: {  }
+diff --git a/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_1.field_level_2_items.yml b/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_1.field_level_2_items.yml
+new file mode 100644
+index 0000000..025d09c
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_1.field_level_2_items.yml
+@@ -0,0 +1,29 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.storage.node.field_level_2_items
++    - node.type.err_level_1
++    - node.type.err_level_2
++  module:
++    - entity_reference_revisions
++id: node.err_level_1.field_level_2_items
++field_name: field_level_2_items
++entity_type: node
++bundle: err_level_1
++label: 'Level 2 Items'
++description: ''
++required: false
++translatable: false
++default_value: {  }
++default_value_callback: ''
++settings:
++  handler: 'default:node'
++  handler_settings:
++    target_bundles:
++      err_level_2: err_level_2
++    sort:
++      field: _none
++    auto_create: false
++    auto_create_bundle: ''
++field_type: entity_reference_revisions
+diff --git a/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_2.field_level_3_items.yml b/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_2.field_level_3_items.yml
+new file mode 100644
+index 0000000..e285cec
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/field.field.node.err_level_2.field_level_3_items.yml
+@@ -0,0 +1,29 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  config:
++    - field.storage.node.field_level_3_items
++    - node.type.err_level_2
++    - node.type.err_level_3
++  module:
++    - entity_reference_revisions
++id: node.err_level_2.field_level_3_items
++field_name: field_level_3_items
++entity_type: node
++bundle: err_level_2
++label: 'Level 3 Items'
++description: ''
++required: false
++translatable: false
++default_value: {  }
++default_value_callback: ''
++settings:
++  handler: 'default:node'
++  handler_settings:
++    target_bundles:
++      err_level_3: err_level_3
++    sort:
++      field: _none
++    auto_create: false
++    auto_create_bundle: ''
++field_type: entity_reference_revisions
+diff --git a/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_2_items.yml b/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_2_items.yml
+new file mode 100644
+index 0000000..1070cc3
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_2_items.yml
+@@ -0,0 +1,19 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  module:
++    - entity_reference_revisions
++    - node
++id: node.field_level_2_items
++field_name: field_level_2_items
++entity_type: node
++type: entity_reference_revisions
++settings:
++  target_type: node
++module: entity_reference_revisions
++locked: false
++cardinality: -1
++translatable: true
++indexes: {  }
++persist_with_no_fields: false
++custom_storage: false
+diff --git a/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_3_items.yml b/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_3_items.yml
+new file mode 100644
+index 0000000..757c48a
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/field.storage.node.field_level_3_items.yml
+@@ -0,0 +1,19 @@
++trimIefIdParentslangcode: en
++status: true
++dependencies:
++  module:
++    - entity_reference_revisions
++    - node
++id: node.field_level_3_items
++field_name: field_level_3_items
++entity_type: node
++type: entity_reference_revisions
++settings:
++  target_type: node
++module: entity_reference_revisions
++locked: false
++cardinality: -1
++translatable: true
++indexes: {  }
++persist_with_no_fields: false
++custom_storage: false
+diff --git a/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_1.yml b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_1.yml
+new file mode 100644
+index 0000000..4865eb9
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_1.yml
+@@ -0,0 +1,9 @@
++trimIefIdParentslangcode: en
++status: true
++name: 'Entity Reference Revisions (Level 1)'
++type: err_level_1
++description: 'Top level content type with an entity_reference_revisions field type to another content type.'
++help: ''
++new_revision: true
++preview_mode: 1
++display_submitted: false
+diff --git a/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_2.yml b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_2.yml
+new file mode 100644
+index 0000000..289dc9d
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_2.yml
+@@ -0,0 +1,9 @@
++trimIefIdParentslangcode: en
++status: true
++name: 'Entity Reference Revisions (Level 2)'
++type: err_level_2
++description: 'Second level content type with an entity_reference_revisions field type to another content type.'
++help: ''
++new_revision: true
++preview_mode: 1
++display_submitted: false
+diff --git a/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_3.yml b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_3.yml
+new file mode 100644
+index 0000000..b22f916
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/config/optional/node.type.err_level_3.yml
+@@ -0,0 +1,9 @@
++trimIefIdParentslangcode: en
++status: true
++name: 'Entity Reference Revisions (Level 3)'
++type: err_level_3
++description: 'Third level content type.'
++help: ''
++new_revision: true
++preview_mode: 1
++display_submitted: false
+-- 
+2.5.4 (Apple Git-61)
+
