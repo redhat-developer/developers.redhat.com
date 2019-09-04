@@ -11,18 +11,25 @@ base-theme:
   # This should be all of the style sheets broken up according to smaccs
   css:
     base:
+      # NOTE: Provides mostly CSS variables and a few utility classes.
       https://static.redhat.com/libs/redhat/redhat-theme/2/advanced-theme.css: { type: external }
+      # NOTE: Provides layout classes for grids and alignments.
       css/pfe-layouts/pfe-layouts.min.css: {minified: true}
       rhd-frontend/dist/css-min/rhd.min.css: { minified: true }
       # rhd-frontend/dist/css-min/rhd.microsites.css: { minified: true }
   js:
+    # This handles JS for our navigation menu(s).
     js/menu.js: {}
-    js/all.min.js: { minified: true }
+    # NOTE: I believe that all.min.js is just some FontAwesome assets.
+    # js/all.min.js: { minified: true }
+    # NOTE: According to Luke, Angular is only used on the Help page(s). We will
+    # supposedly be removing these page(s) and Angular soon.
     # https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
     # https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
+    # NOTE: SystemJS is a dynamic ES module loader.
     # https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
     https://developers.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
-    rhd-frontend/dist/js/@rhd/rhd.old.min.js: { minified: true }
+    # rhd-frontend/dist/js/@rhd/rhd.old.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
@@ -33,13 +40,14 @@ video_embed_field.responsive-video:
     component:
       css/field/video_embed_field.responsive-video.css: {}
 
-# Used for the Code snippet Assembly type.
+# Code highlighting for the Code snippet Assembly type.
 highlight-js:
   css:
     base:
       https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css: { type: external, minified: true }
   js:
     https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js: { type: external, minified: true }
+    # Inits the highlighting on Code snippet elements.
     js/highlightjs-init.js: {}
   dependencies:
     - core/jquery
