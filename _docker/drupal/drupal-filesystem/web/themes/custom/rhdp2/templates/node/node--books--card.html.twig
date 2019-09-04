@@ -1,0 +1,13 @@
+{{ attach_library('classy/node') }}
+
+{% include '@components/card.twig' with {
+  'tag': {
+    'class': 'fa-book',
+    'text': 'Ebook'
+  },
+  'content_image': content.field_cover_image,
+  'title': {
+    'text': node.label,
+    'url': url
+  }
+} only %}

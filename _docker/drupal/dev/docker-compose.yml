@@ -30,6 +30,8 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile.mp
+      args:
+        - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-env.yml"]
     user: ${DUID}:0
     environment:
@@ -46,6 +48,8 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile.mp
+      args:
+        - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-drupal.yml"]
     user: ${DUID}:0
     environment:
@@ -68,6 +72,8 @@ services:
     build:
      context: ../
      dockerfile: Dockerfile.mp
+     args:
+       - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
     command: ["/bin/bash", "-c", "/var/www/drupal/run-httpd.sh"]
     user: ${DUID}:0
     ports:
@@ -89,6 +95,7 @@ services:
       - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+      # - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
 
   memcached-0:

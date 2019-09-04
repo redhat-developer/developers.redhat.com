@@ -1,0 +1,95 @@
+{#
+/**
+ * The RHDP Card component.
+ *
+ * Available variables:
+ * - hero_image; A hero image that displays at the top of card, full-width.
+ * - tag; A categorization for the card, like eBook, Try It, Lesson, Series, etc
+ * - title;
+ *   - title.url; Typically a link to the node displayed in the card.
+ *   - title.text; The title of the node displayed in the Card.
+ * - subtitle: A section for either a subtitle or metadata below the title.
+ * - body: The body text for this Card. This could be a summary or otherwise
+ *   trimmed version if the body text is too long.
+ * - authors: (Array)
+ *   - author.url: A URL to the Author's user node or any other page/URL that
+ *     represents the author.
+ *   - author.name: The author's name.
+ * - content_image: An image rendered within the content of the Card.
+ * - comment_count: A string integer of the number of comments made on the
+ *   content within the card.
+ *
+ */
+#}
+<div class="pf-c-card rhd-c-card">
+
+  {% if hero_image is defined %}
+    {{ hero_image }}
+  {% endif %}
+  
+  {% if tag is defined %}
+    {% set fa_classes = 'fas ' ~ tag.class %}
+    <div class="rhd-c-card__tag">
+      <i class={{ fa_classes }}></i>
+      {{ tag.text }}
+    </div>
+  {% endif %}
+
+  <div class="rhd-c-card-content">
+    {% if title is defined %}
+      {# Set the appropriate title classes whether or not a hero_image exists #}
+      {% if hero_image is not defined %}
+        {% set title_classes = ['rhd-c-card__title', 'rhd-m-card-title__no-image'] %}
+      {% else %}
+        {% set title_classes = ['rhd-c-card__title'] %}
+      {% endif %}
+
+      {% if title.url is defined %}
+        <h3 class="{{ title_classes|join(' ') }}">
+          <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
+        </h3>
+      {% elseif title.url is not defined and title.text is defined %}
+        <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
+      {% endif %}
+    {% endif %}
+
+    {% if subtitle is defined %}
+      <div class="rhd-c-card__subtitle">{{ subtitle }}</div>
+    {% endif %}
+
+    {% if body is defined %}
+      <p class="rhd-c-card__body ">{{ body }}</p>
+    {% endif %}
+
+    <div class="rhd-c-card__footer">
+      {% if authors is defined %}
+        <div class="rhd-c-card__footer--author">
+          {% for author in authors %}
+            {% if author.url is defined %}
+              <a href={{ author.url }} class="rhd-m-link">{{ author.name }}</a>
+            {% else %}
+              {{ author.name }}
+            {% endif %}
+            {% if not loop.last %} &amp; {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if content_image is defined %}
+        {{ content_image }}
+      {% endif %}
+
+      {% if comment_count is defined %}
+        <div class="rhd-c-comment">
+          <i class="fas fa-comment"></i> {{ comment_count }}
+        </div>
+      {% endif %}
+
+      {% if cta is defined %}
+        <a href={{ cta.url }} class="rhd-m-link">
+          {{ cta.text }} <i class="fas fa-arrow-right"></i>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

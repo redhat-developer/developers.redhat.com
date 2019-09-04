@@ -42,6 +42,15 @@ is adding the following to your `$HOME/.bashrc` file:
 export DUID=$(id -u)
 ```
 
+#### Providing the FontAwesome Licence
+
+As a temporary measure, you need to provide the fontawesome licence key as part of the local Drupal build. To do this please set the value
+of `FONT_AWESOME_LICENCE` in your `local-config.sh` properties file.
+
+Please speak with any member of the RHDP team to get access to the licence key.
+
+This functionality will be deprecated once our redhatstatic.com CDN is available.
+
 ### Running `composer update`
 
 Ideally when we're updating the dependencies for the project through `composer`, they should be updated in an environment that matches

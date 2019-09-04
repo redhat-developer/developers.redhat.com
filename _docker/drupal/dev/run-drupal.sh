@@ -16,7 +16,9 @@ if [[ ! -e ${DIR}/local-config.sh ]]; then
     exit 1;
 fi
 
+set -a
 source "${DIR}"/local-config.sh
+set +a
 
 # Login to required registries and pull required images
 docker login registry.redhat.io -u "${REGISTRY_REDHAT_IO_USERNAME}" -p "${REGISTRY_REDHAT_IO_PASSWORD}"
