@@ -25,6 +25,7 @@ COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
 # Build the theme
+ENV no_proxy="repository.engineering.redhat.com,$no_proxy"
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
     && npm run-script build \
