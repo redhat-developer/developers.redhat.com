@@ -25,6 +25,9 @@ COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
+# Do not proxy our npm Nexus registry
+ENV no_proxy="repository.engineering.redhat.com,$no_proxy"
+
 # Build the rhdp theme
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
@@ -34,12 +37,16 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
 # Build the rhdp2 theme
 ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
+    && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
     && npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
     && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
     && npm install \
     && npm run-script styles \
     && npm run-script build \
-    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/node_modules
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.old.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
