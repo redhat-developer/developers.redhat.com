@@ -10,6 +10,7 @@ dependencies:
     - field.field.assembly.rich_text_columns.field_navigation_title
     - field.field.assembly.rich_text_columns.field_title
   module:
+    - fences
     - field_layout
     - layout_discovery
     - text
@@ -26,14 +27,28 @@ content:
     weight: 2
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: text_default
     region: content
   field_content:
     weight: 1
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: text_default
     region: content
   field_title:
@@ -41,7 +56,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:

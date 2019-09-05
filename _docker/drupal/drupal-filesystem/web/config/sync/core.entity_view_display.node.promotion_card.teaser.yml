@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.promotion_card.field_containers_short_summary
     - node.type.promotion_card
   module:
+    - fences
     - field_layout
     - layout_discovery
     - link
@@ -40,14 +41,28 @@ content:
       url_only: false
       url_plain: false
       rel: '0'
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   field_containers_short_summary:
     type: text_default
     weight: 2
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   workbench_moderation_control:
     weight: 0

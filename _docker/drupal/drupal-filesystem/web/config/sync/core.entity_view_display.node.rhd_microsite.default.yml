@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.rhd_microsite.body
     - node.type.rhd_microsite
   module:
+    - fences
     - field_layout
     - layout_discovery
     - text
@@ -26,7 +27,14 @@ content:
     weight: 1
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   content_moderation_control:
     weight: -20

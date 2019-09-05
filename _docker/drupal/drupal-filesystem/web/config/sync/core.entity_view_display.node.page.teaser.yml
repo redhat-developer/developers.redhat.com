@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - fences
     - field_layout
     - layout_discovery
     - text
@@ -29,7 +30,14 @@ content:
     weight: 100
     settings:
       trim_length: 600
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   content_moderation_control:
     weight: -20

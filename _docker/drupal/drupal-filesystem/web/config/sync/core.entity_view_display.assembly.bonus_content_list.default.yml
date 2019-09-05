@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.bonus_content_list.field_content_list
     - field.field.assembly.bonus_content_list.field_title
   module:
+    - fences
     - field_layout
     - layout_discovery
 third_party_settings:
@@ -23,9 +24,16 @@ content:
     weight: 1
     label: hidden
     settings:
-      link: true
       view_mode: default
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
   field_title:
@@ -33,7 +41,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:
