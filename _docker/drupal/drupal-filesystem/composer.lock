@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0d82f7fafc95200e3ef42109ec5c35b",
+    "content-hash": "520789b0690312fd0f29b8c9ca076186",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -3270,9 +3270,9 @@
                     "merge-extra": false
                 },
                 "patches_applied": {
-                    "Fix entity reference view": "patches/core/fix-entity-reference-view.patch",
-                    "Fix add/remove group button in Bootstrap": "patches/core/fix-add-remove-group-button-bootstrap.patch",
-                    "Add disabled layout to layout_discovery and use as default in field_layout": "patches/core/field-layout-disabled-default.patch",
+                    "Fix entity reference view": "patches/core/2174633-309.patch",
+                    "Fix add/remove group button in Bootstrap": "patches/core/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
+                    "Add disabled layout to layout_discovery and use as default in field_layout": "patches/core/fieldlayoutdisableddefault.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2019-03-05/2815221-116.patch",
@@ -4435,7 +4435,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Support entity reference revisions": "patches/inline_entity_form/support_entity_revision.patch"
+                    "Support entity reference revisions": "patches/inline_entity_form/support_entity_revision-2367235-92.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
