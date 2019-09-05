@@ -1,0 +1,25 @@
+uuid: f6a17fdf-cbed-4d51-80eb-a7816928cd97
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.universal-header
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_universalheader
+theme: rhdp2
+region: rh_universal_header
+weight: -9
+provider: null
+plugin: 'system_menu_block:universal-header'
+settings:
+  id: 'system_menu_block:universal-header'
+  label: 'Universal Header'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

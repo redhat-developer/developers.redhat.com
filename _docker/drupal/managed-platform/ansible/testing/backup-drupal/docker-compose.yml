@@ -40,7 +40,6 @@ services:
     volumes:
     - ../../:/ansible
     - ../env.yml:/credentials/ansible/env.yml
-    - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
     - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
     - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active

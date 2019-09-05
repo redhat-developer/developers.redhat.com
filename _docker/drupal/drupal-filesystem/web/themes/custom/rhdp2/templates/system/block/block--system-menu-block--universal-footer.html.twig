@@ -1,0 +1,18 @@
+{% if content %}
+  <section{{ attributes.addClass(classes, 'rh-universal-footer-container') }}>
+
+    <div{{ attributes.addClass(classes, 'container rh-universal-footer') }}>
+      <a class="rh-universal-footer-rh-logo" href="https://redhat.com/">
+        <img alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/RHLogo_white.svg">
+      </a>
+      <ul class="rh-universal-footer-legal">
+        <li>
+          <a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a>
+        </li>
+        {{ content }}
+      </ul>
+      <a class="rh-universal-footer-summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer">
+        <img src="/{{ active_theme_path() }}/images/design/logo-summit.png" alt="Red Hat Summit">
+      </a>
+    </div>
+{% endif %}
