@@ -1,4 +1,4 @@
-FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.1
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.2
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
@@ -25,7 +25,6 @@ COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
 # Build the theme
-ENV no_proxy="repository.engineering.redhat.com,$no_proxy"
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
     && npm run-script build \
