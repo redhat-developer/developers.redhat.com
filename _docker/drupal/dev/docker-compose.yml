@@ -1,7 +1,7 @@
 version: '2'
 services:
   update-composer:
-    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.2
     user: ${DUID}:0
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
@@ -10,8 +10,6 @@ services:
       - ../drupal-filesystem/scripts/ScriptHandler.php:/drupal/scripts/ScriptHandler.php
     command: ["/bin/bash"]
     environment:
-      - https_proxy
-      - http_proxy
       - COMPOSER_MEMORY_LIMIT=-1
     working_dir: /drupal
 
@@ -36,8 +34,6 @@ services:
     user: ${DUID}:0
     environment:
     - DEPLOYMENT_ID=1
-    - http_proxy
-    - https_proxy
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./drupal-workspace:/drupal-workspace
@@ -54,8 +50,6 @@ services:
     user: ${DUID}:0
     environment:
     - DEPLOYMENT_ID=1
-    - https_proxy
-    - http_proxy
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
@@ -81,8 +75,6 @@ services:
       - "443:8443"
     environment:
       - DEPLOYMENT_ID=1
-      - https_proxy
-      - http_proxy
     volumes:
       - ./env.yml:/credentials/ansible/env.yml
       - ./edgerc:/credentials/akamai/edgerc
