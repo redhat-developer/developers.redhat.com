@@ -1,4 +1,4 @@
-FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.1
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.2
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
@@ -25,10 +25,7 @@ COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
-# Do not proxy our npm Nexus registry
-ENV no_proxy="repository.engineering.redhat.com,$no_proxy"
-
-# Build the rhdp theme
+# Build the theme
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
     && npm run-script build \
@@ -46,6 +43,7 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.old.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
 
 # Copy in the Drupal configuration
