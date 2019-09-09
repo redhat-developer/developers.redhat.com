@@ -23,3 +23,10 @@ dev/localhost-key.pem
 dev/drupal-workspace
 dev/edgerc
 dev/local-config.sh
+
+# Ignore locally generated rhd-frontend theme files
+drupal-filesystem/web/themes/custom/rhdp2/css/rhd.microsites.css
+drupal-filesystem/web/themes/custom/rhdp2/css/rhd.min.css
+drupal-filesystem/web/themes/custom/rhdp2/js/rhd.old.min.js
+drupal-filesystem/web/themes/custom/rhdp2/favicons
+
