@@ -9,7 +9,6 @@ dependencies:
     - field.field.assembly.product_download_hero.field_image
     - field.field.assembly.product_download_hero.field_learn_more_link
     - field.field.assembly.product_download_hero.field_title
-    - image.style.large
   module:
     - fences
     - field_layout
@@ -50,8 +49,8 @@ content:
       fences:
         fences_field_tag: none
         fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: 'product-download-hero-body pf-c-content'
         fences_label_tag: none
         fences_label_classes: ''
     type: text_default
@@ -60,7 +59,7 @@ content:
     weight: 3
     label: hidden
     settings:
-      image_style: large
+      image_style: ''
       image_link: ''
     third_party_settings:
       fences:
@@ -98,10 +97,10 @@ content:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_tag: div
+        fences_field_classes: 'product-download-hero-header pf-c-content'
+        fences_field_item_tag: h1
+        fences_field_item_classes: 'pf-c-title pf-m-2xl'
         fences_label_tag: none
         fences_label_classes: ''
     type: string
