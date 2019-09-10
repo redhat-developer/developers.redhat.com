@@ -69,31 +69,45 @@ $katacoda-grid-title-size:23px;
 
 .rhd-header {
     &.katacoda-header {
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 60% 40%;
-        
+        padding: 8px 32px;
+        max-width: none;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        display: block;
+        align-items: unset;
+        flex: none;
+        justify-items: unset;
+
         .rhd-header-logo {
-            grid-column: span 1;
-            grid-row: span 2;
+            float: left;
+            max-width: 100%;
+            width: 140px;
+            grid-column: none;
+            grid-row: unset;
+            height: auto;
         }
-        .block-entity-fieldnodetitle,
         .block-system-breadcrumb-block {
-            grid-column: 2 / span 1;
-            width:100%;
-        }
+            float: right;
+            grid-row: none;
+            grid-column: none;
+            width: auto;
 
-        .block-entity-fieldnodetitle {
-            grid-row:1 / span 1;
-            font-size:21px;
-            color:black;
-        }
-
-        .block-system-breadcrumb-block {
-            grid-row: 2 / span 1;
             nav {
                 padding-bottom:0;
             }
-           
+        }
+
+        &:after {
+            clear: both;
+        }
+
+        .breadcrumb ol li:not(:first-of-type):before {
+            content: " \203A ";
+        }
+
+        .breadcrumb ol li:last-of-type {
+            color: black;
+            font-size: 24px;
         }
     }
 }
