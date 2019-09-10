@@ -98,16 +98,21 @@ $katacoda-grid-title-size:23px;
         }
 
         &:after {
+            content: "";
+            display: table;
             clear: both;
         }
 
         .breadcrumb ol li:not(:first-of-type):before {
             content: " \203A ";
+            padding: 0 4px;
+            font-weight: 400;
         }
 
         .breadcrumb ol li:last-of-type {
             color: black;
-            font-size: 24px;
+            font-size: 16px;
+            font-weight: 700;
         }
     }
 }
