@@ -37,4 +37,8 @@ cd "${DIR}" && docker-compose run --rm bootstrap_drupal
 cd "${DIR}" && chmod -R 777 ./drupal-workspace/drupal_1/drupal/sites/default/files && chown -R "${DUID}" "${DIR}"/drupal-workspace
 cd "${DIR}" && docker-compose up -d drupal
 cd "${DIR}" && docker-compose exec -u root drupal /bin/bash -c "chown -R ${DUID}:0 /var/www/drupal/web/modules/contrib"
+
+# Build the theme for the first time
+cd "${DIR}" && ./build-theme.sh
+
 cd "${DIR}" && docker-compose logs -f drupal

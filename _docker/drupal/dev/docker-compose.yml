@@ -55,8 +55,8 @@ services:
     - ./edgerc:/credentials/akamai/edgerc
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
     - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
-    - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active
-    - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
+    - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active:cached
+    - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync:cached
     - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
     - ./drupal-workspace:/drupal-workspace
     depends_on:
@@ -87,7 +87,7 @@ services:
       - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync
       - ./drupal-workspace:/drupal-workspace
       - ../drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
-      # - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
+      - ../drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ./development.services.yml:/var/www/drupal/web/sites/development.services.yml
 
   memcached-0:
