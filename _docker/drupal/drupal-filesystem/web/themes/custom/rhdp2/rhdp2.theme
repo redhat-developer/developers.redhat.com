@@ -24,7 +24,7 @@ function rhdp2_preprocess_assembly(&$variables) {
   if ($background_image_value) {
     $file_id = $background_image_value[0]['target_id'];
     $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_style'] = ' style="background-image: url(' . ImageStyle::load('billboard')->buildUrl($uri) . ');"';
+    $variables['background_image'] = 'background-image: url(' . ImageStyle::load('billboard')->buildUrl($uri) . ');';
   }
 
   if ($assembly->hasField('field_image')) {
