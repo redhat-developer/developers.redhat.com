@@ -31,7 +31,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     $image_value = $assembly->get('field_image')->getValue();
   }
 
-  if ($background_image_value) {
+  if ($image_value) {
     $file_id = $image_value[0]['target_id'];
     $uri = File::load($file_id)->getFileUri();
     $variables['image_uri'] = ImageStyle::load('large')->buildUrl($uri);
