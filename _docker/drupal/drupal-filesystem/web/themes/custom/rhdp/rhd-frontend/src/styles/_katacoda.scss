@@ -73,13 +73,12 @@ $katacoda-grid-title-size:23px;
         max-width: none;
         grid-template-columns: none;
         grid-template-rows: none;
-        display: block;
-        align-items: unset;
         flex: none;
         justify-items: unset;
+        display: flex;
+        align-items: center;
 
         .rhd-header-logo {
-            float: left;
             max-width: 100%;
             width: 140px;
             grid-column: none;
@@ -87,20 +86,14 @@ $katacoda-grid-title-size:23px;
             height: auto;
         }
         .block-system-breadcrumb-block {
-            float: right;
             grid-row: none;
             grid-column: none;
             width: auto;
+            margin-left: auto;
 
             nav {
                 padding-bottom:0;
             }
-        }
-
-        &:after {
-            content: "";
-            display: table;
-            clear: both;
         }
 
         .breadcrumb ol li:not(:first-of-type):before {
