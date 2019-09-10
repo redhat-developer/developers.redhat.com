@@ -23,3 +23,5 @@ cd "${FE_THEME_DIR}" \
 && cp dist/css-min/rhd.microsites.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/js/@rhd/rhd.old.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && cp -r favicons "${DRUPAL_THEME_DIR}/"
+
+cd "${DIR}" && docker-compose exec drupal /bin/bash -c "drush cr"

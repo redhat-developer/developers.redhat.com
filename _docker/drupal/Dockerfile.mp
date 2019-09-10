@@ -26,12 +26,6 @@ COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
 # Build the theme
-RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
-    && npm install \
-    && npm run-script build \
-    && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
-
-# Build the rhdp2 theme
 ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
