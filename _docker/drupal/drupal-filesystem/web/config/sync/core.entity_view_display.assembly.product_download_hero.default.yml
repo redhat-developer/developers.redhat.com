@@ -9,6 +9,7 @@ dependencies:
     - field.field.assembly.product_download_hero.field_image
     - field.field.assembly.product_download_hero.field_learn_more_link
     - field.field.assembly.product_download_hero.field_title
+    - image.style.large
   module:
     - fences
     - field_layout
@@ -59,7 +60,7 @@ content:
     weight: 3
     label: hidden
     settings:
-      image_style: ''
+      image_style: large
       image_link: ''
     third_party_settings:
       fences:
