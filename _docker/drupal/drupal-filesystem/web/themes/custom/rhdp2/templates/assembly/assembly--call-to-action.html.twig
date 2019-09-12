@@ -1,0 +1,28 @@
+{#
+/**
+ * @file assembly--call-to-action.html.twig
+ * Call to action assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+
+<div{{ attributes.addClass(['assembly']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  {% if content.field_title is not empty %}
+    <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
+  {% endif %}
+  {% if content %}
+    {{ content|without('field_title', 'field_cta_link') }}
+  {% endif %}
+
+  <div class="rich-text__cta">
+    {{ link('Learn more', content.field_cta_link[0]['#url'], { 'class':['pf-c-button', 'pf-m-primary'] }) }}
+  </div>
+</div>
