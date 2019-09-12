@@ -21,7 +21,7 @@
     </div>
     <div class="pf-l-grid__item pf-m-7-col-on-lg pf-m-12-col-on-sm">
       <div class="rich-text-content pf-c-content">
-        {% if content.field_title.value %}
+        {% if content.field_title is not empty %}
           <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
         {% endif %}
         {% if content %}
