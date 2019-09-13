@@ -15,10 +15,13 @@
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 {% set num_products = content.field_products['#items']|length %}
 
-<div{{ attributes.addClass(['assembly', 'component']).setAttribute('style', background_image) }}{{ audience_selection }}>
-  <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
-  <div class="pf-l-gallery pf-m-gutter">
-
+<div{{ attributes.addClass(['assembly', 'component', 'pf-u-mt-lg', 'pf-u-py-xl', 'pf-c-content']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item">
+      <h1 class="featured_products__title pf-c-title pf-m-3xl">{{ content.field_title }}</h1>
+    </div>
+  </div>
+  <div class="featured_products__cards pf-l-gallery pf-m-gutter">
     {% for delta in range(0, num_products-1) %}
       <div class="pf-l-gallery__item">
         {{ content.field_products[delta] }}
