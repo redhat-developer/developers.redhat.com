@@ -5,7 +5,9 @@
   ]
 %}
 
-<div {{ attributes.addClass(classes) }}{{ audience_selection }} style="{{ background_image }}">
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+
+<div {{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}">
     <div class="pf-l-grid pf-m-gutter pf-u-pt-lg pf-u-pb-lg">
         {% if image_uri %}
         <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
