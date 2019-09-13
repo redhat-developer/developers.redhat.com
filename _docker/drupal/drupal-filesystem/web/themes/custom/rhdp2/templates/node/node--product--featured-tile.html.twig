@@ -1,0 +1,10 @@
+{{ attach_library('classy/node') }}
+
+{% include '@components/card.twig' with {
+  'hero_image': content.field_image,
+  'body': content.field_short_description,
+  'cta': {
+    'text': 'Download',
+    'url': '/products/' ~ node.field_url_product_name.0.value ~ '/download/',
+  }
+} only %}

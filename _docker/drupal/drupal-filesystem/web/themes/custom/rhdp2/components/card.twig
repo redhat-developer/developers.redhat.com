@@ -27,7 +27,7 @@
     {{ hero_image }}
   {% endif %}
   
-  {% if tag is defined %}
+  {% if tag is not empty %}
     {% set fa_classes = 'fas ' ~ tag.class %}
     <div class="rhd-c-card__tag">
       <i class={{ fa_classes }}></i>
@@ -36,15 +36,15 @@
   {% endif %}
 
   <div class="rhd-c-card-content">
-    {% if title is defined %}
+    {% if title is not empty %}
       {# Set the appropriate title classes whether or not a hero_image exists #}
-      {% if hero_image is not defined %}
+      {% if hero_image is empty %}
         {% set title_classes = ['rhd-c-card__title', 'rhd-m-card-title__no-image'] %}
       {% else %}
         {% set title_classes = ['rhd-c-card__title'] %}
       {% endif %}
 
-      {% if title.url is defined %}
+      {% if title.url is not empty %}
         <h3 class="{{ title_classes|join(' ') }}">
           <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
         </h3>
@@ -53,11 +53,11 @@
       {% endif %}
     {% endif %}
 
-    {% if subtitle is defined %}
+    {% if subtitle is not empty %}
       <div class="rhd-c-card__subtitle">{{ subtitle }}</div>
     {% endif %}
 
-    {% if body is defined %}
+    {% if body is not empty %}
       <p class="rhd-c-card__body ">{{ body }}</p>
     {% endif %}
 
@@ -75,17 +75,17 @@
         </div>
       {% endif %}
 
-      {% if content_image is defined %}
+      {% if content_image is not empty %}
         {{ content_image }}
       {% endif %}
 
-      {% if comment_count is defined %}
+      {% if comment_count is not empty %}
         <div class="rhd-c-comment">
           <i class="fas fa-comment"></i> {{ comment_count }}
         </div>
       {% endif %}
 
-      {% if cta is defined %}
+      {% if cta is not empty %}
         <a href={{ cta.url }} class="rhd-m-link">
           {{ cta.text }} <i class="fas fa-arrow-right"></i>
         </a>

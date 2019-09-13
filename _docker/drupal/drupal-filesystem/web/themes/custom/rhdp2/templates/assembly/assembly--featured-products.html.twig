@@ -1,0 +1,32 @@
+{#
+/**
+ * @file assembly--rich-text.html.twig
+ * Rich text assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+{% set num_products = content.field_products['#items']|length %}
+
+<div{{ attributes.addClass(['assembly', 'component']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
+  <div class="pf-l-gallery pf-m-gutter">
+
+    {% for delta in range(0, num_products-1) %}
+      <div class="pf-l-gallery__item">
+        {{ content.field_products[delta] }}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if content.field_cta_link is not empty %}
+    {{ content.field_cta_link }}
+  {% endif %}
+</div>
