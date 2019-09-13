@@ -14,15 +14,19 @@
 #}
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-<div{{ attributes.addClass(['assembly']).setAttribute('style', background_image) }}{{ audience_selection }}>
-  {% if content.field_title is not empty %}
-    <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
-  {% endif %}
-  {% if content %}
-    {{ content|without('field_title', 'field_cta_link') }}
-  {% endif %}
+<div{{ attributes.addClass(['assembly', 'component']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <div class="cta__container pf-l-grid">
+    {% if content.field_title is not empty %}
+      <h2 class="cta__title pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
+    {% endif %}
+    {% if content %}
+      <div class="cta__content">
+        {{ content|without('field_title', 'field_cta_link') }}
+      </div>
+    {% endif %}
 
-  <div class="rich-text__cta">
-    {{ link('Learn more', content.field_cta_link[0]['#url'], { 'class':['pf-c-button', 'pf-m-primary'] }) }}
+    <div class="cta__cta">
+      {{ link('Learn more', content.field_cta_link[0]['#url'], { 'class':['pf-c-button', 'pf-m-heavy'] }) }}
+    </div>
   </div>
 </div>
