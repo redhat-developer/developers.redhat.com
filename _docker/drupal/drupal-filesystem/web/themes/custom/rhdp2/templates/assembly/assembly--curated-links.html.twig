@@ -14,14 +14,25 @@
 #}
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-<div{{ attributes.addClass(['assembly', 'curated-links']).setAttribute('style', background_image) }}{{ audience_selection }}>
-  <div class="pf-l-grid pf-m-gutter pf-u-pt-lg pf-u-pb-lg">
-    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column pf-u-pt-lg-on-sm pf-u-pb-lg-on-sm pf-u-pt-2xl-on-md pf-u-pb-2xl-on-md">
+{# @todo please remove this. #}
+<style type="text/css">
+.assembly-type-curated_links.component .component {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+}
+</style>
+
+<div{{ attributes.addClass(['assembly', 'component']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
       {{ content.field_additional_content }}
     </div>
     <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
-      <div class="pf-l-flex pf-m-column rhd-c-curated-links">
-        <h2 class="pf-c-title pf-m-2xl pf-u-pt-lg">{{ content.field_title }}</h2>
+      <div class="pf-l-flex pf-m-column rhd-c-curated-links component">
+        {% if content.field_title.value is not empty %}
+          <h2 class="pf-c-title pf-m-2xl pf-u-pt-lg">{{ content.field_title }}</h2>
+        {% endif %}
         <hr class="rhd-c-divider">
         {% if elements.links %}
           {% for link in elements.links %}
