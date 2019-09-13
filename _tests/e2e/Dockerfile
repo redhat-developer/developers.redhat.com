@@ -14,7 +14,10 @@ RUN groupadd -g 1000 e2e \
 
 USER e2e
 WORKDIR /home/e2e
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN curl https://password.corp.redhat.com/RH-IT-Root-CA.crt > RH-IT-Root-CA.crt
+RUN npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
+    && npm config set strict-ssl=false \
+    && npm install --verbose
+
 ENV PATH /home/e2e/node_modules/.bin:/usr/java/latest/bin:$PATH

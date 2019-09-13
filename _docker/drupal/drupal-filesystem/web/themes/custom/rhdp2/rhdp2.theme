@@ -8,6 +8,9 @@ use Drupal\image\Entity\ImageStyle;
  * Functions to support theming in the RHDP2 theme.
  */
 
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+
 /**
  * Implements hook_preprocess_assembly().
  */
@@ -36,6 +39,47 @@ function rhdp2_preprocess_assembly(&$variables) {
     $uri = File::load($file_id)->getFileUri();
     $variables['image_uri'] = ImageStyle::load('large')->buildUrl($uri);
   }
+
+  if ($assembly->hasField('field_audience_selection')) {
+    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+    $variables['audience_selection'] = '';
+
+    if ($field_audience_selection_values) {
+      $audience_selection_values = [];
+
+      foreach ($field_audience_selection_values as $field_audience_selection_value) {
+        $audience_selection_values[] = $field_audience_selection_value['value'];
+      }
+
+      $audience_selection = implode(',', $audience_selection_values);
+      $variables['audience_selection'] = " data-audience={$audience_selection}";
+    }
+  }
+
+  $variables['background_image_url'] = FALSE;
+  $image_value = FALSE;
+  $svg_value = FALSE;
+
+  if ($assembly->hasField('field_background_image')) {
+    $image_value = $assembly->get('field_background_image')->getValue();
+  }
+
+  if ($assembly->hasField('field_background_svg')) {
+    $svg_value = $assembly->get('field_background_svg')->getValue();
+  }
+
+  if ($svg_value) {
+    $file_id = $svg_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = file_create_url($uri);
+    $variables['attributes']->addClass('has-background');
+  } else if ($image_value) {
+    $file_id = $image_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+    $variables['attributes']->addClass('has-background');
+  }
+
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
