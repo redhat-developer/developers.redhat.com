@@ -30,6 +30,7 @@ services:
       dockerfile: Dockerfile.mp
       args:
         - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
+        - composer_profile=development
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-env.yml"]
     user: ${DUID}:0
     environment:
@@ -46,6 +47,7 @@ services:
       dockerfile: Dockerfile.mp
       args:
         - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
+        - composer_profile=development
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-drupal.yml"]
     user: ${DUID}:0
     environment:
@@ -67,7 +69,8 @@ services:
      context: ../
      dockerfile: Dockerfile.mp
      args:
-       - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
+      - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
+      - composer_profile=development
     command: ["/bin/bash", "-c", "/var/www/drupal/run-httpd.sh"]
     user: ${DUID}:0
     ports:
