@@ -15,8 +15,6 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('assembly') }}>
-  {% if code %}
-    <pre><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
-  {% endif %}
-</div>
+{% if code %}
+  <pre{{ attributes.addClass('assembly') }}><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
+{% endif %}
