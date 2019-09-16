@@ -15,6 +15,10 @@
  * @ingroup themeable
  */
 #}
-{% if code %}
-  <pre{{ attributes.addClass('assembly') }}><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
-{% endif %}
+<div{{ attributes.addClass(['assembly', 'rhd-jump-to-nav']) }}{{ audience_selection }}>
+  {% if content %}
+    {% for item in content.nav['#items'] %}
+      {{ item }}
+    {% endfor %}
+  {% endif %}
+</div>

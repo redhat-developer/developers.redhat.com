@@ -1,0 +1,49 @@
+{#
+/**
+ * @file assembly--curated-links.html.twig
+ * Curated links assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+
+{# @todo please remove this. #}
+<style type="text/css">
+.assembly-type-curated_links.component .component {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+}
+</style>
+
+<div{{ attributes.addClass(['assembly', 'component']).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+      {{ content.field_additional_content }}
+    </div>
+    <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+      <div class="pf-l-flex pf-m-column rhd-c-curated-links component">
+        {% if content.field_title.value is not empty %}
+          <h2 class="pf-c-title pf-m-2xl pf-u-pt-lg">{{ content.field_title }}</h2>
+        {% endif %}
+        <hr class="rhd-c-divider">
+        {% if elements.links %}
+          {% for link in elements.links %}
+            <div class="pf-l-flex__item">
+              <i class="fal fa-arrow-circle-right"></i>
+              {{ link }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        <hr class="rhd-c-divider">
+      </div>
+    </div>
+  </div>
+</div>
