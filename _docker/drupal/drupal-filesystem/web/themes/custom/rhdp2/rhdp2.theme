@@ -8,6 +8,37 @@
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 
+function rhdp2_preprocess_taxonomy_term(&$variables) {
+  $term = $variables['elements']['#taxonomy_term'];
+
+  //Get bonus content term info
+  if ($term->hasField('field_content_type_image')) {
+    $variables['term_image_url'] = 'https://www.patternfly.org/assets/images/img_avatar.svg';
+    $variables['term_image_url_alt'] = '';
+
+    $term_image_value = $term->get('field_content_type_image')->getValue();
+    if ($term_image_value) {
+      $file_id = $term_image_value[0]['target_id'];
+      $uri = File::load($file_id)->getFileUri();
+      $variables['term_image_url'] = ImageStyle::load('bonus_thumb')->buildUrl($uri);
+
+      if ($term_image_value[0]['alt']) {
+        $variables['term_image_url_alt'] = $term_image_value[0]['alt'];
+      }
+    }
+  }
+
+  if ($term->hasField('field_content_type_icon_style')) {
+    $variables['icon_style'] = '';
+
+    $term_image_style_value = $term->get('field_content_type_icon_style')->getValue();
+    if ($term_image_style_value && $term_image_style_value[0]['value']) {
+      $variables['icon_style'] = $term_image_style_value[0]['value'];
+    }
+  }
+
+}
+
 /**
  * Implements hook_preprocess_assembly().
  */
