@@ -16,9 +16,13 @@
  */
 #}
 
-<div{{ attributes.addClass('assembly') }}{{ audience_selection }}>
-  {% if content %}
-  {{ content.field_bonus_content_type }}
-  {{ content.field_url }}
-  {% endif %}
+<div{{ attributes.addClass('assembly pf-l-grid') }}{{ audience_selection }}>
+  <div class="pf-l-grid__item pf-m-10-col">
+      {% if content %}
+      {{ content.field_title }}
+      <hr class="rhd-c-divider pf-u-mt-lg">
+      {{ content.field_content_list }}
+      <hr class="rhd-c-divider pf-u-mb-lg">
+      {% endif %}
+  </div>
 </div>
