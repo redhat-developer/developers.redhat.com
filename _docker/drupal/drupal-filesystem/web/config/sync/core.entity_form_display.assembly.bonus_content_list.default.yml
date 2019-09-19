@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.bonus_content_list.field_content_list
     - field.field.assembly.bonus_content_list.field_title
   module:
+    - entity_browser_entity_form
     - field_layout
     - inline_entity_form
     - layout_discovery
@@ -29,17 +30,19 @@ content:
   field_content_list:
     weight: 4
     settings:
-      match_operator: CONTAINS
       form_mode: default
-      override_labels: false
       label_singular: ''
       label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
       collapsible: false
       collapsed: false
-      allow_new: true
-      allow_existing: false
       allow_duplicate: false
-    third_party_settings: {  }
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
     type: inline_entity_form_complex
     region: content
   field_title:
