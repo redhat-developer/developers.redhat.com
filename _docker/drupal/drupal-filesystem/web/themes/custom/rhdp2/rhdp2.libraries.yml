@@ -20,8 +20,8 @@ base-theme:
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
-    # NOTE: I believe that all.min.js is just some FontAwesome assets.
-    # js/all.min.js: { minified: true }
+    # RHD FontAwesome Kit
+    https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
     # NOTE: According to Luke, Angular is only used on the Help page(s). We will
     # supposedly be removing these page(s) and Angular soon.
     # https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
