@@ -29,21 +29,19 @@
             {% if elements.featured.url %}
             <div class="product-download-hero-footer pf-u-display-inline-flex pf-c-content">
                 <div class="product-download-hero-footer--cta pf-u-text-align-center">
-                    <a class="pf-c-button pf-m-primary" href="{{ elements.featured.url }}">Download</a>
+                    <a class="pf-c-button pf-m-heavy" href="{{ elements.featured.url }}">Download</a>
                     <p class="product-download-hero-footer--version">Version {{ elements.featured.versionName }}</p>
                 </div>
                 {% if content.field_learn_more_link|render %}
                 <div class="product-download-hero-footer--learn-more">
-                    <button class="pf-c-button pf-m-link pf-u-pl-lg">
-                        <a href="{{ content.field_learn_more_link.0['#url'] }}">
-                            {% if content.field_learn_more_link.0['#title'] %}
-                            {{ content.field_learn_more_link.0['#title'] }}
-                            {% else %}
-                            Learn More
-                            {% endif %}
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </button>
+                    <a class="pf-c-button pf-m-link pf-u-pl-lg" href="{{ content.field_learn_more_link.0['#url'] }}">
+                        {% if content.field_learn_more_link.0['#title'] %}
+                        {{ content.field_learn_more_link.0['#title'] }}
+                        {% else %}
+                        Learn More
+                        {% endif %}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 {% endif %}
             </div>
