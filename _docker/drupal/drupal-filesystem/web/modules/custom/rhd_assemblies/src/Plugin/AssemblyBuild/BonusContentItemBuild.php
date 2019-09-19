@@ -28,19 +28,24 @@ class BonusContentItemBuild extends AssemblyBuildBase implements AssemblyBuildIn
     $build['term_image_url'] = 'https://www.patternfly.org/assets/images/img_avatar.svg';
 
     if ($entity->hasField('field_bonus_content_type')) {
+
       $tid = (int) $entity->get('field_bonus_content_type')->getValue()[0]['target_id'];
+      if (!$tid) {
+        return;
+      }
       $term = Term::load($tid);
 
       if ($term_image_value = $term->get('field_content_type_image')->getValue()) {
-        $file_id = $term_image_value[0]['target_id'];
-        $uri = File::load($file_id)->getFileUri();
+        if ($file_id = $term_image_value[0]['target_id']) {
 
-        if ($term_image_url = ImageStyle::load('bonus_thumb')->buildUrl($uri)) {
-          $build['term_image_url'] = $term_image_url;
-        }
+          $uri = File::load($file_id)->getFileUri();
+          if ($term_image_url = ImageStyle::load('bonus_thumb')->buildUrl($uri)) {
+            $build['term_image_url'] = $term_image_url;
+          }
 
-        if ($term_image_url_alt = $term_image_value[0]['alt']) {
-          $build['term_image_url_alt'] = $term_image_url_alt;
+          if ($term_image_url_alt = $term_image_value[0]['alt']) {
+            $build['term_image_url_alt'] = $term_image_url_alt;
+          }
         }
       }
 
