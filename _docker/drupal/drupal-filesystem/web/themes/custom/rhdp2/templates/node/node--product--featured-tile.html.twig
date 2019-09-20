@@ -1,10 +1,15 @@
 {{ attach_library('classy/node') }}
 
 {% include '@components/card.twig' with {
+  'attributes': attributes,
   'hero_image': content.field_image,
-  'body': content.field_short_description,
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'body': content.field_short_description[0],
   'cta': {
-    'text': 'Download',
-    'url': '/products/' ~ node.field_url_product_name.0.value ~ '/download/',
+    'url': url ~ '/download/',
+    'text': 'Download'
   }
 } only %}

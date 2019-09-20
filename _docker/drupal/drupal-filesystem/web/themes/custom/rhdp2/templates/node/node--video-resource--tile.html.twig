@@ -9,6 +9,7 @@
 {% endif %}
 
 {% include '@components/card.twig' with {
+  'attributes': attributes,
   'hero_image': hero_img,
   'title': {
     'text': node.label,

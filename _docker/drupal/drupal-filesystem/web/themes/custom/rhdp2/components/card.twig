@@ -3,6 +3,7 @@
  * The RHDP Card component.
  *
  * Available variables:
+ * - attributes: The Drupal 8 Attributes object for this render array/element.
  * - hero_image; A hero image that displays at the top of card, full-width.
  * - tag; A categorization for the card, like eBook, Try It, Lesson, Series, etc
  * - title;
@@ -21,7 +22,7 @@
  *
  */
 #}
-<div class="pf-c-card rhd-c-card">
+<div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
 
   {% if hero_image is defined %}
     {{ hero_image }}
@@ -61,8 +62,8 @@
       <p class="rhd-c-card__body ">{{ body }}</p>
     {% endif %}
 
-    <div class="rhd-c-card__footer">
-      {% if authors is defined %}
+    {% if authors is defined %}
+      <div class="rhd-c-card__footer">
         <div class="rhd-c-card__footer--author">
           {% for author in authors %}
             {% if author.url is defined %}
@@ -73,23 +74,24 @@
             {% if not loop.last %} &amp; {% endif %}
           {% endfor %}
         </div>
-      {% endif %}
+        {% if comment_count is not empty %}
+          <div class="rhd-c-comment">
+            <i class="fas fa-comment"></i> {{ comment_count }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
 
-      {% if content_image is not empty %}
-        {{ content_image }}
-      {% endif %}
+    {% if content_image is not empty %}
+      {{ content_image }}
+    {% endif %}
 
-      {% if comment_count is not empty %}
-        <div class="rhd-c-comment">
-          <i class="fas fa-comment"></i> {{ comment_count }}
-        </div>
-      {% endif %}
-
-      {% if cta is not empty %}
+    {% if cta is not empty %}
+      <div class="rhd-c-card__footer">
         <a href={{ cta.url }} class="rhd-m-link">
           {{ cta.text }} <i class="fas fa-arrow-right"></i>
         </a>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
 </div>

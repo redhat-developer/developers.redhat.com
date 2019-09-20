@@ -103,4 +103,53 @@ function rhdp2_preprocess_field(&$variables, $hook) {
   if ($variables['field_type'] === 'video_embed_field' && !empty($variables['items'][0])) {
     $variables['items'][0]['content']['#attached']['library'][] = 'rhdp2/video_embed_field.responsive-video';
   }
+
+  if (_is_field_used_as_content_image_in_card($variables)) {
+    foreach ($variables['items'] as $key => $item) {
+      $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image-body';
+    }
+  }
+
+  if (_is_field_used_as_hero_image_in_card($variables)) {
+    foreach ($variables['items'] as $key => $item) {
+      $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image';
+    }
+  }
+}
+
+/**
+ * Returns TRUE if field is used to populate the content_image in card.twig.
+ *
+ * @see ./components/card.twig
+ */
+function _is_field_used_as_content_image_in_card($variables) {
+  if ($variables['entity_type'] === 'node') {
+    if (($variables['element']['#bundle'] === 'cheat_sheet' && $variables['element']['#view_mode'] === 'card' && $variables['field_name'] === 'field_cover_image')
+      || ($variables['element']['#bundle'] === 'books' && $variables['element']['#view_mode'] === 'card' && $variables['field_name'] === 'field_cover_image')) {
+
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns TRUE if field is used to populate the hero_image in card.twig.
+ *
+ * @see ./components/card.twig
+ */
+function _is_field_used_as_hero_image_in_card($variables) {
+  if ($variables['entity_type'] === 'node') {
+    if ($variables['element']['#bundle'] === 'product' && $variables['element']['#view_mode'] === 'featured_tile' && $variables['field_name'] === 'field_image') {
+      return TRUE;
+    }
+  }
+  else if ($variables['entity_type'] === 'assembly') {
+    if ($variables['element']['#bundle'] === 'static_item' && $variables['field_name'] === 'field_image') {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
