@@ -17,10 +17,9 @@
   },
   'title': {
     'text': node.label,
-    'url': url
   },
   'subtitle': subtitle,
-  'body': content.body.0,
+  'body': content.body[0]['#text']|striptags,
   'cta': {
     'url': url,
     'text': 'Start'

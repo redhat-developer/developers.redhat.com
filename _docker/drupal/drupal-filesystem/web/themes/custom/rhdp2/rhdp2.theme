@@ -18,6 +18,7 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
+  // Prepares the authors render element for the Article node, Card view mode.
   if ($type === 'article' && $variables['view_mode'] === 'card') {
     $authors = $node->get('field_author_evangelist')->getValue();
     $tids = [];
@@ -150,16 +151,23 @@ function rhdp2_preprocess_block(array &$variables) {
  * Implements template_preprocess_field().
  */
 function rhdp2_preprocess_field(&$variables, $hook) {
+  // If this is a non-empty video_embed_field, attach the proper library.
   if ($variables['field_type'] === 'video_embed_field' && !empty($variables['items'][0])) {
     $variables['items'][0]['content']['#attached']['library'][] = 'rhdp2/video_embed_field.responsive-video';
   }
 
+  // If this image field is used as content_image in our Card component, then
+  // we will add the rhd-c-card__image-body class.
+  // @see ./components/card.twig
   if (_is_field_used_as_content_image_in_card($variables)) {
     foreach ($variables['items'] as $key => $item) {
       $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image-body';
     }
   }
 
+  // If this image field is used as hero_image in our Card component, then
+  // we will add the rhd-c-card__image class.
+  // @see ./components/card.twig
   if (_is_field_used_as_hero_image_in_card($variables)) {
     foreach ($variables['items'] as $key => $item) {
       $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image';
