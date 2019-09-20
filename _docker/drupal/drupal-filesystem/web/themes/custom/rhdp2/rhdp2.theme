@@ -5,8 +5,58 @@
  * Functions to support theming in the RHDP2 theme.
  */
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function rhdp2_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  $type = $node->bundle();
+
+  if ($type === 'article' && $variables['view_mode'] === 'card') {
+    $authors = $node->get('field_author_evangelist')->getValue();
+    $tids = [];
+
+    foreach ($authors as $author) {
+      $tids[] = $author['target_id'];
+    }
+
+    $author_nodes = Node::loadMultiple($tids);
+
+    if (count($author_nodes) < 1) {
+      $variables['authors'] = NULL;
+    }
+    if (count($author_nodes) === 1) {
+      // We can reset to retrieve the element since we've already verified there is only 1.
+      $authors_values = [
+        'name' => reset($author_nodes)->getTitle(),
+        // We need a Url object for Drupal, not a plain string.
+        'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
+      ];
+
+      // Get a renderable author Link and set the rhd-m-link class.
+      $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+      $authors_link = $authors_link->toRenderable();
+      $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+      $variables['authors'] = $authors_link;
+    }
+    else {
+      $authors_values = [];
+
+      foreach ($author_nodes as $author_node) {
+        $authors_values[] = $author_node->getTitle();
+      }
+
+      $variables['authors'] = implode('&', $authors_values);
+    }
+  }
+}
 
 /**
  * Implements hook_preprocess_assembly().

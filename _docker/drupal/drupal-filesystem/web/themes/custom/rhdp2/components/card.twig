@@ -4,18 +4,17 @@
  *
  * Available variables:
  * - attributes: The Drupal 8 Attributes object for this render array/element.
- * - hero_image; A hero image that displays at the top of card, full-width.
- * - tag; A categorization for the card, like eBook, Try It, Lesson, Series, etc
- * - title;
- *   - title.url; Typically a link to the node displayed in the card.
- *   - title.text; The title of the node displayed in the Card.
+ * - hero_image: A hero image that displays at the top of card, full-width.
+ * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
+ * - title:
+ *   - title.url: Typically a link to the node displayed in the card.
+ *   - title.text: The title of the node displayed in the Card.
  * - subtitle: A section for either a subtitle or metadata below the title.
  * - body: The body text for this Card. This could be a summary or otherwise
  *   trimmed version if the body text is too long.
- * - authors: (Array)
- *   - author.url: A URL to the Author's user node or any other page/URL that
- *     represents the author.
- *   - author.name: The author's name.
+ * - authors: The author(s) of this piece of content. In some instances, this is
+ *   implemented via plain text fields, but in others (like Articles) it is an
+ *   entity reference to the Authors bundle.
  * - content_image: An image rendered within the content of the Card.
  * - comment_count: A string integer of the number of comments made on the
  *   content within the card.
@@ -69,14 +68,7 @@
       <div class="rhd-c-card__footer">
         {% if authors is defined %}
           <div class="rhd-c-card__footer--author">
-            {% for author in authors %}
-              {% if author.url is defined %}
-                <a href={{ author.url }} class="rhd-m-link">{{ author.name }}</a>
-              {% else %}
-                {{ author.name }}
-              {% endif %}
-              {% if not loop.last %} &amp; {% endif %}
-            {% endfor %}
+            {{ authors }}
           </div>
         {% endif %}
         {% if absolute_url and rhd_domain and "developers.redhat.com" in absolute_url %}
