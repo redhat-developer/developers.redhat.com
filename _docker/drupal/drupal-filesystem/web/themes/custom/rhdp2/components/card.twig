@@ -19,7 +19,10 @@
  * - content_image: An image rendered within the content of the Card.
  * - comment_count: A string integer of the number of comments made on the
  *   content within the card.
- *
+ * - absolute_url: The absolute path to a piece of content
+ *   @see rhd_disqus.module
+ * - rhd_domain: Returns TRUE if this is a redhat.com domain
+ *   @see rhd_disqus.module
  */
 #}
 <div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
@@ -62,21 +65,27 @@
       <p class="rhd-c-card__body ">{{ body }}</p>
     {% endif %}
 
-    {% if authors is defined %}
+    {% if (authors is defined) or (absolute_url and rhd_domain and "developers.redhat.com" in absolute_url) %}
       <div class="rhd-c-card__footer">
-        <div class="rhd-c-card__footer--author">
-          {% for author in authors %}
-            {% if author.url is defined %}
-              <a href={{ author.url }} class="rhd-m-link">{{ author.name }}</a>
-            {% else %}
-              {{ author.name }}
-            {% endif %}
-            {% if not loop.last %} &amp; {% endif %}
-          {% endfor %}
-        </div>
-        {% if comment_count is not empty %}
-          <div class="rhd-c-comment">
-            <i class="fas fa-comment"></i> {{ comment_count }}
+        {% if authors is defined %}
+          <div class="rhd-c-card__footer--author">
+            {% for author in authors %}
+              {% if author.url is defined %}
+                <a href={{ author.url }} class="rhd-m-link">{{ author.name }}</a>
+              {% else %}
+                {{ author.name }}
+              {% endif %}
+              {% if not loop.last %} &amp; {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if absolute_url and rhd_domain and "developers.redhat.com" in absolute_url %}
+          <div class="tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
+            <a href="{{ absolute_url }}#disqus_thread">
+              <span class="fa fa-comment"></span>
+              <span class="comment-number" data-disqus-comment-count-number></span> 
+              <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span>
+            </a>
           </div>
         {% endif %}
       </div>
