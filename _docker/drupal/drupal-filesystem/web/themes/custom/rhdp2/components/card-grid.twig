@@ -11,4 +11,11 @@
   <div class="pf-l-flex rhd-c-card-grid__wrapper">
     {{ content }}
   </div>
+  {% if ctas is not empty %}
+    {% for cta in ctas['#items'] %}
+      <div class="pf-l-flex rhd-c-card-grid__cta">
+        <a class="pf-c-button pf-m-secondary" href={{ cta.uri }}>{{ cta.title }}</a>
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>

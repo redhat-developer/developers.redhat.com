@@ -26,7 +26,7 @@
 #}
 <div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
 
-  {% if hero_image is defined %}
+  {% if hero_image is not empty %}
     {{ hero_image }}
   {% endif %}
   
@@ -51,7 +51,7 @@
         <h3 class="{{ title_classes|join(' ') }}">
           <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
         </h3>
-      {% elseif title.url is not defined and title.text is defined %}
+      {% elseif title.url is empty and title.text is not empty %}
         <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
       {% endif %}
     {% endif %}
@@ -64,9 +64,9 @@
       <p class="rhd-c-card__body ">{{ body }}</p>
     {% endif %}
 
-    {% if (authors is defined) or (absolute_url and rhd_domain and "developers.redhat.com" in absolute_url) %}
+    {% if (authors is not empty) or (absolute_url and rhd_domain and "developers.redhat.com" in absolute_url) %}
       <div class="rhd-c-card__footer">
-        {% if authors is defined %}
+        {% if authors is not empty %}
           <div class="rhd-c-card__footer--author">
             {{ authors }}
           </div>
