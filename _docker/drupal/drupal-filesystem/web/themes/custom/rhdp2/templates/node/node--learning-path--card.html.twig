@@ -1,0 +1,16 @@
+{{ attach_library('classy/node') }}
+
+{% set num_resources = node.field_learning_path_content_item|length %}
+
+{% include '@components/card.twig' with {
+  'tag': {
+    'class': 'fa-graduation-cap',
+    'text': 'Learning guide'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'subtitle': num_resources ~ ' resources',
+  'body': node.field_short_description,
+} only %}
