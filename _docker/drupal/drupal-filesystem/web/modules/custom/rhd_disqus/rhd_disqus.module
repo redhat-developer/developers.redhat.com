@@ -41,7 +41,7 @@ function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDi
   if ($view_mode == 'full' && in_array($node->getType(), ['article'])) {
     $build['disqus_thread']['#title'] = FALSE;
   }
-  if ($view_mode == 'tile' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
+  if (($view_mode === 'tile' || $view_mode === 'card') && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
     $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
