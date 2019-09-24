@@ -19,7 +19,7 @@
     {% if content|without('video')|render %}
     <div class="rhd-c-video--content">
       <div class="rhd-c-video--content-wrapper">
-        <h3><a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a></h3>
+        <h3 class="header-link"><a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a></h3>
         {{ content.field_description }}
         {{ content.authors }}
       </div>
@@ -31,7 +31,7 @@
     {% if content|without('secondary_video')|render %}
     <div class="rhd-c-video--content">
       <div class="rhd-c-video--content-wrapper">
-        <h3><a href="{{ path('entity.node.canonical', {'node': assembly.field_secondary_video_resource.entity.id }) }}">{{ content.field_secondary_video_title }}</a></h3>
+        <h3 class="header-link"><a href="{{ path('entity.node.canonical', {'node': assembly.field_secondary_video_resource.entity.id }) }}">{{ content.field_secondary_video_title }}</a></h3>
         {{ content.field_secondary_video_descriptio }}
         {{ content.secondary_video_authors }}
       </div>
