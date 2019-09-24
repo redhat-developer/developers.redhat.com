@@ -79,13 +79,17 @@ function rhdp2_preprocess_assembly(&$variables) {
   }
 
   if ($assembly->hasField('field_image')) {
-    $image_value = $assembly->get('field_image')->getValue();
-  }
-
-  if ($image_value) {
-    $file_id = $image_value[0]['target_id'];
-    $uri = File::load($file_id)->getFileUri();
-    $variables['image_uri'] = ImageStyle::load('large')->buildUrl($uri);
+    if ($image_value = $assembly->get('field_image')->getValue()) {
+      if ($file_id = $image_value[0]['target_id']) {
+        $uri = File::load($file_id)->getFileUri();
+        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
+          $variables['image_uri'] = $image_uri;
+        }
+      }
+      if ($image_alt = $image_value[0]['alt']) {
+        $variables['image_alt'] = $image_alt;
+      }
+    }
   }
 
   if ($assembly->hasField('field_audience_selection')) {
