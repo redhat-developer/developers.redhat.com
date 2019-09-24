@@ -1,19 +1,26 @@
 {{ attach_library('classy/node') }}
 
+{#
+/**
+ * Custom variable(s):
+ * 
+ * - authors
+ *   @see rhdp2_preprocess_node()
+ */
+ #}
+
 {% include '@components/card.twig' with {
   'attributes': attributes,
   'tag': {
-    'class': 'fa-book',
-    'text': 'Ebook'
+    'class': 'fa-newspaper',
+    'text': content.field_article_type[0]['#markup']
   },
-  'content_image': content.field_cover_image,
   'title': {
     'text': node.label,
-  },
-  'cta': {
-    'text': 'Download',
     'url': url
   },
+  'body': content.field_short_description,
+  'authors': authors,
   'absolute_url': absolute_url,
   'rhd_domain': rhd_domain
 } only %}

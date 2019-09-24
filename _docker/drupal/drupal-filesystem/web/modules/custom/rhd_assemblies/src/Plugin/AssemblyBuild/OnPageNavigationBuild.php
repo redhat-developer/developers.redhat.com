@@ -50,7 +50,7 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
           continue;
         }
         $css_id = Html::cleanCssIdentifier('assembly-' . $build['#parent']['field_name'] . '-' . $id);
-        $nav_items[$id] = ['#markup' => '<a href="#' . $css_id . '"><span class="vcenter">' . $link_text . '</span></a>'];
+        $nav_items[$id] = ['#markup' => '<a href="#' . $css_id . '">' . $link_text . '</a>'];
       }
       if (!empty($nav_items)) {
         $build['nav'] = [
