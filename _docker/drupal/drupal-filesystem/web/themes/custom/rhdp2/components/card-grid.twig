@@ -1,11 +1,9 @@
 {#
 /**
  * The RHDP Card Grid component.
- *
- * Available variables:
- *
  */
 #}
+
 <div {{ attributes.addClass('rhd-c-card-grid', 'pf-c-content', 'component') }}>
   <div class="pf-l-flex">
     <h2 class="pf-c-title pf-m-3xl">{{ title }}</h2>
@@ -13,4 +11,11 @@
   <div class="pf-l-flex rhd-c-card-grid__wrapper">
     {{ content }}
   </div>
+  {% if ctas is not empty %}
+    {% for cta in ctas['#items'] %}
+      <div class="pf-l-flex rhd-c-card-grid__cta">
+        <a class="pf-c-button pf-m-secondary" href={{ cta.uri }}>{{ cta.title }}</a>
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>

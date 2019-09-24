@@ -1,7 +1,11 @@
 {{ attach_library('classy/node') }}
 
 {% include '@components/card.twig' with {
-  'tag': 'Cheat Sheet',
+  'attributes': attributes,
+  'tag': {
+    'class': 'fa-file-code',
+    'text': 'Cheat Sheet',
+  },
   'content_image': content.field_cover_image,
   'title': {
     'text': node.label,
