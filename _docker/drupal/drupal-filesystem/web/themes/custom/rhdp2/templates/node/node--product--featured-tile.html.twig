@@ -2,16 +2,14 @@
 
 {% include '@components/card.twig' with {
   'attributes': attributes,
-  'tag': {
-    'class': 'fa-file-code',
-    'text': 'Cheat Sheet',
-  },
-  'content_image': content.field_cover_image,
+  'hero_image': content.field_image,
   'title': {
     'text': node.label,
-  },
-  'cta': {
-    'text': 'Download',
     'url': url
+  },
+  'body': content.field_short_description[0],
+  'cta': {
+    'url': url ~ '/download/',
+    'text': 'Download'
   }
 } only %}

@@ -15,12 +15,14 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('assembly', 'rhd-jump-to-nav', 'pf-c-content', 'component') }}{{ audience_selection }}>
-  {% if content %}
-    <div class="pf-l-flex">
-      {% for item in content.nav['#items'] %}
-        {{ item }}
-      {% endfor %}
-    </div>
-  {% endif %}
+
+<div{{ attributes.addClass('assembly pf-l-grid') }}{{ audience_selection }}>
+  <div class="pf-l-grid__item pf-m-10-col">
+      {% if content %}
+      {{ content.field_title }}
+      <div class="rhd-l-bonus-content-item">
+      {{ content.field_content_list }}
+      </div>
+      {% endif %}
+  </div>
 </div>
