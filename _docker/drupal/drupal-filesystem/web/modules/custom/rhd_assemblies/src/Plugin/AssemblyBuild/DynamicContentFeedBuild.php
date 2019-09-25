@@ -32,25 +32,21 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
 
     if (count($items)) {
       $build['posts'] = [
-        '#theme' => 'item_list',
-        '#list_type' => 'ul',
-        '#items' => [],
-        '#attributes' => ['class' => 'content-' . $mode . '-list count-' . $count],
+        '#type' => 'container',
       ];
       foreach ($items as $item) {
         if (isset($item['post'])) {
-          $build['posts']['#items'][] = [
+          $build['posts'][] = [
             '#theme' => 'wordpress_post_' . $mode,
             '#post' => $item['post']->content,
             '#media' => $item['post']->media,
             '#categories' => $item['post']->categories,
-            '#date' => $item['post']->date
+            '#date' => $item['post']->date,
           ];
         }
         else if (isset($item['node'])) {
           $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-          $storage = \Drupal::entityTypeManager()->getStorage('node');
-          $build['posts']['#items'][] = $view_builder->view($item['node'], $mode);
+          $build['posts'][] = $view_builder->view($item['node'], $mode);
         }
       }
     }
@@ -100,7 +96,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     } else {
       $category_logic = NULL;
     }
-    
+
     // grab category ids
     $categories = [];
     if (!empty($category_filters)) {

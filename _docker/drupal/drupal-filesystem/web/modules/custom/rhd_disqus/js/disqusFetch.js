@@ -33,20 +33,19 @@
 
   Drupal.behaviors.disqusRecentComments = {
     attach: function attach(context, settings) {
-      if (!settings.rhdDisqus.apiKey || !settings.rhdDisqus.shortName || !settings.rhdDisqus.recentComments) {
+      if (!settings.rhdDisqus.apiKey || !settings.rhdDisqus.shortName) {
         return false;
       }
 
-      var instances = settings.rhdDisqus.recentComments;
       const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-      $(instances).once('disqusRecentComments').each(function(key, instance) {
+      $('[data-rhd-disqus-recent-comments]').once('disqusRecentComments').each(function(key, instance) {
         var getRecentCommentThreads = function(params, commentData) {
           if (commentData.length === 0) {
             return false;
           }
 
-          $(instance.element).html('');
+          $(instance).html('');
 
           $(commentData).each(function (key, comment) {
             var parseThreadInfo = function(thread) {
@@ -62,7 +61,7 @@
         };
 
         var themeRecentComment = function(comment) {
-          var template = $(instance.element).siblings('.template--rhd-disqus--comment--latest').children().clone(); // get template
+          var template = $(instance).siblings('.template--rhd-disqus--comment--latest').children().clone(); // get template
           var date = new Date(comment.createdAt); // convert date string to object
           var formattedDate = monthNames[date.getMonth()] + ' ' + date.getDate() + '&comma; ' + date.getFullYear(); // format date
 
@@ -72,7 +71,7 @@
           $(template).find('.comment-title').html(comment.threadTitle);
           $(template).find('.reply-link').attr('href', comment.threadLink + '#comment-' + comment.id);
 
-          $(template).removeClass('hidden').appendTo(instance.element); // add new comment markup to DOM
+          $(template).removeClass('hidden').appendTo(instance); // add new comment markup to DOM
         };
 
         var recentCommentsFail = function(response) {
@@ -80,8 +79,7 @@
             $(instance.element).html('Oops! We were unable to retrieve comments at this time.');
           }
         }
-
-        getComments({ api_key: settings.rhdDisqus.apiKey, forum: settings.rhdDisqus.shortName, limit: instance.limit ? instance.limit : 4 }, getRecentCommentThreads, recentCommentsFail);
+        getComments({ api_key: settings.rhdDisqus.apiKey, forum: settings.rhdDisqus.shortName, limit: $(instance).data('rhd-disqus-limit') ? $(instance).data('rhd-disqus-limit') : 4 }, getRecentCommentThreads, recentCommentsFail);
       });
     }
   };
