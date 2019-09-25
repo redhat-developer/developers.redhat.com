@@ -90,6 +90,19 @@ function rhdp2_preprocess_assembly(&$variables) {
     $variables['attributes']->addClass('has-background');
   }
 
+  if ($assembly->hasField('field_image')) {
+    if ($image_value = $assembly->get('field_image')->getValue()) {
+      if ($file_id = $image_value[0]['target_id']) {
+        $uri = File::load($file_id)->getFileUri();
+        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
+          $variables['image_uri'] = $image_uri;
+        }
+      }
+      if ($image_alt = $image_value[0]['alt']) {
+        $variables['image_alt'] = $image_alt;
+      }
+    }
+  }
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
