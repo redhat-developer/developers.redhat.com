@@ -55,7 +55,7 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
   $theme = [];
 
   // Registers a custom template and variables for Wordpress Post Teaser.
-  $theme['wordpress_post_teaser'] = [
+  $theme['wordpress_post_dynamic_content_list_item'] = [
     'template' => 'wordpress-post-teaser',
     'variables' => [
       'post' => NULL,

@@ -57,6 +57,9 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
+  if (in_array($type, ['video_resource', 'article'])) {
+
+  }
 }
 
 /**
