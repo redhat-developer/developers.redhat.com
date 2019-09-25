@@ -1,0 +1,115 @@
+uuid: bd80066a-2123-40be-9edc-72cdb81e0d16
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dynamic_content_list_item
+    - field.field.node.article.body
+    - field.field.node.article.field_article_highlights
+    - field.field.node.article.field_article_type
+    - field.field.node.article.field_author_evangelist
+    - field.field.node.article.field_author_name
+    - field.field.node.article.field_card_image
+    - field.field.node.article.field_content
+    - field.field.node.article.field_content_author
+    - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
+    - field.field.node.article.field_image
+    - field.field.node.article.field_image_caption
+    - field.field.node.article.field_long_description
+    - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
+    - field.field.node.article.field_related_articles
+    - field.field.node.article.field_short_description
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_tax_audience_segment
+    - field.field.node.article.field_tax_business_unit
+    - field.field.node.article.field_tax_campaign
+    - field.field.node.article.field_tax_lifecycle
+    - field.field.node.article.field_tax_product
+    - field.field.node.article.field_tax_product_line
+    - field.field.node.article.field_tax_project
+    - field.field.node.article.field_tax_promotion
+    - field.field.node.article.field_tax_region
+    - field.field.node.article.field_tax_stage
+    - field.field.node.article.field_topics
+    - image.style.card_small
+    - node.type.article
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
+id: node.article.dynamic_content_list_item
+targetEntityType: node
+bundle: article
+mode: dynamic_content_list_item
+content:
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: card_small
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_long_description:
+    type: text_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  content_moderation_control: true
+  field_article_highlights: true
+  field_article_type: true
+  field_author_evangelist: true
+  field_author_name: true
+  field_card_image: true
+  field_content: true
+  field_content_author: true
+  field_difficulty: true
+  field_hide_toc: true
+  field_image_caption: true
+  field_meta_tags: true
+  field_read_time: true
+  field_related_articles: true
+  field_short_description: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true
+  published_at: true

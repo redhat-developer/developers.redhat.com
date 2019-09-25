@@ -66,7 +66,7 @@ class VideoHeroBuild extends AssemblyBuildBase implements AssemblyBuildInterface
         $output = $viewBuilder->viewField($node->field_video_author, [
           'label' => 'hidden',
           'type' => 'entity_reference_entity_view',
-          'settings' => ['view_mode' => 'short_teaser', 'link' => FALSE],
+          'settings' => ['view_mode' => 'tile', 'link' => FALSE],
           ]);
         $output['#cache']['tags'] = $node->getCacheTags();
         $output['#weight'] = 100;
