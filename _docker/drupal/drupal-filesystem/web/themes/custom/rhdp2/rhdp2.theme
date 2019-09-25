@@ -57,6 +57,9 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
+  if (in_array($type, ['video_resource', 'article'])) {
+
+  }
 }
 
 /**
@@ -89,7 +92,6 @@ function rhdp2_preprocess_assembly(&$variables) {
     $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
     $variables['attributes']->addClass('has-background');
   }
-
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
