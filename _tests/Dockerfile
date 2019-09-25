@@ -25,5 +25,3 @@ RUN wget http://rubygems.org/rubygems/rubygems-2.6.13.tgz \
     && rm -rf /tmp/* \
     && echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-RUN gem install bundler --version 1.16.1 --no-rdoc --no-ri
-RUN gem install octokit -v 4.6.2 --no-rdoc --no-ri
