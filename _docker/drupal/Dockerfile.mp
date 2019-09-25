@@ -1,4 +1,4 @@
-FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.2
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.3
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]

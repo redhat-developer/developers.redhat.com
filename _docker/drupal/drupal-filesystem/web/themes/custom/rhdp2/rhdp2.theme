@@ -65,6 +65,48 @@ function rhdp2_preprocess_node(&$variables) {
 function rhdp2_preprocess_assembly(&$variables) {
   $assembly = $variables['elements']['#assembly'];
   $type = $assembly->bundle();
+  $variables['background_image_url'] = '';
+  $image_value = FALSE;
+
+  if ($assembly->hasField('field_background_image')) {
+    $background_image_value = $assembly->get('field_background_image')->getValue();
+  }
+
+  if ($background_image_value) {
+    $file_id = $background_image_value[0]['target_id'];
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+  }
+
+  if ($assembly->hasField('field_image')) {
+    if ($image_value = $assembly->get('field_image')->getValue()) {
+      if ($file_id = $image_value[0]['target_id']) {
+        $uri = File::load($file_id)->getFileUri();
+        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
+          $variables['image_uri'] = $image_uri;
+        }
+      }
+      if ($image_alt = $image_value[0]['alt']) {
+        $variables['image_alt'] = $image_alt;
+      }
+    }
+  }
+
+  if ($assembly->hasField('field_audience_selection')) {
+    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+    $variables['audience_selection'] = '';
+
+    if ($field_audience_selection_values) {
+      $audience_selection_values = [];
+
+      foreach ($field_audience_selection_values as $field_audience_selection_value) {
+        $audience_selection_values[] = $field_audience_selection_value['value'];
+      }
+
+      $audience_selection = implode(',', $audience_selection_values);
+      $variables['audience_selection'] = " data-audience={$audience_selection}";
+    }
+  }
 
   $variables['background_image_url'] = FALSE;
   $image_value = FALSE;
