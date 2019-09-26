@@ -71,9 +71,7 @@ function rhdp2_preprocess_assembly(&$variables) {
   $variables['background_image_url'] = '';
   $image_value = FALSE;
 
-  if ($assembly->hasField('field_background_image')) {
-    $background_image_value = $assembly->get('field_background_image')->getValue();
-  }
+  $background_image_value = $assembly->hasField('field_background_image') ? $assembly->get('field_background_image')->getValue() : FALSE;
 
   if ($background_image_value) {
     $file_id = $background_image_value[0]['target_id'];
