@@ -29,6 +29,15 @@ SSL but not receiving any certificate warnings.
 
 Follow the instructions relevant to your operating environment.
 
+#### Authenticate with our Data Container Docker Registry
+
+To ensure the local development experience contains production-like data, we build and push data images after each successful deployment to production. These data images
+are stored in an internal Docker registry that requires authentication.
+
+Please speak to a member of the project team and ask them to add you to the list of approved users that can pull the data containers. Once done, please follow
+the instructions on [this](https://mojo.redhat.com/docs/DOC-1192810-developersredhatcom-giving-a-dev-team-member-access-to-data-images) page to authenticate your local development
+environment.
+
 #### Effective user of the containers
 
 The local development environment is designed to map your current user id into the containers to ensure that any files written by Drupal or created
