@@ -30,12 +30,11 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 
 ## What do we test on drupal site?
 * Admin succesful login
+* All configuration changes are successfully imported after `drush cim` has been executed
 
 ## Testing of pull-requests
-The pull request pipeline consists of desktop (export and drupal) and mobile end-to-end tests (export). The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). 
-
-## Production sanity checks
-As well as testing on PR's we also test in production. These tests are a sub-set of the e2e tests, and are used to monitor the status of keycloak, download manager, and DCP. 
+The pull request pipeline consists of desktop and mobile end-to-end tests. The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). Additionally the desktop tests perform some
+sanity checks around Drupal configuration status to make sure that any changes to our Drupal configuration in your pull request are applied cleanly. 
 
 ## Retry strategy
 As we're not mocking and using live services, test sometimes fail. In an attempt to combat this we decided to add retry logic to tests.
@@ -54,20 +53,51 @@ describe('my flaky test', function () {
 ```
 
 ## Test failure(s) - what should I do?
-A lot of time has been spent on focusing on flaky tests, unfortunately failures do occur which could be related to one or more issues. For example it could be your changes to the UI (css selectors/new functionality), environmental issues (kc, download-manager, dcp), or our build machine has issues (out of memory). Testing downloads as a real user would is also difficult, and has proved to be flaky. Despite adding retry functionality false positives do occur. **Please manually verify and identify false positives before merging a pull-request**. 
-If in doubt, contact Ian Hamilton on slack.
+A lot of time has been spent on focusing on flaky tests, unfortunately failures do occur which could be related to one or more issues. For example it could be your changes to the UI (css selectors/new functionality), environmental issues (kc, download-manager, dcp), or our build machine has issues (out of memory). Testing downloads as a real user would is also difficult, and has proved to be flaky. Despite adding retry functionality false positives do occur. If in doubt, discuss it with the rest of the team.
+
+Fundamentally: **pull requests should not be merged if the tests are failing** and the branch protection rules on GitHub will prevent you from doing this.
 
 ## How do I run the E2E Tests on my local machine?
 
-You can, and **should** test your changes locally before raising a PR. Please ensure you have a local build running and `http://docker:8888` is accessible in a browser. 
+### Pre-requisites
 
-In the root of the project directory execute the following command for site export tests:
+You need to ensure you have the following installed locally:
 
-        cd _tests/e2e && npm run e2e
+* Google Chrome
+* Node `8.16.0` and npm `6.4.1`
+  * The tests have not been updated to use NodeJS 10 yet.
+
+### Running the tests
+
+You can, and **should** test your changes locally before raising a PR. Please ensure you have a local build running and `https://localhost` is accessible in a browser. 
+
+Next you need to ensure that you have the following environment variables set:
+
+* `RHD_KEYCLOAK_ADMIN_USERNAME` - The Keycloak user to log in with
+* `RHD_KEYCLOAK_ADMIN_PASSWORD` - The password for the Keycloak user
+* `RHD_DRUPAL_ADMIN_USERNAME` - The Drupal user to log in with to check configuration imports
+* `RHD_DRUPAL_ADMIN_PASSWORD` - The password for the Drupal user
+
+So as an example, you will need to run the following commands on your terminal before executing the tests:
+
+```bash
+export RHD_KEYCLOAK_ADMIN_USERNAME=rblake
+```
+
+Please note that currently the tests use the legacy Drupal log in mechanism and as such the Drupal user password should match what is in the database for Drupal.
+
+Once you have set the required environment variables, in the root of the project directory execute the following command:
+
+        cd _tests/e2e && npm run e2e:local
         
-In the root of the project directory execute the following command for site export tests:
-        
-        cd _tests/e2e && npm run e2e -- --testType=drupal --user=your-drupal-test-account-username-goes-here --password=your-drupal-test-account-password-goes-here
+This will run the full test suite using Chrome browser on your local machine.
+
+You can alternatively run the individual components of the test suite using the following commands:
+
+* `npm run e2e:local-drupal` - Runs only the Drupal tests
+* `npm run e2e:local-desktop` - Runs only the Desktop tests
+* `npm run e2e:local-mobile` - Runs only the mobile tests        
+
         
 ## Run Single feature, or test
 Add a unique tag to the test(s) `it.` description, for example to execute the following scenario:
@@ -92,12 +122,8 @@ Add a unique tag to the test(s) `it.` description, for example to execute the fo
 });
 ```
                 
- Would be: **`npm run e2e --  --mochaOpts.grep=@wip`** 
- 
- ## Override the default browser (chrome):
- 
-              RHD_JS_DRIVER='iPhone X' npm run e2e   
-  
+ Would be: **`npm run e2e:local --  --mochaOpts.grep=@wip`** 
+   
  ## Override the default (local) url:
  
  The default baseUrl when running tests locally is set to `http://docker:8888`. To override this, you can execute:
@@ -110,13 +136,6 @@ The below command will execute both the desktop and mobile full-suite of tests (
 
 In the root of the project directory execute the following command:
 
-### Full suite
-
-    ruby _tests/node_jenkins_test_runner.rb e2e https://developers.redhat.com
-
-### Sanity (desktop browser only)
-
-    ruby _tests/node_jenkins_test_runner.rb sanity https://developers.redhat.com
     
 ## Approach to writing tests
 
