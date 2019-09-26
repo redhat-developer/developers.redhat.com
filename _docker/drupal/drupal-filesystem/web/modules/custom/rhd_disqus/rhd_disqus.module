@@ -103,7 +103,7 @@ function rhd_disqus_mail($key, &$message, $params) {
       $message['body'][] = $params['message'];
       break;
   }
- }
+}
 
 function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');
