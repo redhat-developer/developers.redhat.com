@@ -21,28 +21,22 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = $entity->get('field_number_of_posts')->getValue();
     $count = reset($count)['value'];
-    $this->getItems($build, $entity, $count, 'tile');
+    $this->getItems($build, $entity, $count, 'card');
   }
 
   protected function getItems(&$build, $entity, $count, $mode) {
-    //$posts = $this->getWordpressPosts($entity, $count);
+    $posts = $this->getWordpressPosts($entity, $count);
     $nodes = $this->getDrupalNodes($entity, $count);
     $items = $this->orderItems($posts, $nodes);
     $items = array_slice($items, 0, $count);
 
     if (count($items)) {
-      // $build['posts'] = [
-      //   '#type' => 'container',
-      //   '#attributes' => ['class' => [
-      //     'pf-c-card',
-      //     'rhd-c-card',
-      //     'roger',
-      //   ]
-      //   ],
-      // ];
+      if ($mode != 'card') {
+        $build['posts'] = [
+          '#type' => 'container',
+        ];
+      }
       foreach ($items as $item) {
-        ddl('$item');
-        ddl($item);
         if (isset($item['post'])) {
           $build['posts'][] = [
             '#theme' => 'wordpress_post_' . $mode,
@@ -54,8 +48,6 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
         }
         else if (isset($item['node'])) {
           $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-          ddl('node:');
-          ddl($item['node']);
           $build['posts'][] = $view_builder->view($item['node'], $mode);
         }
       }
@@ -121,10 +113,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   }
 
   protected function getDrupalNodes(EntityInterface $entity, $count) {
-    ddl('getDrupalNodes');
     $term_filters = $entity->get('field_drupal_term_filter')->getValue();
-    ddl('$term_filters');
-    ddl($term_filters);
     $terms = [];
     $valid_node_types = [
       'video_resource',
