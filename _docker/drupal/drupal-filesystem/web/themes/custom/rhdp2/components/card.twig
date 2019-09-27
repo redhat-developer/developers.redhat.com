@@ -24,6 +24,8 @@
  *   @see rhd_disqus.module
  */
 #}
+{% set tag_attributes = create_attribute({'class': ['fas']}) %}
+
 <div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
 
   {% if hero_image is not empty %}
@@ -31,9 +33,8 @@
   {% endif %}
   
   {% if tag is not empty %}
-    {% set fa_classes = 'fas ' ~ tag.class %}
     <div class="rhd-c-card__tag">
-      <i class={{ fa_classes }}></i>
+      <i {{ tag_attributes.addClass(tag.class) }}></i>
       {{ tag.text }}
     </div>
   {% endif %}

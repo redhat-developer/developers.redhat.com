@@ -2,3 +2,7 @@ services:
   rhd_common.product_page_controller:
     class: Drupal\rhd_common\Controller\ProductPageController
     arguments: ['@entity.query', '@database', '@entity_type.manager', '@renderer', '@config.factory']
+  theme.negotiator.rhdp_theme_negotiator:
+    class: Drupal\rhd_common\Theme\RhdpThemeNegotiator
+    tags:
+      - { name: 'theme_negotiator', priority: -50 }
