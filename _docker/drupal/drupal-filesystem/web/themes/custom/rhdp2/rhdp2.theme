@@ -229,6 +229,20 @@ function rhdp2_preprocess_field(&$variables, $hook) {
       $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image';
     }
   }
+
+  // Set column count variable for Columns field in
+  // Rich Text Columns assembly type.
+  if ($variables['field_name'] === 'field_columns' && $variables['element']['#bundle'] === 'rich_text_columns') {
+    $variables['three_up'] = false;
+    if ($visual_styles = $variables['element']['#object']->get('visual_styles')->getValue()) {
+      foreach ($visual_styles as $key => $value) {
+        if (in_array('three-up', $value)) {
+          $variables['three_up'] = true;
+          break;
+        }
+      }
+    }
+  }
 }
 
 /**
