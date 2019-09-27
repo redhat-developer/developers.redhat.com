@@ -16,5 +16,5 @@
  */
 #}
 {% if code %}
-  <pre{{ attributes.addClass('assembly') }}><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
+  <pre{{ attributes }}{{ audience_selection }}><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
 {% endif %}
