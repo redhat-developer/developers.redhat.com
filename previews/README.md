@@ -1,4 +1,4 @@
-### Developer Preview Environments
+### developers.redhat.com Preview Environments
 
 This directory contains a few utility scripts to help you connect to the preview environment associated with your pull
 request build.

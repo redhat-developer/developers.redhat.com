@@ -1,0 +1,64 @@
+version: '2'
+services:
+  e2e_drupal:
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
+    command: 'npm run e2e:ci-drupal -- --base-url=$${RHD_BASE_URL}'
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./tmp_downloads:/home/e2e/tmp_downloads
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  e2e_desktop:
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
+    command: 'npm run e2e:ci-desktop -- --base-url=$${RHD_BASE_URL}'
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./tmp_downloads:/home/e2e/tmp_downloads
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  e2e_mobile:
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
+    command: 'npm run e2e:ci-mobile -- --base-url=$${RHD_BASE_URL}'
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./tmp_downloads:/home/e2e/tmp_downloads
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:3.141.0-actinium
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./tmp_downloads:/home/e2e/tmp_downloads
