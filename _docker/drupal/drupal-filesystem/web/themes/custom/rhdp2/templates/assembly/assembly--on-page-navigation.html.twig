@@ -15,7 +15,12 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('assembly', 'rhd-jump-to-nav', 'pf-c-content', 'component') }}{{ audience_selection }}>
+{% set classes = [
+  'rhd-jump-to-nav',
+  'pf-c-content',
+  'component'
+] %}
+<div{{ attributes.addClass(classes) }}{{ audience_selection }}>
   {% if content %}
     <div class="pf-l-flex">
       {% for item in content.nav['#items'] %}
