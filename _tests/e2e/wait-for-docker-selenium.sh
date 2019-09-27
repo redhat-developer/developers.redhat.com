@@ -13,4 +13,4 @@ do
 done
 
 echo "Selenium-standalone is up - executing tests"
-exec $cmd
+exec ruby /home/e2e/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb $cmd

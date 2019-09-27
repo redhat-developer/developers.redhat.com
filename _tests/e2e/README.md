@@ -1,15 +1,18 @@
-RHDP Site End-to-end Testing
+developers.redhat.com End-to-End (e2e) Testing
 =============================
 
 ### Summary
 
-This directory contains the UI Tests for the developers.redhat.com website, these tests are written in nodejs using [mocha](https://mochajs.org/) test framework and [webdriverio](http://webdriver.io/) as a driver to mimic real user interactions.
+This directory contains the end-to-end tests for the developers.redhat.com website. These tests are written in NodeJS using [mocha](https://mochajs.org/) test framework and [webdriver.io](http://webdriver.io/) as a driver to mimic real user interactions.
 
-## What types of tests we execute in our local/PR environment?
+These tests are executed each time a pull request is raised on the developers.redhat.com Git repository. Branch protection rules mean that it is not possible to merge your pull request until the tests are passing, so if you are making changes to the site,
+you should not neglect these tests.
 
-* js-e2e-tests 
-* js-mobile-e2e-tests
-* js-drupal-e2e-tests
+The tests are split into three major sections:
+
+* Key site functionality
+* Key site functionality on a mobile device 
+* Key Drupal functionality
         
 ## What is e2e testing?
 
@@ -20,7 +23,7 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 
 ![http://www.agilenutshell.com/episodes/41-testing-pyramid](rules-of-thumb.png)
 
-## What do we test on site-export?
+## What do we test for key site functionality
 * Search Page (DCP)
 * RHEL download (Download Manager, Keycloak login)
 * RHEL advanced linux cheatsheet (Download Manager, Keycloak login)
@@ -28,13 +31,9 @@ We try to minimise the number of e2e tests that we have, as by nature these are 
 * Home and Blog pages contain unique string for site monitoring.
 * 404 pages
 
-## What do we test on drupal site?
-* Admin succesful login
+## What do we test for key Drupal functionality?
+* Admin can succesfully login after changes have been applied
 * All configuration changes are successfully imported after `drush cim` has been executed
-
-## Testing of pull-requests
-The pull request pipeline consists of desktop and mobile end-to-end tests. The desktop tests execute in a chrome browser, and the mobile tests use a mobile enulated browser (currently iPhone X). Additionally the desktop tests perform some
-sanity checks around Drupal configuration status to make sure that any changes to our Drupal configuration in your pull request are applied cleanly. 
 
 ## Retry strategy
 As we're not mocking and using live services, test sometimes fail. In an attempt to combat this we decided to add retry logic to tests.
@@ -53,6 +52,9 @@ describe('my flaky test', function () {
 ```
 
 ## Test failure(s) - what should I do?
+
+You should investigate the failure. 
+
 A lot of time has been spent on focusing on flaky tests, unfortunately failures do occur which could be related to one or more issues. For example it could be your changes to the UI (css selectors/new functionality), environmental issues (kc, download-manager, dcp), or our build machine has issues (out of memory). Testing downloads as a real user would is also difficult, and has proved to be flaky. Despite adding retry functionality false positives do occur. If in doubt, discuss it with the rest of the team.
 
 Fundamentally: **pull requests should not be merged if the tests are failing** and the branch protection rules on GitHub will prevent you from doing this.
@@ -69,7 +71,7 @@ You need to ensure you have the following installed locally:
 
 ### Running the tests
 
-You can, and **should** test your changes locally before raising a PR. Please ensure you have a local build running and `https://localhost` is accessible in a browser. 
+You can, and **should** test your changes locally before raising a PR. Please ensure you have Drupal running and `https://localhost` is accessible in your browser. 
 
 Next you need to ensure that you have the following environment variables set:
 
@@ -84,7 +86,8 @@ So as an example, you will need to run the following commands on your terminal b
 export RHD_KEYCLOAK_ADMIN_USERNAME=rblake
 ```
 
-Please note that currently the tests use the legacy Drupal log in mechanism and as such the Drupal user password should match what is in the database for Drupal.
+Please note that currently the tests use the legacy Drupal log in mechanism and as such the Drupal user password should match what is in the database for Drupal. All Drupal passwords are sanitized in the local development environment,
+so ask the rest of the development team for the sanitized password.
 
 Once you have set the required environment variables, in the root of the project directory execute the following command:
 
@@ -97,6 +100,8 @@ You can alternatively run the individual components of the test suite using the 
 * `npm run e2e:local-drupal` - Runs only the Drupal tests
 * `npm run e2e:local-desktop` - Runs only the Desktop tests
 * `npm run e2e:local-mobile` - Runs only the mobile tests        
+
+**Note:** The Download tests are currently excluded from local runs due to https://issues.jboss.org/browse/DEVELOPER-5938
 
         
 ## Run Single feature, or test
@@ -122,20 +127,13 @@ Add a unique tag to the test(s) `it.` description, for example to execute the fo
 });
 ```
                 
- Would be: **`npm run e2e:local --  --mochaOpts.grep=@wip`** 
+You can then run this single test with: **`npm run e2e:local --  --mochaOpts.grep=@wip`** 
    
  ## Override the default (local) url:
  
- The default baseUrl when running tests locally is set to `http://docker:8888`. To override this, you can execute:
+ The default baseUrl when running tests locally is set to `https://localhost`. To override this, you can execute:
  
-              npm run e2e -- --base-url=https://developers.redhat.com --mochaOpts.grep=@wip
-              
-## Run tests inside docker using docker-selenium (build scripts - same as Jenkins)
-
-The below command will execute both the desktop and mobile full-suite of tests (*at the time of writing this takes around 4 minutes in total*). 
-
-In the root of the project directory execute the following command:
-
+              npm run e2e:local -- --base-url=https://developers.redhat.com
     
 ## Approach to writing tests
 

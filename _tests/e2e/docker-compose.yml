@@ -1,8 +1,9 @@
 version: '2'
 services:
   e2e_drupal:
-    build: .
-    entrypoint: /home/e2e/wait-for-docker-selenium.sh
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-drupal -- --base-url=$${RHD_BASE_URL}'
     environment:
       - RHD_BASE_URL
@@ -19,8 +20,9 @@ services:
       - chrome
 
   e2e_desktop:
-    build: .
-    entrypoint: /home/e2e/wait-for-docker-selenium.sh
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-desktop -- --base-url=$${RHD_BASE_URL}'
     environment:
       - RHD_BASE_URL
@@ -37,8 +39,9 @@ services:
       - chrome
 
   e2e_mobile:
-    build: .
-    entrypoint: /home/e2e/wait-for-docker-selenium.sh
+    build:
+      context: .
+      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-mobile -- --base-url=$${RHD_BASE_URL}'
     environment:
       - RHD_BASE_URL

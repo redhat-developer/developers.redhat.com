@@ -7,11 +7,9 @@ RUN gem install bundler:1.16.1 octokit:4.6.2 --no-rdoc --no-ri
 
 USER e2e
 WORKDIR /home/e2e
-COPY package.json package-lock.json wait-for-docker-selenium.sh ./
+COPY package.json package-lock.json ./
 RUN npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
     && npm config set strict-ssl=false \
-    && npm install --verbose
+    && npm install
 
-COPY tests tests
-
-ENV PATH /home/e2e/node_modules/.bin:$PATH
+ENV PATH /home/e2e/node_modules/.bin:/usr/java/latest/bin:$PATH
