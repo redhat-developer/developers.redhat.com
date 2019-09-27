@@ -1,7 +1,6 @@
 import Login from '../support/pages/keycloak/Login.page';
 import ProductOverview from '../support/pages/website/ProductOverview.page';
 import CheatSheets from '../support/pages/website/CheatSheets.page';
-import User from '../support/rest/keycloak/Site.user';
 import DownloadDir from '../support/utils/DownloadDir';
 import Utils from '../support/utils/Utils';
 
@@ -10,11 +9,11 @@ tags('desktop').describe('Download Manager', function() {
     this.retries(2);
 
     beforeEach(function() {
-        DownloadDir.clear(global.downloadDir);
+        DownloadDir.init();
         Utils.cleanSession();
     }, 2);
 
-    it('should allow users to login in and download RHEL', function() {
+    it('@downloads: should allow users to login in and download RHEL', function() {
             ProductOverview
                 .open('rhel', 'download')
                 .download();
@@ -24,12 +23,17 @@ tags('desktop').describe('Download Manager', function() {
             expect(downloadName.toString(), 'rhel download was not triggered').to.include('rhel');
         });
 
-    /*
-        Disabling this in managed paas environments until we can work out how to support downloads of content in lower environments
-     */
-    it('should allow users to log-in and download advanced-linux-commands', function() {
+    it('@downloads: should allow users to log-in and download advanced-linux-commands', function() {
 
-        if(Utils.isManagedPaasEnvironment() === false) {
+        /*
+            Please see https://issues.jboss.org/browse/DEVELOPER-5938
+
+            The DownloadManager is hard-coded and does not respect environment configuration. This means that some Downloads are hard-coded to use production URLs. We cannot
+            test these in lower environments because the authentication flow is not correct (non-PR environments do not authenticate with production Keycloak).
+
+            Fundamentally DownloadManager should respect environment configuration.
+         */
+        if(Utils.isProduction()) {
 
                 CheatSheets
                     .open('advanced-linux-commands')
@@ -43,7 +47,7 @@ tags('desktop').describe('Download Manager', function() {
     });
 
     afterEach(function() {
-        DownloadDir.clear(global.downloadDir);
+        DownloadDir.destroy();
         Utils.cleanSession();
     }, 2);
 });
