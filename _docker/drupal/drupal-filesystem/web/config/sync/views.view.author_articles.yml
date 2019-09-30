@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.card
     - node.type.article
   module:
     - node
@@ -70,17 +70,21 @@ display:
             offset_label: Offset
           quantity: 5
       style:
-        type: default
+        type: grid
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
           uses_fields: false
+          columns: 4
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: true
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
       row:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: card
       fields:
         title:
           id: title

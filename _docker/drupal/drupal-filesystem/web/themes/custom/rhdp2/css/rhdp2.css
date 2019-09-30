@@ -1,0 +1,39 @@
+
+/* Author page */
+.node--type-author.node--view-mode-full .social-links a {
+  background-color: #f3f3f3;
+  border-radius: 100%;
+  display: inline-block;
+  height: 24px;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 24px;
+}
+@media (min-width: 769px) {
+  .node--type-author.node--view-mode-full .social-links a {
+      margin-bottom: 0;
+  }
+}
+.node--type-author.node--view-mode-full .social-links a .a2a_svg {
+    height: 18px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 18px;
+}
+.node--type-author.node--view-mode-full .social-links a .a2a_label {
+    -webkit-clip-path: polygon(0 0,0 0,0 0);
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    clip-path: polygon(0 0,0 0,0 0);
+    height: 1px;
+    overflow: hidden;
+    position: absolute!important;
+    width: 1px;
+}
+.node--type-author.node--view-mode-full hr {
+  margin: 30px 0;
+}
