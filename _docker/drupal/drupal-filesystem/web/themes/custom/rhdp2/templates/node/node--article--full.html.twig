@@ -1,0 +1,209 @@
+{#
+/**
+* @file
+* Default theme implementation to display a node.
+*
+* Available variables:
+* - node: The node entity with limited access to object properties and methods.
+Only "getter" methods (method names starting with "get", "has", or "is")
+and a few common methods such as "id" and "label" are available. Calling
+other methods (such as node.delete) will result in an exception.
+* - label: The title of the node.
+* - content: All node items. Use {{ content }} to print them all,
+*   or print a subset such as {{ content.field_example }}. Use
+*   {{ content|without('field_example') }} to temporarily suppress the printing
+*   of a given child element.
+* - author_picture: The node author user entity, rendered using the "compact"
+*   view mode.
+* - metadata: Metadata for this node.
+* - date: Themed creation date field.
+* - author_name: Themed author name field.
+* - url: Direct URL of the current node.
+* - display_submitted: Whether submission information should be displayed.
+* - attributes: HTML attributes for the containing element.
+*   The attributes.class element may contain one or more of the following
+*   classes:
+*   - node: The current template type (also known as a "theming hook").
+*   - node--type-[type]: The current node type. For example, if the node is an
+*     "Article" it would result in "node--type-article". Note that the machine
+*     name will often be in a short form of the human readable label.
+*   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+*     teaser would result in: "node--view-mode-teaser", and
+*     full: "node--view-mode-full".
+*   The following are controlled through the node publishing options.
+*   - node--promoted: Appears on nodes promoted to the front page.
+*   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+*     teaser listings.
+*   - node--unpublished: Appears on unpublished nodes visible only to site
+*     admins.
+* - title_attributes: Same as attributes, except applied to the main title
+*   tag that appears in the template.
+* - content_attributes: Same as attributes, except applied to the main
+*   content tag that appears in the template.
+* - author_attributes: Same as attributes, except applied to the author of
+*   the node tag that appears in the template.
+* - title_prefix: Additional output populated by modules, intended to be
+*   displayed in front of the main title tag that appears in the template.
+* - title_suffix: Additional output populated by modules, intended to be
+*   displayed after the main title tag that appears in the template.
+* - view_mode: View mode; for example, "teaser" or "full".
+* - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+* - page: Flag for the full page state. Will be true if view_mode is 'full'.
+* - readmore: Flag for more state. Will be true if the teaser content of the
+*   node cannot hold the main body content.
+* - logged_in: Flag for authenticated user status. Will be true when the
+*   current user is a logged-in member.
+* - is_admin: Flag for admin user status. Will be true when the current user
+*   is an administrator.
+*
+* @see template_preprocess_node()
+*
+* @todo Remove the id attribute (or make it a class), because if that gets
+*   rendered twice on a page this is invalid CSS for example: two lists
+*   in different view modes.
+*
+* @ingroup themeable
+*/
+#}
+
+{% set classes = [
+  'component',
+  'content',
+  'pf-l-grid',
+  'pf-m-gutter',
+  'author-' ~ author_location
+] %}
+{% set article_classes = (hide_toc == TRUE) ? [
+  'pf-l-grid__item',
+  'pf-m-9-col',
+  'gsi',
+  'fetch-toc',
+  'article-content',
+] : [
+  'pf-l-grid__item',
+  'pf-m-7-col',
+  'gsi',
+  'fetch-toc',
+  'article-content',
+] %}
+<div{{ attributes.addClass(classes).setAttribute("id", "rhd-article") }}>
+  {% if has_hero and content.field_image|render %}
+  <div class="article-hero pf-l-grid__item pf-sm-12-col">
+    {% if content.field_image_caption|render %}
+    <figure>
+    {% endif %}
+      {{ content.field_image }}
+    {% if content.field_image_caption|render %}
+      <figcaption>
+        {{ content.field_image_caption }}
+      </figcaption>
+    </figure>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if content.field_image|render and not has_hero %}
+  <div class="article-info-wrapper pf-l-grid__item pf-m-7-col">
+  {% else %}
+  <div class="pf-l-grid__item pf-m-12-col">
+  {% endif %}
+    <div class="article-info-left">
+      {% if content.field_article_type|render %}
+      <p class="article-type">{{ content.field_article_type }}</p>
+      {% endif %}
+      {{ title_prefix }}
+      <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
+      {{ title_suffix }}
+      <div class="gsi-meta article-info">
+        <div class="publish-date">{{ node.createdtime|date(' F j, Y') }}</div>
+        {% if author_location == 'left' %}
+        <div class="share-buttons">
+          {% include '@rhdp/share.html.twig' %}
+        </div>
+        {% endif %}
+      </div>
+      {% if content.field_topics|render %}
+       <div class="topics">
+        More on: {{ content.field_topics }}
+       </div>
+      {% endif %}
+    </div> {# /.article-info-left #}
+    {% if content.field_author_evangelist|render %}
+    <div class="authors">
+      {% if author_location == 'right' %}
+      <div class="share-buttons">
+        {% include '@rhdp/share.html.twig' %}
+      </div>
+      {% endif %}
+      {{ content.field_author_evangelist }}
+    </div>
+    {% elseif content.field_content_author|render %}
+    <div class="authors no-image">
+      {% if author_location == 'right' %}
+      <div class="share-buttons">
+        {% include '@rhdp/share.html.twig' %}
+      </div>
+      {% endif %}
+      <div class="authors-inner">
+        <div class="author short-teaser">
+          <span class="author-name">
+            {{ content.field_content_author }}
+          </span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div> {# /.article-info-wrapper #}
+  {% if content.field_image|render and not has_hero %}
+  <div class="floated-image pf-l-grid__item pf-m-5-col">
+    {% if content.field_image_caption|render %}
+    <figure>
+    {% endif %}
+      {{ content.field_image }}
+      {% if content.field_image_caption|render %}
+      <figcaption>
+        {{ content.field_image_caption }}
+      </figcaption>
+    </figure>
+      {% endif %}
+  </div>
+  {% endif %}
+  {% if content.field_article_highlights|render %}
+  <div class="article-highlights pf-l-grid__item pf-sm-12-col">
+    {{ content.field_article_highlights }}
+  </div>
+  {% endif %}
+  {% if not hide_toc %}
+  <div class="pf-l-grid__item pf-m-2-col">
+    <ul class="toc gsi-nav"></ul>
+  </div>
+  {% endif %}
+  <div{{ content_attributes.addClass(article_classes) }}>
+    {{ content.body }}
+    {{ content.field_content }}
+    {% if content.field_tags|render %}
+    <div class="article-tags">
+      {{ content.field_tags }}
+    </div>
+    {% endif %}
+    {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
+    <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
+    {% endif %}
+  </div>
+  {# add if sidebar here #}
+  {% if not hide_toc %}
+  <div class="pf-l-grid__item pf-m-9-col">
+  {% else %}
+  <div class="pf-l-grid__item pf-m-7-col pf-m-offset-2-col">
+  {% endif %}
+    {{ content.disqus_thread }}
+  </div>
+  {% if content.field_related_articles|render %}
+  <div class="related-articles pf-l-grid__item pf-m-12-col">
+    <h4 class="related-article-header">Related Articles</h4>
+    <div class="cards-wrapper">
+      {{ content.field_related_articles }}
+    </div>
+  </div>
+  {% endif %}
+</div>
+<a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>
