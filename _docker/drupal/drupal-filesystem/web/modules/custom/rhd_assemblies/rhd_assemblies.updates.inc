@@ -97,22 +97,46 @@ function rhd_assemblies_update_8001() {
   }
 
   // Update product-hero--dark-centered visual styles to dark and centered.
+  $deprecated_class = 'product-hero--dark-centered';
   $assembly_ids = \Drupal::entityQuery('assembly')
-    ->condition('visual_styles', 'product-hero--dark-centered')
+    ->condition('visual_styles', $deprecated_class)
     ->execute();
   $assemblies = Assembly::loadMultiple($assembly_ids);
   foreach ($assemblies as $assembly) {
-    $assembly->set('visual_styles', ['dark', 'centered']);
+    $visual_styles = $assembly->get('visual_styles')->getValue();
+    // Remove the 'product-hero--dark-centered' visual style/class if it exists.
+    foreach ($visual_styles as $key => $visual_style) {
+      if ($deprecated_class === $visual_style['value']) {
+        unset($visual_styles[$key]);
+      }
+    }
+    // Add in the 'dark' and 'centered' visual styles/classes.
+    $visual_styles[] = ['value' => 'dark'];
+    $visual_styles[] = ['value' => 'centered'];
+    // Update the visual_styles field value.
+    $assembly->get('visual_styles')->setValue($visual_styles);
     $assembly->save();
   }
 
   // Update product-hero--light-centered visual styles to light and centered.
+  $deprecated_class = 'product-hero--light-centered';
   $assembly_ids = \Drupal::entityQuery('assembly')
-    ->condition('visual_styles', 'product-hero--light-centered')
+    ->condition('visual_styles', $deprecated_class)
     ->execute();
   $assemblies = Assembly::loadMultiple($assembly_ids);
   foreach ($assemblies as $assembly) {
-    $assembly->set('visual_styles', ['light', 'centered']);
+    $visual_styles = $assembly->get('visual_styles')->getValue();
+    // Remove the 'product-hero--dark-centered' visual style/class if it exists.
+    foreach ($visual_styles as $key => $visual_style) {
+      if ($deprecated_class === $visual_style['value']) {
+        unset($visual_styles[$key]);
+      }
+    }
+    // Add in the 'dark' and 'centered' visual styles/classes.
+    $visual_styles[] = ['value' => 'light'];
+    $visual_styles[] = ['value' => 'centered'];
+    // Update the visual_styles field value.
+    $assembly->get('visual_styles')->setValue($visual_styles);
     $assembly->save();
   }
 
