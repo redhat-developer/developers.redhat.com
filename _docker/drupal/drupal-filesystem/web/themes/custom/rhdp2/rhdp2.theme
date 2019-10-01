@@ -64,7 +64,10 @@ function rhdp2_preprocess_node(&$variables) {
   // Author content type.
   if ($type == 'author') {
     $variables['author_name'] = $node->getTitle();
-    $variables['author_articles'] = views_embed_view('author_articles');
+    $variables['author_articles'] = FALSE;
+    if (views_get_view_result('author_articles')) {
+      $variables['author_articles'] = views_embed_view('author_articles');
+    }
     $variables['social_links'] = FALSE;
     $social_facebook = $node->get('field_facebook')->getValue();
     $social_github = $node->get('field_github')->getValue();
