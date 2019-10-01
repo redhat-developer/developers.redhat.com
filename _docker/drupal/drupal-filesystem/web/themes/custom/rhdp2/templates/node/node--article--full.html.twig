@@ -104,7 +104,7 @@ other methods (such as node.delete) will result in an exception.
   {% if content.field_image|render and not has_hero %}
   <div class="article-info-wrapper pf-l-grid__item pf-m-7-col">
   {% else %}
-  <div class="pf-l-grid__item pf-m-12-col">
+  <div class="article-info-wrapper pf-l-grid__item pf-m-12-col">
   {% endif %}
     <div class="article-info-left">
       {% if content.field_article_type|render %}
@@ -117,21 +117,21 @@ other methods (such as node.delete) will result in an exception.
         <div class="publish-date">{{ node.createdtime|date(' F j, Y') }}</div>
         {% if author_location == 'left' %}
         <div class="share-buttons">
-          {% include '@rhdp/share.html.twig' %}
+          {% include '@rhdp2/share.html.twig' %}
         </div>
         {% endif %}
+        {% if content.field_topics|render %}
+         <div class="topics">
+          More on: {{ content.field_topics }}
+         </div>
+        {% endif %}
       </div>
-      {% if content.field_topics|render %}
-       <div class="topics">
-        More on: {{ content.field_topics }}
-       </div>
-      {% endif %}
     </div> {# /.article-info-left #}
     {% if content.field_author_evangelist|render %}
     <div class="authors">
       {% if author_location == 'right' %}
       <div class="share-buttons">
-        {% include '@rhdp/share.html.twig' %}
+        {% include '@rhdp2/share.html.twig' %}
       </div>
       {% endif %}
       {{ content.field_author_evangelist }}
@@ -140,7 +140,7 @@ other methods (such as node.delete) will result in an exception.
     <div class="authors no-image">
       {% if author_location == 'right' %}
       <div class="share-buttons">
-        {% include '@rhdp/share.html.twig' %}
+        {% include '@rhdp2/share.html.twig' %}
       </div>
       {% endif %}
       <div class="authors-inner">
@@ -200,9 +200,7 @@ other methods (such as node.delete) will result in an exception.
   {% if content.field_related_articles|render %}
   <div class="related-articles pf-l-grid__item pf-m-12-col">
     <h4 class="related-article-header">Related Articles</h4>
-    <div class="cards-wrapper">
-      {{ content.field_related_articles }}
-    </div>
+    {{ content.field_related_articles }}
   </div>
   {% endif %}
 </div>

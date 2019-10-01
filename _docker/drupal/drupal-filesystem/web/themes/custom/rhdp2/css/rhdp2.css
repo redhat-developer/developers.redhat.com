@@ -39,21 +39,32 @@
   font-size: 14px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 30px;
+  margin-right: 32px;
 }
 #rhd-article .share-buttons {
   display: inline-block;
   vertical-align: middle;
 }
+#rhd-article .share-buttons .a2a_svg,
+#rhd-article .share-buttons .a2a_count {
+  border-radius: 0 !important;
+  margin-right: 16px;
+}
 #rhd-article .topics {
-  color: #444;
-  float: left;
+  color: #151515;
+  display: inline-block;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 20px;
-  width: 100%;
+  margin-left: 16px;
+  font-weight: 400;
 }
 #rhd-article .topics a:after {
   color: #444;
   content: ", ";
+}
+#rhd-article .topics a:last-of-type:after {
+  content: " ";
+}
+#rhd-article .topics a:first-of-type:last-of-type:after {
+  content: " ";
 }
