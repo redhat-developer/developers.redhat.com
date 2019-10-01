@@ -1,7 +1,7 @@
 {{ attach_library('classy/node') }}
 
 {% include '@components/card.twig' with {
-  'attributes': attributes,
+  'attributes': attributes.addClass('rhd-c-card-logo'),
   'hero_image': content.field_image,
   'title': {
     'text': node.label,
