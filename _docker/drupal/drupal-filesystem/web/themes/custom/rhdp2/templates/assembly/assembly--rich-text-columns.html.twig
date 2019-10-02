@@ -15,7 +15,11 @@
  * @ingroup themeable
  */
 #}
-<section{{ attributes.addClass('pf-c-content') }}{{ audience_selection }}>
+{% set classes = [
+  'pf-c-content',
+  'component',
+]%}
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
   {% if content %}
     {{- content -}}
   {% endif %}
