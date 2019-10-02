@@ -188,17 +188,10 @@ other methods (such as node.delete) will result in an exception.
     {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
     <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
     {% endif %}
-  </div>
-  {# add if sidebar here #}
-  {% if not hide_toc %}
-  <div class="pf-l-grid__item pf-m-9-col">
-  {% else %}
-  <div class="pf-l-grid__item pf-m-7-col pf-m-offset-2-col">
-  {% endif %}
     {{ content.disqus_thread }}
   </div>
   {% if content.field_related_articles|render %}
-  <div class="related-articles pf-l-grid__item pf-m-12-col">
+  <div class="related-articles rhd-c-card-grid">
     <h4 class="related-article-header">Related Articles</h4>
     {{ content.field_related_articles }}
   </div>
