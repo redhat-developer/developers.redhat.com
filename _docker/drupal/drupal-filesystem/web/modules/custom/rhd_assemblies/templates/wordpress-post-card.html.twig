@@ -1,0 +1,19 @@
+{% set classes = [
+    'pf-c-card',
+    'rhd-c-card',
+] %}
+{{ attach_library('classy/node') }}
+<div{{ attributes.addClass(classes) }}>
+  {% if media and media.media_type == 'image' %}
+  {% set tmpUrl = media.source_url %}
+  {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+  {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
+    {{ cacheImg }}
+  {% else %}
+    <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+  {% endif %}
+  {% endif %}
+  <div class="rhd-c-card-content">
+    <h3 class="rhd-c-card__title"><a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a></h3>
+  </div>
+</div>
