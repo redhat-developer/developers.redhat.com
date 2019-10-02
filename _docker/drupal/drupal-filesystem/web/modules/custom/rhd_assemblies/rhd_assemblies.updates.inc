@@ -16,84 +16,164 @@ use Drupal\assembly\Entity\Assembly;
  * and "centered"
  */
 function rhd_assemblies_update_8001() {
-  // Update assembly-dark visual styles to dark.
+  // Update assembly-dark visual styles to dark in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
     ->condition('visual_styles_value', 'assembly-dark', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-dark" visual style to "dark".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update product-hero--dark visual styles to dark.
+  // Update assembly-dark visual styles to dark in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'dark'])
+    ->condition('visual_styles_value', 'assembly-dark', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-dark" visual style to "dark" in assembly_revision__visual_styles.');
+  }
+
+  // Update product-hero--dark visual styles to dark in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
     ->condition('visual_styles_value', 'product-hero--dark', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--dark" visual style to "dark".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update product-hero--light visual styles to light.
+  // Update product-hero--dark visual styles to dark in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'dark'])
+    ->condition('visual_styles_value', 'product-hero--dark', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--dark" visual style to "dark" in assembly_revision__visual_styles.');
+  }
+
+  // Update product-hero--light visual styles to light in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'light'])
     ->condition('visual_styles_value', 'product-hero--light', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--light" visual style to "light".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--light" visual style to "light" in assembly__visual_styles.');
   }
 
-  // Update product-hero--slim visual styles to slim.
+  // Update product-hero--light visual styles to light in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'light'])
+    ->condition('visual_styles_value', 'product-hero--light', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--light" visual style to "light" in assembly_revision__visual_styles.');
+  }
+
+  // Update product-hero--slim visual styles to slim in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'assembly-slim'])
     ->condition('visual_styles_value', 'product-hero--slim', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--slim" visual style to "assembly-slim".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--slim" visual style to "assembly-slim" in assembly__visual_styles.');
   }
 
-  // Update center visual styles to centered.
+  // Update product-hero--slim visual styles to slim in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'assembly-slim'])
+    ->condition('visual_styles_value', 'product-hero--slim', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--slim" visual style to "assembly-slim" in assembly_revision__visual_styles.');
+  }
+
+  // Update center visual styles to centered in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'centered'])
     ->condition('visual_styles_value', 'center', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "center" visual style to "centered".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "center" visual style to "centered" in assembly__visual_styles.');
   }
 
-  // Update assembly-center visual styles to centered.
+  // Update center visual styles to centered in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'centered'])
+    ->condition('visual_styles_value', 'center', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "center" visual style to "centered" in assembly_revision__visual_styles.');
+  }
+
+  // Update assembly-center visual styles to centered in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'centered'])
     ->condition('visual_styles_value', 'assembly-center', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-center" visual style to "centered".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-center" visual style to "centered" in assembly__visual_styles.');
   }
 
-  // Update product-signup-hero--dark visual styles to dark.
+  // Update assembly-center visual styles to centered in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'centered'])
+    ->condition('visual_styles_value', 'assembly-center', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-center" visual style to "centered" in assembly_revision__visual_styles.');
+  }
+
+  // Update product-signup-hero--dark visual styles to dark in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
     ->condition('visual_styles_value', 'product-signup-hero--dark', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-signup-hero--dark" visual style to "dark".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-signup-hero--dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update events-hero--light visual styles to light.
+  // Update product-signup-hero--dark visual styles to dark in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'dark'])
+    ->condition('visual_styles_value', 'product-signup-hero--dark', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-signup-hero--dark" visual style to "dark" in assembly_revision__visual_styles.');
+  }
+
+  // Update events-hero--light visual styles to light in assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'light'])
     ->condition('visual_styles_value', 'events-hero--light', '=')
     ->execute();
   if ($query === NULL) {
-    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "events-hero--light" visual style to "light".');
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "events-hero--light" visual style to "light" in assembly__visual_styles.');
+  }
+
+  // Update events-hero--light visual styles to light in assembly_revision__visual_style.
+  $query = \Drupal::database()
+    ->update('assembly_revision__visual_styles')
+    ->fields(['visual_styles_value' => 'light'])
+    ->condition('visual_styles_value', 'events-hero--light', '=')
+    ->execute();
+  if ($query === NULL) {
+    throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "events-hero--light" visual style to "light" in assembly_revision__visual_styles.');
   }
 
   // Update product-hero--dark-centered visual styles to dark and centered.
