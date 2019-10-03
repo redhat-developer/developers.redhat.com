@@ -37,3 +37,13 @@
 .node--type-author.node--view-mode-full hr {
   margin: 30px 0;
 }
+.node--type-author .pager ul {
+  text-align: left;
+  margin-left: 0;
+}
+.node--type-author .pager ul li:first-of-type {
+  padding-left: 0;
+}
+.node--type-author .view-author-articles .rhd-c-card-grid {
+  padding: 0 !important;
+}
