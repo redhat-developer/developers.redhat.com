@@ -65,9 +65,9 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
 
-  // Registers a custom template and variables for Wordpress Post Teaser.
-  $theme['wordpress_post_tile'] = [
-    'template' => 'wordpress-post-tile',
+  // Registers a custom template and variables for Wordpress Post Card.
+  $theme['wordpress_post_card'] = [
+    'template' => 'wordpress-post-card',
     'variables' => [
       'post' => NULL,
       'media' => NULL,

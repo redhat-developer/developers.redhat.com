@@ -21,7 +21,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = $entity->get('field_number_of_posts')->getValue();
     $count = reset($count)['value'];
-    $this->getItems($build, $entity, $count, 'tile');
+    $this->getItems($build, $entity, $count, 'card');
   }
 
   protected function getItems(&$build, $entity, $count, $mode) {
@@ -31,9 +31,11 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     $items = array_slice($items, 0, $count);
 
     if (count($items)) {
-      $build['posts'] = [
-        '#type' => 'container',
-      ];
+      if ($mode != 'card') {
+        $build['posts'] = [
+          '#type' => 'container',
+        ];
+      }
       foreach ($items as $item) {
         if (isset($item['post'])) {
           $build['posts'][] = [
