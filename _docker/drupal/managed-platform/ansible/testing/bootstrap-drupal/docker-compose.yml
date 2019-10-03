@@ -7,6 +7,7 @@ services:
       context: ../rhdp-data-seed
     environment:
     - DEPLOYMENT_ID=1
+    - DUID=${DUID}
     volumes:
     - ./drupal-workspace:/drupal-workspace
     depends_on:

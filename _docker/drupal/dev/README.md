@@ -1,4 +1,4 @@
-### Local development for Drupal
+### developers.redhat.com - Local development for Drupal
 
 This directory provides facilities for making it easy to develop with Drupal in a way that will ensure you are compatible
 with our deployment onto Managed Platform.
@@ -29,24 +29,44 @@ SSL but not receiving any certificate warnings.
 
 Follow the instructions relevant to your operating environment.
 
+#### Authenticate with our Data Container Docker Registry
+
+To ensure the local development experience contains production-like data, we build and push data images after each successful deployment to production. These data images
+are stored in an internal Docker registry that requires authentication.
+
+Please speak to a member of the project team and ask them to add you to the list of approved users that can pull the data containers. Once done, please follow
+the instructions on [this](https://mojo.redhat.com/docs/DOC-1192810-developersredhatcom-giving-a-dev-team-member-access-to-data-images) page to authenticate your local development
+environment.
+
+#### Effective user of the containers
+
+The local development environment is designed to map your current user id into the containers to ensure that any files written by Drupal or created
+as part of the Drupal bootstrap process are owned by you. To do this, the wrapper scripts set the variable `DUID` to your current `id` when
+you run the script.
+
+If you wish to run containers directly using `docker-compose` commands, then you will need to set this variable manually. The most effective way of doing this
+is adding the following to your `$HOME/.bashrc` file:
+
+```shell script
+export DUID=$(id -u)
+```
+
 ### Running `composer update`
 
 Ideally when we're updating the dependencies for the project through `composer`, they should be updated in an environment that matches
 our production Drupal instance. This way we can ensure consistent versions of PHP, O/S and anything other dependencies that may
 impact the way in which `composer update` runs.
 
-The `run-composer-update.sh` script in this directory runs an instance of the production Drupal container to update the dependencies,
+The `run-composer-update.sh` script in this directory runs an instance of the production Drupal container to allow you to update the dependencies,
 helping to ensure that the configuration will work in our production environment.
 
 To update dependencies in `composer.json`:
 
-* Make your version updates and additions to `composer.json` in your IDE
 * Run `bash run-composer-update.sh`
-  * This will take a bit of time to complete
-* Once the process completes, a `git status` will show you that `composer.json` and `composer.lock` have changes to them and can be submitted as
-a pull request to the project
+* Execute your desired `composer` commands e.g. `composer require drupal/foo:1.2.3`
+* Once you're finished, simply exit the container
+* Commit your changes to Git and raise a pull request.
 
-It also has the benefit that your local filesystem is not cluttered with loads of dependencies by composer.
 
 ### Running Drupal
 
@@ -64,7 +84,7 @@ This will:
     * password: password
 * Generate a set of SSL certificates on for your local machine
 * Start Drupal on port `443` on your local machine
-* Start two instances of [memcached](https://memcached.org) on your local machine and configure Drupal to use these
+* Start two instances of [memcached](https://memcached.org) on your local machine
 
 Once the script has finished running, you can access Drupal at [https://localhost](https://localhost)
 
@@ -87,11 +107,11 @@ run:
 bash run-config-export.sh
 ```
 
-This will connect to the Drupal Docker container and run `drush cex -y` to export the configuration from your running Drupal
-instance.
+This will run `drush cex -y` to export the configuration from your local Drupal instance. The above script performs a quick check
+to make sure Drupal is running as a way to verify that you've run `run-drupal.sh` before trying to perform a config export.
 
-The configuration is also immediately copied into the `_docker/drupal/drupal-filesystem/web/config/sync`, so it's just a case
-of verifying the changes and then committing and pushing your pull request.
+All configuration changes are immediately exported into `_docker/drupal/drupal-filesystem/web/config/sync`, so it's just a case
+of verifying the changes are what you expect and then committing and pushing your pull request.
 
 ### Working with Drupal
 
@@ -128,7 +148,7 @@ This will delete all resources running on your local machine.
 
 ### A typical work-flow:
 
-* Update `composer.json` and then run `bash run-composer-update.sh` to update dependencies for Drupal
+* Run `bash run-composer-update.sh` to update dependencies for Drupal
 * Start Drupal using `bash run-drupal.sh`
 * Access [https://localhost](https://localhost) and use the Drupal Admin interface to install a new module and configure it
 * Run `bash run-config-export.sh` to export your changes into your working tree, commit and raise a pull request with your changes
