@@ -57,8 +57,100 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
-  if (in_array($type, ['video_resource', 'article'])) {
 
+  // Author content type.
+  if ($type == 'author') {
+    $variables['author_name'] = $node->getTitle();
+    $variables['author_articles'] = FALSE;
+    if (views_get_view_result('author_articles')) {
+      $variables['author_articles'] = views_embed_view('author_articles');
+    }
+    $variables['social_links'] = FALSE;
+    $social_facebook = $node->get('field_facebook')->getValue();
+    $social_github = $node->get('field_github')->getValue();
+    $social_linkedin = $node->get('field_linkedin')->getValue();
+    $social_twitter = $node->get('field_twitter')->getValue();
+    $social_youtube = $node->get('field_youtube')->getValue();
+    $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
+    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+      $variables['social_links'] = TRUE;
+      $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
+      $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
+      $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
+      $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+    }
+  }
+
+  // Attach the rhdp2/show-more library to the Video Resource, default view mode.
+  if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
+    $variables['#attached']['library'][] = 'rhdp2/show-more';
+  }
+
+  // Learning Path content type and Card view mode.
+  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label()],
+      ];
+    }
+  }
+
+  // Books content type and Learning Path Card view mode.
+  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
+    $variables['interval'] = '';
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Cheat Sheet content type and Learning Path Card view mode.
+  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // RH Training Class content type and Learning Path Card view mode.
+  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_completion_time')->getValue()) {
+      $completion_time = $node->get('field_completion_time')->getValue();
+      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($completion_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
+  }
+
+  // Video Resource content type and Learning Path Card view mode.
+  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
+    // Ensure the field value is not null.
+    if ($node->get('field_duration')->getValue()) {
+      $duration = $node->get('field_duration')->getValue();
+      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($duration[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
+      }
+    }
   }
 }
 
