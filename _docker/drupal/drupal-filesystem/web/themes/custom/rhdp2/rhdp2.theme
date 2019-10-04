@@ -105,6 +105,7 @@ function rhdp2_preprocess_node(&$variables) {
         $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
         $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
       }
+    }
   }
 }
 
