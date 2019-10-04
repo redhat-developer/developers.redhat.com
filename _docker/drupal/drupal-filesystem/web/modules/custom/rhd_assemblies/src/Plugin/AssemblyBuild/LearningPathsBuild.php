@@ -30,17 +30,9 @@ class LearningPathsBuild extends AssemblyBuildBase implements AssemblyBuildInter
   protected function getItems(&$build, $mode) {
     $items = $this->getDrupalNodes();
     if (count($items)) {
-      $build['nodes'] = [
-        '#theme' => 'item_list',
-        '#list_type' => 'ul',
-        '#items' => [],
-        '#attributes' => ['class' => 'content-' . $mode . '-list'],
-        '#weight' => 5
-      ];
       foreach ($items as $item) {
         $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-        $storage = \Drupal::entityTypeManager()->getStorage('node');
-        $build['nodes']['#items'][] = $view_builder->view($item, $mode);
+        $build['nodes'][] = $view_builder->view($item, $mode);
       }
     }
   }
