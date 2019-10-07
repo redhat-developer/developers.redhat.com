@@ -19,6 +19,13 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
+  // Learning Path content type and Card view mode.
+  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
+    }
+  }
+
   // Prepares the authors render element for the Article node, Card view mode.
   if ($type === 'article' && $variables['view_mode'] === 'card') {
     $authors = $node->get('field_author_evangelist')->getValue();
