@@ -5,6 +5,7 @@
  * Functions to support theming in the RHDP2 theme.
  */
 
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -395,4 +396,56 @@ function _is_field_used_as_hero_image_in_card($variables) {
   }
 
   return FALSE;
+}
+
+/**
+ * Implements hook_js_settings_alter().
+ */
+function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $assets) {
+  $env_settings = \Drupal::config('redhat_developers');
+
+  $settings['rhd'] = [];
+  $rhd_settings = &$settings['rhd'];
+
+  $rhd_settings['urls'] = [];
+  $rhd_settings['urls']['final_base_url'] = $env_settings->get('rhd_final_base_url');
+
+  $rhd_settings['downloadManager'] = [];
+  $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
+  $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
+      . $env_settings->get('searchisko')['port'];
+
+  $rhd_settings['keycloak'] = [];
+  $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
+  $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+
+  $theme_path = drupal_get_path('theme', 'rhdp2');
+
+  $rhd_settings['templates'] = [];
+  $template = file_get_contents($theme_path . '/templates/client-side/book.html.twig');
+  $rhd_settings['templates']['book'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/mini_buzz.html.twig');
+  $rhd_settings['templates']['miniBuzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_buzz.html.twig');
+  $rhd_settings['templates']['productBuzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/buzz.html.twig');
+  $rhd_settings['templates']['buzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/terms_conditions.html.twig');
+  $rhd_settings['templates']['termsConditions'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_connector.html.twig');
+  $rhd_settings['templates']['connector'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_stackoverflow_template.html.twig');
+  $rhd_settings['templates']['productStackoverflowTemplate'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/search_page_template.html.twig');
+  $rhd_settings['templates']['searchPageTemplate'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
+  $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
