@@ -1,0 +1,27 @@
+<div{{ attributes.addClass("component", "pf-l-grid").setAttribute("id", "rhd-learning-path") }}>
+  <div class="lp-info">
+    <h2>Learning Guides</h2>
+    {{ title_prefix }}
+      <h1>{{ label }}</h1>
+    {{ title_suffix }}
+    <div class="show-more-text auto-open" data-count="500" data-max-width="768">
+      {{ content.field_long_description }}
+      <strong>{{ content.field_requirements_an_or_pre_req['#title'] }}</strong>
+      {{ content.field_requirements_an_or_pre_req }}
+      <strong>{{ content.field_audience['#title'] }}</strong>
+      {{content.field_audience}}
+      <div class="certification">
+        {{content.field_related_red_hat_certificat}}
+      </div>
+    </div>
+    <a class="show-more" onclick="return false;">
+      <span class="more">Show More</span>
+      <span class="less">Show Less</span>
+    </a>
+  </div>
+  {% if content.field_learning_path_content_item|render|striptags|trim is not empty %}
+  <div class="lp-cards-container">
+      {{ content.field_learning_path_content_item }}
+  </div>
+  {% endif %}
+</div>
