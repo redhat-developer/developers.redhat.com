@@ -1,3 +1,10 @@
+/* PatternFly-specific styles/overrides */
+
+/* This is necessary to have consistent column width with nested components */
+.component .component {
+  padding: 16px 0;
+}
+
 /* Learning Paths */
 .assembly-type-learning_paths .rhd-c-card-grid__intro-wrapper {
   margin-bottom: 16px;
@@ -81,8 +88,9 @@
   vertical-align: middle;
   margin-right: 24px;
 }
-#rhd-article .share-buttons .a2a_svg,
-#rhd-article .share-buttons .a2a_count {
+.share-buttons .a2a_svg,
+.social-links .a2a_svg,
+.share-buttons .a2a_count {
   border-radius: 0 !important;
   margin-right: 8px;
 }
@@ -158,9 +166,7 @@
 }
 
 /* Author page */
-.node--type-author.node--view-mode-full .social-links a {
-  background-color: #f3f3f3;
-  border-radius: 100%;
+.node--type-author .social-links a {
   display: inline-block;
   height: 24px;
   margin-bottom: 10px;
@@ -170,22 +176,22 @@
   width: 24px;
 }
 @media (min-width: 768px) {
-  .node--type-author.node--view-mode-full .social-links a {
+  .node--type-author .social-links a {
       margin-bottom: 0;
   }
 }
-.node--type-author.node--view-mode-full .social-links a {
+.node--type-author .social-links a {
     margin-bottom: 0;
 }
-.node--type-author.node--view-mode-full .social-links a .a2a_svg {
-    height: 18px;
+.node--type-author .social-links a .a2a_svg {
+    height: 21px;
     left: 50%;
     position: absolute;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    width: 18px;
+    width: 21px;
 }
-.node--type-author.node--view-mode-full .social-links a .a2a_label {
+.node--type-author .social-links a .a2a_label {
     -webkit-clip-path: polygon(0 0,0 0,0 0);
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px,1px,1px,1px);
@@ -414,4 +420,56 @@
 }
 .assembly-type-collection .pager ul li:first-of-type {
   padding-left: 0;
+}
+
+/* Social icons */
+
+.author-social-icon-facebook {
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.author-social-icon-facebook svg path {
+  fill: #3b5998;
+}
+
+.author-social-icon-twitter {
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.author-social-icon-twitter svg path {
+  fill: #00aced;
+}
+
+.author-social-icon-youtube {
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.author-social-icon-youtube svg path {
+  fill: #ff0000;
+}
+
+.author-social-icon-linkedin {
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.author-social-icon-linkedin svg path {
+  fill: #0077B5;
+}
+
+.author-social-icon-github {
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.author-social-icon-github svg path {
+  fill: #000000;
 }
