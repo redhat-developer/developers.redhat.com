@@ -80,17 +80,6 @@
     {% if body is not empty %}
       <p class="rhd-c-card__body ">{{ body }}</p>
     {% endif %}
-    
-    {% if lessons is not empty %}
-      <div class="rhd-c-card__lessons">
-        {% for lesson in lessons %}
-        <div class="rhd-c-card__lesson">
-          <div class="rhd-c-card__lesson-label">{{ lesson.label|raw }}</div>
-          <div class="rhd-c-card__lesson-title">{{ lesson.title|raw }}</div>
-        </div>
-        {% endfor %}
-      </div>
-    {% endif %}
 
     {% if (authors is not empty) or (absolute_url and rhd_domain and "developers.redhat.com" in absolute_url) %}
       <div class="rhd-c-card__footer">

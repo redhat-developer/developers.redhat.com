@@ -21,23 +21,8 @@ function rhdp2_preprocess_node(&$variables) {
 
   // Learning Path content type and Card view mode.
   if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
-    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
-    $variables['content']['lessons'] = [];
-    $variables['content']['cta'] = [];
-    if ($lp_content = $node->get('field_learning_path_content_item')->getValue()) {
-      for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
-        $ref = Node::load($lp_content[$i]['target_id']);
-        $variables['content']['lessons'][] = [
-          'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-          'title' => ['#markup' => $ref->label()],
-        ];
-      }
-    }
-    if ($lp_cta_link = $node->toUrl()->toString()) {
-      $variables['content']['cta'] = [
-        'url' => $lp_cta_link,
-        'text' => 'More Guides',
-      ];
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
     }
   }
 
