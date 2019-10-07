@@ -57,8 +57,41 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
-  if (in_array($type, ['video_resource', 'article'])) {
 
+  // Add formatted timestamp for field_duration to render array.
+  if ($type === 'video_resource' && $variables['view_mode'] === 'tile') {
+    $field_duration = $node->get('field_duration')->getValue();
+
+    foreach ($field_duration as $d) {
+      if ($d['period'] === 'hour') {
+        $hours = $d['interval'];
+      }
+      else if ($d['period'] === 'minute') {
+        $minutes = $d['interval'];
+      }
+      else if ($d['period'] === 'second') {
+        $seconds = $d['interval'];
+      }
+    }
+
+    $timestamp = '';
+    if (!empty($hours)) {
+      $timestamp = $hours . ':';
+    }
+    if (!empty($minutes)) {
+      $timestamp = $timestamp . $minutes . ':';
+    }
+    else {
+      $timestamp = $timestamp . '0:';
+    }
+    if (!empty($seconds)) {
+      $timestamp = $timestamp . $seconds;
+    }
+    else {
+      $timestamp = $timestamp . '0';
+    }
+
+    $variables['timestamp'] = $timestamp;
   }
 
   // Author content type.
