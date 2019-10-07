@@ -31,8 +31,10 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    'component'
   ]
 %}
+
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
@@ -44,5 +46,5 @@
   {% block content %}
     {{ content }}
   {% endblock %}
-  <button id="drupalUserLoginToggleVisibility">Legacy login</button>
+  <button id="drupalUserLoginToggleVisibility" class="pf-c-button pf-m-heavy pf-u-mt-md">Legacy login</button>
 </div>

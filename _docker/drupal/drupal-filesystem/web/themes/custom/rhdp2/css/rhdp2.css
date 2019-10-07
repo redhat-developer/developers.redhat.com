@@ -144,6 +144,9 @@
       margin-bottom: 0;
   }
 }
+.node--type-author.node--view-mode-full .social-links a {
+    margin-bottom: 0;
+}
 .node--type-author.node--view-mode-full .social-links a .a2a_svg {
     height: 18px;
     left: 50%;
@@ -176,7 +179,202 @@
   padding: 0 !important;
 }
 
+/* Cheat Sheet and books */
+
+#rhd-cheat-sheet, #rhd-book {
+  margin-bottom: 3em;
+}
+#rhd-cheat-sheet .content-type,
+#rhd-book .content-type {
+  color: #424242;
+  margin-bottom: 0;
+}
+#rhd-cheat-sheet .cs-excerpt,
+#rhd-cheat-sheet .book-excerpt,
+#rhd-book .book-excerpt,
+#rhd-book .book-excerpt {
+  display: block;
+  background-color: #e8fbff;
+  border: 1px solid #b8e3ed;
+  padding: 20px 30px;
+  margin: 40px 0 20px 0;
+}
+#rhd-cheat-sheet .cs-excerpt h4,
+#rhd-book .book-excerpt h4 {
+  margin-bottom: 15px;
+}
+#rhd-cheat-sheet .cs-excerpt span,
+#rhd-book .book-excerpt span {
+  display: inline-block;
+  width: calc(100% - 60px);
+  font-style: italic;
+}
+#rhd-cheat-sheet .cs-excerpt span.open-quote,
+#rhd-book .book-excerpt span.open-quote {
+  font-size: 7em;
+  width: 60px;
+  color: #00b9e4;
+  font-style: normal;
+}
+#rhd-cheat-sheet .cs-excerpt .cs-excerpt-text,
+#rhd-cheat-sheet .book-excerpt .book-excerpt-text {
+  min-height: 168px;
+}
+#rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt,
+#rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt,
+#rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt,
+#rhd-book .book-excerpt span .field--name-field-cheat-sheet-excerpt,
+#rhd-cheat-sheet .cs-excerpt span .field--name-field-book-excerpt,
+#rhd-cheat-sheet .book-excerpt span .field--name-field-book-excerpt,
+#rhd-book .book-excerpt span .field--name-field-book-excerpt,
+#rhd-book .book-excerpt span .field--name-field-book-excerpt {
+  width: inherit;
+}
+#rhd-cheat-sheet .cs-excerpt .divider,
+#rhd-cheat-sheet .book-excerpt .divider,
+#rhd-book .book-excerpt .divider,
+#rhd-book .book-excerpt .divider {
+  border-bottom:1px solid #D5D5D5;
+  padding: 10px 0;
+}
+#rhd-cheat-sheet .cs-excerpt .divider:last-of-type,
+#rhd-cheat-sheet .book-excerpt .divider:last-of-type,
+#rhd-book .book-excerpt .divider:last-of-type,
+#rhd-book .book-excerpt .divider:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+#rhd-cheat-sheet .cs-excerpt code,
+#rhd-cheat-sheet .book-excerpt code,
+#rhd-book .book-excerpt code,
+#rhd-book .book-excerpt code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-weight: inherit;
+}
+#rhd-cheat-sheet .cta-label,
+#rhd-book .cta-label {
+  margin-bottom: 15px;
+}
+#rhd-cheat-sheet .cs-info,
+#rhd-book .book-info,
+#rhd-video-resource .vr-info {
+  border-top: 1px solid #656565;
+  border-bottom: 1px solid #656565;
+  padding: 7px 0;
+  margin-bottom: 2.5em;
+}
+#rhd-cheat-sheet .cs-info ul,
+#rhd-book .book-info ul,
+#rhd-video-resource .vr-info ul {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding-left: 0;
+}
+#rhd-cheat-sheet .cs-info ul li,
+#rhd-book .book-info ul li,
+#rhd-video-resource .vr-info ul li {
+  width: auto;
+  margin-bottom: 1px;
+  padding-top: 1px;
+  display: inline-block;
+}
+#rhd-cheat-sheet .cs-info ul li:first-child,
+#rhd-book .book-info ul li:first-child,
+#rhd-video-resource .vr-info ul li:first-child {
+  padding-left: 0;
+}
+#rhd-cheat-sheet .cs-info ul li:first-child .field,
+#rhd-book .book-info ul li:first-child .field,
+#rhd-video-resource .vr-info ul li:first-child .field {
+  display: inline-block;
+}
+#rhd-book .book-tags .rhd-c-card {
+  height: auto;
+}
+#rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags,
+#rhd-book .book-tags .field--name-field-cheat-sheet-tags,
+#rhd-cheat-sheet .cs-tags .field--name-field-tags,
+#rhd-book .book-tags .field--name-field-tags {
+  display: inline;
+}
+#rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item,
+#rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item,
+#rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item,
+#rhd-book .book-tags .field--name-field-tags .field__item {
+  display: inline-block;
+  color: #424242;
+}
+#rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:after,
+#rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:after,
+#rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:after,
+#rhd-book .book-tags .field--name-field-tags .field__item:after {
+  content: ", ";
+  position: relative;
+  left: -3px;
+}
+#rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+#rhd-book .book-tags .field--name-field-cheat-sheet-tags .field__item:last-child:after,
+#rhd-cheat-sheet .cs-tags .field--name-field-tags .field__item:last-child:after,
+#rhd-book .book-tags .field--name-field-tags .field__item:last-child:after {
+  display: none;
+}
+#rhd-cheat-sheet .cs-social.right,
+#rhd-book .book-social.right,
+#rhd-video-resource .vr-social.right {
+  float: right;
+}
+#rhd-cheat-sheet figure,
+#rhd-book figure {
+  margin: 0 32px 0 0;
+}
+#rhd-cheat-sheet .description-wrapper:after,
+#rhd-book .description-wrapper:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+#rhd-cheat-sheet .cs-excerpt .open-quote.left,
+#rhd-book .book-excerpt .open-quote.left {
+  float: left;
+}
+#rhd-cheat-sheet .cs-excerpt:after {
+#rhd-book .book-excerpt:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+#rhd-cheat-sheet .cs-social .googleplus-one,
+#rhd-book .book-social .googleplus-one,
+#rhd-video-resource .vr-social .googleplus-one {
+  max-width: 55px;
+}
+#rhd-cheat-sheet .share-this,
+#rhd-book .share-this,
+#rhd-video-resource .share-this {
+  background: none;
+  padding-top: 0;
+}
+#rhd-cheat-sheet a.button,
+#rhd-book a.button {
+  margin: 5px 0 20px 0;
+  margin-right: 25px !important;
+}
+#rhd-cheat-sheet .shown-after-login,
+#rhd-cheat-sheet .hidden-after-login,
+#rhd-book .shown-after-login,
+#rhd-book .hidden-after-login {
+  display: none;
+}
+#rhd-video-resource .slides iframe {
+  height: 100%;
+  width: 100%;
+}
+
 /* Collection Assembly */
+
 .assembly-type-collection .rhd-c-card-grid {
   padding: 0 !important;
 }
@@ -187,4 +385,3 @@
 .assembly-type-collection .pager ul li:first-of-type {
   padding-left: 0;
 }
-
