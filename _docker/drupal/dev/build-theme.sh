@@ -19,9 +19,11 @@ cd "${FE_THEME_DIR}" \
 && npm install \
 && npm run-script styles \
 && npm run-script build \
+&& npm run-script scripts:new \
 && cp dist/css-min/rhd.min.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/css-min/rhd.microsites.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/js/@rhd/rhd.old.min.js "${DRUPAL_THEME_DIR}"/js/ \
+&& cp dist/js/@rhd/rhd.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && cp -r favicons "${DRUPAL_THEME_DIR}/"
 
 cd "${DIR}" && docker-compose exec drupal /bin/bash -c "drush cr"
