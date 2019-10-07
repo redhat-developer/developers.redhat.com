@@ -51,7 +51,6 @@
 }
 
 /* Cheat Sheet and books */
-
 #rhd-cheat-sheet, #rhd-book {
   margin-bottom: 3em;
 }
@@ -211,7 +210,7 @@
 #rhd-book .book-excerpt .open-quote.left {
   float: left;
 }
-#rhd-cheat-sheet .cs-excerpt:after {
+#rhd-cheat-sheet .cs-excerpt:after,
 #rhd-book .book-excerpt:after {
   display: table;
   content: "";
@@ -245,7 +244,6 @@
 }
 
 /* Collection Assembly */
-
 .assembly-type-collection .rhd-c-card-grid {
   padding: 0 !important;
 }
@@ -256,3 +254,6 @@
 .assembly-type-collection .pager ul li:first-of-type {
   padding-left: 0;
 }
+
+/* Events Hero */
+

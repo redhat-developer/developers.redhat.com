@@ -212,6 +212,19 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
     }
   }
+
+  // Events content type.
+  if ($node->getType() == 'events') {
+    $variables['event_title'] = $node->getTitle();
+    $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
+    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
+
+    // Teaser view mode.
+    if ($variables['view_mode'] == 'teaser') {
+      $node_title = $node->label();
+      $variables['node_title'] = str_replace('"', '', $node_title);
+    }
+  }
 }
 
 /**

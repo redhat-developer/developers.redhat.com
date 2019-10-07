@@ -1,0 +1,57 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{# {% set sidebar_class = '' %}
+{% set has_sidebar = FALSE %}
+
+{% if content.field_secondary_events[0] is not empty %}
+  {% set has_sidebar = TRUE %}
+  {% set sidebar_class = ' has-sidebar' %}
+{% endif %}
+
+<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
+    
+  {% if content.field_title|render %}
+    <div class="container">
+      <h2 class="section-title">{{ content.field_title }}</h2>
+    </div>
+  {% endif %}
+  <div class="container{{ sidebar_class }}">
+    <div class="primary-event">
+      {{ content.field_primary_event }}
+    </div>
+    {% if has_sidebar %}
+      <div class="secondary-events">
+        {% if content.field_sidebar_title[0] is not empty %}
+          <h5>{{ content.field_sidebar_title }}</h5>
+        {% endif %}
+        {{ content.field_secondary_events }}
+        <span class="more-link">{{ content.field_sidebar_link }}</span>
+      </div>
+    {% endif %}
+  </div>
+  {% if background_image_url %}
+    <div class="background" style="background-image: url({{ background_image_url }});"></div>
+  {% endif %}
+</section> #}
+
+<section class="component pf-c-content rhd-c-events-hero assembly-slim dark background">
+  <div class="pf-l-grid pf-m-gutter">
+    {{ content.field_title }}
+    {{ content.field_primary_event }}
+  </div>
+</section>
