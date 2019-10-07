@@ -26,13 +26,15 @@ base-theme:
     # RHD FontAwesome Kit
     https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
     # NOTE: According to Luke, Angular is only used on the Help page(s). We will
-    # supposedly be removing these page(s) and Angular soon.
-    # https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
-    # https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
+    # supposedly be removing these page(s) and Angular soon. We have to load
+    # Angular right now because some code in rhd.old.min.js (see below) uses
+    # Angular, and you we don't include it, then it will throw a ReferenceError.
+    https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
     # NOTE: SystemJS is a dynamic ES module loader.
     # https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
     https://developers.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
-    # js/rhd.old.min.js: { minified: true }
+    js/rhd.old.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
@@ -52,6 +54,14 @@ highlight-js:
     https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js: { type: external, minified: true }
     # Inits the highlighting on Code snippet elements.
     js/highlightjs-init.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+# Show more toggle reveal functionality for video resources
+show-more:
+  js:
+    js/show-more.js: {}
   dependencies:
     - core/jquery
     - core/drupal

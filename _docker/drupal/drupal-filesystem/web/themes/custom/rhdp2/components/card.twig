@@ -5,6 +5,11 @@
  * Available variables:
  * - attributes: The Drupal 8 Attributes object for this render array/element.
  * - hero_image: A hero image that displays at the top of card, full-width.
+ * - hero_video_thumbnail: A hero video thumbnail that displays at the top of
+ *   card, full-width, with a Play icon overlay in the center of the thumbnail
+ *   and a timestamp overlay in the bottom right corner.
+ * - hero_video_thumbnail_timestamp: A timestamp that displays the duration of
+ *   the video resource in HH:MM::SS.
  * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
  * - title:
  *   - title.url: Typically a link to the node displayed in the card.
@@ -34,6 +39,14 @@
   {% if hero_image is not empty %}
     {{ hero_image }}
   {% endif %}
+
+  {% if hero_video_thumbnail is not empty %}
+    <div class="rhd-c-card__video">
+      <div class="rhd-c-card__video-time">{{ hero_video_thumbnail_timestamp }}</div>
+      <i class="far fa-play-circle"></i>
+      {{ hero_video_thumbnail }}
+    </div>
+  {% endif %}
   
   {% if tag is not empty %}
     <div class="rhd-c-card__tag">
@@ -45,7 +58,7 @@
   <div class="rhd-c-card-content">
     {% if title is not empty %}
       {# Set the appropriate title classes whether or not a hero_image exists #}
-      {% if hero_image is empty %}
+      {% if hero_image is empty and hero_video_thumbnail is empty %}
         {% set title_classes = ['rhd-c-card__title', 'rhd-m-card-title__no-image'] %}
       {% else %}
         {% set title_classes = ['rhd-c-card__title'] %}
