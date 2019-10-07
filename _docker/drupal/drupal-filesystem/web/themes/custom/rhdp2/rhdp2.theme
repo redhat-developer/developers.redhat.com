@@ -271,6 +271,10 @@ function rhdp2_preprocess_field(&$variables, $hook) {
   // @see ./components/card.twig
   if (_is_field_used_as_hero_image_in_card($variables)) {
     foreach ($variables['items'] as $key => $item) {
+      // Do not render height and width attributes on this <img> tag.
+      $variables['items'][$key]['content']['#item_attributes']['height'] = NULL;
+      $variables['items'][$key]['content']['#item_attributes']['width'] = NULL;
+      // Add the rhd-c-card__image class to the <img> tag.
       $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image';
     }
   }

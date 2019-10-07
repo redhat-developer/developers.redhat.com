@@ -4,7 +4,13 @@
  */
 #}
 
-<div {{ attributes.addClass('rhd-c-card-grid', 'pf-c-content', 'component') }}>
+{% if card_grid__wrapper_attributes is not empty %}
+  {% set card_grid__wrapper_attributes = card_grid__wrapper_attributes.addClass('pf-l-flex', 'rhd-c-card-grid__wrapper') %}
+{% else %}
+  {% set card_grid__wrapper_attributes = create_attribute({'class': ['pf-l-flex', 'rhd-c-card-grid__wrapper']}) %}
+{% endif %}
+
+<div{{ attributes.addClass('rhd-c-card-grid', 'pf-c-content', 'component') }}>
   <div class="pf-l-flex">
     <h2 class="pf-c-title pf-m-3xl">{{ title }}</h2>
   </div>
@@ -13,7 +19,7 @@
     {{ intro }}
   </div>
   {% endif %}
-  <div class="pf-l-flex rhd-c-card-grid__wrapper">
+  <div{{ card_grid__wrapper_attributes }}>
     {{ content }}
   </div>
   {% if ctas is not empty %}
