@@ -165,14 +165,6 @@
         mode: 0770
         force: no
 
-    - name: Template the rhd.settings.yml for mounting into Drupal
-      template:
-        src: 'templates/{{ rhdp_environment }}/drupal/rhd.settings.yml.j2'
-        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/rhd.settings.yml'
-        group: 'root'
-        mode: 0770
-        force: no
-
     - name: Template phinx.yml for mounting into Drupal
       template:
         src: 'templates/{{ rhdp_environment }}/drupal/phinx.yml.j2'
