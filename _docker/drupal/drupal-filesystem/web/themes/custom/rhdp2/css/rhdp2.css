@@ -243,3 +243,16 @@
   height: 100%;
   width: 100%;
 }
+
+/* Collection Assembly */
+
+.assembly-type-collection .rhd-c-card-grid {
+  padding: 0 !important;
+}
+.assembly-type-collection .pager ul {
+  text-align: left;
+  margin-left: 0;
+}
+.assembly-type-collection .pager ul li:first-of-type {
+  padding-left: 0;
+}
