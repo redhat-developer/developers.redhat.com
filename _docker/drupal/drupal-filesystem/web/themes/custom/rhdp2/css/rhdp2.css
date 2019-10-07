@@ -6,6 +6,11 @@
 #rhd-article .floated-image img {
   float: right;
 }
+@media (max-width: 1023px) {
+  #rhd-article .floated-image img {
+    float: left;
+  }
+}
 #rhd-article .article-type {
   color: #9b9b9b;
   font-size: 20px;
@@ -44,6 +49,7 @@
 #rhd-article .share-buttons {
   display: inline-block;
   vertical-align: middle;
+  margin-right: 24px;
 }
 #rhd-article .share-buttons .a2a_svg,
 #rhd-article .share-buttons .a2a_count {
@@ -55,8 +61,13 @@
   display: inline-block;
   font-size: 16px;
   line-height: 24px;
-  margin-left: 16px;
   font-weight: 400;
+}
+@media (max-width: 480px) {
+  #rhd-article .topics {
+    width: 100%;
+    margin-top: 16px;
+  }
 }
 #rhd-article .topics a:after {
   color: #444;
@@ -128,7 +139,7 @@
   position: relative;
   width: 24px;
 }
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .node--type-author.node--view-mode-full .social-links a {
       margin-bottom: 0;
   }
