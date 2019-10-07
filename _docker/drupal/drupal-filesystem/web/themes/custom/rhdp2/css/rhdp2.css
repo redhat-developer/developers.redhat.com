@@ -57,7 +57,6 @@
 }
 #rhd-cheat-sheet .content-type,
 #rhd-book .content-type {
-  text-transform: uppercase;
   color: #424242;
   margin-bottom: 0;
 }
@@ -72,27 +71,25 @@
   margin: 40px 0 20px 0;
 }
 #rhd-cheat-sheet .cs-excerpt h4,
-#rhd-cheat-sheet .book-excerpt h4,
-#rhd-book .book-excerpt h4,
 #rhd-book .book-excerpt h4 {
   margin-bottom: 15px;
 }
 #rhd-cheat-sheet .cs-excerpt span,
-#rhd-cheat-sheet .book-excerpt span,
-#rhd-book .book-excerpt span,
 #rhd-book .book-excerpt span {
   display: inline-block;
   width: calc(100% - 60px);
   font-style: italic;
 }
 #rhd-cheat-sheet .cs-excerpt span.open-quote,
-#rhd-cheat-sheet .book-excerpt span.open-quote,
-#rhd-book .book-excerpt span.open-quote,
 #rhd-book .book-excerpt span.open-quote {
   font-size: 7em;
   width: 60px;
   color: #00b9e4;
   font-style: normal;
+}
+#rhd-cheat-sheet .cs-excerpt .cs-excerpt-text,
+#rhd-cheat-sheet .book-excerpt .book-excerpt-text {
+  min-height: 168px;
 }
 #rhd-cheat-sheet .cs-excerpt span .field--name-field-cheat-sheet-excerpt,
 #rhd-cheat-sheet .book-excerpt span .field--name-field-cheat-sheet-excerpt,
@@ -165,6 +162,9 @@
 #rhd-video-resource .vr-info ul li:first-child .field {
   display: inline-block;
 }
+#rhd-book .book-tags .rhd-c-card {
+  height: auto;
+}
 #rhd-cheat-sheet .cs-tags .field--name-field-cheat-sheet-tags,
 #rhd-book .book-tags .field--name-field-cheat-sheet-tags,
 #rhd-cheat-sheet .cs-tags .field--name-field-tags,
@@ -193,7 +193,7 @@
   display: none;
 }
 #rhd-cheat-sheet .cs-social.right,
-#rhd-book .cs-social.right,
+#rhd-book .book-social.right,
 #rhd-video-resource .vr-social.right {
   float: right;
 }
@@ -238,4 +238,8 @@
 #rhd-book .shown-after-login,
 #rhd-book .hidden-after-login {
   display: none;
+}
+#rhd-video-resource .slides iframe {
+  height: 100%;
+  width: 100%;
 }

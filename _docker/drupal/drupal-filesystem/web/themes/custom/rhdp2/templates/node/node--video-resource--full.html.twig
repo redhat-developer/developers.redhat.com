@@ -26,13 +26,13 @@
       </ul>
     </div>
     <div class="pf-l-grid__item pf-m-12-col video-slides">
-      <div class="pf-l-grid">
+      <div class="pf-l-grid pf-m-gutter pf-u-mb-md">
         {% if content.field_slideshare_source|render|striptags|trim is not empty %}
-          <div class="pf-l-grid__item pf-m-9-col video-container">
+          <div class="pf-l-grid__item pf-m-12-col pf-m-7-col-on-lg video-container">
             {{ content.field_video_resource }}
           </div>
 
-          <div class="pf-l-grid__item pf-m-3-col slides">
+          <div class="pf-l-grid__item pf-m-12-col pf-m-5-col-on-lg slides">
             <iframe src="https://www.slideshare.net{{ content.field_slideshare_source.0['#url'] }}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen> </iframe>
             <small class="slide-note">Note: Slides do not auto-advance</small>
           </div>
@@ -43,7 +43,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="pf-l-grid__item pf-m-9-col video-content">
+    <div class="pf-l-grid__item pf-m-12-col video-content">
       {% if content.body|render|striptags|trim is not empty %}
         <div class="show-more-text video-description" data-count="400">
           {{content.body}}
@@ -62,8 +62,6 @@
           {{content.field_video_transcript}}
         </div>
       {% endif %}
-    </div>
-    <div class="pf-l-grid__item pf-m-3-col right video-content">
       {% if content.field_video_related_links|render|striptags|trim is not empty %}
         {{ content.field_video_related_links }}
       {% endif %}
@@ -80,7 +78,7 @@
     <div class="pf-l-grid">
       <div id ="video-related-cont" class="pf-l-grid__item pf-m-12-col" data-tags="{{ video_tags|json_encode|replace('\"', '\'') }}">
         <h4>MORE LIKE THIS</h4>
-        {{content.field_related_content}}
+        {{ content.field_related_content }}
         <div class="video-related-content video-related-content-list"></div>
       </div>
     </div>
