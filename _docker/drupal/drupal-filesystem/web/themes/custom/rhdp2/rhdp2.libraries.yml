@@ -14,7 +14,7 @@ base-theme:
       # NOTE: Provides mostly CSS variables and a few utility classes.
       https://static.redhat.com/libs/redhat/redhat-theme/2/advanced-theme.css: { type: external }
       # NOTE: Provides layout classes for grids and alignments.
-      css/pfe-layouts/pfe-layouts.min.css: {minified: true}
+      css/pfe-layouts/pfe-layouts.min.css: { minified: true }
       css/rhd.min.css: { minified: true }
       css/rhd.microsites.css: { minified: true }
     theme:
@@ -23,6 +23,8 @@ base-theme:
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
+    # Let's bring in the old JS
+    js/articles.js: {}
     # RHD FontAwesome Kit
     https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
     # NOTE: According to Luke, Angular is only used on the Help page(s). We will
