@@ -41,19 +41,31 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = NULL;
     }
     if (count($author_nodes) === 1) {
-      // We can reset to retrieve the element since we've already verified there is only 1.
-      $authors_values = [
-        'name' => reset($author_nodes)->getTitle(),
-        // We need a Url object for Drupal, not a plain string.
-        'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
-      ];
+      $nid = reset($author_nodes)->id();
+      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
+      $current_path = \Drupal::service('path.current')->getPath();
+      $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
-      // Get a renderable author Link and set the rhd-m-link class.
-      $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
-      $authors_link = $authors_link->toRenderable();
-      $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+      if ($author_url_alias === $current_alias) {
+        $variables['authors'] = [
+          '#markup' => reset($author_nodes)->getTitle(),
+        ];
+      }
+      else {
+        // We can reset to retrieve the element since we've already verified there is only 1.
+        $authors_values = [
+          'name' => reset($author_nodes)->getTitle(),
+          // We need a Url object for Drupal, not a plain string.
+          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
+        ];
 
-      $variables['authors'] = $authors_link;
+        // Get a renderable author Link and set the rhd-m-link class.
+        $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+        $authors_link = $authors_link->toRenderable();
+        $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+        $variables['authors'] = $authors_link;
+      }
     }
     else {
       $authors_values = [];
