@@ -15,43 +15,61 @@
  * @ingroup themeable
  */
 #}
-{# {% set sidebar_class = '' %}
-{% set has_sidebar = FALSE %}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-{% if content.field_secondary_events[0] is not empty %}
-  {% set has_sidebar = TRUE %}
-  {% set sidebar_class = ' has-sidebar' %}
+{% set classes = [
+  'component',
+  'pf-c-content',
+  'rhd-c-events-hero',
+]%}
+{% if secondary_events_count == 0 %}
+  {% set classes = classes|merge(['assembly-slim']) %}
+{% endif %}
+{% if secondary_events_count == 1 %}
+  {% set classes = classes|merge(['two-events']) %}
+{% endif %}
+{% if secondary_events_count == 2 %}
+  {% set classes = classes|merge(['three-events']) %}
+{% endif %}
+{% if light %}
+  {% set classes = classes|merge(['light']) %}
+{% else %}
+  {% set classes = classes|merge(['dark']) %}
 {% endif %}
 
-<section{{ attributes.addClass('assembly') }}{{ audience_selection }}>
-    
-  {% if content.field_title|render %}
-    <div class="container">
-      <h2 class="section-title">{{ content.field_title }}</h2>
-    </div>
-  {% endif %}
-  <div class="container{{ sidebar_class }}">
-    <div class="primary-event">
-      {{ content.field_primary_event }}
-    </div>
-    {% if has_sidebar %}
-      <div class="secondary-events">
-        {% if content.field_sidebar_title[0] is not empty %}
-          <h5>{{ content.field_sidebar_title }}</h5>
-        {% endif %}
-        {{ content.field_secondary_events }}
-        <span class="more-link">{{ content.field_sidebar_link }}</span>
-      </div>
-    {% endif %}
-  </div>
-  {% if background_image_url %}
-    <div class="background" style="background-image: url({{ background_image_url }});"></div>
-  {% endif %}
-</section> #}
-
-<section class="component pf-c-content rhd-c-events-hero assembly-slim dark background">
+<section{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
   <div class="pf-l-grid pf-m-gutter">
+
     {{ content.field_title }}
-    {{ content.field_primary_event }}
+
+    {% if secondary_events_count == 0 %}
+    <div class="pf-l-grid__item pf-m-12-col">
+    {% elseif secondary_events_count == 1 %}
+    <div class="pf-l-grid__item pf-m-12-col pf-m-6-col-on-md">
+    {% elseif secondary_events_count == 2 %}
+    <div class="pf-l-grid__item pf-m-12-col pf-m-7-col-on-md">
+    {% endif %}
+      {{ content.field_primary_event }}
+      {% if has_sidebar_link %}
+      <a href="{{ sidebar_link_uri }}" class="pf-c-button pf-m-link--secondary pf-u-pl-0">{{ sidebar_link_title }} <span class="pf-c-button__icon"><i class="fas fa-arrow-right"></i></span></a>
+      {% endif %}
+    </div>
+
+    {% if secondary_events_count == 1 %}
+    <div class="pf-l-grid__item pf-m-12-col pf-m-6-col-on-md">
+      {% if content.field_sidebar_title[0] is not empty %}
+      <h3>{{ content.field_sidebar_title }}</h3>
+      {% endif %}
+      {{ content.field_secondary_events }}
+    </div>
+    {% elseif secondary_events_count == 2 %}
+    <div class="sidebar-list pf-l-grid__item pf-m-12-col pf-m-5-col-on-md">
+      {% if content.field_sidebar_title[0] is not empty %}
+      <h3>{{ content.field_sidebar_title }}</h3>
+      {% endif %}
+      {{ content.field_secondary_events }}
+    </div>
+    {% endif %}
+
   </div>
 </section>
