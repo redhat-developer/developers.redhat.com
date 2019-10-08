@@ -19,6 +19,13 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
+  // Learning Path content type and Card view mode.
+  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
+    }
+  }
+
   // Prepares the authors render element for the Article node, Card view mode.
   if ($type === 'article' && $variables['view_mode'] === 'card') {
     $authors = $node->get('field_author_evangelist')->getValue();
@@ -34,19 +41,31 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = NULL;
     }
     if (count($author_nodes) === 1) {
-      // We can reset to retrieve the element since we've already verified there is only 1.
-      $authors_values = [
-        'name' => reset($author_nodes)->getTitle(),
-        // We need a Url object for Drupal, not a plain string.
-        'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
-      ];
+      $nid = reset($author_nodes)->id();
+      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
+      $current_path = \Drupal::service('path.current')->getPath();
+      $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
-      // Get a renderable author Link and set the rhd-m-link class.
-      $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
-      $authors_link = $authors_link->toRenderable();
-      $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+      if ($author_url_alias === $current_alias) {
+        $variables['authors'] = [
+          '#markup' => reset($author_nodes)->getTitle(),
+        ];
+      }
+      else {
+        // We can reset to retrieve the element since we've already verified there is only 1.
+        $authors_values = [
+          'name' => reset($author_nodes)->getTitle(),
+          // We need a Url object for Drupal, not a plain string.
+          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
+        ];
 
-      $variables['authors'] = $authors_link;
+        // Get a renderable author Link and set the rhd-m-link class.
+        $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+        $authors_link = $authors_link->toRenderable();
+        $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+        $variables['authors'] = $authors_link;
+      }
     }
     else {
       $authors_values = [];
@@ -190,26 +209,50 @@ function rhdp2_preprocess_node(&$variables) {
     $variables['timestamp'] = $timestamp;
   }
 
-  // Author content type.
-  if ($type == 'author') {
-    $variables['author_name'] = $node->getTitle();
-    $variables['author_articles'] = FALSE;
-    if (views_get_view_result('author_articles')) {
-      $variables['author_articles'] = views_embed_view('author_articles');
+  // Article content type.
+  if ($node->getType() == 'article') {
+    $variables['has_hero'] = FALSE;
+    $variables['author_location'] = 'left';
+    $type = $node->get('field_article_type')->getValue();
+    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
+      $type = $type[0]['value'];
+      if ($type == 'opinion') {
+        $variables['has_hero'] = TRUE;
+        $variables['author_location'] = 'right';
+        $variables['content']['field_image'][0]['#image_style'] = 'hero';
+      }
     }
-    $variables['social_links'] = FALSE;
-    $social_facebook = $node->get('field_facebook')->getValue();
-    $social_github = $node->get('field_github')->getValue();
-    $social_linkedin = $node->get('field_linkedin')->getValue();
-    $social_twitter = $node->get('field_twitter')->getValue();
-    $social_youtube = $node->get('field_youtube')->getValue();
-    $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
-    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
-      $variables['social_links'] = TRUE;
-      $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
-      $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
-      $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
-      $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+    $hide_toc = $node->get('field_hide_toc')->getValue();
+
+    // Verify that getValue() retrieves a field with a set value.
+    if (isset($hide_toc[0])) {
+      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+    }
+    else {
+      $variables['hide_toc'] = FALSE;
+    }
+
+    // Author content type.
+    if ($type == 'author') {
+      $variables['author_name'] = $node->getTitle();
+      $variables['author_articles'] = FALSE;
+      if (views_get_view_result('author_articles')) {
+        $variables['author_articles'] = views_embed_view('author_articles');
+      }
+      $variables['social_links'] = FALSE;
+      $social_facebook = $node->get('field_facebook')->getValue();
+      $social_github = $node->get('field_github')->getValue();
+      $social_linkedin = $node->get('field_linkedin')->getValue();
+      $social_twitter = $node->get('field_twitter')->getValue();
+      $social_youtube = $node->get('field_youtube')->getValue();
+      $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
+      if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+        $variables['social_links'] = TRUE;
+        $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
+        $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
+        $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
+        $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+      }
     }
   }
 

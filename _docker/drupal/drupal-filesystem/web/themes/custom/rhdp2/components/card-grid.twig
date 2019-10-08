@@ -14,6 +14,11 @@
   <div class="pf-l-flex">
     <h2 class="pf-c-title pf-m-3xl">{{ title }}</h2>
   </div>
+  {% if intro is not empty %}
+  <div class="pf-l-flex rhd-c-card-grid__intro-wrapper">
+    {{ intro }}
+  </div>
+  {% endif %}
   <div{{ card_grid__wrapper_attributes }}>
     {{ content }}
   </div>
