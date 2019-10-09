@@ -378,6 +378,46 @@ function rhdp2_preprocess_assembly(&$variables) {
       }
     }
   }
+
+  // @todo this should be in rhd_eloqua_embed
+  if ($assembly->hasField('field_eloqua_json')) {
+    $variables['eloqua_assembly_id'] = $assembly->id();
+    $options = [];
+
+    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
+      $parent = $variables['elements']['#parent'];
+      if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {
+        $options = ['options' => ['class' => []]];
+        $styles = $parent['entity']->get('visual_styles')->getValue();
+
+        if (!empty($styles)) {
+          foreach ($styles as $style) {
+            if (in_array($style['value'], ['sidebar', 'sidebar-form'])) {
+              echo $style['value'];
+              $options['class'][] = 'cta'; // this is a stupid name now. Should be "sidebar" i think
+            }
+            if (in_array($style['value'], ['inline'])) {
+              $options['class'][] = 'inline';
+            }
+            if (in_array($style['value'], ['overlabel'])) {
+              $options['class'][] = 'overlabel';
+            }
+          }
+        }
+      }
+    }
+
+    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
+
+
+    //adding a cache busting guit to the url to prevent Akami caching the page
+    $tmpEloquaUrl->setOption('query', [
+      'no_cache' => createGUID()
+    ]);
+
+    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
+  }
+
 }
 
 /**
@@ -531,4 +571,30 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 
   $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
   $rhd_settings['templates']['stackoverflowTemplate'] = $template;
+}
+
+/**
+ * Returns a new random guid.
+ */
+function createGUID() { 
+  // Create a token
+  $token = $_SERVER['HTTP_HOST'];
+  $token .= $_SERVER['REQUEST_URI'];
+  $token .= uniqid(rand(), true);
+  // GUID is 128-bit hex
+  $hash = strtoupper(md5($token));
+  // Create formatted GUID
+  $guid = '';
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
+  $guid .= substr($hash,  0,  8) . 
+    '-' .
+    substr($hash,  8,  4) .
+    '-' .
+    substr($hash, 12,  4) .
+    '-' .
+    substr($hash, 16,  4) .
+    '-' .
+    substr($hash, 20, 12);
+
+  return $guid;
 }
