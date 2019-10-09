@@ -56,14 +56,14 @@
     </div>
 
     {% if secondary_events_count == 1 %}
-    <div class="pf-l-grid__item pf-m-12-col pf-m-6-col-on-md">
+    <div class="sidebar pf-l-grid__item pf-m-12-col pf-m-6-col-on-md">
       {% if content.field_sidebar_title[0] is not empty %}
       <h3>{{ content.field_sidebar_title }}</h3>
       {% endif %}
       {{ content.field_secondary_events }}
     </div>
     {% elseif secondary_events_count == 2 %}
-    <div class="sidebar-list pf-l-grid__item pf-m-12-col pf-m-5-col-on-md">
+    <div class="sidebar list pf-l-grid__item pf-m-12-col pf-m-5-col-on-md">
       {% if content.field_sidebar_title[0] is not empty %}
       <h3>{{ content.field_sidebar_title }}</h3>
       {% endif %}
