@@ -28,7 +28,7 @@ content:
     label: hidden
     settings:
       trim_length: '80'
-      class: 'button medium-cta'
+      class: ''
       url_only: 0
       url_plain: 0
       rel: 0
@@ -53,16 +53,30 @@ content:
       fences:
         fences_field_tag: none
         fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: 'pf-l-grid__item pf-m-12-col'
         fences_label_tag: none
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
+  field_title:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: 'pf-c-title pf-m-3xl'
+        fences_field_item_tag: h2
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   field_audience_selection: true
   field_navigation_title: true
-  field_title: true
   langcode: true
   name: true
   user_id: true
