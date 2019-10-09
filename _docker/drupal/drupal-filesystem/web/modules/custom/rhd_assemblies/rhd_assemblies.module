@@ -75,6 +75,15 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
 
+  // Registers a custom template and variables for Wordpress Post Tile.
+  $theme['wordpress_post_tile'] = [
+    'template' => 'wordpress-post-tile',
+    'variables' => [
+      'post' => NULL,
+      'media' => NULL,
+    ],
+  ];
+
   return $theme;
 }
 
