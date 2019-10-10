@@ -21,16 +21,12 @@
 ]%}
 
 <div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
-  <div class="container">
-    <div class="column-container">
-    {% if content %}
-      <div class="cta-content">
-      {{- content|without('field_form') -}}
-      </div>
-      <div class="cta-form">
-      {{- content.field_form -}}
-      </div>
-    {% endif %}
-    </div>
+  {% if content %}
+  <div class="cta-content pf-c-content">
+    {{- content|without('field_form') -}}
   </div>
-</section>
+  <div class="cta-form">
+    {{- content.field_form -}}
+  </div>
+  {% endif %}
+</div>

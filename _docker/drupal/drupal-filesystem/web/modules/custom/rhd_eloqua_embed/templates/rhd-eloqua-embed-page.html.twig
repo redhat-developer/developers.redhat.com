@@ -11,8 +11,187 @@
     <script>window.DynamicFormConfig={{eloqua_json|raw}};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script>
-<style>
+    <style>
+      body {
+        margin: 0;
+      }
       #GatedFormContainer .form-header >:first-child { display: none; }
+      #GatedFormContainer .form-header h1 {
+        color: #333;
+        font-weight: normal;
+      }
+      #GatedFormContainer>form>.form-header {
+        margin-bottom: 0 !important;
+      }
+      #GatedFormContainer .form-header p,
+      #GatedFormContainer .form-header .form-message,
+      #GatedFormContainer .form-content p,
+      #GatedFormContainer .control-label,
+      #GatedFormContainer .form-content > .form-group:not(#FormSubmitButton-form-group) > :not([type=hidden]):first-child {
+        font-weight: normal;
+        color: #333;
+        font-size: 1em;
+      }
+      #GatedFormContainer #FormSubmitButton {
+        background-color: #ee0000 !important;
+        color: #FFF !important;
+        border-color: #ee0000 !important;
+        border-radius: 3px !important;
+        box-sizing: border-box !important;
+        margin-top: 1px !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        font-family: RedHatText, Overpass, overpass, helvetica, arial, sans-serif !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        font-variant-caps: normal !important;
+        font-weight: normal !important;
+        height: 36px !important;
+        letter-spacing: normal !important;
+        line-height: 24px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 16px !important;
+        padding-bottom: 6px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 6px !important;
+      }
+      #GatedFormContainer #FormSubmitButton:hover, #GatedFormContainer #FormSubmitButton:active {
+        background-color: #cf0000 !important;
+        color: #FFF !important;
+        border-color: #cf0000 !important;
+      }
+      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group)  {
+        display: flex !important;
+        flex-direction: column !important;
+        align-content: left !important;
+        margin-top: 24px;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label {
+        align-self: flex-start !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        color: black !important;
+        padding-left: 0 !important;
+        margin-bottom: 8px !important;
+        margin-right: 8px !important;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label:before { 
+        display:none;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label:after { 
+        color: #c00;
+        content: "*";
+        font-weight: 700;
+        font-size: 0.8em;
+        vertical-align: baseline;
+        padding-right: 3px;
+        margin-left: 8px;
+      }
+      #GatedFormContainer #FormSubmitButton-form-group .col-sm-10 {
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+      }
+      #GatedFormContainer .form-content>.form-group .form-control {
+        border: solid 1px rgb(237, 237, 237) !important;
+        border-bottom: 1px solid black !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        font-variant-caps: normal !important;
+        font-weight: normal !important;
+        height: 36px !important;
+      }
+      #GatedFormContainer .form-footer .col-sm-10{
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+      }
+      #GatedFormContainer form {
+        font-size: 13px;
+      }
+      #GatedFormContainer .col-sm-10.controls {
+        margin-left: 0 !important;
+      }
+      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        display: flex;
+        flex-direction: column;
+      }
+      #GatedFormContainer .control-label.required, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>.required:not([type=hidden]):first-child {
+        text-align: left;
+      }
+      .inline #GatedFormContainer .col-sm-10.controls, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
+        margin-left: 0;
+      }
+      .inline #GatedFormContainer .form-content::after {
+        content: none;
+      }
+      .dark #GatedFormContainer .form-content > .form-group .control-label,
+      .dark #GatedFormContainer .form-content > .form-group label,
+      .dark #GatedFormContainer .form-footer a {
+        color: #fff !important;
+      }
+      .dark #GatedFormContainer .form-footer a {
+        text-decoration: underline;
+      }
+      .dark #GatedFormContainer .form-footer a:hover {
+        text-decoration: none;
+      }
+
+      @media (min-width: 701px) {
+        .inline #GatedFormContainer .form-content {
+          display: flex;
+          flex-direction: column;
+        }
+        .inline #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+          margin-right: 10px;
+        }
+        .inline #GatedFormContainer .col-sm-10.controls  {
+          margin-left: 0;
+        }
+        .inline #FormSubmitButton-form-group {
+          display: flex;
+        }
+        .inline #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child {
+          width: auto;
+          align-items: flex-start;
+          margin-left: 0;
+          justify-content: left;
+        }
+        .inline #GatedFormContainer #FormSubmitButton {
+          margin-top: 0;
+          margin-left: 0;
+          white-space: nowrap;
+          padding: 6px 18px;
+        }
+        .inline #GatedFormContainer .form-footer>.form-group {
+          width: 100%;
+          display: block;
+        }
+        .inline #GatedFormContainer .form-footer>.form-group> div:not([type=hidden]):first-child:first-child {
+          width: 100%;
+          display: block;
+          margin: 0;
+        }
+        .inline #GatedFormContainer .form-footer a[href] {
+          text-align: left;
+          margin-top: 0;
+        }
+        #GatedFormContainer #validationMessages:not(:empty), #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child, #GatedFormContainer .form-footer>.form-group div:not([type=hidden]):first-child {
+          width: auto !important;
+          margin-left: 0 !important;
+          max-width: none !important;
+        }
+        #GatedFormContainer #validationMessages:not(:empty) {
+          line-height: 2 !important;
+          margin-bottom: 15px !important;
+        }
+        .overlabel #GatedFormContainer .col-sm-10.controls,
+        .overlabel #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
+          margin-left: 0;
+        }
+      }
+      /* #GatedFormContainer .form-header >:first-child { display: none; }
       #GatedFormContainer .form-header h1 {
         color: #333;
         font-weight: normal;
@@ -123,10 +302,10 @@
         .overlabel #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
           margin-left: 0;
         }
-      }
+      } */
     </style>
   </head>
-  <body{{ attributes.addClass(body_classes) }}>
+  <body>
     <div id="GatedFormContainer"></div>
     {% if redirect_url or overlabel %}
       <script>
