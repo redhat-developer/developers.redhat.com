@@ -10,10 +10,12 @@
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-  <div class="component topic-page__title">
-    {{ title_prefix }}
-    <h1{{ title_attributes }}>{{ label }}</h1>
-    {{ title_suffix }}
+  <div class="topic-page__title component">
+    <div class="pf-l-grid">
+      {{ title_prefix }}
+      <h1{{ title_attributes }}>{{ label }}</h1>
+      {{ title_suffix }}
+    </div>
   </div>
 
   <div{{ content_attributes.addClass('node__content') }}>
