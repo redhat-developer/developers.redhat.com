@@ -262,6 +262,17 @@ function rhdp2_preprocess_node(&$variables) {
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
     $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
+    // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
+    // Note: Also will not work properly without search and replace on export.
+    if ($node->hasField('field_event_background_image')) {
+      $image_value = $node->get('field_event_background_image')->getValue();
+      if ($image_value) {
+        $file_id = $image_value[0]['target_id'];
+        $uri = File::load($file_id)->getFileUri();
+        $variables['event_image_url'] = file_create_url($uri);
+      }
+    }
+
     // Teaser view mode.
     if ($variables['view_mode'] == 'teaser') {
       $node_title = $node->label();
