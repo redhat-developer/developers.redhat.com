@@ -40,6 +40,7 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.old.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
 
 # Copy in the Drupal configuration
