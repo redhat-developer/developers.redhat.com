@@ -3,9 +3,9 @@ web-components:
   js:
     https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js: { type: external, minified: true, browsers: {IE: 'lte IE 11'} }
     https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.3.0/custom-elements-es5-adapter.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.3.0/webcomponents-bundle.js: { type: external, minified: true }
 
 base-theme:
   # This should be all of the style sheets broken up according to smaccs
@@ -17,9 +17,9 @@ base-theme:
       css/pfe-layouts/pfe-layouts.min.css: { minified: true }
       css/rhd.min.css: { minified: true }
       css/rhd.microsites.css: { minified: true }
+      css/rhd.legacy.css: { minified: true }
     theme:
       css/rhdp2.css: {}
-
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
@@ -38,6 +38,23 @@ base-theme:
     https://developers.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
     js/rhd.old.min.js: { minified: true }
     js/rhd.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+rhdp-web-components:
+  js:
+    js/rhd/dp-alert.js: {}
+    js/rhd/dp-referrer.js: {}
+    js/rhd/rhdp-thankyou-page.js: {}
+    js/rhd/rhdp-tryitnow.js: {}
+    js/rhd/dp-category-list/dp-category-list-wc.js: {}
+    js/rhd/dp-search/dp-search.js: {}
+    js/rhd/dp-search/dp-search-onebox.js: {}
+    js/rhd/rhdp-downloads/rhdp-downloads.js: {}
+    js/rhd/rhdp-projects/rhdp-project-wc.js: {}
+    js/rhd/rhdp-search/rhdp-search.js: {}
   dependencies:
     - core/jquery
     - core/drupal

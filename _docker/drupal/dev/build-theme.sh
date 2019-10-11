@@ -18,12 +18,14 @@ cd "${FE_THEME_DIR}" \
 && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
 && npm install \
 && npm run-script styles \
-&& npm run-script build \
-&& npm run-script scripts:new \
+&& npm run build \
 && cp dist/css-min/rhd.min.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/css-min/rhd.microsites.css "${DRUPAL_THEME_DIR}"/css/ \
+&& cp dist/css-min/rhd.legacy.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/js/@rhd/rhd.old.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && cp dist/js/@rhd/rhd.min.js "${DRUPAL_THEME_DIR}"/js/ \
+&& rm -rf "${DRUPAL_THEME_DIR}"/js/rhd \
+&& cp -r dist/js/@rhd "${DRUPAL_THEME_DIR}"/js/rhd \
 && cp -r favicons "${DRUPAL_THEME_DIR}/"
 
 cd "${DIR}" && docker-compose exec drupal /bin/bash -c "drush cr"
