@@ -24,6 +24,8 @@ cd "${FE_THEME_DIR}" \
 && cp dist/css-min/rhd.legacy.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/js/@rhd/rhd.old.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && cp dist/js/@rhd/rhd.min.js "${DRUPAL_THEME_DIR}"/js/ \
+&& cp dist/js/@patternfly/pfelement/pfelement.umd.min.js "${DRUPAL_THEME_DIR}"/js/ \
+&& cp dist/js/@patternfly/pfe-datetime/pfe-datetime.umd.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && rm -rf "${DRUPAL_THEME_DIR}"/js/rhd \
 && cp -r dist/js/@rhd "${DRUPAL_THEME_DIR}"/js/rhd \
 && cp -r favicons "${DRUPAL_THEME_DIR}/"
