@@ -557,3 +557,12 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
   $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
   $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
+  }
+}

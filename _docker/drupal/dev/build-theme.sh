@@ -28,6 +28,7 @@ cd "${FE_THEME_DIR}" \
 && cp dist/js/@patternfly/pfe-datetime/pfe-datetime.umd.min.js "${DRUPAL_THEME_DIR}"/js/ \
 && rm -rf "${DRUPAL_THEME_DIR}"/js/rhd \
 && cp -r dist/js/@rhd "${DRUPAL_THEME_DIR}"/js/rhd \
-&& cp -r favicons "${DRUPAL_THEME_DIR}/"
+&& cp -r favicons "${DRUPAL_THEME_DIR}/" \
+&& cp -r dist/fonts "${DRUPAL_THEME_DIR}/"
 
 cd "${DIR}" && docker-compose exec drupal /bin/bash -c "drush cr"
