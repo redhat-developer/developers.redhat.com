@@ -25,7 +25,14 @@ COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
-# Build the theme
+# Build the rhdp theme
+# This theme is still required to render the old, paragraphs-based Product pages
+RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
+    && npm install \
+    && npm run-script build \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
+
+# Build the rhdp2 theme
 ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
@@ -44,6 +51,7 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/fonts \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
 
