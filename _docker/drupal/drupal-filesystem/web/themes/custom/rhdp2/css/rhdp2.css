@@ -579,3 +579,28 @@
 .author-social-icon-github svg path {
   fill: #000000;
 }
+
+/* CTA Form Assembly */
+.assembly-type-cta_form.centered {
+  text-align: center;
+}
+.assembly-type-cta_form.centered .field--name-field-title,
+.assembly-type-cta_form.centered .header {
+  text-align: center;
+}
+.assembly-type-cta_form.centered iframe {
+  max-width: 500px;
+}
+.assembly-type-cta_form.background-gray {
+  background: #e4e4e6;
+}
+.assembly-type-cta_form.dark {
+  background: #242424;
+}
+.assembly-type-cta_form.dark h2,
+.assembly-type-cta_form.dark p {
+  color: #FFF;
+}
+.assembly-type-cta_form.has-background {
+  padding: 18px 24px 8px 24px;
+}

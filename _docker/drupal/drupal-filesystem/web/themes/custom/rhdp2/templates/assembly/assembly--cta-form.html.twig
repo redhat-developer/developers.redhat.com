@@ -1,0 +1,32 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+{% set classes = [
+  'component',
+]%}
+
+<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+  {% if content %}
+  <div class="cta-content pf-c-content">
+    {{- content|without('field_form') -}}
+  </div>
+  <div class="cta-form">
+    {{- content.field_form -}}
+  </div>
+  {% endif %}
+</div>
