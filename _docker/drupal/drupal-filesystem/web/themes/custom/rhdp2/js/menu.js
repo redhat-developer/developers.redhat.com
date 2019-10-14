@@ -1,22 +1,24 @@
 (function ($, Drupal) {
-  // Drupal.behaviors.menuSearch = {
-  //   attach: function (context, settings) {
-  //     var toggleSearch = function () {
-  //       $('.rhd-header .rhd-nav-search').toggleClass('open');
-  //       $('.rhd-header').toggleClass('rhd-search-open');
-  //       $('.rhd-search-toggle-overlay').toggle('open');
-  //     };
-  //     $('.rhd-search-toggle').click(function() {
-  //       toggleSearch();
-  //       if ($('.rhd-nav-search').hasClass('open')) {
-  //         $('#search_list_text').focus();
-  //       }
-  //     });
-  //     $('.rhd-search-toggle-overlay').click(function(){
-  //       toggleSearch();
-  //     });
-  //   }
-  // };
+  Drupal.behaviors.menuSearch = {
+    attach: function (context, settings) {
+      $('[data-rhd-nav-search-toggle]').once('menuSearch').each(function() {
+        $(this).on('click touch', function(e) {
+          e.preventDefault();
+          var $input = $(this).siblings('.rhd-nav-search').addClass('shown').find('[data-rhd-nav-search-input]');
+          // Need a set timeout b/c otherwise .focus() will cause scrolling inside the container
+          window.setTimeout(function() {
+            $input.focus()
+          }, 220);
+        })
+      });
+      $('[data-rhd-nav-search-close]').once('menuSearch').each(function() {
+        $(this).on('click touch', function(e) {
+          e.preventDefault();
+          $(this).parents('.rhd-nav-search').removeClass('shown');
+        })
+      });
+    }
+  };
 
   Drupal.behaviors.topicsMobileScroll = {
     attach: function(context, settings) {
