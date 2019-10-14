@@ -5,8 +5,9 @@ base theme: classy
 package: rhdp2
 core: 8.x
 libraries:
-  #- rhdp2/web-components
+  - rhdp2/web-components
   - rhdp2/base-theme
+  - rhdp2/rhdp-web-components
 stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
   - core/modules/system/css/system.module.css
