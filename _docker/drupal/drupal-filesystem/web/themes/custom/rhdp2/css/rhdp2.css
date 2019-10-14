@@ -464,8 +464,104 @@
 
 /* Katacoda */
 
+.katacoda-courses .rhd-masthead .component {
+  padding: 0 64px;
+}
+@media screen and (max-width: 768px) {
+  .katacoda-courses .rhd-masthead .component {
+    padding: 0 32px;
+  }
+}
 .katacoda-courses-container.component {
   padding: var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl) var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl);
+}
+.katacoda-hero {
+  background: transparent;
+}
+@media screen and (max-width: 768px) {
+  .katacoda-hero .component {
+    padding: 16px 32px;
+  }
+}
+.katacoda-hero h1,
+.katacoda-hero h2,
+.katacoda-hero h3,
+.katacoda-hero h4,
+.katacoda-hero h5,
+.katacoda-hero h6,
+.katacoda-hero span,
+.katacoda-hero p {
+  color: white;
+}
+.katacoda-hero .background {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  .katacoda-courses .region-rhd-katacoda-header {
+    padding: 8px 0;
+  }
+}
+.region-rhd-katacoda-header {
+  padding: 8px 32px;
+  max-width: none;
+  grid-template-columns: none;
+  grid-template-rows: none;
+  flex: none;
+  justify-items: unset;
+  display: flex;
+  align-items: center;
+}
+.region-rhd-katacoda-header .rhd-header-logo {
+  max-width: 100%;
+  width: 140px;
+  grid-column: none;
+  grid-row: unset;
+  height: auto;
+}
+.region-rhd-katacoda-header .block-system-breadcrumb-block {
+  grid-row: none;
+  grid-column: none;
+  width: auto;
+  margin-left: auto;
+}
+.region-rhd-katacoda-header .block-system-breadcrumb-block nav {
+  padding-bottom:0;
+}
+.region-rhd-katacoda-header .breadcrumb ol li:not(:first-of-type):before {
+  content: " \203A ";
+  padding: 0 4px;
+  font-weight: 400;
+}
+.region-rhd-katacoda-header .breadcrumb ol li:last-of-type {
+  color: black;
+  font-size: 16px;
+  font-weight: 700;
+}
+.screen-size-note {
+  text-align: center;
+}
+@media(min-width: 812px) {
+  .screen-size-note {
+    display: none;
+  }
+}
+@media(max-width: 812px) {
+  .node--type-katacoda-individual-lesson.node--view-mode-full .katacoda-lesson {
+    display: none;
+  }
+}
+.screen-size-note__logo {
+  display: block;
+  margin: 20px auto;
 }
 
 /* Social icons */
@@ -518,4 +614,29 @@
 }
 .author-social-icon-github svg path {
   fill: #000000;
+}
+
+/* CTA Form Assembly */
+.assembly-type-cta_form.centered {
+  text-align: center;
+}
+.assembly-type-cta_form.centered .field--name-field-title,
+.assembly-type-cta_form.centered .header {
+  text-align: center;
+}
+.assembly-type-cta_form.centered iframe {
+  max-width: 500px;
+}
+.assembly-type-cta_form.background-gray {
+  background: #e4e4e6;
+}
+.assembly-type-cta_form.dark {
+  background: #242424;
+}
+.assembly-type-cta_form.dark h2,
+.assembly-type-cta_form.dark p {
+  color: #FFF;
+}
+.assembly-type-cta_form.has-background {
+  padding: 18px 24px 8px 24px;
 }

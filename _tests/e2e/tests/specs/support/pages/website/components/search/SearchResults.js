@@ -22,7 +22,7 @@ class SearchResults extends Page {
     }
 
     dateFor(i) {
-        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//rh-datetime`).getAttribute('datetime');
+        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//pfe-datetime`).getAttribute('datetime');
     }
 }
 export default new SearchResults;

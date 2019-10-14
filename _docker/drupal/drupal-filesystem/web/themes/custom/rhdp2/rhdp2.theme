@@ -13,6 +13,25 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Page-level template suggestions by node type.
+ */
+function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::request()->attributes->get('node');
+
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $new_suggestion = 'page__' . $node->getType();
+
+    if (!in_array($new_suggestion, $suggestions)) {
+      $suggestions[] = $new_suggestion;
+    }
+  }
+
+  return $suggestions;
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function rhdp2_preprocess_node(&$variables) {
@@ -394,6 +413,46 @@ function rhdp2_preprocess_assembly(&$variables) {
       }
     }
   }
+
+  // @todo this should be in rhd_eloqua_embed
+  if ($assembly->hasField('field_eloqua_json')) {
+    $variables['eloqua_assembly_id'] = $assembly->id();
+    $options = [];
+
+    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
+      $parent = $variables['elements']['#parent'];
+      if ($parent['entity_type'] == 'assembly' && $parent['entity']->bundle() == 'cta_form') {
+        $options = ['options' => ['class' => []]];
+        $styles = $parent['entity']->get('visual_styles')->getValue();
+        if (!empty($styles)) {
+          foreach ($styles as $style) {
+            if (in_array($style['value'], ['centered'])) {
+              $options['class'][] = 'centered';
+            }
+            if (in_array($style['value'], ['dark'])) {
+              $options['class'][] = 'dark';
+            }
+            if (in_array($style['value'], ['inline'])) {
+              $options['class'][] = 'inline';
+            }
+            if (in_array($style['value'], ['overlabel'])) {
+              $options['class'][] = 'overlabel';
+            }
+          }
+        }
+      }
+    }
+
+    $queryArray = [
+      'query' => [
+        'options' => $options,
+        'no_cache' => createGUID(),
+      ]
+    ];
+    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
+    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
+  }
+
 }
 
 /**
@@ -547,4 +606,38 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 
   $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
   $rhd_settings['templates']['stackoverflowTemplate'] = $template;
+}
+
+/**
+ * Returns a new random guid.
+ */
+function createGUID() { 
+  // Create a token
+  $token = $_SERVER['HTTP_HOST'];
+  $token .= $_SERVER['REQUEST_URI'];
+  $token .= uniqid(rand(), true);
+  // GUID is 128-bit hex
+  $hash = strtoupper(md5($token));
+  // Create formatted GUID
+  $guid = '';
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
+  $guid .= substr($hash,  0,  8) . 
+    '-' .
+    substr($hash,  8,  4) .
+    '-' .
+    substr($hash, 12,  4) .
+    '-' .
+    substr($hash, 16,  4) .
+    '-' .
+    substr($hash, 20, 12);
+
+  return $guid;
+}
+
+/* Implements hook_form_alter().
+*/
+function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+ if ($form_id == 'user_login_form') {
+   $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
+ }
 }
