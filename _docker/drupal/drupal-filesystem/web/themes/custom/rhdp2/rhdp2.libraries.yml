@@ -47,10 +47,6 @@ rhdp-pfelement:
   header: true
   js:
     js/pfelement.umd.min.js: { minified: true, preprocess: false }
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupalSettings
 
 rhdp-web-components:
   js:
@@ -64,10 +60,6 @@ rhdp-web-components:
     js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
     js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
     js/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupalSettings
 
 video_embed_field.responsive-video:
   css:
