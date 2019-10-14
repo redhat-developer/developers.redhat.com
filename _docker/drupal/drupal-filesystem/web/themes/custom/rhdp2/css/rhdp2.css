@@ -54,9 +54,40 @@
   letter-spacing: .025em;
   margin: 0;
 }
-#rhd-article .gsi-meta {
+#rhd-article .gsi-meta,
+.page-node-type-coding-resource .gsi-meta {
   margin-bottom: 24px;
   overflow: hidden;
+  background: #F9F9F9;
+  padding:12px;
+  border:1px solid #E6E6E6;
+  border-radius: 0;
+}
+#rhd-article .gsi-meta ul,
+.page-node-type-coding-resource .gsi-meta ul {
+  margin-top: 0;
+  padding-left: 15px;
+}
+#rhd-article .gsi-meta ul li,
+.page-node-type-coding-resource .gsi-meta ul li {
+  width:33.33%;
+  float:left;
+  list-style:none;
+}
+#rhd-article .gsi-meta ul li strong,
+.page-node-type-coding-resource .gsi-meta ul li strong {
+  margin-right: 3px;
+}
+#rhd-article .gsi-meta ul li a + a,
+.page-node-type-coding-resource .gsi-meta ul li a + a{
+  margin-left: 5px;
+}
+#rhd-article .gsi-meta .field--name-field-related-product.field--type-entity-reference,
+.page-node-type-coding-resource .gsi-meta .field--name-field-related-product.field--type-entity-reference {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 #rhd-article .article-info-left h1 {
   margin: 16px 0;
@@ -121,7 +152,8 @@
   margin-top: 32px;
 }
 
-#rhd-article .gsi-nav {
+#rhd-article .gsi-nav,
+.page-node-type-coding-resource .gsi-nav {
   background-color: #f9f9f9;
   border-top: 2px solid #0066CC;
   font-size: 16px;
@@ -133,17 +165,21 @@
   list-style: none;
   margin: 0;
 }
-#rhd-article .gsi-nav li {
+#rhd-article .gsi-nav li,
+.page-node-type-coding-resource .gsi-nav li {
   margin: 0;
   padding: 4px 0;
 }
-#rhd-article .gsi-nav li:first-of-type {
+#rhd-article .gsi-nav li:first-of-type,
+.page-node-type-coding-resource .gsi-nav li:first-of-type {
   padding-top: 0;
 }
-#rhd-article .gsi-nav li:last-of-type {
+#rhd-article .gsi-nav li:last-of-type,
+.page-node-type-coding-resource .gsi-nav li:last-of-type {
   padding-bottom: 0;
 }
-#rhd-article .gsi-nav li a:hover {
+#rhd-article .gsi-nav li a:hover,
+.page-node-type-coding-resource .gsi-nav li a:hover {
   color: #004c98;
   text-decoration: none;
 }
@@ -562,6 +598,31 @@
 }
 .author-social-icon-github svg path {
   fill: #000000;
+}
+
+/* CTA Form Assembly */
+.assembly-type-cta_form.centered {
+  text-align: center;
+}
+.assembly-type-cta_form.centered .field--name-field-title,
+.assembly-type-cta_form.centered .header {
+  text-align: center;
+}
+.assembly-type-cta_form.centered iframe {
+  max-width: 500px;
+}
+.assembly-type-cta_form.background-gray {
+  background: #e4e4e6;
+}
+.assembly-type-cta_form.dark {
+  background: #242424;
+}
+.assembly-type-cta_form.dark h2,
+.assembly-type-cta_form.dark p {
+  color: #FFF;
+}
+.assembly-type-cta_form.has-background {
+  padding: 18px 24px 8px 24px;
 }
 
 /* Events Hero */

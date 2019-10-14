@@ -403,15 +403,6 @@ function rhdp2_preprocess_assembly(&$variables) {
 
   // Code Snippet assembly type.
   if ($type == 'code_snippet') {
-    // Code field.
-    if ($assembly->hasField('field_code')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_code)) {
-        $field_code = $assembly->get('field_code')->getValue()[0]['value'];
-        $variables['code'] = $field_code;
-      }
-      $variables['#attached']['library'][] = 'rhdp2/highlight-js';
-    }
     // Programming Language field.
     if ($assembly->hasField('field_programming_language')) {
       // Verify that the field isset before retrieving the value.
@@ -420,6 +411,45 @@ function rhdp2_preprocess_assembly(&$variables) {
         $variables['language'] = isset($language) ? $language : '';
       }
     }
+  }
+
+  // @todo this should be in rhd_eloqua_embed
+  if ($assembly->hasField('field_eloqua_json')) {
+    $variables['eloqua_assembly_id'] = $assembly->id();
+    $options = [];
+
+    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
+      $parent = $variables['elements']['#parent'];
+      if ($parent['entity_type'] == 'assembly' && $parent['entity']->bundle() == 'cta_form') {
+        $options = ['options' => ['class' => []]];
+        $styles = $parent['entity']->get('visual_styles')->getValue();
+        if (!empty($styles)) {
+          foreach ($styles as $style) {
+            if (in_array($style['value'], ['centered'])) {
+              $options['class'][] = 'centered';
+            }
+            if (in_array($style['value'], ['dark'])) {
+              $options['class'][] = 'dark';
+            }
+            if (in_array($style['value'], ['inline'])) {
+              $options['class'][] = 'inline';
+            }
+            if (in_array($style['value'], ['overlabel'])) {
+              $options['class'][] = 'overlabel';
+            }
+          }
+        }
+      }
+    }
+
+    $queryArray = [
+      'query' => [
+        'options' => $options,
+        'no_cache' => createGUID(),
+      ]
+    ];
+    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
+    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
   }
 
   // Events Hero assembly type.
@@ -438,12 +468,13 @@ function rhdp2_preprocess_assembly(&$variables) {
         }
       }
     }
-    // extract sidebar link fields
-    if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
-      $variables['has_sidebar_link'] = true;
-      $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
-      $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
-    }
+  }
+
+  // extract sidebar link fields
+  if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
+    $variables['has_sidebar_link'] = true;
+    $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
+    $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
   }
 
 }
@@ -602,10 +633,35 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 }
 
 /**
- * Implements hook_form_alter().
+ * Returns a new random guid.
  */
+function createGUID() { 
+  // Create a token
+  $token = $_SERVER['HTTP_HOST'];
+  $token .= $_SERVER['REQUEST_URI'];
+  $token .= uniqid(rand(), true);
+  // GUID is 128-bit hex
+  $hash = strtoupper(md5($token));
+  // Create formatted GUID
+  $guid = '';
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
+  $guid .= substr($hash,  0,  8) . 
+    '-' .
+    substr($hash,  8,  4) .
+    '-' .
+    substr($hash, 12,  4) .
+    '-' .
+    substr($hash, 16,  4) .
+    '-' .
+    substr($hash, 20, 12);
+
+  return $guid;
+}
+
+/* Implements hook_form_alter().
+*/
 function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'user_login_form') {
-    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
-  }
+ if ($form_id == 'user_login_form') {
+   $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
+ }
 }
