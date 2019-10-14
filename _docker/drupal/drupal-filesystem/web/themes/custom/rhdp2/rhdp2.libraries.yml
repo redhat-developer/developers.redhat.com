@@ -43,6 +43,11 @@ base-theme:
     - core/drupal
     - core/drupalSettings
 
+rhdp-pfelement:
+  header: true
+  js:
+    js/pfelement.umd.min.js: { minified: true, preprocess: false }
+
 rhdp-web-components:
   js:
     js/rhd/dp-alert.js: { minified: true, preprocess: false }
@@ -51,16 +56,10 @@ rhdp-web-components:
     js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
     js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
     js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
-    js/rhd/dp-search/dp-search-onebox.js: { minified: true, preprocess: false }
     js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
     js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
     js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
     js/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
-    js/pfelement.umd.min.js: { minified: true, preprocess: false }
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupalSettings
 
 video_embed_field.responsive-video:
   css:
