@@ -347,6 +347,10 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
+  // Provide the url_product_name to the Twig template to build the path alias to the Download route.
+  if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
+    $variables['url_product_name'] = $node->get('field_url_product_name')->value;
+  }
 }
 
 /**
