@@ -50,8 +50,8 @@
     <li class="rhd-c-nav-dropdown__search">
       <form class="search-bar" accept-charset="utf-8" action="/search/" method="get" role="search" type="submit">
         <div class="pf-c-input-group">
-          <input class="pf-c-form-control" type="search" id="t" name="t" aria-label="search keywords">
-          <button class="pf-c-button pf-m-tertiary" type="button" aria-label="Submit search">
+          <input class="pf-c-form-control" data-rhd-nav-search-input type="search" id="t" name="t" aria-label="search keywords">
+          <button class="pf-c-button pf-m-tertiary" type="submit" data-rhd-nav-search-toggle aria-label="Submit search">
             <i class="fas fa-search" aria-hidden="true"></i>
           </button>
         </div>
@@ -71,7 +71,7 @@
       ]
     %}
     <li{{ item.attributes.addClass(classes) }}>
-      <a href="{{ item.url }}">
+      <a href="{{ item.url }}" class="pf-c-nav__link">
         <span>{{ item.title }}</span>
         <span class="rhd-m-nav-description">{{ item.original_link.getDescription() }}</span>
       </a>
