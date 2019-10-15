@@ -23,6 +23,8 @@ base-theme:
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
+    # Add our own active link class pfe-m-current
+    js/active-link.js: {}
     # Let's bring in the old JS
     js/articles.js: {}
     # RHD FontAwesome Kit
@@ -40,6 +42,7 @@ base-theme:
     js/rhd.min.js: { minified: true }
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/drupal
     - core/drupalSettings
 

@@ -30,39 +30,43 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('rhd-menu') }}>
+      <ul{{ attributes.addClass('rhd-menu rhd-main-menu') }}>
     {% else %}
       <ul class="rhd-menu">
     {% endif %}
     {% for item in items %}
       {%
         set classes = [
-          'menu-item',
+          'pf-c-nav__item',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
-          item.in_active_trail ? 'menu-item--active-trail',
         ]
       %}
-      {% set link_class = item.in_active_trail ? 'is-active' : '' %}
-      <li{{ item.attributes.addClass(classes, 'rhd-header-link') }}>
-        <a href="{{ item.url }}" class="{{ link_class }}">
-          <span class="title">{{ item.title }}</span>
-          <span class="description">{{ item.original_link.getDescription() }}</span>
-        </a>
+      {%
+        set link_classes = [
+          'pf-c-nav__link'
+        ]
+      %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {{ link(item.title, item.url, {'class': link_classes}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}
       </li>
     {% endfor %}
-      <li class="rhd-nav-search">
-        <div class="rhd-search-wrapper">
-          <form class="search-bar" accept-charset="utf-8" action="/search/" method="get" role="search" type="submit">
-            <input class="user-search" type="text" placeholder="Search" id="search_list_text" name="t" maxlength="128" required="">
-            <button type="submit" id="search-button"><i class="far fa-search"></i></button>
+      <li class="pf-c-nav__item pf-u-mr-0">
+        <a href="#" data-rhd-nav-search-toggle class="pf-u-display-inline-block pf-u-pt-md pf-u-pb-sm"><i class="fas fa-search"></i></a>
+        <div class="rhd-nav-search pf-u-mt-sm">
+          <form accept-charset="utf-8" action="/search/" class="pf-u-mb-0" method="get" role="search" type="submit">
+            <div class="pf-c-input-group">
+              <div class="rhd-nav-search--icon"><i class="fas fa-search" aria-hidden="true"></i></div>
+              <input class="pf-c-form-control pf-u-pl-xl pf-u-mb-0" data-rhd-nav-search-input type="text" id="t" name="t" aria-label="search keywords">
+              <button class="pf-c-button pf-m-tertiary visually-hidden" type="button" aria-label="Submit search">Search
+              </button>
+            </div>
           </form>
+          <a data-rhd-nav-search-close class="rhd-nav-search--close" href="#" aria-label="close search form"><i class="fas fa-times"></i></a>
         </div>
-        <button class="rhd-search-toggle rhd-search-toggle-open"><span class="open-icon"><i class="far fa-search"></i></span></button>
-        <button class="rhd-search-toggle rhd-search-toggle-close"><span class="close-icon"><i class="far fa-times"></i></span></button>
       </li>
     </ul>
   {% endif %}
