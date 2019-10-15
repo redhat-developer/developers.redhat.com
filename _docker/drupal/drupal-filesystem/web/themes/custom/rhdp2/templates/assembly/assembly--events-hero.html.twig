@@ -42,7 +42,7 @@
   <div class="pf-l-grid pf-m-gutter">
 
     {{ content.field_title }}
-    
+
     {% if secondary_events_count == 0 %}
     <div class="pf-l-grid__item pf-m-12-col">
     {% else %}
@@ -58,14 +58,14 @@
 
     {% if secondary_events_count == 1 %}
     <div class="pf-l-grid__item">
-      {% if content.field_sidebar_title[0] is not empty %}
+      {% if content.field_sidebar_title|render %}
       <h3>{{ content.field_sidebar_title }}</h3>
       {% endif %}
       {{ content.field_secondary_events }}
     </div>
     {% elseif secondary_events_count == 2 %}
     <div class="pf-l-grid__item sidebar">
-      {% if content.field_sidebar_title[0] is not empty %}
+      {% if content.field_sidebar_title|render %}
       <h3>{{ content.field_sidebar_title }}</h3>
       {% endif %}
       {{ content.field_secondary_events }}
