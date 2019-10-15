@@ -50,7 +50,9 @@
     {% endif %}
       {{ content.field_primary_event }}
       {% if has_sidebar_link %}
-      <a href="{{ sidebar_link_uri }}" class="pf-c-button pf-u-mr-lg">{{ sidebar_link_title }} <span class="pf-c-button__icon"><i class="fas fa-arrow-right"></i></span></a>
+      <a href="{{ sidebar_link_uri }}" class="pf-c-button pf-u-pl-0">{{ sidebar_link_title }}
+        <span class="pf-c-button__icon"><i class="fas fa-arrow-right"></i></span>
+      </a>
       {% endif %}
     </div>
 
