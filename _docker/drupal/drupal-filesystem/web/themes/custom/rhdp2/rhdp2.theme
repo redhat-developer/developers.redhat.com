@@ -11,6 +11,54 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Menu\MenuTreeParameters;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function rhdp2_preprocess_page(&$variables) {
+  $variables['universal_menu'] = _rhdp2_build_menu('universal-header', ['pf-c-nav__tertiary-list']);
+  $variables['main_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list']);
+  $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
+  $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
+}
+
+/**
+ * Get a menu render array suitable for main navigation purposes.
+ */
+function _rhdp2_build_menu($menu_name, Array $classes = [], $theme = FALSE) {
+  $menu_parameters = new MenuTreeParameters();
+  $menu_parameters->setMaxDepth(1);
+
+  // Get the tree.
+  $menu_tree_service = \Drupal::service('menu.link_tree');
+  $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+  // Apply some manipulators (checking the access, sorting).
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkNodeAccess'],
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree_service->transform($tree, $manipulators);
+  // And the last step is to actually build the tree.
+  $tree = $menu_tree_service->build($tree);
+  foreach ($classes as $c) {
+    $tree['#attributes']['class'][] = $c;
+  }
+
+  if ($theme) {
+    $tree['#theme'] = $theme;
+  }
+
+  return $tree;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function rhdp2_preprocess_menu(&$variables) {
+  $variables['theme_path'] = base_path() . $variables['directory'];
+}
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
