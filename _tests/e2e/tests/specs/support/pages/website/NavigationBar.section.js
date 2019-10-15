@@ -13,12 +13,24 @@ class NavigationBar extends Page {
     toggle() {
         const mobileNavToggle = Driver.isVisible(this.mobileNavToggle);
         if (mobileNavToggle) {
-            Driver.click(this.mobileNavToggle);
-            // wait for modal to completely open
-            Driver.awaitIsDisplayed(this.mobileMenuOpen);
+            this.openMobileMenuWithRetry()
             return true;
         }
         return false;
+    }
+
+    openMobileMenu() {
+        Driver.click(this.mobileNavToggle);
+        Driver.awaitIsDisplayed(this.mobileMenuOpen, 10000);
+    }
+
+    openMobileMenuWithRetry() {
+        try {
+            this.openMobileMenu()
+        } catch (err) {
+            console.log("Failed to open mobile menu, retrying...")
+            this.openMobileMenu()
+        }
     }
 
     login() {
