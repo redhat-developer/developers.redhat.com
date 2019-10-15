@@ -6,7 +6,7 @@ import Driver from '../../utils/Driver.Extension';
 class NavigationBar extends Page {
     get mobileMenuOpen() {return $('.rhd-c-nav-mobile');}
     get loginLink() {return $$("li.login a");}
-    get mobileNavToggle() {return $('div.rhd-c-nav-mobile');}
+    get mobileNavToggle() {return $('div.rhd-c-nav-mobile label');}
     get searchToggle() {return $('a[data-rhd-nav-search-toggle]');}
     get searchBar() {return $$('input[data-rhd-nav-search-input]');}
 
