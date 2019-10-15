@@ -21,7 +21,7 @@
   'component',
   'pf-c-content',
   'rhd-c-events-hero',
-  'background',
+  'has-background',
 ]%}
 {% if secondary_events_count == 0 %}
   {% set classes = classes|merge(['assembly-slim']) %}
@@ -30,7 +30,7 @@
   {% set classes = classes|merge(['two-events']) %}
 {% endif %}
 {% if secondary_events_count == 2 %}
-  {% set classes = classes|merge(['three-events']) %}
+  {% set classes = classes|merge(['has-sidebar']) %}
 {% endif %}
 {% if light %}
   {% set classes = classes|merge(['light']) %}
@@ -42,8 +42,12 @@
   <div class="pf-l-grid pf-m-gutter">
 
     {{ content.field_title }}
-
+    
+    {% if secondary_events_count == 0 %}
+    <div class="pf-l-grid__item pf-m-12-col">
+    {% else %}
     <div class="pf-l-grid__item">
+    {% endif %}
       {{ content.field_primary_event }}
       {% if has_sidebar_link %}
       <a href="{{ sidebar_link_uri }}" class="pf-c-button pf-u-mr-lg">{{ sidebar_link_title }} <span class="pf-c-button__icon"><i class="fas fa-arrow-right"></i></span></a>

@@ -1,5 +1,10 @@
 /* PatternFly-specific styles/overrides */
 
+/* Global */
+a.pf-c-button:hover {
+  text-decoration: none;
+}
+
 /* This is necessary to have consistent column width with nested components */
 .component .component {
   padding: 16px 0;
@@ -626,10 +631,7 @@
 }
 
 /* Events Hero */
-.assembly-type-events_hero.dark .pf-m-link--secondary {
-  color: #fff !important;
-}
-.assembly-type-events_hero .sidebar.list .rhd-c-events-hero__item-presenters,
-.assembly-type-events_hero .sidebar.list .short-description {
+.assembly-type-events_hero.has-sidebar .sidebar .rhd-c-events-hero__item-presenters,
+.assembly-type-events_hero.has-sidebar .sidebar .short-description {
   display: none;
 }
