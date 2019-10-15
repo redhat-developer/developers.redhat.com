@@ -21,6 +21,8 @@
 ]%}
 <section{{ attributes.addClass(classes) }}{{ audience_selection }}>
   {% if content %}
+  <div class="pf-l-grid pf-m-gutter">
     {{- content -}}
+  </div>
   {% endif %}
 </section>

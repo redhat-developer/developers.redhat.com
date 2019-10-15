@@ -11,9 +11,11 @@
 {% endif %}
 
 <div{{ attributes.addClass('rhd-c-card-grid', 'pf-c-content', 'component') }}>
+  {% if title|render %}
   <div class="pf-l-flex">
     <h2 class="pf-c-title pf-m-3xl">{{ title }}</h2>
   </div>
+  {% endif %}
   {% if intro is not empty %}
   <div class="pf-l-flex rhd-c-card-grid__intro-wrapper">
     {{ intro }}

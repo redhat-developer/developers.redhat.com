@@ -30,7 +30,7 @@
     </div>
     <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
       <div class="pf-l-flex pf-m-column rhd-c-curated-links component">
-        {% if content.field_title.value is not empty %}
+        {% if content.field_title.value|render %}
           <h2 class="pf-c-title pf-m-2xl pf-u-pt-lg">{{ content.field_title }}</h2>
         {% endif %}
         <hr class="rhd-c-divider">

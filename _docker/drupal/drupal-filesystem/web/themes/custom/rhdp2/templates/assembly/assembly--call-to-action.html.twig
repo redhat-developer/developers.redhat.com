@@ -16,7 +16,7 @@
 
 <div{{ attributes.addClass('component').setAttribute('style', background_image) }}{{ audience_selection }}>
   <div class="cta__container pf-l-grid">
-    {% if content.field_title is not empty %}
+    {% if content.field_title|render %}
       <h2 class="cta__title pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
     {% endif %}
     {% if content %}
