@@ -7,8 +7,8 @@
 ] %}
 
 <div {{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+  {% if image_uri %}
   <div class="pf-l-grid__item rhd-c-product-download-hero-aside">
-    {% if image_uri %}
     <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
       <picture class="product-download-hero-aside">
         <source media="(min-width: 480px)" srcset="{{ image_uri }}">
@@ -17,8 +17,8 @@
         <img src="{{ image_uri }}" alt="{{ image_alt }}" />
       </picture>
     </div>
-    {% endif %}
   </div>
+  {% endif %}
   <div class="pf-l-grid__item rhd-c-product-download-hero-content">
     {% if content.field_title|render %}
     {{ content.field_title }}
