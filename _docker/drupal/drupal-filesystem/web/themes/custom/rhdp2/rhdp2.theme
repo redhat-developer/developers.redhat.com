@@ -346,7 +346,6 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['node_title'] = str_replace('"', '', $node_title);
     }
   }
-
 }
 
 /**
@@ -499,6 +498,31 @@ function rhdp2_preprocess_assembly(&$variables) {
     ];
     $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
     $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
+  }
+
+  // Events Hero assembly type.
+  if ($type == 'events_hero') {
+    // get secondary events count
+    if ($assembly->hasField('field_secondary_events') && $secondary_events = $assembly->get('field_secondary_events')->getValue()) {
+      $variables['secondary_events_count'] = count($assembly->get('field_secondary_events')->getValue());
+    }
+    // get light visual style
+    $variables['light'] = false;
+    if ($visual_styles = $assembly->get('visual_styles')->getValue()) {
+      foreach ($visual_styles as $key => $value) {
+        if (in_array('light', $value)) {
+          $variables['light'] = true;
+          break;
+        }
+      }
+    }
+  }
+
+  // extract sidebar link fields
+  if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
+    $variables['has_sidebar_link'] = true;
+    $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
+    $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
   }
 
 }
