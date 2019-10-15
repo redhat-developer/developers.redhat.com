@@ -4,11 +4,11 @@ import Page from '../Page';
 import Driver from '../../utils/Driver.Extension';
 
 class NavigationBar extends Page {
-    get mobileMenuOpen() {return $('.mobile-tray-open');}
-    get loginLink() {return $$("//a[text()='Log In']");}
-    get mobileNavToggle() {return $('button*=Menu');}
-    get searchToggle() {return $('//*[@id="block-rhdnavigation"]/ul/li[@class="rhd-nav-search"]');}
-    get searchBar() {return $$('.user-search');}
+    get mobileMenuOpen() {return $('.rhd-c-nav-mobile');}
+    get loginLink() {return $$("li.login a");}
+    get mobileNavToggle() {return $('div.rhd-c-nav-mobile');}
+    get searchToggle() {return $('a[data-rhd-nav-search-toggle]');}
+    get searchBar() {return $$('input[data-rhd-nav-search-input]');}
 
     toggle() {
         const mobileNavToggle = Driver.isVisible(this.mobileNavToggle);
