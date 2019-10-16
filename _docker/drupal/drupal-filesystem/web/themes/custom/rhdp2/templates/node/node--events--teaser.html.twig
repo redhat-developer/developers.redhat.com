@@ -1,0 +1,13 @@
+<div class="pf-l-grid pf-m-gutter rhd-c-curated-events__item">
+  <div class="pf-l-grid__item pf-m-12-col pf-m-3-col-on-md">
+    <img src="{{ event_image_url }}" alt="{{ node_title }}">
+  </div>
+  <div class="pf-l-grid__item pf-m-12-col pf-m-9-col-on-md">
+    <h3 class="rhd-c-curated-events__item-title"><a href="{{ event_url }}">{{ event_title }}</a></h3>
+    <small class="pf-u-mt-xs pf-u-mb-xs">{{ content.field_start_date}}</small>
+    <p>{{ event_description | striptags }}</p>
+    <div class="rhd-c-curated-events__item-presenters">
+      {{ content.field_presenter_s_ }}
+    </div>
+  </div>
+</div>

@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_topics
     - node.type.katacoda_individual_lesson
   module:
+    - fences
     - field_layout
     - layout_discovery
     - user
@@ -39,7 +40,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   field_tags:
@@ -47,7 +55,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_audience_segment:
@@ -55,7 +70,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_business_unit:
@@ -63,7 +85,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_campaign:
@@ -71,7 +100,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_lifecycle:
@@ -79,7 +115,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_product:
@@ -87,7 +130,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_product_line:
@@ -95,7 +145,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_project:
@@ -103,7 +160,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_promotion:
@@ -111,7 +175,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_region:
@@ -119,7 +190,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_tax_stage:
@@ -127,7 +205,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   field_topics:
@@ -135,7 +220,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_label
     region: content
   links:

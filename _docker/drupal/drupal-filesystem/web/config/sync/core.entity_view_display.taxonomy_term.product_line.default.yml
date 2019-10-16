@@ -1,0 +1,36 @@
+uuid: ed013a96-ee88-4c04-8e07-73a12145a92f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_line
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.product_line.default
+targetEntityType: taxonomy_term
+bundle: product_line
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  langcode: true

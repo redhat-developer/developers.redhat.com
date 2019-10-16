@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.series.field_tax_stage
     - node.type.series
   module:
+    - fences
     - field_layout
     - layout_discovery
     - text
@@ -39,7 +40,14 @@ content:
     weight: 0
     settings:
       trim_length: 600
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     region: content
   field_series_articles:
     type: entity_reference_label
@@ -48,7 +56,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_series_author:
     type: entity_reference_label
     weight: 3
@@ -56,7 +71,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_series_image:
     type: entity_reference_label
     weight: 1
@@ -64,7 +86,14 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   content_moderation_control: true
   field_tax_audience_segment: true

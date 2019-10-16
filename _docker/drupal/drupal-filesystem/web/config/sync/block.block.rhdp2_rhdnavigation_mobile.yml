@@ -1,0 +1,25 @@
+uuid: 2a989cad-7294-4dd1-967a-3444491bcede
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.rhd-navigation
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_rhdnavigation_mobile
+theme: rhdp2
+region: mobile_tray
+weight: -4
+provider: null
+plugin: 'system_menu_block:rhd-navigation'
+settings:
+  id: 'system_menu_block:rhd-navigation'
+  label: 'RHD Navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

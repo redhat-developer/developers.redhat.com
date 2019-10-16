@@ -1,0 +1,34 @@
+{#
+/**
+ * @file assembly--rich-text.html.twig
+ * Rich text assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
+{% set classes = [
+  'component',
+  'rich-text'
+] %}
+
+<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item">
+      <div class="rich-text-content pf-c-content">
+        {% if content.field_title|render %}
+          <h2 class="pf-c-title pf-m-3xl">{{ content.field_title }}</h2>
+        {% endif %}
+        {% if content %}
+          {{- content|without('field_title') -}}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

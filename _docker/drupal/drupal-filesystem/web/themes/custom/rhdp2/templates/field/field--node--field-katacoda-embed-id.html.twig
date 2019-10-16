@@ -1,0 +1,120 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ * 
+ * This will present the full Katacoda Lesson Display
+ */
+#}
+
+<div class="katacoda-lesson">
+
+  {% for item in items %}
+  <!-- Katacoda Scenario Embed -->
+  <div class="katacoda-individual-container">
+      <script src="https://www.katacoda.com/embed.js"></script>
+    <div id="deploying-first-container" class="katacode-insert"
+      data-katacoda-startscenariobuttontext="Start Course"
+      data-katacoda-id="{{ item.content }}"
+      data-katacoda-color="#000000"
+      data-katacoda-secondary="#cc0000"
+      data-katacoda-background="#ffffff"
+      style="height:850px;" 
+      ></div>
+    </div>
+    <script src="https://www.katacoda.com/js/scripts.js"></script>
+    <!-- / End Katacoda Scenario Embed -->
+  {% endfor %}
+</div>
+
+<!-- update the version number as needed -->
+<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script type="text/javascript">
+  "use strict";
+if (URL) {
+  var Katacoda = /** @class */ (function () {
+    function Katacoda() {
+        var dt = new Date();
+        this.metrics = firebase.firestore().collection(dt.toISOString().substr(0, 10));
+        this.url = new URL(location.href);
+        this.course = typeof this.url.pathname !== 'undefined' && this.url.pathname.length > 1 ? this.url.pathname.replace(/\//g, '--').substr(1) : 'some--course--';
+        this.loc = (this.url.searchParams.get('loc') || 'site');
+        this.listen = this.listen.bind(this);
+    }
+    Katacoda.prototype.listen = function () {
+        var metrics = this.metrics;
+        var course = this.course;
+        var loc = this.loc;
+        var locObj = {};
+        var id = (new Date()).getTime().toString();
+        // Count a new user; reloads and delays in starting can affect the end results
+        metrics.doc('totals').set({
+          users: firebase.firestore.FieldValue.increment(1)
+        }, { merge: true });
+        locObj[loc] = {
+          users: firebase.firestore.FieldValue.increment(1)
+        };
+        metrics.doc('locations').set(locObj, { merge: true });
+        window.addEventListener('message', function (e) {
+          var d = e.data;
+          if (e && e.origin && e.origin.indexOf('katacoda.com') >= 0) {
+            var labels = {}; // scenario.collection('actions');
+            var action = d.action; //actions.doc(d.action);
+            var label = d.label ? d.label : action;
+            var coursename = course + d.scenario.replace(/\//g, '--');
+            var courseObj = {};
+            courseObj[coursename] = { labels: {} };
+            courseObj[coursename].labels[label] = {
+              total: firebase.firestore.FieldValue.increment(1),
+              time: firebase.firestore.FieldValue.arrayUnion(e.timeStamp)
+            };
+            // count the total number and timing of starts, steps, last_step, and finish for a course
+            metrics.doc('courses').set(courseObj, { merge: true });
+            if (d.action === 'finish') {
+              // Count the total number complete
+              metrics.doc('totals').set({
+                complete: firebase.firestore.FieldValue.increment(1)
+              }, { merge: true });
+              courseObj[coursename].complete = firebase.firestore.FieldValue.increment(1);
+              metrics.doc('courses').set(courseObj, { merge: true });
+              // Count total number complete for location/workstation
+              locObj[loc] = { totals: { complete: firebase.firestore.FieldValue.increment(1) } };
+              metrics.doc('locations').set(locObj, { merge: true });
+            }
+          }
+        }, false);
+    };
+    return Katacoda;
+  }());
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // // The Firebase SDK is initialized and available here!
+    firebase.initializeApp({
+      "apiKey": "AIzaSyA-xSsRmfOSyUrlj1S5HphBMKXo7o7ihPM",
+      "appId": "1:984574064549:web:912913e4664ef5538b1a4c",
+      "databaseURL": "https://rhd-katacoda-tracking.firebaseio.com",
+      "storageBucket": "rhd-katacoda-tracking.appspot.com",
+      "authDomain": "rhd-katacoda-tracking.firebaseapp.com",
+      "messagingSenderId": "984574064549",
+      "projectId": "rhd-katacoda-tracking"
+    });
+    var katacoda = new Katacoda();
+    katacoda.listen();
+  });
+}
+</script>
+
+{# Smallscreen breakpoint HTML to direct user to use a larger screen #}
+<div class="screen-size-note">
+  <h1>Sorry for the Inconvenience!</h1>
+  <p>
+    For the best Katacoda experience, we recommend viewing this page on a larger screen size to complete the scenario.
+  </p>
+  <p>On a mobile device? No problem! Feel free to explore the courses we offer.</p>
+  <a href="{{ base_url }}/courses" class="button mobile-learn-more" alt="Visit Katacoda Courses">Visit Katacoda Courses</a>
+
+  <img src="{{ base_url }}/themes/custom/rhdp/images/design/katacoda/katacodalogo.png" title="Katacoda" class="screen-size-note__logo" />
+</div>

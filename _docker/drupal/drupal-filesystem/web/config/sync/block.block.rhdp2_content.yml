@@ -1,0 +1,20 @@
+uuid: cbd4f835-36ae-445d-8295-f97857a71b84
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_content
+theme: rhdp2
+region: content
+weight: -7
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

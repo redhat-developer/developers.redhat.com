@@ -1,0 +1,26 @@
+<div class="layout-container katacoda-courses">
+  <header role="banner">
+    <div class="rhd-masthead">
+      <div class="component">
+        <div class="rhd-masthead-inner pf-l-grid">
+          {{ page.rhd_katacoda_header }}
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="rhd-mobile-overlay"></div>
+  <div class="rhd-search-toggle-overlay"></div>
+
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    <div class="layout-content">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+  </main>
+
+  {% if page.rhd_footer %}
+  <footer role="contentinfo">
+    {{ page.rhd_footer }}
+  </footer>
+{% endif %}
+</div>{# /.layout-container #}

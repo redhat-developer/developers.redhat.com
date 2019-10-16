@@ -1,0 +1,11 @@
+{{ attach_library('classy/node') }}
+<article {{ attributes.addClass("pf-l-grid pf-m-gutter rhd-c-dynamic-content-list__item") }}>
+  <div class="pf-l-grid__item pf-m-12-col pf-m-4-col-on-md">
+    <img src="{{ node.field_video_thumbnail_url.value }}" alt="{{ node.title.value }}" />
+  </div>
+  <div class="pf-l-grid__item pf-m-12-col pf-m-8-col-on-md">
+    <h3 class="rhd-c-dynamic-content-list__item-title"><a href="{{ url }}">{{ label }}</a></h3>
+    <small>{{ node.created.value|date(format='F j, Y') }}</small>
+    <p>{{ content.body }}</p>
+  </div>
+</article>

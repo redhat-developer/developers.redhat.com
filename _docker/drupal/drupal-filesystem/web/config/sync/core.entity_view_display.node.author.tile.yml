@@ -54,11 +54,11 @@ content:
       image_link: ''
     third_party_settings:
       fences:
-        fences_field_tag: div
+        fences_field_tag: none
         fences_field_classes: ''
-        fences_field_item_tag: div
+        fences_field_item_tag: none
         fences_field_item_classes: ''
-        fences_label_tag: div
+        fences_label_tag: none
         fences_label_classes: ''
     type: image
     region: content
@@ -69,7 +69,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: rhd-c-author--tile-title
+        fences_label_tag: none
+        fences_label_classes: ''
   workbench_moderation_control:
     weight: -20
     region: content

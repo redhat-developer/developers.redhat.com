@@ -51,6 +51,15 @@ is adding the following to your `$HOME/.bashrc` file:
 export DUID=$(id -u)
 ```
 
+#### Providing the FontAwesome Licence
+
+As a temporary measure, you need to provide the fontawesome licence key as part of the local Drupal build. To do this please set the value
+of `FONT_AWESOME_LICENCE` in your `local-config.sh` properties file.
+
+Please speak with any member of the RHDP team to get access to the licence key.
+
+This functionality will be deprecated once our redhatstatic.com CDN is available.
+
 ### Running `composer update`
 
 Ideally when we're updating the dependencies for the project through `composer`, they should be updated in an environment that matches
@@ -97,6 +106,11 @@ the value of `$config['redhat_developers']['cache']['engine']` to `memcached`.
 
 Once you have done this, connect to the Drupal container using the `./run-drupal-connect.sh` script and execute `drush cr`. This will switch your environment to use
 Memcached for the cache. This change will last until you run `./run-drupal.sh` again.
+
+### Rebuilding Theme Assets
+
+To rebuild the theme assets from `rhd-frontend`, after you have run `run-drupal.sh`, simply run `build-theme.sh`. This will regenerate
+the theme assets from `rhd-frontend` to include your local changes.
 
 ### Exporting configuration from Drupal
 
