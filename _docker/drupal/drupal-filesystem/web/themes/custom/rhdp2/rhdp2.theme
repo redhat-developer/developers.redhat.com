@@ -456,6 +456,14 @@ function rhdp2_preprocess_assembly(&$variables) {
 
   // Code Snippet assembly type.
   if ($type == 'code_snippet') {
+    // Code field.
+    if ($assembly->hasField('field_code')) {
+      // Verify that the field isset before retrieving the value.
+      if (isset($assembly->field_code)) {
+        $field_code = $assembly->get('field_code')->getValue()[0]['value'];
+        $variables['code'] = $field_code;
+      }
+    }
     // Programming Language field.
     if ($assembly->hasField('field_programming_language')) {
       // Verify that the field isset before retrieving the value.
