@@ -1,0 +1,7 @@
+hello.content:
+  path: '/rhd-styleguide'
+  defaults:
+    _controller: 'Drupal\rhd_styleguide\Controller\StyleGuideController::content'
+    _title: 'RHD Styleguide'
+  requirements:
+    _permission: 'access content'

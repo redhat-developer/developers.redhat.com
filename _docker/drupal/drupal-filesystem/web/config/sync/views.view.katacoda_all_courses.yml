@@ -69,7 +69,16 @@ display:
             previous: ‹‹
             next: ››
       style:
-        type: default
+        type: grid
+        options:
+          uses_fields: false
+          columns: 1000
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: ''
+          row_class_default: false
+          row_class_custom: ''
       row:
         type: 'entity:node'
         options:
@@ -282,7 +291,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      css_class: 'container katacoda-courses-container'
+      css_class: 'component katacoda-courses-container'
     cache_metadata:
       max-age: -1
       contexts:

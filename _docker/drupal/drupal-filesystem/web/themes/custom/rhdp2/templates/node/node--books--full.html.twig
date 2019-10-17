@@ -1,0 +1,91 @@
+<span class="dl-outage-msg"></span>
+<div{{ attributes.addClass("component").setAttribute("id", "rhd-book") }}>
+  <div class="pf-l-grid">
+    <div class="pf-l-grid__item pf-m-12-col">
+      <h4 class="content-type">Book</h4>
+      {{ title_prefix }}
+      <h1{{ title_attributes.addClass(["book-title"]) }}>{{ label }}</h1>
+      {{ title_suffix }}
+      <div class="book-info">
+        <ul>
+          <li>
+            {% if content.field_author|render|striptags|trim is not empty %}
+              <strong{{ author_attributes }}>By {{content.field_author}} </strong>
+            {% endif %}
+          </li>
+          <li>
+            {% set calc_date = node.published_at %}
+            {% if calc_date and calc_date.value is not empty %}
+              <small>Published: <rh-datetime datetime="{{ calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime></small>
+            {% endif %}
+          </li>
+          <li class="right book-social">
+            {% include '@rhdp2/share.html.twig' %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf-l-grid pf-m-gutter">
+    <div{{ content_attributes.addClass('pf-l-grid__item', 'pf-m-12-col', 'pf-m-9-col-on-lg') }}>
+        <div class="description-wrapper">
+          {{ content.field_book_description }}
+        </div>
+
+        {% if content.field_book_excerpt|render|striptags|trim is not empty %}
+          <div class="book-excerpt">
+            <h4>Book Excerpt</h4>
+            <span class="open-quote left">&ldquo;</span>
+            <span class="book-excerpt-text">
+              {{ content.field_book_excerpt }}
+            </span>
+          </div>
+        {% endif %}
+        {% if (content.field_book_url[0]|render|striptags|trim is not empty) or (content.field_pdf_link[0]|render|striptags|trim is not empty) %}
+        <div class="cta-label">
+          <strong>Want to see more? Get the entire book.</strong>
+        </div>
+        {% endif %}
+        {% if content.field_pdf_link[0]|render|striptags|trim is not empty %}
+          <a class="pf-c-button pf-m-heavy hidden-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Log in to download</a>
+        {% endif %}
+        {% if ((content.field_mobi_link|render|striptags|trim is not empty) or (content.field_epub|render|striptags|trim is not empty)) %}
+          <div class="other-book-formats">
+            <p>
+              {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
+                Other available formats:&nbsp;
+              {% endif %}
+              {% if content.field_mobi_link|render|striptags|trim is not empty %}
+                <a href="{{ content.field_mobi_link[0]['#url'] }}">mobi</a>
+              {% endif %}
+              {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
+                &nbsp;|&nbsp;
+              {% endif %}
+              {% if content.field_epub|render|striptags|trim is not empty %}
+                <a href="{{ content.field_epub[0]['#url'] }}">epub</a>
+              {% endif %}
+            </p>
+          </div>
+        {% endif %}
+        {% if content.field_pdf_link[0]|render|striptags|trim is not empty %}
+          <a class="pf-c-button pf-m-heavy shown-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Download PDF</a>
+        {% endif %}
+        {% if (content.field_book_url[0]|render|striptags|trim is not empty) and (content.field_pdf_link[0]|render|striptags|trim is empty) %}
+          <a class="" href="{{ content.field_book_url[0]['#url'] }}">{{ content.field_book_url[0]['#title'] ?? content.field_book_url[0]['#url'] }}</a>
+        {% endif %}
+    </div>
+    <div class="pf-l-grid__item pf-m-12-col pf-m-3-col-on-lg book-tags">
+      {% if content.field_tags|render|striptags|trim is not empty %}
+        <strong>Tags:</strong> {{ content.field_tags }}
+      {% endif %}
+      {% if content.field_related_product|render|striptags|trim is not empty %}
+        {{ content.field_related_product }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="pf-l-grid">
+    <div class="pf-l-grid__item pf-m-12-col">
+      {{ content.disqus_thread }}
+    </div>
+  </div>
+</div>

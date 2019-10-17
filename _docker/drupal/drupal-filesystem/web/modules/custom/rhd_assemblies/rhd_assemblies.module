@@ -5,6 +5,7 @@
  * Contains rhd_assemblies.module.
  */
 
+use Drupal\assembly\Entity\Assembly;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -55,7 +56,7 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
   $theme = [];
 
   // Registers a custom template and variables for Wordpress Post Teaser.
-  $theme['wordpress_post_teaser'] = [
+  $theme['wordpress_post_dynamic_content_list_item'] = [
     'template' => 'wordpress-post-teaser',
     'variables' => [
       'post' => NULL,
@@ -65,7 +66,16 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
 
-  // Registers a custom template and variables for Wordpress Post Teaser.
+  // Registers a custom template and variables for Wordpress Post Card.
+  $theme['wordpress_post_card'] = [
+    'template' => 'wordpress-post-card',
+    'variables' => [
+      'post' => NULL,
+      'media' => NULL,
+    ],
+  ];
+
+  // Registers a custom template and variables for Wordpress Post Tile.
   $theme['wordpress_post_tile'] = [
     'template' => 'wordpress-post-tile',
     'variables' => [
@@ -248,3 +258,5 @@ function node_product_route_validation(array &$form, FormStateInterface &$form_s
     }
   }
 }
+
+include_once 'rhd_assemblies.updates.inc';

@@ -1,0 +1,21 @@
+{{ attach_library('classy/node') }}
+
+{% set tmpUrl = content.field_video_thumbnail_url['#items'][0].value %}
+
+{% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+  {% set hero_video_thumbnail = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':node.label, '#attributes': {'class': ['rhd-c-card__image']}, } %}
+{% else %}
+  {% set hero_video_thumbnail = '<img src="' ~ tmpUrl ~ '" alt="' ~ node.label ~ '" class="rhd-c-card__image" />' %}
+{% endif %}
+
+{% include '@components/card.twig' with {
+  'attributes': attributes.addClass('node', 'node--type-video-resource', 'node--view-mode-tile'),
+  'hero_video_thumbnail': hero_video_thumbnail,
+  'hero_video_thumbnail_timestamp': timestamp,
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'absolute_url': absolute_url,
+  'rhd_domain': rhd_domain
+} only %}

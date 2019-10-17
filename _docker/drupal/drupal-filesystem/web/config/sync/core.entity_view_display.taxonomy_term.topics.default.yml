@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.topics.field_alt_landing
     - taxonomy.vocabulary.topics
   module:
+    - fences
     - field_layout
     - layout_discovery
     - link
@@ -27,9 +28,16 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   description: true
   langcode: true

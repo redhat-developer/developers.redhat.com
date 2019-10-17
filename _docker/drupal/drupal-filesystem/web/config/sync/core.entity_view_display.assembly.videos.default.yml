@@ -9,6 +9,7 @@ dependencies:
     - field.field.assembly.videos.field_tags
     - field.field.assembly.videos.field_title
   module:
+    - fences
     - field_layout
     - layout_discovery
 third_party_settings:
@@ -25,7 +26,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:

@@ -1,0 +1,30 @@
+uuid: 53d2f529-9f76-4a82-a1c0-8c1d8c951e21
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.connectors_rest_export
+  module:
+    - system
+    - views
+  theme:
+    - rhdp2
+id: rhdp2_views_block__connectors_rest_export_connectors_rest_export_block
+theme: rhdp2
+region: content
+weight: -6
+provider: null
+plugin: 'views_block:connectors_rest_export-connectors_rest_export_block'
+settings:
+  id: 'views_block:connectors_rest_export-connectors_rest_export_block'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '*'
+    negate: true
+    context_mapping: {  }
