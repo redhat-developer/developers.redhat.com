@@ -247,8 +247,15 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
 
     <css-placeholder token="{{ placeholder_token }}">
     {% if (rhd_sentry_track) %}
-    <script src="{{ rhd_sentry_script }}" crossorigin="anonymous"></script>
-    <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CObject.assign%2CString.prototype.includes%2CNumber.isNaN"></script>
+    <script src="https://browser.sentry-cdn.com/5.7.1/bundle.min.js" integrity="sha384-pHnCJ3bbzJ+LzI19wAdyBvGAjJ5vNAC59uxeRpw5WpgkSlZUQstEADxkSbBnI95q" crossorigin="anonymous"></script>
+    <script>
+    Sentry.init({ 
+      dsn: '{{ rhd_sentry_code }}',
+      environment: '{{rhd_environment}}',
+      whitelistUrls: [ /developers\.redhat\.com/ ]
+     });
+    </script>
     {% endif %}
     <js-placeholder token="{{ placeholder_token }}">
   </head>
