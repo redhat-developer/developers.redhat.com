@@ -149,6 +149,8 @@ app.mktg_ops = {};
 app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
+app.ssoConfig.client_id = drupalSettings.rhd.keycloak.client_id;
+app.ssoConfig.realm = drupalSettings.rhd.keycloak.realm;
 
 var homeLink = document.getElementById('home-link') || { href: ''};
 app.ssoConfig.confirmation = homeLink.href + '/confirmation';
