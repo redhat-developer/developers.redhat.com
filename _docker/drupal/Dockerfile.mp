@@ -36,10 +36,7 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
 ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
-    && npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
-    && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
     && npm install \
-    && npm run-script styles \
     && npm run-script build \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
