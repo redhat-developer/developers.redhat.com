@@ -1,0 +1,24 @@
+{%
+  set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
+%}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <div class="topic-page__title component">
+    <div class="pf-l-grid">
+      {{ title_prefix }}
+      <h1{{ title_attributes }}>{{ label }}</h1>
+      {{ title_suffix }}
+    </div>
+  </div>
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content }}
+  </div>
+</article>

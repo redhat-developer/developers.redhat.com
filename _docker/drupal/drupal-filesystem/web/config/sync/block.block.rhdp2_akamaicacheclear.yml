@@ -1,0 +1,35 @@
+uuid: a05b5386-ff32-482d-b7a5-6b67cebe5540
+langcode: en
+status: true
+dependencies:
+  module:
+    - akamai
+    - user
+  theme:
+    - rhdp2
+id: rhdp2_akamaicacheclear
+theme: rhdp2
+region: rh_universal_header
+weight: -8
+provider: null
+plugin: akamai_cache_clear_block
+settings:
+  id: akamai_cache_clear_block
+  label: 'Akamai Cache Clear'
+  provider: akamai
+  label_display: '0'
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      media_manager: media_manager
+      layout_manager: layout_manager
+      content_creator: content_creator
+      content_team: content_team
+      content_admin: content_admin
+      coding_resource_creator: coding_resource_creator
+      coding_resource_reviewer: coding_resource_reviewer
+      administrator: administrator
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

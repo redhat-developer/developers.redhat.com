@@ -1,0 +1,55 @@
+{% set repo_url = content.field_source_link[0]['#url'].uri %}
+
+<div class="component">
+    <div class="pf-l-grid">
+        <h2 class="large-title" id="developer-materials">Developer Materials</h2>
+    </div>
+    <div class="pf-l-grid coding-resource" itemscope="" itemtype="http://schema.org/Article">
+        <div class="pf-l-grid__item pf-m-12-col">
+            <h1 class="divider" id="start" itemprop="name">
+                {{ node.title[0].value }}
+            </h1>
+            <div class="gsi-meta">
+                <ul>
+                    {% if content.field_author|render|striptags|trim is not empty %}
+                        <li><strong>Author:</strong> {{ content.field_author }}</li>
+                    {% endif %}
+
+                    {% if content.field_contributors|render|striptags|trim is not empty %}
+                        <li><strong> Contributors:</strong> {{ content.field_contributors }}</li>
+                    {% endif %}
+
+                    {% set calc_date = node.published_at %}
+                    {% if calc_date and calc_date.value is not empty %}
+                        <li><strong> Published:</strong> <span itemprop="dateModified">{{calc_date.value|date("Y-m-d")}}</span></li>
+                    {% endif %}
+
+                    {% if content.field_level|render|striptags|trim is not empty %}
+                        <li><strong> Level:</strong> {{ content.field_level }}</li>
+                    {% endif %}
+
+                    {% if content.field_technologies|render|striptags|trim is not empty %}
+                        <li><strong> Technologies:</strong> {{ content.field_technologies }}</li>
+                    {% endif %}
+
+                    {% if content.field_related_product|render|striptags|trim is not empty %}
+                        <li><strong> Target Product:</strong> <span itemprop="about">{{ content.field_related_product }}</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="pf-l-grid pf-m-gutter content">
+                <div class="pf-l-grid__item pf-m-2-col-on-md pf-m-12-col">
+                    <ul class="toc gsi-nav"></ul>
+                    <br>
+                </div>
+                <div class="gsi pf-l-grid__item pf-m-8-col-on-md pf-m-12-col">
+                    {{ content.body }}
+                </div>
+                <div class="ctas pf-l-grid__item pf-m-2-col-on-md pf-m-12-col">
+                    <a href="{{ repo_url }}/archive/{{ content.field_version.0 }}.zip" class="pf-c-button pf-m-heavy">Download <i class="fas fa-download"></i></a><br/>
+                    <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

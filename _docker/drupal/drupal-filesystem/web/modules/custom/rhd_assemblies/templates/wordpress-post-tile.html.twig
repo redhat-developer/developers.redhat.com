@@ -1,29 +1,12 @@
-<article class="wordpress-blog-post-tile">
-  <a href="{{ post.link }}">
-    {% if media and media.media_type == 'image' %}
-      <div class="tile-image {{ media.scale_orientation }}">
-        <div class="image-table">
-          <div class="image-cell">
-            {% set tmpUrl = media.source_url %}
-            {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
-              {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
-              {{ cacheImg }}
-            {% else %}
-              <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-    <h3 class="tile-title">{{ post.title.rendered|raw }}</h3>
-    {% if "developers.redhat.com" in post.link %}
-    <div class="tile-comment-count hidden" data-disqus-thread-link="{{ post.link }}" data-disqus-comment-count>
-      <a href="{{ post.link }}#disqus_thread">
-        <span class="fa fa-comment"></span>
-        <span class="comment-number" data-disqus-comment-count-number></span> 
-        <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span>
-      </a>
-    </div>
-    {% endif %}
-  </a>
-</article>
+{% if media and media.media_type == 'image' %}
+{% set tmpUrl = media.source_url %}
+{% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+{% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
+  {{ cacheImg }}
+{% else %}
+  <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+{% endif %}
+{% endif %}
+<div class="rhd-c-card-content">
+  <h3 class="rhd-c-card__title"><a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a></h3>
+</div>

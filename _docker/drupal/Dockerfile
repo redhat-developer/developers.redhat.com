@@ -1,4 +1,4 @@
-FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.0
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.3
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 ARG http_proxy
@@ -17,7 +17,7 @@ COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/dr
 COPY drupal-filesystem/patches /var/www/drupal/patches
 
 # Only install dev dependencies on dev environments
-RUN if [ "$composer_profile" = "development" ]; \ 
+RUN if [ "$composer_profile" = "development" ]; \
     then /usr/local/bin/composer install --no-interaction; \
     else /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; \
     fi

@@ -7,6 +7,7 @@
     color: #5e6a71;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-gap: 1.5rem;
     padding: 10px 15px;
     .rh-footer-logo, .rh-summit-footer-logo {
       flex: 0 0 300px;
@@ -39,13 +40,14 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-column-start: 1;
-  grid-column-end: 8;
-  padding: 30px 0;
+  grid-column-end: 9;
+  padding: 1.5rem 0;
 
   > .rhd-menu {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5rem;
   }
   
   .rhd-menu > .menu-item.menu-item--expanded {
@@ -66,51 +68,52 @@
   .menu-item--expanded > a,
   .menu-item--expanded > h3.section-toggle{
     color: $white;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
     color: white;
-    margin: 15px 0 20px 0;
+    margin: 0 0 1rem 0;
     pointer-events: none;
   }
 
   .menu-item--expanded .rhd-menu {
-    margin: 20px 0;
+    margin: 1rem 0;
     .menu-item {
-      margin-bottom: 10px;
+      margin-bottom: .5rem;
     }
+  }
+
+  &.cols-4 > .rhd-menu {
+      grid-template-columns: repeat(4,1fr);
   }
 }
 
 .rhd-footer-sidebar {
   background-color: $red;
   flex: 0 0 33%;
-  grid-column-start: 8;
+  grid-column-start: 9;
   grid-column-end: 13;
   padding: 20px 30px 30px 30px;
 
   &-title {
     font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 600;
     color: white;
-    margin: 15px 0 10px 0;
+    margin: 0 0 .5rem 0;
   }
 
-  &-content, a {
+  &-content {
     color: $white;
     font-size: 14px;
   }
 
   a, a:hover, a:active, a:focus {
-    text-decoration: underline;
     color: $white;
+    font-size: 16px;
   }
 
   &-subtitle {
     color: $white;
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 14px;
   }
   &-social {
     list-style: none;
@@ -129,9 +132,12 @@
   }
   &-signup {
     float: right;
-    font-size: 16px;
-    text-decoration: none;
     margin-top: 10px;
+    font-size: 16px;
+  }
+
+  > p {
+    margin: .5rem 0;
   }
 }
 
@@ -200,6 +206,8 @@
 
 @media screen and (max-width: 1170px) {
   .rhd-footer-nav {
+      grid-column-end: 8;
+      &.cols-4 > .rhd-menu,
       > .rhd-menu {
       grid-template-columns: repeat(1, 1fr);
       grid-auto-rows: min-content;
@@ -238,6 +246,9 @@
       -ms-transform: rotate(0deg);
       transform: rotate(0deg);
     }
+  }
+  .rhd-footer-sidebar {
+    grid-column-start: 8;
   }
 }
 

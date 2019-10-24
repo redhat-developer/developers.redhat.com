@@ -6,6 +6,7 @@ dependencies:
     - assembly.assembly_type.product_download_list
     - field.field.assembly.product_download_list.field_title
   module:
+    - fences
     - field_layout
     - layout_discovery
 third_party_settings:
@@ -22,7 +23,14 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
 hidden:

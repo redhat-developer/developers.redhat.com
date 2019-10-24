@@ -61,7 +61,14 @@ content:
     type: text_default
     weight: 3
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     label: hidden
     region: content
   content_moderation_control:
@@ -76,9 +83,9 @@ content:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: div
+        fences_field_tag: none
         fences_field_classes: 'medium-24 columns'
-        fences_field_item_tag: p
+        fences_field_item_tag: none
         fences_field_item_classes: article-highlight
         fences_label_tag: none
         fences_label_classes: ''
@@ -121,9 +128,16 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: link
     region: content
   field_content:
@@ -147,14 +161,28 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   field_difficulty:
     weight: 10
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: list_default
     region: content
   field_image:
@@ -191,21 +219,42 @@ content:
     weight: 15
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: text_default
     region: content
   field_meta_tags:
     weight: 9
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: metatag_empty_formatter
     region: content
   field_read_time:
     weight: 11
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: interval_default
     region: content
   field_related_articles:
@@ -216,8 +265,8 @@ content:
       link: false
     third_party_settings:
       fences:
-        fences_field_tag: none
-        fences_field_classes: ''
+        fences_field_tag: div
+        fences_field_classes: 'pf-l-flex rhd-c-card-grid__wrapper'
         fences_field_item_tag: none
         fences_field_item_classes: ''
         fences_label_tag: none
@@ -228,7 +277,14 @@ content:
     weight: 14
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: basic_string
     region: content
   field_topics:

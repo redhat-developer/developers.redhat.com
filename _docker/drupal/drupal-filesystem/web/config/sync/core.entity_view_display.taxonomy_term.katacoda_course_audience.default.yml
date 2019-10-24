@@ -1,0 +1,36 @@
+uuid: 3d16271e-ce50-4359-8ef2-2dd9217a0690
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.katacoda_course_audience
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.katacoda_course_audience.default
+targetEntityType: taxonomy_term
+bundle: katacoda_course_audience
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  langcode: true

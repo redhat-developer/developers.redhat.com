@@ -1,4 +1,4 @@
-FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.1
+FROM images.paas.redhat.com/rhdp/developer-base:rhel-76.3
 USER root
 ARG composer_profile="production"
 CMD ["/var/www/drupal/run-httpd.sh"]
@@ -13,6 +13,7 @@ COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
 COPY drupal-filesystem/patches /var/www/drupal/patches
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
 COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock /var/www/drupal/
+
 RUN cd /var/www/drupal \
     && if [ "$composer_profile" = "development" ]; \
        then /usr/local/bin/composer install --no-interaction; \
@@ -24,11 +25,35 @@ COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
 COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
 COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
 
-# Build the theme
+# Build the rhdp theme
+# This theme is still required to render the old, paragraphs-based Product pages
 RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
     && npm install \
     && npm run-script build \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp/rhd-frontend/node_modules
+
+# Build the rhdp2 theme
+ARG FONTAWESOME_LICENCE
+RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
+    && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
+    && npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
+    && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
+    && npm install \
+    && npm run-script styles \
+    && npm run-script build \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.legacy.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.old.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@patternfly/pfelement/pfelement.umd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@patternfly/pfe-datetime/pfe-datetime.umd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/fonts \
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync

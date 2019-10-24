@@ -1,0 +1,21 @@
+<?php
+
+/**
+* @file
+* Contains rhd_styleguide.module.
+*
+*/
+
+/**
+ * Implements hook_theme().
+ */
+function rhd_styleguide_theme($existing, $type, $theme, $path) {
+  return [
+    'rhd_styleguide' => [
+      'template' => 'rhd-styleguide',
+      'variables' => [
+        'form' => [],
+      ],
+    ],
+  ];
+}

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="rh-universal-header">
+      <nav class="rh-nav-universal" aria-label="Red Hat Global Navigation">
+        <a class="rh-logo-wrapper" href="https://www.redhat.com/" title="Red Hat Home page"><img class="rh-header-logo" alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/RHLogo_white.svg"></a>
+        {{ content }}
+      </nav>
+    </div>
+  </div>
+{% endif %}

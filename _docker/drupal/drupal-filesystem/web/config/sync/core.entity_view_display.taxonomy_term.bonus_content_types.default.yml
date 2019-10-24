@@ -7,6 +7,7 @@ dependencies:
     - field.field.taxonomy_term.bonus_content_types.field_content_type_image
     - taxonomy.vocabulary.bonus_content_types
   module:
+    - fences
     - field_layout
     - image
     - layout_discovery
@@ -24,7 +25,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
   field_content_type_image:
@@ -33,7 +41,14 @@ content:
     settings:
       image_style: ''
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: image
     region: content
 hidden:

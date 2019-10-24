@@ -1,0 +1,14 @@
+uuid: 18af3afb-15be-4c08-bfd5-02c211a7eb0f
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'Shown in the "Dynamic Content with Comments" assembly.'
+id: node.dynamic_content_list_item
+label: 'Dynamic Content List Item'
+targetEntityType: node
+cache: true

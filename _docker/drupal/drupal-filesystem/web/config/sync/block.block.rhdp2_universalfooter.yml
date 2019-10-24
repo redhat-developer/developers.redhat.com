@@ -1,0 +1,25 @@
+uuid: ce5785ac-d560-466c-8c26-fcba95818397
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.universal-footer
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_universalfooter
+theme: rhdp2
+region: rhd_footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:universal-footer'
+settings:
+  id: 'system_menu_block:universal-footer'
+  label: 'Universal Footer'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

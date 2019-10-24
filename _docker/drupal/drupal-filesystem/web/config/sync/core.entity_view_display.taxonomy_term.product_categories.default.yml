@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.product_categories.field_product_group_icon_svg
     - taxonomy.vocabulary.product_categories
   module:
+    - fences
     - field_layout
     - file
     - layout_discovery
@@ -25,12 +26,26 @@ content:
     weight: 0
     region: content
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_product_group_icon_svg:
     weight: 2
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: file_url_plain
     region: content
 hidden:

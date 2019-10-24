@@ -38,6 +38,7 @@ dependencies:
     - node.type.product
   module:
     - entity_reference_revisions
+    - fences
     - field_layout
     - layout_discovery
     - metatag
@@ -59,14 +60,28 @@ content:
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: entity_reference_revisions_entity_view
     region: content
   field_meta_tags:
     weight: 0
     label: visually_hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: metatag_empty_formatter
     region: content
   workbench_moderation_control:

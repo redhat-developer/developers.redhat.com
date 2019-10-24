@@ -1,0 +1,24 @@
+
+{% set classes = [
+    'rhd-list-entry',
+] %}
+{{ attach_library('classy/node') }}
+<article class="pf-l-grid pf-m-gutter rhd-c-dynamic-content-list__item">
+  <div class="pf-l-grid__item pf-m-12-col pf-m-4-col-on-md">
+    {% if media and media.media_type == 'image' %}
+      {% set tmpUrl = media.source_url %}
+      {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+        {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'teaser', '#alt':post.title.rendered|replace({'"':''}), } %}
+        {{ cacheImg }}
+      {% else %}
+        <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+      {% endif %}
+      {{ drupal_image(tmpUrl, {alt: 'Insert alternative text here', title: 'The title text'}) }}
+    {% endif %}
+  </div>
+  <div class="pf-l-grid__item pf-m-12-col pf-m-8-col-on-md">
+    <h3 class="rhd-c-dynamic-content-list__item-title"><a href="{{ post.link }}">{{ post.title.rendered|raw }}</a></h3>
+    <small>{{ date }}</small>
+    <p>{{ post.excerpt.rendered|raw }}</p>
+  </div>
+</article>
