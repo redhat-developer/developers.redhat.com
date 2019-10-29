@@ -33,21 +33,6 @@
     - debug:
        msg: "{{ (entity_updates.changed) | ternary(entity_updates.stderr_lines, entity_updates.stdout_lines) }}"
 
-#    - name: Apply Lightning Profile Updates
-#      shell: 'drush update:lightning --no-interaction && drush cr && touch {{ work_dir }}/drupal.lightning.do.not.delete'
-#      register: lightning_updates
-#      args:
-#        chdir: '/var/www/drupal/web'
-#        creates: "{{ work_dir }}/drupal.lightning.do.not.delete"
-#    - debug:
-#        msg:
-#          - "{{ lightning_updates.stdout_lines }}q"
-#          - "{{ lightning_updates.stderr_lines}}"
-#      when: lightning_updates.changed
-#    - debug:
-#        var: lightning_updates.stdout_lines
-#      when: not lightning_updates.changed
-
     - name: Import the latest Drupal configuration
       shell: 'drush -y cim && drush cr && touch {{ work_dir }}/drupal.cim.do.not.delete'
       register: drush_cim
@@ -62,15 +47,6 @@
     - debug:
        var: drush_cim.stdout_lines
       when: not drush_cim.changed
-
-    - name: Run Phinx Database Migrations
-      shell: 'phinx migrate -e automated && touch {{ work_dir }}/drupal.phinx.do.not.delete'
-      register: phinx_migrate
-      args:
-        chdir: '/var/www/drupal'
-        creates: "{{ work_dir }}/drupal.phinx.do.not.delete"
-    - debug:
-       var: phinx_migrate.stdout_lines
 
     - name: Check to see if cron has run
       stat:
