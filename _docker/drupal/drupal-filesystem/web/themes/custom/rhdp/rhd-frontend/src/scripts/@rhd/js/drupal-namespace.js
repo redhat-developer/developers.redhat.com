@@ -152,7 +152,7 @@ app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
 app.ssoConfig.client_id = drupalSettings.rhd.keycloak.client_id;
 app.ssoConfig.realm = drupalSettings.rhd.keycloak.realm;
 
-var homeLink = 'https://' + + drupalSettings.rhd.urls.final_base_url;
+var homeLink = 'https://' + drupalSettings.rhd.urls.final_base_url;
 app.ssoConfig.confirmation = homeLink + '/confirmation';
 app.ssoConfig.logout_url = homeLink;
 app.projects = {};
