@@ -6,9 +6,6 @@ EXPOSE 8080 8443
 WORKDIR /var/www/drupal
 RUN gem install asciidoctor -v 1.5.8
 
-# Copy in database migration files
-COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
-
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/patches /var/www/drupal/patches
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
@@ -36,10 +33,7 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp/rhd-frontend \
 ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
-    && npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
-    && npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
     && npm install \
-    && npm run-script styles \
     && npm run-script build \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \

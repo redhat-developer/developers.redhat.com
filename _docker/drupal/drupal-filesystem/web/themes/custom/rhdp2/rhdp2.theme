@@ -653,6 +653,8 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
   $rhd_settings['keycloak'] = [];
   $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
   $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
+  $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
 
   $theme_path = drupal_get_path('theme', 'rhdp2');
 
@@ -688,7 +690,7 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 /**
  * Returns a new random guid.
  */
-function createGUID() { 
+function createGUID() {
   // Create a token
   $token = $_SERVER['HTTP_HOST'];
   $token .= $_SERVER['REQUEST_URI'];
@@ -697,8 +699,8 @@ function createGUID() {
   $hash = strtoupper(md5($token));
   // Create formatted GUID
   $guid = '';
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
-  $guid .= substr($hash,  0,  8) . 
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
+  $guid .= substr($hash,  0,  8) .
     '-' .
     substr($hash,  8,  4) .
     '-' .
