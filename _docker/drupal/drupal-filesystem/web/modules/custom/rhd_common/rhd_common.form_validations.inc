@@ -109,7 +109,7 @@ function add_events_validations(array &$form, FormStateInterface $form_state) {
 
   $title = $form_state->getValue('title')[0]['value'];
 
-  if (strlen($title) < 5 || strlen($title) > 60) {
+  if (strlen($title) <= 5 || strlen($title) >= 60) {
     $form_state->setErrorByName(
       'title',
       t('Title must be greater than 5 characters and less than 60')
