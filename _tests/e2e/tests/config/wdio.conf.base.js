@@ -58,7 +58,6 @@ exports.config = {
         global.should = chai.should();
         global.tags = tags;
         global.downloadDir = path.resolve('tmp_downloads');
-        global.mobileSuite = testProfile === 'mobile'
     },
 
     afterTest: function(test) {
