@@ -5,6 +5,9 @@ base theme: classy
 package: rhdp2
 core: 8.x
 libraries:
+  - rhdp2/new-relic
+  - rhdp2/custom-events
+  - rhdp2/jira-issue-collector
   - rhdp2/web-components
   - rhdp2/base-theme
   - rhdp2/rhdp-pfelement
