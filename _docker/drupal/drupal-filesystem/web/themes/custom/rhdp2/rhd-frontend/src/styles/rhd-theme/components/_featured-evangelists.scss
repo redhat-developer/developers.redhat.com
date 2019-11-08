@@ -1,0 +1,58 @@
+
+.assembly-type-featured_evangelists {
+  h2 {
+    margin-bottom: var(--pf-global--spacer--md);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 30px 30px;
+  }
+  .content-list {
+    display: grid;
+    grid-gap: 30px 30px;
+    @extend .pf-u-p-0;
+    @extend .pf-u-m-0;
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  &.no-padding-top {
+    @extend .pf-u-pt-0;
+  }
+  &.no-padding-bottom {
+    @extend .pf-u-pb-0;
+  }
+}
+
+.rhd-c-featured-evangelists--tile{
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 160px 1fr;
+  img {
+    display: block;
+  }
+  &-info {
+    .rhd-c-video--author-name,
+    .rhd-c-author--tile-name {
+      display: inline-block;
+    }
+  }
+  &-name {
+    margin-bottom: var(--pf-global--spacer--sm);
+  }
+  &-social {
+    .social-icons {
+      li:not(:last-child),
+      ul.pf-m-inline li:not(:last-child) {
+        margin-right: var(--pf-global--spacer--md);
+      }
+      .author-social-icon-linkedin svg {
+        color: #0077b5;
+      }
+      .author-social-icon-twitter svg {
+        color: #00aced;
+      }
+    }
+  }
+}

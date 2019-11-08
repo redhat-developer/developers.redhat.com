@@ -1,0 +1,25 @@
+import RHDPSearchApp from './rhdp-search-app';
+import RHDPSearchBox from './rhdp-search-box';
+import RHDPSearchFilterGroup from './rhdp-search-filter-group';
+import RHDPSearchFilterItem from './rhdp-search-filter-item';
+import RHDPSearchFilters from './rhdp-search-filters';
+import RHDPSearchOneBox from './rhdp-search-onebox';
+import RHDPSearchQuery from './rhdp-search-query';
+import RHDPSearchResultCount from './rhdp-search-result-count';
+import RHDPSearchResult from './rhdp-search-result';
+import RHDPSearchResults from './rhdp-search-results';
+import RHDPSearchSortPage from './rhdp-search-sort-page';
+import RHDPSearchURL from './rhdp-search-url';
+
+new RHDPSearchApp();
+new RHDPSearchBox();
+new RHDPSearchFilterGroup();
+new RHDPSearchFilterItem();
+new RHDPSearchFilters();
+new RHDPSearchOneBox();
+new RHDPSearchQuery();
+new RHDPSearchResultCount();
+new RHDPSearchResult();
+new RHDPSearchResults();
+new RHDPSearchSortPage();
+new RHDPSearchURL();

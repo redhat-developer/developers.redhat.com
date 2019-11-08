@@ -1,0 +1,251 @@
+class DevNationLiveApp extends HTMLElement {
+    _data: DevNationLiveSession[];
+    _src = '../rhdp-apps/devnationlive/devnationlive.json';
+    _form = '../rhdp-apps/devnationlive/';
+    _next: DevNationLiveSession;
+    _upcoming: DevNationLiveSession[] = [];
+    _past: DevNationLiveSession[] = [];
+    _mode : RequestMode = 'cors';
+    _sessions : DevNationLiveSession[];
+    _speakers : DevNationLiveSpeaker[];
+
+    get sessions() {
+        return this._sessions;
+    }
+    set sessions(val) {
+        if (this._sessions === val) return;
+        this._sessions = val;
+        let next = false;
+        for(let i=0; i < this.sessions.length; i++) {
+            let sess = new DevNationLiveSession(this.sessions[i]);
+            if(sess.confirmed) {
+                if (sess.upcoming) { 
+                    if (next) {
+                        if (sess.inxpo.length > 0) {
+                            this.upcoming.push(sess);
+                        }
+                    } else { 
+                        if (sess.inxpo.length > 0) {
+                            this.next = sess;
+                            next = true;
+                        }
+                    } 
+                } else {
+                    this.past.push(sess);
+                }
+            }
+        }
+
+        this.past.sort(this.sortPastSessions);
+    }
+
+    get speakers() {
+        return this._speakers;
+    }
+    set speakers(val) {
+        if (this._speakers === val) return;
+        this._speakers = val;
+    }
+
+    get next() {
+        return this._next;
+    }
+
+    set next(val) {
+        if (this._next === val) return;
+        this._next = val;
+    }
+
+    get past() {
+        return this._past
+    }
+    set past(val) {
+        if (this._past === val) return;
+        this._past = val;
+    }
+
+    get src() {
+        return this._src;
+    }
+    set src(val) {
+        if (this._src === val) return;
+        this._src = val;
+    }
+
+    get mode() {
+        return this._mode;
+    }
+    set mode(val) {
+        if (this._mode === val) return;
+        this._mode = val;
+    }
+
+    get form() {
+        return this._form;
+    }
+    set form(val) {
+        if (this._form === val) return;
+        this._form = val;
+    }
+
+    get upcoming() {
+        return this._upcoming;
+    }
+    set upcoming(val) {
+        if (this._upcoming === val) return;
+        this._upcoming = val;
+    }
+
+    get data() {
+        return this._data;
+    }
+    set data(val) {
+        if (this._data === val) return;
+        this._data = val;
+        this.sessions = this._data['sessions'] ? this._data['sessions'].sort(this.sortSessions) : [];
+        this.speakers = this._data['speakers'] ? this._data['speakers'] : [];
+    }
+    
+    speakerLongTemplate = (strings, speaker:DevNationLiveSpeaker) => {
+        return ` <strong>${speaker.name}</strong>
+            ${speaker.twitter ? `(<a href="https://twitter.com/${speaker.twitter}" target="_blank" class="external-link">@${speaker.twitter}</a>)` : ''}
+            ${speaker.intro ? `<p>${speaker.intro}</p>` : ''}`;
+    }
+
+    speakerShortTemplate = (strings, speaker:DevNationLiveSpeaker) => {
+        return ` <strong>${speaker.name}</strong>
+            ${speaker.twitter ? `(<a href="https://twitter.com/${speaker.twitter}" target="_blank" class="external-link">@${speaker.twitter}</a>)` : ''}`;
+    }
+
+    template  = (strings, next:DevNationLiveSession, upcoming:DevNationLiveSession[], past:DevNationLiveSession[], speakers:DevNationLiveSpeaker[]) => {
+    return `<div class="wide wide-hero devnation-live">
+        <div class="row">
+            <div class="large-24 columns">
+                <img class="show-for-large-up" src="https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png" alt="DevNation Live logo">
+                <img class="hide-for-large-up" src="https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png" alt="DevNation Live logo">
+            </div>
+        </div>
+    </div>
+    <div id="devnationLive-microsite">
+        ${next ? `<section class="next-session">
+            <div class="row">
+                <div class="large-24 columns">
+                    <h5 class="caps session-label">Next Live Session</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-24 columns">
+                    <div class="session-date right"><i class="fa fa-calendar fa-2x"></i> ${next.date}</div>
+                    <h4 class="caps">${next.title}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-14 small-24 columns">
+                    <h5 class="caps session-label">Session:</h5>
+                    <p class="abstract">${next.abstract}</p>
+                    <a href="${next.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>
+                </div>
+                <div class="large-10 columns">
+                    <h5 class="caps session-label">Speaker(s):</h5>
+                    ${next.speakers.map(speaker => this.speakerLongTemplate`${speakers[speaker]}`).join('')}  
+                </div>
+            </div>
+        </section>` : ''}
+        <section class="session-list">
+            <div class="row">
+                ${upcoming.length > 0 ? `
+                ${past.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
+                    <h5 class="caps">Upcoming Sessions</h5>
+                    <br>
+                    <ul class="events-list">
+                    ${upcoming.map(sess =>  `${sess.confirmed ? `
+                        <li class="single-event">
+                            <div class="row">
+                                <div class="large-24 columns">
+                                    <h4 class="caps">${sess.title}</h4>
+                                    <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speakers[speaker]}`).join('')} </p>
+                                    <p>${sess.date}</p>
+                                    <p>${sess.abstract}</p>
+                                    ${sess.register ? `
+                                    <a href="${sess.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>` : ''
+                                    }
+                                </div>
+                            </div>
+                        </li>`
+                    : ''}`).join('')}
+                    </ul>
+                </div>` : ''}
+                ${past.length > 0 ? `
+                ${upcoming.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
+                    <h5 class="caps">Past Sessions</h5>
+                        <br>
+                        <ul class="events-list">
+                        ${past.map(sess =>  `${sess.confirmed ? `
+                            <li class="single-event">
+                                <div class="row">
+                                    <div class="large-24 columns">
+                                        <h4 class="caps">${sess.title}</h4>
+                                        <p>Speaker(s): ${sess.speakers.map(speaker => this.speakerShortTemplate`${speakers[speaker]}`).join('')} </p>
+                                        <p>${sess.date}</p>
+                                        <p>${sess.abstract}</p>
+                                        <a href="https://developers.redhat.com/videos/youtube/${sess.youtube_id}" class="button external-link">VIDEO</a>
+                                    </div>
+                                </div>
+                            </li>`
+                        : ''}`).join('')}
+                        </ul>
+                    </div>` 
+                : ''}
+            </div>
+        </section>
+    </div>`;
+    }
+    
+    constructor() {
+        super();
+    }
+
+    static get observedAttributes() { 
+        return ['src', 'form', 'mode']; 
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        this[name] = newVal;
+    }
+    
+    connectedCallback() {
+        let fHead = new Headers();
+        let fInit : RequestInit = {
+            method: 'GET',
+            headers: fHead,
+            mode: this.mode,
+            cache: 'default'
+        };
+        
+        fetch(this.src, fInit)
+        .then((resp) => resp.json())
+        .then((data) => { 
+            this.data = data;
+            this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}${this.speakers}`;
+        });
+    }
+
+    getCookie( name ) {
+        var re = new RegExp('(?:(?:^|.*;\\s*)'+name+'\\s*\\=\\s*([^;]*).*$)|^.*$');
+        return document.cookie.replace(re, "$1");
+    }
+
+    sortSessions(a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
+            db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return da - db;
+    }
+
+    sortPastSessions(a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
+            db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return db - da;
+    }
+}
+
+customElements.define('devnation-live-app', DevNationLiveApp);

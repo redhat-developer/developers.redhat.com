@@ -1,0 +1,217 @@
+@import "../mixins";
+
+.assembly {
+  &.component {
+    &.assembly-type-video_hero {
+      @include with-background-padding;
+    }
+    .rhd-c-video {
+      grid-gap: var(--pf-global--spacer--lg); // 24px
+
+      .rhd-c-video--wrapper {
+        @media only screen and (min-width: 576px) {
+          width: auto;
+          grid-column-start: auto;
+          grid-column-end: span 6;
+        }
+
+        &:first-child {
+          justify-content: flex-end;
+
+          @media only screen and (max-width: 1024px) {
+            margin-left: 0;
+            padding-bottom: 0;
+            padding-left: var(--pf-global--spacer--md); // 16px
+          }
+
+          @media only screen and (max-width: 575px) {
+            padding-right: var(--pf-global--spacer--md); // 16px
+          }
+        }
+
+        &:not(:first-child) {
+          justify-content: flex-start;
+
+          @media only screen and (max-width: 1024px) {
+            margin-right: var(--pf-global--spacer--md); // 16px
+          }
+
+          @media only screen and (max-width: 575px) {
+            order: 1; // set the Video to be displayed above the content on mobile viewports
+            margin-right: var(--pf-global--spacer--md); // 16px
+            margin-left: var(--pf-global--spacer--md); // 16px
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+        }
+      }
+
+      .rhd-c-video--content {
+        @media only screen and (min-width: 576px) {
+          width: auto;
+          grid-column-start: auto;
+          grid-column-end: span 6;
+        }
+
+        &:first-child {
+          justify-content: flex-end;
+          padding-top: var(--pf-global--spacer--md); // 16px
+          padding-bottom: var(--pf-global--spacer--md); // 16px
+
+          @media only screen and (max-width: 1024px) {
+            margin-left: 0;
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-left: var(--pf-global--spacer--md); // 16px
+          }
+
+          @media only screen and (max-width: 575px) {
+            padding-right: var(--pf-global--spacer--md); // 16px
+            padding-bottom: var(--pf-global--spacer--md); // 16px
+            order: 2; // set the Content to be displayed under the video on mobile viewports
+          }
+        }
+
+        &:not(:first-child) {
+          justify-content: flex-start;
+
+          @media only screen and (max-width: 1024px) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    &.rhd-m-video-background {
+      background-color: #00b9e4;
+    }
+
+    .rhd-c-video--video-embed {
+      position: relative;
+      padding-top: 90px / 160px * 100%;
+      height: 0;
+      width: 100%;
+      max-width: none;
+      overflow: hidden;
+
+      .video-embed-field-responsive-video, .video-embed-field-provider-youtube {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      iframe, object, embed {
+        max-height: none;
+        max-width: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        @media only screen and (max-width: 1024px) {
+          max-height: 240px;
+        }
+      }
+
+    }
+
+    .rhd-c-video--wrapper {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .rhd-c-video--content {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      @media only screen and (max-width: 575px) {
+        padding-top: 0 !important;
+        padding-left: var(--pf-global--spacer--md) !important; // 16px
+      }
+
+      @media only screen and (max-width: 1024px) {
+        padding: var(--pf-global--spacer--md); // 16px
+        padding-left: 0;
+      }
+
+      h3 {
+        font-family: $rhd-font-stack-display;
+        font-size: 24px;
+        line-height: 1.3;
+        font-weight: var(--rhd-global--FontWeight-Display--medium);
+        margin-top: 0;
+        margin-bottom: var(--pf-global--spacer--md); // 16px
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: var(--pf-global--spacer--md); // 16px
+      }
+
+      .rhd-c-video--presenters {
+        @extend .pf-l-flex;
+
+        &>* {
+          margin-right: var(--pf-l-flex--spacer--lg);
+          margin-bottom: var(--pf-l-flex--spacer--md);
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+        }
+      }
+
+      &-wrapper {
+        max-width: 647px;
+      }
+    }
+    // 4:3	1024x768, 1600x1200	common until 2003, matches the aspect ratio of analogue TV, non-widescreen SDTV and early 35 mm film
+    &.four-by-three {
+      .rhd-c-video--video-embed { 
+        padding-top: 30px / 40px * 100%;
+      }
+    }
+    // 5:4	1280x1024	common until 2003
+    &.five-by-four {
+      .rhd-c-video--video-embed { 
+        padding-top: 40px / 50px * 100%;
+      }
+    }
+    // 3:2	2160x1440, 2560x1700†	used in some portable PCs since 2013
+    &.three-by-two {
+      .rhd-c-video--video-embed { 
+        padding-top: 20px / 30px * 100%;
+      }
+    } 
+    // 16:10	1280x800, 1920x1200	common between 2003 and 2010
+    &.sixteen-by-ten {
+      .rhd-c-video--video-embed { 
+        padding-top: 100px / 160px * 100%;
+      }
+    }
+    // 16:9	1366x768†, 1920x1080	common since 2008, matches the aspect ratio of HDTV and widescreen SDTV
+    &.sixteen-by-nine {
+      .rhd-c-video--video-embed { 
+        padding-top: 90px / 160px * 100%;
+      }
+    }
+    // ~21:9	2560x1080†, 3440x1440†	used in some professional and gaming displays since 2015, roughly matches various anamorphic formats
+    &.twentyone-by-nine {
+      .rhd-c-video--video-embed { 
+        padding-top: 90px / 210px * 100%;
+      }
+    }
+    // 32:9	3840x1080, 5120x1440	used in some high-end displays since 2017
+    &.thirtytwo-by-nine {
+      .rhd-c-video--video-embed { 
+        padding-top: 90px / 320px * 100%;
+      }
+    }  
+  }
+}

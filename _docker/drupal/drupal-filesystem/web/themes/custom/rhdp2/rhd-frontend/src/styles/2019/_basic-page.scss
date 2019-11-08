@@ -1,0 +1,33 @@
+// Hides title from Basic Pages
+body.page-node-type-page,
+body.page-node-type-video-resource,
+body.page-node-type-books,
+body.page-node-type-cheat-sheet,
+body.page-node-type-promotion-page,
+body.page-node-type-article,
+body.page-node-type-learning-path,
+body.page-node-type-coding-resource {
+  h1.page-title {
+    @extend %hidden;
+  }
+}
+
+// Makes Basic Pages full width
+.page-community-contributor,
+.page-ticket-monster,
+.page-middleware,
+.page-stack-overflow,
+.page-events-devoxx-2015,
+.page-events-devoxxfrance-2016,
+.page-events-judcon-2016-brno,
+.page-events-gids-2016,
+.page-events-javaone-2015,
+.page-events-javaone-2016,
+.page-events-javaone-2017,
+.page-events-msbuild-2016 {
+  .node__content > .text-formatted {
+    max-width: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+}
