@@ -379,7 +379,7 @@ System.register("@rhd/rhdp-os-download", [], function (exports_6, context_6) {
                     _this._winURL = "";
                     _this.stage_download_url = 'https://developers.stage.redhat.com';
                     _this.productDownloads = {
-                        "cdk": { "windowsUrl": "/download-manager/file/cdk-3.5.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.5.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.5.0-1-minishift-linux-amd64" }
+                        "cdk": { "windowsUrl": "/download-manager/file/cdk-3.10.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.10.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.10.0-1-minishift-linux-amd64" }
                     };
                     _this.template = function (strings, product, downloadUrl, platform, version) {
                         return "<div class=\"large-8 columns download-link\">\n                    <a class=\"button heavy-cta\" href=\"" + downloadUrl + "\">\n                        <i class=\"fa fa-download\"></i> Download</a>\n                    <div class=\"version-name\">" + product + " " + version + " " + (_this.displayOS ? "for " + platform : '') + "</div>\n                </div>\n                ";
@@ -5067,7 +5067,7 @@ app.products = {
     "migrationtoolkit": { "upstream": null, "stackoverflow": ["rhamt"], "buzz_tags": ["windup", "rhamt"] }
 };
 app.products.downloads = {
-    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.7.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.7.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.7.0-1-minishift-linux-amd64" }
+    "cdk": { "windowsUrl": "/download-manager/file/cdk-3.10.0-1-minishift-windows-amd64.exe", "macUrl": "/download-manager/file/cdk-3.10.0-1-minishift-darwin-amd64", "rhelUrl": "/download-manager/file/cdk-3.10.0-1-minishift-linux-amd64" }
 };
 app.mktg_ops = {};
 app.ssoConfig = {};

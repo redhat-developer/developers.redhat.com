@@ -196,6 +196,9 @@ function rhdp_js_settings_alter(array &$settings, AttachedAssetsInterface $asset
   $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
   $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
 
+  $rhd_settings['swel'] = [];
+  $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
+
   $theme_path = drupal_get_path('theme', 'rhdp');
 
   $rhd_settings['templates'] = [];
