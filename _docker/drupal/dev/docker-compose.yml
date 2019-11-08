@@ -29,7 +29,6 @@ services:
       context: ../
       dockerfile: Dockerfile.mp
       args:
-        - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
         - composer_profile=development
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-env.yml"]
     user: ${DUID}:0
@@ -46,7 +45,6 @@ services:
       context: ../
       dockerfile: Dockerfile.mp
       args:
-        - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
         - composer_profile=development
     command: ["/bin/bash", "-c", "ansible-playbook /ansible/bootstrap-drupal.yml"]
     user: ${DUID}:0
@@ -56,7 +54,6 @@ services:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-    - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
     - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active:cached
     - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync:cached
     - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files
@@ -69,7 +66,6 @@ services:
      context: ../
      dockerfile: Dockerfile.mp
      args:
-      - FONTAWESOME_LICENCE="${FONTAWESOME_LICENCE}"
       - composer_profile=development
     command: ["/bin/bash", "-c", "/var/www/drupal/run-httpd.sh"]
     user: ${DUID}:0

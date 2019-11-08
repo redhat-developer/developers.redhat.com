@@ -158,8 +158,8 @@ app.sso = function () {
 
     var keycloak = Keycloak({
         url: app.ssoConfig.auth_url,
-        realm: 'rhd',
-        clientId: 'web'
+        realm: app.ssoConfig.realm,
+        clientId: app.ssoConfig.client_id
     });
     app.keycloak = keycloak;
 
@@ -178,7 +178,7 @@ app.sso = function () {
         checkIfProtectedPage();
 
         if(app.termsAndConditions) {
-            // app.termsAndConditions.isDownloadPage() test for tcDownloadURL is not empty, tcDownloadFileName is not empty and tcSourceLink (contains 'download-manager') 
+            // app.termsAndConditions.isDownloadPage() test for tcDownloadURL is not empty, tcDownloadFileName is not empty and tcSourceLink (contains 'download-manager')
             if(app.termsAndConditions.isDownloadPage()) {
                 app.termsAndConditions.download();
             }

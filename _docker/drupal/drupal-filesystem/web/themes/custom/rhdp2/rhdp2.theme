@@ -653,6 +653,11 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
   $rhd_settings['keycloak'] = [];
   $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
   $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
+  $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
+
+  $rhd_settings['swel'] = [];
+  $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
 
   $theme_path = drupal_get_path('theme', 'rhdp2');
 
@@ -688,7 +693,7 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 /**
  * Returns a new random guid.
  */
-function createGUID() { 
+function createGUID() {
   // Create a token
   $token = $_SERVER['HTTP_HOST'];
   $token .= $_SERVER['REQUEST_URI'];
@@ -697,8 +702,8 @@ function createGUID() {
   $hash = strtoupper(md5($token));
   // Create formatted GUID
   $guid = '';
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
-  $guid .= substr($hash,  0,  8) . 
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
+  $guid .= substr($hash,  0,  8) .
     '-' .
     substr($hash,  8,  4) .
     '-' .
@@ -718,3 +723,174 @@ function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
  }
 }
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function rhdp2_preprocess_html(array &$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  // Retrieve the redhat_developers config configuration object once.
+  $rhd_config = \Drupal::config('redhat_developers');
+
+  // Retrieve individual config values from the config object.
+  $environment = $rhd_config->get('environment');
+  $dtm_code = $rhd_config->get('dtm_code');
+  $sentry_track = $rhd_config->get('sentry_track');
+  $sentry_script = $rhd_config->get('sentry_script');
+  $sentry_code = $rhd_config->get('sentry_code');
+  $rhd_base_url = $rhd_config->get('rhd_base_url');
+  $rhd_final_base_url = $rhd_config->get('rhd_final_base_url');
+
+  $variables['rhd_environment'] = $environment;
+  $variables['rhd_dtm_code'] = $dtm_code;
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_sentry_track'] = $sentry_track;
+  $variables['rhd_sentry_script'] = $sentry_script;
+  $variables['rhd_sentry_code'] = $sentry_code;
+  $variables['rhd_base_url'] = $rhd_base_url;
+  $variables['rhd_final_base_url'] = $rhd_final_base_url;
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+  if ($environment != 'prod') {
+    $referrer = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        // Set name for element.
+        'name' => 'referrer',
+        // Set value for title.
+        'value' => 'unsafe-url',
+      ],
+    ];
+
+    $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+  }
+}
+
+/**
+ * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ */
+function redhat_www_ddo_default($node) {
+  $request = \Drupal::request();
+  $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
+  $errorType = "";
+  $errorMessage = "";
+  $ddo_language = "";
+  $ddo_pageID = "";
+  $ddo_title = "";
+
+  if (!is_null($node)) {
+    if ($siteerror == '/node/' . $node->nid->value) {
+      $errorType = "404";
+      $errorMessage = "404-error";
+    }
+
+    $ddo_language = $node->langcode->value;
+    $ddo_pageID = $node->nid->value;
+    $ddo_title = $node->title->value;
+  }
+
+  $ddo = [
+    'page' => [
+      'attributes' => [
+        'queryParameters' => '',
+      ],
+      'category' => [
+        'contentType' => '',
+        'contentSubType' => '',
+        'keyPage' => FALSE,
+        'keyPageType' => '',
+        'pageType' => '',
+        'primaryCategory' => '',
+        'subCategories' => [],
+      ],
+      'pageInfo' => [
+        'breadCrumbs' => [],
+        'cms' => 'RHD CMS 8',
+        'destinationURL' => '',
+        'errorMessage' => $errorMessage,
+        'errorType' => $errorType,
+        'language' => $ddo_language,
+        'pageID' => $ddo_pageID,
+        'contentID' => $ddo_pageID,
+        'pageName' => '',
+        'referringDomain' => '',
+        'referringURL' => '',
+        'syndicationIds' => [],
+        'sysEnv' => '',
+        'title' => $ddo_title,
+      ],
+      'listing' => [
+        'browseFilter' => '',
+        'query' => '',
+        'queryMethod' => '',
+        'refinementType' => '',
+        'refinementValue' => '',
+        'resultCount' => '',
+        'searchType' => '',
+      ],
+    ],
+    'user' => [
+      [
+        'profile' => [
+          [
+            'profileInfo' => [
+              'accountID' => '',
+              'daysSinceLastPurchase' => '',
+              'daysSinceRegistration' => '',
+              'eloquaGUID' => 'POPULATE ELOQUA ID',
+              'keyCloakID' => '',
+              'loggedIn' => FALSE,
+              'profileID' => '',
+              'registered' => FALSE,
+              'socialAccountsLinked' => [],
+              'subscriptionFrequency' => '',
+              'subscriptionLevel' => '',
+              'userAgent' => '',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'event' => [],
+  ];
+
+  return $ddo;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * By default, we will load the Keycloak prod script. On our Stage environment
+ * we will set a config object, redhat_developers.keycloak.scriptUrl, that will
+ * be the URL path to the Keycloak stage script. If this config object exists,
+ * then we know to override the default prod Keycloak script with the Keycloak
+ * stage script.
+ */
+function rhdp2_library_info_alter(array &$libraries, $extension) {
+  $rhd_config = \Drupal::config('redhat_developers');
+
+  // Verify that the Keycloak config key/value exists and the scriptUrl index
+  // exists within that config key/value pair.
+  //
+  // NOTE: If this is not set, then the library will not be altered, and
+  // whatever key/values provides in the RHDP theme's libraries.yml file will
+  // be used.
+  if ($rhd_config->get('keycloak') && isset($rhd_config->get('keycloak')['scriptUrl'])) {
+    // This should return the stage Keycloak script URL on our Stage
+    // environment, but otherwise, the config object will not be set, and this
+    // will be NULL.
+    $keycloak_url = $rhd_config->get('keycloak')['scriptUrl'];
+
+    // Keycloak_url is only set on the Stage environment.
+    if ($extension == 'rhdp' && $keycloak_url !== NULL) {
+      // Remove the Prod Keycloak script URL from our library.
+      unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+      // Add the Stage Keycloak script URL to our library.
+      $libraries['base-theme']['js'][$keycloak_url] = [
+        'type' => 'external',
+        'minified' => FALSE,
+      ];
+    }
+  }
+}
+
