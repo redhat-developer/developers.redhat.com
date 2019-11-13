@@ -1,0 +1,48 @@
+:root {
+  --rhd-theme--ui-background-lighter: #f9f9f9; // --pfe-theme--ui-background-lighter
+  --rhd-theme--ui-background-light: #e5e5e5; // --pfe-theme--ui-background-light
+  --rhd-theme--ui-background-dark: #242424; // --pfe-theme--ui-background-dark
+  --rhd-theme--ui-background-dark--light-blue: #00b9e4; // --pfe-theme--ui-background-light-blue
+  --rhd-theme--ui-background-dark--blue: #0066cc; // --pfe-theme--ui-background-dark-blue
+  --rhd-theme--ui-background-red: #a30000; // --pfe-theme--ui-background-red
+
+  --rhd-theme--ui-background-image: url("https://developers.redhat.com/sites/default/files/styles/billboard/public/combo-bg_0.png");
+
+}
+
+.rhd-c-background-type__rich-text {
+  background-image: var(--rhd-theme--ui-background-image);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: var(--rhd-theme--container-spacer-3xl);
+}
+
+.rhd-c-background-type__ebooks {
+  background-image: url("https://developers.redhat.com/images/gray_diamond_background.png");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  img {
+    box-shadow: var(--rhd-theme--box-shadow--md);
+  }
+}
+
+.rhd-m-background-white {
+  background-color: #fff;
+}
+
+.rhd-m-background-grey {
+  background-color: var(--rhd-theme--ui-background-lighter);
+}
+
+.rhd-m-background-comments > div {
+  padding: var(--rhd-theme--container-spacer-md);
+  background-color: #fff;
+}
+
+.rhd-m-background-blue {
+  background-color: var(--rhd-theme--ui-background-dark--light-blue);
+  color: var(--rhd-theme--color-text--on-dark);
+  padding: var(--rhd-theme--content-spacer);
+}

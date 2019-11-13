@@ -1,0 +1,45 @@
+.rhd-c-card.comment-list {
+  .rhd-c-card__title {
+    font-size: var(--pf-global--FontSize--xl) !important;
+    margin-bottom: var(--pf-global--spacer--md);
+  }
+}
+
+.comment-list__item {
+
+  &:not(:last-of-type) {
+    margin-bottom: var(--pf-global--spacer--md);
+  }
+
+  &-title {
+    margin-bottom: var(--pf-global--spacer--sm);
+    font-size: var(--pf-global--FontSize--lg);
+  }
+
+  &-content {
+    margin-bottom: var(--pf-global--spacer--sm) !important;
+  }
+
+  &-date {
+    color: var(--rhd-theme--color-text--subtle); // #72767b
+  }
+  &-cta {
+    display: block;
+    margin-top: var(--pf-global--spacer--md);
+  }
+
+  a {
+    color: #06c;
+    text-decoration: none;
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited {
+      color: #004080;
+      & > i,
+      & > .svg-inline--fa {
+        color: #004080 !important;
+      }
+    }
+  }
+}

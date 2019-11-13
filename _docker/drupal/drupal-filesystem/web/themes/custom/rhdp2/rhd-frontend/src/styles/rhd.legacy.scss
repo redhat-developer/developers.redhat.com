@@ -1,0 +1,47 @@
+// Foundation Dependencies
+$white: #FFFFFF !default;
+$black : #000000;
+$jet: #222222 !default;
+$aluminum: #999999 !default;
+$primary-color: #008CBA !default;
+$blue: #0066CC;
+$red: #CC0000;
+$dark-grey : #242424;
+$grey-3: #D5D5D5;
+$grey-4: #CCCCCC;
+$grey-5: #656565;
+$grey-6: #424242;
+$grey-7 : #333333;
+$grey-8 : #242424;
+$accent-blue: #08c0fc;
+$linkhover: #004c98;
+$screen: "only screen" !default;
+$small-up: $screen !default;
+$large-range: (64.063em, 90em) !default;
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})" !default;
+$input-border-color: scale-color($white, $lightness: -20%) !default;
+@import "2019/mq-mixins";
+@import "2018/foundation/foundation";
+@import "2018/searchapp";
+
+// // Foundation dependent
+// @import "legacy/products";
+// @import "legacy/adaptive-placeholder";
+// @import "legacy/keycloak-pages";
+// @import "legacy/get-started";
+// @import "legacy/developer-materials";
+// @import "legacy/buzz";
+// @import "legacy/confirmation";
+// @import "legacy/middleware";
+// @import "legacy/projects";
+// @import "legacy/thank-you";
+// @import "legacy/books";
+// @import "legacy/cheat-sheet";
+// @import "legacy/videos";
+// @import "legacy/microsite";
+// @import "legacy/articles";
+// @import "legacy/stackoverflow";
+// @import "legacy/paginator";
+// @import "legacy/faq";
+// @import "legacy/downloads";
+// @import "legacy/connectors";
