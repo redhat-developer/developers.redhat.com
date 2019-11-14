@@ -1,0 +1,13 @@
+.rhd-c-dynamic-content-list {
+  h2 {
+    text-align: center;
+  }
+
+  &__item {
+    @extend .pf-u-pb-md;
+  }
+  
+  &__item-title {
+    @extend .pf-u-mb-0;
+  }
+}

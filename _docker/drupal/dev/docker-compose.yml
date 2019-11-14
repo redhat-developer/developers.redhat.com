@@ -54,7 +54,6 @@ services:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
     - ./drupal-workspace/drupal_1/drupal/credentials/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-    - ./drupal-workspace/drupal_1/drupal/credentials/phinx.yml:/var/www/drupal/phinx.yml
     - ./drupal-workspace/drupal_1/drupal/config/active:/var/www/drupal/web/config/active:cached
     - ../drupal-filesystem/web/config/sync:/var/www/drupal/web/config/sync:cached
     - ./drupal-workspace/drupal_1/drupal/sites/default/files:/var/www/drupal/web/sites/default/files

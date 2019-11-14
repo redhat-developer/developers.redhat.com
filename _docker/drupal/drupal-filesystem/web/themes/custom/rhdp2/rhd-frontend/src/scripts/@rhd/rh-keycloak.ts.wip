@@ -1,0 +1,33 @@
+// import {PFElement} from '../@pfelements/pfelement.umd.js';
+import {PFElement} from '../../@patternfly/pfelement/pfelement.ts.js';
+
+export default class RHKeycloak extends PFElement {
+    
+    static get tag() { return 'dp-keycloak'; }
+
+    _keycloak;
+    _url : string; // Keycloak Server URL
+    _json : string; // Keycloak JSON Configuration
+    _realm : string;
+    _clientId : string;
+    _data;
+
+    get url() {
+        return this._url;
+    }
+
+    constructor() {
+        super(RHKeycloak);
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        this[name] = newVal;
+    }
+
+    updateToken() {
+
+    }
+}
+
+PFElement.create(RHKeycloak);
+// window.customElements.define('rh-keycloak', RHKeycloak);
