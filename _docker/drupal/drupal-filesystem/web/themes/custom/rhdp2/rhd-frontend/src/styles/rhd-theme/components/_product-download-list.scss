@@ -1,0 +1,70 @@
+.rhd-c-product-download-list {
+  
+  .product-version {
+    @extend .pf-u-p-lg;
+    border: 1px solid #d5d5d5;
+
+    &__file-label {
+      @extend .pf-u-mb-0;
+      font-size: var(--pf-global--FontSize--lg);
+      font-weight: var(--pf-global--FontWeight--bold);
+    }
+
+    &__file-label-wrapper {
+      @extend .pf-m-12-col;
+      @extend .pf-m-3-col-on-lg;
+      @extend .pf-m-2-col-on-xl;
+      align-self: center;
+
+      @media screen and (min-width: $pf-global--breakpoint--lg) {
+        padding-right: 20px;
+        border-right: 1px solid #d5d5d5;
+      }
+    }
+    &__file-description {
+      @extend .pf-m-12-col;
+      @extend .pf-m-3-col-on-lg;
+      @extend .pf-m-4-col-on-xl;
+
+      align-self: center;
+    }
+    &__release-date-wrapper {
+      @extend .pf-m-12-col;
+      @extend .pf-m-3-col-on-lg;
+      @extend .pf-m-4-col-on-xl;
+
+       align-self: center;
+       text-align: left;
+       i, svg {
+        color: var(--pf-global--Color--100); // #151515;
+       }
+       @media screen and (min-width: $pf-global--breakpoint--lg) {
+        justify-self: end;
+       }
+    }
+    &__release-date {
+      font-size: var(--pf-global--FontSize--sm);
+      color: var(--pf-global--Color--200); // #72767b
+    }
+    &__cta {
+      @extend .pf-m-12-col;
+      @extend .pf-m-3-col-on-lg;
+      @extend .pf-m-2-col-on-xl;
+
+      align-self: center;
+      text-align: center;
+    }
+
+    @media screen and (max-width: $pf-global--breakpoint--lg) {
+      &__file-label-wrapper,
+      &__file-description,
+      &__release-date-wrapper,
+      &__release-date {
+        text-align: center;
+      }
+    }
+  }
+  .product-version ~ .product-version {
+    border-top: none;
+  }
+}

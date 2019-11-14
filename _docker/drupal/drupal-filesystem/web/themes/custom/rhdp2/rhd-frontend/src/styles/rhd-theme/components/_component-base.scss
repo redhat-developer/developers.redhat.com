@@ -1,0 +1,40 @@
+.component {
+    .pf-l-grid,
+    .pf-l-level,
+    .pf-l-gallery,
+    .pf-l-flex {
+        max-width: map-get($rhd-breakpoints, xlarge);
+        margin: 0 auto;
+    }
+
+    padding: 0 var(--rhd-theme--container-spacer-3xl);
+    margin-top: var(--rhd-theme--container-spacer-xl);
+    margin-bottom: var(--rhd-theme--container-spacer-xl);
+
+    @media screen and (max-width: $pf-global--breakpoint--lg) {
+        padding-left: var(--rhd-theme--container-spacer-xl);
+        padding-right: var(--rhd-theme--container-spacer-xl);
+    }
+    @media screen and (max-width: $pf-global--breakpoint--md) {
+        padding-left: var(--rhd-theme--container-spacer-xl);
+        padding-right: var(--rhd-theme--container-spacer-xl);
+    }
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+        padding-left: var(--rhd-theme--container-spacer-md);
+        padding-right: var(--rhd-theme--container-spacer-md);
+    }
+
+   //remove default side padding when inside another component
+    .pf-c-card & {
+        padding: var(--rhd-theme--container-spacer-md) 0;
+        @media screen and (max-width: $pf-global--breakpoint--lg) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+        @media screen and (max-width: $pf-global--breakpoint--md) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+   }
+}
