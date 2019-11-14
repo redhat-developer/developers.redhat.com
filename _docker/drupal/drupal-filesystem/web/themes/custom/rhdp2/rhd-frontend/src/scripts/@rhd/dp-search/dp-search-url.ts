@@ -86,10 +86,14 @@ export default class DPSearchURL extends PFElement {
 
     connectedCallback() {
         super.connectedCallback();
-        top.addEventListener('search-complete', this._changeAttr);
-        top.addEventListener('clear-filters', this._changeAttr);
-        top.window.addEventListener('popstate', this._popState);
-        this._paramsReady();
+        if (this.parentNode !== top.document.body) {
+            top.document.body.insertBefore(this, top.document.body.lastChild);
+        } else {
+            top.addEventListener('search-complete', this._changeAttr);
+            top.addEventListener('clear-filters', this._changeAttr);
+            top.window.addEventListener('popstate', this._popState);
+            this._paramsReady();
+        }
     }
 
     static get observedAttributes() { 

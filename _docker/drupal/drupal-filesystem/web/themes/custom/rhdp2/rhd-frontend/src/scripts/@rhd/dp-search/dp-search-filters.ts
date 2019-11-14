@@ -192,8 +192,8 @@ export default class DPSearchFilters extends PFElement {
 
     constructor() {
         super(DPSearchFilters, {delayRender: true});
-        this._toggleModal = this._toggleModal.bind(this);
-        this._clearFilters = this._clearFilters.bind(this);
+        // this._toggleModal = this._toggleModal.bind(this);
+        // this._clearFilters = this._clearFilters.bind(this);
     }
     
     connectedCallback() {
@@ -205,8 +205,6 @@ export default class DPSearchFilters extends PFElement {
             let evt = { bubbles: true, composed: true };
             switch (e.target['className']) {
                 case 'showBtn':
-                case 'cancel':
-                case 'applyFilters':
                     e.preventDefault();
                     this.dispatchEvent(new CustomEvent('toggle-modal', evt));
                     break;
@@ -219,7 +217,7 @@ export default class DPSearchFilters extends PFElement {
                     break;
             }
         });
-        top.addEventListener('toggle-modal', this._toggleModal);
+        // top.addEventListener('toggle-modal', this._toggleModal);
     }
 
     static get observedAttributes() { 
@@ -253,23 +251,23 @@ export default class DPSearchFilters extends PFElement {
 
     }
 
-    _toggleModal(e) {
-        if (this.type === 'modal') {
-            this.toggle = !this.toggle;
-        }
-    }
+    // _toggleModal(e) {
+    //     if (this.type === 'modal') {
+    //         this.toggle = !this.toggle;
+    //     }
+    // }
 
-    applyFilters() {
-        let evt = {
-            bubbles: true,
-            composed: true
-        }
-        this.dispatchEvent(new CustomEvent('apply-filters', evt));
-    }
+    // applyFilters() {
+    //     let evt = {
+    //         bubbles: true,
+    //         composed: true
+    //     }
+    //     this.dispatchEvent(new CustomEvent('apply-filters', evt));
+    // }
 
-    _clearFilters(e) {
-        this.style.display = 'none';
-    }
+    // _clearFilters(e) {
+    //     this.style.display = 'none';
+    // }
 }
 
 PFElement.create(DPSearchFilters);

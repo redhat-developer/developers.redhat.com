@@ -105,20 +105,10 @@ export default class DPSearchModalFilters extends PFElement {
 
     static get tag() { return 'dp-search-modal-filters'; }
 
-    _type = '';
     _title = 'Filter By';
     _filters;
     _toggle = false;
     _modal;
-
-    get type() {
-        return this._type;
-    }
-
-    set type(val) {
-        if (this._type === val) return;
-        this._type = val;
-    }
 
     get title() {
         return this._title;
@@ -170,12 +160,11 @@ export default class DPSearchModalFilters extends PFElement {
             this.addGroups();
         }
         if (this.parentNode !== top.document.body) {
-            top.document.body.insertBefore(this, top.document.body.lastChild);
+            top.document.body.insertBefore(this, top.document.body.firstChild);
         }
         this.shadowRoot.addEventListener('click', e => {
             let evt = { bubbles: true, composed: true };
             switch (e.target['className']) {
-                case 'showBtn':
                 case 'cancel':
                 case 'applyFilters':
                     e.preventDefault();
@@ -196,7 +185,7 @@ export default class DPSearchModalFilters extends PFElement {
     }
 
     static get observedAttributes() { 
-        return ['type', 'title', 'toggle']; 
+        return ['title', 'toggle']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

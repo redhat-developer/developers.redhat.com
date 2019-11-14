@@ -1,7 +1,7 @@
 //import {PFElement} from '../../@pfelements/pfelement.umd.js';
 import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
-import DPSearchURL from './dp-search-url';
-import DPSearchModalFilters from './dp-search-modal-filters';
+// import DPSearchURL from './dp-search-url';
+// import DPSearchModalFilters from './dp-search-modal-filters';
 
 export default class DPSearchApp extends PFElement {
     get html() {
@@ -90,14 +90,14 @@ export default class DPSearchApp extends PFElement {
         this.setAttribute('url', this.url);
     }
 
-    urlEle = new DPSearchURL();
-    modal = new DPSearchModalFilters();
+    // urlEle = new DPSearchURL();
+    // modal = new DPSearchModalFilters();
 
     connectedCallback() {
         super.connectedCallback();
         super.render();
         //top.document.body.appendChild(this.modal);
-        top.document.body.appendChild(this.urlEle);
+        //top.document.body.appendChild(this.urlEle);
     }
 
     static get observedAttributes() { 
@@ -108,9 +108,9 @@ export default class DPSearchApp extends PFElement {
         this[name] = newVal;
     }
 
-    toggleModal(e) {
-        this.modal.toggle = e.detail.toggle;
-    }
+    // toggleModal(e) {
+    //     this.modal.toggle = e.detail.toggle;
+    // }
 }
 
 PFElement.create(DPSearchApp);
