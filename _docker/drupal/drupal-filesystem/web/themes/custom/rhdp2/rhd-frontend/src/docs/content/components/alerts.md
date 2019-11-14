@@ -6,7 +6,7 @@ draft: false
 tags: ["component"]
 categories: ["component"]
 weight: 99
-scripts: ["@patternfly/pfelement/pfelement.umd","@rhd/dp-alert"]
+scripts: ["@patternfly/pfelement/dist/pfelement.umd","@rhd/dp-alert"]
 ---
 
 {{< code >}}<dp-alert>This is the alert text</dp-alert>{{</ code >}}

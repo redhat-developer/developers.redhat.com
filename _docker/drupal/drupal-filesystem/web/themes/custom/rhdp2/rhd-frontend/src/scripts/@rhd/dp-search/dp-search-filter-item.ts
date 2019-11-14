@@ -1,5 +1,5 @@
 // import {PFElement} from '../../@pfelements/pfelement.umd.js';
-import PFElement from '@patternfly/pfelement/pfelement.umd';
+import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
 
 export default class DPSearchFilterItem extends PFElement {
     get html() {
@@ -10,10 +10,11 @@ export default class DPSearchFilterItem extends PFElement {
             cursor: pointer;
             display: flex;
             flex-direction: row;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 500;
             height: auto;
-            line-height: 1.25em;
-            padding: .5em .5em 0 1.1em;
+            line-height: 24px;
+            padding-bottom: 8px;
         }
         span { display: none; }
         input[type=checkbox] {
@@ -45,6 +46,7 @@ export default class DPSearchFilterItem extends PFElement {
                 line-height: 25px;
                 padding-left: 0;
                 font-size: 16px;
+                position:relative;
             }
             
             span { display: inline; font-size: 16px; }

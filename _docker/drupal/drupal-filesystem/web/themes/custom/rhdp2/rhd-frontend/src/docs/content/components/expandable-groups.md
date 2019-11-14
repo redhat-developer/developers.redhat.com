@@ -6,7 +6,7 @@ draft: false
 tags: ["component"]
 categories: ["component"]
 weight: 99
-scripts: ["@patternfly/pfelement/pfelement.umd","@rhd/dp-category-list/dp-category-list-wc"]
+scripts: ["@patternfly/pfelement/dist/pfelement.umd","@rhd/dp-category-list/dp-category-list-wc"]
 ---
 
 {{< code >}}

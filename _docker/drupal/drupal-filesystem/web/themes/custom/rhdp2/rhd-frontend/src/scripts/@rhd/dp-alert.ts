@@ -1,4 +1,4 @@
-import PFElement from '@patternfly/pfelement/pfelement.umd';
+import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
 // import {library, icon} from '@fortawesome/fontawesome-svg-core/index';
 // import {faTimes} from '@fortawesome/pro-solid-svg-icons/index';
 

@@ -1,7 +1,7 @@
 //import {PFElement} from '../../@pfelements/pfelement.umd.js';
 // import { library, icon, dom } from '@fortawesome/fontawesome-svg-core/index'
 // import {faChevronRight} from '@fortawesome/pro-solid-svg-icons/index';
-import PFElement from '@patternfly/pfelement/pfelement.umd';
+import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
 import DPSearchFilterItem from './dp-search-filter-item';
 
 // library.add(faChevronRight);
@@ -14,8 +14,11 @@ export default class DPSearchFilterGroup extends PFElement {
             :host {
                 cursor: pointer;
                 display: block;
-                margin: 0 1em .5em;
                 position: relative;
+                padding: 0 16px;
+            }
+            .primary, .secondary {
+                padding-left: 8px;
             }
 
             .secondary {
@@ -23,12 +26,11 @@ export default class DPSearchFilterGroup extends PFElement {
             }
 
             h6 {
-                border-bottom: 1px solid #8c8f91;
-                font-weight: 600;
-                margin: .5em 0;
-                padding-bottom: .3em;
-                text-transform: uppercase;
-                color: #242424;
+                font-size: 16px;
+                font-weight: 700;
+                padding: 16px 0;
+                color: #72767b;
+                margin: 0;
             }
 
             .toggle {
@@ -45,11 +47,11 @@ export default class DPSearchFilterGroup extends PFElement {
                 color: #06c;
                 cursor: pointer;
                 text-decoration: none;
-                font-size: 14px;
+                line-height: 24px;
+                font-size: 16px;
+                font-weight: 700;
                 display: block;
-                margin-bottom: 10px;
-                margin-left: 2.3em;
-                margin-top: 10px;
+                padding-left: 8px;
             }
             a.more:hover {
                 color: #004c98;

@@ -1,5 +1,5 @@
 // import {PFElement} from '../../@pfelements/pfelement.umd.js';
-import PFElement from '@patternfly/pfelement/pfelement.umd';
+import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
 
 export default class DPSearchResultCount extends PFElement {
     get html() {

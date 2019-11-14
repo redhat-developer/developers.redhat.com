@@ -1,5 +1,5 @@
 // import {PFElement} from '../../@pfelements/pfelement.umd.js';
-import PFElement from '@patternfly/pfelement/pfelement.umd';
+import PFElement from '@patternfly/pfelement/dist/pfelement.umd';
 // import DPSearchFilterGroup from './dp-search-filter-group';
 // import DPSearchFilterItem from './dp-search-filter-item';
 
@@ -12,8 +12,12 @@ export default class DPSearchModalFilters extends PFElement {
                 align-self: flex-start;
                 border: none;
                 flex: none;
-                float: left;
                 margin: 0 0 1.3em;
+            }
+
+            .modal {
+                transition: .5s ease-in-out;
+                transform: translateX(100%);
             }
             .cover {
                 background: rgba(0,0,0,.5);
@@ -26,9 +30,7 @@ export default class DPSearchModalFilters extends PFElement {
                 right: 100%;
                 top: 0;
                 width: 100%;
-                z-index: 99;
-                transform: translateX(100%);
-                transition: .5s ease-in-out;
+                z-index: 999;
             }
             .title {
                 flex: 0 0 40px;
@@ -146,12 +148,12 @@ export default class DPSearchModalFilters extends PFElement {
         if(this._toggle) {
             this.shadowRoot.querySelector('.cover').className = 'cover modal';
             window.scrollTo(0,0);
-            document.body.style.overflow = 'hidden';
+            top.document.body.style.overflow = 'hidden';
             this.style.height = window.innerHeight + 'px';
             this.style.display = 'block';
         } else {
             this.shadowRoot.querySelector('.cover').className = 'cover';
-            document.body.style.overflow = 'auto';
+            top.document.body.style.overflow = 'auto';
             this.style.display = 'none';
         }
     }
@@ -164,8 +166,12 @@ export default class DPSearchModalFilters extends PFElement {
     
     connectedCallback() {
         super.connectedCallback();
-        this.addGroups();
-
+        if(this.children.length === 0) {
+            this.addGroups();
+        }
+        if (this.parentNode !== top.document.body) {
+            top.document.body.insertBefore(this, top.document.body.lastChild);
+        }
         this.shadowRoot.addEventListener('click', e => {
             let evt = { bubbles: true, composed: true };
             switch (e.target['className']) {
@@ -173,7 +179,8 @@ export default class DPSearchModalFilters extends PFElement {
                 case 'cancel':
                 case 'applyFilters':
                     e.preventDefault();
-                    this.dispatchEvent(new CustomEvent('toggle-modal', evt));
+                    this.toggle = false;
+                    //this.dispatchEvent(new CustomEvent('toggle-modal', evt));
                     break;
                 case 'clearFilters':
                     e.preventDefault();

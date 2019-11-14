@@ -6,7 +6,7 @@ draft: false
 tags: ["page"]
 categories: ["page_example"]
 weight: 4
-scripts: ["/@patternfly/pfelement/pfelement.umd.js","js/@fortawesome/fontawesome-svg-core/index.js","js/@fortawesome/pro-solid-svg-icons/index.js", "js/@rhd/dp-alert.js"]
+scripts: ["/pfelement/dist/pfelement.umd.js","js/@fortawesome/fontawesome-svg-core/index.js","js/@fortawesome/pro-solid-svg-icons/index.js", "js/@rhd/dp-alert.js"]
 ---
 
 {{< code >}}
