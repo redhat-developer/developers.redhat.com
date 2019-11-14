@@ -1,0 +1,75 @@
+@import "../mixins";
+.assembly-type-cta_form {
+    @include with-background-padding;
+}
+.rhd-c-cta-form {
+    .pf-c-form__group {
+        margin-top: var(--rhd-theme--container-spacer-lg);
+
+        .pf-c-check,
+        .pf-c-radio {
+            display: inline-block;
+            padding-right: var(--rhd-theme--container-spacer-lg);
+        }
+
+        .pf-c-form__label {
+            padding: 0;
+            margin: 0 var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-sm) 0;
+        }
+    }
+
+    &.dark {
+        .pf-c-form__group {
+            .pf-c-check,
+            .pf-c-radio {
+                .pf-c-check__label, .pf-c-radio__label {
+                    color: $white;
+                }
+            }
+            .pf-c-form__label {
+                color: $white;
+            }
+        }
+    }
+}
+.iframe-container {
+    width: 100%;
+    .eloqua-iframe {
+        width: 100%;
+    }
+}
+
+.region.region-content {
+    #drupalUserLoginToggleVisibility {
+        @extend .pf-c-button;
+        @extend .pf-m-heavy;
+    }
+    form {
+        margin: var(--rhd-theme--container-spacer-md) 0;
+        @extend .pf-c-form;
+        input[type=submit] {
+            margin-top: var(--rhd-theme--container-spacer-md);
+            @extend .pf-c-button;
+            @extend .pf-m-heavy;
+        }
+
+
+        .form-item {
+            @extend .pf-c-form__group;
+            margin: var(--rhd-theme--container-spacer-md) 0;
+            label {
+                @extend .pf-c-form__label;
+                @extend .pf-c-form__label-text;
+            }
+            input {
+                &.form-text {
+                    @extend .pf-c-form-control;
+                }
+            }
+            .description {
+                @extend .pf-c-form__helper-text;
+            }
+        }
+
+    }
+}
