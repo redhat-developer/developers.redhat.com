@@ -18,8 +18,7 @@ user account details for this registry.
 
 To do that, firstly visit registry.redhat.io and ensure that you can log in (you should be able to log in with your Red Hat Developer account)
 
-Next copy `local-config.sh.example` to `local-config.sh` and provide the values for your username and password. `local-config.sh` should not be committed
-to Git and is already set to be ignored.
+Next copy `local-config.sh.example` to `local-config.sh` and provide the values for your username and password, of you have a no exipre login cert you can change REGISTRY_REDHAT_IO_SKIP_LOGIN to true then the script will not attempt to login first. `local-config.sh` should not be committed to Git and is already set to be ignored.
 
 
 #### Install mkcert
