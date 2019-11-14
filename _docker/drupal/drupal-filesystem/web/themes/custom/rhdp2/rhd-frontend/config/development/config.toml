@@ -1,0 +1,61 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "RHD Front-end Code and Documentation"
+themesDir = "src/docs/themes"
+theme = "rhd-docs"
+publishDir = "public"
+canonifyURLs = true
+disableFastRender = true
+
+[params]
+    Minify = false
+
+[module]
+
+    [[module.mounts]]
+    source = "src/docs/content"
+    target = "content"
+
+    [[module.mounts]]
+        source = "src/docs/static"
+        target = "static"
+
+    [[module.mounts]]
+        source = "src/docs/layouts"
+        target = "layouts"
+
+    [[module.mounts]]
+        source = "src/docs/data"
+        target = "data"
+
+    [[module.mounts]]
+        source = "src/docs/assets"
+        target = "assets"
+
+    [[module.mounts]]
+        source = "src/docs/i18n"
+        target = "i18n"
+
+    [[module.mounts]]
+        source = "src/docs/archetypes"
+        target = "archetypes"
+
+    [[module.mounts]]
+        source = "src/data"
+        target = "data"
+
+    [[module.mounts]]
+        source = "src/styles"
+        target = "assets/sass"
+    
+    [[module.mounts]]
+        source = "node_modules/@patternfly"
+        target = "assets/@patternfly"
+    
+    [[module.mounts]]
+        source = "dist/js/@rhd"
+        target = "assets/@rhd"
+    
+    [[module.mounts]]
+        source = "node_modules/@patternfly/assets"
+        target = "static/css/assets"

@@ -1,0 +1,20 @@
+#user-login-form {
+    @extend .container;
+}
+
+#block-openidconnectlogin {
+    @extend .container;
+    margin: 30px auto;
+}
+
+#edit-openid-connect-client-keycloak-login.button {
+    margin: 0 auto;
+}
+
+#user-login-form {
+    display: none;
+}
+
+.page-user-login .messages {
+    @extend .container;
+}

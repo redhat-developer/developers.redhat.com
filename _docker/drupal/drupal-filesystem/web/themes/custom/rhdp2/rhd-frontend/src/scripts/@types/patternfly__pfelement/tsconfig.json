@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "lib": [
+            "es6"
+        ],
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "baseUrl": "../",
+        "typeRoots": [
+            "../"
+        ],
+        "types": [],
+        "noEmit": true,
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@patternfly/pfelement/pfelement.umd": [
+                "patternfly__pfelement"
+            ]
+        }
+    },
+    "files": [
+        "index.d.ts"
+    ]
+}
