@@ -49,20 +49,21 @@ base-theme:
 rhdp-pfelement:
   header: true
   js:
-    js/pfelement.umd.min.js: { minified: true, preprocess: false }
+    js/pfelement/dist/pfelement.umd.min.js: { minified: true, preprocess: false }
 
 rhdp-web-components:
   js:
-    js/rhd/dp-alert.js: { minified: true, preprocess: false }
-    js/rhd/dp-referrer.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-thankyou-page.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
-    js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
-    js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
-    js/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
+    js/dp-alert.js: { minified: true, preprocess: false }
+    js/dp-referrer.js: { minified: true, preprocess: false }
+    js/rhdp-thankyou-page.js: { minified: true, preprocess: false }
+    js/rhdp-tryitnow.js: { minified: true, preprocess: false }
+    js/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
+    js/dp-search/dp-search.js: { minified: true, preprocess: false }
+    js/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
+    js/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
+    js/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
+    js/pfe-datetime/dist/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
+    js/pfe-tabs/dist/pfe-tabs.umd.js: { minified: true, preprocess: false }
 
 video_embed_field.responsive-video:
   css:
