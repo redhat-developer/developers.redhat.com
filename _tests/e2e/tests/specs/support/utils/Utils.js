@@ -20,6 +20,8 @@ class Utils {
             logoutLink = `https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`;
         } else {
             logoutLink = `https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=${encodedURL}`;
+            let migratedLogoutLink = `https://sso.stage.redhat.com/auth/realms/redhat-external/protocol/openid-connect/logout?redirect_uri=${encodedURL}`;
+            Driver.visit(migratedLogoutLink);
         }
 
         return Driver.visit(logoutLink);
