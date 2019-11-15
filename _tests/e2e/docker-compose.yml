@@ -3,7 +3,6 @@ services:
   drupal:
     build:
       context: .
-      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-drupal -- --base-url=$${RHD_BASE_URL}'
     user: "${DUID}:0"
     environment:
@@ -22,7 +21,6 @@ services:
   desktop:
     build:
       context: .
-      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-desktop -- --base-url=$${RHD_BASE_URL}'
     user: "${DUID}:0"
     environment:
@@ -42,7 +40,6 @@ services:
   mobile:
     build:
       context: .
-      dockerfile: Dockerfile.mp
     command: 'npm run e2e:ci-mobile -- --base-url=$${RHD_BASE_URL}'
     user: "${DUID}:0"
     environment:
