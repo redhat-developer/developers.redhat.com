@@ -23,28 +23,15 @@ stylesheets/foundation/normalize.css
 stylesheets/magula.css
 _wraith/shots
 _wraith/sitemap_tmp.txt
-_docker/searchisko/overlay/searchisko.sql.zip
-_docker/searchisko_configure/overlay/searchisko.sql.zip
-_docker/searchisko/overlay/searchisko_2.sql.zip
-_docker/searchisko_configure/overlay/searchisko_2.sql.zip
-_docker/mysql/searchisko_mysql_data.tar.gz
-_docker/searchisko/searchisko_es_data.tar.gz
 *.orig
 
-# awestruct overlays
-_docker/awestruct/overlay/ssh-key/id*
-_docker/awestruct/overlay/ssh-key/known_hosts
 # Wes' front end deps for local dev
 node_modules/
 bower_components/
 components/*
 !components/rhdp*
 _gulp/
-_docker/awestruct/Gemfile
-_docker/awestruct/Gemfile.lock
-_docker/environments/drupal-pull-request/rhd.settings.yml
-_docker/environments/drupal-dev/drupal-logs
-_docker/drupal/prod_db.sql.gz
+
 prod_db.sql.gz*
 npm-debug.log
 
