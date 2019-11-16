@@ -1,4 +1,6 @@
 .rhd-c-card.comment-list {
+  height: auto;
+  padding-bottom: var(--pf-global--spacer--md);
   .rhd-c-card__title {
     font-size: var(--pf-global--FontSize--xl) !important;
     margin-bottom: var(--pf-global--spacer--md);
@@ -18,6 +20,11 @@
 
   &-content {
     margin-bottom: var(--pf-global--spacer--sm) !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
   }
 
   &-date {
