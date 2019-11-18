@@ -193,6 +193,11 @@ function rhdp_js_settings_alter(array &$settings, AttachedAssetsInterface $asset
   $rhd_settings['keycloak'] = [];
   $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
   $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
+  $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
+
+  $rhd_settings['swel'] = [];
+  $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
 
   $theme_path = drupal_get_path('theme', 'rhdp');
 
@@ -636,21 +641,21 @@ function rhdp_preprocess_field(&$variables, $hook) {
 /**
  * Returns a new random guid.
  */
-function createGUID() { 
-    
+function createGUID() {
+
   // Create a token
   $token      = $_SERVER['HTTP_HOST'];
   $token     .= $_SERVER['REQUEST_URI'];
   $token     .= uniqid(rand(), true);
-  
+
   // GUID is 128-bit hex
   $hash        = strtoupper(md5($token));
-  
+
   // Create formatted GUID
   $guid        = '';
-  
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
-  $guid .= substr($hash,  0,  8) . 
+
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
+  $guid .= substr($hash,  0,  8) .
        '-' .
        substr($hash,  8,  4) .
        '-' .
@@ -659,7 +664,7 @@ function createGUID() {
        substr($hash, 16,  4) .
        '-' .
        substr($hash, 20, 12);
-          
+
   return $guid;
 
 }
@@ -714,7 +719,7 @@ function rhdp_preprocess_assembly(&$variables) {
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
     $options = [];
-    
+
     if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
       $parent = $variables['elements']['#parent'];
       if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {

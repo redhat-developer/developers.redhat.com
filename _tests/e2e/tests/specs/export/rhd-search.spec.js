@@ -12,12 +12,6 @@ describe('Search Page', function() {
     // eslint-disable-next-line no-invalid-this
     this.retries(2);
 
-    before(function() {
-        if(global.mobileSuite === true) {
-            this.skip();
-        }
-    });
-
     it('should allow users to search for content via site-nav search field', () => {
         Home.open('/');
         NavigationBar.searchFor('hello world');

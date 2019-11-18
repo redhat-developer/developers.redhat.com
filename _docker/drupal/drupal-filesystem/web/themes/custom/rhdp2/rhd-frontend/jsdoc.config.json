@@ -1,0 +1,18 @@
+{
+    "plugins": ["plugins/markdown"],
+    "source": {
+        "include": ["src/scripts/js"],
+        "exclude": ["src/scripts/js/namespace.js"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "sourceType": "module",
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+    "opts": {
+        "destination": "docs/scripting",
+        "recurse": true
+    }
+}

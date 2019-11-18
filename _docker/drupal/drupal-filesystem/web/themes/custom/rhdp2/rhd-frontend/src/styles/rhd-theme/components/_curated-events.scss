@@ -1,0 +1,48 @@
+.rhd-c-curated-events {
+
+  &__item {
+    @extend .pf-u-pt-lg;
+    border-top: 2px dotted #D2D3D4;
+
+    p {
+      margin-bottom: var(--pf-c-content--MarginBottom);
+    }
+  }
+  
+  &__item-title {
+    @extend .pf-u-mb-0;
+  }
+
+  &__item-presenters {
+    @extend .pf-l-flex;
+
+    & > * {
+      margin-right: var(--pf-l-flex--spacer--lg);
+      margin-bottom: var(--pf-l-flex--spacer--md);
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+    }
+  }
+}
+
+// OTHER VISUAL STYLES
+.rhd-c-curated-events {
+  &.gray {
+    .rhd-c-curated-events__item {
+      border-top: 2px dotted #FFF;
+    }
+  }
+
+  &.dark {
+    p, small,
+    h2, h2.pf-c-title,
+    .rhd-c-author--tile-title,
+    .rhd-c-curated-events__item-title > a{
+      color: #FFF;
+    }
+  }
+}

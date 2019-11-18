@@ -1,0 +1,6 @@
+@mixin with-background-padding() {
+  padding-top: var(--rhd-theme--container-spacer-lg);
+  padding-bottom: var(--rhd-theme--container-spacer-lg);
+  margin-top: 0;
+  margin-bottom: 0;
+}

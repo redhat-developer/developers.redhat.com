@@ -1,0 +1,49 @@
+@import "../mixins";
+
+.rhd-jump-to-nav {
+  background-color: var(--pf-global--primary-color--100);
+  @include with-background-padding;
+  padding-right: var(--rhd-theme--container-spacer-lg);
+  padding-left: var(--rhd-theme--container-spacer-lg);
+  @media screen and (max-width: $pf-global--breakpoint--lg) {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-column-gap: var(--pf-global--spacer--lg);
+    grid-row-gap: var(--pf-global--spacer--lg);
+    text-align: center;
+  }
+  @media screen and (max-width: $pf-global--breakpoint--md) {
+    grid-template-columns: repeat(3, auto);
+  }
+  @media screen and (max-width: $pf-global--breakpoint--sm) {
+    display: none;
+  }
+}
+
+.rhd-jump-to-nav a {
+  color: var(--pf-global--Color--light-100);
+  margin-right: 2rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--pf-global--Color--light-100);
+    text-decoration: underline;
+    font-weight: var(--pf-global--FontWeight--bold);
+  }
+
+  @media screen and (max-width: $pf-global--breakpoint--lg) {
+    border: 1px solid var(--pf-global--Color--light-100);
+    font-size: var(--pf-global--FontSize--md);
+    padding: 6px 8px;
+    margin: 0;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: var(--pf-global--Color--light-100);
+      color: var(--rhd-c-button--m-secondary--Color);
+      text-decoration: none;
+    }
+  }
+}

@@ -12,7 +12,7 @@ services:
       - drupal-workspace:/drupal-workspace
 
   bootstrap_env:
-    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.1
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.3
     command: ["/bin/bash"]
     working_dir: "/ansible"
     user: root

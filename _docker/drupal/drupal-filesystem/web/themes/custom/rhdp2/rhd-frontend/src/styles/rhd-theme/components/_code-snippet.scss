@@ -1,0 +1,15 @@
+.assembly-type-code_snippet {
+  & .hljs {
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #0a0a0a;
+  }
+
+  /** Visual styles **/
+  &.no-padding-bottom {
+    margin-bottom: 0;
+  }
+  &.no-padding-top {
+    margin-top: 0;
+  }
+}
