@@ -49,22 +49,91 @@
 <div class="layout-container">
 
   <header role="banner">
-    <div class="rhd-masthead{{ nav_type }}">
-      {{ page.rh_universal_header }}
-      <div class="container">
-        <div class="rhd-masthead-inner">
-          {{ page.rhd_header }}
-          {{ page.mobile_tray }}
-          <div class="menu-toggle-wrapper">
-            <button class="menu-toggle">Menu<span class="icon"><i class="far fa-bars"></i></span></button>
-          </div>
+    <!-- START OF RH UNIVERSAL NAV -->
+    <div class="rhd-l-rh-universal">
+      <div class="pf-l-flex rhd-c-nav--rh-universal">
+        <div class="pf-l-flex pf-m-grow pf-u-align-self-center">
+          <nav class="pf-c-nav pf-m-start pf-m-end rhd-c-nav--rh-universal-links" aria-label="Local">
+            {{ universal_menu }}
+          </nav>
+        </div>
+        <div class="pf-l-flex rhd-c-nav--rh-universal-login">
+          <nav class="pf-c-nav" aria-label="Local">
+            <ul class="pf-c-nav__tertiary-list">
+              <li class="pf-c-nav__item pf-u-mr-0 login">
+                <a href="#" class="pf-c-nav__link">
+                  <span class="icon"><i class="fas fa-user"></i></span>Log In
+                </a>
+              </li>
+              <li class="pf-c-nav__item pf-u-mr-0 logged-in" style="display: none;">
+                <a href="#" class="pf-c-nav__link">
+                  <span class="icon"><i class="fas fa-user"></i></span><span class="logged-in-name"><span class="icon"><i class="fal fa-angle-down"></i></span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="#" class="account-info">Account Info</a>
+                  </li>
+                  <li>
+                    <a href="#" class="logout">Log Out</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
-      {{ page.rhd_post_header }}
     </div>
-  </header>
-  <div class="rhd-mobile-overlay"></div>
-  <div class="rhd-search-toggle-overlay"></div>
+    <!-- END OF RH UNIVERSAL NAV -->
+    <!-- START OF RHD  NAV -->
+    <div class="rhd-c-nav pf-l-flex">
+      <div class="pf-l-flex pf-m-grow">
+        <a href="{{ url('<front>') }}" class="pf-l-flex"><img class="pf-c-brand" src="{{ base_path ~ directory }}/logo.svg" alt="Red Hat Developer logo"></a>
+      </div>
+      <div class="pf-l-flex">
+        <nav class="pf-c-nav rhd-c-nav-desktop pf-u-mr-0" aria-label="Local">
+          {{ main_menu }}
+        </nav>
+        <!-- START OF MOBILE RHD NAV -->
+        <div class="rhd-c-nav-mobile">
+          <label for="toggle" class="hamburger">Menu <i class="far fa-bars"></i></label>
+          <input type="checkbox" id="toggle">
+          <nav class="mobile rhd-c-nav-dropdown">
+            {{ mobile_menu }}
+          </nav>
+        </div>
+        <!-- END OF MOBILE RHD NAV -->
+      </div>
+    </div>
+    <!-- END OF RHD NAV -->
+    <!-- START OF TOPICS NAV -->
+    <div class="pf-c-nav rhd-l-topics">
+      <button class="pf-c-nav__scroll-button" data-topics-scroll-left aria-label="Scroll left">
+        <i class="fas fa-angle-left" aria-hidden="true"></i>
+      </button>
+      <div class="pf-l-flex rhd-c-nav--topics-wrapper">
+        <div class="pf-l-flex pf-m-grow">
+          <nav class="pf-m-start pf-m-end rhd-c-nav--topics" aria-label="Local">
+            {{ topics_menu }}
+          </nav>
+        </div>
+        <div class="pf-l-flex all-topics-outer">
+          <nav class="pf-c-nav rhd-c-nav--topics" aria-label="Local">
+            <ul class="pf-c-nav__tertiary-list">
+              <li class="pf-c-nav__item pf-u-mr-0">
+                <a href="{{ base_path }}topics/" class="pf-c-nav__link">
+                  All topics <i class="fas fa-caret-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <button class="pf-c-nav__scroll-button" data-topics-scroll-right aria-label="Scroll right">
+        <i class="fas fa-angle-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <!-- END OF TOPICS NAV -->
+    </header>
 
   <main role="main" class="pf-c-content">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}

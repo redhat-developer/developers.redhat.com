@@ -30,30 +30,35 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('rhd-menu rhd-topic-nav') }}>
+      <ul{{ attributes.addClass('rhd-menu') }}>
     {% else %}
-      <ul class="rhd-menu rhd-topic-nav">
+      <ul class="rhd-menu">
     {% endif %}
     {% for item in items %}
       {%
         set classes = [
-          'menu-item',
+          'pf-c-nav__item',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
-          item.in_active_trail ? 'menu-item--active-trail',
+        ]
+      %}
+      {%
+        set link_classes = [
+          'pf-c-nav__link'
         ]
       %}
       <li{{ item.attributes.addClass(classes) }}>
-        {{ link(item.title, item.url) }}
+        {{ link(item.title, item.url, {'class': link_classes}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}
       </li>
     {% endfor %}
-      <li class="rhd-nav-all-topics"><a href="https://developers.redhat.com/blog/categories/">All Topics<span class="icon"><i class="fas fa-caret-right"></i></span></a></li>
+      <li class="pf-c-nav__item all-topics-inner">
+        <a href="{{ base_path }}/topics/" class="pf-c-nav__link">
+          All topics <i class="fas fa-caret-right"></i>
+        </a>
+      </li>
     </ul>
-    <button class="previous-arrow slider-arrow"><i class="far fa-chevron-left"></i></button>
-    <button class="next-arrow slider-arrow"><i class="far fa-chevron-right"></i></button>
-    <div class="rhd-nav-all-topics"><a href="https://developers.redhat.com/blog/categories/">All Topics<span class="icon"><i class="fas fa-caret-right"></i></span></a></div>
   {% endif %}
 {% endmacro %}

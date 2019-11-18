@@ -1,5 +1,10 @@
 /* PatternFly-specific styles/overrides */
 
+/* Global */
+a.pf-c-button:hover {
+  text-decoration: none;
+}
+
 /* This is necessary to have consistent column width with nested components */
 .component .component {
   padding: 16px 0;
@@ -256,7 +261,6 @@
 }
 
 /* Cheat Sheet and books */
-
 #rhd-cheat-sheet, #rhd-book {
   margin-bottom: 3em;
 }
@@ -450,7 +454,6 @@
 }
 
 /* Collection Assembly */
-
 .assembly-type-collection .rhd-c-card-grid {
   padding: 0 !important;
 }
@@ -463,7 +466,6 @@
 }
 
 /* Katacoda */
-
 .katacoda-courses .rhd-masthead .component {
   padding: 0 64px;
 }
@@ -477,6 +479,7 @@
     margin-right: 24px;
   }
 }
+
 .katacoda-courses-container.component {
   padding: var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl) var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl);
 }
@@ -570,7 +573,6 @@
 }
 
 /* Social icons */
-
 .author-social-icon-facebook {
   text-decoration: none;
   font-size: 21px;
@@ -580,7 +582,6 @@
 .author-social-icon-facebook svg path {
   fill: #3b5998;
 }
-
 .author-social-icon-twitter {
   text-decoration: none;
   font-size: 21px;
@@ -590,7 +591,6 @@
 .author-social-icon-twitter svg path {
   fill: #00aced;
 }
-
 .author-social-icon-youtube {
   text-decoration: none;
   font-size: 21px;
@@ -600,7 +600,6 @@
 .author-social-icon-youtube svg path {
   fill: #ff0000;
 }
-
 .author-social-icon-linkedin {
   text-decoration: none;
   font-size: 21px;
@@ -610,7 +609,6 @@
 .author-social-icon-linkedin svg path {
   fill: #0077B5;
 }
-
 .author-social-icon-github {
   text-decoration: none;
   font-size: 21px;
@@ -644,4 +642,17 @@
 }
 .assembly-type-cta_form.has-background {
   padding: 18px 24px 8px 24px;
+}
+
+/* Events Hero */
+.assembly-type-events_hero.has-sidebar .sidebar .rhd-c-events-hero__item-presenters,
+.assembly-type-events_hero.has-sidebar .sidebar .short-description {
+  display: none;
+}
+
+/* Curated Links */
+.assembly-type-curated_links.component .component {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
 }

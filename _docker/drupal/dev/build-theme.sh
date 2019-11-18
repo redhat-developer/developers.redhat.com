@@ -13,11 +13,7 @@ set +a
 
 cd "${FE_THEME_DIR}" \
 && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
-&& npm config set strict-ssl false \
-&& npm config set "@fortawesome:registry" https://npm.fontawesome.com/ \
-&& npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_LICENCE \
 && npm install \
-&& npm run-script styles \
 && npm run build \
 && cp dist/css-min/rhd.min.css "${DRUPAL_THEME_DIR}"/css/ \
 && cp dist/css-min/rhd.microsites.css "${DRUPAL_THEME_DIR}"/css/ \

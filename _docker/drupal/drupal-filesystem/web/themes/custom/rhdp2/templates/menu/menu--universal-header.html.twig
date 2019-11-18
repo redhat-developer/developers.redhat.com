@@ -24,28 +24,38 @@
   We call a macro which calls itself to render the full tree.
   @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0) }}
+{{ menus.menu_links(items, attributes, 0, theme_path) }}
 
-{% macro menu_links(items, attributes, menu_level) %}
+{% macro menu_links(items, attributes, menu_level, theme_path) %}
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('rhd-menu rh-nav-universal-list') }}>
+      <ul{{ attributes.addClass('rhd-menu') }}>
     {% else %}
-      <ul class="rhd-menu rh-nav-universal-list">
+      <ul class="rhd-menu">
     {% endif %}
+      <li class="pf-c-nav__item">
+        <a href="https://www.redhat.com" class="pf-c-nav__link">
+          <img class="pf-c-brand" alt="Red Hat Logo" src="{{ theme_path }}/images/branding/RHLogo_white.svg">
+        </a>
+      </li>
     {% for item in items %}
       {%
         set classes = [
-          'menu-item',
-          'rh-nav-universal-link',
+          'pf-c-nav__item',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
-          item.in_active_trail ? 'menu-item--active-trail',
+          item.in_active_trail ? 'pf-m-current',
+        ]
+      %}
+      {%
+        set link_classes = [
+          'pf-c-nav__link',
+          item.title|lower == 'developer' ? 'pf-m-current',
         ]
       %}
       <li{{ item.attributes.addClass(classes) }}>
-        {{ link(item.title, item.url) }}
+        {{ link(item.title, item.url, {'class': link_classes}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}

@@ -19,7 +19,7 @@
   'component',
 ]%}
 <section{{ attributes.addClass(classes) }}{{ audience_selection }}>
-  {% if content.field_title is not empty %}
+  {% if content.field_title|render %}
     <div class="pf-l-flex">
       <h1>{{ content.field_title }}</h1>
     </div>
@@ -33,7 +33,7 @@
     {% endfor %}
   </div>
 
-  {% if content.field_cta_link is not empty %}
+  {% if content.field_cta_link|render %}
     <div class="pf-l-flex">
       {{ content.field_cta_link }}
     </div>
