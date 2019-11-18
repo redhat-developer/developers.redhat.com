@@ -21,8 +21,10 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_tax_stage
     - field.field.node.katacoda_individual_lesson.field_topics
     - node.type.katacoda_individual_lesson
+    - workflows.workflow.00c7e3ae
   module:
     - compose
+    - content_moderation
     - field_group
     - field_layout
     - path
@@ -189,11 +191,9 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    type: string_textfield
+    type: moderation_state_default
     weight: 9
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     region: settings
     third_party_settings: {  }
   path:
