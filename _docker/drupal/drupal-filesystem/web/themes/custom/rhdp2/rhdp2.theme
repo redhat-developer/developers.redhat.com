@@ -659,6 +659,9 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
   $rhd_settings['swel'] = [];
   $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
 
+  $rhd_settings['fusion'] = [];
+  $rhd_settings['fusion']['url'] = $env_settings->get('fusion')['url'];
+
   $theme_path = drupal_get_path('theme', 'rhdp2');
 
   $rhd_settings['templates'] = [];
