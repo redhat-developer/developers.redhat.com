@@ -22,6 +22,7 @@ $config['redhat_developers']['keycloak']['accountUrl'] = 'https://sso.stage.redh
 $config['redhat_developers']['keycloak']['authUrl'] = 'https://sso.stage.redhat.com/auth/';
 $config['redhat_developers']['keycloak']['client_id'] = 'rhd-web';
 $config['redhat_developers']['keycloak']['realm'] = 'redhat-external';
+$config['redhat_developers']['keycloak']['scriptUrl'] = 'https://sso.stage.redhat.com/auth/js/keycloak.js';
 $config['redhat_developers']['drupal']['host'] = 'https://developers.stage.redhat.com';
 $config['redhat_developers']['searchisko']['protocol'] = 'https';
 $config['redhat_developers']['searchisko']['host'] = 'dcp.stage.jboss.org';
@@ -35,7 +36,7 @@ $config['redhat_developers']['fusion']['url'] = 'https://api.developers.stage.re
     SSO Integration for Content Editor Authentication
 */
 $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = 'https://developers.stage.redhat.com/openid-connect/keycloak';
-$config["openid_connect.settings.keycloak"]["settings"]["client_id"] = '{{ drupal_content_editor_sso_client_id }}';
+$config["openid_connect.settings.keycloak"]["settings"]["client_id"] = 'rhd-web-cms';
 $config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = '{{ drupal_content_editor_sso_client_secret }}';
 $config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://sso.stage.redhat.com/auth';
 $config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'redhat-external';
