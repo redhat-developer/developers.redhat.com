@@ -12,18 +12,31 @@ label: 'Import authors from Wordpress SQL'
 source:
   plugin: wordpress_author
 process:
-  title:
+  title: author_display_name
+  'body/format':
     -
-      plugin: get
-      source: author_login
-  body:
-    -
-      plugin: get
-      source: author_bio
+      plugin: default_value
+      default_value: full_html
+  'body/value': author_bio
+  field_linkedin: author_linkedin
+  field_twitter: author_twitter
+  field_github: author_github
+  field_facebook: author_facebook
+  field_position_title: author_title
+  field_youtube: author_youtube
   type:
     -
       plugin: default_value
       default_value: author
+  status:
+    -
+      plugin: default_value
+      default_value: 1
+  'path/pathauto':
+    -
+      plugin: default_value
+      default_value: 0
+  'path/alias': author_url_alias
 destination:
   plugin: 'entity:node'
 migration_dependencies: null

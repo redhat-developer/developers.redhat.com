@@ -7,4 +7,6 @@ label: 'RHDP Wordpress'
 description: 'A container for migrations from the RHDP Wordpress site'
 source_type: WordPress
 module: null
-shared_configuration: null
+shared_configuration:
+  source:
+    key: wp
