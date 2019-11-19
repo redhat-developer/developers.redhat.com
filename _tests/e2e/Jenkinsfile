@@ -1,0 +1,128 @@
+@Library('RedHatDevelopersPipelineUtils')
+import com.redhat.developer.pr.*
+
+properties ([
+        parameters([
+                string(name: 'PULL_REQUEST_ID', description: 'The id of the pull request to run the tests for.', defaultValue: ''),
+                string(name: 'PULL_REQUEST_SHA', description: 'The SHA of the commit that should be used to clone the pull request repository.', defaultValue: '')
+        ])
+])
+
+/*
+    Ensures that the workspace and any containers are properly cleaned up before we start and after we complete a test run.
+ */
+def clean() {
+    sh 'rm -rf tmp_downloads report'
+    sh 'docker-compose down -v --remove-orphans --rmi local'
+}
+
+/*
+    Some environment variables to support the tests.
+ */
+def testBaseDockerImage = 'images.paas.redhat.com/rhdp/developer-testing-base:e2e'
+def urlToTest = "https://developer-preview-${params.PULL_REQUEST_ID}.ext.us-west.dc.preprod.paas.redhat.com"
+def composeProjectName = "e2e${params.PULL_REQUEST_ID}"
+def testsFailed = false
+
+if(!params.PULL_REQUEST_ID) {
+    error "The PULL_REQUEST_ID parameter must be set."
+}
+
+if(!params.PULL_REQUEST_SHA) {
+    error "The SHA at which to run the tests must be set."
+}
+
+node('developer-docker') {
+
+    echo "Executing e2e tests for pull request '${params.PULL_REQUEST_ID}' using SHA '${params.PULL_REQUEST_SHA}'. The tests will execute against: '${urlToTest}'."
+
+    timeout(60) {
+
+        def pullRequest
+
+        withCredentials([usernamePassword(credentialsId: 'redhat-developer-ci-github-api-token', passwordVariable: 'GITHUB_API_TOKEN', usernameVariable: 'GITHUB_USERNAME')]) {
+            pullRequest = continuePullRequest(gitApiToken: "${GITHUB_API_TOKEN}", gitRepository: 'https://github.com/redhat-developer/developers.redhat.com', pullRequestId: params.PULL_REQUEST_ID)
+
+            if(pullRequest.branchSha != params.PULL_REQUEST_SHA) {
+                error "The tip of the branch for pull request '${params.PULL_REQUEST_ID}' is now at SHA '${pullRequest.branchSha}', but you are requesting to use SHA '${params.PULL_REQUEST_SHA}'. You're out of date!"
+            }
+        }
+
+        stage('Checkout SCM') {
+            checkout scm
+        }
+
+        dir('_tests/e2e') {
+
+            def uid = sh (
+                    script: 'id -u',
+                    returnStdout: true
+            ).trim()
+
+            def testEnv = [
+                    "COMPOSE_PROJECT_NAME=${composeProjectName}",
+                    "DUID=${uid}",
+                    "RHD_BASE_URL=${urlToTest}"
+            ]
+
+            withEnv(testEnv) {
+
+                try {
+                    stage('Build Docker Images') {
+                        clean()
+                        sh 'mkdir tmp_downloads report && chmod -R 777 tmp_downloads'
+                        sh "docker pull ${testBaseDockerImage}"
+                        sh 'docker-compose build'
+                        sh 'docker-compose up -d chrome'
+                    }
+
+                    def credentials = [
+                            usernamePassword(credentialsId: 'e2e-website-user-credentials', passwordVariable: 'RHD_KEYCLOAK_ADMIN_PASSWORD', usernameVariable: 'RHD_KEYCLOAK_ADMIN_USERNAME'),
+                            usernamePassword(credentialsId: 'e2e-drupal-user-credentials', passwordVariable: 'RHD_DRUPAL_ADMIN_PASSWORD', usernameVariable: 'RHD_DRUPAL_ADMIN_USERNAME')
+                    ]
+
+                    withCredentials(credentials) {
+
+                        def testToStatusMapping = [
+                                desktop: "js-e2e-tests",
+                                mobile: "js-mobile-e2e-tests",
+                                drupal: "js-drupal-e2e-tests"
+                        ]
+
+                        testToStatusMapping.each({ test, status ->
+
+                            def prStatus = pullRequest.statuses[status]
+
+                            echo "Running '${test}' tests and reporting results to status '${status}'..."
+
+                            if(prStatus) {
+
+                                def targetUrl = "${env.BUILD_URL}/artifact/report/${test}-report/index.html"
+
+                                try {
+                                    forStatus(status: prStatus, failureUrl: targetUrl, successUrl: targetUrl) {
+                                        sh "docker-compose run --rm ${test}"
+                                    }
+                                } catch(e) {
+                                    echo "Execution of tests '${test}' failed: ${e}"
+                                    testsFailed = true
+                                }
+                            } else {
+                                echo "Cannot locate required status check '${status}' on pull request '${params.PULL_REQUEST_ID}' at SHA '${params.PULL_REQUEST_SHA}'. Failing tests."
+                                testsFailed = true
+                            }
+                        })
+                    }
+
+                } finally {
+                    archiveArtifacts artifacts: 'report/**', fingerprint: false, allowEmptyArchive: true
+                    clean()
+
+                    if(testsFailed) {
+                        currentBuild.result = "FAILURE"
+                    }
+                }
+            }
+        }
+    }
+}
