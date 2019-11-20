@@ -13,11 +13,11 @@ source:
   plugin: wordpress_author
 process:
   title: author_display_name
-  'body/format':
+  body/format:
     -
       plugin: default_value
       default_value: full_html
-  'body/value': author_bio
+  body/value: author_bio
   field_linkedin: author_linkedin
   field_twitter: author_twitter
   field_github: author_github
@@ -32,11 +32,11 @@ process:
     -
       plugin: default_value
       default_value: 1
-  'path/pathauto':
+  path/pathauto:
     -
       plugin: default_value
       default_value: 0
-  'path/alias': author_url_alias
+  path/alias: author_url_alias
 destination:
   plugin: 'entity:node'
 migration_dependencies: null

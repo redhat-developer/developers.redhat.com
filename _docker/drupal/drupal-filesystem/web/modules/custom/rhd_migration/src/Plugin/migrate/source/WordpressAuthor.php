@@ -67,6 +67,9 @@ class WordpressAuthor extends WpSqlBase {
     $fname = $row->getSourceProperty('author_first_name');
     $lname = $row->getSourceProperty('author_last_name');
     $display_name = implode(' ', [$fname, $lname]);
+    if (!strlen(trim($display_name))) {
+      $display_name = $row->getSourceProperty('author_login');
+    }
     $row->setSourceProperty('author_display_name', $display_name);
     $row->setSourceProperty('author_url_alias', '/blog/author/' . $row->getSourceProperty('author_login'));
   }

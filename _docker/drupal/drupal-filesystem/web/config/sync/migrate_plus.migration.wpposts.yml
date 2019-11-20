@@ -17,16 +17,16 @@ process:
     -
       plugin: default_value
       default_value: article
-  'path/pathauto':
+  path/pathauto:
     -
       plugin: default_value
       default_value: 0
-  'path/alias': post_url
+  path/alias: post_url
   status:
     -
       plugin: default_value
       default_value: 1
-  moderation_state: post_status 
+  moderation_state: post_status
   created:
     -
       plugin: callback
@@ -37,13 +37,23 @@ process:
       plugin: callback
       callable: date_to_timestamp
       source: post_changed
-  'body/format':
+  body/format:
     -
       plugin: default_value
       default_value: full_html
-  'body/value': post_content   
+  body/value: post_content
+  field_topics:
+    -
+      plugin: find_terms
+      source: post_topics
+  field_tags:
+    -
+      plugin: find_terms
+      source: post_tags
+  field_short_description/value: post_short_desc
 destination:
   plugin: 'entity:node'
 migration_dependencies:
   optional:
-   - wpauthors
+    - wpauthors
+    - wpterms

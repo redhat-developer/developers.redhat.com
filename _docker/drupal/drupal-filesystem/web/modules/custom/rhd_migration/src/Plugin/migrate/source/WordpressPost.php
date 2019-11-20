@@ -28,6 +28,16 @@ class WordpressPost extends WpSqlBase {
     $query->addField('posts', 'post_name', 'post_url_fragment');
     $query->addField('posts', 'post_content');
     $query->addField('posts', 'post_title');
+
+    $meta = [
+      'post_short_desc' => '_yoast_wpseo_metadesc',
+    ];
+    foreach ($meta as $field => $meta_key) {
+      $join_condition = 'posts.ID = ' . $field . '.post_id and ' . $field . '.meta_key = \'' . $meta_key . '\'';
+      $query->leftJoin('wp_postmeta', $field, $join_condition);
+      $query->addField($field, 'meta_value', $field);
+    }
+
     return $query;
   }
 
@@ -41,6 +51,9 @@ class WordpressPost extends WpSqlBase {
       'post_content' => $this->t('Content'),
       'post_title' => $this->t('Title'),
       'post_url' => $this->t('URL'),
+      'post_tags' => $this->t('Post Tags'),
+      'post_topics' => $this->t('Post Topics'),
+      'post_short_desc' => $this->t('Post Short Description')
     ];
   }
 
@@ -71,7 +84,39 @@ class WordpressPost extends WpSqlBase {
         $row->setSourceProperty('post_status', 'draft');
         break;
     }
-    kint($row);
+
+    // Get terms and tags. Easier to do here than messing with
+    // subqueries and expressions in query().
+    $db = Database::getConnection('default', 'wp');
+    $query = $db->select('wp_posts', 'wpp');
+    $query->leftJoin('wp_term_relationships', 'wptr', 'wpp.ID = wptr.object_id');
+    $query->leftJoin('wp_terms', 'wpt', 'wptr.term_taxonomy_id = wpt.term_id');
+    $query->leftJoin('wp_term_taxonomy', 'wptt', 'wpt.term_id = wptt.term_taxonomy_id');
+    $query->addField('wpt', 'name');
+    $query->condition('wptt.taxonomy', 'post_tag');
+    $query->condition('wpp.ID', $row->getSourceProperty('ID'));
+    $results = $query->execute();
+    $terms = [];
+    foreach ($results as $result){
+      $terms[] = $result->name;  
+    }
+    $terms = implode(',', $terms);
+    $row->setSourceProperty('post_tags', 'tags|' . $terms);
+
+    $query = $db->select('wp_posts', 'wpp');
+    $query->leftJoin('wp_term_relationships', 'wptr', 'wpp.ID = wptr.object_id');
+    $query->leftJoin('wp_terms', 'wpt', 'wptr.term_taxonomy_id = wpt.term_id');
+    $query->leftJoin('wp_term_taxonomy', 'wptt', 'wpt.term_id = wptt.term_taxonomy_id');
+    $query->addField('wpt', 'name');
+    $query->condition('wptt.taxonomy', 'category');
+    $query->condition('wpp.ID', $row->getSourceProperty('ID'));
+    $results = $query->execute();
+    $terms = [];
+    foreach ($results as $result){
+      $terms[] = $result->name;  
+    }
+    $terms = implode(',', $terms);
+    $row->setSourceProperty('post_topics', 'topics|' . $terms);
   }
 
   public function getIds() {
