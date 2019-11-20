@@ -81,6 +81,25 @@
     border-top: var(--rhd-theme--border-width-md) solid #ededed;
     margin: var(--pf-global--spacer--sm) 0; // 8px 0
   }
+  .rhd-c-card-blur-image {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    img.image-style-static-item {
+      filter: blur(16px);
+      -webkit-filter: blur(16px);
+      max-height: 200px;
+      width: 100%;
+      object-fit: fill;
+    }
+  }
+  img.image-style-static-item {
+    position: relative;
+    max-height: 200px;
+    object-fit: contain;
+    width: 100%;
+  }
   .rhd-c-card__title + hr {
     margin-top: 0 !important; 
     margin-bottom: 0 !important; 

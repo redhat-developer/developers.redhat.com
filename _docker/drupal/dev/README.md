@@ -11,6 +11,53 @@ In particular this directory provides you with:
 
 ### Before you start
 
+#### Ensure you can connect to the Red Hat VPN
+
+We rely upon internal services for our local development experience. You therefore need to ensure that:
+
+* You can connect to the Red Hat VPN
+* Your connection remains open during your development cycles
+
+If you cannot connect the Red Hat VPN, please talk to one of the RHDP team members who can point you in the correct direction. 
+
+#### Trust the Red Hat Certificate Authority
+
+Many of the services that we utilise internally use the Red Hat Certificate Authority to sign their certificates. Unless you're using a Red Hat IT
+provisioned machine, it is highly likely that your machine will not trust these by default. You therefore need to update your machine to trust the 
+internal CA authority. Use the following instructions depending on your OS:
+
+* [Fedora/RHEL/Centos](https://mojo.redhat.com/docs/DOC-1044614)
+* [Ubuntu/Other Unix variants](https://superuser.com/questions/437330/how-do-you-add-a-certificate-authority-ca-to-ubuntu) - in combination with the above will probably get you what you need
+* [MacOS](https://mojo.redhat.com/docs/DOC-1052618)
+
+To test that your machine is trusting the Red Hat CA, use the following command:
+
+```shell script
+curl https://repository.engineering.redhat.com/
+```
+
+This should complete without any warnings about SSL certificates.
+
+#### Verify Docker VPN Connectivity
+
+Some users have reported problems with their Docker containers not being able to resolve hosts that are internal to Red Hat when
+connected to the Red Hat VPN. This primarily seems to impact Ubuntu users.
+
+To verify that Docker is working correctly with your VPN connection:
+
+* Ensure you are connected to the Red Hat VPN
+* Run the following:
+
+```shell script
+docker run --rm centos:latest /bin/bash -c "curl -k https://repository.engineering.redhat.com" 
+``` 
+
+If the above command fails with an error like `curl: (6) Could not resolve host: repository.engineering.redhat.com` then you need
+to update your Docker DNS settings. The following should help:
+
+* https://blog.dlecan.com/how-to-configure-docker-dns-on-ubuntu-in-a-corporate-environment/
+
+
 #### Provide registry.redhat.io login details
 
 The local development environment requires some Docker images from registry.redhat.io. To be able to pull these images, you need to provide your
@@ -19,7 +66,6 @@ user account details for this registry.
 To do that, firstly visit registry.redhat.io and ensure that you can log in (you should be able to log in with your Red Hat Developer account)
 
 Next copy `local-config.sh.example` to `local-config.sh` and provide the values for your username and password, of you have a no exipre login cert you can change REGISTRY_REDHAT_IO_SKIP_LOGIN to true then the script will not attempt to login first. `local-config.sh` should not be committed to Git and is already set to be ignored.
-
 
 #### Install mkcert
 
@@ -49,16 +95,6 @@ is adding the following to your `$HOME/.bashrc` file:
 ```shell script
 export DUID=$(id -u)
 ```
-
-#### Providing the FontAwesome Licence
-
-As a temporary measure, you need to provide the fontawesome licence key as part of the local Drupal build. To do this please set the value
-of `FONT_AWESOME_LICENCE` in your `local-config.sh` properties file.
-
-Please speak with any member of the RHDP team to get access to the licence key.
-
-This functionality will be deprecated once our redhatstatic.com CDN is available.
-
 ### Running `composer update`
 
 Ideally when we're updating the dependencies for the project through `composer`, they should be updated in an environment that matches
