@@ -19,8 +19,11 @@
             }
           }
           &.rhd-c-card {
-            width: 33.3%;
+            width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
             margin: 0 var(--rhd-theme--container-spacer-lg) var(--rhd-theme--container-spacer-md) 0;
+            @media screen and (max-width: $pf-global--breakpoint--lg) {
+              width: calc(50% - var(--rhd-theme--container-spacer-lg));
+            }
             @media screen and (max-width: $pf-global--breakpoint--md) {
               width: 100%;
               margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
@@ -43,9 +46,9 @@
               }
             }
             &.rhd-c-card {
-              width: 25%;
+              width: calc(25% - var(--rhd-theme--container-spacer-lg));
               @media screen and (max-width: $pf-global--breakpoint--lg) {
-                width: 50%;
+                width: calc(50% - var(--rhd-theme--container-spacer-lg));
               }
               @media screen and (max-width: $pf-global--breakpoint--md) {
                 width: 100%;
