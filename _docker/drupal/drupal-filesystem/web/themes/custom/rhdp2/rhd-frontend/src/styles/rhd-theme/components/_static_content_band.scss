@@ -2,14 +2,16 @@
   &.assembly-type-static_content_band {
     > .pf-l-flex {
       &.rhd-c-card-grid__wrapper {
-        justify-content: space-between;
+        justify-content: flex-start;
         .assembly {
           &.pf-l-flex {
             max-width: initial;
-            width: calc(33.3% - var(--rhd-theme--container-spacer-md));
+            width: 33.3%;
+            padding-right: var(--rhd-theme--container-spacer-lg);
             margin: 0;
             @media screen and (max-width: $pf-global--breakpoint--md) {
               width: 100%;
+              padding-right: 0;
             }
             .rhd-c-card {
               width: 100%;
@@ -17,10 +19,11 @@
             }
           }
           &.rhd-c-card {
-            width: calc(33.3% - var(--rhd-theme--container-spacer-md));
-            margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
+            width: 33.3%;
+            margin: 0 var(--rhd-theme--container-spacer-lg) var(--rhd-theme--container-spacer-md) 0;
             @media screen and (max-width: $pf-global--breakpoint--md) {
               width: 100%;
+              margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
             }
           }
         }
@@ -31,18 +34,18 @@
         &.rhd-c-card-grid__wrapper {
           .assembly {
             &.pf-l-flex {
-              width: calc(25% - var(--rhd-theme--container-spacer-md));
+              width: 25%;
               @media screen and (max-width: $pf-global--breakpoint--lg) {
-                width: calc(50% - var(--rhd-theme--container-spacer-md));
+                width: 50%;
               }
               @media screen and (max-width: $pf-global--breakpoint--md) {
                 width: 100%;
               }
             }
             &.rhd-c-card {
-              width: calc(25% - var(--rhd-theme--container-spacer-md));
+              width: 25%;
               @media screen and (max-width: $pf-global--breakpoint--lg) {
-                width: calc(50% - var(--rhd-theme--container-spacer-md));
+                width: 50%;
               }
               @media screen and (max-width: $pf-global--breakpoint--md) {
                 width: 100%;
@@ -55,21 +58,21 @@
     &.left {
       > .pf-l-flex {
         &.rhd-c-card-grid__wrapper {
-          
+          justify-content: flex-start;
         }
       }
     }
     &.centered {
       > .pf-l-flex {
         &.rhd-c-card-grid__wrapper {
-          
+          justify-content: center;
         }
       }
     }
     &.right {
       > .pf-l-flex {
         &.rhd-c-card-grid__wrapper {
-          
+          justify-content: flex-end;
         }
       }
     }
