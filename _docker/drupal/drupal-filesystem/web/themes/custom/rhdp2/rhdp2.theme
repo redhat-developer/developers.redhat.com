@@ -490,6 +490,9 @@ function rhdp2_preprocess_assembly(&$variables) {
             if (in_array($style['value'], ['overlabel'])) {
               $options['class'][] = 'overlabel';
             }
+            if (in_array($style['value'], ['two-column'])) {
+              $options['class'][] = 'two-column';
+            }
           }
         }
       }
