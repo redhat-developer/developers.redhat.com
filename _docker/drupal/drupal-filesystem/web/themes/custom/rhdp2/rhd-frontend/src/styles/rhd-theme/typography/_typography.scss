@@ -21,7 +21,7 @@
 
 h1,
 .pf-c-content h1,
-.pf-c-title.pf-m-3xl {
+h1.pf-c-title, .pf-m-3xl {
   font-family: $rhd-font-stack-display;
   font-size: 32px;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
@@ -37,7 +37,7 @@ h1,
 
 h2,
 .pf-c-content h2,
-.pf-c-title.pf-m-2xl {
+h2.pf-c-title, .pf-m-2xl {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 28px;
@@ -53,7 +53,7 @@ h2,
 
 h3,
 .pf-c-content h3,
-.pf-c-title.pf-m-xl {
+h3.pf-c-title, .pf-m-xl {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 24px;
@@ -69,7 +69,7 @@ h3,
 
 h4,
 .pf-c-content h4,
-.pf-c-title.pf-m-lg {
+h4.pf-c-title, .pf-m-lg {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 20px;
