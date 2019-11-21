@@ -4,7 +4,7 @@
       &.rhd-c-card-grid__wrapper {
         justify-content: flex-start;
         .assembly {
-          &.pf-l-flex {
+          &.pf-l-flex, &.assembly-type-node_reference {
             max-width: initial;
             width: 33.3%;
             padding-right: var(--rhd-theme--container-spacer-lg);
@@ -36,7 +36,7 @@
       > .pf-l-flex {
         &.rhd-c-card-grid__wrapper {
           .assembly {
-            &.pf-l-flex {
+            &.pf-l-flex, &.assembly-type-node_reference {
               width: 25%;
               @media screen and (max-width: $pf-global--breakpoint--lg) {
                 width: 50%;
