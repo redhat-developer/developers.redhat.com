@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10d7a48bea632bc24366ba896f1c6364",
+    "content-hash": "c2ace0cb615379b97ae6b7e22a94d47f",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -3062,11 +3062,14 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0-rc2",
-                    "datestamp": "1517332380",
+                    "datestamp": "1569617285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Check user status": "https://www.drupal.org/files/issues/2019-08-29/content_moderation_notifications-check_user_status-3078110-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3086,7 +3089,7 @@
             "description": "Manage notifications for content moderation transitions.",
             "homepage": "https://www.drupal.org/project/content_moderation_notifications",
             "support": {
-                "source": "http://cgit.drupalcode.org/content_moderation_notifications",
+                "source": "https://git.drupalcode.org/project/content_moderation_notifications",
                 "issues": "https://www.drupal.org/project/issues/content_moderation_notifications"
             }
         },
