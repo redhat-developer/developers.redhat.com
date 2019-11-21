@@ -30,9 +30,17 @@
   {% import _self as menus %}
   <ul class="pf-c-dropdown__menu" aria-labelledby="dropdown-navigation-menu">
     <li class="pf-u-display-flex pf-u-justify-content-space-between pf-u-px-md login">
-      <div>
+      <ul>
+      <li class="login">
         <a href=""><i class="fas fa-user"></i> Login</a>
-      </div>
+      </li>
+      <li class="logged-in" style="display: none;">
+        <a href="">
+          <span class="icon"><i class="fas fa-user"></i></span>
+          <span class="logged-in-name"></span>
+        </a>
+      </li>
+      </ul>
       <div>
         <label for="toggle" class="hamburger">Close <i class="fal fa-times-circle"></i></label>
       </div>

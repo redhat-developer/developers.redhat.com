@@ -30,8 +30,10 @@ dependencies:
     - field.field.node.cheat_sheet.field_tax_stage
     - field.field.node.cheat_sheet.field_topics
     - node.type.cheat_sheet
+    - workflows.workflow.00c7e3ae
   module:
     - compose
+    - content_moderation
     - entity_browser
     - field_group
     - field_layout
@@ -280,11 +282,9 @@ content:
     third_party_settings: {  }
   moderation_state:
     weight: 21
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: moderation_state_default
     region: settings
   path:
     type: path

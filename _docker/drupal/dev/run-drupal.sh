@@ -21,7 +21,9 @@ source "${DIR}"/local-config.sh
 set +a
 
 # Login to required registries and pull required images
-docker login registry.redhat.io -u "${REGISTRY_REDHAT_IO_USERNAME}" -p "${REGISTRY_REDHAT_IO_PASSWORD}"
+if [[ $REGISTRY_REDHAT_IO_SKIP_LOGIN != true ]]; then
+  docker login registry.redhat.io -u "${REGISTRY_REDHAT_IO_USERNAME}" -p "${REGISTRY_REDHAT_IO_PASSWORD}"
+fi
 docker pull docker-registry.upshift.redhat.com/developers/drupal-data:latest
 docker pull images.paas.redhat.com/rhdp/developer-base:rhel-76.3
 

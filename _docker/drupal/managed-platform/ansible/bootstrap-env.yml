@@ -165,14 +165,6 @@
         mode: 0770
         force: no
 
-    - name: Template phinx.yml for mounting into Drupal
-      template:
-        src: 'templates/{{ rhdp_environment }}/drupal/phinx.yml.j2'
-        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/phinx.yml'
-        group: 'root'
-        mode: 0770
-        force: no
-
     - name: Template drupal.conf for mounting into Drupal
       template:
         src: 'templates/common/apache/drupal.conf.j2'

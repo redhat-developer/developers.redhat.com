@@ -17,14 +17,18 @@ $config['redhat_developers']['rhd_base_url'] = 'localhost';
 $config['redhat_developers']['rhd_final_base_url'] = 'localhost';
 $config['redhat_developers']['downloadManager']['baseUrl'] = 'https://developers.stage.redhat.com';
 $config['redhat_developers']['downloadManager']['fileBaseUrl'] = '//developers.stage.redhat.com/download-manager/file/';
-$config['redhat_developers']['keycloak']['accountUrl'] = 'https://developers.stage.redhat.com/auth/realms/rhd/account/';
-$config['redhat_developers']['keycloak']['authUrl'] = 'https://developers.stage.redhat.com/auth/';
+$config['redhat_developers']['keycloak']['accountUrl'] = 'https://sso.qa.redhat.com/auth/realms/redhat-external/account/';
+$config['redhat_developers']['keycloak']['authUrl'] = 'https://sso.qa.redhat.com/auth/';
+$config['redhat_developers']['keycloak']['client_id'] = 'rhd-web';
+$config['redhat_developers']['keycloak']['realm'] = 'redhat-external';
 $config['redhat_developers']['drupal']['host'] = 'https://localhost';
 $config['redhat_developers']['searchisko']['protocol'] = 'https';
 $config['redhat_developers']['searchisko']['host'] = 'dcp.stage.jboss.org';
 $config['redhat_developers']['searchisko']['port'] = '443';
 $config['redhat_developers']['searchisko']['baseProtocolRelativeUrl'] = 'dcp.stage.jboss.org:443';
 $config['redhat_developers']['cache']['engine'] = 'database';
+$config['redhat_developers']['swel']['url'] = 'https://mwes-swel-service-qa.ext.us-west.dc.preprod.paas.redhat.com/swel';
+$config['redhat_developers']['fusion']['url'] = 'https://api.developers.stage.redhat.com/search';
 
 /**
     SSO Integration for Content Editor Authentication
@@ -32,11 +36,11 @@ $config['redhat_developers']['cache']['engine'] = 'database';
 $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = 'https://localhost/openid-connect/keycloak';
 $config["openid_connect.settings.keycloak"]["settings"]["client_id"] = '{{ drupal_content_editor_sso_client_id }}';
 $config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = '{{ drupal_content_editor_sso_client_secret }}';
-$config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://developers.stage.redhat.com/auth';
-$config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'rhd';
-$config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/auth';
-$config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/token';
-$config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = 'https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://sso.qa.redhat.com/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'redhat-external';
+$config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = 'https://sso.qa.redhat.com/auth/realms/redhat-external/protocol/openid-connect/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = 'https://sso.qa.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token';
+$config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = 'https://sso.qa.redhat.com/auth/realms/redhat-external/protocol/openid-connect/userinfo';
 
 
 /**
