@@ -1,12 +1,6 @@
-# DevOps
-_lib                                            @robpblake @lightguard
-_docker/*                                       @robpblake @lightguard  # More specific rules will override these
-
 # Drupal
-_docker/drupal/drupal-filesystem/*              @lightgaurd @jordanpagewhite
+_docker/drupal/drupal-filesystem/*              @jordanpagewhite
+_docker/drupal/managed-platform/*              @robpblake
 
 # Tests
 _tests/*                                        @robpblake
-
-# Front-end
-_docker/drupal/drupal-filesystem/web/themes/*   @KamiQuasi @adelasofia @lightgaurd @jordanpagewhite
