@@ -38,9 +38,9 @@ categories: ["page_example"]
     <div class="pf-l-grid pf-m-gutter pf-u-pt-lg pf-u-pb-lg">
       <div class="pf-l-grid__item">
         <div class="rich-text-content pf-c-content">
-          <h2 class="pf-c-title pf-m-3xl">Introduction to Istio Service Mesh</h2>
+          <h2 class="pf-c-title">Introduction to Istio Service Mesh</h2>
           <p>A service mesh provides traffic monitoring, access control, discovery, security, resiliency, and other useful things to a group of services. Istio does all that, but it doesn't require any changes to the code of any of those services. To make the magic happen, Istio deploys a proxy (called a sidecar) next to each service. All of the traffic meant for a service goes to the proxy, which uses policies to decide how, when, or if that traffic should go on to the service. Istio also enables sophisticated DevOps techniques such as canary deployments, circuit breakers, fault injection, and more.</p>
-          <h3 class="pf-c-title pf-m-2xl">How Istio Works with Containers and Kubernetes</h3>
+          <h3 class="pf-c-title">How Istio Works with Containers and Kubernetes</h3>
           <p>Istio service mesh is a sidecar container implementation of the features and functions needed when creating and managing microservices. Monitoring, tracing, circuit breakers, routing, load balancing, fault injection, retries, timeouts, mirroring, access control, rate limiting, and more, are all a part of this. While all those features and functions are now available by using a myriad of libraries in your code, what sets Istio apart is that you get these benefits with no changes to your source code.</p>
           <p>By using the sidecar model, Istio runs in a Linux container in your Kubernetes pods (much like a sidecar rides along side a motorcycle) and injects and extracts functionality and information based on your configuration. Again (for emphasis), this is your configuration that lives outside of your code. This immediately lessens code complexity and heft.</p>
           <p>It also (and this is important), moves operational aspects away from code development and into the domain of operations. Why should a developer be burdened with circuit breakers and fault injections and should they respond to them? Yes, but for handling and/or creating them? Take that out of your code and let your code focus on the underlying business domain. Make the code smaller and less complex.</p>
@@ -60,7 +60,7 @@ categories: ["page_example"]
         </div>
         <div class="pf-l-grid__item pf-m-7-col-on-lg pf-m-12-col-on-sm">
           <div class="rich-text-content pf-c-content">
-            <h2 class="pf-c-title pf-m-3xl">Deep Dive: Istio Service Mesh for Microservices</h2>
+            <h2 class="pf-c-title">Deep Dive: Istio Service Mesh for Microservices</h2>
             <p>The book covers the following topics:
               <ul>
                 <li>What is a service mesh?</li>
@@ -86,7 +86,7 @@ categories: ["page_example"]
   <div class="component">
     <div class="pf-l-grid pf-m-gutter">
       <div class="pf-l-grid__item">
-        <h1 class="pf-c-title pf-m-3xl">Try It Now: 10 Lessons from the Istio Course</h1>
+        <h1 class="pf-c-title">Try It Now: 10 Lessons from the Istio Course</h1>
       </div>
     </div>
     <div class="pf-l-gallery pf-m-gutter">
@@ -198,7 +198,7 @@ categories: ["page_example"]
   </div>
   <div class="component rhd-m-background-grey pf-u-mt-lg pf-u-py-xl">
     <div class="pf-l-flex">
-      <h1 class="pf-c-title pf-m-3xl">See recent Service Mesh blog articles</h1>
+      <h1 class="pf-c-title">See recent Service Mesh blog articles</h1>
     </div>
     <div class="pf-l-gallery pf-m-gutter">
       <div class="pf-l-gallery__item">

@@ -18,7 +18,7 @@ categories: ["page_example"]
 					<div class="assembly component pf-c-content rhd-c-all-products-list">
 						<div class="pf-l-grid pf-m-gutter">
 							<div class="pf-l-grid__item">
-								<h2 class="pf-c-title pf-m-2xl">Browse by product name</h2>
+								<h2 class="pf-c-title">Browse by product name</h2>
 							</div>
 						</div>
 						<ul>
@@ -54,7 +54,7 @@ categories: ["page_example"]
           <!-- Collection -->
           <div class="assembly component rhd-c-card-grid pf-c-content rhd-c-collection">
             <div class="pf-l-flex">
-              <h2 class="pf-c-title pf-m-lg">Title for Collection Assembly</h2>
+              <h2 class="pf-c-title">Title for Collection Assembly</h2>
             </div>
             <div class="pf-l-flex rhd-c-card-grid__wrapper">
               <!-- ======== CARD COMPONENTS START HERE ========= -->
@@ -174,7 +174,7 @@ categories: ["page_example"]
           <!-- CTA -->
           <div class="cta assembly assembly-type-call_to_action component has-background" style="background-image: url();">
             <div class="cta__container pf-l-grid">
-              <h2 class="cta__title pf-c-title pf-m-3xl">Join us for our next live developer tech talk.</h2>
+              <h2 class="cta__title pf-c-title">Join us for our next live developer tech talk.</h2>
 
               <div class="cta__content">
                 <p><strong>DevNation Live:</strong> Testing in Production. From DevTestOops to DevTestOps</p>
@@ -191,7 +191,7 @@ categories: ["page_example"]
           <!-- Curated Content -->
           <div class="assembly component rhd-c-card-grid pf-c-content centered">
             <div class="pf-l-flex">
-              <h2 class="pf-c-title pf-m-2xl pf-u-text-align-left">Build an advanced web application</h2>
+              <h2 class="pf-c-title pf-u-text-align-left">Build an advanced web application</h2>
             </div>
             <div class="pf-l-flex rhd-c-card-grid__wrapper rhd-l-grid__curated-content">
               <!-- ======== CARD COMPONENTS START HERE ========= -->
@@ -234,7 +234,7 @@ categories: ["page_example"]
           <!-- Curated Events -->
           <div class="assembly component pf-c-content rhd-c-curated-events">
             <div class="pf-l-grid pf-m-gutter">
-              <h2 class="pf-c-title pf-m-3xl">Assembly Title</h2>
+              <h2 class="pf-c-title">Assembly Title</h2>
               <!-- Start of Curated Events List content container -->
               <div class="pf-l-grid__item pf-m-12-col">
                 <!-- Start of Curated Events List item -->
@@ -379,7 +379,7 @@ categories: ["page_example"]
           <div class="assembly assembly-type-featured_products component rhd-c-card-grid pf-c-content has-background" style="background-image: url();">
             <div class="pf-l-grid pf-m-gutter">
               <div class="pf-l-grid__item">
-                <h1 class="featured_products__title pf-c-title pf-m-3xl">Develop with OpenShift</h1>
+                <h1 class="featured_products__title pf-c-title">Develop with OpenShift</h1>
               </div>
             </div>
             <div class="featured_products__cards pf-l-flex rhd-c-card-grid__wrapper">
@@ -420,7 +420,7 @@ categories: ["page_example"]
           <!-- Dynamic Content -->
           <div class="assembly component rhd-c-card-grid pf-c-content">
             <div class="pf-l-flex">
-              <h2 class="pf-c-title pf-m-3xl">Title for Dynamic Content Assembly</h2>
+              <h2 class="pf-c-title">Title for Dynamic Content Assembly</h2>
             </div>
             <div class="pf-l-flex rhd-c-card-grid__wrapper">
               <!-- ======== CARD COMPONENTS START HERE ========= -->
@@ -476,7 +476,7 @@ categories: ["page_example"]
           <!-- Dynamic Content List -->
           <div class="assembly component pf-c-content rhd-c-dynamic-content-list">
             <div class="pf-l-grid pf-m-gutter">
-              <h2 class="pf-c-title pf-m-3xl">Assembly Title</h2>
+              <h2 class="pf-c-title">Assembly Title</h2>
               <!-- Start of dynamic-content-list content container -->
               <div class="pf-l-grid__item pf-m-12-col pf-m-8-col-on-md">
                 <!-- Start of dynamic-content-list item -->
@@ -570,7 +570,7 @@ categories: ["page_example"]
                 <h2>Title of the event</h2>
               </div>
               <div class="pf-l-grid__item pf-m-12-col pf-m-7-col-on-md">
-                <h3 class="rhd-c-events-hero__item-title"><a href="" class="pf-c-title pf-m-lg">Featured event title</a></h3>
+                <h3 class="rhd-c-events-hero__item-title"><a href="" class="pf-c-title">Featured event title</a></h3>
                 <small class="pf-u-mt-sm pf-u-mb-sm">October 4, 2019</small>
                 <p>This is a short description of the event.</p>
                 <div class="rhd-c-events-hero__item-presenters pf-u-mb-md">
@@ -646,12 +646,12 @@ categories: ["page_example"]
               <div class="pf-l-grid__item pf-m-12-col pf-m-5-col-on-md">
                 <div class="pf-l-grid">
                   <div class="pf-l-grid__item pf-m-12-col pf-u-mb-xl">
-                    <h4><a href="" class="pf-c-title pf-m-md rhd-c-events-hero__item-title">DevNation Live London</a></h4>
+                    <h4><a href="" class="pf-c-title rhd-c-events-hero__item-title">DevNation Live London</a></h4>
                     <small class="pf-u-mt-sm pf-u-mb-md">October 4, 2019</small>
                     <button class="pf-c-button pf-m-secondary-alt-on-dark">Sign up</button>
                   </div>
                   <div class="pf-l-grid__item pf-m-12-col">
-                    <h4><a href="" class="pf-c-title pf-m-md rhd-c-events-hero__item-title">DevNation Live London</a></h4>
+                    <h4><a href="" class="pf-c-title rhd-c-events-hero__item-title">DevNation Live London</a></h4>
                     <small class="pf-u-mt-sm pf-u-mb-md">October 4, 2019</small>
                     <button class="pf-c-button pf-m-secondary-alt-on-dark pf-u-mb-md">Sign up</button>
                   </div>
@@ -663,7 +663,7 @@ categories: ["page_example"]
           <!-- Featured Article -->
           <div class="assembly component rhd-c-card-grid pf-c-content">
             <div class="pf-l-flex">
-              <h2 class="pf-c-title pf-m-lg">Title for Assembly with Card Grid</h2>
+              <h2 class="pf-c-title">Title for Assembly with Card Grid</h2>
             </div>
             <div class="pf-l-flex rhd-c-card-grid__wrapper">
               <!-- ======== CARD COMPONENTS START HERE ========= -->
@@ -752,7 +752,7 @@ categories: ["page_example"]
           <!-- Featured Resources -->
           <div class="assembly component rhd-c-card-grid pf-c-content">
             <div class="pf-l-flex">
-              <h2 class="pf-c-title pf-m-lg">Title for Assembly with Card Grid</h2>
+              <h2 class="pf-c-title">Title for Assembly with Card Grid</h2>
             </div>
             <div class="pf-l-flex rhd-c-card-grid__wrapper">
               <!-- ======== CARD COMPONENTS START HERE ========= -->
@@ -869,7 +869,7 @@ categories: ["page_example"]
             </div>
             <div class="pf-l-grid__item rhd-c-product-download-hero-content">
               <div class="rhd-c-product-download-hero-header">
-                <h1 class="pf-c-title pf-m-2xl">Red Hat CodeReady Workspaces</h1>
+                <h1 class="pf-c-title">Red Hat CodeReady Workspaces</h1>
               </div>
               <div class="rhd-c-product-download-hero-body">
                 <p>A collaborative Kubernetes-native development solution that delivers OpenShift workspaces and in-browser IDE for rapid cloud application development.<a href="#">This is a test link</a></p>
@@ -892,7 +892,7 @@ categories: ["page_example"]
           <!-- Product  Download List -->
           <div class="assembly component rhd-c-product-download-list pf-c-content">
             <div class="pf-l-grid pf-m-gutter pf-u-pt-lg pf-u-pb-lg">
-              <h3 class="pf-c-title pf-m-2xl">All Downloads</h3>
+              <h3 class="pf-c-title">All Downloads</h3>
               <!-- Start of version row -->
               <div class="pf-l-grid__item pf-m-12-col">
                 <h3 class="pf-u-mb-md">2.0.0</h3>
@@ -983,7 +983,7 @@ categories: ["page_example"]
             </div>
             <div class="pf-l-grid__item rhd-c-product-download-hero-content">
               <div class="rhd-c-product-download-hero-header">
-                <h1 class="pf-c-title pf-m-2xl">Red Hat AMQ</h1>
+                <h1 class="pf-c-title">Red Hat AMQ</h1>
               </div>
               <div class="rhd-c-product-download-hero-body">
                 <p>A lightweight, high-performance, robust messaging platform.</p>
