@@ -40,7 +40,7 @@ process:
   body/format:
     -
       plugin: default_value
-      default_value: full_html
+      default_value: rhd_html_wp
   body/value: post_content
   field_topics:
     -
@@ -51,6 +51,14 @@ process:
       plugin: find_terms
       source: post_tags
   field_short_description/value: post_short_desc
+  field_author_evangelist:
+    -
+      plugin: explode
+      delimiter: ','
+      source: post_coauthors
+    -
+      plugin: migration_lookup
+      migration: wpauthors
 destination:
   plugin: 'entity:node'
 migration_dependencies:

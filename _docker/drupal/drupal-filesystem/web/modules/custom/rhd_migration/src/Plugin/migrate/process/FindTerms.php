@@ -27,6 +27,7 @@ class FindTerms extends ProcessPluginBase {
     $value = explode('|', $value);
     $vocab = $value[0];
     $terms = explode(',', $value[1]);
+    $terms = $this->alter($terms);
     $target = [];
     foreach ($terms as $term_name) {
       $db = Database::getConnection();
@@ -40,5 +41,23 @@ class FindTerms extends ProcessPluginBase {
       }
     }
     return $target;
+  }
+
+  private function alter($values) {
+    $altered = [];
+    $map = [
+      // To add terms
+      // 'WpTermName' => ['WpTermName', 'DrupalTermName1']
+      // To replace terms, just omit the original term name from the array
+    ];
+    foreach ($values as $value) {
+      if (isset($map[$value])) {
+        $altered += $map[$value];
+      }
+      else {
+        $altered[] = $value;
+      }
+    }
+    return $altered;
   }
  }

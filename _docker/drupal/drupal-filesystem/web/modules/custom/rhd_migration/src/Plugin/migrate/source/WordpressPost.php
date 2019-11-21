@@ -53,7 +53,8 @@ class WordpressPost extends WpSqlBase {
       'post_url' => $this->t('URL'),
       'post_tags' => $this->t('Post Tags'),
       'post_topics' => $this->t('Post Topics'),
-      'post_short_desc' => $this->t('Post Short Description')
+      'post_short_desc' => $this->t('Post Short Description'),
+      'post_coauthors' => $this->t('Post Co-authors')
     ];
   }
 
@@ -117,6 +118,23 @@ class WordpressPost extends WpSqlBase {
     }
     $terms = implode(',', $terms);
     $row->setSourceProperty('post_topics', 'topics|' . $terms);
+
+    // Co-authors
+    $query = $db->select('wp_posts', 'wpp');
+    $query->leftJoin('wp_term_relationships', 'wptr', 'wpp.ID = wptr.object_id');
+    $query->leftJoin('wp_terms', 'wpt', 'wptr.term_taxonomy_id = wpt.term_id');
+    $query->leftJoin('wp_term_taxonomy', 'wptt', 'wpt.term_id = wptt.term_taxonomy_id');
+    $query->leftJoin('wp_users', 'wpu', 'wpu.user_login = wpt.name');
+    $query->addField('wpu', 'ID');
+    $query->condition('wptt.taxonomy', 'author');
+    $query->condition('wpp.ID', $row->getSourceProperty('ID'));
+    $results = $query->execute();
+    $terms = [];
+    foreach ($results as $result){
+      $terms[] = $result->ID;  
+    }
+    $terms = implode(',', $terms);
+    $row->setSourceProperty('post_coauthors', $terms);
   }
 
   public function getIds() {

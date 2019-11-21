@@ -1,0 +1,87 @@
+uuid: 7a10c6b4-adf9-4641-9e5f-2aad7a9b035a
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rhd_html_wp
+  module:
+    - ckeditor
+_core:
+  default_config_hash: jz6sNZKPZtQa9pxuwf_J6AK8x0ANfkCn2JNPE1u4k4o
+format: rhd_html_wp
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+        -
+          name: Linking
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - media_browser
+            - node
+            - video_embed
+        -
+          name: 'Block Formatting'
+          items:
+            - Blockquote
+            - Format
+            - Styles
+        -
+          name: Tools
+          items:
+            - Source
+            - Maximize
+        -
+          name: Layout
+          items:
+            - AddLayout
+            - Table
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+            - Outdent
+            - Indent
+  plugins:
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: default
+    language:
+      language_list: un
+    stylescombo:
+      styles: "a.button|Button\r\ncode.code-style|Code Style\r\na.caret-right|Link with right caret\r\ndiv.box.callout|Callout Box\r\nspan.h1|Header 1 Style\r\nspan.h2|Header 2 Style\r\nspan.h3|Header 3 Style\r\nspan.h4|Header 4 Style\r\nspan.h5|Header 5 Style\r\nspan.h6|Header 6 Style"
+    indentblock:
+      enable: 1
+    tokenbrowser:
+      token_types: {  }
+    video_embed:
+      defaults:
+        children:
+          autoplay: false
+          responsive: true
+          width: '854'
+          height: '480'
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
