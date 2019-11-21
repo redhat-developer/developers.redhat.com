@@ -41,8 +41,10 @@ dependencies:
     - field.field.node.books.field_web_reader_url
     - image.style.thumbnail
     - node.type.books
+    - workflows.workflow.00c7e3ae
   module:
     - compose
+    - content_moderation
     - field_group
     - field_layout
     - image
@@ -327,11 +329,9 @@ content:
     third_party_settings: {  }
   moderation_state:
     weight: 23
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: moderation_state_default
     region: settings
   path:
     type: path
