@@ -37,5 +37,16 @@
         @media screen and (max-width: $pf-global--breakpoint--sm) {
             padding: var(--rhd-theme--container-spacer-md) 0;
         }
-   }
+    }
+
+    /*Reset floats from old 2018 css globals */
+    &.left   { 
+        float: none !important; 
+    }
+    &.centered   { 
+        float: none !important; 
+    }
+    &.right  { 
+        float: none !important; 
+    }
 }
