@@ -1,0 +1,7 @@
+{% set classes = [
+    'list-item',
+] %}
+{{ attach_library('classy/node') }}
+<div{{ attributes.addClass(classes) }}>
+  <a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a>
+</div>
