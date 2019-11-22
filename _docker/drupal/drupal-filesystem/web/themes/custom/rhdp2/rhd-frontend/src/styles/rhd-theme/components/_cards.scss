@@ -226,12 +226,13 @@
   .rhd-c-card__video-time {
     padding: var(--pf-global--spacer--xs) var(--pf-global--spacer--sm); // 4px 8px
     margin: var(--pf-global--spacer--xs);
-    background-color: #1a1a1a; // #1a1a1a
+    background-color: rgba(#1a1a1a, 0.8); // #1a1a1a
     color: #fff;
     font-size: calc(16px - 4px); // 12px
     position: absolute;
     right: 0;
     bottom: 0;
+    z-index: 1;
   }
   svg {
     position: absolute;
