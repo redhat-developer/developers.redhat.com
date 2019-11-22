@@ -62,6 +62,6 @@ process:
 destination:
   plugin: 'entity:node'
 migration_dependencies:
-  optional:
+  required:
     - wpauthors
     - wpterms

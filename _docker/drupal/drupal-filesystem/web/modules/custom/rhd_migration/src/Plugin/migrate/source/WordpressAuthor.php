@@ -22,7 +22,7 @@ class WordpressAuthor extends WpSqlBase {
     $query->addField('users', 'ID');
     $query->addField('users', 'user_email', 'author_email');
     $query->addField('users', 'user_login', 'author_login');
-
+    $group_by = ['ID', 'user_email', 'user_login'];
     $meta = [
       'author_title' => 'user_job_title',
       'author_bio' => 'description',
@@ -38,8 +38,9 @@ class WordpressAuthor extends WpSqlBase {
       $join_condition = 'users.ID = ' . $field . '.user_id and ' . $field . '.meta_key = \'' . $meta_key . '\'';
       $query->leftJoin('wp_usermeta', $field, $join_condition);
       $query->addField($field, 'meta_value', $field);
+      $group_by[] = $field . '.meta_value';
     }
-
+    $query->groupBy(implode(', ', $group_by));
     return $query;
   }
 

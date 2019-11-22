@@ -12,7 +12,12 @@ label: 'Import tags and categories from Wordpress SQL'
 source:
   plugin: wordpress_term
 process:
-  name: term_name
+  name:
+    -
+      plugin: ignore_existing_terms
+    -
+      plugin: get
+      source: term_name
   vid: term_vocab
   status:
     -

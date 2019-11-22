@@ -48,17 +48,6 @@ class WordpressTerm extends WpSqlBase {
         $row->setSourceProperty('term_vocab', 'tags');
         break;
     }
-
-    // Check to see if a term already exists with the same name
-    $db = Database::getConnection();
-    $query = $db->select('taxonomy_term_field_data', 't');
-    $query->condition('t.name', $row->getSourceProperty('term_name'));
-    $query->condition('t.vid', $row->getSourceProperty('term_vocab'));
-    $query->addField('t', 'tid');
-    $results = $query->execute();
-    foreach ($results as $result) {
-      return false;
-    }
   }
 
   public function getIds() {
