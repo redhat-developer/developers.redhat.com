@@ -11,36 +11,41 @@
  */
 #}
 {%
-    set classes = [
-      'node',
-      'node--type-' ~ node.bundle|clean_class,
-      node.isPromoted() ? 'node--promoted',
-      node.isSticky() ? 'node--sticky',
-      not node.isPublished() ? 'node--unpublished',
-      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    ]
-  %}
-  {{ attach_library('classy/node') }}
-  <article{{ attributes.addClass(classes) }}>
-    <div{{ content_attributes.addClass('node__content') }}>
-      <div class="katacoda-hero individual-course assembly has-background">
-        <div class="component">
-          <div class="pf-l-grid">
-            <h1>{{ katacoda_course_info.course_title |raw }}</h1>
-            {{ katacoda_course_info.course_description |raw }}
-            {% if (katacoda_course_info.course_read_more) is not empty %}
-              <p><a class="pf-c-button pf-m-link-on-dark" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Learn More ></a></p>
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content') }}>
+    <div class="katacoda-hero individual-course assembly has-background component rich-text">
+      <div class="pf-l-grid">
+        <div class="pf-l-grid__item pf-m-5-col-on-lg pf-m-12-col-on-sm"> </div>
+        <div class="pf-l-grid__item pf-m-7-col-on-lg pf-m-12-col-on-sm">
+          <div class="rich-text-content pf-c-content">
+            <h2 class="pf-c-title pf-m-3xl">{{ node.label }}</h2>
+            <p><span>{{ node.body[0].value|striptags }}</span></p>
+            {% if content.field_katacoda_hero_more_link['#items'][0] is not empty %}
+              {% set link_text %}{{ 'Learn More <i class="fas fa-arrow-right"></i>'|raw }}{% endset %}
+              <p>{{ link(link_text, content.field_katacoda_hero_more_link['#items'][0].value, {'class': ['katacoda-hero__cta', 'pf-c-button', 'pf-m-link-on-dark'], 'alt': ['Read More']}) }}</p>
             {% endif %}
-          </div>
-         </div>
-          <div class="background" style="background-image: url(/{{ base_path ~ directory }}/images/design/katacoda/rhd-katacoda-header-1410x940.jpg);"></div>
-        </div>
-        <div class="rhd-c-card-grid component">
-          <div class="rhd-c-card-grid__wrapper pf-l-flex">
-            {{ content.field_katacoda_course_lessons }}
           </div>
         </div>
       </div>
+      <div class="background" style="background-image: url(/{{ base_path ~ directory }}/images/design/katacoda/rhd-katacoda-header-1410x940.jpg);"></div>
     </div>
-  </article>
-  
+    <div class="rhd-c-card-grid component">
+      <div class="rhd-c-card-grid__wrapper pf-l-flex">
+        {% if katacoda_course_info.num_lessons > 0 %}
+          {{ content.field_katacoda_course_lessons }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
