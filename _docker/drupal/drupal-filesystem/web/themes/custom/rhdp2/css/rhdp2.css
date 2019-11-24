@@ -466,6 +466,20 @@ a.pf-c-button:hover {
 }
 
 /* Katacoda */
+.katacoda-courses .rhd-masthead .component {
+  padding: 0 64px;
+}
+@media screen and (max-width: 768px) {
+  .katacoda-courses .rhd-masthead .component {
+    padding: 0 32px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .katacoda-courses .rhd-masthead .rhd-header-logo {
+    margin-right: 24px;
+  }
+}
+
 .katacoda-courses-container.component {
   padding: var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl) var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl);
 }

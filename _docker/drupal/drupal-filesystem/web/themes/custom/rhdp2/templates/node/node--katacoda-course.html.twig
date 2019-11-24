@@ -24,8 +24,8 @@
   <article{{ attributes.addClass(classes) }}>
     <div{{ content_attributes.addClass('node__content') }}>
       <div class="katacoda-hero individual-course assembly has-background">
-        <div class="component">
-          <div class="pf-l-grid">
+        <div class="rich-text component">
+          <div class="rich-text-content pf-l-grid">
             <h1>{{ katacoda_course_info.course_title |raw }}</h1>
             {{ katacoda_course_info.course_description |raw }}
             {% if (katacoda_course_info.course_read_more) is not empty %}
