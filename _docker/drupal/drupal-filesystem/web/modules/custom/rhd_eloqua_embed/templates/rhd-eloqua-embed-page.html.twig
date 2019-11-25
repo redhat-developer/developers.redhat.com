@@ -197,6 +197,18 @@
         .overlabel #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
           margin-left: 0;
         }
+        .eloqua-two-col #GatedFormContainer .form-content {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .eloqua-two-col #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+          width: 100%;
+          flex: 0 48%;
+          margin-right: 2%;
+        }
+        .eloqua-two-col #FormSubmitButton-form-group {
+          width: 100%;
+        }
       }
     </style>
   </head>
