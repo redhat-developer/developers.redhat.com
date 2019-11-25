@@ -1,0 +1,20 @@
+uuid: 3ce194ee-9432-4224-b302-49d93a9e725b
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - entity_reference_revisions
+id: assembly.field_column_1
+field_name: field_column_1
+entity_type: assembly
+type: entity_reference_revisions
+settings:
+  target_type: assembly
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
