@@ -887,7 +887,7 @@ function rhdp2_library_info_alter(array &$libraries, $extension) {
     // Keycloak_url is only set on the Stage environment.
     if ($extension == 'rhdp2' && $keycloak_url !== NULL) {
       // Remove the Prod Keycloak script URL from our library.
-      unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+      unset($libraries['base-theme']['js']['https://sso.redhat.com/auth/js/keycloak.js']);
       // Add the Stage Keycloak script URL to our library.
       $libraries['base-theme']['js'][$keycloak_url] = [
         'type' => 'external',
