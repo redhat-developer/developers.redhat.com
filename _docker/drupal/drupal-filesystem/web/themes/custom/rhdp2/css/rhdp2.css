@@ -5,6 +5,18 @@ a.pf-c-button:hover {
   text-decoration: none;
 }
 
+/* Footer */
+.rh-c-universal-footer-summit-logo img {
+  max-height: 40px;
+}
+.rh-c-universal-footer .cookie-consent {
+  display: inline-block;
+  margin-left: 10px;
+}
+.rh-c-universal-footer .cookie-consent a {
+  margin-left: 10px;
+}
+
 /* This is necessary to have consistent column width with nested components */
 .component .component {
   padding: 16px 0;
