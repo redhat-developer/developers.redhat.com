@@ -66,6 +66,14 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
 
+  // Registers a custom template and variables for Wordpress Post Teaser.
+  $theme['wordpress_post_compact_dynamic_article_list_item'] = [
+    'template' => 'wordpress-post-compact-dynamic-article-list-item',
+    'variables' => [
+      'post' => NULL,
+    ],
+  ];
+
   // Registers a custom template and variables for Wordpress Post Card.
   $theme['wordpress_post_card'] = [
     'template' => 'wordpress-post-card',
