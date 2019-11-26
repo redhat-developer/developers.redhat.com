@@ -1,0 +1,34 @@
+uuid: f3e0cd3d-97e0-4a36-b895-b6fc0aebbbe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.layout_two_col_left_sidebar
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.static_content_band
+    - field.storage.assembly.field_column_2
+  module:
+    - entity_reference_revisions
+id: assembly.layout_two_col_left_sidebar.field_column_2
+field_name: field_column_2
+entity_type: assembly
+bundle: layout_two_col_left_sidebar
+label: 'Column 2'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      static_content_band: static_content_band
+      dynamic_content_feed: dynamic_content_feed
+      rich_text: rich_text
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: static_content_band
+field_type: entity_reference_revisions

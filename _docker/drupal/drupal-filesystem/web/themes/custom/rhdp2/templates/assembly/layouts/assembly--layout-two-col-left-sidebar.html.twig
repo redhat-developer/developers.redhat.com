@@ -1,0 +1,28 @@
+{#
+/**
+ * @file assembly--layout-two-col-left-sidebar.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'component',
+  'pf-c-content',
+]%}
+
+<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item pf-m-12-col pf-m-4-col-on-md">{{ content.field_column_1 }}</div>
+    <div class="pf-l-grid__item pf-m-12-col pf-m-8-col-on-md">{{ content.field_column_2 }}</div>
+  </div>
+</section>
