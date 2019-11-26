@@ -1,17 +1,16 @@
-uuid: 3ce194ee-9432-4224-b302-49d93a9e725b
+uuid: 8f186176-087a-4fa2-9ff5-df9e53232cfb
 langcode: en
 status: true
 dependencies:
   module:
     - assembly
-    - entity_reference_revisions
 id: assembly.field_column_1
 field_name: field_column_1
 entity_type: assembly
-type: entity_reference_revisions
+type: entity_reference
 settings:
   target_type: assembly
-module: entity_reference_revisions
+module: core
 locked: false
 cardinality: -1
 translatable: true

@@ -20,7 +20,6 @@ use Drupal\Core\HttpClient;
 class CompactDynamicArticleListBuild extends DynamicContentFeedBuild {
 
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-    ddl('DynamicContentListBuild');
     $count = 8;
     $this->getItems($build, $entity, $count, 'compact_dynamic_article_list_item');
     $build['latest_comments'] = $this->getComments();

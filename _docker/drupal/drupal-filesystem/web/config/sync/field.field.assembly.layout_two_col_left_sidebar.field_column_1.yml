@@ -1,13 +1,12 @@
-uuid: 9c67dba7-8a48-434e-bdcf-ec71283f255a
+uuid: a914939d-d579-49cf-863e-1726b31e0e79
 langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.compact_dynamic_article_list
     - assembly.assembly_type.layout_two_col_left_sidebar
     - assembly.assembly_type.rich_text
     - field.storage.assembly.field_column_1
-  module:
-    - entity_reference_revisions
 id: assembly.layout_two_col_left_sidebar.field_column_1
 field_name: field_column_1
 entity_type: assembly
@@ -22,9 +21,10 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      compact_dynamic_article_list: compact_dynamic_article_list
       rich_text: rich_text
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
-field_type: entity_reference_revisions
+    auto_create_bundle: compact_dynamic_article_list
+field_type: entity_reference

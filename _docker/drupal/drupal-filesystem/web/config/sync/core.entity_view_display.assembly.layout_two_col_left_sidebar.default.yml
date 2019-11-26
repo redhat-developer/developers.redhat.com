@@ -7,7 +7,6 @@ dependencies:
     - field.field.assembly.layout_two_col_left_sidebar.field_column_1
     - field.field.assembly.layout_two_col_left_sidebar.field_column_2
   module:
-    - entity_reference_revisions
     - fences
     - field_layout
     - layout_discovery
@@ -25,32 +24,32 @@ content:
     label: hidden
     settings:
       view_mode: default
-      link: ''
+      link: false
     third_party_settings:
       fences:
-        fences_field_tag: none
-        fences_field_classes: ''
+        fences_field_tag: div
+        fences_field_classes: 'pf-l-grid__item pf-m-12-col pf-m-4-col-on-lg pf-m-3-col-on-xl'
         fences_field_item_tag: none
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_entity_view
     region: content
   field_column_2:
     weight: 1
     label: hidden
     settings:
       view_mode: default
-      link: ''
+      link: false
     third_party_settings:
       fences:
-        fences_field_tag: none
-        fences_field_classes: ''
+        fences_field_tag: div
+        fences_field_classes: 'pf-l-grid__item pf-m-12-col pf-m-8-col-on-lg pf-m-9-col-on-xl'
         fences_field_item_tag: none
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_entity_view
     region: content
 hidden:
   langcode: true
