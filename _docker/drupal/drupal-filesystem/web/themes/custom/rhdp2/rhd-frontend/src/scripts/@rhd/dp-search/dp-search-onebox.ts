@@ -205,10 +205,10 @@ export default class DPSearchOneBox extends PFElement {
 
     metaTemplate = (strings, item, id) => {
         return `${item && item.text ? `
-        <pfe-tab role="heading" slot="tab">${item.text}</pfe-tab>
+        <pfe-tab role="heading" slot="tab">${item.text} ${item.links.length > 0 ? `(${item.links.length})` : ''}</pfe-tab>
         <pfe-tab-panel role="region" slot="panel">
         <ul>
-        ${item.links.map(lnk =>  `<li><a href="${lnk.url}>${lnk.text}</a></li>`).join('')}
+        ${item.links.map(lnk =>  `<li><a href="${lnk.url}">${lnk.text}</a></li>`).join('')}
         </ul>
         </pfe-tab-panel>
         ` :''}`;
