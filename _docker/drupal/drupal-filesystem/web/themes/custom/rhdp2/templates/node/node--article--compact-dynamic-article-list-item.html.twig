@@ -1,0 +1,13 @@
+{% set classes = [
+  'pf-c-card',
+  'rhd-c-card__list',
+] %}
+{{ attach_library('classy/node') }}
+<div{{ attributes.addClass(classes) }}>
+  <div class="rhd-c-card-content">
+    <h3 class="rhd-c-card__title">
+      <a href="{{ url }}" class="rhd-m-link">{{ label }}</a>
+      <span class="rhd-m-list__comment"><i class="fas fa-comment"></i> 2</span>
+    </h3>
+  </div>
+</div>
