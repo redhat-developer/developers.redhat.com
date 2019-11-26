@@ -8,69 +8,160 @@ export class DPAlert extends PFElement {
     get html() {
         return `
         <style>
-        :host {
-            color: #363636 !important;
-            display: flex;
-            flex-direction: row;
+        :host .pf-c-alert__icon {
+            --alert-color--background: #73c5c5;
+            --alert-color--text: #003737;
+            background-color: var(--alert-color--background);
+            color: var(--alert-color--text);
+        }
+        :host .pf-c-alert__title {
+            --alert-color--text: #003737;
+            color: var(--alert-color--text);
+        }
+
+        .pf-c-alert {
             display: grid;
-            grid-template-columns: 1.5em auto 1fr;
-            grid-template-rows: auto;
-            grid-gap: .5em;
-            border-width: 1px;
-            border-style: solid;
-            padding: 10px 20px;
-            margin: 1.5em auto;
-            font-size: 1em;
-            background-color: #dcedf8;
-            border-color: #87aac1;
-            line-height: 24px;
-            vertical-align: middle;
-        }
-
-        h3, strong {
-            margin: 0;
-            display: inline;
-        }
-
-        p { margin: 0; }
-          
-        img {
-            flex: 0 0 1.5em;
-            height: 1.5em;
-            display: block;
-            position: relative;
-            margin-right: 10px;
-        }
-
-        :host([type="success"]) {
-            background-color: #e9f4e9;
-            border-color: #8db28a;
-        }
-        :host([type="warning"]) {
-            background-color: #fdf2e5;
-            border-color: #deb142;
-        }
-        :host([type="error"]) {
-            background-color: #ffe6e6;
-            border-color: #d8aaab;
-        }
-
-        :host([size="xl"]) {
-            grid-template-columns: 1.5em 1fr 1.5em;
-            grid-template-rows: auto 1fr;
-            flex-direction: column;
-        }
-
-        :host([size="xl"]) img {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        :host([size="xl"]) h3, :host([size="xl"]) strong {
+            grid-template-areas: "icon title action" "icon content content";
+            grid-template-columns: 53px auto 1fr;
+            grid-template-rows: 56px 0;
+            font-size: 16px;
             font-weight: 400;
-            font-size: 27px;
-            grid-column: 2;
-            grid-row: 1;
+            box-shadow: rgba(3, 3, 3, 0.13) 0px 3px 7px 3px, rgba(3, 3, 3, 0.12) 0px 11px 24px 16px;
+            background-color: #fff;
+            line-height: 24px;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            position: relative;
+        }
+
+        .pf-c-alert__title {
+            background-color: #fff;
+            color: #003737;
+            font-size: 16px;
+            font-weight: 700;
+            grid-column-end: title;
+            grid-column-start: title;
+            grid-row-end: title;
+            grid-row-start: title;
+            line-height: 24px;
+            margin: 0;
+            padding: 16px;
+        }
+
+        .pf-c-alert__description {
+            background-color: #fff;
+            color: #151515;
+            font-size: 16px;
+            font-weight: 700;
+            display: contents;
+            grid-column-end: content;
+            grid-column-start: content;
+            grid-row-end: content;
+            grid-row-start: content;
+            line-height: 24px;
+            margin-top: -8px;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            padding-top: 0;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+        }
+
+        .pf-c-alert__action {
+            background-color: #fff;
+            color: #151515;
+            font-size: 16px;
+            font-weight: 400;
+            grid-column-end: action;
+            grid-column-start: action;
+            grid-row-end: action;
+            grid-row-start: action;
+            line-height: 24px;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            padding-top: 11px;
+            padding-right: 4px;
+            padding-bottom: 0;
+            padding-left: 0;
+        }
+
+        .pf-c-alert__icon {
+            display: flex;
+            font-size: 24px;
+            font-weight: 400;
+            grid-column-end: icon;
+            grid-column-start: icon;
+            grid-row-end: icon;
+            grid-row-start: icon;
+            line-height: 36px;
+            margin: 0;
+            padding: 16px;
+            text-align: left;
+        }
+
+        .pf-c-alert__icon img {
+            width: 20px;
+        }
+
+        :host([type="success"]) .pf-c-alert__icon {
+            --alert-color--background: #92d400;
+            --alert-color--text: #486b00;
+            background-color: var(--alert-color--background);
+            color: var(--alert-color--text);
+        }:host([type="success"]) .pf-c-alert__title {
+            --alert-color--text: #486b00;
+            color: var(--alert-color--text);
+        }
+
+        :host([type="warning"]) .pf-c-alert__icon {
+            --alert-color--background: #f0ab00;
+            --alert-color--text: #795600;
+            background-color: var(--alert-color--background);
+            color: var(--alert-color--text);
+        }
+        :host([type="warning"]) .pf-c-alert__title {
+            --alert-color--text: #795600;
+            color: var(--alert-color--text);
+        }
+
+        :host([type="error"]) .pf-c-alert__icon {
+            --alert-color--background: #c9190b;
+            --alert-color--text: #470000;
+            background-color: var(--alert-color--background);
+            color: var(--alert-color--text);
+        }
+        :host([type="error"]) .pf-c-alert__title {
+            --alert-color--text: #470000;
+            color: var(--alert-color--text);
+        }
+
+        :host([type="info"]) .pf-c-alert__icon {
+            --alert-color--background: #73bcf7;
+            --alert-color--text: #004368;
+            background-color: var(--alert-color--background);
+            color: var(--alert-color--text);
+        }
+        :host([type="info"]) .pf-c-alert__title {
+            --alert-color--text: #004368;
+            color: var(--alert-color--text);
+        }
+
+        :host([size="xl"]) .pf-c-alert {
+            grid-template-columns: 53px auto 47px;
+            grid-template-rows: 56px auto;
+        }
+
+        :host([size="xl"]) .pf-c-alert__icon {
+            display: flex;
+            align-items: flex-start;
+        }
+        :host([size="xl"]) .pf-c-alert__icon img {
+            width: 20px;
         }
 
         :host([size="xl"]) .close {
@@ -78,11 +169,15 @@ export class DPAlert extends PFElement {
             grid-row: 1;
         }
 
-        :host([size="xl"]) p {
-            grid-column: 2;
-            grid-row: 2;
+        :host([size="xl"]) .pf-c-alert__description p {
+            padding-top: 0;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
         }
-        
+
         a.close {
             margin-left: 5px;
             background-repeat: no-repeat;
@@ -90,19 +185,21 @@ export class DPAlert extends PFElement {
             color: #3b6e90;
         }
 
-        svg, path { pointer-events: none; }
-        
         </style>
-        <img src="${this.icon}">
-        ${this.size === 'xl' ? '<h3>' : ''}
-        ${this.heading ? `<strong>${this.heading}</strong>` : ''}
-        ${this.size === 'xl' ? '</h3>' : ''}
-        <p><slot>${this.text}</slot></p>
-        ${this.size === 'xl' ? `<a class="close" href="#"><i class="fas fa-times"></i></a>` : ''}`;
+        <div class="pf-c-alert" aria=label="alert">
+        <div class="pf-c-alert__icon">
+            <img src="${this.icon}">
+        </div>
+        ${this.size === 'xl' ? '<h4 class="pf-c-alert__title">' : ''}
+        ${this.heading ? `<h4 class="pf-c-alert__title">${this.heading}</h4>` : ''}
+        ${this.size === 'xl' ? '</h4>' : ''}
+        <div class="pf-c-alert__description"><p><slot>${this.text}</slot></p></div>
+        ${this.size === 'xl' ? `<div class="pf-c-alert__action"><a class="close" href="#"><i class="fas fa-times"></i></a></div>` : ''}
+        </div>`;
     }
 
     static get tag() { return 'dp-alert'; }
-    
+
     _type = 'info';
     _size : string;
     _heading : string;
@@ -183,7 +280,7 @@ export class DPAlert extends PFElement {
                     this.remove();
                 }
                 // console.log(e.composedPath());
-            });    
+            });
         }
 
         super.render();
