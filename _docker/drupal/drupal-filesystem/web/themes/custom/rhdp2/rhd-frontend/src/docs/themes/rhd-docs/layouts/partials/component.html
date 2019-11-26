@@ -15,7 +15,7 @@
         {{ else }}
         <div class="pf-l-grid__item pf-m-offset-1-col">
         {{ end }}
-            <h4 class="pf-c-title pf-m-lg">{{ .name }}</h4>
+            <h4 class="pf-c-title">{{ .name }}</h4>
             {{with (index $context .id "templates")}}
             {{ range . }}
                 {{ . | safeHTML }}

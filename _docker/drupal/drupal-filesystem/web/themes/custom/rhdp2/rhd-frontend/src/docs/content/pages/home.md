@@ -32,7 +32,7 @@ weight: 4
         <div class="container">
           <div class="pf-l-grid pf-m-gutter">
             <div class="pf-l-grid__item">
-              <h2 class="pf-c-title pf-m-4xl pf-u-mb-md">
+              <h2 class="pf-c-title pf-u-mb-md">
                 Build here
               </h2>
             </div>
@@ -96,7 +96,7 @@ weight: 4
               </div>
             </div>
             <div class="pf-l-grid__item pf-m-3-col-on-md">
-              <h3 class="pf-c-title pf-m-2xl pf-u-mb-md">Developer series</h3>
+              <h3 class="pf-c-title pf-u-mb-md">Developer series</h3>
               <div class="rhd-l-grid__list">
                 <div class="pf-c-card rhd-c-card__list">
                   <div class="rhd-c-card-content">
@@ -152,7 +152,7 @@ weight: 4
         <div class="container">
           <div class="pf-l-grid pf-m-gutter">
             <div class="pf-l-grid__item">
-              <h2 class="pf-c-title pf-m-4xl pf-u-mb-md">
+              <h2 class="pf-c-title pf-u-mb-md">
                 Go anywhere
               </h2>
             </div>
@@ -172,7 +172,7 @@ weight: 4
                     </div>
                     <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-flex-direction-column pf-c-content">
                       <div class="product-download-hero-header">
-                        <h1 class="pf-c-title pf-m-lg pf-u-mb-0"><a href="#">API-first design with OpenAPI and Red Hat Fuse</a></h1>
+                        <h1 class="pf-c-title pf-u-mb-0"><a href="#">API-first design with OpenAPI and Red Hat Fuse</a></h1>
                         <small class="pf-u-mb-sm">July 8th, 2019</small>
                       </div>
                       <div class="product-download-hero-body">
@@ -193,7 +193,7 @@ weight: 4
                     </div>
                     <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-flex-direction-column pf-c-content">
                       <div class="product-download-hero-header">
-                        <h1 class="pf-c-title pf-m-lg pf-u-mb-0"><a href="#">API-first design with OpenAPI and Red Hat Fuse</a></h1>
+                        <h1 class="pf-c-title pf-u-mb-0"><a href="#">API-first design with OpenAPI and Red Hat Fuse</a></h1>
                         <small class="pf-u-mb-sm">July 8th, 2019</small>
                       </div>
                       <div class="product-download-hero-body">
@@ -205,7 +205,7 @@ weight: 4
               </div>
             </div>
             <div class="pf-l-grid__item pf-m-3-col-on-md">
-              <h3 class="pf-c-title pf-m-2xl pf-u-mb-md">Latest articles</h3>
+              <h3 class="pf-c-title pf-u-mb-md">Latest articles</h3>
               <div class="rhd-l-grid__list">
                 <div class="pf-c-card rhd-c-card__list">
                   <div class="rhd-c-card-content">
@@ -228,7 +228,7 @@ weight: 4
         <div class="container">
           <div class="pf-l-grid pf-m-gutter">
             <div class="pf-l-grid__item">
-              <h2 class="pf-c-title pf-m-4xl pf-u-mb-md">
+              <h2 class="pf-c-title pf-u-mb-md">
                 Featured Red Hat products
               </h2>
             </div>
@@ -282,7 +282,7 @@ weight: 4
               </div>
             </div>
             <div class="pf-l-grid__item pf-m-3-col-on-md">
-              <h3 class="pf-c-title pf-m-2xl pf-u-mb-md">Related products</h3>
+              <h3 class="pf-c-title pf-u-mb-md">Related products</h3>
               <div class="rhd-l-grid__list">
                 <div class="pf-c-card rhd-c-card__list">
                   <div class="rhd-c-card-content">
@@ -313,7 +313,7 @@ weight: 4
         <div class="container">
           <div class="pf-l-grid pf-m-gutter">
             <div class="pf-l-grid__item">
-              <h2 class="pf-c-title pf-m-4xl pf-u-mb-md">
+              <h2 class="pf-c-title">
                 Featured resources
               </h2>
             </div>
