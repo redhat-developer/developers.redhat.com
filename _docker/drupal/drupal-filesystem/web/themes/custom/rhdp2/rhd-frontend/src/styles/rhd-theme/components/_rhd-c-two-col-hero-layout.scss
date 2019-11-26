@@ -1,0 +1,26 @@
+.component {
+    &.rhd-c-two-col-hero-layout {
+        > .pf-l-grid {
+            > .pf-m-4-col {
+                .component:not(.dark):not(.assembly-slim) {
+                    padding: 0;
+                }
+                &:first-of-type {
+                    .component {
+                        margin-top: 0;
+                    }
+                }
+            }
+            > .pf-m-8-col {
+                .component:not(.dark):not(.assembly-slim){
+                    padding: 0;
+                }
+                &:first-of-type {
+                    .component {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
