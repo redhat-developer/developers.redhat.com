@@ -61,7 +61,7 @@ app.sso = function () {
                         if (resp && resp.registrationTimestamp) {
                             var dt = new Date();
                             var ck = getCookie('rhd_logged');
-                            if (dt-resp.registrationTimestamp < 86400000 && ck.length === 0) {
+                            if (dt-(new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
                                 document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
                                 document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
                             }
