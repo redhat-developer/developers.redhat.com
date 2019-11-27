@@ -21,11 +21,12 @@
 
 h1,
 .pf-c-content h1,
-.pf-c-title.pf-m-3xl {
+h1.pf-c-title, .pf-m-3xl {
   font-family: $rhd-font-stack-display;
   font-size: 32px;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
   line-height: 42px;
+  margin-bottom: var(--rhd-theme--container-spacer-md);
   a {
     font-family: inherit;
     font-weight: inherit;
@@ -37,11 +38,12 @@ h1,
 
 h2,
 .pf-c-content h2,
-.pf-c-title.pf-m-2xl {
+h2.pf-c-title, .pf-m-2xl {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 28px;
    line-height: 37px;
+   margin-bottom: var(--rhd-theme--container-spacer-md);
    a {
     font-family: inherit;
     font-weight: inherit;
@@ -53,11 +55,12 @@ h2,
 
 h3,
 .pf-c-content h3,
-.pf-c-title.pf-m-xl {
+h3.pf-c-title, .pf-m-xl {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 24px;
    line-height: 31px;
+   margin-bottom: var(--rhd-theme--container-spacer-md);
    a {
     font-family: inherit;
     font-weight: inherit;
@@ -69,11 +72,12 @@ h3,
 
 h4,
 .pf-c-content h4,
-.pf-c-title.pf-m-lg {
+h4.pf-c-title, .pf-m-lg {
    font-family: $rhd-font-stack-display;
    font-weight: var(--rhd-global--FontWeight-Display--medium);
    font-size: 20px;
    line-height: 26px;
+   margin-bottom: var(--rhd-theme--container-spacer-md);
    a {
     font-family: inherit;
     font-weight: inherit;

@@ -6,9 +6,9 @@ categories: ["page"]
 weight: 1
 ---
 
-<h1 class="pf-c-title pf-m-3xl pf-u-mt-lg pf-u-mb-sm">RHDP Documentation</h1>
+<h1 class="pf-c-title pf-u-mt-lg pf-u-mb-sm">RHDP Documentation</h1>
 
-<h2 class="pf-c-title pf-m-2xl pf-u-mt-lg pf-u-mb-sm">Components</h2>
+<h2 class="pf-c-title pf-u-mt-lg pf-u-mb-sm">Components</h2>
 
 * [Alerts](components/alerts)
 * [Bonus Content Item](components/bonus-content-item)
@@ -37,12 +37,12 @@ weight: 1
 * [Template](components/template)
 * [Video Hero](components/video-hero)
 
-<h2 class="pf-c-title pf-m-2xl pf-u-mt-lg pf-u-mb-sm">Documentation</h2>
+<h2 class="pf-c-title pf-u-mt-lg pf-u-mb-sm">Documentation</h2>
 
 * [CSS Variables](patterns/code/css-variables)
 * [Typography](patterns/design/typography/ "Typography Patterns")
 
-<h2 class="pf-c-title pf-m-2xl pf-u-mt-lg pf-u-mb-sm">Helpful Links</h2>
+<h2 class="pf-c-title pf-u-mt-lg pf-u-mb-sm">Helpful Links</h2>
 
 <ul class="pf-c-list">
   <li>

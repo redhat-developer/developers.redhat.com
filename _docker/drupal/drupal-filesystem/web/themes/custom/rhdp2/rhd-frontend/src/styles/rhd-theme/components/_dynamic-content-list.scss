@@ -1,6 +1,7 @@
 .rhd-c-dynamic-content-list {
-  h2 {
-    text-align: center;
+
+  .pf-l-grid.pf-m-gutter {
+    grid-gap: 0 var(--pf-l-grid--m-gutter--GridGap);
   }
 
   &__item {

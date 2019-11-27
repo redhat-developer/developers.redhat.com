@@ -31,10 +31,10 @@ scripts: []
   }
 </style>
 
-<h1 class="pf-c-title pf-m-4xl">Our font family</h1>
+<h1 class="pf-c-title">Our font family</h1>
 We use the open source Red Hat Text and Red Hat Display fonts.
 
-<h1 class="pf-c-title pf-m-2xl pf-u-mt-lg">Header XL</h1>
+<h1 class="pf-c-title">Header XL</h1>
 
 | Font family | Font size | Font weight | Line height | Class + Modifier | Viewport size |
 | --- | --- | --- | --- | --- | --- |
