@@ -56,8 +56,8 @@ app.sso = function () {
                         headers: swelHeaders,
                         mode:'cors'
                     })
-                    .then(req => req.json())
-                    .then(resp => {
+                    .then(function(req) { return req.json(); })
+                    .then(function(resp) {
                         if (resp && resp.registrationTimestamp) {
                             var dt = new Date();
                             var ck = getCookie('rhd_logged');
