@@ -48,6 +48,20 @@
        var: drush_cim.stdout_lines
       when: not drush_cim.changed
 
+    - name: Run the WordPress Migrations
+      shell: 'drush mim wpposts --update && drush cr && touch {{ work_dir}}/wordpress.migrated.do.not.delete'
+      args:
+        chdir: '/var/www/drupal'
+        creates: '{{ work_dir}}/wordpress.migrated.do.not.delete'
+      register: wordpress_migrated
+      when: wordpress_run_migrations
+
+    - debug:
+       msg:
+         - "{{ wordpress_migrated.stdout_lines}}"
+         - "{{ wordpress_migrated.stderr_lines}}"
+      when: wordpress_run_migrations and wordpress_migrated.changed
+
     - name: Check to see if cron has run
       stat:
         path: "{{ work_dir }}/drupal.cron.do.not.delete"
