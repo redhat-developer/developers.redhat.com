@@ -8,7 +8,7 @@ $(function() {
 $(function() {
     $(".rhd-menu .menu-item--expanded h3").on("click", function(){
         var windowsize = document.body.clientWidth;
-        if (windowsize <= 1024) {
+        if (windowsize <= 1023) {
             $(this).parent().toggleClass("collapsed");
         } else {
             return false;
@@ -20,7 +20,7 @@ var $window = $(window);
 
 function checkWidth() {
     var windowsize = document.body.clientWidth;
-    if (windowsize <= 1024) {
+    if (windowsize <= 1023) {
         $(".menu-item--expanded").addClass("collapsed");
     } else {
         $(".menu-item--expanded").removeClass("collapsed");
