@@ -10,6 +10,7 @@ dependencies:
     - assembly.assembly_type.code_snippet
     - assembly.assembly_type.collection
     - assembly.assembly_type.combo
+    - assembly.assembly_type.compact_dynamic_article_list
     - assembly.assembly_type.content
     - assembly.assembly_type.content_image
     - assembly.assembly_type.content_pull_quote
@@ -27,6 +28,7 @@ dependencies:
     - assembly.assembly_type.featured_resources
     - assembly.assembly_type.hero
     - assembly.assembly_type.katacodas
+    - assembly.assembly_type.layout_two_col_left_sidebar
     - assembly.assembly_type.learning_paths
     - assembly.assembly_type.on_page_navigation
     - assembly.assembly_type.product_categories
@@ -57,35 +59,37 @@ settings:
       all_products_listing: all_products_listing
       blog_posts: blog_posts
       bonus_content_list: bonus_content_list
-      cta_form: cta_form
       call_to_action: call_to_action
       code_snippet: code_snippet
       collection: collection
       combo: combo
+      compact_dynamic_article_list: compact_dynamic_article_list
       content: content
-      content_image: content_image
-      content_pull_quote: content_pull_quote
       static_content_band: static_content_band
+      events_list: events_list
       curated_links: curated_links
       featured_products: featured_products
       dynamic_content_feed: dynamic_content_feed
       dynamic_content_list: dynamic_content_list
       embedded_content: embedded_content
       events_hero: events_hero
-      events_list: events_list
       product_categories: product_categories
       featured_articles: featured_articles
       featured_evangelists: featured_evangelists
+      content_pull_quote: content_pull_quote
       featured_resources: featured_resources
+      content_image: content_image
       hero: hero
-      katacodas: katacodas
-      learning_paths: learning_paths
       on_page_navigation: on_page_navigation
+      katacodas: katacodas
+      layout_two_col_left_sidebar: layout_two_col_left_sidebar
+      learning_paths: learning_paths
       product_comparison_table: product_comparison_table
       rich_text: rich_text
       rich_text_columns: rich_text_columns
       content_with_image: content_with_image
       sign_up_hero: sign_up_hero
+      cta_form: cta_form
       video_hero: video_hero
     sort:
       field: _none

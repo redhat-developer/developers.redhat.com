@@ -1,0 +1,19 @@
+uuid: 962d7993-4139-4707-a43e-5bdfd20a5e72
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.storage.assembly.field_title
+id: assembly.compact_dynamic_article_list.field_title
+field_name: field_title
+entity_type: assembly
+bundle: compact_dynamic_article_list
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
