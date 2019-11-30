@@ -69,7 +69,7 @@ function rhd_disqus_preprocess_assembly(&$variables) {
       // if it isn't a redhat domain or the current domain
       if ($_SERVER['SERVER_NAME']) {
         $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
-        if ($host == $_SERVER['SERVER_NAME'] || !(strpos($host, 'redhat.com') === FALSE)) {
+        if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
           $variables['rhd_domain'] = TRUE;
         }
       }

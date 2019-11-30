@@ -144,6 +144,23 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
+  if ($type === 'article' && $variables['view_mode'] === 'compact_dynamic_article_list_item') {
+    $variables['rhd_domain'] = FALSE;
+    $variables['absolute_url'] = FALSE;
+
+    $current_path = \Drupal::service('path.current')->getPath();
+    $url = Url::fromUri("internal:$current_path");
+    $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+    // don't run comment js on this entity
+    // if it isn't a redhat domain or the current domain
+    if ($_SERVER['SERVER_NAME']) {
+      $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+      if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
+        $variables['rhd_domain'] = TRUE;
+      }
+    }
+  }
 
   // Author content type.
   if ($type == 'author') {

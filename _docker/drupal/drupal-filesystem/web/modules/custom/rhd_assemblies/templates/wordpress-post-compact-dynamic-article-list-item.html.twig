@@ -7,9 +7,9 @@
   <div class="rhd-c-card-content">
     <h3 class="rhd-c-card__title">
       <a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a>
-      {% if absolute_url and rhd_domain and "developers.redhat.com" in absolute_url %}
-      <div class="rhd-m-list__comment tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
-        <a href="{{ absolute_url }}#comments">
+      {% if rhd_domain and post.link and "developers.redhat.com" in post.link %}
+      <div class="rhd-m-list__comment tile-comment-count hidden" data-disqus-thread-link="{{ post.link }}" data-disqus-comment-count>
+        <a href="{{ post.link }}#comments">
           <span class="fas fa-comment"></span>
           <span class="comment-number" data-disqus-comment-count-number></span>
         </a>

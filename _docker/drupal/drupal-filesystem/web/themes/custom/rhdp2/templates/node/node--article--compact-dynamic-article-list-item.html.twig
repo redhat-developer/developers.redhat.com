@@ -7,14 +7,14 @@
   <div class="rhd-c-card-content">
     <h3 class="rhd-c-card__title">
       <a href="{{ url }}" class="rhd-m-link">{{ label }}</a>
-      {# {% if "developers.redhat.com" in url('entity.node.canonical', {'node': id}) %}
-      <div class="rhd-m-list__comment tile-comment-count hidden" data-disqus-thread-link="{{ url('entity.node.canonical', {'node': id}) }}" data-disqus-comment-count>
-        <a href="{{ url }}#comments">
+      {% if rhd_domain and absolute_url and "developers.redhat.com" in absolute_url %}
+      <div class="rhd-m-list__comment tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
+        <a href="{{ absolute_url }}#comments">
           <span class="fas fa-comment"></span>
           <span class="comment-number" data-disqus-comment-count-number></span> 
         </a>
       </div>
-      {% endif %} #}
+      {% endif %}
     </h3>
   </div>
 </div>
