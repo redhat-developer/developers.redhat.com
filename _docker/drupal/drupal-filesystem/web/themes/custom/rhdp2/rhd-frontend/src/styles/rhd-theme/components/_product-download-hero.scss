@@ -1,7 +1,11 @@
   .rhd-c-product-download-hero {
+
     .pf-l-grid__item {
       &:nth-child(1) {
         order: 1;
+        @media screen and (max-width: $pf-global--breakpoint--md) {
+          order: 0;
+        }
       }
     }
 
@@ -9,6 +13,9 @@
       .pf-l-grid__item {
         &:nth-child(1) {
           order: 0;
+          @media screen and (max-width: $pf-global--breakpoint--md) {
+            order: 1;
+          }
         }
       }
     }
@@ -35,23 +42,27 @@
       @extend .pf-u-flex-direction-column;
       @extend .pf-m-4-col-on-lg;
       @extend .pf-m-5-col-on-md;
-      @extend .pf-m-6-col-on-sm;
+      @extend .pf-m-12-col-on-sm;
 
       picture {
         display: block;
         margin: auto 0;
+        max-width: 100%;
 
         img {
           width: -fill-available;
           width: -webkit-fill-available;
         }
       }
+      @media screen and (max-width: $pf-global--breakpoint--md) {
+
+      }
     }
 
     &-aside~&-content {
       @extend .pf-m-8-col-on-lg;
       @extend .pf-m-7-col-on-md;
-      @extend .pf-m-6-col-on-sm;
+      @extend .pf-m-12-col-on-sm;
     }
 
 
