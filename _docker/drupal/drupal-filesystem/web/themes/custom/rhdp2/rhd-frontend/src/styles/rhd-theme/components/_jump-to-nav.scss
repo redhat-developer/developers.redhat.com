@@ -5,16 +5,6 @@
   @include with-background-padding;
   padding-right: var(--rhd-theme--container-spacer-lg);
   padding-left: var(--rhd-theme--container-spacer-lg);
-  @media screen and (max-width: $pf-global--breakpoint--lg) {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-column-gap: var(--pf-global--spacer--lg);
-    grid-row-gap: var(--pf-global--spacer--lg);
-    text-align: center;
-  }
-  @media screen and (max-width: $pf-global--breakpoint--md) {
-    grid-template-columns: repeat(3, auto);
-  }
   @media screen and (max-width: $pf-global--breakpoint--sm) {
     display: none;
   }
@@ -22,7 +12,7 @@
 
 .rhd-jump-to-nav a {
   color: var(--pf-global--Color--light-100);
-  margin-right: 2rem;
+  margin-right: var(--pf-global--spacer--md);
   text-decoration: none;
 
   &:hover,
@@ -37,7 +27,7 @@
     border: 1px solid var(--pf-global--Color--light-100);
     font-size: var(--pf-global--FontSize--md);
     padding: 6px 8px;
-    margin: 0;
+    margin: var(--pf-global--spacer--sm) var(--pf-global--spacer--md) var(--pf-global--spacer--sm) 0;
     &:hover,
     &:focus,
     &:active {
