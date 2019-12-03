@@ -1,9 +1,12 @@
 .rich-text {
-  .pf-l-grid__item {
-    &:nth-child(1) {
-      order: 1;
-      @media screen and (max-width: $pf-global--breakpoint--lg) {
-        order: 0;
+  //Add assembly class to target only with image instance
+  &.assembly-type-content_with_image {
+    .pf-l-grid__item {
+      &:nth-child(1) {
+        order: 1;
+        @media screen and (max-width: $pf-global--breakpoint--lg) {
+          order: 0;
+        }
       }
     }
   }
