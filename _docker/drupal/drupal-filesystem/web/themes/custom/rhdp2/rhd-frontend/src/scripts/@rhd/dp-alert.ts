@@ -1,15 +1,14 @@
 import PFElement from '@patternfly/pfelement/pfelement.umd';
-// import {library, icon} from '@fortawesome/fontawesome-svg-core/index';
-// import {faTimes} from '@fortawesome/pro-solid-svg-icons/index';
-
-// library.add(faTimes);
 
 export class DPAlert extends PFElement {
     get html() {
         return `
         <style>
+        :host .pf-c-alert.pf-m-inline {
+            border-left: 3px solid rgb(0, 149, 150);
+        }
         :host .pf-c-alert__icon {
-            --alert-color--background: #73c5c5;
+            --alert-color--background: #fff;
             --alert-color--text: #003737;
             background-color: var(--alert-color--background);
             color: var(--alert-color--text);
@@ -19,10 +18,18 @@ export class DPAlert extends PFElement {
             color: var(--alert-color--text);
         }
 
+        :host .pf-screen-reader {
+            position: fixed;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .pf-c-alert {
             display: grid;
             grid-template-areas: "icon title action" "icon content content";
-            grid-template-columns: 53px auto 1fr;
+            grid-template-columns: 31.75px auto 1fr;
             grid-template-rows: 56px 0;
             font-size: 16px;
             font-weight: 400;
@@ -33,6 +40,13 @@ export class DPAlert extends PFElement {
             padding: 0;
             text-align: left;
             position: relative;
+        }
+
+        .pf-c-alert.pf-m-inline {
+            box-shadow: none;
+            background-clor: #fff;
+            border: solid #ededed;
+            border-width: 1px 1px 1px 0;
         }
 
         .pf-c-alert__title {
@@ -53,7 +67,7 @@ export class DPAlert extends PFElement {
             background-color: #fff;
             color: #151515;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 400;
             display: contents;
             grid-column-end: content;
             grid-column-start: content;
@@ -88,11 +102,12 @@ export class DPAlert extends PFElement {
             padding-right: 4px;
             padding-bottom: 0;
             padding-left: 0;
+            text-align: center;
         }
 
         .pf-c-alert__icon {
             display: flex;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 400;
             grid-column-end: icon;
             grid-column-start: icon;
@@ -100,7 +115,7 @@ export class DPAlert extends PFElement {
             grid-row-start: icon;
             line-height: 36px;
             margin: 0;
-            padding: 16px;
+            padding: 19px 0 16px 12px;
             text-align: left;
         }
 
@@ -108,8 +123,11 @@ export class DPAlert extends PFElement {
             width: 20px;
         }
 
+        :host([type="success"]) .pf-c-alert.pf-m-inline {
+            border-left: 3px solid rgb(146, 212, 0);
+        }
         :host([type="success"]) .pf-c-alert__icon {
-            --alert-color--background: #92d400;
+            --alert-color--background: #fff;
             --alert-color--text: #486b00;
             background-color: var(--alert-color--background);
             color: var(--alert-color--text);
@@ -118,8 +136,11 @@ export class DPAlert extends PFElement {
             color: var(--alert-color--text);
         }
 
+        :host([type="warning"]) .pf-c-alert.pf-m-inline {
+            border-left: 3px solid rgb(240, 171, 0);
+        }
         :host([type="warning"]) .pf-c-alert__icon {
-            --alert-color--background: #f0ab00;
+            --alert-color--background: #fff;
             --alert-color--text: #795600;
             background-color: var(--alert-color--background);
             color: var(--alert-color--text);
@@ -129,8 +150,11 @@ export class DPAlert extends PFElement {
             color: var(--alert-color--text);
         }
 
+        :host([type="error"]) .pf-c-alert.pf-m-inline {
+            border-left: 3px solid rgb(201, 25, 11);
+        }
         :host([type="error"]) .pf-c-alert__icon {
-            --alert-color--background: #c9190b;
+            --alert-color--background: #fff;
             --alert-color--text: #470000;
             background-color: var(--alert-color--background);
             color: var(--alert-color--text);
@@ -140,8 +164,11 @@ export class DPAlert extends PFElement {
             color: var(--alert-color--text);
         }
 
+        :host([type="info"]) .pf-c-alert.pf-m-inline {
+            border-left: 3px solid rgb(115, 188, 247);
+        }
         :host([type="info"]) .pf-c-alert__icon {
-            --alert-color--background: #73bcf7;
+            --alert-color--background: #fff;
             --alert-color--text: #004368;
             background-color: var(--alert-color--background);
             color: var(--alert-color--text);
@@ -152,7 +179,7 @@ export class DPAlert extends PFElement {
         }
 
         :host([size="xl"]) .pf-c-alert {
-            grid-template-columns: 53px auto 47px;
+            grid-template-columns: 31.75px auto 47px;
             grid-template-rows: 56px auto;
         }
 
@@ -161,6 +188,9 @@ export class DPAlert extends PFElement {
             align-items: flex-start;
         }
         :host([size="xl"]) .pf-c-alert__icon img {
+            width: 20px;
+        }
+        :host([size="xl"]) .pf-c-alert__action a img {
             width: 20px;
         }
 
@@ -186,15 +216,15 @@ export class DPAlert extends PFElement {
         }
 
         </style>
-        <div class="pf-c-alert" aria=label="alert">
+        <div class="pf-c-alert pf-m-inline" aria=label="alert">
         <div class="pf-c-alert__icon">
             <img src="${this.icon}">
         </div>
         ${this.size === 'xl' ? '<h4 class="pf-c-alert__title">' : ''}
-        ${this.heading ? `<h4 class="pf-c-alert__title">${this.heading}</h4>` : ''}
+        ${this.heading ? `<h4 class="pf-c-alert__title"><span class="pf-screen-reader">${this.heading}</span>${this.heading}</h4>` : ''}
         ${this.size === 'xl' ? '</h4>' : ''}
         <div class="pf-c-alert__description"><p><slot>${this.text}</slot></p></div>
-        ${this.size === 'xl' ? `<div class="pf-c-alert__action"><a class="close" href="#"><i class="fas fa-times"></i></a></div>` : ''}
+        ${this.size === 'xl' ? `<div class="pf-c-alert__action"><a class="close" href="#"><img src="https://static.jboss.org/rhd/images/icons/fa_times_icon.svg"></a></div>` : ''}
         </div>`;
     }
 
