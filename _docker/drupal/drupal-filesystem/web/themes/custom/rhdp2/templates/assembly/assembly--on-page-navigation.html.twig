@@ -22,8 +22,10 @@
 ] %}
 <div{{ attributes.addClass(classes) }}{{ audience_selection }}>
   {% if content %}
-    {% for item in content.nav['#items'] %}
-      {{ item }}
-    {% endfor %}
+    <div class="pf-l-flex">
+      {% for item in content.nav['#items'] %}
+        {{ item }}
+      {% endfor %}
+    </div>
   {% endif %}
 </div>
