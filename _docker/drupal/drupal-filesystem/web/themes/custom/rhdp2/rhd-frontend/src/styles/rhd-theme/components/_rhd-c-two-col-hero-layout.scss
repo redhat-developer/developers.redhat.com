@@ -34,7 +34,7 @@
             }
 
             .field--name-field-column-2 {
-                > .assembly.component {
+                > .assembly.component:first-of-type {
                   // Remove margin-top from first assembly rendered in 2nd
                   // column within the Layout 2 col, sidebar left assembly type.
                   // This makes it match the behavior of the left, 1st column.
