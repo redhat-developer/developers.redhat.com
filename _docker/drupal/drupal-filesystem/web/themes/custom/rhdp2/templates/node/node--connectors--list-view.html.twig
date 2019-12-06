@@ -5,7 +5,7 @@
 ]%}
 <div{{ attributes.addClass(classes) }}{{ audience_selection }}>
   <div class="pf-l-grid__item product-version__file-label-wrapper">
-    <p class="product-version__file-label">{{ label }}</p>
+    <p class="product-version__file-label">{{ link(label, node.field_connector_details_url[0].value.uri) }}</p>
   </div>
   <div class="pf-l-grid__item product-version__file-description">
     {{ content.field_connector_short_descriptio }}
