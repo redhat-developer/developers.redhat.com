@@ -19,10 +19,10 @@ $config['redhat_developers']['rhd_base_url'] = 'developers.redhat.com';
 $config['redhat_developers']['rhd_final_base_url'] = 'developers.redhat.com';
 $config['redhat_developers']['downloadManager']['baseUrl'] = 'https://developers.redhat.com';
 $config['redhat_developers']['downloadManager']['fileBaseUrl'] = '/developers.redhat.com/download-manager/file/';
-$config['redhat_developers']['keycloak']['accountUrl'] = 'https://developers.redhat.com/auth/realms/rhd/account/';
-$config['redhat_developers']['keycloak']['authUrl'] = 'https://developers.redhat.com/auth/';
-$config['redhat_developers']['keycloak']['client_id'] = 'web';
-$config['redhat_developers']['keycloak']['realm'] = 'rhd';
+$config['redhat_developers']['keycloak']['accountUrl'] = 'https://sso.redhat.com/auth/realms/redhat-external/account/';
+$config['redhat_developers']['keycloak']['authUrl'] = 'https://sso.redhat.com/auth/';
+$config['redhat_developers']['keycloak']['client_id'] = 'rhd-web';
+$config['redhat_developers']['keycloak']['realm'] = 'redhat-external';
 $config['redhat_developers']['drupal']['host'] = 'https://developers.redhat.com';
 $config['redhat_developers']['searchisko']['protocol'] = 'https';
 $config['redhat_developers']['searchisko']['host'] = 'dcp2.jboss.org';
@@ -36,13 +36,13 @@ $config['redhat_developers']['fusion']['url'] = 'https://api.developers.redhat.c
     SSO Integration for Content Editor Authentication
 */
 $config["openid_connect.settings.keycloak"]["settings"]["redirect_url"] = 'https://developers.redhat.com/openid-connect/keycloak';
-$config["openid_connect.settings.keycloak"]["settings"]["client_id"] = '{{ drupal_content_editor_sso_client_id }}';
+$config["openid_connect.settings.keycloak"]["settings"]["client_id"] = 'rhd-web-cms';
 $config["openid_connect.settings.keycloak"]["settings"]["client_secret"] = '{{ drupal_content_editor_sso_client_secret }}';
-$config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://developers.redhat.com/auth';
-$config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'rhd';
-$config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/auth';
-$config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/token';
-$config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = 'https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/userinfo';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_base"] = 'https://sso.redhat.com/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["keycloak_realm"] = 'redhat-external';
+$config["openid_connect.settings.keycloak"]["settings"]["authorization_endpoint_kc"] = 'https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/auth';
+$config["openid_connect.settings.keycloak"]["settings"]["token_endpoint_kc"] = 'https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token';
+$config["openid_connect.settings.keycloak"]["settings"]["userinfo_endpoint_kc"] = 'https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/userinfo';
 
 
 /**

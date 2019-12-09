@@ -48,6 +48,26 @@ app.sso = function () {
                         usr.socialAccountsLinked.push(social);
                     }
                 }
+                if (Headers && app.keycloak.token && drupalSettings.rhd.swel) {
+                    var swelHeaders = new Headers();
+                    swelHeaders.append('Authorization', 'Bearer '+app.keycloak.token);
+                    fetch(drupalSettings.rhd.swel.url+'/api/analytics/usr/v1/websiteregstatus/rhd',{
+                        method:'GET',
+                        headers: swelHeaders,
+                        mode:'cors'
+                    })
+                    .then(function(req) { return req.json(); })
+                    .then(function(resp) {
+                        if (resp && resp.registrationTimestamp) {
+                            var dt = new Date();
+                            var ck = getCookie('rhd_logged');
+                            if (dt-(new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
+                                document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                                document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                            }
+                        }
+                    });
+                }
 
             }).error(clearTokens);
         } else {
@@ -202,6 +222,11 @@ function storageAvailable(type) {
     catch (e) {
         return false;
     }
+}
+
+function getCookie( name ) {
+    var re = new RegExp('(?:(?:^|.*;\\s*)'+name+'\\s*\\=\\s*([^;]*).*$)|^.*$');
+    return document.cookie.replace(re, "$1");
 }
 
 
