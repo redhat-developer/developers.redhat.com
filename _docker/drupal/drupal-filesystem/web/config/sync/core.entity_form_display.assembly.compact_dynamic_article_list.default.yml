@@ -6,12 +6,14 @@ dependencies:
     - assembly.assembly_type.compact_dynamic_article_list
     - field.field.assembly.compact_dynamic_article_list.field_audience_selection
     - field.field.assembly.compact_dynamic_article_list.field_category_filter
+    - field.field.assembly.compact_dynamic_article_list.field_cta_link
     - field.field.assembly.compact_dynamic_article_list.field_drupal_term_filter
     - field.field.assembly.compact_dynamic_article_list.field_title
     - field.field.assembly.compact_dynamic_article_list.field_wordpress_category_logic
   module:
     - field_layout
     - layout_discovery
+    - link
     - rhd_assemblies
 third_party_settings:
   field_layout:
@@ -33,6 +35,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
+    region: content
+  field_cta_link:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_drupal_term_filter:
     weight: 7
