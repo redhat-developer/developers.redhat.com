@@ -44,5 +44,20 @@
                 }
             }
         }
+
+        .field--name-field-column-2 {
+          .assembly-type-rich_text,
+          .assembly-type-content_with_image,
+          .assembly-type-events_hero ,
+          .assembly-type-hero ,
+          .assembly-type-product_download_hero ,
+          .assembly-type-product_try_it_hero ,
+          .assembly-type-sign_up_hero ,
+          .assembly-type-video_hero {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+        }
+
     }
 }
