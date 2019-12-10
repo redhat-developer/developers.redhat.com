@@ -18,7 +18,7 @@ padding: 1.5rem 0;
   grid-gap: 1.5rem;
 }
 
-.rhd-menu > .menu-item.menu-item--expanded {
+.rhd-menu > .menu-item, .rhd-menu > .menu-item--expanded {
   list-style: none;
   .section-toggle {
     text-transform: uppercase;
