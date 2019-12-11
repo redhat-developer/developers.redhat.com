@@ -49,4 +49,15 @@
     &.right  { 
         float: none !important; 
     }
+
+    //default component classes
+    &.background-gray {
+        background: $rhd-theme--component-background--color-extra-light;
+    }
+    &.no-padding-top {
+        margin-top: 0;
+    }
+    &.no-padding-bottom {
+        margin-bottom: 0;
+    }
 }
