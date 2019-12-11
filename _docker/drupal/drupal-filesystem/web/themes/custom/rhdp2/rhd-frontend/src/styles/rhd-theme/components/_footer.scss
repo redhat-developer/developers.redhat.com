@@ -98,14 +98,17 @@
   }
 
   &-social {
+    @extend .pf-m-grow;
     list-style: none;
-    margin: 0;
-    padding: 4px 0;
-    display: inline-block;
-    
+    margin: 0 16px 0 0;
+    padding: 0 0 1rem 0;
+    display: block;
+
     li {
       display: inline;
-      margin-left: 16px;
+      margin-right: 16px;
+      margin-bottom: 16px;
+
       float: none;
 
       &:first-child {
@@ -144,11 +147,11 @@
 
   &-signup {
     font-family: $rhd-font-stack-display;
-    float: right;
-    margin-left: 16px;
     font-weight: 500;
-    display: inline-block;
-    margin-top: 6px;
+    display: block;
+    padding: 0;
+    margin-bottom: 16px;
+
     &:hover {
       text-decoration: none;
     }
