@@ -1,6 +1,13 @@
 .rhd-c-footer {
   background-color: var(--rhd-theme--ui-background-dark);
   color: var(--pf-global--Color--light-100);
+
+  .rhd-menu > .menu-item, .rhd-menu > .menu-item--expanded {
+    list-style: none;
+    .section-toggle {
+      text-transform: uppercase;
+    }
+  }
 }
 
 .rhd-c-footer-links {
@@ -18,12 +25,7 @@ padding: 1.5rem 0;
   grid-gap: 1.5rem;
 }
 
-.rhd-menu > .menu-item.menu-item--expanded {
-  list-style: none;
-  .section-toggle {
-    text-transform: uppercase;
-  }
-}
+
 
 a {
   font-size: 14px;
