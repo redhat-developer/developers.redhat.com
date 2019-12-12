@@ -168,9 +168,10 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
-  // Attach the rhdp2/show-more library to the Video Resource, default view mode.
+  // Attach libraries to the Video Resource, default view mode.
   if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
     $variables['#attached']['library'][] = 'rhdp2/show-more';
+    $variables['#attached']['library'][] = 'rhdp2/related-content';
   }
 
   // Learning Path content type and Card view mode.
