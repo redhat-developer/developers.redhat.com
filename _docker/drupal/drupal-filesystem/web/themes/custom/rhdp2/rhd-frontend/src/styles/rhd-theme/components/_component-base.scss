@@ -1,4 +1,7 @@
 .component {
+    //isolate any absolute positioned children to the component
+    position: relative;
+
     .pf-l-grid,
     .pf-l-level,
     .pf-l-gallery,

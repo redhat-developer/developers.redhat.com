@@ -22,10 +22,7 @@
 
     >.pf-l-grid {
       .pf-l-grid__item {
-        .component {
-          margin-top: 0;
-          margin-bottom: var(--rhd-theme--container-spacer-xl);
-        }
+        @include nestedComponent;
       }
       .pf-l-flex {
         .pf-l-flex__item {

@@ -4,3 +4,12 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+@mixin nestedComponent {
+  .component {
+    margin-top: 0 0 48px 0;
+    &:not(.dark):not(.assembly-slim):not(.has-background):not(.background-gray) {
+      padding: 0;
+    }
+  }
+}
