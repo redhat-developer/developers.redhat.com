@@ -9,7 +9,7 @@
   // forumthread
   // stackoverflow_thread
   // quickstart
-  //  demo  
+  //  demo
   // jbossdeveloper_bom
   // jbossdeveloper_archetype
   // jbossdeveloper_example
@@ -26,26 +26,25 @@ app = window.app || {};
 
 app.relatedContent = {};
 
+app.relatedContent.fetch = function($parent) {
+  $($parent).addClass('loading');
 
-app.relatedContent.fetch = function() {
-  $("div.video-related-content.video-related-content-list").addClass('loading');
-  
-  var contentCount = $('#video-related-cont').find('.field--name-field-related-content .related-content-card').length;
+  var contentCount = $('.field--name-field-related-content .related-content-card', $parent).length;
   contentCount = 4 - contentCount;
   var typeString = '&sys_type=cheatsheet&sys_type=video&sys_type=book&sys_type=article&sys_type=blogpost';
-  var tags = ($('#video-related-cont').data('tags') || "");
-  var tagsString = "";
+  var tags = ($parent.data('tags') || '');
+  var tagsString = '';
 
   try {
-    tags = JSON.parse(tags.replace(/'/g, "\""));
+    tags = JSON.parse(tags.replace(/'/g, '\"'));
   } catch (e) {
-    tags = "";
+    tags = '';
   }
 
-  if(tags){   
+  if(tags){
     for (var i = 0; i < tags.length; i++) {
       if (i > 0) {
-        tags[i] = "&tag=" + tags[i];
+        tags[i] = '&tag=' + tags[i];
       }
       tagsString += (tags[i]).toLowerCase();
     }
@@ -54,12 +53,12 @@ app.relatedContent.fetch = function() {
   $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&filter_out_excluded=true&size10=true&tag=' + tagsString + typeString, function(data){
     if(data.hits && data.hits.hits) {
       data.hits.hits.length = contentCount;
-      app.relatedContent.render(data.hits.hits);
+      app.relatedContent.render(data.hits.hits, $parent);
     }
   });
 };
 
-app.relatedContent.render = function(materials) {
+app.relatedContent.render = function (materials, $parent) {
   var html = [];
   materials.forEach(function(material){
     var type = material.fields.sys_type[0];
@@ -75,7 +74,7 @@ app.relatedContent.render = function(materials) {
 
         else {
           var post_id = /-(.+)/.exec(material._id)[1];
-          material.fields.sys_url_view[0] = "//planet.jboss.org/post/" + post_id;
+          material.fields.sys_url_view[0] = '//planet.jboss.org/post/' + post_id;
         }
       }
 
@@ -110,35 +109,39 @@ app.relatedContent.render = function(materials) {
       }
 
       var title = material.fields.sys_title[0];
-      title = title.replace("| Red Hat Developer Program", "");
+      title = title.replace('| Red Hat Developer Program', '');
 
       var item = [
-        '<div class="large-6 columns related-content-card">',
-        '<h6>Related ' + material.fields.sys_type + '</h6>',
-        '<h4><span class="line-clamp-2">' + title + '</span></h4>',
-        '<p class="description">',
-        '<a class="light-cta" href="' + material.fields.sys_url_view[0] + '">Read More</a>',
-        '</p>',
+        '<div class="pf-c-card rhd-c-card">',
+        '  <div class="rhd-c-card__tag">Related ' + material.fields.sys_type + '</div>',
+        '  <div class="rhd-c-card-content">',
+        '    <h3 class="rhd-c-card__title rhd-m-card-title__no-image">',
+        '    <span class="line-clamp-2">' + title + '</span></a></h3>',
+        '    <div class="rhd-c-card__footer">',
+        '      <a class="rhd-m-link" href="' + material.fields.sys_url_view[0] + '">Read More <i class="fas fa-arrow-right"></i></a>',
+        '    </div>',
+        '  </div>',
         '</div>'
       ].join('');
 
       html.push(item);
-      $("div.video-related-content.video-related-content-list").removeClass('loading');
+      $($parent).removeClass('loading');
     }
   });
 
-  $('.video-related-content-list').html(html.join(''));
-  var $clampItems = $('.video-related-content-list').find(".line-clamp-2");
+  // $($parent).html(html.join(''));
+  $(html.join('')).appendTo($parent);
+  var $clampItems = $('.line-clamp-2', $parent);
   $clampItems.each(function() {
-      var $tmpItem = $(this);
-      $clamp($tmpItem.get(0), {clamp: 2, useNativeClamp: true});      
+    var $tmpItem = $(this);
+    $clamp($tmpItem.get(0), {clamp: 2, useNativeClamp: true});
   });
 };
 
 $(function() {
-  var $videoRelatedContentList = $('.video-related-content-list');
-  // check if we are on a page that needs this to run
+  var $videoRelatedContentList = $('#video-related-cont');
+  // Check if we are on a page that needs this to run.
   if($videoRelatedContentList.length) {
-    app.relatedContent.fetch();
+    app.relatedContent.fetch($videoRelatedContentList);
   }
 });
