@@ -28,9 +28,9 @@
   app.relatedContent.fetch = function ($parent) {
     $($parent).addClass('loading');
 
-    // @TODO: This field not formatted correctly and may be removed.
-    var contentCount = $('.field--name-field-related-content .related-content-card', $parent).length;
-    contentCount = 4 - contentCount;
+    // @TODO: This field not formatted correctly and the logic for it is currently disabled via comments.
+    //var contentCount = $('.field--name-field-related-content .related-content-card', $parent).length;
+    //contentCount = 4 - contentCount;
 
     var typeString = '&sys_type=cheatsheet&sys_type=video&sys_type=book&sys_type=article&sys_type=blogpost';
     var tags = ($parent.data('tags') || '');
@@ -53,7 +53,9 @@
 
     $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&filter_out_excluded=true&size10=true&tag=' + tagsString + typeString, function (data) {
       if (data.hits && data.hits.hits) {
-        data.hits.hits.length = contentCount;
+
+        // Set this equal to contentCount if we return to supporting other cards in this field.
+        data.hits.hits.length = 4;
         app.relatedContent.render(data.hits.hits, $parent);
       }
     });
