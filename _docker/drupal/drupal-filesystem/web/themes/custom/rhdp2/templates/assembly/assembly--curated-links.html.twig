@@ -12,35 +12,51 @@
  * @ingroup themeable
  */
 #}
+
+{# Decalre default render variables #}
+{% set addClasses = [] %}
+{% set remClasses = [] %}
+
+{# Calculate type of render based on class set and set appropriate variable values #}
+{% if (display_type == 'nav-menu') %}
+  {% set addClasses = ['nav-menu'] %}
+  {% set remClasses = ['two-col'] %}
+{% elseif (display_type == 'two-col') %}
+  {% set addClasses = ['two-col'] %}
+  {% set remClasses = ['nav-menu'] %}
+{% endif %}
+
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-<div{{ attributes.addClass('component').setAttribute('style', background_image) }}{{ audience_selection }}>
+<div{{ attributes.addClass('pf-c-content', 'rhd-c-curated-links', 'assembly-type-curated_links_rhdp2', 'component', addClasses).removeClass('assembly-type-curated_links', remClasses).setAttribute('style', background_image) }}{{ audience_selection }}>
   <div class="pf-l-grid pf-m-gutter">
     {% if content.field_additional_content|render %}
-    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-7-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-12-col-on-md">
       {{ content.field_additional_content }}
     </div>
     {% endif %}
     {% if content.field_additional_content|render %}
-    <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+    <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-12-col-on-md">
     {% else %}
-    <div class="pf-l-grid__item pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+    <div class="pf-l-grid__item">
     {% endif %}
-      <div class="pf-l-flex pf-m-column rhd-c-curated-links component">
-        {% if content.field_title|render %}
-          <h2 class="pf-c-title pf-u-pt-lg">{{ content.field_title }}</h2>
-        {% endif %}
+      {% if content.field_title|render %}
+        <h2 class="pf-c-title pf-u-pt-md">{{ content.field_title }}</h2>
+      {% endif %}       
+      {% if elements.links %}
         <hr class="rhd-c-divider">
-        {% if elements.links %}
+        <div class="pf-l-flex pf-m-column">
           {% for link in elements.links %}
             <div class="pf-l-flex__item">
+              {% if not attributes.hasClass('nav-menu') %}
               <i class="fal fa-arrow-circle-right"></i>
+              {% endif %}     
               {{ link }}
             </div>
           {% endfor %}
-        {% endif %}
+        </div>
         <hr class="rhd-c-divider">
-      </div>
+      {% endif %}
     </div>
   </div>
 </div>

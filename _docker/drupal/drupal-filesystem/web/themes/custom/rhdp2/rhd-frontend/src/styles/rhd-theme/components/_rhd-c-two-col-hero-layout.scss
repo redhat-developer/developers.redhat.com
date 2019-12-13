@@ -3,9 +3,7 @@
         > .pf-l-grid {
             
             > .pf-m-12-col {
-                .component:not(.dark):not(.assembly-slim):not(.has-background) {
-                    padding: 0;
-                }
+                @include nestedComponent;
                 > .component {
                     &.rhd-c-card-grid {
                         .rhd-c-card-grid__wrapper {
