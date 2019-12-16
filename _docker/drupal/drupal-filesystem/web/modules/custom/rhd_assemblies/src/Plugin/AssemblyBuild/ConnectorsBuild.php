@@ -52,6 +52,7 @@ class ConnectorsBuild extends AssemblyBuildBase implements AssemblyBuildInterfac
     $query_results = $query
       ->condition('status', 1)
       ->condition('type', 'connectors')
+      ->sort('title', 'ASC')
       ->execute();    
 
     $nodes = [];
