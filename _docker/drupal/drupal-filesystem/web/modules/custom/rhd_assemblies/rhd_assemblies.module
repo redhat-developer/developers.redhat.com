@@ -6,10 +6,11 @@
  */
 
 use Drupal\assembly\Entity\Assembly;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 
 /**
@@ -66,6 +67,14 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
     ],
   ];
 
+  // Registers a custom template and variables for Wordpress Post Teaser.
+  $theme['wordpress_post_compact_dynamic_article_list_item'] = [
+    'template' => 'wordpress-post-compact-dynamic-article-list-item',
+    'variables' => [
+      'post' => NULL,
+    ],
+  ];
+
   // Registers a custom template and variables for Wordpress Post Card.
   $theme['wordpress_post_card'] = [
     'template' => 'wordpress-post-card',
@@ -85,6 +94,24 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
   ];
 
   return $theme;
+}
+
+function rhd_assemblies_preprocess_wordpress_post_compact_dynamic_article_list_item(&$variables) {
+  $variables['rhd_domain'] = FALSE;
+	$variables['absolute_url'] = FALSE;
+
+  $current_path = \Drupal::service('path.current')->getPath();
+	$url = Url::fromUri("internal:$current_path");
+	$variables['absolute_url'] = $url->setAbsolute()->toString();
+
+  // don't run comment js on this entity
+  // if it isn't a redhat domain or the current domain
+  if ($_SERVER['SERVER_NAME']) {
+    $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+    if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
+      $variables['rhd_domain'] = TRUE;
+    }
+  }
 }
 
 /**

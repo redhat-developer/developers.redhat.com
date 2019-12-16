@@ -1,0 +1,21 @@
+uuid: 2b5ebca0-5c02-4e0a-b85a-704a1eb221e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.storage.assembly.field_category_filter
+  module:
+    - rhd_assemblies
+id: assembly.compact_dynamic_article_list.field_category_filter
+field_name: field_category_filter
+entity_type: assembly
+bundle: compact_dynamic_article_list
+label: 'Category Filter'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_wpcategories

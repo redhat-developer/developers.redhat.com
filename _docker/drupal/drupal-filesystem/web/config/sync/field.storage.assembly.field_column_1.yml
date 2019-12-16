@@ -1,0 +1,19 @@
+uuid: 8f186176-087a-4fa2-9ff5-df9e53232cfb
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_column_1
+field_name: field_column_1
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: assembly
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
