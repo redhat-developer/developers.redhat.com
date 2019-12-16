@@ -1,0 +1,45 @@
+uuid: fa5558bb-7e2c-44a7-a401-2c724446bcfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.connectors
+    - field.field.assembly.connectors.field_audience_selection
+  module:
+    - field_layout
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.connectors.default
+targetEntityType: assembly
+bundle: connectors
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
