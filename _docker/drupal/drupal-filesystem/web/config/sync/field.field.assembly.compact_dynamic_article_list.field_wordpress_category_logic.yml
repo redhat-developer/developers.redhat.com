@@ -1,0 +1,23 @@
+uuid: 5d659068-a2b5-4611-ac5c-f191ebe62af3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.storage.assembly.field_wordpress_category_logic
+id: assembly.compact_dynamic_article_list.field_wordpress_category_logic
+field_name: field_wordpress_category_logic
+entity_type: assembly
+bundle: compact_dynamic_article_list
+label: 'Wordpress category use ''and'' logic'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
