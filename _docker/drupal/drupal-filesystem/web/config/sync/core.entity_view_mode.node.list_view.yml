@@ -1,0 +1,14 @@
+uuid: 3b43079d-7eb4-45d7-89ca-f9db69438c85
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'This view mode will be used to display content using the List View design: https://marvelapp.com/a078f73/screen/64045252'
+id: node.list_view
+label: 'List View'
+targetEntityType: node
+cache: true

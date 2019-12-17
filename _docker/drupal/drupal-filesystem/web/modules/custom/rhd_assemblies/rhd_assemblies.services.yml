@@ -5,3 +5,6 @@ services:
   rhd_assemblies.download_manager_api:
     class: Drupal\rhd_assemblies\Service\DownloadManagerApi
     arguments: ['@http_client', '@entity_type.manager']
+  rhd_assemblies.assembly_build_connectors_build:
+    class: Drupal\rhd_assemblies\Plugin\AssemblyBuild\ConnectorsBuild
+    arguments: ['@entity_type.manager']

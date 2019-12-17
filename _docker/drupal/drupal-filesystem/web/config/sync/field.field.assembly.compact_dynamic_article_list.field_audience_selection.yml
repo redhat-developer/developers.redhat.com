@@ -1,0 +1,21 @@
+uuid: 0d77acf5-6e78-4d53-aa2b-2f5043653635
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.compact_dynamic_article_list.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: compact_dynamic_article_list
+label: 'Audience Selection'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
