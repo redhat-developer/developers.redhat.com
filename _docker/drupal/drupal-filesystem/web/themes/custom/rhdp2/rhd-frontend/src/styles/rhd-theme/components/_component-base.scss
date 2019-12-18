@@ -1,12 +1,12 @@
 .component {
     //isolate any absolute positioned children to the component
     position: relative;
-
     .pf-l-grid,
     .pf-l-level,
     .pf-l-gallery,
     .pf-l-flex,
-    .pager {
+    .pager,
+    .component-limit-width {
         max-width: map-get($rhd-breakpoints, xlarge);
         margin: 0 auto;
     }
