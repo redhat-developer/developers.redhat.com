@@ -25,38 +25,55 @@ class BonusContentItemBuild extends AssemblyBuildBase implements AssemblyBuildIn
    * {@inheritdoc}
    */
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-    $build['term_image_url'] = 'https://www.patternfly.org/assets/images/img_avatar.svg';
 
-    if ($entity->hasField('field_bonus_content_type')) {
+    $imageUri = 'https://www.patternfly.org/assets/images/img_avatar.svg';
+    $imageAlt = 'avatar';
 
-      $tid = (int) $entity->get('field_bonus_content_type')->getValue()[0]['target_id'];
-      if (!$tid) {
+    if ($entity->hasField('field_bonus_content_type') && !$entity->get('field_bonus_content_type')->isEmpty()) {
+
+      $term = Term::load($entity->field_bonus_content_type->target_id);
+
+      // Make sure it's not an orphaned reference, and that an image exists.
+      if (!$term || is_null($term) || !$term->hasField('field_content_type_image') || $term->get('field_content_type_image')->isEmpty()) {
         return;
       }
-      $term = Term::load($tid);
 
-      if ($term_image_value = $term->get('field_content_type_image')->getValue()) {
-        if ($file_id = $term_image_value[0]['target_id']) {
+      // Update the imageURI.
+      $termTargetFile = $term->field_content_type_image->target_id;
+      $termTargetFileUri = File::load($termTargetFile)->getFileUri();
+      $termTargetFileStyled = ImageStyle::load('bonus_thumb')->buildUrl($termTargetFileUri);
+      $imageUri = $termTargetFileStyled;
 
-          $uri = File::load($file_id)->getFileUri();
-          if ($term_image_url = ImageStyle::load('bonus_thumb')->buildUrl($uri)) {
-            $build['term_image_url'] = $term_image_url;
-          }
+      // Update the image alt.
+      $imageAlt = $term->field_content_type_image->alt ?? '';
 
-          if ($term_image_url_alt = $term_image_value[0]['alt']) {
-            $build['term_image_url_alt'] = $term_image_url_alt;
-          }
-        }
-      }
-
-      if ($content_type_icon_style = $term->get('field_content_type_icon_style')->value) {
-        $build['icon_style'] = $content_type_icon_style;
+      if ($term->hasField('field_content_type_icon_style') && !$term->get('field_content_type_icon_style')->isEmpty()) {
+        $build['icon_style'] = [
+          '#type' => 'markup',
+          '#markup' => $term->get('field_content_type_icon_style')->value,
+        ];
       }
 
       if ($term_name = $term->getName()) {
-        $build['term_name'] = $term_name;
+        $build['term_name'] = [
+          '#type' => 'markup',
+          '#markup' => $term_name,
+        ];
       }
-
     }
+
+    $build['term_image_url'] = [
+      '#type' => 'markup',
+      '#markup' => $imageUri,
+    ];
+
+    $build['term_image_url_alt'] = [
+      '#type' => 'markup',
+      '#markup' => $imageAlt,
+    ];
+
+    return $build;
+
   }
+
 }
