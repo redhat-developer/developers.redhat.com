@@ -32,33 +32,31 @@ class BonusContentItemBuild extends AssemblyBuildBase implements AssemblyBuildIn
     if ($entity->hasField('field_bonus_content_type') && !$entity->get('field_bonus_content_type')->isEmpty()) {
 
       $term = Term::load($entity->field_bonus_content_type->target_id);
+      if ($term && $term instanceof Term) {
+        // Update the imageURI and imageAlt.
+        if ($term->hasField('field_content_type_image') && !$term->get('field_content_type_image')->isEmpty()) {
+          $termTargetFile = $term->field_content_type_image->target_id;
+          $termTargetFileUri = File::load($termTargetFile)->getFileUri();
+          $termTargetFileStyled = ImageStyle::load('bonus_thumb')->buildUrl($termTargetFileUri);
+          $imageUri = $termTargetFileStyled;
+          $imageAlt = $term->field_content_type_image->alt ?? '';
+        }
 
-      // Make sure it's not an orphaned reference, and that an image exists.
-      if (!$term || is_null($term) || !$term->hasField('field_content_type_image') || $term->get('field_content_type_image')->isEmpty()) {
-        return;
-      }
+        // Add icon style.
+        if ($term->hasField('field_content_type_icon_style') && !$term->get('field_content_type_icon_style')->isEmpty()) {
+          $build['icon_style'] = [
+            '#type' => 'markup',
+            '#markup' => $term->get('field_content_type_icon_style')->value,
+          ];
+        }
 
-      // Update the imageURI.
-      $termTargetFile = $term->field_content_type_image->target_id;
-      $termTargetFileUri = File::load($termTargetFile)->getFileUri();
-      $termTargetFileStyled = ImageStyle::load('bonus_thumb')->buildUrl($termTargetFileUri);
-      $imageUri = $termTargetFileStyled;
-
-      // Update the image alt.
-      $imageAlt = $term->field_content_type_image->alt ?? '';
-
-      if ($term->hasField('field_content_type_icon_style') && !$term->get('field_content_type_icon_style')->isEmpty()) {
-        $build['icon_style'] = [
-          '#type' => 'markup',
-          '#markup' => $term->get('field_content_type_icon_style')->value,
-        ];
-      }
-
-      if ($term_name = $term->getName()) {
-        $build['term_name'] = [
-          '#type' => 'markup',
-          '#markup' => $term_name,
-        ];
+        // Add term name.
+        if ($term_name = $term->getName()) {
+          $build['term_name'] = [
+            '#type' => 'markup',
+            '#markup' => $term_name,
+          ];
+        }
       }
     }
 
