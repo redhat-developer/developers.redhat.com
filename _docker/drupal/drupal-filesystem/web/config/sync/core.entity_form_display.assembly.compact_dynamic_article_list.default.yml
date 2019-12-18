@@ -1,0 +1,92 @@
+uuid: 2293933f-ee11-48d9-813e-4400fc3e3131
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.field.assembly.compact_dynamic_article_list.field_audience_selection
+    - field.field.assembly.compact_dynamic_article_list.field_category_filter
+    - field.field.assembly.compact_dynamic_article_list.field_cta_link
+    - field.field.assembly.compact_dynamic_article_list.field_drupal_term_filter
+    - field.field.assembly.compact_dynamic_article_list.field_title
+    - field.field.assembly.compact_dynamic_article_list.field_wordpress_category_logic
+  module:
+    - field_layout
+    - layout_discovery
+    - link
+    - rhd_assemblies
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.compact_dynamic_article_list.default
+targetEntityType: assembly
+bundle: compact_dynamic_article_list
+mode: default
+content:
+  field_audience_selection:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_category_filter:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: wpcategories_options_select
+    region: content
+  field_cta_link:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_drupal_term_filter:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_wordpress_category_logic:
+    weight: 6
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  user_id: true

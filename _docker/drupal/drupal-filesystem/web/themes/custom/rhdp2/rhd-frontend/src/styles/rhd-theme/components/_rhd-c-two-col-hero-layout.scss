@@ -3,9 +3,7 @@
         > .pf-l-grid {
             
             > .pf-m-12-col {
-                .component:not(.dark):not(.assembly-slim) {
-                    padding: 0;
-                }
+                @include nestedComponent;
                 > .component {
                     &.rhd-c-card-grid {
                         .rhd-c-card-grid__wrapper {
@@ -32,6 +30,39 @@
                 }
 
             }
+
+            .field--name-field-column-2 {
+                > .assembly.component:first-of-type {
+                  // Remove margin-top from first assembly rendered in 2nd
+                  // column within the Layout 2 col, sidebar left assembly type.
+                  // This makes it match the behavior of the left, 1st column.
+                  @media screen and (min-width: $pf-global--breakpoint--lg) {
+                    margin-top: 0;
+                  }
+                }
+            }
         }
+
+        .field--name-field-column-1 {
+          .medium-cta {
+            margin-left: 0;
+            margin-bottom: 0;
+          }
+        }
+
+        .field--name-field-column-2 {
+          .assembly-type-rich_text,
+          .assembly-type-content_with_image,
+          .assembly-type-events_hero ,
+          .assembly-type-hero ,
+          .assembly-type-product_download_hero ,
+          .assembly-type-product_try_it_hero ,
+          .assembly-type-sign_up_hero ,
+          .assembly-type-video_hero {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+        }
+
     }
 }

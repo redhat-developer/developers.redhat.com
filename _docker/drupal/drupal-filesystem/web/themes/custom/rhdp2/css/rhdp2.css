@@ -17,11 +17,6 @@ a.pf-c-button:hover {
   margin-left: 10px;
 }
 
-/* This is necessary to have consistent column width with nested components */
-.component .component {
-  padding: 16px 0;
-}
-
 /* Learning Paths */
 .assembly-type-learning_paths .rhd-c-card-grid__intro-wrapper {
   margin-bottom: 16px;
@@ -660,30 +655,4 @@ a.pf-c-button:hover {
 .assembly-type-events_hero.has-sidebar .sidebar .rhd-c-events-hero__item-presenters,
 .assembly-type-events_hero.has-sidebar .sidebar .short-description {
   display: none;
-}
-
-/* Curated Links */
-.assembly-type-curated_links.component .component {
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0;
-}
-.assembly-type-curated_links.no-padding-top {
-  margin-top: 0;
-}
-.assembly-type-curated_links.no-padding-bottom {
-  margin-bottom: 0;
-}
-.assembly-type-curated_links.background-gray {
-  background: #e4e4e6;
-}
-.assembly-type-curated_links.two-col .pf-l-flex.pf-m-column {
-  align-items: baseline;
-  flex-direction: row;
-}
-.assembly-type-curated_links.two-col .pf-l-flex.pf-m-column hr {
-  flex-basis: 100%;
-}
-.assembly-type-curated_links.two-col .pf-l-flex.pf-m-column .pf-l-flex__item {
-  flex-basis: 50%;
 }

@@ -1,0 +1,21 @@
+{% set classes = [
+  'pf-l-grid',
+  'pf-m-gutter',
+  'product-version'
+]%}
+<div{{ attributes.addClass(classes) }}{{ audience_selection }}>
+  <div class="pf-l-grid__item product-version__file-label-wrapper">
+    <p class="product-version__file-label">{{ link(label, node.field_connector_details_url[0].value.uri) }}</p>
+  </div>
+  <div class="pf-l-grid__item product-version__file-description">
+    {{ content.field_connector_short_descriptio }}
+  </div>
+  {#
+  <div class="pf-l-grid__item product-version__release-date-wrapper">
+    <i class="fa fa-calendar-alt"></i> Release date <br/><span class="product-version__release-date">{{ versionReleaseDate|date("F d, Y") }}</span>
+  </div>
+  <div class="pf-l-grid__item product-version__cta">
+    <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download ({{ file.fileSize }})</a>
+  </div>
+  #}
+</div>

@@ -144,6 +144,23 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['authors'] = implode('&', $authors_values);
     }
   }
+  if ($type === 'article' && $variables['view_mode'] === 'compact_dynamic_article_list_item') {
+    $variables['rhd_domain'] = FALSE;
+    $variables['absolute_url'] = FALSE;
+
+    $current_path = \Drupal::service('path.current')->getPath();
+    $url = Url::fromUri("internal:$current_path");
+    $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+    // don't run comment js on this entity
+    // if it isn't a redhat domain or the current domain
+    if ($_SERVER['SERVER_NAME']) {
+      $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+      if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
+        $variables['rhd_domain'] = TRUE;
+      }
+    }
+  }
 
   // Author content type.
   if ($type == 'author') {
@@ -327,7 +344,7 @@ function rhdp2_preprocess_node(&$variables) {
   // Events content type.
   if ($node->getType() == 'events') {
     $variables['event_title'] = $node->getTitle();
-    $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
+    $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
     $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
     // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
@@ -452,6 +469,19 @@ function rhdp2_preprocess_assembly(&$variables) {
 
       $audience_selection = implode(',', $audience_selection_values);
       $variables['audience_selection'] = " data-audience={$audience_selection}";
+    }
+  }
+
+  // Add Display Type variables for curated_links
+  if ($type == 'curated_links'
+      && $assembly->hasField('field_display_type_curated_links')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
+    if (strpos($display_type, 'two-col') !== FALSE) {
+      $variables['display_type'] = 'two-col';
+    }
+    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+      $variables['display_type'] = 'nav-menu';
     }
   }
 
@@ -748,9 +778,10 @@ function rhdp2_preprocess_html(array &$variables) {
   $rhd_base_url = $rhd_config->get('rhd_base_url');
   $rhd_final_base_url = $rhd_config->get('rhd_final_base_url');
 
-  $variables['rhd_environment'] = $environment;
+  $variables['#attached']['drupalSettings']['rhdp2']['rhd_dtm_code'] = $dtm_code;
+  $variables['#attached']['drupalSettings']['rhdp2']['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
   $variables['rhd_dtm_code'] = $dtm_code;
-  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_environment'] = $environment;
   $variables['rhd_sentry_track'] = $sentry_track;
   $variables['rhd_sentry_script'] = $sentry_script;
   $variables['rhd_sentry_code'] = $sentry_code;
