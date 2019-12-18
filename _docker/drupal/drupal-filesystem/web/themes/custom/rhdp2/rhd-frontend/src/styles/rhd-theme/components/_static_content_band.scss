@@ -2,7 +2,9 @@
   &.assembly-type-static_content_band {
     > .pf-l-flex {
       &.rhd-c-card-grid__wrapper {
-        justify-content: flex-start;
+        justify-content: space-between;
+        margin-right: calc(-1 * var(--pf-l-flex--spacer--sm));
+        margin-left: calc(-1 * var(--pf-l-flex--spacer--sm));
         .assembly {
           &.pf-l-flex, &.assembly-type-node_reference {
             max-width: initial;
@@ -20,7 +22,8 @@
           }
           &.rhd-c-card {
             width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
-            margin: 0 var(--rhd-theme--container-spacer-lg) var(--rhd-theme--container-spacer-md) 0;
+            margin-left: var(--pf-l-flex--spacer--sm);
+            margin-right: var(--pf-l-flex--spacer--sm);
             @media screen and (max-width: $pf-global--breakpoint--lg) {
               width: calc(50% - var(--rhd-theme--container-spacer-lg));
             }
