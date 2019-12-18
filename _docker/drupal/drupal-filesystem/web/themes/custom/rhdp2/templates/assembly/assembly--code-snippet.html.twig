@@ -15,6 +15,9 @@
  * @ingroup themeable
  */
 #}
-{% if code %}
-  <pre{{ attributes.addClass('pf-l-flex') }}{{ audience_selection }}><code{{ create_attribute({'class': [language]}) }}>{{ code }}</code></pre>
-{% endif %}
+{% set language = content.field_programming_language|render|striptags|trim|clean_class %}
+{% spaceless %}
+<pre{{ attributes }} {{ content.audience_selection }}>
+  <code{{create_attribute({'class':[language, 'lasso']})}}>{{ content.field_code['#items'].0.value|trim }}</code>
+</pre>
+{% endspaceless %}
