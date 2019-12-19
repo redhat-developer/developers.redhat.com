@@ -17,7 +17,9 @@
 #}
 {% set language = content.field_programming_language|render|striptags|trim|clean_class %}
 {% spaceless %}
-<pre{{ attributes }} {{ content.audience_selection }}>
-  <code{{create_attribute({'class':[language]})}}>{{ content.field_code['#items'].0.value|trim }}</code>
-</pre>
+<div{{ attributes.addClass('component') }} {{ content.audience_selection }}>
+  <pre>
+    <code{{create_attribute({'class':[language]})}}>{{ content.field_code['#items'].0.value|trim }}</code>
+  </pre>
+</div>
 {% endspaceless %}
