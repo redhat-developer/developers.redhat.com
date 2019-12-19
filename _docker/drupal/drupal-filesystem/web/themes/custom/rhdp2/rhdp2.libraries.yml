@@ -69,19 +69,6 @@ video_embed_field.responsive-video:
     component:
       css/field/video_embed_field.responsive-video.css: {}
 
-# Code highlighting for the Code snippet Assembly type.
-highlight-js:
-  css:
-    base:
-      https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css: { type: external, minified: true }
-  js:
-    https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js: { type: external, minified: true }
-    # Inits the highlighting on Code snippet elements.
-    js/highlightjs-init.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-
 # Show more toggle reveal functionality for video resources
 show-more:
   js:
