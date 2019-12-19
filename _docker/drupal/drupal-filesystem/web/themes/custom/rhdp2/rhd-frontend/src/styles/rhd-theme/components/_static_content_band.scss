@@ -6,7 +6,10 @@
           justify-content: space-between;
           margin-right: calc(-1 * var(--pf-l-flex--spacer--sm));
           margin-left: calc(-1 * var(--pf-l-flex--spacer--sm));
-
+          @media screen and (max-width: $pf-global--breakpoint--sm) {
+            margin-right: 0;
+            margin-left: 0;
+          }
           .assembly {
 
             &.pf-l-flex,
@@ -32,11 +35,11 @@
               margin-left: var(--pf-l-flex--spacer--sm);
               margin-right: var(--pf-l-flex--spacer--sm);
 
-              @media screen and (max-width: $pf-global--breakpoint--lg) {
+              @media screen and (max-width: $pf-global--breakpoint--md) {
                 width: calc(50% - var(--rhd-theme--container-spacer-lg));
               }
 
-              @media screen and (max-width: $pf-global--breakpoint--md) {
+              @media screen and (max-width: $pf-global--breakpoint--sm) {
                 width: 100%;
                 margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
               }
@@ -57,10 +60,14 @@
                 width: 25%;
 
                 @media screen and (max-width: $pf-global--breakpoint--lg) {
-                  width: 50%;
+                  width: 33%;
                 }
 
                 @media screen and (max-width: $pf-global--breakpoint--md) {
+                  width: 50%;
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--xs) {
                   width: 100%;
                 }
               }
@@ -69,10 +76,14 @@
                 width: calc(25% - var(--rhd-theme--container-spacer-lg));
 
                 @media screen and (max-width: $pf-global--breakpoint--lg) {
-                  width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                  width: calc(33% - var(--rhd-theme--container-spacer-lg));
                 }
 
                 @media screen and (max-width: $pf-global--breakpoint--md) {
+                  width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--xs) {
                   width: 100%;
                 }
               }

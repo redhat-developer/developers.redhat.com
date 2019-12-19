@@ -96,6 +96,7 @@
     left: 0;
     right: 0;
     height: 150px;
+    display: none;
 
     img, .rhd-c-card__image, img.image-style-static-item {
       filter: blur(16px);
@@ -117,7 +118,7 @@
     position: relative;
     max-height: 150px;
     height: 150px;
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
   }
 
@@ -141,7 +142,7 @@
       }
     }
   }
-
+  
   &.rhd-c-card-logo {
     .rhd-c-card__image {
       height: 100px;

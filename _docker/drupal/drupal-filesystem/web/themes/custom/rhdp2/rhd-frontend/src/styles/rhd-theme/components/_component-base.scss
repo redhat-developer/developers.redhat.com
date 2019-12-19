@@ -63,4 +63,19 @@
     &.no-padding-bottom {
         margin-bottom: 0;
     }
+
+    //extra component classes
+    &.image-no-crop {
+        .rhd-c-card {
+            img.rhd-c-card__image, img.image-style-static-item {
+                object-fit: contain;
+            }
+            .rhd-c-card-blur-image {
+                display: block;
+                img, .rhd-c-card__image, img.image-style-static-item {
+                    object-fit: fill;
+                  }
+            }
+        }
+    }
 }
