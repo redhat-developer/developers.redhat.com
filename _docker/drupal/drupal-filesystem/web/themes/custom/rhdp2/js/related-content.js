@@ -116,10 +116,10 @@
 
         var item = [
           '<div class="pf-c-card rhd-c-card">',
-          '  <div class="rhd-c-card__tag">Related ' + material.fields.sys_type + '</div>',
+          '  <div class="rhd-c-card__tag">' + material.fields.sys_type + '</div>',
           '  <div class="rhd-c-card-content">',
           '    <h3 class="rhd-c-card__title rhd-m-card-title__no-image">',
-          '    <span class="line-clamp-2">' + title + '</span></a></h3>',
+          '    <span class="line-clamp-2">' + title + '</span></h3>',
           '    <div class="rhd-c-card__footer">',
           '      <a class="rhd-m-link" href="' + material.fields.sys_url_view[0] + '">Read More <i class="fas fa-arrow-right"></i></a>',
           '    </div>',
