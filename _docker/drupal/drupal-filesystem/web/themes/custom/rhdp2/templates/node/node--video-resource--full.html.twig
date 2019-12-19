@@ -76,7 +76,7 @@
   {% if ( content.field_video_resource_tags|render|striptags|trim is not empty ) or ( content.field_related_content|render|striptags|trim is not empty ) %}
   <section class="video-page rhd-c-card-grid">
     <div class="pf-l-flex" >
-      <h2 class="pf-c-title">More Like This</h4>
+      <h2 class="pf-c-title">More Like This</h2>
     </div>
      <div id ="video-related-cont" class="pf-l-flex rhd-c-card-grid__wrapper" data-tags="{{ video_tags|json_encode|replace('\"', '\'') }}">
         {# Populated by related-content.js. Fetches content based on data-tags. #}
