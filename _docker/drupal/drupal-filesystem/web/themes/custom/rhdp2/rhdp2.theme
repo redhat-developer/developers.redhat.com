@@ -12,6 +12,7 @@ use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_preprocess_page().
@@ -109,7 +110,7 @@ function rhdp2_preprocess_node(&$variables) {
     }
     if (count($author_nodes) === 1) {
       $nid = reset($author_nodes)->id();
-      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
+      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
       $current_path = \Drupal::service('path.current')->getPath();
       $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
@@ -119,11 +120,11 @@ function rhdp2_preprocess_node(&$variables) {
         ];
       }
       else {
-        // We can reset to retrieve the element since we've already verified there is only 1.
+        // Reset to retrieve the element since there is only 1.
         $authors_values = [
           'name' => reset($author_nodes)->getTitle(),
           // We need a Url object for Drupal, not a plain string.
-          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
+          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()]),
         ];
 
         // Get a renderable author Link and set the rhd-m-link class.
@@ -152,8 +153,7 @@ function rhdp2_preprocess_node(&$variables) {
     $url = Url::fromUri("internal:$current_path");
     $variables['absolute_url'] = $url->setAbsolute()->toString();
 
-    // don't run comment js on this entity
-    // if it isn't a redhat domain or the current domain
+    // Requires redhat domain to run comment js.
     if ($_SERVER['SERVER_NAME']) {
       $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
       if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
@@ -266,10 +266,10 @@ function rhdp2_preprocess_node(&$variables) {
       if ($d['period'] === 'hour') {
         $hours = $d['interval'];
       }
-      else if ($d['period'] === 'minute') {
+      elseif ($d['period'] === 'minute') {
         $minutes = $d['interval'];
       }
-      else if ($d['period'] === 'second') {
+      elseif ($d['period'] === 'second') {
         $seconds = $d['interval'];
       }
     }
@@ -347,7 +347,7 @@ function rhdp2_preprocess_node(&$variables) {
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
     $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
-    // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
+    // TODO: Fix Duplicate Logic: See preprocess_assembly.
     // Note: Also will not work properly without search and replace on export.
     if ($node->hasField('field_event_background_image')) {
       $image_value = $node->get('field_event_background_image')->getValue();
@@ -365,7 +365,7 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
-  // Provide the url_product_name to the Twig template to build the path alias to the Download route.
+  // Needed to build the path alias to the Download route.
   if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
     $variables['url_product_name'] = $node->get('field_url_product_name')->value;
   }
@@ -435,7 +435,8 @@ function rhdp2_preprocess_assembly(&$variables) {
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = file_create_url($uri);
     $variables['attributes']->addClass('has-background');
-  } else if ($image_value) {
+  }
+  elseif ($image_value) {
     $file_id = $image_value[0]['target_id'];
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
@@ -472,7 +473,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  // Add Display Type variables for curated_links
+  // Add Display Type variables for curated_links.
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
     $variables['display_type'] = '';
@@ -480,7 +481,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     if (strpos($display_type, 'two-col') !== FALSE) {
       $variables['display_type'] = 'two-col';
     }
-    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
       $variables['display_type'] = 'nav-menu';
     }
   }
@@ -497,7 +498,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  // @todo this should be in rhd_eloqua_embed
+  // @TODO this should be in rhd_eloqua_embed.
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
     $options = [];
@@ -532,8 +533,8 @@ function rhdp2_preprocess_assembly(&$variables) {
     $queryArray = [
       'query' => [
         'options' => $options,
-        'no_cache' => createGUID(),
-      ]
+        'no_cache' => rhdp2_create_guid(),
+      ],
     ];
     $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
     $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
@@ -541,25 +542,25 @@ function rhdp2_preprocess_assembly(&$variables) {
 
   // Events Hero assembly type.
   if ($type == 'events_hero') {
-    // get secondary events count
+    // Get secondary events count.
     if ($assembly->hasField('field_secondary_events') && $secondary_events = $assembly->get('field_secondary_events')->getValue()) {
       $variables['secondary_events_count'] = count($assembly->get('field_secondary_events')->getValue());
     }
-    // get light visual style
-    $variables['light'] = false;
+    // Get light visual style.
+    $variables['light'] = FALSE;
     if ($visual_styles = $assembly->get('visual_styles')->getValue()) {
       foreach ($visual_styles as $key => $value) {
         if (in_array('light', $value)) {
-          $variables['light'] = true;
+          $variables['light'] = TRUE;
           break;
         }
       }
     }
   }
 
-  // extract sidebar link fields
+  // Extract sidebar link fields.
   if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
-    $variables['has_sidebar_link'] = true;
+    $variables['has_sidebar_link'] = TRUE;
     $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
     $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
   }
@@ -618,11 +619,11 @@ function rhdp2_preprocess_field(&$variables, $hook) {
   // Set column count variable for Columns field in
   // Rich Text Columns assembly type.
   if ($variables['field_name'] === 'field_columns' && $variables['element']['#bundle'] === 'rich_text_columns') {
-    $variables['three_up'] = false;
+    $variables['three_up'] = FALSE;
     if ($visual_styles = $variables['element']['#object']->get('visual_styles')->getValue()) {
       foreach ($visual_styles as $key => $value) {
         if (in_array('three-up', $value)) {
-          $variables['three_up'] = true;
+          $variables['three_up'] = TRUE;
           break;
         }
       }
@@ -658,7 +659,7 @@ function _is_field_used_as_hero_image_in_card($variables) {
       return TRUE;
     }
   }
-  else if ($variables['entity_type'] === 'assembly') {
+  elseif ($variables['entity_type'] === 'assembly') {
     if ($variables['element']['#bundle'] === 'static_item' && $variables['field_name'] === 'field_image') {
       return TRUE;
     }
@@ -730,35 +731,36 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 /**
  * Returns a new random guid.
  */
-function createGUID() {
-  // Create a token
+function rhdp2_create_guid() {
+  // Create a token.
   $token = $_SERVER['HTTP_HOST'];
   $token .= $_SERVER['REQUEST_URI'];
-  $token .= uniqid(rand(), true);
-  // GUID is 128-bit hex
+  $token .= uniqid(rand(), TRUE);
+  // GUID is 128-bit hex.
   $hash = strtoupper(md5($token));
-  // Create formatted GUID
+  // Create formatted GUID.
   $guid = '';
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
-  $guid .= substr($hash,  0,  8) .
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability.
+  $guid .= substr($hash, 0, 8) .
     '-' .
-    substr($hash,  8,  4) .
+    substr($hash, 8, 4) .
     '-' .
-    substr($hash, 12,  4) .
+    substr($hash, 12, 4) .
     '-' .
-    substr($hash, 16,  4) .
+    substr($hash, 16, 4) .
     '-' .
     substr($hash, 20, 12);
 
   return $guid;
 }
 
-/* Implements hook_form_alter().
-*/
-function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
- if ($form_id == 'user_login_form') {
-   $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
- }
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp2_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
+  }
 }
 
 /**
@@ -931,4 +933,3 @@ function rhdp2_library_info_alter(array &$libraries, $extension) {
     }
   }
 }
-
