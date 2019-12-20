@@ -23,7 +23,7 @@ custom-events:
 
 jira-issue-collector:
   header: true
-  js: 
+  js:
     https://issues.jboss.org/s/36fcee7e2c47b82293b8ffd249c9132e-T/-bdgec2/72005/38e4585ff05eb2dd95a30399b8504050/2.0.22/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=03f305bd: { type: external, minified: true }
 
 base-theme:
@@ -86,6 +86,14 @@ video_embed_field.responsive-video:
   css:
     component:
       css/field/video_embed_field.responsive-video.css: {}
+
+# Related Content for video resources
+related-content:
+  js:
+    js/related-content.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 # Show more toggle reveal functionality for video resources
 show-more:
