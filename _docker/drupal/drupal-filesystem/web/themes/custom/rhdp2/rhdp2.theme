@@ -457,22 +457,6 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  if ($assembly->hasField('field_audience_selection')) {
-    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
-    $variables['audience_selection'] = '';
-
-    if ($field_audience_selection_values) {
-      $audience_selection_values = [];
-
-      foreach ($field_audience_selection_values as $field_audience_selection_value) {
-        $audience_selection_values[] = $field_audience_selection_value['value'];
-      }
-
-      $audience_selection = implode(',', $audience_selection_values);
-      $variables['audience_selection'] = " data-audience={$audience_selection}";
-    }
-  }
-
   // Add Display Type variables for curated_links.
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
