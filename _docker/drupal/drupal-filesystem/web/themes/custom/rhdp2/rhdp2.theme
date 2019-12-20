@@ -475,7 +475,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     $queryArray = [
       'query' => [
         'options' => $options,
-        'no_cache' => rhdp2_create_guid(),
+        'no_cache' => _create_guid(),
       ],
     ];
     $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
@@ -673,7 +673,7 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 /**
  * Returns a new random guid.
  */
-function rhdp2_create_guid() {
+function _create_guid() {
   // Create a token.
   $token = $_SERVER['HTTP_HOST'];
   $token .= $_SERVER['REQUEST_URI'];
