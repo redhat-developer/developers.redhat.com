@@ -87,24 +87,6 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
-  // Learning Path content type and Card view mode.
-  if ($node->getType() === 'learning_path' && $variables['view_mode'] === 'card') {
-    if ($lp_sd = $node->get('field_short_description')->value) {
-      $variables['short_description'] = $lp_sd;
-    }
-
-    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
-    $lp_content = $node->get('field_learning_path_content_item')->getValue();
-
-    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
-      $ref = Node::load($lp_content[$i]['target_id']);
-      $variables['content']['lessons'][] = [
-        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-        'title' => ['#markup' => $ref->label()],
-      ];
-    }
-  }
-
   // Prepares the authors render element.
   if ($type === 'article' && $variables['view_mode'] === 'card') {
     $authors = $node->get('field_author_evangelist')->getValue();
@@ -173,6 +155,53 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
+  // Article content type.
+  if ($node->getType() == 'article') {
+    $variables['has_hero'] = FALSE;
+    $variables['author_location'] = 'left';
+    $type = $node->get('field_article_type')->getValue();
+    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
+      $type = $type[0]['value'];
+      if ($type == 'opinion') {
+        $variables['has_hero'] = TRUE;
+        $variables['author_location'] = 'right';
+        $variables['content']['field_image'][0]['#image_style'] = 'hero';
+      }
+    }
+    $hide_toc = $node->get('field_hide_toc')->getValue();
+
+    // Verify that getValue() retrieves a field with a set value.
+    if (isset($hide_toc[0])) {
+      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
+    }
+    else {
+      $variables['hide_toc'] = FALSE;
+    }
+
+    // Author content type.
+    if ($type == 'author') {
+      $variables['author_name'] = $node->getTitle();
+      $variables['author_articles'] = FALSE;
+      if (views_get_view_result('author_articles')) {
+        $variables['author_articles'] = views_embed_view('author_articles');
+      }
+      $variables['social_links'] = FALSE;
+      $social_facebook = $node->get('field_facebook')->getValue();
+      $social_github = $node->get('field_github')->getValue();
+      $social_linkedin = $node->get('field_linkedin')->getValue();
+      $social_twitter = $node->get('field_twitter')->getValue();
+      $social_youtube = $node->get('field_youtube')->getValue();
+      $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
+      if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+        $variables['social_links'] = TRUE;
+        $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
+        $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
+        $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
+        $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+      }
+    }
+  }
+
   // Author content type.
   if ($type === 'author') {
     $variables['author_name'] = $node->getTitle();
@@ -199,12 +228,6 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['social_twitter'] = $social_twitter[0]['uri'] ?? FALSE;
       $variables['social_youtube'] = $social_youtube[0]['uri'] ?? FALSE;
     }
-  }
-
-  // Attach libraries to the Video Resource, default view mode.
-  if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
-    $variables['#attached']['library'][] = 'rhdp2/show-more';
-    $variables['#attached']['library'][] = 'rhdp2/related-content';
   }
 
   // Books content type and Learning Path Card view mode.
@@ -234,6 +257,53 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
+  // Events content type.
+  if ($node->getType() == 'events') {
+    $variables['event_title'] = $node->getTitle();
+    $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
+    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
+
+    // TODO: Fix Duplicate Logic: See preprocess_assembly.
+    // Note: Also will not work properly without search and replace on export.
+    if ($node->hasField('field_event_background_image')) {
+      $image_value = $node->get('field_event_background_image')->getValue();
+      if ($image_value) {
+        $file_id = $image_value[0]['target_id'];
+        $uri = File::load($file_id)->getFileUri();
+        $variables['event_image_url'] = file_create_url($uri);
+      }
+    }
+
+    // Teaser view mode.
+    if ($variables['view_mode'] == 'teaser') {
+      $node_title = $node->label();
+      $variables['node_title'] = str_replace('"', '', $node_title);
+    }
+  }
+
+  // Learning Path content type and Card view mode.
+  if ($node->getType() === 'learning_path' && $variables['view_mode'] === 'card') {
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
+    }
+
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label()],
+      ];
+    }
+  }
+
+  // Needed to build the path alias to the Download route.
+  if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
+    $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
+  }
+
   // RH Training Class content type and Learning Path Card view mode.
   if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
     // Ensure the field value is not null.
@@ -245,6 +315,12 @@ function rhdp2_preprocess_node(&$variables) {
         $variables['interval'] .= 's';
       }
     }
+  }
+
+  // Attach libraries to the Video Resource, default view mode.
+  if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
+    $variables['#attached']['library'][] = 'rhdp2/show-more';
+    $variables['#attached']['library'][] = 'rhdp2/related-content';
   }
 
   // Video Resource content type and Learning Path Card view mode.
@@ -295,82 +371,6 @@ function rhdp2_preprocess_node(&$variables) {
 
     $variables['timestamp'] = $timestamp;
   }
-
-  // Article content type.
-  if ($node->getType() == 'article') {
-    $variables['has_hero'] = FALSE;
-    $variables['author_location'] = 'left';
-    $type = $node->get('field_article_type')->getValue();
-    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
-      $type = $type[0]['value'];
-      if ($type == 'opinion') {
-        $variables['has_hero'] = TRUE;
-        $variables['author_location'] = 'right';
-        $variables['content']['field_image'][0]['#image_style'] = 'hero';
-      }
-    }
-    $hide_toc = $node->get('field_hide_toc')->getValue();
-
-    // Verify that getValue() retrieves a field with a set value.
-    if (isset($hide_toc[0])) {
-      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
-    }
-    else {
-      $variables['hide_toc'] = FALSE;
-    }
-
-    // Author content type.
-    if ($type == 'author') {
-      $variables['author_name'] = $node->getTitle();
-      $variables['author_articles'] = FALSE;
-      if (views_get_view_result('author_articles')) {
-        $variables['author_articles'] = views_embed_view('author_articles');
-      }
-      $variables['social_links'] = FALSE;
-      $social_facebook = $node->get('field_facebook')->getValue();
-      $social_github = $node->get('field_github')->getValue();
-      $social_linkedin = $node->get('field_linkedin')->getValue();
-      $social_twitter = $node->get('field_twitter')->getValue();
-      $social_youtube = $node->get('field_youtube')->getValue();
-      $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
-      if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
-        $variables['social_links'] = TRUE;
-        $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
-        $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
-        $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
-        $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
-      }
-    }
-  }
-
-  // Events content type.
-  if ($node->getType() == 'events') {
-    $variables['event_title'] = $node->getTitle();
-    $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
-    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
-
-    // TODO: Fix Duplicate Logic: See preprocess_assembly.
-    // Note: Also will not work properly without search and replace on export.
-    if ($node->hasField('field_event_background_image')) {
-      $image_value = $node->get('field_event_background_image')->getValue();
-      if ($image_value) {
-        $file_id = $image_value[0]['target_id'];
-        $uri = File::load($file_id)->getFileUri();
-        $variables['event_image_url'] = file_create_url($uri);
-      }
-    }
-
-    // Teaser view mode.
-    if ($variables['view_mode'] == 'teaser') {
-      $node_title = $node->label();
-      $variables['node_title'] = str_replace('"', '', $node_title);
-    }
-  }
-
-  // Needed to build the path alias to the Download route.
-  if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
-    $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
-  }
 }
 
 /**
@@ -398,16 +398,16 @@ function rhdp2_preprocess_assembly(&$variables) {
   }
 
   // Set the background image url from the field.
-  if ($assembly->hasField('field_background_image') && ! $assembly->get('field_background_image')->isEmpty()) {
+  if ($assembly->hasField('field_background_image') && !$assembly->get('field_background_image')->isEmpty()) {
     $file_id = $assembly->field_background_image->target_id;
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
     $variables['attributes']->addClass('has-background');
   }
 
-  // Set the background image url for svg
+  // Set the background image url for svg.
   // @TOOD: If an assembly has both, does the SVG win?
-  if ($assembly->hasField('field_background_svg') && ! $assembly->get('field_background_svg')->isEmpty()) {
+  if ($assembly->hasField('field_background_svg') && !$assembly->get('field_background_svg')->isEmpty()) {
     $file_id = $assembly->field_background_svg->target_id;
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = file_create_url($uri);
