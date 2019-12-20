@@ -67,7 +67,7 @@
                   width: 50%;
                 }
 
-                @media screen and (max-width: $pf-global--breakpoint--xs) {
+                @media screen and (max-width: $pf-global--breakpoint--sm) {
                   width: 100%;
                 }
               }
@@ -83,7 +83,7 @@
                   width: calc(50% - var(--rhd-theme--container-spacer-lg));
                 }
 
-                @media screen and (max-width: $pf-global--breakpoint--xs) {
+                @media screen and (max-width: $pf-global--breakpoint--sm) {
                   width: 100%;
                 }
               }
