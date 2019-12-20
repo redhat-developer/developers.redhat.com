@@ -92,9 +92,20 @@ function rhdp2_preprocess_node(&$variables) {
     if ($lp_sd = $node->get('field_short_description')->value) {
       $variables['short_description'] = $lp_sd;
     }
+
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label()],
+      ];
+    }
   }
 
-  // Prepares the authors render element for the Article node, Card view mode.
+  // Prepares the authors render element.
   if ($type === 'article' && $variables['view_mode'] === 'card') {
     $authors = $node->get('field_author_evangelist')->getValue();
     $tids = [];
@@ -194,20 +205,6 @@ function rhdp2_preprocess_node(&$variables) {
   if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
     $variables['#attached']['library'][] = 'rhdp2/show-more';
     $variables['#attached']['library'][] = 'rhdp2/related-content';
-  }
-
-  // Learning Path content type and Card view mode.
-  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
-    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
-    $lp_content = $node->get('field_learning_path_content_item')->getValue();
-
-    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
-      $ref = Node::load($lp_content[$i]['target_id']);
-      $variables['content']['lessons'][] = [
-        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-        'title' => ['#markup' => $ref->label()],
-      ];
-    }
   }
 
   // Books content type and Learning Path Card view mode.
@@ -372,7 +369,7 @@ function rhdp2_preprocess_node(&$variables) {
 
   // Needed to build the path alias to the Download route.
   if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
-    $variables['url_product_name'] = $node->get('field_url_product_name')->value;
+    $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
   }
 }
 
