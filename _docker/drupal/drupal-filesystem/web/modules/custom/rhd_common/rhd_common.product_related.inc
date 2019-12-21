@@ -41,7 +41,7 @@ function rhd_common_preprocess_paragraph(&$variables) {
       $variables['product_short_name'] = $entity->field_product_short_name->value;
     }
     else {
-      $variables['product_short_name'] = $variables['product_name'];
+      $variables['product_short_name'] = $variables['product_name'] ?? '';
     }
   }
 }
