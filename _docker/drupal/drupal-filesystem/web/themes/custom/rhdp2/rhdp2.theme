@@ -485,18 +485,6 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  // Code Snippet assembly type.
-  if ($type == 'code_snippet') {
-    // Programming Language field.
-    if ($assembly->hasField('field_programming_language')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_programming_language)) {
-        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
-        $variables['language'] = isset($language) ? $language : '';
-      }
-    }
-  }
-
   // @todo this should be in rhd_eloqua_embed
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
