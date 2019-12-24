@@ -3,12 +3,12 @@
 {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
 {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
   <div class="rhd-c-card-blur-image">
-    {{ cacheImg }}
+      {{ cacheImg }}
   </div>
   {{ cacheImg }}
 {% else %}
   <div class="rhd-c-card-blur-image">
-    <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+      <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
   </div>
   <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
 {% endif %}
