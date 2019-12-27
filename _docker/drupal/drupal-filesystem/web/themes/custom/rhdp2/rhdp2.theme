@@ -232,11 +232,9 @@ function rhdp2_preprocess_node(&$variables) {
     $social_twitter = $node->get('field_twitter')->getValue();
     $social_youtube = $node->get('field_youtube')->getValue();
 
-    // @TOD: Is this meant to be outside of the social_links true logic?
-    $variables['social_github'] = $social_github[0]['uri'] ?? FALSE;
-
     if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
       $variables['social_links'] = TRUE;
+      $variables['social_github'] = $social_github[0]['uri'] ?? FALSE;
       $variables['social_facebook'] = $social_facebook[0]['uri'] ?? FALSE;
       $variables['social_linkedin'] = $social_linkedin[0]['uri'] ?? FALSE;
       $variables['social_twitter'] = $social_twitter[0]['uri'] ?? FALSE;
