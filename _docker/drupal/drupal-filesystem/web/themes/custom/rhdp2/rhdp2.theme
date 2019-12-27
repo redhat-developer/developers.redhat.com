@@ -96,12 +96,25 @@ function rhdp2_preprocess_node(&$variables) {
   ];
 
   if (in_array($type, $measured_read_time_types) && $variables['view_mode'] == 'learning_path_card') {
+    $read_time = '';
 
-    // Ensure the field value is not null.
-    if ($node->hasField('field_read_time') && $read_time = $node->get('field_read_time')->getValue()) {
+    switch ($type) {
+      case $node->hasField('field_read_time'):
+        $read_time = $node->get('field_read_time')->getValue();
+        break;
+
+      case $node->hasField('field_duration'):
+        $read_time = $node->get('field_duration')->getValue();
+        break;
+
+      case $node->hasField('field_completion_time'):
+        $read_time = $node->get('field_completion_time')->getValue();
+        break;
+    }
+
+    if (isset($read_time[0])) {
       $read_time_text = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
 
-      // Make it plural if the interval is greater than 1.
       if ($read_time[0]['interval'] > 1) {
         $read_time_text .= 's';
       }
@@ -382,7 +395,7 @@ function rhdp2_preprocess_assembly(&$variables) {
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
     $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
     if (strpos($display_type, 'two-col') !== FALSE) {
       $variables['display_type'] = 'two-col';
     }
