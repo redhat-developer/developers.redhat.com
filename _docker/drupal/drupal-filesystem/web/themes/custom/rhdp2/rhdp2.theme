@@ -88,16 +88,25 @@ function rhdp2_preprocess_node(&$variables) {
   $type = $node->bundle();
 
   // Process read time.
-  if (in_array($type, ['books', 'cheat_sheet']) && $variables['view_mode'] == 'learning_path_card') {
-    $variables['interval'] = '';
+  $measured_read_time_types = [
+    'books',
+    'cheat_sheet',
+    'rh_training_class',
+    'video_resource',
+  ];
+
+  if (in_array($type, $measured_read_time_types) && $variables['view_mode'] == 'learning_path_card') {
+
     // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+    if ($node->hasField('field_read_time') && $read_time = $node->get('field_read_time')->getValue()) {
+      $read_time_text = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+
       // Make it plural if the interval is greater than 1.
       if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
+        $read_time_text .= 's';
       }
+
+      $variables['interval'] = $read_time_text ?? '';
     }
   }
 
@@ -118,7 +127,7 @@ function rhdp2_preprocess_node(&$variables) {
       }
     }
 
-    // Process TOC. (Table of contents?)
+    // Process Table of Contents.
     if ($node->hasField('field_hide_toc')) {
       $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
     }
@@ -165,6 +174,7 @@ function rhdp2_preprocess_node(&$variables) {
         }
       }
       else {
+        // @TODO: This still runs if the author_nodes is 0?
         $authors_values = [];
 
         foreach ($author_nodes as $author_node) {
@@ -269,72 +279,48 @@ function rhdp2_preprocess_node(&$variables) {
     $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
   }
 
-  // RH Training Class content type and Learning Path Card view mode.
-  if ($type == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_completion_time')->getValue()) {
-      $completion_time = $node->get('field_completion_time')->getValue();
-      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($completion_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
   // Attach libraries to the Video Resource, default view mode.
-  if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
-    $variables['#attached']['library'][] = 'rhdp2/show-more';
-    $variables['#attached']['library'][] = 'rhdp2/related-content';
-  }
+  if ($type === 'video_resource') {
+    if ($variables['view_mode'] === 'full') {
+      $variables['#attached']['library'][] = 'rhdp2/show-more';
+      $variables['#attached']['library'][] = 'rhdp2/related-content';
+    }
 
-  // Video Resource content type and Learning Path Card view mode.
-  if ($type == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_duration')->getValue()) {
-      $duration = $node->get('field_duration')->getValue();
-      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($duration[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
+    // Add formatted timestamp for field_duration to render array.
+    if ($variables['view_mode'] === 'tile') {
+      $field_duration = $node->get('field_duration')->getValue();
+
+      foreach ($field_duration as $d) {
+        if ($d['period'] === 'hour') {
+          $hours = $d['interval'];
+        }
+        elseif ($d['period'] === 'minute') {
+          $minutes = $d['interval'];
+        }
+        elseif ($d['period'] === 'second') {
+          $seconds = $d['interval'];
+        }
       }
-    }
-  }
 
-  // Add formatted timestamp for field_duration to render array.
-  if ($type === 'video_resource' && $variables['view_mode'] === 'tile') {
-    $field_duration = $node->get('field_duration')->getValue();
-
-    foreach ($field_duration as $d) {
-      if ($d['period'] === 'hour') {
-        $hours = $d['interval'];
+      $timestamp = '';
+      if (!empty($hours)) {
+        $timestamp = $hours . ':';
       }
-      elseif ($d['period'] === 'minute') {
-        $minutes = $d['interval'];
+      if (!empty($minutes)) {
+        $timestamp = $timestamp . $minutes . ':';
       }
-      elseif ($d['period'] === 'second') {
-        $seconds = $d['interval'];
+      else {
+        $timestamp = $timestamp . '0:';
       }
-    }
+      if (!empty($seconds)) {
+        $timestamp = $timestamp . $seconds;
+      }
+      else {
+        $timestamp = $timestamp . '0';
+      }
 
-    $timestamp = '';
-    if (!empty($hours)) {
-      $timestamp = $hours . ':';
+      $variables['timestamp'] = $timestamp;
     }
-    if (!empty($minutes)) {
-      $timestamp = $timestamp . $minutes . ':';
-    }
-    else {
-      $timestamp = $timestamp . '0:';
-    }
-    if (!empty($seconds)) {
-      $timestamp = $timestamp . $seconds;
-    }
-    else {
-      $timestamp = $timestamp . '0';
-    }
-
-    $variables['timestamp'] = $timestamp;
   }
 }
 
