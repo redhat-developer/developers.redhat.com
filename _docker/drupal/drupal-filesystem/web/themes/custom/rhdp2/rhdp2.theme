@@ -159,8 +159,7 @@ function rhdp2_preprocess_node(&$variables) {
       if (count($author_nodes) < 1) {
         $variables['authors'] = NULL;
       }
-
-      if (count($author_nodes) === 1) {
+      elseif (count($author_nodes) === 1) {
         $nid = reset($author_nodes)->id();
         $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
         $current_path = \Drupal::service('path.current')->getPath();
@@ -187,7 +186,6 @@ function rhdp2_preprocess_node(&$variables) {
         }
       }
       else {
-        // @TODO: This still runs if the author_nodes is 0?
         $authors_values = [];
 
         foreach ($author_nodes as $author_node) {
