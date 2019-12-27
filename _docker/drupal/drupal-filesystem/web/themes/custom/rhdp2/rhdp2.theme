@@ -87,54 +87,17 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
-  // Prepares the authors render element.
-  if ($type === 'article' && $variables['view_mode'] === 'card') {
-    $authors = $node->get('field_author_evangelist')->getValue();
-    $tids = [];
-
-    foreach ($authors as $author) {
-      $tids[] = $author['target_id'];
-    }
-
-    $author_nodes = Node::loadMultiple($tids);
-
-    if (count($author_nodes) < 1) {
-      $variables['authors'] = NULL;
-    }
-    if (count($author_nodes) === 1) {
-      $nid = reset($author_nodes)->id();
-      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
-      $current_path = \Drupal::service('path.current')->getPath();
-      $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-
-      if ($author_url_alias === $current_alias) {
-        $variables['authors'] = [
-          '#markup' => reset($author_nodes)->getTitle(),
-        ];
+  // Process read time.
+  if (in_array($type, ['books', 'cheat_sheet']) && $variables['view_mode'] == 'learning_path_card') {
+    $variables['interval'] = '';
+    // Ensure the field value is not null.
+    if ($node->get('field_read_time')->getValue()) {
+      $read_time = $node->get('field_read_time')->getValue();
+      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+      // Make it plural if the interval is greater than 1.
+      if ($read_time[0]['interval'] > 1) {
+        $variables['interval'] .= 's';
       }
-      else {
-        // Reset to retrieve the element since there is only 1.
-        $authors_values = [
-          'name' => reset($author_nodes)->getTitle(),
-          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()]),
-        ];
-
-        // Get a renderable author Link and set the rhd-m-link class.
-        $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
-        $authors_link = $authors_link->toRenderable();
-        $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
-
-        $variables['authors'] = $authors_link;
-      }
-    }
-    else {
-      $authors_values = [];
-
-      foreach ($author_nodes as $author_node) {
-        $authors_values[] = $author_node->getTitle();
-      }
-
-      $variables['authors'] = implode('&', $authors_values);
     }
   }
 
@@ -158,6 +121,58 @@ function rhdp2_preprocess_node(&$variables) {
     // Process TOC. (Table of contents?)
     if ($node->hasField('field_hide_toc')) {
       $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
+    }
+
+    // Prepares the authors render element.
+    if ($variables['view_mode'] === 'card') {
+      $authors = $node->get('field_author_evangelist')->getValue();
+      $tids = [];
+
+      foreach ($authors as $author) {
+        $tids[] = $author['target_id'];
+      }
+
+      $author_nodes = Node::loadMultiple($tids);
+
+      if (count($author_nodes) < 1) {
+        $variables['authors'] = NULL;
+      }
+
+      if (count($author_nodes) === 1) {
+        $nid = reset($author_nodes)->id();
+        $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
+        $current_path = \Drupal::service('path.current')->getPath();
+        $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+        if ($author_url_alias === $current_alias) {
+          $variables['authors'] = [
+            '#markup' => reset($author_nodes)->getTitle(),
+          ];
+        }
+        else {
+          // Reset to retrieve the element since there is only 1.
+          $authors_values = [
+            'name' => reset($author_nodes)->getTitle(),
+            'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()]),
+          ];
+
+          // Get a renderable author Link and set the rhd-m-link class.
+          $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+          $authors_link = $authors_link->toRenderable();
+          $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+          $variables['authors'] = $authors_link;
+        }
+      }
+      else {
+        $authors_values = [];
+
+        foreach ($author_nodes as $author_node) {
+          $authors_values[] = $author_node->getTitle();
+        }
+
+        $variables['authors'] = implode('&', $authors_values);
+      }
     }
 
     // Process for view mode compact_dynamic_article_list_item.
@@ -204,33 +219,6 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['social_linkedin'] = $social_linkedin[0]['uri'] ?? FALSE;
       $variables['social_twitter'] = $social_twitter[0]['uri'] ?? FALSE;
       $variables['social_youtube'] = $social_youtube[0]['uri'] ?? FALSE;
-    }
-  }
-
-  // Books content type and Learning Path Card view mode.
-  if ($type == 'books' && $variables['view_mode'] == 'learning_path_card') {
-    $variables['interval'] = '';
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // Cheat Sheet content type and Learning Path Card view mode.
-  if ($type == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
     }
   }
 
