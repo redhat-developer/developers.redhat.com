@@ -192,7 +192,8 @@ function rhdp2_preprocess_node(&$variables) {
           $authors_values[] = $author_node->getTitle();
         }
 
-        $variables['authors'] = implode('&', $authors_values);
+        // Keep spaces inserted around & for output.
+        $variables['authors'] = implode(' & ', $authors_values);
       }
     }
 
@@ -247,7 +248,10 @@ function rhdp2_preprocess_node(&$variables) {
   if ($type == 'events') {
     $variables['event_title'] = $node->getTitle();
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
-    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
+
+    if ($node->hasField('field_more_details') && $event_details_link = $node->get('field_more_details')->getValue()) {
+      $variables['event_url'] = $event_details_link[0]['uri'];
+    }
 
     // TODO: Fix Duplicate Logic: See preprocess_assembly.
     // Note: Also will not work properly without search and replace on export.
