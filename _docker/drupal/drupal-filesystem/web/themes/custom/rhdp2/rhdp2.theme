@@ -139,7 +139,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Article content type.
-  if ($node->getType() == 'article') {
+  if ($type == 'article') {
     $variables['has_hero'] = FALSE;
     $variables['author_location'] = 'left';
 
@@ -208,7 +208,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Books content type and Learning Path Card view mode.
-  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
+  if ($type == 'books' && $variables['view_mode'] == 'learning_path_card') {
     $variables['interval'] = '';
     // Ensure the field value is not null.
     if ($node->get('field_read_time')->getValue()) {
@@ -222,7 +222,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Cheat Sheet content type and Learning Path Card view mode.
-  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
+  if ($type == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
     // Ensure the field value is not null.
     if ($node->get('field_read_time')->getValue()) {
       $read_time = $node->get('field_read_time')->getValue();
@@ -235,7 +235,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Events content type.
-  if ($node->getType() == 'events') {
+  if ($type == 'events') {
     $variables['event_title'] = $node->getTitle();
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
     $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
@@ -259,7 +259,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Learning Path content type and Card view mode.
-  if ($node->getType() === 'learning_path' && $variables['view_mode'] === 'card') {
+  if ($type === 'learning_path' && $variables['view_mode'] === 'card') {
     if ($lp_sd = $node->get('field_short_description')->value) {
       $variables['short_description'] = $lp_sd;
     }
@@ -282,7 +282,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // RH Training Class content type and Learning Path Card view mode.
-  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
+  if ($type == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
     // Ensure the field value is not null.
     if ($node->get('field_completion_time')->getValue()) {
       $completion_time = $node->get('field_completion_time')->getValue();
@@ -301,7 +301,7 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Video Resource content type and Learning Path Card view mode.
-  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
+  if ($type == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
     // Ensure the field value is not null.
     if ($node->get('field_duration')->getValue()) {
       $duration = $node->get('field_duration')->getValue();
