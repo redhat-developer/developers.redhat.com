@@ -1,5 +1,4 @@
-(function() { 
-  /* Init Highlightjs */
+(function() {
+  // Init Highlightjs.
   hljs.initHighlightingOnLoad();
 })();
-
