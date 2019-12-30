@@ -344,7 +344,14 @@ function rhdp2_preprocess_assembly(&$variables) {
   $assembly = $variables['elements']['#assembly'];
   $type = $assembly->bundle();
 
-  // Concatenate audience selection and pass into a data attribute.
+  // Add component class to assemblies.
+  $assembly_compontent_exclude_list = ['content_pull_quote', 'bonus_content_item'];
+
+  if (!in_array($type, $assembly_compontent_exclude_list)) {
+    $variables['attributes']['class'][] = 'component';
+  }
+
+  // Set audience selection as a data attribute.
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
 
@@ -355,9 +362,8 @@ function rhdp2_preprocess_assembly(&$variables) {
         $audience_selection_values[] = $field_audience_selection_value['value'];
       }
 
-      // @TOD: This should be passed to the attributes array.
       $audience_selection = implode(',', $audience_selection_values);
-      $variables['audience_selection'] = " data-audience={$audience_selection}";
+      $variables['attributes']['data-audience'] = $audience_selection;
     }
   }
 
@@ -365,43 +371,23 @@ function rhdp2_preprocess_assembly(&$variables) {
   if ($assembly->hasField('field_background_image') && !$assembly->get('field_background_image')->isEmpty()) {
     $file_id = $assembly->field_background_image->target_id;
     $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-    $variables['attributes']->addClass('has-background');
+    $background_image_url = ImageStyle::load('billboard')->buildUrl($uri);
   }
 
   // Set the background image url for svg.
-  // @TOOD: If an assembly has both, does the SVG win?
   if ($assembly->hasField('field_background_svg') && !$assembly->get('field_background_svg')->isEmpty()) {
     $file_id = $assembly->field_background_svg->target_id;
     $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = file_create_url($uri);
+    $background_image_url = file_create_url($uri);
+  }
+
+  if (isset($background_image_url)) {
     $variables['attributes']->addClass('has-background');
+    $variables['attributes']['style'] = "background-image: url($background_image_url);";
   }
 
-  // Set the image_uri and image_alt variables.
-  if ($assembly->hasField('field_image')) {
-    if ($image_value = $assembly->get('field_image')->getValue()) {
-      if ($file_id = $image_value[0]['target_id']) {
-        $uri = File::load($file_id)->getFileUri();
-        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
-          $variables['image_uri'] = $image_uri;
-          $variables['image_alt'] = $image_value[0]['alt'] ?? '';
-        }
-      }
-    }
-  }
-
-  // Add Display Type variables for curated_links.
-  if ($type == 'curated_links'
-      && $assembly->hasField('field_display_type_curated_links')) {
-    $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
-    if (strpos($display_type, 'two-col') !== FALSE) {
-      $variables['display_type'] = 'two-col';
-    }
-    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
-      $variables['display_type'] = 'nav-menu';
-    }
+  if ($type == 'video_hero' && !isset($background_image_url)) {
+    $variables['attributes']['class'][] = 'rhd-m-video-background';
   }
 
   // @TODO: This should be in rhd_eloqua_embed.
@@ -446,6 +432,26 @@ function rhdp2_preprocess_assembly(&$variables) {
     $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
   }
 
+  // Set the image_uri and image_alt variables.
+  if ($assembly->hasField('field_image')) {
+    if ($image_value = $assembly->get('field_image')->getValue()) {
+      if ($file_id = $image_value[0]['target_id']) {
+        $uri = File::load($file_id)->getFileUri();
+        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
+          $variables['image_uri'] = $image_uri;
+          $variables['image_alt'] = $image_value[0]['alt'] ?? '';
+        }
+      }
+    }
+  }
+
+  // Extract sidebar link fields.
+  if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
+    $variables['has_sidebar_link'] = TRUE;
+    $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
+    $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
+  }
+
   // Events Hero assembly type.
   if ($type == 'events_hero') {
     // Get secondary events count.
@@ -464,13 +470,18 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  // Extract sidebar link fields.
-  if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
-    $variables['has_sidebar_link'] = TRUE;
-    $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
-    $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
+  // Add Display Type variables for curated_links.
+  if ($type == 'curated_links'
+      && $assembly->hasField('field_display_type_curated_links')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
+    if (strpos($display_type, 'two-col') !== FALSE) {
+      $variables['display_type'] = 'two-col';
+    }
+    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
+      $variables['display_type'] = 'nav-menu';
+    }
   }
-
 }
 
 /**

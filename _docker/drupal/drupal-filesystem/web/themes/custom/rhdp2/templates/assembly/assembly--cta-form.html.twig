@@ -15,9 +15,7 @@
  * @ingroup themeable
  */
 #}
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-
-<div{{ attributes.setAttribute('style', background_image) }}>
+<div{{ attributes}}>
   <div class="pf-l-grid pf-m-gutter">
     {% if content %}
     <div class="cta-content pf-c-content">

@@ -1,11 +1,4 @@
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-
-{% set classes = [
-    background_image_url ? 'has-background' : 'rhd-m-video-background'
-  ]
-%}
-
-<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}>
+<div{{ attributes.addClass(classes) }}>
   <div class="pf-l-grid rhd-c-video">
     <div class="rhd-c-video--wrapper">
       <div class="rhd-c-video--video-embed">

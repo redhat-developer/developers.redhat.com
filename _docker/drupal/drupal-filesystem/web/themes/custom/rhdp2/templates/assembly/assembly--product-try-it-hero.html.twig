@@ -1,6 +1,5 @@
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-<div{{ attributes.addClass('rhd-c-product-download-hero').setAttribute('style', background_image) }}>
+<div{{ attributes.addClass('rhd-c-product-download-hero') }}>
   <div class="pf-l-grid pf-m-gutter pf-c-content">
     <div class="pf-l-grid__item rhd-c-product-download-hero-aside">
       {% if image_uri %}
