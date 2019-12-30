@@ -28,11 +28,6 @@
   ]
 %}
 
-{% set background_image = (background_image_url ? "background-image: url(" ~ background_image_url ~ ");"  : '') %}
-{% if background_image %}
-  {% set attributes = attributes.setAttribute('style', background_image) %}
-{% endif %}
-
 <div{{ attributes.addClass(addClasses).removeClass(remClasses) }}>
   <div class="pf-l-grid pf-m-gutter">
     {% if content.field_additional_content|render %}
