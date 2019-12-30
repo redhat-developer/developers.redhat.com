@@ -16,11 +16,8 @@
  */
 #}
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-{% set classes = [
-  'component',
-]%}
 
-<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+<div{{ attributes.setAttribute('style', background_image) }}>
   <div class="pf-l-grid pf-m-gutter">
     {% if content %}
     <div class="cta-content pf-c-content">

@@ -1,14 +1,11 @@
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-{% set classes = [
-  'component',
-]%}
-{% if background_image_url %}
-  {% set classes = classes|merge(['has-background']) %}
-{% else %}
-  {% set classes = classes|merge(['rhd-m-video-background']) %}
-{% endif %}
 
-<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+{% set classes = [
+    background_image_url ? 'has-background' : 'rhd-m-video-background'
+  ]
+%}
+
+<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}>
   <div class="pf-l-grid rhd-c-video">
     <div class="rhd-c-video--wrapper">
       <div class="rhd-c-video--video-embed">
@@ -18,7 +15,9 @@
     {% if content|without('video')|render %}
     <div class="rhd-c-video--content">
       <div class="rhd-c-video--content-wrapper">
-        <h3 class="header-link"><a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a></h3>
+        <h3 class="header-link">
+          <a href="{{ path('entity.node.canonical', {'node': assembly.field_video_resource.entity.id }) }}">{{ content.field_title }}</a>
+        </h3>
         {{ content.field_description }}
         {{ content.authors }}
       </div>
@@ -30,7 +29,9 @@
     {% if content|without('secondary_video')|render %}
     <div class="rhd-c-video--content">
       <div class="rhd-c-video--content-wrapper">
-        <h3 class="header-link"><a href="{{ path('entity.node.canonical', {'node': assembly.field_secondary_video_resource.entity.id }) }}">{{ content.field_secondary_video_title }}</a></h3>
+        <h3 class="header-link">
+          <a href="{{ path('entity.node.canonical', {'node': assembly.field_secondary_video_resource.entity.id }) }}">{{ content.field_secondary_video_title }}</a>
+        </h3>
         {{ content.field_secondary_video_descriptio }}
         {{ content.secondary_video_authors }}
       </div>

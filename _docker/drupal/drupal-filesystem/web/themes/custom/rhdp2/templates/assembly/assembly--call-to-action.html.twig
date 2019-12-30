@@ -14,7 +14,7 @@
 #}
 {% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
 
-<div{{ attributes.addClass('component').setAttribute('style', background_image) }}{{ audience_selection }}>
+<div{{ attributes.setAttribute('style', background_image) }}>
   <div class="cta__container pf-l-grid">
     {% if content.field_title|render %}
       <h2 class="cta__title pf-c-title">{{ content.field_title }}</h2>
