@@ -123,6 +123,13 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
+  // Add difficulty to attributes.
+  if ($node->hasField('field_difficulty')) {
+    $field_difficulty = $node->get('field_difficulty')->getValue();
+    $difficulty_value = ucfirst($field_difficulty[0]['value'] ?? 'Unclassified');
+    $variables['attributes']['level'] = $difficulty_value;
+  }
+
   // Article content type.
   if ($type == 'article') {
     $variables['has_hero'] = FALSE;
@@ -345,7 +352,13 @@ function rhdp2_preprocess_assembly(&$variables) {
   $type = $assembly->bundle();
 
   // Add component class to assemblies.
-  $assembly_compontent_exclude_list = ['content_pull_quote', 'bonus_content_item'];
+  $assembly_compontent_exclude_list = [
+    'content_pull_quote',
+    'bonus_content_item',
+    'node_reference',
+    'static_item',
+    'wordpress_post_reference',
+  ];
 
   if (!in_array($type, $assembly_compontent_exclude_list)) {
     $variables['attributes']['class'][] = 'component';
