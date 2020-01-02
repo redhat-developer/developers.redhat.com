@@ -353,6 +353,9 @@ function rhdp2_preprocess_assembly(&$variables) {
 
   // Add component class to assemblies.
   $assembly_compontent_exclude_list = [
+    'combo_item_assembly',
+    'combo_item_manual',
+    'combo_item_node',
     'content_pull_quote',
     'bonus_content_item',
     'node_reference',
