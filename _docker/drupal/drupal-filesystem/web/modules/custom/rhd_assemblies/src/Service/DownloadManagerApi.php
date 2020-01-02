@@ -64,11 +64,11 @@ class DownloadManagerApi {
    *   The Guzzle client.
    * @param Drupal\Core\Entity\EntityTypeManager $entity_type_manager
    *   entity type manager.
-   * @var \Drupal\Core\Cache\CacheBackendInterface $cache_bin
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_bin
    *   Download Manager cache bin service.
-   * @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory
+   * @param \Drupal\Core\Logger\LoggerChannelFactory $logger_factory
    *   Logger factory service.
-   * @var \Drupal\Core\Config\ConfigFactory $config_factory
+   * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   Config factory service.
    */
   public function __construct(ClientInterface $client, EntityTypeManager $entity_type_manager, CacheBackendInterface $cache_bin, LoggerChannelFactory $logger_factory, ConfigFactory $config_factory) {
@@ -114,7 +114,7 @@ class DownloadManagerApi {
           $request = $this->client->request('GET', $feed_url);
           $response = $request->getBody()->getContents();
           $data = json_decode($response);
-          // Persist this data to the download_manager_api cache bin for an hour.
+          // Persist this data to a download_manager_api cache bin for an hour.
           $this->cacheBin->set($cid, $data, time() + 3600);
         }
         catch (\Exception $e) {
