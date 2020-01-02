@@ -5,6 +5,7 @@ namespace Drupal\rhd_common\Theme;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Theme\ThemeNegotiatorInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 /**
  * Our RHDP Theme Negotiator.
@@ -23,27 +24,17 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
     ];
 
     if (in_array($route_match->getRouteName(), $rhdp_routes)) {
-      // If this is the old Product downloads route, check if it was
-      // determined to actually be an assembly-based Product page.
-      $parameters = $route_match->getParameters();
+
       // If this Product sub-page isn't the Overview or Download sub-page,
-      // then this is a paragraphs-based Product page so we can return TRUE
-      // and serve the RHDP theme.
-      if ($parameters->has('sub_page')
-        && $parameters->get('sub_page') !== 'overview'
-        && $parameters->get('sub_page') !== 'download') {
-        // Load rhdp theme.
+      // then this is a paragraphs-based Product page; Serve the RHDP theme.
+      $parameters = $route_match->getParameters();
+      if ($parameters->has('sub_page') && !in_array($parameters->get('sub_page'), ['overview', 'download'])) {
         return TRUE;
       }
-      // Load the field_url_product_name via the product_url_name parameter.
-      if (!$parameters->has('product_code') && $parameters->has('product_url_name')) {
-        $product_url_name = $parameters->get('product_url_name');
-      }
-      // Load the field_url_product_name via the product_code parameter.
-      elseif ($parameters->has('product_code') && !$parameters->has('product_url_name')) {
-        $product_url_name = $parameters->get('product_code');
-      }
+
       // Load the Node object via the field_url_product_name field.
+      $product_url_name = $parameters->get('product_url_name') ?? $parameters->get('product_code');
+
       $nid = \Drupal::entityQuery('node')
         ->condition('type', 'product')
         ->condition('field_url_product_name', $product_url_name)
