@@ -1,17 +1,15 @@
 <?php
 
 namespace Drupal\rhd_common\Theme;
- 
+
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Theme\ThemeNegotiatorInterface;
 use Drupal\node\Entity\Node;
-use Symfony\Component\Routing\Route;
- 
+
 /**
- * Our RHDP Theme Negotiator
+ * Our RHDP Theme Negotiator.
  */
 class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
-
 
   /**
    * {@inheritdoc}
@@ -21,7 +19,7 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
     $rhdp_routes = [
       'rhd_common.product_overview',
       'rhd_common.main_page_controller',
-      'rhd_assemblies.products_downloads'
+      'rhd_assemblies.products_downloads',
     ];
 
     if (in_array($route_match->getRouteName(), $rhdp_routes)) {
@@ -42,7 +40,7 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
         $product_url_name = $parameters->get('product_url_name');
       }
       // Load the field_url_product_name via the product_code parameter.
-      else if ($parameters->has('product_code') && !$parameters->has('product_url_name')) {
+      elseif ($parameters->has('product_code') && !$parameters->has('product_url_name')) {
         $product_url_name = $parameters->get('product_code');
       }
       // Load the Node object via the field_url_product_name field.
@@ -52,7 +50,7 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
         ->execute();
       $node = Node::load(reset($nid));
 
-      if ($node instanceof \Drupal\node\NodeInterface) {
+      if ($node instanceof NodeInterface) {
         // If we are NOT using the new, assembly-based Product page design,
         // then we will serve the RHDP theme.
         if (!$node->field_use_new_product_page->isEmpty() && $node->get('field_use_new_product_page')->value !== '1') {
@@ -63,14 +61,15 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
         }
       }
     }
- 
+
     return FALSE;
   }
- 
+
   /**
    * {@inheritdoc}
    */
   public function determineActiveTheme(RouteMatchInterface $route_match) {
     return 'rhdp';
   }
+
 }
