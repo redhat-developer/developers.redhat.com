@@ -28,7 +28,11 @@
           <i class="fa fa-calendar-alt"></i> Release date <br/><span class="product-version__release-date">{{ versionReleaseDate|date("F d, Y") }}</span>
         </div>
         <div class="pf-l-grid__item product-version__cta">
-          <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download ({{ file.fileSize }})</a>
+          {% if file.fileSize is defined and file.fileSize is not null %}
+            <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download ({{ file.fileSize }})</a>
+          {% else %}
+            <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download</a>
+          {% endif %}
         </div>
       </div><!-- End of version row item -->
 
