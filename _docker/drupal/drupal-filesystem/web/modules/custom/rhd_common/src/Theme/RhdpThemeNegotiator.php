@@ -48,6 +48,12 @@ class RhdpThemeNegotiator implements ThemeNegotiatorInterface {
         ->condition('type', 'product')
         ->condition('field_url_product_name', $product_url_name)
         ->execute();
+
+      // No entity found; Serve the default theme.
+      if (empty($nid)) {
+        return FALSE;
+      }
+
       $node = Node::load(reset($nid));
 
       if ($node instanceof NodeInterface) {
