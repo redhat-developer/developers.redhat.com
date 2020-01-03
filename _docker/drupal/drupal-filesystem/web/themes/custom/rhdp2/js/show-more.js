@@ -6,8 +6,8 @@
         var $showMoreText = $($showMoreElem).text();
         var $showMoreButton = $($showMoreElem).next();
 
-        if ($showMoreText.length < ($($showMoreElem).attr('data-count') || 400)) {
-          $($showMoreButton).hide();
+        if ($showMoreText.length >= 700) {
+          $($showMoreButton).removeClass('hide');
         }
 
         $($showMoreButton).on('click', function() {
