@@ -10,7 +10,6 @@
           $($showMoreButton).hide();
         }
 
-        console.log($showMoreButton);
         $($showMoreButton).on('click', function() {
           $($showMoreElem).toggleClass('open');
           return $(this).find('span').toggle();
