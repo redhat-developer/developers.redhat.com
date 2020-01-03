@@ -15,6 +15,7 @@
 @import "mixins";
 
 // Components
+@import "components/assembly-base";
 @import "components/component-base";
 @import "components/avatar";
 @import "components/bonus-content-item";
@@ -58,3 +59,8 @@
 @import "components/rhd-c-dynamic-content-list-compact";
 @import "components/rhd-c-two-col-hero-layout";
 @import "components/rhd-divider";
+@import "components/rh-header";
+
+// Final theme overrides
+@import "pfe-overrides";
+@import "rhd-global-styles";

@@ -1,7 +1,4 @@
 @charset 'utf-8';
-@import "rhd-theme/rhd-theme";
-
-
 
 /// Post-2018 redesign styles
 @import "2019/mixins";
@@ -39,5 +36,6 @@
 @import "2019/basic-page";
 @import "2019/rh-universal-nav";
 
-//Hack for global overrides need to consolidate these into proper scss locations
-@import "global_theme_overrides";
+//RHD theme
+@import "rhd-theme/rhd-theme";
+
