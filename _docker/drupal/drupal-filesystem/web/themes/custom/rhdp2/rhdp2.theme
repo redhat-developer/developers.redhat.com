@@ -403,6 +403,8 @@ function rhdp2_preprocess_assembly(&$variables) {
     // Look for youtu.be or youtube.
     elseif ($video_id = _extract_youtube_id($embed_url)) {
       $embed_url = '//www.youtube.com/embed/' . $video_id;
+      $variables['attributes']['class'][] = 'video-embed-field-provider-youtube';
+      $variables['attributes']['class'][] = 'video-embed-field-responsive-video';
     }
 
     $variables['embed_url'] = $embed_url ?? FALSE;
