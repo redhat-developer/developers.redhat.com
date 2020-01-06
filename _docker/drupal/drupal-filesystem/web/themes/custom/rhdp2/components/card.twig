@@ -37,7 +37,10 @@
 <div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
 
   {% if hero_image is not empty %}
-    {{ hero_image }}
+  <div class="rhd-c-card-blur-image">
+      {{ hero_image }}
+  </div>
+  {{ hero_image }}
   {% endif %}
 
   {% if hero_video_thumbnail is not empty %}

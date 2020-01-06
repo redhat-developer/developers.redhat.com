@@ -12,6 +12,7 @@ use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_preprocess_page().
@@ -33,6 +34,7 @@ function _rhdp2_build_menu($menu_name, Array $classes = [], $theme = FALSE) {
   // Get the tree.
   $menu_tree_service = \Drupal::service('menu.link_tree');
   $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+
   // Apply some manipulators (checking the access, sorting).
   $manipulators = [
     ['callable' => 'menu.default_tree_manipulators:checkNodeAccess'],
@@ -40,7 +42,8 @@ function _rhdp2_build_menu($menu_name, Array $classes = [], $theme = FALSE) {
     ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
   ];
   $tree = $menu_tree_service->transform($tree, $manipulators);
-  // And the last step is to actually build the tree.
+
+  // Build the tree.
   $tree = $menu_tree_service->build($tree);
   foreach ($classes as $c) {
     $tree['#attributes']['class'][] = $c;
@@ -62,8 +65,6 @@ function rhdp2_preprocess_menu(&$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
- *
- * Page-level template suggestions by node type.
  */
 function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   $node = \Drupal::request()->attributes->get('node');
@@ -86,267 +87,171 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
-  // Learning Path content type and Card view mode.
-  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
-    if ($lp_sd = $node->get('field_short_description')->value) {
-      $variables['short_description'] = $lp_sd;
+  // Process read time.
+  $measured_read_time_types = [
+    'books',
+    'cheat_sheet',
+    'rh_training_class',
+    'video_resource',
+  ];
+
+  if (in_array($type, $measured_read_time_types) && $variables['view_mode'] == 'learning_path_card') {
+    $read_time = '';
+
+    switch ($type) {
+      case $node->hasField('field_read_time'):
+        $read_time = $node->get('field_read_time')->getValue();
+        break;
+
+      case $node->hasField('field_duration'):
+        $read_time = $node->get('field_duration')->getValue();
+        break;
+
+      case $node->hasField('field_completion_time'):
+        $read_time = $node->get('field_completion_time')->getValue();
+        break;
     }
-  }
 
-  // Prepares the authors render element for the Article node, Card view mode.
-  if ($type === 'article' && $variables['view_mode'] === 'card') {
-    $authors = $node->get('field_author_evangelist')->getValue();
-    $tids = [];
+    if (isset($read_time[0])) {
+      $read_time_text = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
 
-    foreach ($authors as $author) {
-      $tids[] = $author['target_id'];
-    }
-
-    $author_nodes = Node::loadMultiple($tids);
-
-    if (count($author_nodes) < 1) {
-      $variables['authors'] = NULL;
-    }
-    if (count($author_nodes) === 1) {
-      $nid = reset($author_nodes)->id();
-      $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
-      $current_path = \Drupal::service('path.current')->getPath();
-      $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-
-      if ($author_url_alias === $current_alias) {
-        $variables['authors'] = [
-          '#markup' => reset($author_nodes)->getTitle(),
-        ];
-      }
-      else {
-        // We can reset to retrieve the element since we've already verified there is only 1.
-        $authors_values = [
-          'name' => reset($author_nodes)->getTitle(),
-          // We need a Url object for Drupal, not a plain string.
-          'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()])
-        ];
-
-        // Get a renderable author Link and set the rhd-m-link class.
-        $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
-        $authors_link = $authors_link->toRenderable();
-        $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
-
-        $variables['authors'] = $authors_link;
-      }
-    }
-    else {
-      $authors_values = [];
-
-      foreach ($author_nodes as $author_node) {
-        $authors_values[] = $author_node->getTitle();
-      }
-
-      $variables['authors'] = implode('&', $authors_values);
-    }
-  }
-  if ($type === 'article' && $variables['view_mode'] === 'compact_dynamic_article_list_item') {
-    $variables['rhd_domain'] = FALSE;
-    $variables['absolute_url'] = FALSE;
-
-    $current_path = \Drupal::service('path.current')->getPath();
-    $url = Url::fromUri("internal:$current_path");
-    $variables['absolute_url'] = $url->setAbsolute()->toString();
-
-    // don't run comment js on this entity
-    // if it isn't a redhat domain or the current domain
-    if ($_SERVER['SERVER_NAME']) {
-      $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
-      if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
-        $variables['rhd_domain'] = TRUE;
-      }
-    }
-  }
-
-  // Author content type.
-  if ($type == 'author') {
-    $variables['author_name'] = $node->getTitle();
-    $variables['author_articles'] = FALSE;
-    if (views_get_view_result('author_articles')) {
-      $variables['author_articles'] = views_embed_view('author_articles');
-    }
-    $variables['social_links'] = FALSE;
-    $social_facebook = $node->get('field_facebook')->getValue();
-    $social_github = $node->get('field_github')->getValue();
-    $social_linkedin = $node->get('field_linkedin')->getValue();
-    $social_twitter = $node->get('field_twitter')->getValue();
-    $social_youtube = $node->get('field_youtube')->getValue();
-    $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
-    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
-      $variables['social_links'] = TRUE;
-      $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
-      $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
-      $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
-      $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
-    }
-  }
-
-  // Attach the rhdp2/show-more library to the Video Resource, default view mode.
-  if ($type === 'video_resource' && $variables['view_mode'] === 'full') {
-    $variables['#attached']['library'][] = 'rhdp2/show-more';
-  }
-
-  // Learning Path content type and Card view mode.
-  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
-    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
-    $lp_content = $node->get('field_learning_path_content_item')->getValue();
-
-    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
-      $ref = Node::load($lp_content[$i]['target_id']);
-      $variables['content']['lessons'][] = [
-        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-        'title' => ['#markup' => $ref->label()],
-      ];
-    }
-  }
-
-  // Books content type and Learning Path Card view mode.
-  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
-    $variables['interval'] = '';
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
       if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
+        $read_time_text .= 's';
       }
-    }
-  }
 
-  // Cheat Sheet content type and Learning Path Card view mode.
-  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
+      $variables['interval'] = $read_time_text ?? '';
     }
-  }
-
-  // RH Training Class content type and Learning Path Card view mode.
-  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_completion_time')->getValue()) {
-      $completion_time = $node->get('field_completion_time')->getValue();
-      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($completion_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // Video Resource content type and Learning Path Card view mode.
-  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_duration')->getValue()) {
-      $duration = $node->get('field_duration')->getValue();
-      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($duration[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // Add formatted timestamp for field_duration to render array.
-  if ($type === 'video_resource' && $variables['view_mode'] === 'tile') {
-    $field_duration = $node->get('field_duration')->getValue();
-
-    foreach ($field_duration as $d) {
-      if ($d['period'] === 'hour') {
-        $hours = $d['interval'];
-      }
-      else if ($d['period'] === 'minute') {
-        $minutes = $d['interval'];
-      }
-      else if ($d['period'] === 'second') {
-        $seconds = $d['interval'];
-      }
-    }
-
-    $timestamp = '';
-    if (!empty($hours)) {
-      $timestamp = $hours . ':';
-    }
-    if (!empty($minutes)) {
-      $timestamp = $timestamp . $minutes . ':';
-    }
-    else {
-      $timestamp = $timestamp . '0:';
-    }
-    if (!empty($seconds)) {
-      $timestamp = $timestamp . $seconds;
-    }
-    else {
-      $timestamp = $timestamp . '0';
-    }
-
-    $variables['timestamp'] = $timestamp;
   }
 
   // Article content type.
-  if ($node->getType() == 'article') {
+  if ($type == 'article') {
     $variables['has_hero'] = FALSE;
     $variables['author_location'] = 'left';
-    $type = $node->get('field_article_type')->getValue();
-    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
-      $type = $type[0]['value'];
-      if ($type == 'opinion') {
+
+    // Set hero and author location if opinion content.
+    $article_type = $node->get('field_article_type')->getValue();
+    if ($article_type && !empty($article_type) && isset($variables['content']['field_image'])) {
+      $article_type_value = $article_type[0]['value'];
+
+      if ($article_type_value == 'opinion') {
         $variables['has_hero'] = TRUE;
         $variables['author_location'] = 'right';
         $variables['content']['field_image'][0]['#image_style'] = 'hero';
       }
     }
-    $hide_toc = $node->get('field_hide_toc')->getValue();
 
-    // Verify that getValue() retrieves a field with a set value.
-    if (isset($hide_toc[0])) {
-      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
-    }
-    else {
-      $variables['hide_toc'] = FALSE;
+    // Process Table of Contents.
+    if ($node->hasField('field_hide_toc')) {
+      $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
     }
 
-    // Author content type.
-    if ($type == 'author') {
-      $variables['author_name'] = $node->getTitle();
-      $variables['author_articles'] = FALSE;
-      if (views_get_view_result('author_articles')) {
-        $variables['author_articles'] = views_embed_view('author_articles');
+    // Prepares the authors render element.
+    if ($variables['view_mode'] === 'card') {
+      $authors = $node->get('field_author_evangelist')->getValue();
+      $tids = [];
+
+      foreach ($authors as $author) {
+        $tids[] = $author['target_id'];
       }
-      $variables['social_links'] = FALSE;
-      $social_facebook = $node->get('field_facebook')->getValue();
-      $social_github = $node->get('field_github')->getValue();
-      $social_linkedin = $node->get('field_linkedin')->getValue();
-      $social_twitter = $node->get('field_twitter')->getValue();
-      $social_youtube = $node->get('field_youtube')->getValue();
-      $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
-      if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
-        $variables['social_links'] = TRUE;
-        $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
-        $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
-        $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
-        $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
+
+      $author_nodes = Node::loadMultiple($tids);
+
+      if (count($author_nodes) < 1) {
+        $variables['authors'] = NULL;
+      }
+      elseif (count($author_nodes) === 1) {
+        $nid = reset($author_nodes)->id();
+        $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
+        $current_path = \Drupal::service('path.current')->getPath();
+        $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+        if ($author_url_alias === $current_alias) {
+          $variables['authors'] = [
+            '#markup' => reset($author_nodes)->getTitle(),
+          ];
+        }
+        else {
+          // Reset to retrieve the element since there is only 1.
+          $authors_values = [
+            'name' => reset($author_nodes)->getTitle(),
+            'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()]),
+          ];
+
+          // Get a renderable author Link and set the rhd-m-link class.
+          $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+          $authors_link = $authors_link->toRenderable();
+          $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+          $variables['authors'] = $authors_link;
+        }
+      }
+      else {
+        $authors_values = [];
+
+        foreach ($author_nodes as $author_node) {
+          $authors_values[] = $author_node->getTitle();
+        }
+
+        // Keep spaces inserted around & for output.
+        $variables['authors'] = implode(' & ', $authors_values);
+      }
+    }
+
+    // Process for view mode compact_dynamic_article_list_item.
+    if ($variables['view_mode'] === 'compact_dynamic_article_list_item') {
+      $variables['rhd_domain'] = FALSE;
+      $variables['absolute_url'] = FALSE;
+
+      $current_path = \Drupal::service('path.current')->getPath();
+      $url = Url::fromUri("internal:$current_path");
+      $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+      // Requires redhat domain to run comment js.
+      if ($_SERVER['SERVER_NAME']) {
+        $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+        if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
+          $variables['rhd_domain'] = TRUE;
+        }
       }
     }
   }
 
+  // Author content type.
+  if ($type === 'author') {
+    $variables['author_name'] = $node->getTitle();
+    $variables['author_articles'] = FALSE;
+    $variables['social_links'] = FALSE;
+
+    if (views_get_view_result('author_articles')) {
+      $variables['author_articles'] = views_embed_view('author_articles');
+    }
+
+    $social_facebook = $node->get('field_facebook')->getValue();
+    $social_github = $node->get('field_github')->getValue();
+    $social_linkedin = $node->get('field_linkedin')->getValue();
+    $social_twitter = $node->get('field_twitter')->getValue();
+    $social_youtube = $node->get('field_youtube')->getValue();
+
+    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+      $variables['social_links'] = TRUE;
+      $variables['social_github'] = $social_github[0]['uri'] ?? FALSE;
+      $variables['social_facebook'] = $social_facebook[0]['uri'] ?? FALSE;
+      $variables['social_linkedin'] = $social_linkedin[0]['uri'] ?? FALSE;
+      $variables['social_twitter'] = $social_twitter[0]['uri'] ?? FALSE;
+      $variables['social_youtube'] = $social_youtube[0]['uri'] ?? FALSE;
+    }
+  }
+
   // Events content type.
-  if ($node->getType() == 'events') {
+  if ($type == 'events') {
     $variables['event_title'] = $node->getTitle();
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
-    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
-    // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
+    if ($node->hasField('field_more_details') && $event_details_link = $node->get('field_more_details')->getValue()) {
+      $variables['event_url'] = $event_details_link[0]['uri'];
+    }
+
+    // TODO: Fix Duplicate Logic: See preprocess_assembly.
     // Note: Also will not work properly without search and replace on export.
     if ($node->hasField('field_event_background_image')) {
       $image_value = $node->get('field_event_background_image')->getValue();
@@ -364,9 +269,71 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
-  // Provide the url_product_name to the Twig template to build the path alias to the Download route.
+  // Learning Path content type and Card view mode.
+  if ($type === 'learning_path' && $variables['view_mode'] === 'card') {
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
+    }
+
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label()],
+      ];
+    }
+  }
+
+  // Needed to build the path alias to the Download route.
   if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
-    $variables['url_product_name'] = $node->get('field_url_product_name')->value;
+    $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
+  }
+
+  // Attach libraries to the Video Resource, default view mode.
+  if ($type === 'video_resource') {
+    if ($variables['view_mode'] === 'full') {
+      $variables['#attached']['library'][] = 'rhdp2/show-more';
+      $variables['#attached']['library'][] = 'rhdp2/related-content';
+    }
+
+    // Add formatted timestamp for field_duration to render array.
+    if ($variables['view_mode'] === 'tile') {
+      $field_duration = $node->get('field_duration')->getValue();
+
+      foreach ($field_duration as $d) {
+        if ($d['period'] === 'hour') {
+          $hours = $d['interval'];
+        }
+        elseif ($d['period'] === 'minute') {
+          $minutes = $d['interval'];
+        }
+        elseif ($d['period'] === 'second') {
+          $seconds = $d['interval'];
+        }
+      }
+
+      $timestamp = '';
+      if (!empty($hours)) {
+        $timestamp = $hours . ':';
+      }
+      if (!empty($minutes)) {
+        $timestamp = $timestamp . $minutes . ':';
+      }
+      else {
+        $timestamp = $timestamp . '0:';
+      }
+      if (!empty($seconds)) {
+        $timestamp = $timestamp . $seconds;
+      }
+      else {
+        $timestamp = $timestamp . '0';
+      }
+
+      $variables['timestamp'] = $timestamp;
+    }
   }
 }
 
@@ -376,34 +343,10 @@ function rhdp2_preprocess_node(&$variables) {
 function rhdp2_preprocess_assembly(&$variables) {
   $assembly = $variables['elements']['#assembly'];
   $type = $assembly->bundle();
-  $variables['background_image_url'] = '';
-  $image_value = FALSE;
 
-  $background_image_value = $assembly->hasField('field_background_image') ? $assembly->get('field_background_image')->getValue() : FALSE;
-
-  if ($background_image_value) {
-    $file_id = $background_image_value[0]['target_id'];
-    $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-  }
-
-  if ($assembly->hasField('field_image')) {
-    if ($image_value = $assembly->get('field_image')->getValue()) {
-      if ($file_id = $image_value[0]['target_id']) {
-        $uri = File::load($file_id)->getFileUri();
-        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
-          $variables['image_uri'] = $image_uri;
-        }
-      }
-      if ($image_alt = $image_value[0]['alt']) {
-        $variables['image_alt'] = $image_alt;
-      }
-    }
-  }
-
+  // Concatenate audience selection and pass into a data attribute.
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
-    $variables['audience_selection'] = '';
 
     if ($field_audience_selection_values) {
       $audience_selection_values = [];
@@ -412,91 +355,56 @@ function rhdp2_preprocess_assembly(&$variables) {
         $audience_selection_values[] = $field_audience_selection_value['value'];
       }
 
+      // @TOD: This should be passed to the attributes array.
       $audience_selection = implode(',', $audience_selection_values);
       $variables['audience_selection'] = " data-audience={$audience_selection}";
     }
   }
 
-  $variables['background_image_url'] = FALSE;
-  $image_value = FALSE;
-  $svg_value = FALSE;
-
-  if ($assembly->hasField('field_background_image')) {
-    $image_value = $assembly->get('field_background_image')->getValue();
+  // Set the background image url from the field.
+  if ($assembly->hasField('field_background_image') && !$assembly->get('field_background_image')->isEmpty()) {
+    $file_id = $assembly->field_background_image->target_id;
+    $uri = File::load($file_id)->getFileUri();
+    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
+    $variables['attributes']->addClass('has-background');
   }
 
-  if ($assembly->hasField('field_background_svg')) {
-    $svg_value = $assembly->get('field_background_svg')->getValue();
-  }
-
-  if ($svg_value) {
-    $file_id = $svg_value[0]['target_id'];
+  // Set the background image url for svg.
+  // @TOOD: If an assembly has both, does the SVG win?
+  if ($assembly->hasField('field_background_svg') && !$assembly->get('field_background_svg')->isEmpty()) {
+    $file_id = $assembly->field_background_svg->target_id;
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = file_create_url($uri);
     $variables['attributes']->addClass('has-background');
-  } else if ($image_value) {
-    $file_id = $image_value[0]['target_id'];
-    $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-    $variables['attributes']->addClass('has-background');
   }
 
+  // Set the image_uri and image_alt variables.
   if ($assembly->hasField('field_image')) {
     if ($image_value = $assembly->get('field_image')->getValue()) {
       if ($file_id = $image_value[0]['target_id']) {
         $uri = File::load($file_id)->getFileUri();
         if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
           $variables['image_uri'] = $image_uri;
+          $variables['image_alt'] = $image_value[0]['alt'] ?? '';
         }
       }
-      if ($image_alt = $image_value[0]['alt']) {
-        $variables['image_alt'] = $image_alt;
-      }
     }
   }
 
-  if ($assembly->hasField('field_audience_selection')) {
-    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
-    $variables['audience_selection'] = '';
-
-    if ($field_audience_selection_values) {
-      $audience_selection_values = [];
-
-      foreach ($field_audience_selection_values as $field_audience_selection_value) {
-        $audience_selection_values[] = $field_audience_selection_value['value'];
-      }
-
-      $audience_selection = implode(',', $audience_selection_values);
-      $variables['audience_selection'] = " data-audience={$audience_selection}";
-    }
-  }
-
-  // Add Display Type variables for curated_links
+  // Add Display Type variables for curated_links.
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
     $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
     if (strpos($display_type, 'two-col') !== FALSE) {
       $variables['display_type'] = 'two-col';
     }
-    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
       $variables['display_type'] = 'nav-menu';
     }
   }
 
-  // Code Snippet assembly type.
-  if ($type == 'code_snippet') {
-    // Programming Language field.
-    if ($assembly->hasField('field_programming_language')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_programming_language)) {
-        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
-        $variables['language'] = isset($language) ? $language : '';
-      }
-    }
-  }
-
-  // @todo this should be in rhd_eloqua_embed
+  // @TODO: This should be in rhd_eloqua_embed.
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
     $options = [];
@@ -531,8 +439,8 @@ function rhdp2_preprocess_assembly(&$variables) {
     $queryArray = [
       'query' => [
         'options' => $options,
-        'no_cache' => createGUID(),
-      ]
+        'no_cache' => _create_guid(),
+      ],
     ];
     $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
     $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
@@ -540,25 +448,25 @@ function rhdp2_preprocess_assembly(&$variables) {
 
   // Events Hero assembly type.
   if ($type == 'events_hero') {
-    // get secondary events count
+    // Get secondary events count.
     if ($assembly->hasField('field_secondary_events') && $secondary_events = $assembly->get('field_secondary_events')->getValue()) {
       $variables['secondary_events_count'] = count($assembly->get('field_secondary_events')->getValue());
     }
-    // get light visual style
-    $variables['light'] = false;
+    // Get light visual style.
+    $variables['light'] = FALSE;
     if ($visual_styles = $assembly->get('visual_styles')->getValue()) {
       foreach ($visual_styles as $key => $value) {
         if (in_array('light', $value)) {
-          $variables['light'] = true;
+          $variables['light'] = TRUE;
           break;
         }
       }
     }
   }
 
-  // extract sidebar link fields
+  // Extract sidebar link fields.
   if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
-    $variables['has_sidebar_link'] = true;
+    $variables['has_sidebar_link'] = TRUE;
     $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
     $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
   }
@@ -617,11 +525,11 @@ function rhdp2_preprocess_field(&$variables, $hook) {
   // Set column count variable for Columns field in
   // Rich Text Columns assembly type.
   if ($variables['field_name'] === 'field_columns' && $variables['element']['#bundle'] === 'rich_text_columns') {
-    $variables['three_up'] = false;
+    $variables['three_up'] = FALSE;
     if ($visual_styles = $variables['element']['#object']->get('visual_styles')->getValue()) {
       foreach ($visual_styles as $key => $value) {
         if (in_array('three-up', $value)) {
-          $variables['three_up'] = true;
+          $variables['three_up'] = TRUE;
           break;
         }
       }
@@ -657,7 +565,7 @@ function _is_field_used_as_hero_image_in_card($variables) {
       return TRUE;
     }
   }
-  else if ($variables['entity_type'] === 'assembly') {
+  elseif ($variables['entity_type'] === 'assembly') {
     if ($variables['element']['#bundle'] === 'static_item' && $variables['field_name'] === 'field_image') {
       return TRUE;
     }
@@ -696,7 +604,6 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
   $rhd_settings['fusion']['url'] = $env_settings->get('fusion')['url'];
 
   $theme_path = drupal_get_path('theme', 'rhdp2');
-
   $rhd_settings['templates'] = [];
   $template = file_get_contents($theme_path . '/templates/client-side/book.html.twig');
   $rhd_settings['templates']['book'] = $template;
@@ -729,35 +636,36 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 /**
  * Returns a new random guid.
  */
-function createGUID() {
-  // Create a token
+function _create_guid() {
+  // Create a token.
   $token = $_SERVER['HTTP_HOST'];
   $token .= $_SERVER['REQUEST_URI'];
-  $token .= uniqid(rand(), true);
-  // GUID is 128-bit hex
+  $token .= uniqid(rand(), TRUE);
+  // GUID is 128-bit hex.
   $hash = strtoupper(md5($token));
-  // Create formatted GUID
+  // Create formatted GUID.
   $guid = '';
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
-  $guid .= substr($hash,  0,  8) .
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability.
+  $guid .= substr($hash, 0, 8) .
     '-' .
-    substr($hash,  8,  4) .
+    substr($hash, 8, 4) .
     '-' .
-    substr($hash, 12,  4) .
+    substr($hash, 12, 4) .
     '-' .
-    substr($hash, 16,  4) .
+    substr($hash, 16, 4) .
     '-' .
     substr($hash, 20, 12);
 
   return $guid;
 }
 
-/* Implements hook_form_alter().
-*/
-function rhdp2_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
- if ($form_id == 'user_login_form') {
-   $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
- }
+/**
+ * Implements hook_form_alter().
+ */
+function rhdp2_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
+  }
 }
 
 /**
@@ -930,4 +838,3 @@ function rhdp2_library_info_alter(array &$libraries, $extension) {
     }
   }
 }
-

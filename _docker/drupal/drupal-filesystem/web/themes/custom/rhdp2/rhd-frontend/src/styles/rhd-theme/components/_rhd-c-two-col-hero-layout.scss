@@ -1,27 +1,14 @@
+$pf-global--breakpoint--temp: 1360px;
+
 .component {
     &.rhd-c-two-col-hero-layout {
         > .pf-l-grid {
             
             > .pf-m-12-col {
                 @include nestedComponent;
-                > .component {
-                    &.rhd-c-card-grid {
-                        .rhd-c-card-grid__wrapper {
-                            align-items: flex-start;
-                            justify-content: space-between;
-                            margin-right: calc(-1 * var(--pf-l-flex--spacer--sm));
-                            margin-left: calc(-1 * var(--pf-l-flex--spacer--sm));
-                            .pf-c-card {
-                                min-width: 200px;
-                                margin-left: var(--pf-l-flex--spacer--sm);
-                                margin-right: var(--pf-l-flex--spacer--sm);
-                                flex: 1 1 auto;
-                            }
-                        }
-                    }
-                }
+
                 &:first-of-type {
-                    @media screen and (max-width: $pf-global--breakpoint--lg) {
+                    @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
                         grid-row: 2;
                     }
                     .component {
@@ -59,10 +46,94 @@
           .assembly-type-product_try_it_hero ,
           .assembly-type-sign_up_hero ,
           .assembly-type-video_hero {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left:  var(--rhd-theme--container-spacer-md);
+            padding-right:  var(--rhd-theme--container-spacer-md);
           }
-        }
+          .component {
+            &.assembly-type-static_content_band {
+              .component-limit-width {
+                >.pf-l-flex {
+                  &.rhd-c-card-grid__wrapper {
+                    .assembly {
+                      &.rhd-c-card {
+                        width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
+                        margin-left: var(--pf-l-flex--spacer--sm);
+                        margin-right: var(--pf-l-flex--spacer--sm);
 
+                        @media screen and (max-width: $pf-global--breakpoint--temp) {
+                          width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                        }
+          
+                        @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+                          width: calc(33% - var(--rhd-theme--container-spacer-lg));
+                        }
+
+                        @media screen and (max-width: $pf-global--breakpoint--md) {
+                          width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                        }
+
+                        @media screen and (max-width: $pf-global--breakpoint--sm) {
+                          width: 100%;
+                          margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          
+              &.four-up {
+                .component-limit-width {
+                  >.pf-l-flex {
+                    &.rhd-c-card-grid__wrapper {
+                      .assembly {
+                        &.pf-l-flex,
+                        &.assembly-type-node_reference {
+                          width: 33%;
+
+                          @media screen and (max-width: $pf-global--breakpoint--temp) {
+                            width: 50%;
+                          }
+          
+                          @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+                            width: 33%;
+                          }
+
+                          @media screen and (max-width: $pf-global--breakpoint--md) {
+                            width: 50%;
+                          }
+
+                          @media screen and (max-width: $pf-global--breakpoint--xs) {
+                            width: 100%;
+                          }
+                        }
+          
+                        &.rhd-c-card {
+                          width: calc(33% - var(--rhd-theme--container-spacer-lg));
+
+                          @media screen and (max-width: $pf-global--breakpoint--temp) {
+                            width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                          }
+          
+                          @media screen and (max-width: $pf-global--breakpoint--lg) {
+                            width: calc(33% - var(--rhd-theme--container-spacer-lg - 1));
+                          }
+
+                          @media screen and (max-width: $pf-global--breakpoint--md) {
+                            width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                          }
+
+                          @media screen and (max-width: $pf-global--breakpoint--xs) {
+                            width: 100%;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }          
+        }
     }
 }
