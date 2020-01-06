@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{% if 'slideshare.net' in embed_url  %}
+  <iframe src="{{ embed_url }}" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+{% elseif 'youtube' in embed_url or 'youtu.be' in embed_url %}
+  <iframe width="560" height="315" src="{{ embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endif %}

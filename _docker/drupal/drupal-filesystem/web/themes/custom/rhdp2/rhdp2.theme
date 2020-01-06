@@ -391,6 +391,23 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
+  // Embedded Content assembly type.
+  if ($type == 'embedded_content') {
+    $field_url = $assembly->get('field_url')->getValue();
+    $embed_url = $field_url[0]['uri'];
+
+    if (strpos($embed_url, 'slideshare') !== FALSE) {
+      $embed_url = preg_replace('/^http(s:)?/', '', $embed_url);
+    }
+
+    // Look for youtu.be or youtube.
+    elseif ($video_id = _extract_youtube_id($embed_url)) {
+      $embed_url = '//www.youtube.com/embed/' . $video_id;
+    }
+
+    $variables['embed_url'] = $embed_url ?? FALSE;
+  }
+
   // Add Display Type variables for curated_links.
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
@@ -572,6 +589,20 @@ function _is_field_used_as_hero_image_in_card($variables) {
   }
 
   return FALSE;
+}
+
+/**
+ * Extracts Youtube ID from url.
+ *
+ * @param string $url
+ *   The url provided to the embedded_content url field.
+ *
+ * @return Id
+ *   See https://gist.github.com/ghalusa/6c7f3a00fd2383e5ef33.
+ */
+function _extract_youtube_id($url) {
+  preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+  return $match[1] ?? NULL;
 }
 
 /**
