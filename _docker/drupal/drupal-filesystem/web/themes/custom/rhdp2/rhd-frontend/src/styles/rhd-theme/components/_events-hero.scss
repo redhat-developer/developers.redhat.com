@@ -200,3 +200,14 @@
     }
   }
 }
+
+/* Legacy style fix */
+.assembly-type-events_hero {
+  &.has-sidebar {
+    .sidebar {
+      .rhd-c-events-hero__item-presenters, .short-description {
+        display: none;
+      }
+    }
+  }
+}
