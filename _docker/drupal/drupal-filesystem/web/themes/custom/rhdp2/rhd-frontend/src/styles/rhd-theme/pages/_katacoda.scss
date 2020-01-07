@@ -1,5 +1,8 @@
 /* Katacoda */
 .katacoda-courses {
+    .assembly {
+        @extend .component;
+    }
     .rhd-masthead {
         >.component {
             background-color: $white;
