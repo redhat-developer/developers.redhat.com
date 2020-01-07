@@ -65,11 +65,12 @@ function rhd_common_preprocess_paragraph__overview(&$variables) {
  */
 function build_feature_grouping($feature) {
   $builder = Drupal::entityTypeManager()->getViewBuilder('media');
+  $media_reference = $feature->field_media_reference->referencedEntities();
 
   $image_array = $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']);
 
-  if (empty($image_array['#theme'])) {
-    $image_array = $builder->view($feature->field_media_reference->referencedEntities()[0], 'embedded');
+  if (empty($image_array['#theme']) && !empty($media_reference)) {
+    $image_array = $builder->view($media_reference[0], 'embedded');
   }
 
   return [
