@@ -758,10 +758,9 @@ function rhdp2_preprocess_html(array &$variables) {
   $rhd_base_url = $rhd_config->get('rhd_base_url');
   $rhd_final_base_url = $rhd_config->get('rhd_final_base_url');
 
-  $variables['#attached']['drupalSettings']['rhdp2']['rhd_dtm_code'] = $dtm_code;
-  $variables['#attached']['drupalSettings']['rhdp2']['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
-  $variables['rhd_dtm_code'] = $dtm_code;
   $variables['rhd_environment'] = $environment;
+  $variables['rhd_dtm_code'] = $dtm_code;
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
   $variables['rhd_sentry_track'] = $sentry_track;
   $variables['rhd_sentry_script'] = $sentry_script;
   $variables['rhd_sentry_code'] = $sentry_code;

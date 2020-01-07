@@ -30,12 +30,12 @@ class ProductDownloadListBuild extends AssemblyBuildBase implements AssemblyBuil
         $parent_entity->get('field_product_machine_name')->value
       );
 
-      if (isset($product_downloads)) {
+      if (!empty($product_downloads)) {
         foreach ($product_downloads[0]->productVersions as $key => $version) {
           $versions[$key] = $version;
 
           foreach ($version->files as $file_key => $file) {
-            $versions[$key]->files[$file_key]->fileSize = format_size($file->fileSize);
+            $versions[$key]->files[$file_key]->fileSize = (!empty($file->fileSize)) ? format_size($file->fileSize) : NULL;
           }
         }
 

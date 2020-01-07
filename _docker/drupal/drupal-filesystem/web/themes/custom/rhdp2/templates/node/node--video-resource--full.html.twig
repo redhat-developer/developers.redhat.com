@@ -44,18 +44,14 @@
       </div>
     </div>
     <div class="pf-l-grid__item pf-m-12-col video-content">
-      {% if content.body|render|striptags|trim is not empty %}
-        <div class="show-more-text video-description" data-count="400">
-          {{content.body}}
-          {% if content.field_video_resource_tags|render|striptags|trim is not empty %}
-            {{ content.field_video_resource_tags }}
-          {% endif %}
-        </div>
-        <a class="show-more" onclick="return false;">
-          <span class="more">Show More</span>
-          <span class="less">Show Less</span>
-        </a>
-      {% endif %}
+      <div class="show-more-text video-description">
+        {{ content.body }}
+      </div>
+      <a class="show-more hide" onclick="return false;">
+      {# See the show-more library #}
+        <span class="more">Show More</span>
+        <span class="less">Show Less</span>
+      </a>
       {% if content.field_video_transcript|render|striptags|trim is not empty %}
         <div class="video-transcript">
           <h5>Transcript</h5>
