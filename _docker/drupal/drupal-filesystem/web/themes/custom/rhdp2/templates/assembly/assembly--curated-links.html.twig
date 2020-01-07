@@ -12,23 +12,23 @@
  * @ingroup themeable
  */
 #}
+{% set addClasses = [
+  'pf-c-content',
+  'rhd-c-curated-links',
+  'assembly-type-curated_links_rhdp2',
+  display_type == 'nav-menu' ? 'nav-menu',
+  display_type == 'two-col' ? 'two-col',
+  ]
+%}
 
-{# Decalre default render variables #}
-{% set addClasses = [] %}
-{% set remClasses = [] %}
+{% set remClasses = [
+  display_type == 'nav-menu' ? 'two-col',
+  display_type == 'two-col' ? 'nav-menu',
+  'assembly-type-curated_links',
+  ]
+%}
 
-{# Calculate type of render based on class set and set appropriate variable values #}
-{% if (display_type == 'nav-menu') %}
-  {% set addClasses = ['nav-menu'] %}
-  {% set remClasses = ['two-col'] %}
-{% elseif (display_type == 'two-col') %}
-  {% set addClasses = ['two-col'] %}
-  {% set remClasses = ['nav-menu'] %}
-{% endif %}
-
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-
-<div{{ attributes.addClass('pf-c-content', 'rhd-c-curated-links', 'assembly-type-curated_links_rhdp2', 'component', addClasses).removeClass('assembly-type-curated_links', remClasses).setAttribute('style', background_image) }}{{ audience_selection }}>
+<div{{ attributes.addClass(addClasses).removeClass(remClasses) }}>
   <div class="pf-l-grid pf-m-gutter">
     {% if content.field_additional_content|render %}
     <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-12-col-on-md">
@@ -42,7 +42,7 @@
     {% endif %}
       {% if content.field_title|render %}
         <h2 class="pf-c-title pf-u-pt-md">{{ content.field_title }}</h2>
-      {% endif %}       
+      {% endif %}
       {% if elements.links %}
         <hr class="rhd-c-divider">
         <div class="pf-l-flex pf-m-column">
@@ -50,7 +50,7 @@
             <div class="pf-l-flex__item">
               {% if not attributes.hasClass('nav-menu') %}
               <i class="fal fa-arrow-circle-right"></i>
-              {% endif %}     
+              {% endif %}
               {{ link }}
             </div>
           {% endfor %}

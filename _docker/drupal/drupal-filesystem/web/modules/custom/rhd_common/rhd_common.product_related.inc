@@ -243,7 +243,7 @@ function rhd_common_page_attachments_alter(array &$attachments) {
       }
 
       $metatags->overwriteTags([
-        'description' => $active_paragraph->field_page_description->value,
+        'description' => $active_paragraph->field_page_description->value ?? '',
         'title' => $product->label() . ' ' . ucwords($route_params['sub_page']) . ' | [site:name]',
       ]);
 

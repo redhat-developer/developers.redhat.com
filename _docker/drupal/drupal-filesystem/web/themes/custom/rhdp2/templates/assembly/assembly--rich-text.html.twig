@@ -12,13 +12,7 @@
  * @ingroup themeable
  */
 #}
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-{% set classes = [
-  'component',
-  'rich-text'
-] %}
-
-<div{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+<div{{ attributes.addClass('rich-text') }}>
   <div class="pf-l-grid pf-m-gutter">
     <div class="pf-l-grid__item">
       <div class="rich-text-content pf-c-content">
