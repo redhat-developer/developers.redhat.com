@@ -419,7 +419,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     // Look for youtu.be or youtube.
     elseif ($video_id = _extract_youtube_id($embed_url)) {
       $variables['is_youtube'] = TRUE;
-      $embed_url = '//www.youtube.com/embed/' . $video_id;
+      $embed_url = '//www.youtube.com/embed/' . $video_id . "?autoplay=0&start=0&rel=0&enablejsapi=1";
     }
 
     $variables['embed_url'] = $embed_url ?? FALSE;

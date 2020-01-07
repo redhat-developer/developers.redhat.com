@@ -9,20 +9,20 @@
   'assembly',
   'pf-l-flex'
 ] %}
-<div{{attributes.addClass(classes)}}>
+{% set removeClasses = [
+  is_youtube ? 'pf-l-flex'
+] %}
 
+<div{{ attributes.addClass(classes).removeClass(removeClasses) }}>
   {# Embed slideshare or youtube iframe #}
   {% if is_slideshare %}
     <iframe src="{{ embed_url }}" width="854" height="480" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
   {% elseif is_youtube %}
-  <div class="rhd-c-video--video-embed">
-    <div class="video-embed-field-provider-youtube video-embed-field-responsive-video">
-      <iframe width="854" height="480" src="{{ embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="rhd-embeded-content-container">
+      <iframe src="{{ embed_url }}" allowfullscreen></iframe>
     </div>
-  </div>
   {% else %}
     {# show the embedded_content as a hyperlink #}
-  	{{- content -}}
+    {{- content -}}
   {% endif %}
-
 </div>
