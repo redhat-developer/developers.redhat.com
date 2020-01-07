@@ -1,0 +1,131 @@
+/* Katacoda */
+.katacoda-courses {
+    .assembly {
+        @extend .component;
+    }
+    .rhd-masthead {
+        >.component {
+            background-color: $white;
+            padding: var(--rhd-theme--container-spacer-xl) 64px;
+            margin: 0;
+            @media screen and (max-width: 768px) {
+                padding: 0 32px;
+            }
+        }
+        .rhd-header-logo {
+            @media screen and (max-width: 768px) {
+                margin-right: 24px;
+            }
+        }
+    }
+    .region-rhd-katacoda-header {
+        @media screen and (max-width: 768px) {
+            padding: 8px 0;
+        }
+    }
+    .node--type-katacoda-course {
+        .rhd-c-card-grid {
+            background-color: $white;
+        }
+    }
+    .katacoda-hero {
+        background: transparent;
+        .component {
+            @media screen and (max-width: 768px) {
+                padding: 16px 32px;
+            }
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        span,
+        p {
+          color: white;
+        }
+        .background {
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+    }
+}
+
+
+.katacoda-courses-container {
+    &.component {
+        padding: var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl) var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl);
+      }
+}
+  
+.region-rhd-katacoda-header {
+    padding: 8px 32px;
+    max-width: none;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    flex: none;
+    justify-items: unset;
+    display: flex;
+    align-items: center;
+    .rhd-header-logo {
+        max-width: 100%;
+        width: 140px;
+        grid-column: none;
+        grid-row: unset;
+        height: auto;
+      }
+      .block-system-breadcrumb-block {
+        grid-row: none;
+        grid-column: none;
+        width: auto;
+        margin-left: auto;
+      }
+      .block-system-breadcrumb-block {
+        nav {
+            padding-bottom: 0;
+          }
+      }
+      .breadcrumb {
+        ol {
+            li:not(:first-of-type):before {
+                content: " \203A ";
+                padding: 0 4px;
+                font-weight: 400;
+            }
+            li:last-of-type {
+                color: black;
+                font-size: 16px;
+                font-weight: 700;
+            }
+        }
+      }
+}
+  
+.screen-size-note {
+    text-align: center;
+    @media(min-width: 812px) {
+        display: none;
+    }
+    &__logo {
+        display: block;
+        margin: 20px auto;
+    }
+}
+  
+.node--type-katacoda-individual-lesson {
+    &.node--view-mode-full {
+        .katacoda-lesson {
+            @media(max-width: 812px) {
+                display: none;
+            }
+        }
+    }
+}

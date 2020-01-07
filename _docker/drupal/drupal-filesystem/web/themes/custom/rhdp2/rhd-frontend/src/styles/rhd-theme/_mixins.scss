@@ -13,3 +13,28 @@
     }
   }
 }
+
+//hidden classes
+%link {
+  text-decoration: var(--pf-theme--link--text-decoration, "underline");
+  color: var(--pfe-theme--color--ui-link, #0066cc);
+
+  :hover {
+      color: var(--pfe-theme--color--ui-link--hover, #004080)
+  }
+}
+
+%hidden {
+  display: none;
+}
+
+%assembly {
+  background-image: var(--rhd-theme--ui--background-image, none);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%on-dark-assembly {
+  --pfe-theme--font-size--alpha: 46px;
+}
