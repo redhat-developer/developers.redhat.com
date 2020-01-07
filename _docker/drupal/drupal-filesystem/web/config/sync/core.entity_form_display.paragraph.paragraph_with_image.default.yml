@@ -3,19 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
+    - entity_browser.browser.image_browser
     - field.field.paragraph.paragraph_with_image.field_media_reference
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_body
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_image
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.paragraph_with_image
   module:
     - entity_browser
     - field_layout
-    - image
     - layout_discovery
-    - lightning_media
     - text
 third_party_settings:
   field_layout:
@@ -28,23 +25,8 @@ targetEntityType: paragraph
 bundle: paragraph_with_image
 mode: default
 content:
-  field_media_reference:
-    type: entity_browser_entity_reference
-    weight: 2
-    region: content
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: false
-      field_widget_replace: false
-    third_party_settings: {  }
   field_paragraph_image_body:
-    weight: 3
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -75,5 +57,6 @@ content:
     region: content
 hidden:
   created: true
+  field_media_reference: true
   status: true
   uid: true
