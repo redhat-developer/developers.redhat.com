@@ -7,13 +7,10 @@
 
 {% set classes = [
   'assembly',
-  'pf-l-flex'
-] %}
-{% set removeClasses = [
-  is_youtube ? 'pf-l-flex'
+  not is_youtube ? 'pf-l-flex'
 ] %}
 
-<div{{ attributes.addClass(classes).removeClass(removeClasses) }}>
+<div{{ attributes.addClass(classes) }}>
   {# Embed slideshare or youtube iframe #}
   {% if is_slideshare %}
     <iframe src="{{ embed_url }}" width="854" height="480" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
