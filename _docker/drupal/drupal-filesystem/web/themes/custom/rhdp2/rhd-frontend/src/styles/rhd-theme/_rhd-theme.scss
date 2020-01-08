@@ -15,6 +15,9 @@
 @import "mixins";
 
 // Components
+
+@import "components/assembly-base";
+@import "components/articles";
 @import "components/component-base";
 @import "components/avatar";
 @import "components/bonus-content-item";
@@ -41,7 +44,7 @@
 @import "components/product-download-list";
 @import "components/dynamic-content-list";
 @import "components/comment-list-card";
-@import "components/author-tile";
+@import "components/author";
 @import "components/curated-events";
 @import "components/events-hero";
 @import "components/all-products-listing";
@@ -58,40 +61,11 @@
 @import "components/rhd-c-dynamic-content-list-compact";
 @import "components/rhd-c-two-col-hero-layout";
 @import "components/rhd-divider";
+@import "components/rh-header";
 
-pfe-cta {
-  border-radius: 3px;
-  a {
-    border-radius: 3px;
-  }
-}
+//Page level styles
+@import "pages/katacoda";
 
-.has-background {
-  position: relative;
-  @include with-background-padding;
-}
-
-.pfe-headline-link {
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.rhd-m-dark {
-  background-color: #212121;
-  color: #fff;
-  thead tr,
-  tbody tr * {
-    background-color: #212121 !important;
-  }
-
-}
-
-h1, h2, h3, h4, h5, h6 {
-  &.header-link > a {
-    color: inherit;
-    &:hover, &:focus, &:active {
-        color: inherit;
-        text-decoration: var(--pf-global--link--TextDecoration);
-    }
-  }
-}
+// Final theme overrides
+@import "pfe-overrides";
+@import "rhd-global-styles";
