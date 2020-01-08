@@ -12,15 +12,6 @@ new-relic:
   js:
     js/new-relic.min.js: { minified: true }
 
-custom-events:
-  header: true
-  js:
-    js/custom-events.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupalSettings
-
 jira-issue-collector:
   header: true
   js:
