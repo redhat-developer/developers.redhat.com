@@ -15,7 +15,9 @@
 @import "mixins";
 
 // Components
+
 @import "components/assembly-base";
+@import "components/articles";
 @import "components/component-base";
 @import "components/avatar";
 @import "components/bonus-content-item";
@@ -62,7 +64,7 @@
 @import "components/rh-header";
 
 //Page level styles
-@import "pages/katacoda"; 
+@import "pages/katacoda";
 
 // Final theme overrides
 @import "pfe-overrides";
