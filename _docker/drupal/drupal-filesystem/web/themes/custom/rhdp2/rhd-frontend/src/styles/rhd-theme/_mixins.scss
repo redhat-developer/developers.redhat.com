@@ -7,7 +7,7 @@
 
 @mixin nestedComponent {
   .component {
-    margin-top: 0 0 48px 0;
+    margin: 0 0 var(--rhd-theme--container-spacer-lg) 0;
     &:not(.dark):not(.assembly-slim):not(.has-background):not(.background-gray) {
       padding: 0;
     }
