@@ -64,6 +64,10 @@
         margin-bottom: 0;
     }
 
+    &.has-background {
+        @include with-background-padding;
+    }
+
     //extra component classes
     &.image-no-crop {
         .rhd-c-card {

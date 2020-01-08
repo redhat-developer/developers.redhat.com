@@ -15,13 +15,9 @@
  * @ingroup themeable
  */
 #}
-{% set background_image = "background-image: url(" ~ background_image_url ~ ");" %}
-
 {% set classes = [
-  'component',
   'pf-c-content',
   'rhd-c-events-hero',
-  'has-background',
 ]%}
 {% if secondary_events_count == 0 %}
   {% set classes = classes|merge(['assembly-slim']) %}
@@ -38,7 +34,7 @@
   {% set classes = classes|merge(['dark']) %}
 {% endif %}
 
-<section{{ attributes.addClass(classes).setAttribute('style', background_image) }}{{ audience_selection }}>
+<section{{ attributes.addClass(classes) }}>
   <div class="pf-l-grid pf-m-gutter">
 
     {{ content.field_title }}
