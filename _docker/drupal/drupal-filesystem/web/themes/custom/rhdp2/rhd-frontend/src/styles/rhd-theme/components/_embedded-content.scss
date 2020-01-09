@@ -1,6 +1,12 @@
 .assembly-type-embedded_content {
   // The following does not work within a pf-l-flex item.
   width: 100%;
+  @media (min-width: 1025px) {		
+     max-width: 690px;		
+   }		
+   @include desktop-large {		
+     max-width: 869px;		
+   }
   .rhd-embeded-content-container {
       display: block !important;
       height:0;
