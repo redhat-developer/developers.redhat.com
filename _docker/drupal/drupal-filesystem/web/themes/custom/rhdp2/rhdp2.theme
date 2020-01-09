@@ -425,19 +425,6 @@ function rhdp2_preprocess_assembly(&$variables) {
     $variables['embed_url'] = $embed_url ?? FALSE;
   }
 
-  // Add Display Type variables for curated_links.
-  if ($type == 'curated_links'
-      && $assembly->hasField('field_display_type_curated_links')) {
-    $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
-    if (strpos($display_type, 'two-col') !== FALSE) {
-      $variables['display_type'] = 'two-col';
-    }
-    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
-      $variables['display_type'] = 'nav-menu';
-    }
-  }
-
   // @TODO: This should be in rhd_eloqua_embed.
   if ($assembly->hasField('field_eloqua_json')) {
     $variables['eloqua_assembly_id'] = $assembly->id();
