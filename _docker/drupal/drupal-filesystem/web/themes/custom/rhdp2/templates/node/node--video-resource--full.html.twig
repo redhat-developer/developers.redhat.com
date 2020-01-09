@@ -1,3 +1,17 @@
+{% set grid_content_left = create_attribute() %}
+{% set grid_content_right = create_attribute() %}
+
+{% set content_grid_left = [
+  'pf-l-grid__item',
+   content.field_video_target_product['#items'] ? 'pf-m-8-col' : 'pf-m-12-col',
+   'video-content'
+]%}
+
+{% set content_grid_right = [
+  'pf-l-grid__item',
+  content.field_video_target_product['#items'] ? 'pf-m-4-col' : 'hide',
+]%}
+
 <div{{ attributes.addClass("component").setAttribute('id', 'rhd-video-resource') }}>
   <div class="pf-l-grid video-page">
     <div class="pg-l-grid__item pf-m-12-col">
@@ -43,7 +57,8 @@
         {% endif %}
       </div>
     </div>
-    <div class="pf-l-grid__item pf-m-12-col video-content">
+
+    <div{{ grid_content_left.addClass(content_grid_left)}}>
       <div class="show-more-text video-description">
         {{ content.body }}
       </div>
@@ -61,11 +76,9 @@
       {% if content.field_video_related_links|render|striptags|trim is not empty %}
         {{ content.field_video_related_links }}
       {% endif %}
-      {% if content.field_video_target_product|render|striptags|trim is not empty %}
-        <div class="related-product-card columns">
-          {{ content.field_video_target_product }}
-        </div>
-      {% endif %}
+    </div>
+    <div{{grid_content_right.addClass(content_grid_right)}}>
+      {{ content.field_video_target_product }}
     </div>
   </div>
 
