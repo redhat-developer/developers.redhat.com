@@ -16,3 +16,10 @@ usable_db_names:
   - 'developer_drupal_8'
   - 'developer_drupal_9'
   - 'developer_drupal_10'
+
+# Variables to support the WordPress migrations
+wordpress_run_migrations: "{{ lookup('env','WORDPRESS_RUN_MIGRATIONS') | bool | default (false, true) }}"
+wordpress_db_host: "{{ lookup('env','WORDPRESS_DB_HOST') | default ('mysql', true) }}"
+wordpress_db_user: "{{ lookup('env','WORDPRESS_DB_USER') | default ('root', true) }}"
+wordpress_db_password: "{{ lookup('env','WORDPRESS_DB_PASSWORD') | default ('password', true) }}"
+wordpress_db_name: "{{ lookup('env','WORDPRESS_DB_NAME') | default ('rhd_blog', true) }}"

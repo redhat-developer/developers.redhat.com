@@ -192,3 +192,16 @@ $settings['memcache']['servers'] += [
       ],
     ];
 }
+
+/*
+    Temporary definition of WordPress Database to support migration work
+*/
+$databases['wp']['default'] = array (
+  'database' => '{{ wordpress_db_name }}',
+  'username' => '{{ wordpress_db_user }}',
+  'password' => '{{ wordpress_db_password }}',
+  'host' => '{{ wordpress_db_host }}',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql'
+);

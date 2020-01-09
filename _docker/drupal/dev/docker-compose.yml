@@ -49,6 +49,7 @@ services:
     user: ${DUID}:0
     environment:
     - DEPLOYMENT_ID=1
+    - WORDPRESS_RUN_MIGRATIONS
     volumes:
     - ./env.yml:/credentials/ansible/env.yml
     - ./edgerc:/credentials/akamai/edgerc
