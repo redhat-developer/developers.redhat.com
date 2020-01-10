@@ -105,14 +105,14 @@
   
 
   // OTHER VISUAL STYLES
-    &.light.component {
+    &.light {
       background-image: var(--rhd-theme--ui-background-image__product-hero-light);
     }
 
-    &.dark.component {
+    &.dark {
       background-image: var(--rhd-theme--ui-background-image__product-hero-dark);
 
-      &>*,
+      p,
       .pf-c-title,
       .pf-c-content,
       .pf-m-link,
@@ -136,4 +136,5 @@
       @extend .pf-u-pt-0;
       @extend .pf-u-pb-0;
     }
+
   }
