@@ -18,7 +18,7 @@
 {% set classes = [
   'component',
 ]%}
-<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
+<section{{ attributes.addClass(classes) }}>
   {% if content.field_title|render %}
     <div class="pf-l-flex">
       <h1>{{ content.field_title }}</h1>

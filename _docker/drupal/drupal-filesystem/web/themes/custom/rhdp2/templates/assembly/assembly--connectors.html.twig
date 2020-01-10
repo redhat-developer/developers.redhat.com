@@ -1,0 +1,18 @@
+{#
+/**
+ * @file assembly--connectors.html.twig
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<section{{ attributes.addClass('pf-c-content') }}>
+  <div class="rhd-c-connectors rhd-c-product-download-list">
+    {{ content.nodes }}
+  </div>
+</section>

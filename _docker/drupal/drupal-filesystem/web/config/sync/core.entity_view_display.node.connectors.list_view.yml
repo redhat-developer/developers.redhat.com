@@ -1,0 +1,95 @@
+uuid: 9c7f08cf-6838-45ee-935c-3b34ff9f0d43
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_view
+    - field.field.node.connectors.field_connector_details_url
+    - field.field.node.connectors.field_connector_id
+    - field.field.node.connectors.field_connector_image
+    - field.field.node.connectors.field_connector_link_1
+    - field.field.node.connectors.field_connector_link_1_text
+    - field.field.node.connectors.field_connector_link_2
+    - field.field.node.connectors.field_connector_link_2_text
+    - field.field.node.connectors.field_connector_long_description
+    - field.field.node.connectors.field_connector_priority
+    - field.field.node.connectors.field_connector_short_descriptio
+    - field.field.node.connectors.field_connector_target_product_1
+    - field.field.node.connectors.field_connector_target_product_2
+    - field.field.node.connectors.field_connector_target_product_3
+    - field.field.node.connectors.field_tags
+    - field.field.node.connectors.field_tax_audience_segment
+    - field.field.node.connectors.field_tax_business_unit
+    - field.field.node.connectors.field_tax_campaign
+    - field.field.node.connectors.field_tax_lifecycle
+    - field.field.node.connectors.field_tax_product
+    - field.field.node.connectors.field_tax_product_line
+    - field.field.node.connectors.field_tax_project
+    - field.field.node.connectors.field_tax_promotion
+    - field.field.node.connectors.field_tax_region
+    - field.field.node.connectors.field_tax_stage
+    - field.field.node.connectors.field_topics
+    - node.type.connectors
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: zQfEnSZfYMrha2gScuXvEE1nTF-EXr_n1aKO7C7TiuM
+id: node.connectors.list_view
+targetEntityType: node
+bundle: connectors
+mode: list_view
+content:
+  field_connector_short_descriptio:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: text_default
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  content_moderation_control: true
+  field_connector_details_url: true
+  field_connector_id: true
+  field_connector_image: true
+  field_connector_link_1: true
+  field_connector_link_1_text: true
+  field_connector_link_2: true
+  field_connector_link_2_text: true
+  field_connector_long_description: true
+  field_connector_priority: true
+  field_connector_target_product_1: true
+  field_connector_target_product_2: true
+  field_connector_target_product_3: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true
+  published_at: true

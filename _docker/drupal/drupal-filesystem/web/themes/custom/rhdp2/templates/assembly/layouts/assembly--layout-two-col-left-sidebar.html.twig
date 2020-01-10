@@ -1,0 +1,28 @@
+{#
+/**
+ * @file assembly--layout-two-col-left-sidebar.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'component',
+  'rhd-c-two-col-hero-layout',
+]%}
+
+<section{{ attributes.addClass(classes) }}>
+  <div class="pf-l-grid pf-m-gutter">
+    {{ content.field_column_1 }}
+    {{ content.field_column_2 }}
+  </div>
+</section>

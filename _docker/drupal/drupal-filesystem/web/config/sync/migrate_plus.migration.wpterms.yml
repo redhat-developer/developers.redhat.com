@@ -1,0 +1,28 @@
+uuid: c1934501-96ba-434c-92d7-bc19b9fe3436
+langcode: en
+status: true
+dependencies: {  }
+id: wpterms
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: rhdpwp
+label: 'Import tags and categories from Wordpress SQL'
+source:
+  plugin: wordpress_term
+process:
+  name:
+    -
+      plugin: ignore_existing_terms
+    -
+      plugin: get
+      source: term_name
+  vid: term_vocab
+  status:
+    -
+      plugin: default_value
+      default_value: 1
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

@@ -19,6 +19,36 @@
   }
 }
 
+.tile-title {
+  font-size: var(--pfe-theme--font-size--epsilon, 22px);
+
+  a {
+    color: var(--pfe-theme--color--text, #151515);
+  }
+}
+
+.page-title {
+  margin-top: 23px;
+  margin-bottom: 8px;
+
+  @include tablet-landscape {
+    margin-top: 35px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $rhd-font-stack-display;
+  --pfe-theme--font-family--heading: $rhd-font-stack-display;
+  font-family: var(--pfe-theme--font-family--heading, $rhd-font-stack-display);
+  &.header-link > a {
+    color: inherit;
+    &:hover, &:focus, &:active {
+        color: inherit;
+        text-decoration: var(--pf-global--link--TextDecoration);
+    }
+  }
+}
+
 h1,
 .pf-c-content h1,
 h1.pf-c-title, .pf-m-3xl {

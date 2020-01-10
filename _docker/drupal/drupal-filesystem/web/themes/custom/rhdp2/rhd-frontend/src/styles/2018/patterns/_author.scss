@@ -73,6 +73,9 @@
   @extend %author-social-icon;
   svg {
     color: #3b5998;
+    path {
+      fill: #3b5998;
+    }
   }
 }
 
@@ -80,6 +83,9 @@
   @extend %author-social-icon;
   svg {
     color: #00aced;
+    path {
+      fill: #00aced;
+    }
   }
 }
 
@@ -87,6 +93,9 @@
   @extend %author-social-icon;
   svg {
     color: #ff0000;
+    path {
+      fill: #ff0000;
+    }
   }
 }
 
@@ -94,6 +103,9 @@
   @extend %author-social-icon;
   svg {
     color: #0077B5;
+    path {
+      fill: #0077B5;
+    }
   }
 }
 
@@ -101,5 +113,9 @@
   @extend %author-social-icon;
   svg {
     color: #000000;
-  }
+    path {
+      fill: #000000;
+    }
+  } 
 }
+

@@ -7,6 +7,16 @@ web-components:
     https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js: { type: external, minified: true }
     https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js: { type: external, minified: true }
 
+new-relic:
+  header: true
+  js:
+    js/new-relic.min.js: { minified: true }
+
+jira-issue-collector:
+  header: true
+  js:
+    https://issues.jboss.org/s/36fcee7e2c47b82293b8ffd249c9132e-T/-bdgec2/72005/38e4585ff05eb2dd95a30399b8504050/2.0.22/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=03f305bd: { type: external, minified: true }
+
 base-theme:
   # This should be all of the style sheets broken up according to smaccs
   css:
@@ -25,7 +35,6 @@ base-theme:
     js/menu.js: {}
     # Add our own active link class pfe-m-current
     js/active-link.js: {}
-    # Let's bring in the old JS
     js/articles.js: {}
     # RHD FontAwesome Kit
     https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
@@ -37,7 +46,7 @@ base-theme:
     https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
     # NOTE: SystemJS is a dynamic ES module loader.
     # https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
-    https://developers.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
+    https://sso.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
     js/rhd.old.min.js: { minified: true }
     js/rhd.min.js: { minified: true }
   dependencies:
@@ -69,15 +78,10 @@ video_embed_field.responsive-video:
     component:
       css/field/video_embed_field.responsive-video.css: {}
 
-# Code highlighting for the Code snippet Assembly type.
-highlight-js:
-  css:
-    base:
-      https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css: { type: external, minified: true }
+# Related Content for video resources
+related-content:
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js: { type: external, minified: true }
-    # Inits the highlighting on Code snippet elements.
-    js/highlightjs-init.js: {}
+    js/related-content.js: {}
   dependencies:
     - core/jquery
     - core/drupal
