@@ -1,0 +1,144 @@
+uuid: f9e38bdb-b1b1-485f-a225-4b79a785ad2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.product.field_call_to_action_link
+    - field.field.node.product.field_card_image
+    - field.field.node.product.field_content
+    - field.field.node.product.field_downloads_page_content
+    - field.field.node.product.field_getting_started_content
+    - field.field.node.product.field_image
+    - field.field.node.product.field_meta_tags
+    - field.field.node.product.field_product_categories
+    - field.field.node.product.field_product_category
+    - field.field.node.product.field_product_machine_name
+    - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
+    - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_share_image
+    - field.field.node.product.field_short_description
+    - field.field.node.product.field_stackoverflow_product_refe
+    - field.field.node.product.field_tags
+    - field.field.node.product.field_tax_audience_segment
+    - field.field.node.product.field_tax_business_unit
+    - field.field.node.product.field_tax_campaign
+    - field.field.node.product.field_tax_lifecycle
+    - field.field.node.product.field_tax_product
+    - field.field.node.product.field_tax_product_line
+    - field.field.node.product.field_tax_project
+    - field.field.node.product.field_tax_promotion
+    - field.field.node.product.field_tax_region
+    - field.field.node.product.field_tax_stage
+    - field.field.node.product.field_topics
+    - field.field.node.product.field_url_product_name
+    - field.field.node.product.field_use_new_product_page
+    - image.style.large
+    - node.type.product
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - link
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: adWuMzk0qGvrafgJTVIHF62W_zf8GKKCFSXI8zcLamw
+id: node.product.card
+targetEntityType: node
+bundle: product
+mode: card
+content:
+  field_call_to_action_link:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: large
+      image_link: content
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_url_product_name:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_card_image: true
+  field_content: true
+  field_downloads_page_content: true
+  field_getting_started_content: true
+  field_meta_tags: true
+  field_product_categories: true
+  field_product_category: true
+  field_product_machine_name: true
+  field_product_pages: true
+  field_product_short_name: true
+  field_product_summary: true
+  field_product_technology_group: true
+  field_share_image: true
+  field_stackoverflow_product_refe: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  field_use_new_product_page: true
+  langcode: true
+  links: true
+  published_at: true
