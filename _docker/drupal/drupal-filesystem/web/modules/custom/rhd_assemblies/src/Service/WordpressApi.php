@@ -80,7 +80,7 @@ class WordpressApi implements RemoteContentApiInterface {
    *   Returns an array of objects of the WP posts if the fetch is successful.
    *   Otherwise, returns an empty array.
    */
-  public function getContentByCategory(array $categories, $max_results, $select_logic) {
+  public function getContentByCategory($categories, $max_results, $select_logic) {
     $items = [];
 
     $select_logic_tmp = "or";
@@ -312,9 +312,11 @@ class WordpressApi implements RemoteContentApiInterface {
 
     for ($i = 0; $i < count($contents); $i++) {
       if (!empty($contents[$i]->featured_media)) {
-        $items[$i]->media = $sorted_medias[$i];
-        $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
-        $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+        if (isset($sorted_medias[$i])) {
+          $items[$i]->media = $sorted_medias[$i];
+          $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
+          $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+        }
       }
     }
 
