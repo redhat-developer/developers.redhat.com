@@ -243,10 +243,12 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   /**
-   * Please update this function description..
+   * Formats a Wordpress post response from WP JSON API.
    *
-   * @return array
-   *   Please update this return description.
+   * @return object
+   *   Returns an object of \stdClass().
+   *   The object holds all of post content we will eventually render
+   *   such as title, content, media, categories, date, etc.
    */
   private function getContentComposite($content) {
     $item = new \stdClass();
@@ -270,10 +272,11 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   /**
-   * Please update this function description..
+   * Formats multiple Wordpress posts, returned from WP JSON API.
    *
    * @return array
-   *   Please update this return description.
+   *   This is just like getContentComposite(), pass multiple posts and formats
+   *   and returns those multiple posts.
    */
   private function getContentCompositeMultiple($contents) {
     $items = [];
