@@ -497,7 +497,7 @@ a#scroll-to-top {
 }
 
 
-// from rhpd.css to be refactored 
+// from rhpd.css to be refactored
 
 /* PatternFly-specific styles/overrides */
 
@@ -902,8 +902,7 @@ a.pf-c-button:hover {
 }
 
 #rhd-cheat-sheet .cs-info,
-#rhd-book .book-info,
-#rhd-video-resource .vr-info {
+#rhd-book .book-info {
   border-top: 1px solid #656565;
   border-bottom: 1px solid #656565;
   padding: 7px 0;
@@ -911,8 +910,7 @@ a.pf-c-button:hover {
 }
 
 #rhd-cheat-sheet .cs-info ul,
-#rhd-book .book-info ul,
-#rhd-video-resource .vr-info ul {
+#rhd-book .book-info ul {
   list-style: none;
   margin: 0;
   overflow: hidden;
@@ -920,8 +918,7 @@ a.pf-c-button:hover {
 }
 
 #rhd-cheat-sheet .cs-info ul li,
-#rhd-book .book-info ul li,
-#rhd-video-resource .vr-info ul li {
+#rhd-book .book-info ul li {
   width: auto;
   margin-bottom: 1px;
   padding-top: 1px;
@@ -929,14 +926,12 @@ a.pf-c-button:hover {
 }
 
 #rhd-cheat-sheet .cs-info ul li:first-child,
-#rhd-book .book-info ul li:first-child,
-#rhd-video-resource .vr-info ul li:first-child {
+#rhd-book .book-info ul li:first-child {
   padding-left: 0;
 }
 
 #rhd-cheat-sheet .cs-info ul li:first-child .field,
-#rhd-book .book-info ul li:first-child .field,
-#rhd-video-resource .vr-info ul li:first-child .field {
+#rhd-book .book-info ul li:first-child .field {
   display: inline-block;
 }
 
@@ -976,8 +971,7 @@ a.pf-c-button:hover {
 }
 
 #rhd-cheat-sheet .cs-social.right,
-#rhd-book .book-social.right,
-#rhd-video-resource .vr-social.right {
+#rhd-book .book-social.right  {
   float: right;
 }
 
@@ -1005,15 +999,8 @@ a.pf-c-button:hover {
   clear: both;
 }
 
-#rhd-cheat-sheet .cs-social .googleplus-one,
-#rhd-book .book-social .googleplus-one,
-#rhd-video-resource .vr-social .googleplus-one {
-  max-width: 55px;
-}
-
 #rhd-cheat-sheet .share-this,
-#rhd-book .share-this,
-#rhd-video-resource .share-this {
+#rhd-book .share-this {
   background: none;
   padding-top: 0;
 }
@@ -1029,9 +1016,4 @@ a.pf-c-button:hover {
 #rhd-book .shown-after-login,
 #rhd-book .hidden-after-login {
   display: none;
-}
-
-#rhd-video-resource .slides iframe {
-  height: 100%;
-  width: 100%;
 }
