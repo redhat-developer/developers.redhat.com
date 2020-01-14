@@ -3,9 +3,9 @@
     .component-limit-width {
       >.pf-l-flex {
         &.rhd-c-card-grid__wrapper {
-          justify-content: space-between;
-          margin-right: calc(-1 * var(--pf-l-flex--spacer--sm));
-          margin-left: calc(-1 * var(--pf-l-flex--spacer--sm));
+          justify-content: flex-start;
+          margin-right: $rhd-flex-half--spacer-negative;
+          margin-left: $rhd-flex-half--spacer-negative;
           @media screen and (max-width: $pf-global--breakpoint--sm) {
             margin-right: 0;
             margin-left: 0;
@@ -16,7 +16,7 @@
             &.assembly-type-node_reference {
               max-width: initial;
               width: 33.3%;
-              padding-right: var(--rhd-theme--container-spacer-lg);
+              padding-right: $rhd-flex--spacer;
               margin: 0;
 
               @media screen and (max-width: $pf-global--breakpoint--md) {
@@ -31,12 +31,12 @@
             }
 
             &.rhd-c-card {
-              width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
-              margin-left: var(--pf-l-flex--spacer--sm);
-              margin-right: var(--pf-l-flex--spacer--sm);
+              width: calc(33.3% - #{$rhd-flex--spacer});
+              margin-left: $rhd-flex-half--spacer;
+              margin-right: $rhd-flex-half--spacer;
 
               @media screen and (max-width: $pf-global--breakpoint--md) {
-                width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                width: calc(50% - #{$rhd-flex--spacer});
               }
 
               @media screen and (max-width: $pf-global--breakpoint--sm) {
@@ -53,6 +53,13 @@
       .component-limit-width {
         >.pf-l-flex {
           &.rhd-c-card-grid__wrapper {
+            justify-content: flex-start;
+            margin-right: $rhd-flex-half--spacer-negative;
+            margin-left: $rhd-flex-half--spacer-negative;
+            @media screen and (max-width: $pf-global--breakpoint--sm) {
+              margin-right: 0;
+              margin-left: 0;
+            }
             .assembly {
 
               &.pf-l-flex,
@@ -73,14 +80,14 @@
               }
 
               &.rhd-c-card {
-                width: calc(25% - var(--rhd-theme--container-spacer-lg));
+                width: calc(25% - #{$rhd-flex--spacer});
 
                 @media screen and (max-width: $pf-global--breakpoint--lg) {
-                  width: calc(33% - var(--rhd-theme--container-spacer-lg));
+                  width: calc(33% - #{$rhd-flex--spacer});
                 }
 
                 @media screen and (max-width: $pf-global--breakpoint--md) {
-                  width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                  width: calc(50% - #{$rhd-flex--spacer});
                 }
 
                 @media screen and (max-width: $pf-global--breakpoint--sm) {
