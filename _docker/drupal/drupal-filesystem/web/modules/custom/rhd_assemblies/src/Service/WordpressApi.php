@@ -31,8 +31,8 @@ class WordpressApi implements RemoteContentApiInterface {
     // If, for some reason, we want to bypass Akamai, change the value of this
     // attribute to 'https://origin-developers.redhat.com/blog'.
     // Used for local testing
-    //$this->apiUrl = 'http://localhost:8000';
-    //$this->apiUrl = 'https://developers.redhat.com/blog';
+    // $this->apiUrl = 'http://localhost:8000';
+    // $this->apiUrl = 'https://developers.redhat.com/blog';
     $this->apiUrl = 'https://origin-developers.redhat.com/blog';
     $this->client = $client;
   }
@@ -67,7 +67,7 @@ class WordpressApi implements RemoteContentApiInterface {
   }
 
   /**
-   * Fetches WP post(s) by their category. Returns as many as $max_results posts.
+   * Fetches WP post(s) by category. Returns up to $max_results posts.
    *
    * @param array $categories
    *   An array of strings of the WP post categories.
@@ -75,6 +75,7 @@ class WordpressApi implements RemoteContentApiInterface {
    *   Maximum number of items to be returned in result set.
    * @param string $select_logic
    *   Logic to be used for searching posts by categories can be 'and|or'.
+   *
    * @return array
    *   Returns an array of objects of the WP posts if the fetch is successful.
    *   Otherwise, returns an empty array.
@@ -84,18 +85,18 @@ class WordpressApi implements RemoteContentApiInterface {
 
     $select_logic_tmp = "or";
 
-    if($select_logic) {
+    if ($select_logic) {
       $select_logic_tmp = $select_logic[0]['value'] == "1" ? "and" : "or";
     }
 
-    //$feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
-    //$feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
+    // $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
+    // $feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
     $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
 
     $query['per_page'] = $max_results;
     $query['logic'] = $select_logic_tmp;
 
-    if($categories){
+    if ($categories) {
       if (count($categories) > 0) {
         $query['categories'] = implode(",", $categories);
       }
@@ -225,6 +226,12 @@ class WordpressApi implements RemoteContentApiInterface {
     }
   }
 
+  /**
+   * Fetches WP category options.
+   *
+   * @return array
+   *   Returns an array of categories.
+   */
   public function getCategoryOptions() {
     $categories = $this->getCategories();
 
@@ -235,6 +242,14 @@ class WordpressApi implements RemoteContentApiInterface {
     return $categories;
   }
 
+  /**
+   * Formats a Wordpress post response from WP JSON API.
+   *
+   * @return object
+   *   Returns an object of \stdClass().
+   *   The object holds all of post content we will eventually render
+   *   such as title, content, media, categories, date, etc.
+   */
   private function getContentComposite($content) {
     $item = new \stdClass();
     $item->content = $content;
@@ -256,6 +271,13 @@ class WordpressApi implements RemoteContentApiInterface {
     return $item;
   }
 
+  /**
+   * Formats multiple Wordpress posts, returned from WP JSON API.
+   *
+   * @return array
+   *   This is just like getContentComposite(), pass multiple posts and formats
+   *   and returns those multiple posts.
+   */
   private function getContentCompositeMultiple($contents) {
     $items = [];
     $media_ids = [];
@@ -273,9 +295,7 @@ class WordpressApi implements RemoteContentApiInterface {
       $category_ids[] = (!empty($contents[$i]->categories)) ? $contents[$i]->categories : NULL;
     }
 
-    //
-    // Referenced Media entities
-    //
+    // Referenced Media entities.
     $medias = $this->getContentMedia($media_ids);
     $sorted_medias = [];
 
@@ -295,15 +315,15 @@ class WordpressApi implements RemoteContentApiInterface {
 
     for ($i = 0; $i < count($contents); $i++) {
       if (!empty($contents[$i]->featured_media)) {
-        $items[$i]->media = $sorted_medias[$i];
-        $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
-        $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+        if (isset($sorted_medias[$i])) {
+          $items[$i]->media = $sorted_medias[$i];
+          $aspect_ratio = $sorted_medias[$i]->media_details->height / $sorted_medias[$i]->media_details->width;
+          $items[$i]->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+        }
       }
     }
 
-    //
-    // Referenced Category entities/terms
-    //
+    // Referenced Category entities/terms.
     $links = [];
     $categories_list = $this->getCategories();
 
@@ -334,7 +354,7 @@ class WordpressApi implements RemoteContentApiInterface {
    *   Returns an array of metadata for the media entity if successfully
    *   fetched. Otherwise, returns an empty array.
    */
-  private function getContentMedia($ids) {
+  private function getContentMedia(array $ids) {
     try {
       // Filters out any values in $ids equivalent to FALSE and then implodes.
       $ids_string = implode(",", array_filter($ids));
@@ -366,10 +386,10 @@ class WordpressApi implements RemoteContentApiInterface {
    *   If successful, this returns an array of category links and names indexed
    *   by the category ID. Otherwise, this returns an empty array.
    */
-  private function getContentCategoryLinks($categories) {
+  private function getContentCategoryLinks(array $categories) {
     $links = [];
     $categories_list = $this->getCategories();
-    
+
     foreach ($categories as $category_id) {
       if (array_key_exists($category_id, $categories_list)) {
         $links[] = [
@@ -379,7 +399,7 @@ class WordpressApi implements RemoteContentApiInterface {
       }
     }
 
-      return $links;
+    return $links;
   }
 
 }
