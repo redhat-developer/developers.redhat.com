@@ -9,6 +9,9 @@
     .section-toggle {
       text-transform: uppercase;
     }
+    &:last-child {
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -358,7 +361,17 @@
 @media screen and (max-width: $pf-global--breakpoint--sm) {
   .rhd-c-footer {
     padding: 0;
+    .rhd-menu {
+        margin-left: 16px;
+        margin-right: 16px;
+        & > .menu-item--expanded {
+        &:last-child {
+          margin-bottom: 24px;
+        }
+      }
+    }
   }
+
 
   .rhd-c-footer-links,
   .rhd-c-footer-sidebar {
@@ -368,6 +381,8 @@
 
   .rhd-c-footer-sidebar {
     order: 1;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .rhd-c-footer-links {
