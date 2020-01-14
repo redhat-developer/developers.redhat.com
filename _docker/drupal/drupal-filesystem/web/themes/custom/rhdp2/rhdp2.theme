@@ -425,48 +425,6 @@ function rhdp2_preprocess_assembly(&$variables) {
     $variables['embed_url'] = $embed_url ?? FALSE;
   }
 
-  // @TODO: This should be in rhd_eloqua_embed.
-  if ($assembly->hasField('field_eloqua_json')) {
-    $variables['eloqua_assembly_id'] = $assembly->id();
-    $options = [];
-
-    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
-      $parent = $variables['elements']['#parent'];
-      if ($parent['entity_type'] == 'assembly' && $parent['entity']->bundle() == 'cta_form') {
-        $options = ['options' => ['class' => []]];
-        $styles = $parent['entity']->get('visual_styles')->getValue();
-        if (!empty($styles)) {
-          foreach ($styles as $style) {
-            if (in_array($style['value'], ['centered'])) {
-              $options['class'][] = 'centered';
-            }
-            if (in_array($style['value'], ['dark'])) {
-              $options['class'][] = 'dark';
-            }
-            if (in_array($style['value'], ['inline'])) {
-              $options['class'][] = 'inline';
-            }
-            if (in_array($style['value'], ['overlabel'])) {
-              $options['class'][] = 'overlabel';
-            }
-            if (in_array($style['value'], ['eloqua-two-col'])) {
-              $options['class'][] = 'eloqua-two-col';
-            }
-          }
-        }
-      }
-    }
-
-    $queryArray = [
-      'query' => [
-        'options' => $options,
-        'no_cache' => _create_guid(),
-      ],
-    ];
-    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], $queryArray);
-    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
-  }
-
   // Set the image_uri and image_alt variables.
   if ($assembly->hasField('field_image')) {
     if ($image_value = $assembly->get('field_image')->getValue()) {
@@ -691,32 +649,6 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 
   $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
   $rhd_settings['templates']['stackoverflowTemplate'] = $template;
-}
-
-/**
- * Returns a new random guid.
- */
-function _create_guid() {
-  // Create a token.
-  $token = $_SERVER['HTTP_HOST'];
-  $token .= $_SERVER['REQUEST_URI'];
-  $token .= uniqid(rand(), TRUE);
-  // GUID is 128-bit hex.
-  $hash = strtoupper(md5($token));
-  // Create formatted GUID.
-  $guid = '';
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability.
-  $guid .= substr($hash, 0, 8) .
-    '-' .
-    substr($hash, 8, 4) .
-    '-' .
-    substr($hash, 12, 4) .
-    '-' .
-    substr($hash, 16, 4) .
-    '-' .
-    substr($hash, 20, 12);
-
-  return $guid;
 }
 
 /**
