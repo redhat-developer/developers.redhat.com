@@ -57,24 +57,24 @@ $pf-global--breakpoint--temp: 1360px;
                     .assembly {
                       &.rhd-c-card {
                         width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
-                        margin-left: var(--pf-l-flex--spacer--sm);
-                        margin-right: var(--pf-l-flex--spacer--sm);
+                        margin-left: $rhd-flex-half--spacer;
+                        margin-right: $rhd-flex-half--spacer;
 
                         @media screen and (max-width: $pf-global--breakpoint--temp) {
-                          width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                          width: calc(50% - #{$rhd-flex--spacer});
                         }
           
                         @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
-                          width: calc(33% - var(--rhd-theme--container-spacer-lg));
+                          width: calc(33% - #{$rhd-flex--spacer});
                         }
 
                         @media screen and (max-width: $pf-global--breakpoint--md) {
-                          width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                          width: calc(50% - #{$rhd-flex--spacer});
                         }
 
                         @media screen and (max-width: $pf-global--breakpoint--sm) {
                           width: 100%;
-                          margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
+                          margin: 0 0 $rhd-flex--spacer 0;
                         }
                       }
                     }
@@ -109,18 +109,18 @@ $pf-global--breakpoint--temp: 1360px;
                         }
           
                         &.rhd-c-card {
-                          width: calc(33% - var(--rhd-theme--container-spacer-lg));
+                          width: calc(33% - #{$rhd-flex--spacer});
 
                           @media screen and (max-width: $pf-global--breakpoint--temp) {
-                            width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                            width: calc(50% - #{$rhd-flex--spacer});
                           }
           
                           @media screen and (max-width: $pf-global--breakpoint--lg) {
-                            width: calc(33% - var(--rhd-theme--container-spacer-lg - 1));
+                            width: calc(33% - #{$rhd-flex--spacer});
                           }
 
                           @media screen and (max-width: $pf-global--breakpoint--md) {
-                            width: calc(50% - var(--rhd-theme--container-spacer-lg));
+                            width: calc(50% - #{$rhd-flex--spacer});
                           }
 
                           @media screen and (max-width: $pf-global--breakpoint--xs) {

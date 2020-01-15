@@ -147,3 +147,17 @@
   GracefulShutdownTimeout 15
 </IfModule>
 
+#Security blocks
+<FilesMatch "(authorize|cron|install|upgrade|xmlrpc).php">
+   Order deny,allow
+   Allow from 10.0.0.0/8
+   deny from all
+</FilesMatch>
+<FilesMatch "(CHANGELOG|changelog).txt">
+   Order deny,allow
+   deny from all
+</FilesMatch>
+<FilesMatch "(CHANGELOG|changelog).md">
+   Order deny,allow
+   deny from all
+</FilesMatch>
