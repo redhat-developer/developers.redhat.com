@@ -39,6 +39,7 @@ export default class Driver {
     }
 
     static click(selector) {
+        this.hideCookieOverlay();
         this.hideCookieBanner();
         this.awaitIsDisplayed(selector);
         return selector.click();
@@ -74,6 +75,13 @@ export default class Driver {
         return selector.waitForDisplayed(timeout, !isShown);
     }
 
+    static getAdobeDdo() {
+        return browser.execute(function() {
+            // eslint-disable-next-line no-return-assign
+            return window.digitalData; 
+        });
+    }
+
     static hideCookieBanner() {
         if (this.isVisible($('#redhat-cookie-privacy-banner'))) {
             browser.execute(function() {
@@ -82,6 +90,22 @@ export default class Driver {
             });
         }
     }
+
+    static hideCookieOverlay() {
+        if (this.isVisible($('.truste_overlay'))) {
+            browser.execute(function() {
+                // eslint-disable-next-line no-return-assign
+                return document.querySelector('.truste_overlay').style.display = 'none';
+            });
+        }
+        if (this.isVisible($('.truste_box_overlay'))) {
+            browser.execute(function() {
+                // eslint-disable-next-line no-return-assign
+                return document.querySelector('.truste_box_overlay').style.display = 'none';
+            });
+        }
+    }
+
 }
 
 module.exports = Driver;
