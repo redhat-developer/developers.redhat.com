@@ -1,0 +1,8 @@
+.hidden,
+.visually-hidden {
+  @extend %hidden;
+}
+
+.mobile {
+    display: none;
+  }

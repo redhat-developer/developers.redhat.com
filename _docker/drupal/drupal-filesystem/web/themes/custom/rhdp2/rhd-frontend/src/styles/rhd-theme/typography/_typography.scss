@@ -135,6 +135,7 @@ p,
 
 a,
 .pf-c-content a {
+  @extend %link;
   font-family: $rhd-font-stack-text;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
   font-size: 16px;
