@@ -1,12 +1,12 @@
 .component {
     //isolate any absolute positioned children to the component
     position: relative;
-
     .pf-l-grid,
     .pf-l-level,
     .pf-l-gallery,
     .pf-l-flex,
-    .pager {
+    .pager,
+    .component-limit-width {
         max-width: map-get($rhd-breakpoints, xlarge);
         margin: 0 auto;
     }
@@ -62,5 +62,24 @@
     }
     &.no-padding-bottom {
         margin-bottom: 0;
+    }
+
+    &.has-background {
+        @include with-background-padding;
+    }
+
+    //extra component classes
+    &.image-no-crop {
+        .rhd-c-card {
+            img.rhd-c-card__image, img.image-style-static-item {
+                object-fit: contain;
+            }
+            .rhd-c-card-blur-image {
+                display: block;
+                img, .rhd-c-card__image, img.image-style-static-item {
+                    object-fit: fill;
+                  }
+            }
+        }
     }
 }

@@ -1,9 +1,5 @@
-{% set classes = [
-  'component',
-  'rhd-c-dynamic-content-list-compact',
-]%}
 
-<div {{ attributes.addClass(classes) }}{{ audience_selection }}>
+<div {{ attributes.addClass('rhd-c-dynamic-content-list-compact') }}>
   <div class="pf-l-grid">
     {{ content.field_title }}
     <div class="pf-l-grid__item pf-m-12-col">

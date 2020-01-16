@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
+    - entity_browser.browser.image_browser
     - field.field.paragraph.paragraph_with_image.field_media_reference
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_body
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_image
@@ -25,20 +25,6 @@ targetEntityType: paragraph
 bundle: paragraph_with_image
 mode: default
 content:
-  field_media_reference:
-    type: entity_browser_entity_reference
-    weight: 1
-    region: content
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: false
-    third_party_settings: {  }
   field_paragraph_image_body:
     weight: 2
     settings:
@@ -47,6 +33,20 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_paragraph_image_image:
+    type: entity_browser_file
+    weight: 1
+    settings:
+      entity_browser: image_browser
+      field_widget_edit: true
+      field_widget_remove: true
+      view_mode: default
+      preview_image_style: thumbnail
+      open: true
+      field_widget_replace: false
+      selection_mode: selection_append
+    region: content
+    third_party_settings: {  }
   field_paragraph_image_title:
     weight: 0
     settings:
@@ -57,6 +57,6 @@ content:
     region: content
 hidden:
   created: true
-  field_paragraph_image_image: true
+  field_media_reference: true
   status: true
   uid: true

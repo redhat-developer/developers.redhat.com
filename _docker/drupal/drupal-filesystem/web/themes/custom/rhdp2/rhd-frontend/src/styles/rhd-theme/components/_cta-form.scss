@@ -1,7 +1,29 @@
 @import "../mixins";
 .assembly-type-cta_form {
     @include with-background-padding;
+    &.has-background {
+        padding: 18px 24px 8px 24px;
+    }
+    &.dark {
+        background: var(--rhd-theme--component-background--color-dark);
+        h2, p {
+            color: $white;
+        }
+    }
+    &.background-gray {
+        background: $rhd-theme--component-background--color-extra-light;
+    }
+    &.centered {
+        text-align: center;
+        .field--name-field-title, .header {
+            text-align: center;
+        }
+        iframe {
+            max-width: 500px;
+        }
+    }
 }
+
 .rhd-c-cta-form {
     .pf-c-form__group {
         margin-top: var(--rhd-theme--container-spacer-lg);

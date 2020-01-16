@@ -41,7 +41,7 @@ function rhd_common_preprocess_paragraph(&$variables) {
       $variables['product_short_name'] = $entity->field_product_short_name->value;
     }
     else {
-      $variables['product_short_name'] = $variables['product_name'];
+      $variables['product_short_name'] = $variables['product_name'] ?? '';
     }
   }
 }
@@ -65,11 +65,12 @@ function rhd_common_preprocess_paragraph__overview(&$variables) {
  */
 function build_feature_grouping($feature) {
   $builder = Drupal::entityTypeManager()->getViewBuilder('media');
+  $media_reference = $feature->field_media_reference->referencedEntities();
 
   $image_array = $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']);
 
-  if (empty($image_array['#theme'])) {
-    $image_array = $builder->view($feature->field_media_reference->referencedEntities()[0], 'embedded');
+  if (empty($image_array['#theme']) && !empty($media_reference)) {
+    $image_array = $builder->view($media_reference[0], 'embedded');
   }
 
   return [
@@ -243,7 +244,7 @@ function rhd_common_page_attachments_alter(array &$attachments) {
       }
 
       $metatags->overwriteTags([
-        'description' => $active_paragraph->field_page_description->value,
+        'description' => $active_paragraph->field_page_description->value ?? '',
         'title' => $product->label() . ' ' . ucwords($route_params['sub_page']) . ' | [site:name]',
       ]);
 

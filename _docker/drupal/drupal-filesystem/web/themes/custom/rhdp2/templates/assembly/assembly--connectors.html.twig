@@ -11,11 +11,7 @@
  * @ingroup themeable
  */
 #}
-{% set classes = [
-  'component',
-  'pf-c-content'
-]%}
-<section{{ attributes.addClass(classes) }}{{ audience_selection }}>
+<section{{ attributes.addClass('pf-c-content') }}>
   <div class="rhd-c-connectors rhd-c-product-download-list">
     {{ content.nodes }}
   </div>

@@ -6,12 +6,10 @@ package: rhdp2
 core: 8.x
 libraries:
   - rhdp2/new-relic
-  - rhdp2/custom-events
   - rhdp2/jira-issue-collector
   - rhdp2/web-components
   - rhdp2/base-theme
   - rhdp2/rhdp-pfelement
-  - rhdp2/highlight-js
   - rhdp2/rhdp-web-components
 stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css

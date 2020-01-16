@@ -7,9 +7,34 @@
 
 @mixin nestedComponent {
   .component {
-    margin-top: 0 0 48px 0;
+    margin: 0 0 var(--rhd-theme--container-spacer-lg) 0;
     &:not(.dark):not(.assembly-slim):not(.has-background):not(.background-gray) {
       padding: 0;
     }
   }
+}
+
+//hidden classes
+%link {
+  text-decoration: var(--pf-theme--link--text-decoration, "underline");
+  color: var(--pfe-theme--color--ui-link, #0066cc);
+
+  :hover {
+      color: var(--pfe-theme--color--ui-link--hover, #004080)
+  }
+}
+
+%hidden {
+  display: none;
+}
+
+%assembly {
+  background-image: var(--rhd-theme--ui--background-image, none);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%on-dark-assembly {
+  --pfe-theme--font-size--alpha: 46px;
 }
