@@ -1,10 +1,11 @@
 <?php
+
+namespace Drupal\rhd_eloqua_embed\Controller;
+
 /**
  * @file
  * Contains \Drupal\rhd_eloqua_embed\Controller\EloquaEmbedController.
  */
-
-namespace Drupal\rhd_eloqua_embed\Controller;
 
 use Drupal\assembly\Entity\Assembly;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,13 +13,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Drupal\Core\Template\Attribute;
 use Drupal\Component\Utility\Html;
 
+/**
+ * Controller to render the eloqua embed form.
+ */
 class EloquaEmbedController {
 
+  /**
+   * Renders the form for the route.
+   *
+   * @param Drupal\assembly\Entity\Assembly $assembly
+   *   The assembly to render.
+   */
   public function getForm(Assembly $assembly) {
-    if($assembly->hasField('field_eloqua_json')) {
+    if ($assembly->hasField('field_eloqua_json')) {
 
       $eloqua_json = $assembly->get('field_eloqua_json')->value;
-      if(!$eloqua_json) {
+      if (!$eloqua_json) {
         throw new NotFoundHttpException();
       }
 
@@ -52,4 +62,5 @@ class EloquaEmbedController {
     }
     throw new NotFoundHttpException();
   }
+
 }
