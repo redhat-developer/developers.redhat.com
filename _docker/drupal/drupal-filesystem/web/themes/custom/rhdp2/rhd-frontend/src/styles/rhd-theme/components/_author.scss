@@ -41,71 +41,6 @@
   }
 }
 
-//legacy author styles
-.author {
-  &.short-teaser {
-    font-size: 14px;
-    text-align: center;
-    .author-name {
-      font-size: 14px;
-      background-color: $white;
-      color: $gray-6;
-      padding: 6px 13px;
-      text-transform: uppercase;
-      display: inline-block;
-      line-height: 1.6;
-      .field--name-title {
-        margin-bottom: 0;
-      }
-    }
-    .field--name-field-headshot img {
-      width: 90px;
-      height: auto !important;
-      border-radius: 100%;
-    }
-  }
-}
-
-.node--type-author {
-  &.node--view-mode-teaser {
-    .grid {
-      display: grid;
-      grid-gap: 15px;
-      grid-template-columns: 160px 1fr;
-    }
-
-    .name {
-      margin-top: 0;
-      margin-bottom: .5rem;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .bio {
-      margin: 0;
-      padding: 0;
-      p {
-        font-size: 14px;
-        margin-top: 0;
-      }
-    }
-
-  }
-
-  .headshot {
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-  }
-
-  .social-icons {
-    padding: 0;
-    list-style-type: none;
-  }
-}
-
 %author-social-icon {
   text-decoration: none;
   font-size: 21px;
@@ -160,7 +95,6 @@
     path {
       fill: #000000;
     }
-  } 
+  }
 }
-
 
