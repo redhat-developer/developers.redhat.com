@@ -25,7 +25,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the Kubernetes topic page", () => {
-        Home.open('/topics/kubernetes/');
+        Page.open('/topics/kubernetes/');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
@@ -38,7 +38,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the /openshift page", () => {
-        Home.open('/openshift/');
+        Page.open('/openshift/');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
@@ -50,7 +50,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the /rhel8 page", () => {
-        Home.open('/rhel8/');
+        Page.open('/rhel8/');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
@@ -82,7 +82,7 @@ describe('Adobe DDO', function() {
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
             expect(digitalData.page.category.primaryCategory).to.equal("products");
             expect(digitalData.page.category.subCategories[0]).to.equal("openjdk");
-            expect(digitalData.page.category.subCategories[0]).to.equal("download");
+            expect(digitalData.page.category.subCategories[1]).to.equal("download");
         }
         else { 
             expect(digitalData).to.not.be.null;
