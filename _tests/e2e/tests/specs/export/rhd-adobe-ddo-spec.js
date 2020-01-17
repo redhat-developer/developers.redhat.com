@@ -2,7 +2,7 @@ import Driver from '../support/utils/Driver.Extension';
 import Home from '../support/pages/website/Home.page';
 import Login from '../support/pages/keycloak/Login.page';
 import NavigationBar from '../support/pages/website/NavigationBar.section';
-import Page from '../support/pages/Page';
+import BasicPage from '../support/pages/website/BasicPage.page';
 import ProductOverview from '../support/pages/website/ProductOverview.page';
 import Utils from '../support/utils/Utils';
 
@@ -25,7 +25,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the Kubernetes topic page", () => {
-        Page.open('/topics/kubernetes/');
+        BasicPage.open('topics/kubernetes');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
@@ -38,7 +38,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the /openshift page", () => {
-        Page.open('/openshift/');
+        BasicPage.open('openshift');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
@@ -50,7 +50,7 @@ describe('Adobe DDO', function() {
     });
 
     it("should have a valid digitalData object on the /rhel8 page", () => {
-        Page.open('/rhel8/');
+        BasicPage.open('rhel8');
         const digitalData = Driver.getAdobeDdo();
 
         if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
