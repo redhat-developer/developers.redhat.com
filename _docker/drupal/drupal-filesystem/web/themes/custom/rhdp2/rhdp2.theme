@@ -295,7 +295,8 @@ function rhdp2_preprocess_node(&$variables) {
   }
 
   // Needed to build the path alias to the Download route.
-  if ($type === 'product' && $variables['view_mode'] === 'featured_tile') {
+  // @TODO: Replace featured_tile usage with card.
+  if ($type === 'product' &&  in_array($variables['view_mode'], ['featured_tile', 'card'])) {
     $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
   }
 
