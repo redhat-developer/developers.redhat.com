@@ -11,9 +11,9 @@ body.page-node-type-coding-resource {
     @extend %hidden;
   }
   .block-system-main-block {
-      max-width: 1440px;
-      margin-left: auto;
-      margin-right: auto;
+    max-width: map-get($rhd-breakpoints, xlarge);
+    margin: 0 auto;
+    padding: var(--pf-global--spacer--xl) 0;
   }
 }
 
@@ -31,8 +31,7 @@ body.page-node-type-coding-resource {
 .page-events-javaone-2017,
 .page-events-msbuild-2016 {
   .node__content > .text-formatted {
-    max-width: none;
-    padding: 0;
-    margin-bottom: 0;
+    max-width: map-get($rhd-breakpoints, xlarge);
+    margin: 0 auto;
   }
 }

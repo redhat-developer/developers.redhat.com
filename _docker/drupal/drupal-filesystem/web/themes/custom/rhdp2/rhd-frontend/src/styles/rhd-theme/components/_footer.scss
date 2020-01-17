@@ -199,6 +199,14 @@
     }
   }
 
+  .cookie-consent {
+    display: inline-block;
+    margin-left: 10px;
+    a {
+      margin-left: 10px;
+    }
+  }
+
   &-legal {
     grid-column-start: 3;
     grid-column-end: 11;
@@ -247,6 +255,7 @@
     grid-column-start: 11;
     grid-column-end: 12;
     justify-self: end;
+    max-height: 40px;
   }
 }
 
