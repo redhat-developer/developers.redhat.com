@@ -67,6 +67,9 @@
 
 //General helper classes
 @import "helpers/visibility";
+@import "helpers/overlay";
+@import "helpers/tables";
+@import "helpers/video";
 
 //Page level styles
 @import "pages/basic-page";
@@ -78,6 +81,7 @@
 @import "pages/learning-paths";
 @import "pages/search";
 @import "pages/blog";
+@import "pages/devoxx4kids";
 
 // Final theme overrides
 @import "pfe-overrides";

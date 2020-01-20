@@ -1,0 +1,40 @@
+body {
+  .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    display: none;
+  }
+
+  &.overlay-open {
+    .overlay {
+      display: table;
+    }
+  }
+
+  .overlay-wrap {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .overlay-inner {
+    max-width: 800px;
+    padding: 20px;
+    background: white;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .overlay-close {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    right: 10px;
+  }
+}
