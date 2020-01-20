@@ -198,6 +198,15 @@
       width: 140px;
     }
   }
+  &-summit-logo {
+    grid-column-start: 11;
+    grid-column-end: 12;
+    justify-self: end;
+    img {
+      max-height: 40px;
+    }
+
+  }
 
   .cookie-consent {
     display: inline-block;
@@ -249,13 +258,6 @@
         display: none;
       }
     }
-  }
-
-  &-summit-logo {
-    grid-column-start: 11;
-    grid-column-end: 12;
-    justify-self: end;
-    max-height: 40px;
   }
 }
 
@@ -336,6 +338,7 @@
       grid-column-start: 12;
       grid-column-end: -1;
       justify-self: center;
+
     }
   }
 }
