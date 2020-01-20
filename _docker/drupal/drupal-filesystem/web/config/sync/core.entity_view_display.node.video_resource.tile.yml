@@ -35,7 +35,6 @@ dependencies:
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
-    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
@@ -124,7 +123,6 @@ hidden:
   field_video_resource: true
   field_video_resource_tags: true
   field_video_target_product: true
-  field_video_transcript: true
   field_views: true
   langcode: true
   links: true
