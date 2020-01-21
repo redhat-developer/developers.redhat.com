@@ -10,5 +10,10 @@
   
   &__item-title {
     @extend .pf-u-mb-0;
+    a {
+      &:hover {
+        color: var(--pf-c-content--a--hover--Color);
+      }
+    }
   }
 }
