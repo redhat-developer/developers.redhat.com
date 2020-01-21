@@ -1,0 +1,28 @@
+.page-devoxx4kids {
+  #ytplayer {
+    max-width: 100%;
+  }
+}
+
+.wide-hero.devoxx4kids {
+  .column {
+    height: auto !important;
+
+    @include desktop-small {
+      width: 50%;
+    }
+
+    @include desktop-large {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  .video-embed {
+    margin-top: 40px;
+
+    @include desktop-small {
+      margin-top: 0;
+    }
+  }
+}
