@@ -1,0 +1,42 @@
+.assembly-type-learning_paths {
+  .rhd-c-card-grid__intro-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .rhd-c-card__footer {
+    position: absolute;
+    bottom: 8px;
+    line-height: 1rem;
+    padding: 0;
+  }
+
+  .rhd-c-card__lesson-label {
+    color: #656565;
+    font-size: 0.9em;
+    font-weight: 700;
+  }
+
+  .rhd-c-card__lessons {
+    margin: 8px 0;
+  }
+
+  .rhd-c-card__lesson {
+    margin: 8px 0;
+  }
+
+  .rhd-c-card__lesson-title {
+    margin: 0 0 8px;
+  }
+
+  &.centered {
+    .rhd-c-card-grid__intro-wrapper {
+      text-align: center;
+    }
+  }
+
+  &.dark {
+    .rhd-c-card-grid__intro-wrapper {
+      color: #fff;
+    }
+  }
+}

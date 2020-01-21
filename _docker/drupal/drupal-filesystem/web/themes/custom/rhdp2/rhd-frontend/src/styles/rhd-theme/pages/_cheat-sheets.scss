@@ -1,0 +1,156 @@
+#rhd-cheat-sheet {
+  margin-bottom: 3em;
+
+  .cta-label {
+    margin-bottom: 15px;
+  }
+
+  .cs-social {
+    &.right {
+      float: right;
+    }
+  }
+
+  .cs-tags {
+    .rhd-c-card {
+      height: auto;
+    }
+
+    .field--name-field-cheat-sheet-tags,
+    .field--name-field-tags {
+      display: inline;
+
+      .field__item {
+        display: inline-block;
+        color: #424242;
+
+        &:after {
+          content: ", ";
+          position: relative;
+          left: -3px;
+        }
+
+        &:last-child {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .cs-info {
+    border-top: 1px solid #656565;
+    border-bottom: 1px solid #656565;
+    padding: 7px 0;
+    margin-bottom: 2.5em;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding-left: 0;
+
+      li {
+        width: auto;
+        margin-bottom: 1px;
+        padding-top: 1px;
+        display: inline-block;
+
+        &:first-child {
+          padding-left: 0;
+
+          .field {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  .content-type {
+    color: #424242;
+    margin-bottom: 0;
+  }
+
+  .cs-excerpt {
+    display: block;
+    background-color: #e8fbff;
+    border: 1px solid #b8e3ed;
+    padding: 20px 30px;
+    margin: 40px 0 20px 0;
+
+    h4 {
+      margin-bottom: 15px;
+    }
+
+    .book-excerpt-text {
+      min-height: 168px;
+    }
+
+    .open-quote {
+      &.left {
+        float: left;
+      }
+    }
+
+    span {
+      display: inline-block;
+      width: calc(100% - 60px);
+      font-style: italic;
+
+      &.open-quote {
+        font-size: 7em;
+        width: 60px;
+        color: #00b9e4;
+        font-style: normal;
+      }
+
+      .field--name-field-book-excerpt {
+        width: inherit;
+      }
+    }
+
+    .divider {
+      border-bottom: 1px solid #D5D5D5;
+      padding: 10px 0;
+
+      &:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+    &:after {
+        display: table;
+        content: "";
+        clear: both;
+      }
+  }
+
+  code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-weight: inherit;
+  }
+
+  figure {
+    margin: 0 32px 0 0;
+  }
+
+  .description-wrapper {
+    &:after {
+      display: table;
+      content: "";
+      clear: both;
+    }
+  }
+  .share-this {
+    background: none;
+    padding-top: 0;
+  }
+  a.button {
+    margin: 5px 0 20px 0;
+    margin-right: 25px !important;
+  }
+}
