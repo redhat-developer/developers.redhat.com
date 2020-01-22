@@ -22,7 +22,7 @@
 @import "components/avatar";
 @import "components/bonus-content-item";
 @import "components/buttons";
-@import "components/cta";
+@import "components/call-to-action";
 @import "components/visual-styles";
 @import "components/bands";
 @import "components/buttons";
@@ -59,15 +59,29 @@
 @import "components/rhd-top-nav";
 @import "components/nav-search";
 @import "components/download_thankyou";
-@import "components/static_content_band";
+@import "components/static-content-band";
 @import "components/rhd-c-dynamic-content-list-compact";
 @import "components/rhd-c-two-col-hero-layout";
 @import "components/rhd-divider";
 @import "components/rh-header";
 
+//General helper classes
+@import "helpers/visibility";
+@import "helpers/overlay";
+@import "helpers/tables";
+@import "helpers/video";
+
 //Page level styles
+@import "pages/basic-page";
 @import "pages/katacoda";
 @import "pages/article";
+@import "pages/error";
+@import "pages/cheat-sheets";
+@import "pages/books";
+@import "pages/learning-paths";
+@import "pages/search";
+@import "pages/blog";
+@import "pages/devoxx4kids";
 
 // Final theme overrides
 @import "pfe-overrides";
