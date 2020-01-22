@@ -1,0 +1,62 @@
+.hidden,
+.visually-hidden {
+  @extend %hidden;
+}
+
+.mobile {
+  display: none;
+}
+
+.show-more-text {
+  overflow: hidden;
+  max-height: 75px;
+
+  &.open {
+    max-height: 100% !important;
+  }
+}
+
+.show-more {
+  text-align: center;
+  display: block;
+  cursor: pointer;
+
+  span {
+    display: block;
+  }
+
+  span.less {
+    display: none;
+  }
+}
+
+.connect-with-us {
+  padding: 50px 0;
+  background-color: $red;
+
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-weight: 200;
+    color: $white;
+  }
+
+  ul.social-links {
+    list-style: none;
+    display: block;
+    margin: 15px auto 0 auto;
+    text-align: center;
+
+    li,
+    li a {
+      display: inline;
+      color: $white;
+      font-size: 1.5em;
+      margin-right: 15px;
+    }
+  }
+}
