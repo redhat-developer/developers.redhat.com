@@ -1,0 +1,23 @@
+
+<div{{ attributes.addClass(['component', 'rhd-c-curated-links', 'two-col']) }}>
+
+  {% if items %}
+    <div class="pf-l-grid pf-m-gutter">
+      <div class="pf-l-grid__item">
+        <h2 class="pf-c-title pf-u-pt-md">
+          {{ label }}
+        </h2>
+        <hr class="rhd-c-divider" />
+        <div class="pf-l-flex pf-m-column">
+        {% for item in items %}
+        <div{{ item.attributes.addClass('pf-l-flex__item') }}>
+          <i class="fal fa-arrow-circle-right"></i>
+          {{ item.content }}
+        </div>
+        {% endfor %}
+        </div>
+        <hr class="rhd-c-divider"/>
+      </div>
+    </div>
+  {% endif %}
+</div>

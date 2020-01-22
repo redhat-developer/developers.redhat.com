@@ -35,7 +35,6 @@ dependencies:
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
-    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
     - workflows.workflow.00c7e3ae
@@ -322,14 +321,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_video_transcript:
-    weight: 17
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
     region: content
   field_views:
     weight: 10
