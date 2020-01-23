@@ -5,12 +5,14 @@
     weight: var(--rhd-global--FontWeight-Display--medium);
     line-height: 53px;
   }
+
   @media screen and (max-width: 991px) {
     font-family: $rhd-font-stack-display;
     font-size: 36px;
     weight: var(--rhd-global--FontWeight-Display--medium);
     line-height: 43.2px;
   }
+
   @media screen and (max-width: 449px) {
     font-family: $rhd-font-stack-display;
     font-size: 32px;
@@ -36,27 +38,38 @@
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $rhd-font-stack-display;
   --pfe-theme--font-family--heading: $rhd-font-stack-display;
   font-family: var(--pfe-theme--font-family--heading, $rhd-font-stack-display);
-  &.header-link > a {
+
+  &.header-link>a {
     color: inherit;
-    &:hover, &:focus, &:active {
-        color: inherit;
-        text-decoration: var(--pf-global--link--TextDecoration);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: inherit;
+      text-decoration: var(--pf-global--link--TextDecoration);
     }
   }
 }
 
 h1,
 .pf-c-content h1,
-h1.pf-c-title, .pf-m-3xl {
+h1.pf-c-title,
+.pf-m-3xl {
   font-family: $rhd-font-stack-display;
   font-size: 32px;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
   line-height: 42px;
   margin-bottom: var(--rhd-theme--container-spacer-md);
+
   a {
     font-family: inherit;
     font-weight: inherit;
@@ -68,13 +81,15 @@ h1.pf-c-title, .pf-m-3xl {
 
 h2,
 .pf-c-content h2,
-h2.pf-c-title, .pf-m-2xl {
-   font-family: $rhd-font-stack-display;
-   font-weight: var(--rhd-global--FontWeight-Display--medium);
-   font-size: 28px;
-   line-height: 37px;
-   margin-bottom: var(--rhd-theme--container-spacer-md);
-   a {
+h2.pf-c-title,
+.pf-m-2xl {
+  font-family: $rhd-font-stack-display;
+  font-weight: var(--rhd-global--FontWeight-Display--medium);
+  font-size: 28px;
+  line-height: 37px;
+  margin-bottom: var(--rhd-theme--container-spacer-md);
+
+  a {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -85,13 +100,15 @@ h2.pf-c-title, .pf-m-2xl {
 
 h3,
 .pf-c-content h3,
-h3.pf-c-title, .pf-m-xl {
-   font-family: $rhd-font-stack-display;
-   font-weight: var(--rhd-global--FontWeight-Display--medium);
-   font-size: 24px;
-   line-height: 31px;
-   margin-bottom: var(--rhd-theme--container-spacer-md);
-   a {
+h3.pf-c-title,
+.pf-m-xl {
+  font-family: $rhd-font-stack-display;
+  font-weight: var(--rhd-global--FontWeight-Display--medium);
+  font-size: 24px;
+  line-height: 31px;
+  margin-bottom: var(--rhd-theme--container-spacer-md);
+
+  a {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -102,13 +119,15 @@ h3.pf-c-title, .pf-m-xl {
 
 h4,
 .pf-c-content h4,
-h4.pf-c-title, .pf-m-lg {
-   font-family: $rhd-font-stack-display;
-   font-weight: var(--rhd-global--FontWeight-Display--medium);
-   font-size: 20px;
-   line-height: 26px;
-   margin-bottom: var(--rhd-theme--container-spacer-md);
-   a {
+h4.pf-c-title,
+.pf-m-lg {
+  font-family: $rhd-font-stack-display;
+  font-weight: var(--rhd-global--FontWeight-Display--medium);
+  font-size: 20px;
+  line-height: 26px;
+  margin-bottom: var(--rhd-theme--container-spacer-md);
+
+  a {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -124,6 +143,7 @@ p,
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+
   a {
     font-family: inherit;
     font-weight: inherit;
@@ -133,15 +153,59 @@ p,
   }
 }
 
-a,
-.pf-c-content a {
-  font-family: $rhd-font-stack-text;
-  font-weight: var(--rhd-global--FontWeight-Display--medium);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  &:hover{
-    text-decoration: underline;
+.caption {
+  >figcaption {
+    margin-top: 10px;
   }
 }
 
+a {
+  font-family: $rhd-font-stack-text;
+  &#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 13px;
+    text-decoration: none;
+    z-index: 1;
+    opacity: 0.8;
+    display: none;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      opacity: 1;
+    }
+  }
+
+  .pf-c-content & {
+    @extend %link;
+    font-family: $rhd-font-stack-text;
+    font-weight: var(--rhd-global--FontWeight-Display--medium);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.pf-c-button:hover {
+    text-decoration: none;
+  }
+}
+
+.share-sm {
+  margin-top: 2px;
+}

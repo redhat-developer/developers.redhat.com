@@ -34,7 +34,6 @@ dependencies:
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
-    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
@@ -351,20 +350,6 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
     type: string
-    region: content
-  field_video_transcript:
-    weight: 12
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: text_default
     region: content
   field_views:
     weight: 5
