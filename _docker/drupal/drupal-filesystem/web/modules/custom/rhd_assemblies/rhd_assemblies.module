@@ -159,6 +159,13 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
 }
 
 /**
+ * Implements hook_form_ID_alter().
+ */
+function rhd_assemblies_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['#validate'][] = 'node_validation';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
@@ -216,6 +223,61 @@ function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state
     case 'node_product_edit_form':
       $form['#validate'][] = 'product_url_name_validation';
       break;
+    case 'view_add_form':
+      $form['#validate'][] = 'view_path_validation';
+      break;
+  }
+}
+
+/**
+ * Custom validation hook for all node edit forms.
+ *
+ * Verifies that the alias submitted in the $form_state is not an external URL.
+ *
+ */
+function node_validation(array &$form, FormStateInterface &$form_state){
+  $submitted_alias = $form_state->getValue('path')[0]['alias'];
+  if (strpos($submitted_alias, '://') !== false) {
+    $form_state->setErrorByName(
+      'path',
+      t('The value entered for URL Alias cannot be an external URL. Please choose a different URL Alias or contact the developers.redhat.com development team for assistance.')
+    );
+  }
+}
+
+/**
+ * Custom validation hook for new view pages.
+ *
+ * Verifies that the path submitted in the $form_state is not
+ * an external URL and is not already in use.
+ */
+//@TODO: path validation for views_ui_edit_display_form $form['options']['path']['#default_value']
+function view_path_validation(array &$form, FormStateInterface &$form_state){
+  $view_page_path = $form['displays']['page']['options']['path']['#value'];
+  if ($view_page_path) {
+    //Validate that the path entered is not an external URL.
+    if (strpos($view_page_path, '://') !== false) {
+      $form_state->setErrorByName(
+        'field_edit_page_path',
+        t('The "Path" field cannot be an external URL. Please use a unique internal path or contact the developers.redhat.com development team for assistance.')
+      );
+    }
+    //Validate that the path doesn't start with a forward slash.
+    if ($view_page_path[0] == '/') {
+      $form_state->setErrorByName(
+        'field_edit_page_path',
+        t('The "Path" field cannot start with a slash.')
+      );
+    }
+    //Validate that the path entered doesn't already exist.
+    //NOTE: does not catch duplicate Views paths
+    $path_exists = \Drupal::service('path.alias_storage')->aliasExists('/' . $view_page_path, 'en');
+    if ($path_exists) {
+      $form_state->setErrorByName(
+        'field_edit_page_path',
+        t('The "Path" field contains a path or alias that already exists. Please create a unique path or contact the developers.redhat.com development team for assistance.')
+      );
+    }
   }
 }
 
