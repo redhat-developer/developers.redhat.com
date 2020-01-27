@@ -50,31 +50,15 @@
   }
 }
 
-//legacy author styles
-.author {
-  &.short-teaser {
-    font-size: 14px;
-    text-align: center;
+// Guest author field Author Tile overrides component overrides.
+.field--name-field-content-author {
 
-    .author-name {
-      font-size: 14px;
-      background-color: $white;
-      color: $gray-6;
-      padding: 6px 13px;
-      text-transform: uppercase;
-      display: inline-block;
-      line-height: 1.6;
+  .rhd-c-author--tile-info {
+    margin-left: 0;
+  }
 
-      .field--name-title {
-        margin-bottom: 0;
-      }
-    }
-
-    .field--name-field-headshot img {
-      width: 90px;
-      height: auto !important;
-      border-radius: 100%;
-    }
+  .rhd-c-author--tile-name {
+    font-weight: 700;
   }
 }
 
@@ -173,6 +157,7 @@
   }
 }
 
+// Author social media icons
 %author-social-icon {
   text-decoration: none;
   font-size: 21px;

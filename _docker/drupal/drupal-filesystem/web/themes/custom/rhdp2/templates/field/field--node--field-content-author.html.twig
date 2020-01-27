@@ -1,0 +1,27 @@
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {% for item in items %}
+    <div{{ item.attributes.addClass('rhd-c-author--tile') }}>
+       {# @todo: Leaving this for future UX input for convenience #}
+       {#
+        <span class="rhd-c-author--tile-hero">
+        	<img src="https://via.placeholder.com/350x200.png?text=Image" alt="Author image" typeof="foaf:Image" width="200" height="200">
+        </span>
+        #}
+      <div class="rhd-c-author--tile-info">
+        <div class="rhd-c-author--tile-name">
+            {{ item.content }}
+        </div>
+        <div class="rhd-c-author--tile-title">Guest Author</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
