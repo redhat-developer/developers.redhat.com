@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.all_products_listing
-    - assembly.assembly_type.blog_posts
     - assembly.assembly_type.call_to_action
     - assembly.assembly_type.code_snippet
     - assembly.assembly_type.collection
@@ -57,7 +56,6 @@ settings:
   handler_settings:
     target_bundles:
       all_products_listing: all_products_listing
-      blog_posts: blog_posts
       call_to_action: call_to_action
       code_snippet: code_snippet
       collection: collection
