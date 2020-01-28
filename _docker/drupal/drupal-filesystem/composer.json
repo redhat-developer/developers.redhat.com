@@ -105,9 +105,9 @@
         "drupal/restui": "1.16",
         "drupal/akamai": "3.0-alpha4",
         "drupal/trailing_slash": "^1.0",
-        "drupal/bootstrap": "3.20",
+        "drupal/bootstrap": "dev-3.x#92d816d7",
         "drupal/compose": "1.x",
-        "drupal/beryllium": "1.x",
+        "drupal/beryllium": "1.x-dev#c9103bea",
         "drupal/search_api": "1.11",
         "drupal/components": "1.1",
         "drupal/memcache": "2.0"
@@ -201,6 +201,9 @@
           },
           "drupal/content_moderation_notifications": {
             "Check user status": "https://www.drupal.org/files/issues/2019-08-29/content_moderation_notifications-check_user_status-3078110-1.patch"
+          },
+          "drupal/bootstrap": {
+            "Remove overflow style from modal": "https://www.drupal.org/files/issues/2019-05-24/modal-height-3048592-4.patch"
           }
         }
     }
