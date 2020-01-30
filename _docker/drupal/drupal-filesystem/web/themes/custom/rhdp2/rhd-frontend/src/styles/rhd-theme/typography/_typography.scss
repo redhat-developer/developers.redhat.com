@@ -137,7 +137,9 @@ h4.pf-c-title,
 }
 
 p,
-.pf-c-content p {
+.pf-c-content p,
+.pf-c-content ul li,
+.pf-c-content ol li {
   font-family: $rhd-font-stack-text;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
   font-size: 16px;
