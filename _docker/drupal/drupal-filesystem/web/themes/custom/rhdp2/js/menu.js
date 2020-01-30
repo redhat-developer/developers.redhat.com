@@ -1,5 +1,10 @@
+/**
+ * @file
+ * Menu custo behaviors
+ */
+
 (function ($, Drupal) {
-  Drupal.behaviors.menuSearch = {
+  Drupal.behaviors.rhd_menuSearch = {
     attach: function (context, settings) {
       $('[data-rhd-nav-search-toggle]').once('menuSearch').each(function() {
         $(this).on('click touch', function(e) {
@@ -20,7 +25,7 @@
     }
   };
 
-  Drupal.behaviors.topicsMobileScroll = {
+  Drupal.behaviors.rhd_topicsMobileScroll = {
     attach: function(context, settings) {
       $('.rhd-l-topics').once('topicsMobileScroll').each(function() {
         var $this = $(this);
