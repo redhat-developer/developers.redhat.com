@@ -35,19 +35,9 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
     && npm install \
     && npm run-script build \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.min.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.microsites.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/css-min/rhd.legacy.css /var/www/drupal/web/themes/custom/rhdp2/css/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.old.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd/rhd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@patternfly/pfelement/pfelement.umd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@patternfly/pfe-datetime/pfe-datetime.umd.min.js /var/www/drupal/web/themes/custom/rhdp2/js/ \
-    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/js/@rhd /var/www/drupal/web/themes/custom/rhdp2/js/rhd \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/fonts \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/ \
-    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
