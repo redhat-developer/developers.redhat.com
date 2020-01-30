@@ -164,7 +164,7 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
  * Implements hook_form_ID_alter().
  */
 function rhd_assemblies_form_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['#validate'][] = 'node_validation';
+  $form['#validate'][] = 'node_external_url_alias_validation';
 }
 
 /**
@@ -239,7 +239,7 @@ function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state
  *
  * Verifies that the alias submitted in the $form_state is not an external URL.
  */
-function node_validation(array &$form, FormStateInterface &$form_state) {
+function node_external_url_alias_validation(array &$form, FormStateInterface &$form_state) {
   $submitted_alias = $form_state->getValue('path')[0]['alias'];
   if (strpos($submitted_alias, '://') !== FALSE) {
     $form_state->setErrorByName(
