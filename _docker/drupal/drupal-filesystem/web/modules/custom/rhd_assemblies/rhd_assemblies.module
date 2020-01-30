@@ -5,7 +5,6 @@
  * Contains rhd_assemblies.module.
  */
 
-use Drupal\assembly\Entity\Assembly;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -96,16 +95,19 @@ function rhd_assemblies_theme($existing, $type, $theme, $path) {
   return $theme;
 }
 
+/**
+ * Implements hook_preprocess_ID().
+ */
 function rhd_assemblies_preprocess_wordpress_post_compact_dynamic_article_list_item(&$variables) {
   $variables['rhd_domain'] = FALSE;
-	$variables['absolute_url'] = FALSE;
+  $variables['absolute_url'] = FALSE;
 
   $current_path = \Drupal::service('path.current')->getPath();
-	$url = Url::fromUri("internal:$current_path");
-	$variables['absolute_url'] = $url->setAbsolute()->toString();
+  $url = Url::fromUri("internal:$current_path");
+  $variables['absolute_url'] = $url->setAbsolute()->toString();
 
   // don't run comment js on this entity
-  // if it isn't a redhat domain or the current domain
+  // if it isn't a redhat domain or the current domain.
   if ($_SERVER['SERVER_NAME']) {
     $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
     if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
@@ -219,10 +221,13 @@ function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state
     case 'node_video_resource_form':
     case 'node_video_resource_edit_form':
       $form['#validate'][] = 'node_product_route_validation';
+      break;
+
     case 'node_product_form':
     case 'node_product_edit_form':
       $form['#validate'][] = 'product_url_name_validation';
       break;
+
     case 'view_add_form':
       $form['#validate'][] = 'view_path_validation';
       break;
@@ -233,11 +238,10 @@ function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state
  * Custom validation hook for all node edit forms.
  *
  * Verifies that the alias submitted in the $form_state is not an external URL.
- *
  */
-function node_validation(array &$form, FormStateInterface &$form_state){
+function node_validation(array &$form, FormStateInterface &$form_state) {
   $submitted_alias = $form_state->getValue('path')[0]['alias'];
-  if (strpos($submitted_alias, '://') !== false) {
+  if (strpos($submitted_alias, '://') !== FALSE) {
     $form_state->setErrorByName(
       'path',
       t('The value entered for URL Alias cannot be an external URL. Please choose a different URL Alias or contact the developers.redhat.com development team for assistance.')
@@ -251,26 +255,27 @@ function node_validation(array &$form, FormStateInterface &$form_state){
  * Verifies that the path submitted in the $form_state is not
  * an external URL and is not already in use.
  */
-//@TODO: path validation for views_ui_edit_display_form $form['options']['path']['#default_value']
-function view_path_validation(array &$form, FormStateInterface &$form_state){
+function view_path_validation(array &$form, FormStateInterface &$form_state) {
+  // @TODO: path validation for views_ui_edit_display_form
+  // $form['options']['path']['#default_value']
   $view_page_path = $form['displays']['page']['options']['path']['#value'];
   if ($view_page_path) {
-    //Validate that the path entered is not an external URL.
-    if (strpos($view_page_path, '://') !== false) {
+    // Validate that the path entered is not an external URL.
+    if (strpos($view_page_path, '://') !== FALSE) {
       $form_state->setErrorByName(
         'field_edit_page_path',
         t('The "Path" field cannot be an external URL. Please use a unique internal path or contact the developers.redhat.com development team for assistance.')
       );
     }
-    //Validate that the path doesn't start with a forward slash.
+    // Validate that the path doesn't start with a forward slash.
     if ($view_page_path[0] == '/') {
       $form_state->setErrorByName(
         'field_edit_page_path',
         t('The "Path" field cannot start with a slash.')
       );
     }
-    //Validate that the path entered doesn't already exist.
-    //NOTE: does not catch duplicate Views paths
+    // Validate that the path entered doesn't already exist.
+    // NOTE: does not catch duplicate Views paths.
     $path_exists = \Drupal::service('path.alias_storage')->aliasExists('/' . $view_page_path, 'en');
     if ($path_exists) {
       $form_state->setErrorByName(
@@ -314,14 +319,14 @@ function product_url_name_validation(array &$form, FormStateInterface &$form_sta
   }
 }
 
-/*
+/**
  * Custom validation hook for non-Products nodes to verify a non-Product URL.
  *
  * Verifies that non-Product nodes are not using a route/URL pattern that might
  * conflict with our Product nodes i.e.
- * /products/rhel/overview or
- * /products/rhamt/download or
- * /products/openjdk/getting-started
+ * products/rhel/overview or
+ * products/rhamt/download or
+ * products/openjdk/getting-started.
  *
  * @see rhd_common.routing.yml
  * @see rhd_assemblies.routing.yml
@@ -335,7 +340,12 @@ function node_product_route_validation(array &$form, FormStateInterface &$form_s
     // Remove preceding '/' character if one exists.
     $url_alias = (isset($url_alias[0]) && $url_alias[0] === '/') ? substr($url_alias, 1) : $url_alias;
     $url_alias_array = explode('/', $url_alias);
-    $reserved_product_subpages = ['overview', 'download', 'getting-started', 'hello-world'];
+    $reserved_product_subpages = [
+      'overview',
+      'download',
+      'getting-started',
+      'hello-world',
+    ];
 
     // If this route matches the pattern of one of our reservered product
     // subpages, then we will set an error on the URL Alias field.
