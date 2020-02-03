@@ -36,16 +36,16 @@
   }
 
   a {
-    color: #06c;
+    color: $link-color;
     text-decoration: none;
     &:hover,
     &:active,
     &:focus,
     &:visited {
-      color: #004080;
+      color: $link-color-hover;
       & > i,
       & > .svg-inline--fa {
-        color: #004080 !important;
+        color: $link-color-hover !important;
       }
     }
   }
