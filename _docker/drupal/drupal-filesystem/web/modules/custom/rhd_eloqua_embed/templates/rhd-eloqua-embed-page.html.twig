@@ -11,6 +11,7 @@
     <script>window.DynamicFormConfig={{eloqua_json|raw}};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script>
+
     <style>
       body {
         margin: 0;
@@ -63,10 +64,12 @@
         color: #FFF !important;
         border-color: #cf0000 !important;
       }
-      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group)  {
+      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group){
+        /*
         display: flex !important;
         flex-direction: column !important;
         align-content: left !important;
+        */
         margin-top: 24px;
       }
       #GatedFormContainer .form-content>.form-group .control-label {
@@ -78,10 +81,10 @@
         margin-bottom: 8px !important;
         margin-right: 8px !important;
       }
-      #GatedFormContainer .form-content>.form-group .control-label:before { 
+      #GatedFormContainer .form-content>.form-group .control-label:before {
         display:none;
       }
-      #GatedFormContainer .form-content>.form-group .control-label:after { 
+      #GatedFormContainer .form-content>.form-group .control-label:after {
         color: #c00;
         content: "*";
         font-weight: 700;
