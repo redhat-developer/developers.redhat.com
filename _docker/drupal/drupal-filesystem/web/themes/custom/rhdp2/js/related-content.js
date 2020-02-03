@@ -1,24 +1,8 @@
-/*
-  Related Content Component
-  Shows up on the 'More Like These' section of video pages
-  sys_type:
-    cheatsheet
-    // webpage
-    // event
-    // forumthread
-    // stackoverflow_thread
-    // quickstart
-    //  demo
-    // jbossdeveloper_bom
-    // jbossdeveloper_archetype
-    // jbossdeveloper_example
-    video
-    book
-    article
-    //solution
-    blogpost
-    // excluded
-*/
+/**
+ * @file
+ * Related Content Component
+ * Shows up on the 'More Like These' section of video pages
+ */
 
 (function ($, Drupal) {
 
@@ -141,7 +125,7 @@
     });
   };
 
-  Drupal.behaviors.videoRelatedContent = {
+  Drupal.behaviors.rhd_videoRelatedContent = {
     attach: function (context, settings) {
       var $videoRelatedContentList = $('#video-related-cont', context);
       if ($videoRelatedContentList.length) {

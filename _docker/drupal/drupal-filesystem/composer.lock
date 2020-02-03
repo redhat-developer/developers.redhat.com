@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e80f5c37b6566d29ac1f6022bc8d85cc",
+    "content-hash": "20914ebcb5f80c63a3b49257a37a94f3",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -7689,6 +7689,9 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Fix undefined offset error": "https://www.drupal.org/files/issues/2019-07-08/3063027-5-undefined-offset.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
