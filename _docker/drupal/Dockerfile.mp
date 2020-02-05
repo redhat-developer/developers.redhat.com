@@ -34,7 +34,7 @@ ARG FONTAWESOME_LICENCE
 RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm config set "registry" https://repository.engineering.redhat.com/nexus/repository/registry.npmjs.org/ \
     && npm install \
-    && npm run-script build \
+    && npm run build \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/fonts \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/
