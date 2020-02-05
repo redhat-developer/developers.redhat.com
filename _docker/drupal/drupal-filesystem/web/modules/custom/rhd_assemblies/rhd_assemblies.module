@@ -29,27 +29,6 @@ function rhd_assemblies_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Implements hook_theme_registry_alter().
- */
-function rhd_assemblies_theme_registry_alter(&$theme_registry) {
-  $path = drupal_get_path('module', 'rhd_assemblies');
-
-  // Assembly types with a default template defined in this module.
-  $types = [
-    'blog_posts',
-  ];
-
-  foreach ($types as $type) {
-    if (isset($theme_registry['assembly']) && !isset($theme_registry['assembly__' . $type])) {
-      $theme_registry['assembly__' . $type] = $theme_registry['assembly'];
-      $theme_registry['assembly__' . $type]['template'] = 'assembly--' . str_replace('_', '-', $type);
-      $theme_registry['assembly__' . $type]['theme_path'] = $path;
-      $theme_registry['assembly__' . $type]['path'] = $path . '/templates';
-    }
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function rhd_assemblies_theme($existing, $type, $theme, $path) {
