@@ -7,6 +7,15 @@
   <div class="rhd-c-card-content">
     <h3 class="rhd-c-card__title">
       <a href="{{ url }}" class="rhd-m-link">{{ label }}</a>
+      {#
+       # @todo see RHDX-233, RHDX-234 and RHDX-124
+       #
+       # This section of HTML is currently commented out of this template
+       # because the comment count was not being displayed in the component
+       # anyway, and we should at least avoid these extra network calls and
+       # the possibility of hitting the Disqus API quota until we can properly
+       # implement the comment count in RHDX-234 and RHDX-124.
+       #
       {% if rhd_domain and absolute_url and "developers.redhat.com" in absolute_url %}
       <div class="rhd-m-list__comment tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
         <a href="{{ absolute_url }}#comments">
@@ -15,6 +24,7 @@
         </a>
       </div>
       {% endif %}
+      #}
     </h3>
   </div>
 </div>
