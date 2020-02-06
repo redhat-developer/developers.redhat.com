@@ -12,6 +12,8 @@
  * @ingroup themeable
  */
 #}
+{% set has_countdown = 'has-countdown' in attributes['class'] %}
+
 <div{{ attributes }}>
   <div class="cta__container pf-l-grid">
     {% if content.field_title|render %}
@@ -19,12 +21,25 @@
     {% endif %}
     {% if content %}
       <div class="cta__content">
-        {{ content|without('field_title', 'field_cta_link') }}
+        {{ content|without('field_title', 'field_cta_link', 'field_display_cta_timer', 'field_display_cta_timer_label') }}
       </div>
     {% endif %}
 
+    {% if has_countdown %}
+       <div class="rhd-c-countdown">
+        <div class="countdown-label">
+          {{ content.field_display_cta_timer_label|render|striptags }}
+        </div>
+        {{ content.field_display_cta_timer }}
+      </div>
+      <div class="cta__cta hide">
+        {# The hide class is removed by countdown.js when the timer runs out. #}
+        {{ content.field_cta_link }}
+      </div>
+    {% else %}
     <div class="cta__cta">
       {{ content.field_cta_link }}
     </div>
+    {% endif %}
   </div>
-</div>
+</div>x

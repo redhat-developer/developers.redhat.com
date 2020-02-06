@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'rhd-c-countdown-body',
+    'pf-l-flex'
+  ]
+%}
+
+<div {{ attributes.addClass(classes) }}>
+  <div class="pf-l-flex__item days">
+    <small>days</small>
+  </div>
+  <div class="pf-l-flex__item hours">
+    <small>hours</small>
+  </div>
+  <div class="pf-l-flex__item minutes">
+    <small>minutes</small>
+  </div>
+  <div class="pf-l-flex__item seconds">
+    <small>seconds</small>
+  </div>
+</div>
