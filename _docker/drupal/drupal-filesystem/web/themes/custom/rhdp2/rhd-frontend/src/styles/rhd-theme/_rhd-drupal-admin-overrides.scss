@@ -1,0 +1,13 @@
+  // Admin overrides
+  .user-logged-in {
+    .node--unpublished {
+      background-color: transparent;
+    }
+    .moderation-dashboard-link, .toolbar-menu {
+      a {
+        &:visited, &:active {
+          color: #565656;
+        }
+      }
+    }
+  }
