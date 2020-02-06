@@ -1,0 +1,43 @@
+.rhd-c-countdown {
+  background-color: $white;
+  border: 2px solid $light-gray;
+  max-width: 400px;
+  padding: 1rem;
+  text-align: center;
+
+  .rhd-c-countdown-label {
+    color: var(--rhd-theme--color-text--subtle);
+    font-family: $rhd-font-stack-text;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1rem;
+  }
+
+  .rhd-c-countdown-body {
+    .pf-l-flex__item {
+      flex-basis: 25%;
+      height: calc(80px - 1rem);
+      padding-top: 1rem;
+
+      &:not(:last-child) span {
+        border-right: solid 1px $light-gray;
+      }
+
+      span {
+        display: block;
+        height: 60px;
+        color: var(--rhd-theme--color-text);
+        font-family: $rhd-font-stack-display;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 60px;
+      }
+
+      small {
+        font-family: $rhd-font-stack-display;
+        font-weight: 500;
+        font-size: .8rem
+      }
+    }
+  }
+}
