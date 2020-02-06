@@ -7,10 +7,9 @@
 
   .rhd-c-countdown-label {
     color: var(--rhd-theme--color-text--subtle);
-    font-family: $rhd-font-stack-text;
-    font-size: 1rem;
+    font-family: $rhd-font-stack-display;
     font-weight: var(--rhd-global--FontWeight-Display--medium);
-    line-height: 1rem;
+    font-size: .8rem;
   }
 
   .rhd-c-countdown-body {
@@ -27,15 +26,16 @@
         height: 60px;
         color: var(--rhd-theme--color-text);
         font-family: $rhd-font-stack-display;
-        font-size: 1.2rem;
+        font-size: 2rem;
         font-weight: var(--rhd-global--FontWeight-Display--medium);
         line-height: 60px;
       }
 
       small {
+        color: var(--rhd-theme--color-text--subtle);
         font-family: $rhd-font-stack-display;
         font-weight: var(--rhd-global--FontWeight-Display--medium);
-        font-size: .8rem
+        font-size: .8rem;
       }
     }
   }
