@@ -28,7 +28,7 @@
     var minutesSpan = clock.find('.minutes span');
     var secondsSpan = clock.find('.seconds span');
 
-    function updateClock() {
+    function updateClock(clock) {
       var t = getTimeRemaining(endtime);
       daysSpan.html(t.days);
       hoursSpan.html(('0' + t.hours).slice(-2));
@@ -37,13 +37,12 @@
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
-        // Show the cta and hide the clock.
         $('.cta__cta', clock).removeClass('hide');
-        $(clock).detach();
+        $(clock).addClass('hide');
       }
     }
 
-    updateClock();
+    updateClock(clock);
     var timeinterval = setInterval(updateClock, 1000);
   }
 
