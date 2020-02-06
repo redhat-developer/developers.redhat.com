@@ -3,7 +3,9 @@ import SearchResults from './SearchResults';
 import Driver from '../../../../utils/Driver.Extension';
 
 class SearchResultSort extends Page {
-    get resultSort() {return $('//rhdp-search-sort-page/p/select');}
+    get resultSort() {
+        return $('//rhdp-search-sort-page/p/select');
+    }
 
     get() {
         return Driver.getValue(this.resultSort);

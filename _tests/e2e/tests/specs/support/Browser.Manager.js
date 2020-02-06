@@ -43,7 +43,7 @@ class Browser {
                         "prompt_for_download": false,
                     },
                     profile: {
-                        "default_content_setting_values": { "automatic_downloads": 1 },
+                        "default_content_setting_values": {"automatic_downloads": 1},
                     },
                 },
             },
@@ -74,7 +74,7 @@ class Browser {
             browserName: 'chrome',
             acceptInsecureCerts: true,
             'goog:chromeOptions': {
-                mobileEmulation: { deviceName: 'iPhone X' },
+                mobileEmulation: {deviceName: 'iPhone X'},
                 args: chromeArgs,
             },
         };
