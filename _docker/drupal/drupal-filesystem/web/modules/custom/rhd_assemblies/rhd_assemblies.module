@@ -139,19 +139,16 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
     $variables['attributes']->offsetSet('id', $css_id);
   }
 
-
+  // Call to Action Countdown Component
   if ($assembly->hasField('field_display_cta_timer')) {
     $cta_timer = $assembly->get('field_display_cta_timer')->value;
-    $cta_timer_label = $assembly->get('field_display_cta_timer_label')->value;
 
     if ($cta_timer) {
       $variables['attributes']['class'][] = 'has-countdown';
+      $variables['has_countdown'] = TRUE;
+      $variables['#attached']['library'][] = 'rhd_assemblies/countdown';
+      $variables['#attached']['drupalSettings']['rhd_assemblies']['countdown_date'] = $cta_timer;
     }
-
-    // Attach library for js countdown.
-    $variables['#attached']['library'][] = 'rhd_assemblies/countdown';
-    $variables['#attached']['drupalSettings']['rhd_assemblies']['countdown_date'] = $cta_timer;
-    $variables['#attached']['drupalSettings']['rhd_assemblies']['countdown_label'] = $cta_timer_label;
   }
 }
 

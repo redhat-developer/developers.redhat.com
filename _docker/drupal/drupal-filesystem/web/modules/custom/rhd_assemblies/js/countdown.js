@@ -1,8 +1,8 @@
 /**
  * @file
  * Javascript Countdown Component
- * Provides a countdown to reveal call to actions.
- * Contribution: https://codepen.io/SitePoint/pen/MwNPVq
+ * Provides a countdown to reveal the call to action.
+ * Also see https://codepen.io/SitePoint/pen/MwNPVq
  */
 
 (function ($, Drupal) {
@@ -37,6 +37,7 @@
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
+        // Show the cta and hide the clock.
         $('.cta__cta', clock).removeClass('hide');
         $(clock).detach();
       }
@@ -46,9 +47,9 @@
     var timeinterval = setInterval(updateClock, 1000);
   }
 
-  Drupal.behaviors.rhd_countdown = {
+  Drupal.behaviors.rhd_CtaCountdown = {
     attach: function (context, settings) {
-      $('.assembly-type-call_to_action.has-countdown', context).once('rhdCallToActionCountdown').each(function (){
+      $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
         var deadline = new Date(Date.parse(settings.rhd_assemblies.countdown_date));
         initializeClock( $('.rhd-c-countdown', $(this)), deadline);
       });
