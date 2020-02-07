@@ -9,7 +9,7 @@
 (function ($, Drupal) {
 
   function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date().toUTCString());
+    var t = Date.parse(endtime) - Date.parse(new Date().toLocaleString('en-US', {timeZone: 'America/New_York'}));
     var seconds = Math.floor((t / 1000) % 60);
     var minutes = Math.floor((t / 1000 / 60) % 60);
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
