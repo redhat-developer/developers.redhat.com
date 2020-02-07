@@ -13,7 +13,7 @@
     "test": "karma start",
     "scripts:dev": "npm run scripts:old && npm run scripts:new && npm run scripts:tsdev",
     "scripts": "npm run scripts:old && npm run scripts:new && npm run scripts:ts && npm run scripts:copy",
-    "scripts:copy": "copyfiles -u 2 \"node_modules/@patternfly/**/*\" \"dist/js/patternfly\" && copyfiles -u 2 \"node_modules/@fortawesome/**/*\" \"dist/js/fortawesome/\"",
+    "scripts:copy": "copyfiles \"node_modules/@patternfly/pfelement/pfelement.umd.min.js\" \"dist/js/patternfly/\" && copyfiles \"node_modules/@patternfly/pfelement/pfelement.umd.min.js.map\" \"dist/js/patternfly/\" && copyfiles \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js.map\" \"dist/js/patternfly/\" && copyfiles \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js.map\" \"dist/js/patternfly/\"",
     "scripts:new": "uglifyjs-folder src/scripts/js/rhd --config-file \"uglify.rhd.json\" --comments --output dist/js/rhd/rhd.min.js",
     "scripts:old": "uglifyjs-folder src/scripts/js/2018 --config-file \"uglify.rhd.old.json\" --comments --output dist/js/rhd/rhd.old.min.js",
     "scripts:ts": "tsc && rollup -c rollup.config.js",
