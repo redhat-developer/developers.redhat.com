@@ -2,13 +2,14 @@
  * @file
  * Javascript Countdown Component
  * Provides a countdown to reveal the call to action.
- * Also see https://codepen.io/SitePoint/pen/MwNPVq
+ * Also see https://codepen.io/SitePoint/pen/MwNPVq,
+ * https://www.techrepublic.com/article/convert-the-local-time-to-another-time-zone-with-this-javascript/
  */
 
 (function ($, Drupal) {
 
   function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date());
+    var t = Date.parse(endtime) - Date.parse(new Date().toUTCString());
     var seconds = Math.floor((t / 1000) % 60);
     var minutes = Math.floor((t / 1000 / 60) % 60);
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -50,7 +51,8 @@
     attach: function (context, settings) {
       $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
         var deadline = new Date(Date.parse(settings.rhd_assemblies.countdown_date));
-        initializeClock( $('.rhd-c-countdown', $(this)), deadline);
+        var deadlineUTC = deadline.toUTCString();
+        initializeClock( $('.rhd-c-countdown', $(this)), deadlineUTC);
       });
     }
   }
