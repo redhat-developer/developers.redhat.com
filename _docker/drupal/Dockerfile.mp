@@ -37,7 +37,8 @@ RUN cd /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend \
     && npm run build \
     && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/favicons /var/www/drupal/web/themes/custom/rhdp2/ \
     && rm -rf /var/www/drupal/web/themes/custom/rhdp2/fonts \
-    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/
+    && mv /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/dist/fonts /var/www/drupal/web/themes/custom/rhdp2/ \
+    && rm -rf /var/www/drupal/web/themes/custom/rhdp2/rhd-frontend/node_modules
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
