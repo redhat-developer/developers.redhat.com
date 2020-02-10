@@ -4,6 +4,11 @@
   max-width: 400px;
   padding: var(--rhd-theme--container-spacer-md);
   text-align: center;
+  width: 100%;
+
+  .assembly-type-call_to_action:not(.left) & {
+    margin: 0 auto;
+  }
 
   .rhd-c-countdown-label {
     color: var(--rhd-theme--color-text--subtle);
@@ -22,20 +27,20 @@
       }
 
       span {
-        display: block;
-        height: 60px;
         color: var(--rhd-theme--color-text);
+        display: block;
         font-family: $rhd-font-stack-display;
         font-size: 2rem;
         font-weight: var(--rhd-global--FontWeight-Display--medium);
+        height: 60px;
         line-height: 60px;
       }
 
       small {
         color: var(--rhd-theme--color-text--subtle);
         font-family: $rhd-font-stack-display;
-        font-weight: var(--rhd-global--FontWeight-Display--medium);
         font-size: .8rem;
+        font-weight: var(--rhd-global--FontWeight-Display--medium);
       }
     }
   }
