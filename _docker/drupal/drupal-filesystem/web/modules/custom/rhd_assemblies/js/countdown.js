@@ -8,6 +8,11 @@
 
 (function ($, Drupal) {
 
+  function toggleCountdownAndCTA(clock) {
+    $(clock).next().removeClass('hide');
+    $(clock).addClass('hide');
+  }
+
   function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date().toLocaleString('en-US', {timeZone: 'America/New_York'}));
     var seconds = Math.floor((t / 1000) % 60);
@@ -38,21 +43,27 @@
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
-        $('.cta__cta', clock).removeClass('hide');
-        $(clock).addClass('hide');
+        toggleCountdownAndCTA(clock);
       }
     }
 
     updateClock(clock);
-    var timeinterval = setInterval(updateClock, 1000);
+    var timeinterval = setInterval(updateClock, 1000, clock);
   }
 
   Drupal.behaviors.rhd_CtaCountdown = {
     attach: function (context, settings) {
       $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
-        var deadline = new Date(Date.parse(settings.rhd_assemblies.countdown_date));
-        var deadlineUTC = deadline.toUTCString();
-        initializeClock( $('.rhd-c-countdown', $(this)), deadlineUTC);
+        var deadline = new Date(Date.parse(settings.rhd_assemblies.countdown_date)).toUTCString();
+        var startingOffsetTime = getTimeRemaining(deadline);
+        var clock = $('.rhd-c-countdown', $(this));
+
+        if (startingOffsetTime.total == 0) {
+          toggleCountdownAndCTA(clock);
+        } else {
+          $(clock).removeClass('hide');
+          initializeClock( clock, deadline);
+        }
       });
     }
   }
