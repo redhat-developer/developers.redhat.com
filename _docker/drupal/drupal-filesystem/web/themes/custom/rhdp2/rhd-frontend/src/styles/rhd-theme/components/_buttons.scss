@@ -2,6 +2,9 @@
 
 
 :root {
+  --rhd-c-button--m-heavy--Color: #fff;
+  --rhd-c-button--m-heavy--active--Color: #fff;
+  --rhd-c-button--m-heavy--hover--Color: #fff;
   --rhd-c-button--m-heavy--BackgroundColor: #ee0000;
   --rhd-c-button--m-heavy--hover--BackgroundColor: #cf0000;
   --rhd-c-button--m-heavy--active--BackgroundColor: #cf0000;
@@ -74,7 +77,6 @@
 }
 
 .pf-c-button {
-  
   //link button
   &.pf-m-link {
     color: var(--rhd-c-button--m-link--Color);
@@ -82,6 +84,10 @@
     @media screen and (max-width: $pf-global--breakpoint--sm) {
       text-align: left;
     }
+    &:visited {
+      color: var(--rhd-c-button--m-link--Color);
+    }
+
     &:hover,
     &:focus,
     &.pf-m-active,
@@ -99,11 +105,13 @@
     &>i,
     &>.svg-inline--fa {
       color: var(--rhd-c-button--m-link--Color) !important;
-
+      &:visited {
+        color: var(--rhd-c-button--m-link--Color) !important;
+      }
+      
       &:hover,
       &:active,
-      &:focus,
-      &:visited {
+      &:focus {
         color: var(--rhd-c-button--m-link--hover--Color) !important;
       }
     }
@@ -112,6 +120,9 @@
       color: var(--rhd-c-button--m-link-dark--Color);
       @media screen and (max-width: $pf-global--breakpoint--sm) {
         text-align: left;
+      }
+      &:visited {
+        color: var(--rhd-c-button--m-link-dark--Color);
       }
       &:hover,
       &:focus,
@@ -128,11 +139,12 @@
       &>.pf-c-button__icon>i,
       &>.pf-c-button__icon>.svg-inline--fa {
         color: var(--rhd-c-button--m-link-dark--Color);
-
+        &:visited {
+          color: var(--rhd-c-button--m-link-dark--Color);
+        }
         &:hover,
         &:active,
-        &:focus,
-        &:visited {
+        &:focus {
           color: var(--rhd-c-button--m-link-dark--hover--Color);
         }
       }
@@ -140,6 +152,10 @@
   }
   .dark & {
     color: var(--rhd-c-button--m-link-dark--Color);
+
+    &:visited {
+      color: var(--rhd-c-button--m-link-dark--Color);
+    }
 
     &:hover,
     &:focus,
@@ -157,10 +173,12 @@
     &>.pf-c-button__icon>.svg-inline--fa {
       color: var(--rhd-c-button--m-link-dark--Color) !important;
 
+      &:visited {
+        color: var(--rhd-c-button--m-link-dark--Color) !important;
+      }
       &:hover,
       &:active,
-      &:focus,
-      &:visited {
+      &:focus {
         color: var(--rhd-c-button--m-link-dark--hover--Color) !important;
       }
     }
@@ -175,6 +193,9 @@
     color: var(--rhd-c-button--m-tertiary--Color);
     @media screen and (max-width: $pf-global--breakpoint--sm) {
       text-align: left;
+    }
+    &:visited {
+      color: var(--rhd-c-button--m-tertiary--Color);
     }
     &:hover,
     &:focus,
@@ -191,11 +212,12 @@
     &>.pf-c-button__icon>i,
     &>.pf-c-button__icon>.svg-inline--fa {
       color: var(--rhd-c-button--m-tertiary--Color) !important;
-
+      &:visited {
+        color: var(--rhd-c-button--m-tertiary--Color) !important;
+      }
       &:hover,
       &:active,
-      &:focus,
-      &:visited {
+      &:focus {
         color: var(--rhd-c-button--m-tertiary--Color);
       }
     }
@@ -205,6 +227,9 @@
       @media screen and (max-width: $pf-global--breakpoint--sm) {
         text-align: left;
       }
+      &:visited {
+        color: var(--rhd-c-button--m-secondary-dark--Color);
+      }
       &:hover,
       &:focus,
       &.pf-m-active,
@@ -222,11 +247,12 @@
       &>i,
       &>.svg-inline--fa {
         color: var(--rhd-c-button--m-secondary-dark--Color) !important;
-
+        &:visited {
+          color: var(--rhd-c-button--m-secondary-dark--Color) !important;
+        }
         &:hover,
         &:active,
-        &:focus,
-        &:visited {
+        &:focus {
           color: #9D9D9D !important;
         }
       }
@@ -234,6 +260,9 @@
 
     .dark & {
       color: var(--rhd-c-button--m-secondary-dark--Color);
+      &:visited {
+        color: var(--rhd-c-button--m-secondary-dark--Color);
+      }
       &:hover,
       &:focus,
       &.pf-m-active,
@@ -251,11 +280,12 @@
       &>i,
       &>.svg-inline--fa {
         color: var(--rhd-c-button--m-secondary-dark--Color) !important;
-
+        &:visited {
+          color: var(--rhd-c-button--m-secondary-dark--Color) !important;
+        }
         &:hover,
         &:active,
-        &:focus,
-        &:visited {
+        &:focus {
           color: #9D9D9D !important;
         }
       }
@@ -268,13 +298,16 @@
   // Heavy CTA
   &.pf-m-heavy {
     background-color: var(--rhd-c-button--m-heavy--BackgroundColor);
-    color: var(--pf-global--Color--light-100);
-
+    color: var(--rhd-c-button--m-heavy--Color);
+    &:visited {
+      color: var(--rhd-c-button--m-heavy--Color);
+    }
     &:hover,
+    &:focus,
     &:active,
     &.pf-m-active,
-    &:focus,
     &.pf-m-focus {
+      color: var(--rhd-c-button--m-heavy--Color);
       background-color: var(--rhd-c-button--m-heavy--active--BackgroundColor);
     }
 
@@ -285,14 +318,17 @@
     }
 
     .dark & {
-      color: var(--rhd-c-button--m-secondary-dark--Color);
-
+      color: var(--rhd-c-button--m-heavy--Color);
+      &:visited {
+        color: var(--rhd-c-button--m-heavy--Color);
+      }
       &:hover,
       &:focus,
+      &:active,
       &.pf-m-active,
       &.pf-m-focus {
         background-color: var(--rhd-c-button--m-heavy--active--BackgroundColor);
-        color: var(--pf-global--Color--light-100);
+        color: var(--rhd-c-button--m-heavy--Color);
       }
     }
   }
@@ -303,7 +339,6 @@
   // Primary Button
   &.pf-m-primary {
     background-color: var(--rhd-c-button--m-primary--BackgroundColor);
-
     &:hover,
     &:active,
     &.pf-m-active,
@@ -570,17 +605,17 @@
   }
 
   &.heavy-cta {
-    @extend .pf-m-heavy;
+    @extend .pf-c-button.pf-m-heavy;
     &.blue {
-      @extend .pf-m-primary;
+      @extend .pf-c-button.pf-m-primary;
     }
   }
 
   &.medium-cta {
-    @extend .pf-m-secondary;
+    @extend .pf-c-button.pf-m-secondary;
     border:none;
     &.red {
-      @extend .pf-m-secondary-alt;
+      @extend .pf-c-button.pf-m-secondary-alt;
     }
   }
 }

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.compact_dynamic_article_list
     - assembly.assembly_type.content_with_image
     - assembly.assembly_type.dynamic_content_feed
     - assembly.assembly_type.events_hero
@@ -29,6 +30,7 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      compact_dynamic_article_list: compact_dynamic_article_list
       static_content_band: static_content_band
       dynamic_content_feed: dynamic_content_feed
       events_hero: events_hero

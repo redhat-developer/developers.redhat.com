@@ -2,12 +2,24 @@ import Page from '../Page';
 import Driver from '../../utils/Driver.Extension';
 
 class Login extends Page {
-    get loginPage() {return $('.kc-loginpage');}
-    get usernameField() {return $('#username');}
-    get nextBtn() {return $('#login-show-step2');}
-    get passwordField() {return $('#password');}
-    get loginButton() {return $('#kc-login');}
-    get step2() {return $('#step2');}
+    get loginPage() {
+        return $('.kc-loginpage');
+    }
+    get usernameField() {
+        return $('#username');
+    }
+    get nextBtn() {
+        return $('#login-show-step2');
+    }
+    get passwordField() {
+        return $('#password');
+    }
+    get loginButton() {
+        return $('#kc-login');
+    }
+    get step2() {
+        return $('#step2');
+    }
 
     open() {
         super.open('/login');
