@@ -2,11 +2,21 @@ import Page from "../Page";
 import Driver from "../../utils/Driver.Extension";
 
 class Login extends Page {
-    get loginPage() {return $('.kc-loginpage');}
-    get usernameField() {return $('#edit-name');}
-    get passwordField() {return $('#edit-pass');}
-    get loginButton() {return $('#edit-submit');}
-    get legacyLoginButton() {return $('#drupalUserLoginToggleVisibility');}
+    get loginPage() {
+        return $('.kc-loginpage');
+    }
+    get usernameField() {
+        return $('#edit-name');
+    }
+    get passwordField() {
+        return $('#edit-pass');
+    }
+    get loginButton() {
+        return $('#edit-submit');
+    }
+    get legacyLoginButton() {
+        return $('#drupalUserLoginToggleVisibility');
+    }
 
     open() {
         super.open('/user/login');

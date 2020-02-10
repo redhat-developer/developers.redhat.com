@@ -24,7 +24,6 @@ tags('desktop').describe('Download Manager', function() {
         });
 
     it('@downloads: should allow users to log-in and download advanced-linux-commands', function() {
-
         /*
             Please see https://issues.jboss.org/browse/DEVELOPER-5938
 
@@ -33,8 +32,7 @@ tags('desktop').describe('Download Manager', function() {
 
             Fundamentally DownloadManager should respect environment configuration.
          */
-        if(Utils.isProduction()) {
-
+        if (Utils.isProduction()) {
                 CheatSheets
                     .open('advanced-linux-commands')
                     .loginToDownload();
@@ -42,7 +40,6 @@ tags('desktop').describe('Download Manager', function() {
                 CheatSheets.awaitDownloadThankYou();
                 const downloadName = DownloadDir.get();
                 expect(downloadName.toString(), 'rhel advanced linux cheatsheet download was not triggered').to.include('rheladvancedlinux_cheat_sheet');
-
             }
     });
 
