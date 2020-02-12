@@ -14,9 +14,6 @@ class Login extends Page {
     get loginButton() {
         return $('#edit-submit');
     }
-    get legacyLoginButton() {
-        return $('#drupalUserLoginToggleVisibility');
-    }
 
     open() {
         super.open('/user/login');

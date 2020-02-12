@@ -62,10 +62,6 @@
 }
 
 .region.region-content {
-    #drupalUserLoginToggleVisibility {
-        @extend .pf-c-button;
-        @extend .pf-m-heavy;
-    }
     form {
         margin: var(--rhd-theme--container-spacer-md) 0;
         @extend .pf-c-form;
