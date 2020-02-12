@@ -1,17 +1,16 @@
 {% if content %}
   <section{{ attributes.addClass(classes, 'rh-c-universal-footer', 'pf-l-grid', 'pf-m-gutter') }}>
-
-      <a class="rh-c-universal-footer-logo" href="https://redhat.com/">
-        <img alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/RHLogo_white.svg">
-      </a>
-      <ul class="rh-c-universal-footer-legal">
-        <li>
-          <a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a>
-        </li>
-        {{ content }}
-      </ul>
-      <a class="rh-c-universal-footer-summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer">
-        <img src="/{{ active_theme_path() }}/images/design/logo-summit-20191120.png" alt="Red Hat Summit">
-      </a>
-    </div>
+    <a class="rh-c-universal-footer-logo" href="https://redhat.com/">
+      <img alt="Red Hat Logo" src="/{{ active_theme_path() }}/images/branding/RHLogo_white.svg">
+    </a>
+    <ul class="rh-c-universal-footer-legal">
+      <li>
+        <a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a>
+      </li>
+      {{ content }}
+    </ul>
+    <a class="rh-c-universal-footer-summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer">
+      <img src="/{{ active_theme_path() }}/images/design/logo-summit-20191120.png" alt="Red Hat Summit">
+    </a>
+  </section>
 {% endif %}
