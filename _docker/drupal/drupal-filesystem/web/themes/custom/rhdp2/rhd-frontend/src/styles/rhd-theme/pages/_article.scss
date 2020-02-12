@@ -93,6 +93,18 @@
     }
   }
 
+  .authors {
+    .rhd-c-author--tile {
+      padding-bottom: var(--pf-global--spacer--md);
+    }
+
+    .field--name-field-content-author {
+      .rhd-c-author--tile-info {
+        margin-left: 58px;
+      }
+    }
+  }
+
   .article-hero {
     text-align: center;
   }
