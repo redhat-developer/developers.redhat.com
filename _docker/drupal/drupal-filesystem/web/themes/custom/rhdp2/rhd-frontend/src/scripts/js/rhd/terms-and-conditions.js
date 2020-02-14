@@ -62,8 +62,8 @@ app.termsAndConditions = {
 
         //create template string for thankyou message
         messageTemplate = messageTemplate + '<div class="component rhd-c-product-download-alert pf-c-content hide" id="downloadthankyou">';
-        messageTemplate = messageTemplate + '<div class="downloadthankyou pf-l-grid">';
-        messageTemplate = messageTemplate + '<div class="thankyouclose pf-l-grid__item pf-m-1-col pf-m-offset-11-col"><a href="#" onclick="app.termsAndConditions.hideDownloadMessage();"><i class="fas fa-times"></i></a></div>';
+        messageTemplate = messageTemplate + '<div class="rhd-c-panel pf-l-grid">';
+        messageTemplate = messageTemplate + '<div class="rhd-c-panel-close pf-l-grid__item pf-m-1-col pf-m-offset-11-col"><a href="#" onclick="app.termsAndConditions.hideDownloadMessage();"><i class="fas fa-times"></i></a></div>';
         messageTemplate = messageTemplate + '<div class="pf-l-grid__item pf-m-12-col">';
         messageTemplate = messageTemplate + '<h2 id="thank-you">Thank you for downloading ' + $.encoder.encodeForHTML(tcProduct) + '</h2>';
         messageTemplate = messageTemplate + '<p id="download-problems" style="display: block;">Your download should start automatically. If you have any problems with the download, please use the<a id="tcDownloadLink" href="'+ tcDownloadURL +'"> direct link</a>.</p>';
@@ -92,12 +92,12 @@ app.termsAndConditions = {
         }
 
         if (!tcWhenSigned) {
-            $('.downloadthankyou p, .thankyoupanels').hide();
+            $('#downloadthankyou p, .thankyoupanels').hide();
             $('#download-problems').show();
         }
 
         if (tcDownloadFileName) {
-            $('div#downloadthankyou').show('slow');
+            $('#downloadthankyou').show('slow');
             $('.pending-download-box').addClass('download-completed-box');
             $('.pending-download').removeClass('active').addClass('download-completed');
         }
