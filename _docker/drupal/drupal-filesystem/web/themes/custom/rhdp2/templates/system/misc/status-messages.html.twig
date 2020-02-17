@@ -31,28 +31,25 @@
   %}
   {% if type == 'custom' %}
     {% set classes = classes|merge(['pf-m-info']) %}
+    {% set icon_class = 'fa-info-circle' %}
   {% elseif type == 'error' %}
     {% set classes = classes|merge(['pf-m-danger']) %}
+    {% set icon_class = 'fa-exclamation-circle' %}
   {% elseif type == 'status' %}
     {% set classes = classes|merge(['pf-m-success']) %}
+    {% set icon_class = 'fa-check-circle' %}
   {% elseif type == 'warning' %}
     {% set classes = classes|merge(['pf-m-warning']) %}
+    {% set icon_class = 'fa-exclamation-triangle' %}
+  {% else %}
+    {% set icon_class = 'fa-bell' %}
   {% endif %}
+  
 
   <div {{ attributes.addClass(classes)|without('role', 'aria-label') }} aria-label="{{ status_headings[type] }}" role="contentinfo">
 
     <div class="pf-c-alert__icon">
-      {% if type == 'custom' %}
-        <i class="fas fa-info-circle" aria-hidden="true"></i>
-      {% elseif type == 'error' %}
-        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
-      {% elseif type == 'status' %}
-        <i class="fas fa-check-circle" aria-hidden="true"></i>
-      {% elseif type == 'warning' %}
-        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-      {% else %}
-        <i class="fas fa-bell" aria-hidden="true"></i>
-      {% endif %}
+      <i class="fas {{ icon_class }}" aria-hidden="true"></i>
     </div>
 
     <p class="pf-c-alert__title">
