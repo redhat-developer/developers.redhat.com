@@ -1,5 +1,5 @@
-/* Add table styles to overwrite generic tables to match PatternFly tables */
-
-table tbody tr {
-  background-color: #fff !important;
+.pf-c-content {
+  table:not(.pf-c-table) {
+    @extend .pf-c-table;
+  }
 }

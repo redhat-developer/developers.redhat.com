@@ -21,6 +21,11 @@
       margin-right: var(--pf-global--spacer--xl);
       text-decoration: none;
 
+      &:visited {
+        color: var(--pf-global--Color--light-100);
+        text-decoration: none;
+      }
+
       &:hover,
       &:focus,
       &:active {

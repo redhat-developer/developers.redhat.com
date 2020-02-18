@@ -58,7 +58,7 @@
 @import "components/featured-evangelists";
 @import "components/rhd-top-nav";
 @import "components/nav-search";
-@import "components/download_thankyou";
+@import "components/rhd-c-panel";
 @import "components/static-content-band";
 @import "components/rhd-c-dynamic-content-list-compact";
 @import "components/rhd-c-two-col-hero-layout";
@@ -68,7 +68,6 @@
 //General helper classes
 @import "helpers/visibility";
 @import "helpers/overlay";
-@import "helpers/tables";
 @import "helpers/video";
 
 //Page level styles
@@ -86,3 +85,6 @@
 // Final theme overrides
 @import "pfe-overrides";
 @import "rhd-global-styles";
+
+// Drupal Admin specific overrides 
+@import "rhd-drupal-admin-overrides";

@@ -63,10 +63,7 @@
         color: #FFF !important;
         border-color: #cf0000 !important;
       }
-      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group)  {
-        display: flex !important;
-        flex-direction: column !important;
-        align-content: left !important;
+      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group){
         margin-top: 24px;
       }
       #GatedFormContainer .form-content>.form-group .control-label {
@@ -78,10 +75,10 @@
         margin-bottom: 8px !important;
         margin-right: 8px !important;
       }
-      #GatedFormContainer .form-content>.form-group .control-label:before { 
+      #GatedFormContainer .form-content>.form-group .control-label:before {
         display:none;
       }
-      #GatedFormContainer .form-content>.form-group .control-label:after { 
+      #GatedFormContainer .form-content>.form-group .control-label:after {
         color: #c00;
         content: "*";
         font-weight: 700;
@@ -128,7 +125,7 @@
         content: none;
       }
       #GatedFormContainer .form-content > #F_FormData_OptIn-form-group.form-group:not(:empty):not(#FormSubmitButton-form-group) {
-        display: none !important;
+        /*display: none !important;*/
       }
       .dark #GatedFormContainer .form-content > .form-group .control-label,
       .dark #GatedFormContainer .form-content > .form-group label,
@@ -144,7 +141,7 @@
 
       @media (min-width: 701px) {
         #GatedFormContainer .form-content > #F_FormData_OptIn-form-group.form-group:not(:empty):not(#FormSubmitButton-form-group) {
-          display: none !important;
+          /*display: none !important;*/
         }
         .inline #GatedFormContainer .form-content {
           display: flex;
@@ -216,6 +213,20 @@
     <div id="GatedFormContainer"></div>
     {% if redirect_url or overlabel %}
       <script>
+        function hideLabels(context) {
+          // F_FormData_OptIn-form-group
+          $('label', context).each(function() {
+            var $this = $(this);
+            if ($this.prev().attr('type') == 'radio' || $this.parent().attr('id') == 'F_FormData_OptIn-form-group' ) {
+              // Do not move labels for radios.
+              // Do not remove label on OptIn.
+            } else {
+              $('#' + $this.attr('for')).attr('placeholder', $this.text());
+              $this.hide();
+            }
+          });
+        }
+
         var targetNode = document.getElementById('GatedFormContainer');
         var config = { childList: true };
         var callback = function(mutationsList, observer) {
@@ -231,17 +242,11 @@
                 }
                 {% endif %}
                 {% if overlabel %}
-                $('label', $search).each(function() {
-                  var $this = $(this);
-                  $('#' + $this.attr('for')).attr('placeholder', $this.text());
-                  $this.hide();
-                });
+                  hideLabels($search);
                 {% endif %}
               }
             }
-
           }
-
         };
         var observer = new MutationObserver(callback);
         observer.observe(targetNode, config);

@@ -13,7 +13,7 @@ class NavigationBar extends Page {
     toggle() {
         const mobileNavToggle = Driver.isVisible(this.mobileNavToggle);
         if (mobileNavToggle) {
-            this.openMobileMenuWithRetry()
+            this.openMobileMenuWithRetry();
             return true;
         }
         return false;
@@ -26,10 +26,10 @@ class NavigationBar extends Page {
 
     openMobileMenuWithRetry() {
         try {
-            this.openMobileMenu()
+            this.openMobileMenu();
         } catch (err) {
-            console.log("Failed to open mobile menu, retrying...")
-            this.openMobileMenu()
+            console.log("Failed to open mobile menu, retrying...");
+            this.openMobileMenu();
         }
     }
 

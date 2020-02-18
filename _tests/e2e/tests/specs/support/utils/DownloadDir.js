@@ -1,13 +1,11 @@
 const fs = require('fs-extra');
 
 class DownloadDir {
-
     init() {
         fs.ensureDirSync(global.downloadDir, 0o2775);
     }
 
     destroy() {
-
         const dirSize = [];
         fs.readdirSync(global.downloadDir).forEach((file) => {
             dirSize.push(file);
@@ -18,10 +16,9 @@ class DownloadDir {
 
         try {
             fs.removeSync(global.downloadDir);
-        } catch(error) {
-            console.log("Failed to delete download directory")
+        } catch (error) {
+            console.log("Failed to delete download directory");
         }
-
     }
 
     get() {
