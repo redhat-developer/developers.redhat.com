@@ -142,9 +142,9 @@ the value of `$config['redhat_developers']['cache']['engine']` to `memcached`.
 Once you have done this, connect to the Drupal container using the `./run-drupal-connect.sh` script and execute `drush cr`. This will switch your environment to use
 Memcached for the cache. This change will last until you run `./run-drupal.sh` again.
 
-### Rebuilding Theme Assets
+### Rebuilding rhdp2 Theme Assets
 
-To rebuild the theme assets from `rhd-frontend`, after you have run `run-drupal.sh`, simply run `build-theme.sh`. This will regenerate
+To rebuild the rhdp2 theme assets from `rhd-frontend`, after you have run `run-drupal.sh`, simply run `build-rhdp2-theme.sh`. This will regenerate
 the theme assets from `rhd-frontend` to include your local changes.
 
 ### Exporting configuration from Drupal

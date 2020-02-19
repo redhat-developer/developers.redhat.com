@@ -343,6 +343,15 @@ function rhdp2_preprocess_node(&$variables) {
       $variables['timestamp'] = $timestamp;
     }
   }
+
+  if ($node->hasField('field_cheat_sheet_download_url')) {
+    $env_settings = \Drupal::config('redhat_developers');
+    $download_manager_base_url = $env_settings->get('downloadManager')['baseUrl'];
+    $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
+    $download_path = parse_url($download_url[0]['uri'])['path'];
+    $download_url = $download_manager_base_url . $download_path;
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+  }
 }
 
 /**
