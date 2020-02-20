@@ -1,0 +1,6 @@
+services:
+  rhd_ops.commands:
+    class: \Drupal\rhd_ops\Commands\RhdOpsCommands
+    arguments: ['@config.factory']
+    tags:
+      - { name: drush.command }
