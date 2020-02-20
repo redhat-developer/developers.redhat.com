@@ -11,6 +11,9 @@ class Login extends Page {
     get passwordField() {
         return $('#edit-pass');
     }
+    get loginForm() {
+        return $('#user-login-form');
+    }
     get loginButton() {
         return $('#edit-submit');
     }
@@ -26,7 +29,7 @@ class Login extends Page {
     }
 
     with(user, password) {
-        Driver.click(this.legacyLoginButton);
+        Driver.displayElement(this.loginForm);
         Driver.type(user, this.usernameField);
         Driver.type(password, this.passwordField);
         return Driver.click(this.loginButton);
