@@ -62,3 +62,34 @@
         width: 100%;
     }
 }
+
+.region.region-content {
+    form {
+        margin: var(--rhd-theme--container-spacer-md) 0;
+        @extend .pf-c-form;
+        input[type=submit] {
+            margin-top: var(--rhd-theme--container-spacer-md);
+            @extend .pf-c-button;
+            @extend .pf-m-heavy;
+        }
+
+
+        .form-item {
+            @extend .pf-c-form__group;
+            margin: var(--rhd-theme--container-spacer-md) 0;
+            label {
+                @extend .pf-c-form__label;
+                @extend .pf-c-form__label-text;
+            }
+            input {
+                &.form-text {
+                    @extend .pf-c-form-control;
+                }
+            }
+            .description {
+                @extend .pf-c-form__helper-text;
+            }
+        }
+
+    }
+}

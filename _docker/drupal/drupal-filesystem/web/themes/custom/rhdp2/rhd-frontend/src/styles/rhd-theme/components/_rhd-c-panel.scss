@@ -1,0 +1,30 @@
+.rhd-c-panel {
+    background-color: #e2f1f5;
+    padding: 2em 2em 1em 2em;
+    color: $rhd-theme--font--color;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #94aebd;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  
+    &-close{
+      margin-right: -1em;
+      margin-top: -1.5em;
+      text-align: right;
+      a {
+        color: $rolling-stone;
+      }
+    }
+      
+
+    h2 {
+      font-size: emCalc(28);
+      font-weight: normal;
+      margin-top: 0;
+      margin-bottom: 0;
+      color: $rhd-theme--font--color;
+    }
+    
+  }
