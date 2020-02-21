@@ -25,11 +25,8 @@ base-theme:
       https://static.redhat.com/libs/redhat/redhat-theme/2/advanced-theme.css: { type: external }
       # NOTE: Provides layout classes for grids and alignments.
       css/pfe-layouts/pfe-layouts.min.css: { minified: true }
-      css/rhd.min.css: { minified: true }
-      css/rhd.microsites.css: { minified: true }
-      css/rhd.legacy.css: { minified: true }
-    theme:
-      css/rhdp2.css: {}
+      rhd-frontend/dist/css/rhd.min.css: { minified: true }
+      rhd-frontend/dist/css/rhd.legacy.css: { minified: true }
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
@@ -47,8 +44,8 @@ base-theme:
     # NOTE: SystemJS is a dynamic ES module loader.
     # https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
     https://sso.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
-    js/rhd.old.min.js: { minified: true }
-    js/rhd.min.js: { minified: true }
+    rhd-frontend/dist/js/rhd/rhd.old.min.js: { minified: true }
+    rhd-frontend/dist/js/rhd/rhd.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/jquery.once
@@ -58,20 +55,20 @@ base-theme:
 rhdp-pfelement:
   header: true
   js:
-    js/pfelement.umd.min.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/patternfly/pfelement/pfelement.umd.min.js: { minified: true, preprocess: false }
 
 rhdp-web-components:
   js:
-    js/rhd/dp-alert.js: { minified: true, preprocess: false }
-    js/rhd/dp-referrer.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-thankyou-page.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
-    js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
-    js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
-    js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
-    js/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-alert.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-referrer.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-thankyou-page.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/patternfly/pfe-datetime/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
 
 video_embed_field.responsive-video:
   css:
@@ -90,14 +87,6 @@ related-content:
 show-more:
   js:
     js/show-more.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-
-# Provides some custom functionality to the login form to support our SSO workflow.
-drupal-user-login-form:
-  js:
-    js/drupal-user-login-form.js: {}
   dependencies:
     - core/jquery
     - core/drupal

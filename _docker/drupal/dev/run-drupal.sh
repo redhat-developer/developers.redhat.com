@@ -40,7 +40,7 @@ cd "${DIR}" && chmod -R 777 ./drupal-workspace/drupal_1/drupal/sites/default/fil
 cd "${DIR}" && docker-compose up -d drupal
 cd "${DIR}" && docker-compose exec -u root drupal /bin/bash -c "chown -R ${DUID}:0 /var/www/drupal/web/modules/contrib"
 
-# Build the theme for the first time
-cd "${DIR}" && ./build-theme.sh
+# Build the rhdp2 theme
+cd "${DIR}" && ./build-rhdp2-theme.sh
 
 cd "${DIR}" && docker-compose logs -f drupal

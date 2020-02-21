@@ -8,26 +8,21 @@
   },
   "scripts": {
     "start": "npm run scripts:dev",
-    "build": "npm run del && npm run styles && npm run scripts",
+    "build": "npm run styles && npm run scripts",
     "serve": "spandx -c spandx.config.dev.js",
     "test": "karma start",
-    "del": "del 'node_modules/@rhd' && del dist/js",
-    "del:styles": "del \"dist/css**\" && del 'node_modules/@rhdstyles'",
-    "fix:fa": "rename -n \"node_modules/@fortawesome/!(fontawesome-common-types)/index.d.ts\" index.es.d.ts",
-    "scripts:dev": "npm run scripts:old && npm run scripts:microsites && npm run scripts:new && npm run scripts:tsdev && npm run scripts:copy",
-    "scripts": "npm run scripts:old && npm run scripts:microsites && npm run scripts:new && npm run scripts:ts && npm run scripts:copy",
-    "scripts:copy": "copyfiles -u 2 \"node_modules/@patternfly/**/*\" \"dist/js/@patternfly\" && copyfiles -u 2 \"node_modules/@fortawesome/**/*\" \"dist/js/@fortawesome/\"",
-    "scripts:new": "uglifyjs-folder src/scripts/js/rhd -c -o dist/js/@rhd/rhd.min.js --source-map",
-    "scripts:old": "uglifyjs-folder src/scripts/js/2018 -c -o dist/js/@rhd/rhd.old.min.js --source-map",
-    "scripts:microsites": "uglifyjs-folder src/scripts/js/microsites -c -o dist/js/@rhd/rhd.microsites.min.js --source-map",
-    "scripts:ts": "tsc && copyfiles -u 4 \"dist/js/src/scripts/@rhd/**/*\" dist/js/node_modules/ && rollup -c rollup.config.js",
+    "scripts:dev": "npm run scripts:old && npm run scripts:new && npm run scripts:tsdev",
+    "scripts": "npm run scripts:old && npm run scripts:new && npm run scripts:ts && npm run scripts:copy",
+    "scripts:copy": "copyfiles -u 2 \"node_modules/@patternfly/pfelement/pfelement.umd.min.js\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfelement/pfelement.umd.min.js.map\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js.map\" \"dist/js/patternfly/\"",
+    "scripts:new": "uglifyjs-folder src/scripts/js/rhd --config-file \"uglify.rhd.json\" --comments --output dist/js/rhd/rhd.min.js",
+    "scripts:old": "uglifyjs-folder src/scripts/js/2018 --config-file \"uglify.rhd.old.json\" --comments --output dist/js/rhd/rhd.old.min.js",
+    "scripts:ts": "tsc && rollup -c rollup.config.js",
     "scripts:tsdev": "tsc -p tsconfig.dev.json",
     "semantic-release": "semantic-release",
-    "styles": "npm run styles:copy && npm run styles:sass && npm run styles:fonts && npm run styles:fontsStatic",
-    "styles:sass": "node-sass node_modules/@rhdstyles/ -o dist/css/ && node-sass node_modules/@rhdstyles/ -o dist/css-min/ --output-style compressed && postcss dist/css-min/rhd.css -o dist/css-min/rhd.min.css",
+    "styles": "npm run styles:sass && npm run styles:fonts && npm run styles:fontsStatic",
+    "styles:sass": "node-sass src/styles -o dist/css --source-map true --output-style compressed && postcss dist/css/rhd.css -o dist/css/rhd.min.css",
     "styles:fonts": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" dist/fonts/patternfly",
-    "styles:fontsStatic": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" static/themes/custom/rhdp2/fonts/patternfly",
-    "styles:copy": "copyfiles -u 2 \"src/styles/**/*\" node_modules/@rhdstyles"
+    "styles:fontsStatic": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" static/themes/custom/rhdp2/fonts/patternfly"
   },
   "sass": {
     "includePaths": [
@@ -38,7 +33,7 @@
   "author": "<ldary@redhat.com>",
   "license": "MIT",
   "devDependencies": {
-    "@patternfly/patternfly": "2.31.11",
+    "@patternfly/patternfly": "2.65.2",
     "@patternfly/pfe-band": "1.0.0-prerelease.24",
     "@patternfly/pfe-card": "1.0.0-prerelease.24",
     "@patternfly/pfe-cta": "1.0.0-prerelease.24",
@@ -61,11 +56,11 @@
     "karma-jasmine-html-reporter": "1.4.2",
     "karma-junit-reporter": "1.2.0",
     "karma-spec-reporter": "0.0.32",
-    "node-sass": "4.12.0",
-    "npm": "6.10.2",
+    "node-sass": "4.13.1",
+    "npm": "6.13.7",
     "postcss-cli": "6.1.1",
     "rename-cli": "6.0.0",
-    "rollup": "^1.13.0",
+    "rollup": "1.31.0",
     "sassdoc": "2.7.0",
     "semantic-release": "15.13.20",
     "spandx": "1.0.3",
@@ -73,6 +68,6 @@
     "uglifyjs-folder": "1.5.1"
   },
   "dependencies": {
-    "highlight.js": "^9.17.1"
+    "highlight.js": "9.18.1"
   }
 }

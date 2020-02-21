@@ -25,7 +25,7 @@
  * @see template_preprocess_block()
  */
 #}
-{{ attach_library('rhdp2/drupal-user-login-form') }}
+
 {%
   set classes = [
     'block',
@@ -47,5 +47,4 @@
   {% block content %}
     {{ content }}
   {% endblock %}
-  <button id="drupalUserLoginToggleVisibility" class="pf-c-button pf-m-heavy pf-u-mt-md">Legacy login</button>
 </div>
