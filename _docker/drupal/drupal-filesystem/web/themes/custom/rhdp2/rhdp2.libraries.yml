@@ -90,11 +90,3 @@ show-more:
   dependencies:
     - core/jquery
     - core/drupal
-
-# Provides some custom functionality to the login form to support our SSO workflow.
-drupal-user-login-form:
-  js:
-    js/drupal-user-login-form.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal

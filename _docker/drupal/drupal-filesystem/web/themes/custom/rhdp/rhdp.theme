@@ -1082,12 +1082,3 @@ function rhdp_preprocess_views_view_fields(&$variables) {
     $variables['connector_details_url_link'] = isset($field_connector_details_url_link) ? $field_connector_details_url_link : null;
   }
 }
-
-/**
- * Implements hook_form_alter().
- */
-function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'user_login_form') {
-    $form['#attached']['library'][] = 'rhdp/drupal-user-login-form';
-  }
-}

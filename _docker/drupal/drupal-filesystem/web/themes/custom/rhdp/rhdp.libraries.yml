@@ -41,10 +41,3 @@ highlight-js:
     js/highlightjs-init.js: {}
   dependencies:
     - core/jquery
-
-# Provides some custom functionality to the login form to support our SSO workflow.
-drupal-user-login-form:
-  js:
-    js/drupal-user-login-form.js: {}
-  dependencies:
-    - core/jquery
