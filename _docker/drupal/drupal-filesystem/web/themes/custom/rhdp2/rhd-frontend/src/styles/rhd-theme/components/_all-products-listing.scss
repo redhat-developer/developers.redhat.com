@@ -1,38 +1,48 @@
-.rhd-c-all-products-list {
-
-  ul {
-    @extend .pf-l-grid;
-    @extend .pf-m-all-12-col;
-    @extend .pf-m-all-6-col-on-md;
-    @extend .pf-m-all-4-col-on-lg;
-    @extend .pf-m-gutter;
-    @extend .pf-c-list;
-    margin: 0;
-    padding: 0;
-    list-style: none !important;
-
-    li {
-      align-self: center;
-      margin-top: 0 !important;
-
-      a {
-        color: var(--pf-global--Color--100); // #151515
+.assembly-type-all_products_listing {
+  .view-all-products {
+    .view-content{
+      &.pf-l-grid {
+        grid-auto-columns: 1fr;
+        grid-template-rows: repeat(10, auto);
+        grid-auto-flow: column;
+        .pf-l-grid__item {
+          &.views-row {
+            a {
+              white-space: nowrap;
+            }
+          }
+        }
+        @media screen and (max-width: $pf-global--breakpoint--lg) {
+          grid-template-rows: repeat(15, auto);
+        }
+        @media screen and (max-width: $pf-global--breakpoint--md) {
+          grid-template-rows: 1fr;
+          grid-auto-flow: row;
+          .pf-l-grid__item {
+            &.views-row {
+              a {
+                white-space: normal;
+              }
+            }
+          }
+        }
       }
     }
   }
-}
-
-// OTHER VISUAL STYLES
-.rhd-c-all-products-list {
   &.dark {
-    & > *,
-    p, a,
-    .pf-c-title,
-    .pf-c-content,
-    .pf-m-link,
-    .pf-m-link  i,
-    .pf-m-link .svg-inline--fa {
-      color: var(--pf-global--Color--light-100) !important;
+    h1, h2, h3, h4, h5, h6 {
+      color: $white;
     }
+
+    a {
+      color: var(--rhd-c-button--m-link-dark--Color);
+      &:hover, &:active {
+        color: var(--rhd-c-button--m-link-dark--hover--Color);
+      }
+      &:visited {
+        color: var(--rhd-c-button--m-link-dark--Color);
+      }
+    }
+    
   }
 }
