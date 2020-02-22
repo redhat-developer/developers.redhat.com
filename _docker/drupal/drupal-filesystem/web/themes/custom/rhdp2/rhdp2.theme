@@ -662,15 +662,6 @@ function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $asse
 }
 
 /**
- * Implements hook_form_alter().
- */
-function rhdp2_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'user_login_form') {
-    $form['#attached']['library'][] = 'rhdp2/drupal-user-login-form';
-  }
-}
-
-/**
  * Implements hook_preprocess_html().
  */
 function rhdp2_preprocess_html(array &$variables) {
