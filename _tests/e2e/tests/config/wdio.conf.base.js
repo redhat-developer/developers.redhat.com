@@ -6,14 +6,21 @@ const commandlineArgs = require('minimist')(process.argv.slice(2));
 const testProfile = typeof commandlineArgs.profile === 'undefined' ? 'desktop' : commandlineArgs.profile;
 const testType = typeof commandlineArgs.testType === 'undefined' ? 'export' : commandlineArgs.testType;
 const exclude = testType === 'export' ? 'drupal' : 'export';
+const host = typeof commandlineArgs['base-url'] === 'undefined' ? 'https://localhost' : commandlineArgs['base-url'];
+const keyCloakUser = process.env.RHD_KEYCLOAK_ADMIN_USERNAME;
+const keyCloakPassword = process.env.RHD_KEYCLOAK_ADMIN_PASSWORD;
+const drupalUser = process.env.RHD_DRUPAL_ADMIN_USERNAME;
+const drupalPassword = process.env.RHD_DRUPAL_ADMIN_PASSWORD;
 
-let host;
-if (commandlineArgs['base-url'].includes('developers-pr.stage.redhat.com') && testType === 'drupal') {
-    const parsedUrl = require('url').parse(commandlineArgs['base-url']);
-    const prNumber = parseInt(parsedUrl.pathname.split('/')[2]);
-    host = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000 + prNumber)}`;
-} else {
-    host = commandlineArgs['base-url'];
+checkPropertySet(keyCloakUser, 'RHD_KEYCLOAK_ADMIN_USERNAME');
+checkPropertySet(keyCloakPassword, 'RHD_KEYCLOAK_ADMIN_PASSWORD');
+checkPropertySet(drupalUser, 'RHD_DRUPAL_ADMIN_USERNAME');
+checkPropertySet(drupalPassword, 'RHD_DRUPAL_ADMIN_PASSWORD');
+
+function checkPropertySet(property, propertyName) {
+    if (property === undefined || property === '') {
+        throw new Error("You must set the environment variable '" + propertyName + "' for the tests to run.");
+    }
 }
 
 exports.config = {
@@ -62,7 +69,7 @@ exports.config = {
     onComplete: function() {
         try {
             const {execSync} = require('child_process');
-             execSync(`allure generate ./report/${testProfile}-results -o ./report/${testProfile}-report`)
+             execSync(`allure generate ./report/${testProfile}-results -o ./report/${testProfile}-report`);
         } catch (error) {
             // eslint-disable-next-line no-console
             console.log(error);

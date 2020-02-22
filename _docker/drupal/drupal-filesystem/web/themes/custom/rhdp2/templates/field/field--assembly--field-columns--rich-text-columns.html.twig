@@ -1,0 +1,14 @@
+{% set classes = [
+  'pf-l-grid__item',
+  'pf-m-12-col',
+  'pf-m-4-col-on-md',
+  not three_up ? 'pf-m-3-col-on-lg'
+] %}
+
+<div class="pf-l-grid pf-m-gutter">
+  {% for item in items %}
+  <div{{ item.attributes.addClass(classes) }}>
+    {{ item.content }}
+  </div>
+  {% endfor %}
+</div>

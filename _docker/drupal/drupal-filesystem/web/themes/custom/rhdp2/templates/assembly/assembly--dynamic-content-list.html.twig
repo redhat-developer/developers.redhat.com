@@ -1,0 +1,24 @@
+{% set classes = [
+  'component',
+  'pf-c-content',
+  'rhd-c-dynamic-content-list'
+]%}
+
+<div {{ attributes.addClass(classes) }}>
+    <div class="pf-l-grid pf-m-gutter">
+      <h2 class="pf-c-title">{{ content.field_title }}</h2>
+      <div class="pf-l-grid__item pf-m-12-col pf-m-8-col-on-md">
+        {{ content.posts }}
+        {{ content.field_cta_link }}
+      </div>
+
+      <div class="pf-l-grid__item pf-m-12-col pf-m-4-col-on-md">
+        <div class="pf-c-card rhd-c-card comment-list">
+          <div class="rhd-c-card-content">
+            <h3 class="rhd-c-card__title">Latest Comments</h3>
+            {{ content.latest_comments }}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

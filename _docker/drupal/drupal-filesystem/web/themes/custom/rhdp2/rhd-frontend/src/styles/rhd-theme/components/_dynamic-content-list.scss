@@ -1,0 +1,19 @@
+.rhd-c-dynamic-content-list {
+
+  .pf-l-grid.pf-m-gutter {
+    grid-gap: 0 var(--pf-l-grid--m-gutter--GridGap);
+  }
+
+  &__item {
+    @extend .pf-u-pb-md;
+  }
+  
+  &__item-title {
+    @extend .pf-u-mb-0;
+    a {
+      &:hover {
+        color: var(--pf-c-content--a--hover--Color);
+      }
+    }
+  }
+}

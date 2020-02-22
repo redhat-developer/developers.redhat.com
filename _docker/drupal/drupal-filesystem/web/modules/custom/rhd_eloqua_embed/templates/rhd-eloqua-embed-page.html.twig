@@ -11,7 +11,10 @@
     <script>window.DynamicFormConfig={{eloqua_json|raw}};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script>
-<style>
+    <style>
+      body {
+        margin: 0;
+      }
       #GatedFormContainer .form-header >:first-child { display: none; }
       #GatedFormContainer .form-header h1 {
         color: #333;
@@ -30,67 +33,135 @@
         font-size: 1em;
       }
       #GatedFormContainer #FormSubmitButton {
-        background-color: #c00 !important;
+        background-color: #ee0000 !important;
         color: #FFF !important;
-        border-color: #c00 !important;
-        border-radius: 0 !important;
-        line-height: 1.5;
+        border-color: #ee0000 !important;
+        border-radius: 3px !important;
+        box-sizing: border-box !important;
         margin-top: 1px !important;
         white-space: nowrap !important;
+        display: inline-block !important;
+        font-family: RedHatText, Overpass, overpass, helvetica, arial, sans-serif !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        font-variant-caps: normal !important;
+        font-weight: normal !important;
+        height: 36px !important;
+        letter-spacing: normal !important;
+        line-height: 24px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 16px !important;
+        padding-bottom: 6px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 6px !important;
       }
       #GatedFormContainer #FormSubmitButton:hover, #GatedFormContainer #FormSubmitButton:active {
-        background-color: #c00;
-        color: #FFF;
-        border-color: #c00;
+        background-color: #cf0000 !important;
+        color: #FFF !important;
+        border-color: #cf0000 !important;
       }
-      .cta, .cta-stacked {
+      #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group){
+        margin-top: 24px;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label {
+        align-self: flex-start !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        color: black !important;
+        padding-left: 0 !important;
+        margin-bottom: 8px !important;
+        margin-right: 8px !important;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label:before {
+        display:none;
+      }
+      #GatedFormContainer .form-content>.form-group .control-label:after {
+        color: #c00;
+        content: "*";
+        font-weight: 700;
+        font-size: 0.8em;
+        vertical-align: baseline;
+        padding-right: 3px;
+        margin-left: 8px;
+      }
+      #GatedFormContainer #FormSubmitButton-form-group .col-sm-10 {
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+      }
+      #GatedFormContainer .form-content>.form-group .form-control {
+        border: solid 1px rgb(237, 237, 237) !important;
+        border-bottom: 1px solid black !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        font-variant-caps: normal !important;
+        font-weight: normal !important;
+        height: 36px !important;
+      }
+      #GatedFormContainer .form-footer .col-sm-10{
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+      }
+      #GatedFormContainer form {
         font-size: 13px;
       }
-      .cta #GatedFormContainer .col-sm-10.controls {
+      #GatedFormContainer .col-sm-10.controls {
         margin-left: 0 !important;
       }
-      .cta #GatedFormContainer #FormSubmitButton {
-        background-color: #FFF !important;
-        color: #c00 !important;
-        border-color: #c00;
+      #GatedFormContainer .form-content > .form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        display: flex;
+        flex-direction: column;
       }
-      .cta #GatedFormContainer #FormSubmitButton:hover, .cta #GatedFormContainer #FormSubmitButton:active {
-        background-color: #c00;
-        color: #FFF;
-        border-color: #c00;
-      }
-      .cta #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
-        display: block;
-      }
-      .cta #GatedFormContainer .control-label.required, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>.required:not([type=hidden]):first-child {
+      #GatedFormContainer .control-label.required,
+      #GatedFormContainer .form-content > .form-group:not(#FormSubmitButton-form-group) > .required:not([type=hidden]):first-child {
         text-align: left;
       }
-      .inline #GatedFormContainer .col-sm-10.controls, #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
+      .inline #GatedFormContainer .col-sm-10.controls, #GatedFormContainer .form-conten t> .form-group:not(#FormSubmitButton-form-group) > :not([type=hidden]):nth-child(2) {
         margin-left: 0;
       }
       .inline #GatedFormContainer .form-content::after {
         content: none;
       }
+      #GatedFormContainer .form-content > #F_FormData_OptIn-form-group.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        /*display: none !important;*/
+      }
+      .dark #GatedFormContainer .form-content > .form-group .control-label,
+      .dark #GatedFormContainer .form-content > .form-group label,
+      .dark #GatedFormContainer .form-footer a {
+        color: #fff !important;
+      }
+      .dark #GatedFormContainer .form-footer a {
+        text-decoration: underline;
+      }
+      .dark #GatedFormContainer .form-footer a:hover {
+        text-decoration: none;
+      }
+
       @media (min-width: 701px) {
+        #GatedFormContainer .form-content > #F_FormData_OptIn-form-group.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+          /*display: none !important;*/
+        }
         .inline #GatedFormContainer .form-content {
           display: flex;
+          flex-wrap: wrap;
         }
-        .inline #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+        .inline #GatedFormContainer .form-content > .form-group:not(:empty):not(#FormSubmitButton-form-group) {
           margin-right: 10px;
         }
         .inline #GatedFormContainer .col-sm-10.controls  {
           margin-left: 0;
         }
-        .inline #FormSubmitButton-form-group {
-          display: flex;
-        }
-        .inline #GatedFormContainer .form-content>.form-group:last-child>div:not([type=hidden]):first-child {
+        .inline #GatedFormContainer .form-content > .form-group:last-child > div:not([type=hidden]):first-child {
           width: auto;
           align-items: flex-start;
           margin-left: 0;
           justify-content: left;
         }
-
+        .inline #GatedFormContainer #FormSubmitButton-form-group {
+          flex-basis: 100%;
+        }
         .inline #GatedFormContainer #FormSubmitButton {
           margin-top: 0;
           margin-left: 0;
@@ -123,13 +194,39 @@
         .overlabel #GatedFormContainer .form-content>.form-group:not(#FormSubmitButton-form-group)>:not([type=hidden]):nth-child(2) {
           margin-left: 0;
         }
+        .eloqua-two-col #GatedFormContainer .form-content {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .eloqua-two-col #GatedFormContainer .form-content>.form-group:not(:empty):not(#FormSubmitButton-form-group) {
+          width: 100%;
+          flex: 0 48%;
+          margin-right: 2%;
+        }
+        .eloqua-two-col #FormSubmitButton-form-group {
+          width: 100%;
+        }
       }
     </style>
   </head>
-  <body{{ attributes.addClass(body_classes) }}>
+  <body>
     <div id="GatedFormContainer"></div>
     {% if redirect_url or overlabel %}
       <script>
+        function hideLabels(context) {
+          // F_FormData_OptIn-form-group
+          $('label', context).each(function() {
+            var $this = $(this);
+            if ($this.prev().attr('type') == 'radio' || $this.parent().attr('id') == 'F_FormData_OptIn-form-group' ) {
+              // Do not move labels for radios.
+              // Do not remove label on OptIn.
+            } else {
+              $('#' + $this.attr('for')).attr('placeholder', $this.text());
+              $this.hide();
+            }
+          });
+        }
+
         var targetNode = document.getElementById('GatedFormContainer');
         var config = { childList: true };
         var callback = function(mutationsList, observer) {
@@ -145,17 +242,11 @@
                 }
                 {% endif %}
                 {% if overlabel %}
-                $('label', $search).each(function() {
-                  var $this = $(this);
-                  $('#' + $this.attr('for')).attr('placeholder', $this.text());
-                  $this.hide();
-                });
+                  hideLabels($search);
                 {% endif %}
               }
             }
-
           }
-
         };
         var observer = new MutationObserver(callback);
         observer.observe(targetNode, config);

@@ -1,0 +1,48 @@
+uuid: 4ea84740-fae8-4510-ae80-c12649ede45f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.events_hero
+    - assembly.assembly_type.hero
+    - assembly.assembly_type.layout_two_col_left_sidebar
+    - assembly.assembly_type.product_download_hero
+    - assembly.assembly_type.product_try_it_hero
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.sign_up_hero
+    - assembly.assembly_type.static_content_band
+    - assembly.assembly_type.video_hero
+    - field.storage.assembly.field_column_2
+id: assembly.layout_two_col_left_sidebar.field_column_2
+field_name: field_column_2
+entity_type: assembly
+bundle: layout_two_col_left_sidebar
+label: 'Column 2'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      compact_dynamic_article_list: compact_dynamic_article_list
+      static_content_band: static_content_band
+      dynamic_content_feed: dynamic_content_feed
+      events_hero: events_hero
+      hero: hero
+      product_download_hero: product_download_hero
+      product_try_it_hero: product_try_it_hero
+      rich_text: rich_text
+      content_with_image: content_with_image
+      sign_up_hero: sign_up_hero
+      video_hero: video_hero
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: events_hero
+field_type: entity_reference

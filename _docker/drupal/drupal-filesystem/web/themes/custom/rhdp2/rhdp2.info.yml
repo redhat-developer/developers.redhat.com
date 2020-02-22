@@ -1,0 +1,33 @@
+name: RHDP2 Theme
+type: theme
+description: Red Hat Developer Program Theme
+base theme: classy
+package: rhdp2
+core: 8.x
+libraries:
+  - rhdp2/new-relic
+  - rhdp2/jira-issue-collector
+  - rhdp2/web-components
+  - rhdp2/base-theme
+  - rhdp2/rhdp-pfelement
+  - rhdp2/rhdp-web-components
+stylesheets-remove:
+  - core/assets/vendor/normalize-css/normalize.css
+  - core/modules/system/css/system.module.css
+  - core/modules/system/css/system.theme.css
+  - core/modules/views/css/views.module.css
+ckeditor_stylesheets:
+  - css/base/app.css
+component-libraries:
+  components:
+    paths:
+      - components
+regions:
+  rh_universal_header: 'RH Universal Header'
+  rhd_header: 'RHD Header'
+  rhd_post_header: 'RHD Post-Header'
+  rhd_katacoda_header: 'RHD Katacoda Course Header'
+  mobile_tray: 'Mobile Tray'
+  title: 'Title'
+  content: 'Content'
+  rhd_footer: 'RHD Footer'

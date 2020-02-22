@@ -1,0 +1,30 @@
+{#
+/**
+ * @file assembly--call-to-action.html.twig
+ * Call to action assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  <div class="cta__container pf-l-grid">
+    {% if content.field_title|render %}
+      <h2 class="cta__title pf-c-title">{{ content.field_title }}</h2>
+    {% endif %}
+    {% if content %}
+      <div class="cta__content">
+        {{ content|without('field_title', 'field_cta_link') }}
+      </div>
+    {% endif %}
+
+    <div class="cta__cta">
+      {{ content.field_cta_link }}
+    </div>
+  </div>
+</div>

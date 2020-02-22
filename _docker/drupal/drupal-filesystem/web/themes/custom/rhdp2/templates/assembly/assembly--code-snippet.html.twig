@@ -1,0 +1,25 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set language = content.field_programming_language|render|striptags|trim|clean_class %}
+{% spaceless %}
+<div{{ attributes }}>
+  <pre>
+    <code{{create_attribute({'class':[language]})}}>{{ content.field_code['#items'].0.value|trim }}</code>
+  </pre>
+</div>
+{% endspaceless %}

@@ -1,0 +1,36 @@
+uuid: d442933a-4f3f-4683-8227-fa6f733629bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.releases
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.releases.default
+targetEntityType: taxonomy_term
+bundle: releases
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  langcode: true

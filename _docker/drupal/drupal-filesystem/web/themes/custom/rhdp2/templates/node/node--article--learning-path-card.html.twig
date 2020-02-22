@@ -1,0 +1,56 @@
+{% set access = 'free-content' %}
+
+{# The replace the training-content class with one of the following, depending on the content: free-content, member-content, training-content #}
+<div{{ attributes.addClass(['dp-content-card', access ]) }}
+    access="member"
+    duration="{{node.field_read_time.value}}"
+    image="{{ learning_path_card['card_image_url']|default('https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-0.3.5&s=968ae8186ef28dfb0c53da8e9708fe32&auto=format&fit=crop&w=800&q=80') }}"
+    title="{{node.title.value}}"
+    modified="{{node.changed.value|date('Y-m-d')}}"
+    author="{{node.field_author.value}}"
+    uri="{{ node.path.alias }}"
+    onclick="window.location = '{{ node.path.alias }}';">
+  <div class="img" style="background-image: url('{{ learning_path_card['card_image_url']|default('https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-0.3.5&s=968ae8186ef28dfb0c53da8e9708fe32&auto=format&fit=crop&w=800&q=80') }}')">
+    {% if access != 'free-content' %}
+    <div class="dp-access-level">
+      {% if access == 'member-content' %}
+      <i class="fas fa-user"></i> For RHDP Members
+      {% else %}
+      <i class="fas fa-dollar-sign"></i> Red Hat Training
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="card-info">
+    <div class="card-details">
+      <div class="dp-content-type {{ node.type.entity.get('type') }}">
+          <i class="far fa-file-alt"></i> {{node.type.entity.label}}
+      </div>
+      {% if node.field_read_time.value %}
+      <div class="dp-duration">
+          <i class="far fa-clock"></i> {{node.field_read_time.value}}
+      </div>
+      {% endif %}
+      {% if node.field_read_time.value and node.field_difficulty.value %}
+      &nbsp;|&nbsp;
+      {% endif %}
+      {% if node.field_difficulty.value %}
+      <div class="dp-level">
+          {{node.field_difficulty.value|capitalize}}
+      </div>
+      {% endif %}
+    </div>
+    <h4 class="line-clamp-2">{{ node.title.value }}</h4>
+    <p class="line-clamp-3">{{ node.field_book_description.value|striptags }}</p>
+    <div class="bio">
+      {% set calc_date = node.published_at %}
+      {% if calc_date and calc_date.value is not empty %}
+      <rh-datetime datetime="{{ calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
+      {% endif %}
+      <div class="dp-author">
+      {% if calc_date.value is not empty and node.field_author.value is not empty %} - {% endif %}
+      {{node.field_author.value}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+.component {
+  &.rhd-c-curated-links {
+
+    i,
+    .svg-inline--fa {
+      color: $rolling-stone;
+    }
+
+    .pf-c-button {
+      &.pf-m-link {
+        padding: 0;
+      }
+    }
+
+    div {
+      margin-bottom: var(--pf-global--spacer--sm) !important;
+
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    >.pf-l-grid {
+      .pf-l-grid__item {
+        @include nestedComponent;
+      }
+      .pf-l-flex {
+        .pf-l-flex__item {
+          i,
+          .svg-inline--fa {
+            position: absolute;
+            display: block;
+            margin-top: 3px;
+          }
+          a {
+            margin-left: var(--pf-global--spacer--lg);
+            display: block;
+          }
+        }
+      }
+    }
+
+    &.dark {
+
+      i,
+      .svg-inline--fa {
+        color: white;
+      }
+    }
+
+    &.nav-menu {
+
+      border-top: none;
+      border-bottom: none;
+      margin-bottom: 15px;
+
+      >.pf-l-grid {
+        .pf-l-flex {
+          flex-direction: row;
+
+          .pf-l-flex__item {
+            margin-right: var(--pf-global--spacer--xl);
+            a {
+              margin-left: 0;
+            }
+          }
+
+          @media screen and (max-width: $pf-global--breakpoint--md) {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+
+    &.centered {
+      text-align: center;
+
+      >.pf-l-grid {
+        .pf-l-flex {
+          align-items: center;
+
+          .pf-l-flex__item {
+            margin-right: var(--pf-global--spacer--md);
+            margin-left: var(--pf-global--spacer--md);
+            
+          }
+        }
+      }
+    }
+
+    &.two-col {
+
+      >.pf-l-grid {
+        .pf-l-flex {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          margin-left: 0;
+
+          .pf-l-flex__item {
+            margin-right: var(--pf-global--spacer--xl);
+          }
+
+          @media screen and (max-width: $pf-global--breakpoint--md) {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+
+      @media screen and (max-width: $pf-global--breakpoint--md) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

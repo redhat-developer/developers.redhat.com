@@ -1,0 +1,124 @@
+{% set classes = [
+  'component',
+  'author-' ~ author_location
+] %}
+{% set article_classes = (hide_toc == TRUE) ? [
+  'pf-l-grid__item',
+  'pf-xs-12-col',
+  'pf-m-12-col-on-xs',
+  'pf-m-10-col-on-lg',
+  'gsi',
+  'fetch-toc',
+  'article-content',
+] : [
+  'pf-l-grid__item',
+  'pf-xs-12-col',
+  'pf-m-12-col-on-xs',
+  'pf-m-10-col-on-lg',
+  'gsi',
+  'fetch-toc',
+  'article-content',
+] %}
+
+<div{{ attributes.addClass(classes).setAttribute("id", "rhd-article") }}>
+  <div class="pf-l-grid pf-m-gutter">
+    {% if has_hero and content.field_image|render %}
+    <div class="article-hero pf-l-grid__item pf-sm-12-col">
+      {% if content.field_image_caption|render %}
+      <figure>
+      {% endif %}
+        {{ content.field_image }}
+      {% if content.field_image_caption|render %}
+        <figcaption>
+          {{ content.field_image_caption }}
+        </figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if content.field_image|render and not has_hero %}
+    <div class="article-info-wrapper pf-l-grid__item pf-lg-7-col pf-m-12-col-on-sm pf-m-7-col-on-lg">
+    {% else %}
+    <div class="article-info-wrapper pf-l-grid__item pf-m-12-col">
+    {% endif %}
+      <div class="article-info-left">
+        {% if content.field_article_type|render %}
+        <p class="article-type">{{ content.field_article_type }}</p>
+        {% endif %}
+        {{ title_prefix }}
+        <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
+        {{ title_suffix }}
+        <div class="gsi-meta article-info">
+          <div class="publish-date">{{ node.createdtime|date(' F j, Y') }}</div>
+          {% if author_location == 'left' %}
+          <div class="share-buttons">
+            {% include '@rhdp2/share.html.twig' %}
+          </div>
+          {% endif %}
+          {% if content.field_topics|render %}
+           <div class="topics">
+            More on: {{ content.field_topics }}
+           </div>
+          {% endif %}
+        </div>
+      </div> {# /.article-info-left #}
+
+      {% if (content.field_content_author['#items']) or (content.field_author_evangelist['#items']) %}
+        <div class="authors">
+          {% if author_location == 'right' %}
+          	<div class="share-buttons">{% include '@rhdp2/share.html.twig' %}</div>
+          {% endif %}
+          {{ content.field_author_evangelist }}
+          {{ content.field_content_author }}
+        </div>
+      {% endif %}
+
+    </div> {# /.article-info-wrapper #}
+    {% if content.field_image|render and not has_hero %}
+    <div class="floated-image pf-l-grid__item pf-lg-5-col pf-m-12-col-on-sm pf-m-5-col-on-lg">
+      {% if content.field_image_caption|render %}
+      <figure>
+      {% endif %}
+        {{ content.field_image }}
+        {% if content.field_image_caption|render %}
+        <figcaption>
+          {{ content.field_image_caption }}
+        </figcaption>
+      </figure>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if content.field_article_highlights|render %}
+    <div class="article-highlights pf-l-grid__item pf-sm-12-col">
+      {{ content.field_article_highlights }}
+    </div>
+    {% endif %}
+    {% if not hide_toc %}
+    <div class="pf-l-grid__item pf-lg-2-col pf-m-12-col-on-md pf-m-2-col-on-lg">
+      <ul class="toc gsi-nav"></ul>
+    </div>
+    {% endif %}
+    <div{{ content_attributes.addClass(article_classes) }}>
+      {{ content.body }}
+      {{ content.field_content }}
+      {% if content.field_tags|render %}
+      <div class="article-tags">
+        {{ content.field_tags }}
+      </div>
+      {% endif %}
+      {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
+      <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
+      {% endif %}
+      {{ content.disqus_thread }}
+    </div>
+    {% if content.field_related_articles|render %}
+    <div class="related-articles rhd-c-card-grid">
+      <div class="pf-l-flex">
+        <h4 class="related-article-header">Related Articles</h4>
+      </div>
+      {{ content.field_related_articles }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>

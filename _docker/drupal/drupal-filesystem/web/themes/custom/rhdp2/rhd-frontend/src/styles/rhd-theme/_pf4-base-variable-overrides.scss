@@ -1,0 +1,40 @@
+// Grid breakpoints
+$pf-global--breakpoint--xs: 320px !default;
+$pf-global--breakpoint--sm: 480px !default;
+$pf-global--breakpoint--md: 768px !default;
+$pf-global--breakpoint--lg: 1024px !default;
+$pf-global--breakpoint--xl: 1440px !default;
+$pf-global--breakpoint--2xl: 1600px !default;
+
+//custom scss vars
+$rhd-flex--spacer: 24px;
+$rhd-flex-half--spacer: 12px;
+$rhd-flex--spacer-negative: -24px;
+$rhd-flex-half--spacer-negative: -12px;
+
+:root {
+    // Grid breakpoints
+    --pf-global--breakpoint--xs: 320px;
+    --pf-global--breakpoint--sm: 480px;
+    --pf-global--breakpoint--md: 768px;
+    --pf-global--breakpoint--lg: 1024px;
+    --pf-global--breakpoint--xl: 1440px;
+    --pf-global--breakpoint--2xl: 1600px;
+
+    //moved from rhdp2.css
+    --rhd--theme--color--ui--soft-dark: rgba(0,0,0,.8);
+    --rhd--theme--color--ui--link-universal: rgba(255, 255, 255, 0.062);
+    --pfe-theme--color--text: #242424;
+    --pfe-theme--font-size--xxl: 46px;
+    --rhd-theme--color--grey-3: $grey-3;
+    --rhd-gray-2: #e6e6e6;
+    --rhd-gray-3: $gray-3;
+    --rhd-gray-4: $gray-4;
+    --rhd-blue: $blue;
+    --rhd-linkhover: $linkhover;
+    --rhd-white: $white;
+}
+
+
+
+

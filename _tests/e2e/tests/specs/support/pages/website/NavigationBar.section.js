@@ -4,21 +4,33 @@ import Page from '../Page';
 import Driver from '../../utils/Driver.Extension';
 
 class NavigationBar extends Page {
-    get mobileMenuOpen() {return $('.mobile-tray-open');}
-    get loginLink() {return $$("//a[text()='Log In']");}
-    get mobileNavToggle() {return $('button*=Menu');}
-    get searchToggle() {return $('//*[@id="block-rhdnavigation"]/ul/li[@class="rhd-nav-search"]');}
-    get searchBar() {return $$('.user-search');}
+    get mobileMenuOpen() {return $('.rhd-c-nav-dropdown');}
+    get loginLink() {return $$("li.login a");}
+    get mobileNavToggle() {return $('.rhd-c-nav-mobile > .hamburger');}
+    get searchToggle() {return $('[data-rhd-nav-search-toggle]');}
+    get searchBar() {return $$('input[data-rhd-nav-search-input]');}
 
     toggle() {
         const mobileNavToggle = Driver.isVisible(this.mobileNavToggle);
         if (mobileNavToggle) {
-            Driver.click(this.mobileNavToggle);
-            // wait for modal to completely open
-            Driver.awaitIsDisplayed(this.mobileMenuOpen);
+            this.openMobileMenuWithRetry();
             return true;
         }
         return false;
+    }
+
+    openMobileMenu() {
+        Driver.click(this.mobileNavToggle);
+        Driver.awaitIsDisplayed(this.mobileMenuOpen, 10000);
+    }
+
+    openMobileMenuWithRetry() {
+        try {
+            this.openMobileMenu();
+        } catch (err) {
+            console.log("Failed to open mobile menu, retrying...");
+            this.openMobileMenu();
+        }
     }
 
     login() {

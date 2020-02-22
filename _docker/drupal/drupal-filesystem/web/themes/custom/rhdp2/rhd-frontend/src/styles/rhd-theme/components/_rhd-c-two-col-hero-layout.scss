@@ -1,0 +1,182 @@
+$pf-global--breakpoint--temp: 1360px;
+
+.component.rhd-c-two-col-hero-layout {
+  > .pf-l-grid {
+    > .pf-l-grid__item {
+      // If this is a lg breakpoint or higher, this content is nested.
+      @media screen and (min-width: $pf-global--breakpoint--lg) {
+        @include nestedComponent;
+      }
+
+      &:first-of-type {
+        @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+          grid-row: 2;
+        }
+        .component {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .field--name-field-column-1,
+    .field--name-field-column-2 {
+      > .assembly.component:first-of-type {
+        // Remove margin-top from first assembly rendered in each column.
+        @media screen and (min-width: $pf-global--breakpoint--lg) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  // Grid spacing
+  .field--name-field-column-1,
+  .field--name-field-column-2 {
+    @media screen and (min-width: $pf-global--breakpoint--sm) {
+      --pf-l-grid__item--GridColumnEnd: span 12;
+    }
+    @media screen and (min-width: $pf-global--breakpoint--lg) {
+      --pf-l-grid__item--GridColumnEnd: span 6;
+    }
+  }
+  &.left-sidebar {
+    @media screen and (min-width: $pf-global--breakpoint--lg) {
+      .field--name-field-column-1 {
+        --pf-l-grid__item--GridColumnEnd: span 4;
+      }
+      .field--name-field-column-2 {
+        --pf-l-grid__item--GridColumnEnd: span 8;
+      }
+    }
+    @media screen and (min-width: $pf-global--breakpoint--xl) {
+      .field--name-field-column-1 {
+        --pf-l-grid__item--GridColumnEnd: span 3;
+      }
+      .field--name-field-column-2 {
+        --pf-l-grid__item--GridColumnEnd: span 9;
+      }
+    }
+  }
+  &.right-sidebar {
+    @media screen and (min-width: $pf-global--breakpoint--lg) {
+      .field--name-field-column-1 {
+        --pf-l-grid__item--GridColumnEnd: span 8;
+      }
+      .field--name-field-column-2 {
+        --pf-l-grid__item--GridColumnEnd: span 4;
+      }
+    }
+    @media screen and (min-width: $pf-global--breakpoint--xl) {
+      .field--name-field-column-1 {
+        --pf-l-grid__item--GridColumnEnd: span 9;
+      }
+      .field--name-field-column-2 {
+        --pf-l-grid__item--GridColumnEnd: span 3;
+      }
+    }
+  }
+
+
+  .rhd-c-dynamic-content-list-compact .medium-cta {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .field--name-field-column-2 {
+    .assembly-type-rich_text,
+    .assembly-type-content_with_image,
+    .assembly-type-events_hero ,
+    .assembly-type-hero ,
+    .assembly-type-product_download_hero ,
+    .assembly-type-product_try_it_hero ,
+    .assembly-type-sign_up_hero ,
+    .assembly-type-video_hero {
+      padding-left:  var(--rhd-theme--container-spacer-md);
+      padding-right:  var(--rhd-theme--container-spacer-md);
+    }
+
+    .component.assembly-type-static_content_band {
+      .component-limit-width {
+        >.pf-l-flex {
+          &.rhd-c-card-grid__wrapper {
+            .assembly {
+              &.rhd-c-card {
+                width: calc(33.3% - var(--rhd-theme--container-spacer-lg));
+                margin-left: $rhd-flex-half--spacer;
+                margin-right: $rhd-flex-half--spacer;
+
+                @media screen and (max-width: $pf-global--breakpoint--temp) {
+                  width: calc(50% - #{$rhd-flex--spacer});
+                }
+  
+                @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+                  width: calc(33% - #{$rhd-flex--spacer});
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--md) {
+                  width: calc(50% - #{$rhd-flex--spacer});
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--sm) {
+                  width: 100%;
+                  margin: 0 0 $rhd-flex--spacer 0;
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      &.four-up {
+        .component-limit-width {
+          >.pf-l-flex {
+            &.rhd-c-card-grid__wrapper {
+              .assembly {
+                &.pf-l-flex,
+                &.assembly-type-node_reference {
+                  width: 33%;
+
+                  @media screen and (max-width: $pf-global--breakpoint--temp) {
+                    width: 50%;
+                  }
+  
+                  @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+                    width: 33%;
+                  }
+
+                  @media screen and (max-width: $pf-global--breakpoint--md) {
+                    width: 50%;
+                  }
+
+                  @media screen and (max-width: $pf-global--breakpoint--xs) {
+                    width: 100%;
+                  }
+                }
+  
+                &.rhd-c-card {
+                  width: calc(33% - #{$rhd-flex--spacer});
+
+                  @media screen and (max-width: $pf-global--breakpoint--temp) {
+                    width: calc(50% - #{$rhd-flex--spacer});
+                  }
+  
+                  @media screen and (max-width: $pf-global--breakpoint--lg) {
+                    width: calc(33% - #{$rhd-flex--spacer});
+                  }
+
+                  @media screen and (max-width: $pf-global--breakpoint--md) {
+                    width: calc(50% - #{$rhd-flex--spacer});
+                  }
+
+                  @media screen and (max-width: $pf-global--breakpoint--xs) {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }          
+}

@@ -1,0 +1,45 @@
+
+<div {{ attributes.addClass('rhd-c-product-download-hero') }}>
+  <div class="pf-l-grid pf-c-content">
+  {% if image_uri %}
+    <div class="pf-l-grid__item rhd-c-product-download-hero-aside">
+      <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-5-col-on-md pf-m-6-col-on-sm pf-u-display-flex pf-u-justify-content-center pf-u-flex-direction-column">
+        <picture class="product-download-hero-aside">
+          <source media="(min-width: 480px)" srcset="{{ image_uri }}">
+          <source media="(min-width: 768px)" srcset="{{ image_uri }}">
+          <source media="(min-width: 1024px)" srcset="{{ image_uri }}">
+          <img src="{{ image_uri }}" alt="{{ image_alt }}" />
+        </picture>
+      </div>
+    </div>
+    {% endif %}
+    <div class="pf-l-grid__item rhd-c-product-download-hero-content">
+      {% if content.field_title|render %}
+      {{ content.field_title }}
+      {% endif %}
+      {% if content.field_content|render %}
+      {{ content.field_content }}
+      {% endif %}
+      {% if elements.featured.url %}
+      <div class="rhd-c-product-download-hero-footer">
+        <div class="rhd-c-product-download-hero-footer--cta">
+          <a class="pf-c-button pf-m-heavy" href="{{ elements.featured.url }}">
+            Download
+          </a>
+          <p class="rhd-c-product-download-hero-footer--version">Version {{ elements.featured.versionName }}</p>
+        </div>
+        <div class="rhd-c-product-download-hero-footer--learn-more">
+          <a href="{{ content.field_learn_more_link.0['#url'] }}" class="pf-c-button pf-m-link pf-u-pl-lg">
+            {% if content.field_learn_more_link.0['#title'] %}
+            {{ content.field_learn_more_link.0['#title'] }}
+            {% else %}
+            Learn More
+            {% endif %}
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

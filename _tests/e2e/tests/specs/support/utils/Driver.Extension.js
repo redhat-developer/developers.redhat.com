@@ -4,7 +4,8 @@ export default class Driver {
     static visit(url) {
         try {
             return browser.url(url);
-        } catch (err) {
+        }
+        catch (err) {
             if (err && err.message.indexOf('stale element reference') >= 0) {
                 return browser.url(url);
             }
@@ -24,7 +25,7 @@ export default class Driver {
     }
 
     static waitForUrlContaining(string, timeout = DEFAULT_TIMEOUT) {
-        browser.waitUntil(function() {
+        browser.waitUntil(function () {
             return browser.getUrl().indexOf(string) > -1;
         }, timeout, `Timed out after ${timeout} seconds waiting for url to contain ${string}`);
     }
@@ -39,6 +40,7 @@ export default class Driver {
     }
 
     static click(selector) {
+        this.hideCookieOverlay();
         this.hideCookieBanner();
         this.awaitIsDisplayed(selector);
         return selector.click();
@@ -46,6 +48,12 @@ export default class Driver {
 
     static getValue(selector) {
       return selector.getValue();
+    }
+
+    static displayElement(selector) {
+      browser.execute(function (selector) {
+          return selector.style.display = 'block';
+      }, selector);
     }
 
     static selectByValue(selector, value) {
@@ -74,14 +82,37 @@ export default class Driver {
         return selector.waitForDisplayed(timeout, !isShown);
     }
 
+    static getAdobeDdo() {
+        return browser.execute(function () {
+            // eslint-disable-next-line no-return-assign
+            return window.digitalData;
+        });
+    }
+
     static hideCookieBanner() {
         if (this.isVisible($('#redhat-cookie-privacy-banner'))) {
-            browser.execute(function() {
+            browser.execute(function () {
                 // eslint-disable-next-line no-return-assign
                 return document.getElementById('redhat-cookie-privacy-banner').style.display = 'none';
             });
         }
     }
+
+    static hideCookieOverlay() {
+        if (this.isVisible($('.truste_overlay'))) {
+            browser.execute(function () {
+                // eslint-disable-next-line no-return-assign
+                return document.querySelector('.truste_overlay').style.display = 'none';
+            });
+        }
+        if (this.isVisible($('.truste_box_overlay'))) {
+            browser.execute(function () {
+                // eslint-disable-next-line no-return-assign
+                return document.querySelector('.truste_box_overlay').style.display = 'none';
+            });
+        }
+    }
+
 }
 
 module.exports = Driver;

@@ -1,0 +1,43 @@
+@mixin with-background-padding() {
+  padding-top: var(--rhd-theme--container-spacer-lg);
+  padding-bottom: var(--rhd-theme--container-spacer-lg);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@mixin nestedComponent {
+  .component {
+    margin: 0 0 var(--rhd-theme--container-spacer-lg) 0;
+    &:not(.dark):not(.assembly-slim):not(.has-background):not(.background-gray) {
+      padding: 0;
+    }
+  }
+}
+
+//hidden classes
+%link {
+  text-decoration: var(--pf-theme--link--text-decoration, "underline");
+  color: var(--pfe-theme--color--ui-link, $link-color);
+  &:visited {
+    color: var(--pfe-theme--color--ui-link, $link-color);
+  }
+
+  &:hover, &:active {
+      color: var(--pfe-theme--color--ui-link--hover, $link-color-hover)
+  }
+}
+
+%hidden {
+  display: none;
+}
+
+%assembly {
+  background-image: var(--rhd-theme--ui--background-image, none);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%on-dark-assembly {
+  --pfe-theme--font-size--alpha: 46px;
+}

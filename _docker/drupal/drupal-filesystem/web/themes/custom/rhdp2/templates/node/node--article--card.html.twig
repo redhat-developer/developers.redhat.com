@@ -1,0 +1,26 @@
+{{ attach_library('classy/node') }}
+
+{#
+/**
+ * Custom variable(s):
+ *
+ * - article
+ *   @see rhdp2_preprocess_node()
+ */
+ #}
+
+{% include '@components/card.twig' with {
+  'attributes': attributes,
+  'tag': {
+    'class': 'fa-newspaper',
+    'text': content.field_article_type[0]['#markup']
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'body': content.field_short_description,
+  'authors': authors,
+  'absolute_url': absolute_url,
+  'rhd_domain': rhd_domain
+} only %}

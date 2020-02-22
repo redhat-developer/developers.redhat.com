@@ -1,0 +1,85 @@
+$mq-mobile-portrait: 320px;
+$mq-mobile-landscape: 480px;
+$mq-tablet-portrait: 576px;
+$mq-tablet-landscape: 768px;
+$mq-desktop-extra-small: 1023px;
+$mq-desktop-small: 1024px;
+$mq-desktop: 1170px;
+$mq-desktop-large: 1240px;
+$gutter: 30px;
+
+// -------------------------------- Mobile First
+@mixin tablet-portrait { // > 576px
+  @media (min-width: #{$mq-tablet-portrait}) {
+    @content;
+  }
+}
+@mixin tablet-landscape { // > 769px
+  @media (min-width: #{$mq-tablet-landscape}) {
+    @content;
+  }
+}
+@mixin desktop-extra-small { // > 1023px
+  @media (min-width: #{$mq-desktop-extra-small}) {
+    @content;
+  }
+}
+@mixin desktop-small { // > 1024px
+  @media (min-width: #{$mq-desktop-small}) {
+    @content;
+  }
+}
+@mixin desktop-large { // > 1240px
+  @media (min-width: #{$mq-desktop-large}) {
+    @content;
+  }
+}
+
+// -------------------------------- Desktop First
+@mixin mobile-portrait-and-down { // < 320px
+  @media (max-width: #{$mq-mobile-portrait}) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape-and-down { // < 480px
+  @media only screen and (max-width: #{$mq-mobile-landscape}) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape-and-up { // > 481px | duplicate of tablet-portrait-and-up. Instances tablet-portrait-and-up renamed 
+  @media only screen and (min-width: #{$mq-mobile-landscape + 1}) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape-768-and-down { // < 768px | renamed from tablet-portrait-and-down
+  @media only screen and (max-width: #{$mq-tablet-landscape}) {
+    @content;
+  }
+}
+
+@mixin desktop-extra-small-and-down { // < 1023px
+  @media only screen and (max-width: #{$mq-desktop-extra-small}) {
+    @content;
+  }
+}
+
+@mixin desktop-small-and-down { // < 1024px | renamed from tablet-landscape-and-down
+  @media only screen and (max-width: #{$mq-desktop-small}) {
+    @content;
+  }
+}
+
+@mixin desktop-and-down { // < 1170px
+  @media only screen and (max-width: #{$mq-desktop}) {
+    @content;
+  }
+}
+
+@mixin hidpi {
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+    @content;
+  }
+}

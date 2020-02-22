@@ -1,0 +1,31 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'rhd-jump-to-nav',
+  'pf-c-content',
+  'component'
+] %}
+<div{{ attributes.addClass(classes) }}>
+  {% if content %}
+    <div class="pf-l-flex">
+      {% for item in content.nav['#items'] %}
+        {{ item }}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

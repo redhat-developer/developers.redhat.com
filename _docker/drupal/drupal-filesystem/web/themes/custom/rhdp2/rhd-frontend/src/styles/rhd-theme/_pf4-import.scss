@@ -1,0 +1,25 @@
+//
+// This file imports all of PatternFly 4
+// Each file is imported separately in order to retain control of what elements are imported.
+// If desired, individual components can be commented out and not included in the application.
+//
+
+// disable css reset
+$pf-global--enable-reset: false;
+$pf-custom-global--enable-reset: true !default;
+
+//Font related
+$pf-global--disable-fontawesome: true;
+$pf-global--font-path: "/themes/custom/rhdp2/fonts/patternfly";
+
+//custom rhd theme overrides
+@import "pf4-custom-globals";
+@import "pf4-base-variable-overrides";
+@import "../../../node_modules/@patternfly/patternfly/patternfly.scss";
+@import "../../../node_modules/@patternfly/patternfly/patternfly-addons.scss";
+
+
+
+
+
+

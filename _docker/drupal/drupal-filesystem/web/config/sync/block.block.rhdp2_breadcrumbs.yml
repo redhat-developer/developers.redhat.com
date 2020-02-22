@@ -1,0 +1,20 @@
+uuid: 54097f8e-bfa2-4d5a-a624-16134f2c2204
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhdp2
+id: rhdp2_breadcrumbs
+theme: rhdp2
+region: rhd_katacoda_header
+weight: -9
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: 'Katacoda Breadcrumbs'
+  provider: system
+  label_display: '0'
+visibility: {  }

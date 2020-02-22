@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Note that this template relies upon a display preprocess function that is found within rhdp_preprocess_node()
+ * at the comment line: 
+ // Katacoda Course Page – Additional Field Display
+ *
+ * 
+ */
+#}
+{%
+    set classes = [
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    ]
+  %}
+  {{ attach_library('classy/node') }}
+  <article{{ attributes.addClass(classes) }}>
+    <div{{ content_attributes.addClass('node__content') }}>
+      <div class="katacoda-hero individual-course assembly has-background">
+        <div class="rich-text component">
+          <div class="rich-text-content pf-l-grid">
+            <h1>{{ katacoda_course_info.course_title |raw }}</h1>
+            {{ katacoda_course_info.course_description |raw }}
+            {% if (katacoda_course_info.course_read_more) is not empty %}
+              <p><a class="pf-c-button pf-m-link-on-dark" href="{{ katacoda_course_info.course_read_more }}" alt="Read More">Learn More ></a></p>
+            {% endif %}
+          </div>
+         </div>
+          <div class="background" style="background-image: url(/{{ base_path ~ directory }}/images/design/katacoda/rhd-katacoda-header-1410x940.jpg);"></div>
+        </div>
+        <div class="rhd-c-card-grid component">
+          <div class="rhd-c-card-grid__wrapper pf-l-flex">
+            {{ content.field_katacoda_course_lessons }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  

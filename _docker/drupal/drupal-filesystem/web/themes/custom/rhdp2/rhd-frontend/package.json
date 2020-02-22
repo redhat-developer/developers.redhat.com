@@ -1,0 +1,73 @@
+{
+  "name": "rhd-frontend",
+  "version": "1.2.0",
+  "description": "Front-end assets and documentation for Red Hat Developer site",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.10.0"
+  },
+  "scripts": {
+    "start": "npm run scripts:dev",
+    "build": "npm run styles && npm run scripts",
+    "serve": "spandx -c spandx.config.dev.js",
+    "test": "karma start",
+    "scripts:dev": "npm run scripts:old && npm run scripts:new && npm run scripts:tsdev",
+    "scripts": "npm run scripts:old && npm run scripts:new && npm run scripts:ts && npm run scripts:copy",
+    "scripts:copy": "copyfiles -u 2 \"node_modules/@patternfly/pfelement/pfelement.umd.min.js\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfelement/pfelement.umd.min.js.map\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js\" \"dist/js/patternfly/\" && copyfiles -u 2 \"node_modules/@patternfly/pfe-datetime/pfe-datetime.umd.min.js.map\" \"dist/js/patternfly/\"",
+    "scripts:new": "uglifyjs-folder src/scripts/js/rhd --config-file \"uglify.rhd.json\" --comments --output dist/js/rhd/rhd.min.js",
+    "scripts:old": "uglifyjs-folder src/scripts/js/2018 --config-file \"uglify.rhd.old.json\" --comments --output dist/js/rhd/rhd.old.min.js",
+    "scripts:ts": "tsc && rollup -c rollup.config.js",
+    "scripts:tsdev": "tsc -p tsconfig.dev.json",
+    "semantic-release": "semantic-release",
+    "styles": "npm run styles:sass && npm run styles:fonts && npm run styles:fontsStatic",
+    "styles:sass": "node-sass src/styles -o dist/css --source-map true --output-style compressed && postcss dist/css/rhd.css -o dist/css/rhd.min.css",
+    "styles:fonts": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" dist/fonts/patternfly",
+    "styles:fontsStatic": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" static/themes/custom/rhdp2/fonts/patternfly"
+  },
+  "sass": {
+    "includePaths": [
+      "./node_modules"
+    ]
+  },
+  "repository": "https://github.com/redhat-developer/rhd-frontend.git",
+  "author": "<ldary@redhat.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@patternfly/patternfly": "2.65.2",
+    "@patternfly/pfe-band": "1.0.0-prerelease.24",
+    "@patternfly/pfe-card": "1.0.0-prerelease.24",
+    "@patternfly/pfe-cta": "1.0.0-prerelease.24",
+    "@patternfly/pfe-datetime": "1.0.0-prerelease.24",
+    "@patternfly/pfe-layouts": "1.0.0-prerelease.24",
+    "@patternfly/pfe-sass": "1.0.0-prerelease.24",
+    "@patternfly/pfe-tabs": "1.0.0-prerelease.24",
+    "@patternfly/pfelement": "1.0.0-prerelease.24",
+    "copyfiles": "2.1.0",
+    "cssnano": "4.1.10",
+    "del-cli": "1.1.0",
+    "eslint": "5.16.0",
+    "jasmine-core": "3.4.0",
+    "jsdoc": "3.6.3",
+    "karma": "4.1.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-htmlfile-reporter": "0.3.8",
+    "karma-jasmine": "2.0.1",
+    "karma-jasmine-ajax": "0.1.13",
+    "karma-jasmine-html-reporter": "1.4.2",
+    "karma-junit-reporter": "1.2.0",
+    "karma-spec-reporter": "0.0.32",
+    "node-sass": "4.13.1",
+    "npm": "6.13.7",
+    "postcss-cli": "6.1.1",
+    "rename-cli": "6.0.0",
+    "rollup": "1.31.0",
+    "sassdoc": "2.7.0",
+    "semantic-release": "15.13.20",
+    "spandx": "1.0.3",
+    "typescript": "3.6.3",
+    "uglifyjs-folder": "1.5.1"
+  },
+  "dependencies": {
+    "highlight.js": "9.18.1"
+  }
+}

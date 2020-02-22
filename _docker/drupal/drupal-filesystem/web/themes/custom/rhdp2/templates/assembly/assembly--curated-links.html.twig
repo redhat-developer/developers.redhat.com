@@ -1,0 +1,62 @@
+{#
+/**
+ * @file assembly--curated-links.html.twig
+ * Curated links assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set addClasses = [
+  'pf-c-content',
+  'rhd-c-curated-links',
+  'assembly-type-curated_links_rhdp2',
+  display_type == 'nav-menu' ? 'nav-menu',
+  display_type == 'two-col' ? 'two-col',
+  ]
+%}
+
+{% set remClasses = [
+  display_type == 'nav-menu' ? 'two-col',
+  display_type == 'two-col' ? 'nav-menu',
+  'assembly-type-curated_links',
+  ]
+%}
+
+<div{{ attributes.addClass(addClasses).removeClass(remClasses) }}>
+  <div class="pf-l-grid pf-m-gutter">
+    {% if content.field_additional_content|render %}
+    <div class="pf-l-grid__item pf-m-8-col-on-lg pf-m-12-col-on-md">
+      {{ content.field_additional_content }}
+    </div>
+    {% endif %}
+    {% if content.field_additional_content|render %}
+    <div class="pf-l-grid__item pf-m-4-col-on-lg pf-m-12-col-on-md">
+    {% else %}
+    <div class="pf-l-grid__item">
+    {% endif %}
+      {% if content.field_title|render %}
+        <h2 class="pf-c-title pf-u-pt-md">{{ content.field_title }}</h2>
+      {% endif %}
+      {% if elements.links %}
+        <hr class="rhd-c-divider">
+        <div class="pf-l-flex pf-m-column">
+          {% for link in elements.links %}
+            <div class="pf-l-flex__item">
+              {% if not attributes.hasClass('nav-menu') %}
+              <i class="fal fa-arrow-circle-right"></i>
+              {% endif %}
+              {{ link }}
+            </div>
+          {% endfor %}
+        </div>
+        <hr class="rhd-c-divider">
+      {% endif %}
+    </div>
+  </div>
+</div>

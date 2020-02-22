@@ -133,7 +133,7 @@ app.products = {
 };
 
 app.products.downloads = {
-    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.9.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.9.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.9.0-1-minishift-linux-amd64"}
+    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-linux-amd64"}
 };
 
 /*
@@ -149,10 +149,12 @@ app.mktg_ops = {};
 app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
+app.ssoConfig.client_id = drupalSettings.rhd.keycloak.client_id;
+app.ssoConfig.realm = drupalSettings.rhd.keycloak.realm;
 
-var homeLink = document.getElementById('home-link') || { href: ''};
-app.ssoConfig.confirmation = homeLink.href + '/confirmation';
-app.ssoConfig.logout_url = homeLink.href;
+var homeLink = 'https://' + drupalSettings.rhd.urls.final_base_url;
+app.ssoConfig.confirmation = homeLink + '/confirmation';
+app.ssoConfig.logout_url = homeLink;
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 

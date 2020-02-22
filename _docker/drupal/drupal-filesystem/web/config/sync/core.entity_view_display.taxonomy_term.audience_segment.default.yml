@@ -1,0 +1,36 @@
+uuid: fc24696f-1d70-4a04-b3fa-9b6239dd40fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.audience_segment
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.audience_segment.default
+targetEntityType: taxonomy_term
+bundle: audience_segment
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  langcode: true

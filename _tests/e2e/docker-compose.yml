@@ -1,0 +1,63 @@
+version: '2'
+services:
+  drupal:
+    build:
+      context: .
+    command: 'npm run e2e:ci-drupal -- --base-url=$${RHD_BASE_URL}'
+    user: "${DUID}:0"
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  desktop:
+    build:
+      context: .
+    command: 'npm run e2e:ci-desktop -- --base-url=$${RHD_BASE_URL}'
+    user: "${DUID}:0"
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./tmp_downloads:/home/e2e/tmp_downloads
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  mobile:
+    build:
+      context: .
+    command: 'npm run e2e:ci-mobile -- --base-url=$${RHD_BASE_URL}'
+    user: "${DUID}:0"
+    environment:
+      - RHD_BASE_URL
+      - RHD_DRUPAL_ADMIN_USERNAME
+      - RHD_DRUPAL_ADMIN_PASSWORD
+      - RHD_KEYCLOAK_ADMIN_USERNAME
+      - RHD_KEYCLOAK_ADMIN_PASSWORD
+      - GRID_HOST=chrome
+      - GRID_PORT=4444
+    volumes:
+      - ./tmp_downloads:/home/e2e/tmp_downloads
+      - ./report:/home/e2e/report
+    depends_on:
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-xenon
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./tmp_downloads:/home/e2e/tmp_downloads

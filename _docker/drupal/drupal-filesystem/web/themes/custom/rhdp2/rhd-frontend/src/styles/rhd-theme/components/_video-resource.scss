@@ -1,0 +1,53 @@
+
+#rhd-video-resource {
+  .rhd-c-card {
+    height: auto;
+  }
+
+  .vr-social.right {
+    float: right;
+  }
+
+  .share-this {
+    background: none;
+    padding-top: 0;
+  }
+
+  .slides iframe {
+    height: 100%;
+    width: 100%;
+  }
+
+  .vr-info {
+    border-bottom: 1px solid #656565;
+    border-top: 1px solid #656565;
+    margin-bottom: 2.5em;
+    padding: 7px 0;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding-left: 0;
+
+      li {
+        display: inline-block;
+        margin-bottom: 1px;
+        padding-top: 1px;
+        width: auto;
+
+        &:first-child {
+          padding-left: 0;
+
+          .field {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  .rhd-c-curated-links {
+    padding: 0;
+  }
+}

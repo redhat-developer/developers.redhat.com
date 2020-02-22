@@ -1,0 +1,37 @@
+@import "../mixins";
+.component {
+  &.assembly-type-call_to_action {
+    background-color: var(--rhd-theme--ui-background-dark--light-blue);
+    @include with-background-padding;
+    
+    .cta__container {
+      text-align: center;
+      color: #FFFFFF;
+    }
+  
+    .cta__title,
+    .cta__content {
+      color: #FFFFFF;
+    }
+  
+    .cta__title,
+    .cta__content {
+      margin-bottom: var(--rhd-theme--container-spacer-md);
+    }
+  
+    &.left {
+      float: none !important;
+      text-align: left;
+  
+      .cta__title,
+      .cta__content,
+      .cta__cta {
+        text-align: left;
+      }
+    }
+    &.dark {
+      background-color: #242424;
+    }
+  }
+}
+

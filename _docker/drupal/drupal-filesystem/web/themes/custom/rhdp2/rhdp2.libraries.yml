@@ -1,0 +1,92 @@
+web-components:
+  header: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js: { type: external, minified: true, browsers: {IE: 'lte IE 11'} }
+    https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js: { type: external, minified: true }
+
+new-relic:
+  header: true
+  js:
+    js/new-relic.min.js: { minified: true }
+
+jira-issue-collector:
+  header: true
+  js:
+    https://issues.jboss.org/s/36fcee7e2c47b82293b8ffd249c9132e-T/-bdgec2/72005/38e4585ff05eb2dd95a30399b8504050/2.0.22/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=03f305bd: { type: external, minified: true }
+
+base-theme:
+  # This should be all of the style sheets broken up according to smaccs
+  css:
+    base:
+      # NOTE: Provides mostly CSS variables and a few utility classes.
+      https://static.redhat.com/libs/redhat/redhat-theme/2/advanced-theme.css: { type: external }
+      # NOTE: Provides layout classes for grids and alignments.
+      css/pfe-layouts/pfe-layouts.min.css: { minified: true }
+      rhd-frontend/dist/css/rhd.min.css: { minified: true }
+      rhd-frontend/dist/css/rhd.legacy.css: { minified: true }
+  js:
+    # This handles JS for our navigation menu(s).
+    js/menu.js: {}
+    # Add our own active link class pfe-m-current
+    js/active-link.js: {}
+    js/articles.js: {}
+    # RHD FontAwesome Kit
+    https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
+    # NOTE: According to Luke, Angular is only used on the Help page(s). We will
+    # supposedly be removing these page(s) and Angular soon. We have to load
+    # Angular right now because some code in rhd.old.min.js (see below) uses
+    # Angular, and you we don't include it, then it will throw a ReferenceError.
+    https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.3.3/angular-sanitize.min.js: { type: external, minified: true }
+    # NOTE: SystemJS is a dynamic ES module loader.
+    # https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js: { type: external, minified: true }
+    https://sso.redhat.com/auth/js/keycloak.js: { type: external, minified: false  }
+    rhd-frontend/dist/js/rhd/rhd.old.min.js: { minified: true }
+    rhd-frontend/dist/js/rhd/rhd.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+
+rhdp-pfelement:
+  header: true
+  js:
+    rhd-frontend/dist/js/patternfly/pfelement/pfelement.umd.min.js: { minified: true, preprocess: false }
+
+rhdp-web-components:
+  js:
+    rhd-frontend/dist/js/rhd/dp-alert.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-referrer.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-thankyou-page.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
+    rhd-frontend/dist/js/patternfly/pfe-datetime/pfe-datetime.umd.min.js: { minified: true, preprocess: false }
+
+video_embed_field.responsive-video:
+  css:
+    component:
+      css/field/video_embed_field.responsive-video.css: {}
+
+# Related Content for video resources
+related-content:
+  js:
+    js/related-content.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+# Show more toggle reveal functionality for video resources
+show-more:
+  js:
+    js/show-more.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

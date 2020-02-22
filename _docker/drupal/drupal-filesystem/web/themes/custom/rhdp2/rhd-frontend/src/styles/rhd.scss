@@ -1,0 +1,41 @@
+@charset 'utf-8';
+
+/// Post-2018 redesign styles
+@import "2019/mixins";
+@import "2019/mq-mixins";
+
+/// Post-2018 redesign styles
+@import "2019/colors/brand";
+@import "2019/colors/accent";
+@import "2019/colors/grayscale";
+@import "2019/colors/link";
+@import "2019/colors/product";
+@import "2019/colors/text";
+@import "2019/container";
+@import "2019/backgrounds";
+@import "2019/spacing";
+@import "2019/background";
+@import "2019/link-type";
+@import "2019/spacing";
+@import "2019/comments";
+@import "2019/slick";
+@import "2019/learning-paths";
+@import "2019/rhd-accordion";
+@import "2019/rh-universal-nav";
+
+//drupal admin override
+@import "2019/drupal-user-login-form";
+
+// Drupal Akamai cache clear block styles
+@import "2019/akamai-block";
+
+// Curated Links assembly type
+@import "2019/curated-links";
+
+// Basic Page Styles
+@import "2019/basic-page";
+@import "2019/rh-universal-nav";
+
+//RHD theme
+@import "rhd-theme/rhd-theme";
+

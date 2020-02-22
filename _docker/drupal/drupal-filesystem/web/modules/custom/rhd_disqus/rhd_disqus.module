@@ -41,7 +41,7 @@ function rhd_disqus_node_view(array &$build, EntityInterface $node, EntityViewDi
   if ($view_mode == 'full' && in_array($node->getType(), ['article'])) {
     $build['disqus_thread']['#title'] = FALSE;
   }
-  if ($view_mode == 'tile' && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
+  if (($view_mode === 'tile' || $view_mode === 'card') && in_array($node->getType(), ['article', 'books', 'cheat_sheet', 'video_resource'])) {
     $build['#attached']['library'][] = 'rhd_disqus/rhd-disqus';
     $build['#attached']['drupalSettings']['rhdDisqus']['apiKey'] = $disqus_api_key;
     $build['#attached']['drupalSettings']['rhdDisqus']['shortName'] = $disqus_shortname;
@@ -69,7 +69,7 @@ function rhd_disqus_preprocess_assembly(&$variables) {
       // if it isn't a redhat domain or the current domain
       if ($_SERVER['SERVER_NAME']) {
         $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
-        if ($host == $_SERVER['SERVER_NAME'] || !(strpos($host, 'redhat.com') === FALSE)) {
+        if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
           $variables['rhd_domain'] = TRUE;
         }
       }
@@ -103,7 +103,7 @@ function rhd_disqus_mail($key, &$message, $params) {
       $message['body'][] = $params['message'];
       break;
   }
- }
+}
 
 function rhd_disqus_theme($existing, $type, $theme, $path) {
   $config = \Drupal::config('rhd_disqus.disqussettings');

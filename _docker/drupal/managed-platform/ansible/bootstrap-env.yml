@@ -38,6 +38,11 @@
         mode: '0770'
         creates: "{{ work_dir }}/drupal.unarchive.DO_NOT_DELETE"
 
+    - name: "Seed: Ensure we clear any temporary files from backup"
+      shell: "rm -rf {{ drupal_dir }}/sites/default/files/php {{ drupal_dir }}/sites/default/files/css {{ drupal_dir }}/sites/default/files/js {{ drupal_dir }}/sites/default/files/externals && touch {{ work_dir }}/drupal.tmp.cleaned.do.not.delete"
+      args:
+        creates: "{{ work_dir }}/drupal.tmp.cleaned.do.not.delete"
+
     - name: "Seed: Record extraction of Drupal configuration was successful"
       copy:
         content: ""
@@ -156,22 +161,6 @@
       template:
         src: 'templates/{{ rhdp_environment }}/drupal/rhd.settings.php.j2'
         dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/rhd.settings.php'
-        group: 'root'
-        mode: 0770
-        force: no
-
-    - name: Template the rhd.settings.yml for mounting into Drupal
-      template:
-        src: 'templates/{{ rhdp_environment }}/drupal/rhd.settings.yml.j2'
-        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/rhd.settings.yml'
-        group: 'root'
-        mode: 0770
-        force: no
-
-    - name: Template phinx.yml for mounting into Drupal
-      template:
-        src: 'templates/{{ rhdp_environment }}/drupal/phinx.yml.j2'
-        dest: '/drupal-workspace/{{ drupal_deployment_dir }}/drupal/credentials/phinx.yml'
         group: 'root'
         mode: 0770
         force: no

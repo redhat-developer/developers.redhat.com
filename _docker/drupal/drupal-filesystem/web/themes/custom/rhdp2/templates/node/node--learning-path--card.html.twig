@@ -1,0 +1,26 @@
+{{ attach_library('classy/node') }}
+
+{#
+/**
+ * Custom variable(s):
+ *
+ * - learning_paths
+ *   @see rhdp2_preprocess_node()
+ */
+ #}
+
+{% set num_resources = node.field_learning_path_content_item|length %}
+
+{% include '@components/card.twig' with {
+  'attributes': attributes,
+  'tag': {
+    'class': 'fa-graduation-cap',
+    'text': 'Learning guide'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'subtitle': num_resources ~ ' resources',
+  'body': short_description,
+} only %}

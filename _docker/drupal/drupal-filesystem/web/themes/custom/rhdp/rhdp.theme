@@ -193,6 +193,14 @@ function rhdp_js_settings_alter(array &$settings, AttachedAssetsInterface $asset
   $rhd_settings['keycloak'] = [];
   $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
   $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
+  $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
+
+  $rhd_settings['swel'] = [];
+  $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
+
+  $rhd_settings['fusion'] = [];
+  $rhd_settings['fusion']['url'] = $env_settings->get('fusion')['url'];
 
   $theme_path = drupal_get_path('theme', 'rhdp');
 
@@ -636,21 +644,21 @@ function rhdp_preprocess_field(&$variables, $hook) {
 /**
  * Returns a new random guid.
  */
-function createGUID() { 
-    
+function createGUID() {
+
   // Create a token
   $token      = $_SERVER['HTTP_HOST'];
   $token     .= $_SERVER['REQUEST_URI'];
   $token     .= uniqid(rand(), true);
-  
+
   // GUID is 128-bit hex
   $hash        = strtoupper(md5($token));
-  
+
   // Create formatted GUID
   $guid        = '';
-  
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability    
-  $guid .= substr($hash,  0,  8) . 
+
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
+  $guid .= substr($hash,  0,  8) .
        '-' .
        substr($hash,  8,  4) .
        '-' .
@@ -659,7 +667,7 @@ function createGUID() {
        substr($hash, 16,  4) .
        '-' .
        substr($hash, 20, 12);
-          
+
   return $guid;
 
 }
@@ -708,45 +716,6 @@ function rhdp_preprocess_assembly(&$variables) {
       $audience_selection = implode(',', $audience_selection_values);
       $variables['audience_selection'] = " data-audience={$audience_selection}";
     }
-  }
-
-  // @todo this should be in rhd_eloqua_embed
-  if ($assembly->hasField('field_eloqua_json')) {
-    $variables['eloqua_assembly_id'] = $assembly->id();
-    $options = [];
-    
-    if (isset($variables['elements']['#parent']) && !empty($variables['elements']['#parent'])) {
-      $parent = $variables['elements']['#parent'];
-      if ($parent['entity_type'] == 'assembly' && in_array($parent['entity']->bundle(),  ['content_call_to_action', 'cta_form'])) {
-        $options = ['options' => ['class' => []]];
-        $styles = $parent['entity']->get('visual_styles')->getValue();
-
-        if (!empty($styles)) {
-          foreach ($styles as $style) {
-            if (in_array($style['value'], ['sidebar', 'sidebar-form'])) {
-              echo $style['value'];
-              $options['class'][] = 'cta'; // this is a stupid name now. Should be "sidebar" i think
-            }
-            if (in_array($style['value'], ['inline'])) {
-              $options['class'][] = 'inline';
-            }
-            if (in_array($style['value'], ['overlabel'])) {
-              $options['class'][] = 'overlabel';
-            }
-          }
-        }
-      }
-    }
-
-    $tmpEloquaUrl = Url::fromRoute('rhd_eloqua_embed.getForm', ['assembly' => $assembly->id()], ['query' => ['options' => $options]]);
-
-
-    //adding a cache busting guit to the url to prevent Akami caching the page
-    $tmpEloquaUrl->setOption('query', [
-      'no_cache' => createGUID()
-    ]);
-
-    $variables['eloqua_iframe_url'] = $tmpEloquaUrl;
   }
 
   // Code Snippet assembly type.
@@ -1059,7 +1028,7 @@ function rhdp_library_info_alter(array &$libraries, $extension) {
     // Keycloak_url is only set on the Stage environment.
     if ($extension == 'rhdp' && $keycloak_url !== NULL) {
       // Remove the Prod Keycloak script URL from our library.
-      unset($libraries['base-theme']['js']['https://developers.redhat.com/auth/js/keycloak.js']);
+      unset($libraries['base-theme']['js']['https://sso.redhat.com/auth/js/keycloak.js']);
       // Add the Stage Keycloak script URL to our library.
       $libraries['base-theme']['js'][$keycloak_url] = [
         'type' => 'external',
@@ -1111,14 +1080,5 @@ function rhdp_preprocess_views_view_fields(&$variables) {
     $variables['connector_link_2_url'] = isset($field_connector_link_2_url) ? $field_connector_link_2_url : null;
     $variables['connector_link_2_text'] = isset($field_connector_link_2_text) ? $field_connector_link_2_text : null;
     $variables['connector_details_url_link'] = isset($field_connector_details_url_link) ? $field_connector_details_url_link : null;
-  }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function rhdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'user_login_form') {
-    $form['#attached']['library'][] = 'rhdp/drupal-user-login-form';
   }
 }

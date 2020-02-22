@@ -35,10 +35,10 @@ dependencies:
     - field.field.node.video_resource.field_video_resource_tags
     - field.field.node.video_resource.field_video_target_product
     - field.field.node.video_resource.field_video_thumbnail_url
-    - field.field.node.video_resource.field_video_transcript
     - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
+    - fences
     - field_layout
     - layout_discovery
     - link
@@ -68,9 +68,16 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_video_thumbnail_url:
     type: string
     weight: 1
@@ -116,7 +123,6 @@ hidden:
   field_video_resource: true
   field_video_resource_tags: true
   field_video_target_product: true
-  field_video_transcript: true
   field_views: true
   langcode: true
   links: true

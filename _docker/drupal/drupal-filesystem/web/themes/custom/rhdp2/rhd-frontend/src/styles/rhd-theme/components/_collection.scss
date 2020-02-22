@@ -1,0 +1,47 @@
+.rhd-c-collection {
+  .pf-c-pagination {
+    margin: 0;
+  }
+
+  ul.pager__items {
+    list-style: none;
+    margin-left: 0;
+    li {
+      display: inline;
+    }
+  }
+  
+  &.pager-dots {
+    .pager {
+      .pager__item--first,
+      .pager__item--previous,
+      .pager__item--next,
+      .pager__item--last {
+        display: none;
+      }
+      .pager__item {
+        a {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          overflow: hidden;
+          text-indent: -999px;
+          background-color: #D3D2D2;
+          border-radius: 10px;
+        }
+        &.is-active a {
+          background-color: #2B9BDA;
+        }
+      }
+    }
+  }
+
+  &.dark {
+    .pager__item a,
+    .pager__item a span {
+      color: #fff;
+    }
+  }
+}
+
+

@@ -1,0 +1,54 @@
+@import "../mixins";
+
+.rhd-jump-to-nav {
+  &.pf-c-content {
+    background-color: var(--pf-global--primary-color--100);
+    @include with-background-padding;
+    padding-right: var(--rhd-theme--container-spacer-3xl);
+    padding-left: var(--rhd-theme--container-spacer-3xl);
+
+    @media screen and (max-width: $pf-global--breakpoint--lg) {
+      padding-right: var(--rhd-theme--container-spacer-xl);
+      padding-left: var(--rhd-theme--container-spacer-xl);
+    }
+
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+      display: none;
+    }
+
+    a {
+      color: var(--pf-global--Color--light-100);
+      margin-right: var(--pf-global--spacer--xl);
+      text-decoration: none;
+
+      &:visited {
+        color: var(--pf-global--Color--light-100);
+        text-decoration: none;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--pf-global--Color--light-100);
+        text-decoration: underline;
+        font-weight: var(--pf-global--FontWeight--bold);
+        letter-spacing: -0.025em;
+      }
+
+      @media screen and (max-width: $pf-global--breakpoint--lg) {
+        border: 1px solid var(--pf-global--Color--light-100);
+        font-size: var(--pf-global--FontSize--md);
+        padding: 6px 8px;
+        margin: var(--pf-global--spacer--sm) var(--pf-global--spacer--lg) var(--pf-global--spacer--sm) 0;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: var(--pf-global--Color--light-100);
+          color: var(--rhd-c-button--m-secondary--Color);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

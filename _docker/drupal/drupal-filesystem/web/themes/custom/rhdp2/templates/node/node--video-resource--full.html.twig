@@ -1,0 +1,91 @@
+
+{% set calc_date = node.field_video_publish_date.value is not empty ? node.field_video_publish_date : node.published_at %}
+{% set has_slides = content.field_slideshare_source['#items'] ? true : false %}
+{% set has_target_product = content.field_video_target_product['#items'] ? true : false %}
+
+<div{{attributes.addClass('component').setAttribute('id','rhd-video-resource')}}>
+  <div class="pf-l-grid">
+    <div class="pf-l-grid__item pf-m-12-col">
+      <h4 class="content-type-label">Video</h4>
+      <h1{{ title_attributes.addClass('video-resource-title') }}>{{ label }}</h1>
+    </div>
+
+    <div class="pf-l-grid__item pf-m-12-col">
+      <div class="vr-info">
+      <ul>
+        {% if content.field_speakers['#items'] %}
+          <li><strong {{ author_attributes }}>By {{ content.field_speakers }}</strong></li>
+        {% endif %}
+        {% if calc_date and calc_date.value is not empty %}
+          <li>
+            <small>Published:
+              <rh-datetime datetime="{{calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
+            </small>
+          </li>
+        {% endif %}
+        <li class="right vr-social">
+          {% include '@rhdp/share.html.twig' %}
+        </li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="pf-l-grid__item pf-m-12-col">
+      <div class="pf-l-grid pf-m-gutter pf-u-mb-md">
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_slides ? 'pf-m-7-col-on-lg') }}">
+          {{ content.field_video_resource }}
+        </div>
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_slides ? 'pf-m-5-col-on-lg slides' : 'hide') }}">
+          <iframe src="https://www.slideshare.net{{ content.field_slideshare_source.0['#url'] }}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="pf-l-grid__item pf-m-12-col">
+    	<div class="pf-l-grid pf-m-gutter pf-u-mb-md">
+
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_target_product ? 'pf-m-8-col-on-lg') }} ">
+          <div class="show-more-text video-description">
+            {{ content.body }}
+          </div>
+          <a class="show-more hide" onclick="return false;">
+            <span class="more">Show More</span>
+            <span class="less">Show Less</span>
+          </a>
+        </div>
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_target_product ? 'pf-m-4-col-on-lg' : 'hide') }} ">
+          {{ content.field_video_target_product }}
+        </div>
+      </div>
+    </div>
+
+    <div class="pf-l-grid__item pf-m-12-col pf-u-mb-md">
+      {% if content.field_video_related_links['#items'] %}
+      	{{ content.field_video_related_links }}
+      {% endif %}
+    </div>
+
+    <div id="video-more-like-this" class="pf-l-grid__item pf-m-12-col">
+      <div class="rhd-c-card-grid">
+        <div class="pf-l-flex" >
+          <h2 class="pf-c-title">More Like This</h2>
+        </div>
+        <div id ="video-related-cont" class="pf-l-flex rhd-c-card-grid__wrapper" data-tags="{{ video_tags|json_encode|replace('\"', '\'') }}">
+          {# Populated by related-content.js. Fetches content based on data-tags. #}
+        </div>
+      </div>
+    </div>
+
+    <div id="video-disqus-comments" class="pf-l-grid__item pf-m-12-col">
+      <div class="pf-l-grid__item">
+        {{ content.disqus_thread }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if node.field_exclude_from_search.value == '1' %}
+  <noscript>
+    <meta name="DCP:WebpageSearchExclude" content="true">
+  </noscript>
+{% endif %}

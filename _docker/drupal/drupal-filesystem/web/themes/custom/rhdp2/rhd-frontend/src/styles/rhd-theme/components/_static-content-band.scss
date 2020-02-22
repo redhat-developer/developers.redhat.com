@@ -1,0 +1,133 @@
+.component {
+  &.assembly-type-static_content_band {
+    .component-limit-width {
+      >.pf-l-flex {
+        &.rhd-c-card-grid__wrapper {
+          justify-content: flex-start;
+          margin-right: $rhd-flex-half--spacer-negative;
+          margin-left: $rhd-flex-half--spacer-negative;
+          @media screen and (max-width: $pf-global--breakpoint--sm) {
+            margin-right: 0;
+            margin-left: 0;
+          }
+          .assembly {
+
+            &.pf-l-flex,
+            &.assembly-type-node_reference {
+              max-width: initial;
+              width: 33.3%;
+              padding-right: $rhd-flex--spacer;
+              margin: 0;
+
+              @media screen and (max-width: $pf-global--breakpoint--md) {
+                width: 100%;
+                padding-right: 0;
+              }
+
+              .rhd-c-card {
+                width: 100%;
+                margin-right: 0;
+              }
+            }
+
+            &.rhd-c-card {
+              width: calc(33.3% - #{$rhd-flex--spacer});
+              margin-left: $rhd-flex-half--spacer;
+              margin-right: $rhd-flex-half--spacer;
+
+              @media screen and (max-width: $pf-global--breakpoint--md) {
+                width: calc(50% - #{$rhd-flex--spacer});
+              }
+
+              @media screen and (max-width: $pf-global--breakpoint--sm) {
+                width: 100%;
+                margin: 0 0 var(--rhd-theme--container-spacer-md) 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.four-up {
+      .component-limit-width {
+        >.pf-l-flex {
+          &.rhd-c-card-grid__wrapper {
+            justify-content: flex-start;
+            margin-right: $rhd-flex-half--spacer-negative;
+            margin-left: $rhd-flex-half--spacer-negative;
+            @media screen and (max-width: $pf-global--breakpoint--sm) {
+              margin-right: 0;
+              margin-left: 0;
+            }
+            .assembly {
+
+              &.pf-l-flex,
+              &.assembly-type-node_reference {
+                width: 25%;
+
+                @media screen and (max-width: $pf-global--breakpoint--lg) {
+                  width: 33%;
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--md) {
+                  width: 50%;
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--sm) {
+                  width: 100%;
+                }
+              }
+
+              &.rhd-c-card {
+                width: calc(25% - #{$rhd-flex--spacer});
+
+                @media screen and (max-width: $pf-global--breakpoint--lg) {
+                  width: calc(33% - #{$rhd-flex--spacer});
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--md) {
+                  width: calc(50% - #{$rhd-flex--spacer});
+                }
+
+                @media screen and (max-width: $pf-global--breakpoint--sm) {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.left {
+      .component-limit-width {
+        >.pf-l-flex {
+          &.rhd-c-card-grid__wrapper {
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+
+    &.centered {
+      .component-limit-width {
+        >.pf-l-flex {
+          &.rhd-c-card-grid__wrapper {
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    &.right {
+      .component-limit-width {
+        >.pf-l-flex {
+          &.rhd-c-card-grid__wrapper {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

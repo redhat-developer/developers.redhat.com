@@ -1,7 +1,22 @@
 services:
+  cache.wordrpress_api:
+   class: Drupal\Core\Cache\CacheBackendInterface
+   tags:
+     - { name: cache.bin }
+   factory: cache_factory:get
+   arguments: ['wordpress_api']
   rhd_assemblies.wordpress_api:
     class: Drupal\rhd_assemblies\Service\WordpressApi
-    arguments: ['@http_client']
+    arguments: ['@http_client', '@config.factory', '@cache.wordpress_api', '@logger.factory']
+  cache.download_manager:
+   class: Drupal\Core\Cache\CacheBackendInterface
+   tags:
+     - { name: cache.bin }
+   factory: cache_factory:get
+   arguments: ['download_manager']
   rhd_assemblies.download_manager_api:
     class: Drupal\rhd_assemblies\Service\DownloadManagerApi
-    arguments: ['@http_client', '@entity_type.manager']
+    arguments: ['@http_client', '@entity_type.manager', '@cache.download_manager', '@logger.factory', '@config.factory']
+  rhd_assemblies.assembly_build_connectors_build:
+    class: Drupal\rhd_assemblies\Plugin\AssemblyBuild\ConnectorsBuild
+    arguments: ['@entity_type.manager']

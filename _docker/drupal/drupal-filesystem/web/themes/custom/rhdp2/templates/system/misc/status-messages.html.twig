@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Theme override for status messages.
+ *
+ * Displays status, error, and warning messages, grouped by type.
+ *
+ * An invisible heading identifies the messages for assistive technology.
+ * Sighted users see a colored box. See http://www.w3.org/TR/WCAG-TECHS/H69.html
+ * for info.
+ *
+ * Add an ARIA label to the contentinfo area so that assistive technology
+ * user agents will better describe this landmark.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ */
+#}
+<div data-drupal-messages>
+{% block messages %}
+{% for type, messages in message_list %}
+
+  {%
+    set classes = [
+      'pf-c-alert',
+      'pf-m-inline',
+    ]
+  %}
+  {% if type == 'custom' %}
+    {% set classes = classes|merge(['pf-m-info']) %}
+    {% set icon_class = 'fa-info-circle' %}
+  {% elseif type == 'error' %}
+    {% set classes = classes|merge(['pf-m-danger']) %}
+    {% set icon_class = 'fa-exclamation-circle' %}
+  {% elseif type == 'status' %}
+    {% set classes = classes|merge(['pf-m-success']) %}
+    {% set icon_class = 'fa-check-circle' %}
+  {% elseif type == 'warning' %}
+    {% set classes = classes|merge(['pf-m-warning']) %}
+    {% set icon_class = 'fa-exclamation-triangle' %}
+  {% else %}
+    {% set icon_class = 'fa-bell' %}
+  {% endif %}
+  
+
+  <div {{ attributes.addClass(classes)|without('role', 'aria-label') }} aria-label="{{ status_headings[type] }}" role="contentinfo">
+
+    <div class="pf-c-alert__icon">
+      <i class="fas {{ icon_class }}" aria-hidden="true"></i>
+    </div>
+
+    <p class="pf-c-alert__title">
+      {% if status_headings[type] %}
+        <span class="pf-screen-reader">{{ status_headings[type] }}</span>
+      {% endif %}
+      {% if messages|length == 1 %}
+        {{ messages|first }}
+      {% endif %}
+    </p>
+
+    {% if messages|length > 1 %}
+      <div class="pf-c-alert__description">
+        <ul>
+          {% for message in messages %}
+            {% if not message.first %}
+              <li>{{ message }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+  </div>
+
+  {# Remove type specific classes. #}
+  {% set attributes = attributes.removeClass(classes) %}
+
+{% endfor %}
+{% endblock messages %}
+</div>

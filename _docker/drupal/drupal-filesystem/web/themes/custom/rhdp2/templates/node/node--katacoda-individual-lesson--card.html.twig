@@ -1,0 +1,34 @@
+{{ attach_library('classy/node') }}
+
+{% set scenario_time = '' %}
+{% set skill_level = '' %}
+
+{# Validate our data prior to accessing it. #}
+{% if (content.field_katacoda_scenario_time[0]['#markup']) is not empty %}
+	{% set scenario_time = content.field_katacoda_scenario_time[0]['#markup'] %}
+{% else %}
+	{% set scenario_time = null %}
+{% endif %}
+
+{% if (content.field_katacoda_skill_level[0]['#markup']) is not empty %}
+	{% set skill_level = content.field_katacoda_skill_level[0]['#markup'] %}
+{% else %}
+	{% set skill_level = null %}
+{% endif %}
+
+{% include '@components/card.twig' with {
+  'attributes': attributes,
+  'tag': {
+    'class': 'fa-terminal',
+    'text': 'Lesson'
+  },
+  'title': {
+    'text': node.label
+  },
+  'subtitle': scenario_time ~ ' minutes | ' ~ skill_level,
+  'body': content.body[0]['#text']|striptags,
+  'cta': {
+    'url': url,
+    'text': 'Start'
+  }
+} only %}

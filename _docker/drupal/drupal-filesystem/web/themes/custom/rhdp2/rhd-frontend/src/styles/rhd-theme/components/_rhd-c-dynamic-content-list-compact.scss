@@ -1,0 +1,13 @@
+.component {
+    &.rhd-c-dynamic-content-list-compact {
+        .pf-c-card {
+            &.rhd-c-card__list {
+                height: auto;
+                .rhd-c-card__title {
+                    max-height: none;
+                    min-height: 0;
+                }
+            }
+        }
+    }
+}

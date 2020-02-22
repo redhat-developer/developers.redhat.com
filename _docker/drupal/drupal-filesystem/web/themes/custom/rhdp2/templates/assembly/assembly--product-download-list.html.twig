@@ -1,0 +1,43 @@
+{% set classes = [
+  'rhd-c-product-download-list',
+  'pf-c-content'
+] %}
+<div {{ attributes.addClass(classes) }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <h3 class="pf-c-title">All Downloads</h3>
+
+    {% for version in elements.versions %}
+    {# Adjust for 13-digit Unix timestamp #}
+    {% set versionReleaseDate = version.releaseDate / 1000 %}
+
+    <!-- Start of version row -->
+    <div class="pf-l-grid__item pf-m-12-col">
+      <h3 class="pf-u-mb-md">{{ version.versionName }}</h3>
+
+      {% for file in version.files %}
+      <!-- Start of version row item -->
+      <div class="pf-l-grid pf-m-gutter product-version">
+        <div class="pf-l-grid__item product-version__file-label-wrapper">
+          <p class="product-version__file-label">{{ file.label }}</p>
+        </div>
+        <div class="pf-l-grid__item product-version__file-description">
+          {{ file.description }}
+        </div>
+        <div class="pf-l-grid__item product-version__release-date-wrapper">
+          <i class="fa fa-calendar-alt"></i> Release date <br/><span class="product-version__release-date">{{ versionReleaseDate|date("F d, Y") }}</span>
+        </div>
+        <div class="pf-l-grid__item product-version__cta">
+          {% if file.fileSize is defined and file.fileSize is not null %}
+            <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download ({{ file.fileSize }})</a>
+          {% else %}
+            <a class="pf-c-button pf-m-secondary" href="{{ file.url }}">Download</a>
+          {% endif %}
+        </div>
+      </div><!-- End of version row item -->
+
+      {% endfor %}
+    </div><!-- End of version row -->
+    {% endfor %}
+
+  </div>
+</div>

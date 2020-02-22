@@ -1,0 +1,832 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the RHDP2 theme.
+ */
+
+use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function rhdp2_preprocess_page(&$variables) {
+  $variables['universal_menu'] = _rhdp2_build_menu('universal-header', ['pf-c-nav__tertiary-list']);
+  $variables['main_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list']);
+  $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
+  $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
+}
+
+/**
+ * Get a menu render array suitable for main navigation purposes.
+ */
+function _rhdp2_build_menu($menu_name, Array $classes = [], $theme = FALSE) {
+  $menu_parameters = new MenuTreeParameters();
+  $menu_parameters->setMaxDepth(1);
+
+  // Get the tree.
+  $menu_tree_service = \Drupal::service('menu.link_tree');
+  $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+
+  // Apply some manipulators (checking the access, sorting).
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkNodeAccess'],
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree_service->transform($tree, $manipulators);
+
+  // Build the tree.
+  $tree = $menu_tree_service->build($tree);
+  foreach ($classes as $c) {
+    $tree['#attributes']['class'][] = $c;
+  }
+
+  if ($theme) {
+    $tree['#theme'] = $theme;
+  }
+
+  return $tree;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function rhdp2_preprocess_menu(&$variables) {
+  $variables['theme_path'] = base_path() . $variables['directory'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::request()->attributes->get('node');
+
+  if (!is_null($node) && method_exists($node, 'getType')) {
+    $new_suggestion = 'page__' . $node->getType();
+
+    if (!in_array($new_suggestion, $suggestions)) {
+      $suggestions[] = $new_suggestion;
+    }
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function rhdp2_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  $type = $node->bundle();
+
+  // Process read time.
+  $measured_read_time_types = [
+    'books',
+    'cheat_sheet',
+    'rh_training_class',
+    'video_resource',
+  ];
+
+  if (in_array($type, $measured_read_time_types) && $variables['view_mode'] == 'learning_path_card') {
+    $read_time = '';
+
+    switch ($type) {
+      case $node->hasField('field_read_time'):
+        $read_time = $node->get('field_read_time')->getValue();
+        break;
+
+      case $node->hasField('field_duration'):
+        $read_time = $node->get('field_duration')->getValue();
+        break;
+
+      case $node->hasField('field_completion_time'):
+        $read_time = $node->get('field_completion_time')->getValue();
+        break;
+    }
+
+    if (isset($read_time[0])) {
+      $read_time_text = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
+
+      if ($read_time[0]['interval'] > 1) {
+        $read_time_text .= 's';
+      }
+
+      $variables['interval'] = $read_time_text ?? '';
+    }
+  }
+
+  // Add difficulty to attributes.
+  if ($node->hasField('field_difficulty')) {
+    $field_difficulty = $node->get('field_difficulty')->getValue();
+    $difficulty_value = ucfirst($field_difficulty[0]['value'] ?? 'Unclassified');
+    $variables['attributes']['level'] = $difficulty_value;
+  }
+
+  // Article content type.
+  if ($type == 'article') {
+    $variables['has_hero'] = FALSE;
+    $variables['author_location'] = 'left';
+
+    // Set hero and author location if opinion content.
+    $article_type = $node->get('field_article_type')->getValue();
+    if ($article_type && !empty($article_type) && isset($variables['content']['field_image'])) {
+      $article_type_value = $article_type[0]['value'];
+
+      if ($article_type_value == 'opinion') {
+        $variables['has_hero'] = TRUE;
+        $variables['author_location'] = 'right';
+        $variables['content']['field_image'][0]['#image_style'] = 'hero';
+      }
+    }
+
+    // Process Table of Contents.
+    if ($node->hasField('field_hide_toc')) {
+      $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
+    }
+
+    // Prepares the authors render element.
+    if ($variables['view_mode'] === 'card') {
+      $authors = $node->get('field_author_evangelist')->getValue();
+      $tids = [];
+
+      foreach ($authors as $author) {
+        $tids[] = $author['target_id'];
+      }
+
+      $author_nodes = Node::loadMultiple($tids);
+
+      if (count($author_nodes) < 1) {
+        $variables['authors'] = NULL;
+      }
+      elseif (count($author_nodes) === 1) {
+        $nid = reset($author_nodes)->id();
+        $author_url_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
+        $current_path = \Drupal::service('path.current')->getPath();
+        $current_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+        if ($author_url_alias === $current_alias) {
+          $variables['authors'] = [
+            '#markup' => reset($author_nodes)->getTitle(),
+          ];
+        }
+        else {
+          // Reset to retrieve the element since there is only 1.
+          $authors_values = [
+            'name' => reset($author_nodes)->getTitle(),
+            'url' => Url::fromRoute('entity.node.canonical', ['node' => reset($author_nodes)->id()]),
+          ];
+
+          // Get a renderable author Link and set the rhd-m-link class.
+          $authors_link = Link::fromTextAndUrl($authors_values['name'], $authors_values['url']);
+          $authors_link = $authors_link->toRenderable();
+          $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+          $variables['authors'] = $authors_link;
+        }
+      }
+      else {
+        $authors_values = [];
+
+        foreach ($author_nodes as $author_node) {
+          $authors_values[] = $author_node->getTitle();
+        }
+
+        // Keep spaces inserted around & for output.
+        $variables['authors'] = implode(' & ', $authors_values);
+      }
+    }
+
+    // Process for view mode compact_dynamic_article_list_item.
+    if ($variables['view_mode'] === 'compact_dynamic_article_list_item') {
+      $variables['rhd_domain'] = FALSE;
+      $variables['absolute_url'] = FALSE;
+
+      $current_path = \Drupal::service('path.current')->getPath();
+      $url = Url::fromUri("internal:$current_path");
+      $variables['absolute_url'] = $url->setAbsolute()->toString();
+
+      // Requires redhat domain to run comment js.
+      if ($_SERVER['SERVER_NAME']) {
+        $host = parse_url($variables['absolute_url'], PHP_URL_HOST);
+        if ($host === $_SERVER['SERVER_NAME'] && !(strpos($host, 'redhat.com') === FALSE)) {
+          $variables['rhd_domain'] = TRUE;
+        }
+      }
+    }
+  }
+
+  // Author content type.
+  if ($type === 'author') {
+    $variables['author_name'] = $node->getTitle();
+    $variables['author_articles'] = FALSE;
+    $variables['social_links'] = FALSE;
+
+    if (views_get_view_result('author_articles')) {
+      $variables['author_articles'] = views_embed_view('author_articles');
+    }
+
+    $social_facebook = $node->get('field_facebook')->getValue();
+    $social_github = $node->get('field_github')->getValue();
+    $social_linkedin = $node->get('field_linkedin')->getValue();
+    $social_twitter = $node->get('field_twitter')->getValue();
+    $social_youtube = $node->get('field_youtube')->getValue();
+
+    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
+      $variables['social_links'] = TRUE;
+      $variables['social_github'] = $social_github[0]['uri'] ?? FALSE;
+      $variables['social_facebook'] = $social_facebook[0]['uri'] ?? FALSE;
+      $variables['social_linkedin'] = $social_linkedin[0]['uri'] ?? FALSE;
+      $variables['social_twitter'] = $social_twitter[0]['uri'] ?? FALSE;
+      $variables['social_youtube'] = $social_youtube[0]['uri'] ?? FALSE;
+    }
+  }
+
+  // Events content type.
+  if ($type == 'events') {
+    $variables['event_title'] = $node->getTitle();
+    $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
+
+    if ($node->hasField('field_more_details') && $event_details_link = $node->get('field_more_details')->getValue()) {
+      $variables['event_url'] = $event_details_link[0]['uri'];
+    }
+
+    // TODO: Fix Duplicate Logic: See preprocess_assembly.
+    // Note: Also will not work properly without search and replace on export.
+    if ($node->hasField('field_event_background_image')) {
+      $image_value = $node->get('field_event_background_image')->getValue();
+      if ($image_value) {
+        $file_id = $image_value[0]['target_id'];
+        $uri = File::load($file_id)->getFileUri();
+        $variables['event_image_url'] = file_create_url($uri);
+      }
+    }
+
+    // Teaser view mode.
+    if ($variables['view_mode'] == 'teaser') {
+      $node_title = $node->label();
+      $variables['node_title'] = str_replace('"', '', $node_title);
+    }
+  }
+
+  // Learning Path content type and Card view mode.
+  if ($type === 'learning_path' && $variables['view_mode'] === 'card') {
+    if ($lp_sd = $node->get('field_short_description')->value) {
+      $variables['short_description'] = $lp_sd;
+    }
+
+    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
+    $lp_content = $node->get('field_learning_path_content_item')->getValue();
+
+    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
+      $ref = Node::load($lp_content[$i]['target_id']);
+      $variables['content']['lessons'][] = [
+        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
+        'title' => ['#markup' => $ref->label()],
+      ];
+    }
+  }
+
+  // Needed to build the path alias to the Download route.
+  // @TODO: Replace featured_tile usage with card.
+  if ($type === 'product' &&  in_array($variables['view_mode'], ['featured_tile', 'card'])) {
+    $variables['url_product_name'] = $node->get('field_url_product_name')->value ?? '';
+  }
+
+  // Attach libraries to the Video Resource, default view mode.
+  if ($type === 'video_resource') {
+    if ($variables['view_mode'] === 'full') {
+      $variables['#attached']['library'][] = 'rhdp2/show-more';
+      $variables['#attached']['library'][] = 'rhdp2/related-content';
+    }
+
+    // Add formatted timestamp for field_duration to render array.
+    if ($variables['view_mode'] === 'tile') {
+      $field_duration = $node->get('field_duration')->getValue();
+
+      foreach ($field_duration as $d) {
+        if ($d['period'] === 'hour') {
+          $hours = $d['interval'];
+        }
+        elseif ($d['period'] === 'minute') {
+          $minutes = $d['interval'];
+        }
+        elseif ($d['period'] === 'second') {
+          $seconds = $d['interval'];
+        }
+      }
+
+      $timestamp = '';
+      if (!empty($hours)) {
+        $timestamp = $hours . ':';
+      }
+      if (!empty($minutes)) {
+        $timestamp = $timestamp . $minutes . ':';
+      }
+      else {
+        $timestamp = $timestamp . '0:';
+      }
+      if (!empty($seconds)) {
+        $timestamp = $timestamp . $seconds;
+      }
+      else {
+        $timestamp = $timestamp . '0';
+      }
+
+      $variables['timestamp'] = $timestamp;
+    }
+  }
+
+  if ($node->hasField('field_cheat_sheet_download_url')) {
+    $env_settings = \Drupal::config('redhat_developers');
+    $download_manager_base_url = $env_settings->get('downloadManager')['baseUrl'];
+    $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
+    $download_path = parse_url($download_url[0]['uri'])['path'];
+    $download_url = $download_manager_base_url . $download_path;
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+  }
+}
+
+/**
+ * Implements hook_preprocess_assembly().
+ */
+function rhdp2_preprocess_assembly(&$variables) {
+  $assembly = $variables['elements']['#assembly'];
+  $type = $assembly->bundle();
+
+  // Add component class to assemblies.
+  $assembly_compontent_exclude_list = [
+    'combo_item_assembly',
+    'combo_item_manual',
+    'combo_item_node',
+    'content_pull_quote',
+    'bonus_content_item',
+    'node_reference',
+    'static_item',
+    'wordpress_post_reference',
+  ];
+
+  if (!in_array($type, $assembly_compontent_exclude_list)) {
+    $variables['attributes']['class'][] = 'component';
+  }
+
+  // Set audience selection as a data attribute.
+  if ($assembly->hasField('field_audience_selection')) {
+    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
+
+    if ($field_audience_selection_values) {
+      $audience_selection_values = [];
+
+      foreach ($field_audience_selection_values as $field_audience_selection_value) {
+        $audience_selection_values[] = $field_audience_selection_value['value'];
+      }
+
+      $audience_selection = implode(',', $audience_selection_values);
+      $variables['attributes']['data-audience'] = $audience_selection;
+    }
+  }
+
+  // Set the background image url from the field.
+  if ($assembly->hasField('field_background_image') && !$assembly->get('field_background_image')->isEmpty()) {
+    $file_id = $assembly->field_background_image->target_id;
+    $uri = File::load($file_id)->getFileUri();
+    $background_image_url = ImageStyle::load('billboard')->buildUrl($uri);
+  }
+
+  // Set the background image url for svg.
+  if ($assembly->hasField('field_background_svg') && !$assembly->get('field_background_svg')->isEmpty()) {
+    $file_id = $assembly->field_background_svg->target_id;
+    $uri = File::load($file_id)->getFileUri();
+    $background_image_url = file_create_url($uri);
+  }
+
+  if (isset($background_image_url)) {
+    $variables['attributes']->addClass('has-background');
+    $variables['attributes']['style'] = "background-image: url($background_image_url);";
+  }
+
+  if ($type == 'video_hero' && !isset($background_image_url)) {
+    $variables['attributes']['class'][] = 'rhd-m-video-background';
+  }
+
+  // Embedded Content assembly type.
+  if ($type == 'embedded_content') {
+    $field_url = $assembly->get('field_url')->getValue();
+    $embed_url = $field_url[0]['uri'];
+
+    if (strpos($embed_url, 'slideshare') !== FALSE) {
+      $variables['is_slideshare'] = TRUE;
+      $embed_url = preg_replace('/^http(s:)?/', '', $embed_url);
+    }
+
+    // Look for youtu.be or youtube.
+    elseif ($video_id = _extract_youtube_id($embed_url)) {
+      $variables['is_youtube'] = TRUE;
+      $embed_url = '//www.youtube.com/embed/' . $video_id . "?autoplay=0&start=0&rel=0&enablejsapi=1";
+    }
+
+    $variables['embed_url'] = $embed_url ?? FALSE;
+  }
+
+  // Set the image_uri and image_alt variables.
+  if ($assembly->hasField('field_image')) {
+    if ($image_value = $assembly->get('field_image')->getValue()) {
+      if ($file_id = $image_value[0]['target_id']) {
+        $uri = File::load($file_id)->getFileUri();
+        if ($image_uri = ImageStyle::load('large')->buildUrl($uri)) {
+          $variables['image_uri'] = $image_uri;
+          $variables['image_alt'] = $image_value[0]['alt'] ?? '';
+        }
+      }
+    }
+  }
+
+  // Extract sidebar link fields.
+  if ($assembly->hasField('field_sidebar_link') && $sidebar_links = $assembly->get('field_sidebar_link')->getValue()) {
+    $variables['has_sidebar_link'] = TRUE;
+    $variables['sidebar_link_uri'] = $sidebar_links[0]['uri'];
+    $variables['sidebar_link_title'] = $sidebar_links[0]['title'];
+  }
+
+  // Events Hero assembly type.
+  if ($type == 'events_hero') {
+    // Get secondary events count.
+    if ($assembly->hasField('field_secondary_events') && $secondary_events = $assembly->get('field_secondary_events')->getValue()) {
+      $variables['secondary_events_count'] = count($assembly->get('field_secondary_events')->getValue());
+    }
+    // Get light visual style.
+    $variables['light'] = FALSE;
+    if ($visual_styles = $assembly->get('visual_styles')->getValue()) {
+      foreach ($visual_styles as $key => $value) {
+        if (in_array('light', $value)) {
+          $variables['light'] = TRUE;
+          break;
+        }
+      }
+    }
+  }
+
+  // Add Display Type variables for curated_links.
+  if ($type == 'curated_links'
+      && $assembly->hasField('field_display_type_curated_links')) {
+    $variables['display_type'] = '';
+    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'] ?? NULL;
+    if (strpos($display_type, 'two-col') !== FALSE) {
+      $variables['display_type'] = 'two-col';
+    }
+    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
+      $variables['display_type'] = 'nav-menu';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function rhdp2_preprocess_block(array &$variables) {
+  // Verify that the #id has some non-empty value prior to using it.
+  if (!empty($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
+
+    if ($block_id == 'rhdp2_rhdnavigation_mobile') {
+      $variables['attributes']['class'][] = 'rhd-nav-mobile';
+    }
+
+    if ($block_id == 'rhdp2_rhdnavigation') {
+      $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function rhdp2_preprocess_field(&$variables, $hook) {
+  // If this is a non-empty video_embed_field, attach the proper library.
+  if ($variables['field_type'] === 'video_embed_field' && !empty($variables['items'][0])) {
+    $variables['items'][0]['content']['#attached']['library'][] = 'rhdp2/video_embed_field.responsive-video';
+  }
+
+  // If this image field is used as content_image in our Card component, then
+  // we will add the rhd-c-card__image-body class.
+  // @see ./components/card.twig
+  if (_is_field_used_as_content_image_in_card($variables)) {
+    foreach ($variables['items'] as $key => $item) {
+      $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image-body';
+    }
+  }
+
+  // If this image field is used as hero_image in our Card component, then
+  // we will add the rhd-c-card__image class.
+  // @see ./components/card.twig
+  if (_is_field_used_as_hero_image_in_card($variables)) {
+    foreach ($variables['items'] as $key => $item) {
+      // Do not render height and width attributes on this <img> tag.
+      $variables['items'][$key]['content']['#item_attributes']['height'] = NULL;
+      $variables['items'][$key]['content']['#item_attributes']['width'] = NULL;
+      // Add the rhd-c-card__image class to the <img> tag.
+      $variables['items'][$key]['content']['#item_attributes']['class'][] = 'rhd-c-card__image';
+    }
+  }
+
+  // Set column count variable for Columns field in
+  // Rich Text Columns assembly type.
+  if ($variables['field_name'] === 'field_columns' && $variables['element']['#bundle'] === 'rich_text_columns') {
+    $variables['three_up'] = FALSE;
+    if ($visual_styles = $variables['element']['#object']->get('visual_styles')->getValue()) {
+      foreach ($visual_styles as $key => $value) {
+        if (in_array('three-up', $value)) {
+          $variables['three_up'] = TRUE;
+          break;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Returns TRUE if field is used to populate the content_image in card.twig.
+ *
+ * @see ./components/card.twig
+ */
+function _is_field_used_as_content_image_in_card($variables) {
+  if ($variables['entity_type'] === 'node') {
+    if (($variables['element']['#bundle'] === 'cheat_sheet' && $variables['element']['#view_mode'] === 'card' && $variables['field_name'] === 'field_cover_image')
+      || ($variables['element']['#bundle'] === 'books' && $variables['element']['#view_mode'] === 'card' && $variables['field_name'] === 'field_cover_image')) {
+
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns TRUE if field is used to populate the hero_image in card.twig.
+ *
+ * @see ./components/card.twig
+ */
+function _is_field_used_as_hero_image_in_card($variables) {
+  if ($variables['entity_type'] === 'node') {
+    if ($variables['element']['#bundle'] === 'product' && $variables['element']['#view_mode'] === 'featured_tile' && $variables['field_name'] === 'field_image') {
+      return TRUE;
+    }
+  }
+  elseif ($variables['entity_type'] === 'assembly') {
+    if ($variables['element']['#bundle'] === 'static_item' && $variables['field_name'] === 'field_image') {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Extracts Youtube ID from url.
+ *
+ * @param string $url
+ *   The url provided to the embedded_content url field.
+ *
+ * @return Id
+ *   See https://gist.github.com/ghalusa/6c7f3a00fd2383e5ef33.
+ */
+function _extract_youtube_id($url) {
+  preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+  return $match[1] ?? NULL;
+}
+
+/**
+ * Implements hook_js_settings_alter().
+ */
+function rhdp2_js_settings_alter(array &$settings, AttachedAssetsInterface $assets) {
+  $env_settings = \Drupal::config('redhat_developers');
+
+  $settings['rhd'] = [];
+  $rhd_settings = &$settings['rhd'];
+
+  $rhd_settings['urls'] = [];
+  $rhd_settings['urls']['final_base_url'] = $env_settings->get('rhd_final_base_url');
+
+  $rhd_settings['downloadManager'] = [];
+  $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
+  $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
+      . $env_settings->get('searchisko')['port'];
+
+  $rhd_settings['keycloak'] = [];
+  $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
+  $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+  $rhd_settings['keycloak']['client_id'] = $env_settings->get('keycloak')['client_id'];
+  $rhd_settings['keycloak']['realm'] = $env_settings->get('keycloak')['realm'];
+
+  $rhd_settings['swel'] = [];
+  $rhd_settings['swel']['url'] = $env_settings->get('swel')['url'];
+
+  $rhd_settings['fusion'] = [];
+  $rhd_settings['fusion']['url'] = $env_settings->get('fusion')['url'];
+
+  $theme_path = drupal_get_path('theme', 'rhdp2');
+  $rhd_settings['templates'] = [];
+  $template = file_get_contents($theme_path . '/templates/client-side/book.html.twig');
+  $rhd_settings['templates']['book'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/mini_buzz.html.twig');
+  $rhd_settings['templates']['miniBuzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_buzz.html.twig');
+  $rhd_settings['templates']['productBuzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/buzz.html.twig');
+  $rhd_settings['templates']['buzz'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/terms_conditions.html.twig');
+  $rhd_settings['templates']['termsConditions'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_connector.html.twig');
+  $rhd_settings['templates']['connector'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/product_stackoverflow_template.html.twig');
+  $rhd_settings['templates']['productStackoverflowTemplate'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/search_page_template.html.twig');
+  $rhd_settings['templates']['searchPageTemplate'] = $template;
+
+  $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
+  $rhd_settings['templates']['stackoverflowTemplate'] = $template;
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function rhdp2_preprocess_html(array &$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  // Retrieve the redhat_developers config configuration object once.
+  $rhd_config = \Drupal::config('redhat_developers');
+
+  // Retrieve individual config values from the config object.
+  $environment = $rhd_config->get('environment');
+  $dtm_code = $rhd_config->get('dtm_code');
+  $sentry_track = $rhd_config->get('sentry_track');
+  $sentry_script = $rhd_config->get('sentry_script');
+  $sentry_code = $rhd_config->get('sentry_code');
+  $rhd_base_url = $rhd_config->get('rhd_base_url');
+  $rhd_final_base_url = $rhd_config->get('rhd_final_base_url');
+
+  $variables['rhd_environment'] = $environment;
+  $variables['rhd_dtm_code'] = $dtm_code;
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_sentry_track'] = $sentry_track;
+  $variables['rhd_sentry_script'] = $sentry_script;
+  $variables['rhd_sentry_code'] = $sentry_code;
+  $variables['rhd_base_url'] = $rhd_base_url;
+  $variables['rhd_final_base_url'] = $rhd_final_base_url;
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+  if ($environment != 'prod') {
+    $referrer = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        // Set name for element.
+        'name' => 'referrer',
+        // Set value for title.
+        'value' => 'unsafe-url',
+      ],
+    ];
+
+    $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+  }
+}
+
+/**
+ * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ */
+function redhat_www_ddo_default($node) {
+  $request = \Drupal::request();
+  $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
+  $errorType = "";
+  $errorMessage = "";
+  $ddo_language = "";
+  $ddo_pageID = "";
+  $ddo_title = "";
+
+  if (!is_null($node)) {
+    if ($siteerror == '/node/' . $node->nid->value) {
+      $errorType = "404";
+      $errorMessage = "404-error";
+    }
+
+    $ddo_language = $node->langcode->value;
+    $ddo_pageID = $node->nid->value;
+    $ddo_title = $node->title->value;
+  }
+
+  $ddo = [
+    'page' => [
+      'attributes' => [
+        'queryParameters' => '',
+      ],
+      'category' => [
+        'contentType' => '',
+        'contentSubType' => '',
+        'keyPage' => FALSE,
+        'keyPageType' => '',
+        'pageType' => '',
+        'primaryCategory' => '',
+        'subCategories' => [],
+      ],
+      'pageInfo' => [
+        'breadCrumbs' => [],
+        'cms' => 'RHD CMS 8',
+        'destinationURL' => '',
+        'errorMessage' => $errorMessage,
+        'errorType' => $errorType,
+        'language' => $ddo_language,
+        'pageID' => $ddo_pageID,
+        'contentID' => $ddo_pageID,
+        'pageName' => '',
+        'referringDomain' => '',
+        'referringURL' => '',
+        'syndicationIds' => [],
+        'sysEnv' => '',
+        'title' => $ddo_title,
+      ],
+      'listing' => [
+        'browseFilter' => '',
+        'query' => '',
+        'queryMethod' => '',
+        'refinementType' => '',
+        'refinementValue' => '',
+        'resultCount' => '',
+        'searchType' => '',
+      ],
+    ],
+    'user' => [
+      [
+        'profile' => [
+          [
+            'profileInfo' => [
+              'accountID' => '',
+              'daysSinceLastPurchase' => '',
+              'daysSinceRegistration' => '',
+              'eloquaGUID' => 'POPULATE ELOQUA ID',
+              'keyCloakID' => '',
+              'loggedIn' => FALSE,
+              'profileID' => '',
+              'registered' => FALSE,
+              'socialAccountsLinked' => [],
+              'subscriptionFrequency' => '',
+              'subscriptionLevel' => '',
+              'userAgent' => '',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'event' => [],
+  ];
+
+  return $ddo;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * By default, we will load the Keycloak prod script. On our Stage environment
+ * we will set a config object, redhat_developers.keycloak.scriptUrl, that will
+ * be the URL path to the Keycloak stage script. If this config object exists,
+ * then we know to override the default prod Keycloak script with the Keycloak
+ * stage script.
+ */
+function rhdp2_library_info_alter(array &$libraries, $extension) {
+  $rhd_config = \Drupal::config('redhat_developers');
+
+  // Verify that the Keycloak config key/value exists and the scriptUrl index
+  // exists within that config key/value pair.
+  //
+  // NOTE: If this is not set, then the library will not be altered, and
+  // whatever key/values provides in the RHDP theme's libraries.yml file will
+  // be used.
+  if ($rhd_config->get('keycloak') && isset($rhd_config->get('keycloak')['scriptUrl'])) {
+    // This should return the stage Keycloak script URL on our Stage
+    // environment, but otherwise, the config object will not be set, and this
+    // will be NULL.
+    $keycloak_url = $rhd_config->get('keycloak')['scriptUrl'];
+
+    // Keycloak_url is only set on the Stage environment.
+    if ($extension == 'rhdp2' && $keycloak_url !== NULL) {
+      // Remove the Prod Keycloak script URL from our library.
+      unset($libraries['base-theme']['js']['https://sso.redhat.com/auth/js/keycloak.js']);
+      // Add the Stage Keycloak script URL to our library.
+      $libraries['base-theme']['js'][$keycloak_url] = [
+        'type' => 'external',
+        'minified' => FALSE,
+      ];
+    }
+  }
+}

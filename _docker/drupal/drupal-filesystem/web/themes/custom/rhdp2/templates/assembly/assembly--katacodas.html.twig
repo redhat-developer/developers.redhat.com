@@ -1,0 +1,5 @@
+{% include '@components/card-grid.twig' with {
+  'attributes': attributes,
+  'title': content.field_title,
+  'content': content|without('field_title')
+} only %}

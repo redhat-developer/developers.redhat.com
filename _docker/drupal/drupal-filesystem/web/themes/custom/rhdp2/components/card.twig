@@ -1,0 +1,128 @@
+{#
+/**
+ * The RHDP Card component.
+ *
+ * Available variables:
+ * - attributes: The Drupal 8 Attributes object for this render array/element.
+ * - hero_image: A hero image that displays at the top of card, full-width.
+ * - hero_video_thumbnail: A hero video thumbnail that displays at the top of
+ *   card, full-width, with a Play icon overlay in the center of the thumbnail
+ *   and a timestamp overlay in the bottom right corner.
+ * - hero_video_thumbnail_timestamp: A timestamp that displays the duration of
+ *   the video resource in HH:MM::SS.
+ * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
+ * - title:
+ *   - title.url: Typically a link to the node displayed in the card.
+ *   - title.text: The title of the node displayed in the Card.
+ * - subtitle: A section for either a subtitle or metadata below the title.
+ * - body: The body text for this Card. This could be a summary or otherwise
+ *   trimmed version if the body text is too long.
+ * - authors: The author(s) of this piece of content. In some instances, this is
+ *   implemented via plain text fields, but in others (like Articles) it is an
+ *   entity reference to the Authors bundle.
+ * - content_image: An image rendered within the content of the Card.
+ * - comment_count: A string integer of the number of comments made on the
+ *   content within the card.
+ * - cta:
+ *   - cta.text: The link text
+ *   - cta.url: The link href
+ * - absolute_url: The absolute path to a piece of content
+ *   @see rhd_disqus.module
+ * - rhd_domain: Returns TRUE if this is a redhat.com domain
+ *   @see rhd_disqus.module
+ */
+#}
+{% set tag_attributes = create_attribute({'class': ['fas']}) %}
+
+<div {{ attributes.addClass('pf-c-card', 'rhd-c-card') }}>
+
+  {% if hero_image is not empty %}
+  <div class="rhd-c-card-blur-image">
+      {{ hero_image }}
+  </div>
+  {{ hero_image }}
+  {% endif %}
+
+  {% if hero_video_thumbnail is not empty %}
+    <div class="rhd-c-card__video">
+      <div class="rhd-c-card__video-time">{{ hero_video_thumbnail_timestamp }}</div>
+      <i class="far fa-play-circle"></i>
+      {{ hero_video_thumbnail }}
+    </div>
+  {% endif %}
+  
+  {% if tag is not empty %}
+    <div class="rhd-c-card__tag">
+      <i {{ tag_attributes.addClass(tag.class) }}></i>
+      {{ tag.text }}
+    </div>
+  {% endif %}
+
+  <div class="rhd-c-card-content">
+    {% if title is not empty %}
+      {# Set the appropriate title classes whether or not a hero_image exists #}
+      {% if hero_image is empty and hero_video_thumbnail is empty %}
+        {% set title_classes = ['rhd-c-card__title', 'rhd-m-card-title__no-image'] %}
+      {% else %}
+        {% set title_classes = ['rhd-c-card__title'] %}
+      {% endif %}
+
+      {% if title.url is not empty %}
+        <h3 class="{{ title_classes|join(' ') }}">
+          <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
+        </h3>
+      {% elseif title.url is empty and title.text is not empty %}
+        <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
+      {% endif %}
+    {% endif %}
+
+    {% if subtitle is not empty %}
+      <div class="rhd-c-card__subtitle">{{ subtitle }}</div>
+    {% endif %}
+
+    {% if body is not empty %}
+      <p class="rhd-c-card__body ">{{ body }}</p>
+    {% endif %}
+
+    {% if (authors is not empty) or (absolute_url and rhd_domain and "developers.redhat.com" in absolute_url) %}
+      <div class="rhd-c-card__footer">
+        {% if authors is not empty %}
+          <div class="rhd-c-card__footer--author">
+            {{ authors }}
+          </div>
+        {% endif %}
+        {#
+         # @todo see RHDX-233, RHDX-234 and RHDX-124
+         #
+         # This section of HTML is currently commented out of this template
+         # because the comment count was not being displayed in the component
+         # anyway, and we should at least avoid these extra network calls and
+         # the possibility of hitting the Disqus API quota until we can properly
+         # implement the comment count in RHDX-234 and RHDX-124.
+         #
+        {% if absolute_url and rhd_domain and "developers.redhat.com" in absolute_url %}
+          <div class="tile-comment-count hidden" data-disqus-thread-link="{{ absolute_url }}" data-disqus-comment-count>
+            <a href="{{ absolute_url }}#disqus_thread">
+              <span class="fa fa-comment"></span>
+              <span class="comment-number" data-disqus-comment-count-number></span>
+              <span class="count-verbage" data-disqus-comment-count-verbage>Comments</span>
+            </a>
+          </div>
+        {% endif %}
+        #}
+      </div>
+    {% endif %}
+
+    {% if content_image is not empty %}
+      {{ content_image }}
+    {% endif %}
+
+    {% if cta is not empty %}
+      <div class="rhd-c-card__footer">
+        <a href={{ cta.url }} class="rhd-m-link">
+          {{ cta.text }} <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>

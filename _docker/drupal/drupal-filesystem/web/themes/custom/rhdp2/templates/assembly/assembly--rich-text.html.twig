@@ -1,0 +1,28 @@
+{#
+/**
+ * @file assembly--rich-text.html.twig
+ * Rich text assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('rich-text') }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item">
+      <div class="rich-text-content pf-c-content">
+        {% if content.field_title|render %}
+          <h2 class="pf-c-title">{{ content.field_title }}</h2>
+        {% endif %}
+        {% if content %}
+          {{- content|without('field_title') -}}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

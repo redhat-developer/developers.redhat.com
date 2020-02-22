@@ -75,7 +75,7 @@ export default class DPCategoryList extends RHElement {
 
         window.addEventListener('resize', e => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(this.windowRedrawComponent.bind(this), 666);
+            resizeTimer = window.setTimeout(this.windowRedrawComponent.bind(this), 666);
         });
 
         this.addEventListener('dp-category-selected', e => {

@@ -1,0 +1,85 @@
+.component {
+    //isolate any absolute positioned children to the component
+    position: relative;
+    .pf-l-grid,
+    .pf-l-level,
+    .pf-l-gallery,
+    .pf-l-flex,
+    .pager,
+    .component-limit-width {
+        max-width: map-get($rhd-breakpoints, xlarge);
+        margin: 0 auto;
+    }
+
+    padding: 0 var(--rhd-theme--container-spacer-3xl);
+    margin-top: var(--rhd-theme--container-spacer-xl);
+    margin-bottom: var(--rhd-theme--container-spacer-xl);
+
+    @media screen and (max-width: $pf-global--breakpoint--lg) {
+        padding-left: var(--rhd-theme--container-spacer-xl);
+        padding-right: var(--rhd-theme--container-spacer-xl);
+    }
+    @media screen and (max-width: $pf-global--breakpoint--md) {
+        padding-left: var(--rhd-theme--container-spacer-xl);
+        padding-right: var(--rhd-theme--container-spacer-xl);
+    }
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+        padding-left: var(--rhd-theme--container-spacer-md);
+        padding-right: var(--rhd-theme--container-spacer-md);
+    }
+
+   //remove default side padding when inside another component
+    .pf-c-card & {
+        padding: var(--rhd-theme--container-spacer-md) 0;
+        @media screen and (max-width: $pf-global--breakpoint--lg) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+        @media screen and (max-width: $pf-global--breakpoint--md) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+            padding: var(--rhd-theme--container-spacer-md) 0;
+        }
+    }
+
+    /*Reset floats from old 2018 css globals */
+    &.left   { 
+        float: none !important; 
+    }
+    &.centered   { 
+        float: none !important; 
+    }
+    &.right  { 
+        float: none !important; 
+    }
+
+    //default component classes
+    &.background-gray {
+        background: $rhd-theme--component-background--color-extra-light;
+    }
+    &.no-padding-top {
+        margin-top: 0;
+    }
+    &.no-padding-bottom {
+        margin-bottom: 0;
+    }
+
+    &.has-background {
+        @include with-background-padding;
+    }
+
+    //extra component classes
+    &.image-no-crop {
+        .rhd-c-card {
+            img.rhd-c-card__image, img.image-style-static-item {
+                object-fit: contain;
+            }
+            .rhd-c-card-blur-image {
+                display: block;
+                img, .rhd-c-card__image, img.image-style-static-item {
+                    object-fit: fill;
+                  }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{#
+/**
+ * @file assembly--featured-evangelists.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'component',
+]%}
+<section{{ attributes.addClass(classes) }}>
+  {% if content.field_title|render %}
+    <div class="pf-l-flex">
+      <h1>{{ content.field_title }}</h1>
+    </div>
+  {% endif %}
+
+  <div class="pf-l-grid pf-m-gutter">
+    {% for key, evangelist in content.field_evangelists if key|first != '#' %}
+      <div class="pf-l-grid__item pf-m-12-col pf-m-6-col-on-md">
+        {{ evangelist }}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if content.field_cta_link|render %}
+    <div class="pf-l-flex">
+      {{ content.field_cta_link }}
+    </div>
+  {% endif %}
+
+  {{ content|without('field_title', 'field_evangelists', 'field_cta_link') }}
+</section>

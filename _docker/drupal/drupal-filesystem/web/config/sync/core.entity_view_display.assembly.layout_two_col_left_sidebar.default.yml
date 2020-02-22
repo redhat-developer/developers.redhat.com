@@ -1,0 +1,57 @@
+uuid: 4e73650f-697f-434f-afbd-a0bcb477004e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.layout_two_col_left_sidebar
+    - field.field.assembly.layout_two_col_left_sidebar.field_column_1
+    - field.field.assembly.layout_two_col_left_sidebar.field_column_2
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.layout_two_col_left_sidebar.default
+targetEntityType: assembly
+bundle: layout_two_col_left_sidebar
+mode: default
+content:
+  field_column_1:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: pf-l-grid__item
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_column_2:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: pf-l-grid__item
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  langcode: true
+  name: true
+  user_id: true

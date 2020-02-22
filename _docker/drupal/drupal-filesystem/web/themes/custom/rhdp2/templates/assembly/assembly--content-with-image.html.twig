@@ -1,0 +1,31 @@
+{#
+/**
+ * @file assembly--content-with-image.html.twig
+ * Rich text with Image (content_with_image) assembly type
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('rich-text') }}>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item pf-m-5-col-on-lg pf-m-12-col-on-sm">
+      {{ content.field_image }}
+    </div>
+    <div class="pf-l-grid__item pf-m-7-col-on-lg pf-m-12-col-on-sm">
+      <div class="rich-text-content pf-c-content">
+        {% if content.field_title|render %}
+          <h2 class="pf-c-title">{{ content.field_title }}</h2>
+        {% endif %}
+        {% if content %}
+          {{- content|without('field_title', 'field_image') -}}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

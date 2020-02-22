@@ -1,0 +1,69 @@
+{% if node.field_exclude_from_search.value == '1' %}
+  <noscript>
+    <meta name="DCP:WebpageSearchExclude" content="true">
+  </noscript>
+{% endif %}
+
+<div{{ attributes.addClass('component').setAttribute("id", "rhd-cheat-sheet") }}>
+  <span class="dl-outage-msg"></span>
+  <div class="pf-l-grid pf-m-gutter">
+    <div class="pf-l-grid__item pf-m-12-col">
+      <div class="pf-l-grid__item pf-m-12-col">
+        <h4 class="content-type">Cheat Sheet</h4>
+        {{ title_prefix }}
+        <h1{{ title_attributes.addClass(["cs-title"]) }}>{{ label }}</h1>
+        {{ title_suffix }}
+        <div class="cs-info">
+          <ul>
+            <li>
+              {% if content.field_cheat_sheet_author|render|striptags|trim is not empty %}
+                <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
+              {% endif %}
+            </li>
+            <li>
+              {% set calc_date = node.published_at %}
+              {% if calc_date and calc_date.value is not empty %}
+                <small>Published: <rh-datetime datetime="{{ calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime></small>
+              {% endif %}
+            </li>
+            <li class="right cs-social">
+              {% include '@rhdp/share.html.twig' %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pf-l-grid__item pf-m-12-col">
+      <div{{ content_attributes.addClass("pf-l-grid__item", "pf-m-9-col") }}>
+        <div class="description-wrapper">
+          {{ content.body }}
+        </div>
+
+        {% if content.field_cheat_sheet_excerpt|render|striptags|trim is not empty %}
+          <div class="cs-excerpt">
+            <h4>Cheat Sheet Excerpt</h4>
+            <span class="open-quote left">&ldquo;</span>
+            <span>
+              {{ content.field_cheat_sheet_excerpt }}
+            </span>
+          </div>
+        {% endif %}
+        <div class="cta-label">
+          <strong>Want to see more? Get the full cheat sheet.</strong>
+        </div>
+        <a class="pf-c-button pf-m-heavy hidden-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Log in to download</a>
+        <a class="pf-c-button pf-m-heavy shown-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Download</a>
+      </div>
+      <div class="pf-l-grid__item pf-m-3-col cs-tags">
+        {% if content.field_cheat_sheet_tags|render|striptags|trim is not empty %}
+          <strong>Tags:</strong> {{ content.field_cheat_sheet_tags }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="pf-l-grid__item pf-m-12-col">
+      <div class="pf-l-grid__item pf-m-12-col">
+        {{ content.disqus_thread }}
+      </div>
+    </div>
+  </div>
+</div>

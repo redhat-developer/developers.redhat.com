@@ -1,0 +1,36 @@
+{#
+/**
+ * The RHDP Card Grid component.
+ */
+#}
+
+{% if card_grid__wrapper_attributes is not empty %}
+  {% set card_grid__wrapper_attributes = card_grid__wrapper_attributes.addClass('pf-l-flex', 'rhd-c-card-grid__wrapper') %}
+{% else %}
+  {% set card_grid__wrapper_attributes = create_attribute({'class': ['pf-l-flex', 'rhd-c-card-grid__wrapper']}) %}
+{% endif %}
+
+<div{{ attributes.addClass('rhd-c-card-grid', 'pf-c-content', 'component') }}>
+  <div class="component-limit-width">
+    {% if title|render %}
+    <div class="pf-l-flex">
+      <h2 class="pf-c-title">{{ title }}</h2>
+    </div>
+    {% endif %}
+    {% if intro is not empty %}
+    <div class="pf-l-flex rhd-c-card-grid__intro-wrapper">
+      {{ intro }}
+    </div>
+    {% endif %}
+    <div{{ card_grid__wrapper_attributes }}>
+      {{ content }}
+    </div>
+    {% if ctas is not empty %}
+      <div class="pf-l-flex rhd-c-card-grid__cta">
+      {% for cta in ctas['#items'] %}
+        <a class="pf-c-button pf-m-secondary" href={{ cta.uri }}>{{ cta.title }}</a>
+      {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

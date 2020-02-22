@@ -1,0 +1,24 @@
+{% if content %}
+  <section{{ attributes.addClass(classes, 'rhd-c-footer', 'pf-l-grid', 'pf-m-gutter') }}>
+    <div{{ attributes.addClass(classes, 'rhd-c-footer-links') }}>
+      {{ content }}
+    </div>
+
+    {# RHD Footer red box content #}
+    <div class="rhd-c-footer-sidebar">
+      <p class="rhd-c-footer-sidebar-title">Red Hat Developer</p>
+      <p class="rhd-c-footer-sidebar-subtitle">Build here. Go anywhere.</p>
+      <p class="rhd-c-footer-sidebar-content">We serve the builders. The problem solvers who create careers with code.</p>
+      <p class="rhd-c-footer-sidebar-content">Join us if you’re a developer, software engineer, web designer, front-end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead.</p>
+      <div class="pf-l-flex pf-m-align-items-center">
+        <ul class="rhd-c-footer-sidebar-social">
+          <li><a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a></li>
+          <li><a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/rhdevelopers" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://github.com/redhat-developer" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+        </ul>
+        <a class="rhd-c-footer-sidebar-signup pf-m-link-white" href="/register">Sign me up <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+{% endif %}

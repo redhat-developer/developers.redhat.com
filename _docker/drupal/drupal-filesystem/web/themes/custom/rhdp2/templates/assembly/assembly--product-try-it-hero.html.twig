@@ -1,0 +1,42 @@
+
+<div{{ attributes.addClass('rhd-c-product-download-hero') }}>
+  <div class="pf-l-grid pf-m-gutter pf-c-content">
+    <div class="pf-l-grid__item rhd-c-product-download-hero-aside">
+      {% if image_uri %}
+      <picture>
+        <source media="(min-width: 480px)" srcset="{{ image_uri }}">
+        <source media="(min-width: 768px)" srcset="{{ image_uri }}">
+        <source media="(min-width: 1024px)" srcset="{{ image_uri }}">
+        <img src="{{ image_uri }}" alt="{{ image_alt }}" />
+      </picture>
+      {% endif %}
+    </div>
+    <div class="pf-l-grid__item rhd-c-product-download-hero-content">
+      {{ content.field_title }}
+      {{ content.field_content }}
+      <div class="rhd-c-product-download-hero-footer">
+        {% if content.field_try_it_link|render %}
+        <a class="pf-c-button pf-m-heavy" href="{{ content.field_try_it_link.0['#url'] }}">
+          {% if ( content.field_try_it_link.0['#title'] ) %}
+          {{ content.field_try_it_link.0['#title'] }}
+          {% else %}
+          Download
+          {% endif %}
+        </a>
+        {% endif %}
+        {% if content.field_learn_more_link|render %}
+        <div class="rhd-c-product-download-hero-footer--learn-more">
+          <a href="{{ content.field_learn_more_link.0['#url'] }}" class="pf-c-button pf-m-link pf-u-pl-lg">
+            {% if content.field_learn_more_link.0['#title'] %}
+            {{ content.field_learn_more_link.0['#title'] }}
+            {% else %}
+            Learn More
+            {% endif %}
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
