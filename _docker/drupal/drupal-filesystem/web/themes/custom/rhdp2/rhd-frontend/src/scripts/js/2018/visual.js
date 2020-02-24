@@ -10,7 +10,7 @@ app.init = function () {
     Initialize foundation JS
   */
 
-  $(document).foundation();
+  // $(document).foundation(); RHDX-218
 
   /*
    * Product Page demo toggle

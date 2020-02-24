@@ -1,3 +1,27 @@
+// @TO-DO:  Use new color variables.  These were copied from 2018/Foundation/_foundation.scss.
+
+$white: #FFFFFF !default;
+$black : #000000;
+$jet: #222222 !default;
+$aluminum: #999999 !default;
+$primary-color: #008CBA !default;
+$blue: #0066CC;
+$red: #CC0000;
+$dark-grey : #242424;
+$grey-3: #D5D5D5;
+$grey-4: #CCCCCC;
+$grey-5: #656565;
+$grey-6: #424242;
+$grey-7 : #333333;
+$grey-8 : #242424;
+$accent-blue: #08c0fc;
+$linkhover: #004c98;
+$screen: "only screen" !default;
+$small-up: $screen !default;
+$large-range: (64.063em, 90em) !default;
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})" !default;
+$input-border-color: scale-color($white, $lightness: -20%) !default;
+
 rhdp-search-app {
     display: flex;
     flex-flow: column;
@@ -17,7 +41,7 @@ rhdp-search-app {
 // Override PF form styles
 .region.region-content rhdp-search-box form.search-bar {
     display: flex;
-} 
+}
 
 rhdp-search-box {
     margin: 0 0 1em 0;
