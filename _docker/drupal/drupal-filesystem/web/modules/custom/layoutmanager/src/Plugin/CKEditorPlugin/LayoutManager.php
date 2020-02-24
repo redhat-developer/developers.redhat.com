@@ -1,11 +1,11 @@
 <?php
 
+namespace Drupal\layoutmanager\Plugin\CKEditorPlugin;
+
 /**
  * @file
  * Definition of \Drupal\ckeditor\Plugin\CKEditorPlugin\LayoutManager.
  */
-
-namespace Drupal\layoutmanager\Plugin\CKEditorPlugin;
 
 use Drupal\ckeditor\CKEditorPluginBase;
 use Drupal\editor\Entity\Editor;
@@ -20,6 +20,7 @@ use Drupal\editor\Entity\Editor;
  * )
  */
 class LayoutManager extends CKEditorPluginBase {
+
   /**
    * Gets a path to module.
    *
@@ -34,14 +35,14 @@ class LayoutManager extends CKEditorPluginBase {
    * Implements CKEditorPluginInterface::getDependencies().
    */
   public function getDependencies(Editor $editor) {
-    return array('basewidget');
+    return ['basewidget'];
   }
 
   /**
    * Implements CKEditorPluginInterface::getLibraries().
    */
   public function getLibraries(Editor $editor) {
-    return array();
+    return [];
   }
 
   /**
@@ -62,20 +63,19 @@ class LayoutManager extends CKEditorPluginBase {
    * Implements CKEditorPluginButtonsInterface::getButtons().
    */
   public function getButtons() {
-    return array(
-      'AddLayout' => array(
+    return [
+      'AddLayout' => [
         'label' => t('Layouts'),
         'image' => $this->path() . '/js/plugins/layoutmanager/icons/addlayout.png',
-      ),
-    );
+      ],
+    ];
   }
 
   /**
    * Implements \Drupal\ckeditor\Plugin\CKEditorPluginInterface::getConfig().
    */
   public function getConfig(Editor $editor) {
-    return array();
+    return [];
   }
 
 }
-
