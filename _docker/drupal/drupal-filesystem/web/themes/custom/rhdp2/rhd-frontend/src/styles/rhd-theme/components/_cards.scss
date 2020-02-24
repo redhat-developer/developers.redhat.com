@@ -319,7 +319,8 @@
 
 .rhd-c-card__tag {
   position: absolute;
-  color: var(--rhd-theme--color-text, #151515);
+  font-family: $rhd-font-stack-display;
+  color: var(--pf-global--secondary-color--100);
   top: var(--pf-global--spacer--md); // 16px;
   left: 0;
   background-color: #fff; // #fff
@@ -337,7 +338,6 @@
 }
 
 .rhd-c-card__title {
-  color: var(--pf-global-color-200);
   font-family: $rhd-font-stack-display;
   font-size: var(--pf-global--FontSize--lg) !important;
   font-weight: var(--rhd-global--FontWeight-Display--medium);
