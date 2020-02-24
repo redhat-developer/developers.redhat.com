@@ -11,6 +11,7 @@ use Drupal\Core\HttpClient;
 
 /**
  * Displays a list of recent content from Wordpress and Drupal with Disqus comments and related topics
+ *
  *  @AssemblyBuild(
  *   id = "compact_dynamic_article_list",
  *   types = { "compact_dynamic_article_list" },

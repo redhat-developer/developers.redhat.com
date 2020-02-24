@@ -1,5 +1,5 @@
 services:
-  cache.wordrpress_api:
+  cache.wordpress_api:
    class: Drupal\Core\Cache\CacheBackendInterface
    tags:
      - { name: cache.bin }
@@ -7,7 +7,7 @@ services:
    arguments: ['wordpress_api']
   rhd_assemblies.wordpress_api:
     class: Drupal\rhd_assemblies\Service\WordpressApi
-    arguments: ['@http_client', '@config.factory', '@cache.wordpress_api', '@logger.factory']
+    arguments: ['@http_client', '@cache.wordpress_api', '@logger.factory', '@config.factory']
   cache.download_manager:
    class: Drupal\Core\Cache\CacheBackendInterface
    tags:
