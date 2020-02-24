@@ -13,8 +13,12 @@
     $(clock).addClass('hide');
   }
 
-  function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date().toLocaleString('en-US', {timeZone: 'America/New_York'}));
+  function getTimeRemaining(countdownDate) {
+
+    var now = new Date().toLocaleString('en-US', {timeZone: 'America/New_York'});
+    var countdownDateObj = new Date(countdownDate);
+
+    var t = Date.parse(countdownDateObj) - Date.parse(now);
     var seconds = Math.floor((t / 1000) % 60);
     var minutes = Math.floor((t / 1000 / 60) % 60);
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -28,14 +32,14 @@
     };
   }
 
-  function initializeClock(clock, endtime) {
+  function initializeClock(clock, countdownDate) {
     var daysSpan = clock.find('.days span');
     var hoursSpan = clock.find('.hours span');
     var minutesSpan = clock.find('.minutes span');
     var secondsSpan = clock.find('.seconds span');
 
     function updateClock(clock) {
-      var t = getTimeRemaining(endtime);
+      var t = getTimeRemaining(countdownDate);
       daysSpan.html(t.days);
       hoursSpan.html(('0' + t.hours).slice(-2));
       minutesSpan.html(('0' + t.minutes).slice(-2));
@@ -54,15 +58,15 @@
   Drupal.behaviors.rhd_CtaCountdown = {
     attach: function (context, settings) {
       $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
-        var deadline = new Date(Date.parse(settings.rhd_assemblies.countdown_date)).toUTCString();
-        var startingOffsetTime = getTimeRemaining(deadline);
         var clock = $('.rhd-c-countdown', $(this));
+        var countdownDate = settings.rhd_assemblies.countdown_date + "Z";
+        var startingOffsetTime = getTimeRemaining(countdownDate);
 
         if (startingOffsetTime.total == 0) {
           toggleCountdownAndCTA(clock);
         } else {
           $(clock).removeClass('hide');
-          initializeClock( clock, deadline);
+          initializeClock( clock, countdownDate);
         }
       });
     }
