@@ -139,7 +139,7 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
     $variables['attributes']->offsetSet('id', $css_id);
   }
 
-  // Call to Action Countdown Component
+  // Call to Action Countdown Component.
   if ($assembly->hasField('field_display_cta_timer')) {
     $cta_timer = $assembly->get('field_display_cta_timer')->value;
 
