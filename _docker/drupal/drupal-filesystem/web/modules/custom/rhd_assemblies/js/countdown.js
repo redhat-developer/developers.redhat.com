@@ -14,7 +14,6 @@
   }
 
   function getTimeRemaining(countdownDate) {
-
     var now = new Date().toLocaleString('en-US', {timeZone: 'America/New_York'});
     var countdownDateObj = new Date(countdownDate);
 
@@ -59,7 +58,7 @@
     attach: function (context, settings) {
       $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
         var clock = $('.rhd-c-countdown', $(this));
-        var countdownDate = settings.rhd_assemblies.countdown_date + "Z";
+        var countdownDate = settings.rhd_assemblies.countdown_date;
         var startingOffsetTime = getTimeRemaining(countdownDate);
 
         if (startingOffsetTime.total == 0) {
