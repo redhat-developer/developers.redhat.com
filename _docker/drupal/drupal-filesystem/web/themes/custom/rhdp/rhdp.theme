@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -138,6 +139,15 @@ function rhdp_preprocess_html(array &$variables) {
   $current_path = \Drupal::service('path.current')->getPath();
   // Retrieve the redhat_developers config configuration object once.
   $rhd_config = \Drupal::config('redhat_developers');
+  // Get the current node object.
+  $node = \Drupal::request()->attributes->get('node');
+
+  // If we could not fetch the Node object from the Request. This should only
+  // happen on the Product pages, due to the highly custom 1 Node to multiple
+  // routes implementation.
+  if (!$node) {
+    $node = _get_product_node_from_request();
+  }
 
   // Retrieve individual config values from the config object.
   $environment = $rhd_config->get('environment');
@@ -150,7 +160,7 @@ function rhdp_preprocess_html(array &$variables) {
 
   $variables['rhd_environment'] = $environment;
   $variables['rhd_dtm_code'] = $dtm_code;
-  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default($node);
   $variables['rhd_sentry_track'] = $sentry_track;
   $variables['rhd_sentry_script'] = $sentry_script;
   $variables['rhd_sentry_code'] = $sentry_code;
@@ -170,6 +180,43 @@ function rhdp_preprocess_html(array &$variables) {
     ];
 
     $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+  }
+}
+
+/**
+ * Gets the Product node for a given route.
+ *
+ * This helper function returns the Product node for a given route. This is
+ * necessary because of our custom Product implementations that serve multiple
+ * routes from a single Node.
+ *
+ * @return \Drupal\node\NodeInterface
+ *   Return a prouct Node.
+ */
+function _get_product_node_from_request() {
+  $request_uri = \Drupal::request()->getRequestUri();
+
+  if (!empty($request_uri)) {
+    // Trim any leading and trailing slashes so that we can explode() below.
+    $request_uri_trimmed = trim($request_uri, '/');
+    $request_uri_pieces = explode('/', $request_uri_trimmed);
+
+    if ($request_uri_pieces[0] === 'products') {
+      $product_url_name = $request_uri_pieces[1];
+    }
+  }
+  if (!empty($product_url_name)) {
+    $products = \Drupal::service('rhd_assemblies.download_manager_api')->getProductNodesByProductUrlName($product_url_name);
+
+    // Grab the first product in the array. There should always only be a single
+    // Product node returned, since the product_url_name should be unique.
+    if ($product = reset($products)) {
+      // If we've successfully retrieved a product Node object by the
+      // product_url_name, then assign it to $node.
+      if ($product instanceof NodeInterface) {
+        return $product;
+      }
+    }
   }
 }
 
@@ -336,7 +383,8 @@ function rhdp_preprocess_node(array &$variables) {
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
     $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
 
-    // TODO: Fix Duplicate Logic: This will need to be refactored (see preprocess_assembly)
+    // TODO: Fix Duplicate Logic: This will need to be refactored (see
+    // preprocess_assembly).
     // Note: Also will not work properly without search and replace on export.
     if ($node->hasField('field_event_background_image')) {
       $image_value = $node->get('field_event_background_image')->getValue();
@@ -521,6 +569,7 @@ function redhat_www_ddo_default($node) {
     $ddo_language = $node->langcode->value;
     $ddo_pageID = $node->nid->value;
     $ddo_title = $node->title->value;
+    $ddo_taxonomies = _get_all_taxonomy_terms($node);
   }
 
   $ddo = [
@@ -536,6 +585,15 @@ function redhat_www_ddo_default($node) {
         'pageType' => '',
         'primaryCategory' => '',
         'subCategories' => [],
+        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'],
+        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'],
+        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'],
+        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle'],
+        'taxonomyProduct' => $ddo_taxonomies['field_tax_product'],
+        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line'],
+        'taxonomyProject' => $ddo_taxonomies['field_tax_project'],
+        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'],
+        'taxonomyRegion' => $ddo_taxonomies['field_tax_region'],
       ],
       'pageInfo' => [
         'breadCrumbs' => [],
@@ -592,6 +650,57 @@ function redhat_www_ddo_default($node) {
 }
 
 /**
+ * Gets all taxonomy terms, as labels, referenced by a $node.
+ *
+ * @param Drupal\node\NodeInterface $node
+ *   A node to retrieve taxonomy terms from.
+ *
+ * @return array
+ *   An array of taxonomy terms, keyed by fieldname.
+ */
+function _get_all_taxonomy_terms(NodeInterface $node) {
+  // Attempt to retrieve the taxonomy terms reference by the following fields.
+  $taxonomy_fields = [
+    'field_tax_audience_segment' => 'field_tax_audience_segment',
+    'field_tax_business_unit' => 'field_tax_business_unit',
+    'field_tax_campaign' => 'field_tax_campaign',
+    'field_tax_lifecycle' => 'field_tax_lifecycle',
+    'field_tax_product' => 'field_tax_product',
+    'field_tax_product_line' => 'field_tax_product_line',
+    'field_tax_project' => 'field_tax_project',
+    'field_tax_promotion' => 'field_tax_promotion',
+    'field_tax_region' => 'field_tax_region',
+  ];
+  // Initialize an array to collect taxonomy terms for the Adobe DDO object.
+  $ddo_taxonomies = [];
+
+  foreach ($taxonomy_fields as $taxonomy_field) {
+    // If this $node does not have one of the fields, set an empty array.
+    if (!$node->hasField($taxonomy_field)) {
+      $ddo_taxonomies[$taxonomy_field] = [];
+    }
+    else {
+      // Get the referenced taxonomy terms.
+      $terms = $node->get($taxonomy_field)->referencedEntities();
+
+      // If this $node is referencing taxonomy terms, push them onto the
+      // $ddo_taxonomies array, keyed by the fieldname.
+      if (!empty($terms)) {
+        foreach ($terms as $term) {
+          $ddo_taxonomies[$taxonomy_field][] = $term->label();
+        }
+      }
+      // If this field doesn't reference any terms, set an empty array.
+      else {
+        $ddo_taxonomies[$taxonomy_field] = [];
+      }
+    }
+  }
+
+  return $ddo_taxonomies;
+}
+
+/**
  * Implements template_preprocess_field.
  *
  * Adding our css modifications to the video_embed_field type. Had to modify
@@ -599,16 +708,14 @@ function redhat_www_ddo_default($node) {
  * video to work.
  *
  * Adding another edit for embedded products.
- *
- * @param $variables
- * @param $hook
  */
 function rhdp_preprocess_field(&$variables, $hook) {
   if ($variables['field_type'] === 'video_embed_field') {
     $variables['items'][0]['content']['#attached']['library'][] = 'rhdp/video_embed_field.responsive-video';
   }
 
-  // This shouldn't be how we display the related product on coding resources (should it be?)
+  // This shouldn't be how we display the related product on coding resources
+  // (should it be?).
   if ($variables['field_name'] === 'field_related_product' && isset($variables['items'][0]['content']['#node'])) {
     $node = $variables['items'][0]['content']['#node'];
     $variables['product_name'] = $node->getTitle();
@@ -643,34 +750,27 @@ function rhdp_preprocess_field(&$variables, $hook) {
 
 /**
  * Returns a new random guid.
+ *
+ * @todo Determine if this is used/executed.
  */
 function createGUID() {
+  // Create a token.
+  $token = $_SERVER['HTTP_HOST'];
+  $token .= $_SERVER['REQUEST_URI'];
+  $token .= uniqid(rand(), TRUE);
 
-  // Create a token
-  $token      = $_SERVER['HTTP_HOST'];
-  $token     .= $_SERVER['REQUEST_URI'];
-  $token     .= uniqid(rand(), true);
+  // GUID is 128-bit hex.
+  $hash = strtoupper(md5($token));
 
-  // GUID is 128-bit hex
-  $hash        = strtoupper(md5($token));
+  // Create formatted GUID.
+  $guid = '';
 
-  // Create formatted GUID
-  $guid        = '';
-
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability
-  $guid .= substr($hash,  0,  8) .
-       '-' .
-       substr($hash,  8,  4) .
-       '-' .
-       substr($hash, 12,  4) .
-       '-' .
-       substr($hash, 16,  4) .
-       '-' .
-       substr($hash, 20, 12);
+  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability.
+  $guid .= substr($hash, 0, 8) . '-' . substr($hash, 8, 4) . '-' . substr($hash, 12, 4) . '-' . substr($hash, 16, 4) . '-' . substr($hash, 20, 12);
 
   return $guid;
-
 }
+
 /**
  * Implements hook_preprocess_assembly().
  */
@@ -694,13 +794,13 @@ function rhdp_preprocess_assembly(&$variables) {
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = file_create_url($uri);
     $variables['attributes']->addClass('has-background');
-  } else if ($image_value) {
+  }
+  elseif ($image_value) {
     $file_id = $image_value[0]['target_id'];
     $uri = File::load($file_id)->getFileUri();
     $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
     $variables['attributes']->addClass('has-background');
   }
-
 
   if ($assembly->hasField('field_audience_selection')) {
     $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
@@ -932,7 +1032,7 @@ function rhdp_preprocess_assembly(&$variables) {
     }
   }
 
-  // Add Display Type variables for curated_links
+  // Add Display Type variables for curated_links.
   if ($type == 'curated_links'
       && $assembly->hasField('field_display_type_curated_links')) {
     $variables['display_type'] = '';
@@ -940,12 +1040,12 @@ function rhdp_preprocess_assembly(&$variables) {
     if (strpos($display_type, 'two-col') !== FALSE) {
       $variables['display_type'] = 'two-col';
     }
-    else if (strpos($display_type, 'nav-menu') !== FALSE) {
+    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
       $variables['display_type'] = 'nav-menu';
     }
   }
 
-  // Add Display Type variables for featured_products
+  // Add Display Type variables for featured_products.
   if ($type == 'featured_products'
       && $assembly->hasField('field_display_type_featured_prod')) {
     $variables['display_type'] = '';
@@ -953,12 +1053,12 @@ function rhdp_preprocess_assembly(&$variables) {
     if (strpos($display_type, 'basic') !== FALSE) {
       $variables['display_type'] = 'basic';
     }
-    else if (strpos($display_type, 'featured') !== FALSE) {
+    elseif (strpos($display_type, 'featured') !== FALSE) {
       $variables['display_type'] = 'featured';
     }
   }
 
-  // Add Display Type variables for featured_products
+  // Add Display Type variables for featured_products.
   if ($type == 'video_hero'
       && $assembly->hasField('field_display_type_video_hero')) {
     $variables['display_type'] = '';
@@ -1052,33 +1152,32 @@ function rhdp_preprocess_views_view_fields(&$variables) {
       // Get the Connector Node object.
       $connector = $variables['row']->_entity;
 
-      // field_connector_link_1
+      // field_connector_link_1.
       if ($connector->hasField('field_connector_link_1') && !empty($connector->get('field_connector_link_1')[0])) {
         $field_connector_link_1 = $connector->get('field_connector_link_1');
         $field_connector_link_1_url = $field_connector_link_1[0]->getUrl()->toString();
         $field_connector_link_1_text = $connector->get('field_connector_link_1_text')->value;
       }
 
-      // field_connector_link_2
+      // field_connector_link_2.
       if ($connector->hasField('field_connector_link_2') && !empty($connector->get('field_connector_link_2')[0])) {
         $field_connector_link_2 = $connector->get('field_connector_link_2');
         $field_connector_link_2_url = $field_connector_link_2[0]->getUrl()->toString();
         $field_connector_link_2_text = $connector->get('field_connector_link_2_text')->value;
       }
 
-      // field_connector_details_url
+      // field_connector_details_url.
       if ($connector->hasField('field_connector_details_url') && !empty($connector->get('field_connector_details_url')[0])) {
         $field_connector_details_url = $connector->get('field_connector_details_url');
         $field_connector_details_url_link = $field_connector_details_url[0]->getUrl()->toString();
-
       }
     }
 
     // Set variables that will be used to render links in the Twig template.
-    $variables['connector_link_1_url'] = isset($field_connector_link_1_url) ? $field_connector_link_1_url : null;
-    $variables['connector_link_1_text'] = isset($field_connector_link_1_text) ? $field_connector_link_1_text : null;
-    $variables['connector_link_2_url'] = isset($field_connector_link_2_url) ? $field_connector_link_2_url : null;
-    $variables['connector_link_2_text'] = isset($field_connector_link_2_text) ? $field_connector_link_2_text : null;
-    $variables['connector_details_url_link'] = isset($field_connector_details_url_link) ? $field_connector_details_url_link : null;
+    $variables['connector_link_1_url'] = $field_connector_link_1_url ?? NULL;
+    $variables['connector_link_1_text'] = $field_connector_link_1_text ?? NULL;
+    $variables['connector_link_2_url'] = $field_connector_link_2_url ?? NULL;
+    $variables['connector_link_2_text'] = $field_connector_link_2_text ?? NULL;
+    $variables['connector_details_url_link'] = $field_connector_details_url_link ?? NULL;
   }
 }

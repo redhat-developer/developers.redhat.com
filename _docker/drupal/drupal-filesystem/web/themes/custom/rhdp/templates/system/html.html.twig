@@ -284,5 +284,12 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
     </div>
 
     <js-bottom-placeholder token="{{ placeholder_token }}">
+    {% if (rhd_dtm_code) %}
+    <script type="text/javascript">
+      if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+        _satellite.pageBottom();
+      }
+    </script>
+    {% endif %}
   </body>
 </html>
