@@ -77,6 +77,10 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
     }
   }
 
+  if($node && $node->hasField('field_kiosk_mode') && $node->field_kiosk_mode == TRUE) {
+    $suggestions[] =  'page__kiosk_mode';
+  }
+
   return $suggestions;
 }
 
