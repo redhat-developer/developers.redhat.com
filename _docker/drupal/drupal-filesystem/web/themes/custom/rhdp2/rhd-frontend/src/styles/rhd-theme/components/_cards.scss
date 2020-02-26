@@ -319,7 +319,9 @@
 
 .rhd-c-card__tag {
   position: absolute;
-  color: var(--rhd-theme--color-text, #151515);
+  font-family: $rhd-font-stack-display;
+  font-weight: var(--pf-global--FontWeight--light);
+  color: var(--pf-global--secondary-color--100);
   top: var(--pf-global--spacer--md); // 16px;
   left: 0;
   background-color: #fff; // #fff
