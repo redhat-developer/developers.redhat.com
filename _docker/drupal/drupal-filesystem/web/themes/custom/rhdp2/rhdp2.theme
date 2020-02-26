@@ -762,7 +762,6 @@ function redhat_www_ddo_default($node) {
   $ddo_title = "";
 
   if (!is_null($node)) {
-    // @todo This does not accurately represent 404s.
     if ($siteerror == '/node/' . $node->nid->value) {
       $errorType = "404";
       $errorMessage = "404-error";
