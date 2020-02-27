@@ -777,15 +777,6 @@ function redhat_www_ddo_default($node) {
     'page' => [
       'attributes' => [
         'queryParameters' => '',
-      ],
-      'category' => [
-        'contentType' => '',
-        'contentSubType' => '',
-        'keyPage' => FALSE,
-        'keyPageType' => '',
-        'pageType' => '',
-        'primaryCategory' => '',
-        'subCategories' => [],
         'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'],
         'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'],
         'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'],
@@ -795,6 +786,15 @@ function redhat_www_ddo_default($node) {
         'taxonomyProject' => $ddo_taxonomies['field_tax_project'],
         'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'],
         'taxonomyRegion' => $ddo_taxonomies['field_tax_region'],
+      ],
+      'category' => [
+        'contentType' => '',
+        'contentSubType' => '',
+        'keyPage' => FALSE,
+        'keyPageType' => '',
+        'pageType' => '',
+        'primaryCategory' => '',
+        'subCategories' => [],
       ],
       'pageInfo' => [
         'breadCrumbs' => [],
@@ -888,7 +888,7 @@ function _get_all_taxonomy_terms(NodeInterface $node) {
       // $ddo_taxonomies array, keyed by the fieldname.
       if (!empty($terms)) {
         foreach ($terms as $term) {
-          $ddo_taxonomies[$taxonomy_field][] = $term->label();
+          $ddo_taxonomies[$taxonomy_field][] = $term->id();
         }
       }
       // If this field doesn't reference any terms, set an empty array.
