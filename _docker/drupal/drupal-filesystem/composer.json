@@ -62,13 +62,13 @@
     "require": {
         "drupal-composer/drupal-scaffold": "2.5.4",
         "cweagans/composer-patches": "1.6.5",
-        "acquia/lightning": "4.0.5",
+        "acquia/lightning": "4.1.2",
         "ckeditor/indentblock": "4.11.4",
         "drupal/admin_toolbar": "1.26",
-        "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
+        "drupal/assembly": "1.x-dev#8e801b74caf50f6ece3e21545eb16a612bcb2b72",
         "drupal/asciidoc": "1.2",
         "drupal/ckeditor_indentblock": "1.0-beta1",
-        "drupal/core": "8.7.11",
+        "drupal/core": "8.8.2",
         "drupal/content_moderation_edit_notify": "1.0",
         "drupal/content_moderation_notifications": "3.0-rc2",
         "drupal/editor_advanced_link": "1.4",
@@ -84,7 +84,7 @@
         "drupal/paragraphs": "1.6",
         "drupal/simple_sitemap": "2.12",
         "drupal/smtp": "1.0.0-beta4",
-        "drupal/subpathauto": "1.0-rc1",
+        "drupal/subpathauto": "^1.0",
         "drupal/token_filter": "1.1",
         "drupal/workbench": "1.x-dev#9f209b7f56dd0758516f05bc75e0a25ed45b7598",
         "madcoda/php-youtube-api": "1.2.4",
@@ -106,11 +106,12 @@
         "drupal/akamai": "3.0-alpha4",
         "drupal/trailing_slash": "^1.0",
         "drupal/bootstrap": "dev-3.x#92d816d7",
-        "drupal/compose": "1.x",
-        "drupal/beryllium": "1.x-dev#2a3e677",
+        "drupal/compose": "1.x-dev#a3ddcf3b8a837d8d8286f4277f6a365147fd7933",
+        "drupal/beryllium": "1.x-dev#037e2bc125c54f980a3cef9a1010b51254ceda6d",
         "drupal/search_api": "1.11",
         "drupal/components": "1.1",
-        "drupal/memcache": "2.0"
+        "drupal/memcache": "2.0",
+        "drupal/pathauto": "^1.6"
     },
     "require-dev": {
         "drupal/drupal-extension": "3.4.1",
@@ -182,9 +183,8 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
           "drupal/core": {
-            "Fix entity reference view": "https://www.drupal.org/files/issues/2019-06-21/2174633-309.patch",
             "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
-            "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch"
+            "Add disabled layout to layout_discovery and use as default in field_layout": "https://www.drupal.org/files/issues/2020-02-13/core-layout-disabled-3056712-5.patch"
           },
           "drupal/inline_entity_form": {
             "Support entity reference revisions": "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
