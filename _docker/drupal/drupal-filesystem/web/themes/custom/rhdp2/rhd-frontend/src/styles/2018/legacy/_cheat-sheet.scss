@@ -55,30 +55,7 @@
     margin-bottom: 15px;
   }
 
-  .cs-info, .book-info {
-    border-top: 1px solid $grey-5;
-    border-bottom: 1px solid $grey-5;
-    padding: 7px 0;
-    margin-bottom: 2.5em;
-    ul {
-      list-style: none;
-      margin: 0;
-      overflow: hidden;
-      padding-left: 0;
-      li {
-        width: auto;
-        margin-bottom: 1px;
-        padding-top: 1px;
-        display: inline-block;
-        &:first-child {
-          padding-left: 0;
-        }
-        .field {
-          display: inline-block;
-        }
-      }
-    }
-  }
+
 
   .cs-tags,
   .book-tags {
@@ -120,15 +97,6 @@
 
   @include desktop-small-and-down {
     padding: 15px;
-    .cs-info, .book-info {
-      .cs-social, .book-social {
-        float: none !important;
-        margin-top: 5px;
-      }
-      ul li{
-        display: block;
-      }
-    }
 
     .field--name-field-cheat-sheet-tags, .field--name-field-tags {
       margin-bottom: 25px;
