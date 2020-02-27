@@ -47,19 +47,15 @@ export default class RHDPSearchApp extends HTMLElement {
         this._oburl = val;
     }
 
-
-
-    template = `<div class="row">
-    <span class="search-outage-msg"></span>
-    <div class="large-24 medium-24 small-24 columns searchpage-middle">
-        <div class="row">
-            <div class="large-24 medium-24 small-24 columns">
-                <h2>${this.name}</h2>
-            </div>
+    template = `<div class="rhd-c-search-page">
+    <span class="rhd-c-search-outage-message search-outage-msg"></span>
+    <div class="searchpage-middle">
+        <div class="rhd-c-search-page-header">
+          <h2>${this.name}</h2></div>
         </div>
-        <div class="row">
-            <div class="large-6 medium-8 small-24 columns"></div>
-            <div class="large-18 medium-16 small-24 columns"></div>
+        <div class="rhd-c-search-body pf-l-grid pf-m-gutter">
+            <div class="rhd-c-search-body-left pf-l-grid__item pf-m-4-col"></div>
+            <div class="rhd-c-search-body-right pf-l-grid__item pf-m-8-col pf-m-12-col-on-sm"></div>
         </div>
     </div></div>`;
 
@@ -75,7 +71,7 @@ export default class RHDPSearchApp extends HTMLElement {
     sort = new RHDPSearchSortPage();
 
     filterObj = {
-        term:'', 
+        term:'',
         facets: [
             { name: 'CONTENT TYPE', key: 'type', items: [
                 {key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs']},
@@ -93,11 +89,11 @@ export default class RHDPSearchApp extends HTMLElement {
                 {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_question'], type: ['stackoverflow_question']},
                 {key: 'video', name: "Video", value: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
                 {key: 'webpage', name: "Web Page", value: ['rht_website'], type: ['rht_website']}
-                ] 
+                ]
             },
             {
-                name:'PRODUCT', 
-                key: 'project', 
+                name:'PRODUCT',
+                key: 'project',
                 items: [
                 {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
                 {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
@@ -148,7 +144,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 {key: 'microservices', name: 'Microservices', value: ['microservices',' WildFly Swarm']},
                 {key: 'mobile', name: 'Mobile', value: ['mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
                 {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
-                ] 
+                ]
             }
         ]
     };
@@ -163,22 +159,22 @@ export default class RHDPSearchApp extends HTMLElement {
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
         this.onebox.url = this.oburl;
-        
+
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
-        this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
-        this.querySelector('.row .large-24 .row .large-24').appendChild(this.box);
-        this.querySelector('.large-6').appendChild(this.filters);
-        this.querySelector('.large-18').appendChild(this.active);
-        this.querySelector('.large-18').appendChild(this.count);
-        this.querySelector('.large-18').appendChild(this.sort);
-        this.querySelector('.large-18').appendChild(this.onebox);
-        this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.rhd-c-search-page-header').appendChild(this.query);
+        this.querySelector('.rhd-c-search-page-header').appendChild(this.box);
+        this.querySelector('.rhd-c-search-body-left').appendChild(this.filters);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.active);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.count);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.sort);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.onebox);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.results);
         document.body.appendChild(this.urlEle);
     }
 
-    static get observedAttributes() { 
-        return ['url', 'name', 'oburl']; 
+    static get observedAttributes() {
+        return ['url', 'name', 'oburl'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
