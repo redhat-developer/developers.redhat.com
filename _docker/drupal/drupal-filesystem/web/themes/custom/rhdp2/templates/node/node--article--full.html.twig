@@ -57,7 +57,7 @@
           {% endif %}
           {% if content.field_topics|render %}
            <div class="topics">
-            <i class="fas fa-tag fa-sm" title="Tags:"></i><span class="topic-tags">{{ content.field_topics }}</span>
+            <span class="tag-label"><i class="fas fa-tag fa-sm" title="Tags:"></i></span>{{ content.field_topics }}
            </div>
           {% endif %}
         </div>

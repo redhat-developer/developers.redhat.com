@@ -8,12 +8,22 @@
     margin-bottom: var(--rhd-theme--container-spacer-lg);
     color: $rolling-stone;
     font-size: map-get($rhd-font-size, "xxs");
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+      flex-direction: column;
+    }
     //generic style for social share buttons
     .share-buttons {
-        display: inline-block;
         padding: 0 0 0 map-get($spacing, "base");
         border-left: $light-gray solid 1px;
         border-right: $light-gray solid 1px;
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+          padding-left: 0;
+          border-left: none;
+          border-right: none;
+
+        }
         .a2a_default_style {
             a {
                 padding: 3px map-get($spacing, "base") 3px 0;
@@ -22,14 +32,21 @@
                 color: $rolling-stone;
             }
         }
+        &.right {
+          margin-left: auto;
+          @media screen and (max-width: $pf-global--breakpoint--sm) {
+            margin-left: 0;
+          }
+        }
     }
     //topic and tag styles
     .topics {
-        display: inline-block;
         padding-left: map-get($spacing, "base");
-        .topic-tags {
-            display: inline-block;
-            padding: 0 0 0 map-get($spacing, "base");
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+          padding-left: 0;
+        }
+        .tag-label {
+          padding-right: map-get($spacing, "base");
         }
         a {
             color: $rolling-stone;
@@ -51,7 +68,6 @@
     .changed-date,
     .publish-date {
       color: $rolling-stone;
-      display: inline-block;
       vertical-align: middle;
       margin-right: map-get($spacing, "base");
     }
