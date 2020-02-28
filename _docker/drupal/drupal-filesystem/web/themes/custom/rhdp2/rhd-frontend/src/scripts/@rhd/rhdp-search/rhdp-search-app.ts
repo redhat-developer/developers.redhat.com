@@ -54,8 +54,8 @@ export default class RHDPSearchApp extends HTMLElement {
           <h2>${this.name}</h2></div>
         </div>
         <div class="rhd-c-search-body pf-l-grid pf-m-gutter">
-            <div class="rhd-c-search-body-left pf-l-grid__item pf-m-4-col"></div>
-            <div class="rhd-c-search-body-right pf-l-grid__item pf-m-8-col pf-m-12-col-on-sm"></div>
+            <div class="rhd-c-search-body-left pf-l-grid__item pf-m-4-col-on-md pf-m-12-col-on-sm"></div>
+            <div class="rhd-c-search-body-right pf-l-grid__item pf-m-8-col-on-md pf-m-12-col-on-sm"></div>
         </div>
     </div></div>`;
 
