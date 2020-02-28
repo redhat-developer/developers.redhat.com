@@ -137,7 +137,7 @@ rhdp-search-empty-query {
   }
 
   @media only screen and (max-width: 768px) {
-    border-bottom: 1px solid #D5D5D5;
+    border-bottom: 1px solid #d5d5d5;
   }
 }
 
@@ -197,18 +197,18 @@ rhdp-search-sort-page {
       text-align-last: left;
       font-weight: 600;
       height: auto;
-      border: 1px solid #0066CC;
+      border: 1px solid #0066cc;
       line-height: 1.44;
       background-color: transparent;
       padding: 8px 10px;
-      color: #0066CC;
+      color: #0066cc;
       font-size: 16px;
       position: relative;
       top: -4px;
 
       &:hover,
       &:focus {
-        background-color: #0066CC;
+        background-color: #0066cc;
         color: #fff;
       }
     }
@@ -221,7 +221,7 @@ rhdp-search-sort-page {
     .clear {
       padding: 0;
       margin: 0;
-      border: 1px solid #FFF;
+      border: 1px solid #fff;
       width: auto;
       font-weight: bold;
     }
@@ -359,16 +359,16 @@ rhdp-search-filters {
       display: block;
       width: 150px;
       height: auto;
-      border: 1px solid #0066CC;
+      border: 1px solid #0066cc;
       line-height: 1.44;
       background-color: transparent;
       padding: 8px 10px;
-      color: #0066CC;
+      color: #0066cc;
       text-align: left;
 
       &:hover,
       &:focus {
-        background-color: #0066CC;
+        background-color: #0066cc;
         color: #fff;
       }
     }
@@ -427,7 +427,7 @@ rhdp-search-filters {
       .cancel {
         display: block;
         float: right;
-        color: #0066CC;
+        color: #0066cc;
         font-size: 14px;
       }
 
@@ -448,23 +448,23 @@ rhdp-search-filters {
       }
       .clearFilters {
         display: inline-block;
-        border: 1px solid #0066CC;
+        border: 1px solid #0066cc;
         line-height: 1.44;
         background-color: #fff;
         padding: 8px 20px;
-        color: #0066CC;
+        color: #0066cc;
         text-transform: uppercase;
         margin-right: 1em;
         font-weight: 600;
         &:hover,
         &:focus {
-          background-color: #0066CC;
+          background-color: #0066cc;
           color: #fff;
         }
       }
       .applyFilters {
         text-transform: uppercase;
-        background: #CC0000;
+        background: #cc0000;
         font-weight: 600;
         padding: 10px 25px;
         transition: background 0.2s ease-in 0s;
@@ -482,27 +482,11 @@ rhdp-search-results {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  div.moreBtn,
+
   p.end-of-results {
     text-align: center;
   }
-  a.moreBtn {
-    display: block;
-    border: 1px solid #0066CC;
-    line-height: 1.44;
-    background-color: #fff;
-    padding: 8px 35px;
-    color: #0066CC;
-    text-transform: uppercase;
-    margin: 0 auto;
-    font-weight: 600;
-    max-width: 165px;
-    &:hover,
-    &:focus {
-      background-color: #0066CC;
-      color: #fff;
-    }
-  }
+
   .end-of-results {
     text-align: center;
     color: #656565;
@@ -517,7 +501,7 @@ rhdp-search-result {
   font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
   margin-bottom: 25px;
   padding-bottom: 25px;
-  border-bottom: 1px solid #D5D5D5;
+  border-bottom: 1px solid #d5d5d5;
   display: flex;
   flex-direction: row;
 
@@ -763,7 +747,7 @@ rhdp-search-filter-item {
 rhdp-search-onebox {
   div {
     display: block;
-    border: 1px solid #D5D5D5;
+    border: 1px solid #d5d5d5;
     padding: 25px;
     margin-bottom: 3em;
   }
@@ -791,7 +775,7 @@ rhdp-search-onebox {
           text-decoration: underline;
 
           svg {
-            fill: #004c98;;
+            fill: #004c98;
           }
         }
       }
@@ -799,7 +783,7 @@ rhdp-search-onebox {
       svg {
         max-width: 2.7em;
         margin-right: 5px;
-        fill: #0066CC;
+        fill: #0066cc;
         position: absolute;
         left: 0;
       }

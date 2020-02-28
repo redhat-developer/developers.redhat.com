@@ -15,7 +15,7 @@ export default class DPSearchResults extends PFElement {
                 display: none;
             }
 
-            h4 { 
+            h4 {
                 font-size: 27px;
                 font-weight: 600;
                 color: #242424;
@@ -30,29 +30,6 @@ export default class DPSearchResults extends PFElement {
                 text-align: center;
             }
 
-            div.moreBtn {
-                text-align: center;
-            }
-
-            a.moreBtn {
-                background-color: #fff;
-                border: 1px solid #06c;
-                color: #06c;
-                display: block;
-                font-weight: 600;
-                line-height: 1.44;
-                margin: 0 auto;
-                max-width: 165px;
-                padding: 8px 35px;
-                text-transform: uppercase;
-                cursor: pointer;
-                text-decoration: none;
-            }
-            a.moreBtn:hover {
-                background-color: #06c;
-                color: #fff;
-            }
-
             .loading {
                 background: url(https://developers.redhat.com/images/icons/ajax-loader.gif) center 80px no-repeat;
                 min-height: 250px;
@@ -60,12 +37,12 @@ export default class DPSearchResults extends PFElement {
         </style>
         <slot></slot>
         <div class="loading" data-hide></div>
-        <div class="moreBtn" data-hide><a class="moreBtn" href="#">Load More</a></div>
+        <div class="rhd-c-more-button" data-hide><a class="pf-c-button pf-m-primary" href="#">Load More</a></div>
         <p class="end-of-results" data-hide>- End of Results -</p>
         <div class="invalidMsg" data-hide>
         <h4>Well, this is awkward. No search term was entered yet, so this page is a little empty right now.</h4>
-        <p>After you enter a search term in the box above, you will see the results displayed here. 
-        You can also use the filters to select a content type, product or topic to see some results too. 
+        <p>After you enter a search term in the box above, you will see the results displayed here.
+        You can also use the filters to select a content type, product or topic to see some results too.
         Try it out!</p>
         </div>`;
     }
@@ -126,7 +103,7 @@ export default class DPSearchResults extends PFElement {
         super.connectedCallback();
         super.render();
 
-        this.shadowRoot.querySelector('div.moreBtn').addEventListener('click', e => {
+        this.shadowRoot.querySelector('div.rhd-c-more-button').addEventListener('click', e => {
             e.preventDefault();
             this.more = true;
             let evt = {
@@ -152,7 +129,7 @@ export default class DPSearchResults extends PFElement {
     }
 
     _setLoading(e) {
-        this.shadowRoot.querySelector('div.moreBtn').setAttribute('data-hide','');
+        this.shadowRoot.querySelector('div.rhd-c-more-button').setAttribute('data-hide','');
         this.shadowRoot.querySelector('.invalidMsg').setAttribute('data-hide','');
         if(!this.more) {
             this.last = 0;
@@ -169,7 +146,7 @@ export default class DPSearchResults extends PFElement {
         if (this.shadowRoot.querySelector('.loading')) {
             this.shadowRoot.querySelector('.loading').setAttribute('data-hide','');
         }
-            
+
         if (e.detail && typeof e.detail.results !== 'undefined' && typeof e.detail.invalid === 'undefined') {
             this.addResults(e.detail.results);
         } else {
@@ -177,11 +154,11 @@ export default class DPSearchResults extends PFElement {
                 this.removeChild(this.firstChild);
             }
             this.shadowRoot.querySelector('.end-of-results').setAttribute('data-hide','');
-            this.shadowRoot.querySelector('div.moreBtn').setAttribute('data-hide', '');
+            this.shadowRoot.querySelector('div.rhd-c-more-button').setAttribute('data-hide', '');
             this.shadowRoot.querySelector('.invalidMsg').removeAttribute('data-hide');
         }
-        let evt = { 
-            detail: { results: this.results }, 
+        let evt = {
+            detail: { results: this.results },
             bubbles: true,
             composed: true
         };
@@ -218,9 +195,9 @@ export default class DPSearchResults extends PFElement {
             if (l > 0 && this.last < results.numFound) {
                 this.shadowRoot.querySelector('.invalidMsg').setAttribute('data-hide','');
                 this.shadowRoot.querySelector('.end-of-results').setAttribute('data-hide','');
-                this.shadowRoot.querySelector('div.moreBtn').removeAttribute('data-hide');
+                this.shadowRoot.querySelector('div.rhd-c-more-button').removeAttribute('data-hide');
             } else {
-                this.shadowRoot.querySelector('div.moreBtn').setAttribute('data-hide','');
+                this.shadowRoot.querySelector('div.rhd-c-more-button').setAttribute('data-hide','');
                 this.shadowRoot.querySelector('.end-of-results').removeAttribute('data-hide');
             }
         }

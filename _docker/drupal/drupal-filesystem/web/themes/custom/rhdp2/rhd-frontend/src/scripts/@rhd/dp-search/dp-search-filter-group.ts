@@ -105,7 +105,7 @@ export default class DPSearchFilterGroup extends PFElement {
         this._items = val;
         if (this._items.length > 5) {
             if (!this.shadowRoot.querySelector('.more')) {
-                this.shadowRoot.querySelector(".moreBtn").removeAttribute('data-hide');
+                this.shadowRoot.querySelector(".rhd-c-more-button").removeAttribute('data-hide');
             }
         } else {
             if (this.shadowRoot.querySelector('.more')) {
@@ -149,7 +149,7 @@ export default class DPSearchFilterGroup extends PFElement {
             if (e.target['className'].indexOf('more') > -1) {
                 e.preventDefault();
                 this.more = !this.more;
-            }            
+            }
         });
 
         let slotItems = this.querySelectorAll('dp-search-filter-item[slot]').length;
@@ -160,8 +160,8 @@ export default class DPSearchFilterGroup extends PFElement {
         this.toggle = true;
     }
 
-    static get observedAttributes() { 
-        return ['name', 'key', 'toggle', 'items', 'more']; 
+    static get observedAttributes() {
+        return ['name', 'key', 'toggle', 'items', 'more'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
