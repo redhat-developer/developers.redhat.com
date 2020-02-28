@@ -452,8 +452,16 @@ function rhdp_preprocess_node(array &$variables) {
   // Add icon for 'login required' resources.
   if ($variables['view_mode'] == 'card') {
     $variables['login_req'] = FALSE;
+    $dm_fields = [
+      'field_book_url',
+      'field_cheat_sheet_download_url',
+      'field_source_link',
+      'field_pdf_link',
+      'field_mobi_link',
+      'field_epub',
+    ];
 
-    foreach (['field_book_url', 'field_cheat_sheet_download_url', 'field_source_link', 'field_pdf_link', 'field_mobi_link', 'field_epub'] as $field) {
+    foreach ($dm_fields as $field) {
       if ($node->hasField($field)) {
         $ext_url = $node->get($field)->getValue();
         if (count($ext_url)) {
@@ -746,29 +754,6 @@ function rhdp_preprocess_field(&$variables, $hook) {
 
     $variables['items'][0]['content']['#url'] = $url;
   }
-}
-
-/**
- * Returns a new random guid.
- *
- * @todo Determine if this is used/executed.
- */
-function createGUID() {
-  // Create a token.
-  $token = $_SERVER['HTTP_HOST'];
-  $token .= $_SERVER['REQUEST_URI'];
-  $token .= uniqid(rand(), TRUE);
-
-  // GUID is 128-bit hex.
-  $hash = strtoupper(md5($token));
-
-  // Create formatted GUID.
-  $guid = '';
-
-  // GUID format is XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX for readability.
-  $guid .= substr($hash, 0, 8) . '-' . substr($hash, 8, 4) . '-' . substr($hash, 12, 4) . '-' . substr($hash, 16, 4) . '-' . substr($hash, 20, 12);
-
-  return $guid;
 }
 
 /**
