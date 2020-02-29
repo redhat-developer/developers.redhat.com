@@ -1,0 +1,19 @@
+uuid: 429a703a-d938-4fb5-9879-49272548e331
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_display_cta_timer_label
+id: assembly.call_to_action.field_display_cta_timer_label
+field_name: field_display_cta_timer_label
+entity_type: assembly
+bundle: call_to_action
+label: 'Display CTA Timer Label'
+description: 'This text will display over the timer/countdown component ex. "Event starting in...", "Event coming soon", "Webinar available in...", etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
