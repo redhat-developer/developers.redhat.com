@@ -1,4 +1,4 @@
-@import "../mixins";
+// @import "../mixins";
 
 .assembly {
   &.component {
@@ -173,45 +173,45 @@
     }
     // 4:3	1024x768, 1600x1200	common until 2003, matches the aspect ratio of analogue TV, non-widescreen SDTV and early 35 mm film
     &.four-by-three {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 30px / 40px * 100%;
       }
     }
     // 5:4	1280x1024	common until 2003
     &.five-by-four {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 40px / 50px * 100%;
       }
     }
     // 3:2	2160x1440, 2560x1700†	used in some portable PCs since 2013
     &.three-by-two {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 20px / 30px * 100%;
       }
-    } 
+    }
     // 16:10	1280x800, 1920x1200	common between 2003 and 2010
     &.sixteen-by-ten {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 100px / 160px * 100%;
       }
     }
     // 16:9	1366x768†, 1920x1080	common since 2008, matches the aspect ratio of HDTV and widescreen SDTV
     &.sixteen-by-nine {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 90px / 160px * 100%;
       }
     }
     // ~21:9	2560x1080†, 3440x1440†	used in some professional and gaming displays since 2015, roughly matches various anamorphic formats
     &.twentyone-by-nine {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 90px / 210px * 100%;
       }
     }
     // 32:9	3840x1080, 5120x1440	used in some high-end displays since 2017
     &.thirtytwo-by-nine {
-      .rhd-c-video--video-embed { 
+      .rhd-c-video--video-embed {
         padding-top: 90px / 320px * 100%;
       }
-    }  
+    }
   }
 }

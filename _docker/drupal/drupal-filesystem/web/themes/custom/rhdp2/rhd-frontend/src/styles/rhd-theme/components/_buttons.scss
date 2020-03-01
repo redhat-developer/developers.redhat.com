@@ -1,6 +1,5 @@
 @import "../../../../node_modules/@patternfly/patternfly/components/Button/button.scss";
 
-
 :root {
   --rhd-c-button--m-heavy--Color: #fff;
   --rhd-c-button--m-heavy--active--Color: #fff;
@@ -108,7 +107,7 @@
       &:visited {
         color: var(--rhd-c-button--m-link--Color) !important;
       }
-      
+
       &:hover,
       &:active,
       &:focus {
@@ -165,7 +164,7 @@
       &>.pf-c-button__icon>i,
       &>.pf-c-button__icon>.svg-inline--fa {
         color: var(--rhd-c-button--m-link-dark--hover--Color) !important;
-        
+
       }
     }
 
@@ -417,7 +416,7 @@
       &:focus,
       &.pf-m-focus {
         color: var(--rhd-c-button--m-secondary-dark--hover--Color);
-        
+
         background-color: var(--rhd-c-button--m-secondary-dark--hover--BackgroundColor);
       }
 

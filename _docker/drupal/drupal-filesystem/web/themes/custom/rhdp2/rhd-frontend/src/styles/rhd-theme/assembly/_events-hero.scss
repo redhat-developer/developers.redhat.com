@@ -57,11 +57,11 @@
 // OTHER VISUAL STYLES
 .rhd-c-events-hero {
   >.pf-l-grid {
-    >.pf-l-grid__item { 
+    >.pf-l-grid__item {
       &:nth-child(2) {
         .pf-c-button {
           @extend .pf-m-heavy;
-    
+
           &+.pf-c-button {
             @extend .pf-m-link--secondary;
             &:hover {
@@ -172,9 +172,9 @@
     }
 
     >.pf-l-grid {
-      >.pf-l-grid__item { 
+      >.pf-l-grid__item {
         &:nth-child(2) {
-          .pf-c-button {      
+          .pf-c-button {
             &+.pf-c-button {
               @extend .pf-m-link--secondary-on-dark;
             }
