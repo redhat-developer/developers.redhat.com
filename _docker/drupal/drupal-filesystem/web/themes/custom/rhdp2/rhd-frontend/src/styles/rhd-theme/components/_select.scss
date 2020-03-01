@@ -1,10 +1,9 @@
 
 .rhd-c-select {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    border-radius: 0;
     border: solid 1px rgb(237, 237, 237);
     border-bottom: 1px solid black;
+    display: inline-block;
+    background: #f9f9f9;
     font-size: 16px;
     font-style: normal;
     font-variant-caps: normal;
@@ -12,23 +11,22 @@
     height: 36px;
     margin-bottom: 1rem;
     padding-left: .5rem;
-    position: relative;
 
-    &::-ms-expand {
-      display: none;
+    select {
+      border: none;
+      background: inherit;
+      border-radius: 0;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      &::-ms-expand {
+        display: none;
+      }
     }
 
     &:after {
-      border-style: solid;
-      border-color: transparent;
-      border-top-color: inherit;
-      border-width: 8px 5px 0;
-      content: " ";
-      margin-top: -3px;
-      position: absolute;
-      right: 10px;
-      top: 20px;
+      content: "\f0d7";
+      font-family: "Font Awesome 5 Pro";
       transform: rotate(0);
-      z-index: 1;
     }
 }

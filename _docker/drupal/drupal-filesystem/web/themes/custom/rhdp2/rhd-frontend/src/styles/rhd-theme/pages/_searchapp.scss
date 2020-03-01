@@ -2,12 +2,15 @@ rhdp-search-app {
   display: flex;
   flex-flow: column;
   font-family: "Overpass", "Open Sans", Arial, Helvetica, sans-serif;
+
   .hide {
     display: none;
   }
+
   .show {
     display: block;
   }
+
   .mobile {
     display: none;
   }
@@ -17,7 +20,7 @@ rhdp-search-app {
   }
 
   .loading {
-    background: url("https://developers.redhat.com/images/icons/ajax-loader.gif") center 80px no-repeat;
+    background: url("/images/icons/ajax-loader.gif") center 80px no-repeat;
     min-height: 250px;
   }
 }
@@ -38,8 +41,8 @@ rhdp-search-box {
     flex-direction: row;
     font-size: 16px;
     line-height: 24px;
-    position: relative;
     margin: 0;
+    position: relative;
     width: 100%;
   }
 
@@ -48,7 +51,7 @@ rhdp-search-box {
   }
 
   input.user-search {
-    background-color: white;
+    background-color: var(--rhd-white) #fff;
     border-bottom-color: rgb(204, 204, 204);
     border-bottom-style: solid;
     border-left-color: rgb(204, 204, 204);
@@ -59,11 +62,11 @@ rhdp-search-box {
     font-size: 16px;
     font-weight: 600;
     height: 40px;
-    text-align: start;
     padding: 8px;
-    transition-property: box-shadow, border-color;
+    text-align: start;
     transition-delay: 0s, 0s;
     transition-duration: 0.45s, 0.45s;
+    transition-property: box-shadow, border-color;
     transition-timing-function: ease, ease-in-out;
     user-select: text;
     width: 100%;
@@ -150,10 +153,6 @@ rhdp-search-sort-page {
     margin: 0;
   }
 
-  select {
-    width: auto;
-    padding-right: 20px;
-  }
   .tight {
     display: none;
   }

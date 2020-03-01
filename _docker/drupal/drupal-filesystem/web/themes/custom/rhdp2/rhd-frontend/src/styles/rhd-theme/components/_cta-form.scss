@@ -1,93 +1,60 @@
-@import "../mixins";
 .assembly-type-cta_form {
-    @include with-background-padding;
-    &.has-background {
-        padding: 18px 24px 8px 24px;
+
+  @include with-background-padding;
+
+  &.has-background {
+    padding: 18px 24px 8px 24px;
+  }
+  &.dark {
+    background: var(--rhd-theme--component-background--color-dark);
+    h2,
+    p {
+      color: $white;
     }
-    &.dark {
-        background: var(--rhd-theme--component-background--color-dark);
-        h2, p {
-            color: $white;
-        }
+  }
+  &.background-gray {
+    background: $rhd-theme--component-background--color-extra-light;
+  }
+  &.centered {
+    text-align: center;
+    .field--name-field-title,
+    .header {
+      text-align: center;
     }
-    &.background-gray {
-        background: $rhd-theme--component-background--color-extra-light;
+    iframe {
+      max-width: 500px;
     }
-    &.centered {
-        text-align: center;
-        .field--name-field-title, .header {
-            text-align: center;
-        }
-        iframe {
-            max-width: 500px;
-        }
-    }
+  }
 }
 
 .rhd-c-cta-form {
+  .pf-c-form__group {
+    margin-top: var(--rhd-theme--container-spacer-lg);
+
+    .pf-c-check,
+    .pf-c-radio {
+      display: inline-block;
+      padding-right: var(--rhd-theme--container-spacer-lg);
+    }
+
+    .pf-c-form__label {
+      padding: 0;
+      margin: 0 var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-sm) 0;
+    }
+  }
+
+  &.dark {
     .pf-c-form__group {
-        margin-top: var(--rhd-theme--container-spacer-lg);
-
-        .pf-c-check,
-        .pf-c-radio {
-            display: inline-block;
-            padding-right: var(--rhd-theme--container-spacer-lg);
+      .pf-c-check,
+      .pf-c-radio {
+        .pf-c-check__label,
+        .pf-c-radio__label {
+          color: $white;
         }
-
-        .pf-c-form__label {
-            padding: 0;
-            margin: 0 var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-sm) 0;
-        }
+      }
+      .pf-c-form__label {
+        color: $white;
+      }
     }
-
-    &.dark {
-        .pf-c-form__group {
-            .pf-c-check,
-            .pf-c-radio {
-                .pf-c-check__label, .pf-c-radio__label {
-                    color: $white;
-                }
-            }
-            .pf-c-form__label {
-                color: $white;
-            }
-        }
-    }
-}
-.iframe-container {
-    width: 100%;
-    .eloqua-iframe {
-        width: 100%;
-    }
-}
-
-.region.region-content {
-    form {
-        margin: var(--rhd-theme--container-spacer-md) 0;
-        @extend .pf-c-form;
-        input[type=submit] {
-            margin-top: var(--rhd-theme--container-spacer-md);
-            @extend .pf-c-button;
-            @extend .pf-m-heavy;
-        }
-
-
-        .form-item {
-            @extend .pf-c-form__group;
-            margin: var(--rhd-theme--container-spacer-md) 0;
-            label {
-                @extend .pf-c-form__label;
-                @extend .pf-c-form__label-text;
-            }
-            input {
-                &.form-text {
-                    @extend .pf-c-form-control;
-                }
-            }
-            .description {
-                @extend .pf-c-form__helper-text;
-            }
-        }
-
-    }
+  }
 }
