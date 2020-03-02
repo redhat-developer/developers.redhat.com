@@ -1,4 +1,4 @@
-// @import "../mixins";
+@import "../mixins";
 
 .component {
   &.assembly-type-call_to_action {
@@ -7,16 +7,14 @@
 
     .cta__container {
       text-align: center;
-      color: #FFFFFF;
+      // @to-do: This is applied without hte .dark classname; Is this assembly always dark?
+      color: var(--rhd-theme--component-font--color-light);
     }
 
     .cta__title,
     .cta__content {
-      color: #FFFFFF;
-    }
-
-    .cta__title,
-    .cta__content {
+      // @to-do: This is applied without hte .dark classname; Is this assembly always dark?
+      color: var(--rhd-theme--component-font--color-light);
       margin-bottom: var(--rhd-theme--container-spacer-md);
     }
 
@@ -31,7 +29,7 @@
       }
     }
     &.dark {
-      background-color: #242424;
+      background-color: var(--rhd-theme--component-background--color-dark);
     }
   }
 }

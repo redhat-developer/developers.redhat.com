@@ -1,0 +1,47 @@
+.rhd-c-countdown {
+  background-color: var(--rhd-theme--component-background--color);
+  border: 2px solid var(--pf-global--BackgroundColor--300);
+  max-width: 400px;
+  padding: var(--rhd-theme--container-spacer-md);
+  text-align: center;
+  width: 100%;
+
+  .assembly-type-call_to_action:not(.left) & {
+    margin: 0 auto;
+  }
+
+  .rhd-c-countdown-label {
+    color: var(--rhd-theme--color-text--subtle);
+    font-family: $rhd-font-stack-display;
+    font-weight: var(--rhd-global--FontWeight-Display--medium);
+    font-size: .8rem;
+  }
+
+  .rhd-c-countdown-body {
+    .pf-l-flex__item {
+      flex-basis: 25%;
+      padding-top: var(--rhd-theme--container-spacer-md);
+
+      &:not(:last-child) span {
+        border-right: solid 1px var(--pf-global--BackgroundColor--300);
+      }
+
+      span {
+        color: var(--rhd-theme--color-text);
+        display: block;
+        font-family: $rhd-font-stack-display;
+        font-size: 2rem;
+        font-weight: var(--rhd-global--FontWeight-Display--medium);
+        height: 60px;
+        line-height: 60px;
+      }
+
+      small {
+        color: var(--rhd-theme--color-text--subtle);
+        font-family: $rhd-font-stack-display;
+        font-size: .8rem;
+        font-weight: var(--rhd-global--FontWeight-Display--medium);
+      }
+    }
+  }
+}

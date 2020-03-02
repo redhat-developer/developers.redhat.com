@@ -8,9 +8,12 @@ dependencies:
     - field.field.assembly.call_to_action.field_background_image
     - field.field.assembly.call_to_action.field_cta_content
     - field.field.assembly.call_to_action.field_cta_link
+    - field.field.assembly.call_to_action.field_display_cta_timer
+    - field.field.assembly.call_to_action.field_display_cta_timer_label
     - field.field.assembly.call_to_action.field_navigation_title
     - field.field.assembly.call_to_action.field_title
   module:
+    - datetime
     - fences
     - field_layout
     - layout_discovery
@@ -59,6 +62,30 @@ content:
         fences_label_classes: ''
     type: link_class
     region: content
+  field_display_cta_timer:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      timezone_override: UTC
+      format_type: html_datetime
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_display_cta_timer_label:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_title:
     weight: 0
     label: hidden

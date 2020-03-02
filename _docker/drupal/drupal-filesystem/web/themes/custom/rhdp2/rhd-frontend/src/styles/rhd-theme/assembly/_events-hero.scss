@@ -12,7 +12,6 @@
 
   &__item-presenters {
 
-
     .pf-l-flex {
       margin-left: 0;
       align-items: flex-start;
@@ -34,10 +33,10 @@
   }
 
   &__item-presenters-simple {
-
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 24px;
   }
+
   &.dark.has-background {
     background: var(--rhd-theme--ui-background-image__events-hero) !important;
     background-position: 50% !important;
@@ -45,6 +44,7 @@
     background-size: cover !important;
     z-index: 0;
   }
+
   &.has-background {
     background: var(--rhd-theme--ui-background-image__product-hero-light) !important;
     background-position: 50% !important;
@@ -159,18 +159,6 @@
   }
 
   &.dark {
-
-    p,
-    small,
-    h2,
-    h2.pf-c-title,
-    h3,
-    h3.pf-c-title,
-    .rhd-c-author--tile-title,
-    .rhd-c-events-hero__item-title>a {
-      color: var(--pf-global--Color--light-100);
-    }
-
     >.pf-l-grid {
       >.pf-l-grid__item {
         &:nth-child(2) {
