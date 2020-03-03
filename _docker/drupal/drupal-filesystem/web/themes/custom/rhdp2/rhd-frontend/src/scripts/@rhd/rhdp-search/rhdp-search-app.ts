@@ -166,8 +166,8 @@ export default class RHDPSearchApp extends HTMLElement {
         this.querySelector('.rhd-c-search-page-header').appendChild(this.box);
         this.querySelector('.rhd-c-search-body-left').appendChild(this.filters);
         this.querySelector('.rhd-c-search-body-right').appendChild(this.active);
-        this.querySelector('.rhd-c-search-body-right').appendChild(this.count);
         this.querySelector('.rhd-c-search-body-right').appendChild(this.sort);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.count);
         this.querySelector('.rhd-c-search-body-right').appendChild(this.onebox);
         this.querySelector('.rhd-c-search-body-right').appendChild(this.results);
         document.body.appendChild(this.urlEle);

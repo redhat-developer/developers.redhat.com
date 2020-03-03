@@ -17,11 +17,10 @@ export default class RHDPSearchSortPage extends HTMLElement {
     }
 
     template = `
-        <span>Sort results by</span>
         <div class="rhd-c-select">
             <select>
-              <option value="relevance">Relevance</option>
-              <option value="most-recent">Most Recent</option>
+              <option value="relevance">Sort by Relevance</option>
+              <option value="most-recent">Sort by Most Recent</option>
             </select>
             <i class="fas fa-caret-down"></i>
         </div>`;
