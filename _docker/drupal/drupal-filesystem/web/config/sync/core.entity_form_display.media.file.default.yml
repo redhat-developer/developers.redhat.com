@@ -14,7 +14,8 @@ dependencies:
 third_party_settings:
   field_layout:
     id: layout_disabled
-    settings: {  }
+    settings:
+      label: ''
 _core:
   default_config_hash: hXrcSi0w6aTt3jtOSoec3ah6KyHcQM__VFL8eWmmkfw
 id: media.file.default
@@ -70,6 +71,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden:

@@ -14,7 +14,6 @@ description: 'Content overview page for Workbench.'
 tag: Workbench
 base_table: node_field_data
 base_field: nid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -540,6 +539,8 @@ display:
               administrator: '0'
               editor: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -582,6 +583,8 @@ display:
               administrator: '0'
               editor: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -623,6 +626,8 @@ display:
               anonymous: '0'
               administrator: '0'
               editor: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -661,6 +666,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -815,6 +822,8 @@ display:
               anonymous: '0'
               administrator: '0'
               editor: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

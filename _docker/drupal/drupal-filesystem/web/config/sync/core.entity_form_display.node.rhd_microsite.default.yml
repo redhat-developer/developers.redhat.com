@@ -16,7 +16,8 @@ dependencies:
 third_party_settings:
   field_layout:
     id: layout_disabled
-    settings: {  }
+    settings:
+      label: ''
 _core:
   default_config_hash: dIotB7LsuqwMk24OiXlVZivKbDsH1kT6lBeKbfXGSoQ
 id: node.rhd_microsite.default
@@ -79,6 +80,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     region: content
   url_redirects:

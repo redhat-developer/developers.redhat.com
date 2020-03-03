@@ -12,7 +12,8 @@ dependencies:
 third_party_settings:
   field_layout:
     id: layout_disabled
-    settings: {  }
+    settings:
+      label: ''
 id: assembly.node_reference.default
 targetEntityType: assembly
 bundle: node_reference
@@ -30,6 +31,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content

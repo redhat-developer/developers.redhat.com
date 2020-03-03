@@ -122,7 +122,8 @@ third_party_settings:
       region: content
   field_layout:
     id: compose_tabs
-    settings: {  }
+    settings:
+      label: ''
 _core:
   default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
 id: node.product.default
@@ -268,6 +269,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: fields

@@ -27,7 +27,6 @@ description: ''
 tag: ''
 base_table: node_field_revision
 base_field: vid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -532,6 +531,8 @@ display:
               administrator: '0'
             reduce: false
             argument: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -575,6 +576,8 @@ display:
               content_team: '0'
               topics_owners: '0'
               content_admin: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -624,6 +627,8 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: 'Revision user ID'
@@ -695,6 +700,8 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

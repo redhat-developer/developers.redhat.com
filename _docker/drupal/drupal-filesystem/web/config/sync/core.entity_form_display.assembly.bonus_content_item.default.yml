@@ -14,7 +14,8 @@ dependencies:
 third_party_settings:
   field_layout:
     id: layout_disabled
-    settings: {  }
+    settings:
+      label: ''
 id: assembly.bonus_content_item.default
 targetEntityType: assembly
 bundle: bonus_content_item
@@ -69,6 +70,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
   visual_styles:

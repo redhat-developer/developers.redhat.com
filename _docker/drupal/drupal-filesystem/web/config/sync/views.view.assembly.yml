@@ -14,7 +14,6 @@ description: ''
 tag: ''
 base_table: assembly_field_data
 base_field: id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -477,6 +476,8 @@ display:
               content_manager: '0'
               user_manager: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -521,6 +522,8 @@ display:
               content_manager: '0'
               user_manager: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

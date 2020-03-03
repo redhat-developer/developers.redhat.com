@@ -12,7 +12,6 @@ description: 'Latest content revisions filter by from - to dates'
 tag: ''
 base_table: node_field_revision
 base_field: vid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -567,6 +566,8 @@ display:
           id: status
           expose:
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
         latest_revision:
           id: latest_revision
@@ -591,6 +592,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -644,6 +647,8 @@ display:
             placeholder: ''
             min_placeholder: 'Date from CCYY-MM-DD'
             max_placeholder: 'Date to CCYY-MM-DD'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -692,6 +697,8 @@ display:
               coding_resource_reviewer: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: 'Name (autocomplete)'
