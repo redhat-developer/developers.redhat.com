@@ -23,6 +23,7 @@ export default class RHDPSearchSortPage extends HTMLElement {
               <option value="relevance">Relevance</option>
               <option value="most-recent">Most Recent</option>
             </select>
+            <i class="fas fa-caret-down"></i>
         </div>`;
 
     connectedCallback() {

@@ -186,31 +186,7 @@ rhdp-search-sort-page {
     span {
       display: none;
     }
-    select {
-      margin-left: 15px;
-      display: block;
-      margin-right: 15px;
-      width: 100%;
-      max-width: 150px;
-      text-align: left;
-      text-align-last: left;
-      font-weight: 600;
-      height: auto;
-      border: 1px solid #0066cc;
-      line-height: 1.44;
-      background-color: transparent;
-      padding: 8px 10px;
-      color: #0066cc;
-      font-size: 16px;
-      position: relative;
-      top: -4px;
 
-      &:hover,
-      &:focus {
-        background-color: #0066cc;
-        color: #fff;
-      }
-    }
     .roomy {
       display: none;
     }
@@ -227,9 +203,6 @@ rhdp-search-sort-page {
   }
   @media only screen and (max-width: 400px) {
     padding-left: 55%;
-    select {
-      margin-left: 0;
-    }
   }
   @media only screen and (max-width: 365px) {
     position: relative;
@@ -237,10 +210,6 @@ rhdp-search-sort-page {
     top: 0;
     margin-left: 0px;
     padding-left: 0;
-    select {
-      margin-left: 0;
-      margin-right: 0;
-    }
   }
 }
 

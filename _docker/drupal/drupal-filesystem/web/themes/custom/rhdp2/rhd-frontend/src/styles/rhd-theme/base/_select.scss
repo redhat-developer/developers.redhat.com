@@ -3,14 +3,9 @@
     border: solid 1px rgb(237, 237, 237);
     border-bottom: 1px solid black;
     display: inline-block;
-    background: #f9f9f9;
-    font-size: 16px;
-    font-style: normal;
-    font-variant-caps: normal;
-    font-weight: normal;
-    height: 36px;
+    background-color: #f9f9f9;
     margin-bottom: 1rem;
-    padding-left: .5rem;
+    padding: .5rem;
 
     select {
       border: none;
@@ -22,11 +17,5 @@
       &::-ms-expand {
         display: none;
       }
-    }
-
-    &:after {
-      content: "\f0d7";
-      font-family: "Font Awesome 5 Pro";
-      transform: rotate(0);
     }
 }
