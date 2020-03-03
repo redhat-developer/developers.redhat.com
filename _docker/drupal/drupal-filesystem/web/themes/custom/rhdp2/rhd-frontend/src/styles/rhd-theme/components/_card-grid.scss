@@ -32,7 +32,7 @@
     }
 }
 
-// OTHER VISUAL STYLES
+
 .rhd-c-card-grid {
 
     &.centered {
@@ -53,22 +53,5 @@
             .rhd-c-card:last-of-type {margin-right: var(--pf-l-flex--spacer--lg);}
         }
     }
-
-    &.dark {
-        background: #252525;
-
-        .pf-c-title {
-            color: #FFF;
-        }
-
-        .rhd-c-card-grid__cta a,
-        .rhd-c-card-grid__cta button{
-            @extend .pf-m-secondary-on-dark;
-            &::after {
-                border: 1px solid var(--rhd-c-button--m-secondary-alt-dark--BorderColor);
-            }
-        }
-    }
-
 }
 
