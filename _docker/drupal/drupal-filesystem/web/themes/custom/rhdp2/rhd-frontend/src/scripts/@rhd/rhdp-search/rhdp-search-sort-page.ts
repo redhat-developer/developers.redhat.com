@@ -16,13 +16,14 @@ export default class RHDPSearchSortPage extends HTMLElement {
         this._sortChange = this._sortChange.bind(this);
     }
 
-    template = `<p>
-        <span>Sort results by</span>
-        <select>
-        <option value="relevance">Relevance</option>
-        <option value="most-recent">Most Recent</option>
-        </select>
-        </p>`; 
+    template = `
+        <div class="rhd-c-select">
+            <select>
+              <option value="relevance">Sort by Relevance</option>
+              <option value="most-recent">Sort by Most Recent</option>
+            </select>
+            <i class="fas fa-caret-down"></i>
+        </div>`;
 
     connectedCallback() {
         this.innerHTML = this.template;

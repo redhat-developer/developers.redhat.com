@@ -62,24 +62,27 @@ export default class RHDPSearchFilters extends HTMLElement {
     }
     modalTemplate = (string, title) => {
         return `<div class="cover" id="cover">
-            <div class="title">${title} <a href="#" class="cancel" id="cancel">Close</a></div>
+            <div class="title">${title} <a href="#" id="cancel" data-search-action="cancelFilters">Close</a></div>
             <div class="groups">
             </div>
             <div class="footer">
-            <a href="#" class="clearFilters">Clear Filters</a> 
-            <a href="#" class="applyFilters">Apply</a>
+            <a href="#" class="rhd-u-clear-filters pf-c-button pf-m-secondary"
+              data-search-action="showFilters">Show Filters</a>
+            <a href="#" data-search-action="applyFilters">Apply</a>
             </div>
         </div>`;
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
-        <strong>${title}</strong>
         <div class="activeFilters"></div>
-        <a href="#" class="clearFilters">Clear Filters</a>
       </div>`;
     }
     template = (strings, title) => {
-        return `<a class="showBtn">Show Filters</a>
+        return `<a class="pf-c-button pf-m-secondary
+         pf-u-display-none-on-md pf-u-display-none-on-lg pf-u-display-none-on-xl
+         pf-u-display-none-on-2xl" href="#" data-search-action="showFilters">Show Filters</a>
+        <a href="#" class="rhd-u-clear-filters pf-c-button pf-m-secondary"
+          data-search-action="clearFilters">Clear Filters</a>
         <div class="control" id="control">
             <div class="title">${title}</div>
             <div class="groups">
@@ -105,9 +108,9 @@ export default class RHDPSearchFilters extends HTMLElement {
         }
 
         this.addEventListener('click', e => {
-            switch (e.target['className']) {
-                case 'showBtn':
-                case 'cancel':
+            switch (e.target['dataset']['searchAction']) {
+                case 'showFilters':
+                case 'cancelFilters':
                 case 'applyFilters':
                     e.preventDefault();
                     this.dispatchEvent(new CustomEvent('toggle-modal', {
@@ -188,7 +191,6 @@ export default class RHDPSearchFilters extends HTMLElement {
 
     _initActive(e, group_key, item) {
         if (e.detail && e.detail.filters) {
-            //console.log(e.detail.filters);
             Object.keys(e.detail.filters).forEach(group => {
                 e.detail.filters[group].forEach(facet => {
                     if (group === group_key) {
@@ -218,9 +220,6 @@ export default class RHDPSearchFilters extends HTMLElement {
                     this.querySelector('.activeFilters').appendChild(item)
                 }
             }
-        // if (this.type === 'active') {
-        //     this._checkActive();
-        // }
     }
 
     _toggleModal(e) {

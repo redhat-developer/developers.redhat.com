@@ -1,0 +1,324 @@
+rhdp-search-app {
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .loading {
+    background: url("/images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height: 250px;
+  }
+}
+
+rhdp-search-box {
+  margin: 0 0 1em 0;
+
+  form.search-bar {
+    box-sizing: border-box;
+    color: rgb(66, 66, 66);
+    cursor: auto;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  form.search-bar div {
+    flex: 1 1 100%;
+  }
+
+  input.user-search {
+    background-color: var(--rhd-white) #fff;
+    border-bottom-color: rgb(204, 204, 204);
+    border-bottom-style: solid;
+    border-left-color: rgb(204, 204, 204);
+    border-left-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    border-right-style: solid;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    padding: 8px;
+    text-align: start;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.45s, 0.45s;
+    transition-property: box-shadow, border-color;
+    transition-timing-function: ease, ease-in-out;
+    user-select: text;
+    width: 100%;
+  }
+
+  input.user-search::-webkit-search-cancel-button {
+    position: relative;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background-image: url("https://static.jboss.org/rhd/images/icons/fa_times_icon.svg");
+    opacity: 0.75;
+    pointer-events: auto;
+    color: #000;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  button {
+    text-transform: uppercase;
+    background: #c00;
+    text-decoration: none;
+    border: 0;
+    height: 40px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 9px 30px;
+    transition: background 0.2s ease-in 0s;
+    line-height: 1.2em;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    color: #fff;
+  }
+
+  button svg {
+    @media only screen and (min-width: 768px) {
+      display: none !important;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 0.5em;
+    button {
+      display: block;
+      padding: 9px 20px;
+    }
+    button i.fa.fa-search {
+      display: inline-block;
+      font-size: 18px;
+    }
+    button span {
+      display: none;
+    }
+  }
+}
+
+rhdp-search-empty-query {
+  background: tomato;
+}
+
+rhdp-search-result-count {
+  display: block;
+  margin-bottom: 1em;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+rhdp-search-sort-page {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+rhdp-search-filters {
+  margin-bottom: 1rem;
+  display:block;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+  }
+
+  .control {
+    border: 1px solid #ededed;
+    margin-top: 1rem;
+  }
+
+  &[type="modal"] {
+    display: none;
+  }
+
+  // Hide the sidebar filters on mobile.
+  @media only screen and (max-width: 768px) {
+    .control {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding-top: 51px;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      z-index: 99;
+      right: 100%;
+      position: absolute;
+      top: 100px;
+    }
+
+    &[type="modal"] {
+      display: block;
+      .modal {
+        transition: 0.5s ease-in-out;
+        transform: translateX(100%);
+      }
+
+      .cover {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding-top: 100px;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        z-index: 999;
+        right: 100%;
+        position: absolute;
+        top: 0px;
+      }
+      .cancel {
+        display: block;
+        float: right;
+        color: #0066cc;
+        font-size: 14px;
+      }
+
+      .groups {
+        background: white;
+        flex: 1 1 100%;
+        order: 1;
+        overflow: auto;
+      }
+      .footer {
+        display: block;
+        flex: 1 0 auto;
+        height: 70px;
+        order: 2;
+        text-align: center;
+        background-color: #000;
+        padding: 1em;
+      }
+      .rhd-u-clear-filters {
+        display: inline-block;
+        border: 1px solid #0066cc;
+        line-height: 1.44;
+        background-color: #fff;
+        padding: 8px 20px;
+        color: #0066cc;
+        text-transform: uppercase;
+        margin-right: 1em;
+        font-weight: 600;
+        &:hover,
+        &:focus {
+          background-color: #0066cc;
+          color: #fff;
+        }
+      }
+      .applyFilters {
+        text-transform: uppercase;
+        background: #cc0000;
+        font-weight: 600;
+        padding: 10px 25px;
+        transition: background 0.2s ease-in 0s;
+        color: #fff;
+      }
+
+      rhdp-search-filter-group {
+        margin: 0 0 0.5em 0;
+      }
+    }
+  }
+}
+
+rhdp-search-filter-group {
+  cursor: pointer;
+  display: block;
+  margin-top: 1rem;
+  padding: 0 1rem 1rem;
+  position: relative;
+
+  h6 {
+    color: gray;
+    font-weight: 600;
+    margin-top: 0.75rem;
+
+    .toggle.expand {
+      float: right;
+    }
+  }
+
+  .more {
+    font-weight: 600;
+  }
+}
+
+rhdp-search-filter-item {
+  rhdp-filter-group & {
+    padding: .25rem;
+    display: block;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+rhdp-search-results {
+  display: block;
+}
+
+rhdp-search-result {
+  display: block;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #D5D5D5;
+}
+
+rhdp-search-onebox {
+  div {
+    border: 1px solid #d5d5d5;
+    padding: 25px;
+    margin-bottom: 3em;
+  }
+
+  ul.slots {
+    display: inline;
+    li {
+      display: inline;
+      list-style-type: none;
+      padding-right: 20px;
+
+      a {
+        position: relative;
+        padding-left: 3em;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+
+          svg {
+            fill: #004c98;
+          }
+        }
+      }
+
+      svg {
+        max-width: 2.7em;
+        margin-right: 5px;
+        fill: #0066cc;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+}

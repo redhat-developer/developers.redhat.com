@@ -11,11 +11,15 @@
 
 // PatternFly Core
 @import "../../../node_modules/@patternfly/patternfly/components/Table/table.scss";
-
 @import "mixins";
 
-// Components
+// Base Elements
+@import "components/form";
+@import "components/select";
+@import "components/tables";
+@import "components/labels";
 
+// Components
 @import "components/assembly-base";
 @import "components/articles";
 @import "components/component-base";
@@ -36,7 +40,6 @@
 @import "components/embedded-content";
 @import "components/icons";
 @import "components/rich-text";
-@import "components/tables";
 @import "components/video-hero";
 @import "components/video-resource";
 @import "components/product-download-hero";
@@ -80,7 +83,7 @@
 @import "pages/books";
 @import "pages/learning-paths";
 @import "pages/search";
-@import "pages/blog";
+@import "pages/searchapp";
 @import "pages/devoxx4kids";
 @import "pages/login";
 

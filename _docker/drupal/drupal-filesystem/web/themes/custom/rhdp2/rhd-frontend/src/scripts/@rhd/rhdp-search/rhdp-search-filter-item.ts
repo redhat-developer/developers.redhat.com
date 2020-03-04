@@ -109,11 +109,16 @@ export default class RHDPSearchFilterItem extends HTMLElement {
 
     template = (strings, name, key, active) => {
         var checked = active ? 'checked' : '';
-        return `<div class="list"><span>${name}</span><input type="checkbox" ${checked} id="filter-item-${key}" value="${key}"><label for="filter-item-${key}">${name}</label></div>`; 
+        return `
+       <div class="pf-c-check">
+        <span>${name}</span>
+        <input class="pf-c-check__input" type="checkbox" ${checked} id="filter-item-${key}" value="${key}">
+        <label class="pf-c-check__label" for="filter-item-${key}">${name}</label>
+       </div>`;
     };
     
     inlineTemplate = (strings, name, active) => {
-        return active ? `<div class="inline">${name} <i class="fa fa-times clearItem" aria-hidden="true"></i></div>` : '';
+        return active ? `<div class="pf-c-label" data-search-action="clearFilter">${name} <i class="fa fa-times" aria-hidden="true" data-search-action="clearFilter"></i></div>` : '';
     }
 
     connectedCallback() {
@@ -141,9 +146,9 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     _updateFacet(e) {
         this.bounce = true;
         if (this.inline) {
-            let cls = e.target.getAttribute('class');
-            if (cls && cls.indexOf('clearItem') >= 0) {
-                this.active = !this.active; 
+            let action = e.target['dataset']['searchAction'];
+            if (action && action == 'clearFilter') {
+                this.active = !this.active;
             }
         } else {
             this.active = !this.active;

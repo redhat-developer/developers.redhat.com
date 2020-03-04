@@ -1,0 +1,21 @@
+
+.rhd-c-select {
+    border: solid 1px rgb(237, 237, 237);
+    border-bottom: 1px solid black;
+    display: inline-block;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+    padding: .5rem;
+
+    select {
+      border: none;
+      background: inherit;
+      border-radius: 0;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+}
