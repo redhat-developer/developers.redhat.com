@@ -48,16 +48,16 @@
         {{ title_prefix }}
         <h1{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h1>
         {{ title_suffix }}
-        <div class="gsi-meta article-info">
+        <div class="meta-info">
           <div class="publish-date">{{ node.createdtime|date(' F j, Y') }}</div>
           {% if author_location == 'left' %}
           <div class="share-buttons">
-            {% include '@rhdp2/share.html.twig' %}
+            {% include '@components/share.html.twig' %}
           </div>
           {% endif %}
           {% if content.field_topics|render %}
            <div class="topics">
-            More on: {{ content.field_topics }}
+            <span class="tag-label"><i class="fas fa-tag fa-sm" title="Tags:"></i></span>{{ content.field_topics }}
            </div>
           {% endif %}
         </div>
@@ -66,7 +66,9 @@
       {% if (content.field_content_author['#items']) or (content.field_author_evangelist['#items']) %}
         <div class="authors">
           {% if author_location == 'right' %}
-          	<div class="share-buttons">{% include '@rhdp2/share.html.twig' %}</div>
+          	<div class="share-buttons">
+              {% include '@components/share.html.twig' %}
+            </div>
           {% endif %}
           {{ content.field_author_evangelist }}
           {{ content.field_content_author }}

@@ -44,26 +44,11 @@
     border-bottom: 1px solid #656565;
     padding: 7px 0;
     margin-bottom: 2.5em;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      overflow: hidden;
-      padding-left: 0;
-
-      li {
-        width: auto;
-        margin-bottom: 1px;
-        padding-top: 1px;
-        display: inline-block;
-
-        &:first-child {
-          padding-left: 0;
-
-          .field {
-            display: inline-block;
-          }
-        }
+    .meta-info {
+      margin-bottom: 0;
+      .share-buttons {
+        border-left: none;
+        border-right: none;
       }
     }
   }
