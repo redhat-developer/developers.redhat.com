@@ -8,7 +8,7 @@
       margin-bottom: var(--pf-c-content--MarginBottom);
     }
   }
-  
+
   &__item-title {
     @extend .pf-u-mb-0;
   }
@@ -30,6 +30,7 @@
 }
 
 // OTHER VISUAL STYLES
+// @to-do: Move this to _visual-styles.scss
 .rhd-c-curated-events {
   &.gray {
     .rhd-c-curated-events__item {

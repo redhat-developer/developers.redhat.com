@@ -1,0 +1,8 @@
+countdown:
+  version: VERSION
+  js:
+    js/countdown.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal

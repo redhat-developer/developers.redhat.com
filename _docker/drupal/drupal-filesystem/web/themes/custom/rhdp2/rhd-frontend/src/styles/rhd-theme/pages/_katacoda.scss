@@ -6,7 +6,7 @@
     .rhd-masthead {
         >.component {
             background-color: $white;
-            padding: var(--rhd-theme--container-spacer-xl) 64px;
+            padding: var(--rhd-theme--container-spacer-md) 16px;
             margin: 0;
             @media screen and (max-width: 768px) {
                 padding: 0 32px;
@@ -65,7 +65,7 @@
         padding: var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl) var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-3xl);
       }
 }
-  
+
 .region-rhd-katacoda-header {
     padding: 8px 32px;
     max-width: none;
@@ -108,7 +108,7 @@
         }
       }
 }
-  
+
 .screen-size-note {
     text-align: center;
     @media(min-width: 812px) {
@@ -119,7 +119,7 @@
         margin: 20px auto;
     }
 }
-  
+
 .node--type-katacoda-individual-lesson {
     &.node--view-mode-full {
         .katacoda-lesson {

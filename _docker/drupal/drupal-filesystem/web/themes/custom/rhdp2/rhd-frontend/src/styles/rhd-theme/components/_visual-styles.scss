@@ -16,11 +16,26 @@
   }
 
   &.dark {
+
+    // The following resets the value from pf _shield-inheritable.scss
+     --pf-global--Color--100: var(--rhd-theme--component-font--color-light);
+
     background-color: var(--rhd-theme--component-background--color-dark);
     @include with-background-padding;
+
     color: var(--rhd-theme--component-font--color-light);
     .pf-c-title {
       color: var(--rhd-theme--component-font--color-light);
+    }
+  }
+}
+
+a,
+.pf-c-content a {
+  .dark & {
+    color: var(--rhd-c-button--m-link-dark--Color);
+    &:hover {
+      color: var(--rhd-c-button--m-link-dark--hover--Color);
     }
   }
 }
