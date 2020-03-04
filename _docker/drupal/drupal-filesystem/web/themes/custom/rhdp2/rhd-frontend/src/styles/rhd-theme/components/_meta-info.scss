@@ -1,0 +1,74 @@
+//meta-imfo styles used in:
+//_docker/drupal/drupal-filesystem/web/themes/custom/rhdp2/components/share.html.twig
+//_docker/drupal/drupal-filesystem/web/themes/custom/rhdp2/templates/node/node--article--full.html.twig
+//_docker/drupal/drupal-filesystem/web/themes/custom/rhdp2/templates/node/node--books--full.html.twig
+//_docker/drupal/drupal-filesystem/web/themes/custom/rhdp2/templates/node/node--video-resource--full.html.twig
+
+.meta-info {
+    margin-bottom: var(--rhd-theme--container-spacer-lg);
+    color: $rolling-stone;
+    font-size: map-get($rhd-font-size, "xxs");
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+      flex-direction: column;
+    }
+    //generic style for social share buttons
+    .share-buttons {
+        padding: 0 0 0 map-get($spacing, "base");
+        border-left: $light-gray solid 1px;
+        border-right: $light-gray solid 1px;
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+          padding-left: 0;
+          border-left: none;
+          border-right: none;
+
+        }
+        .a2a_default_style {
+            a {
+                padding: 3px map-get($spacing, "base") 3px 0;
+                display: inline-block;
+                float: none;
+                color: $rolling-stone;
+            }
+        }
+        &.right {
+          margin-left: auto;
+          @media screen and (max-width: $pf-global--breakpoint--sm) {
+            margin-left: 0;
+          }
+        }
+    }
+    //topic and tag styles
+    .topics {
+        padding-left: map-get($spacing, "base");
+        @media screen and (max-width: $pf-global--breakpoint--sm) {
+          padding-left: 0;
+        }
+        .tag-label {
+          padding-right: map-get($spacing, "base");
+        }
+        a {
+            color: $rolling-stone;
+            &:after {
+              content: ', ';
+            }
+            &:last-of-type:after {
+              content: ' ';
+            }
+          }
+    }
+    //general meta info styles
+    .meta-video-speaker,
+    .meta-video-published,
+    .meta-book-author,
+    .meta-book-published,
+    .meta-cs-author,
+    .meta-cs-published,
+    .changed-date,
+    .publish-date {
+      color: $rolling-stone;
+      vertical-align: middle;
+      margin-right: map-get($spacing, "base");
+    }
+}
