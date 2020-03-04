@@ -74,7 +74,7 @@ export default class RHDPSearchApp extends HTMLElement {
         term: '',
         facets: [
             {
-                name: 'TOPIC', key: 'tag', items: [
+                name: 'Topics', key: 'tag', items: [
                     /*
                     Architecture
                     Big Data
@@ -105,7 +105,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 ]
             },
             {
-                name: 'CONTENT TYPE', key: 'type', items: [
+                name: 'Content type', key: 'type', items: [
                     { key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs'] },
                     { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype'] },
                     { key: 'article', name: 'Article', value: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'], type: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'] },
@@ -124,7 +124,7 @@ export default class RHDPSearchApp extends HTMLElement {
                 ]
             },
             {
-                name: 'PRODUCT',
+                name: 'Products &amp; Project',
                 key: 'project',
                 items: [
                     { key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
