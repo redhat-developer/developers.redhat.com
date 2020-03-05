@@ -2,40 +2,40 @@
 @import "../mixins";
 
 .component {
-  &.no-padding-top {
-    @extend .pf-u-pt-0;
-  }
-
-  &.no-padding-bottom {
-    @extend .pf-u-pb-0;
-  }
 
   &.gray {
-    background-color: var(--rhd-theme--component-background--color-light);
     @include with-background-padding;
+    background-color: var(--rhd-theme--component-background--color-light);
   }
 
   &.dark {
-
-    // The following resets the value from pf _shield-inheritable.scss
-     --pf-global--Color--100: var(--rhd-theme--component-font--color-light);
-
-    background-color: var(--rhd-theme--component-background--color-dark);
+    //Set base background padding and colors
     @include with-background-padding;
-
+    background-color: var(--rhd-theme--component-background--color-dark);
     color: var(--rhd-theme--component-font--color-light);
+
+    .pf-c-content, &.pf-c-content {
+      // Reset the pf-c-content color to light 
+      --pf-c-content--Color: var(--rhd-theme--component-font--color-light);
+      
+      //Reset links
+      a {
+        color: var(--rhd-c-button--m-link-dark--Color);
+        &:hover {
+          color: var(--rhd-c-button--m-link-dark--hover--Color);
+        }
+      }
+    }
+
     .pf-c-title {
       color: var(--rhd-theme--component-font--color-light);
     }
-  }
-}
 
-a,
-.pf-c-content a {
-  .dark & {
-    color: var(--rhd-c-button--m-link-dark--Color);
-    &:hover {
-      color: var(--rhd-c-button--m-link-dark--hover--Color);
+    a {
+      color: var(--rhd-c-button--m-link-dark--Color);
+      &:hover {
+        color: var(--rhd-c-button--m-link-dark--hover--Color);
+      }
     }
   }
 }
