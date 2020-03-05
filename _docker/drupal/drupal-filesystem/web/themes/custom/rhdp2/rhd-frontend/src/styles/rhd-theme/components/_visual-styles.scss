@@ -13,20 +13,8 @@
     @include with-background-padding;
     background-color: var(--rhd-theme--component-background--color-dark);
     color: var(--rhd-theme--component-font--color-light);
-
-    .pf-c-content, &.pf-c-content {
-      // Reset the pf-c-content color to light 
-      --pf-c-content--Color: var(--rhd-theme--component-font--color-light);
-      
-      //Reset links
-      a {
-        color: var(--rhd-c-button--m-link-dark--Color);
-        &:hover {
-          color: var(--rhd-c-button--m-link-dark--hover--Color);
-        }
-      }
-    }
-
+    --pf-c-content--Color: var(--rhd-theme--component-font--color-light);
+    
     .pf-c-title {
       color: var(--rhd-theme--component-font--color-light);
     }

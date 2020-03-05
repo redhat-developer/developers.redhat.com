@@ -15,7 +15,17 @@ $pf-global--font-path: "/themes/custom/rhdp2/fonts/patternfly";
 //custom rhd theme overrides
 @import "pf4-custom-globals";
 @import "pf4-base-variable-overrides";
-@import "../../../node_modules/@patternfly/patternfly/patternfly.scss";
+//@import "../../../node_modules/@patternfly/patternfly/patternfly.scss";
+@import "../../../node_modules/@patternfly/patternfly/sass-utilities/all";
+@import "../../../node_modules/@patternfly/patternfly/variables";
+@import "../../../node_modules/@patternfly/patternfly/fonts";
+@import "../../../node_modules/@patternfly/patternfly/shield-noninheritable";
+@import "../../../node_modules/@patternfly/patternfly/common";
+@import "../../../node_modules/@patternfly/patternfly/globals";
+@import "../../../node_modules/@patternfly/patternfly/themes";
+@import "../../../node_modules/@patternfly/patternfly/icons";
+@import "../../../node_modules/@patternfly/patternfly/components/all";
+@import "../../../node_modules/@patternfly/patternfly/layouts/all";
 @import "../../../node_modules/@patternfly/patternfly/patternfly-addons.scss";
 
 
