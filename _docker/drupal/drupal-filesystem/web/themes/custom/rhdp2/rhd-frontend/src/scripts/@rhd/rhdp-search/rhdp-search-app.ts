@@ -10,8 +10,6 @@ import RHDPSearchSortPage from './rhdp-search-sort-page';
 export default class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
-        //this.toggleModal = this.toggleModal.bind(this);
-        //this.updateFacets = this.updateFacets.bind(this);
     }
 
     _name = 'Search';
@@ -150,9 +148,9 @@ export default class RHDPSearchApp extends HTMLElement {
             }
         ]
     };
+
     connectedCallback() {
         this.innerHTML = this.template;
-
         this.active.setAttribute('type', 'active');
         this.active.title = 'Active Filters:';
         this.modal.setAttribute('type', 'modal');
@@ -162,7 +160,6 @@ export default class RHDPSearchApp extends HTMLElement {
         this.query.filters = this.filterObj;
         this.onebox.url = this.oburl;
 
-        //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.rhd-c-search-page-header').appendChild(this.query);
         this.querySelector('.rhd-c-search-page-header').appendChild(this.box);

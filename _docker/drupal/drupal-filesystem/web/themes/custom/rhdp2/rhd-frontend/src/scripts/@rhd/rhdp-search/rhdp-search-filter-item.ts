@@ -41,7 +41,7 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     set active(val) {
         if(typeof val === 'string') {
             val = true;
-        } 
+        }
         if ( val === null ) {
             val = false;
         }
@@ -50,16 +50,16 @@ export default class RHDPSearchFilterItem extends HTMLElement {
         } else {
             this._active = val;
             let chkbox = this.querySelector('input');
-            if(this._active) { 
+            if(this._active) {
                 this.setAttribute('active','');
-            } else { 
-                this.removeAttribute('active'); 
+            } else {
+                this.removeAttribute('active');
             }
             if (chkbox) {
                 chkbox.checked = this._active;
             }
             if ( this.inline ) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
-    
+
             this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: this}, bubbles: this.bubble}));
             this.bubble = true;
         }
@@ -110,13 +110,16 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     template = (strings, name, key, active) => {
         var checked = active ? 'checked' : '';
         return `
-       <div class="pf-c-check">
-        <span>${name}</span>
-        <input class="pf-c-check__input" type="checkbox" ${checked} id="filter-item-${key}" value="${key}">
-        <label class="pf-c-check__label" for="filter-item-${key}">${name}</label>
-       </div>`;
+        <div>
+          <label class="pf-c-switch" for="filter-item-${key}">
+          <input class="pf-c-switch__input" type="checkbox" id="filter-item-${key}" aria-labelledby="filter-item-${key}-on" name="filter-item-${key}" />
+          <span class="pf-c-switch__toggle"></span>
+          <span class="pf-c-switch__label pf-m-on" id="filter-item-${key}-on" aria-hidden="true">${name}</span>
+          <span class="pf-c-switch__label pf-m-off" id="filter-item-${key}-off" aria-hidden="true">${name}</span>
+          </label>
+        </div>`;
     };
-    
+
     inlineTemplate = (strings, name, active) => {
         return active ? `<div class="pf-c-label" data-search-action="clearFilter">${name} <i class="fa fa-times" aria-hidden="true" data-search-action="clearFilter"></i></div>` : '';
     }
@@ -128,15 +131,14 @@ export default class RHDPSearchFilterItem extends HTMLElement {
         } else {
             this.addEventListener('click', this._updateFacet);
         }
-        
+
         top.addEventListener('filter-item-change', this._checkChange);
         top.addEventListener('params-ready', this._checkParams);
         top.addEventListener('clear-filters', this._clearFilters);
-        //top.window.addEventListener('popstate', this._clearFilters);
     }
 
-    static get observedAttributes() { 
-        return ['name', 'active', 'value', 'inline', 'key', 'group']; 
+    static get observedAttributes() {
+        return ['name', 'active', 'value', 'inline', 'key', 'group'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -190,9 +192,9 @@ export default class RHDPSearchFilterItem extends HTMLElement {
             this.bounce = false;
         }
     }
-    
+
     _clearFilters(e) {
-        this.bubble = false; 
+        this.bubble = false;
         this.bounce = false;
         this.active = false;
     }

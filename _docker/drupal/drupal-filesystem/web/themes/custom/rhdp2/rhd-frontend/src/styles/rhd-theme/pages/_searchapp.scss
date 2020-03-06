@@ -1,4 +1,5 @@
 rhdp-search-app {
+
   .hide {
     display: none;
   }
@@ -210,22 +211,7 @@ rhdp-search-filters {
         background-color: #000;
         padding: 1em;
       }
-      .rhd-u-clear-filters {
-        display: inline-block;
-        border: 1px solid #0066cc;
-        line-height: 1.44;
-        background-color: #fff;
-        padding: 8px 20px;
-        color: #0066cc;
-        text-transform: uppercase;
-        margin-right: 1em;
-        font-weight: 600;
-        &:hover,
-        &:focus {
-          background-color: #0066cc;
-          color: #fff;
-        }
-      }
+
       .applyFilters {
         text-transform: uppercase;
         background: #cc0000;
@@ -273,29 +259,37 @@ rhdp-search-filter-group {
     font-weight: 600;
   }
 
-}
+  rhdp-search-filter-item {
 
-rhdp-search-filter-item {
-  rhdp-filter-group & {
-    padding: .25rem;
-    display: block;
-  }
-
-  span {
-    display: none;
-  }
-
-  .pf-c-label {
-    .activeFilters & {
-      margin-right: .5rem;
+    span {
+      display: none;
     }
-  }
 
-  .pf-c-check {
-    margin: .5rem 0;
-    .pf-c-check__label {
-      font-family: RedHatText;
-      font-weight: 500;
+    // Override patternfly variables
+    // outline: var(--pf-c-switch__input--focus__toggle--OutlineWidth) solid var(--pf-c-switch__input--focus__toggle--OutlineColor);
+    // outline-offset: var(--pf-c-switch__input--focus__toggle--OutlineOffset);
+    .pf-c-switch__input~.pf-c-switch__toggle {
+      --pf-c-switch__input--focus__toggle--OutlineWidth: 0px;
+      --pf-c-switch__input--focus__toggle--OutlineColor: transparent;
+      --pf-c-switch__input--focus__toggle--OutlineOffset: 0px;
+    }
+
+    .pf-c-label {
+      .activeFilters & {
+        margin-right: .5rem;
+      }
+    }
+
+    .pf-c-check {
+      margin: .5rem 0;
+      .pf-c-check__label {
+        font-family: RedHatText;
+        font-weight: 500;
+      }
+    }
+
+    > div {
+      padding-bottom: var(--rhd-theme--container-spacer-sm);
     }
   }
 }
@@ -322,40 +316,9 @@ rhdp-search-result {
 }
 
 rhdp-search-onebox {
-  div {
+  > div {
     border: 1px solid #d5d5d5;
     padding: 25px;
     margin-bottom: 3em;
-  }
-
-  ul.slots {
-    display: inline;
-    li {
-      display: inline;
-      list-style-type: none;
-      padding-right: 20px;
-
-      a {
-        position: relative;
-        padding-left: 3em;
-
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-
-          svg {
-            fill: #004c98;
-          }
-        }
-      }
-
-      svg {
-        max-width: 2.7em;
-        margin-right: 5px;
-        fill: #0066cc;
-        position: absolute;
-        left: 0;
-      }
-    }
   }
 }
