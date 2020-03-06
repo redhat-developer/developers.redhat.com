@@ -116,7 +116,7 @@ export default class RHDPSearchFilterItem extends HTMLElement {
         var checked = active ? 'checked' : '';
         return `
         <div class="pf-c-check">
-          <input class="pf-c-check__input" type="checkbox" id=filter-item-${key}" name="filter-item-${key}"/>
+          <input class="pf-c-check__input" type="checkbox" id="filter-item-${key}" name="filter-item-${key}"/>
           <label class="pf-c-check__label" for="filter-item-${key}">${name}</label>
         </div>
          `;

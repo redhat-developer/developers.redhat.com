@@ -59,7 +59,8 @@ export default class RHDPSearchFilterGroup extends HTMLElement {
     template = (strings, name) => {
         return `
         <div class="showFilters heading">
-          <span class="group-name">${name}</span><span class="toggle"><i class='fa fa-chevron-right' aria-hidden='true'></i></span>
+          <span class="group-name">${name}</span>
+          <span class="toggle"><i class='fa fa-chevron-right' aria-hidden='true'></i></span>
         </div>
         <div class="group hide">
             <div class="primary"></div>

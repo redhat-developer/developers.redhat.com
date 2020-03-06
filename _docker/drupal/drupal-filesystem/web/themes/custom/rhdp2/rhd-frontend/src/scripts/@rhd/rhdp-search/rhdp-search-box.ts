@@ -14,7 +14,7 @@ export default class RHDPSearchBox extends HTMLElement {
     template = (strings, name, term) => {
         return `<form class="search-bar" role="search">
         <div class="input-cont">
-            <input value="${term}" class="user-success user-search" type="search" id="query" placeholder="Enter your search term">
+            <input value="${term}" class="user-success user-search pf-c-form-control" type="search" id="query" placeholder="Enter your search term">
         </div>
         <button id="search-btn"><span>SEARCH</span><i class='fa fa-search' aria-hidden='true'></i></button>
         </form>`;
@@ -38,13 +38,13 @@ export default class RHDPSearchBox extends HTMLElement {
             return false;
         });
 
-        this.querySelector('#search-btn').addEventListener('click', e => { 
-            
+        this.querySelector('#search-btn').addEventListener('click', e => {
+
         });
     }
 
-    static get observedAttributes() { 
-        return ['term']; 
+    static get observedAttributes() {
+        return ['term'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -60,9 +60,9 @@ export default class RHDPSearchBox extends HTMLElement {
     _termChange() {
         this.term = this.querySelector('input').value;
         this.dispatchEvent(new CustomEvent('term-change', {
-            detail: { 
+            detail: {
                 term: this.term
-            }, 
+            },
             bubbles: true
         }));
     }
