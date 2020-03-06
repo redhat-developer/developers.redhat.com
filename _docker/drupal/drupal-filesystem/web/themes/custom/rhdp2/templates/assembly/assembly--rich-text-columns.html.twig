@@ -15,8 +15,10 @@
  * @ingroup themeable
  */
 #}
-
-<section{{ attributes.addClass('pf-c-content') }}>
+{% set classes = [
+  'pf-c-content'
+]%}
+<section{{ attributes.addClass(classes) }}>
   {% if content %}
   <div class="pf-l-grid pf-m-gutter">
     {{- content -}}
