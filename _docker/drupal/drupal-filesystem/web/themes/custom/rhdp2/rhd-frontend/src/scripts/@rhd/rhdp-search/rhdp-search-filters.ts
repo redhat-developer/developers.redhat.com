@@ -81,25 +81,21 @@ export default class RHDPSearchFilters extends HTMLElement {
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
-        <a href="#" class="pf-c-button pf-m-secondary
-        pf-u-display-none-on-sm"
+        <a href="#" class="pf-c-button pf-m-secondary pf-u-float-right hide-on-mobile"
           data-search-action="clearFilters">Clear Filters</a>
         <div class="activeFilters"></div>
       </div>`;
     }
     template = (strings, title) => {
-        return `<a class="pf-c-button pf-m-secondary
-         pf-u-display-none-on-md pf-u-display-none-on-lg pf-u-display-none-on-xl
-         pf-u-display-none-on-2xl" href="#" data-search-action="showFilters">Show Filters</a>
-        <a href="#" class="pf-c-button pf-m-secondary
-        pf-u-display-none-on-md pf-u-display-none-on-lg pf-u-display-none-on-xl
-         pf-u-display-none-on-2xl"
-          data-search-action="clearFilters">Clear Filters</a>
-        <div class="control" id="control">
+        return `
+          <div class="mobile">
+              <a class="pf-c-button pf-m-secondary" href="#" data-search-action="showFilters">Show Filters</a>
+          </div>
+          <div class="control" id="control">
             <div class="title">${title}</div>
             <div class="groups">
             </div>
-        </div>`;
+          </div>`;
     };
 
     connectedCallback() {

@@ -153,8 +153,16 @@ rhdp-search-filters {
     display: none;
   }
 
-  // Hide the sidebar filters on mobile.
+  // Mobile styles
   @media only screen and (max-width: 768px) {
+    .mobile {
+      display: block;
+    }
+
+    .hide-on-mobile {
+      display: none;
+    }
+
     .control {
       display: flex;
       flex-direction: column;
@@ -265,15 +273,6 @@ rhdp-search-filter-group {
       display: none;
     }
 
-    // Override patternfly variables
-    // outline: var(--pf-c-switch__input--focus__toggle--OutlineWidth) solid var(--pf-c-switch__input--focus__toggle--OutlineColor);
-    // outline-offset: var(--pf-c-switch__input--focus__toggle--OutlineOffset);
-    .pf-c-switch__input~.pf-c-switch__toggle {
-      --pf-c-switch__input--focus__toggle--OutlineWidth: 0px;
-      --pf-c-switch__input--focus__toggle--OutlineColor: transparent;
-      --pf-c-switch__input--focus__toggle--OutlineOffset: 0px;
-    }
-
     .pf-c-label {
       .activeFilters & {
         margin-right: .5rem;
@@ -303,6 +302,11 @@ rhdp-search-result {
   margin-bottom: 25px;
   padding-bottom: 25px;
   border-bottom: 1px solid #D5D5D5;
+
+  h4 a {
+    // Allow wrap on result headings.
+    overflow-wrap: break-word;
+  }
 
   .result-info {
     color: #656565;
