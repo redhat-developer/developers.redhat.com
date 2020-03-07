@@ -12,10 +12,14 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('rich-text') }}>
+{% set classes = [
+  'rich-text',
+  'pf-c-content'
+]%}
+<div{{ attributes.addClass(classes) }}>
   <div class="pf-l-grid pf-m-gutter">
     <div class="pf-l-grid__item">
-      <div class="rich-text-content pf-c-content">
+      <div class="rich-text-content">
         {% if content.field_title|render %}
           <h2 class="pf-c-title">{{ content.field_title }}</h2>
         {% endif %}
