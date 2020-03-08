@@ -12,7 +12,7 @@ class SearchResults extends Page {
         return $('rhdp-search-result-count');
     }
     get allSearchResults() {
-        return $$('rhdp-search-result h4 a');
+        return $('rhdp-search-result h4 a');
     }
     get endOfResults() {
         return $('.end-of-results');

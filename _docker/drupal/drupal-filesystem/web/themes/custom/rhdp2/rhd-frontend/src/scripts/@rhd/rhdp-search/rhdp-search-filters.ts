@@ -120,19 +120,19 @@ export default class RHDPSearchFilters extends HTMLElement {
                 case 'showFilters':
                 case 'cancelFilters':
                 case 'applyFilters':
-                    // e.preventDefault();
+                    e.preventDefault();
                     this.dispatchEvent(new CustomEvent('toggle-modal', {
                         bubbles: true
                     }));
                     break;
                 case 'clearFilters':
-                    // e.preventDefault();
+                    e.preventDefault();
                     this.dispatchEvent(new CustomEvent('clear-filters', {
                         bubbles: true
                     }));
                     break;
                 case 'more':
-                    //e.preventDefault();
+                    e.preventDefault();
                     break;
             }
         });

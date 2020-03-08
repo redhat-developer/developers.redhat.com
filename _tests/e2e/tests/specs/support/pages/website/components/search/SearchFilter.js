@@ -4,19 +4,19 @@ import Driver from '../../../../utils/Driver.Extension';
 
 class SearchFilter extends Page {
     get showBtn() {
-        return $('.showBtn');
+        return $('a[data-search-action="showFilters"]');
     }
     get cover() {
         return $('.cover');
     }
     get applyFilters() {
-        return $('.applyFilters');
+        return $('a[data-search-action="applyFilters"]');
     }
     get activeFilters() {
         return $('.activeFilters');
     }
     get clearFilters() {
-        return $('.clearFilters');
+        return $('a[data-search-action="clearFilters"]');
     }
 
     active() {
