@@ -17,7 +17,7 @@
 //hidden classes
 %link {
   text-decoration: var(--pf-theme--link--text-decoration, "underline");
-  color: $link-color;
+  color: var(--pf-theme--color--ui-link, $link-color);
   &:visited {
     color: var(--pf-theme--color--ui-link, $link-color);
   }
