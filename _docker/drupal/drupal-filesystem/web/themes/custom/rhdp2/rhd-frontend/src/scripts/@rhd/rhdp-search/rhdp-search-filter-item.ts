@@ -50,24 +50,27 @@ export default class RHDPSearchFilterItem extends HTMLElement {
         if (val === null) {
             val = false;
         }
+
         if (this._active === val) {
             return;
-        } else {
-            this._active = val;
-            let chkbox = this.querySelector('input');
-            if (this._active) {
-                this.setAttribute('active', '');
-            } else {
-                this.removeAttribute('active');
-            }
-            if (chkbox) {
-                chkbox.checked = this._active;
-            }
-            if (this.inline) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
-
-            this.dispatchEvent(new CustomEvent('filter-item-change', { detail: { facet: this }, bubbles: this.bubble }));
-            this.bubble = true;
         }
+
+        this._active = val;
+        let chkbox = this.querySelector('input');
+
+        if (this._active) {
+            this.setAttribute('active', '');
+        } else {
+            this.removeAttribute('active');
+        }
+        if (chkbox) {
+            chkbox.checked = this._active;
+        }
+        if (this.inline) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
+
+        this.dispatchEvent(new CustomEvent('filter-item-change', { detail: { facet: this }, bubbles: this.bubble }));
+        this.bubble = true;
+
     }
     get value() {
         return this._value;
@@ -131,6 +134,7 @@ export default class RHDPSearchFilterItem extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = !this.inline ? this.template`${this.name}${this.key}${this.active}` : this.inlineTemplate`${this.name}${this.active}`;
+
         if (!this.inline) {
             this.addEventListener('change', this._updateFacet);
         } else {

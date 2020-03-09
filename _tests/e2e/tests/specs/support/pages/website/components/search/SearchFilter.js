@@ -30,11 +30,11 @@ class SearchFilter extends Page {
     choose(filterType, filterOption) {
         switch (filterType) {
             case 'Content Type':
-                return this._selectFilter(1, filterOption);
-            case 'Product':
                 return this._selectFilter(2, filterOption);
-            default:
+            case 'Product':
                 return this._selectFilter(3, filterOption);
+            default:
+                return this._selectFilter(1, filterOption);
         }
     }
 

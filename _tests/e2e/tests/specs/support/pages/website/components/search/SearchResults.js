@@ -5,15 +5,19 @@ class SearchResults extends Page {
     get searchPage() {
         return $('rhdp-search-results');
     }
+
     get loadingSpinner() {
         return $('.loading');
     }
+
     get resultCount() {
         return $('rhdp-search-result-count');
     }
+
     get allSearchResults() {
-        return $('rhdp-search-result h4 a');
+        return $$('rhdp-search-result h4 a');
     }
+
     get endOfResults() {
         return $('.end-of-results');
     }
@@ -35,4 +39,5 @@ class SearchResults extends Page {
         return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]//pfe-datetime`).getAttribute('datetime');
     }
 }
+
 export default new SearchResults;

@@ -106,10 +106,6 @@ rhdp-search-box {
   }
 }
 
-rhdp-search-empty-query {
-  background: tomato;
-}
-
 rhdp-search-result-count {
   display: block;
   margin-bottom: 1em;
@@ -119,12 +115,24 @@ rhdp-search-result-count {
 
 rhdp-search-sort-page {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
+  clear: both;
 }
 
 rhdp-search-filters {
   margin-bottom: 1rem;
   display:block;
+
+  // Active filter labels (not checkboxes)
+  .activeFilters {
+    rhdp-search-filter-item[active] {
+      display: inline-block;
+
+      .pf-c-label {
+        margin: .25rem;
+      }
+    }
+  }
 
   .title {
     background-color: var(--pf-global--palette--black-100, #fafafa);
@@ -278,12 +286,6 @@ rhdp-search-filter-group {
 
     span {
       display: none;
-    }
-
-    .pf-c-label {
-      .activeFilters & {
-        margin-right: .5rem;
-      }
     }
 
     .pf-c-check {
