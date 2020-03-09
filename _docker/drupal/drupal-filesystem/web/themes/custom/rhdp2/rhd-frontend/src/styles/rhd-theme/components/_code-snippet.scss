@@ -1,5 +1,5 @@
 .assembly-type-code_snippet {
-  & .hljs {
+  .hljs {
     padding: 0;
     background-color: #f9f9f9;
     color: #0a0a0a;
@@ -21,6 +21,7 @@ pre,
 samp {
   font-family: monospace, serif;
   font-size: 1em;
+  overflow: auto;
 }
 
 pre {
