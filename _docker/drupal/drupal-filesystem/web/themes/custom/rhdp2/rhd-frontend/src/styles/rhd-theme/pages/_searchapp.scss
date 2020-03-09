@@ -85,12 +85,12 @@ rhdp-search-box {
   }
 
   button svg {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $pf-global--breakpoint--md) {
       display: none !important;
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $pf-global--breakpoint--md) {
     margin-bottom: 0.5em;
     button {
       display: block;
@@ -145,7 +145,15 @@ rhdp-search-filters {
   }
 
   // Mobile styles
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $pf-global--breakpoint--md) {
+
+    // Prevent rhdp-search-filters from showing below the footer.
+    flex: none;
+    align-self: flex-start;
+    float: left;
+    border: none;
+    margin: 0 0 1.3em 0;
+
     .mobile {
       display: block;
     }
@@ -209,6 +217,11 @@ rhdp-search-filters {
         text-align: center;
         background-color: var(--rhd-theme--ui-background-dark, #000);
         padding: 1em;
+
+        .pf-c-button {
+          display: inline-block;
+          width: auto;
+        }
       }
 
       .applyFilters {
