@@ -81,7 +81,7 @@ export default class RHDPSearchFilters extends HTMLElement {
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
-        <a href="#" class="pf-c-button pf-m-secondary pf-u-float-right hide-on-mobile"
+        <a href="#" class="pf-c-button pf-m-secondary pf-u-float-right"
           data-search-action="clearFilters">Clear Filters</a>
         <div class="activeFilters"></div>
       </div>`;

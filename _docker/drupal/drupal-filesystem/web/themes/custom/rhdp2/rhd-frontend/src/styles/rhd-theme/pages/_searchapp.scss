@@ -18,92 +18,8 @@ rhdp-search-app {
   }
 }
 
-rhdp-search-box {
-  margin: 0 0 1em 0;
-
-  form.search-bar {
-    box-sizing: border-box;
-    cursor: auto;
-    display: flex;
-    flex-direction: row;
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0;
-    position: relative;
-    width: 100%;
-  }
-
-  form.search-bar div {
-    flex: 1 1 100%;
-  }
-
-  input.user-search {
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: 600;
-    height: 40px;
-    padding: 8px;
-    text-align: start;
-    transition-delay: 0s, 0s;
-    transition-duration: 0.45s, 0.45s;
-    transition-property: box-shadow, border-color;
-    transition-timing-function: ease, ease-in-out;
-    user-select: text;
-    width: 100%;
-  }
-
-  input.user-search::-webkit-search-cancel-button {
-    position: relative;
-    -webkit-appearance: none;
-    height: 20px;
-    width: 20px;
-    background-image: url("https://static.jboss.org/rhd/images/icons/fa_times_icon.svg");
-    opacity: 0.75;
-    pointer-events: auto;
-    cursor: pointer;
-    &:hover,
-    &:active {
-      opacity: 1;
-    }
-  }
-
-  button {
-    text-transform: uppercase;
-    background: var(--rhd-theme--color--ui-accent-dark, #c00);
-    text-decoration: none;
-    border: 0;
-    height: 40px;
-    font-weight: var(--rhd-global--FontWeight-Text--regular, 600);
-    font-size: 16px;
-    padding: 9px 30px;
-    transition: background 0.2s ease-in 0s;
-    line-height: 1.2em;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-    color: $white;
-  }
-
-  button svg {
-    @media only screen and (min-width: $pf-global--breakpoint--md) {
-      display: none !important;
-    }
-  }
-
-  @media only screen and (max-width: $pf-global--breakpoint--md) {
-    margin-bottom: 0.5em;
-    button {
-      display: block;
-      padding: 9px 20px;
-    }
-    button i.fa.fa-search {
-      display: inline-block;
-      font-size: 18px;
-    }
-    button span {
-      display: none;
-    }
-  }
+.rhd-c-search-page-header {
+  margin-bottom: 1rem;
 }
 
 rhdp-search-result-count {
@@ -157,10 +73,7 @@ rhdp-search-filters {
 
     // Prevent rhdp-search-filters from showing below the footer.
     flex: none;
-    align-self: flex-start;
-    float: left;
     border: none;
-    margin: 0 0 1.3em 0;
 
     .mobile {
       display: block;

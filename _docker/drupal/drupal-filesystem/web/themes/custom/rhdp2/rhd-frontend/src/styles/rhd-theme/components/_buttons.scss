@@ -74,6 +74,11 @@
     width: 100%;
     white-space: normal;
   }
+
+  .pf-c-input-group & {
+    // Buttons are 100% width on mobile except within an input group.
+    width: auto;
+  }
 }
 
 .pf-c-button {
@@ -108,7 +113,7 @@
       &:visited {
         color: var(--rhd-c-button--m-link--Color) !important;
       }
-      
+
       &:hover,
       &:active,
       &:focus {
@@ -165,7 +170,7 @@
       &>.pf-c-button__icon>i,
       &>.pf-c-button__icon>.svg-inline--fa {
         color: var(--rhd-c-button--m-link-dark--hover--Color) !important;
-        
+
       }
     }
 
@@ -417,7 +422,7 @@
       &:focus,
       &.pf-m-focus {
         color: var(--rhd-c-button--m-secondary-dark--hover--Color);
-        
+
         background-color: var(--rhd-c-button--m-secondary-dark--hover--BackgroundColor);
       }
 
