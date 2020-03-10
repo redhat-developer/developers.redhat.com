@@ -2,13 +2,15 @@
 
 /**
  * @file
- * 
- * For initial use, this only imports a script to handle Katacoda-specific token functionality
+ * Katacoda-specific functionality.
  */
 
 use Drupal\taxonomy\Entity\Term;
 
- include_once 'rhd_katacoda.tokens.inc';
+// @todo commenting out this include_once since I cannot find any evidence of us
+// using the functionality in this file.
+//
+// include_once 'rhd_katacoda.tokens.inc';
 
 /**
  * Implements template_preprocess_node().
@@ -46,11 +48,12 @@ function rhd_katacoda_preprocess_node(array &$variables) {
     $course_content = [];
 
     if (!$node->field_katacoda_course_lessons->isEmpty()) {
-      // Retrieve the IDs of the included Katacoda Courses to display information and links.
+      // Retrieve the IDs of the included Katacoda Courses to display
+      // information and links.
       $lessons = $node->field_katacoda_course_lessons->getValue();
       $lesson_ids = [];
 
-      foreach($lessons as $lesson) {
+      foreach ($lessons as $lesson) {
         $lesson_ids[] = $lesson['target_id'];
       }
 
@@ -60,12 +63,10 @@ function rhd_katacoda_preprocess_node(array &$variables) {
         ->loadMultiple($lesson_ids);
 
       // Gather information for each lesson node.
-      foreach($lesson_entity as $k=>$v) {
-       /** 
-        * Retrieve a path alias. Can also be accomplished this way:
-        * $nid = $v->nid->value;
-        * $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
-        */
+      foreach ($lesson_entity as $k => $v) {
+        // Retrieve a path alias. Can also be accomplished this way:
+        // $nid = $v->nid->value;
+        // $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);.
         $url_path_alias = $v->toUrl()->toString();
 
         // Create an array of data from each "child" entity reference to add to
@@ -73,12 +74,12 @@ function rhd_katacoda_preprocess_node(array &$variables) {
         // page template. The item 'display_author' is entered as a field and
         // might be different from the content author within Drupal.
         $katacoda_scenarios[] = [
-         'title'              => $v->title->value,
-         'description'        => $v->body->value,
-         'lesson_path_alias'  => $url_path_alias,
-         'scenario_time'      => $v->field_katacoda_scenario_time->value,
-         'skill_level'        => $v->field_katacoda_skill_level->value,
-         'display_author'     => $v->field_katacoda_scenario_author->value,
+          'title'              => $v->title->value,
+          'description'        => $v->body->value,
+          'lesson_path_alias'  => $url_path_alias,
+          'scenario_time'      => $v->field_katacoda_scenario_time->value,
+          'skill_level'        => $v->field_katacoda_skill_level->value,
+          'display_author'     => $v->field_katacoda_scenario_author->value,
         ];
 
         // Add each scenario_time to the total course_time.
@@ -90,27 +91,5 @@ function rhd_katacoda_preprocess_node(array &$variables) {
 
     $variables['katacoda_course_info']['audiences'] = $audience_names;
     $variables['katacoda_course_info']['course_time'] = $course_time;
-  }
-}
-
-/**
- * Implements hook_preprocess_breadcrumb().
- * 
- * Prepares variables for `breadcrumb.html.twig`. Removes the "Home" link from
- * the Breadcrumb path in Katacoda-related content.
- */
-function rhdp_preprocess_breadcrumb(&$variables){
-  // Check node type.
-  $node = \Drupal::request()->attributes->get('node');
-  $node_type = $node->getType();
-  $types = ['katacoda_course','katacoda_individual_lesson'];
-
-  if ($node && in_array($node_type,$types) === TRUE) {
-    // Remove 'Home' (1st member) from breadcrumb trail.
-    if (count($variables['breadcrumb'])) {
-      array_shift($variables['breadcrumb']);
-      // Append the current page title to the end of the breadcrumb trail.
-      $variables['breadcrumb'][] = ['text' => $node->getTitle()];
-    }
   }
 }
