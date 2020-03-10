@@ -1,0 +1,21 @@
+uuid: 3e8cc0df-e8e0-4f71-9ff3-1a14a27b7e6a
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_display_cta_timer_label
+field_name: field_display_cta_timer_label
+entity_type: assembly
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

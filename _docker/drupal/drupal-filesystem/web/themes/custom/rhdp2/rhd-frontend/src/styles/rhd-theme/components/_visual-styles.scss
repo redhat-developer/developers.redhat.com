@@ -2,25 +2,28 @@
 @import "../mixins";
 
 .component {
-  &.no-padding-top {
-    @extend .pf-u-pt-0;
-  }
-
-  &.no-padding-bottom {
-    @extend .pf-u-pb-0;
-  }
 
   &.gray {
-    background-color: var(--rhd-theme--component-background--color-light);
     @include with-background-padding;
+    background-color: var(--rhd-theme--component-background--color-light);
   }
 
   &.dark {
-    background-color: var(--rhd-theme--component-background--color-dark);
+    //Set base background padding and colors
     @include with-background-padding;
+    background-color: var(--rhd-theme--component-background--color-dark);
     color: var(--rhd-theme--component-font--color-light);
+    --pf-c-content--Color: var(--rhd-theme--component-font--color-light);
+    
     .pf-c-title {
       color: var(--rhd-theme--component-font--color-light);
+    }
+
+    a {
+      color: var(--rhd-c-button--m-link-dark--Color);
+      &:hover {
+        color: var(--rhd-c-button--m-link-dark--hover--Color);
+      }
     }
   }
 }

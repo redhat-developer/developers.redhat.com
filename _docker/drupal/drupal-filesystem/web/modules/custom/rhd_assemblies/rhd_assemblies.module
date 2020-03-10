@@ -128,14 +128,27 @@ function rhd_assemblies_entity_presave(EntityInterface $entity) {
  * Implements hook_preprocess_assembly().
  */
 function rhd_assemblies_preprocess_assembly(&$variables) {
-  // Retrieve the parent entity of this assembly.
+  $assembly = $variables['elements']['#assembly'];
   $parent = $variables['elements']['#parent'];
+  $type = $assembly->bundle();
 
   if ($parent) {
     // Make assembly ID match pattern used for on page navigation.
     $id = $variables['elements']['#assembly']->id();
     $css_id = Html::cleanCssIdentifier('assembly-' . $parent['field_name'] . '-' . $id);
     $variables['attributes']->offsetSet('id', $css_id);
+  }
+
+  // Call to Action Countdown Component.
+  if ($assembly->hasField('field_display_cta_timer')) {
+    $cta_timer = $assembly->get('field_display_cta_timer')->value;
+
+    if ($cta_timer) {
+      $variables['attributes']['class'][] = 'has-countdown';
+      $variables['has_countdown'] = TRUE;
+      $variables['#attached']['library'][] = 'rhd_assemblies/countdown';
+      $variables['#attached']['drupalSettings']['rhd_assemblies']['countdown_date'] = $cta_timer;
+    }
   }
 }
 

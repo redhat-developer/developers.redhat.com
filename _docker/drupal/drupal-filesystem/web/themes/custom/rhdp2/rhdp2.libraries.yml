@@ -89,3 +89,10 @@ show-more:
   dependencies:
     - core/jquery
     - core/drupal
+
+# Add to any social buttons
+add-to-any:
+  js:
+    js/add-to-any.js: {}
+    https://static.addtoany.com/menu/page.js: {type: external, minified: true}
+
