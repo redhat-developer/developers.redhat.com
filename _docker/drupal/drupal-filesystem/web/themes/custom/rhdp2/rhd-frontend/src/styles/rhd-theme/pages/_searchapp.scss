@@ -251,3 +251,35 @@ rhdp-search-onebox {
     margin-bottom: 3em;
   }
 }
+
+// Scroll to top button currently only used on Search page.
+#scroll-to-top {
+    background-color: rgba(0, 0, 0, 0.8);
+    bottom: 20px;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+    height: 44px;
+    line-height: 24px;
+    opacity: 0.8;
+    padding: 10px 13px;
+    position: fixed;
+    right: 0;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 44px;
+    z-index: 1;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      opacity: 1;
+    }
+
+    &:before {
+    font-family: 'FontAwesome';
+    content: '\f0aa';
+    }
+}
