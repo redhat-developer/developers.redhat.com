@@ -1,13 +1,3 @@
 .assembly {
     @extend %assembly;
-    /* Assembly Variations */
-    &[data-variant="dark"] {
-        --pfe-theme--color--surface--base: rgb(19, 20, 20);
-        --pfe-theme--font-size--alpha: 42px;
-        --pfe-theme--color--text: $white;
-        --pfe-theme--color--text--on-dark: $white;
-        p {
-            color: var(--pfe-theme--color--text--on-dark, $white);
-        }
-    }
 }
