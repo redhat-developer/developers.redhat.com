@@ -7,16 +7,16 @@ label: 'Content: Page'
 tags:
   referrer: no-referrer
   image_src: '[node:field_share_image:share:url]'
-  og_description: '[node:summary]'
-  og_image: '[node:field_share_image:entity:url]'
-  og_title: '[node:title]'
-  og_site_name: '[site:name]'
+  description: '[node:field_short_description]'
   og_url: '[node:url]'
-  og_image_url: '[node:field_share_image:share:url]'
+  og_description: '[node:field_short_description]'
+  og_title: '[node:title]'
+  og_image: '[node:field_share_image:entity:url],https://developers.redhat.com/themes/custom/rhdp2/images/metatags/metatag-image-global.png'
   og_determiner: the
-  twitter_cards_title: '[node:title]'
-  twitter_cards_page_url: '[node:url]'
-  twitter_cards_type: summary
-  twitter_cards_image: '[node:field_share_image:entity:url]'
-  twitter_cards_site: '@rhdevelopers'
+  og_site_name: '[site:name]'
   twitter_cards_description: '[node:summary]'
+  twitter_cards_title: '[node:title]'
+  twitter_cards_image: '[node:field_share_image:entity:url],https://developers.redhat.com/themes/custom/rhdp2/images/metatags/metatag-image-global.png'
+  twitter_cards_page_url: '[node:url]'
+  twitter_cards_site: '@rhdevelopers'
+  twitter_cards_type: summary
