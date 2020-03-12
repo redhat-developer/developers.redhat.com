@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 
 /**
@@ -74,6 +75,7 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
     if (is_numeric($node) && strpos($node, '.') === FALSE && strpos($node, '-') === FALSE) {
       $node = Node::load($node);
     }
+
     // If we have a $node object that is an instanceof NodeInterface, create
     // template suggestions.
     if ($node instanceof NodeInterface) {
@@ -82,7 +84,6 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
       if (!in_array($new_suggestion, $suggestions)) {
         $suggestions[] = $new_suggestion;
       }
-
       if ($node->hasField('field_kiosk_mode') && $node->field_kiosk_mode->value == TRUE) {
         $suggestions[] = 'page__kiosk_mode';
       }
@@ -727,7 +728,7 @@ function redhat_www_ddo_default($node) {
   $ddo_pageID = "";
   $ddo_title = "";
 
-  if (!is_null($node)) {
+  if (!empty($node) && $node instanceof NodeInterface) {
     if ($siteerror == '/node/' . $node->nid->value) {
       $errorType = "404";
       $errorMessage = "404-error";
