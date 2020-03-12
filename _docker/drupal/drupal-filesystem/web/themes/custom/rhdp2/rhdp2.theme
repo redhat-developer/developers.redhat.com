@@ -674,7 +674,7 @@ function rhdp2_preprocess_html(array &$variables) {
   // If we could not fetch the Node object from the Request. This should only
   // happen on the Product pages, due to the highly custom 1 Node to multiple
   // routes implementation.
-  if (!$node) {
+  if (empty($node) || !($node instanceof NodeInterface)) {
     $node = _get_product_node_from_request();
   }
 
@@ -719,8 +719,8 @@ function rhdp2_preprocess_html(array &$variables) {
  * necessary because of our custom Product implementations that serve multiple
  * routes from a single Node.
  *
- * @return \Drupal\node\NodeInterface
- *   Return a prouct Node.
+ * @return \Drupal\node\NodeInterface|null
+ *   Return a Node object if this is a Product node. Otherwise, return NULL.
  */
 function _get_product_node_from_request() {
   $request_uri = \Drupal::request()->getRequestUri();
@@ -732,6 +732,10 @@ function _get_product_node_from_request() {
 
     if ($request_uri_pieces[0] === 'products') {
       $product_url_name = $request_uri_pieces[1];
+    }
+    // Else, we are not looking at a Product page. Return NULL.
+    else {
+      return NULL;
     }
   }
   if (!empty($product_url_name)) {
@@ -751,6 +755,14 @@ function _get_product_node_from_request() {
 
 /**
  * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ *
+ * @param \Drupal\Entity\node\Node|null $node
+ *   This function will expects a Node object if the current request/page is a
+ *   Node. Otherwise, it expects NULL.
+ *
+ * @return array
+ *   Returns an associative array populated with data used to populate the
+ *   digitalData JS object.
  */
 function redhat_www_ddo_default($node) {
   $request = \Drupal::request();
@@ -761,7 +773,7 @@ function redhat_www_ddo_default($node) {
   $ddo_pageID = "";
   $ddo_title = "";
 
-  if (!is_null($node)) {
+  if (!empty($node) && $node instanceof NodeInterface) {
     if ($siteerror == '/node/' . $node->nid->value) {
       $errorType = "404";
       $errorMessage = "404-error";
@@ -777,15 +789,15 @@ function redhat_www_ddo_default($node) {
     'page' => [
       'attributes' => [
         'queryParameters' => '',
-        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'],
-        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'],
-        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'],
-        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle'],
-        'taxonomyProduct' => $ddo_taxonomies['field_tax_product'],
-        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line'],
-        'taxonomyProject' => $ddo_taxonomies['field_tax_project'],
-        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'],
-        'taxonomyRegion' => $ddo_taxonomies['field_tax_region'],
+        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'] ?? [],
+        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'] ?? [],
+        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'] ?? [],
+        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle'] ?? [],
+        'taxonomyProduct' => $ddo_taxonomies['field_tax_product'] ?? [],
+        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line'] ?? [],
+        'taxonomyProject' => $ddo_taxonomies['field_tax_project'] ?? [],
+        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'] ?? [],
+        'taxonomyRegion' => $ddo_taxonomies['field_tax_region'] ?? [],
       ],
       'category' => [
         'contentType' => '',
