@@ -9,10 +9,18 @@ $rhd-theme--component-background--color-dark: #252525;
 
 :root {
     --rhd-theme--font--color: #{$rhd-theme--font--color};
+    --rhd-theme--color--ui--soft-dark: #{$soft-dark};
     --rhd-theme--component-font--color: #{$rhd-theme--component-font--color};
     --rhd-theme--component-font--color-light: #{$rhd-theme--component-font--color-light};
     --rhd-theme--component-font--color-dark: #{$rhd-theme--component-font--color-dark};
     --rhd-theme--component-background--color: #{$rhd-theme--component-background--color};
     --rhd-theme--component-background--color-light: #{$rhd-theme--component-background--color-light};
     --rhd-theme--component-background--color-dark: #{$rhd-theme--component-background--color-dark};
+    --rhd-theme--color--grey-3: $grey-3;
+    --rhd-gray-2: #e6e6e6;
+    --rhd-gray-3: $gray-3;
+    --rhd-gray-4: $gray-4;
+    --rhd-blue: $blue;
+    --rhd-linkhover: $linkhover;
+    --rhd-white: $white;
 }
