@@ -1,15 +1,15 @@
 // Generic component color styles
 $componentStyles: (
     'dark': (
-        'foregroundColor': var(--rhd-theme--component-font--color-dark),
-        'backgroundColor': var(--rhd-theme--component-background--color-light),
+        'foregroundColor': var(--rhd-theme--component-font--color-light),
+        'backgroundColor': var(--rhd-theme--component-background--color-dark),
         'linkColor': var(--rhd-theme--link--color),
         'linkHoverColor': var(--rhd-theme--link-hover--color),
         'addImagePadding': true
     ),
     'gray': (
-        'foregroundColor': var(--rhd-theme--component-font--color-light),
-        'backgroundColor': var(--rhd-theme--component-background--color-dark),
+        'foregroundColor': var(--rhd-theme--component-font--color-dark),
+        'backgroundColor': var(--rhd-theme--component-background--color-light),
         'linkColor': var(--rhd-c-button--m-link-dark--Color),
         'linkHoverColor': var(--rhd-c-button--m-link-dark--hover--Color),
         'addImagePadding': true
