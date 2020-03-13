@@ -8,13 +8,13 @@
 @import "typography/typography";
 @import "typography/dark";
 @import "layout/spacing";
+@import "components/component-styles";
 
 // PatternFly Core
 @import "../../../node_modules/@patternfly/patternfly/components/Table/table.scss";
 
 // Theme Mixins
 @import "mixins";
-
 // Components
 @import "components/assembly-base";
 @import "components/articles";
@@ -23,7 +23,6 @@
 @import "components/bonus-content-item";
 @import "components/buttons";
 @import "components/call-to-action";
-@import "components/visual-styles";
 @import "components/bands";
 @import "components/buttons";
 @import "components/cards";

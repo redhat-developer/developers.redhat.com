@@ -1,0 +1,24 @@
+// Generic component color styles
+$componentStyles: (
+    'dark': (
+        'foregroundColor': var(--rhd-theme--component-font--color-dark),
+        'backgroundColor': var(--rhd-theme--component-background--color-light),
+        'linkColor': var(--rhd-theme--link--color),
+        'linkHoverColor': var(--rhd-theme--link-hover--color),
+        'addImagePadding': true
+    ),
+    'gray': (
+        'foregroundColor': var(--rhd-theme--component-font--color-light),
+        'backgroundColor': var(--rhd-theme--component-background--color-dark),
+        'linkColor': var(--rhd-c-button--m-link-dark--Color),
+        'linkHoverColor': var(--rhd-c-button--m-link-dark--hover--Color),
+        'addImagePadding': true
+    )
+);
+
+@import "../mixins";
+
+// loop through $componentStyles and generate appropriate classes.
+@each $componentStyleName, $componentStyleData in $componentStyles {
+    @include componentStyle($componentStyleName, $componentStyleData);
+}

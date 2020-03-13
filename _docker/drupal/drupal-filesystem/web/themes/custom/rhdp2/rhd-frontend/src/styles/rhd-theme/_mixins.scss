@@ -8,8 +8,44 @@
 @mixin nestedComponent {
   .component {
     margin: 0 0 var(--rhd-theme--container-spacer-lg) 0;
-    &:not(.dark):not(.assembly-slim):not(.has-background):not(.background-gray) {
-      padding: 0;
+    padding: 0;
+
+    @each $componentStyleName, $componentStyleData in $componentStyles {
+      @if map-get($componentStyleData, "addImagePadding") {
+        &.#{$componentStyleName} {
+          padding: var(--rhd-theme--container-spacer-lg) var(--rhd-theme--container-spacer-3xl);
+        }
+      }
+    }
+
+    &.assembly-slim, &.has-background, &.background-gray {
+      padding: var(--rhd-theme--container-spacer-lg) var(--rhd-theme--container-spacer-md);
+    }
+  }
+}
+
+//mixin to be used to create color specific component styles
+@mixin componentStyle($variantName, $variantData) {
+  .component {
+    &.#{$variantName} {
+      //Set base background padding if $addImagePadding is true
+      @if map-get($variantData, "addImagePadding") {
+        @include with-background-padding;
+      }
+      background-color: map-get($variantData, "backgroundColor");
+      color: map-get($variantData, "foregroundColor");
+      --pf-c-content--Color: #{map-get($variantData, "foregroundColor")};
+      
+      .pf-c-title {
+        color: map-get($variantData, "foregroundColor");
+      }
+
+      a {
+        color: map-get($variantData, "linkColor");
+        &:hover {
+          color: map-get($variantData, "linkHoverColor");
+        }
+      }
     }
   }
 }

@@ -20,7 +20,7 @@
     "scripts:tsdev": "tsc -p tsconfig.dev.json",
     "semantic-release": "semantic-release",
     "styles": "npm run styles:sass && npm run styles:fonts",
-    "styles:sass": "node-sass src/styles -o dist/css --source-map true --output-style compressed && postcss dist/css/rhd.css -o dist/css/rhd.min.css",
+    "styles:sass": "node-sass src/styles -o dist/css --source-map true --output-style expanded && postcss dist/css/rhd.css -o dist/css/rhd.min.css",
     "styles:fonts": "copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" dist/fonts/patternfly"
   },
   "sass": {

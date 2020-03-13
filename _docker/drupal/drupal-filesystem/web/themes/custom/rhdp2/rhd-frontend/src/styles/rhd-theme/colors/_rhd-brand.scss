@@ -1,4 +1,6 @@
 $rhd-theme--font--color: #151515;
+$rhd-theme--link--color: $link-color;
+$rhd-theme--link-hover--color: $link-color-hover;
 $rhd-theme--component-font--color: #151515;
 $rhd-theme--component-font--color-light: #fff;
 $rhd-theme--component-font--color-dark: #151515;
@@ -6,6 +8,7 @@ $rhd-theme--component-background--color: #fff;
 $rhd-theme--component-background--color-extra-light: #e4e4e6;
 $rhd-theme--component-background--color-light: #D4D4D4;
 $rhd-theme--component-background--color-dark: #252525;
+
 
 :root {
     --rhd-theme--font--color: #{$rhd-theme--font--color};
@@ -16,11 +19,12 @@ $rhd-theme--component-background--color-dark: #252525;
     --rhd-theme--component-background--color: #{$rhd-theme--component-background--color};
     --rhd-theme--component-background--color-light: #{$rhd-theme--component-background--color-light};
     --rhd-theme--component-background--color-dark: #{$rhd-theme--component-background--color-dark};
-    --rhd-theme--color--grey-3: $grey-3;
+    --rhd-theme--color--grey-3: #{$grey-3};
     --rhd-gray-2: #e6e6e6;
-    --rhd-gray-3: $gray-3;
-    --rhd-gray-4: $gray-4;
-    --rhd-blue: $blue;
-    --rhd-linkhover: $linkhover;
-    --rhd-white: $white;
+    --rhd-gray-3: #{$gray-3};
+    --rhd-gray-4: #{$gray-4};
+    --rhd-blue: #{$blue};
+    --rhd-theme--link--color: #{$link-color};
+    --rhd-theme--link-hover--color: #{$link-color-hover};
+    --rhd-white: #{$white};
 }
