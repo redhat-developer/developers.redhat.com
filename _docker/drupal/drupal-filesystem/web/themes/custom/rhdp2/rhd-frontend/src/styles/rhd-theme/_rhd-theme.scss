@@ -12,10 +12,10 @@
 // PatternFly Core
 @import "../../../node_modules/@patternfly/patternfly/components/Table/table.scss";
 
+// Theme Mixins
 @import "mixins";
 
 // Components
-
 @import "components/assembly-base";
 @import "components/articles";
 @import "components/component-base";
@@ -65,6 +65,7 @@
 @import "components/rhd-divider";
 @import "components/rh-header";
 @import "components/status-messages";
+@import "components/meta-info";
 
 //General helper classes
 @import "helpers/visibility";

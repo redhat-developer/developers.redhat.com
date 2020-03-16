@@ -9,26 +9,28 @@
       <h4 class="content-type-label">Video</h4>
       <h1{{ title_attributes.addClass('video-resource-title') }}>{{ label }}</h1>
     </div>
-
-    <div class="pf-l-grid__item pf-m-12-col">
-      <div class="vr-info">
-      <ul>
-        {% if content.field_speakers['#items'] %}
-          <li><strong {{ author_attributes }}>By {{ content.field_speakers }}</strong></li>
-        {% endif %}
-        {% if calc_date and calc_date.value is not empty %}
-          <li>
-            <small>Published:
-              <rh-datetime datetime="{{calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
-            </small>
-          </li>
-        {% endif %}
-        <li class="right vr-social">
-          {% include '@rhdp/share.html.twig' %}
-        </li>
-      </ul>
-      </div>
-    </div>
+	<div class="pf-l-grid__item pf-m-12-col">
+		<div class="video-info">
+			<div class="meta-info">
+				{% if content.field_speakers['#items'] %}
+					<div class="meta-video-speaker">
+						<strong {{ author_attributes }}>By
+							{{ content.field_speakers }}</strong>
+					</div>
+				{% endif %}
+				{% if calc_date and calc_date.value is not empty %}
+					<div class="meta-video-published">
+						<small>Published:
+							<rh-datetime datetime="{{calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
+						</small>
+					</div>
+				{% endif %}
+				<div class="right share-buttons">
+					{% include '@components/share.html.twig' %}
+				</div>
+			</div>
+		</div>
+	</div>
 
     <div class="pf-l-grid__item pf-m-12-col">
       <div class="pf-l-grid pf-m-gutter pf-u-mb-md">

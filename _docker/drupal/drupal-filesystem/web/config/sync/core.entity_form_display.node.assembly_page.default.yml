@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
+    - field.field.node.assembly_page.field_short_description
     - field.field.node.assembly_page.field_tags
     - field.field.node.assembly_page.field_tax_audience_segment
     - field.field.node.assembly_page.field_tax_business_unit
@@ -51,7 +52,7 @@ third_party_settings:
         - field_tax_stage
         - field_tags
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -72,7 +73,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 9
+    weight: 10
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -91,7 +92,7 @@ content:
     type: boolean_checkbox
     region: content
   field_meta_tags:
-    weight: 10
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -116,7 +117,7 @@ content:
     region: content
   field_share_image:
     type: entity_browser_file
-    weight: 5
+    weight: 6
     settings:
       entity_browser: image_browser
       field_widget_remove: true
@@ -128,6 +129,14 @@ content:
       view_mode: default
     region: fields
     third_party_settings: {  }
+  field_short_description:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: fields
   field_tags:
     weight: 37
     settings:
@@ -212,20 +221,20 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: settings
   path:
     type: path
-    weight: 8
+    weight: 9
     region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 13
+    weight: 14
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -239,7 +248,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 8
     region: settings
     settings:
       size: 60
@@ -248,7 +257,7 @@ content:
       match_limit: 10
     third_party_settings: {  }
   url_redirects:
-    weight: 12
+    weight: 13
     region: settings
     settings: {  }
     third_party_settings: {  }

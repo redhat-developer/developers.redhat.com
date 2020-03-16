@@ -28,7 +28,7 @@
         padding-right: var(--rhd-theme--container-spacer-md);
     }
 
-   //remove default side padding when inside another component
+    //remove default side padding when inside another component
     .pf-c-card & {
         padding: var(--rhd-theme--container-spacer-md) 0;
         @media screen and (max-width: $pf-global--breakpoint--lg) {
@@ -58,12 +58,13 @@
         background: $rhd-theme--component-background--color-extra-light;
     }
     &.no-padding-top {
-        margin-top: 0;
-    }
-    &.no-padding-bottom {
-        margin-bottom: 0;
+        @extend .pf-u-pt-0;
     }
 
+    &.no-padding-bottom {
+        @extend .pf-u-pb-0;
+    }
+    
     &.has-background {
         @include with-background-padding;
     }

@@ -121,26 +121,6 @@
       position: relative;
       width: 24px;
       margin-bottom: 0;
-
-      .a2a_svg {
-        height: 21px;
-        left: 50%;
-        position: absolute;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        width: 21px;
-      }
-
-      .a2a_label {
-        -webkit-clip-path: polygon(0 0, 0 0, 0 0);
-        clip: rect(1px 1px 1px 1px);
-        clip: rect(1px, 1px, 1px, 1px);
-        clip-path: polygon(0 0, 0 0, 0 0);
-        height: 1px;
-        overflow: hidden;
-        position: absolute !important;
-        width: 1px;
-      }
     }
   }
 
