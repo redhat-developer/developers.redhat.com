@@ -55,7 +55,9 @@ export default class RHDPSearchApp extends HTMLElement {
             <div class="rhd-c-search-body-left pf-l-grid__item pf-m-4-col-on-md pf-m-12-col-on-sm"></div>
             <div class="rhd-c-search-body-right pf-l-grid__item pf-m-8-col-on-md pf-m-12-col-on-sm"></div>
         </div>
-    </div></div>`;
+    </div>
+    <a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>
+    </div>`;
 
     urlEle = new RHDPSearchURL();
     query = new RHDPSearchQuery();
