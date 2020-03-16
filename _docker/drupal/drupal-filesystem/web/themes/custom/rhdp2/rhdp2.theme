@@ -746,7 +746,7 @@ function _get_product_node_from_request() {
     if ($product = reset($products)) {
       // If we've successfully retrieved a product Node object by the
       // product_url_name, then assign it to $node.
-      if ($product instanceof NodeInterface) {
+      if (!empty($product) && $product instanceof NodeInterface) {
         return $product;
       }
     }
