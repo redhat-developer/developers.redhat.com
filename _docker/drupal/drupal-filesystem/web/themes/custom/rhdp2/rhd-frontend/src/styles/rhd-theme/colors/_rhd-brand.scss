@@ -1,30 +1,136 @@
-$rhd-theme--font--color: #151515;
-$rhd-theme--link--color: $link-color;
-$rhd-theme--link-hover--color: $link-color-hover;
-$rhd-theme--component-font--color: #151515;
-$rhd-theme--component-font--color-light: #fff;
-$rhd-theme--component-font--color-dark: #151515;
-$rhd-theme--component-background--color: #fff;
-$rhd-theme--component-background--color-extra-light: #e4e4e6;
-$rhd-theme--component-background--color-light: #D4D4D4;
-$rhd-theme--component-background--color-dark: #252525;
+//Base colours
+$white: #ffffff;
+$black: #151515;
+$alto: #d2d2d2;
+$rolling-stone: #72767B;
+$cod-gray: #131313;
+$malibu: #73BCF7;
+$dodger-blue: #2B9AF3;
+$science-blue: #0066cc;
+$congress-blue: #004080;
+$light-gray: #EDEDED;
+$medium-light-gray: #D4D4D4;
+$dark-gray: #252525;
+$soft-dark: rgba(0,0,0,.8);
+$red: #ee0000;
+$dark-red: #cc0000;
+$darker-red: #a30000;
+$even-darker-red: #820000;
 
+//rhd theme variables
+$rhd-theme--font--color: $black;
+$rhd-theme--link--color: $science-blue;
+$rhd-theme--link-hover--color: $congress-blue;
+$rhd-theme--component-font--color: $black;
+$rhd-theme--component-font--color-light: $white;
+$rhd-theme--component-font--color-dark: $black;
+$rhd-theme--component-background--color: $white;
+$rhd-theme--component-background--color-extra-light: $light-gray;
+$rhd-theme--component-background--color-light: $medium-light-gray;
+$rhd-theme--component-background--color-dark: $dark-gray;
+
+$rhd-theme--base-buttons: (
+    'pf-m-link': (
+        'Color': #{$rhd-theme--link--color},
+        'hover--Color': #{$rhd-theme--link-hover--color},
+        'active--Color': #{$rhd-theme--link-hover--color},
+        'BorderColor': transparent,
+        'hover--BorderColor': transparent,
+        'active--BorderColor': transparent,    
+        'BackgroundColor': transparent,
+        'hover--BackgroundColor': transparent,
+        'active--BackgroundColor': transparent
+    ),
+    'pf-m-link--secondary': (
+        'Color': #{$black},
+        'hover--Color': #{$black},
+        'active--Color': #{$black},
+        'BorderColor': transparent,
+        'hover--BorderColor': transparent,
+        'active--BorderColor': transparent,    
+        'BackgroundColor': transparent,
+        'hover--BackgroundColor': transparent,
+        'active--BackgroundColor': transparent
+    ),
+    'pf-m-heavy': (
+        'Color': #{$white},
+        'hover--Color': #{$white},
+        'active--Color': #{$white},
+        'BorderColor': #{$red},
+        'hover--BorderColor': #{$dark-red},
+        'active--BorderColor': #{$dark-red},    
+        'BackgroundColor': #{$red},
+        'hover--BackgroundColor': #{$dark-red},
+        'active--BackgroundColor': #{$dark-red}
+    ),
+    'pf-m-primary': (
+        'Color': #fff,
+        'hover--Color': #fff,
+        'active--Color': #fff,
+        'BorderColor': #0087ce,
+        'hover--BorderColor': #0073af,
+        'active--BorderColor': #0073af,
+        'BackgroundColor': #0087ce,
+        'hover--BackgroundColor': #0073af,
+        'active--BackgroundColor': #0073af
+    ),
+    'pf-m-secondary': (
+        'Color': #0066cc,
+        'hover--Color': #fff,
+        'active--Color': #fff,
+        'BorderColor': #0066cc,
+        'hover--BorderColor': #0087ce,
+        'active--BorderColor': #0087ce,
+        'BackgroundColor': #fff,
+        'hover--BackgroundColor': #0087ce,
+        'active--BackgroundColor': #0087ce
+    ),
+    'pf-m-secondary-alt': (
+        'Color': #ee0000,
+        'hover--Color': #fff,
+        'active--Color': #fff,
+        'BorderColor': #ee0000,
+        'hover--BorderColor': #cf0000,
+        'active--BorderColor': #cf0000,
+        'BackgroundColor': #fff,
+        'hover--BackgroundColor': #cf0000,
+        'active--BackgroundColor': #cf0000
+    ),
+    'pf-m-tertiary': (
+        'Color': #151515,
+        'hover--Color': #fff,
+        'active--Color': #151515,
+        'BorderColor': #151515,
+        'hover--BorderColor': #151515,
+        'active--BorderColor': #151515,
+        'BackgroundColor': #151515,
+        'hover--BackgroundColor': #151515,
+        'active--BackgroundColor': #151515
+    )
+);
 
 :root {
+    //General theme font colours
     --rhd-theme--font--color: #{$rhd-theme--font--color};
     --rhd-theme--color--ui--soft-dark: #{$soft-dark};
+
+    //General theme component variables
     --rhd-theme--component-font--color: #{$rhd-theme--component-font--color};
     --rhd-theme--component-font--color-light: #{$rhd-theme--component-font--color-light};
     --rhd-theme--component-font--color-dark: #{$rhd-theme--component-font--color-dark};
     --rhd-theme--component-background--color: #{$rhd-theme--component-background--color};
     --rhd-theme--component-background--color-light: #{$rhd-theme--component-background--color-light};
     --rhd-theme--component-background--color-dark: #{$rhd-theme--component-background--color-dark};
+
+    //Legacy theme color variables
     --rhd-theme--color--grey-3: #{$grey-3};
     --rhd-gray-2: #e6e6e6;
     --rhd-gray-3: #{$gray-3};
     --rhd-gray-4: #{$gray-4};
     --rhd-blue: #{$blue};
-    --rhd-theme--link--color: #{$link-color};
-    --rhd-theme--link-hover--color: #{$link-color-hover};
     --rhd-white: #{$white};
+
+    //Default theme link colour variables
+    --rhd-theme--link--color: #{$rhd-theme--link--color};
+    --rhd-theme--link-hover--color: #{$rhd-theme--link-hover--color};
 }

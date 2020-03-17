@@ -164,13 +164,15 @@
         &:nth-child(2) {
           .pf-c-button {
             &+.pf-c-button {
-              @extend .pf-m-link--secondary-on-dark;
+              //todo
+              //@extend .pf-m-link--secondary-on-dark;
             }
           }
         }
         &:nth-child(3) {
           .pf-c-button {
-            @extend .pf-m-tertiary-on-dark;
+            //todo
+            //@extend .pf-m-tertiary-on-dark;
             &:after {
               display: none;
             }
@@ -178,7 +180,8 @@
         }
         &:nth-child(4) {
           .pf-c-button {
-            @extend .pf-m-tertiary-on-dark;
+            //todo
+            //@extend .pf-m-tertiary-on-dark;
             &:after {
               display: none;
             }

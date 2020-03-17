@@ -1,11 +1,64 @@
 // Generic component color styles
+:root {
+    --rhd-c-button--m-link-dark--BackgroundColor: transparent;
+    --rhd-c-button--m-link-dark--BorderColor: transparent;
+    --rhd-c-button--m-link-dark--Color: #73BCF7;
+    --rhd-c-button--m-link-dark--hover--BackgroundColor: transparent;
+    --rhd-c-button--m-link-dark--hover--BorderColor: transparent;
+    --rhd-c-button--m-link-dark--hover--Color: #2A99F1;
+
+    --rhd-c-button--m-secondary-dark--BackgroundColor: transparent;
+    --rhd-c-button--m-secondary-dark--BorderColor: #fff;
+    --rhd-c-button--m-secondary-dark--Color: #fff;
+    --rhd-c-button--m-secondary-dark--hover--BackgroundColor: #fff;
+    --rhd-c-button--m-secondary-dark--hover--BorderColor: #fff;
+    --rhd-c-button--m-secondary-dark--hover--Color: #151515;
+
+    --rhd-c-button--m-secondary-alt-dark--BackgroundColor: transparent;
+    --rhd-c-button--m-secondary-alt-dark--BorderColor: #fff;
+    --rhd-c-button--m-secondary-alt-dark--Color: #fff;
+    --rhd-c-button--m-secondary-alt-dark--hover--BackgroundColor: #fff;
+    --rhd-c-button--m-secondary-alt-dark--hover--BorderColor: #fff;
+    --rhd-c-button--m-secondary-alt-dark--hover--Color: #151515;
+
+    --rhd-c-button--m-tertiary-dark--BackgroundColor: transparent;
+    --rhd-c-button--m-tertiary-dark--BorderColor: #fff;
+    --rhd-c-button--m-tertiary-dark--Color: #fff;
+    --rhd-c-button--m-tertiary-dark--hover--BackgroundColor: #fff;
+    --rhd-c-button--m-tertiary-dark--hover--BorderColor: #fff;
+    --rhd-c-button--m-tertiary-dark--hover--Color: #151515;
+}
+
 $componentStyles: (
     'dark': (
         'foregroundColor': var(--rhd-theme--component-font--color-light),
         'backgroundColor': var(--rhd-theme--component-background--color-dark),
         'linkColor': var(--rhd-theme--link--color),
         'linkHoverColor': var(--rhd-theme--link-hover--color),
-        'addImagePadding': true
+        'addImagePadding': true,
+        'pf-c-button': (
+            'pf-m-link': (
+
+            ),
+            'pf-m-link--secondary': (
+
+            ),
+            'pf-m-heavy': (
+
+            ),
+            'pf-m-primary': (
+
+            ),
+            'pf-m-secondary': (
+
+            ),
+            'pf-m-secondary-alt': (
+
+            ),
+            'pf-m-tertiary': (
+
+            )
+        )
     ),
     'gray': (
         'foregroundColor': var(--rhd-theme--component-font--color-dark),
