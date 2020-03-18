@@ -68,18 +68,10 @@ $componentStyles: (
 // loop through $componentStyles and generate appropriate classes.
 .component {  
     @each $componentStyleName, $componentStyleData in $componentStyles {
-
         //mixin to be used to create color specific component styles
         &.#{$componentStyleName} {
-            //--theme-debug: '#{$componentStyleName}';
             //loop through buttonOverrides write theme variant --pf-c-button variables 
-            @each $themeButtonItemName, $themeButtonItemData in map-get($componentStyleData, 'buttonOverrides') {
-                @each $themeButtonParamName, $themeButtonParamData in $themeButtonItemData {
-                    --pf-c-button--#{$themeButtonItemName}--#{$themeButtonParamName}: #{$themeButtonParamData};
-                }
-            }  
-         
-            //Set base background padding if $addImagePadding is true
+            --am-debug: true;
             @if map-get($componentStyleData, "addImagePadding") {
                 @include with-background-padding;
             }
@@ -96,7 +88,7 @@ $componentStyles: (
                 .#{$themeButtonName} {
                     &-on-#{$componentStyleName} {
                         @each $themeButtonParamName, $themeButtonParamData in $themeButtonData {
-                            --pf-c-button--#{$themeButtonName}--#{$themeButtonParamName}: #{$themeButtonParamData};
+                            --pf-c-button--#{$themeButtonParamName}: #{$themeButtonParamData};
                         }
                     }
                 }

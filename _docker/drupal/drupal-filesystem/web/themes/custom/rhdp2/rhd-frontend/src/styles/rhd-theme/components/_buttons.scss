@@ -2,8 +2,40 @@
 .pf-c-button {
   font-family: var(--rhd-theme--font-family);
   margin-bottom: var(--rhd-theme--container-spacer-xs);
-
   
+
+  //Set base button colors
+  color: var(--pf-c-button--Color);
+  border-color: var(--pf-c-button--BorderColor);
+  background-color: var(--pf-c-button--BackgroundColor);
+
+  //todo don't like !important fix this properly
+  --pf-theme--color--ui-link: var(--pf-c-button--Color) !important;
+  --pf-theme--color--ui-link--hover: var(--pf-c-button--hover--Color) !important;
+
+  //Set visited button colors
+  &:visited {
+    color: var(--pf-c-button--Color);
+    border-color: var(--pf-c-button--BorderColor);
+    background-color: var(--pf-c-button--BackgroundColor);
+  }
+
+  //Set active button colors
+  &:active,
+  &.pf-m-active {
+    color: var(--pf-c-button--active--Color);
+    border-color: var(--pf-c-button--active--BorderColor);
+    background-color: var(--pf-c-button--active--BackgroundColor);
+  }
+
+  //Set hover and focus button colors
+  &:hover,
+  &:focus,
+  &.pf-m-focus {
+    color: var(--pf-c-button--hover--Color);
+    border-color: var(--pf-c-button--hover--BorderColor);
+    background-color: var(--pf-c-button--hover--BackgroundColor);
+  }
 
   @media screen and (max-width: $pf-global--breakpoint--sm) {
     display: block;
@@ -11,79 +43,22 @@
     width: 100%;
     white-space: normal;
   }
+
+  //Set disabled button colors
+  &:disabled,
+  &.pf-m-disabled {
+    color: var(--pf-c-button--disabled--Color);
+    border-color: var(--pf-c-button--disabled--BorderColor);
+    background-color: var(--pf-c-button--disabled--BackgroundColor);
+  }
+
   // loop through $rhd-theme--base-buttons and generate appropriate button classes.
   @each $themeButtonName, $themeButtonData in $rhd-theme--base-buttons {
     &.#{$themeButtonName} {
-
       //loop through $themeButtonData write --pf-c-button variables 
-      @at-root {
-        :root {
-          @each $themeButtonItemName, $themeButtonItemData in $themeButtonData {
-            --pf-c-button--#{$themeButtonName}--#{$themeButtonItemName}: #{$themeButtonItemData};
-          }
-        }
-      }
-
-      //Set base button colors
-      @if map-get($themeButtonData, "Color") {
-        color: var(--pf-c-button--#{$themeButtonName}--Color);
-      }
-      @if map-get($themeButtonData, "BorderColor") {
-        border-color: var(--pf-c-button--#{$themeButtonName}--BorderColor);
-      }
-      @if map-get($themeButtonData, "BackgroundColor") {
-        background-color: var(--pf-c-button--#{$themeButtonName}--BackgroundColor);
-      }
-      
-
-      //Set visited button colors
-      &:visited {
-        @if map-get($themeButtonData, "Color") {
-          color: var(--pf-c-button--#{$themeButtonName}--Color);
-        }
-        @if map-get($themeButtonData, "BorderColor") {
-          border-color: var(--pf-c-button--#{$themeButtonName}--BorderColor);
-        }
-        @if map-get($themeButtonData, "BackgroundColor") {
-          background-color: var(--pf-c-button--#{$themeButtonName}--BackgroundColor);
-        }
-      }
-
-      //Set hover and focus button colors
-      &:active,
-      &.pf-m-active {
-        @if map-get($themeButtonData, "active--Color") {
-          color: var(--pf-c-button--#{$themeButtonName}--active--Color);
-        }
-        @if map-get($themeButtonData, "active--BorderColor") {
-          border-color: var(--pf-c-button--#{$themeButtonName}--active--BorderColor);
-        }
-        @if map-get($themeButtonData, "active--BackgroundColor") {
-          background-color: var(--pf-c-button--#{$themeButtonName}--active--BackgroundColor);
-        }
-      }
-
-      //Set hover and focus button colors
-      &:hover,
-      &:focus,
-      &.pf-m-focus {
-        @if map-get($themeButtonData, "hover--Color") {
-          color: var(--pf-c-button--#{$themeButtonName}--hover--Color);
-        }
-        @if map-get($themeButtonData, "hover--BorderColor") {
-          border-color: var(--pf-c-button--#{$themeButtonName}--hover--BorderColor);
-        }
-        @if map-get($themeButtonData, "hover--BackgroundColor") {
-          background-color: var(--pf-c-button--#{$themeButtonName}--hover--BackgroundColor);
-        }
-      }
-  
-      //Set disabled button colors
-      &:disabled,
-      &.pf-m-disabled {
-        color: var(--pf-c-button--disabled--Color);
-        border-color: var(--pf-c-button--disabled--BorderColor);
-        background-color: var(--pf-c-button--disabled--BackgroundColor);
+      --am-debug: #{$themeButtonName};
+      @each $themeButtonItemName, $themeButtonItemData in $themeButtonData {
+        --pf-c-button--#{$themeButtonItemName}: #{$themeButtonItemData};
       }
     }
   }
