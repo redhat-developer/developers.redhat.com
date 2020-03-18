@@ -1,77 +1,107 @@
 // Generic component color styles
-:root {
-    --rhd-c-button--m-link-dark--BackgroundColor: transparent;
-    --rhd-c-button--m-link-dark--BorderColor: transparent;
-    --rhd-c-button--m-link-dark--Color: #73BCF7;
-    --rhd-c-button--m-link-dark--hover--BackgroundColor: transparent;
-    --rhd-c-button--m-link-dark--hover--BorderColor: transparent;
-    --rhd-c-button--m-link-dark--hover--Color: #2A99F1;
-
-    --rhd-c-button--m-secondary-dark--BackgroundColor: transparent;
-    --rhd-c-button--m-secondary-dark--BorderColor: #fff;
-    --rhd-c-button--m-secondary-dark--Color: #fff;
-    --rhd-c-button--m-secondary-dark--hover--BackgroundColor: #fff;
-    --rhd-c-button--m-secondary-dark--hover--BorderColor: #fff;
-    --rhd-c-button--m-secondary-dark--hover--Color: #151515;
-
-    --rhd-c-button--m-secondary-alt-dark--BackgroundColor: transparent;
-    --rhd-c-button--m-secondary-alt-dark--BorderColor: #fff;
-    --rhd-c-button--m-secondary-alt-dark--Color: #fff;
-    --rhd-c-button--m-secondary-alt-dark--hover--BackgroundColor: #fff;
-    --rhd-c-button--m-secondary-alt-dark--hover--BorderColor: #fff;
-    --rhd-c-button--m-secondary-alt-dark--hover--Color: #151515;
-
-    --rhd-c-button--m-tertiary-dark--BackgroundColor: transparent;
-    --rhd-c-button--m-tertiary-dark--BorderColor: #fff;
-    --rhd-c-button--m-tertiary-dark--Color: #fff;
-    --rhd-c-button--m-tertiary-dark--hover--BackgroundColor: #fff;
-    --rhd-c-button--m-tertiary-dark--hover--BorderColor: #fff;
-    --rhd-c-button--m-tertiary-dark--hover--Color: #151515;
-}
-
+// To Add a new color theme simply extend the data below to include the required color changes 
 $componentStyles: (
     'dark': (
         'foregroundColor': var(--rhd-theme--component-font--color-light),
         'backgroundColor': var(--rhd-theme--component-background--color-dark),
-        'linkColor': var(--rhd-theme--link--color),
-        'linkHoverColor': var(--rhd-theme--link-hover--color),
+        'linkColor': #{$malibu},
+        'linkHoverColor': #{$dodger-blue},
         'addImagePadding': true,
-        'pf-c-button': (
-            'pf-m-link': (
-
-            ),
-            'pf-m-link--secondary': (
-
-            ),
-            'pf-m-heavy': (
-
-            ),
-            'pf-m-primary': (
-
-            ),
-            'pf-m-secondary': (
-
-            ),
-            'pf-m-secondary-alt': (
-
-            ),
-            'pf-m-tertiary': (
-
+        'buttonOverrides': (
+                'pf-m-link': (
+                    'Color': #{$malibu},
+                    'hover--Color': #{$dodger-blue},
+                    'active--Color': #{$dodger-blue}
+                ),
+                'pf-m-link--secondary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$white},
+                    'active--Color': #{$white}
+                ),
+                'pf-m-secondary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$white},
+                    'active--Color': #{$white},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': transparent,
+                    'active--BackgroundColor': transparent
+                ),
+                'pf-m-secondary-alt': (
+                    'Color': #{$white},
+                    'hover--Color': #{$white},
+                    'active--Color': #{$white},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': transparent,
+                    'active--BackgroundColor': transparent
+                ),
+                'pf-m-tertiary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$white},
+                    'active--Color': #{$white},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': transparent,
+                    'active--BackgroundColor': transparent
+                )
             )
-        )
     ),
     'gray': (
         'foregroundColor': var(--rhd-theme--component-font--color-dark),
         'backgroundColor': var(--rhd-theme--component-background--color-light),
         'linkColor': var(--rhd-c-button--m-link-dark--Color),
         'linkHoverColor': var(--rhd-c-button--m-link-dark--hover--Color),
-        'addImagePadding': true
-    )
+        'addImagePadding': true,
+        'buttonOverrides': ()
+        )
 );
 
 @import "../mixins";
 
 // loop through $componentStyles and generate appropriate classes.
-@each $componentStyleName, $componentStyleData in $componentStyles {
-    @include componentStyle($componentStyleName, $componentStyleData);
+.component {  
+    @each $componentStyleName, $componentStyleData in $componentStyles {
+
+        //mixin to be used to create color specific component styles
+        &.#{$componentStyleName} {
+            //--theme-debug: '#{$componentStyleName}';
+            //loop through buttonOverrides write theme variant --pf-c-button variables 
+            @each $themeButtonItemName, $themeButtonItemData in map-get($componentStyleData, 'buttonOverrides') {
+                @each $themeButtonParamName, $themeButtonParamData in $themeButtonItemData {
+                    --pf-c-button--#{$themeButtonItemName}--#{$themeButtonParamName}: #{$themeButtonParamData};
+                }
+            }  
+         
+            //Set base background padding if $addImagePadding is true
+            @if map-get($componentStyleData, "addImagePadding") {
+                @include with-background-padding;
+            }
+
+            background-color: map-get($componentStyleData, "backgroundColor");
+            color: map-get($componentStyleData, "foregroundColor");
+            --pf-c-content--Color: #{map-get($componentStyleData, "foregroundColor")};
+            --pf-theme--color--ui-link: #{map-get($componentStyleData, "linkColor")};
+            --pf-theme--color--ui-link--hover: #{map-get($componentStyleData, "linkHoverColor")};
+        }
+        //loop through buttonOverrides write theme variant --pf-c-button 'button-variant'-on-'theme-variant' classes
+        .pf-c-button {
+            @each $themeButtonName, $themeButtonData in map-get($componentStyleData, 'buttonOverrides') {
+                .#{$themeButtonName} {
+                    &-on-#{$componentStyleName} {
+                        @each $themeButtonParamName, $themeButtonParamData in $themeButtonData {
+                            --pf-c-button--#{$themeButtonName}--#{$themeButtonParamName}: #{$themeButtonParamData};
+                        }
+                    }
+                }
+            } 
+        }  
+    }
 }
+

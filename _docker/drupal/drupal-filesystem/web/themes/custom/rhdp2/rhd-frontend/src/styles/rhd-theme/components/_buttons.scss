@@ -2,6 +2,9 @@
 .pf-c-button {
   font-family: var(--rhd-theme--font-family);
   margin-bottom: var(--rhd-theme--container-spacer-xs);
+
+  
+
   @media screen and (max-width: $pf-global--breakpoint--sm) {
     display: block;
     margin-bottom: var(--rhd-theme--container-spacer-md);
@@ -82,39 +85,6 @@
         border-color: var(--pf-c-button--disabled--BorderColor);
         background-color: var(--pf-c-button--disabled--BackgroundColor);
       }
-    }
-  }
-}
-
-//add legacy button style classes and extend.
-.button {
-  @extend .pf-c-button;
-  margin-bottom: var(--rhd-theme--container-spacer-xs);
-  @media screen and (max-width: $pf-global--breakpoint--sm) {
-    display: block;
-    margin-bottom: var(--rhd-theme--container-spacer-md);
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    white-space: normal;
-  }
-  border:none;
-
-  &:hover {
-    text-decoration: none !important;
-  }
-
-  &.heavy-cta {
-    @extend .pf-c-button.pf-m-heavy;
-    &.blue {
-      @extend .pf-c-button.pf-m-primary;
-    }
-  }
-
-  &.medium-cta {
-    @extend .pf-c-button.pf-m-secondary;
-    border:none;
-    &.red {
-      @extend .pf-c-button.pf-m-secondary-alt;
     }
   }
 }

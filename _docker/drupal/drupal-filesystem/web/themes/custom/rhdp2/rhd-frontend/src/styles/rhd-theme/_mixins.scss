@@ -26,32 +26,6 @@
   }
 }
 
-//mixin to be used to create color specific component styles
-@mixin componentStyle($variantName, $variantData) {
-  .component {
-    &.#{$variantName} {
-      //Set base background padding if $addImagePadding is true
-      @if map-get($variantData, "addImagePadding") {
-        @include with-background-padding;
-      }
-      background-color: map-get($variantData, "backgroundColor");
-      color: map-get($variantData, "foregroundColor");
-      --pf-c-content--Color: #{map-get($variantData, "foregroundColor")};
-      
-      .pf-c-title {
-        color: map-get($variantData, "foregroundColor");
-      }
-
-      a {
-        color: map-get($variantData, "linkColor");
-        &:hover {
-          color: map-get($variantData, "linkHoverColor");
-        }
-      }
-    }
-  }
-}
-
 //hidden classes
 %link {
   text-decoration: var(--pf-theme--link--text-decoration, "underline");
