@@ -7,10 +7,10 @@ label: 'Content: Topic Page'
 tags:
   referrer: no-referrer
   og_description: '[node:summary]'
-  og_image: '[node:field_share_image:share]'
+  og_title: '[node:title]'
+  og_image: '[node:field_share_image:share],https://developers.redhat.com/themes/custom/rhdp2/images/metatags/metatag-image-global.png'
   og_determiner: the
   og_site_name: '[site:name]'
-  og_title: '[node:title]'
   twitter_cards_title: '[node:title]'
   twitter_cards_page_url: '[node:url]'
   twitter_cards_type: summary

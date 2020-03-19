@@ -8,21 +8,21 @@ id: node
 label: Content
 tags:
   canonical_url: '[current-page:url:absolute]'
-  title: '[node:title] | [site:name]'
+  referrer: no-referrer
   image_src: '[node:field_card_image:uri]'
   description: '[node:summary]'
-  referrer: no-referrer
+  title: '[node:title] | [site:name]'
+  og_url: '[current-page:url:absolute]'
   og_title: '[current-page:title]'
+  og_image: '[node:field_card_image:uri],https://developers.redhat.com/themes/custom/rhdp2/images/metatags/metatag-image-global.png'
   og_updated_time: '[node:changed:html_datetime]'
   og_site_name: '[site:name]'
-  og_image: '[node:field_card_image:uri]'
-  og_url: '[current-page:url:absolute]'
-  twitter_cards_type: summary
-  twitter_cards_image: '[node:field_card_image:uri]'
-  twitter_cards_site: '@rhdevelopers'
-  twitter_cards_title: '[current-page:title]'
   twitter_cards_description: '[node:summary]'
+  twitter_cards_title: '[current-page:title]'
+  twitter_cards_image: '[node:field_card_image:uri],https://developers.redhat.com/themes/custom/rhdp2/images/metatags/metatag-image-global.png'
   twitter_cards_page_url: '[current-page:url:absolute]'
+  twitter_cards_site: '@rhdevelopers'
+  twitter_cards_type: summary
   rhd_taxonomy_product_line: '[node:field_tax_product_line]'
-  rhd_taxonomy_topic: '[node:field_topics]'
   rhd_taxonomy_product: '[node:field_tax_product]'
+  rhd_taxonomy_topic: '[node:field_topics]'

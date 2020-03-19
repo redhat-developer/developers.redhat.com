@@ -17,13 +17,13 @@
 //hidden classes
 %link {
   text-decoration: var(--pf-theme--link--text-decoration, "underline");
-  color: var(--pfe-theme--color--ui-link, $link-color);
+  color: var(--pf-theme--color--ui-link, $link-color);
   &:visited {
-    color: var(--pfe-theme--color--ui-link, $link-color);
+    color: var(--pf-theme--color--ui-link, $link-color);
   }
 
   &:hover, &:active {
-      color: var(--pfe-theme--color--ui-link--hover, $link-color-hover)
+    color: var(--pf-theme--color--ui-link--hover, $link-color-hover);
   }
 }
 
@@ -36,8 +36,4 @@
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-%on-dark-assembly {
-  --pfe-theme--font-size--alpha: 46px;
 }
