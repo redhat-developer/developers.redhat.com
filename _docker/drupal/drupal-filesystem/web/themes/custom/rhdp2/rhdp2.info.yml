@@ -5,8 +5,8 @@ base theme: classy
 package: rhdp2
 core: 8.x
 libraries:
-  - rhdp2/new-relic
-  - rhdp2/jira-issue-collector
+  # - rhdp2/new-relic
+  # - rhdp2/jira-issue-collector
   - rhdp2/web-components
   - rhdp2/base-theme
   - rhdp2/rhdp-pfelement
@@ -16,8 +16,6 @@ stylesheets-remove:
   - core/modules/system/css/system.module.css
   - core/modules/system/css/system.theme.css
   - core/modules/views/css/views.module.css
-ckeditor_stylesheets:
-  - css/base/app.css
 component-libraries:
   components:
     paths:
