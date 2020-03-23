@@ -1,5 +1,5 @@
 <?php
-
+//Roger diff
 /**
  * @file
  * Functions to support theming in the RHDP2 theme.
@@ -11,8 +11,8 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_preprocess_page().
@@ -69,16 +69,25 @@ function rhdp2_preprocess_menu(&$variables) {
 function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   $node = \Drupal::request()->attributes->get('node');
 
-  if (!is_null($node) && method_exists($node, 'getType')) {
-    $new_suggestion = 'page__' . $node->getType();
-
-    if (!in_array($new_suggestion, $suggestions)) {
-      $suggestions[] = $new_suggestion;
+  if (!empty($node)) {
+    // If $node is a string integer i.e. '123', retrieve the Node object with
+    // that nid.
+    if (is_numeric($node) && strpos($node, '.') === FALSE && strpos($node, '-') === FALSE) {
+      $node = Node::load($node);
     }
-  }
 
-  if($node && $node->hasField('field_kiosk_mode') && $node->field_kiosk_mode->value == TRUE) {
-    $suggestions[] =  'page__kiosk_mode';
+    // If we have a $node object that is an instanceof NodeInterface, create
+    // template suggestions.
+    if ($node instanceof NodeInterface) {
+      $new_suggestion = 'page__' . $node->getType();
+
+      if (!in_array($new_suggestion, $suggestions)) {
+        $suggestions[] = $new_suggestion;
+      }
+      if ($node->hasField('field_kiosk_mode') && $node->field_kiosk_mode->value == TRUE) {
+        $suggestions[] = 'page__kiosk_mode';
+      }
+    }
   }
 
   return $suggestions;
@@ -678,6 +687,15 @@ function rhdp2_preprocess_html(array &$variables) {
   $current_path = \Drupal::service('path.current')->getPath();
   // Retrieve the redhat_developers config configuration object once.
   $rhd_config = \Drupal::config('redhat_developers');
+  // Get the current node object.
+  $node = \Drupal::request()->attributes->get('node');
+
+  // If we could not fetch the Node object from the Request. This should only
+  // happen on the Product pages, due to the highly custom 1 Node to multiple
+  // routes implementation.
+  if (empty($node) || !($node instanceof NodeInterface)) {
+    $node = _get_product_node_from_request();
+  }
 
   // Retrieve individual config values from the config object.
   $environment = $rhd_config->get('environment');
@@ -690,7 +708,7 @@ function rhdp2_preprocess_html(array &$variables) {
 
   $variables['rhd_environment'] = $environment;
   $variables['rhd_dtm_code'] = $dtm_code;
-  $variables['rhd_dtm_script'] = redhat_www_ddo_default(\Drupal::request()->attributes->get('node'));
+  $variables['rhd_dtm_script'] = redhat_www_ddo_default($node);
   $variables['rhd_sentry_track'] = $sentry_track;
   $variables['rhd_sentry_script'] = $sentry_script;
   $variables['rhd_sentry_code'] = $sentry_code;
@@ -714,7 +732,56 @@ function rhdp2_preprocess_html(array &$variables) {
 }
 
 /**
+ * Gets the Product node for a given route.
+ *
+ * This helper function returns the Product node for a given route. This is
+ * necessary because of our custom Product implementations that serve multiple
+ * routes from a single Node.
+ *
+ * @return \Drupal\node\NodeInterface|null
+ *   Return a Node object if this is a Product node. Otherwise, return NULL.
+ */
+function _get_product_node_from_request() {
+  $request_uri = \Drupal::request()->getRequestUri();
+
+  if (!empty($request_uri)) {
+    // Trim any leading and trailing slashes so that we can explode() below.
+    $request_uri_trimmed = trim($request_uri, '/');
+    $request_uri_pieces = explode('/', $request_uri_trimmed);
+
+    if ($request_uri_pieces[0] === 'products') {
+      $product_url_name = $request_uri_pieces[1];
+    }
+    // Else, we are not looking at a Product page. Return NULL.
+    else {
+      return NULL;
+    }
+  }
+  if (!empty($product_url_name)) {
+    $products = \Drupal::service('rhd_assemblies.download_manager_api')->getProductNodesByProductUrlName($product_url_name);
+
+    // Grab the first product in the array. There should always only be a single
+    // Product node returned, since the product_url_name should be unique.
+    if ($product = reset($products)) {
+      // If we've successfully retrieved a product Node object by the
+      // product_url_name, then assign it to $node.
+      if (!empty($product) && $product instanceof NodeInterface) {
+        return $product;
+      }
+    }
+  }
+}
+
+/**
  * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ *
+ * @param \Drupal\Entity\node\Node|null $node
+ *   This function will expects a Node object if the current request/page is a
+ *   Node. Otherwise, it expects NULL.
+ *
+ * @return array
+ *   Returns an associative array populated with data used to populate the
+ *   digitalData JS object.
  */
 function redhat_www_ddo_default($node) {
   $request = \Drupal::request();
@@ -725,7 +792,7 @@ function redhat_www_ddo_default($node) {
   $ddo_pageID = "";
   $ddo_title = "";
 
-  if (!is_null($node)) {
+  if (!empty($node) && $node instanceof NodeInterface) {
     if ($siteerror == '/node/' . $node->nid->value) {
       $errorType = "404";
       $errorMessage = "404-error";
@@ -734,12 +801,22 @@ function redhat_www_ddo_default($node) {
     $ddo_language = $node->langcode->value;
     $ddo_pageID = $node->nid->value;
     $ddo_title = $node->title->value;
+    $ddo_taxonomies = _get_all_taxonomy_terms($node);
   }
 
   $ddo = [
     'page' => [
       'attributes' => [
         'queryParameters' => '',
+        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'] ?? [],
+        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'] ?? [],
+        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'] ?? [],
+        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle'] ?? [],
+        'taxonomyProduct' => $ddo_taxonomies['field_tax_product'] ?? [],
+        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line'] ?? [],
+        'taxonomyProject' => $ddo_taxonomies['field_tax_project'] ?? [],
+        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'] ?? [],
+        'taxonomyRegion' => $ddo_taxonomies['field_tax_region'] ?? [],
       ],
       'category' => [
         'contentType' => '',
@@ -802,6 +879,57 @@ function redhat_www_ddo_default($node) {
   ];
 
   return $ddo;
+}
+
+/**
+ * Gets all taxonomy terms, as labels, referenced by a $node.
+ *
+ * @param Drupal\node\NodeInterface $node
+ *   A node to retrieve taxonomy terms from.
+ *
+ * @return array
+ *   An array of taxonomy terms, keyed by fieldname.
+ */
+function _get_all_taxonomy_terms(NodeInterface $node) {
+  // Attempt to retrieve the taxonomy terms reference by the following fields.
+  $taxonomy_fields = [
+    'field_tax_audience_segment' => 'field_tax_audience_segment',
+    'field_tax_business_unit' => 'field_tax_business_unit',
+    'field_tax_campaign' => 'field_tax_campaign',
+    'field_tax_lifecycle' => 'field_tax_lifecycle',
+    'field_tax_product' => 'field_tax_product',
+    'field_tax_product_line' => 'field_tax_product_line',
+    'field_tax_project' => 'field_tax_project',
+    'field_tax_promotion' => 'field_tax_promotion',
+    'field_tax_region' => 'field_tax_region',
+  ];
+  // Initialize an array to collect taxonomy terms for the Adobe DDO object.
+  $ddo_taxonomies = [];
+
+  foreach ($taxonomy_fields as $taxonomy_field) {
+    // If this $node does not have one of the fields, set an empty array.
+    if (!$node->hasField($taxonomy_field)) {
+      $ddo_taxonomies[$taxonomy_field] = [];
+    }
+    else {
+      // Get the referenced taxonomy terms.
+      $terms = $node->get($taxonomy_field)->referencedEntities();
+
+      // If this $node is referencing taxonomy terms, push them onto the
+      // $ddo_taxonomies array, keyed by the fieldname.
+      if (!empty($terms)) {
+        foreach ($terms as $term) {
+          $ddo_taxonomies[$taxonomy_field][] = $term->id();
+        }
+      }
+      // If this field doesn't reference any terms, set an empty array.
+      else {
+        $ddo_taxonomies[$taxonomy_field] = [];
+      }
+    }
+  }
+
+  return $ddo_taxonomies;
 }
 
 /**
