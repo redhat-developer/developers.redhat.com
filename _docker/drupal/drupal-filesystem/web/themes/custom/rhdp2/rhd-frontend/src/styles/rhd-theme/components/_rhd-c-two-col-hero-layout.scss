@@ -82,7 +82,10 @@ $pf-global--breakpoint--temp: 1360px;
     margin-bottom: 0;
   }
 
+  .field--name-field-column-1,
   .field--name-field-column-2 {
+    .assembly-type-call_to_action,
+    .assembly-type-embedded_content,
     .assembly-type-rich_text,
     .assembly-type-content_with_image,
     .assembly-type-events_hero ,
@@ -94,7 +97,9 @@ $pf-global--breakpoint--temp: 1360px;
       padding-left:  var(--rhd-theme--container-spacer-md);
       padding-right:  var(--rhd-theme--container-spacer-md);
     }
+  }
 
+  .field--name-field-column-2 {
     .component.assembly-type-static_content_band {
       .component-limit-width {
         >.pf-l-flex {
