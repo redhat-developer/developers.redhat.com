@@ -12,6 +12,9 @@ dependencies:
     - field.field.node.events.field_event_image
     - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
+    - field.field.node.events.field_ics_addevent_id
+    - field.field.node.events.field_ics_subtext
+    - field.field.node.events.field_ics_title
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
     - field.field.node.events.field_presenter_s_
@@ -76,6 +79,22 @@ third_party_settings:
         classes: ''
       label: 'Purpose Attributes'
       region: fields
+    group_add_to_calendar_informatio:
+      children:
+        - field_ics_title
+        - field_ics_addevent_id
+        - field_ics_subtext
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        label: 'Add to Calendar Information'
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Add to Calendar Information'
+      region: content
   field_layout:
     id: compose_tabs
     settings: {  }
@@ -139,6 +158,30 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_ics_addevent_id:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ics_subtext:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ics_title:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_more_details:
     weight: 8
