@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb208869406a53486105f894e74f49bc",
+    "content-hash": "dbdbac5b66f76830da8fb4dbaaa8001c",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -274,7 +274,7 @@
             "version": "v5.5.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:enyo/dropzone.git",
+                "url": "https://github.com/enyo/dropzone.git",
                 "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9"
             },
             "dist": {
@@ -289,7 +289,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -2540,7 +2540,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1565308381",
+                    "datestamp": "1565820185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2641,7 +2641,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1565820185",
+                    "datestamp": "1581530106",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2764,7 +2764,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0-rc6",
-                    "datestamp": "1577248387",
+                    "datestamp": "1581756279",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -2820,8 +2820,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.21+1-dev",
-                    "datestamp": "1578537190",
+                    "version": "8.x-3.21+2-dev",
+                    "datestamp": "1578537788",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3034,7 +3034,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/compose.git",
-                "reference": "9989113c14c9911b3c164d07363f934d9954f226"
+                "reference": "a3ddcf3b8a837d8d8286f4277f6a365147fd7933"
             },
             "require": {
                 "drupal/core": "*"
@@ -3046,7 +3046,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1574384585",
+                    "datestamp": "1581629780",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3083,7 +3083,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/compose"
             },
-            "time": "2019-11-22T04:36:15+00:00"
+            "time": "2020-02-13T22:31:51+00:00"
         },
         {
             "name": "drupal/conflict",
@@ -4390,6 +4390,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Changing an existing embedded entity's attributes does not get saved with CKEditor": "https://www.drupal.org/files/issues/2020-02-05/3108085-fix-embed-ckeditor-snapshot.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4851,8 +4854,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc2+15-dev",
-                    "datestamp": "1581473874",
+                    "version": "8.x-1.0-rc3+1-dev",
+                    "datestamp": "1583798271",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -5115,7 +5118,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
-                    "datestamp": "1560544385",
+                    "datestamp": "1582916647",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5229,7 +5232,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta1",
-                    "datestamp": "1560804485",
+                    "datestamp": "1582217387",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -5835,7 +5838,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.15",
-                    "datestamp": "1578492783",
+                    "datestamp": "1582235390",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8248,7 +8251,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0",
-                    "datestamp": "1577874483",
+                    "datestamp": "1581756259",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8843,7 +8846,7 @@
                 "reference": "9f209b7f56dd0758516f05bc75e0a25ed45b7598"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
@@ -8851,8 +8854,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+0-dev",
-                    "datestamp": "1536675180",
+                    "version": "8.x-1.1+1-dev",
+                    "datestamp": "1578604983",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -17256,5 +17259,6 @@
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.2.10"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }
