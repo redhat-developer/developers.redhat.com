@@ -82,10 +82,22 @@ $componentStyles: (
             --pf-theme--color--ui-link: #{map-get($componentStyleData, "linkColor")};
             --pf-theme--color--ui-link--hover: #{map-get($componentStyleData, "linkHoverColor")};
         }
+        //loop through buttonOverrides write theme variant --pf-c-button 'button-variant' 'theme-variant' classes
+        @at-root .#{$componentStyleName} {
+            .pf-c-button { 
+                @each $themeButtonName, $themeButtonData in map-get($componentStyleData, 'buttonOverrides') {
+                    &.#{$themeButtonName} {
+                        @each $themeButtonParamName, $themeButtonParamData in $themeButtonData {
+                            --pf-c-button--#{$themeButtonParamName}: #{$themeButtonParamData};
+                        }
+                    }
+                }            
+            }
+        }
         //loop through buttonOverrides write theme variant --pf-c-button 'button-variant'-on-'theme-variant' classes
-        .pf-c-button {
+        @at-root .pf-c-button {
             @each $themeButtonName, $themeButtonData in map-get($componentStyleData, 'buttonOverrides') {
-                .#{$themeButtonName} {
+                &.#{$themeButtonName} {
                     &-on-#{$componentStyleName} {
                         @each $themeButtonParamName, $themeButtonParamData in $themeButtonData {
                             --pf-c-button--#{$themeButtonParamName}: #{$themeButtonParamData};
