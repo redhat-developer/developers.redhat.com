@@ -1,5 +1,4 @@
 <?php
-//Roger diff
 /**
  * @file
  * Functions to support theming in the RHDP2 theme.
@@ -498,6 +497,17 @@ function rhdp2_preprocess_assembly(&$variables) {
       $variables['display_type'] = 'nav-menu';
     }
   }
+  
+  // Define if an ICS file is attached to an event on the Call to Action assembly
+  if ($type == 'call_to_action') {
+    $variables['has_ics'] = FALSE;
+    if ($event_tid = $assembly->get('field_calendar_event')->getValue()[0]['target_id']) {
+      $event_node = Node::load($event_tid);
+      if ($event_node->get('field_ics_addevent_id')->value) {
+        $variables['has_ics'] = TRUE;
+      }
+    }
+  }
 }
 
 /**
@@ -561,6 +571,17 @@ function rhdp2_preprocess_field(&$variables, $hook) {
         }
       }
     }
+  }
+
+  // Turn AddEvent ID into links
+  if ($variables['field_name'] === 'field_ics_addevent_id') {
+    $addevent_id = $variables['element']['#object']->get('field_ics_addevent_id')->getValue()[0]['value'];
+    $apple_url    = "https://www.addevent.com/event/$addevent_id+apple";
+    $google_url   = "https://www.addevent.com/event/$addevent_id+google";
+    $outlook_url  = "https://www.addevent.com/event/$addevent_id+outlook";
+    $variables['addevent_links']['#markup'] = "<a href='$apple_url'>Apple</a>";
+    $variables['addevent_links']['#markup'] .= "<a href='$google_url'>Google</a>";
+    $variables['addevent_links']['#markup'] .= "<a href='$outlook_url'>Outlook</a>";
   }
 }
 
