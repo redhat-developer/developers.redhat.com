@@ -30,7 +30,7 @@ $rhd-theme--component-background--color-light: $medium-light-gray;
 $rhd-theme--component-background--color-dark: $dark-gray;
 
 $rhd-theme--base-buttons: (
-    'pf-m-link': (
+    'm-link': (
         'Color': #{$rhd-theme--link--color},
         'hover--Color': #{$rhd-theme--link-hover--color},
         'active--Color': #{$rhd-theme--link-hover--color},
@@ -41,10 +41,10 @@ $rhd-theme--base-buttons: (
         'hover--BackgroundColor': transparent,
         'active--BackgroundColor': transparent
     ),
-    'pf-m-link--secondary': (
+    'm-link--secondary': (
         'Color': #{$black},
-        'hover--Color': #{$black},
-        'active--Color': #{$black},
+        'hover--Color': #{$rolling-stone},
+        'active--Color': #{$rolling-stone},
         'BorderColor': transparent,
         'hover--BorderColor': transparent,
         'active--BorderColor': transparent,    
@@ -52,7 +52,7 @@ $rhd-theme--base-buttons: (
         'hover--BackgroundColor': transparent,
         'active--BackgroundColor': transparent
     ),
-    'pf-m-heavy': (
+    'm-heavy': (
         'Color': #{$white},
         'hover--Color': #{$white},
         'active--Color': #{$white},
@@ -63,10 +63,10 @@ $rhd-theme--base-buttons: (
         'hover--BackgroundColor': #{$dark-red},
         'active--BackgroundColor': #{$dark-red}
     ),
-    'pf-m-primary': (
-        'Color': #fff,
-        'hover--Color': #fff,
-        'active--Color': #fff,
+    'm-primary': (
+        'Color': #{$white},
+        'hover--Color': #{$white},
+        'active--Color': #{$white},
         'BorderColor': #0087ce,
         'hover--BorderColor': #0073af,
         'active--BorderColor': #0073af,
@@ -74,38 +74,38 @@ $rhd-theme--base-buttons: (
         'hover--BackgroundColor': #0073af,
         'active--BackgroundColor': #0073af
     ),
-    'pf-m-secondary': (
+    'm-secondary': (
         'Color': #0066cc,
-        'hover--Color': #fff,
-        'active--Color': #fff,
+        'hover--Color': #{$white},
+        'active--Color': #{$white},
         'BorderColor': #0066cc,
         'hover--BorderColor': #0087ce,
         'active--BorderColor': #0087ce,
-        'BackgroundColor': #fff,
+        'BackgroundColor': #{$white},
         'hover--BackgroundColor': #0087ce,
         'active--BackgroundColor': #0087ce
     ),
-    'pf-m-secondary-alt': (
-        'Color': #ee0000,
-        'hover--Color': #fff,
-        'active--Color': #fff,
-        'BorderColor': #ee0000,
-        'hover--BorderColor': #cf0000,
-        'active--BorderColor': #cf0000,
-        'BackgroundColor': #fff,
-        'hover--BackgroundColor': #cf0000,
-        'active--BackgroundColor': #cf0000
+    'm-secondary-alt': (
+        'Color': #{$red},
+        'hover--Color': #{$white},
+        'active--Color': #{$white},
+        'BorderColor': #{$red},
+        'hover--BorderColor': #{$dark-red},
+        'active--BorderColor': #{$dark-red},
+        'BackgroundColor': #{$white},
+        'hover--BackgroundColor': #{$dark-red},
+        'active--BackgroundColor': #{$dark-red}
     ),
-    'pf-m-tertiary': (
-        'Color': #151515,
-        'hover--Color': #fff,
-        'active--Color': #151515,
-        'BorderColor': #151515,
-        'hover--BorderColor': #151515,
-        'active--BorderColor': #151515,
-        'BackgroundColor': #151515,
-        'hover--BackgroundColor': #151515,
-        'active--BackgroundColor': #151515
+    'm-tertiary': (
+        'Color': #{$black},
+        'hover--Color': #{$white},
+        'active--Color': #{$white},
+        'BorderColor': #{$black},
+        'hover--BorderColor': #{$black},
+        'active--BorderColor': #{$black},
+        'BackgroundColor': transparent,
+        'hover--BackgroundColor': #{$black},
+        'active--BackgroundColor': #{$black}
     )
 );
 
