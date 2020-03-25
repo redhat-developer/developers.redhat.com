@@ -9,9 +9,6 @@ $pf-global--breakpoint--temp: 1360px;
       }
 
       &:first-of-type {
-        @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
-          grid-row: 2;
-        }
         .component {
           margin-top: 0;
         }
@@ -24,6 +21,17 @@ $pf-global--breakpoint--temp: 1360px;
         // Remove margin-top from first assembly rendered in each column.
         @media screen and (min-width: $pf-global--breakpoint--lg) {
           margin-top: 0;
+        }
+      }
+    }
+  }
+  &.left-sidebar {
+    > .pf-l-grid {
+      > .pf-l-grid__item {
+        &:first-of-type {
+          @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+            grid-row: 2;
+          }
         }
       }
     }
