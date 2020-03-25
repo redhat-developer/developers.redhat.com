@@ -4,6 +4,7 @@ $componentStyles: (
     'dark': (
         'foregroundColor': var(--rhd-theme--component-font--color-light),
         'backgroundColor': var(--rhd-theme--component-background--color-dark),
+        'cardColor': var(--rhd-theme--component-background--color-dark),
         'linkColor': #{$malibu},
         'linkHoverColor': #{$dodger-blue},
         'addImagePadding': true,
@@ -68,6 +69,7 @@ $componentStyles: (
     'gray': (
         'foregroundColor': var(--rhd-theme--component-font--color-dark),
         'backgroundColor': var(--rhd-theme--component-background--color-light),
+        'cardColor': var(--rhd-theme--component-background--color-dark),
         'linkColor': var(--rhd-c-button--m-link-dark--Color),
         'linkHoverColor': var(--rhd-c-button--m-link-dark--hover--Color),
         'addImagePadding': true,
@@ -92,11 +94,14 @@ $componentStyles: (
             --pf-c-content--Color: #{map-get($componentStyleData, "foregroundColor")};
             --pf-theme--color--ui-link: #{map-get($componentStyleData, "linkColor")};
             --pf-theme--color--ui-link--hover: #{map-get($componentStyleData, "linkHoverColor")};
+            --pf-c-card--Color: #{map-get($componentStyleData, "cardColor")};
+            .pager__item.is-active a {
+                color: #{map-get($componentStyleData, "foregroundColor")};
+            }
         }
         //loop through buttonOverrides write theme variant 'theme-variant' --pf-c-button 'button-variant' classes .style-name .pf-c-button.pd-m-button-name {}
         @at-root .#{$componentStyleName} {
             .pf-c-button { 
-                --am-debug: button-#{$componentStyleName};
                 @each $themeButtonName, $themeButtonData in map-get($componentStyleData, 'buttonOverrides') {
                     &.pf-#{$themeButtonName} {
                         @each $themeButtonParamName, $themeButtonParamData in $themeButtonData {
