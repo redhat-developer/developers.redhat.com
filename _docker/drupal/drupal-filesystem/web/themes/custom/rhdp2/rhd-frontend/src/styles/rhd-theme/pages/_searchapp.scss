@@ -20,6 +20,14 @@ rhdp-search-app {
 
 .rhd-c-search-page-header {
   margin-bottom: 1rem;
+  .pf-c-input-group {
+    .pf-c-button.pf-m-danger {
+      &:after {
+        //remove pf after causing blue underline on hover
+        display: none;
+      }
+    }
+  }
 }
 
 rhdp-search-result-count {
@@ -205,7 +213,7 @@ rhdp-search-filter-group {
       margin: .5rem 0;
       .pf-c-check__label {
         font-family: RedHatText;
-        font-weight: var(--rhd-global--FontWeight-Text--regular, 500);
+        font-weight: var(--rhd-global--FontWeight-Display--regular, 300);
       }
     }
 
