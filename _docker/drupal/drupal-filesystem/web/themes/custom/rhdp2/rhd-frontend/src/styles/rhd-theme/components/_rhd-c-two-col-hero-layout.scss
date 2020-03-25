@@ -76,7 +76,6 @@ $pf-global--breakpoint--temp: 1360px;
     }
   }
 
-
   .rhd-c-dynamic-content-list-compact .medium-cta {
     margin-left: 0;
     margin-bottom: 0;
@@ -86,6 +85,8 @@ $pf-global--breakpoint--temp: 1360px;
   .field--name-field-column-2 {
     .assembly-type-call_to_action,
     .assembly-type-embedded_content,
+    .assembly-type-cta_form,
+    .assembly-type-eloqua_form_embed,
     .assembly-type-rich_text,
     .assembly-type-content_with_image,
     .assembly-type-events_hero ,
@@ -97,9 +98,14 @@ $pf-global--breakpoint--temp: 1360px;
       padding-left:  var(--rhd-theme--container-spacer-md);
       padding-right:  var(--rhd-theme--container-spacer-md);
     }
-  }
-
-  .field--name-field-column-2 {
+    .assembly-type-cta_form,
+    .assembly-type-eloqua_form_embed {
+      .assembly-type-cta_form,
+      .assembly-type-eloqua_form_embed {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
     .component.assembly-type-static_content_band {
       .component-limit-width {
         >.pf-l-flex {
