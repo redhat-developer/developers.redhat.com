@@ -29,20 +29,4 @@
       }
     }
   }
-  &.dark {
-    h1, h2, h3, h4, h5, h6 {
-      color: $white;
-    }
-
-    a {
-      color: var(--rhd-c-button--m-link-dark--Color);
-      &:hover, &:active {
-        color: var(--rhd-c-button--m-link-dark--hover--Color);
-      }
-      &:visited {
-        color: var(--rhd-c-button--m-link-dark--Color);
-      }
-    }
-    
-  }
 }

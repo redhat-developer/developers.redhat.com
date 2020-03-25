@@ -28,14 +28,6 @@
       font-size: var(--pf-global--FontSize--xs); // 12px
       font-weight: var(--rhd-global--FontWeight-Text--medium);
       text-decoration: none;
-
-      .dark & {
-        color: var(--rhd-c-button--m-link--Color);
-
-        &:hover {
-          color: var(--rhd-c-button--m-link--hover--Color);
-        }
-      }
     }
   }
 
@@ -43,10 +35,6 @@
     font-family: $rhd-font-stack-text;
     font-size: var(--pf-global--FontSize--xs) !important; // 12px
     margin-top: var(--pf-global--spacer--sm);
-
-    .dark & {
-      color: var(--pf-global--Color--light-100);
-    }
   }
 }
 

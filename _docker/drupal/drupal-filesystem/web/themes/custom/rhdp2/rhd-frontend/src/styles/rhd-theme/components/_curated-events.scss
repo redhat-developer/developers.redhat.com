@@ -29,21 +29,3 @@
   }
 }
 
-// OTHER VISUAL STYLES
-// @to-do: Move this to _visual-styles.scss
-.rhd-c-curated-events {
-  &.gray {
-    .rhd-c-curated-events__item {
-      border-top: 2px dotted #FFF;
-    }
-  }
-
-  &.dark {
-    p, small,
-    h2, h2.pf-c-title,
-    .rhd-c-author--tile-title,
-    .rhd-c-curated-events__item-title > a{
-      color: #FFF;
-    }
-  }
-}

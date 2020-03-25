@@ -4,15 +4,6 @@
     &.has-background {
         padding: 18px 24px 8px 24px;
     }
-    &.dark {
-        background: var(--rhd-theme--component-background--color-dark);
-        h2, p {
-            color: $white;
-        }
-    }
-    &.background-gray {
-        background: $rhd-theme--component-background--color-extra-light;
-    }
     &.centered {
         text-align: center;
         .field--name-field-title, .header {
@@ -37,20 +28,6 @@
         .pf-c-form__label {
             padding: 0;
             margin: 0 var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-sm) 0;
-        }
-    }
-
-    &.dark {
-        .pf-c-form__group {
-            .pf-c-check,
-            .pf-c-radio {
-                .pf-c-check__label, .pf-c-radio__label {
-                    color: $white;
-                }
-            }
-            .pf-c-form__label {
-                color: $white;
-            }
         }
     }
 }
