@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.taxonomy_list_item
     - field.storage.node.field_cover_image
     - field.storage.node.field_event_background_image
     - field.storage.node.field_image
@@ -235,7 +235,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: taxonomy_list_item
       header: {  }
       footer: {  }
       empty: {  }

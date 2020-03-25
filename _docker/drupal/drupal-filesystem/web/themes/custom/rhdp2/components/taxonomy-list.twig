@@ -1,0 +1,81 @@
+{#
+/**
+ * The RHDP Taxonomy List component.
+ *
+ * Available variables:
+ * - attributes: The Drupal 8 Attributes object for this render array/element.
+ * - hero_image: A hero image that displays at the top of card, full-width.
+ * - hero_video_thumbnail: A hero video thumbnail that displays at the top of
+ *   card, full-width, with a Play icon overlay in the center of the thumbnail
+ *   and a timestamp overlay in the bottom right corner.
+ * - hero_video_thumbnail_timestamp: A timestamp that displays the duration of
+ *   the video resource in HH:MM::SS.
+ * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
+ * - title:
+ *   - title.url: Typically a link to the node displayed in the card.
+ *   - title.text: The title of the node displayed in the Card.
+ * - body: The body text for this Card. This could be a summary or otherwise
+ *   trimmed version if the body text is too long.
+ * - authors: The author(s) of this piece of content. In some instances, this is
+ *   implemented via plain text fields, but in others (like Articles) it is an
+ *   entity reference to the Authors bundle.
+ */
+#}
+{% set tag_attributes = create_attribute({'class': ['fas']}) %}
+
+<div {{ attributes.addClass('rhd-c-taxonomy-list') }}>
+
+  {% if hero_image is not empty %}
+  <div class="rhd-c-taxonomy-list-blur-image">
+    {{ hero_image }}
+  </div>
+  {{ hero_image }}
+  {% endif %}
+
+  {% if hero_video_thumbnail is not empty %}
+    <div class="rhd-c-taxonomy-list__video">
+      <div class="rhd-c-taxonomy-list__video-time">{{ hero_video_thumbnail_timestamp }}</div>
+      <i class="far fa-play-circle"></i>
+      {{ hero_video_thumbnail }}
+    </div>
+  {% endif %}
+  
+  {% if tag is not empty %}
+    <div class="rhd-c-taxonomy-list__tag">
+      <i {{ tag_attributes.addClass(tag.class) }}></i>
+      {{ tag.text }}
+    </div>
+  {% endif %}
+
+  <div class="rhd-c-taxonomy-list">
+    {% if title is not empty %}
+      {# Set the appropriate title classes whether or not a hero_image exists #}
+      {% if hero_image is empty and hero_video_thumbnail is empty %}
+        {% set title_classes = ['rhd-c-taxonomy-list__title', 'rhd-m-taxonomy-list-title__no-image'] %}
+      {% else %}
+        {% set title_classes = ['rhd-c-taxonomy-list__title'] %}
+      {% endif %}
+
+      {% if title.url is not empty %}
+        <h3 class="{{ title_classes|join(' ') }}">
+          <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
+        </h3>
+      {% elseif title.url is empty and title.text is not empty %}
+        <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
+      {% endif %}
+    {% endif %}
+
+    {% if authors is not empty %}
+      <div class="rhd-c-taxonomy-list__footer">
+        <div class="rhd-c-taxonomy-list__footer--author">
+          {{ authors }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if body is not empty %}
+      <p class="rhd-c-taxonomy-list__body ">{{ body }}</p>
+    {% endif %}
+
+  </div>
+</div>
