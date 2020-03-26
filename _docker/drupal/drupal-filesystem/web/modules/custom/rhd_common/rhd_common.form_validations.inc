@@ -96,19 +96,23 @@ function check_moderation_state_validations(array &$form, FormStateInterface $fo
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function add_events_validations(array &$form, FormStateInterface $form_state) {
-  // Basic date comparison.
-  $end_before_start = $form_state->getValue('field_end_date')[0]['value']->getTimeStamp() < $form_state->getValue('field_start_date')[0]['value']->getTimeStamp();
-
-  if ($end_before_start === TRUE) {
-    // Create the error.
-    $form_state->setErrorByName(
-      'field_end_date',
-      t('End Date must be after Start Date')
-    );
+  // Start and End date checks.
+  $end_date = $form_state->getValue('field_end_date')[0]['value'];
+  if (is_object($end_date)) {
+    $start_date = $form_state->getValue('field_start_date')[0]['value'];
+    if (is_object($start_date)) {
+      $start_timestamp = $start_date->getTimeStamp();
+      $end_timestamp = $end_date->getTimeStamp();
+      if ($start_timestamp > $end_timestamp) {
+        $form_state->setErrorByName(
+          'field_end_date',
+          t('End Date must be after Start Date')
+        );
+      }
+    }
   }
 
   $title = $form_state->getValue('title')[0]['value'];
-
   if (strlen($title) <= 5 || strlen($title) >= 60) {
     $form_state->setErrorByName(
       'title',
@@ -117,7 +121,6 @@ function add_events_validations(array &$form, FormStateInterface $form_state) {
   }
 
   $desc = $form_state->getValue('field_description')[0]['value'];
-
   if (strlen($desc) < 50 || strlen($desc) > 400) {
     $form_state->setErrorByName(
       'field_description',
