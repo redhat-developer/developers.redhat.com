@@ -106,7 +106,7 @@ function add_events_validations(array &$form, FormStateInterface $form_state) {
       if ($start_timestamp > $end_timestamp) {
         $form_state->setErrorByName(
           'field_end_date',
-          t('End Date must be after Start Date')
+          t('End Date must be on or after Start Date')
         );
       }
     }
