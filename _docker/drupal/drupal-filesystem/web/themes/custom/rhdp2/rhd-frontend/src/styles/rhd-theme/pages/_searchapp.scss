@@ -20,6 +20,7 @@ rhdp-search-app {
 
 .rhd-c-search-page-header {
   margin-bottom: 1rem;
+
   .pf-c-input-group {
     .pf-c-button.pf-m-danger {
       &:after {
@@ -45,7 +46,7 @@ rhdp-search-sort-page {
 
 rhdp-search-filters {
   margin-bottom: 1rem;
-  display:block;
+  display: block;
 
   // Active filter labels (not checkboxes)
   .activeFilters {
@@ -53,6 +54,7 @@ rhdp-search-filters {
       display: inline-block;
 
       .pf-c-label {
+        cursor: pointer;
         margin: .25rem;
       }
     }
@@ -69,7 +71,6 @@ rhdp-search-filters {
 
   .control {
     border: 1px solid var(--rhd-theme--color--ui-border, #ededed);
-    margin-top: 1rem;
   }
 
   &[type="modal"] {
@@ -108,6 +109,7 @@ rhdp-search-filters {
 
     &[type="modal"] {
       display: block;
+
       .modal {
         transition: 0.5s ease-in-out;
         transform: translateX(100%);
@@ -180,10 +182,10 @@ rhdp-search-filter-group {
   }
 
   .group-name {
-     color: var(--rhd-theme--color-text--subtle, #72767b);
-     font-family: RedHatDisplay;
-     font-size: 16px;
-     font-weight: var(--rhd-global--FontWeight-Display--bold);
+    color: var(--rhd-theme--color-text--subtle, #72767b);
+    font-family: RedHatDisplay;
+    font-size: 16px;
+    font-weight: var(--rhd-global--FontWeight-Display--bold);
   }
 
   .heading {
@@ -200,7 +202,7 @@ rhdp-search-filter-group {
   }
 
   .more {
-    font-weight: var(--rhd-global--FontWeight-Text--regular);
+    font-weight: var(--rhd-global--FontWeight-Display--regular, 300);
   }
 
   rhdp-search-filter-item {
@@ -211,13 +213,14 @@ rhdp-search-filter-group {
 
     .pf-c-check {
       margin: .5rem 0;
+
       .pf-c-check__label {
         font-family: RedHatText;
         font-weight: var(--rhd-global--FontWeight-Display--regular, 300);
       }
     }
 
-    > div {
+    >div {
       padding-bottom: var(--rhd-theme--container-spacer-sm);
     }
   }
@@ -229,31 +232,37 @@ rhdp-search-results {
 
 rhdp-search-result {
   display: block;
-  margin-bottom: 25px;
-  padding-bottom: 25px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--rhd-theme--color--ui-border, #ededed);
 
-  h4 a {
-    // Allow wrap on result headings.
-    overflow-wrap: break-word;
-
-    .hlt {
-      font-weight: var(--pf-global--FontWeight--bold);
+  .pf-c-content & {
+    h4 {
+      margin-bottom: 8px;
+      a {
+        // Allow wrap on result headings.
+        overflow-wrap: break-word;
+  
+        .hlt {
+          font-weight: var(--pf-global--FontWeight--bold);
+        }
+      }
     }
-  }
-
-  .result-info {
-    color: var(--rhd-theme--color-text--subtle, #72767b);
-    font-size: 14px;
-  }
-
-  .result-description {
-    font-size: 16px;
+    .result-info {
+      color: var(--rhd-theme--color-text--subtle, #72767b);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+  
+    .result-description {
+      font-size: 16px;
+    }
   }
 }
 
+
 rhdp-search-onebox {
-  > div {
+  >div {
     border: 1px solid var(--rhd-theme--color--ui-border, #ededed);
     padding: 25px;
     margin-bottom: 3em;

@@ -65,7 +65,7 @@ export default class RHDPSearchFilters extends HTMLElement {
             <div class="title pf-l-flex">
               <div class="pf-l-flex__item">${title}</div>
               <div class="pf-l-flex__item pf-m-align-right">
-                <a href="#" id="cancel" data-search-action="cancelFilters" class="pf-c-button pf-m-danger">
+                <a href="#" id="cancel" data-search-action="cancelFilters" class="pf-c-button pf-m-link">
                    Close
                 </a>
               </div>
@@ -73,15 +73,15 @@ export default class RHDPSearchFilters extends HTMLElement {
             <div class="groups">
             </div>
             <div class="footer">
-            <a href="#" class="pf-c-button pf-m-primary"
+            <a href="#" class="pf-c-button pf-m-link-on-dark"
               data-search-action="clearFilters">Clear Filters</a>
-            <a href="#" data-search-action="applyFilters" class="pf-c-button pf-m-danger">Apply</a>
+            <a href="#" data-search-action="applyFilters" class="pf-c-button pf-m-secondary-on-dark">Apply</a>
             </div>
         </div>`;
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
-        <a href="#" class="pf-c-button pf-m-secondary pf-u-float-right"
+        <a href="#" class="pf-c-button pf-m-link pf-u-float-right"
           data-search-action="clearFilters">Clear Filters</a>
         <div class="activeFilters"></div>
       </div>`;
@@ -89,7 +89,7 @@ export default class RHDPSearchFilters extends HTMLElement {
     template = (strings, title) => {
         return `
           <div class="mobile">
-              <a class="pf-c-button pf-m-secondary" href="#" data-search-action="showFilters">Show Filters</a>
+              <a class="pf-c-button pf-m-link" href="#" data-search-action="showFilters">Show Filters</a>
           </div>
           <div class="control" id="control">
             <div class="title">${title}</div>
