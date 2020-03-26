@@ -9,9 +9,6 @@ $pf-global--breakpoint--temp: 1360px;
       }
 
       &:first-of-type {
-        @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
-          grid-row: 2;
-        }
         .component {
           margin-top: 0;
         }
@@ -24,6 +21,17 @@ $pf-global--breakpoint--temp: 1360px;
         // Remove margin-top from first assembly rendered in each column.
         @media screen and (min-width: $pf-global--breakpoint--lg) {
           margin-top: 0;
+        }
+      }
+    }
+  }
+  &.left-sidebar {
+    > .pf-l-grid {
+      > .pf-l-grid__item {
+        &:first-of-type {
+          @media screen and (max-width: $pf-global--breakpoint--lg - 1) {
+            grid-row: 2;
+          }
         }
       }
     }
@@ -76,13 +84,17 @@ $pf-global--breakpoint--temp: 1360px;
     }
   }
 
-
-  .rhd-c-dynamic-content-list-compact .pf-c-button.pf-m-secondary {
+  .rhd-c-dynamic-content-list-compact .medium-cta {
     margin-left: 0;
     margin-bottom: 0;
   }
 
+  .field--name-field-column-1,
   .field--name-field-column-2 {
+    .assembly-type-call_to_action,
+    .assembly-type-embedded_content,
+    .assembly-type-cta_form,
+    .assembly-type-eloqua_form_embed,
     .assembly-type-rich_text,
     .assembly-type-content_with_image,
     .assembly-type-events_hero ,
@@ -94,7 +106,14 @@ $pf-global--breakpoint--temp: 1360px;
       padding-left:  var(--rhd-theme--container-spacer-md);
       padding-right:  var(--rhd-theme--container-spacer-md);
     }
-
+    .assembly-type-cta_form,
+    .assembly-type-eloqua_form_embed {
+      .assembly-type-cta_form,
+      .assembly-type-eloqua_form_embed {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
     .component.assembly-type-static_content_band {
       .component-limit-width {
         >.pf-l-flex {
