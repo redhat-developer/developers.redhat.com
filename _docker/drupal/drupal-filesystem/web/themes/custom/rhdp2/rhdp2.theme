@@ -501,10 +501,10 @@ function rhdp2_preprocess_assembly(&$variables) {
   // Define if an ICS file is attached to an event on the Call to Action assembly
   if ($type == 'call_to_action') {
     $variables['has_ics'] = FALSE;
-    if ($event_tid = $assembly->get('field_calendar_event')->getValue()[0]['target_id']) {
-      $event_node = Node::load($event_tid);
-      if ($event_node->get('field_ics_addevent_id')->value) {
-        $variables['has_ics'] = TRUE;
+    if (isset($assembly->get('field_calendar_event')->getValue()[0]['target_id'])) {
+      $event_tid = $assembly->get('field_calendar_event')->getValue()[0]['target_id'];
+      if ($event_node = Node::load($event_tid)) {
+        $variables['has_ics'] = $event_node->get('field_ics_addevent_id')->value ? TRUE : FALSE;
       }
     }
   }
