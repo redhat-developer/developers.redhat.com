@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - assembly.assembly_type.layout_two_col_left_sidebar
+    - field.field.assembly.layout_two_col_left_sidebar.field_background_image
     - field.field.assembly.layout_two_col_left_sidebar.field_column_1
     - field.field.assembly.layout_two_col_left_sidebar.field_column_2
   module:
     - fences
     - field_layout
+    - image
     - layout_discovery
 third_party_settings:
   field_layout:
@@ -19,6 +21,15 @@ targetEntityType: assembly
 bundle: layout_two_col_left_sidebar
 mode: default
 content:
+  field_background_image:
+    weight: 2
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
   field_column_1:
     weight: 0
     label: hidden
