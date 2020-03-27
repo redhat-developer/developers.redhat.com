@@ -76,3 +76,22 @@
     }
   }
 }
+
+//todo remove when legacy buttons are removed: Add legacy button style classes and extend.
+.button {
+  @extend .pf-c-button;
+
+  &.heavy-cta {
+    @extend .pf-m-heavy;
+    &.blue {
+      @extend .pf-m-primary;
+    }
+  }
+
+  &.medium-cta {
+    @extend .pf-m-secondary;
+    &.red {
+      @extend .pf-m-secondary-alt;
+    }
+  }
+}
