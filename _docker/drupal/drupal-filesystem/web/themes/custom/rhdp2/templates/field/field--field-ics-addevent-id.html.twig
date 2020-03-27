@@ -1,3 +1,15 @@
-<p class="addevent-links">
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{%
+  set classes = [
+    'addevent-links'
+  ]
+%}
+
+<p {{ attributes.addClass(classes) }}>
   {{ addevent_links }}
 </p>
