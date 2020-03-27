@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_alter().
@@ -98,9 +99,9 @@ function check_moderation_state_validations(array &$form, FormStateInterface $fo
 function add_events_validations(array &$form, FormStateInterface $form_state) {
   // Start and End date checks.
   $end_date = $form_state->getValue('field_end_date')[0]['value'];
-  if (is_object($end_date)) {
+  if ($end_date instanceof DrupalDateTime) {
     $start_date = $form_state->getValue('field_start_date')[0]['value'];
-    if (is_object($start_date)) {
+    if ($start_date instanceof DrupalDateTime) {
       $start_timestamp = $start_date->getTimeStamp();
       $end_timestamp = $end_date->getTimeStamp();
       if ($start_timestamp > $end_timestamp) {
