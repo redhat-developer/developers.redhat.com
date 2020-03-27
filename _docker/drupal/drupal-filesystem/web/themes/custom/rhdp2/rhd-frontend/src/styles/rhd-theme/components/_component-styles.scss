@@ -98,6 +98,9 @@ $componentStyles: (
             .pager__item.is-active a {
                 color: #{map-get($componentStyleData, "foregroundColor")};
             }
+            .pf-c-title, h1, h2, h3, h4, h5, h6, p {
+                color: #{map-get($componentStyleData, "foregroundColor")};
+            }
         }
         //loop through buttonOverrides write theme variant 'theme-variant' --pf-c-button 'button-variant' classes .style-name .pf-c-button.pd-m-button-name {}
         @at-root .#{$componentStyleName} {
