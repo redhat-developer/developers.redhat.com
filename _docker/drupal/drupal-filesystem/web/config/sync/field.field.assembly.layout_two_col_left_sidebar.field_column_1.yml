@@ -3,9 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - assembly.assembly_type.call_to_action
     - assembly.assembly_type.compact_dynamic_article_list
     - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.cta_form
     - assembly.assembly_type.dynamic_content_feed
+    - assembly.assembly_type.embedded_content
     - assembly.assembly_type.events_hero
     - assembly.assembly_type.hero
     - assembly.assembly_type.layout_two_col_left_sidebar
@@ -30,9 +33,12 @@ settings:
   handler: 'default:assembly'
   handler_settings:
     target_bundles:
+      call_to_action: call_to_action
       compact_dynamic_article_list: compact_dynamic_article_list
       static_content_band: static_content_band
       dynamic_content_feed: dynamic_content_feed
+      cta_form: cta_form
+      embedded_content: embedded_content
       events_hero: events_hero
       hero: hero
       product_download_hero: product_download_hero
