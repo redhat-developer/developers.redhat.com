@@ -6,7 +6,10 @@
 #}
 {%
   set classes = [
-    'addevent-links'
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
   ]
 %}
 

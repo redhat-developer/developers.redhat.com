@@ -585,6 +585,9 @@ function rhdp2_preprocess_field(&$variables, $hook) {
     $variables['addevent_links']['#markup'] = "<a href='$apple_url'>Apple</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$google_url'>Google</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$outlook_url'>Outlook</a>";
+    $variables['addevent_links']['#cache'] = [
+      'contexts' => ['url.path'],
+    ];
   }
 }
 
