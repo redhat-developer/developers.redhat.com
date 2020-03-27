@@ -504,7 +504,10 @@ function rhdp2_preprocess_assembly(&$variables) {
     if (isset($assembly->get('field_calendar_event')->getValue()[0]['target_id'])) {
       $event_tid = $assembly->get('field_calendar_event')->getValue()[0]['target_id'];
       if ($event_node = Node::load($event_tid)) {
-        $variables['has_ics'] = $event_node->get('field_ics_addevent_id')->value ? TRUE : FALSE;
+        if ($event_node->get('field_ics_addevent_id')->value) {
+          $addevent_id = $event_node->get('field_ics_addevent_id')->value;
+          $variables['has_ics'] = ctype_alnum($addevent_id) ? TRUE : FALSE;
+        }
       }
     }
   }

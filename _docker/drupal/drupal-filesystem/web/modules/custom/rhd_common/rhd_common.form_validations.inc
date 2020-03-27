@@ -127,6 +127,16 @@ function add_events_validations(array &$form, FormStateInterface $form_state) {
       t('Description must be greater than 50 characters and less than 400')
     );
   }
+
+  if (isset($form_state->getValue('field_ics_addevent_id')[0]['value'])) {
+    $field_ics_addevent_id = $form_state->getValue('field_ics_addevent_id')[0]['value'];
+    if ($field_ics_addevent_id !== '' && ctype_alnum($field_ics_addevent_id) === FALSE) {
+      $form_state->setErrorByName(
+        'field_ics_addevent_id',
+        t('ICS AddEvent ID must be alphanumeric.')
+      );
+    }
+  }
 }
 
 /**
