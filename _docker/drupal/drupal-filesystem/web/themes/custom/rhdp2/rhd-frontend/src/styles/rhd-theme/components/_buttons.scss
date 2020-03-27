@@ -11,10 +11,11 @@
     border-color: var(--pf-c-button--BorderColor);
   }
 
-  //todo don't like !important fix this properly
-  //--pf-theme--color--ui-link: var(--pf-c-button--Color);
-  //--pf-theme--color--ui-link--hover: var(--pf-c-button--hover--Color);
-
+  @at-root a.pf-c-button {
+    --pf-theme--color--ui-link: var(--pf-c-button--Color);
+    --pf-theme--color--ui-link--hover: var(--pf-c-button--hover--Color);
+  }
+  
   //Set visited button colors
   &:visited {
     color: var(--pf-c-button--Color);
