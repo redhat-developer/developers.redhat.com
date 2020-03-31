@@ -5,7 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - node.type.article
+    - node.type.assembly_page
     - node.type.books
+    - node.type.events
     - node.type.video_resource
   module:
     - node
@@ -143,6 +145,8 @@ display:
           value:
             article: article
             books: books
+            events: events
+            assembly_page: assembly_page
             video_resource: video_resource
           group: 1
           exposed: false
