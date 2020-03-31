@@ -1,0 +1,19 @@
+uuid: f4a3f18f-7136-4f9e-b224-4403628df452
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ics_title
+    - node.type.events
+id: node.events.field_ics_title
+field_name: field_ics_title
+entity_type: node
+bundle: events
+label: 'ICS Title'
+description: 'Intro text above the calendar link(s)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

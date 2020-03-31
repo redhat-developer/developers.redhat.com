@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+<p {{ attributes.addClass(classes) }}>
+  {{ addevent_links }}
+</p>

@@ -1,0 +1,28 @@
+uuid: 8f0f2512-082a-4bae-a0c0-cf840e55e3b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_calendar_event
+    - node.type.events
+id: assembly.call_to_action.field_calendar_event
+field_name: field_calendar_event
+entity_type: assembly
+bundle: call_to_action
+label: 'Calendar Event'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      events: events
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
