@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_alter().
@@ -96,19 +97,23 @@ function check_moderation_state_validations(array &$form, FormStateInterface $fo
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function add_events_validations(array &$form, FormStateInterface $form_state) {
-  // Basic date comparison.
-  $end_before_start = $form_state->getValue('field_end_date')[0]['value']->getTimeStamp() < $form_state->getValue('field_start_date')[0]['value']->getTimeStamp();
-
-  if ($end_before_start === TRUE) {
-    // Create the error.
-    $form_state->setErrorByName(
-      'field_end_date',
-      t('End Date must be after Start Date')
-    );
+  // Start and End date checks.
+  $end_date = $form_state->getValue('field_end_date')[0]['value'];
+  if ($end_date instanceof DrupalDateTime) {
+    $start_date = $form_state->getValue('field_start_date')[0]['value'];
+    if ($start_date instanceof DrupalDateTime) {
+      $start_timestamp = $start_date->getTimeStamp();
+      $end_timestamp = $end_date->getTimeStamp();
+      if ($start_timestamp > $end_timestamp) {
+        $form_state->setErrorByName(
+          'field_end_date',
+          t('End Date must be on or after Start Date')
+        );
+      }
+    }
   }
 
   $title = $form_state->getValue('title')[0]['value'];
-
   if (strlen($title) <= 5 || strlen($title) >= 60) {
     $form_state->setErrorByName(
       'title',
@@ -117,12 +122,21 @@ function add_events_validations(array &$form, FormStateInterface $form_state) {
   }
 
   $desc = $form_state->getValue('field_description')[0]['value'];
-
   if (strlen($desc) < 50 || strlen($desc) > 400) {
     $form_state->setErrorByName(
       'field_description',
       t('Description must be greater than 50 characters and less than 400')
     );
+  }
+
+  if (isset($form_state->getValue('field_ics_addevent_id')[0]['value'])) {
+    $field_ics_addevent_id = $form_state->getValue('field_ics_addevent_id')[0]['value'];
+    if ($field_ics_addevent_id !== '' && ctype_alnum($field_ics_addevent_id) === FALSE) {
+      $form_state->setErrorByName(
+        'field_ics_addevent_id',
+        t('ICS AddEvent ID must be alphanumeric.')
+      );
+    }
   }
 }
 

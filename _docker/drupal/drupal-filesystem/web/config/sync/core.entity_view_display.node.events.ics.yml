@@ -1,8 +1,9 @@
-uuid: 28e50992-6c19-4eea-9432-c3575ef19958
+uuid: 5ad59737-f7be-4e5b-8861-a056f58f8653
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.ics
     - field.field.node.events.field_data_tags
     - field.field.node.events.field_description
     - field.field.node.events.field_end_date
@@ -39,13 +40,8 @@ dependencies:
     - field.field.node.events.field_topics
     - node.type.events
   module:
-    - datetime
-    - fences
     - field_layout
-    - image
     - layout_discovery
-    - rhd_assemblies
-    - text
     - user
 third_party_settings:
   field_layout:
@@ -53,124 +49,56 @@ third_party_settings:
     settings: {  }
 _core:
   default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
-id: node.events.default
+id: node.events.ics
 targetEntityType: node
 bundle: events
-mode: default
+mode: ics
 content:
-  field_description:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: text_default
-    region: content
-  field_end_date:
-    weight: 3
-    label: above
-    settings:
-      timezone_override: ''
-      date_format: 'F jS, Y'
-    third_party_settings:
-      fences:
-        fences_field_tag: div
-        fences_field_classes: pf-u-mb-md
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: datetime_custom
-    region: content
-  field_event_background_image:
+  field_ics_addevent_id:
+    type: string
     weight: 1
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: image
     region: content
-  field_more_details:
-    weight: 5
-    label: hidden
-    settings:
-      trim_length: '80'
-      class: 'pf-c-button pf-m-heavy pf-u-mb-md'
-      url_only: false
-      url_plain: false
-      rel: 0
-      target: 0
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link_class
-    region: content
-  field_presenter_s_:
-    weight: 6
-    label: hidden
-    settings:
-      view_mode: tile
-      link: false
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: entity_reference_entity_view
-    region: content
-  field_start_date:
-    weight: 2
-    label: above
-    settings:
-      timezone_override: ''
-      date_format: 'F jS, Y'
-    third_party_settings:
-      fences:
-        fences_field_tag: div
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: datetime_custom
-    region: content
-  field_title:
-    weight: 0
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h1
-        fences_field_classes: pf-c-title
+        fences_field_tag: none
+        fences_field_classes: ''
         fences_field_item_tag: none
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
+  field_ics_subtext:
     type: string
+    weight: 2
     region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: p
+        fences_field_classes: ''
+        fences_field_item_tag: em
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_ics_title:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h6
+        fences_field_classes: ''
+        fences_field_item_tag: strong
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   workbench_moderation_control:
     weight: -20
     region: content
@@ -179,18 +107,21 @@ content:
 hidden:
   content_moderation_control: true
   field_data_tags: true
+  field_description: true
+  field_end_date: true
+  field_event_background_image: true
   field_event_format: true
   field_event_image: true
   field_event_location: true
   field_event_type: true
-  field_ics_addevent_id: true
-  field_ics_subtext: true
-  field_ics_title: true
+  field_more_details: true
   field_on_homepage: true
+  field_presenter_s_: true
   field_region: true
   field_short_description: true
   field_site: true
   field_solution_type: true
+  field_start_date: true
   field_tags: true
   field_target_product: true
   field_tax_audience_segment: true
@@ -204,6 +135,7 @@ hidden:
   field_tax_region: true
   field_tax_stage: true
   field_tile_thumbnail: true
+  field_title: true
   field_topics: true
   langcode: true
   links: true

@@ -9,8 +9,14 @@
 (function ($, Drupal) {
 
   function toggleCountdownAndCTA(clock) {
-    $(clock).next().removeClass('hide');
+    $(clock).next('.cta__cta').removeClass('hide');
     $(clock).addClass('hide');
+  }
+
+  function hideICS(icsWrapper) {
+    if (icsWrapper) {
+      $(icsWrapper).addClass('hide');
+    }
   }
 
   function getTimeRemaining(countdownDate) {
@@ -31,7 +37,7 @@
     };
   }
 
-  function initializeClock(clock, countdownDate) {
+  function initializeClock(clock, countdownDate, icsWrapper) {
     var daysSpan = clock.find('.days span');
     var hoursSpan = clock.find('.hours span');
     var minutesSpan = clock.find('.minutes span');
@@ -47,6 +53,7 @@
       if (t.total <= 0) {
         clearInterval(timeinterval);
         toggleCountdownAndCTA(clock);
+        hideICS(icsWrapper);
       }
     }
 
@@ -56,16 +63,19 @@
 
   Drupal.behaviors.rhd_CtaCountdown = {
     attach: function (context, settings) {
-      $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function (){
+      $('.assembly-type-call_to_action.has-countdown', context).once('rhdCTACountdown').each(function () {
+        var icsWrapper = $('.ics-wrapper', $(this));
         var clock = $('.rhd-c-countdown', $(this));
         var countdownDate = settings.rhd_assemblies.countdown_date;
         var startingOffsetTime = getTimeRemaining(countdownDate);
 
         if (startingOffsetTime.total == 0) {
           toggleCountdownAndCTA(clock);
-        } else {
+          hideICS(icsWrapper);
+        }
+        else {
           $(clock).removeClass('hide');
-          initializeClock( clock, countdownDate);
+          initializeClock(clock, countdownDate, icsWrapper);
         }
       });
     }

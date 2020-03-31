@@ -1,0 +1,19 @@
+uuid: e33e33d2-2f38-41ed-b464-73bb6bded316
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ics_addevent_id
+    - node.type.events
+id: node.events.field_ics_addevent_id
+field_name: field_ics_addevent_id
+entity_type: node
+bundle: events
+label: 'ICS AddEvent ID'
+description: 'The numeric ID from the addevent.com URL. For example the "xxxx" in this URL pattern: https://www.addevent.com/event/xxxx+outlook"'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
