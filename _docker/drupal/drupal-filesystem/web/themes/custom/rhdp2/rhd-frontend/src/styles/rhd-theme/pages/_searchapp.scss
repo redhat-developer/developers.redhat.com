@@ -35,7 +35,7 @@ rhdp-search-result-count {
   display: block;
   margin-bottom: 1em;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 20px;
 }
 
 rhdp-search-sort-page {
@@ -63,7 +63,6 @@ rhdp-search-filters {
   .title {
     background-color: var(--pf-global--palette--black-100, #fafafa);
     color: var(--rhd-theme--color-text, #151515);
-    font-family: RedHatDisplay;
     font-size: 16px;
     font-weight: 700;
     padding: 1rem;
@@ -126,7 +125,7 @@ rhdp-search-filters {
         z-index: 999;
         right: 100%;
         position: absolute;
-        top: 0px;
+        top: 0;
       }
 
       .groups {
@@ -183,18 +182,17 @@ rhdp-search-filter-group {
 
   .group-name {
     color: var(--rhd-theme--color-text--subtle, #72767b);
-    font-family: RedHatDisplay;
     font-size: 16px;
     font-weight: var(--rhd-global--FontWeight-Display--bold);
   }
 
   .heading {
     margin-top: 0.75rem;
-
+    cursor: pointer;
     .toggle {
       float: right;
       transition: .1s ease-in-out;
-
+      cursor: pointer;
       &.expand {
         transform: rotate(0.25turn);
       }
@@ -215,7 +213,6 @@ rhdp-search-filter-group {
       margin: .5rem 0;
 
       .pf-c-check__label {
-        font-family: RedHatText;
         font-weight: var(--rhd-global--FontWeight-Display--regular, 300);
       }
     }
@@ -266,5 +263,8 @@ rhdp-search-onebox {
     border: 1px solid var(--rhd-theme--color--ui-border, #ededed);
     padding: 25px;
     margin-bottom: 3em;
+    .pf-c-button {
+      margin-bottom: 8px;
+    }
   }
 }
