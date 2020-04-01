@@ -20,8 +20,12 @@
     {% endif %}
     {% if content %}
       <div class="cta__content">
-        {{ content|without('field_title', 'field_cta_link', 'field_display_cta_timer', 'field_display_cta_timer_label') }}
+        {{ content|without('field_title', 'field_cta_link', 'field_display_cta_timer', 'field_display_cta_timer_label', 'field_calendar_event') }}
       </div>
+    {% endif %}
+
+    {% if has_ics %}
+      {{ content.field_calendar_event }}
     {% endif %}
 
     {% if has_countdown %}
