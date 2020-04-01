@@ -18,18 +18,26 @@
       margin-bottom: var(--rhd-theme--container-spacer-md);
     }
 
+    .ics-wrapper {
+      margin-bottom: var(--rhd-theme--container-spacer-md);
+    }
+
     &.left {
       float: none !important;
       text-align: left;
 
       .cta__title,
       .cta__content,
-      .cta__cta {
+      .cta__cta,
+      .ics-wrapper {
         text-align: left;
       }
     }
     &.dark {
-      background-color: var(--rhd-theme--component-background--color-dark);
+      //background-color: var(--rhd-theme--component-background--color-dark);
+    }
+    &.no-background {
+      background-color: transparent;
     }
   }
 }

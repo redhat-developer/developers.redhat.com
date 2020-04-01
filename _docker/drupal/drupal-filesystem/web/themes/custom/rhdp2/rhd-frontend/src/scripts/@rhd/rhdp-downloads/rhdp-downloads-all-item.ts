@@ -115,7 +115,7 @@ export default class RHDPDownloadsAllItem extends HTMLElement {
                   ${version ? `<p data-download-id-version="${productId}">Version: ${version} ${this.platform ? `for ${platform}` : ''}</p>` : `<p data-download-id-version="${productId}">&nbsp;</p>`}  
                 </div>
             
-                <div class="large-5 columns"><a class="button medium-cta blue" data-download-id="${productId}"
+                <div class="large-5 columns"><a class="pf-c-button pf-m-secondary" data-download-id="${productId}"
                                                 data-fallback-url="${dataFallbackUrl}"
                                                 href="${downloadUrl}">Download</a></div>
             </div>

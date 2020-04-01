@@ -125,7 +125,7 @@ describe('OS detection component', function () {
 
         it('should update the link with the appropriate download url', function () {
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('.button.heavy-cta').href).toEqual(wc.downloadURL);
+            expect(wc.querySelector('.pf-c-button.pf-m-heavy').href).toEqual(wc.downloadURL);
         });
         it('should display the full name with version and platform', function () {
             document.body.insertBefore(wc, document.body.firstChild);

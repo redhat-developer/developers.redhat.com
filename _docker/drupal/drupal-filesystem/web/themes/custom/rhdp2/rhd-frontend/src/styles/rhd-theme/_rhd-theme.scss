@@ -1,5 +1,4 @@
 @import "pf4-import";
-@import "colors/base";
 @import "colors/_rhd-brand";
 @import "layout/breakpoints";
 @import "typography/fonts";
@@ -8,6 +7,7 @@
 @import "typography/typography";
 @import "typography/dark";
 @import "layout/spacing";
+@import "components/component-styles";
 
 // PatternFly Core
 @import "../../../node_modules/@patternfly/patternfly/components/Table/table.scss";
@@ -27,7 +27,6 @@
 @import "components/bonus-content-item";
 @import "components/buttons";
 @import "components/call-to-action";
-@import "components/visual-styles";
 @import "components/bands";
 @import "components/buttons";
 @import "components/cards";
@@ -69,6 +68,7 @@
 @import "components/rh-header";
 @import "components/status-messages";
 @import "components/meta-info";
+@import "components/field-ics-addevent-id";
 
 //General helper classes
 @import "helpers/visibility";
