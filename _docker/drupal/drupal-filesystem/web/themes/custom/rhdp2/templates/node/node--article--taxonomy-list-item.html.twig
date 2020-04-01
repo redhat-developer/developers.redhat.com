@@ -1,24 +1,22 @@
-{{ attach_library('classy/node') }}
-
-{#
-/**
- * Custom variable(s):
- *
- * - article
- *   @see rhdp2_preprocess_node()
- */
- #}
+{% if content.field_article_type|render %}
+  {% set tag_text = content.field_article_type %}
+{% else %}
+  {% set tag_text = 'Article' %}
+{% endif %}
 
 {% include '@components/taxonomy-list-item.twig' with {
   'attributes': attributes,
+  'hero_image': content.field_image,
+  'default_image_name': 'taxonomy_list_item_default_articles.png',
   'tag': {
     'class': 'fa-newspaper',
-    'text': content.field_article_type[0]['#markup']
+    'text': tag_text
   },
   'title': {
     'text': node.label,
     'url': url
   },
-  'body': content.field_short_description,
-  'authors': authors
+  'authors': authors,
+  'published_at': content.published_at,
+  'body': content.field_short_description
 } only %}

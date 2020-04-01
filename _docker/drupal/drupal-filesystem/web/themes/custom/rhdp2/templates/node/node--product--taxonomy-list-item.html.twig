@@ -1,0 +1,16 @@
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes.addClass('rhd-c-card-logo'),
+  'hero_image': content.field_image,
+  'default_image_name': 'taxonomy_list_item_default_products.png',
+  'tag': {
+    'class': 'fa-product',
+    'text': 'Product'
+  },
+  'title': {
+    'text': node.label,
+    'url': '/products/' ~ url_product_name ~ '/download/'
+  },
+  'authors': 'authors_placeholder',
+  'published_at': content.published_at,
+  'body': content.field_short_description[0]
+} only %}

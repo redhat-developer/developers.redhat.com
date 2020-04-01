@@ -8,8 +8,7 @@
  * - hero_video_thumbnail: A hero video thumbnail that displays at the top of
  *   card, full-width, with a Play icon overlay in the center of the thumbnail
  *   and a timestamp overlay in the bottom right corner.
- * - hero_video_thumbnail_timestamp: A timestamp that displays the duration of
- *   the video resource in HH:MM::SS.
+ * - default_image_name: Name of default image.
  * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
  * - title:
  *   - title.url: Typically a link to the node displayed in the card.
@@ -23,34 +22,42 @@
 #}
 {% set tag_attributes = create_attribute({'class': ['fas']}) %}
 
-<div {{ attributes.addClass('rhd-c-taxonomy-list') }}>
+{% set classes = [
+  'rhd-c-taxonomy-list-item',
+  'pf-l-grid',
+  'pf-m-gutter',
+] %}
 
-  {% if hero_image is not empty %}
-  <div class="rhd-c-taxonomy-list-blur-image">
-    {{ hero_image }}
+<div {{ attributes.addClass(classes) }}>
+
+  <div class="rhd-c-taxonomy-list__image-container pf-l-grid__item pf-m-12-col pf-m-3-col-on-md">
+    {% if hero_image|render %}
+      <div class="rhd-c-taxonomy-list-blur-image">
+        {{ hero_image }}
+      </div>
+    {% elseif hero_video_thumbnail is not empty %}
+      <div class="rhd-c-taxonomy-list__video">
+        <i class="far fa-play-circle"></i>
+        <img src="{{ hero_video_thumbnail }}" alt="{{ tag.text }} Thumbnail">
+      </div>
+    {% else %}
+      <div class="rhd-c-taxonomy-list-blur-image">
+        <img src="/themes/custom/rhdp2/images/design/taxonomy-list-item/{{ default_image_name }}" alt="{{ tag.text }} Thumbnail">
+      </div>
+    {% endif %}
+
+    {% if tag is not empty %}
+      <div class="rhd-c-taxonomy-list__tag">
+        <i {{ tag_attributes.addClass(tag.class) }}></i>
+        {{ tag.text }}
+      </div>
+    {% endif %}
   </div>
-  {{ hero_image }}
-  {% endif %}
 
-  {% if hero_video_thumbnail is not empty %}
-    <div class="rhd-c-taxonomy-list__video">
-      <div class="rhd-c-taxonomy-list__video-time">{{ hero_video_thumbnail_timestamp }}</div>
-      <i class="far fa-play-circle"></i>
-      {{ hero_video_thumbnail }}
-    </div>
-  {% endif %}
-  
-  {% if tag is not empty %}
-    <div class="rhd-c-taxonomy-list__tag">
-      <i {{ tag_attributes.addClass(tag.class) }}></i>
-      {{ tag.text }}
-    </div>
-  {% endif %}
-
-  <div class="rhd-c-taxonomy-list">
+  <div class="rhd-c-taxonomy-list pf-l-grid__item pf-m-12-col pf-m-9-col-on-md">
     {% if title is not empty %}
       {# Set the appropriate title classes whether or not a hero_image exists #}
-      {% if hero_image is empty and hero_video_thumbnail is empty %}
+      {% if hero_image is empty %}
         {% set title_classes = ['rhd-c-taxonomy-list__title', 'rhd-m-taxonomy-list-title__no-image'] %}
       {% else %}
         {% set title_classes = ['rhd-c-taxonomy-list__title'] %}
@@ -66,15 +73,35 @@
     {% endif %}
 
     {% if authors is not empty %}
-      <div class="rhd-c-taxonomy-list__footer">
-        <div class="rhd-c-taxonomy-list__footer--author">
-          {{ authors }}
-        </div>
+      <div class="rhd-c-taxonomy-list__authors">
+        {% if authors is iterable %}
+          {% for author in authors %}
+            <div class="rhd-c-taxonomy-list__author">
+              {{ author }}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="rhd-c-taxonomy-list__author">
+            {{ authors }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if published_at is not empty %}
+      <div class="rhd-c-taxonomy-list__date">
+        {{ published_at }}
       </div>
     {% endif %}
 
     {% if body is not empty %}
       <p class="rhd-c-taxonomy-list__body ">{{ body }}</p>
+    {% endif %}
+
+    {% if subtext is not empty %}
+      <div class="rhd-c-taxonomy-list__subtext">
+        {{ subtext }}
+      </div>
     {% endif %}
 
   </div>

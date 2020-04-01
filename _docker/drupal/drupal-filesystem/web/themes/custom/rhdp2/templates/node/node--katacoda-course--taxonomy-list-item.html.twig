@@ -1,0 +1,26 @@
+{{ attach_library('classy/node') }}
+
+{# Validate our data prior to accessing it. #}
+{% set num_courses = katacoda_course_info.courses|length %}
+
+{% if num_courses is not empty and num_courses > 1 %}
+  {% set subtext = num_courses ~ ' lessons | ' ~ katacoda_course_info.course_time ~ ' minutes' %}
+{% else %}
+  {% set subtext = num_courses ~ ' lesson | ' ~ katacoda_course_info.course_time ~ ' minutes' %}
+{% endif %}
+
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'default_image_name': 'taxonomy_list_item_default_katacodas.png',
+  'tag': {
+    'class': 'fa-terminal',
+    'text': 'Course'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'published_at': content.published_at,
+  'body': content.body[0]['#text']|striptags,
+  'subtext': subtext
+} only %}

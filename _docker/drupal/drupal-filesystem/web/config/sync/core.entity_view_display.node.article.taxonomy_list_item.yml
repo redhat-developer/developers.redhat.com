@@ -33,15 +33,14 @@ dependencies:
     - field.field.node.article.field_tax_region
     - field.field.node.article.field_tax_stage
     - field.field.node.article.field_topics
-    - image.style.article_floated
+    - image.style.static_item
     - node.type.article
   module:
     - fences
     - field_layout
     - image
     - layout_discovery
-    - link
-    - text
+    - options
     - user
 third_party_settings:
   field_layout:
@@ -54,8 +53,22 @@ targetEntityType: node
 bundle: article
 mode: taxonomy_list_item
 content:
+  field_article_type:
+    type: list_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_author_evangelist:
-    weight: 7
+    weight: 2
     label: hidden
     settings:
       view_mode: tile
@@ -70,27 +83,8 @@ content:
         fences_label_classes: ''
     type: entity_reference_entity_view
     region: content
-  field_card_image:
-    weight: 12
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link
-    region: content
   field_content_author:
-    weight: 8
+    weight: 3
     label: hidden
     settings:
       link_to_entity: false
@@ -106,11 +100,11 @@ content:
     region: content
   field_image:
     type: image
-    weight: 2
+    weight: 0
     region: content
     label: hidden
     settings:
-      image_style: article_floated
+      image_style: static_item
       image_link: ''
     third_party_settings:
       fences:
@@ -120,22 +114,8 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-  field_long_description:
-    weight: 15
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: text_default
-    region: content
   field_short_description:
-    weight: 14
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings:
@@ -148,6 +128,23 @@ content:
         fences_label_classes: ''
     type: basic_string
     region: content
+  published_at:
+    type: timestamp
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   workbench_moderation_control:
     weight: -20
     region: content
@@ -157,12 +154,13 @@ hidden:
   body: true
   content_moderation_control: true
   field_article_highlights: true
-  field_article_type: true
   field_author_name: true
+  field_card_image: true
   field_content: true
   field_difficulty: true
   field_hide_toc: true
   field_image_caption: true
+  field_long_description: true
   field_meta_tags: true
   field_read_time: true
   field_related_articles: true
@@ -180,4 +178,3 @@ hidden:
   field_topics: true
   langcode: true
   links: true
-  published_at: true

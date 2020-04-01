@@ -227,7 +227,6 @@ display:
       style:
         type: default
         options:
-          grouping: {  }
           row_class: ''
           default_row_class: true
           uses_fields: false
@@ -236,10 +235,20 @@ display:
         options:
           relationship: none
           view_mode: taxonomy_list_item
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        nid:
+          id: nid
+          table: taxonomy_index
+          field: nid
+          plugin_id: standard
       fields:
         field_cover_image:
           id: field_cover_image
@@ -632,6 +641,24 @@ display:
       path: taxonomy/term/%
       display_extenders:
         metatag_display_extender: {  }
+      title: ''
+      defaults:
+        title: false
+        header: false
+        relationships: false
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: '<h1>[view:title]</h1>'
+          plugin_id: text_custom
+      relationships: {  }
     cache_metadata:
       max-age: -1
       contexts:

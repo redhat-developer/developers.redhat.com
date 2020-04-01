@@ -40,9 +40,7 @@ dependencies:
   module:
     - fences
     - field_layout
-    - interval
     - layout_discovery
-    - link
     - user
 third_party_settings:
   field_layout:
@@ -55,42 +53,9 @@ targetEntityType: node
 bundle: video_resource
 mode: taxonomy_list_item
 content:
-  field_card_image:
-    weight: 16
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link
-    region: content
-  field_duration:
-    weight: 9
-    label: above
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: interval_default
-    region: content
   field_short_description:
-    weight: 18
-    label: above
+    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings:
       fences:
@@ -103,7 +68,7 @@ content:
     type: basic_string
     region: content
   field_speakers:
-    weight: 4
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
@@ -118,7 +83,7 @@ content:
     type: string
     region: content
   field_video_author:
-    weight: 19
+    weight: 3
     label: hidden
     settings:
       view_mode: short_teaser
@@ -134,8 +99,8 @@ content:
     type: entity_reference_entity_view
     region: content
   field_video_thumbnail_url:
-    weight: 8
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
@@ -151,7 +116,9 @@ content:
 hidden:
   body: true
   content_moderation_control: true
+  field_card_image: true
   field_difficulty: true
+  field_duration: true
   field_exclude_from_search: true
   field_likes: true
   field_meta_tags: true

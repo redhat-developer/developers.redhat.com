@@ -40,13 +40,14 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
+    - image.style.static_item
     - node.type.books
   module:
     - fences
     - field_layout
+    - image
     - layout_discovery
     - link
-    - text
     - user
 third_party_settings:
   field_layout:
@@ -60,7 +61,7 @@ bundle: books
 mode: taxonomy_list_item
 content:
   field_author:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
@@ -74,54 +75,7 @@ content:
         fences_label_classes: ''
     type: string
     region: content
-  field_book_description:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: text_default
-    region: content
   field_card_image:
-    weight: 22
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link
-    region: content
-  field_short_description:
-    weight: 24
-    label: above
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: basic_string
-    region: content
-  field_thumbnail_url:
     weight: 1
     label: hidden
     settings:
@@ -140,13 +94,60 @@ content:
         fences_label_classes: ''
     type: link
     region: content
+  field_cover_image:
+    type: image
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      image_style: static_item
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 4
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  published_at:
+    type: timestamp
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   content_moderation_control: true
   field_average_rating: true
+  field_book_description: true
   field_book_excerpt: true
   field_book_url: true
   field_categories: true
-  field_cover_image: true
   field_difficulty: true
   field_epub: true
   field_isbn: true
@@ -171,9 +172,9 @@ hidden:
   field_tax_promotion: true
   field_tax_region: true
   field_tax_stage: true
+  field_thumbnail_url: true
   field_topics: true
   field_web_reader_url: true
   langcode: true
   links: true
-  published_at: true
   workbench_moderation_control: true

@@ -29,13 +29,13 @@ dependencies:
     - field.field.node.cheat_sheet.field_tax_region
     - field.field.node.cheat_sheet.field_tax_stage
     - field.field.node.cheat_sheet.field_topics
+    - image.style.static_item
     - node.type.cheat_sheet
   module:
     - fences
     - field_layout
     - image
     - layout_discovery
-    - link
     - user
 third_party_settings:
   field_layout:
@@ -48,28 +48,9 @@ targetEntityType: node
 bundle: cheat_sheet
 mode: taxonomy_list_item
 content:
-  field_card_image:
-    weight: 1
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link
-    region: content
   field_cheat_sheet_author:
-    weight: 2
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
@@ -86,14 +67,21 @@ content:
     type: image
     weight: 0
     region: content
-    label: above
+    label: hidden
     settings:
-      image_style: ''
+      image_style: static_item
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_short_description:
-    weight: 3
-    label: above
+    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings:
       fences:
@@ -113,6 +101,7 @@ content:
 hidden:
   body: true
   content_moderation_control: true
+  field_card_image: true
   field_cheat_sheet_download_url: true
   field_cheat_sheet_excerpt: true
   field_cheat_sheet_tags: true

@@ -1,0 +1,90 @@
+uuid: d6a8ea86-1a4f-440d-9172-2823c7ff4cd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.katacoda_course.body
+    - field.field.node.katacoda_course.field_katacoda_course_audience
+    - field.field.node.katacoda_course.field_katacoda_course_lessons
+    - field.field.node.katacoda_course.field_katacoda_course_url_slug
+    - field.field.node.katacoda_course.field_katacoda_hero_more_link
+    - field.field.node.katacoda_course.field_tags
+    - field.field.node.katacoda_course.field_tax_audience_segment
+    - field.field.node.katacoda_course.field_tax_business_unit
+    - field.field.node.katacoda_course.field_tax_campaign
+    - field.field.node.katacoda_course.field_tax_lifecycle
+    - field.field.node.katacoda_course.field_tax_product
+    - field.field.node.katacoda_course.field_tax_product_line
+    - field.field.node.katacoda_course.field_tax_project
+    - field.field.node.katacoda_course.field_tax_promotion
+    - field.field.node.katacoda_course.field_tax_region
+    - field.field.node.katacoda_course.field_tax_stage
+    - field.field.node.katacoda_course.field_topics
+    - node.type.katacoda_course
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.katacoda_course.taxonomy_list_item
+targetEntityType: node
+bundle: katacoda_course
+mode: taxonomy_list_item
+content:
+  body:
+    type: text_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  published_at:
+    type: timestamp
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  content_moderation_control: true
+  field_katacoda_course_audience: true
+  field_katacoda_course_lessons: true
+  field_katacoda_course_url_slug: true
+  field_katacoda_hero_more_link: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true
