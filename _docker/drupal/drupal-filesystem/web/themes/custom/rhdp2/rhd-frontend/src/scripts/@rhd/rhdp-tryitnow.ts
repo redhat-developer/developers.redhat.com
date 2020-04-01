@@ -89,7 +89,7 @@ export default class RHDPTryItNow extends HTMLElement {
                             ${title ? `<h4>${title}</h4>` : ''}
                             ${subtitle ? `<h5>${subtitle}</h5>` : ''}
                         </div>
-                        <a ${buttonID ? `id="${buttonID}" ` :''} href="${buttonLink}" class="button medium-cta white">${buttonText}</a>
+                        <a ${buttonID ? `id="${buttonID}" ` :''} href="${buttonLink}" class="pf-c-button pf-m-secondary">${buttonText}</a>
                     </div>
                 </section>`;
 

@@ -58,7 +58,7 @@ export default class RHDPThankyou extends HTMLElement {
                         </div>
                         <div class="large-24 medium-16 small-24 columns">
                             <div class="thankyou-button">
-                                <a href="/" class="button heavy-cta">Continue
+                                <a href="/" class="pf-c-button pf-m-heavy">Continue
                                     to Homepage</a>
                             </div>
                         </div>

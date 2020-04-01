@@ -63,7 +63,7 @@ export default class RHDPSearchOneBox extends HTMLElement {
         return `<div>
             ${feature.heading && feature.heading.url && feature.heading.text ? `<h4><a href="${feature.heading.url}">${feature.heading.text}</a></h4>` : ''}
             ${feature.details ? `<p>${feature.details}</p>` : ''}
-            ${feature.button && feature.button.url && feature.button.text ? `<a href="${feature.button.url}?onebox=${feature.id}" class="button medium-cta blue">${feature.button.text}</a>` : ''}
+            ${feature.button && feature.button.url && feature.button.text ? `<a href="${feature.button.url}?onebox=${feature.id}" class="pf-c-button pf-m-secondary">${feature.button.text}</a>` : ''}
             ${feature.slots && feature.slots.length > 0 ? `<ul class="slots">
                 ${feature.slots.map(slot =>  this.slotTemplate`${slot}${feature.id}`).join('')}
             </ul>` : ''}

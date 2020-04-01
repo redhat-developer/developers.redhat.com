@@ -25,7 +25,7 @@
     "semantic-release": "semantic-release",
     "styles": "npm run styles:copyFolders && npm run styles:sass",
     "styles:copyFolders": "copyfiles -u 2 \"src/styles/**/*\" \"dist/src/styles/\" && copyfiles -u 2 \"node_modules/@patternfly/patternfly/**/*\" \"dist/node_modules/@patternfly/\" && copyfiles -u 5  \"node_modules/@patternfly/patternfly/assets/fonts/**/*\" dist/fonts/patternfly",
-    "styles:sass": "node-sass dist/src/styles -o dist/css --source-map true && postcss dist/css/rhd.css -o dist/css/rhd.min.css"
+    "styles:sass": "node-sass dist/src/styles -o dist/css --source-map true --output-style expanded && postcss dist/css/rhd.css -o dist/css/rhd.min.css"
   },
   "sass": {
     "includePaths": [
