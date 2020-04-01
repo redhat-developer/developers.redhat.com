@@ -218,38 +218,7 @@ function rhdp2_preprocess_node(&$variables) {
     
     // Prepares the article authors render element for taxonomy page.
     if ($variables['view_mode'] === 'taxonomy_list_item') {
-      $authors_values = [];
-      $tids = [];
-      $authors = $node->get('field_author_evangelist')->getValue();
-      $guest_author = $node->get('field_content_author')->getValue();
-
-      foreach ($authors as $author) {
-        $tids[] = $author['target_id'];
-      }
-      $author_nodes = Node::loadMultiple($tids);
-
-      if (count($author_nodes) > 0) {
-        foreach ($author_nodes as $author_node) {
-          $author_name = $author_node->getTitle();
-          $author_id = $author_node->id();
-          $author_url = Url::fromRoute('entity.node.canonical', ['node' => $author_id]);
-          $authors_link = Link::fromTextAndUrl($author_name, $author_url);
-          $authors_link = $authors_link->toRenderable();
-          $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
-
-          $authors_values[] = [$authors_link];
-        }
-      }
-
-      if ($guest_author) {
-        $guest_author_name = $guest_author[0]['value'];
-
-        $authors_values[] = [
-          '#markup' => $guest_author_name,
-        ];
-      }
-
-      $variables['authors'] = (empty($authors_values)) ? NULL : $authors_values;
+      $variables['authors'] = _generate_authors_links('field_author_evangelist', 'field_content_author', $variables);
     }
 
     // Process for view mode compact_dynamic_article_list_item.
@@ -393,13 +362,46 @@ function rhdp2_preprocess_node(&$variables) {
     
     // Prepares the article authors render element for taxonomy page.
     if ($variables['view_mode'] === 'taxonomy_list_item') {
-      $authors_values = [];
+      $variables['authors'] = _generate_authors_links('field_video_author', NULL, $variables);
+    }
+  }
+
+  if ($node->hasField('field_cheat_sheet_download_url')) {
+    $env_settings = \Drupal::config('redhat_developers');
+    $download_manager_base_url = $env_settings->get('downloadManager')['baseUrl'];
+    $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
+    $download_path = parse_url($download_url[0]['uri'])['path'];
+    $download_url = $download_manager_base_url . $download_path;
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+  }
+}
+
+/**
+ * Generates an array of author links.
+ *
+ * @param string $dynamic_authors_field_name
+ *   The field used for author entity references.
+ *
+ * @param string $static_authors_filed_name
+ *   The field used for author strings.
+ *
+ * @return array
+ *   Returns a render array of author links or FALSE.
+ */
+function _generate_authors_links($dynamic_authors_field_name = NULL, $static_authors_filed_name = NULL, $variables) {
+  $node = $variables['elements']['#node'];
+  $authors_values = [];
+
+  if ($dynamic_authors_field_name) {
+    $authors = $node->get($dynamic_authors_field_name)->getValue();
+
+    if ($authors) {
       $tids = [];
-      $authors = $node->get('field_video_author')->getValue();
 
       foreach ($authors as $author) {
         $tids[] = $author['target_id'];
       }
+
       $author_nodes = Node::loadMultiple($tids);
 
       if (count($author_nodes) > 0) {
@@ -414,19 +416,22 @@ function rhdp2_preprocess_node(&$variables) {
           $authors_values[] = [$authors_link];
         }
       }
-
-      $variables['authors'] = (empty($authors_values)) ? NULL : $authors_values;
     }
   }
 
-  if ($node->hasField('field_cheat_sheet_download_url')) {
-    $env_settings = \Drupal::config('redhat_developers');
-    $download_manager_base_url = $env_settings->get('downloadManager')['baseUrl'];
-    $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
-    $download_path = parse_url($download_url[0]['uri'])['path'];
-    $download_url = $download_manager_base_url . $download_path;
-    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+  if ($static_authors_filed_name) {
+    $guest_author = $node->get($static_authors_filed_name)->getValue();
+
+    if ($guest_author) {
+      $guest_author_name = $guest_author[0]['value'];
+
+      $authors_values[] = [
+        '#markup' => $guest_author_name,
+      ];
+    }
   }
+
+  return (empty($authors_values)) ? FALSE : $authors_values;
 }
 
 /**
