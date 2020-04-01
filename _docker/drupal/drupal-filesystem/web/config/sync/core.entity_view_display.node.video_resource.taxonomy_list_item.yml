@@ -54,7 +54,7 @@ bundle: video_resource
 mode: taxonomy_list_item
 content:
   field_short_description:
-    weight: 2
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings:
@@ -67,23 +67,8 @@ content:
         fences_label_classes: ''
     type: basic_string
     region: content
-  field_speakers:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: string
-    region: content
   field_video_author:
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       view_mode: short_teaser
@@ -99,7 +84,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_video_thumbnail_url:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
@@ -113,6 +98,23 @@ content:
         fences_label_classes: ''
     type: string
     region: content
+  published_at:
+    type: timestamp
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   body: true
   content_moderation_control: true
@@ -125,6 +127,7 @@ hidden:
   field_related_content: true
   field_share_image: true
   field_slideshare_source: true
+  field_speakers: true
   field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
@@ -145,5 +148,4 @@ hidden:
   field_views: true
   langcode: true
   links: true
-  published_at: true
   workbench_moderation_control: true
