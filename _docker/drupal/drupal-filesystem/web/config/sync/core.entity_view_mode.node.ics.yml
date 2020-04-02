@@ -1,0 +1,14 @@
+uuid: 231994d2-a5f3-4503-b943-5798148a8074
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'Formatting for using .ics files across the site.'
+id: node.ics
+label: ICS
+targetEntityType: node
+cache: true

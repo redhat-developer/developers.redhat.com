@@ -1,0 +1,15 @@
+p.field--name-field-ics-addevent-id {
+  margin-bottom: var(--rhd-theme--container-spacer-sm) !important;
+  line-height: 1em;
+  a {
+    display: inline-block;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 1px solid white;
+    &:last-of-type {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+}

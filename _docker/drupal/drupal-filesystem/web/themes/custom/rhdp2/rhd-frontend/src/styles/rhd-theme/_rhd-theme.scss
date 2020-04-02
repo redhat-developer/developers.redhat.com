@@ -1,5 +1,4 @@
 @import "pf4-import";
-@import "colors/base";
 @import "colors/_rhd-brand";
 @import "layout/breakpoints";
 @import "typography/fonts";
@@ -8,12 +7,17 @@
 @import "typography/typography";
 @import "typography/dark";
 @import "layout/spacing";
+@import "components/component-styles";
 
 // PatternFly Core
 @import "../../../node_modules/@patternfly/patternfly/components/Table/table.scss";
-
-// Theme Mixins
 @import "mixins";
+
+// Base Elements
+@import "components/form";
+@import "components/select";
+@import "components/tables";
+@import "components/labels";
 
 // Components
 @import "components/assembly-base";
@@ -23,7 +27,6 @@
 @import "components/bonus-content-item";
 @import "components/buttons";
 @import "components/call-to-action";
-@import "components/visual-styles";
 @import "components/bands";
 @import "components/buttons";
 @import "components/cards";
@@ -36,7 +39,6 @@
 @import "components/embedded-content";
 @import "components/icons";
 @import "components/rich-text";
-@import "components/tables";
 @import "components/video-hero";
 @import "components/video-resource";
 @import "components/product-download-hero";
@@ -66,6 +68,7 @@
 @import "components/rh-header";
 @import "components/status-messages";
 @import "components/meta-info";
+@import "components/field-ics-addevent-id";
 @import "components/taxonomy-list-item";
 
 //General helper classes
@@ -82,7 +85,7 @@
 @import "pages/books";
 @import "pages/learning-paths";
 @import "pages/search";
-@import "pages/blog";
+@import "pages/searchapp";
 @import "pages/devoxx4kids";
 @import "pages/login";
 

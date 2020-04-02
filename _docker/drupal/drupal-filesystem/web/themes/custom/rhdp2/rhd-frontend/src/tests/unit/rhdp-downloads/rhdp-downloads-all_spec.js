@@ -115,10 +115,10 @@ describe('Downloads All Products', function () {
                 expect(wc.querySelector('rhdp-downloads-all-item .row .large-9.center.columns p').innerText.trim()).toEqual("Version: 6.3.0");
 
             });
-            it('should have a rhdp-downloads-all-item child appended medium-cta blue with appropriate data', function () {
-                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').getAttribute('data-download-id')).toEqual("testid");
-                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').getAttribute('data-fallback-url')).toEqual("http://www.testdatafallbackurl.com");
-                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').href).toEqual("http://www.testdownloadlink.com/");
+            it('should have a rhdp-downloads-all-item child appended pf-c-button pf-m-secondary with appropriate data', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.pf-c-button.pf-m-secondary').getAttribute('data-download-id')).toEqual("testid");
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.pf-c-button.pf-m-secondary').getAttribute('data-fallback-url')).toEqual("http://www.testdatafallbackurl.com");
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.pf-c-button.pf-m-secondary').href).toEqual("http://www.testdownloadlink.com/");
 
             });
 

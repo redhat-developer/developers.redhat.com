@@ -36,16 +36,16 @@
   }
 
   a {
-    color: $link-color;
+    color: $rhd-theme--link--color;
     text-decoration: none;
     &:hover,
     &:active,
     &:focus,
     &:visited {
-      color: $link-color-hover;
+      color: $rhd-theme--link-hover--color;
       & > i,
       & > .svg-inline--fa {
-        color: $link-color-hover !important;
+        color: $rhd-theme--link-hover--color !important;
       }
     }
   }

@@ -11,20 +11,24 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     get name() {
         return this._name;
     }
+
     set name(val) {
         if (this._name === val) return;
         this._name = val;
         this.setAttribute('name', this._name);
     }
+
     get key() {
         return this._key;
     }
+
     set key(val) {
         if (this._key === val) return;
         this._key = val;
         this.className = `filter-item-${this._key}`;
         this.setAttribute('key', this._key);
     }
+
     get group() {
         return this._group;
     }
@@ -38,31 +42,35 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     get active() {
         return this._active;
     }
+
     set active(val) {
-        if(typeof val === 'string') {
+        if (typeof val === 'string') {
             val = true;
-        } 
-        if ( val === null ) {
+        }
+        if (val === null) {
             val = false;
         }
+
         if (this._active === val) {
             return;
-        } else {
-            this._active = val;
-            let chkbox = this.querySelector('input');
-            if(this._active) { 
-                this.setAttribute('active','');
-            } else { 
-                this.removeAttribute('active'); 
-            }
-            if (chkbox) {
-                chkbox.checked = this._active;
-            }
-            if ( this.inline ) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
-    
-            this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: this}, bubbles: this.bubble}));
-            this.bubble = true;
         }
+
+        this._active = val;
+        let chkbox = this.querySelector('input');
+
+        if (this._active) {
+            this.setAttribute('active', '');
+        } else {
+            this.removeAttribute('active');
+        }
+        if (chkbox) {
+            chkbox.checked = this._active;
+        }
+        if (this.inline) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
+
+        this.dispatchEvent(new CustomEvent('filter-item-change', { detail: { facet: this }, bubbles: this.bubble }));
+        this.bubble = true;
+
     }
     get value() {
         return this._value;
@@ -109,29 +117,37 @@ export default class RHDPSearchFilterItem extends HTMLElement {
 
     template = (strings, name, key, active) => {
         var checked = active ? 'checked' : '';
-        return `<div class="list"><span>${name}</span><input type="checkbox" ${checked} id="filter-item-${key}" value="${key}"><label for="filter-item-${key}">${name}</label></div>`; 
+        return `
+        <div class="pf-c-check">
+          <input class="pf-c-check__input" type="checkbox" id="filter-item-${key}" name="filter-item-${key}"/>
+          <label class="pf-c-check__label" for="filter-item-${key}">${name}</label>
+        </div>
+         `;
     };
-    
+
     inlineTemplate = (strings, name, active) => {
-        return active ? `<div class="inline">${name} <i class="fa fa-times clearItem" aria-hidden="true"></i></div>` : '';
+        return active ? `
+        <div class="pf-c-label" data-search-action="clearFilter">
+            ${name} <i class="fa fa-times" aria-hidden="true" data-search-action="clearFilter"></i>
+        </div>` : '';
     }
 
     connectedCallback() {
         this.innerHTML = !this.inline ? this.template`${this.name}${this.key}${this.active}` : this.inlineTemplate`${this.name}${this.active}`;
+
         if (!this.inline) {
             this.addEventListener('change', this._updateFacet);
         } else {
             this.addEventListener('click', this._updateFacet);
         }
-        
+
         top.addEventListener('filter-item-change', this._checkChange);
         top.addEventListener('params-ready', this._checkParams);
         top.addEventListener('clear-filters', this._clearFilters);
-        //top.window.addEventListener('popstate', this._clearFilters);
     }
 
-    static get observedAttributes() { 
-        return ['name', 'active', 'value', 'inline', 'key', 'group']; 
+    static get observedAttributes() {
+        return ['name', 'active', 'value', 'inline', 'key', 'group'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -141,9 +157,9 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     _updateFacet(e) {
         this.bounce = true;
         if (this.inline) {
-            let cls = e.target.getAttribute('class');
-            if (cls && cls.indexOf('clearItem') >= 0) {
-                this.active = !this.active; 
+            let action = e.target['dataset']['searchAction'];
+            if (action && action == 'clearFilter') {
+                this.active = !this.active;
             }
         } else {
             this.active = !this.active;
@@ -160,7 +176,7 @@ export default class RHDPSearchFilterItem extends HTMLElement {
                             chk = true;
                             this.bubble = false;
                             this.active = true;
-                            this.dispatchEvent(new CustomEvent('filter-item-init', {detail: {facet: this}, bubbles: this.bubble}));
+                            this.dispatchEvent(new CustomEvent('filter-item-init', { detail: { facet: this }, bubbles: this.bubble }));
                         }
                     }
                 });
@@ -176,7 +192,7 @@ export default class RHDPSearchFilterItem extends HTMLElement {
     _checkChange(e) {
         if (e.detail && e.detail.facet) {
             if (!this.bounce) {
-                if(this.group === e.detail.facet.group && this.key === e.detail.facet.key) {
+                if (this.group === e.detail.facet.group && this.key === e.detail.facet.key) {
                     this.bubble = false;
                     this.active = e.detail.facet.active;
                 }
@@ -185,9 +201,9 @@ export default class RHDPSearchFilterItem extends HTMLElement {
             this.bounce = false;
         }
     }
-    
+
     _clearFilters(e) {
-        this.bubble = false; 
+        this.bubble = false;
         this.bounce = false;
         this.active = false;
     }

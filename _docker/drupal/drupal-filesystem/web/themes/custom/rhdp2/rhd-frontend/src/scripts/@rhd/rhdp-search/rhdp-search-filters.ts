@@ -42,9 +42,9 @@ export default class RHDPSearchFilters extends HTMLElement {
     set toggle(val) {
         if (this._toggle === val) return;
         this._toggle = val;
-        if(this._toggle) {
+        if (this._toggle) {
             this.querySelector('.cover').className = 'cover modal';
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
             document.body.style.overflow = 'hidden';
             this.style.height = window.innerHeight + 'px';
         } else {
@@ -62,29 +62,40 @@ export default class RHDPSearchFilters extends HTMLElement {
     }
     modalTemplate = (string, title) => {
         return `<div class="cover" id="cover">
-            <div class="title">${title} <a href="#" class="cancel" id="cancel">Close</a></div>
+            <div class="title pf-l-flex">
+              <div class="pf-l-flex__item">${title}</div>
+              <div class="pf-l-flex__item pf-m-align-right">
+                <a href="#" id="cancel" data-search-action="cancelFilters" class="pf-c-button pf-m-link">
+                   Close
+                </a>
+              </div>
+            </div>
             <div class="groups">
             </div>
             <div class="footer">
-            <a href="#" class="clearFilters">Clear Filters</a> 
-            <a href="#" class="applyFilters">Apply</a>
+            <a href="#" class="pf-c-button pf-m-link-on-dark"
+              data-search-action="clearFilters">Clear Filters</a>
+            <a href="#" data-search-action="applyFilters" class="pf-c-button pf-m-secondary-on-dark">Apply</a>
             </div>
         </div>`;
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
-        <strong>${title}</strong>
+        <a href="#" class="pf-c-button pf-m-link pf-u-float-right"
+          data-search-action="clearFilters">Clear Filters</a>
         <div class="activeFilters"></div>
-        <a href="#" class="clearFilters">Clear Filters</a>
       </div>`;
     }
     template = (strings, title) => {
-        return `<a class="showBtn">Show Filters</a>
-        <div class="control" id="control">
+        return `
+          <div class="mobile">
+              <a class="pf-c-button pf-m-link" href="#" data-search-action="showFilters">Show Filters</a>
+          </div>
+          <div class="control" id="control">
             <div class="title">${title}</div>
             <div class="groups">
             </div>
-        </div>`; 
+          </div>`;
     };
 
     connectedCallback() {
@@ -105,19 +116,19 @@ export default class RHDPSearchFilters extends HTMLElement {
         }
 
         this.addEventListener('click', e => {
-            switch (e.target['className']) {
-                case 'showBtn':
-                case 'cancel':
+            switch (e.target['dataset']['searchAction']) {
+                case 'showFilters':
+                case 'cancelFilters':
                 case 'applyFilters':
                     e.preventDefault();
                     this.dispatchEvent(new CustomEvent('toggle-modal', {
-                        bubbles: true 
+                        bubbles: true
                     }));
                     break;
                 case 'clearFilters':
                     e.preventDefault();
                     this.dispatchEvent(new CustomEvent('clear-filters', {
-                        bubbles: true 
+                        bubbles: true
                     }));
                     break;
                 case 'more':
@@ -125,13 +136,13 @@ export default class RHDPSearchFilters extends HTMLElement {
                     break;
             }
         });
-        //top.addEventListener('clear-filters', this._clearFilters);
+
         top.addEventListener('toggle-modal', this._toggleModal);
-        
+
     }
 
-    static get observedAttributes() { 
-        return ['type', 'title', 'toggle']; 
+    static get observedAttributes() {
+        return ['type', 'title', 'toggle'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -141,31 +152,31 @@ export default class RHDPSearchFilters extends HTMLElement {
     addGroups() {
         let groups = this.filters.facets,
             len = groups.length;
-        for(let i=0; i < len; i++) {
+        for (let i = 0; i < len; i++) {
             let group = new RHDPSearchFilterGroup(),
                 groupInfo = groups[i],
                 groupNode = group.querySelector('.group'),
                 primaryFilters = group.querySelector('.primary'),
                 secondaryFilters = group.querySelector('.secondary'),
                 len = groupInfo.items ? groupInfo.items.length : 0;
-                if (len <= 5) {
-                    groupNode.removeChild(groupNode.lastChild);
+            if (len <= 5) {
+                groupNode.removeChild(groupNode.lastChild);
+            }
+            for (let j = 0; j < len; j++) {
+                let item = new RHDPSearchFilterItem();
+                item.name = groupInfo.items[j].name;
+                item.value = groupInfo.items[j].value;
+                item.active = groupInfo.items[j].active;
+                item.key = groupInfo.items[j].key;
+                item.group = groupInfo.key;
+                if (j < 5) {
+                    primaryFilters.appendChild(item);
+                } else {
+                    secondaryFilters.appendChild(item);
                 }
-                for(let j=0; j < len; j++) {
-                    let item = new RHDPSearchFilterItem();
-                    item.name = groupInfo.items[j].name;
-                    item.value = groupInfo.items[j].value;
-                    item.active = groupInfo.items[j].active;
-                    item.key = groupInfo.items[j].key;
-                    item.group = groupInfo.key;
-                    if (j < 5) {
-                        primaryFilters.appendChild(item);
-                    } else {
-                        secondaryFilters.appendChild(item);
-                    }
-                }
+            }
             group.key = groupInfo.key;
-            group.name = groupInfo.name;        
+            group.name = groupInfo.name;
             this.querySelector('.groups').appendChild(group);
         }
 
@@ -188,7 +199,6 @@ export default class RHDPSearchFilters extends HTMLElement {
 
     _initActive(e, group_key, item) {
         if (e.detail && e.detail.filters) {
-            //console.log(e.detail.filters);
             Object.keys(e.detail.filters).forEach(group => {
                 e.detail.filters[group].forEach(facet => {
                     if (group === group_key) {
@@ -198,29 +208,26 @@ export default class RHDPSearchFilters extends HTMLElement {
                     }
                 });
             });
-            
+
         }
         return false;
     }
 
     _addFilters() {
         var groups = this.filters.facets;
-        for(let i=0; i < groups.length; i++) {
+        for (let i = 0; i < groups.length; i++) {
             var items = groups[i].items;
-            for(let j=0; j < items.length; j++) {
+            for (let j = 0; j < items.length; j++) {
                 let item = new RHDPSearchFilterItem();
-                    item.name = items[j].name;
-                    item.value = items[j].value;
-                    item.inline = true;
-                    item.bubble = false;
-                    item.key = items[j].key;
-                    item.group = groups[i].key;
-                    this.querySelector('.activeFilters').appendChild(item)
-                }
+                item.name = items[j].name;
+                item.value = items[j].value;
+                item.inline = true;
+                item.bubble = false;
+                item.key = items[j].key;
+                item.group = groups[i].key;
+                this.querySelector('.activeFilters').appendChild(item)
             }
-        // if (this.type === 'active') {
-        //     this._checkActive();
-        // }
+        }
     }
 
     _toggleModal(e) {

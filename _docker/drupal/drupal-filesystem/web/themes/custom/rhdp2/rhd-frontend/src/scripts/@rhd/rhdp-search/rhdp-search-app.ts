@@ -10,8 +10,6 @@ import RHDPSearchSortPage from './rhdp-search-sort-page';
 export default class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
-        //this.toggleModal = this.toggleModal.bind(this);
-        //this.updateFacets = this.updateFacets.bind(this);
     }
 
     _name = 'Search';
@@ -47,21 +45,19 @@ export default class RHDPSearchApp extends HTMLElement {
         this._oburl = val;
     }
 
-
-
-    template = `<div class="row">
-    <span class="search-outage-msg"></span>
-    <div class="large-24 medium-24 small-24 columns searchpage-middle">
-        <div class="row">
-            <div class="large-24 medium-24 small-24 columns">
-                <h2>${this.name}</h2>
-            </div>
+    template = `<div class="rhd-c-search-page">
+    <span class="rhd-c-search-outage-message search-outage-msg"></span>
+    <div class="searchpage-middle">
+        <div class="rhd-c-search-page-header">
+          <h2>${this.name}</h2></div>
         </div>
-        <div class="row">
-            <div class="large-6 medium-8 small-24 columns"></div>
-            <div class="large-18 medium-16 small-24 columns"></div>
+        <div class="rhd-c-search-body pf-l-grid pf-m-gutter">
+            <div class="rhd-c-search-body-left pf-l-grid__item pf-m-4-col-on-md pf-m-12-col-on-sm"></div>
+            <div class="rhd-c-search-body-right pf-l-grid__item pf-m-8-col-on-md pf-m-12-col-on-sm"></div>
         </div>
-    </div></div>`;
+    </div>
+    <a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>
+    </div>`;
 
     urlEle = new RHDPSearchURL();
     query = new RHDPSearchQuery();
@@ -75,86 +71,88 @@ export default class RHDPSearchApp extends HTMLElement {
     sort = new RHDPSearchSortPage();
 
     filterObj = {
-        term:'', 
+        term: '',
         facets: [
-            { name: 'CONTENT TYPE', key: 'type', items: [
-                {key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs']},
-                {key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype']},
-                {key: 'article', name: 'Article', value: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'], type: ['rht_knowledgebase_article', 'rht_knowledgebase_solution']},
-                {key: 'blogpost', name: "Blog Posts", value: ['jbossorg_blog'], type: ['jbossorg_blog']},
-                {key: 'book', name: "Book", value: ["jbossdeveloper_book"], type: ["jbossdeveloper_book"]},
-                {key: 'bom', name: "BOM", value: ["jbossdeveloper_bom"], type: ['jbossdeveloper_bom']},
-                {key: 'cheatsheet', name: "Cheat Sheet", value: ['jbossdeveloper_cheatsheet'], type: ['jbossdeveloper_cheatsheet']},
-                {key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo'], type: ['jbossdeveloper_demo']},
-                {key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event']},
-                {key: 'forum', name: 'Forum', value: ['jbossorg_sbs_forum'], type: ['jbossorg_sbs_forum']},
-                {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
-                {key: 'quickstart', name: "Quickstart", value: ['jbossdeveloper_quickstart'], type: ['jbossdeveloper_quickstart']},
-                {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_question'], type: ['stackoverflow_question']},
-                {key: 'video', name: "Video", value: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
-                {key: 'webpage', name: "Web Page", value: ['rht_website'], type: ['rht_website']}
-                ] 
-            },
             {
-                name:'PRODUCT', 
-                key: 'project', 
-                items: [
-                {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
-                {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
-                {key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam','bpmsuite']},
-                {key: 'brms', name: 'Red Hat Decision Manager', value: ['brms']},
-                {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
-                {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
-                {key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio']},
-                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap']},
-                {key: 'fuse', name: 'JBoss Fuse', value: ['fuse']},
-                {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
-                {key: 'openjdk', name: 'OpenJDK', value: ['openjdk']},
-                {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
-                {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
-                {key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset']},
-                {key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite']},
-                {key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel']},
-                {key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform']},
-                {key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift']},
-                {key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections']}
+                name: 'Topics', key: 'tag', items: [
+                    /*
+                    Architecture
+                    Big Data
+                    CI/CD
+                    Containers
+                    DevOps
+                    Integration
+                    Internet of Things
+                    Java
+                    Kubernetes
+                    Linux
+                    Microservices
+                    Performance
+                    Programming Languages
+                    Security
+                    Serverless
+                    Service Mesh
+                    Spring Boot
+                    */
+                    { key: 'dotnet', name: '.NET', value: ['dotnet', '.net', 'visual studio', 'c#'] },
+                    { key: 'containers', name: 'Containers', value: ['atomic', 'cdk', 'containers'] },
+                    { key: 'devops', name: 'DevOps', value: ['devops', 'CI', 'CD', 'Continuous Delivery'] },
+                    { key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ', 'AMQP', 'apache camel', 'Arquillian', 'Camel', 'CDI', 'CEP', 'CXF', 'datagrid', 'devstudio', 'Drools', 'Eclipse', 'fabric8', 'Forge', 'fuse', 'Hawkular', 'Hawtio', 'Hibernate', 'Hibernate ORM', 'Infinispan', 'iPaas', 'java ee', 'JavaEE', 'JBDS', 'JBoss', 'JBoss BPM Suite', 'Red Hat Decision Manager', 'JBoss Data Grid', 'jboss eap', 'JBoss EAP', ''] },
+                    { key: 'iot', name: 'Internet of Things', value: ['iot', 'Internet of Things'] },
+                    { key: 'microservices', name: 'Microservices', value: ['microservices', ' WildFly Swarm'] },
+                    { key: 'mobile', name: 'Mobile', value: ['mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },
+                    { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] },
                 ]
             },
-            { name: 'TOPIC', key: 'tag', items: [
-                /*
-                Architecture
-                Big Data
-                CI/CD
-                Containers
-                DevOps
-                Integration
-                Internet of Things
-                Java
-                Kubernetes
-                Linux
-                Microservices
-                Performance
-                Programming Languages
-                Security
-                Serverless
-                Service Mesh
-                Spring Boot
-                */
-                {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
-                {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
-                {key: 'devops', name: 'DevOps', value: ['devops','CI','CD','Continuous Delivery']},
-                {key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ','AMQP','apache camel','Arquillian','Camel','CDI','CEP','CXF','datagrid','devstudio','Drools','Eclipse','fabric8','Forge','fuse','Hawkular','Hawtio','Hibernate','Hibernate ORM','Infinispan','iPaas','java ee','JavaEE','JBDS','JBoss','JBoss BPM Suite','Red Hat Decision Manager','JBoss Data Grid','jboss eap','JBoss EAP','']},
-                {key: 'iot', name: 'Internet of Things', value: ['iot','Internet of Things']},
-                {key: 'microservices', name: 'Microservices', value: ['microservices',' WildFly Swarm']},
-                {key: 'mobile', name: 'Mobile', value: ['mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
-                {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
-                ] 
+            {
+                name: 'Content type', key: 'type', items: [
+                    { key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs'] },
+                    { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype'] },
+                    { key: 'article', name: 'Article', value: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'], type: ['rht_knowledgebase_article', 'rht_knowledgebase_solution'] },
+                    { key: 'blogpost', name: "Blog Posts", value: ['jbossorg_blog'], type: ['jbossorg_blog'] },
+                    { key: 'book', name: "Book", value: ["jbossdeveloper_book"], type: ["jbossdeveloper_book"] },
+                    { key: 'bom', name: "BOM", value: ["jbossdeveloper_bom"], type: ['jbossdeveloper_bom'] },
+                    { key: 'cheatsheet', name: "Cheat Sheet", value: ['jbossdeveloper_cheatsheet'], type: ['jbossdeveloper_cheatsheet'] },
+                    { key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo'], type: ['jbossdeveloper_demo'] },
+                    { key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event'] },
+                    { key: 'forum', name: 'Forum', value: ['jbossorg_sbs_forum'], type: ['jbossorg_sbs_forum'] },
+                    { key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
+                    { key: 'quickstart', name: "Quickstart", value: ['jbossdeveloper_quickstart'], type: ['jbossdeveloper_quickstart'] },
+                    { key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_question'], type: ['stackoverflow_question'] },
+                    { key: 'video', name: "Video", value: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'], type: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                    { key: 'webpage', name: "Web Page", value: ['rht_website'], type: ['rht_website'] }
+                ]
+            },
+            {
+                name: 'Products &amp; Project',
+                key: 'project',
+                items: [
+                    { key: 'dotnet1', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
+                    { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
+                    { key: 'rhpam', name: 'Red Hat Process Automation Manager', value: ['rhpam', 'bpmsuite'] },
+                    { key: 'brms', name: 'Red Hat Decision Manager', value: ['brms'] },
+                    { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
+                    { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
+                    { key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio'] },
+                    { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
+                    { key: 'fuse', name: 'JBoss Fuse', value: ['fuse'] },
+                    { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
+                    { key: 'openjdk', name: 'OpenJDK', value: ['openjdk'] },
+                    { key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt'] },
+                    { key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk'] },
+                    { key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset'] },
+                    { key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite'] },
+                    { key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel'] },
+                    { key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform'] },
+                    { key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift'] },
+                    { key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections'] }
+                ]
             }
         ]
     };
+
     connectedCallback() {
         this.innerHTML = this.template;
-
         this.active.setAttribute('type', 'active');
         this.active.title = 'Active Filters:';
         this.modal.setAttribute('type', 'modal');
@@ -163,22 +161,21 @@ export default class RHDPSearchApp extends HTMLElement {
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
         this.onebox.url = this.oburl;
-        
-        //document.querySelector('.wrapper').appendChild(this.modal);
+
         document.body.appendChild(this.modal);
-        this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
-        this.querySelector('.row .large-24 .row .large-24').appendChild(this.box);
-        this.querySelector('.large-6').appendChild(this.filters);
-        this.querySelector('.large-18').appendChild(this.active);
-        this.querySelector('.large-18').appendChild(this.count);
-        this.querySelector('.large-18').appendChild(this.sort);
-        this.querySelector('.large-18').appendChild(this.onebox);
-        this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.rhd-c-search-page-header').appendChild(this.query);
+        this.querySelector('.rhd-c-search-page-header').appendChild(this.box);
+        this.querySelector('.rhd-c-search-body-left').appendChild(this.filters);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.active);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.sort);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.count);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.onebox);
+        this.querySelector('.rhd-c-search-body-right').appendChild(this.results);
         document.body.appendChild(this.urlEle);
     }
 
-    static get observedAttributes() { 
-        return ['url', 'name', 'oburl']; 
+    static get observedAttributes() {
+        return ['url', 'name', 'oburl'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

@@ -4,19 +4,19 @@ import Driver from '../../../../utils/Driver.Extension';
 
 class SearchFilter extends Page {
     get showBtn() {
-        return $('.showBtn');
+        return $('a[data-search-action="showFilters"]');
     }
     get cover() {
         return $('.cover');
     }
     get applyFilters() {
-        return $('.applyFilters');
+        return $('a[data-search-action="applyFilters"]');
     }
     get activeFilters() {
         return $('.activeFilters');
     }
     get clearFilters() {
-        return $('.clearFilters');
+        return $('a[data-search-action="clearFilters"]');
     }
 
     active() {
@@ -30,11 +30,11 @@ class SearchFilter extends Page {
     choose(filterType, filterOption) {
         switch (filterType) {
             case 'Content Type':
-                return this._selectFilter(1, filterOption);
-            case 'Product':
                 return this._selectFilter(2, filterOption);
-            default:
+            case 'Product':
                 return this._selectFilter(3, filterOption);
+            default:
+                return this._selectFilter(1, filterOption);
         }
     }
 

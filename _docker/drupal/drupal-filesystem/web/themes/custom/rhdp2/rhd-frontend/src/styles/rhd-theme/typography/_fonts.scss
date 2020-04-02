@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,700|Red+Hat+Text:400,500&display=swap');
+//TODO figure out why there is a difference between this import and the font in patternfly core, imported fonts were not being used as "RedHatDisplay" and "RedHatText" was referenced not "Red Hat Display" and "Red Hat Text". Also need to find out why we were loading hte fonts twice
+//@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:300,400,500,700|Red+Hat+Text:300,400,500&display=swap');
 
-$rhd-font-stack-display: ("RedHatDisplay", "Overpass", "Helvetica", "Arial", sans-serif);
-$rhd-font-stack-text: ("RedHatText", "Overpass", "Helvetica", "Arial", sans-serif);
+$rhd-font-stack-display: RedHatDisplay, Overpass, Helvetica, Arial, sans-serif;
+$rhd-font-stack-text: RedHatText, Overpass, Helvetica, Arial, sans-serif;
+
+:root {
+    --pf-global--FontFamily--heading--sans-serif: #{$rhd-font-stack-display};
+    --pf-global--FontFamily--sans-serif: #{$rhd-font-stack-text};
+}
