@@ -66,7 +66,7 @@ export default class RHDPDownloadsPopularProduct extends HTMLElement {
         <div class="large-6 column">
             <div class="popular-download-box">
                 <h4>${name}</h4>
-                <a class="button heavy-cta" data-download-id="${id}" data-fallback-url="${dataFallbackUrl}" href="${url}"><i class="fa fa-download"></i> Download</a>
+                <a class="pf-c-button pf-m-heavy" data-download-id="${id}" data-fallback-url="${dataFallbackUrl}" href="${url}"><i class="fa fa-download"></i> Download</a>
             </div>
         </div>`;
     };
