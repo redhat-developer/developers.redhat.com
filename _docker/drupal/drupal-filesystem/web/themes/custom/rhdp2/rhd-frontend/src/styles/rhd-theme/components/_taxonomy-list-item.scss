@@ -1,35 +1,18 @@
 .rhd-c-taxonomy-list-item {
   margin-bottom: var(--pf-global--spacer--lg) !important; // 24px
 
-  .rhd-m-link {
-    color: $link-color;
-    text-decoration: none;
+  @media screen and (max-width: $pf-global--breakpoint--md) {
+    margin-bottom: var(--pf-global--spacer--2xl) !important; // 48px
+  }
+}
 
-    &:hover,
-    &:active,
-    &:focus {
-      color: $link-color-hover;
-
-      &>i,
-      &>.svg-inline--fa {
-        color: $link-color-hover !important;
-      }
-    }
-    &:visited {
-      color: $link-color;
-    }
-
-    &>i,
-    &>.svg-inline--fa {
-      color: $link-color;
-
-      &:hover,
-      &:active,
-      &:focus,
-      &:visited {
-        color: $link-color-hover;
-      }
-    }
+.rhd-c-taxonomy-list-blur-image,
+.rhd-c-taxonomy-list__video {
+  max-width: 440px;
+  max-height: 232px;
+  overflow: hidden;
+  img {
+    max-height: 232px;
   }
 }
 
@@ -45,10 +28,6 @@
     position: absolute;
     color: #fff;
     font-size: 2em;
-  }
-
-  img {
-    max-height: 125px;
   }
 }
 
@@ -74,12 +53,13 @@
 }
 
 .rhd-c-taxonomy-list__title {
-  margin-bottom: var(--pf-global--spacer--md); //16px
+  margin-bottom: 0 !important;
 }
 
 .rhd-c-taxonomy-list__authors {
-  margin-bottom: var(--pf-global--spacer--md); //16px
   display: inline-block;
+  margin-bottom: 0;
+  margin-top: var(--pf-global--spacer--sm); //8px
 }
 
 .rhd-c-taxonomy-list__author {
@@ -89,6 +69,7 @@
   padding: var(--pf-global--spacer--xs) var(--pf-global--spacer--sm); // 4px 8px
   margin-bottom: 0;
   margin-right: var(--pf-global--spacer--sm);
+  margin-top: var(--pf-global--spacer--sm); //8px
   font-size: var(--pf-global--FontSize--md) !important;
   font-weight: 400;
   line-height: 24px;
@@ -98,10 +79,12 @@
   display: inline-block;
   color: var(--pf-global--Color--200); // #72767b
   font-weight: 500;
-  margin-bottom: var(--pf-global--spacer--md); //16px
+  margin-bottom: 0;
+  margin-top: var(--pf-global--spacer--md); //16px
 }
 
 .rhd-c-taxonomy-list__body {
+  margin-top: var(--pf-global--spacer--md); //16px
   font-family: $rhd-font-stack-text;
   font-size: var(--pf-global--FontSize--md) !important;
   flex: 1 1 auto;

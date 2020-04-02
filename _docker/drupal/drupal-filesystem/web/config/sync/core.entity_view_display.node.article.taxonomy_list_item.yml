@@ -33,7 +33,7 @@ dependencies:
     - field.field.node.article.field_tax_region
     - field.field.node.article.field_tax_stage
     - field.field.node.article.field_topics
-    - image.style.static_item
+    - image.style.list_item_thumb
     - node.type.article
   module:
     - fences
@@ -104,7 +104,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: static_item
+      image_style: list_item_thumb
       image_link: ''
     third_party_settings:
       fences:

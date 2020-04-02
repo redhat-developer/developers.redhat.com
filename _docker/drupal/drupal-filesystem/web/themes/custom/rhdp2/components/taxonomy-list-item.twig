@@ -4,16 +4,17 @@
  *
  * Available variables:
  * - attributes: The Drupal 8 Attributes object for this render array/element.
- * - hero_image: A hero image that displays at the top of card, full-width.
- * - hero_video_thumbnail: A hero video thumbnail that displays at the top of
- *   card, full-width, with a Play icon overlay in the center of the thumbnail
- *   and a timestamp overlay in the bottom right corner.
- * - default_image_name: Name of default image.
- * - tag: A categorization for the card, like eBook, Try It, Lesson, Series, etc
+ * - image_thumbnail: The thumbnail image that displays to the left of the list item.
+ * - video_thumbnail: The video video thumbnail that displays to the left of
+ *   the list item, with a Play icon overlay in the center of the thumbnail.
+ * - default_image_name: Name of the default image to use if no thumbnail is found.
+ *   These images are stored in and referenced from:
+ *   /themes/custom/rhdp2/images/design/taxonomy-list-item/
+ * - tag: A categorization for the list item, like eBook, Try It, Lesson, Series, etc
  * - title:
- *   - title.url: Typically a link to the node displayed in the card.
- *   - title.text: The title of the node displayed in the Card.
- * - body: The body text for this Card. This could be a summary or otherwise
+ *   - title.url: Typically a link to the node displayed in the list.
+ *   - title.text: The title of the node displayed in the list.
+ * - body: The body text for the list item. This could be a summary or otherwise
  *   trimmed version if the body text is too long.
  * - authors: The author(s) of this piece of content. In some instances, this is
  *   implemented via plain text fields, but in others (like Articles) it is an
@@ -31,14 +32,14 @@
 <div {{ attributes.addClass(classes) }}>
 
   <div class="rhd-c-taxonomy-list__image-container pf-l-grid__item pf-m-12-col pf-m-3-col-on-md">
-    {% if hero_image|render %}
+    {% if image_thumbnail|render %}
       <div class="rhd-c-taxonomy-list-blur-image">
-        {{ hero_image }}
+        {{ image_thumbnail }}
       </div>
-    {% elseif hero_video_thumbnail is not empty %}
+    {% elseif video_thumbnail is not empty %}
       <div class="rhd-c-taxonomy-list__video">
         <i class="far fa-play-circle"></i>
-        <img src="{{ hero_video_thumbnail }}" alt="{{ tag.text }} Thumbnail">
+        <img src="{{ video_thumbnail }}" alt="{{ tag.text }} Thumbnail">
       </div>
     {% else %}
       <div class="rhd-c-taxonomy-list-blur-image">
@@ -56,19 +57,12 @@
 
   <div class="rhd-c-taxonomy-list pf-l-grid__item pf-m-12-col pf-m-9-col-on-md">
     {% if title is not empty %}
-      {# Set the appropriate title classes whether or not a hero_image exists #}
-      {% if hero_image is empty %}
-        {% set title_classes = ['rhd-c-taxonomy-list__title', 'rhd-m-taxonomy-list-title__no-image'] %}
-      {% else %}
-        {% set title_classes = ['rhd-c-taxonomy-list__title'] %}
-      {% endif %}
-
       {% if title.url is not empty %}
-        <h3 class="{{ title_classes|join(' ') }}">
+        <h3 class="rhd-c-taxonomy-list__title">
           <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
         </h3>
       {% elseif title.url is empty and title.text is not empty %}
-        <h3 class="{{ title_classes|join(' ') }}">{{ title.text }}</h3>
+        <h3 class="rhd-c-taxonomy-list__title">{{ title.text }}</h3>
       {% endif %}
     {% endif %}
 

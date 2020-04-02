@@ -40,14 +40,13 @@ dependencies:
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_topics
     - field.field.node.books.field_web_reader_url
-    - image.style.static_item
+    - image.style.list_item_thumb
     - node.type.books
   module:
     - fences
     - field_layout
     - image
     - layout_discovery
-    - link
     - user
 third_party_settings:
   field_layout:
@@ -75,32 +74,13 @@ content:
         fences_label_classes: ''
     type: string
     region: content
-  field_card_image:
-    weight: 1
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: link
-    region: content
   field_cover_image:
     type: image
-    weight: 3
+    weight: 2
     region: content
     label: hidden
     settings:
-      image_style: static_item
+      image_style: list_item_thumb
       image_link: ''
     third_party_settings:
       fences:
@@ -112,7 +92,7 @@ content:
         fences_label_classes: ''
   field_short_description:
     type: basic_string
-    weight: 4
+    weight: 3
     region: content
     label: hidden
     settings: {  }
@@ -126,7 +106,7 @@ content:
         fences_label_classes: ''
   published_at:
     type: timestamp
-    weight: 2
+    weight: 1
     region: content
     label: hidden
     settings:
@@ -147,6 +127,7 @@ hidden:
   field_book_description: true
   field_book_excerpt: true
   field_book_url: true
+  field_card_image: true
   field_categories: true
   field_difficulty: true
   field_epub: true

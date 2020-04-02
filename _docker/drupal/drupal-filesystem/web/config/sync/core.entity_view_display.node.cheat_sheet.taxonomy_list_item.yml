@@ -29,7 +29,7 @@ dependencies:
     - field.field.node.cheat_sheet.field_tax_region
     - field.field.node.cheat_sheet.field_tax_stage
     - field.field.node.cheat_sheet.field_topics
-    - image.style.static_item
+    - image.style.list_item_thumb
     - node.type.cheat_sheet
   module:
     - fences
@@ -69,7 +69,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: static_item
+      image_style: list_item_thumb
       image_link: ''
     third_party_settings:
       fences:
