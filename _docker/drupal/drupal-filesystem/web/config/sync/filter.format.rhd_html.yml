@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - asciidoc
+    - blazy
     - editor
     - entity_embed
     - linkit
@@ -21,7 +22,7 @@ filters:
     status: true
     weight: -49
     settings:
-      allowed_html: '<a href hreflang class target data-* aria-* ng-*> <em class> <strong class> <cite class> <blockquote cite class> <code class data-*> <ul id type class data-* aria-*> <ol start type class id data-* aria-*> <li class data-* aria-*> <dl class data-* aria-*> <dt class data-* aria-*> <dd class data-* aria-*> <h2 id class data-* aria-*> <h3 id class data-* aria-*> <h4 id class data-* aria-*> <h5 id class data-* aria-*> <h6 id class aria-* data-*> <p class data-* aria-*> <br class> <span class data-* aria-*> <img class src alt height width data-* aria-*> <div class id data-* aria-* ng-*> <h1 class data-* aria-* id> <pre class data-* aria-*> <u class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class> <td class> <tr class> <i class data-* aria-*> <select id class value label disabled data-* aria-* name size ng-*> <option id class aria-* data-* dir label lang name selected title value> <hr class> <drupal-entity data-*>'
+      allowed_html: '<a href hreflang class target data-* aria-* ng-*> <em class> <strong class> <cite class> <blockquote cite class> <code class data-*> <ul id type class data-* aria-*> <ol start type class id data-* aria-*> <li class data-* aria-*> <dl class data-* aria-*> <dt class data-* aria-*> <dd class data-* aria-*> <h2 id class data-* aria-*> <h3 id class data-* aria-*> <h4 id class data-* aria-*> <h5 id class data-* aria-*> <h6 id class aria-* data-*> <p class data-* aria-*> <br class> <span class data-* aria-*> <img class src alt height width data-* aria-*> <div class id data-* aria-* ng-*> <h1 class data-* aria-* id> <pre class data-* aria-*> <u class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class> <td class> <tr class> <i class data-* aria-*> <select id class value label disabled data-* aria-* name size ng-*> <option id class aria-* data-* dir label lang name selected title value> <hr class> <drupal-entity data-* data-entity-type, data-entity-uuid, data-entity-embed-display, data-entity-embed-display-settings, data-align, data-caption, data-embed-button, alt, title>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_align:
@@ -106,3 +107,14 @@ filters:
     weight: 0
     settings:
       command: asciidoctor
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      filter_tags:
+        img: img
+        iframe: iframe
+      media_switch: ''
+      use_data_uri: '0'

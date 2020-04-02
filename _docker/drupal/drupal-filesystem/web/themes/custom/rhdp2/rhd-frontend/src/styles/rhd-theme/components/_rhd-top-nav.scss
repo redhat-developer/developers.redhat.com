@@ -7,6 +7,7 @@
       margin-top: 0;
     }
   }
+
   .rh-universal-header {
     background-color: #1A1A1A;
     @media screen and (max-width: $pf-global--breakpoint--md) {
@@ -160,7 +161,6 @@
     }
   }
 
-
   // Red Hat Developer Header
   .rhd-header {
     margin: 0 auto;
@@ -231,6 +231,7 @@
         padding-top: 0 !important;
         overflow: hidden;
         transition: 150ms ease-in-out;
+
         @media screen and (min-width: $pf-global--breakpoint--sm) {
           position: absolute;
           right: -50px;
@@ -380,11 +381,13 @@
       }
     }
   }
+
   .rhd-nav-all-topics {
     .icon {
       margin-left: var(--pf-global--spacer--sm);
     }
   }
+
   .rhd-topic-header-inner {
     position: relative;
     @media screen and (min-width: $pf-global--breakpoint--lg) {
@@ -838,3 +841,13 @@
    }
   }
 }
+
+// See RHDX-344
+.rhd-nav-search {
+  .pf-c-input-group {
+    .pf-c-form-control {
+      margin-left: 0 !important;
+    }
+  }
+}
+

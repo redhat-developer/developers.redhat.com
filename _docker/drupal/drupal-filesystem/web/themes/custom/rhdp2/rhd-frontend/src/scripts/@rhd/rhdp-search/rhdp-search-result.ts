@@ -86,7 +86,6 @@ export default class RHDPSearchResult extends HTMLElement {
         this.computePremium(val);
         this.computeThumbnail(val);
         this.renderResult();
-
     }
 
     constructor() {
@@ -102,15 +101,14 @@ export default class RHDPSearchResult extends HTMLElement {
             </p>
             <p class="result-description">${description}</p>
         </div>
-        ${thumbnail ? `<div class="thumb"><img src="${thumbnail.replace('http:','https:')}"></div>` : ''}`; 
+        ${thumbnail ? `<div class="thumb"><img src="${thumbnail.replace('http:','https:')}"></div>` : ''}`;
     };
 
     connectedCallback() {
-        
     }
 
-    static get observedAttributes() { 
-        return ['result']; 
+    static get observedAttributes() {
+        return ['result'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -127,15 +125,16 @@ export default class RHDPSearchResult extends HTMLElement {
         }
     }
 
-    computeTitle(result) { 
+    computeTitle(result) {
         var title = '';
         if(result.highlight && result.highlight.sys_title) {
             title = result.highlight.sys_title[0];
         } else {
             title = result.fields.sys_title[0];
         }
-        this.title = title; 
+        this.title = title;
     }
+
     computeKind(result) {
         var kind = result.fields.sys_type || "webpage",
         map = {
@@ -159,28 +158,30 @@ export default class RHDPSearchResult extends HTMLElement {
         };
         this.kind = map[kind] || 'Web Page';
     }
+
     computeCreated(result) {
         this.created = result.fields.sys_created && result.fields.sys_created.length > 0 ? result.fields.sys_created[0] : '';
     }
+
     computeDescription(result) {
         var description = '';
         if(result.highlight && result.highlight.sys_description) {
             description = result.highlight.sys_description[0];
         } else if( result.highlight && result.highlight.sys_content_plaintext) {
-            description = result.highlight.sys_content_plaintext[0];               
+            description = result.highlight.sys_content_plaintext[0];
         } else if (result.fields && result.fields.sys_description) {
             description = result.fields.sys_description[0];
-        } else {
+        } else if (result.fields && result.fields.sys_content_plaintext) {
             description = result.fields.sys_content_plaintext[0];
         }
 
-        // Removes all HTML tags from description
+        // Removes all HTML tags from description.
         var tempDiv = document.createElement("div");
         tempDiv.innerHTML = description;
         description = tempDiv.innerText;
-
         this.description = description;
     }
+
     computeURL(result) {
         if (result.fields && result.fields.sys_type === 'book' && result.fields.field_book_url) {
             this.url = result.fields.field_book_url ? result.fields.field_book_url : '';
@@ -196,7 +197,6 @@ export default class RHDPSearchResult extends HTMLElement {
         }
         this.premium = premium;
     }
-
 }
 
 customElements.define('rhdp-search-result', RHDPSearchResult);
