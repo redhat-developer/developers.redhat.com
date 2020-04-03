@@ -99,7 +99,13 @@ function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
-  // Process read time.
+  // Manage classes on nodes by type.
+  $node_component_include_list = ['page'];
+  if (in_array($type, $node_component_include_list)) {
+    $variables['attributes']['class'][] = 'component';
+  }
+
+  // Process read time estimates for learning paths.
   $measured_read_time_types = [
     'books',
     'cheat_sheet',

@@ -62,8 +62,8 @@ export default class RHDPSearchResults extends HTMLElement {
         <p>After you enter a search term in the box above, you will see the results displayed here. 
         You can also use the filters to select a content type, product or topic to see some results too. Try it out!</p>`;
         this.endOfResults.innerHTML = '<p class="end-of-results">- End of Results -</p>'
-        this.loadMore.className = 'moreBtn';
-        this.loadMore.innerHTML = '<a class="moreBtn" href="#">Load More</a>';
+        this.loadMore.className = 'rhd-c-more-button';
+        this.loadMore.innerHTML = '<a class="pf-c-button pf-m-primary" href="#">Load More</a>';
         this.loading.className = 'loading';
 
         this.loadMore.addEventListener('click', e => {
@@ -97,7 +97,7 @@ export default class RHDPSearchResults extends HTMLElement {
                 this.removeChild(this.firstChild);
             }
         } else {
-            if (this.querySelector('.moreBtn')) {
+            if (this.querySelector('rhd-c-more-button')) {
                 this.removeChild(this.loadMore);
             }
             if (this.querySelector('.invalidMsg')) {
@@ -160,7 +160,7 @@ export default class RHDPSearchResults extends HTMLElement {
                 }
                 this.appendChild(this.loadMore);
             } else {
-                if (this.querySelector('.moreBtn')) { 
+                if (this.querySelector('.rhd-c-more-button')) {
                     this.removeChild(this.loadMore);
                 }
                 this.appendChild(this.endOfResults);

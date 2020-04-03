@@ -1,0 +1,27 @@
+
+.rhd-c-select {
+    border: solid 1px #ededed;
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+
+    select {
+      padding: 0.5rem;
+      border: none;
+      background: inherit;
+      border-radius: 0;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      &::-ms-expand {
+        display: none;
+      }
+    }
+    .fa-caret-down {
+      pointer-events: none;
+      position: absolute;
+      margin-left: -1em;
+      margin-top: 0.7em;
+    }
+}

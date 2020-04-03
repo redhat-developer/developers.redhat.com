@@ -2,11 +2,11 @@
 .pf-c-button {
   font-family: var(--rhd-theme--font-family);
   margin-bottom: var(--rhd-theme--container-spacer-xs);
-
   //Set base button colors
   color: var(--pf-c-button--Color);
   border-color: var(--pf-c-button--BorderColor);
   background-color: var(--pf-c-button--BackgroundColor);
+ 
   &:after {
     border-color: var(--pf-c-button--BorderColor);
   }
@@ -56,6 +56,11 @@
     white-space: normal;
   }
 
+  .pf-c-input-group & {
+    // Buttons are 100% width on mobile except within an input group.
+    width: auto;
+  }
+  
   //Set disabled button colors
   &:disabled,
   &.pf-m-disabled {
@@ -95,3 +100,33 @@
     }
   }
 }
+
+// Scroll to top button for article and search page.
+#scroll-to-top {
+    background-color: rgba(0, 0, 0, 0.8);
+    bottom: 20px;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+    height: 44px;
+    line-height: 24px;
+    opacity: 0.8;
+    padding: 10px 13px;
+    position: fixed;
+    right: 0;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 49px;
+    z-index: 1;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      opacity: 1;
+    }
+}
+
+
+
