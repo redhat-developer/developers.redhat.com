@@ -98,7 +98,8 @@ class WordpressApi implements RemoteContentApiInterface {
         $response = $request->getBody()->getContents();
         $data = json_decode($response);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $this->cacheBin->set($cid, $data, time() + 3600);
+        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
@@ -172,7 +173,8 @@ class WordpressApi implements RemoteContentApiInterface {
         // processed/formatted results from getContentCompositeMultiple().
         $data = $this->getContentCompositeMultiple($results);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $this->cacheBin->set($cid, $data, time() + 3600);
+        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
@@ -222,7 +224,8 @@ class WordpressApi implements RemoteContentApiInterface {
         $api_results = json_decode($response);
         $data = $api_results;
         // Persist this data to the wordpress_api cache bin for an hour.
-        $this->cacheBin->set($cid, $data, time() + 3600);
+        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
@@ -308,7 +311,8 @@ class WordpressApi implements RemoteContentApiInterface {
 
         $data = $results;
         // Persist this data to the wordpress_api cache bin for an hour.
-        $this->cacheBin->set($cid, $data, time() + 3600);
+        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
@@ -470,7 +474,8 @@ class WordpressApi implements RemoteContentApiInterface {
         $response = $request->getBody()->getContents();
         $data = json_decode($response);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $this->cacheBin->set($cid, $data, time() + 3600);
+        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
