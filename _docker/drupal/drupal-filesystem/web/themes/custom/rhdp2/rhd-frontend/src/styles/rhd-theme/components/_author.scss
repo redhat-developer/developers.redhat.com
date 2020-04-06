@@ -78,8 +78,15 @@
 
   }
 
-  &.node--view-mode-full hr {
-    margin: 30px 0;
+  &.node--view-mode-full {
+
+    img {
+      height: auto;
+    }
+
+    hr {
+      margin: 30px 0;
+    }
   }
 
   .view-author-articles {
