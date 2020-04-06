@@ -16,13 +16,14 @@ export default class RHDPSearchSortPage extends HTMLElement {
         this._sortChange = this._sortChange.bind(this);
     }
 
-    template = `<p>
-        <span>Sort results by</span>
-        <select>
-        <option value="relevance">Relevance</option>
-        <option value="most-recent">Most Recent</option>
-        </select>
-        </p>`; 
+    template = `
+        <div class="rhd-c-select">
+            <select>
+              <option value="relevance" selected>Sort by Relevance</option>
+              <option value="most-recent">Sort by Most Recent</option>
+            </select>
+            <i class="fas fa-caret-down"></i>
+        </div>`;
 
     connectedCallback() {
         this.innerHTML = this.template;
@@ -30,8 +31,8 @@ export default class RHDPSearchSortPage extends HTMLElement {
         this.querySelector('select').onchange = this._sortChange;
     }
 
-    static get observedAttributes() { 
-        return ['sort']; 
+    static get observedAttributes() {
+        return ['sort'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -45,10 +46,10 @@ export default class RHDPSearchSortPage extends HTMLElement {
             if ( e.target['options'] && typeof e.target['selectedIndex'] !== 'undefined') {
                 this.sort = e.target['options'][e.target['selectedIndex']].value;
                 this.dispatchEvent(new CustomEvent('sort-change', {
-                    detail: { 
-                        sort: this.sort 
-                    }, 
-                    bubbles: true 
+                    detail: {
+                        sort: this.sort
+                    },
+                    bubbles: true
                 }));
             }
         }

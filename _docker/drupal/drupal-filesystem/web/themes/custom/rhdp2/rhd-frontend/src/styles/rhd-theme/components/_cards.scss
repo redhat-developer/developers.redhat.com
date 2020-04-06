@@ -51,32 +51,32 @@
 }
 
 .rhd-m-link {
-  color: $link-color;
+  color: $rhd-theme--link--color;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: $link-color-hover;
+    color: $rhd-theme--link-hover--color;
 
     &>i,
     &>.svg-inline--fa {
-      color: $link-color-hover !important;
+      color: $rhd-theme--link-hover--color !important;
     }
   }
   &:visited {
-    color: $link-color;
+    color: $rhd-theme--link--color;
   }
 
   &>i,
   &>.svg-inline--fa {
-    color: $link-color;
+    color: $rhd-theme--link--color;
 
     &:hover,
     &:active,
     &:focus,
     &:visited {
-      color: $link-color-hover;
+      color: $rhd-theme--link-hover--color;
     }
   }
 }
@@ -86,6 +86,7 @@
   padding: 0;
   box-shadow: none;
   border: 2px solid $light-gray;
+  color: var(--pf-c-card--Color);
 
   hr {
     border-top: var(--rhd-theme--border-width-md) solid #ededed;
@@ -133,16 +134,6 @@
   .rhd-c-card__footer+hr {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-  }
-
-  a {
-    .dark & {
-      color: var(--rhd-c-button--m-link--Color);
-
-      &:hover {
-        color: var(--rhd-c-button--m-link--hover--Color);
-      }
-    }
   }
   
   &.rhd-c-card-logo {

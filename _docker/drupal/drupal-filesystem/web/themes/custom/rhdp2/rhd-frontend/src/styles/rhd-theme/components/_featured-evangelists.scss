@@ -23,6 +23,12 @@
   &.no-padding-bottom {
     @extend .pf-u-pb-0;
   }
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+  }
 }
 
 .rhd-c-featured-evangelists--tile{

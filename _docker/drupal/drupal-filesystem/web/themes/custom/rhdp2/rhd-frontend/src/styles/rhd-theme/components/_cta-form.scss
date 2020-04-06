@@ -4,15 +4,6 @@
     &.has-background {
         padding: 18px 24px 8px 24px;
     }
-    &.dark {
-        background: var(--rhd-theme--component-background--color-dark);
-        h2, p {
-            color: $white;
-        }
-    }
-    &.background-gray {
-        background: $rhd-theme--component-background--color-extra-light;
-    }
     &.centered {
         text-align: center;
         .field--name-field-title, .header {
@@ -39,20 +30,6 @@
             margin: 0 var(--rhd-theme--container-spacer-sm) var(--rhd-theme--container-spacer-sm) 0;
         }
     }
-
-    &.dark {
-        .pf-c-form__group {
-            .pf-c-check,
-            .pf-c-radio {
-                .pf-c-check__label, .pf-c-radio__label {
-                    color: $white;
-                }
-            }
-            .pf-c-form__label {
-                color: $white;
-            }
-        }
-    }
 }
 
 // @to-do: There are multiple versions of this.
@@ -60,36 +37,5 @@
     width: 100%;
     .eloqua-iframe {
         width: 100%;
-    }
-}
-
-.region.region-content {
-    form {
-        margin: var(--rhd-theme--container-spacer-md) 0;
-        @extend .pf-c-form;
-        input[type=submit] {
-            margin-top: var(--rhd-theme--container-spacer-md);
-            @extend .pf-c-button;
-            @extend .pf-m-heavy;
-        }
-
-
-        .form-item {
-            @extend .pf-c-form__group;
-            margin: var(--rhd-theme--container-spacer-md) 0;
-            label {
-                @extend .pf-c-form__label;
-                @extend .pf-c-form__label-text;
-            }
-            input {
-                &.form-text {
-                    @extend .pf-c-form-control;
-                }
-            }
-            .description {
-                @extend .pf-c-form__helper-text;
-            }
-        }
-
     }
 }
