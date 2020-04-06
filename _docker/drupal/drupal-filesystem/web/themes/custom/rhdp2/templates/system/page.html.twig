@@ -57,6 +57,13 @@
             {{ universal_menu }}
           </nav>
         </div>
+        {% if akamai_cache_clear_button|render %}
+          <div class="pf-l-flex rhd-c-nav--rh-akamai-cache-clear">
+            <nav class="pf-c-nav" aria-label="Local">
+              {{ akamai_cache_clear_button }}
+            </nav>
+          </div>
+        {% endif %}
         <div class="pf-l-flex rhd-c-nav--rh-universal-login">
           <nav class="pf-c-nav" aria-label="Local">
             <ul class="pf-c-nav__tertiary-list">
