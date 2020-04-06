@@ -53,22 +53,6 @@ export default class DPSearchOneBox extends PFElement {
         a:hover svg {
             fill: #004c98;
         }
-        
-        a.medium-cta {
-            background-color: transparent;
-            border: 1px solid #c00;
-            color: #c00;
-            line-height: 1.44;
-            padding: 8px 40px;
-        }
-        a.medium-cta.blue {
-            border-color: #06c;
-            color: #06c;
-        }
-        a.medium-cta.blue:hover {
-            background-color: #06c;
-            color: #fff;
-        }
         .links {
             display: flex;
             flex-direction: row;
@@ -106,7 +90,7 @@ export default class DPSearchOneBox extends PFElement {
     ${this.feature && this.feature.heading && this.feature.heading.url && this.feature.heading.text ? `<h4><a href="${this.feature.heading.url}">${this.feature.heading.text}</a></h4>` : ''}
     ${this.feature && this.feature.details ? `<p>${this.feature.details}</p>` : ''}
     <div class="links">
-    ${this.feature && this.feature.button && this.feature.button.url && this.feature.button.text ? `<a href="${this.feature.button.url}?onebox=${this.feature.id}" class="button medium-cta blue">${this.feature.button.text}</a>` : ''}
+    ${this.feature && this.feature.button && this.feature.button.url && this.feature.button.text ? `<a href="${this.feature.button.url}?onebox=${this.feature.id}" class="pf-c-button pf-m-secondary">${this.feature.button.text}</a>` : ''}
     ${this.feature && this.feature.slots && this.feature.slots.length > 0 ? `
         ${this.feature.slots.map(slot =>  this.slotTemplate`${slot}${this.feature.id}`).join('')}
     ` : ''}

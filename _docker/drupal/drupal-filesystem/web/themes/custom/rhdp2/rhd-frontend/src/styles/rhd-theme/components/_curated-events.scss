@@ -8,7 +8,7 @@
       margin-bottom: var(--pf-c-content--MarginBottom);
     }
   }
-  
+
   &__item-title {
     @extend .pf-u-mb-0;
   }
@@ -29,20 +29,3 @@
   }
 }
 
-// OTHER VISUAL STYLES
-.rhd-c-curated-events {
-  &.gray {
-    .rhd-c-curated-events__item {
-      border-top: 2px dotted #FFF;
-    }
-  }
-
-  &.dark {
-    p, small,
-    h2, h2.pf-c-title,
-    .rhd-c-author--tile-title,
-    .rhd-c-curated-events__item-title > a{
-      color: #FFF;
-    }
-  }
-}

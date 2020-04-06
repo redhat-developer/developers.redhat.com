@@ -205,7 +205,7 @@ $custom-nav-breakpoint: 1150px;
   }
 
   .pf-c-nav__scroll-button {
-    &:hover, &:focus, &:visited, {
+    &:hover, &:focus, &:visited {
       color: var(--pf-global--Color--100);
     }
     @media screen and (max-width: $pf-global--breakpoint--lg) {
@@ -302,6 +302,8 @@ $custom-nav-breakpoint: 1150px;
 
   .pf-c-brand {
     width: 100px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .pf-c-nav__tertiary-list li:first-of-type {

@@ -7,69 +7,8 @@
     margin-top: 32px;
   }
 
-  .topics {
-    color: #151515;
-    display: inline-block;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
 
-    a {
-      &:after {
-        color: #444;
-        content: ", ";
-      }
 
-      &:first-of-type {
-        &:last-of-type {
-          &:after {
-            content: " ";
-          }
-        }
-      }
-
-      &:last-of-type {
-        &:after {
-          content: " ";
-        }
-      }
-    }
-
-    @media (max-width: $pf-global--breakpoint--sm) {
-      width: 100%;
-      margin-top: 16px;
-    }
-  }
-
-  .changed-date,
-  .publish-date {
-    color: #656565;
-    font-size: 14px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 32px;
-  }
-
-  .share-buttons {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 24px;
-
-    .a2a_count,
-    .a2a_svg {
-      border-radius: 0 !important;
-      margin-right: 8px;
-    }
-  }
-
-  .social-links {
-
-    .a2a_count,
-    .a2a_svg {
-      border-radius: 0 !important;
-      margin-right: 8px;
-    }
-  }
 
   .article-info-left {
     h1 {

@@ -5,9 +5,11 @@ dependencies:
   config:
     - entity_browser.browser.image_browser
     - field.field.node.assembly_page.field_hide_title
+    - field.field.node.assembly_page.field_kiosk_mode
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
+    - field.field.node.assembly_page.field_short_description
     - field.field.node.assembly_page.field_tags
     - field.field.node.assembly_page.field_tax_audience_segment
     - field.field.node.assembly_page.field_tax_business_unit
@@ -50,7 +52,7 @@ third_party_settings:
         - field_tax_stage
         - field_tags
       parent_name: ''
-      weight: 11
+      weight: 7
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -70,25 +72,32 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 10
     region: settings
     settings: {  }
     third_party_settings: {  }
   field_hide_title:
-    weight: 5
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_kiosk_mode:
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_meta_tags:
-    weight: 8
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: settings
   field_sections:
-    weight: 6
+    weight: 3
     settings:
       form_mode: default
       override_labels: true
@@ -107,7 +116,7 @@ content:
     region: content
   field_share_image:
     type: entity_browser_file
-    weight: 7
+    weight: 6
     settings:
       entity_browser: image_browser
       field_widget_remove: true
@@ -119,6 +128,14 @@ content:
       view_mode: default
     region: fields
     third_party_settings: {  }
+  field_short_description:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: fields
   field_tags:
     weight: 37
     settings:
@@ -196,32 +213,32 @@ content:
     region: fields
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 9
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: settings
   path:
     type: path
-    weight: 3
+    weight: 9
     region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 12
+    weight: 14
     region: settings
     settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 4
+    weight: 0
     region: content
     settings:
       size: 60
@@ -229,7 +246,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 0
+    weight: 8
     region: settings
     settings:
       size: 60
@@ -237,7 +254,7 @@ content:
       match_operator: CONTAINS
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 13
     region: settings
     settings: {  }
     third_party_settings: {  }

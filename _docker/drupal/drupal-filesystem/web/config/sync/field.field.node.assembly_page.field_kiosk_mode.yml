@@ -1,0 +1,23 @@
+uuid: f4baab55-d7a7-4322-bba5-842296d97253
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_kiosk_mode
+    - node.type.assembly_page
+id: node.assembly_page.field_kiosk_mode
+field_name: field_kiosk_mode
+entity_type: node
+bundle: assembly_page
+label: 'Kiosk Mode'
+description: "Show page with minimal navigation to maximize the display space of page.\r\n"
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

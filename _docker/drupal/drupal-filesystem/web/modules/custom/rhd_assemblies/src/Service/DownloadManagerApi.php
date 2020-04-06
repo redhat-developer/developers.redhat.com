@@ -4,7 +4,7 @@ namespace Drupal\rhd_assemblies\Service;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactory;
-use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;
 
@@ -32,7 +32,7 @@ class DownloadManagerApi {
   /**
    * Entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManager
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 
@@ -62,7 +62,7 @@ class DownloadManagerApi {
    *
    * @param GuzzleHttp\ClientInterface $client
    *   The Guzzle client.
-   * @param Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   * @param Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache_bin
    *   Download Manager cache bin service.
@@ -71,7 +71,7 @@ class DownloadManagerApi {
    * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   Config factory service.
    */
-  public function __construct(ClientInterface $client, EntityTypeManager $entity_type_manager, CacheBackendInterface $cache_bin, LoggerChannelFactoryInterface $logger_factory, ConfigFactory $config_factory) {
+  public function __construct(ClientInterface $client, EntityTypeManagerInterface $entity_type_manager, CacheBackendInterface $cache_bin, LoggerChannelFactoryInterface $logger_factory, ConfigFactory $config_factory) {
     $this->configFactory = $config_factory;
     // If there is a Download Manager baseUrl config object, use that to set
     // the apiUrl. Else, point the apiUrl to Download Manager Prod.

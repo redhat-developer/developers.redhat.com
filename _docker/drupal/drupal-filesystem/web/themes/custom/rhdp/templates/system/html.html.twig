@@ -140,7 +140,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
       }
 
       dd.page.attributes.queryParameters = window.location.href.split('?')[1] ? window.location.href.split('?')[1].replace(/=/g,':').split('&') : "";
-      dd.page.category = { primaryCategory: primary, subCategories: subs };
+      dd.page.category.primaryCategory = primary;
+      dd.page.category.subCategories = subs;
       dd.page.pageInfo.destinationURL = window.location.href;
       dd.page.pageInfo.pageName = bc.length === 1 && bc[0] === "" ? 'home page' : bc[0];
       dd.page.pageInfo.breadCrumbs = [dd.page.category.primaryCategory, dd.page.category.subCategories[0] || ""];
@@ -284,5 +285,12 @@ window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){va
     </div>
 
     <js-bottom-placeholder token="{{ placeholder_token }}">
+    {% if (rhd_dtm_code) %}
+    <script type="text/javascript">
+      if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+        _satellite.pageBottom();
+      }
+    </script>
+    {% endif %}
   </body>
 </html>

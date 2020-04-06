@@ -1,0 +1,21 @@
+uuid: abc3e596-dc3d-4416-af44-b4c2d748de80
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - field.storage.assembly.field_display_cta_timer
+  module:
+    - datetime
+id: assembly.call_to_action.field_display_cta_timer
+field_name: field_display_cta_timer
+entity_type: assembly
+bundle: call_to_action
+label: 'Display CTA Timer'
+description: 'Provide a datetime (EST / GMT-05:00) if you would like to hide a CTA button and display a countdown/timer ex. preceding an event like a webinar. Once this datetime has been reached, the countdown/timer will be hidden and the CTA will display.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

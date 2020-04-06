@@ -16,6 +16,17 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
         <div class="row">
             <div class="large-24 columns">
                 <h2 class="subpage-name" id="community">Help</h2>
+                {#
+                 # This "How do I report an issue" section will only display for
+                 # the RHAMT product. This section was added as a result of a
+                 # request from Marco Rizzi.
+                 #
+                 # @see https://projects.engineering.redhat.com/browse/RHDX-367
+                 #}
+                {% if product_machine_name == 'migrationtoolkit' %}
+                    <h4>How do I report an issue?</h4>
+                    <p>Our issue tracking system is available on <a href="https://issues.redhat.com/projects/WINDUP/issues">https://issues.redhat.com/projects/WINDUP/issues</a>. You may use your <a href="https://access.redhat.com">access.redhat.com</a> user account to login to this system. To find out how to use the issue tracking system, refer to <a href="https://confluence.atlassian.com/display/JIRA/JIRA+Documentation">https://confluence.atlassian.com/display/JIRA/JIRA+Documentation</a></p>
+                {% endif %}
                 {% if (show_forums or show_stack_overflow) %}
                     <h4>Community Q&amp;A</h4>
                     <p>

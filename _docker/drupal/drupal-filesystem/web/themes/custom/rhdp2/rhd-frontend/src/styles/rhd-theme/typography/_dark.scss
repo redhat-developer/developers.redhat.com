@@ -1,38 +1,34 @@
 .pf-c-content.pf-m-dark {
-  background-color: var(--pf-global--BackgroundColor--dark-100);
-  color: #fff;
+  //todo
+  //background-color: var(--pf-global--BackgroundColor--dark-100);
+  //color: #fff;
   a {
-    @extend .pf-m-link-on-dark;
+    //todo
+    //@extend .pf-m-link-on-dark;
   }
   a.pf-m-link--secondary-on-dark {
-    @extend .pf-m-link--secondary-on-dark;
+    //todo
+    //@extend .pf-m-link--secondary-on-dark;
   }
 }
 
 .pf-c-title.pf-m-dark {
-  background-color: var(--pf-global--BackgroundColor--dark-100);
-  color: #fff;
+  //todo
+  //background-color: var(--pf-global--BackgroundColor--dark-100);
+  //color: #fff;
 }
 
 .pf-m-link.pf-m-dark {
-  background-color: var(--pf-global--BackgroundColor--dark-100);
-  @extend .pf-m-link-on-dark;
-}
-
-a,
-.pf-c-content a {
-  .dark & {
-    color: var(--rhd-c-button--m-link-dark--Color);
-    &:hover {
-      color: var(--rhd-c-button--m-link-dark--hover--Color);
-    }
-  }
+  //todo
+  //background-color: var(--pf-global--BackgroundColor--dark-100);
+  //@extend .pf-m-link-on-dark;
 }
 
 // Set the dark background for a <section>, even if it already resides in a light <section>
 // Not doing this will results in a grey background color
 .pf-c-page__main-section.pf-m-light {
   .pf-c-page__main-section.pf-m-dark-100 {
-    background-color: #151515;
+    //todo
+    //background-color: #151515;
   }
 }

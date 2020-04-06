@@ -24,13 +24,12 @@ base-theme:
       # NOTE: Provides mostly CSS variables and a few utility classes.
       https://static.redhat.com/libs/redhat/redhat-theme/2/advanced-theme.css: { type: external }
       # NOTE: Provides layout classes for grids and alignments.
-      css/pfe-layouts/pfe-layouts.min.css: { minified: true }
       rhd-frontend/dist/css/rhd.min.css: { minified: true }
       rhd-frontend/dist/css/rhd.legacy.css: { minified: true }
   js:
     # This handles JS for our navigation menu(s).
     js/menu.js: {}
-    # Add our own active link class pfe-m-current
+    # Add our own active link class
     js/active-link.js: {}
     js/articles.js: {}
     # RHD FontAwesome Kit
@@ -64,7 +63,6 @@ rhdp-web-components:
     rhd-frontend/dist/js/rhd/rhdp-thankyou-page.js: { minified: true, preprocess: false }
     rhd-frontend/dist/js/rhd/rhdp-tryitnow.js: { minified: true, preprocess: false }
     rhd-frontend/dist/js/rhd/dp-category-list/dp-category-list-wc.js: { minified: true, preprocess: false }
-    rhd-frontend/dist/js/rhd/dp-search/dp-search.js: { minified: true, preprocess: false }
     rhd-frontend/dist/js/rhd/rhdp-downloads/rhdp-downloads.js: { minified: true, preprocess: false }
     rhd-frontend/dist/js/rhd/rhdp-projects/rhdp-project-wc.js: { minified: true, preprocess: false }
     rhd-frontend/dist/js/rhd/rhdp-search/rhdp-search.js: { minified: true, preprocess: false }
@@ -90,3 +88,10 @@ show-more:
   dependencies:
     - core/jquery
     - core/drupal
+
+# Add to any social buttons
+add-to-any:
+  js:
+    js/add-to-any.js: {}
+    https://static.addtoany.com/menu/page.js: {type: external, minified: true}
+

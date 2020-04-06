@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.assembly_page.field_hide_title
+    - field.field.node.assembly_page.field_kiosk_mode
     - field.field.node.assembly_page.field_meta_tags
     - field.field.node.assembly_page.field_sections
     - field.field.node.assembly_page.field_share_image
+    - field.field.node.assembly_page.field_short_description
     - field.field.node.assembly_page.field_tags
     - field.field.node.assembly_page.field_tax_audience_segment
     - field.field.node.assembly_page.field_tax_business_unit
@@ -58,8 +60,10 @@ content:
     region: content
 hidden:
   field_hide_title: true
+  field_kiosk_mode: true
   field_meta_tags: true
   field_share_image: true
+  field_short_description: true
   field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true

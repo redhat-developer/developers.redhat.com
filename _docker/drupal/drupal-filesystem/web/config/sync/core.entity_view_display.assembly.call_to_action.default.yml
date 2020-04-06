@@ -6,11 +6,15 @@ dependencies:
     - assembly.assembly_type.call_to_action
     - field.field.assembly.call_to_action.field_audience_selection
     - field.field.assembly.call_to_action.field_background_image
+    - field.field.assembly.call_to_action.field_calendar_event
     - field.field.assembly.call_to_action.field_cta_content
     - field.field.assembly.call_to_action.field_cta_link
+    - field.field.assembly.call_to_action.field_display_cta_timer
+    - field.field.assembly.call_to_action.field_display_cta_timer_label
     - field.field.assembly.call_to_action.field_navigation_title
     - field.field.assembly.call_to_action.field_title
   module:
+    - datetime
     - fences
     - field_layout
     - layout_discovery
@@ -25,6 +29,22 @@ targetEntityType: assembly
 bundle: call_to_action
 mode: default
 content:
+  field_calendar_event:
+    weight: 5
+    label: hidden
+    settings:
+      view_mode: ics
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ics-wrapper
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
   field_cta_content:
     weight: 1
     label: hidden
@@ -44,7 +64,7 @@ content:
     label: hidden
     settings:
       trim_length: ''
-      class: 'button heavy-cta'
+      class: 'pf-c-button pf-m-heavy'
       url_only: false
       url_plain: false
       rel: 0
@@ -59,6 +79,30 @@ content:
         fences_label_classes: ''
     type: link_class
     region: content
+  field_display_cta_timer:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      timezone_override: UTC
+      format_type: html_datetime
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+  field_display_cta_timer_label:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_title:
     weight: 0
     label: hidden

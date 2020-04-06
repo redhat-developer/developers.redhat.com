@@ -1,0 +1,19 @@
+uuid: e55e6ad5-70f0-41ed-97d2-af7bcb1e7f95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.assembly_page
+id: node.assembly_page.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: assembly_page
+label: 'Short Description'
+description: 'This is used for the meta description field for social media, as well as external and internal search engines.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

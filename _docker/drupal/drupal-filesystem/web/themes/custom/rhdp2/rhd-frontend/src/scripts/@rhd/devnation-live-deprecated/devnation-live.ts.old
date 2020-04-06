@@ -143,7 +143,7 @@ class DevNationLiveApp extends HTMLElement {
                 <div class="large-14 small-24 columns">
                     <h5 class="caps session-label">Session:</h5>
                     <p class="abstract">${next.abstract}</p>
-                    <a href="${next.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>
+                    <a href="${next.inxpo}" target="_blank" class="pf-c-button pf-m-heavy">REGISTER</a>
                 </div>
                 <div class="large-10 columns">
                     <h5 class="caps session-label">Speaker(s):</h5>
@@ -167,7 +167,7 @@ class DevNationLiveApp extends HTMLElement {
                                     <p>${sess.date}</p>
                                     <p>${sess.abstract}</p>
                                     ${sess.register ? `
-                                    <a href="${sess.inxpo}" target="_blank" class="button heavy-cta">REGISTER</a>` : ''
+                                    <a href="${sess.inxpo}" target="_blank" class="pf-c-button pf-m-heavy">REGISTER</a>` : ''
                                     }
                                 </div>
                             </div>

@@ -1,0 +1,142 @@
+uuid: 5ad59737-f7be-4e5b-8861-a056f58f8653
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.ics
+    - field.field.node.events.field_data_tags
+    - field.field.node.events.field_description
+    - field.field.node.events.field_end_date
+    - field.field.node.events.field_event_background_image
+    - field.field.node.events.field_event_format
+    - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_location
+    - field.field.node.events.field_event_type
+    - field.field.node.events.field_ics_addevent_id
+    - field.field.node.events.field_ics_subtext
+    - field.field.node.events.field_ics_title
+    - field.field.node.events.field_more_details
+    - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_presenter_s_
+    - field.field.node.events.field_region
+    - field.field.node.events.field_short_description
+    - field.field.node.events.field_site
+    - field.field.node.events.field_solution_type
+    - field.field.node.events.field_start_date
+    - field.field.node.events.field_tags
+    - field.field.node.events.field_target_product
+    - field.field.node.events.field_tax_audience_segment
+    - field.field.node.events.field_tax_business_unit
+    - field.field.node.events.field_tax_campaign
+    - field.field.node.events.field_tax_lifecycle
+    - field.field.node.events.field_tax_product
+    - field.field.node.events.field_tax_product_line
+    - field.field.node.events.field_tax_project
+    - field.field.node.events.field_tax_promotion
+    - field.field.node.events.field_tax_region
+    - field.field.node.events.field_tax_stage
+    - field.field.node.events.field_tile_thumbnail
+    - field.field.node.events.field_title
+    - field.field.node.events.field_topics
+    - node.type.events
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: hoWcPba0qRYph0kMZg88nKXedYAzzhmimRv-gpCCd70
+id: node.events.ics
+targetEntityType: node
+bundle: events
+mode: ics
+content:
+  field_ics_addevent_id:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_ics_subtext:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: p
+        fences_field_classes: ''
+        fences_field_item_tag: em
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_ics_title:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: h6
+        fences_field_classes: ''
+        fences_field_item_tag: strong
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  workbench_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_data_tags: true
+  field_description: true
+  field_end_date: true
+  field_event_background_image: true
+  field_event_format: true
+  field_event_image: true
+  field_event_location: true
+  field_event_type: true
+  field_more_details: true
+  field_on_homepage: true
+  field_presenter_s_: true
+  field_region: true
+  field_short_description: true
+  field_site: true
+  field_solution_type: true
+  field_start_date: true
+  field_tags: true
+  field_target_product: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_tile_thumbnail: true
+  field_title: true
+  field_topics: true
+  langcode: true
+  links: true
+  published_at: true

@@ -57,16 +57,20 @@ export default class RHDPSearchFilterGroup extends HTMLElement {
     }
 
     template = (strings, name) => {
-        return `<h6 class="showFilters heading"><span class="group-name">${name}</span><span class="toggle"><i class='fa fa-chevron-right' aria-hidden='true'></i></span></h6>
+        return `
+        <div class="showFilters heading">
+          <span class="group-name">${name}</span>
+          <span class="toggle"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+        </div>
         <div class="group hide">
             <div class="primary"></div>
             <div class="secondary hide"></div>
-            <a href="#" class="more">Show More</a>
-        </div>`; 
+            <a href="#" class="more" data-search-action="more">Show More</a>
+        </div>`;
     };
 
     connectedCallback() {
-        this.querySelector('h6').addEventListener('click', e => {
+        this.querySelector('.heading').addEventListener('click', e => {
             e.preventDefault();
             this.toggle = !this.toggle;
         });
@@ -77,8 +81,8 @@ export default class RHDPSearchFilterGroup extends HTMLElement {
         this.toggle = true;
     }
 
-    static get observedAttributes() { 
-        return ['name', 'key', 'toggle', 'items', 'more']; 
+    static get observedAttributes() {
+        return ['name', 'key', 'toggle', 'items', 'more'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

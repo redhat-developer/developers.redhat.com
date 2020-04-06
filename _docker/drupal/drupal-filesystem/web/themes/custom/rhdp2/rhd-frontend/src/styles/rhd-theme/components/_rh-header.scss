@@ -1,15 +1,10 @@
 .rh-universal-header {
     background-color: $soft-dark;
-    background-color: var(--rhd--theme--color--ui--soft-dark, $soft-dark);
+    background-color: var(--rhd-theme--color--ui--soft-dark, $soft-dark);
 }
 
 .rh-header-logo {
   height: 50px;
   max-width: 100px;
   padding: 5px;
-}
-
-.rh-nav-universal {
-    --pfe-theme--color--ui-link: #{$white};
-    --pfe-theme--link--text-decoration: none;
 }

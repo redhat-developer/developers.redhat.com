@@ -11,6 +11,9 @@ dependencies:
     - field.field.node.events.field_event_image
     - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
+    - field.field.node.events.field_ics_addevent_id
+    - field.field.node.events.field_ics_subtext
+    - field.field.node.events.field_ics_title
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
     - field.field.node.events.field_presenter_s_
@@ -180,6 +183,9 @@ hidden:
   field_event_image: true
   field_event_location: true
   field_event_type: true
+  field_ics_addevent_id: true
+  field_ics_subtext: true
+  field_ics_title: true
   field_on_homepage: true
   field_region: true
   field_short_description: true

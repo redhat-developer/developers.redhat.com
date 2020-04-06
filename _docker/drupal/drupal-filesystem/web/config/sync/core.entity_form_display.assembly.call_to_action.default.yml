@@ -6,12 +6,16 @@ dependencies:
     - assembly.assembly_type.call_to_action
     - field.field.assembly.call_to_action.field_audience_selection
     - field.field.assembly.call_to_action.field_background_image
+    - field.field.assembly.call_to_action.field_calendar_event
     - field.field.assembly.call_to_action.field_cta_content
     - field.field.assembly.call_to_action.field_cta_link
+    - field.field.assembly.call_to_action.field_display_cta_timer
+    - field.field.assembly.call_to_action.field_display_cta_timer_label
     - field.field.assembly.call_to_action.field_navigation_title
     - field.field.assembly.call_to_action.field_title
     - image.style.thumbnail
   module:
+    - datetime
     - field_layout
     - image
     - layout_discovery
@@ -40,6 +44,15 @@ content:
       progress_indicator: throbber
     region: content
     third_party_settings: {  }
+  field_calendar_event:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_cta_content:
     weight: 7
     settings:
@@ -55,6 +68,20 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_display_cta_timer:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_display_cta_timer_label:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_navigation_title:
     weight: 4

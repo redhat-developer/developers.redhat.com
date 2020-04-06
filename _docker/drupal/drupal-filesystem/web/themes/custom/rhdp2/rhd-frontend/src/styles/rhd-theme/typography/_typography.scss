@@ -1,3 +1,9 @@
+:root {
+  // Text link decoration
+  --pf-global--link--TextDecoration: none;
+  --pf-theme--link--text-decoration: none;
+  --pf-theme--color--ui-link: #{$rhd-theme--link--color};
+}
 .pf-c-title.pf-m-4xl {
   @media screen and (min-width: 992px) {
     font-family: $rhd-font-stack-display;
@@ -22,10 +28,10 @@
 }
 
 .tile-title {
-  font-size: var(--pfe-theme--font-size--epsilon, 22px);
+  font-size: map-get($rhd-font-size, "med");
 
   a {
-    color: var(--pfe-theme--color--text, #151515);
+    color: $rhd-theme--font--color;
   }
 }
 
@@ -45,8 +51,6 @@ h4,
 h5,
 h6 {
   font-family: $rhd-font-stack-display;
-  --pfe-theme--font-family--heading: $rhd-font-stack-display;
-  font-family: var(--pfe-theme--font-family--heading, $rhd-font-stack-display);
 
   &.header-link>a {
     color: inherit;
@@ -163,31 +167,9 @@ p,
 
 a {
   font-family: $rhd-font-stack-text;
-  &#scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 0;
-    background-color: #333;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 44px;
-    height: 44px;
-    font-size: 24px;
-    line-height: 24px;
-    vertical-align: middle;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px 13px;
-    text-decoration: none;
-    z-index: 1;
-    opacity: 0.8;
-    display: none;
 
-    &:focus,
-    &:active,
-    &:hover {
-      outline: none;
-      opacity: 1;
-    }
+  &:focus, &:active {
+    outline: none;
   }
 
   .pf-c-content & {
