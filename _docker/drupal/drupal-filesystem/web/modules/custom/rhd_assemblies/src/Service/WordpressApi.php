@@ -145,14 +145,14 @@ class WordpressApi implements RemoteContentApiInterface {
     $query['per_page'] = $max_results;
     $query['logic'] = $select_logic_tmp;
 
-    if ($categories) {
-      if (count($categories) > 0) {
-        $query['categories'] = implode(",", $categories);
-      }
+    if (!empty($categories)) {
+      $query['categories'] = implode(",", $categories);
+      $imploded_categories = implode('', $categories);
+      $cid = "wordpress_api:by_category:per_page_{$query['per_page']}-logic_{$query['logic']}-categories_{$imploded_categories}";
     }
-
-    $imploded_categories = implode('', $categories);
-    $cid = "wordpress_api:by_category:per_page_{$query['per_page']}-logic_{$query['logic']}-categories_{$imploded_categories}";
+    else {
+      $cid = "";
+    }
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {

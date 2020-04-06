@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb208869406a53486105f894e74f49bc",
+    "content-hash": "f6be3d20faf1f39c7aa59d919410369e",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -289,7 +289,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -2304,9 +2304,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.26",
                     "datestamp": "1558552081",
@@ -2540,7 +2537,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1565308381",
+                    "datestamp": "1565820185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2641,7 +2638,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1565820185",
+                    "datestamp": "1581530106",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2764,7 +2761,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0-rc6",
-                    "datestamp": "1577248387",
+                    "datestamp": "1581756279",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -2820,8 +2817,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.21+1-dev",
-                    "datestamp": "1578537190",
+                    "version": "8.x-3.21+2-dev",
+                    "datestamp": "1578537788",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3034,7 +3031,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/compose.git",
-                "reference": "9989113c14c9911b3c164d07363f934d9954f226"
+                "reference": "a3ddcf3b8a837d8d8286f4277f6a365147fd7933"
             },
             "require": {
                 "drupal/core": "*"
@@ -3046,7 +3043,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1574384585",
+                    "datestamp": "1581629780",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3083,7 +3080,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/compose"
             },
-            "time": "2019-11-22T04:36:15+00:00"
+            "time": "2020-02-13T22:31:51+00:00"
         },
         {
             "name": "drupal/conflict",
@@ -3604,6 +3601,7 @@
                     "Fix entity reference view": "https://www.drupal.org/files/issues/2019-06-21/2174633-309.patch",
                     "Fix add/remove group button in Bootstrap": "https://www.drupal.org/files/issues/2018-11-13/update_rearrange_filter_handler_variable_selectors-3013216-1.patch",
                     "Add disabled layout to layout_discovery and use as default in field_layout": "https://gist.githubusercontent.com/rogeralloymagnetic/512807beab2e820009d463c2b0df85ac/raw/7fc841eec763fd2bf85d47bcfc99f4df47f52d60/fieldlayoutdisableddefault.patch",
+                    "system.schema can end up with missing schema information for some modules, resulting in hook_update_N() not getting called": "https://www.drupal.org/files/issues/2020-02-05/2738879-2-68.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2019-03-05/2815221-116.patch",
                     "1356276 - Allow profiles to define a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/2018-10-12/1356276-531.patch",
@@ -4851,8 +4849,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc2+15-dev",
-                    "datestamp": "1581473874",
+                    "version": "8.x-1.0-rc3+1-dev",
+                    "datestamp": "1583798271",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -5115,7 +5113,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
-                    "datestamp": "1560544385",
+                    "datestamp": "1582916647",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5229,7 +5227,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta1",
-                    "datestamp": "1560804485",
+                    "datestamp": "1582217387",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -5835,7 +5833,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.15",
-                    "datestamp": "1578492783",
+                    "datestamp": "1582235390",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7614,9 +7612,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.16",
                     "datestamp": "1557845661",
@@ -7853,9 +7848,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.11",
                     "datestamp": "1552334285",
@@ -8248,7 +8240,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0",
-                    "datestamp": "1577874483",
+                    "datestamp": "1581756259",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8843,7 +8835,7 @@
                 "reference": "9f209b7f56dd0758516f05bc75e0a25ed45b7598"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
@@ -8851,8 +8843,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+0-dev",
-                    "datestamp": "1536675180",
+                    "version": "8.x-1.1+1-dev",
+                    "datestamp": "1578604983",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -9997,6 +9989,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -10043,6 +10036,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -15392,9 +15386,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.1",
                     "datestamp": "1556799496",
@@ -15660,9 +15651,6 @@
             },
             "type": "metapackage",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.1",
                     "datestamp": "1556799496",
@@ -17256,5 +17244,6 @@
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.2.10"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }
