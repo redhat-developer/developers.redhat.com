@@ -78,8 +78,43 @@
 
   }
 
-  &.node--view-mode-full hr {
-    margin: 30px 0;
+  &.node--view-mode-full {
+
+    img {
+      height: auto;
+    }
+
+    hr {
+      margin: 30px 0;
+    }
+
+    .a2a_svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 18px;
+      width: 18px;
+      transform: translateX(-50%) translateY(-50%);
+      svg {
+        width: 18px;
+        &.youtube,
+        &.github {
+          width: 14px;
+          margin: 0 0 1px 2px;
+        }
+      }
+    }
+    .a2a_label {
+      position: absolute!important;
+      clip: rect(1px 1px 1px 1px);
+      clip: rect(1px,1px,1px,1px);
+      clip-path: polygon(0 0,0 0,0 0);
+      -webkit-clip-path: polygon(0 0,0 0,0 0);
+      overflow: hidden;
+      height: 1px;
+      width: 1px;
+    }
+
   }
 
   .view-author-articles {
