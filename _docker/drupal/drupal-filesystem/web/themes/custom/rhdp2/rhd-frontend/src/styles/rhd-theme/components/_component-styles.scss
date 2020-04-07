@@ -66,6 +66,71 @@ $componentStyles: (
                 )
             )
     ),
+    'light-blue': (
+        'foregroundColor': var(--rhd-theme--component-font--color-light),
+        'backgroundColor': var(--rhd-theme--ui-background-dark--light-blue),
+        'cardColor': var(--rhd-theme--component-background--color-dark),
+        'linkColor': #{$white},
+        'linkHoverColor': #{$white},
+        'addImagePadding': true,
+        'buttonOverrides': (
+                'm-link': (
+                    'Color': #{$white},
+                    'hover--Color': #{$alto},
+                    'active--Color': #{$alto},
+                    'BorderColor': transparent,
+                    'hover--BorderColor': transparent,
+                    'active--BorderColor': transparent,
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': transparent,
+                    'active--BackgroundColor': transparent
+                ),
+                'm-link--secondary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$alto},
+                    'active--Color': #{$alto},
+                    'BorderColor': transparent,
+                    'hover--BorderColor': transparent,
+                    'active--BorderColor': transparent,
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': transparent,
+                    'active--BackgroundColor': transparent
+                ),
+                'm-secondary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$black},
+                    'active--Color': #{$black},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': #{$white},
+                    'active--BackgroundColor': #{$white}
+                ),
+                'm-secondary-alt': (
+                    'Color': #{$white},
+                    'hover--Color': #{$black},
+                    'active--Color': #{$black},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': #{$white},
+                    'active--BackgroundColor': #{$white}
+                ),
+                'm-tertiary': (
+                    'Color': #{$white},
+                    'hover--Color': #{$black},
+                    'active--Color': #{$black},
+                    'BorderColor': #{$white},
+                    'hover--BorderColor': #{$white},
+                    'active--BorderColor': #{$white},
+                    'BackgroundColor': transparent,
+                    'hover--BackgroundColor': #{$white},
+                    'active--BackgroundColor': #{$white}
+                )
+            )
+    ),
     'gray': (
         'foregroundColor': var(--rhd-theme--component-font--color-dark),
         'backgroundColor': var(--rhd-theme--component-background--color-light),
