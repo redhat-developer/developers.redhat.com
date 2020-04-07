@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Functions to support theming in the RHDP2 theme.
@@ -26,20 +27,19 @@ function rhdp2_preprocess_page(&$variables) {
   $variables['akamai_cache_clear_button'] = _rhdp2_build_block('akamai_cache_clear_block');
 }
 
- /**
-  * Build a render array from a block id.
-  *
-  * @param string $bid
-  *   Required: The block id to build. Defaults to a blank string.
-  *
-  * @param array $config
-  *   Optional: Array of configurations to pass to the block service.
-  *   Defaults to an empty array.
-  *
-  * @return array
-  *   Returns a render array for the block or an empty array.
-  */
-function _rhdp2_build_block($bid = '', $config = []) {
+/**
+ * Build a render array from a block id.
+ *
+ * @param string $bid
+ *   Required: The block id to build. Defaults to a blank string.
+ * @param array $config
+ *   Optional: Array of configurations to pass to the block service.
+ *   Defaults to an empty array.
+ *
+ * @return array
+ *   Returns a render array for the block or an empty array.
+ */
+function _rhdp2_build_block($bid = '', array $config = []) {
 
   // Get the block.
   $block_service = \Drupal::service('plugin.manager.block');
@@ -538,8 +538,9 @@ function rhdp2_preprocess_assembly(&$variables) {
       $variables['display_type'] = 'nav-menu';
     }
   }
-  
-  // Define if an ICS file is attached to an event on the Call to Action assembly
+
+  // Define if an ICS file is attached to an event
+  // on the Call to Action assembly.
   if ($type == 'call_to_action') {
     $variables['has_ics'] = FALSE;
     if (isset($assembly->get('field_calendar_event')->getValue()[0]['target_id'])) {
@@ -617,12 +618,12 @@ function rhdp2_preprocess_field(&$variables, $hook) {
     }
   }
 
-  // Turn AddEvent ID into links
+  // Turn AddEvent ID into links.
   if ($variables['field_name'] === 'field_ics_addevent_id') {
     $addevent_id = $variables['element']['#object']->get('field_ics_addevent_id')->getValue()[0]['value'];
-    $apple_url    = "https://www.addevent.com/event/$addevent_id+apple";
-    $google_url   = "https://www.addevent.com/event/$addevent_id+google";
-    $outlook_url  = "https://www.addevent.com/event/$addevent_id+outlook";
+    $apple_url = "https://www.addevent.com/event/$addevent_id+apple";
+    $google_url = "https://www.addevent.com/event/$addevent_id+google";
+    $outlook_url = "https://www.addevent.com/event/$addevent_id+outlook";
     $variables['addevent_links']['#markup'] = "<a href='$apple_url'>Apple</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$google_url'>Google</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$outlook_url'>Outlook</a>";
