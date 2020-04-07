@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - akamai
+    - ctools
     - user
   theme:
     - rhdp2
@@ -22,14 +23,15 @@ visibility:
   user_role:
     id: user_role
     roles:
-      media_manager: media_manager
-      layout_manager: layout_manager
-      content_creator: content_creator
-      content_team: content_team
       content_admin: content_admin
-      coding_resource_creator: coding_resource_creator
-      coding_resource_reviewer: coding_resource_reviewer
       administrator: administrator
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      katacoda_course: katacoda_course
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

@@ -48,11 +48,10 @@ function _rhdp2_build_block($bid = '', $config = []) {
     return [];
   }
 
-  // Check access.
+  // Check user access.
   $user_access = $block->access(\Drupal::currentUser());
-  $access_denied = ($user_access === FALSE) ? FALSE : TRUE;
-  $access_denied = ($user_access instanceof AccessResult && $user_access->isForbidden()) ? FALSE : TRUE;
-  if ($access_denied === FALSE) {
+  if ($user_access instanceof AccessResult && $user_access->isForbidden()
+      || is_bool($user_access) && !$user_access) {
     return [];
   }
 
