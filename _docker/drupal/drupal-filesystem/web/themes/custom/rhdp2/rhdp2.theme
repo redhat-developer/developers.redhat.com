@@ -166,6 +166,7 @@ function rhdp2_preprocess_node(&$variables) {
     }
 
     // Process Table of Contents.
+    // @TODO: this also lives in article.module.
     if ($node->hasField('field_hide_toc')) {
       $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
     }
@@ -503,7 +504,7 @@ function rhdp2_preprocess_assembly(&$variables) {
       $variables['display_type'] = 'nav-menu';
     }
   }
-  
+
   // Define if an ICS file is attached to an event on the Call to Action assembly
   if ($type == 'call_to_action') {
     $variables['has_ics'] = FALSE;

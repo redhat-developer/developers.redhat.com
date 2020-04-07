@@ -7,7 +7,7 @@
         var $showMoreButton = $($showMoreElem).next();
 
         if ($showMoreText.length >= 700) {
-          $($showMoreButton).removeClass('hide');
+          $($showMoreButton).removeClass('pf-u-hidden');
         }
 
         $($showMoreButton).on('click', function() {

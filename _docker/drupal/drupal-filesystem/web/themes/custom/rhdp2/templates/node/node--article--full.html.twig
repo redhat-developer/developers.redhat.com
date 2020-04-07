@@ -2,21 +2,13 @@
   'component',
   'author-' ~ author_location
 ] %}
-{% set article_classes = (hide_toc == TRUE) ? [
+{% set article_classes =  [
   'pf-l-grid__item',
   'pf-xs-12-col',
   'pf-m-12-col-on-xs',
   'pf-m-10-col-on-lg',
   'gsi',
-  'fetch-toc',
-  'article-content',
-] : [
-  'pf-l-grid__item',
-  'pf-xs-12-col',
-  'pf-m-12-col-on-xs',
-  'pf-m-10-col-on-lg',
-  'gsi',
-  'fetch-toc',
+  not hide_toc ? 'fetch-toc',
   'article-content',
 ] %}
 
