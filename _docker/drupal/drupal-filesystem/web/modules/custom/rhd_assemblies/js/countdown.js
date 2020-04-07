@@ -9,13 +9,13 @@
 (function ($, Drupal) {
 
   function toggleCountdownAndCTA(clock) {
-    $(clock).next('.cta__cta').removeClass('hide');
-    $(clock).addClass('hide');
+    $(clock).next('.cta__cta').removeClass('pf-u-hidden');
+    $(clock).addClass('pf-u-hidden');
   }
 
   function hideICS(icsWrapper) {
     if (icsWrapper) {
-      $(icsWrapper).addClass('hide');
+      $(icsWrapper).addClass('pf-u-hidden');
     }
   }
 
@@ -74,7 +74,7 @@
           hideICS(icsWrapper);
         }
         else {
-          $(clock).removeClass('hide');
+          $(clock).removeClass('pf-u-hidden');
           initializeClock(clock, countdownDate, icsWrapper);
         }
       });
