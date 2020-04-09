@@ -2,9 +2,6 @@
 
 namespace Drupal\rhd_assemblies\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsSelectWidget;
 
 /**

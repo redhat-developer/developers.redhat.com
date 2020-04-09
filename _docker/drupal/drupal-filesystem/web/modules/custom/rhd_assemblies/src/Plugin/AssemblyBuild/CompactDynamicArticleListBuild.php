@@ -4,13 +4,9 @@ namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\assembly\Plugin\AssemblyBuildBase;
-use Drupal\assembly\Plugin\AssemblyBuildInterface;
-use Drupal\node\Entity\Node;
-use Drupal\Core\HttpClient;
 
 /**
- * Displays a list of recent content from Wordpress and Drupal with Disqus comments and related topics
+ * Displays a list of recent content from Wordpress and Drupal.
  *
  *  @AssemblyBuild(
  *   id = "compact_dynamic_article_list",
@@ -20,12 +16,22 @@ use Drupal\Core\HttpClient;
  */
 class CompactDynamicArticleListBuild extends DynamicContentFeedBuild {
 
+  /**
+   * Builds the Compact Dyanmic Article List assembly.
+   */
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = 8;
     $this->getItems($build, $entity, $count, 'compact_dynamic_article_list_item');
-    $build['latest_comments'] = $this->getComments();
+    // @TODO RHDX-124: Currently, we are not rendering comments properly for
+    // this FE component, so I will comment this out. Once we can address this
+    // in RHDX-124, then we should return to this line and uncomment this line.
+    //
+    // $build['latest_comments'] = $this->getComments();
   }
 
+  /**
+   * Fetches comments from Disqus.
+   */
   protected function getComments() {
     $config = \Drupal::config('rhd_disqus.disqussettings');
     $shortname = $config->get('rhd_disqus_shortname') ?: FALSE;

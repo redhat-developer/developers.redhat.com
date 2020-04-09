@@ -37,7 +37,7 @@ class WppostTeaserFormatter extends FormatterBase {
       '#title' => t('View mode'),
       '#default_value' => $this->getSetting('view_mode'),
       '#required' => TRUE,
-      '#options' => ['teaser' => 'Teaser', 'tile' => 'Tile']
+      '#options' => ['teaser' => 'Teaser', 'tile' => 'Tile'],
     ];
     return $elements;
   }
@@ -66,11 +66,12 @@ class WppostTeaserFormatter extends FormatterBase {
           '#theme' => $theme,
           '#post' => $post->content,
           '#media' => $post->media,
-          '#categories' => $post->categories
+          '#categories' => $post->categories,
         ];
       }
     }
 
     return $element;
   }
+
 }

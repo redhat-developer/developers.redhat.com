@@ -5,6 +5,7 @@ namespace Drupal\rhd_assemblies\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\Renderer;
+use Drupal\node\NodeInterface;
 use Drupal\rhd_assemblies\Service\DownloadManagerApi;
 use Drupal\rhd_common\Controller\ProductPageController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -80,7 +81,7 @@ class ProductsDownloadsController extends ControllerBase {
    * field_downloads_page_content value in order to require a Downloads page
    * and route.
    *
-   * @param Node $product
+   * @param \Drupal\node\NodeInterface $product
    *   A Product node.
    *
    * @return bool
@@ -88,11 +89,11 @@ class ProductsDownloadsController extends ControllerBase {
    *   there is content for the Download Page field and the Product Machine Name
    *   field is set, returns TRUE.
    *
-   * @throws NotFoundHttpException
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
    *   If someone hits this route, but we do not have the content necessary to
    *   fetch data from download, manager, we throw a 404.
    */
-  protected function hasDownloadsPage($product) {
+  protected function hasDownloadsPage(NodeInterface $product) {
     // If the Use New Product Page field is unchecked, return FALSE.
     if (isset($product->field_use_new_product_page) && $product->get('field_use_new_product_page')->value !== '1') {
       return FALSE;

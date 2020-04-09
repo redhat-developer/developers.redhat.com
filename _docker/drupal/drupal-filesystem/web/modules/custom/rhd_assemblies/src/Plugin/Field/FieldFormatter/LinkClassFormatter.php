@@ -3,7 +3,6 @@
 namespace Drupal\rhd_assemblies\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
 
@@ -50,10 +49,11 @@ class LinkClassFormatter extends LinkFormatter {
     $element = parent::viewElements($items, $langcode);
     $class = $this->getSetting('class');
     if ($class) {
-      foreach($element as $delta => $item) {
+      foreach ($element as $delta => $item) {
         $element[$delta]['#options']['attributes']['class'][] = $class;
       }
     }
     return $element;
   }
+
 }

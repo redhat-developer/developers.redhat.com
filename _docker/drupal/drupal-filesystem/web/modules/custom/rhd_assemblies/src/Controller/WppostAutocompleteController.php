@@ -2,7 +2,6 @@
 
 namespace Drupal\rhd_assemblies\Controller;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Tags;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Controller\ControllerBase;
@@ -31,4 +30,5 @@ class WppostAutocompleteController extends ControllerBase {
 
     return new JsonResponse($results);
   }
+
 }
