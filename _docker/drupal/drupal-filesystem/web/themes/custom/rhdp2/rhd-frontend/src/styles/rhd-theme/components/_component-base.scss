@@ -1,3 +1,6 @@
+//
+//Base component class
+//
 .component {
     //isolate any absolute positioned children to the component
     position: relative;
@@ -42,34 +45,51 @@
         }
     }
 
-    /*Reset floats from old 2018 css globals */
+//
+//default component classes
+//
+
+    //Align text left
     &.left   { 
-        float: none !important; 
-    }
-    &.centered   { 
-        float: none !important; 
-    }
-    &.right  { 
-        float: none !important; 
+        text-align: left;
     }
 
-    //default component classes
+    //Align text to center
+    &.centered   { 
+        text-align: center;
+    }
+
+    //Align text right
+    &.right  { 
+        text-align: right;
+    }
+
+    //Add grey background only, legacy style not part of themeing 
     &.background-gray {
         background: $rhd-theme--component-background--color-extra-light;
     }
+
+    //Remove top vertical component spacing
     &.no-padding-top {
         @extend .pf-u-pt-0;
     }
 
+    //Remove bottom vertical component spacing
     &.no-padding-bottom {
         @extend .pf-u-pb-0;
+    }  
+
+    //no background color/transparent
+    &.no-background {
+        background-color: transparent;
     }
     
+    //Adds component padding all round used with background image or coloured backgrounds.
     &.has-background {
         @include with-background-padding;
     }
 
-    //extra component classes
+    //extra component classes used for card images
     &.image-no-crop {
         .rhd-c-card {
             img.rhd-c-card__image, img.image-style-static-item {

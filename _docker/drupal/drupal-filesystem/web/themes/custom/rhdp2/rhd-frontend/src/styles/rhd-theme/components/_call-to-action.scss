@@ -2,42 +2,15 @@
 
 .component {
   &.assembly-type-call_to_action {
-    background-color: var(--rhd-theme--ui-background-dark--light-blue);
     @include with-background-padding;
-
-    .cta__container {
-      text-align: center;
-      // @to-do: This is applied without hte .dark classname; Is this assembly always dark?
-      color: var(--rhd-theme--component-font--color-light);
-    }
 
     .cta__title,
     .cta__content {
-      // @to-do: This is applied without hte .dark classname; Is this assembly always dark?
-      color: var(--rhd-theme--component-font--color-light);
       margin-bottom: var(--rhd-theme--container-spacer-md);
     }
 
     .ics-wrapper {
       margin-bottom: var(--rhd-theme--container-spacer-md);
-    }
-
-    &.left {
-      float: none !important;
-      text-align: left;
-
-      .cta__title,
-      .cta__content,
-      .cta__cta,
-      .ics-wrapper {
-        text-align: left;
-      }
-    }
-    &.dark {
-      //background-color: var(--rhd-theme--component-background--color-dark);
-    }
-    &.no-background {
-      background-color: transparent;
     }
   }
 }
