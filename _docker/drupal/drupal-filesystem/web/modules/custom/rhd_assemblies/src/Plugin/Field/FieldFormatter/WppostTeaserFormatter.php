@@ -61,7 +61,8 @@ class WppostTeaserFormatter extends FormatterBase {
     foreach ($items as $delta => $item) {
       $id = $items[$delta]->get('target_id')->getCastedValue();
       $post = \Drupal::service('rhd_assemblies.wordpress_api')->getContentById($id);
-      if ($post) {
+
+      if (!empty($post)) {
         $element[$delta] = [
           '#theme' => $theme,
           '#post' => $post->content,

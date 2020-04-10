@@ -65,8 +65,8 @@ class WordpressApi implements RemoteContentApiInterface {
     // attribute to 'https://origin-developers.redhat.com/blog'.
     // Used for local testing
     // $this->apiUrl = 'http://localhost:8000';
-    // $this->apiUrl = 'https://developers.redhat.com/blog';
-    $this->apiUrl = 'https://origin-developers.redhat.com/blog';
+    $this->apiUrl = 'https://developers.redhat.com/blog';
+    // $this->apiUrl = 'https://origin-developers.redhat.com/blog';
     $this->client = $client;
     $this->cacheBin = $cache_bin;
     $this->loggerFactory = $logger_factory;
@@ -172,9 +172,12 @@ class WordpressApi implements RemoteContentApiInterface {
         // Pass the WP posts returned in $results, and get the
         // processed/formatted results from getContentCompositeMultiple().
         $data = $this->getContentCompositeMultiple($results);
-        // Persist this data to the wordpress_api cache bin for an hour.
-        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
-        $this->cacheBin->set($cid, $data, time() + $ttl);
+
+        if (!empty($data)) {
+          // Persist this data to the wordpress_api cache bin for an hour.
+          $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+          $this->cacheBin->set($cid, $data, time() + $ttl);
+        }
       }
       catch (\Exception $e) {
         $this->loggerFactory->get('rhd_assemblies')->error(
@@ -361,9 +364,12 @@ class WordpressApi implements RemoteContentApiInterface {
 
     if (isset($content->featured_media) && $content->featured_media) {
       $content_media = $this->getContentMedia([$content->featured_media]);
-      $item->media = reset($content_media);
-      $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
-      $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+
+      if (!empty($content_media)) {
+        $item->media = reset($content_media);
+        $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
+        $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+      }
     }
 
     if (isset($content->categories) && count($content->categories)) {
