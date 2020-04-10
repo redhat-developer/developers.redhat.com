@@ -85,6 +85,8 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   public function getContentById($id) {
     $cid = 'wordpress_api:post:' . $id;
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -93,12 +95,10 @@ class WordpressApi implements RemoteContentApiInterface {
     // If this is uncached or the cache is invalid, fetch fresh data.
     else {
       try {
-        $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
         $request = $this->client->request('GET', $feed_url);
         $response = $request->getBody()->getContents();
         $data = json_decode($response);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
         $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
@@ -131,19 +131,14 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   public function getContentByCategory(array $categories, $max_results, $select_logic) {
     $items = [];
-
     $select_logic_tmp = "or";
-
+    $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $query['per_page'] = $max_results;
+    $query['logic'] = $select_logic_tmp;
     if ($select_logic) {
       $select_logic_tmp = $select_logic[0]['value'] == "1" ? "and" : "or";
     }
-
-    // $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
-    // $feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
-    $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
-
-    $query['per_page'] = $max_results;
-    $query['logic'] = $select_logic_tmp;
 
     if (!empty($categories)) {
       $query['categories'] = implode(",", $categories);
@@ -164,18 +159,14 @@ class WordpressApi implements RemoteContentApiInterface {
         // Retrieve the WP posts from the $feed_url and decode the JSON into a
         // $results array.
         $request = $this->client->request('GET', $feed_url, ['query' => $query]);
-
         $response = $request->getBody()->getContents();
-
         $results = json_decode($response);
-
         // Pass the WP posts returned in $results, and get the
         // processed/formatted results from getContentCompositeMultiple().
         $data = $this->getContentCompositeMultiple($results);
 
         if (!empty($data)) {
           // Persist this data to the wordpress_api cache bin for an hour.
-          $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
           $this->cacheBin->set($cid, $data, time() + $ttl);
         }
       }
@@ -211,8 +202,8 @@ class WordpressApi implements RemoteContentApiInterface {
       'rest_route' => '/rh/v1/posts-by-title',
       'search' => $search,
     ];
-    $results = [];
     $cid = 'wordpress_api:search:' . $search;
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -224,10 +215,8 @@ class WordpressApi implements RemoteContentApiInterface {
         // Tries to retrieve WP posts from $feed_url using the $query params.
         $request = $this->client->request('GET', $feed_url, ['query' => $query]);
         $response = $request->getBody()->getContents();
-        $api_results = json_decode($response);
-        $data = $api_results;
+        $data = json_decode($response);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
         $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
@@ -252,10 +241,14 @@ class WordpressApi implements RemoteContentApiInterface {
    * @param int $max_results
    *   The maximum number of results to provide in the autocomplete options.
    *
-   * @return string
+   * @return string[]
    *   Returns the formatted HTML output.
    */
   public function formatAutocompleteContentOptions($api_results, $max_results) {
+    // We need to verify that we've successfully fetched posts in $api_results.
+    if (empty($api_results)) {
+      return [];
+    }
     foreach ($api_results as $api_result) {
       $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')';
       $results[] = [
@@ -291,6 +284,7 @@ class WordpressApi implements RemoteContentApiInterface {
     $pages_to_query = 1;
     $results = [];
     $cid = 'wordpress_api:categories';
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -314,7 +308,6 @@ class WordpressApi implements RemoteContentApiInterface {
 
         $data = $results;
         // Persist this data to the wordpress_api cache bin for an hour.
-        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
         $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {
@@ -464,6 +457,7 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   private function getContentMedia(array $ids) {
     $cid = 'wordpress_api:content_media:' . implode('', $ids);
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
 
     // Serve the cached Wordpress media if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -480,7 +474,6 @@ class WordpressApi implements RemoteContentApiInterface {
         $response = $request->getBody()->getContents();
         $data = json_decode($response);
         // Persist this data to the wordpress_api cache bin for an hour.
-        $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
         $this->cacheBin->set($cid, $data, time() + $ttl);
       }
       catch (\Exception $e) {

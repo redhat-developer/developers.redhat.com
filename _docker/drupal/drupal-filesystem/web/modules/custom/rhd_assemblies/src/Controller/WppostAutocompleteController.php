@@ -23,6 +23,8 @@ class WppostAutocompleteController extends ControllerBase {
     if ($input = $request->query->get('q')) {
       $typed_string = Tags::explode($input);
       $typed_string = Unicode::strtolower(array_pop($typed_string));
+
+      // Only make a request to Wordpress for queries that are >= 3 characters.
       if (strlen($typed_string) >= 3) {
         $results = \Drupal::service('rhd_assemblies.wordpress_api')->getAutocompleteContentOptions($typed_string, $count);
       }
