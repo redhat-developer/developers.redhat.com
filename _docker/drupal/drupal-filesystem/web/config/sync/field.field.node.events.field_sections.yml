@@ -1,4 +1,4 @@
-uuid: 624b864f-18fd-463e-b863-fdce2b79c76e
+uuid: b7fbf8a6-bf45-4689-893a-e4bc3c17f514
 langcode: en
 status: true
 dependencies:
@@ -38,17 +38,17 @@ dependencies:
     - assembly.assembly_type.static_content_band
     - assembly.assembly_type.video_hero
     - field.storage.node.field_sections
-    - node.type.assembly_page
+    - node.type.events
   module:
     - entity_reference_revisions
-id: node.assembly_page.field_sections
+id: node.events.field_sections
 field_name: field_sections
 entity_type: node
-bundle: assembly_page
+bundle: events
 label: Sections
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -92,5 +92,5 @@ settings:
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: content_with_image
+    auto_create_bundle: all_products_listing
 field_type: entity_reference_revisions

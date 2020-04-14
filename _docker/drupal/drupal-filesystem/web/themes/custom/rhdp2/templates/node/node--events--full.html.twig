@@ -83,11 +83,5 @@
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-
-  <h1{{ title_attributes }}>{{ label['#items'][0].value }}</h1>
-
-  <div{{ content_attributes.addClass('node__content') }}>
-    {{ content }}
-  </div>
-
+  {{ content }}
 </article>
