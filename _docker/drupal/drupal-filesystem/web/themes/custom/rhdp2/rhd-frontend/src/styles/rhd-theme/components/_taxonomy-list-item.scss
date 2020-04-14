@@ -16,6 +16,10 @@
   }
 }
 
+.rhd-c-taxonomy-list__image-container {
+  position: relative;
+}
+
 .rhd-c-taxonomy-list-blur-image,
 .rhd-c-taxonomy-list__video {
   max-width: 440px;
@@ -30,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1a1a1a; // ##1a1a1a
+  background-color: #1a1a1a;
   margin-bottom: 0;
   position: inherit;
 
