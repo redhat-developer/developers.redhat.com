@@ -1,0 +1,57 @@
+uuid: 6b76e86f-b8d3-449d-8b4d-94db54924425
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.event_categories.field_landing_page
+    - field.field.taxonomy_term.event_categories.field_thumbnail
+    - image.style.static_item
+    - taxonomy.vocabulary.event_categories
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: taxonomy_term.event_categories.default
+targetEntityType: taxonomy_term
+bundle: event_categories
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_thumbnail:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: static_item
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: image
+    region: content
+hidden:
+  field_landing_page: true
+  langcode: true

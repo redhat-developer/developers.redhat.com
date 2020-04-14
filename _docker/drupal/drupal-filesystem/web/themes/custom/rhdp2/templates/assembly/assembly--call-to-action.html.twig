@@ -29,14 +29,14 @@
     {% endif %}
 
     {% if has_countdown %}
-       <div class="rhd-c-countdown hide">
+       <div class="rhd-c-countdown pf-u-hidden">
         <div class="rhd-c-countdown-label">
           {{ content.field_display_cta_timer_label|render|striptags }}
         </div>
         {{ content.field_display_cta_timer }}
       </div>
-      <div class="cta__cta hide">
-        {# The hide class is removed by countdown.js when the timer runs out. #}
+      <div class="cta__cta pf-u-hidden">
+        {# The pf-u-hidden class is removed by countdown.js when the timer runs out. #}
         {{ content.field_cta_link }}
       </div>
     {% else %}
