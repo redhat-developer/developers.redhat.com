@@ -164,32 +164,6 @@ p,
     margin-top: 10px;
   }
 }
-
-a {
-  font-family: $rhd-font-stack-text;
-
-  &:focus, &:active {
-    outline: none;
-  }
-
-  .pf-c-content & {
-    @extend %link;
-    font-family: $rhd-font-stack-text;
-    font-weight: var(--rhd-global--FontWeight-Display--medium);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &.pf-c-button:hover {
-    text-decoration: none;
-  }
-}
-
 .share-sm {
   margin-top: 2px;
 }
