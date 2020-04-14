@@ -1,0 +1,21 @@
+uuid: ddf80982-4d61-4b6c-b65f-a567b5090b74
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_end
+  module:
+    - datetime
+id: assembly.event_session.field_end
+field_name: field_end
+entity_type: assembly
+bundle: event_session
+label: 'End Date/Time'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
