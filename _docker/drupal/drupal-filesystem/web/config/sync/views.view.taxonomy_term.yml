@@ -9,7 +9,23 @@ dependencies:
     - field.storage.node.field_image
     - field.storage.node.field_short_description
     - image.style.medium
+    - taxonomy.vocabulary.audience_segment
+    - taxonomy.vocabulary.bonus_content_types
+    - taxonomy.vocabulary.business_unit
+    - taxonomy.vocabulary.campaign
+    - taxonomy.vocabulary.event_categories
+    - taxonomy.vocabulary.katacoda_course_audience
+    - taxonomy.vocabulary.lifecycle
+    - taxonomy.vocabulary.product
+    - taxonomy.vocabulary.product_categories
+    - taxonomy.vocabulary.product_line
+    - taxonomy.vocabulary.project
+    - taxonomy.vocabulary.promotion
+    - taxonomy.vocabulary.region
+    - taxonomy.vocabulary.releases
+    - taxonomy.vocabulary.stage
     - taxonomy.vocabulary.tags
+    - taxonomy.vocabulary.topics
   module:
     - image
     - node
@@ -138,7 +154,23 @@ display:
             fail: 'not found'
           validate_options:
             bundles:
+              audience_segment: audience_segment
+              bonus_content_types: bonus_content_types
+              business_unit: business_unit
+              campaign: campaign
+              event_categories: event_categories
+              katacoda_course_audience: katacoda_course_audience
+              lifecycle: lifecycle
+              product: product
+              product_categories: product_categories
+              product_line: product_line
+              project: project
+              promotion: promotion
+              region: region
+              releases: releases
+              stage: stage
               tags: tags
+              topics: topics
             access: true
             operation: view
             multiple: 0

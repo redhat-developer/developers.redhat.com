@@ -1,0 +1,19 @@
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'image_thumbnail': content.field_event_background_image,
+  'default_image_name': 'taxonomy_list_item_default_cheat_sheets.png',
+  'tag': {
+    'class': 'fa-calendar',
+    'text': 'Event',
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'published_at': content.field_start_date,
+  'body': content.field_short_description
+} only %}
+
+{#
+  'authors': node.field_cheat_sheet_author[0].value,
+#}

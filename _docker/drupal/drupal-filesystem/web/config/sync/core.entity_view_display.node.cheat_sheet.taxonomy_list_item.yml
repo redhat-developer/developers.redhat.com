@@ -93,6 +93,23 @@ content:
         fences_label_classes: ''
     type: basic_string
     region: content
+  published_at:
+    type: timestamp
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   workbench_moderation_control:
     weight: 0
     region: content
@@ -124,4 +141,3 @@ hidden:
   field_topics: true
   langcode: true
   links: true
-  published_at: true

@@ -1,0 +1,85 @@
+uuid: 78f627aa-ad23-4031-a2e5-fee1295c2913
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.assembly_page.field_hide_title
+    - field.field.node.assembly_page.field_kiosk_mode
+    - field.field.node.assembly_page.field_meta_tags
+    - field.field.node.assembly_page.field_sections
+    - field.field.node.assembly_page.field_share_image
+    - field.field.node.assembly_page.field_short_description
+    - field.field.node.assembly_page.field_tags
+    - field.field.node.assembly_page.field_tax_audience_segment
+    - field.field.node.assembly_page.field_tax_business_unit
+    - field.field.node.assembly_page.field_tax_campaign
+    - field.field.node.assembly_page.field_tax_lifecycle
+    - field.field.node.assembly_page.field_tax_product
+    - field.field.node.assembly_page.field_tax_product_line
+    - field.field.node.assembly_page.field_tax_project
+    - field.field.node.assembly_page.field_tax_promotion
+    - field.field.node.assembly_page.field_tax_region
+    - field.field.node.assembly_page.field_tax_stage
+    - field.field.node.assembly_page.field_topics
+    - node.type.assembly_page
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.assembly_page.taxonomy_list_item
+targetEntityType: node
+bundle: assembly_page
+mode: taxonomy_list_item
+content:
+  field_short_description:
+    type: basic_string
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  published_at:
+    type: timestamp
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  content_moderation_control: true
+  field_hide_title: true
+  field_kiosk_mode: true
+  field_meta_tags: true
+  field_sections: true
+  field_share_image: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true
+  workbench_moderation_control: true
