@@ -201,6 +201,7 @@ function rhdp2_preprocess_node(&$variables) {
     }
 
     // Process Table of Contents.
+    // @TODO: this also lives in article.module.
     if ($node->hasField('field_hide_toc')) {
       $variables['hide_toc'] = $node->field_hide_toc->value ?? FALSE;
     }

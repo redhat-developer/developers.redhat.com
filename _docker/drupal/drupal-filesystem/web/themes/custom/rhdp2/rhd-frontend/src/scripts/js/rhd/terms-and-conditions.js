@@ -61,7 +61,7 @@ app.termsAndConditions = {
         }
 
         //create template string for thankyou message
-        messageTemplate = messageTemplate + '<div class="component rhd-c-product-download-alert pf-c-content hide" id="downloadthankyou">';
+        messageTemplate = messageTemplate + '<div class="component rhd-c-product-download-alert pf-c-content" id="downloadthankyou">';
         messageTemplate = messageTemplate + '<div class="rhd-c-panel pf-l-grid">';
         messageTemplate = messageTemplate + '<div class="rhd-c-panel-close pf-l-grid__item pf-m-1-col pf-m-offset-11-col"><a href="#" onclick="app.termsAndConditions.hideDownloadMessage();"><i class="fas fa-times"></i></a></div>';
         messageTemplate = messageTemplate + '<div class="pf-l-grid__item pf-m-12-col">';

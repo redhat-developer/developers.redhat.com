@@ -79,7 +79,6 @@ Please read the [Drupal specific instructions](_docker/drupal/dev/README.md) for
 
 Any questions on the local Drupal development experience are best directed to:
 
-* Rob Blake: [robpblake](https://github.com/robpblake)
 * Jordan White: [jordanpagewhite](https://github.com/jordanpagewhite)
 
 ## CI Pipeline
@@ -103,11 +102,17 @@ Please read the [End-to-end testing specific instructions](_tests/e2e/README.md)
 
 ## Contacting the team
 
-The team can be contacted in the #rhdp-website slack channel or #MWES on Google Chat.
+The team can be contacted in the #rhdp-website slack channel or #DXP-Developers on Google Chat.
 
-The best people to speak with for certain areas are:
+### Drupal Development
 
-* Drupal Development: [Jordan White](https://github.com/jordanpagewhite)
-* Frontend Development: [Luke Dary](https://github.com/kamiquasi)
-* Devops/Deployment/Docker: [Rob Blake](https://github.com/robpblake)
-  
+* [Jordan White](https://github.com/jordanpagewhite)
+* [Stacey Mosier](https://github.com/staceymosier)
+
+### Frontend Development
+
+* [Alistair McGranaghan](https://github.com/alistairmc)
+
+### DevOps
+
+* [Rob Coffman](https://rover.redhat.com/people/profile/rcoffman)
