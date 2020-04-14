@@ -16,9 +16,11 @@ dependencies:
     - field.field.node.events.field_ics_subtext
     - field.field.node.events.field_ics_title
     - field.field.node.events.field_more_details
+    - field.field.node.events.field_more_info
     - field.field.node.events.field_on_homepage
     - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
+    - field.field.node.events.field_sessions
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
     - field.field.node.events.field_solution_type
@@ -28,6 +30,7 @@ dependencies:
     - field.field.node.events.field_tax_audience_segment
     - field.field.node.events.field_tax_business_unit
     - field.field.node.events.field_tax_campaign
+    - field.field.node.events.field_tax_event_categories
     - field.field.node.events.field_tax_lifecycle
     - field.field.node.events.field_tax_product
     - field.field.node.events.field_tax_product_line
@@ -46,9 +49,11 @@ dependencies:
     - content_moderation
     - datetime
     - entity_browser
+    - entity_browser_entity_form
     - field_group
     - field_layout
     - image
+    - inline_entity_form
     - link
     - publication_date
     - text
@@ -67,6 +72,7 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
+        - field_tax_event_categories
         - field_tags
       parent_name: ''
       weight: 20
@@ -191,6 +197,15 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_more_info:
+    weight: 30
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_on_homepage:
     weight: 15
     settings:
@@ -212,6 +227,24 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_sessions:
+    weight: 29
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      allow_duplicate: true
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
     region: content
   field_short_description:
     weight: 1
@@ -240,7 +273,7 @@ content:
     type: datetime_default
     region: content
   field_tags:
-    weight: 23
+    weight: 24
     settings:
       match_operator: CONTAINS
       size: 60
@@ -268,6 +301,12 @@ content:
     region: fields
   field_tax_campaign:
     weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_event_categories:
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons

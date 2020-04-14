@@ -1,0 +1,28 @@
+uuid: 2f06b9d5-d753-42ad-a025-070012c19d03
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.node.field_sessions
+    - node.type.events
+id: node.events.field_sessions
+field_name: field_sessions
+entity_type: node
+bundle: events
+label: Sessions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      event_session: event_session
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
