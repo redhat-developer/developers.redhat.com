@@ -6,8 +6,10 @@
         var $showMoreText = $($showMoreElem).text();
         var $showMoreButton = $($showMoreElem).next();
 
-        if ($showMoreText.length >= 700) {
-          $($showMoreButton).removeClass('hide');
+        if ($showMoreText.length <= 2000) {
+          $(this).css('max-height', 'unset');
+        } else {
+          $($showMoreButton).removeClass('pf-u-hidden');
         }
 
         $($showMoreButton).on('click', function() {
