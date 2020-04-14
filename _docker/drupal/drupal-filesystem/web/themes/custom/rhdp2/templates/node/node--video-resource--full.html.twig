@@ -37,9 +37,8 @@
         <div class="pf-l-grid__item pf-m-12-col {{ (has_slides ? 'pf-m-7-col-on-lg') }}">
           {{ content.field_video_resource }}
         </div>
-        <div class="pf-l-grid__item pf-m-12-col {{ (has_slides ? 'pf-m-5-col-on-lg slides' : 'hide') }}">
-          <iframe src="https://www.slideshare.net{{ content.field_slideshare_source.0['#url'] }}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen></iframe>
-        </div>
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_slides ? 'pf-m-5-col-on-lg slides' : 'pf-u-hidden') }}">
+          {% if has_slides %}<iframe src="https://www.slideshare.net{{ content.field_slideshare_source.0['#url'] }}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen></iframe>{% endif %}
       </div>
     </div>
 
@@ -50,12 +49,12 @@
           <div class="show-more-text video-description">
             {{ content.body }}
           </div>
-          <a class="show-more hide" onclick="return false;">
+          <a class="show-more pf-u-hidden" onclick="return false;">
             <span class="more">Show More</span>
             <span class="less">Show Less</span>
           </a>
         </div>
-        <div class="pf-l-grid__item pf-m-12-col {{ (has_target_product ? 'pf-m-4-col-on-lg' : 'hide') }} ">
+        <div class="pf-l-grid__item pf-m-12-col {{ (has_target_product ? 'pf-m-4-col-on-lg' : 'pf-u-hidden') }} ">
           {{ content.field_video_target_product }}
         </div>
       </div>
