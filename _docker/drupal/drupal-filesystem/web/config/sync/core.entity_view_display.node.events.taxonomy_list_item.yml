@@ -38,6 +38,7 @@ dependencies:
     - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
+    - image.style.list_item_thumb
     - node.type.events
   module:
     - datetime
@@ -59,19 +60,12 @@ mode: taxonomy_list_item
 content:
   field_event_background_image:
     type: image
-    weight: 3
+    weight: 2
     region: content
     label: hidden
     settings:
-      image_style: ''
+      image_style: list_item_thumb
       image_link: ''
-    third_party_settings: {  }
-  field_presenter_s_:
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: tile
-      link: false
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -80,11 +74,9 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: entity_reference_entity_view
-    region: content
   field_short_description:
     type: basic_string
-    weight: 2
+    weight: 1
     region: content
     label: hidden
     settings: {  }
@@ -97,20 +89,20 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
   field_start_date:
-    type: datetime_default
-    weight: 4
+    type: datetime_custom
+    weight: 3
     region: content
     label: hidden
     settings:
       timezone_override: ''
-      format_type: date_only
+      date_format: 'F j, Y'
     third_party_settings:
       fences:
-        fences_field_tag: div
+        fences_field_tag: none
         fences_field_classes: ''
-        fences_field_item_tag: div
+        fences_field_item_tag: none
         fences_field_item_classes: ''
-        fences_label_tag: div
+        fences_label_tag: none
         fences_label_classes: ''
   field_title:
     weight: 0
@@ -119,7 +111,7 @@ content:
       link_to_entity: false
     third_party_settings:
       fences:
-        fences_field_tag: h1
+        fences_field_tag: none
         fences_field_classes: pf-c-title
         fences_field_item_tag: none
         fences_field_item_classes: ''
@@ -146,6 +138,7 @@ hidden:
   field_ics_title: true
   field_more_details: true
   field_on_homepage: true
+  field_presenter_s_: true
   field_region: true
   field_site: true
   field_solution_type: true
