@@ -300,6 +300,28 @@ function rhdp2_preprocess_node(&$variables) {
     }
   }
 
+  // Coding Resource content type and Taxonomy List Item.
+  if ($type === 'coding_resource' && $variables['view_mode'] === 'taxonomy_list_item') {
+
+    // Prepares the coding resource authors/contributors render element for taxonomy page.
+    $authors_values = [];
+    if ($contributors = $node->get('field_contributors')->getValue()) {
+      if (count($contributors) > 0) {
+        foreach ($contributors as $contributor) {
+          $authors_values[] = [
+            '#markup' => $contributor['value'],
+          ];
+        }
+      }
+    }
+    if ($original_author = $node->get('field_author')->getValue()) {
+      $authors_values[] = [
+        '#markup' => $original_author[0]['value'],
+      ];
+    }
+    $variables['authors'] = (empty($authors_values)) ? [] : $authors_values;
+  }
+
   // Learning Path content type and Card view mode.
   if ($type === 'learning_path' && $variables['view_mode'] === 'card') {
     if ($lp_sd = $node->get('field_short_description')->value) {

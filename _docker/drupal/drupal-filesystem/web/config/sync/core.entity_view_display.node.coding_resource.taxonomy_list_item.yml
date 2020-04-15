@@ -46,8 +46,8 @@ bundle: coding_resource
 mode: taxonomy_list_item
 content:
   field_author:
-    weight: 8
-    label: visually_hidden
+    weight: 2
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
@@ -61,8 +61,8 @@ content:
     type: string
     region: content
   field_contributors:
-    weight: 3
-    label: visually_hidden
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:
@@ -76,8 +76,8 @@ content:
     type: string
     region: content
   field_description:
-    weight: 1
-    label: visually_hidden
+    weight: 0
+    label: hidden
     settings: {  }
     third_party_settings:
       fences:
@@ -90,8 +90,8 @@ content:
     type: text_default
     region: content
   field_resource_type:
-    weight: 7
-    label: visually_hidden
+    weight: 3
+    label: hidden
     settings: {  }
     third_party_settings:
       fences:
@@ -103,6 +103,23 @@ content:
         fences_label_classes: ''
     type: list_default
     region: content
+  published_at:
+    type: timestamp
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
 hidden:
   body: true
   field_level: true
@@ -124,4 +141,3 @@ hidden:
   field_version: true
   langcode: true
   links: true
-  published_at: true
