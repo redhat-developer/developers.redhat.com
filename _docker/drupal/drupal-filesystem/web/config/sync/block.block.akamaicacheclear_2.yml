@@ -1,17 +1,16 @@
-uuid: a05b5386-ff32-482d-b7a5-6b67cebe5540
+uuid: d52bd2f7-2acf-41ed-9641-e139db15ee8b
 langcode: en
 status: true
 dependencies:
   module:
     - akamai
-    - ctools
     - user
   theme:
     - rhdp2
-id: rhdp2_akamaicacheclear
+id: akamaicacheclear_2
 theme: rhdp2
-region: rh_universal_header
-weight: -8
+region: rhd_katacoda_header
+weight: -7
 provider: null
 plugin: akamai_cache_clear_block
 settings:
@@ -28,10 +27,3 @@ visibility:
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
-    bundles:
-      katacoda_course: katacoda_course
-    negate: false
-    context_mapping:
-      node: '@node.node_route_context:node'
