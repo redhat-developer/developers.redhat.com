@@ -1,3 +1,5 @@
+@import "../mixins";
+
 // Generic component color styles
 // To Add a new color theme simply extend the data below to include the required color changes 
 $componentStyles: (
@@ -152,7 +154,6 @@ $componentStyles: (
         )
 );
 
-@import "../mixins";
 
 // loop through $componentStyles and generate appropriate classes.
 .component {  

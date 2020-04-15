@@ -7,6 +7,8 @@ $cod-gray: #131313;
 $malibu: #73BCF7;
 $dodger-blue: #2B9AF3;
 $science-blue: #0066cc;
+$primary-blue: #0073af;
+$secondary-blue: #0087ce;
 $congress-blue: #004080;
 $light-gray: #EDEDED;
 $medium-light-gray: #D4D4D4;
@@ -71,24 +73,24 @@ $rhd-theme--base-buttons: (
         'hover--Color': #{$white},
         'active--Color': #{$white},
         'focus--Color': #{$white},
-        'BorderColor': #0087ce,
-        'hover--BorderColor': #0073af,
-        'active--BorderColor': #0073af,
-        'BackgroundColor': #0087ce,
-        'hover--BackgroundColor': #0073af,
-        'active--BackgroundColor': #0073af
+        'BorderColor': #{$secondary-blue},
+        'hover--BorderColor': #{$primary-blue},
+        'active--BorderColor': #{$primary-blue},
+        'BackgroundColor': #{$secondary-blue},
+        'hover--BackgroundColor': #{$primary-blue},
+        'active--BackgroundColor': #{$primary-blue}
     ),
     'm-secondary': (
-        'Color': #0066cc,
+        'Color': #{$science-blue},
         'hover--Color': #{$white},
         'active--Color': #{$white},
         'focus--Color': #{$white},
-        'BorderColor': #0066cc,
-        'hover--BorderColor': #0087ce,
-        'active--BorderColor': #0087ce,
+        'BorderColor': #{$science-blue},
+        'hover--BorderColor': #{$secondary-blue},
+        'active--BorderColor': #{$secondary-blue},
         'BackgroundColor': #{$white},
-        'hover--BackgroundColor': #0087ce,
-        'active--BackgroundColor': #0087ce
+        'hover--BackgroundColor': #{$secondary-blue},
+        'active--BackgroundColor': #{$secondary-blue}
     ),
     'm-secondary-alt': (
         'Color': #{$red},
