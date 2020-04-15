@@ -298,6 +298,18 @@ function rhdp2_preprocess_node(&$variables) {
       $node_title = $node->label();
       $variables['node_title'] = str_replace('"', '', $node_title);
     }
+
+    // Taxonomy List Item
+    if ($variables['view_mode'] === 'taxonomy_list_item') {
+      // Get More Details link
+      $variables['more_details'] = NULL;
+      if ($more_details = $node->get('field_more_details')->getValue()) {
+        $variables['more_details'] = ($more_details[0]['uri']) ? $more_details[0]['uri'] : NULL;
+      }
+
+      // Get Presenters
+      $variables['presenters'] = _generate_authors_links('field_presenter_s_', NULL, $variables);
+    }
   }
 
   // Coding Resource content type and Taxonomy List Item.
