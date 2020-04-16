@@ -1,3 +1,7 @@
+/* eslint-disable strict */
+
+var app = window.app || {};
+
 app.sso = function () {
 
     function updateUser() {

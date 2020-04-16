@@ -7,11 +7,15 @@
 
 use Drupal\block\Entity\Block;
 use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Block\Plugin\Block\Broken;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -145,7 +149,7 @@ function rhdp_preprocess_html(array &$variables) {
   // If we could not fetch the Node object from the Request. This should only
   // happen on the Product pages, due to the highly custom 1 Node to multiple
   // routes implementation.
-  if (!empty($node) && $node instanceof NodeInterface) {
+  if (empty($node) || !($node instanceof NodeInterface)) {
     $node = _get_product_node_from_request();
   }
 
@@ -190,8 +194,8 @@ function rhdp_preprocess_html(array &$variables) {
  * necessary because of our custom Product implementations that serve multiple
  * routes from a single Node.
  *
- * @return \Drupal\node\NodeInterface
- *   Return a prouct Node.
+ * @return \Drupal\node\NodeInterface|null
+ *   Return a Node object if this is a Product node. Otherwise, return NULL.
  */
 function _get_product_node_from_request() {
   $request_uri = \Drupal::request()->getRequestUri();
@@ -203,6 +207,10 @@ function _get_product_node_from_request() {
 
     if ($request_uri_pieces[0] === 'products') {
       $product_url_name = $request_uri_pieces[1];
+    }
+    // Else, we are not looking at a Product page. Return NULL.
+    else {
+      return NULL;
     }
   }
   if (!empty($product_url_name)) {
@@ -317,91 +325,6 @@ function rhdp_preprocess_node(array &$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
 
-  // Video Resource content type.
-  if ($node->getType() == 'video_resource') {
-    // Teaser view mode.
-    if ($variables['view_mode'] == 'teaser') {
-      if (isset($node->field_video_thumbnail_url)) {
-        $video_thumbnail_url = $node->get('field_video_thumbnail_url')->getValue();
-        $variables['video_thumbnail_url'] = ($video_thumbnail_url) ? $video_thumbnail_url[0]['value'] : FALSE;
-      }
-    }
-    // Tile view mode.
-    if ($variables['view_mode'] == 'tile') {
-      $node_title = $node->label();
-      $variables['node_title'] = str_replace('"', '', $node_title);
-    }
-  }
-
-  // Author content type.
-  if ($node->getType() == 'author') {
-    $variables['author_name'] = $node->getTitle();
-    $variables['author_articles'] = views_embed_view('author_articles');
-    $variables['social_links'] = FALSE;
-    $social_facebook = $node->get('field_facebook')->getValue();
-    $social_github = $node->get('field_github')->getValue();
-    $social_linkedin = $node->get('field_linkedin')->getValue();
-    $social_twitter = $node->get('field_twitter')->getValue();
-    $social_youtube = $node->get('field_youtube')->getValue();
-    $variables['social_github'] = ($social_github) ? $social_github[0]['uri'] : FALSE;
-    if ($social_facebook || $social_github || $social_linkedin || $social_twitter || $social_youtube) {
-      $variables['social_links'] = TRUE;
-      $variables['social_facebook'] = ($social_facebook) ? $social_facebook[0]['uri'] : FALSE;
-      $variables['social_linkedin'] = ($social_linkedin) ? $social_linkedin[0]['uri'] : FALSE;
-      $variables['social_twitter'] = ($social_twitter) ? $social_twitter[0]['uri'] : FALSE;
-      $variables['social_youtube'] = ($social_youtube) ? $social_youtube[0]['uri'] : FALSE;
-    }
-  }
-
-  // Article content type.
-  if ($node->getType() == 'article') {
-    $variables['has_hero'] = FALSE;
-    $variables['author_location'] = 'left';
-    $type = $node->get('field_article_type')->getValue();
-    if ($type && !empty($type) && isset($variables['content']['field_image'])) {
-      $type = $type[0]['value'];
-      if ($type == 'opinion') {
-        $variables['has_hero'] = TRUE;
-        $variables['author_location'] = 'right';
-        $variables['content']['field_image'][0]['#image_style'] = 'hero';
-      }
-    }
-    $hide_toc = $node->get('field_hide_toc')->getValue();
-
-    // Verify that getValue() retrieves a field with a set value.
-    if (isset($hide_toc[0])) {
-      $variables['hide_toc'] = ($hide_toc[0]['value'] == 1) ? TRUE : FALSE;
-    }
-    else {
-      $variables['hide_toc'] = FALSE;
-    }
-  }
-
-  // Events content type.
-  if ($node->getType() == 'events') {
-    $variables['event_title'] = $node->getTitle();
-    $variables['event_description'] = $variables['content']['field_description'][0]['#text'];
-    $variables['event_url'] = $node->hasField('field_more_details') ? $node->get('field_more_details')->getValue()[0]['uri'] : '';
-
-    // TODO: Fix Duplicate Logic: This will need to be refactored (see
-    // preprocess_assembly).
-    // Note: Also will not work properly without search and replace on export.
-    if ($node->hasField('field_event_background_image')) {
-      $image_value = $node->get('field_event_background_image')->getValue();
-      if ($image_value) {
-        $file_id = $image_value[0]['target_id'];
-        $uri = File::load($file_id)->getFileUri();
-        $variables['event_image_url'] = file_create_url($uri);
-      }
-    }
-
-    // Teaser view mode.
-    if ($variables['view_mode'] == 'teaser') {
-      $node_title = $node->label();
-      $variables['node_title'] = str_replace('"', '', $node_title);
-    }
-  }
-
   // Product content type and Featured Tile view mode.
   if ($node->getType() == 'product' && $variables['view_mode'] == 'featured_tile') {
     $product_code = $node->get('field_product_machine_name')->getValue();
@@ -475,73 +398,6 @@ function rhdp_preprocess_node(array &$variables) {
       }
     }
   }
-
-  // Learning Path content type and Card view mode.
-  if ($variables['view_mode'] == 'card' && $node->getType() == 'learning_path') {
-    $labelmap = ['one', 'two', 'three', 'four', 'five', 'six'];
-    $lp_content = $node->get('field_learning_path_content_item')->getValue();
-
-    for ($i = 0; $i < 2 && isset($lp_content[$i]); $i++) {
-      $ref = Node::load($lp_content[$i]['target_id']);
-      $variables['content']['lessons'][] = [
-        'label' => ['#markup' => 'Lesson ' . $labelmap[$i]],
-        'title' => ['#markup' => $ref->label()],
-      ];
-    }
-  }
-
-  // Books content type and Learning Path Card view mode.
-  if ($node->getType() == 'books' && $variables['view_mode'] == 'learning_path_card') {
-    $variables['interval'] = '';
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // Cheat Sheet content type and Learning Path Card view mode.
-  if ($node->getType() == 'cheat_sheet' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_read_time')->getValue()) {
-      $read_time = $node->get('field_read_time')->getValue();
-      $variables['interval'] = $read_time[0]['interval'] . ' ' . $read_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($read_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // RH Training Class content type and Learning Path Card view mode.
-  if ($node->getType() == 'rh_training_class' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_completion_time')->getValue()) {
-      $completion_time = $node->get('field_completion_time')->getValue();
-      $variables['interval'] = $completion_time[0]['interval'] . ' ' . $completion_time[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($completion_time[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
-
-  // Video Resource content type and Learning Path Card view mode.
-  if ($node->getType() == 'video_resource' && $variables['view_mode'] == 'learning_path_card') {
-    // Ensure the field value is not null.
-    if ($node->get('field_duration')->getValue()) {
-      $duration = $node->get('field_duration')->getValue();
-      $variables['interval'] = $duration[0]['interval'] . ' ' . $duration[0]['period'];
-      // Make it plural if the interval is greater than 1.
-      if ($duration[0]['interval'] > 1) {
-        $variables['interval'] .= 's';
-      }
-    }
-  }
 }
 
 /**
@@ -558,6 +414,14 @@ function rhdp_preprocess_paragraph__connectors(&$variables) {
 
 /**
  * Creates a digital data object (DDO) for Adobe Dynamic Tag Management (DTM).
+ *
+ * @param \Drupal\Entity\node\Node|null $node
+ *   This function will expects a Node object if the current request/page is a
+ *   Node. Otherwise, it expects NULL.
+ *
+ * @return array
+ *   Returns an associative array populated with data used to populate the
+ *   digitalData JS object.
  */
 function redhat_www_ddo_default($node) {
   $request = \Drupal::request();
@@ -568,7 +432,7 @@ function redhat_www_ddo_default($node) {
   $ddo_pageID = "";
   $ddo_title = "";
 
-  if (!is_null($node)) {
+  if (!empty($node) && $node instanceof NodeInterface) {
     if ($siteerror == '/node/' . $node->nid->value) {
       $errorType = "404";
       $errorMessage = "404-error";
@@ -584,15 +448,15 @@ function redhat_www_ddo_default($node) {
     'page' => [
       'attributes' => [
         'queryParameters' => '',
-        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'] ?? '',
-        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit']?? '',
-        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign']?? '',
-        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle']?? '',
-        'taxonomyProduct' => $ddo_taxonomies['field_tax_product']?? '',
-        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line']?? '',
-        'taxonomyProject' => $ddo_taxonomies['field_tax_project']?? '',
-        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion']?? '',
-        'taxonomyRegion' => $ddo_taxonomies['field_tax_region']?? '',
+        'taxonomyAudience' => $ddo_taxonomies['field_tax_audience_segment'] ?? [],
+        'taxonomyBusinessUnit' => $ddo_taxonomies['field_tax_business_unit'] ?? [],
+        'taxonomyCampaign' => $ddo_taxonomies['field_tax_campaign'] ?? [],
+        'taxonomyLifecycle' => $ddo_taxonomies['field_tax_lifecycle'] ?? [],
+        'taxonomyProduct' => $ddo_taxonomies['field_tax_product'] ?? [],
+        'taxonomyProductLine' => $ddo_taxonomies['field_tax_product_line'] ?? [],
+        'taxonomyProject' => $ddo_taxonomies['field_tax_project'] ?? [],
+        'taxonomyPromotion' => $ddo_taxonomies['field_tax_promotion'] ?? [],
+        'taxonomyRegion' => $ddo_taxonomies['field_tax_region'] ?? [],
       ],
       'category' => [
         'contentType' => '',
@@ -715,361 +579,10 @@ function _get_all_taxonomy_terms(NodeInterface $node) {
  * some things mostly due to our site css so we could get the responsive
  * video to work.
  *
- * Adding another edit for embedded products.
  */
 function rhdp_preprocess_field(&$variables, $hook) {
   if ($variables['field_type'] === 'video_embed_field') {
     $variables['items'][0]['content']['#attached']['library'][] = 'rhdp/video_embed_field.responsive-video';
-  }
-
-  // This shouldn't be how we display the related product on coding resources
-  // (should it be?).
-  if ($variables['field_name'] === 'field_related_product' && isset($variables['items'][0]['content']['#node'])) {
-    $node = $variables['items'][0]['content']['#node'];
-    $variables['product_name'] = $node->getTitle();
-    $variables['product_short_name'] = $node->field_product_short_name->value;
-
-    $product_code = $node->field_product_machine_name->value;
-    $overview_url = $node->field_product_pages->referencedEntities()[0]->field_overview_url->value;
-    $url_string = str_replace(' ', '-', strtolower($overview_url));
-    $url = Url::fromRoute('rhd_common.main_page_controller', [
-      'product_code' => $product_code,
-      'sub_page' => $url_string,
-    ], ['absolute' => TRUE])->toString();
-    $variables['overview_url'] = $url;
-  }
-
-  if ($variables['field_name'] === 'field_related_product'
-    && isset($variables['items'][0]['content']['#type'])
-    && $variables['items'][0]['content']['#type'] === 'link') {
-    $entity = $variables['items'][0]['content']['#options']['entity'];
-
-    $product_code = $entity->field_product_machine_name->value;
-    $overview_url = $entity->field_product_pages->referencedEntities()[0]->field_overview_url->value;
-    $url_string = str_replace(' ', '-', strtolower($overview_url));
-    $url = Url::fromRoute('rhd_common.main_page_controller', [
-      'product_code' => $product_code,
-      'sub_page' => $url_string,
-    ], []);
-
-    $variables['items'][0]['content']['#url'] = $url;
-  }
-}
-
-/**
- * Implements hook_preprocess_assembly().
- */
-function rhdp_preprocess_assembly(&$variables) {
-  $assembly = $variables['elements']['#assembly'];
-  $type = $assembly->bundle();
-  $variables['background_image_url'] = FALSE;
-  $image_value = FALSE;
-  $svg_value = FALSE;
-
-  if ($assembly->hasField('field_background_image')) {
-    $image_value = $assembly->get('field_background_image')->getValue();
-  }
-
-  if ($assembly->hasField('field_background_svg')) {
-    $svg_value = $assembly->get('field_background_svg')->getValue();
-  }
-
-  if ($svg_value) {
-    $file_id = $svg_value[0]['target_id'];
-    $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = file_create_url($uri);
-    $variables['attributes']->addClass('has-background');
-  }
-  elseif ($image_value) {
-    $file_id = $image_value[0]['target_id'];
-    $uri = File::load($file_id)->getFileUri();
-    $variables['background_image_url'] = ImageStyle::load('billboard')->buildUrl($uri);
-    $variables['attributes']->addClass('has-background');
-  }
-
-  if ($assembly->hasField('field_audience_selection')) {
-    $field_audience_selection_values = $assembly->get('field_audience_selection')->getValue();
-    $variables['audience_selection'] = '';
-
-    if ($field_audience_selection_values) {
-      $audience_selection_values = [];
-
-      foreach ($field_audience_selection_values as $field_audience_selection_value) {
-        $audience_selection_values[] = $field_audience_selection_value['value'];
-      }
-
-      $audience_selection = implode(',', $audience_selection_values);
-      $variables['audience_selection'] = " data-audience={$audience_selection}";
-    }
-  }
-
-  // Code Snippet assembly type.
-  if ($type == 'code_snippet') {
-    // Code field.
-    if ($assembly->hasField('field_code')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_code)) {
-        $field_code = $assembly->get('field_code')->getValue()[0]['value'];
-        $variables['code'] = $field_code;
-      }
-      $variables['#attached']['library'][] = 'rhdp/highlight-js';
-    }
-    // Programming Language field.
-    if ($assembly->hasField('field_programming_language')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_programming_language)) {
-        $language = $assembly->get('field_programming_language')->getValue()[0]['value'];
-        $variables['language'] = isset($language) ? $language : '';
-      }
-    }
-  }
-
-  // Product Features assembly type.
-  if ($type == 'product_comparison_table') {
-    // To track the number of columns in the table. We start counting at 1 to
-    // account for the release labels.
-    $colspan = 1;
-
-    // Features, entity reference revisions (assembly) field.
-    if ($assembly->hasField('field_features')) {
-      // Create variables to store the features and releases.
-      $variables['features'] = [];
-      $variables['releases'] = [];
-
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_features)) {
-        $features = $assembly->get('field_features')->getValue();
-        foreach ($features as $key => $feature) {
-          // Retrieve this revision of this assembly.
-          $feature_revision = \Drupal::entityTypeManager()
-            ->getStorage('assembly')
-            ->loadRevision($feature['target_revision_id']);
-
-          // Get the Release term ID from the assembly entity.
-          $tid = $feature_revision->get('field_release')->getValue()[0]['target_id'];
-          $term = \Drupal::entityTypeManager()
-            ->getStorage('taxonomy_term')
-            ->load($tid);
-          $term_name = $term->getName();
-
-          $variables['releases'][$tid] = $term_name;
-
-          if (isset($feature_revision->field_title)) {
-            $title = $feature_revision->get('field_title')->getValue()[0]['value'];
-            $variables['features'][$tid][$key]['title'] = $title;
-          }
-          if (isset($feature_revision->field_link_to_project)) {
-            $link = $feature_revision->get('field_link_to_project')->getValue()[0];
-            $variables['features'][$tid][$key]['link'] = $link;
-          }
-          if (isset($feature_revision->field_products_and_projects)) {
-            $products_and_projects = $feature_revision->get('field_products_and_projects')->getValue();
-            $nids = [];
-            // Iterate over the products and projects referenced by this field
-            // and assign the nids in an array.
-            foreach ($products_and_projects as $entity) {
-              $nids[] = $entity['target_id'];
-            }
-
-            $variables['features'][$tid][$key]['products_and_projects'] = $nids;
-          }
-        }
-      }
-    }
-    // Products, entity reference (node) field.
-    if ($assembly->hasField('field_products')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_products)) {
-        $nids = [];
-        $variables['products'] = [];
-        $products = $assembly->get('field_products')->getValue();
-
-        foreach ($products as $product) {
-          $nids[] = $product['target_id'];
-          // Keep track of how many columns we will have.
-          $colspan += 1;
-        }
-
-        $nodes = \Drupal::entityTypeManager()
-          ->getStorage('node')
-          ->loadMultiple($nids);
-
-        foreach ($nodes as $node) {
-          $variables['products'][$node->id()] = [];
-          $variables['products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
-          $variables['products'][$node->id()]['cta'] = $node->get('field_call_to_action_link')->getValue()[0];
-          if (isset($node->field_image) && isset($node->get('field_image')->getValue()[0])) {
-            // Get the Media entity target_id.
-            $mid = $node->get('field_image')->getValue()[0]['target_id'];
-            // Load the media entity from the id.
-            $media_entity = \Drupal::entityTypeManager()
-              ->getStorage('media')
-              ->load($mid);
-            // Build the render array for the logo.
-            $logo = \Drupal::entityTypeManager()
-              ->getViewBuilder('media')
-              ->view($media_entity, 'thumbnail');
-
-            $variables['products'][$node->id()]['logo'] = $logo;
-          }
-          else {
-            $variables['products'][$node->id()]['logo'] = NULL;
-          }
-        }
-      }
-    }
-    // Sub-Products, entity reference (node) field.
-    if ($assembly->hasField('field_sub_products')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_sub_products)) {
-        $nids = [];
-        $variables['sub_products'] = [];
-        $sub_products = $assembly->get('field_sub_products')->getValue();
-
-        foreach ($sub_products as $sub_product) {
-          $nids[] = $sub_product['target_id'];
-          // Keep track of how many columns we will have.
-          $colspan += 1;
-        }
-
-        $nodes = \Drupal::entityTypeManager()
-          ->getStorage('node')
-          ->loadMultiple($nids);
-
-        foreach ($nodes as $node) {
-          $variables['sub_products'][$node->id()] = [];
-          $variables['sub_products'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
-          $variables['sub_products'][$node->id()]['cta'] = $node->get('field_cta')->getValue()[0];
-          if (isset($node->field_logo) && isset($node->get('field_logo')->getValue()[0])) {
-            // Get the Media entity target_id.
-            $mid = $node->get('field_logo')->getValue()[0]['target_id'];
-            // Load the media entity from the id.
-            $media_entity = \Drupal::entityTypeManager()
-              ->getStorage('media')
-              ->load($mid);
-            // Build the render array for the logo.
-            $logo = \Drupal::entityTypeManager()
-              ->getViewBuilder('media')
-              ->view($media_entity, 'thumbnail');
-
-            $variables['sub_products'][$node->id()]['logo'] = $logo;
-          }
-          else {
-            $variables['sub_products'][$node->id()]['logo'] = NULL;
-          }
-        }
-      }
-    }
-    // Upstream Projects, entity reference (node) field.
-    if ($assembly->hasField('field_upstream_projects')) {
-      // Verify that the field isset before retrieving the value.
-      if (isset($assembly->field_upstream_projects)) {
-        $nids = [];
-        $upstream_projects = $assembly->get('field_upstream_projects')->getValue();
-
-        foreach ($upstream_projects as $upstream_project) {
-          $nids[] = $upstream_project['target_id'];
-          // Keep track of how many columns we will have.
-          $colspan += 1;
-        }
-
-        $nodes = \Drupal::entityTypeManager()
-          ->getStorage('node')
-          ->loadMultiple($nids);
-
-        foreach ($nodes as $node) {
-          $variables['upstream_projects'][$node->id()] = [];
-          $variables['upstream_projects'][$node->id()]['title'] = $node->get('title')->getValue()[0]['value'];
-          $variables['upstream_projects'][$node->id()]['link_to_project'] = $node->get('field_link_to_project')->getValue()[0];
-          $variables['upstream_projects'][$node->id()]['link_to_repo'] = $node->get('field_link_to_repo')->getValue()[0];
-          if (isset($node->field_logo) && isset($node->get('field_logo')->getValue()[0])) {
-            // Get the Media entity target_id.
-            $mid = $node->get('field_logo')->getValue()[0]['target_id'];
-            // Load the media entity from the id.
-            $media_entity = \Drupal::entityTypeManager()
-              ->getStorage('media')
-              ->load($mid);
-            // Build the render array for the logo.
-            $logo = \Drupal::entityTypeManager()
-              ->getViewBuilder('media')
-              ->view($media_entity, 'thumbnail');
-
-            $variables['upstream_projects'][$node->id()]['logo'] = $logo;
-          }
-          else {
-            $variables['upstream_projects'][$node->id()]['logo'] = NULL;
-          }
-        }
-      }
-    }
-
-    $variables['colspan'] = $colspan;
-  }
-
-  // Embedded Content assembly type.
-  if ($type == 'embedded_content') {
-    $field_url = $assembly->get('field_url')->getValue();
-    $embed_url = $field_url[0]['uri'];
-    $variables['embed_url'] = FALSE;
-
-    if ($embed_url) {
-      $variables['embed_url'] = $embed_url;
-    }
-  }
-
-  // Add Display Type variables for curated_links.
-  if ($type == 'curated_links'
-      && $assembly->hasField('field_display_type_curated_links')) {
-    $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_curated_links')->getValue()[0]['value'];
-    if (strpos($display_type, 'two-col') !== FALSE) {
-      $variables['display_type'] = 'two-col';
-    }
-    elseif (strpos($display_type, 'nav-menu') !== FALSE) {
-      $variables['display_type'] = 'nav-menu';
-    }
-  }
-
-  // Add Display Type variables for featured_products.
-  if ($type == 'featured_products'
-      && $assembly->hasField('field_display_type_featured_prod')) {
-    $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_featured_prod')->getValue()[0]['value'];
-    if (strpos($display_type, 'basic') !== FALSE) {
-      $variables['display_type'] = 'basic';
-    }
-    elseif (strpos($display_type, 'featured') !== FALSE) {
-      $variables['display_type'] = 'featured';
-    }
-  }
-
-  // Add Display Type variables for featured_products.
-  if ($type == 'video_hero'
-      && $assembly->hasField('field_display_type_video_hero')) {
-    $variables['display_type'] = '';
-    $display_type = $assembly->get('field_display_type_video_hero')->getValue()[0]['value'];
-    if (strpos($display_type, 'full-width-video') !== FALSE) {
-      $variables['display_type'] = 'full-width-video';
-    }
-  }
-
-}
-
-/**
- * Implements hook_preprocess_views_view().
- */
-function rhdp_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
-  $id = $view->storage->id();
-
-  // Taxonomy Term view.
-  if ($id == 'taxonomy_term') {
-    $variables['title'] = FALSE;
-    $title = $view->getTitle();
-
-    if ($title) {
-      $variables['title'] = $title;
-    }
   }
 }
 
