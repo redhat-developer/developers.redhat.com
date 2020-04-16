@@ -1,0 +1,69 @@
+uuid: 1f15728d-0f6a-4171-8773-2228f0441e70
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.field.assembly.events_collection.field_audience_selection
+    - field.field.assembly.events_collection.field_display_option
+    - field.field.assembly.events_collection.field_drupal_term_filter
+    - field.field.assembly.events_collection.field_single_event_reference
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: assembly.events_collection.default
+targetEntityType: assembly
+bundle: events_collection
+mode: default
+content:
+  field_audience_selection:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_display_option:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_single_event_reference:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  visual_styles:
+    type: options_select
+    multiple: true
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_drupal_term_filter: true
+  langcode: true
+  user_id: true
