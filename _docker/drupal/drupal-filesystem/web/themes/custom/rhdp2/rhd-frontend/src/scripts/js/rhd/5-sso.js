@@ -1,3 +1,7 @@
+/* eslint-disable strict */
+
+var app = window.app || {};
+
 app.sso = function () {
 
     function updateUser() {
@@ -37,7 +41,6 @@ app.sso = function () {
                 });
 
                 usr.loggedIn = true;
-
                 usr.keyCloakID = keycloak.tokenParsed.id;
                 usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed.createdTimestamp);
 
