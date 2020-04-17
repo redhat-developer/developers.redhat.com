@@ -482,14 +482,16 @@ function _generate_authors_links($dynamic_authors_field_name = NULL, $static_aut
 
       if (count($author_nodes) > 0) {
         foreach ($author_nodes as $author_node) {
-          $author_name = $author_node->getTitle();
-          $author_id = $author_node->id();
-          $author_url = Url::fromRoute('entity.node.canonical', ['node' => $author_id]);
-          $authors_link = Link::fromTextAndUrl($author_name, $author_url);
-          $authors_link = $authors_link->toRenderable();
-          $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+          if ($author_node->access('view')) {
+            $author_name = $author_node->getTitle();
+            $author_id = $author_node->id();
+            $author_url = Url::fromRoute('entity.node.canonical', ['node' => $author_id]);
+            $authors_link = Link::fromTextAndUrl($author_name, $author_url);
+            $authors_link = $authors_link->toRenderable();
+            $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
 
-          $authors_values[] = [$authors_link];
+            $authors_values[] = [$authors_link];
+          }
         }
       }
     }
