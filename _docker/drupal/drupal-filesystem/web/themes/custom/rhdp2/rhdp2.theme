@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Functions to support theming in the RHDP2 theme.
@@ -12,6 +13,8 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Block\Plugin\Block\Broken;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Implements hook_preprocess_page().
@@ -21,6 +24,38 @@ function rhdp2_preprocess_page(&$variables) {
   $variables['main_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list']);
   $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
   $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
+  $variables['akamai_cache_clear_button'] = _rhdp2_build_block('akamai_cache_clear_block');
+}
+
+/**
+ * Build a render array from a block id.
+ *
+ * @param string $bid
+ *   Required: The block id to build. Defaults to a blank string.
+ * @param array $config
+ *   Optional: Array of configurations to pass to the block service.
+ *   Defaults to an empty array.
+ *
+ * @return array
+ *   Returns a render array for the block or an empty array.
+ */
+function _rhdp2_build_block($bid = '', array $config = []) {
+
+  // Get the block.
+  $block_service = \Drupal::service('plugin.manager.block');
+  $block = $block_service->createInstance($bid, $config);
+  if ($block instanceof Broken) {
+    return [];
+  }
+
+  // Check user access.
+  $user_access = $block->access(\Drupal::currentUser());
+  if ($user_access instanceof AccessResult && $user_access->isForbidden()
+      || is_bool($user_access) && !$user_access) {
+    return [];
+  }
+
+  return $block->build();
 }
 
 /**
@@ -607,7 +642,8 @@ function rhdp2_preprocess_assembly(&$variables) {
     }
   }
 
-  // Define if an ICS file is attached to an event on the Call to Action assembly
+  // Define if an ICS file is attached to an event
+  // on the Call to Action assembly.
   if ($type == 'call_to_action') {
     $variables['has_ics'] = FALSE;
     if (isset($assembly->get('field_calendar_event')->getValue()[0]['target_id'])) {
@@ -685,12 +721,12 @@ function rhdp2_preprocess_field(&$variables, $hook) {
     }
   }
 
-  // Turn AddEvent ID into links
+  // Turn AddEvent ID into links.
   if ($variables['field_name'] === 'field_ics_addevent_id') {
     $addevent_id = $variables['element']['#object']->get('field_ics_addevent_id')->getValue()[0]['value'];
-    $apple_url    = "https://www.addevent.com/event/$addevent_id+apple";
-    $google_url   = "https://www.addevent.com/event/$addevent_id+google";
-    $outlook_url  = "https://www.addevent.com/event/$addevent_id+outlook";
+    $apple_url = "https://www.addevent.com/event/$addevent_id+apple";
+    $google_url = "https://www.addevent.com/event/$addevent_id+google";
+    $outlook_url = "https://www.addevent.com/event/$addevent_id+outlook";
     $variables['addevent_links']['#markup'] = "<a href='$apple_url'>Apple</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$google_url'>Google</a>";
     $variables['addevent_links']['#markup'] .= "<a href='$outlook_url'>Outlook</a>";
