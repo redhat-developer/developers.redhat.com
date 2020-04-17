@@ -9,10 +9,8 @@ dependencies:
     - field.field.assembly.events_collection.field_drupal_term_filter
     - field.field.assembly.events_collection.field_single_event_reference
   module:
-    - fences
     - field_layout
     - layout_discovery
-    - options
 third_party_settings:
   field_layout:
     id: layout_disabled
@@ -21,53 +19,12 @@ id: assembly.events_collection.default
 targetEntityType: assembly
 bundle: events_collection
 mode: default
-content:
-  field_display_option:
-    weight: 1
-    label: hidden
-    settings: {  }
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: list_default
-    region: content
-  field_drupal_term_filter:
-    weight: 0
-    label: hidden
-    settings:
-      link: true
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: entity_reference_label
-    region: content
-  field_single_event_reference:
-    weight: 2
-    label: hidden
-    settings:
-      link: true
-    third_party_settings:
-      fences:
-        fences_field_tag: none
-        fences_field_classes: ''
-        fences_field_item_tag: none
-        fences_field_item_classes: ''
-        fences_label_tag: none
-        fences_label_classes: ''
-    type: entity_reference_label
-    region: content
+content: {  }
 hidden:
   field_audience_selection: true
+  field_display_option: true
+  field_drupal_term_filter: true
+  field_single_event_reference: true
   langcode: true
   name: true
   user_id: true
