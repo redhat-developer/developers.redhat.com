@@ -1,3 +1,5 @@
+@import "../mixins";
+
 // Generic component color styles
 // To Add a new color theme simply extend the data below to include the required color changes 
 $componentStyles: (
@@ -13,6 +15,7 @@ $componentStyles: (
                     'Color': #{$malibu},
                     'hover--Color': #{$dodger-blue},
                     'active--Color': #{$dodger-blue},
+                    'focus--Color': #{$dodger-blue},
                     'BorderColor': transparent,
                     'hover--BorderColor': transparent,
                     'active--BorderColor': transparent,
@@ -24,6 +27,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$alto},
                     'active--Color': #{$alto},
+                    'focus--Color': #{$alto},
                     'BorderColor': transparent,
                     'hover--BorderColor': transparent,
                     'active--BorderColor': transparent,
@@ -35,6 +39,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -46,6 +51,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -57,6 +63,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -78,6 +85,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$alto},
                     'active--Color': #{$alto},
+                    'focus--Color': #{$alto},
                     'BorderColor': transparent,
                     'hover--BorderColor': transparent,
                     'active--BorderColor': transparent,
@@ -89,6 +97,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$alto},
                     'active--Color': #{$alto},
+                    'focus--Color': #{$alto},
                     'BorderColor': transparent,
                     'hover--BorderColor': transparent,
                     'active--BorderColor': transparent,
@@ -100,6 +109,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -111,6 +121,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -122,6 +133,7 @@ $componentStyles: (
                     'Color': #{$white},
                     'hover--Color': #{$black},
                     'active--Color': #{$black},
+                    'focus--Color': #{$black},
                     'BorderColor': #{$white},
                     'hover--BorderColor': #{$white},
                     'active--BorderColor': #{$white},
@@ -142,7 +154,6 @@ $componentStyles: (
         )
 );
 
-@import "../mixins";
 
 // loop through $componentStyles and generate appropriate classes.
 .component {  
