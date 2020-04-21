@@ -26,19 +26,6 @@
   }
 }
 
-//hidden classes
-%link {
-  text-decoration: var(--pf-theme--link--text-decoration, "underline");
-  color: var(--pf-theme--color--ui-link, $rhd-theme--link--color);
-  &:visited {
-    color: var(--pf-theme--color--ui-link, $rhd-theme--link--color);
-  }
-
-  &:hover, &:active {
-    color: var(--pf-theme--color--ui-link--hover, $rhd-theme--link-hover--color);
-  }
-}
-
 %hidden {
   display: none;
 }

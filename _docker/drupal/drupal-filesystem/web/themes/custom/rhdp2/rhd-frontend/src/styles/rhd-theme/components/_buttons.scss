@@ -12,18 +12,9 @@
   }
 
   @at-root a.pf-c-button {
+    --pf-c-content--a--Color: var(--pf-c-button--Color);
     --pf-theme--color--ui-link: var(--pf-c-button--Color);
     --pf-theme--color--ui-link--hover: var(--pf-c-button--hover--Color);
-  }
-  
-  //Set visited button colors
-  &:visited {
-    color: var(--pf-c-button--Color);
-    border-color: var(--pf-c-button--BorderColor);
-    background-color: var(--pf-c-button--BackgroundColor);
-    &:after {
-      border-color: var(--pf-c-button--BorderColor);
-    }
   }
 
   //Set active button colors
@@ -73,7 +64,6 @@
   @each $themeButtonName, $themeButtonData in $rhd-theme--base-buttons {
     &.pf-#{$themeButtonName} {
       //loop through $themeButtonData write --pf-c-button variables 
-      --am-debug: pf-#{$themeButtonName};
       @each $themeButtonItemName, $themeButtonItemData in $themeButtonData {
         --pf-c-button--#{$themeButtonItemName}: #{$themeButtonItemData};
         --pf-c-button--#{$themeButtonName}--#{$themeButtonItemName}: #{$themeButtonItemData};
@@ -85,7 +75,7 @@
 //todo remove when legacy buttons are removed: Add legacy button style classes and extend.
 .button {
   @extend .pf-c-button;
-
+  
   &.heavy-cta {
     @extend .pf-m-heavy;
     &.blue {

@@ -23,11 +23,6 @@ class Login extends Page {
         return this;
     }
 
-    isDisplayed() {
-        this.awaitLogin();
-        return Driver.isVisible(this.usernameField);
-    }
-
     with(user, password) {
         Driver.displayElement(this.loginForm);
         Driver.type(user, this.usernameField);
