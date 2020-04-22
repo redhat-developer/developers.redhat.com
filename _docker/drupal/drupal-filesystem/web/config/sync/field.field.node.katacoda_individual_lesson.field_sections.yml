@@ -1,0 +1,38 @@
+uuid: 74d38f5e-c8d9-496f-bd0d-84640936e34a
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.content_with_image
+    - assembly.assembly_type.node_reference
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.rich_text_columns
+    - field.storage.node.field_sections
+    - node.type.katacoda_individual_lesson
+  module:
+    - entity_reference_revisions
+id: node.katacoda_individual_lesson.field_sections
+field_name: field_sections
+entity_type: node
+bundle: katacoda_individual_lesson
+label: Sections
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      call_to_action: call_to_action
+      node_reference: node_reference
+      rich_text: rich_text
+      rich_text_columns: rich_text_columns
+      content_with_image: content_with_image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: rich_text
+field_type: entity_reference_revisions
