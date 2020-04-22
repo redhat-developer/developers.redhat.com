@@ -50,8 +50,10 @@ class EventsCollectionBuild extends AssemblyBuildView {
           }
         }
         // Get sessions from the event node the assembly is used on.
-        else {
-          // @TODO Get event node id from assembly.
+        elseif ($assembly_references = assembly_get_references($entity->id())) {
+          if (count($assembly_references['node']) == 1) {
+            $view->setArguments([reset($assembly_references['node'])]);
+          }
         }
       }
     }
