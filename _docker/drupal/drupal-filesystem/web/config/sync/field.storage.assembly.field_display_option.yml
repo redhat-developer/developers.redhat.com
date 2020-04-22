@@ -12,11 +12,11 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: flat_table
-      label: 'Flat table of sessions'
+      value: all_sessions_ungrouped
+      label: 'All sessions - ungrouped'
     -
-      value: nested_table
-      label: 'Sessions grouped by event'
+      value: all_sessions_by_event
+      label: 'All sessions - grouped by event'
     -
       value: single_event_sessions
       label: 'Sessions for a single event'
