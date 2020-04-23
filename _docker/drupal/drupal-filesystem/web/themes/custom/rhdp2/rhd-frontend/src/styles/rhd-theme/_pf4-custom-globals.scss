@@ -64,16 +64,15 @@
 
   img,
   embed,
-  iframe,
   object,
   audio,
   video {
     max-width: 100%;
-    //Removed to prevent iframe size issue
-    //height: auto;
+    height: auto;
   }
 
   iframe {
+    max-width: 100%;
     border: 0;
   }
 
