@@ -26,8 +26,10 @@ dependencies:
   module:
     - compose
     - content_moderation
+    - entity_browser_entity_form
     - field_group
     - field_layout
+    - inline_entity_form
     - path
     - publication_date
     - text
@@ -112,18 +114,20 @@ content:
   field_sections:
     weight: 38
     settings:
-      match_operator: CONTAINS
       form_mode: default
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
+      override_labels: true
+      label_singular: section
+      label_plural: sections
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
       collapsible: false
       collapsed: false
-      allow_new: true
-      allow_existing: false
       allow_duplicate: false
-    third_party_settings: {  }
-    type: compose_widget
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
     region: content
   field_tags:
     weight: 37
