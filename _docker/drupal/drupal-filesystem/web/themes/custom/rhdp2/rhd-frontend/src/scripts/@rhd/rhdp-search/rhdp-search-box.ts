@@ -41,7 +41,7 @@ export default class RHDPSearchBox extends HTMLElement {
         });
 
         this.querySelector('button[data-search-action="searchSubmit"]').addEventListener('click', e => {
-
+            this._termChange();
         });
     }
 
