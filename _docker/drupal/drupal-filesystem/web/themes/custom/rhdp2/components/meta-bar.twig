@@ -1,0 +1,35 @@
+{#
+/**
+ * Custom variable(s):
+ *
+ * - article
+ *   @see rhdp2_preprocess_node()
+ */
+ #}
+
+<div class="rhd-c-meta-bar">
+
+  {% if meta_type %}
+    <h4 class="meta-type">{{ meta_type }}</h4>
+  {% endif %}
+
+  {% if not hide_title %}
+    {{ title_prefix }}
+    <h1{{title_attributes.addClass(["book-title"])}}>{{ label }}</h1>
+  	{{ title_suffix }}
+  {% endif %}
+
+  <div class="meta-info">
+    <div class="publish-date">{{ publish_date }}</div>
+
+    <div class="share-buttons">
+      {% include '@components/share.html.twig' %}
+    </div>
+
+    {% if field_topics %}
+     <div class="topics">
+      <span class="tag-label"><i class="fas fa-tag fa-sm" title="Tags:"></i></span>{{ topics }}
+     </div>
+    {% endif %}
+
+</div>

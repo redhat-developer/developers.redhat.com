@@ -1,0 +1,38 @@
+uuid: 592e43ed-614d-4968-86d1-fb884002e1c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.call_to_action
+    - assembly.assembly_type.code_snippet
+    - assembly.assembly_type.layout_two_col_left_sidebar
+    - assembly.assembly_type.rich_text
+    - assembly.assembly_type.static_content_band
+    - field.storage.node.field_sections
+    - node.type.books
+  module:
+    - entity_reference_revisions
+id: node.books.field_sections
+field_name: field_sections
+entity_type: node
+bundle: books
+label: Sections
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:assembly'
+  handler_settings:
+    target_bundles:
+      call_to_action: call_to_action
+      code_snippet: code_snippet
+      static_content_band: static_content_band
+      layout_two_col_left_sidebar: layout_two_col_left_sidebar
+      rich_text: rich_text
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: layout_two_col_left_sidebar
+field_type: entity_reference_revisions

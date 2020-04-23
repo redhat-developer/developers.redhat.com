@@ -1,35 +1,17 @@
 <span class="dl-outage-msg"></span>
+
 <div{{attributes.addClass("component").setAttribute("id","rhd-book")}}>
-	<div class="pf-l-grid">
-		<div class="pf-l-grid__item pf-m-12-col">
-			<h4 class="content-type">Book</h4>
-			{{ title_prefix }}
-			<h1{{title_attributes.addClass(["book-title"])}}>{{ label }}</h1>
-			{{ title_suffix }}
-			<div class="book-info">
-				<div class="meta-info">
-					{% if content.field_author|render|striptags|trim is not empty %}
-							<div class="meta-book-author">
-								<strong{{author_attributes}}>By
-									{{content.field_author}}
-								</strong>
-							</div>
-						{% endif %}
-						{% set calc_date = node.published_at %}
-						{% if calc_date and calc_date.value is not empty %}
-							<div class="meta-book-published">
-								<small>Published:
-									<rh-datetime datetime="{{ calc_date.value|date("c")}}">{{calc_date.value|date("Y-m-d")}}</rh-datetime>
-								</small>
-							</div>
-						{% endif %}
-						<div class="right share-buttons">
-							{% include '@components/share.html.twig' %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+	{% include '@components/meta-bar.twig' with {
+	   meta_type: 'Book',
+     hide_title: content.field_hide_title,
+     label: label,
+     publish_date: node.createdtime|date(' F j, Y')
+	} only %}
+
+  {% if content.field_sections['#items'] %}
+    {{ content.field_sections }}
+  {% else %}
 		<div class="pf-l-grid pf-m-gutter">
 			<div{{content_attributes.addClass('pf-l-grid__item','pf-m-12-col','pf-m-9-col-on-lg')}}>
 				<div class="description-wrapper">
@@ -88,9 +70,15 @@
 				{% endif %}
 			</div>
 		</div>
-		<div class="pf-l-grid">
+  {% endif %}
+
+  {# discus comments #}
+  {% if not content.field_hide_comments %}
+		<div class="pf-l-grid pf-m-gutter">
 			<div class="pf-l-grid__item pf-m-12-col">
 				{{ content.disqus_thread }}
 			</div>
 		</div>
-	</div>
+  {% endif %}
+
+</div>

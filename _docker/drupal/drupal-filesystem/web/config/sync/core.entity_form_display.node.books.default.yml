@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.books.field_pull_from_google
     - field.field.node.books.field_read_time
     - field.field.node.books.field_related_product
+    - field.field.node.books.field_sections
     - field.field.node.books.field_share_image
     - field.field.node.books.field_short_description
     - field.field.node.books.field_tags
@@ -45,9 +46,11 @@ dependencies:
   module:
     - compose
     - content_moderation
+    - entity_browser_entity_form
     - field_group
     - field_layout
     - image
+    - inline_entity_form
     - interval
     - link
     - metatag
@@ -221,6 +224,24 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: fields
+  field_sections:
+    weight: 30
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
   field_share_image:
     type: image_image
     weight: 20
