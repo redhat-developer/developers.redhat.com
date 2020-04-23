@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
     - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_sections
     - field.field.node.katacoda_individual_lesson.field_tags
     - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
     - field.field.node.katacoda_individual_lesson.field_tax_business_unit
@@ -106,6 +107,7 @@ content:
 hidden:
   content_moderation_control: true
   field_katacoda_embed_id: true
+  field_sections: true
   field_tags: true
   field_tax_audience_segment: true
   field_tax_business_unit: true

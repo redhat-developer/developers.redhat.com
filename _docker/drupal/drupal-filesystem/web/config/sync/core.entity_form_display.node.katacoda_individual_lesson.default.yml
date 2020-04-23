@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
     - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_sections
     - field.field.node.katacoda_individual_lesson.field_tags
     - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
     - field.field.node.katacoda_individual_lesson.field_tax_business_unit
@@ -25,8 +26,10 @@ dependencies:
   module:
     - compose
     - content_moderation
+    - entity_browser_entity_form
     - field_group
     - field_layout
+    - inline_entity_form
     - path
     - publication_date
     - text
@@ -108,6 +111,24 @@ content:
     third_party_settings: {  }
     type: options_select
     region: fields
+  field_sections:
+    weight: 38
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: section
+      label_plural: sections
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
   field_tags:
     weight: 37
     settings:
