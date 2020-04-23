@@ -6,7 +6,8 @@
 	   meta_type: 'Book',
      hide_title: content.field_hide_title,
      label: label,
-     publish_date: node.createdtime|date(' F j, Y')
+     publish_date: calc_date.value|date("Y-m-d"),
+     topics: content.field_tags
 	} only %}
 
   {% if content.field_sections['#items'] %}
@@ -73,12 +74,10 @@
   {% endif %}
 
   {# discus comments #}
-  {% if not content.field_hide_comments %}
 		<div class="pf-l-grid pf-m-gutter">
 			<div class="pf-l-grid__item pf-m-12-col">
 				{{ content.disqus_thread }}
 			</div>
 		</div>
-  {% endif %}
 
 </div>
