@@ -11,7 +11,7 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
 
-  {% if not node.field_hide_title %}
+  {% if not node.field_hide_title.0.value == 1 %}
   <div class="topic-page__title component">
     <div class="pf-l-grid">
       {{ title_prefix }}
