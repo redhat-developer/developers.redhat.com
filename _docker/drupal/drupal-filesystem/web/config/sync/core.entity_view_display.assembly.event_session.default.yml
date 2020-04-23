@@ -49,7 +49,7 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: long_12h
+      date_format: 'F j, Y \a\t H:i (\U\T\C)'
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -58,7 +58,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: datetime_default
+    type: datetime_custom
     region: content
   field_ics_addevent_id:
     weight: 10
@@ -118,7 +118,7 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: long_12h
+      date_format: 'F j, Y \a\t H:i (\U\T\C)'
     third_party_settings:
       fences:
         fences_field_tag: none
@@ -127,7 +127,7 @@ content:
         fences_field_item_classes: ''
         fences_label_tag: none
         fences_label_classes: ''
-    type: datetime_default
+    type: datetime_custom
     region: content
   user_id:
     label: hidden

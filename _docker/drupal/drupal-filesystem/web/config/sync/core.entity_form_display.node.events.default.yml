@@ -60,6 +60,7 @@ third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_tax_event_categories
         - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
@@ -71,7 +72,6 @@ third_party_settings:
         - field_tax_promotion
         - field_tax_region
         - field_tax_stage
-        - field_tax_event_categories
         - field_tags
       parent_name: ''
       weight: 17
@@ -90,7 +90,7 @@ third_party_settings:
         - field_ics_addevent_id
         - field_ics_subtext
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       format_settings:
         label: 'Add to Calendar Information'
@@ -125,7 +125,7 @@ content:
     type: text_textarea
     region: fields
   field_end_date:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -190,7 +190,7 @@ content:
     type: boolean_checkbox
     region: fields
   field_presenter_s_:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -223,7 +223,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_sessions:
-    weight: 9
+    weight: 4
     settings:
       form_mode: default
       label_singular: ''
@@ -239,7 +239,7 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
-    region: fields
+    region: content
   field_short_description:
     weight: 2
     settings:
@@ -255,13 +255,13 @@ content:
     type: options_select
     region: fields
   field_start_date:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: fields
   field_tags:
-    weight: 24
+    weight: 35
     settings:
       match_operator: CONTAINS
       size: 60
@@ -270,19 +270,19 @@ content:
     type: entity_reference_autocomplete
     region: fields
   field_tax_audience_segment:
-    weight: 13
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 14
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 15
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -294,56 +294,56 @@ content:
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 16
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 17
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 18
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 19
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 20
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 21
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 22
+    weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_topics:
-    weight: 12
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   langcode:
     type: language_select
-    weight: 7
+    weight: 8
     region: fields
     settings:
       include_locked: true
