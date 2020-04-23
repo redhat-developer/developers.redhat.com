@@ -56,6 +56,23 @@ class EventsCollectionBuild extends AssemblyBuildView {
           }
         }
       }
+
+      // Get all sessions for events with available category filter.
+      if ($display_option == 'all_sessions_ungrouped') {
+
+        // Filter results on term filter (Event Category).
+        if ($entity->hasField('field_drupal_term_filter') && !$entity->get('field_drupal_term_filter')->isEmpty()) {
+          if ($event_categories = $entity->get('field_drupal_term_filter')->getValue()) {
+            $tids = [];
+            foreach ($event_categories as $event_category) {
+              $tids[] = $event_category['target_id'];
+            }
+            $args = implode('+', $tids);
+            $view->setArguments([$args]);
+          }
+        }
+      }
+
     }
 
     return $view;

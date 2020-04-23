@@ -21,7 +21,7 @@ bundle: events_collection
 mode: default
 content:
   field_audience_selection:
-    weight: 3
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -32,6 +32,12 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_drupal_term_filter:
+    type: options_buttons
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_single_event_reference:
     weight: 5
     settings:
@@ -59,11 +65,10 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_drupal_term_filter: true
   langcode: true
   user_id: true
