@@ -167,18 +167,45 @@ p,
 
 a {
   font-family: $rhd-font-stack-text;
+  &#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 13px;
+    text-decoration: none;
+    z-index: 1;
+    opacity: 0.8;
+    display: none;
 
-  &:focus, &:active {
-    outline: none;
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      opacity: 1;
+    }
   }
 
   .pf-c-content & {
-    @extend %link;
     font-family: $rhd-font-stack-text;
     font-weight: var(--rhd-global--FontWeight-Display--medium);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+    text-decoration: var(--pf-theme--link--text-decoration, "underline");
+    color: var(--pf-theme--color--ui-link, $rhd-theme--link--color);
+  
+    &:hover, &:active {
+      color: var(--pf-theme--color--ui-link--hover, $rhd-theme--link-hover--color);
+    }
 
     &:hover {
       text-decoration: underline;
