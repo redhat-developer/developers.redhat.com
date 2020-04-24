@@ -9,8 +9,9 @@ use Drupal\assembly\Plugin\AssemblyBuildInterface;
 use Drupal\node\Entity\Node;
 
 /**
- * Displays a list of recent content from Wordpress and Drupal
- *  @AssemblyBuild(
+ * Displays a list of recent content from Wordpress and Drupal.
+ *
+ * @AssemblyBuild(
  *   id = "dynamic_content_feed",
  *   types = { "dynamic_content_feed" },
  *   label = @Translation("Dynamic Content Feed")
@@ -46,7 +47,7 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
             '#date' => $item['post']->date,
           ];
         }
-        else if (isset($item['node'])) {
+        elseif (isset($item['node'])) {
           $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
           $build['posts'][] = $view_builder->view($item['node'], $mode);
         }
@@ -63,23 +64,22 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     foreach ($posts as $post) {
       $date = strtotime($post->content->date);
       $items[$date][] = [
-        'post' => $post
+        'post' => $post,
       ];
     }
     foreach ($nodes as $node) {
       $date = $node->getCreatedTime();
       $items[$date][] = [
-        'node' => $node
+        'node' => $node,
       ];
     }
 
-    // Actually sort the array.
-    // Sorting by key desc
+    // Sort the array by key desc.
     krsort($items);
 
-    // Flatten array
+    // Flatten array.
     $flat_items = [];
-    foreach($items as $date) {
+    foreach ($items as $date) {
       foreach ($date as $item) {
         $flat_items[] = $item;
       }
@@ -89,17 +89,18 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
   }
 
   protected function getWordpressPosts(EntityInterface $entity, $count) {
-    // get selected categories
+    // Get selected categories.
     $category_filters = $entity->get('field_category_filter')->getValue();
 
-    // get category logic
-    if($entity->hasField('field_wordpress_category_logic')) {
+    // Get category logic.
+    if ($entity->hasField('field_wordpress_category_logic')) {
       $category_logic = $entity->get('field_wordpress_category_logic')->getValue();
-    } else {
+    }
+    else {
       $category_logic = NULL;
     }
 
-    // grab category ids
+    // Grab category ids.
     $categories = [];
     if (!empty($category_filters)) {
       foreach ($category_filters as $category_filter) {
@@ -140,17 +141,17 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
     }
     else {
       $query = \Drupal::entityQuery('node')
-          ->condition('status', 1)
-          ->condition('type', $valid_node_types, 'in')
-          ->range(0, $count)
-          ->sort('created' , 'DESC');
+        ->condition('status', 1)
+        ->condition('type', $valid_node_types, 'in')
+        ->range(0, $count)
+        ->sort('created', 'DESC');
 
       $results = $query->execute();
 
       // Format results in an array of stdClasses with a nid attribute.
       foreach ($results as $key => $result) {
         $nid = $result;
-        $results[$key] = new \stdClass;
+        $results[$key] = new \stdClass();
         $results[$key]->nid = $nid;
       }
     }
@@ -164,4 +165,5 @@ class DynamicContentFeedBuild extends AssemblyBuildBase implements AssemblyBuild
 
     return $nodes;
   }
+
 }

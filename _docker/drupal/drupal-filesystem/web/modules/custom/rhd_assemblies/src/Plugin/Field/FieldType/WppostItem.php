@@ -4,10 +4,7 @@ namespace Drupal\rhd_assemblies\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Core\TypedData\OptionsProviderInterface;
 
 /**
  * Plugin implementation of the 'wppost' field type.
@@ -42,10 +39,10 @@ class WppostItem extends FieldItemBase {
    */
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     return [
-      // columns contains the values that the field will store
+      // Columns contains the values that the field will store.
       'columns' => [
-        // List the values that the field will save. This
-        // field will only save a single value, 'value'
+        // List the values that the field will save. This field will only save a
+        // single value, 'value'.
         'target_id' => [
           'description' => 'The Wordpress post ID.',
           'type' => 'int',
@@ -54,7 +51,7 @@ class WppostItem extends FieldItemBase {
         'title' => [
           'description' => 'The title of the Wordpress post at time of selection.',
           'type' => 'text',
-        ]
+        ],
       ],
     ];
   }
@@ -66,4 +63,5 @@ class WppostItem extends FieldItemBase {
     $value = $this->get('target_id')->getValue();
     return $value === NULL || $value === '';
   }
+
 }

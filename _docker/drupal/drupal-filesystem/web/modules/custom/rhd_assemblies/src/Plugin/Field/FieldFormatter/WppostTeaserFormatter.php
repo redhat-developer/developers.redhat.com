@@ -37,7 +37,7 @@ class WppostTeaserFormatter extends FormatterBase {
       '#title' => t('View mode'),
       '#default_value' => $this->getSetting('view_mode'),
       '#required' => TRUE,
-      '#options' => ['teaser' => 'Teaser', 'tile' => 'Tile']
+      '#options' => ['teaser' => 'Teaser', 'tile' => 'Tile'],
     ];
     return $elements;
   }
@@ -61,16 +61,18 @@ class WppostTeaserFormatter extends FormatterBase {
     foreach ($items as $delta => $item) {
       $id = $items[$delta]->get('target_id')->getCastedValue();
       $post = \Drupal::service('rhd_assemblies.wordpress_api')->getContentById($id);
-      if ($post) {
+
+      if (!empty($post)) {
         $element[$delta] = [
           '#theme' => $theme,
           '#post' => $post->content,
           '#media' => $post->media,
-          '#categories' => $post->categories
+          '#categories' => $post->categories,
         ];
       }
     }
 
     return $element;
   }
+
 }

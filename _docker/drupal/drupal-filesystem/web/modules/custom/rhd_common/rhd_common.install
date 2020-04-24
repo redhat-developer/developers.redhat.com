@@ -1,74 +1,22 @@
 <?php
-use Drupal\user\Entity\User;
 
 /**
- * Update module to update the URL entry of the get started to 'Hello World'.
+ * Drops the laravel_cache table.
+ *
+ * This will be committed alongside a config change to uninstall the
+ * rhd_guzzle_throttle custom module and replace the caching functionality of
+ * that module with Drupal caching.
  */
-function rhd_common_update_8200() {
-    $query = \Drupal::entityQuery('node');
-    $query->condition('type', 'product');
-    $entity_ids = $query->execute();
-    \Drupal::logger('rhd_common')->debug("Found entities: @entity_ids", ['@entity_ids' => $entity_ids]);
-    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($entity_ids);
-    array_walk($nodes, 'walkProducts');
-}
-
-/**
- * Iteration method to walk over all products and update the 'field_overview_url' field.
- * @param Drupal\node\Entity\Node $product
- * @param string $key unused
- */
-function walkProducts(&$product, $key) {
-    $sub_pages = $product->field_product_pages->referencedEntities();
-    /** @var \Drupal\paragraphs\Entity\Paragraph $get_started_paragraph */
-    $get_started_paragraph = &current(array_filter($sub_pages, 'findGetStartedPage'));
-    if ($get_started_paragraph instanceof \Drupal\paragraphs\Entity\Paragraph) {
-        \Drupal::logger('rhd_common')->debug("Found paragraph: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->id()]);
-        \Drupal::logger('rhd_common')->debug("Found paragraph url: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->field_overview_url->value]);
-        $get_started_paragraph->field_overview_url = 'Hello World';
-        $get_started_paragraph->field_overview_url = 'Hello World';
-        $get_started_paragraph->save();
-        $product->setNewRevision(TRUE);
-        $product->setRevisionAuthorId(1); // Admin
-        $product->setRevisionLogMessage('Updating the url to "Hello World"');
-        $product->save();
-    }
-}
-
-/**
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- * @return boolean
- */
-function findGetStartedPage(&$paragraph) {
-    return strtolower($paragraph->field_overview_url->value) === 'get started';
-}
-
 function rhd_common_update_8201() {
-  $profile_name = "lightning";
-  \Drupal::keyValue('system.schema')->delete('standard');
-  \Drupal::keyValue('system.schema')->set($profile_name, 8000);
+  $schema = \Drupal::database()->schema();
+  $table = 'laravel_cache';
 
-  $extension_config = \Drupal::configFactory()->getEditable('core.extension');
-  $modules = $extension_config->get('module');
-  $modules[$profile_name] = 1;
-  $extension_config->set('module', $modules);
-  $extension_config->save(); drupal_flush_all_caches();
-}
+  if ($schema->tableExists($table)) {
+    // TRUE if transaction was successful or FALSE if the table doesn't exist.
+    $isSuccess = $schema->dropTable($table);
 
-/**
- * Update roles for users to the new set
- */
-function rhd_common_update_8202() {
-  $creator_uids = [
-    2705, 2735, 2745, 2755, 2775, 4145, 6615, 6965, 11625, 12585,
-    13575, 17505, 30165, 31255, 31265, 34295, 34305, 34655, 34985, 42025, 43375,
-    45025, 45645, 46005, 48055, 49025, 49215, 53975, 56675, 56685, 58565, 58575,
-    58585, 58595, 58605, 58615, 60525, 60545, 60865, 62395, 62555, 62805, 65375,
-    67395, 67415
-  ];
-
-  array_walk(User::loadMultiple($creator_uids), function (User $user) {
-    $user->addRole('content_creator');
-    $user->save();
-  });
+    if ($isSuccess) {
+      return t('Successfully dropped laravel_cache table.');
+    }
+  }
 }

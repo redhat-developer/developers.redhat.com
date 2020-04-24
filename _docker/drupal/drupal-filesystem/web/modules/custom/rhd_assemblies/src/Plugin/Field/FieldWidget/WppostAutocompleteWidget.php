@@ -2,7 +2,6 @@
 
 namespace Drupal\rhd_assemblies\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -40,7 +39,7 @@ class WppostAutocompleteWidget extends WidgetBase {
       '#default_value' => $this->getSetting('result_count'),
       '#required' => TRUE,
       '#min' => 1,
-      '#max' => 100
+      '#max' => 100,
     ];
     return $elements;
   }
@@ -83,28 +82,24 @@ class WppostAutocompleteWidget extends WidgetBase {
       $title = str_replace(' (' . $target_id . ')', '', $value['value']);
       $values[$key] = [
         'target_id' => $target_id,
-        'title' => $title
+        'title' => $title,
       ];
     }
     return $values;
   }
 
   /**
+   * Looks for the last parentheses match in the atucomplete input.
+   *
    * Copied directly from Drupal\Core\Entity\Element\EntityAutocomplete,
    * only this will look for the last match, instead of the second (in case
-   * there are titles with parentheses)
+   * there are titles with parentheses).
    */
   public function extractWpIdFromAutocompleteInput($input) {
     $match = NULL;
     if (preg_match("/.+\s\(([^\)]+)\)/", $input, $matches)) {
-      $match = $matches[count($matches)-1];
+      $match = $matches[count($matches) - 1];
     }
-    return $match;
-  }
-
-  public function extractWpTitleFromAutocompleteInput($input) {
-    $id = $this->extractWpTitleFromAutocompleteInput($input);
-    $match = str_replace(' (' . $id . ')', '', $input);
     return $match;
   }
 

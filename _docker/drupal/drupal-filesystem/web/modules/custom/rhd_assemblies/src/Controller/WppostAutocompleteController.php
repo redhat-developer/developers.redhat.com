@@ -2,7 +2,6 @@
 
 namespace Drupal\rhd_assemblies\Controller;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Tags;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Controller\ControllerBase;
@@ -24,6 +23,8 @@ class WppostAutocompleteController extends ControllerBase {
     if ($input = $request->query->get('q')) {
       $typed_string = Tags::explode($input);
       $typed_string = Unicode::strtolower(array_pop($typed_string));
+
+      // Only make a request to Wordpress for queries that are >= 3 characters.
       if (strlen($typed_string) >= 3) {
         $results = \Drupal::service('rhd_assemblies.wordpress_api')->getAutocompleteContentOptions($typed_string, $count);
       }
@@ -31,4 +32,5 @@ class WppostAutocompleteController extends ControllerBase {
 
     return new JsonResponse($results);
   }
+
 }

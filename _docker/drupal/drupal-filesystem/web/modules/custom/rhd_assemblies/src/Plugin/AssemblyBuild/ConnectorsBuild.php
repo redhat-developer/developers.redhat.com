@@ -4,22 +4,21 @@ namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\assembly\Plugin\AssemblyBuildBase;
 use Drupal\assembly\Plugin\AssemblyBuildInterface;
-use Drupal\assembly\Plugin\AssemblyBuildView;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Adds all Connector nodes displayed as a List View.
- *  @AssemblyBuild(
+ *
+ * @AssemblyBuild(
  *   id = "connectors",
  *   types = { "connectors" },
  *   label = @Translation("Connectors")
  * )
  */
 class ConnectorsBuild extends AssemblyBuildBase implements AssemblyBuildInterface {
+
   /**
    * {@inheritdoc}
    */
@@ -31,7 +30,9 @@ class ConnectorsBuild extends AssemblyBuildBase implements AssemblyBuildInterfac
    * Sets a build array, $build['nodes'], of rendered nodes.
    *
    * @param array &$build
+   *   The build array to be passed for rendering.
    * @param string $view_mode
+   *   The view mode that we want to use to render these nodes.
    */
   protected function getItems(array &$build, $view_mode) {
     $items = $this->getDrupalNodes();
@@ -53,7 +54,7 @@ class ConnectorsBuild extends AssemblyBuildBase implements AssemblyBuildInterfac
       ->condition('status', 1)
       ->condition('type', 'connectors')
       ->sort('title', 'ASC')
-      ->execute();    
+      ->execute();
 
     $nodes = [];
     // Iterate through the array of nids and get an array of Node objects.
@@ -64,4 +65,5 @@ class ConnectorsBuild extends AssemblyBuildBase implements AssemblyBuildInterfac
     // An array of connector Node objects keyed by node id.
     return $nodes;
   }
+
 }

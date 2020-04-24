@@ -5,6 +5,7 @@ namespace Drupal\rhd_assemblies\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\Renderer;
+use Drupal\node\NodeInterface;
 use Drupal\rhd_assemblies\Service\DownloadManagerApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -65,7 +66,7 @@ class ProductsGettingStartedController extends ControllerBase {
   /**
    * Determines if thie Product node should have a Getting Started page.
    *
-   * @param Node $product
+   * @param \Drupal\node\NodeInterface $product
    *   A Product node.
    *
    * @return bool
@@ -73,11 +74,11 @@ class ProductsGettingStartedController extends ControllerBase {
    *   there is content for the Download Page field and the Product Machine Name
    *   field is set, returns TRUE.
    *
-   * @throws NotFoundHttpException
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
    *   If someone hits this route, but we do not have the content necessary to
    *   fetch data from download, manager, we throw a 404.
    */
-  protected function hasGettingStartedPage($product) {
+  protected function hasGettingStartedPage(NodeInterface $product) {
     if (!isset($product->field_product_machine_name)
       || !isset($product->field_getting_started_content)
       || !isset($product->field_use_new_product_page)
