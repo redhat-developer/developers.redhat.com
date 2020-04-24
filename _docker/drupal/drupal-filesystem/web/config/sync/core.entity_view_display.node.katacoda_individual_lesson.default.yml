@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
     - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
     - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_sections
     - field.field.node.katacoda_individual_lesson.field_tags
     - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
     - field.field.node.katacoda_individual_lesson.field_tax_business_unit
@@ -22,6 +23,7 @@ dependencies:
     - field.field.node.katacoda_individual_lesson.field_topics
     - node.type.katacoda_individual_lesson
   module:
+    - entity_reference_revisions
     - field_layout
     - layout_discovery
     - user
@@ -48,6 +50,15 @@ content:
         fences_label_tag: none
         fences_label_classes: ''
     type: string
+    region: content
+  field_sections:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
 hidden:
   body: true
