@@ -24,6 +24,6 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
-    {{ content.field_sections }}
+    {{ content|without('body') }}
   </div>
 </article>
