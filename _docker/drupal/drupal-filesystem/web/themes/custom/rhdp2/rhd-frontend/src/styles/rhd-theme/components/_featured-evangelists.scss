@@ -3,20 +3,6 @@
   h2 {
     margin-bottom: var(--pf-global--spacer--md);
   }
-  .grid {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-gap: 30px 30px;
-  }
-  .content-list {
-    display: grid;
-    grid-gap: 30px 30px;
-    @extend .pf-u-p-0;
-    @extend .pf-u-m-0;
-    @media screen and (min-width: 1024px) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
   &.no-padding-top {
     @extend .pf-u-pt-0;
   }
@@ -25,6 +11,8 @@
   }
 
   img {
+    width: 100%;
+    object-fit: cover;
     display: inline-block;
     vertical-align: middle;
     height: auto;
