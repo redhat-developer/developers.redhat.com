@@ -114,8 +114,8 @@ class DownloadManagerApi {
           $request = $this->client->request('GET', $feed_url);
           $response = $request->getBody()->getContents();
           $data = json_decode($response);
-          // Persist this data to a download_manager_api cache bin for an hour.
-          $this->cacheBin->set($cid, $data, time() + 3600);
+          $ttl = $this->configFactory->get('redhat_developers')->get('downloadManager.ttl');
+          $this->cacheBin->set($cid, $data, time() + $ttl);
         }
         catch (\Exception $e) {
           $this->loggerFactory->get('rhd_assemblies')->error(
