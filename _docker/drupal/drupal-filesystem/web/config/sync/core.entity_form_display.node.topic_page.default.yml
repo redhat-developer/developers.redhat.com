@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.topic_page.body
+    - field.field.node.topic_page.field_hide_title
     - field.field.node.topic_page.field_meta_tags
     - field.field.node.topic_page.field_sections
     - field.field.node.topic_page.field_share_image
@@ -51,7 +52,7 @@ third_party_settings:
         - field_tax_stage
         - field_tags
       parent_name: ''
-      weight: 4
+      weight: 6
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -70,7 +71,7 @@ bundle: topic_page
 mode: default
 content:
   body:
-    weight: 1
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
@@ -80,18 +81,25 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 7
     region: settings
     settings: {  }
     third_party_settings: {  }
+  field_hide_title:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_meta_tags:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: settings
   field_sections:
-    weight: 2
+    weight: 3
     settings:
       form_mode: default
       override_labels: true
@@ -110,7 +118,7 @@ content:
     region: content
   field_share_image:
     type: image_image
-    weight: 3
+    weight: 5
     settings:
       preview_image_style: thumbnail
       progress_indicator: throbber
@@ -193,26 +201,26 @@ content:
     region: fields
   langcode:
     type: language_select
-    weight: 2
+    weight: 4
     region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 9
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: settings
   path:
     type: path
-    weight: 7
+    weight: 8
     region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 11
+    weight: 12
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -225,7 +233,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 11
     region: settings
     settings: {  }
     third_party_settings: {  }

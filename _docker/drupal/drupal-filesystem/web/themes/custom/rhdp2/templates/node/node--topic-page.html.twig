@@ -10,15 +10,20 @@
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
+
+  {% if not node.field_hide_title.0.value == 1 %}
   <div class="topic-page__title component">
     <div class="pf-l-grid">
       {{ title_prefix }}
       <h1{{ title_attributes }}>{{ label }}</h1>
       {{ title_suffix }}
+
+      {{ content.body }}
     </div>
   </div>
+  {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
-    {{ content }}
+    {{ content|without('body') }}
   </div>
 </article>
