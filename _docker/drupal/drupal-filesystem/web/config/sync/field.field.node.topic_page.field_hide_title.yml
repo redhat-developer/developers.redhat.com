@@ -1,0 +1,23 @@
+uuid: cf088f96-d969-4f96-bda7-030445057868
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hide_title
+    - node.type.topic_page
+id: node.topic_page.field_hide_title
+field_name: field_hide_title
+entity_type: node
+bundle: topic_page
+label: 'Hide Title'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
