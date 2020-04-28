@@ -20,7 +20,7 @@ class EventsCollectionBuild extends AssemblyBuildView {
    */
   protected function views() {
     $views = [
-      'events_collection_grouped' => [
+      'events_collection' => [
         'view' => 'events_collection',
         'display' => 'all_sessions_ungrouped',
       ],
@@ -65,12 +65,28 @@ class EventsCollectionBuild extends AssemblyBuildView {
           if ($event_categories = $entity->get('field_drupal_term_filter')->getValue()) {
             $tids = [];
             foreach ($event_categories as $event_category) {
-              $tids[] = $event_category['target_id'];
+              $tid = (int) $event_category['target_id'];
+              $tids[$tid] = $tid;
             }
             $args = implode('+', $tids);
             $view->setArguments([$args]);
+
+            // Set taxonomy filter select options on the exposed form.
+            if (!empty($view->display_handler->options['filters']['field_tax_event_categories_target_id'])) {
+              $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = $tids;
+            }
           }
         }
+        // Reset filter if no event category is set.
+        else {
+          $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = [];
+          $view->display_handler->options['filters']['field_tax_event_categories_target_id']['expose']['reduce'] = FALSE;
+        }
+        // Set filter options, default, and loaded value.
+        $view->display_handler->setOption('filters', $view->display_handler->options['filters']);
+        $view->setExposedInput(['field_tax_event_categories_target_id' => 'All']);
+        $view->display_handler->options['fields']['field_tax_event_categories']['first_load'] = TRUE;
+
       }
 
     }
