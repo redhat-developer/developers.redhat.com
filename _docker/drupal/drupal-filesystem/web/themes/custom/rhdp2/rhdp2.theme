@@ -25,6 +25,10 @@ function rhdp2_preprocess_page(&$variables) {
   $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
   $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
   $variables['akamai_cache_clear_button'] = _rhdp2_build_block('akamai_cache_clear_block');
+
+  if (in_array('rhdp2_page_title', $variables['page']['title'])) {
+    unset($variables['page']['title']['rhdp2_page_title']);
+  }
 }
 
 /**
@@ -570,6 +574,10 @@ function rhdp2_preprocess_block(array &$variables) {
 
     if ($block_id == 'rhdp2_rhdnavigation') {
       $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
+
+    if ($block_id == 'rhdp2_local_tasks') {
+      $variables['attributes']['class'][] = 'component';
     }
   }
 }
