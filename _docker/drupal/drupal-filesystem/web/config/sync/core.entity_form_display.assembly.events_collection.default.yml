@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.events_collection.field_audience_selection
     - field.field.assembly.events_collection.field_display_option
     - field.field.assembly.events_collection.field_drupal_term_filter
+    - field.field.assembly.events_collection.field_show_filter
     - field.field.assembly.events_collection.field_single_event_reference
   module:
     - field_layout
@@ -33,11 +34,18 @@ content:
     type: options_select
     region: content
   field_drupal_term_filter:
-    type: options_buttons
-    weight: 6
+    type: options_select
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_show_filter:
+    weight: 6
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_single_event_reference:
     weight: 5
     settings:

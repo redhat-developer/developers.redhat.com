@@ -60,31 +60,56 @@ class EventsCollectionBuild extends AssemblyBuildView {
       // Get all sessions for events with available category filter.
       if ($display_option == 'all_sessions_ungrouped') {
 
-        // Filter results on term filter (Event Category).
-        if ($entity->hasField('field_drupal_term_filter') && !$entity->get('field_drupal_term_filter')->isEmpty()) {
-          if ($event_categories = $entity->get('field_drupal_term_filter')->getValue()) {
-            $tids = [];
-            foreach ($event_categories as $event_category) {
-              $tid = (int) $event_category['target_id'];
-              $tids[$tid] = $tid;
-            }
-            $args = implode('+', $tids);
-            $view->setArguments([$args]);
+        // Show exposed filter based on assembly input.
+        if ($entity->hasField('field_show_filter') && !$entity->get('field_show_filter')->isEmpty()) {
+          if ($show_filters = $entity->get('field_show_filter')->getValue()) {
 
-            // Set taxonomy filter select options on the exposed form.
-            if (!empty($view->display_handler->options['filters']['field_tax_event_categories_target_id'])) {
-              $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = $tids;
+            // Check if there are exposed filters.
+            if (isset($show_filters[0]['value']) && $show_filters[0]['value'] == 1) {
+
+              // Show exposed filters.
+              $view->display_handler->options['filters']['field_tax_event_categories_target_id']['exposed'] = TRUE;
+              $view->display_handler->options['filters']['field_language_value']['exposed'] = TRUE;
+
+              // Check if there is a term filter (Event Categories).
+              if ($entity->hasField('field_drupal_term_filter') && !$entity->get('field_drupal_term_filter')->isEmpty()) {
+
+                // Set contextual filter from term filter.
+                if ($event_categories = $entity->get('field_drupal_term_filter')->getValue()) {
+                  $tids = [];
+                  foreach ($event_categories as $event_category) {
+                    $tid = (int) $event_category['target_id'];
+                    $tids[$tid] = $tid;
+                  }
+                  $args = implode('+', $tids);
+                  $view->setArguments([$args]);
+
+                  // Set taxonomy filter select options on the exposed form.
+                  if (!empty($view->display_handler->options['filters']['field_tax_event_categories_target_id'])) {
+                    $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = $tids;
+                    $view->setExposedInput(['field_tax_event_categories_target_id' => 'All']);
+                  }
+                }
+              }
+              // Reset exposed filter to show all options if no term is set.
+              else {
+                $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = [];
+                $view->display_handler->options['filters']['field_tax_event_categories_target_id']['expose']['reduce'] = FALSE;
+                $view->setExposedInput(['field_tax_event_categories_target_id' => 'All']);
+              }
+
+            }
+            // Hide exposed filters.
+            else {
+              $view->display_handler->options['filters']['field_tax_event_categories_target_id']['exposed'] = FALSE;
+              $view->display_handler->options['filters']['field_language_value']['exposed'] = FALSE;
             }
           }
         }
-        // Reset filter if no event category is set.
-        else {
-          $view->display_handler->options['filters']['field_tax_event_categories_target_id']['value'] = [];
-          $view->display_handler->options['filters']['field_tax_event_categories_target_id']['expose']['reduce'] = FALSE;
-        }
-        // Set filter options, default, and loaded value.
+
+        // Set filter options.
         $view->display_handler->setOption('filters', $view->display_handler->options['filters']);
-        $view->setExposedInput(['field_tax_event_categories_target_id' => 'All']);
+        // Add a loaded value for hook_views_post_build()
         $view->display_handler->options['fields']['field_tax_event_categories']['first_load'] = TRUE;
 
       }

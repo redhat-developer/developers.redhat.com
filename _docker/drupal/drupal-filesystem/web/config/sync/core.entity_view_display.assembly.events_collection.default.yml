@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.events_collection.field_audience_selection
     - field.field.assembly.events_collection.field_display_option
     - field.field.assembly.events_collection.field_drupal_term_filter
+    - field.field.assembly.events_collection.field_show_filter
     - field.field.assembly.events_collection.field_single_event_reference
   module:
     - field_layout
@@ -24,6 +25,7 @@ hidden:
   field_audience_selection: true
   field_display_option: true
   field_drupal_term_filter: true
+  field_show_filter: true
   field_single_event_reference: true
   langcode: true
   name: true

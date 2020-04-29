@@ -57,7 +57,7 @@ display:
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
@@ -1383,6 +1383,73 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        sticky:
+          id: sticky
+          table: node_field_data
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: 'View Built'
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: default
+            format_custom_true: ''
+            format_custom_false: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: sticky
+          plugin_id: field
       use_ajax: true
       sorts:
         field_start_value:
@@ -1520,20 +1587,20 @@ display:
             operator: field_tax_event_categories_target_id_op
             identifier: field_tax_event_categories_target_id
             required: false
-            remember: true
+            remember: false
             multiple: false
             remember_roles:
-              anonymous: anonymous
-              authenticated: authenticated
-              media_manager: media_manager
-              layout_manager: layout_manager
-              content_creator: content_creator
-              content_team: content_team
-              content_admin: content_admin
-              coding_resource_creator: coding_resource_creator
-              coding_resource_reviewer: coding_resource_reviewer
-              administrator: administrator
-              redirect_manager: redirect_manager
+              anonymous: '0'
+              authenticated: '0'
+              media_manager: '0'
+              layout_manager: '0'
+              content_creator: '0'
+              content_team: '0'
+              content_admin: '0'
+              coding_resource_creator: '0'
+              coding_resource_reviewer: '0'
+              administrator: '0'
+              redirect_manager: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1661,6 +1728,7 @@ display:
           break_phrase: true
           not: false
           plugin_id: numeric
+      pager_element: 0
     cache_metadata:
       max-age: -1
       contexts:
