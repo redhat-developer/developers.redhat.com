@@ -82,7 +82,7 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   public function getContentById($id) {
     $cid = 'wordpress_api:post:' . $id;
-    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
     $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
 
     // Serve the cached Wordpress API data if available.
@@ -130,7 +130,7 @@ class WordpressApi implements RemoteContentApiInterface {
     $items = [];
     $select_logic_tmp = "or";
     $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
-    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
     $query['per_page'] = $max_results;
     $query['logic'] = $select_logic_tmp;
 
@@ -201,7 +201,7 @@ class WordpressApi implements RemoteContentApiInterface {
       'search' => $search,
     ];
     $cid = 'wordpress_api:search:' . $search;
-    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -282,7 +282,7 @@ class WordpressApi implements RemoteContentApiInterface {
     $pages_to_query = 1;
     $results = [];
     $cid = 'wordpress_api:categories';
-    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
     // Serve the cached Wordpress API data if available.
     if ($cache = $this->cacheBin->get($cid)) {
@@ -455,7 +455,7 @@ class WordpressApi implements RemoteContentApiInterface {
    */
   private function getContentMedia(array $ids) {
     $cid = 'wordpress_api:content_media:' . implode('', $ids);
-    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl');
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
     // Serve the cached Wordpress media if available.
     if ($cache = $this->cacheBin->get($cid)) {

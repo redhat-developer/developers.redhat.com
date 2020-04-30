@@ -114,7 +114,7 @@ class DownloadManagerApi {
           $request = $this->client->request('GET', $feed_url);
           $response = $request->getBody()->getContents();
           $data = json_decode($response);
-          $ttl = $this->configFactory->get('redhat_developers')->get('downloadManager.ttl');
+          $ttl = $this->configFactory->get('redhat_developers')->get('downloadManager.ttl') ?? 3600;
           $this->cacheBin->set($cid, $data, time() + $ttl);
         }
         catch (\Exception $e) {
