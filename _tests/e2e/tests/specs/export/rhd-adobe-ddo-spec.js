@@ -37,18 +37,6 @@ describe('Adobe DDO', function() {
         }
     });
 
-    it("should have a valid digitalData object on the /openshift page", () => {
-        BasicPage.open('openshift');
-        const digitalData = Driver.getAdobeDdo();
-
-        if (Utils.isManagedPaasEnvironment() || Utils.isProduction()) {
-            expect(digitalData.page.category.primaryCategory).to.equal("openshift");
-        }
-        else { 
-            expect(digitalData).to.not.be.null;
-        }
-    });
-
     it("should have a valid digitalData object on the /rhel8 page", () => {
         BasicPage.open('rhel8');
         const digitalData = Driver.getAdobeDdo();
