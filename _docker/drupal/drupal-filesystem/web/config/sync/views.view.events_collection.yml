@@ -11,14 +11,12 @@ dependencies:
     - field.storage.node.field_start_date
     - field.storage.node.field_tax_event_categories
     - node.type.events
-    - taxonomy.vocabulary.event_categories
   module:
     - assembly
     - datetime
     - link
     - node
     - options
-    - taxonomy
     - user
 id: events_collection
 label: 'Events Collection'
@@ -40,8 +38,12 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
-        options: {  }
+        type: time
+        options:
+          results_lifespan: 21600
+          results_lifespan_custom: 0
+          output_lifespan: 21600
+          output_lifespan_custom: 0
       query:
         type: views_query
         options:
@@ -737,8 +739,8 @@ display:
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: true
-          override: true
+          default_row_class: false
+          override: false
           sticky: false
           caption: ''
           summary: ''
@@ -753,9 +755,10 @@ display:
             field_presenters: field_presenters
             view_node: view_node
             field_more_details: field_more_details
+            sticky: sticky
           info:
             title:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: views-align-left
               separator: ''
@@ -767,21 +770,21 @@ display:
               empty_column: true
               responsive: ''
             field_start:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: views-align-left
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_start_1:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: views-align-left
               separator: ''
               empty_column: true
               responsive: ''
             field_language:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: views-align-left
               separator: ''
@@ -802,12 +805,19 @@ display:
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_more_details:
               align: views-align-left
               separator: ''
-              empty_column: false
+              empty_column: true
+              responsive: ''
+            sticky:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
               responsive: ''
           default: field_start
           empty_table: false
@@ -1568,107 +1578,6 @@ display:
           entity_type: assembly
           entity_field: status
           plugin_id: boolean
-        field_tax_event_categories_target_id:
-          id: field_tax_event_categories_target_id
-          table: node__field_tax_event_categories
-          field: field_tax_event_categories_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tax_event_categories_target_id_op
-            label: Session
-            description: ''
-            use_operator: false
-            operator: field_tax_event_categories_target_id_op
-            identifier: field_tax_event_categories_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              anonymous: '0'
-              authenticated: '0'
-              media_manager: '0'
-              layout_manager: '0'
-              content_creator: '0'
-              content_team: '0'
-              content_admin: '0'
-              coding_resource_creator: '0'
-              coding_resource_reviewer: '0'
-              administrator: '0'
-              redirect_manager: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: event_categories
-          hierarchy: true
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_language_value:
-          id: field_language_value
-          table: assembly__field_language
-          field: field_language_value
-          relationship: field_sessions
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_language_value_op
-            label: Language
-            description: ''
-            use_operator: false
-            operator: field_language_value_op
-            identifier: field_language_value
-            required: false
-            remember: true
-            multiple: false
-            remember_roles:
-              anonymous: anonymous
-              authenticated: authenticated
-              media_manager: media_manager
-              layout_manager: layout_manager
-              content_creator: content_creator
-              content_team: content_team
-              content_admin: content_admin
-              coding_resource_creator: coding_resource_creator
-              coding_resource_reviewer: coding_resource_reviewer
-              administrator: administrator
-              redirect_manager: redirect_manager
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: OR
         groups:
@@ -1690,7 +1599,7 @@ display:
           relationship: none
           group_type: group
           admin_label: node
-          required: false
+          required: true
           plugin_id: standard
       arguments:
         field_tax_event_categories_target_id:
@@ -1735,8 +1644,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

@@ -160,24 +160,6 @@ function rhd_assemblies_form_node_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Implements hook_views_post_build().
- */
-function rhd_assemblies_views_post_build($view) {
-  // Only save view if it's the first load after EventsCollectionBuild.
-  if (!empty($view->display_handler->options['fields']['field_tax_event_categories']['first_load'])
-    && $view->display_handler->options['fields']['field_tax_event_categories']['first_load'] === TRUE) {
-    if ($view->id() == 'events_collection') {
-      if ($filters = $view->display_handler->getOption('filters')) {
-        if (!empty($filters['field_tax_event_categories_target_id'])) {
-          $view->display_handler->options['fields']['field_tax_event_categories']['first_load'] === FALSE;
-          $view->save();
-        }
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_form_alter().
  */
 function rhd_assemblies_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
