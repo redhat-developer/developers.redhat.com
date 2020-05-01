@@ -1,35 +1,49 @@
-form {
-  input {
-    outline: none;
-  }
+// form {
+//   input {
+//     outline: none;
+//   }
 
-  .region.region-content & {
-    margin: var(--rhd-theme--container-spacer-md) 0;
+//   .region.region-content & {
+//     margin: var(--rhd-theme--container-spacer-md) 0;
 
-    // Which forms does the following modify?
-    @extend .pf-c-form;
-    input[type="submit"] {
-      margin-top: var(--rhd-theme--container-spacer-md);
-      @extend .pf-c-button;
-      @extend .pf-m-heavy;
-    }
+//     // Which forms does the following modify?
+//     @extend .pf-c-form;
+//     input[type="submit"] {
+//       margin-top: var(--rhd-theme--container-spacer-md);
+//       @extend .pf-c-button;
+//       @extend .pf-m-heavy;
+//     }
 
-    .form-item {
-      @extend .pf-c-form__group;
-      margin: var(--rhd-theme--container-spacer-md) 0;
-      label {
-        @extend .pf-c-form__label;
-        @extend .pf-c-form__label-text;
-      }
-      input {
-        &.form-text {
-          @extend .pf-c-form-control;
-        }
-      }
-      .description {
-        @extend .pf-c-form__helper-text;
-      }
-    }
-  }
-}
+//     .form-item {
+//       @extend .pf-c-form__group;
+//       margin: var(--rhd-theme--container-spacer-md) 0;
+//       label {
+//         @extend .pf-c-form__label;
+//         @extend .pf-c-form__label-text;
+//       }
+//       input {
+//         &.form-text {
+//           @extend .pf-c-form-control;
+//         }
+//       }
+//       .description {
+//         @extend .pf-c-form__helper-text;
+//       }
+//     }
+
+//     // Content moderation forms on Entities with Content Moderation Workflow.
+//     .content-moderation-entity-moderation-form {
+//       background: #eee;
+//       margin: var(--rhd-theme--container-spacer-sm) auto;
+//       max-width: 1440px;
+
+//       // Overrides for content moderation library.
+//       .entity-moderation-form  {
+//         background: #eee;
+//         border: none;
+//         padding: 0;
+//       }
+//     }
+//   }
+// }
 

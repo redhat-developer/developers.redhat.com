@@ -9,7 +9,10 @@
 ]
 %}
 {{ attach_library('classy/node') }}
+
 <article{{ attributes.addClass(classes) }}>
+
+  {{ content.content_moderation_control }}
 
   {% if not node.field_hide_title.0.value == 1 %}
   <div class="topic-page__title component">
@@ -24,6 +27,6 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
-    {{ content|without('body') }}
+    {{ content|without('body', 'content_moderation_control') }}
   </div>
 </article>

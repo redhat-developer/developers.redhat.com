@@ -132,6 +132,24 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
 }
 
 /**
+ * Implements hook_preprocess().
+ */
+function rhdp2_preprocess_region(&$variables) {
+  if ($variables['region'] == "title") {
+    $variables['attributes']['class'][] = 'rhd-u-container-limit-with';
+  }
+}
+
+/**
+ * Implements hook_preprocess_form().
+*/
+function rhdp2_preprocess_form(array &$variables) {
+  if ($variables['element']['#form_id'] == "content_moderation_entity_moderation_form") {
+    $variables['attributes']['class'][] = "rhd-u-container-limit-with";
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function rhdp2_preprocess_node(&$variables) {

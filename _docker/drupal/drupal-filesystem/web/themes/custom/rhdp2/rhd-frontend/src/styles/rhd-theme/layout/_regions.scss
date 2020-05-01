@@ -1,0 +1,20 @@
+.rhd-u-container-limit-with {
+    max-width: map-get($rhd-breakpoints, xlarge);
+    margin: var(--pf-global--spacer--lg) auto 0 auto;
+}
+
+.region {
+  &.region--title {
+    .block-local-tasks-block {
+      margin: var(--rhd-theme--container-spacer-sm);
+    }
+  }
+}
+
+.content-moderation-entity-moderation-form {
+    @extend .rhd-u-container-limit-with;
+
+    // Override content-moderation styles.
+    .entity-moderation-form {
+    }
+}
