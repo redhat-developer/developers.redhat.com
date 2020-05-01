@@ -150,6 +150,20 @@ function rhd_assemblies_preprocess_assembly(&$variables) {
       $variables['#attached']['drupalSettings']['rhd_assemblies']['countdown_date'] = $cta_timer;
     }
   }
+
+  // Show filters based on assembly input.
+  if ($type = 'events_collection') {
+    $variables['#attached']['library'][] = 'rhd_assemblies/tablesort';
+
+    if ($assembly->hasField('field_show_filter') && !$assembly->get('field_show_filter')->isEmpty()) {
+      if (isset($assembly->get('field_show_filter')->getValue()[0]['value'])) {
+        $show_filters = (int) $assembly->get('field_show_filter')->getValue()[0]['value'];
+        if ($show_filters == 1) {
+          $variables['#attached']['library'][] = 'rhd_assemblies/tablefilter';
+        }
+      }
+    }
+  }
 }
 
 /**
