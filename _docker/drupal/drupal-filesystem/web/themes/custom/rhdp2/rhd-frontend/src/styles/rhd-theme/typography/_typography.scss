@@ -202,7 +202,7 @@ a {
     line-height: 24px;
     text-decoration: var(--pf-theme--link--text-decoration, "underline");
     color: var(--pf-theme--color--ui-link, $rhd-theme--link--color);
-  
+
     &:hover, &:active {
       color: var(--pf-theme--color--ui-link--hover, $rhd-theme--link-hover--color);
     }
@@ -219,4 +219,17 @@ a {
 
 .share-sm {
   margin-top: 2px;
+}
+
+// Override Patternfly content ul bullets.
+ul {
+  &.rhd-u-no-bullet {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  &.pf-c-list.pf-m-inline li:not(:last-child) {
+    margin-right: var(--pf-global--spacer--sm, 8px);
+  }
 }

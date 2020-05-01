@@ -16,6 +16,10 @@ use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Block\Plugin\Block\Broken;
 use Drupal\Core\Access\AccessResult;
 
+function rhdp2_preprocess_menu_local_task(&$variables) {
+  $variables['link']['#options']['attributes']['class'][] = 'pf-c-button pf-m-secondary ';
+}
+
 /**
  * Implements hook_preprocess_page().
  */
@@ -129,15 +133,6 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
   }
 
   return $suggestions;
-}
-
-/**
- * Implements hook_preprocess().
- */
-function rhdp2_preprocess_region(&$variables) {
-  if ($variables['region'] == "title") {
-    $variables['attributes']['class'][] = 'rhd-u-container-limit-with';
-  }
 }
 
 /**
@@ -595,7 +590,7 @@ function rhdp2_preprocess_block(array &$variables) {
     }
 
     if ($block_id == 'rhdp2_local_tasks') {
-      $variables['attributes']['class'][] = 'component';
+      $variables['attributes']['class'][] = 'rhd-u-container-limit-with';
     }
   }
 }

@@ -13,6 +13,9 @@
 ] %}
 
 <div{{ attributes.addClass(classes).setAttribute("id", "rhd-article") }}>
+
+  {{ content.content_moderation_control }}
+
   <div class="pf-l-grid pf-m-gutter">
     {% if has_hero and content.field_image|render %}
     <div class="article-hero pf-l-grid__item pf-sm-12-col">

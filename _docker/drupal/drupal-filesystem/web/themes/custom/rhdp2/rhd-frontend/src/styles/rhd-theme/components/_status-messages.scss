@@ -1,4 +1,7 @@
 .pf-c-alert {
+  max-width: map-get($rhd-breakpoints, xlarge);
+  margin: var(--pf-global--spacer--lg) auto 0 auto;
+
   p.pf-c-alert__title {
     margin: 0;
   }
