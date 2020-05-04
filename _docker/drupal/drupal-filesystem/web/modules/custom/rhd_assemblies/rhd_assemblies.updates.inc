@@ -1,13 +1,11 @@
 <?php
 
-use Drupal\Core\Database\Connection;
-use Drupal\Core\Database\Database;
-use Drupal\assembly\Entity\Assembly;
-
 /**
  * @file
- * hook_update_N()s for assemblies or related functionality.
+ * Hook_update_N()s for assemblies or related functionality.
  */
+
+use Drupal\assembly\Entity\Assembly;
 
 /**
  * Standardize light, dark and centered visual style class names.
@@ -26,7 +24,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update assembly-dark visual styles to dark in assembly_revision__visual_style.
+  // Update assembly-dark visual styles to dark in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
@@ -46,7 +45,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update product-hero--dark visual styles to dark in assembly_revision__visual_style.
+  // Update product-hero--dark visual styles to dark in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
@@ -56,7 +56,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--dark" visual style to "dark" in assembly_revision__visual_styles.');
   }
 
-  // Update product-hero--light visual styles to light in assembly__visual_style.
+  // Update product-hero--light visual styles to light in
+  // assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'light'])
@@ -66,7 +67,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--light" visual style to "light" in assembly__visual_styles.');
   }
 
-  // Update product-hero--light visual styles to light in assembly_revision__visual_style.
+  // Update product-hero--light visual styles to light in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'light'])
@@ -86,7 +88,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-hero--slim" visual style to "assembly-slim" in assembly__visual_styles.');
   }
 
-  // Update product-hero--slim visual styles to slim in assembly_revision__visual_style.
+  // Update product-hero--slim visual styles to slim in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'assembly-slim'])
@@ -126,7 +129,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-center" visual style to "centered" in assembly__visual_styles.');
   }
 
-  // Update assembly-center visual styles to centered in assembly_revision__visual_style.
+  // Update assembly-center visual styles to centered in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'centered'])
@@ -136,7 +140,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "assembly-center" visual style to "centered" in assembly_revision__visual_styles.');
   }
 
-  // Update product-signup-hero--dark visual styles to dark in assembly__visual_style.
+  // Update product-signup-hero--dark visual styles to dark in
+  // assembly__visual_style.
   $query = \Drupal::database()
     ->update('assembly__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
@@ -146,7 +151,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "product-signup-hero--dark" visual style to "dark" in assembly__visual_styles.');
   }
 
-  // Update product-signup-hero--dark visual styles to dark in assembly_revision__visual_style.
+  // Update product-signup-hero--dark visual styles to dark in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'dark'])
@@ -166,7 +172,8 @@ function rhd_assemblies_update_8001() {
     throw new DrupalUpdateException('rhd_assemblies_update_8001 failed to apply. Could not update "events-hero--light" visual style to "light" in assembly__visual_styles.');
   }
 
-  // Update events-hero--light visual styles to light in assembly_revision__visual_style.
+  // Update events-hero--light visual styles to light in
+  // assembly_revision__visual_style.
   $query = \Drupal::database()
     ->update('assembly_revision__visual_styles')
     ->fields(['visual_styles_value' => 'light'])
@@ -220,6 +227,27 @@ function rhd_assemblies_update_8001() {
     $assembly->save();
   }
 
-  //  If all updates were performed without exception, return a success message.
+  // If all updates were performed without exception, return a success message.
   return t('rhd_assemblies_update_8001 was successfully applied. Assembly visual styles implementing a dark or centered theme will now use the classes "dark" and "centered".');
+}
+
+/**
+ * Drops the laravel_cache table.
+ *
+ * This will be committed alongside a config change to uninstall the
+ * rhd_guzzle_throttle custom module and replace the caching functionality of
+ * that module with Drupal caching.
+ */
+function rhd_assemblies_update_8002() {
+  $schema = \Drupal::database()->schema();
+  $table = 'laravel_cache';
+
+  if ($schema->tableExists($table)) {
+    // TRUE if transaction was successful or FALSE if the table doesn't exist.
+    $isSuccess = $schema->dropTable($table);
+
+    if ($isSuccess) {
+      return t('Successfully dropped laravel_cache table.');
+    }
+  }
 }

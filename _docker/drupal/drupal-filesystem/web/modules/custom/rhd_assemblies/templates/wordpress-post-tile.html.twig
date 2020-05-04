@@ -1,18 +1,20 @@
 {% if media and media.media_type == 'image' %}
-{% set tmpUrl = media.source_url %}
-{% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
-{% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
-  <div class="rhd-c-card-blur-image">
+  {% set tmpUrl = media.source_url %}
+  {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
+    {% set cacheImg = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':post.title.rendered|replace({'"':''}), } %}
+    <div class="rhd-c-card-blur-image">
       {{ cacheImg }}
-  </div>
-  {{ cacheImg }}
-{% else %}
-  <div class="rhd-c-card-blur-image">
+    </div>
+    {{ cacheImg }}
+  {% else %}
+    <div class="rhd-c-card-blur-image">
       <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+    </div>
+    <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
+  {% endif %}
+{% endif %}
+{% if post.title is not empty %}
+  <div class="rhd-c-card-content">
+    <h3 class="rhd-c-card__title"><a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a></h3>
   </div>
-  <img src="{{ tmpUrl }}" alt="{{ post.title.rendered|replace({'"':''}) }}" />
 {% endif %}
-{% endif %}
-<div class="rhd-c-card-content">
-  <h3 class="rhd-c-card__title"><a href="{{ post.link }}" class="rhd-m-link">{{ post.title.rendered|raw }}</a></h3>
-</div>

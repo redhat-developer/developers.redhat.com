@@ -30,6 +30,26 @@
                 display: inline-block;
                 float: none;
                 color: $rolling-stone;
+                &.a2a_button_twitter {
+                  &:hover {
+                    color: #00aced;
+                  }
+                }
+                &.a2a_button_facebook {
+                  &:hover {
+                    color: #3b5998;
+                  }
+                }
+                &.a2a_button_linkedin {
+                  &:hover {
+                    color: #0077B5;
+                  }
+                }
+                &.a2a_button_email {
+                  &:hover {
+                    color: #000000;
+                  }
+                }
             }
         }
         &.right {
