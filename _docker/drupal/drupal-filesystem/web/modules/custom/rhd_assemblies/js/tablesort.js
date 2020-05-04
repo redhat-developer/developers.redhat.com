@@ -7,10 +7,8 @@
 
   Drupal.behaviors.rhd_tablesort = {
     attach: function (context, settings) {
-
-      $('.assembly-type-events_collection', context).once('rhd_tablesort').each(function () {
-        var table = $(context).find('table.views-table');
-        // new Tablesort(table);
+      $('.assembly-type-events_collection table.views-table', context).once('rhd_tablesort').each(function () {
+        new Tablesort($(this)[0]);
       });
     }
   }

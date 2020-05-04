@@ -643,20 +643,7 @@ display:
           plugin_id: datetime
       header: {  }
       footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'No results found. Please modify your filter criteria.'
-            format: rhd_html
-          plugin_id: text
+      empty: {  }
       relationships:
         field_sessions:
           id: field_sessions
@@ -866,7 +853,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: ''
+          element_class: event-title
           element_label_type: ''
           element_label_class: ''
           element_label_colon: true
