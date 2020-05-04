@@ -25,6 +25,18 @@ function rhdp2_preprocess_page(&$variables) {
   $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
   $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
   $variables['akamai_cache_clear_button'] = _rhdp2_build_block('akamai_cache_clear_block');
+
+   // We have the block but we want to hide it? Is it a required block?
+   if (in_array('rhdp2_page_title', $variables['page']['title'])) {
+      unset($variables['page']['title']['rhdp2_page_title']);
+    }
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function rhdp2_preprocess_menu_local_task(&$variables) {
+  $variables['link']['#options']['attributes']['class'][] = 'pf-c-button pf-m-secondary ';
 }
 
 /**
@@ -125,6 +137,15 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
   }
 
   return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_form().
+*/
+function rhdp2_preprocess_form(array &$variables) {
+  if ($variables['element']['#form_id'] == "content_moderation_entity_moderation_form") {
+    //$variables['attributes']['class'][] = "rhd-u-container-limit-with";
+  }
 }
 
 /**
@@ -570,6 +591,11 @@ function rhdp2_preprocess_block(array &$variables) {
 
     if ($block_id == 'rhdp2_rhdnavigation') {
       $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
+
+    // The content moderation contrib module has an issue.
+    if ($block_id == 'rhdp2_content' && strpos(\Drupal::request()->getRequestUri(), 'moderation/dashboard') !== false) {
+      $variables['attributes']['class'][] = 'component';
     }
   }
 }
