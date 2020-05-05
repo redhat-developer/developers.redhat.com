@@ -1,0 +1,25 @@
+uuid: 9c24942e-617e-4e8b-93d5-92a2728e1be5
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.compact_dynamic_article_list
+    - field.storage.assembly.field_number_of_posts
+id: assembly.compact_dynamic_article_list.field_number_of_posts
+field_name: field_number_of_posts
+entity_type: assembly
+bundle: compact_dynamic_article_list
+label: 'Number of Posts'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 8
+default_value_callback: ''
+settings:
+  min: 4
+  max: 10
+  prefix: ''
+  suffix: ''
+field_type: integer

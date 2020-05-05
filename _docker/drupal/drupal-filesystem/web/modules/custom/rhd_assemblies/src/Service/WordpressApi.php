@@ -3,6 +3,9 @@
 namespace Drupal\rhd_assemblies\Service;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;
 
 /**
@@ -25,16 +28,46 @@ class WordpressApi implements RemoteContentApiInterface {
   private $client;
 
   /**
-   * {@inheritdoc}
+   * Download Manager cache bin.
+   *
+   * @var \Drupal\Core\Cache\CacheBackendInterface
    */
-  public function __construct(ClientInterface $client) {
+  protected $cacheBin;
+
+  /**
+   * Logger factory service.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
+
+  /**
+   * Config factory service.
+   *
+   * @var \Drupal\Core\Config\ConfigFactory
+   */
+  protected $configFactory;
+
+  /**
+   * Constructor.
+   *
+   * @param GuzzleHttp\ClientInterface $client
+   *   The Guzzle client.
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_bin
+   *   Wordpress API cache bin service.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   Logger factory service.
+   * @param \Drupal\Core\Config\ConfigFactory $config_factory
+   *   Config factory service.
+   */
+  public function __construct(ClientInterface $client, CacheBackendInterface $cache_bin, LoggerChannelFactoryInterface $logger_factory, ConfigFactory $config_factory) {
     // If, for some reason, we want to bypass Akamai, change the value of this
     // attribute to 'https://origin-developers.redhat.com/blog'.
-    // Used for local testing
-    // $this->apiUrl = 'http://localhost:8000';
-    // $this->apiUrl = 'https://developers.redhat.com/blog';
-    $this->apiUrl = 'https://origin-developers.redhat.com/blog';
+    $this->apiUrl = 'https://developers.redhat.com/blog';
     $this->client = $client;
+    $this->cacheBin = $cache_bin;
+    $this->loggerFactory = $logger_factory;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -48,22 +81,35 @@ class WordpressApi implements RemoteContentApiInterface {
    *   Otherwise, this method return FALSE.
    */
   public function getContentById($id) {
-    try {
-      $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
-      $request = $this->client->request('GET', $feed_url);
-      $response = $request->getBody()->getContents();
-      $result = json_decode($response);
-      return $this->getContentComposite($result);
-    }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Wordpress API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
+    $cid = 'wordpress_api:post:' . $id;
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
+    $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts/' . $id;
 
-      return FALSE;
+    // Serve the cached Wordpress API data if available.
+    if ($cache = $this->cacheBin->get($cid)) {
+      $data = $cache->data;
     }
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        $request = $this->client->request('GET', $feed_url);
+        $response = $request->getBody()->getContents();
+        $data = json_decode($response);
+        // Persist this data to the wordpress_api cache bin for an hour.
+        $this->cacheBin->set($cid, $data, time() + $ttl);
+      }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('rhd_assemblies')->error(
+          "Exception while calling Wordpress API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
+
+        return FALSE;
+      }
+    }
+
+    return $this->getContentComposite($data);
   }
 
   /**
@@ -80,52 +126,60 @@ class WordpressApi implements RemoteContentApiInterface {
    *   Returns an array of objects of the WP posts if the fetch is successful.
    *   Otherwise, returns an empty array.
    */
-  public function getContentByCategory($categories, $max_results, $select_logic) {
+  public function getContentByCategory(array $categories, $max_results, $select_logic) {
     $items = [];
-
     $select_logic_tmp = "or";
+    $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
+    $query['per_page'] = $max_results;
+    $query['logic'] = $select_logic_tmp;
 
     if ($select_logic) {
       $select_logic_tmp = $select_logic[0]['value'] == "1" ? "and" : "or";
     }
 
-    // $feed_url = $this->apiUrl . '/wp-json/wp/v2/posts';
-    // $feed_url = 'http://localhost:8000/wp-json/wp/v2/posts';
-    $feed_url = $this->apiUrl . '/wp-json/rhd-frontend-blog-theme/v1/posts-by-category';
+    if (!empty($categories)) {
+      $query['categories'] = implode(",", $categories);
+      $imploded_categories = implode('', $categories);
+      $cid = "wordpress_api:by_category:per_page_{$query['per_page']}-logic_{$query['logic']}-categories_{$imploded_categories}";
+    }
+    else {
+      $cid = "wordpress_api:by_category:per_page_{$query['per_page']}-logic_{$query['logic']}";
+    }
 
-    $query['per_page'] = $max_results;
-    $query['logic'] = $select_logic_tmp;
+    // Serve the cached Wordpress API data if available.
+    if ($cache = $this->cacheBin->get($cid)) {
+      $data = $cache->data;
+    }
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        // Retrieve the WP posts from the $feed_url and decode the JSON into a
+        // $results array.
+        $request = $this->client->request('GET', $feed_url, ['query' => $query]);
+        $response = $request->getBody()->getContents();
+        $results = json_decode($response);
+        // Pass the WP posts returned in $results, and get the
+        // processed/formatted results from getContentCompositeMultiple().
+        $data = $this->getContentCompositeMultiple($results);
 
-    if ($categories) {
-      if (count($categories) > 0) {
-        $query['categories'] = implode(",", $categories);
+        if (!empty($data)) {
+          // Persist this data to the wordpress_api cache bin for an hour.
+          $this->cacheBin->set($cid, $data, time() + $ttl);
+        }
+      }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('rhd_assemblies')->error(
+          "Exception while calling Wordpress API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
+
+        return [];
       }
     }
 
-    try {
-      // Retrieve the WP posts from the $feed_url and decode the JSON into a
-      // $results array.
-      $request = $this->client->request('GET', $feed_url, ['query' => $query]);
-
-      $response = $request->getBody()->getContents();
-
-      $results = json_decode($response);
-
-      // Pass the WP posts returned in $results, and get the processed/formatted
-      // results from getContentCompositeMultiple().
-      $items = $this->getContentCompositeMultiple($results);
-
-      return $items;
-    }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Wordpress API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
-
-      return [];
-    }
+    return $data;
   }
 
   /**
@@ -146,41 +200,70 @@ class WordpressApi implements RemoteContentApiInterface {
       'rest_route' => '/rh/v1/posts-by-title',
       'search' => $search,
     ];
-    $results = [];
+    $cid = 'wordpress_api:search:' . $search;
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
-    try {
-      // Tries to retrieve WP posts from $feed_url using the $query params.
-      $request = $this->client->request('GET', $feed_url, ['query' => $query]);
-      $response = $request->getBody()->getContents();
-      $api_results = json_decode($response);
-
-      foreach ($api_results as $api_result) {
-        $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')';
-        $results[] = [
-          'value' => $label,
-          'label' => $label,
-        ];
-
-        if (count($results) >= $max_results) {
-          // If we already have $max_results-many WP posts in $results, then we
-          // return $results.
-          return $results;
-        }
-      }
-
-      // If no WP posts were returned in the response, return the empty $results
-      // array here.
-      return $results;
+    // Serve the cached Wordpress API data if available.
+    if ($cache = $this->cacheBin->get($cid)) {
+      $data = $cache->data;
     }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Wordpress API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        // Tries to retrieve WP posts from $feed_url using the $query params.
+        $request = $this->client->request('GET', $feed_url, ['query' => $query]);
+        $response = $request->getBody()->getContents();
+        $data = json_decode($response);
+        // Persist this data to the wordpress_api cache bin for an hour.
+        $this->cacheBin->set($cid, $data, time() + $ttl);
+      }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('rhd_assemblies')->error(
+          "Exception while calling Wordpress API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
 
+        return [];
+      }
+    }
+
+    return $this->formatAutocompleteContentOptions($data, $max_results);
+  }
+
+  /**
+   * Returns formatted HTML output of the autocomplete options.
+   *
+   * @param string $api_results
+   *   The titles/results returned from the Wordpress API.
+   * @param int $max_results
+   *   The maximum number of results to provide in the autocomplete options.
+   *
+   * @return string[]
+   *   Returns the formatted HTML output.
+   */
+  public function formatAutocompleteContentOptions($api_results, $max_results) {
+    // We need to verify that we've successfully fetched posts in $api_results.
+    if (empty($api_results)) {
       return [];
     }
+    foreach ($api_results as $api_result) {
+      $label = Html::escape($api_result->post_title) . ' (' . $api_result->ID . ')';
+      $results[] = [
+        'value' => $label,
+        'label' => $label,
+      ];
+
+      if (count($results) >= $max_results) {
+        // If we already have $max_results-many WP posts in $results, then we
+        // return $results.
+        return $results;
+      }
+    }
+
+    // If no WP posts were returned in the response, return the empty $results
+    // array here.
+    return $results;
   }
 
   /**
@@ -198,32 +281,45 @@ class WordpressApi implements RemoteContentApiInterface {
     ];
     $pages_to_query = 1;
     $results = [];
+    $cid = 'wordpress_api:categories';
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
-    try {
-      for ($i = 1; $i <= $pages_to_query; $i++) {
-        $query['page'] = $i;
-        $request = $this->client->request('GET', $feed_url, ['query' => $query]);
-        $request_headers = $request->getHeaders();
-        $pages_to_query = reset($request_headers['X-WP-TotalPages']);
-        $response = $request->getBody()->getContents();
-        $api_results = json_decode($response);
+    // Serve the cached Wordpress API data if available.
+    if ($cache = $this->cacheBin->get($cid)) {
+      $data = $cache->data;
+    }
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        for ($i = 1; $i <= $pages_to_query; $i++) {
+          $query['page'] = $i;
+          $request = $this->client->request('GET', $feed_url, ['query' => $query]);
+          $request_headers = $request->getHeaders();
+          $pages_to_query = reset($request_headers['X-WP-TotalPages']);
+          $response = $request->getBody()->getContents();
+          $api_results = json_decode($response);
 
-        foreach ($api_results as $api_result) {
-          $results[$api_result->id] = $api_result;
+          foreach ($api_results as $api_result) {
+            $results[$api_result->id] = $api_result;
+          }
         }
+
+        $data = $results;
+        // Persist this data to the wordpress_api cache bin for an hour.
+        $this->cacheBin->set($cid, $data, time() + $ttl);
       }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('rhd_assemblies')->error(
+          "Exception while calling Wordpress API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
 
-      return $results;
+        return [];
+      }
     }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Wordpress API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
 
-      return [];
-    }
+    return $data;
   }
 
   /**
@@ -259,9 +355,12 @@ class WordpressApi implements RemoteContentApiInterface {
 
     if (isset($content->featured_media) && $content->featured_media) {
       $content_media = $this->getContentMedia([$content->featured_media]);
-      $item->media = reset($content_media);
-      $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
-      $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+
+      if (!empty($content_media)) {
+        $item->media = reset($content_media);
+        $aspect_ratio = $item->media->media_details->height / $item->media->media_details->width;
+        $item->media->scale_orientation = ($aspect_ratio > .58) ? 'vertical' : 'horizontal';
+      }
     }
 
     if (isset($content->categories) && count($content->categories)) {
@@ -355,25 +454,38 @@ class WordpressApi implements RemoteContentApiInterface {
    *   fetched. Otherwise, returns an empty array.
    */
   private function getContentMedia(array $ids) {
-    try {
-      // Filters out any values in $ids equivalent to FALSE and then implodes.
-      $ids_string = implode(",", array_filter($ids));
-      // Retrieves the WP Media entities by their IDs.
-      $feed_url = $this->apiUrl . '/wp-json/wp/v2/media?include=' . $ids_string;
-      $request = $this->client->request('GET', $feed_url);
-      $response = $request->getBody()->getContents();
+    $cid = 'wordpress_api:content_media:' . implode('', $ids);
+    $ttl = $this->configFactory->get('redhat_developers')->get('wordpressApi.ttl') ?? 3600;
 
-      return json_decode($response);
+    // Serve the cached Wordpress media if available.
+    if ($cache = $this->cacheBin->get($cid)) {
+      $data = $cache->data;
     }
-    catch (\Exception $e) {
-      \Drupal::logger('rhd_assemblies')->error(
-        "Exception while calling Wordpress API: @message", [
-          '@message' => $e->getMessage(),
-        ]
-      );
+    // If this is uncached or the cache is invalid, fetch fresh data.
+    else {
+      try {
+        // Filters out any values in $ids equivalent to FALSE and then implodes.
+        $ids_string = implode(",", array_filter($ids));
+        // Retrieves the WP Media entities by their IDs.
+        $feed_url = $this->apiUrl . '/wp-json/wp/v2/media?include=' . $ids_string;
+        $request = $this->client->request('GET', $feed_url);
+        $response = $request->getBody()->getContents();
+        $data = json_decode($response);
+        // Persist this data to the wordpress_api cache bin for an hour.
+        $this->cacheBin->set($cid, $data, time() + $ttl);
+      }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('rhd_assemblies')->error(
+          "Exception while calling Wordpress API: @message", [
+            '@message' => $e->getMessage(),
+          ]
+        );
 
-      return [];
+        return [];
+      }
     }
+
+    return $data;
   }
 
   /**
