@@ -257,11 +257,6 @@ function rhdp2_preprocess_node(&$variables) {
         $variables['authors'] = implode(' & ', $authors_values);
       }
     }
-    
-    // Prepares the article authors render element for taxonomy page.
-    if ($variables['view_mode'] === 'taxonomy_list_item') {
-      $variables['authors'] = _generate_authors_links('field_author_evangelist', 'field_content_author', $variables);
-    }
 
     // Process for view mode compact_dynamic_article_list_item.
     if ($variables['view_mode'] === 'compact_dynamic_article_list_item') {
@@ -333,40 +328,6 @@ function rhdp2_preprocess_node(&$variables) {
       $node_title = $node->label();
       $variables['node_title'] = str_replace('"', '', $node_title);
     }
-
-    // Taxonomy List Item
-    if ($variables['view_mode'] === 'taxonomy_list_item') {
-      // Get More Details link
-      $variables['more_details'] = NULL;
-      if ($more_details = $node->get('field_more_details')->getValue()) {
-        $variables['more_details'] = ($more_details[0]['uri']) ? $more_details[0]['uri'] : NULL;
-      }
-
-      // Get Presenters
-      $variables['presenters'] = _generate_authors_links('field_presenter_s_', NULL, $variables);
-    }
-  }
-
-  // Coding Resource content type and Taxonomy List Item.
-  if ($type === 'coding_resource' && $variables['view_mode'] === 'taxonomy_list_item') {
-
-    // Prepares the coding resource authors/contributors render element for taxonomy page.
-    $authors_values = [];
-    if ($contributors = $node->get('field_contributors')->getValue()) {
-      if (count($contributors) > 0) {
-        foreach ($contributors as $contributor) {
-          $authors_values[] = [
-            '#markup' => $contributor['value'],
-          ];
-        }
-      }
-    }
-    if ($original_author = $node->get('field_author')->getValue()) {
-      $authors_values[] = [
-        '#markup' => $original_author[0]['value'],
-      ];
-    }
-    $variables['authors'] = (empty($authors_values)) ? [] : $authors_values;
   }
 
   // Learning Path content type and Card view mode.
@@ -435,11 +396,6 @@ function rhdp2_preprocess_node(&$variables) {
 
       $variables['timestamp'] = $timestamp;
     }
-    
-    // Prepares the article authors render element for taxonomy page.
-    if ($variables['view_mode'] === 'taxonomy_list_item') {
-      $variables['authors'] = _generate_authors_links('field_video_author', NULL, $variables);
-    }
   }
 
   if ($node->hasField('field_cheat_sheet_download_url')) {
@@ -450,6 +406,53 @@ function rhdp2_preprocess_node(&$variables) {
     $download_url = $download_manager_base_url . $download_path;
     $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
   }
+
+  // Prepare fields for taxonomy page.
+  $taxonomy_list_item_types = [
+    'article',
+    'coding_resource',
+    'events',
+    'video_resource',
+  ];
+  if (in_array($type, $taxonomy_list_item_types) && $variables['view_mode'] == 'taxonomy_list_item') {
+    switch ($type) {
+
+      case ('article'):
+        $variables['authors'] = _generate_authors_links($variables, 'field_author_evangelist', 'field_content_author');
+        break;
+
+      case ('coding_resource'):
+        $authors_values = [];
+        if ($contributors = $node->get('field_contributors')->getValue()) {
+          if (count($contributors) > 0) {
+            foreach ($contributors as $contributor) {
+              $authors_values[] = [
+                '#markup' => $contributor['value'],
+              ];
+            }
+          }
+        }
+        if ($original_author = $node->get('field_author')->getValue()) {
+          $authors_values[] = [
+            '#markup' => $original_author[0]['value'],
+          ];
+        }
+        $variables['authors'] = (empty($authors_values)) ? [] : $authors_values;
+        break;
+
+      case ('events'):
+        $variables['more_details'] = NULL;
+        if ($more_details = $node->get('field_more_details')->getValue()) {
+          $variables['more_details'] = ($more_details[0]['uri']) ? $more_details[0]['uri'] : NULL;
+        }
+        $variables['presenters'] = _generate_authors_links($variables, 'field_presenter_s_', NULL);
+        break;
+
+      case ('video_resource'):
+        $variables['authors'] = _generate_authors_links($variables, 'field_video_author', NULL);
+        break;
+    }
+  }
 }
 
 /**
@@ -457,14 +460,13 @@ function rhdp2_preprocess_node(&$variables) {
  *
  * @param string $dynamic_authors_field_name
  *   The field used for author entity references.
- *
  * @param string $static_authors_filed_name
  *   The field used for author strings.
  *
  * @return array
  *   Returns a render array of author links or FALSE.
  */
-function _generate_authors_links($dynamic_authors_field_name = NULL, $static_authors_filed_name = NULL, $variables) {
+function _generate_authors_links($variables, $dynamic_authors_field_name = NULL, $static_authors_filed_name = NULL) {
   $node = $variables['elements']['#node'];
   $authors_values = [];
 
