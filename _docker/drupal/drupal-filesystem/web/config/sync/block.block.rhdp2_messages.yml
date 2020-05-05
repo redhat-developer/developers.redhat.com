@@ -17,9 +17,4 @@ settings:
   label: 'Status messages'
   provider: system
   label_display: '0'
-visibility:
-  request_path:
-    id: request_path
-    pages: '/user/*'
-    negate: false
-    context_mapping: {  }
+visibility: {  }

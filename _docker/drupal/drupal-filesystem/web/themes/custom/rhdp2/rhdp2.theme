@@ -593,6 +593,10 @@ function rhdp2_preprocess_block(array &$variables) {
       $variables['attributes']['class'][] = 'rhd-nav-fixed';
     }
 
+    if ($block_id == 'rhdp2_local_tasks') {
+      $variables['attributes']['class'][] = 'component';
+    }
+
     // The content moderation contrib module has an issue.
     if ($block_id == 'rhdp2_content' && strpos(\Drupal::request()->getRequestUri(), 'moderation/dashboard') !== false) {
       $variables['attributes']['class'][] = 'component';
