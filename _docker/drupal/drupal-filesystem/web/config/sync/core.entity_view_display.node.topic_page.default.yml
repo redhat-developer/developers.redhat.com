@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.topic_page.body
+    - field.field.node.topic_page.field_hide_title
     - field.field.node.topic_page.field_meta_tags
     - field.field.node.topic_page.field_sections
     - field.field.node.topic_page.field_share_image
@@ -77,6 +78,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hide_title: true
   field_meta_tags: true
   field_share_image: true
   field_tags: true
