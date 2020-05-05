@@ -57,7 +57,7 @@ class EventsCollectionBuild extends AssemblyBuildView {
       }
 
       // Get all sessions for events with available category filter.
-      if ($display_option == 'all_sessions_ungrouped') {
+      if ($display_option == 'all_sessions_ungrouped' || $display_option == 'all_sessions_by_event') {
         // Check if there is a term filter (Event Categories).
         if ($entity->hasField('field_drupal_term_filter') && !$entity->get('field_drupal_term_filter')->isEmpty()) {
           // Set contextual filter from term filter.

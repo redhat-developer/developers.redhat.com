@@ -14,6 +14,7 @@
         var sessionSelect = $(context).find('#event-collection-filter__session');
         var languageSelect = $(context).find('#event-collection-filter__language');
         var filterSelects = $(context).find('#event-collection-filters select');
+        var displayForm = false;
 
         // Find used categories and set as options in session filter.
         // Hide filter option if unused.
@@ -22,6 +23,7 @@
           $('.event-collection-filter-group__session').hide();
         }
         else {
+          displayForm = true;
           var categoryOptions = [];
           $.each(categories, function (key, value) {
             category = $.trim(value.innerText);
@@ -40,6 +42,7 @@
           $('.event-collection-filter-group__language').hide();
         }
         else {
+          displayForm = true;
           var languageOptions = [];
           $.each(languages, function (key, value) {
             language = $.trim(value.innerHTML);
@@ -51,8 +54,10 @@
           languageSelect.append(languageOptions);
         }
 
-        // Everybody's ready, let's see that filter form!
-        $('#event-collection-filters').show();
+        // Everybody's ready, let's see if we should see that filter form!
+        if (displayForm) {
+          $('#event-collection-filters').show();
+        }
 
         // Setup no results message.
         $(tableBody).prepend('<div id="event-collection-filter__no-results" style="display: none"><p>No results found. Please modify your filter criteria.</p></div>');
