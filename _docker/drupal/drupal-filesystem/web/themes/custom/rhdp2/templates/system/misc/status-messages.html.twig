@@ -19,7 +19,7 @@
  *   - class: HTML classes.
  */
 #}
-<div data-drupal-messages>
+<div data-drupal-messages class="component">
 {% block messages %}
 {% for type, messages in message_list %}
 
@@ -44,7 +44,7 @@
   {% else %}
     {% set icon_class = 'fa-bell' %}
   {% endif %}
-  
+
 
   <div {{ attributes.addClass(classes)|without('role', 'aria-label') }} aria-label="{{ status_headings[type] }}" role="contentinfo">
 
