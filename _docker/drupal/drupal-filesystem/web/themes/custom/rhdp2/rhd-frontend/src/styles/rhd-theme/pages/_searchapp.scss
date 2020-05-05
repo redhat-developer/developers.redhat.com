@@ -23,6 +23,13 @@ rhdp-search-app {
 
   .pf-c-input-group {
     .pf-c-button.pf-m-danger {
+      background-color: $red;
+      &:hover,
+      &:focus,
+      &.pf-m-focus {
+        background-color: $dark-red;
+        color: $white;
+      }
       &:after {
         //remove pf after causing blue underline on hover
         display: none;
