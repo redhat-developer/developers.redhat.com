@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.compact_dynamic_article_list.field_category_filter
     - field.field.assembly.compact_dynamic_article_list.field_cta_link
     - field.field.assembly.compact_dynamic_article_list.field_drupal_term_filter
+    - field.field.assembly.compact_dynamic_article_list.field_number_of_posts
     - field.field.assembly.compact_dynamic_article_list.field_title
     - field.field.assembly.compact_dynamic_article_list.field_wordpress_category_logic
   module:
@@ -31,13 +32,13 @@ content:
     type: options_buttons
     region: content
   field_category_filter:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: wpcategories_options_select
     region: content
   field_cta_link:
-    weight: 26
+    weight: 9
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -45,10 +46,17 @@ content:
     type: link_default
     region: content
   field_drupal_term_filter:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_number_of_posts:
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
   field_title:
     weight: 3
@@ -59,7 +67,7 @@ content:
     type: string_textfield
     region: content
   field_wordpress_category_logic:
-    weight: 6
+    weight: 7
     settings:
       display_label: true
     third_party_settings: {  }

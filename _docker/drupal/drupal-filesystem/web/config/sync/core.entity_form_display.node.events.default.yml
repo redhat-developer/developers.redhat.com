@@ -74,7 +74,7 @@ third_party_settings:
         - field_tax_stage
         - field_tags
       parent_name: ''
-      weight: 17
+      weight: 23
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -100,6 +100,23 @@ third_party_settings:
         open: false
       label: 'Add to Calendar Information'
       region: fields
+    group_deprecated:
+      children:
+        - field_solution_type
+        - field_target_product
+        - field_event_format
+        - field_tile_thumbnail
+        - field_data_tags
+      parent_name: ''
+      weight: 17
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Deprecated
+      region: fields
   field_layout:
     id: compose_tabs
     settings: {  }
@@ -112,9 +129,17 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 18
+    weight: 24
     region: settings
     settings: {  }
+    third_party_settings: {  }
+  field_data_tags:
+    type: string_textfield
+    weight: 22
+    region: fields
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_description:
     weight: 3
@@ -138,6 +163,12 @@ content:
     third_party_settings: {  }
     type: image_image
     region: fields
+  field_event_format:
+    type: options_select
+    weight: 20
+    region: fields
+    settings: {  }
+    third_party_settings: {  }
   field_event_image:
     weight: 10
     settings: {  }
@@ -254,6 +285,12 @@ content:
     third_party_settings: {  }
     type: options_select
     region: fields
+  field_solution_type:
+    type: options_select
+    weight: 18
+    region: fields
+    settings: {  }
+    third_party_settings: {  }
   field_start_date:
     weight: 5
     settings: {  }
@@ -269,6 +306,12 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: fields
+  field_target_product:
+    type: options_select
+    weight: 19
+    region: fields
+    settings: {  }
+    third_party_settings: {  }
   field_tax_audience_segment:
     weight: 25
     settings: {  }
@@ -335,6 +378,14 @@ content:
     third_party_settings: {  }
     type: options_buttons
     region: fields
+  field_tile_thumbnail:
+    type: image_image
+    weight: 21
+    settings:
+      preview_image_style: thumbnail
+      progress_indicator: throbber
+    region: fields
+    third_party_settings: {  }
   field_topics:
     weight: 24
     settings: {  }
@@ -349,20 +400,20 @@ content:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 20
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: settings
   path:
     type: path
-    weight: 21
+    weight: 27
     region: settings
     settings: {  }
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 19
+    weight: 25
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -375,17 +426,12 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 22
+    weight: 28
     region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_data_tags: true
-  field_event_format: true
   field_event_type: true
-  field_solution_type: true
-  field_target_product: true
-  field_tile_thumbnail: true
   field_title: true
   promote: true
   status: true
