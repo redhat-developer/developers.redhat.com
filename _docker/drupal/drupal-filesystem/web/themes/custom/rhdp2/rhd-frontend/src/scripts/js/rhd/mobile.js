@@ -138,8 +138,8 @@ $('.has-sub-nav > a').on('click',function(e){
     }
 });
 
-/* 
-  Force page navigation for download manager files 
+/*
+  Force page navigation for download manager files
 */
 
 $('a[href*="download-manager"]').on('click', function(e) {
