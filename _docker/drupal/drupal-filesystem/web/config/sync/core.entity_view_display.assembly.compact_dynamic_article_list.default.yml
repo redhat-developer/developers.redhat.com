@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.compact_dynamic_article_list.field_category_filter
     - field.field.assembly.compact_dynamic_article_list.field_cta_link
     - field.field.assembly.compact_dynamic_article_list.field_drupal_term_filter
+    - field.field.assembly.compact_dynamic_article_list.field_number_of_posts
     - field.field.assembly.compact_dynamic_article_list.field_title
     - field.field.assembly.compact_dynamic_article_list.field_wordpress_category_logic
   module:
@@ -63,6 +64,7 @@ hidden:
   field_audience_selection: true
   field_category_filter: true
   field_drupal_term_filter: true
+  field_number_of_posts: true
   field_wordpress_category_logic: true
   langcode: true
   name: true
