@@ -1,11 +1,11 @@
 web-components:
   header: true
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js: { type: external, minified: true, browsers: {IE: 'lte IE 11'} }
-    https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js: { type: external, minified: true }
     https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js: { type: external, minified: true }
-    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/custom-elements-es5-adapter.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js: { type: external, minified: true }
 
 new-relic:
   header: true
