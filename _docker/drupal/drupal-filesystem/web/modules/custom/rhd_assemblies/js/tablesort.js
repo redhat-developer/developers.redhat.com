@@ -13,7 +13,7 @@
         // Set sort type to date.
         $(this).find('th#view-field-start-table-column')
           .addClass('pf-m-selected')
-          .attr('data-sort-method', 'date')
+          .attr('data-sort-method', 'monthname')
           .attr('aria-sort', 'ascending');
 
         // Initialize tablesort.
