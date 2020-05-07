@@ -1663,7 +1663,7 @@ display:
               empty_column: false
               responsive: priority-low
             field_start:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -2463,6 +2463,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2545,8 +2546,8 @@ display:
           description: ''
           columns:
             title: title
-            field_start_1: field_start_1
             field_start: field_start
+            field_start_1: field_start_1
             field_language: field_language
             field_presenters: field_presenters
           info:
@@ -2557,14 +2558,14 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
-            field_start_1:
-              sortable: false
+            field_start:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: priority-low
-            field_start:
+            field_start_1:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -2583,7 +2584,7 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
-          default: field_start_1
+          default: field_start
           empty_table: false
       row:
         type: fields
@@ -2658,8 +2659,8 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-        field_start_1:
-          id: field_start_1
+        field_start:
+          id: field_start
           table: assembly__field_start
           field: field_start
           relationship: field_sessions
@@ -2695,10 +2696,10 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: event-session-field__date
+          element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
@@ -2722,8 +2723,8 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_start:
-          id: field_start
+        field_start_1:
+          id: field_start_1
           table: assembly__field_start
           field: field_start
           relationship: field_sessions
@@ -2759,7 +2760,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: ''
+          element_class: event-session-field__date
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -3048,6 +3049,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
