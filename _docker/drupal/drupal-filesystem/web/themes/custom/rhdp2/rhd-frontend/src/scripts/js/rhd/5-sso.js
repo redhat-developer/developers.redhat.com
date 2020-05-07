@@ -1,10 +1,10 @@
 app.sso = function () {
 
     function updateUser() {
-        //Push it onto the event array of the digitalData object.
+        // Push it onto the event array of the digitalData object.
         window.digitalData = window.digitalData || {};
 
-        //Update digitalData.page.listing objects.
+        // Update digitalData.page.listing objects.
         digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
         var usr = digitalData.user[0].profile[0].profileInfo || {};
 
@@ -75,6 +75,10 @@ app.sso = function () {
             }).error(clearTokens);
         } else {
             $('li.login, section.register-banner, .hidden-after-login, [data-audience="unauthenticated"]').show();
+
+            // Remove gated content.
+            $('[data-audience="authenticated"]').detach();
+
             $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
 
             $('li.login a').on('click', function (e) {
