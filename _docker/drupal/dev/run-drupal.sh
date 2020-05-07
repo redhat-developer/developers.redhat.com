@@ -25,7 +25,7 @@ if [[ $REGISTRY_REDHAT_IO_SKIP_LOGIN != true ]]; then
   docker login registry.redhat.io -u "${REGISTRY_REDHAT_IO_USERNAME}" -p "${REGISTRY_REDHAT_IO_PASSWORD}"
 fi
 docker pull docker-registry.upshift.redhat.com/developers/drupal-data:latest
-docker pull images.paas.redhat.com/rhdp/developer-base:rhel-76.3
+docker pull images.paas.redhat.com/rhdp/developer-base:rhel-76.4
 
 cd "${DIR}" && docker-compose down -v
 cd "${DIR}" && rm -rf $DIR/drupal-workspace

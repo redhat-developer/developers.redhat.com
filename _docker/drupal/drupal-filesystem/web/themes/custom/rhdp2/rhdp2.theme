@@ -729,7 +729,7 @@ function _is_field_used_as_content_image_in_card($variables) {
  */
 function _is_field_used_as_hero_image_in_card($variables) {
   if ($variables['entity_type'] === 'node') {
-    if ($variables['element']['#bundle'] === 'product' && $variables['element']['#view_mode'] === 'featured_tile' && $variables['field_name'] === 'field_image') {
+    if ($variables['element']['#bundle'] === 'product' && in_array($variables['element']['#view_mode'], ['featured_tile', 'card']) && $variables['field_name'] === 'field_image') {
       return TRUE;
     }
   }

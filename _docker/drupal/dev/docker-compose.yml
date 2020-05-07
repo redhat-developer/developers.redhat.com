@@ -1,7 +1,7 @@
 version: '2'
 services:
   update-composer:
-    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.3
+    image: images.paas.redhat.com/rhdp/developer-base:rhel-76.4
     volumes:
       - ../drupal-filesystem/composer.json:/drupal/composer.json
       - ../drupal-filesystem/composer.lock:/drupal/composer.lock
