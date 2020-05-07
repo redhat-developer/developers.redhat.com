@@ -1,0 +1,20 @@
+uuid: 46ed18cd-b89b-4928-95cd-2da4dc5bd436
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: node.field_sessions
+field_name: field_sessions
+entity_type: node
+type: entity_reference
+settings:
+  target_type: assembly
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

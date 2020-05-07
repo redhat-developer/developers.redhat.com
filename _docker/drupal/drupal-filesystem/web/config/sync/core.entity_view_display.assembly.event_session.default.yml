@@ -1,0 +1,148 @@
+uuid: 94e69fe7-d8d1-443c-acba-2de0a0e1a38e
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.field.assembly.event_session.field_end
+    - field.field.assembly.event_session.field_ics_addevent_id
+    - field.field.assembly.event_session.field_ics_subtext
+    - field.field.assembly.event_session.field_ics_title
+    - field.field.assembly.event_session.field_language
+    - field.field.assembly.event_session.field_presenters
+    - field.field.assembly.event_session.field_start
+  module:
+    - datetime
+    - fences
+    - field_group
+    - field_layout
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+  field_group:
+    group_add_to_calendar_informatio:
+      children:
+        - field_ics_title
+        - field_ics_addevent_id
+        - field_ics_subtext
+      parent_name: ''
+      weight: 5
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: 'Add to Calendar Information'
+      region: content
+id: assembly.event_session.default
+targetEntityType: assembly
+bundle: event_session
+mode: default
+content:
+  field_end:
+    weight: 4
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: long_12h
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: datetime_default
+    region: content
+  field_ics_addevent_id:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ics_subtext:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ics_title:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_language:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: list_default
+    region: content
+  field_presenters:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_label
+    region: content
+  field_start:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: long_12h
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: datetime_default
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  langcode: true
+  name: true

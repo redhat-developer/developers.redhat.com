@@ -1,0 +1,19 @@
+uuid: 17752e6d-5bfe-4d22-a2b6-a146a5014ed8
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_ics_title
+id: assembly.event_session.field_ics_title
+field_name: field_ics_title
+entity_type: assembly
+bundle: event_session
+label: 'ICS Title'
+description: 'Intro text above the calendar link(s)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

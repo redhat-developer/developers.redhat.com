@@ -1,0 +1,33 @@
+uuid: d16e7eae-ff4b-44e3-b482-1cbffca5164d
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_language
+field_name: field_language
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: en
+      label: English
+    -
+      value: es
+      label: Spanish
+    -
+      value: fr
+      label: French
+    -
+      value: pt
+      label: Portuguese
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
