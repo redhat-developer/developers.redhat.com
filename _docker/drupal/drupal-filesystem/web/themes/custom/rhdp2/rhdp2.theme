@@ -168,6 +168,7 @@ function rhdp2_preprocess_node(&$variables) {
       'katacoda_individual_lesson',
       'katacoda_course',
       'landing_page_single_offer',
+      'page',
     ])) {
       $variables['always_hide_title'] = TRUE;
     }
