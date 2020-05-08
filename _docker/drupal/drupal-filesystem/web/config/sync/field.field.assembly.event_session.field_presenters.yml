@@ -1,0 +1,28 @@
+uuid: 6b78ce28-8482-49d9-846b-5a30c2fe3873
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_presenters
+    - node.type.author
+id: assembly.event_session.field_presenters
+field_name: field_presenters
+entity_type: assembly
+bundle: event_session
+label: Presenter(s)
+description: 'Reference for Speakers/Presenters/Hosts for the session.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      author: author
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
