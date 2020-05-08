@@ -137,12 +137,3 @@ $('.has-sub-nav > a').on('click',function(e){
       $(this).parent().toggleClass('sub-nav-open');
     }
 });
-
-/* 
-  Force page navigation for download manager files 
-*/
-
-$('a[href*="download-manager"]').on('click', function(e) {
-  e.preventDefault();
-  window.location.href = e.currentTarget.href;
-});
