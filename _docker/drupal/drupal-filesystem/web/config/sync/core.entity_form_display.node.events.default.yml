@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_browser
     - field.field.node.events.field_data_tags
     - field.field.node.events.field_description
     - field.field.node.events.field_end_date
@@ -19,6 +18,8 @@ dependencies:
     - field.field.node.events.field_on_homepage
     - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
+    - field.field.node.events.field_sections
+    - field.field.node.events.field_sessions
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
     - field.field.node.events.field_solution_type
@@ -28,6 +29,7 @@ dependencies:
     - field.field.node.events.field_tax_audience_segment
     - field.field.node.events.field_tax_business_unit
     - field.field.node.events.field_tax_campaign
+    - field.field.node.events.field_tax_event_categories
     - field.field.node.events.field_tax_lifecycle
     - field.field.node.events.field_tax_product
     - field.field.node.events.field_tax_product_line
@@ -45,17 +47,20 @@ dependencies:
     - compose
     - content_moderation
     - datetime
-    - entity_browser
+    - entity_browser_entity_form
     - field_group
     - field_layout
     - image
+    - inline_entity_form
     - link
+    - path
     - publication_date
     - text
 third_party_settings:
   field_group:
     group_purpose_attributes:
       children:
+        - field_tax_event_categories
         - field_topics
         - field_tax_audience_segment
         - field_tax_business_unit
@@ -69,7 +74,7 @@ third_party_settings:
         - field_tax_stage
         - field_tags
       parent_name: ''
-      weight: 20
+      weight: 23
       format_type: details
       format_settings:
         label: 'Purpose Attributes'
@@ -85,16 +90,33 @@ third_party_settings:
         - field_ics_addevent_id
         - field_ics_subtext
       parent_name: ''
-      weight: 20
+      weight: 6
       format_type: details
       format_settings:
         label: 'Add to Calendar Information'
-        open: true
         required_fields: true
         id: ''
         classes: ''
+        open: false
       label: 'Add to Calendar Information'
-      region: content
+      region: fields
+    group_deprecated:
+      children:
+        - field_solution_type
+        - field_target_product
+        - field_event_format
+        - field_tile_thumbnail
+        - field_data_tags
+      parent_name: ''
+      weight: 17
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Deprecated
+      region: fields
   field_layout:
     id: compose_tabs
     settings: {  }
@@ -107,18 +129,18 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 24
     region: settings
     settings: {  }
     third_party_settings: {  }
   field_data_tags:
-    weight: 18
+    type: string_textfield
+    weight: 22
+    region: fields
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_description:
     weight: 3
     settings:
@@ -126,121 +148,157 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
+    region: fields
   field_end_date:
-    weight: 6
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: fields
   field_event_background_image:
-    weight: 14
+    weight: 11
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: content
+    region: fields
   field_event_format:
+    type: options_select
+    weight: 20
+    region: fields
+    settings: {  }
+    third_party_settings: {  }
+  field_event_image:
     weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_event_image:
+    region: fields
+  field_event_location:
     weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_event_location:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
+    region: fields
   field_ics_addevent_id:
-    weight: 27
+    weight: 6
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_ics_subtext:
-    weight: 28
+    weight: 7
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_ics_title:
-    weight: 26
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
+    region: fields
   field_more_details:
-    weight: 8
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
+    region: fields
   field_on_homepage:
-    weight: 15
+    weight: 16
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: content
+    region: fields
   field_presenter_s_:
-    weight: 5
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
+    region: fields
   field_region:
-    weight: 11
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_short_description:
+    region: fields
+  field_sections:
     weight: 1
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  field_sessions:
+    weight: 9
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: fields
+  field_short_description:
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-    region: content
+    region: fields
   field_site:
-    weight: 19
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
+    region: fields
   field_solution_type:
-    weight: 17
+    type: options_select
+    weight: 18
+    region: fields
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_start_date:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: fields
   field_tags:
-    weight: 23
+    weight: 35
     settings:
       match_operator: CONTAINS
       size: 60
@@ -249,107 +307,113 @@ content:
     type: entity_reference_autocomplete
     region: fields
   field_target_product:
-    weight: 16
+    type: options_select
+    weight: 19
+    region: fields
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_tax_audience_segment:
-    weight: 13
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_business_unit:
-    weight: 14
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_campaign:
-    weight: 15
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: fields
+  field_tax_event_categories:
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_lifecycle:
-    weight: 16
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product:
-    weight: 17
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_product_line:
-    weight: 18
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_project:
-    weight: 19
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_promotion:
-    weight: 20
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_region:
-    weight: 21
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tax_stage:
-    weight: 22
+    weight: 34
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   field_tile_thumbnail:
-    type: entity_browser_file
-    weight: 9
+    type: image_image
+    weight: 21
     settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
       preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
-      field_widget_replace: false
-    region: content
+      progress_indicator: throbber
+    region: fields
     third_party_settings: {  }
   field_topics:
-    weight: 12
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: fields
   langcode:
     type: language_select
-    weight: 2
-    region: content
+    weight: 7
+    region: fields
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
-    weight: 23
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: moderation_state_default
     region: settings
+  path:
+    type: path
+    weight: 27
+    region: settings
+    settings: {  }
+    third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 22
+    weight: 25
     region: settings
     settings: {  }
     third_party_settings: {  }
@@ -362,14 +426,13 @@ content:
     third_party_settings: {  }
     region: content
   url_redirects:
-    weight: 24
+    weight: 28
     region: settings
     settings: {  }
     third_party_settings: {  }
 hidden:
   field_event_type: true
   field_title: true
-  path: true
   promote: true
   status: true
   sticky: true

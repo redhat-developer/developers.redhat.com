@@ -1,0 +1,113 @@
+uuid: de8930eb-c70c-4bc1-a815-2a8891d604c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.field.assembly.event_session.field_end
+    - field.field.assembly.event_session.field_ics_addevent_id
+    - field.field.assembly.event_session.field_ics_subtext
+    - field.field.assembly.event_session.field_ics_title
+    - field.field.assembly.event_session.field_language
+    - field.field.assembly.event_session.field_presenters
+    - field.field.assembly.event_session.field_start
+  module:
+    - datetime
+    - field_group
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+  field_group:
+    group_add_to_calendar_informatio:
+      children:
+        - field_ics_title
+        - field_ics_addevent_id
+        - field_ics_subtext
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'Add to Calendar Information'
+      region: content
+id: assembly.event_session.default
+targetEntityType: assembly
+bundle: event_session
+mode: default
+content:
+  field_end:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_ics_addevent_id:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ics_subtext:
+    weight: 30
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ics_title:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_language:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_presenters:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_start:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  user_id: true
+  visual_styles: true

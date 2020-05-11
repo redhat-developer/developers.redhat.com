@@ -1,0 +1,19 @@
+uuid: 7bdd7d41-f9eb-464d-925b-206a68cc5a93
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_ics_addevent_id
+id: assembly.event_session.field_ics_addevent_id
+field_name: field_ics_addevent_id
+entity_type: assembly
+bundle: event_session
+label: 'ICS AddEvent ID'
+description: 'The numeric ID from the addevent.com URL. For example the "xxxx" in this URL pattern: https://www.addevent.com/event/xxxx+outlook"'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

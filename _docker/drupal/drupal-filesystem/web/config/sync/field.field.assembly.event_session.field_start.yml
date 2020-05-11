@@ -1,0 +1,24 @@
+uuid: e50c78b3-d640-4aaf-b166-cbaa8818acf2
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_start
+  module:
+    - datetime
+id: assembly.event_session.field_start
+field_name: field_start
+entity_type: assembly
+bundle: event_session
+label: 'Start Date/Time'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
