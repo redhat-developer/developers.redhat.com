@@ -26,12 +26,10 @@ base-theme:
       rhd-frontend/dist/css/rhd.min.css: { minified: true }
       rhd-frontend/dist/css/rhd.legacy.css: { minified: true }
   js:
-    # This handles JS for our navigation menu(s).
     js/menu.js: {}
-    # Add our own active link class
     js/active-link.js: {}
+    js/pdf-links.js: {}
     js/articles.js: {}
-    # RHD FontAwesome Kit
     https://kit.fontawesome.com/3f83b4c6d2.js: { type: external, minified: true }
     # NOTE: According to Luke, Angular is only used on the Help page(s). We will
     # supposedly be removing these page(s) and Angular soon. We have to load
