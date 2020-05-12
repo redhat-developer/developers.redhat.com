@@ -1,0 +1,20 @@
+uuid: cbf1c735-b0ac-4299-a1a2-f3c355a0cf7e
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - datetime
+id: assembly.field_start
+field_name: field_start
+entity_type: assembly
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

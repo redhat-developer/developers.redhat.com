@@ -1,0 +1,19 @@
+uuid: 84d60a9d-f363-428a-8ae5-846296c7572d
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_ics_subtext
+id: assembly.event_session.field_ics_subtext
+field_name: field_ics_subtext
+entity_type: assembly
+bundle: event_session
+label: 'ICS Subtext'
+description: 'The text under the calendar link(s)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

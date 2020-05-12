@@ -1,0 +1,21 @@
+uuid: 0f1c6278-a644-4000-8d44-a059070359b0
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+id: assembly.field_ics_addevent_id
+field_name: field_ics_addevent_id
+entity_type: assembly
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

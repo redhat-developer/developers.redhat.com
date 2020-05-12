@@ -1,14 +1,15 @@
 app.sso = function () {
 
     function updateUser() {
-        //Push it onto the event array of the digitalData object
+        // Push it onto the event array of the digitalData object.
         window.digitalData = window.digitalData || {};
-        //Update digitalData.page.listing objects
-        digitalData.user = digitalData.user || [{profile: [{profileInfo: {}}]}];
+
+        // Update digitalData.page.listing objects.
+        digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
         var usr = digitalData.user[0].profile[0].profileInfo || {};
 
         if (window.location.href.toLowerCase().indexOf('/login') >= 0 && window.location.href.toLowerCase().indexOf('/user') < 0) {
-            keycloak.login({"redirectUri": app.ssoConfig.logout_url});
+            keycloak.login({ "redirectUri": app.ssoConfig.logout_url });
         }
 
         if (keycloak.authenticated) {
@@ -17,7 +18,7 @@ app.sso = function () {
 
                 var logged_in_user = keycloak.tokenParsed.name || "My Account";
 
-                // show username instead of full name if full name is empty or blank (only space character)
+                // Show username if full name is empty or blank (only space character).
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
                     logged_in_user = "My Account";
                 }
@@ -25,19 +26,20 @@ app.sso = function () {
                 $('span.logged-in-name')
                     .text(logged_in_user)
                     .show();
+
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
-                $('section.contributors-banner, .shown-after-login, li.logged-in').show();
+                $('section.contributors-banner, .shown-after-login, li.logged-in, [data-audience="authenticated"]').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
-                $('[data-audience="authenticated"]').show();
-                // once the promise comes back, listen for a click on logout
-                $('a.logout').on('click', function(e) {
+
+                // Once the promise comes back, listen for a click on logout.
+                $('a.logout').on('click', function (e) {
                     e.preventDefault();
-                    keycloak.logout({"redirectUri": app.ssoConfig.logout_url});
+                    keycloak.logout({ "redirectUri": app.ssoConfig.logout_url });
                 });
 
+                // Update digitalData object.
                 usr.loggedIn = true;
-
                 usr.keyCloakID = keycloak.tokenParsed.id;
                 usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed.createdTimestamp);
 
@@ -48,40 +50,45 @@ app.sso = function () {
                         usr.socialAccountsLinked.push(social);
                     }
                 }
+
                 if (Headers && app.keycloak.token && drupalSettings.rhd.swel) {
                     var swelHeaders = new Headers();
-                    swelHeaders.append('Authorization', 'Bearer '+app.keycloak.token);
-                    fetch(drupalSettings.rhd.swel.url+'/api/analytics/usr/v1/websiteregstatus/rhd',{
-                        method:'GET',
+                    swelHeaders.append('Authorization', 'Bearer ' + app.keycloak.token);
+                    fetch(drupalSettings.rhd.swel.url + '/api/analytics/usr/v1/websiteregstatus/rhd', {
+                        method: 'GET',
                         headers: swelHeaders,
-                        mode:'cors'
+                        mode: 'cors'
                     })
-                    .then(function(req) { return req.json(); })
-                    .then(function(resp) {
-                        if (resp && resp.registrationTimestamp) {
-                            var dt = new Date();
-                            var ck = getCookie('rhd_logged');
-                            if (dt-(new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
-                                document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-                                document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                        .then(function (req) { return req.json(); })
+                        .then(function (resp) {
+                            if (resp && resp.registrationTimestamp) {
+                                var dt = new Date();
+                                var ck = getCookie('rhd_logged');
+                                if (dt - (new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
+                                    document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                                    document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                                }
                             }
-                        }
-                    });
+                        });
                 }
 
             }).error(clearTokens);
         } else {
-            $('li.login, section.register-banner, .hidden-after-login').show();
-            $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
-            $('li.logged-in').hide();
-            $('[data-audience="unauthenticated"]').show();
-            $('li.login a').on('click', function(e){
+            $('li.login, section.register-banner, .hidden-after-login, [data-audience="unauthenticated"]').show();
+
+            // Remove gated content.
+            $('[data-audience="authenticated"]').detach();
+
+            $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
+
+            $('li.login a').on('click', function (e) {
                 e.preventDefault();
                 keycloak.login();
             });
-            $('li.register a, a.keycloak-url').on('click', function(e){
+
+            $('li.register a, a.keycloak-url').on('click', function (e) {
                 e.preventDefault();
-                keycloak.login({action: 'register', redirectUri: app.ssoConfig.confirmation});
+                keycloak.login({ action: 'register', redirectUri: app.ssoConfig.confirmation });
             });
         }
 
@@ -89,7 +96,7 @@ app.sso = function () {
     }
 
     function daysDiff(dt1, dt2) {
-        return Math.floor(Math.abs(dt1-dt2)/(1000*60*60*24))
+        return Math.floor(Math.abs(dt1 - dt2) / (1000 * 60 * 60 * 24))
     }
 
     function updateAnalytics(usr) {
@@ -109,12 +116,13 @@ app.sso = function () {
             }
         };
 
-        //Push it onto the event array of the digitalData object
+        // Push it onto the event array of the digitalData object.
         window.digitalData = window.digitalData || {};
         digitalData.event = digitalData.event || [];
         digitalData.event.push(ddUserAuthEvent);
-        //Update digitalData.page.listing objects
-        digitalData.user = digitalData.user || [{profile: [{profileInfo: {}}]}];
+
+        // Update digitalData.page.listing objects.
+        digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
         digitalData.user[0].profile[0].profileInfo = usr;
         //Create and dispatch an event trigger using the predefined function
         sendCustomEvent('ajaxAuthEvent');
@@ -122,7 +130,7 @@ app.sso = function () {
 
     function saveTokens() {
         if (keycloak.authenticated) {
-            var tokens = {token: keycloak.token, refreshToken: keycloak.refreshToken};
+            var tokens = { token: keycloak.token, refreshToken: keycloak.refreshToken };
             if (storageAvailable('localStorage')) {
                 window.localStorage.token = JSON.stringify(tokens);
             } else {
@@ -184,7 +192,7 @@ app.sso = function () {
     app.keycloak = keycloak;
 
     var tokens = loadTokens();
-    var init = {onLoad: 'check-sso', checkLoginIframeInterval: 10};
+    var init = { onLoad: 'check-sso', checkLoginIframeInterval: 10 };
     if (tokens) {
         init.token = tokens.token;
         init.refreshToken = tokens.refreshToken;
@@ -197,9 +205,9 @@ app.sso = function () {
         saveTokens();
         checkIfProtectedPage();
 
-        if(app.termsAndConditions) {
+        if (app.termsAndConditions) {
             // app.termsAndConditions.isDownloadPage() test for tcDownloadURL is not empty, tcDownloadFileName is not empty and tcSourceLink (contains 'download-manager')
-            if(app.termsAndConditions.isDownloadPage()) {
+            if (app.termsAndConditions.isDownloadPage()) {
                 app.termsAndConditions.download();
             }
         }
@@ -207,8 +215,6 @@ app.sso = function () {
     }).error(function () {
         updateUser();
     });
-
-
 };
 
 function storageAvailable(type) {
@@ -224,13 +230,12 @@ function storageAvailable(type) {
     }
 }
 
-function getCookie( name ) {
-    var re = new RegExp('(?:(?:^|.*;\\s*)'+name+'\\s*\\=\\s*([^;]*).*$)|^.*$');
+function getCookie(name) {
+    var re = new RegExp('(?:(?:^|.*;\\s*)' + name + '\\s*\\=\\s*([^;]*).*$)|^.*$');
     return document.cookie.replace(re, "$1");
 }
 
-
-// Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
+// Call app.sso() straight away.
 if (typeof Keycloak !== 'undefined') {
     app.sso();
 }

@@ -1,0 +1,20 @@
+uuid: 8b981db9-52fb-4b6d-8104-e713cc4fd5ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - node
+id: assembly.field_presenters
+field_name: field_presenters
+entity_type: assembly
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
