@@ -1,0 +1,29 @@
+uuid: bac7b318-52bb-4659-bf17-9351c1015d1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_event_categories
+    - node.type.events
+    - taxonomy.vocabulary.event_categories
+id: node.events.field_tax_event_categories
+field_name: field_tax_event_categories
+entity_type: node
+bundle: events
+label: 'Event Categories'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_categories: event_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
