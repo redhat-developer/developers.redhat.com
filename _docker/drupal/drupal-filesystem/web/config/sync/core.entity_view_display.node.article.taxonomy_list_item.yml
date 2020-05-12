@@ -1,0 +1,180 @@
+uuid: 458d2c7a-83f8-4026-ac36-ba1356fc6404
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.article.body
+    - field.field.node.article.field_article_highlights
+    - field.field.node.article.field_article_type
+    - field.field.node.article.field_author_evangelist
+    - field.field.node.article.field_author_name
+    - field.field.node.article.field_card_image
+    - field.field.node.article.field_content
+    - field.field.node.article.field_content_author
+    - field.field.node.article.field_difficulty
+    - field.field.node.article.field_hide_toc
+    - field.field.node.article.field_image
+    - field.field.node.article.field_image_caption
+    - field.field.node.article.field_long_description
+    - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_read_time
+    - field.field.node.article.field_related_articles
+    - field.field.node.article.field_short_description
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_tax_audience_segment
+    - field.field.node.article.field_tax_business_unit
+    - field.field.node.article.field_tax_campaign
+    - field.field.node.article.field_tax_lifecycle
+    - field.field.node.article.field_tax_product
+    - field.field.node.article.field_tax_product_line
+    - field.field.node.article.field_tax_project
+    - field.field.node.article.field_tax_promotion
+    - field.field.node.article.field_tax_region
+    - field.field.node.article.field_tax_stage
+    - field.field.node.article.field_topics
+    - image.style.list_item_thumb
+    - node.type.article
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: Gw6G97v6mM5MCkYyf8y-loKVxpZ22a0TDykKhheqCzc
+id: node.article.taxonomy_list_item
+targetEntityType: node
+bundle: article
+mode: taxonomy_list_item
+content:
+  field_article_type:
+    type: list_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_author_evangelist:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: tile
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_content_author:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: list_item_thumb
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: basic_string
+    region: content
+  published_at:
+    type: timestamp
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  workbench_moderation_control:
+    weight: -20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  content_moderation_control: true
+  field_article_highlights: true
+  field_author_name: true
+  field_card_image: true
+  field_content: true
+  field_difficulty: true
+  field_hide_toc: true
+  field_image_caption: true
+  field_long_description: true
+  field_meta_tags: true
+  field_read_time: true
+  field_related_articles: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true

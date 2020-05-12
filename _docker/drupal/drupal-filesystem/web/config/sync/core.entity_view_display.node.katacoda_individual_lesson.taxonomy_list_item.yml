@@ -1,0 +1,134 @@
+uuid: 5dba7552-d31c-4866-a10a-536e254faf15
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.katacoda_individual_lesson.body
+    - field.field.node.katacoda_individual_lesson.field_katacoda_embed_id
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_author
+    - field.field.node.katacoda_individual_lesson.field_katacoda_scenario_time
+    - field.field.node.katacoda_individual_lesson.field_katacoda_skill_level
+    - field.field.node.katacoda_individual_lesson.field_tags
+    - field.field.node.katacoda_individual_lesson.field_tax_audience_segment
+    - field.field.node.katacoda_individual_lesson.field_tax_business_unit
+    - field.field.node.katacoda_individual_lesson.field_tax_campaign
+    - field.field.node.katacoda_individual_lesson.field_tax_lifecycle
+    - field.field.node.katacoda_individual_lesson.field_tax_product
+    - field.field.node.katacoda_individual_lesson.field_tax_product_line
+    - field.field.node.katacoda_individual_lesson.field_tax_project
+    - field.field.node.katacoda_individual_lesson.field_tax_promotion
+    - field.field.node.katacoda_individual_lesson.field_tax_region
+    - field.field.node.katacoda_individual_lesson.field_tax_stage
+    - field.field.node.katacoda_individual_lesson.field_topics
+    - node.type.katacoda_individual_lesson
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - options
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+id: node.katacoda_individual_lesson.taxonomy_list_item
+targetEntityType: node
+bundle: katacoda_individual_lesson
+mode: taxonomy_list_item
+content:
+  body:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_katacoda_scenario_author:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_katacoda_scenario_time:
+    type: number_integer
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_katacoda_skill_level:
+    type: list_default
+    weight: 8
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  published_at:
+    type: timestamp
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  content_moderation_control: true
+  field_katacoda_embed_id: true
+  field_sections: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true

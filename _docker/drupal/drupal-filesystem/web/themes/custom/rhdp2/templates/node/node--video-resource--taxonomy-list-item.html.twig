@@ -1,0 +1,16 @@
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'video_thumbnail': content.field_video_thumbnail_url['#items'][0].value,
+  'default_image_name': 'taxonomy_list_item_default_videos.png',
+  'tag': {
+    'class': 'fa-video',
+    'text': 'Video'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'authors': authors,
+  'published_at': content.published_at,
+  'body': content.field_short_description
+} only %}

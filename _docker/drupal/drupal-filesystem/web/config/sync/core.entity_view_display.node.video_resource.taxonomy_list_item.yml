@@ -1,0 +1,151 @@
+uuid: 2c194410-f5a5-420e-9e93-4c6870cb7681
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_card_image
+    - field.field.node.video_resource.field_difficulty
+    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_exclude_from_search
+    - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_meta_tags
+    - field.field.node.video_resource.field_related_content
+    - field.field.node.video_resource.field_share_image
+    - field.field.node.video_resource.field_short_description
+    - field.field.node.video_resource.field_slideshare_source
+    - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_tags
+    - field.field.node.video_resource.field_tax_audience_segment
+    - field.field.node.video_resource.field_tax_business_unit
+    - field.field.node.video_resource.field_tax_campaign
+    - field.field.node.video_resource.field_tax_lifecycle
+    - field.field.node.video_resource.field_tax_product
+    - field.field.node.video_resource.field_tax_product_line
+    - field.field.node.video_resource.field_tax_project
+    - field.field.node.video_resource.field_tax_promotion
+    - field.field.node.video_resource.field_tax_region
+    - field.field.node.video_resource.field_tax_stage
+    - field.field.node.video_resource.field_topics
+    - field.field.node.video_resource.field_video_author
+    - field.field.node.video_resource.field_video_publish_date
+    - field.field.node.video_resource.field_video_related_links
+    - field.field.node.video_resource.field_video_resource
+    - field.field.node.video_resource.field_video_resource_tags
+    - field.field.node.video_resource.field_video_target_product
+    - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_views
+    - node.type.video_resource
+  module:
+    - fences
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: 3mFNs-3g6qWwffS1ivVcS2aj4XYikbBf2eBQrLeC4lE
+id: node.video_resource.taxonomy_list_item
+targetEntityType: node
+bundle: video_resource
+mode: taxonomy_list_item
+content:
+  field_short_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: basic_string
+    region: content
+  field_video_author:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: short_teaser
+      link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: authors
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: entity_reference_entity_view
+    region: content
+  field_video_thumbnail_url:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  published_at:
+    type: timestamp
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  body: true
+  content_moderation_control: true
+  field_card_image: true
+  field_difficulty: true
+  field_duration: true
+  field_exclude_from_search: true
+  field_likes: true
+  field_meta_tags: true
+  field_related_content: true
+  field_share_image: true
+  field_slideshare_source: true
+  field_speakers: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  field_video_publish_date: true
+  field_video_related_links: true
+  field_video_resource: true
+  field_video_resource_tags: true
+  field_video_target_product: true
+  field_views: true
+  langcode: true
+  links: true
+  workbench_moderation_control: true
