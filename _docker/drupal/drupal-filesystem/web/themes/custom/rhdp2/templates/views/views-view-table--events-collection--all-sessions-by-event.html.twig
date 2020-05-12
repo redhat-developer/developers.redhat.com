@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Theme override for displaying a view as a table.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ *   - class: HTML classes that can be used to style contextually through CSS.
+ * - title : The title of this group of rows.
+ * - header: The table header columns.
+ *   - attributes: Remaining HTML attributes for the element.
+ *   - content: HTML classes to apply to each header cell, indexed by
+ *   the header's key.
+ *   - default_classes: A flag indicating whether default classes should be
+ *     used.
+ * - caption_needed: Is the caption tag needed.
+ * - caption: The caption for this table.
+ * - accessibility_description: Extended description for the table details.
+ * - accessibility_summary: Summary for the table details.
+ * - rows: Table row items. Rows are keyed by row number.
+ *   - attributes: HTML classes to apply to each row.
+ *   - columns: Row column items. Columns are keyed by column number.
+ *     - attributes: HTML classes to apply to each column.
+ *     - content: The column content.
+ *   - default_classes: A flag indicating whether default classes should be
+ *     used.
+ * - responsive: A flag indicating whether table is responsive.
+ * - sticky: A flag indicating whether table header is sticky.
+ *
+ * @see template_preprocess_views_view_table()
+ */
+#}
+
+<tbody{{ attributes }} role="rowgroup" data-expandable="true">
+  {% if caption %}
+    <tr role="row">
+      <td class="pf-c-table__toggle" role="cell">
+        <button
+          class="pf-c-button pf-m-plain"
+          aria-labelledby="toggle-{{ title_id }}"
+          aria-controls="content-{{ title_id }}"
+          aria-label="Details"
+          aria-expanded="false">
+          <i class="fas fa-angle-right pf-c-table__toggle-icon" aria-hidden="true"></i>
+        </button>
+      </td>
+      {{ caption }}
+    </tr>
+  {% endif %}
+
+  <tr id="content-{{ title_id }}" class="pf-c-table__expandable-row" role="row">
+    <td role="cell"></td>
+    <td role="cell" colspan="3" class="rhd-m-nested-table-wrapper">
+      <div class="pf-c-table__expandable-row-content">
+        <table class="pf-c-table pf-m-compact pf-m-grid-md pf-m-no-border-rows rhd-m-nested-table sortable">
+          <thead>
+            <tr role="row">
+              <th role="columnheader" scope="col">Event title</th>
+              <th role="columnheader" scope="col">Date</th>
+              <th role="columnheader" scope="col">Time</th>
+              <th role="columnheader" scope="col">Language</th>
+              <th role="columnheader" scope="col">CodeCasters</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+              <tr>
+                {% for key, column in row.columns %}
+                  {% if column.default_classes %}
+                    {%
+                      set column_classes = [
+                        'views-field'
+                      ]
+                    %}
+                    {% for field in column.fields %}
+                      {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
+                    {% endfor %}
+                  {% endif %}
+                  <td{{ column.attributes.addClass(column_classes) }} role="cell">
+                    {%- if column.wrapper_element -%}
+                      <{{ column.wrapper_element }}>
+                      {% for content in column.content %}
+                        {{ content.separator }}{{ content.field_output }}
+                      {% endfor %}
+                      </{{ column.wrapper_element }}>
+                    {%- else -%}
+                      {% for content in column.content %}
+                        {{- content.separator }}{{ content.field_output -}}
+                      {% endfor %}
+                    {%- endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </td>
+  </tr>
+</tbody>

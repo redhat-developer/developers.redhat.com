@@ -7,7 +7,7 @@
 
   Drupal.behaviors.rhd_tablesort = {
     attach: function (context, settings) {
-      $('.assembly-type-events_collection .rhd-c-table', context).once('rhd_tablesort').each(function () {
+      $('.assembly-type-events_collection .rhd-c-table.sortable', context).once('rhd_tablesort').each(function () {
 
         // Set default sort state on date column for first page load.
         // Set sort type to date.

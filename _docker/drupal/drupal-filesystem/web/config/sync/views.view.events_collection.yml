@@ -1051,7 +1051,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '{{ title }} {{ field_short_description }} {{ field_start_date }} {{ field_more_details }}'
+            text: '<td>{{ title }}</td><td>{{ field_start_date }}</td><td> {{ field_more_details }}</td>'
             make_link: false
             path: ''
             absolute: false

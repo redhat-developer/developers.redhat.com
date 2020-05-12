@@ -1,0 +1,25 @@
+.assembly-type-events_collection {
+  .rhd-m-nested-table-wrapper {
+    padding-top: 0;
+    padding-right: 0;
+
+    thead tr {
+      border-bottom: 0;
+      th {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .pf-c-table .pf-c-table.pf-m-compact tr > *:first-child {
+    padding-left: 0;
+  }
+
+  .pf-c-table__toggle .pf-c-button > * {
+    transform: unset;
+  }
+
+  .pf-c-table__expandable-row {
+    display: none;
+  }
+}
