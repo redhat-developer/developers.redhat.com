@@ -1,0 +1,21 @@
+uuid: b8363dad-79d8-46ac-b553-935f7bc811d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.event_session
+    - field.storage.assembly.field_language
+  module:
+    - options
+id: assembly.event_session.field_language
+field_name: field_language
+entity_type: assembly
+bundle: event_session
+label: Language
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

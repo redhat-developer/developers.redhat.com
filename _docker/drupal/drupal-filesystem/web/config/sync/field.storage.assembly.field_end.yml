@@ -1,0 +1,20 @@
+uuid: 7a3a7679-9660-4445-9706-b4c74a6ccbe1
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - datetime
+id: assembly.field_end
+field_name: field_end
+entity_type: assembly
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
