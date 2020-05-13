@@ -1,0 +1,14 @@
+uuid: 037ce69f-5728-4799-80ae-b4f0c4c24adf
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+    - node
+third_party_settings:
+  lightning_core:
+    description: 'Used to display content items in the taxonomy term view'
+id: node.taxonomy_list_item
+label: 'Taxonomy List Item'
+targetEntityType: node
+cache: true
