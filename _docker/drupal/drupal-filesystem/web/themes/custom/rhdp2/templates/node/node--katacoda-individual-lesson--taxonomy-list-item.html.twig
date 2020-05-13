@@ -1,0 +1,32 @@
+{% set scenario_time = '' %}
+{% set skill_level = '' %}
+
+{# Validate our data prior to accessing it. #}
+{% if (content.field_katacoda_scenario_time[0]['#markup']) is not empty %}
+	{% set scenario_time = content.field_katacoda_scenario_time[0]['#markup'] ~ ' minutes | ' %}
+{% else %}
+	{% set scenario_time = null %}
+{% endif %}
+
+{% if (content.field_katacoda_skill_level[0]['#markup']) is not empty %}
+	{% set skill_level = content.field_katacoda_skill_level[0]['#markup'] %}
+{% else %}
+	{% set skill_level = null %}
+{% endif %}
+
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'default_image_name': 'taxonomy_list_item_default_katacodas.png',
+  'tag': {
+    'class': 'fa-terminal',
+    'text': 'Lesson'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'authors': node.field_katacoda_scenario_author[0].value,
+  'published_at': content.published_at,
+  'subtext': scenario_time ~ skill_level,
+  'body': content.body[0]['#text']|striptags
+} only %}

@@ -1,0 +1,15 @@
+uuid: e2674323-92f0-48af-80d9-2012ea9f66be
+langcode: en
+status: true
+dependencies: {  }
+name: list_item_thumb
+label: 'List Item Thumb (Scale and crop to 440x232)'
+effects:
+  10c37a60-bce1-4293-aacd-095af1a048f7:
+    uuid: 10c37a60-bce1-4293-aacd-095af1a048f7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 440
+      height: 232
+      anchor: center-center

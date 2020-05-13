@@ -1,0 +1,21 @@
+{% if content.field_resource_type|render %}
+  {% set tag_text = content.field_resource_type %}
+{% else %}
+  {% set tag_text = 'Coding Resource' %}
+{% endif %}
+
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'default_image_name': 'taxonomy_list_item_default_coding_resource.png',
+  'tag': {
+    'class': 'fa-file-code',
+    'text': tag_text
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'authors': authors,
+  'published_at': content.published_at,
+  'body': content.field_description
+} only %}
