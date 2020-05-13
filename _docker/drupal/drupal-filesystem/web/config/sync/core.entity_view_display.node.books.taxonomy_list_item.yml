@@ -1,0 +1,161 @@
+uuid: 57470901-e3f6-45c3-887a-c3e6222444d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.books.field_author
+    - field.field.node.books.field_average_rating
+    - field.field.node.books.field_book_description
+    - field.field.node.books.field_book_excerpt
+    - field.field.node.books.field_book_url
+    - field.field.node.books.field_card_image
+    - field.field.node.books.field_categories
+    - field.field.node.books.field_cover_image
+    - field.field.node.books.field_difficulty
+    - field.field.node.books.field_epub
+    - field.field.node.books.field_isbn
+    - field.field.node.books.field_meta_tags
+    - field.field.node.books.field_mobi_link
+    - field.field.node.books.field_needs_own_page
+    - field.field.node.books.field_pdf_link
+    - field.field.node.books.field_preview_url
+    - field.field.node.books.field_publisher
+    - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_read_time
+    - field.field.node.books.field_related_product
+    - field.field.node.books.field_share_image
+    - field.field.node.books.field_short_description
+    - field.field.node.books.field_tags
+    - field.field.node.books.field_tax_audience_segment
+    - field.field.node.books.field_tax_business_unit
+    - field.field.node.books.field_tax_campaign
+    - field.field.node.books.field_tax_lifecycle
+    - field.field.node.books.field_tax_product
+    - field.field.node.books.field_tax_product_line
+    - field.field.node.books.field_tax_project
+    - field.field.node.books.field_tax_promotion
+    - field.field.node.books.field_tax_region
+    - field.field.node.books.field_tax_stage
+    - field.field.node.books.field_thumbnail_url
+    - field.field.node.books.field_topics
+    - field.field.node.books.field_web_reader_url
+    - image.style.list_item_thumb
+    - node.type.books
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: 6xYjc_xUKetNHubcZQ-HCVjelYp7JE6bmEGVhegbJT4
+id: node.books.taxonomy_list_item
+targetEntityType: node
+bundle: books
+mode: taxonomy_list_item
+content:
+  field_author:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  field_cover_image:
+    type: image
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      image_style: list_item_thumb
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    type: basic_string
+    weight: 3
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  published_at:
+    type: timestamp
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+hidden:
+  content_moderation_control: true
+  field_average_rating: true
+  field_book_description: true
+  field_book_excerpt: true
+  field_book_url: true
+  field_card_image: true
+  field_categories: true
+  field_difficulty: true
+  field_epub: true
+  field_isbn: true
+  field_meta_tags: true
+  field_mobi_link: true
+  field_needs_own_page: true
+  field_pdf_link: true
+  field_preview_url: true
+  field_publisher: true
+  field_pull_from_google: true
+  field_read_time: true
+  field_related_product: true
+  field_share_image: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_thumbnail_url: true
+  field_topics: true
+  field_web_reader_url: true
+  langcode: true
+  links: true
+  workbench_moderation_control: true

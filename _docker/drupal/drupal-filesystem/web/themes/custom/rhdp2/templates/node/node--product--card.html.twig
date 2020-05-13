@@ -2,7 +2,7 @@
 
 {% include '@components/card.twig' with {
   'attributes': attributes.addClass('rhd-c-card-logo'),
-  'hero_image': content.field_image,
+  'image_thumbnail': content.field_image,
   'body': content.field_short_description[0],
   'cta': {
     'url': '/products/' ~ url_product_name ~ '/download/',

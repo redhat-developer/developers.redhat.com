@@ -1,0 +1,22 @@
+{% if content.field_article_type|render %}
+  {% set tag_text = content.field_article_type %}
+{% else %}
+  {% set tag_text = 'Article' %}
+{% endif %}
+
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'image_thumbnail': content.field_image,
+  'default_image_name': 'taxonomy_list_item_default_articles.png',
+  'tag': {
+    'class': 'fa-newspaper',
+    'text': tag_text
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'authors': authors,
+  'published_at': content.published_at,
+  'body': content.field_short_description
+} only %}
