@@ -1,0 +1,102 @@
+{#
+/**
+ * The RHDP Taxonomy List component.
+ *
+ * Available variables:
+ * - attributes: The Drupal 8 Attributes object for this render array/element.
+ * - image_thumbnail: The thumbnail image that displays to the left of the list item.
+ * - video_thumbnail: The video video thumbnail that displays to the left of
+ *   the list item, with a Play icon overlay in the center of the thumbnail.
+ * - default_image_name: Name of the default image to use if no thumbnail is found.
+ *   These images are stored in and referenced from:
+ *   /themes/custom/rhdp2/images/design/taxonomy-list-item/
+ * - tag: A categorization for the list item, like eBook, Try It, Lesson, Series, etc
+ * - title:
+ *   - title.url: Typically a link to the node displayed in the list.
+ *   - title.text: The title of the node displayed in the list.
+ * - body: The body text for the list item. This could be a summary or otherwise
+ *   trimmed version if the body text is too long.
+ * - authors: The author(s) of this piece of content. In some instances, this is
+ *   implemented via plain text fields, but in others (like Articles) it is an
+ *   entity reference to the Authors bundle.
+ */
+#}
+{% set tag_attributes = create_attribute({'class': ['fas']}) %}
+
+{% set classes = [
+  'rhd-c-taxonomy-list-item',
+  'pf-l-grid',
+  'pf-m-gutter',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+
+  <div class="rhd-c-taxonomy-list__image-container pf-l-grid__item pf-m-12-col pf-m-3-col-on-md">
+    {% if image_thumbnail|render %}
+      <div class="rhd-c-taxonomy-list-blur-image">
+        {{ image_thumbnail }}
+      </div>
+    {% elseif video_thumbnail is not empty %}
+      <div class="rhd-c-taxonomy-list__video">
+        <i class="far fa-play-circle"></i>
+        <img src="{{ video_thumbnail }}" alt="{{ tag.text }} Thumbnail">
+      </div>
+    {% else %}
+      <div class="rhd-c-taxonomy-list-blur-image">
+        <img src="/themes/custom/rhdp2/images/design/taxonomy-list-item/{{ default_image_name }}" alt="{{ tag.text }} Thumbnail">
+      </div>
+    {% endif %}
+
+    {% if tag is not empty %}
+      <div class="rhd-c-taxonomy-list__tag">
+        <i {{ tag_attributes.addClass(tag.class) }}></i>
+        {{ tag.text }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="rhd-c-taxonomy-list pf-l-grid__item pf-m-12-col pf-m-9-col-on-md">
+    {% if title is not empty %}
+      {% if title.url is not empty %}
+        <h3 class="rhd-c-taxonomy-list__title">
+          <a href={{ title.url }} class="rhd-m-link">{{ title.text }}</a>
+        </h3>
+      {% elseif title.url is empty and title.text is not empty %}
+        <h3 class="rhd-c-taxonomy-list__title">{{ title.text }}</h3>
+      {% endif %}
+    {% endif %}
+
+    {% if authors is not empty %}
+      <div class="rhd-c-taxonomy-list__authors">
+        {% if authors is iterable %}
+          {% for author in authors %}
+            <div class="rhd-c-taxonomy-list__author">
+              {{ author }}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="rhd-c-taxonomy-list__author">
+            {{ authors }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if published_at is not empty %}
+      <div class="rhd-c-taxonomy-list__date">
+        {{ published_at }}
+      </div>
+    {% endif %}
+
+    {% if body is not empty %}
+      <p class="rhd-c-taxonomy-list__body ">{{ body }}</p>
+    {% endif %}
+
+    {% if subtext is not empty %}
+      <div class="rhd-c-taxonomy-list__subtext">
+        {{ subtext }}
+      </div>
+    {% endif %}
+
+  </div>
+</div>

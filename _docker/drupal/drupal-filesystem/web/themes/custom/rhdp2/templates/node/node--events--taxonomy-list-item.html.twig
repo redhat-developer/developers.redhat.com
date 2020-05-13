@@ -1,0 +1,22 @@
+{% if more_details %}
+  {% set title_link = more_details %}
+{% else %}
+  {% set title_link = url %}
+{% endif %}
+
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'image_thumbnail': content.field_event_background_image,
+  'default_image_name': 'taxonomy_list_item_default_events.png',
+  'tag': {
+    'class': 'fa-calendar',
+    'text': 'Event',
+  },
+  'title': {
+    'text': node.label,
+    'url': title_link
+  },
+  'authors': presenters,
+  'published_at': content.field_start_date,
+  'body': content.field_short_description
+} only %}
