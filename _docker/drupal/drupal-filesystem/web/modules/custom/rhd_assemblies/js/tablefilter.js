@@ -9,7 +9,7 @@
     attach: function (context, settings) {
 
       $('.assembly-type-events_collection', context).once('rhd_tablefilter').each(function () {
-        var tableBody = $(context).find('table.views-table tbody');
+        var tableBody = $(context).find('table tbody');
         var tableBodyRows = tableBody.find('tr');
         var sessionSelect = $(context).find('#event-collection-filter__session');
         var languageSelect = $(context).find('#event-collection-filter__language');
@@ -32,7 +32,7 @@
               categoryOptions.push(categoryOption);
             }
           });
-          sessionSelect.append(categoryOptions);
+          sessionSelect.append(categoryOptions.sort());
         }
 
         // Find used languages and set as options in language filter.
@@ -51,7 +51,7 @@
               languageOptions.push(languageOption);
             }
           });
-          languageSelect.append(languageOptions);
+          languageSelect.append(languageOptions.sort());
         }
 
         // Everybody's ready, let's see if we should see that filter form!
