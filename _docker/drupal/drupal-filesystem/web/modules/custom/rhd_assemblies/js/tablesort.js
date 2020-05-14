@@ -20,23 +20,26 @@
         table = $(this)[0];
         new Tablesort(table);
 
-        // Update active sort state UI when sorted.
-        table.addEventListener('afterSort', function (e) {
+        // Reset sort state UI before new sort.
+        table.addEventListener('beforeSort', function (e) {
 
           // Reset table headers to inactive state.
           $(this)
             .find('th')
-            .removeClass('pf-m-selected');
+            .removeClass('pf-m-selected')
+            .removeAttr('aria-sort');
           $(this)
             .find('th [data-fa-i2svg]')
             .removeClass('fa-long-arrow-alt-down fa-long-arrow-alt-up')
             .addClass('fa-arrows-alt-v');
+        });
+
+        // Update active sort state UI when sorted.
+        table.addEventListener('afterSort', function (e) {
 
           // Set current active state and sort direction icons.
           activeSort = $(this).find('th[aria-sort]');
           sortDirection = activeSort.attr('aria-sort');
-          console.log('sortDirection');
-          console.log(sortDirection);
           icon = activeSort.find('[data-fa-i2svg]');
 
           activeSort.addClass('pf-m-selected');
