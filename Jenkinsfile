@@ -11,7 +11,7 @@ import com.redhat.developer.mp.*
 
 node {
 
-    timeout(60) {
+    timeout(120) {
 
         stage("Sanity Check") {
 

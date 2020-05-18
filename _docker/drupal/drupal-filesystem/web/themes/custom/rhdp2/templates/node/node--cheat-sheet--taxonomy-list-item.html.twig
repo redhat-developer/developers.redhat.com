@@ -1,0 +1,16 @@
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'image_thumbnail': content.field_cover_image,
+  'default_image_name': 'taxonomy_list_item_default_cheat_sheets.png',
+  'tag': {
+    'class': 'fa-file-code',
+    'text': 'Cheat Sheet',
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'authors': node.field_cheat_sheet_author[0].value,
+  'published_at': content.published_at,
+  'body': content.field_short_description
+} only %}

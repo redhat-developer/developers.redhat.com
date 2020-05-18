@@ -1,0 +1,15 @@
+{% include '@components/taxonomy-list-item.twig' with {
+  'attributes': attributes,
+  'image_thumbnail': content.field_image,
+  'default_image_name': 'taxonomy_list_item_default_products.png',
+  'tag': {
+    'class': 'fa-box-open',
+    'text': 'Product'
+  },
+  'title': {
+    'text': node.label,
+    'url': url
+  },
+  'published_at': content.published_at,
+  'body': content.field_short_description
+} only %}

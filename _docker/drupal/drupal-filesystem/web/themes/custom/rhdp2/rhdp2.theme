@@ -406,6 +406,112 @@ function rhdp2_preprocess_node(&$variables) {
     $download_url = $download_manager_base_url . $download_path;
     $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
   }
+
+  // Prepare fields for taxonomy page.
+  $taxonomy_list_item_types = [
+    'article',
+    'coding_resource',
+    'events',
+    'video_resource',
+  ];
+  if (in_array($type, $taxonomy_list_item_types) && $variables['view_mode'] == 'taxonomy_list_item') {
+    switch ($type) {
+
+      case ('article'):
+        $variables['authors'] = _generate_authors_links($variables, 'field_author_evangelist', 'field_content_author');
+        break;
+
+      case ('coding_resource'):
+        $authors_values = [];
+        if ($contributors = $node->get('field_contributors')->getValue()) {
+          if (count($contributors) > 0) {
+            foreach ($contributors as $contributor) {
+              $authors_values[] = [
+                '#markup' => $contributor['value'],
+              ];
+            }
+          }
+        }
+        if ($original_author = $node->get('field_author')->getValue()) {
+          $authors_values[] = [
+            '#markup' => $original_author[0]['value'],
+          ];
+        }
+        $variables['authors'] = (empty($authors_values)) ? [] : $authors_values;
+        break;
+
+      case ('events'):
+        $variables['more_details'] = NULL;
+        if ($more_details = $node->get('field_more_details')->getValue()) {
+          $variables['more_details'] = ($more_details[0]['uri']) ? $more_details[0]['uri'] : NULL;
+        }
+        $variables['presenters'] = _generate_authors_links($variables, 'field_presenter_s_', NULL);
+        break;
+
+      case ('video_resource'):
+        $variables['authors'] = _generate_authors_links($variables, 'field_video_author', NULL);
+        break;
+    }
+  }
+}
+
+/**
+ * Generates an array of author links.
+ *
+ * @param string $dynamic_authors_field_name
+ *   The field used for author entity references.
+ * @param string $static_authors_filed_name
+ *   The field used for author strings.
+ *
+ * @return array
+ *   Returns a render array of author links or FALSE.
+ */
+function _generate_authors_links($variables, $dynamic_authors_field_name = NULL, $static_authors_filed_name = NULL) {
+  $node = $variables['elements']['#node'];
+  $authors_values = [];
+
+  if ($dynamic_authors_field_name) {
+    $authors = $node->get($dynamic_authors_field_name)->getValue();
+
+    if ($authors) {
+      $tids = [];
+
+      foreach ($authors as $author) {
+        $tids[] = $author['target_id'];
+      }
+
+      $author_nodes = Node::loadMultiple($tids);
+
+      if (count($author_nodes) > 0) {
+        foreach ($author_nodes as $author_node) {
+          if ($author_node->access('view')) {
+            $author_name = $author_node->getTitle();
+            $author_id = $author_node->id();
+            $author_url = Url::fromRoute('entity.node.canonical', ['node' => $author_id]);
+            $authors_link = Link::fromTextAndUrl($author_name, $author_url);
+            $authors_link = $authors_link->toRenderable();
+            $authors_link['#attributes'] = ['class' => ['rhd-m-link']];
+
+            $authors_values[] = [$authors_link];
+          }
+        }
+      }
+    }
+  }
+
+  if ($static_authors_filed_name) {
+    $guest_author = $node->get($static_authors_filed_name)->getValue();
+
+    if ($guest_author) {
+      $guest_author_name = $guest_author[0]['value'];
+
+      $authors_values[] = [
+        '#markup' => $guest_author_name,
+      ];
+    }
+  }
+
+  return (empty($authors_values)) ? FALSE : $authors_values;
 }
 
 /**

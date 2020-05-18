@@ -1,0 +1,143 @@
+uuid: ba0ad9e6-596b-47f9-9d69-12e9c3262829
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.taxonomy_list_item
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_card_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - field.field.node.cheat_sheet.field_cover_image
+    - field.field.node.cheat_sheet.field_difficulty
+    - field.field.node.cheat_sheet.field_exclude_from_search
+    - field.field.node.cheat_sheet.field_meta_tags
+    - field.field.node.cheat_sheet.field_read_time
+    - field.field.node.cheat_sheet.field_share_image
+    - field.field.node.cheat_sheet.field_short_description
+    - field.field.node.cheat_sheet.field_tags
+    - field.field.node.cheat_sheet.field_tax_audience_segment
+    - field.field.node.cheat_sheet.field_tax_business_unit
+    - field.field.node.cheat_sheet.field_tax_campaign
+    - field.field.node.cheat_sheet.field_tax_lifecycle
+    - field.field.node.cheat_sheet.field_tax_product
+    - field.field.node.cheat_sheet.field_tax_product_line
+    - field.field.node.cheat_sheet.field_tax_project
+    - field.field.node.cheat_sheet.field_tax_promotion
+    - field.field.node.cheat_sheet.field_tax_region
+    - field.field.node.cheat_sheet.field_tax_stage
+    - field.field.node.cheat_sheet.field_topics
+    - image.style.list_item_thumb
+    - node.type.cheat_sheet
+  module:
+    - fences
+    - field_layout
+    - image
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_disabled
+    settings: {  }
+_core:
+  default_config_hash: oNxrGEQdmVDsQMTF8RcSfcHFDbceIM3RG24qnaaR0n0
+id: node.cheat_sheet.taxonomy_list_item
+targetEntityType: node
+bundle: cheat_sheet
+mode: taxonomy_list_item
+content:
+  field_cheat_sheet_author:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: string
+    region: content
+  field_cover_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: list_item_thumb
+      image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  field_short_description:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: basic_string
+    region: content
+  published_at:
+    type: timestamp
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'F j, Y'
+      timezone: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+  workbench_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  content_moderation_control: true
+  field_card_image: true
+  field_cheat_sheet_download_url: true
+  field_cheat_sheet_excerpt: true
+  field_cheat_sheet_tags: true
+  field_difficulty: true
+  field_exclude_from_search: true
+  field_meta_tags: true
+  field_read_time: true
+  field_share_image: true
+  field_tags: true
+  field_tax_audience_segment: true
+  field_tax_business_unit: true
+  field_tax_campaign: true
+  field_tax_lifecycle: true
+  field_tax_product: true
+  field_tax_product_line: true
+  field_tax_project: true
+  field_tax_promotion: true
+  field_tax_region: true
+  field_tax_stage: true
+  field_topics: true
+  langcode: true
+  links: true
