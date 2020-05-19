@@ -1,0 +1,19 @@
+uuid: 16a6ac25-1092-4017-9a09-1f4e9fe899b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.layout_two_col_left_sidebar
+    - field.storage.assembly.field_navigation_title
+id: assembly.layout_two_col_left_sidebar.field_navigation_title
+field_name: field_navigation_title
+entity_type: assembly
+bundle: layout_two_col_left_sidebar
+label: 'Navigation Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
