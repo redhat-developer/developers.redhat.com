@@ -1,8 +1,8 @@
 .rhd-c-article {
 
   .article-toc {
-    width: 240px;
-    @media screen and (max-width: $pf-global--breakpoint--sm) {
+    width: 200px;
+    @media screen and (max-width: $pf-global--breakpoint--md) {
       width: 100%;
     }
   }
@@ -85,6 +85,12 @@
     li {
       margin: 0;
       padding: 4px 0;
+      a {
+        word-break: break-all;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+      }
 
       a:hover {
         color: #004c98;
