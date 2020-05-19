@@ -2,12 +2,15 @@ uuid: ceb77777-59dd-4899-8007-0f09da312440
 langcode: en
 status: true
 dependencies:
+  module:
+    - node
+    - user
   theme:
     - rhdp2
 id: rhdp2_local_tasks
 theme: rhdp2
 region: title
-weight: -4
+weight: -8
 provider: null
 plugin: local_tasks_block
 settings:
@@ -17,4 +20,29 @@ settings:
   label_display: '0'
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      article: article
+      assembly_page: assembly_page
+      author: author
+      books: books
+      cheat_sheet: cheat_sheet
+      events: events
+      product: product
+      topic_page: topic_page
+      video_resource: video_resource
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  user_role:
+    id: user_role
+    roles:
+      content_creator: content_creator
+      content_team: content_team
+      content_admin: content_admin
+      administrator: administrator
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
