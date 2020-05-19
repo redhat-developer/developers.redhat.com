@@ -1,14 +1,19 @@
-#rhd-article {
+.rhd-c-article {
+
+  .article-toc {
+    width: 240px;
+    @media screen and (max-width: $pf-global--breakpoint--sm) {
+      width: 100%;
+    }
+  }
+
   .article-content {
-    @include nestedComponent;
+    flex: 1;
   }
 
   .disqus-thread-wrapper {
     margin-top: 32px;
   }
-
-
-
 
   .article-info-left {
     h1 {
@@ -133,6 +138,7 @@
     }
   }
 }
+
 
 .page-node-type-coding-resource {
   .gsi-meta {
