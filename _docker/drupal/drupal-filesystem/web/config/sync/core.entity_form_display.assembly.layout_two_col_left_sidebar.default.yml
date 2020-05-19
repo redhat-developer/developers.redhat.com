@@ -8,6 +8,7 @@ dependencies:
     - field.field.assembly.layout_two_col_left_sidebar.field_background_image
     - field.field.assembly.layout_two_col_left_sidebar.field_column_1
     - field.field.assembly.layout_two_col_left_sidebar.field_column_2
+    - field.field.assembly.layout_two_col_left_sidebar.field_navigation_title
   module:
     - entity_browser
     - entity_browser_entity_form
@@ -25,7 +26,7 @@ mode: default
 content:
   field_background_image:
     type: entity_browser_file
-    weight: 5
+    weight: 6
     settings:
       entity_browser: image_browser
       field_widget_remove: true
@@ -38,7 +39,7 @@ content:
     region: content
     third_party_settings: {  }
   field_column_1:
-    weight: 3
+    weight: 4
     settings:
       form_mode: default
       label_singular: ''
@@ -56,7 +57,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_column_2:
-    weight: 4
+    weight: 5
     settings:
       form_mode: default
       label_singular: ''
@@ -72,6 +73,14 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
+    region: content
+  field_navigation_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield
