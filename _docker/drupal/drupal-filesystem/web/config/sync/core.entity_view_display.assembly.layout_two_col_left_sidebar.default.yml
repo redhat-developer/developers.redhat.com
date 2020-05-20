@@ -7,6 +7,7 @@ dependencies:
     - field.field.assembly.layout_two_col_left_sidebar.field_background_image
     - field.field.assembly.layout_two_col_left_sidebar.field_column_1
     - field.field.assembly.layout_two_col_left_sidebar.field_column_2
+    - field.field.assembly.layout_two_col_left_sidebar.field_navigation_title
   module:
     - fences
     - field_layout
@@ -63,6 +64,7 @@ content:
     type: entity_reference_entity_view
     region: content
 hidden:
+  field_navigation_title: true
   langcode: true
   name: true
   user_id: true

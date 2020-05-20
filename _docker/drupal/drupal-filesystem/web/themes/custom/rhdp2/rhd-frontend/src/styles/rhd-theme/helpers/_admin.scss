@@ -1,8 +1,3 @@
-.node__content>.field--name-body,
-#block-rhdp-local-tasks {
-  @extend .container;
-}
-
 .field--name-body {
   margin-bottom: 25px;
 
@@ -24,11 +19,11 @@
 }
 
 .content-type-label {
-    text-transform: uppercase;
-    color: $grey-6;
-    margin: 1em 0 0 0;
+  text-transform: uppercase;
+  color: $grey-6;
+  margin: 1em 0 0 0;
 }
-  
+
 .page-info-bar {
   border-top: 1px solid $grey-5;
   border-bottom: 1px solid $grey-5;
@@ -53,6 +48,7 @@
     }
   }
 }
+
 
 @include desktop-small-and-down {
   .page-info-bar {
