@@ -1,7 +1,6 @@
 {%
   set classes = [
     'node',
-    'component',
     'node--type-' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,

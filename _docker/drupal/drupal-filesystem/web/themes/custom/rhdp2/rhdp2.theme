@@ -25,6 +25,18 @@ function rhdp2_preprocess_page(&$variables) {
   $variables['topics_menu'] = _rhdp2_build_menu('topics-menu', ['pf-c-nav__tertiary-list']);
   $variables['mobile_menu'] = _rhdp2_build_menu('rhd-navigation', ['pf-c-nav__tertiary-list'], 'menu__rhd_navigation__mobile');
   $variables['akamai_cache_clear_button'] = _rhdp2_build_block('akamai_cache_clear_block');
+
+  // We have the block but we want to hide it? Is it a required block?
+  if (in_array('rhdp2_page_title', $variables['page']['title'])) {
+    unset($variables['page']['title']['rhdp2_page_title']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function rhdp2_preprocess_menu_local_task(&$variables) {
+  $variables['link']['#options']['attributes']['class'][] = 'pf-c-button pf-m-secondary ';
 }
 
 /**
@@ -128,16 +140,67 @@ function rhdp2_theme_suggestions_page_alter(array &$suggestions, array $variable
 }
 
 /**
+ * Implements hook_preprocess_form().
+ */
+function rhdp2_preprocess_form(array &$variables) {
+  if ($variables['element']['#form_id'] == "content_moderation_entity_moderation_form") {
+    // You won't be able to see this form until the /latest path is restored.
+    $variables['attributes']['class'][] = "component";
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function rhdp2_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $type = $node->bundle();
 
-  // Manage classes on nodes by type.
-  $node_component_include_list = ['page'];
-  if (in_array($type, $node_component_include_list)) {
-    $variables['attributes']['class'][] = 'component';
+  if ($variables['view_mode'] == 'full') {
+
+    // Handle hiding title.
+    // @todo: Simplify this in the content model.
+    if ($node->hasField('hide_title')) {
+      $variables['hide_title'] = $node->field_hide_title->value == 1 ? TRUE : FALSE;
+    }
+
+    if (in_array($type, ['assembly_page',
+      'katacoda_individual_lesson',
+      'katacoda_course',
+      'landing_page_single_offer',
+      'page',
+    ])) {
+      $variables['always_hide_title'] = TRUE;
+    }
+
+    // Add DCP search exclude metatag.
+    if ($node->hasField('field_exclude_from_search') && $node->field_exclude_from_search->value == 1) {
+      $webpage_search_exclude = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'true',
+          'content' => 'true',
+        ],
+      ];
+      $variables['#attached']['html_head'][] = [$webpage_search_exclude, 'DCP:WebpageSearchExclude'];
+    }
+
+    // Add component class to nodes.
+    $node_component_exclude_list = [
+      'assembly_page',
+      'topic_page',
+      'events',
+      'katacoda_individual_lesson',
+      'katacoda_course',
+      'landing_page_single_offer',
+    ];
+    if (in_array($type, $node_component_exclude_list)) {
+      $variables['has_full_width_components'] = TRUE;
+    }
+    else {
+      $variables['attributes']['class'][] = 'component';
+      $variables['has_full_width_components'] = FALSE;
+    }
   }
 
   // Process read time estimates for learning paths.
@@ -174,6 +237,15 @@ function rhdp2_preprocess_node(&$variables) {
 
       $variables['interval'] = $read_time_text ?? '';
     }
+  }
+
+  if ($node->hasField('field_cheat_sheet_download_url')) {
+    $env_settings = \Drupal::config('redhat_developers');
+    $download_manager_base_url = $env_settings->get('downloadManager')['baseUrl'];
+    $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
+    $download_path = parse_url($download_url[0]['uri'])['path'];
+    $download_url = $download_manager_base_url . $download_path;
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
   }
 
   // Add difficulty to attributes.
@@ -522,7 +594,7 @@ function rhdp2_preprocess_assembly(&$variables) {
   $type = $assembly->bundle();
 
   // Add component class to assemblies.
-  $assembly_compontent_exclude_list = [
+  $assembly_component_exclude_list = [
     'combo_item_assembly',
     'combo_item_manual',
     'combo_item_node',
@@ -533,7 +605,7 @@ function rhdp2_preprocess_assembly(&$variables) {
     'wordpress_post_reference',
   ];
 
-  if (!in_array($type, $assembly_compontent_exclude_list)) {
+  if (!in_array($type, $assembly_component_exclude_list)) {
     $variables['attributes']['class'][] = 'component';
   }
 
@@ -676,6 +748,15 @@ function rhdp2_preprocess_block(array &$variables) {
 
     if ($block_id == 'rhdp2_rhdnavigation') {
       $variables['attributes']['class'][] = 'rhd-nav-fixed';
+    }
+
+    if ($block_id == 'rhdp2_local_tasks') {
+      $variables['attributes']['class'][] = 'component';
+    }
+
+    // The content moderation contrib module has an issue.
+    if ($block_id == 'rhdp2_content' && strpos(\Drupal::request()->getRequestUri(), 'moderation/dashboard') !== FALSE) {
+      $variables['attributes']['class'][] = 'component';
     }
   }
 }
