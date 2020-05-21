@@ -26,11 +26,14 @@
           displayForm = true;
           var categoryOptions = [];
           $.each(categories, function (key, value) {
-            category = $.trim(value.innerText);
-            categoryOption = '<option value="' + category + '">' + category + '</option>';
-            if (categoryOptions.indexOf(categoryOption) == -1) {
-              categoryOptions.push(categoryOption);
-            }
+            categoryString = $.trim(value.innerText);
+            categoryArray = categoryString.split(', ');
+            $.each(categoryArray, function (key, value) {
+              categoryOption = '<option value="' + value + '">' + value + '</option>';
+              if (categoryOptions.indexOf(categoryOption) == -1) {
+                categoryOptions.push(categoryOption);
+              }
+            });
           });
           sessionSelect.append(categoryOptions.sort());
         }
@@ -72,8 +75,9 @@
             categoryResult = false;
             languageResult = false;
             if (categoryCell.length) {
-              category = $.trim(categoryCell[0].innerText);
-              if (category == selectedCategory || selectedCategory == 'All') {
+              categoryString = $.trim(categoryCell[0].innerText);
+              categoryArray = categoryString.split(', ');
+              if (categoryArray.indexOf(selectedCategory) > -1 || selectedCategory == 'All') {
                 categoryResult = true;
               }
             }
