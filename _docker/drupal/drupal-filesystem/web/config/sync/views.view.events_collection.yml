@@ -12,14 +12,12 @@ dependencies:
     - field.storage.node.field_start_date
     - field.storage.node.field_tax_event_categories
     - node.type.events
-    - taxonomy.vocabulary.event_categories
   module:
     - assembly
     - datetime
     - link
     - node
     - options
-    - taxonomy
     - user
 id: events_collection
 label: 'Events Collection'
@@ -835,18 +833,15 @@ display:
           admin_label: 'field_sessions: Assembly'
           required: false
           plugin_id: standard
-        term_node_tid:
-          id: term_node_tid
-          table: node_field_data
-          field: term_node_tid
+        nid:
+          id: nid
+          table: taxonomy_index
+          field: nid
           relationship: none
           group_type: group
-          admin_label: 'Event Categories (Term)'
+          admin_label: ''
           required: true
-          vids:
-            - event_categories
-          entity_type: node
-          plugin_id: node_term_data
+          plugin_id: standard
       fields:
         field_short_description:
           id: field_short_description
@@ -2575,7 +2570,7 @@ display:
           field: nid
           relationship: none
           group_type: group
-          admin_label: node
+          admin_label: ''
           required: true
           plugin_id: standard
       arguments:
