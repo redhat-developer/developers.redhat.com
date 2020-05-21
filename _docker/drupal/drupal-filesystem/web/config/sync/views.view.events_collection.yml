@@ -702,6 +702,7 @@ display:
         style: false
         row: false
         arguments: false
+        query: false
       display_description: ''
       filters:
         status:
@@ -1740,6 +1741,14 @@ display:
           break_phrase: true
           not: false
           plugin_id: numeric
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1776,6 +1785,7 @@ display:
         filter_groups: false
         relationships: false
         arguments: false
+        query: false
       style:
         type: table
         options:
@@ -2605,6 +2615,14 @@ display:
           not: false
           plugin_id: numeric
       pager_element: 0
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: null
     cache_metadata:
       max-age: -1
       contexts:
