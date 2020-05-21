@@ -1,0 +1,65 @@
+{#
+  This is a shared template for several content types.
+  The content types that do not use this template are:
+    -- article
+    -- author
+    -- books
+    -- cheat sheet
+    -- events
+    -- learning path
+    -- product
+    -- video resource
+
+  The content types that do are:
+    -- page
+    -- landing page single offer (promotion)
+    -- topic page
+    -- coding resource
+    -- katacoda course
+    -- katacoda individual lesson
+#}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('classy/node') }}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {{ content.content_moderation_control }}
+
+  {% if not hide_title and not always_hide_title %}
+    <div class="component">
+      <div class="pf-l-grid">
+        {{ title_prefix }}
+        <h1{{ title_attributes }}>{{ label }}</h1>
+        {{ title_suffix }}
+        {{ content.body }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if has_full_width_components %}
+
+      <div{{ content_attributes.addClass('node__content') }}>
+        {{ content|without('content_moderation_control', 'body') }}
+      </div>
+
+  {% else %}
+
+    <div class="pf-l-grid">
+      <div{{ content_attributes.addClass('node__content') }}>
+        {{ content|without('content_moderation_control') }}
+      </div>
+    </div>
+
+  {% endif %}
+
+</article>

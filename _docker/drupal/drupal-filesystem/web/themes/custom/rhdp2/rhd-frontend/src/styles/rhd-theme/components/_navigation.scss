@@ -214,6 +214,7 @@ $custom-nav-breakpoint: 1150px;
     }
   }
 }
+
 .rhd-c-nav--topics-wrapper {
   width: 100%;
   border-bottom: var(--pf-global--BorderWidth--sm) solid var(--pf-global--Color--100);
@@ -243,6 +244,7 @@ $custom-nav-breakpoint: 1150px;
     }
   }
 }
+
 .rhd-c-nav--topics {
   .pf-c-nav__tertiary-list .pf-c-nav__link,
   .pf-c-nav__tertiary-list a {
@@ -405,4 +407,11 @@ $custom-nav-breakpoint: 1150px;
 // Needed for magical searchbox in main nav
 .rhd-main-menu {
   position: relative;
+}
+
+.pf-c-nav__link {
+  &:focus, &:active {
+    // Reset user agent styles.
+    outline: none;
+  }
 }
