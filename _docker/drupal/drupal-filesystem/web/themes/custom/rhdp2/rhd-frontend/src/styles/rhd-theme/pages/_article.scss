@@ -2,6 +2,9 @@
 
   .article-toc {
     width: 200px;
+    &.pf-l-flex__item {
+      margin-right: var(--pf-l-grid--m-gutter--GridGap);
+    }
     @media screen and (max-width: $pf-global--breakpoint--md) {
       width: 100%;
     }
@@ -9,6 +12,7 @@
 
   .article-content {
     flex: 1;
+    @include nestedComponent;
   }
 
   .disqus-thread-wrapper {
