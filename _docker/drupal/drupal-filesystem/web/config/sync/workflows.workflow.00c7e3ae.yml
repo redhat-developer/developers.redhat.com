@@ -78,6 +78,12 @@ type_settings:
         - draft
       to: published
       weight: 4
+    keep_archived:
+      label: 'Keep Archived'
+      from:
+        - archived
+      to: archived
+      weight: 11
     needs_review_draft:
       label: 'Send Back to Draft'
       from:

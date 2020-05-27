@@ -1,5 +1,17 @@
-#rhd-article {
+.rhd-c-article {
+
+  .article-toc {
+    width: 200px;
+    &.pf-l-flex__item {
+      margin-right: var(--pf-l-grid--m-gutter--GridGap);
+    }
+    @media screen and (max-width: $pf-global--breakpoint--md) {
+      width: 100%;
+    }
+  }
+
   .article-content {
+    flex: 1;
     @include nestedComponent;
   }
 
@@ -77,6 +89,12 @@
     li {
       margin: 0;
       padding: 4px 0;
+      a {
+        word-break: break-all;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+      }
 
       a:hover {
         color: #004c98;
@@ -130,6 +148,7 @@
     }
   }
 }
+
 
 .page-node-type-coding-resource {
   .gsi-meta {
