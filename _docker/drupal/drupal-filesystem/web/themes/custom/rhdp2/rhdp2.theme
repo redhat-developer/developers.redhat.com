@@ -245,7 +245,7 @@ function rhdp2_preprocess_node(&$variables) {
     $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
     $download_path = parse_url($download_url[0]['uri'])['path'];
     $download_url = $download_manager_base_url . $download_path;
-    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri('internal:' . $download_url);
   }
 
   // Add difficulty to attributes.
@@ -476,7 +476,7 @@ function rhdp2_preprocess_node(&$variables) {
     $download_url = $node->get('field_cheat_sheet_download_url')->getValue();
     $download_path = parse_url($download_url[0]['uri'])['path'];
     $download_url = $download_manager_base_url . $download_path;
-    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri($download_url);
+    $variables['content']['field_cheat_sheet_download_url'][0]['#url'] = Url::fromUri('internal:' . $download_url);
   }
 
   // Prepare fields for taxonomy page.
