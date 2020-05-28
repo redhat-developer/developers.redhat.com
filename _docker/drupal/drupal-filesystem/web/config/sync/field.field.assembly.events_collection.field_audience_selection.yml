@@ -1,0 +1,21 @@
+uuid: b7bda632-aa91-43cc-83e9-07be29ab2abc
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_audience_selection
+  module:
+    - options
+id: assembly.events_collection.field_audience_selection
+field_name: field_audience_selection
+entity_type: assembly
+bundle: events_collection
+label: 'Audience Selection'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
