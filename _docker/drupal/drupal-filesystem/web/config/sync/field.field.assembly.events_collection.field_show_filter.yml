@@ -1,0 +1,23 @@
+uuid: 90985889-e4e1-494b-95ad-ce7770f0b4fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_show_filter
+id: assembly.events_collection.field_show_filter
+field_name: field_show_filter
+entity_type: assembly
+bundle: events_collection
+label: 'Show Filter'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

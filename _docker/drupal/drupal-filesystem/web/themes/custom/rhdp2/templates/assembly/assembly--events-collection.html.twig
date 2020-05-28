@@ -1,0 +1,28 @@
+{#
+/**
+ * @file assembly.html.twig
+ * Default theme implementation to present Assembly data.
+ *
+ * This template is used when viewing Assembly pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_assembly()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'pf-c-content',
+  'rhd-c-events-collection',
+]%}
+<div{{ attributes.addClass(classes) }}>
+  {% if content %}
+  <div class="pf-l-grid pf-m-gutter">
+    {{- content -}}
+  </div>
+  {% endif %}
+</div>

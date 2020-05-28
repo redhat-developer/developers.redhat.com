@@ -1,8 +1,34 @@
 countdown:
-  version: VERSION
   js:
     js/countdown.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once
     - core/drupal
+
+tablesort_plugin:
+  js:
+    js/tablesortPlugin.min.js: { minified: true }
+
+tablesort:
+  js:
+    js/tablesort.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - rhd_assemblies/tablesort_plugin
+
+tablefilter:
+  js:
+    js/tablefilter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+
+expandable:
+  js:
+    js/expandable.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
