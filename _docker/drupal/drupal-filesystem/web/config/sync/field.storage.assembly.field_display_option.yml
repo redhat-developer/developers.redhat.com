@@ -1,0 +1,30 @@
+uuid: 1d646d84-4b86-48ca-814e-a3274b4c3d83
+langcode: en
+status: true
+dependencies:
+  module:
+    - assembly
+    - options
+id: assembly.field_display_option
+field_name: field_display_option
+entity_type: assembly
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: all_sessions_ungrouped
+      label: 'All sessions - ungrouped'
+    -
+      value: all_sessions_by_event
+      label: 'All sessions - grouped by event'
+    -
+      value: single_event_sessions
+      label: 'Sessions for a single event'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

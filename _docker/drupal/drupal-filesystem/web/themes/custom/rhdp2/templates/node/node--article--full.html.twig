@@ -1,14 +1,13 @@
 {% set classes = [
+  'rhd-c-article',
   'author-' ~ author_location
 ] %}
 {% set article_classes =  [
-  'pf-l-grid__item',
-  'pf-xs-12-col',
-  'pf-m-12-col-on-xs',
-  'pf-m-10-col-on-lg',
-  'gsi',
-  not hide_toc ? 'fetch-toc',
   'article-content',
+  'pf-l-flex__item',
+  'pf-m-align-self-flex-start',
+  'gsi',
+  not hide_toc ? 'fetch-toc'
 ] %}
 
 <div{{ attributes.addClass(classes).setAttribute("id", "rhd-article") }}>
@@ -89,24 +88,29 @@
       {{ content.field_article_highlights }}
     </div>
     {% endif %}
-    {% if not hide_toc %}
-    <div class="pf-l-grid__item pf-lg-2-col pf-m-12-col-on-md pf-m-2-col-on-lg">
-      <ul class="toc gsi-nav"></ul>
-    </div>
-    {% endif %}
-    <div{{ content_attributes.addClass(article_classes) }}>
-      {{ content.body }}
-      {{ content.field_content }}
-      {% if content.field_tags|render %}
-      <div class="article-tags">
-        {{ content.field_tags }}
+    <div class="pf-l-grid__item">
+      <div class="pf-l-flex">
+        {% if not hide_toc %}
+        <div class="article-toc pf-l-flex__item">
+          <ul class="toc gsi-nav"></ul>
+        </div>
+        {% endif %}
+
+        <div{{ content_attributes.addClass(article_classes) }}>
+          {{ content.body }}
+          {{ content.field_content }}
+          {% if content.field_tags|render %}
+          <div class="article-tags">
+            {{ content.field_tags }}
+          </div>
+          {% endif %}
+          {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
+          <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
+          {% endif %}
+          {{ content.disqus_thread }}
+        </div>
       </div>
-      {% endif %}
-      {% if node.createdtime|date(' F j, Y') != node.changedtime|date(' F j, Y') %}
-      <i class="changed-date">Last updated: {{ node.changedtime|date(' F j, Y') }}</i>
-      {% endif %}
-      {{ content.disqus_thread }}
-    </div>
+    <div>
     {% if content.field_related_articles|render %}
     <div class="related-articles rhd-c-card-grid">
       <div class="pf-l-flex">
@@ -115,6 +119,7 @@
       {{ content.field_related_articles }}
     </div>
     {% endif %}
+
   </div>
 </div>
 <a href="#top" id="scroll-to-top"><i class="fas fa-arrow-circle-up"></i></a>
