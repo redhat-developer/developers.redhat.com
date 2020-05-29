@@ -1,0 +1,19 @@
+uuid: be4e0be7-d4a9-42c1-bf62-57bad589f784
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_title
+id: assembly.events_collection.field_title
+field_name: field_title
+entity_type: assembly
+bundle: events_collection
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

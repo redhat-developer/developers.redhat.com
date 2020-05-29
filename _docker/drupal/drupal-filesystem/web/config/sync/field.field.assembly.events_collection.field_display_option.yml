@@ -1,0 +1,21 @@
+uuid: 0743ff5c-b536-410f-ba46-a542a354203f
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_display_option
+  module:
+    - options
+id: assembly.events_collection.field_display_option
+field_name: field_display_option
+entity_type: assembly
+bundle: events_collection
+label: 'Display Option'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

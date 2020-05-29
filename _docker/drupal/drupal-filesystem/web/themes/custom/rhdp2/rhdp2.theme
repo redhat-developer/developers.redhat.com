@@ -1219,3 +1219,14 @@ function rhdp2_library_info_alter(array &$libraries, $extension) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view_table().
+ */
+function rhdp2_preprocess_views_view_table(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() == 'events_collection' && $view->current_display == 'all_sessions_by_event') {
+    $variables['title_id'] = $variables['header']['title_1']['attributes']['id']->value();
+    $variables['#attached']['library'][] = 'rhd_assemblies/expandable';
+  }
+}
