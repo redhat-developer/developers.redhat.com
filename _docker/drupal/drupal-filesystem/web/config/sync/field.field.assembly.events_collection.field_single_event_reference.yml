@@ -1,0 +1,28 @@
+uuid: 344f706c-a767-4472-a002-a818b7007434
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_single_event_reference
+    - node.type.events
+id: assembly.events_collection.field_single_event_reference
+field_name: field_single_event_reference
+entity_type: assembly
+bundle: events_collection
+label: 'Single Event Reference'
+description: 'Use when listing sessions for a single event. Leave empty to list sessions from the current event node.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      events: events
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

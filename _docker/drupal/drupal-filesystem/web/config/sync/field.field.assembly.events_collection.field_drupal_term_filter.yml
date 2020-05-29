@@ -1,0 +1,29 @@
+uuid: 394a48ce-2297-42eb-b869-0ed5d2e7e8b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_drupal_term_filter
+    - taxonomy.vocabulary.event_categories
+id: assembly.events_collection.field_drupal_term_filter
+field_name: field_drupal_term_filter
+entity_type: assembly
+bundle: events_collection
+label: 'Event Categories'
+description: 'Limit results to the following categories. Leave all unchecked to show all categories.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_categories: event_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: event_categories
+field_type: entity_reference
