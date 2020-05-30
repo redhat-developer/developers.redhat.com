@@ -88,6 +88,14 @@ Any variable with color in the name takes any valid color: property or scss vari
 
 Please define colors for all button types listed in the above example.
 
+## Making IE 11 legacy CSS
+
+There are three files checked into the theme/rhdp2/css folder rhd.ie11-overrides.css, rhd.ie11.css & rhd.ie11.min.css the last two files are created by running '''code 
+npm run styles:ie11postProcess
+'''
+this process can take up to 2 hours to run so is not part of the normal build, if you change or add any scss please run this and check in the new files.
+
+rhd.ie11-overrides.css is a custom file loaded in ie11 additionaly to the other css this can have any specific IE11 overrides, you do not need to run the 'styles:ie11postProcess' as this file is not auto generated, it simply needs to be changed and checked in.
 
 ## Using Clamp styles
 
