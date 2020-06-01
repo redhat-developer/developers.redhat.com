@@ -71,7 +71,7 @@ content:
     type: link_default
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -88,14 +88,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 3
+    weight: 4
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -103,7 +103,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 0
     region: content
     settings:
       display_label: true
@@ -111,7 +111,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
