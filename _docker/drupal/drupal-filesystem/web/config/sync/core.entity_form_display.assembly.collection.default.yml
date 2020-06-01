@@ -23,7 +23,7 @@ bundle: collection
 mode: default
 content:
   field_audience_selection:
-    type: options_buttons
+    type: options_select
     weight: 1
     region: content
     settings: {  }
@@ -35,7 +35,7 @@ content:
     type: options_select
     region: content
   field_navigation_title:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -50,7 +50,7 @@ content:
     type: boolean_checkbox
     region: content
   field_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -72,7 +72,7 @@ content:
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 2
     region: content
     settings:
       size: 60
@@ -80,7 +80,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 0
     region: content
     settings:
       display_label: true
@@ -88,7 +88,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -18,7 +18,7 @@ bundle: combo_item_assembly
 mode: default
 content:
   field_assembly_item:
-    weight: 26
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -28,7 +28,7 @@ content:
     region: content
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -36,7 +36,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 0
     region: content
     settings:
       display_label: true
