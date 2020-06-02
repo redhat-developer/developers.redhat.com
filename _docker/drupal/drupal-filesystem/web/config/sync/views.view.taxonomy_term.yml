@@ -9,6 +9,16 @@ dependencies:
     - field.storage.node.field_image
     - field.storage.node.field_short_description
     - image.style.medium
+    - node.type.article
+    - node.type.assembly_page
+    - node.type.books
+    - node.type.cheat_sheet
+    - node.type.coding_resource
+    - node.type.events
+    - node.type.katacoda_course
+    - node.type.katacoda_individual_lesson
+    - node.type.product
+    - node.type.video_resource
     - taxonomy.vocabulary.audience_segment
     - taxonomy.vocabulary.bonus_content_types
     - taxonomy.vocabulary.business_unit
@@ -678,6 +688,8 @@ display:
         title: false
         header: false
         relationships: false
+        filters: false
+        filter_groups: false
       header:
         area_text_custom:
           id: area_text_custom
@@ -691,6 +703,137 @@ display:
           content: '<h1>[view:title]</h1>'
           plugin_id: text_custom
       relationships: {  }
+      filters:
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: language
+          entity_type: node
+          entity_field: langcode
+        status:
+          id: status
+          table: taxonomy_index
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            article: article
+            books: books
+            cheat_sheet: cheat_sheet
+            coding_resource: coding_resource
+            events: events
+            katacoda_course: katacoda_course
+            katacoda_individual_lesson: katacoda_individual_lesson
+            assembly_page: assembly_page
+            product: product
+            video_resource: video_resource
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+            argument: null
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
