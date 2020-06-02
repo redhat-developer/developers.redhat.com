@@ -28,8 +28,9 @@ app.sso = function () {
                     .show();
 
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
-                $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
-                $('section.contributors-banner, .shown-after-login, li.logged-in, [data-audience="authenticated"]').show();
+
+                showAudienceSelectionContent(true);
+
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
 
                 // Once the promise comes back, listen for a click on logout.
@@ -74,12 +75,8 @@ app.sso = function () {
 
             }).error(clearTokens);
         } else {
-            $('li.login, section.register-banner, .hidden-after-login, [data-audience="unauthenticated"]').show();
 
-            // Remove gated content.
-            $('[data-audience="authenticated"]').detach();
-
-            $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
+            showAudienceSelectionContent(false);
 
             $('li.login a').on('click', function (e) {
                 e.preventDefault();
@@ -93,6 +90,38 @@ app.sso = function () {
         }
 
         updateAnalytics(usr);
+    }
+
+    // Toggles data-audience and other elements based on SSO status.
+    function showAudienceSelectionContent(status) {
+      // The user successfully logged in.
+      if (status == true) {
+
+        // Hide and show the non-audience elements.
+        $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
+        $('section.contributors-banner, .shown-after-login, li.logged-in').show();
+
+        // The disableAudienceSelection flag is for users with the 'View any unpublished content' permission.
+        // See rhd_admin moduel for how it is set in drupalSettings.
+        if (drupalSettings.rhd.disableAudienceSelectionDisplay) {
+          $('[data-audience="unauthenticated]').css('display', "unset");
+        } else {
+          $('[data-audience="authenticated"]').hide();
+        }
+      }
+
+      // The user did not log in.
+      if (status == false) {
+        $('li.login, section.register-banner, .hidden-after-login').show();
+
+        if (!drupalSettings.rhd.disableAudienceSelectionDisplay) {
+          $('[data-audience="unauthenticated"]').show();
+          // Remove gated content.
+          $('[data-audience="authenticated"]').detach();
+        }
+
+        $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
+      }
     }
 
     function daysDiff(dt1, dt2) {

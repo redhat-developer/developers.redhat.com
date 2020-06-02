@@ -27,6 +27,9 @@ function rhd_admin_page_attachments_alter(array &$attachments) {
   if (\Drupal::currentUser()->hasPermission('view-any-unpublished-content')
     && !\Drupal::request()->get('design')) {
     $attachments['#attached']['library'][] = 'rhd_admin/theme';
+
+    // Provide to 5-sso.js for [data-audience] content rendering.
+    $attachments['#attached']['drupalSettings']['rhd']['disable-audience-selection-display'] = true;
   }
 }
 
