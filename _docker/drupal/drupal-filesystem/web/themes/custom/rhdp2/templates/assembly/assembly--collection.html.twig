@@ -21,7 +21,9 @@
   'rhd-c-collection',
 ]%}
 <div{{ attributes.addClass(classes) }}>
-  {% if content %}
-    {{- content -}}
-  {% endif %}
+  <div class="assembly--content">
+    {% if content %}
+      {{- content -}}
+    {% endif %}
+  </div>
 </div>
