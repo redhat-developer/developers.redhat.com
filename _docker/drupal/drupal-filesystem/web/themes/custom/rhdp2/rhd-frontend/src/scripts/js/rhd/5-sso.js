@@ -60,17 +60,17 @@ app.sso = function () {
                         headers: swelHeaders,
                         mode: 'cors'
                     })
-                        .then(function (req) { return req.json(); })
-                        .then(function (resp) {
-                            if (resp && resp.registrationTimestamp) {
-                                var dt = new Date();
-                                var ck = getCookie('rhd_logged');
-                                if (dt - (new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
-                                    document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-                                    document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-                                }
+                    .then(function (req) { return req.json(); })
+                    .then(function (resp) {
+                        if (resp && resp.registrationTimestamp) {
+                            var dt = new Date();
+                            var ck = getCookie('rhd_logged');
+                            if (dt - (new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
+                                document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                                document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
                             }
-                        });
+                        }
+                    });
                 }
 
             }).error(clearTokens);
@@ -94,29 +94,34 @@ app.sso = function () {
 
     // Toggles data-audience and other elements based on SSO status.
     function showAudienceSelectionContent(status) {
-      // The user successfully logged in.
+      var skipAudienceCheck = false;
+
+        // The disableAudienceSelection flag is for users with the 'View any unpublished content' permission.
+        // See rhd_admin moduel for how it is set in drupalSettings.
+      if (drupalSettings.rhd_admin && drupalSettings.rhd_admin['disable-audience-selection-display']) {
+        skipAudienceCheck = true;
+        $('.assembly[data-audience]').css('display', 'block');
+      }
+
+      // The user is logged in.
       if (status == true) {
 
         // Hide and show the non-audience elements.
         $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
         $('section.contributors-banner, .shown-after-login, li.logged-in').show();
 
-        // The disableAudienceSelection flag is for users with the 'View any unpublished content' permission.
-        // See rhd_admin moduel for how it is set in drupalSettings.
-        if (drupalSettings.rhd.disableAudienceSelectionDisplay) {
-          $('[data-audience="unauthenticated]').css('display', "unset");
-        } else {
-          $('[data-audience="authenticated"]').hide();
+        if (!skipAudienceCheck) {
+          $('[data-audience="authenticated"]').show();
+          $('[data-audience="unauthenticated"]').hide();
         }
       }
 
-      // The user did not log in.
+      // The user is not logged in.
       if (status == false) {
         $('li.login, section.register-banner, .hidden-after-login').show();
 
-        if (!drupalSettings.rhd.disableAudienceSelectionDisplay) {
+        if (!skipAudienceCheck) {
           $('[data-audience="unauthenticated"]').show();
-          // Remove gated content.
           $('[data-audience="authenticated"]').detach();
         }
 

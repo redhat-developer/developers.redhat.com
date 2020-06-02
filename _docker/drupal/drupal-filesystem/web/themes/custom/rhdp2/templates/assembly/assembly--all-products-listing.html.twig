@@ -18,9 +18,9 @@
 <section{{ attributes }}>
   <div class="pf-l-grid">
     <h1>{{ content.field_title }}</h1>
-  </div>
 
   {% if content %}
     {{- content|without('field_title') -}}
   {% endif %}
+  </div>
 </section>

@@ -29,7 +29,7 @@ function rhd_admin_page_attachments_alter(array &$attachments) {
     $attachments['#attached']['library'][] = 'rhd_admin/theme';
 
     // Provide to 5-sso.js for [data-audience] content rendering.
-    $attachments['#attached']['drupalSettings']['rhd']['disable-audience-selection-display'] = true;
+    $attachments['#attached']['drupalSettings']['rhd_admin']['disable-audience-selection-display'] = true;
   }
 }
 
