@@ -24,12 +24,15 @@ function rhd_admin_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
  */
 function rhd_admin_page_attachments_alter(array &$attachments) {
   // Do not attach admin helper stylesheet if design=1 appears in the request.
-  if (\Drupal::currentUser()->hasPermission('view-any-unpublished-content')
-    && !\Drupal::request()->get('design')) {
-    $attachments['#attached']['library'][] = 'rhd_admin/theme';
+  if (\Drupal::currentUser()->hasPermission('view-any-unpublished-content')) {
 
     // Provide to 5-sso.js for [data-audience] content rendering.
     $attachments['#attached']['drupalSettings']['rhd_admin']['disable-audience-selection-display'] = true;
+
+    if (!\Drupal::request()->get('design')) {
+      $attachments['#attached']['library'][] = 'rhd_admin/theme';
+    }
+
   }
 }
 
