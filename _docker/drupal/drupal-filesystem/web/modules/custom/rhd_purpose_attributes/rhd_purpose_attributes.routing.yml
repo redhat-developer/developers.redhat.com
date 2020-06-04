@@ -1,0 +1,8 @@
+rhd_purpose_attributes.content:
+  path: '/admin/purpose-attributes'
+  defaults:
+    _controller: '\Drupal\rhd_purpose_attributes\Controller\PurposeAttributesPageController::content'
+    _title: 'Purpose Attributes Reports'
+    _description: 'A collection of blocks on purpose attributes'
+  requirements:
+    _permission: 'access administration pages'

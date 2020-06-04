@@ -90,7 +90,7 @@ third_party_settings:
         - field_ics_addevent_id
         - field_ics_subtext
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       format_settings:
         label: 'Add to Calendar Information'
@@ -150,7 +150,7 @@ content:
     type: text_textarea
     region: fields
   field_end_date:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -221,7 +221,7 @@ content:
     type: boolean_checkbox
     region: fields
   field_presenter_s_:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -254,7 +254,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_sessions:
-    weight: 9
+    weight: 4
     settings:
       form_mode: default
       label_singular: ''
@@ -292,7 +292,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_start_date:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -394,7 +394,7 @@ content:
     region: fields
   langcode:
     type: language_select
-    weight: 7
+    weight: 8
     region: fields
     settings:
       include_locked: true

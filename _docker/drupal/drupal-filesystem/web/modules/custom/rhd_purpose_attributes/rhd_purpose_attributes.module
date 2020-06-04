@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Contains rhd_purpose_attributes.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function rhd_purpose_attributes_theme($existing, $type, $theme, $path) {
+  return [
+    'purpose_attributes_report_block' => [
+      'variables' => [
+        'tax_business_unit' => NULL,
+        'tax_product' => NULL,
+      ],
+    'template' => 'purpose-attributes-report-block',
+    ],
+  ];
+}
