@@ -8,6 +8,7 @@ use Drupal\assembly\Plugin\AssemblyBuildBase;
 use Drupal\assembly\Plugin\AssemblyBuildInterface;
 use Drupal\assembly\Entity\Assembly;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\CacheableMetadata;
 
 /**
  * Adds recent blog posts to the built entity.
@@ -24,6 +25,9 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
    * {@inheritdoc}
    */
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+
+    $cacheableMetadata = new CacheableMetadata();
+
     if ($build['#parent']) {
       // Get all assemblies referenced in the same field.
       $items = $build['#parent']['entity']->get($build['#parent']['field_name'])->getValue();
@@ -37,6 +41,8 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         $id = $item['target_id'];
         $assemblies[$id] = Assembly::load($id);
       }
+
+      $cacheableMetadata->addCacheableDependency($build['#parent']);
     }
 
     if (!empty($assemblies)) {
@@ -58,6 +64,8 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         $nav_items[$id] = ['#markup' => '<a href="#' . $css_id . '">' . $link_text . '</a>'];
       }
 
+      $cacheableMetadata->addCacheableDependency($assembly);
+
       if (!empty($nav_items)) {
         $build['nav'] = [
           '#theme' => 'item_list',
@@ -68,7 +76,8 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
       }
     }
 
-    $build['#cache']['tags'][] = $build['#parent']['entity']->getEntityTypeId() . ":" . $build['#parent']['entity']->id();
+    $cacheableMetadata->applyTo($build);
+    return $build;
   }
 
 }
