@@ -42,7 +42,7 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         $assemblies[$id] = Assembly::load($id);
       }
 
-      $cacheableMetadata->addCacheableDependency($build['#parent']);
+      $cacheableMetadata->addCacheableDependency($assemblies[$id]);
     }
 
     if (!empty($assemblies)) {
@@ -54,6 +54,8 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
           continue;
         }
 
+        $cacheableMetadata->addCacheableDependency($assembly);
+
         // Skip if unpublished or missing title.
         if (!$assembly->isPublished() || !$assembly->hasField('field_navigation_title') || $assembly->get('field_navigation_title')->isEmpty()) {
           continue;
@@ -64,14 +66,18 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         $nav_items[$id] = ['#markup' => '<a href="#' . $css_id . '">' . $link_text . '</a>'];
       }
 
-      $cacheableMetadata->addCacheableDependency($assembly);
-
       if (!empty($nav_items)) {
         $build['nav'] = [
           '#theme' => 'item_list',
           '#list_type' => 'ul',
           '#items' => $nav_items,
-          '#attributes' => ['class' => 'on-page-nav-list'],
+          '#attributes' => [
+            'class' => [
+              'on-page-nav-list',
+              'pf-c-list', 'pf-m-inline ',
+              'rhd-u-no-bullet',
+            ]
+          ],
         ];
       }
     }
