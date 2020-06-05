@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\assembly\Plugin\AssemblyBuildBase;
 use Drupal\assembly\Plugin\AssemblyBuildInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Adds recent blog posts to the built entity.
