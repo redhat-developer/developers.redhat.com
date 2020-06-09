@@ -1,0 +1,20 @@
+{% if event_url %}
+  {% set title_link = event_url %}
+{% else %}
+  {% set title_link = url %}
+{% endif %}
+
+{% include '@components/card.twig' with {
+  'attributes': attributes,
+  'hero_image': content.field_event_background_image,
+  'tag': {
+    'class': 'fa-calendar',
+    'text': 'Event'
+  },
+  'title': {
+    'text': node.label,
+    'url': title_link
+  },
+  'body': content.field_short_description,
+  'authors': dates
+} only %}
