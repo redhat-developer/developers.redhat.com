@@ -4,6 +4,7 @@ namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\assembly\Plugin\AssemblyBuildBase;
 use Drupal\assembly\Plugin\AssemblyBuildInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 
