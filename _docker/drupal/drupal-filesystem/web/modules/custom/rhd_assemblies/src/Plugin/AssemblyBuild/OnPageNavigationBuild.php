@@ -38,8 +38,11 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         if ($item['target_id'] == $entity->id()) {
           continue;
         }
+
+        // Load the assembly by Entity Reference Revision.
         $id = $item['target_id'];
-        $assemblies[$id] = Assembly::load($id);
+        $vid = $item['target_revision_id'];
+        $assemblies[$id] = \Drupal::entityTypeManager()->getStorage('assembly')->loadRevision($vid);
       }
 
       $cacheableMetadata->addCacheableDependency($assemblies[$id]);
