@@ -76,7 +76,7 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
               'on-page-nav-list',
               'pf-c-list', 'pf-m-inline ',
               'rhd-u-no-bullet',
-            ]
+            ],
           ],
         ];
       }
