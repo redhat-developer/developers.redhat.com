@@ -409,7 +409,7 @@ function rhdp2_preprocess_node(&$variables) {
       // Set variables.
       $assembly_ids = [];
       $yesterday = strtotime('-1 day');
-      $timestamps =[];
+      $timestamps = [];
       $dates = [];
       $variables['dates'] = $dates;
 
@@ -432,7 +432,7 @@ function rhdp2_preprocess_node(&$variables) {
         }
       }
       // Get event date if event does not have sessions.
-      else if ($event_start_date = $node->get('field_start_date')->getValue()[0]['value']) {
+      elseif ($event_start_date = $node->get('field_start_date')->getValue()[0]['value']) {
         $event_start_date = strtotime($event_start_date);
         if ($event_start_date >= $yesterday) {
           $timestamps[] = $event_start_date;
@@ -446,7 +446,7 @@ function rhdp2_preprocess_node(&$variables) {
           $dates[] = date('j F Y', $timestamp);
         }
         $dates = implode(', ', array_unique($dates));
-        $variables['dates'] = 'Dates: ' . $dates; 
+        $variables['dates'] = 'Dates: ' . $dates;
       }
     }
   }
