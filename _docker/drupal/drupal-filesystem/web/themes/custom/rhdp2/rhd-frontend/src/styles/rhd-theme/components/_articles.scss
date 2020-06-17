@@ -1,8 +1,4 @@
-.pf-c-page__sidebar {
-  display: none !important;
-}
 .rhd-c-article {
-
   .article-toc {
     width: 220px;
     &.pf-l-flex__item {
@@ -57,7 +53,7 @@
       &>li {
         display: inline-block;
         float: none;
-        font-size: 16px;
+        font-size: map-get($rhd-font-size, "base");
         padding-left: 20px;
         padding-right: 20px;
         width: auto;
@@ -105,16 +101,16 @@
   }
   
   .article-type {
-    color: #9b9b9b;
-    font-size: 20px;
+    color: $gray-4-5;
+    font-size: map-get($rhd-font-size, "sm");
     letter-spacing: .025em;
     margin: 0;
   }
 
   .gsi-nav {
-    background-color: #f9f9f9;
-    border-top: 2px solid #0066CC;
-    font-size: 16px;
+    background-color: $grey-1;
+    border-top: 2px solid $link;
+    font-size: map-get($rhd-font-size, "base");
     font-weight: 700;
     line-height: 24px;
     padding: 12px 16px;
@@ -134,7 +130,7 @@
       }
 
       a:hover {
-        color: #004c98;
+        color: $linkhover;
         text-decoration: none;
       }
 
@@ -151,9 +147,9 @@
   .gsi-meta {
     margin-bottom: 24px;
     overflow: hidden;
-    background: #F9F9F9;
+    background: $grey-1;
     padding: 12px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid $grey-2;
     border-radius: 0;
 
     .field--name-field-related-product {
@@ -196,7 +192,7 @@
     p {
       color: var(--rhd-theme--font--color);
       font-family: $rhd-font-stack-display !important;
-      font-size: 24px !important;
+      font-size: map-get($rhd-font-size, "med") !important;
       font-weight: 500 !important;
       line-height: 31px !important;
       width: 300px;
@@ -205,8 +201,8 @@
     }
      p:first-child:after {
         content: '\201d';
-        color: #bb301b;
-        font-size: 3em;
+        color: $red;
+        font-size: map-get($rhd-font-size, "xl");
         font-weight: 700;
         position: absolute;
         bottom: 0;
@@ -222,9 +218,9 @@
   .gsi-meta {
     margin-bottom: 24px;
     overflow: hidden;
-    background: #F9F9F9;
+    background: $grey-1;
     padding: 12px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid $grey-2;
     border-radius: 0;
 
     .field--name-field-related-product {
@@ -237,9 +233,9 @@
     }
 
     .gsi-nav {
-      background-color: #f9f9f9;
-      border-top: 2px solid #0066CC;
-      font-size: 16px;
+      background-color: $grey-1;
+      border-top: 2px solid $link;
+      font-size: map-get($rhd-font-size, "base");
       font-weight: 700;
       line-height: 24px;
       padding: 12px 16px;
@@ -253,7 +249,7 @@
         padding: 4px 0;
 
         a:hover {
-          color: #004c98;
+          color: $linkhover;
           text-decoration: none;
         }
 
@@ -287,10 +283,10 @@
     }
   }
   .assembly-type-content_pull_quote {
-    border-top: 3px solid #CC0000;
+    border-top: 3px solid $red;
     padding: 15px;
     position: relative;
-    font-size: 24px;
+    font-size: map-get($rhd-font-size, "med");
     line-height: 32px;
     float: right;
     z-index: 99;
@@ -304,5 +300,3 @@
     }
   }
 }
-
-
