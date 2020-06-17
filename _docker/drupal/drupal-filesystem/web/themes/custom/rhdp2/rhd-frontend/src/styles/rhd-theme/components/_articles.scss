@@ -180,37 +180,6 @@
       }
     }
   }
-  blockquote {
-    /* Negate theme styles */
-    border: 0;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    float: right;
-    padding: 24px !important;
-    border-left: 0 !important;
-    p {
-      color: var(--rhd-theme--font--color);
-      font-family: $rhd-font-stack-display !important;
-      font-size: map-get($rhd-font-size, "med") !important;
-      font-weight: 500 !important;
-      line-height: 31px !important;
-      width: 300px;
-      text-align: left;
-      padding: var(--pf-global--spacer--sm) 0 var(--pf-global--spacer--sm) var(--pf-global--spacer--sm);
-    }
-     p:first-child:after {
-        content: '\201d';
-        color: $red;
-        font-size: map-get($rhd-font-size, "xl");
-        font-weight: 700;
-        position: absolute;
-        bottom: 0;
-        right: 2.5rem;
-        text-shadow: none;
-        z-index: -300;
-    }
-  }
 }
 
 
