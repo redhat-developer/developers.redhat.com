@@ -29,6 +29,10 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
     $cacheableMetadata = new CacheableMetadata();
 
     if ($build['#parent']) {
+
+      // Add parent entity to cache metadata.
+      $cacheableMetadata->addCacheableDependency($build['#parent']['entity']);
+
       // Get all assemblies referenced in the same field.
       $items = $build['#parent']['entity']->get($build['#parent']['field_name'])->getValue();
 
@@ -44,8 +48,6 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
         $vid = $item['target_revision_id'];
         $assemblies[$id] = \Drupal::entityTypeManager()->getStorage('assembly')->loadRevision($vid);
       }
-
-      $cacheableMetadata->addCacheableDependency($assemblies[$id]);
     }
 
     if (!empty($assemblies)) {
@@ -57,6 +59,9 @@ class OnPageNavigationBuild extends AssemblyBuildBase implements AssemblyBuildIn
           continue;
         }
 
+        // When the assembly is updated, it (currently) triggers an update on
+        // any parent entities, so the node id cache tag should suffice,
+        // yet this gives a clearer intention of cache tags.
         $cacheableMetadata->addCacheableDependency($assembly);
 
         // Skip if unpublished or missing title.
