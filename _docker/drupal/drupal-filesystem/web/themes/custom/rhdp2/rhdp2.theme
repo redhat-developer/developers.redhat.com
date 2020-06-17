@@ -408,7 +408,7 @@ function rhdp2_preprocess_node(&$variables) {
 
       // Set variables.
       $assembly_ids = [];
-      $yesterday = strtotime('-1 day');
+      $today = strtotime('today');
       $timestamps = [];
       $dates = [];
       $variables['dates'] = $dates;
@@ -425,7 +425,7 @@ function rhdp2_preprocess_node(&$variables) {
         if ($session_assemblies = Assembly::loadMultiple($assembly_ids)) {
           foreach ($session_assemblies as $session) {
             $session_start_date = strtotime($session->get('field_start')->getValue()[0]['value']);
-            if ($session_start_date >= $yesterday) {
+            if ($session_start_date >= $today) {
               $timestamps[] = $session_start_date;
             }
           }
@@ -434,7 +434,7 @@ function rhdp2_preprocess_node(&$variables) {
       // Get event date if event does not have sessions.
       elseif ($event_start_date = $node->get('field_start_date')->getValue()[0]['value']) {
         $event_start_date = strtotime($event_start_date);
-        if ($event_start_date >= $yesterday) {
+        if ($event_start_date >= $today) {
           $timestamps[] = $event_start_date;
         }
       }
