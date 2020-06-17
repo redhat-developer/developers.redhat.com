@@ -1,11 +1,11 @@
-{{ attach_library('classy/node') }}
-
 {% set tmpUrl = content.field_video_thumbnail_url['#items'][0].value %}
 
 {% if '.jpg' in tmpUrl or '.jpeg' in tmpUrl  or '.gif' in tmpUrl  or '.png' in tmpUrl %}
-  {% set hero_img = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':node.label, } %}
-{% else %}
+  {% set hero_img = {'#theme':'imagecache_external', '#uri':tmpUrl, '#style_name':'static_item', '#alt':node.label} %}
+{% elseif tmpUrl is not empty %}
   {% set hero_img = '<img src="' ~ tmpUrl ~ '" alt="' ~ node.label ~ '" />' %}
+{% else %}
+  {% set hero_img = FALSE %}
 {% endif %}
 
 {% include '@components/card.twig' with {
