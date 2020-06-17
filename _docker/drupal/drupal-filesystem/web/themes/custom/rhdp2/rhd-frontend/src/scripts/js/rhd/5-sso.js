@@ -32,6 +32,20 @@ app.sso = function () {
                 $('section.contributors-banner, .shown-after-login, li.logged-in, [data-audience="authenticated"]').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
 
+                // Remove unauthenticated links from an on_page_navigation assembly, if one exists on the page.
+                var onPageNav = document.querySelector('.assembly-type-on_page_navigation');
+                if (onPageNav !== null) {
+                    document.querySelectorAll('[data-audience="unauthenticated"]').forEach(function(e) {
+                        var hrefVal = '#' + e.id;
+                        $(document.querySelector('.assembly-type-on_page_navigation').querySelector('a[href^="' + hrefVal + '"')).detach();
+                    });
+                    //set all nav items to visable
+                    var onPageNavItems = onPageNav.querySelectorAll("a");
+                    onPageNavItems.forEach(function(e) {
+                        e.style.visibility = "visible";
+                    });
+                }
+
                 // Once the promise comes back, listen for a click on logout.
                 $('a.logout').on('click', function (e) {
                     e.preventDefault();
@@ -75,6 +89,21 @@ app.sso = function () {
             }).error(clearTokens);
         } else {
             $('li.login, section.register-banner, .hidden-after-login, [data-audience="unauthenticated"]').show();
+
+            // Remove authenticated links from an on_page_navigation assembly, if one exists on the page.
+            var onPageNav = document.querySelector('.assembly-type-on_page_navigation');
+            if (onPageNav !== null) {
+                console.log(onPageNavItems);
+                document.querySelectorAll('[data-audience="authenticated"]').forEach(function(e) {
+                    var hrefVal = "#" + e.id;
+                    $(document.querySelector('.assembly-type-on_page_navigation').querySelector('a[href^="' + hrefVal + '"')).detach();
+                });
+                //set all nav items to visable
+                var onPageNavItems = onPageNav.querySelectorAll("a");
+                onPageNavItems.forEach(function(e) {
+                    e.style.visibility = "visible";
+                });
+            }
 
             // Remove gated content.
             $('[data-audience="authenticated"]').detach();
