@@ -110,17 +110,19 @@
   }
 
   .gsi-nav {
-    background-color: $grey-1;
+    background-color: transparent;
     border-top: 2px solid $link;
     font-size: map-get($rhd-font-size, "base");
     font-weight: 700;
     line-height: 24px;
-    padding: 12px 16px;
+    padding: 12px 0;
     transform: translateY(0);
     transition: none;
     list-style: none;
     margin: 0;
-
+    &:empty {
+      display: none;
+    }
     li {
       margin: 0;
       padding: 4px 0;
