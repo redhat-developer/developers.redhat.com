@@ -15,7 +15,7 @@ app.sso = function () {
         if (keycloak.authenticated) {
             keycloak.updateToken().success(function () {
                 saveTokens();
-                processNavForGatedContent(keycloak.authenticated);
+                processNavForGatedContent(true);
 
                 var logged_in_user = keycloak.tokenParsed.name || "My Account";
 
@@ -92,7 +92,7 @@ app.sso = function () {
                 keycloak.login({ action: 'register', redirectUri: app.ssoConfig.confirmation });
             });
 
-            processNavForGatedContent(keycloak.authenticated);
+            processNavForGatedContent(false);
         }
 
         
