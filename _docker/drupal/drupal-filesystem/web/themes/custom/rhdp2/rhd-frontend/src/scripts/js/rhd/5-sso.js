@@ -1,5 +1,4 @@
 app.sso = function () {
-
     function updateUser() {
         // Push it onto the event array of the digitalData object.
         window.digitalData = window.digitalData || {};
@@ -95,26 +94,24 @@ app.sso = function () {
             processNavForGatedContent(false);
         }
 
-        
-
         updateAnalytics(usr);
     }
 
     function processNavForGatedContent(isAuthenticated) {
-        if( typeof isAuthenticated === 'undefined' ) {
+        if (typeof isAuthenticated === 'undefined') {
             isAuthenticated = false;
         }
         var authenticationValue = isAuthenticated ? "authenticated" : "unauthenticated";
         // Remove 'authenticationValue' links from an on_page_navigation assembly, if one exists on the page.
         var onPageNav = document.querySelector('.assembly-type-on_page_navigation');
         if (onPageNav !== null) {
-            document.querySelectorAll('[data-audience="'+authenticationValue+'"]').forEach(function(e) {
+            document.querySelectorAll('[data-audience="' + authenticationValue + '"]').forEach(function (e) {
                 var hrefVal = '#' + e.id;
                 $(document.querySelector('.assembly-type-on_page_navigation').querySelector('a[href^="' + hrefVal + '"')).detach();
             });
             //set all nav items to visable
             var onPageNavItems = onPageNav.querySelectorAll("a");
-            onPageNavItems.forEach(function(e) {
+            onPageNavItems.forEach(function (e) {
                 e.style.visibility = "visible";
             });
         }
