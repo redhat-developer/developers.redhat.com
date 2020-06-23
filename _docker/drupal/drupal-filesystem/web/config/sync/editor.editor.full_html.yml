@@ -13,6 +13,11 @@ settings:
     rows:
       -
         -
+          name: 'Block Formatting'
+          items:
+            - Format
+            - Styles
+        -
           name: Formatting
           items:
             - Bold
@@ -23,42 +28,44 @@ settings:
             - '-'
             - RemoveFormat
         -
-          name: Linking
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
           name: Lists
           items:
             - BulletedList
             - NumberedList
         -
+          name: Linking
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
           name: Media
           items:
             - Blockquote
             - DrupalImage
-            - Table
             - HorizontalRule
         -
-          name: 'Block Formatting'
+          name: Layout
           items:
-            - Format
-            - Styles
+            - Templates
+            - Table
         -
           name: Tools
           items:
             - ShowBlocks
             - Source
   plugins:
-    stylescombo:
-      styles: "a.button|Button\r\ncode.code-style|Code Style\r\na.caret-right|Link with right caret\r\ndiv.box.callout|Callout Box\r\nspan.h1|Header 1 Style\r\nspan.h2|Header 2 Style\r\nspan.h3|Header 3 Style\r\nspan.h4|Header 4 Style\r\nspan.h5|Header 5 Style\r\nspan.h6|Header 6 Style"
     drupallink:
       linkit_enabled: false
       linkit_profile: ''
     language:
       language_list: un
+    stylescombo:
+      styles: "a.button|Button\r\ncode.code-style|Code Style\r\na.caret-right|Link with right caret\r\ndiv.box.callout|Callout Box\r\nspan.h1|Header 1 Style\r\nspan.h2|Header 2 Style\r\nspan.h3|Header 3 Style\r\nspan.h4|Header 4 Style\r\nspan.h5|Header 5 Style\r\nspan.h6|Header 6 Style"
     indentblock:
       enable: 0
+    templates:
+      template_path: ''
+      replace_content: 0
     tokenbrowser:
       token_types: {  }
     video_embed:
