@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.events_collection
     - field.field.assembly.events_collection.field_audience_selection
+    - field.field.assembly.events_collection.field_card_limit
     - field.field.assembly.events_collection.field_display_option
     - field.field.assembly.events_collection.field_drupal_term_filter
     - field.field.assembly.events_collection.field_show_filter
@@ -40,6 +41,7 @@ content:
     region: content
 hidden:
   field_audience_selection: true
+  field_card_limit: true
   field_display_option: true
   field_drupal_term_filter: true
   field_show_filter: true

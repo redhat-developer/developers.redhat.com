@@ -8,6 +8,7 @@
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\assembly\Entity\Assembly;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
@@ -380,8 +381,9 @@ function rhdp2_preprocess_node(&$variables) {
     $variables['event_title'] = $node->getTitle();
     $variables['event_description'] = $variables['content']['field_description'][0]['#text'] ?? '';
 
+    $variables['event_url'] = NULL;
     if ($node->hasField('field_more_details') && $event_details_link = $node->get('field_more_details')->getValue()) {
-      $variables['event_url'] = $event_details_link[0]['uri'];
+      $variables['event_url'] = ($event_details_link[0]['uri']) ? $event_details_link[0]['uri'] : NULL;
     }
 
     // TODO: Fix Duplicate Logic: See preprocess_assembly.
@@ -399,6 +401,53 @@ function rhdp2_preprocess_node(&$variables) {
     if ($variables['view_mode'] == 'teaser') {
       $node_title = $node->label();
       $variables['node_title'] = str_replace('"', '', $node_title);
+    }
+
+    // Card view mode for events.
+    if ($variables['view_mode'] == 'card') {
+
+      // Set variables.
+      $assembly_ids = [];
+      $today = strtotime('today');
+      $timestamps = [];
+      $dates = [];
+      $variables['dates'] = $dates;
+
+      // Get session dates if event has sessions.
+      if ($session_ids = $node->get('field_sessions')->getValue()) {
+        // Get the session ids.
+        foreach ($session_ids as $session_id) {
+          if (!in_array($session_id['target_id'], $assembly_ids)) {
+            $assembly_ids[] = $session_id['target_id'];
+          }
+        }
+        // Find sessions after one hour ago.
+        if ($session_assemblies = Assembly::loadMultiple($assembly_ids)) {
+          foreach ($session_assemblies as $session) {
+            $session_start_date = strtotime($session->get('field_start')->getValue()[0]['value']);
+            if ($session_start_date >= $today) {
+              $timestamps[] = $session_start_date;
+            }
+          }
+        }
+      }
+      // Get event date if event does not have sessions.
+      elseif ($event_start_date = $node->get('field_start_date')->getValue()[0]['value']) {
+        $event_start_date = strtotime($event_start_date);
+        if ($event_start_date >= $today) {
+          $timestamps[] = $event_start_date;
+        }
+      }
+
+      // Sort, format and display timestamps as dates.
+      if ($timestamps) {
+        sort($timestamps);
+        foreach ($timestamps as $timestamp) {
+          $dates[] = date('j F Y', $timestamp);
+        }
+        $dates = implode(', ', array_unique($dates));
+        $variables['dates'] = 'Dates: ' . $dates;
+      }
     }
   }
 

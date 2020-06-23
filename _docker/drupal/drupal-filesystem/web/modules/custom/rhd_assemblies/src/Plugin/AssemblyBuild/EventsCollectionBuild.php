@@ -57,7 +57,12 @@ class EventsCollectionBuild extends AssemblyBuildView {
       }
 
       // Get all sessions for events with available category filter.
-      if ($display_option == 'all_sessions_ungrouped' || $display_option == 'all_sessions_by_event') {
+      $filterable_displays = [
+        'all_sessions_ungrouped',
+        'all_sessions_by_event',
+        'upcoming_event_cards',
+      ];
+      if (in_array($display_option, $filterable_displays)) {
         // Check if there is a term filter (Event Categories).
         if ($entity->hasField('field_drupal_term_filter') && !$entity->get('field_drupal_term_filter')->isEmpty()) {
           // Set contextual filter from term filter.
@@ -71,6 +76,12 @@ class EventsCollectionBuild extends AssemblyBuildView {
             $view->setArguments([$args]);
           }
         }
+      }
+
+      // Set limit for event cards.
+      if ($display_option == 'upcoming_event_cards') {
+        $total_posts = ($entity->get('field_card_limit')->value) ? $entity->get('field_card_limit')->value : 0;
+        $view->setItemsPerPage($total_posts);
       }
 
     }
