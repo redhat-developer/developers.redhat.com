@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jporter
- * Date: 4/9/18
- * Time: 2:36 PM
- */
 
 namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\assembly\Plugin\AssemblyBuildView;
 
 /**
- * Adds video view
+ * Adds video view.
+ *
  *  @AssemblyBuild(
  *   id = "all_products_listing",
  *   types = { "all_products_listing" },
@@ -32,9 +27,11 @@ class AllProductsListingBuild extends AssemblyBuildView {
    *   ]
    * ];
    *
-   * @return array The list of views
+   * @return array
+   *   The list of views.
    */
   protected function views() {
-    return [ 'products' => [ 'view' => 'all_products', ] ];
+    return ['products' => ['view' => 'all_products']];
   }
+
 }

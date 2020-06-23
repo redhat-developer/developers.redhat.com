@@ -12,14 +12,17 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: upcoming_event_cards
+      label: 'Upcoming events - (cards)'
+    -
       value: all_sessions_ungrouped
-      label: 'All sessions - ungrouped'
+      label: 'All sessions - ungrouped (table)'
     -
       value: all_sessions_by_event
-      label: 'All sessions - grouped by event'
+      label: 'All sessions - grouped by event (table)'
     -
       value: single_event_sessions
-      label: 'Sessions for a single event'
+      label: 'Sessions for a single event (table)'
   allowed_values_function: ''
 module: options
 locked: false

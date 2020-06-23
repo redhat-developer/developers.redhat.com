@@ -1,5 +1,4 @@
 app.sso = function () {
-
     function updateUser() {
         // Push it onto the event array of the digitalData object.
         window.digitalData = window.digitalData || {};
@@ -29,7 +28,7 @@ app.sso = function () {
 
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
-                $('section.contributors-banner, .shown-after-login, li.logged-in, [data-audience="authenticated"]').show();
+                $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
 
                 // Once the promise comes back, listen for a click on logout.
@@ -74,10 +73,7 @@ app.sso = function () {
 
             }).error(clearTokens);
         } else {
-            $('li.login, section.register-banner, .hidden-after-login, [data-audience="unauthenticated"]').show();
-
-            // Remove gated content.
-            $('[data-audience="authenticated"]').detach();
+            $('li.login, section.register-banner, .hidden-after-login').show();
 
             $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
 
@@ -90,9 +86,39 @@ app.sso = function () {
                 e.preventDefault();
                 keycloak.login({ action: 'register', redirectUri: app.ssoConfig.confirmation });
             });
+
         }
 
+        processPageForGatedContent(keycloak.authenticated);
+        
         updateAnalytics(usr);
+    }
+
+    //process all gated content for page will either remove or show depending on passed "isAuthenticated"
+    function processPageForGatedContent(isAuthenticated) {
+        if (typeof isAuthenticated === 'undefined') {
+            isAuthenticated = false;
+        }
+        var authenticationValueShow = isAuthenticated ? "authenticated" : "unauthenticated";
+        var authenticationValueRemove = isAuthenticated ? "unauthenticated" : "authenticated";
+        // Remove 'authenticationValue' links from an on_page_navigation assembly, if one exists on the page.
+        var onPageNav = document.querySelector('.assembly-type-on_page_navigation');
+        if (onPageNav !== null) {
+            document.querySelectorAll('[data-audience="' + authenticationValueRemove + '"]').forEach(function (e) {
+                var hrefVal = '#' + e.id;
+                $(onPageNav.querySelector('a[href^="' + hrefVal + '"')).detach();
+            });
+            //set all nav items to visable
+            var onPageNavItems = onPageNav.querySelectorAll("a");
+            onPageNavItems.forEach(function (e) {
+                e.style.visibility = "visible";
+            });
+        }
+
+        // Remove/Show gated content.
+        $('[data-audience="' + authenticationValueShow + '"]').show();
+        $('[data-audience="' + authenticationValueRemove + '"]').detach();
+        
     }
 
     function daysDiff(dt1, dt2) {

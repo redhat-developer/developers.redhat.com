@@ -1,6 +1,6 @@
 uuid: 284064fe-51bd-457c-9deb-cfc5cabd9937
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.card
@@ -12,10 +12,15 @@ dependencies:
     - field.field.node.events.field_event_image
     - field.field.node.events.field_event_location
     - field.field.node.events.field_event_type
+    - field.field.node.events.field_ics_addevent_id
+    - field.field.node.events.field_ics_subtext
+    - field.field.node.events.field_ics_title
     - field.field.node.events.field_more_details
     - field.field.node.events.field_on_homepage
     - field.field.node.events.field_presenter_s_
     - field.field.node.events.field_region
+    - field.field.node.events.field_sections
+    - field.field.node.events.field_sessions
     - field.field.node.events.field_short_description
     - field.field.node.events.field_site
     - field.field.node.events.field_solution_type
@@ -25,6 +30,7 @@ dependencies:
     - field.field.node.events.field_tax_audience_segment
     - field.field.node.events.field_tax_business_unit
     - field.field.node.events.field_tax_campaign
+    - field.field.node.events.field_tax_event_categories
     - field.field.node.events.field_tax_lifecycle
     - field.field.node.events.field_tax_product
     - field.field.node.events.field_tax_product_line
@@ -35,14 +41,15 @@ dependencies:
     - field.field.node.events.field_tile_thumbnail
     - field.field.node.events.field_title
     - field.field.node.events.field_topics
+    - image.style.static_item
     - node.type.events
   module:
     - datetime
+    - fences
     - field_layout
     - image
     - layout_discovery
-    - options
-    - text
+    - rhd_assemblies
     - user
 third_party_settings:
   field_layout:
@@ -55,155 +62,115 @@ targetEntityType: node
 bundle: events
 mode: card
 content:
-  content_moderation_control:
-    weight: -20
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_data_tags:
-    weight: 119
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_description:
-    weight: 102
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_end_date:
-    weight: 104
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_event_background_image:
-    weight: 122
-    label: above
+    weight: 0
+    label: hidden
     settings:
-      image_style: ''
+      image_style: static_item
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: image
     region: content
-  field_event_format:
-    weight: 116
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_event_image:
-    weight: 114
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_event_type:
-    weight: 113
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_more_details:
-    weight: 108
-    label: above
+    weight: 4
+    label: hidden
     settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_on_homepage:
-    weight: 117
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_region:
-    weight: 121
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
+      trim_length: '80'
+      class: ''
+      url_only: ''
+      url_plain: ''
+      rel: 0
+      target: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: link_class
     region: content
   field_short_description:
-    weight: 125
-    label: above
-    settings: {  }
-    third_party_settings: {  }
     type: basic_string
+    weight: 3
     region: content
-  field_site:
-    weight: 118
-    label: above
+    label: hidden
     settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  field_solution_type:
-    weight: 120
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
   field_start_date:
-    weight: 103
-    label: above
+    weight: 2
+    label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_target_product:
-    weight: 123
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
+      date_format: 'F j, Y'
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+    type: datetime_custom
     region: content
   field_title:
-    weight: 105
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
     type: string
     region: content
-  field_topics:
-    weight: 124
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   workbench_moderation_control:
     weight: -20
     region: content
 hidden:
+  content_moderation_control: true
+  field_data_tags: true
+  field_description: true
+  field_end_date: true
+  field_event_format: true
+  field_event_image: true
   field_event_location: true
+  field_event_type: true
+  field_ics_addevent_id: true
+  field_ics_subtext: true
+  field_ics_title: true
+  field_on_homepage: true
   field_presenter_s_: true
+  field_region: true
+  field_sections: true
+  field_sessions: true
+  field_site: true
+  field_solution_type: true
   field_tags: true
+  field_target_product: true
   field_tax_audience_segment: true
   field_tax_business_unit: true
   field_tax_campaign: true
+  field_tax_event_categories: true
   field_tax_lifecycle: true
   field_tax_product: true
   field_tax_product_line: true
@@ -212,5 +179,7 @@ hidden:
   field_tax_region: true
   field_tax_stage: true
   field_tile_thumbnail: true
+  field_topics: true
   langcode: true
+  links: true
   published_at: true

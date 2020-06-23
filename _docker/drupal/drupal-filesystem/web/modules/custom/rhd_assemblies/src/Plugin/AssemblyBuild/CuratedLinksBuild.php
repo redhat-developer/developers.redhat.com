@@ -54,7 +54,7 @@ class CuratedLinksBuild extends AssemblyBuildBase implements AssemblyBuildInterf
         }
       }
       // Static Item assembly type.
-      else if ($type == 'static_item') {
+      elseif ($type == 'static_item') {
         // Ensure the Static Item title and URL fields are not empty before
         // accessing them.
         if (!empty($assembly->get('field_title')->getValue()[0]['value'])
@@ -67,12 +67,12 @@ class CuratedLinksBuild extends AssemblyBuildBase implements AssemblyBuildInterf
           $build['links'][] = [
             '#title' => $title,
             '#type' => 'link',
-            '#url' => $url
+            '#url' => $url,
           ];
         }
       }
       // Wordpress Post Reference assembly type.
-      else if ($type == 'wordpress_post_reference') {
+      elseif ($type == 'wordpress_post_reference') {
         // Ensure we have the WP post id and title before accessing them.
         if (!empty($assembly->get('field_post_reference')->getValue()[0]['target_id'])
           && !empty($assembly->get('field_post_reference')->getValue()[0]['title'])) {
@@ -88,7 +88,7 @@ class CuratedLinksBuild extends AssemblyBuildBase implements AssemblyBuildInterf
           $build['links'][] = [
             '#title' => $title,
             '#type' => 'link',
-            '#url' => $url
+            '#url' => $url,
           ];
         }
       }
