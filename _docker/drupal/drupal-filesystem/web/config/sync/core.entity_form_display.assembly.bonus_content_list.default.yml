@@ -25,10 +25,10 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_content_list:
-    weight: 4
+    weight: 5
     settings:
       form_mode: default
       label_singular: ''
@@ -46,7 +46,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -55,7 +55,7 @@ content:
     region: content
   name:
     type: string_textfield
-    weight: 0
+    weight: 2
     region: content
     settings:
       size: 60
@@ -63,14 +63,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 0
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   visual_styles:
     type: options_select
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

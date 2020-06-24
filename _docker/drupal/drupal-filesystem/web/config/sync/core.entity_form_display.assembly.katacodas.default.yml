@@ -20,7 +20,7 @@ bundle: katacodas
 mode: default
 content:
   field_katacodas:
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -29,7 +29,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_navigation_title:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -37,7 +37,7 @@ content:
     type: string_textfield
     region: content
   field_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -46,14 +46,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 4
+    weight: 5
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -61,7 +61,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 0
     region: content
     settings:
       display_label: true
@@ -69,7 +69,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

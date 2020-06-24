@@ -22,7 +22,7 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_content_pull_quote:
     weight: 4
@@ -41,7 +41,7 @@ content:
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 2
     region: content
     settings:
       size: 60
@@ -49,7 +49,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 0
     region: content
     settings:
       display_label: true
