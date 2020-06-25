@@ -22,7 +22,7 @@ bundle: feature
 mode: default
 content:
   field_link_to_project:
-    weight: 3
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -30,7 +30,7 @@ content:
     type: link_default
     region: content
   field_products_and_projects:
-    weight: 4
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -39,7 +39,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_release:
-    weight: 2
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -48,7 +48,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_title:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -57,14 +57,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -72,14 +72,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 0
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -89,7 +89,7 @@ content:
   visual_styles:
     type: options_select
     multiple: true
-    weight: 5
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }

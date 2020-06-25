@@ -27,8 +27,9 @@ app.sso = function () {
                     .show();
 
                 $('a.account-info').attr('href', app.ssoConfig.account_url);
-                $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
-                $('section.contributors-banner, .shown-after-login, li.logged-in').show();
+
+                showAudienceSelectionContent(true);
+
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl());
 
                 // Once the promise comes back, listen for a click on logout.
@@ -58,24 +59,23 @@ app.sso = function () {
                         headers: swelHeaders,
                         mode: 'cors'
                     })
-                        .then(function (req) { return req.json(); })
-                        .then(function (resp) {
-                            if (resp && resp.registrationTimestamp) {
-                                var dt = new Date();
-                                var ck = getCookie('rhd_logged');
-                                if (dt - (new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
-                                    document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-                                    document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-                                }
+                    .then(function (req) { return req.json(); })
+                    .then(function (resp) {
+                        if (resp && resp.registrationTimestamp) {
+                            var dt = new Date();
+                            var ck = getCookie('rhd_logged');
+                            if (dt - (new Date(resp.registrationTimestamp)) < 86400000 && ck.length === 0) {
+                                document.cookie = "rhd_logged=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                                document.cookie = "rhd_registered=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
                             }
-                        });
+                        }
+                    });
                 }
 
             }).error(clearTokens);
         } else {
-            $('li.login, section.register-banner, .hidden-after-login').show();
 
-            $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
+            showAudienceSelectionContent(false);
 
             $('li.login a').on('click', function (e) {
                 e.preventDefault();
@@ -90,17 +90,18 @@ app.sso = function () {
         }
 
         processPageForGatedContent(keycloak.authenticated);
-        
+
         updateAnalytics(usr);
     }
 
-    //process all gated content for page will either remove or show depending on passed "isAuthenticated"
+    // Process all gated content for page will either remove or show depending on passed "isAuthenticated".
     function processPageForGatedContent(isAuthenticated) {
         if (typeof isAuthenticated === 'undefined') {
             isAuthenticated = false;
         }
         var authenticationValueShow = isAuthenticated ? "authenticated" : "unauthenticated";
         var authenticationValueRemove = isAuthenticated ? "unauthenticated" : "authenticated";
+
         // Remove 'authenticationValue' links from an on_page_navigation assembly, if one exists on the page.
         var onPageNav = document.querySelector('.assembly-type-on_page_navigation');
         if (onPageNav !== null) {
@@ -118,7 +119,44 @@ app.sso = function () {
         // Remove/Show gated content.
         $('[data-audience="' + authenticationValueShow + '"]').show();
         $('[data-audience="' + authenticationValueRemove + '"]').detach();
-        
+
+    }
+
+    // Toggles data-audience and other elements based on SSO status.
+    function showAudienceSelectionContent(status) {
+      var skipAudienceCheck = false;
+
+        // The disableAudienceSelection flag is for users with the 'View any unpublished content' permission.
+        // See rhd_admin moduel for how it is set in drupalSettings.
+      if (drupalSettings.rhd_admin && drupalSettings.rhd_admin['disable-audience-selection-display']) {
+        skipAudienceCheck = true;
+        $('.assembly[data-audience]').css('display', 'block');
+      }
+
+      // The user is logged in.
+      if (status == true) {
+
+        // Hide and show the non-audience elements.
+        $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
+        $('section.contributors-banner, .shown-after-login, li.logged-in').show();
+
+        if (!skipAudienceCheck) {
+          $('[data-audience="authenticated"]').show();
+          $('[data-audience="unauthenticated"]').hide();
+        }
+      }
+
+      // The user is not logged in.
+      if (status == false) {
+        $('li.login, section.register-banner, .hidden-after-login').show();
+
+        if (!skipAudienceCheck) {
+          $('[data-audience="unauthenticated"]').show();
+          $('[data-audience="authenticated"]').detach();
+        }
+
+        $('li.logged-in, section.contributors-banner, .shown-after-login').hide();
+      }
     }
 
     function daysDiff(dt1, dt2) {
