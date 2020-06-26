@@ -688,14 +688,9 @@
             },
             "slots": [
                 {
-                    "icon": "icon_docsandapi",
-                    "text": "Docs and APIs",
-                    "url": "https://developers.redhat.com/products/openshift/docs-and-apis/"
-                },
-                {
-                    "icon": "icon_help",
-                    "text": "Help",
-                    "url": "https://developers.redhat.com/products/openshift/help/"
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift/getting-started"
                 }
             ],
             "match": [
@@ -942,6 +937,138 @@
                 "OpenShift CLI",
                 "CLI tool",
                 "CLI"
+            ]
+        },
+        {
+            "id": "rhel",
+            "heading": {
+                "text": "Compilers",
+                "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/overview/"
+            },
+            "details": "Find quick reference materials for GCC, Clang/LLVM, Go, and Rust compilers for Red Hat Enterprise Linux.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/getting-started"
+                }
+            ],
+            "match": [
+                "gcc-clang-llvm-go-rust"
+            ]
+        },
+        {
+            "id": "osio",
+            "heading": {
+                "text": "Open development services for creating, building and testing container applications.",
+                "url": "https://developers.redhat.com/products/codeready-toolchain/overview/"
+            },
+            "details": "OpenShift.io services can be used separately or together. Today all are available online and some are available for download to a private OpenShift install. As we grow the breadth of the services we will make more of them privately deployable.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/codeready-toolchain/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/codeready-toolchain/getting-started"
+                }
+            ],
+            "match": [
+                "codeready-toolchain"
+            ]
+        },
+        {
+            "id": "rhel8test",
+            "heading": {
+                "text": "Red Hat Enterprise Linux",
+                "url": "https://developers.redhat.com/products/rhel8test/overview"
+            },
+            "details": "The world's leading enterprise Linux platform. Download your developer edition of Red Hat Enterprise Linux 8.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhel8test/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/rhel8test/getting-started/"
+                }
+            ],
+            "match": [
+                "rhel8test"
+            ]
+        },
+        {
+            "id": "rhel8test",
+            "heading": {
+                "text": "Red Hat Enterprise Linux",
+                "url": "https://developers.redhat.com/products/rhel8test/overview"
+            },
+            "details": "The world's leading enterprise Linux platform. Download your developer edition of Red Hat Enterprise Linux 8.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhel8test/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/rhel8test/getting-started/"
+                }
+            ],
+            "match": [
+                "rhel8test"
+            ]
+        },
+        {
+            "id": "crw",
+            "heading": {
+                "text": "Red Hat IDE Extensions for OpenShift",
+                "url": "https://developers.redhat.com/products/openshift-ide-extensions/overview/"
+            },
+            "details": "Red Hat offers extensions for VS Code, IntelliJ that allow developers who work with Red Hat OpenShift to use their preferred development environment without interruption.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openshift-ide-extensions/getting-started/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift-ide-extensions/download/"
+                }
+            ],
+            "match": [
+                "openshift-ide-extensions"
+            ]
+        },
+        {
+            "id": "openshift-new",
+            "heading": {
+                "text": "Red Hat OpenShift Container Platform",
+                "url": "https://developers.redhat.com/products/openshift-new/overview/"
+            },
+            "details": "Everything you need to manage your development lifecycle, including standardized workflows, support for multiple environments, continuous integration, and release management.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openshift-new/getting-started/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift-new/download/"
+                }
+            ],
+            "match": [
+                "openshift-new"
             ]
         }
     ]
