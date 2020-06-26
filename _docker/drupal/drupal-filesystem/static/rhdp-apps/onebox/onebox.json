@@ -638,44 +638,6 @@
             ]
         },
         {
-            "id": "mobileplatform",
-            "heading": {
-                "text": "Red Hat Mobile Application Platform",
-                "url": "https://developers.redhat.com/products/mobileplatform/overview/"
-            },
-            "details": "Red Hat Mobile Application Platform lets teams create mobile solutions by developing collaboratively, centralizing control of security, and using back-end integration with a range of cloud deployments. Use your preferred tools; optimize via reuse. ",
-            "button": {
-                "text": "View Downloads",
-                "url": "https://developers.redhat.com/products/mobileplatform/download/"
-            },
-            "slots": [
-                {
-                    "icon": "icon_helloworld",
-                    "text": "Hello World!",
-                    "url": "https://developers.redhat.com/products/mobileplatform/hello-world/"
-                },
-                {
-                    "icon": "icon_help",
-                    "text": "Help",
-                    "url": "https://developers.redhat.com/products/mobileplatform/help/"
-                }
-            ],
-            "match": [
-                "rhmap",
-                "mobile application platform",
-                "feedhenry",
-                "feed henry",
-                "mobile",
-                "mobile application",
-                "mobile platform",
-                "redhat mobile",
-                "redhat feedhenry",
-                "red hat mobile",
-                "red hat feed henry",
-                "red hat feedhenry"
-            ]
-        },
-        {
             "id": "openshift",
             "heading": {
                 "text": "Red Hat OpenShift Container Platform",
@@ -962,6 +924,28 @@
             ]
         },
         {
+            "id": "rhel",
+            "heading": {
+                "text": "Red Hat Enterprise Linux for SAP Solutions",
+                "url": "https://developers.redhat.com/products/sap/overview"
+            },
+            "details": "Find quick reference materials for GCC, Clang/LLVM, Go, and Rust compilers for Red Hat Enterprise Linux.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/sap/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/sap/hello-world"
+                }
+            ],
+            "match": [
+                "sap"
+            ]
+        },
+        {
             "id": "osio",
             "heading": {
                 "text": "Open development services for creating, building and testing container applications.",
@@ -1006,25 +990,40 @@
             ]
         },
         {
-            "id": "rhel8test",
+            "id": "3scale-amp",
             "heading": {
                 "text": "Red Hat Enterprise Linux",
-                "url": "https://developers.redhat.com/products/rhel8test/overview"
+                "url": "https://developers.redhat.com/products/3scale/overview"
             },
             "details": "The world's leading enterprise Linux platform. Download your developer edition of Red Hat Enterprise Linux 8.",
-            "button": {
-                "text": "View Downloads",
-                "url": "https://developers.redhat.com/products/rhel8test/download/"
-            },
             "slots": [
                 {
                     "icon": "icon_helloworld",
                     "text": "Getting Started",
-                    "url": "https://developers.redhat.com/products/rhel8test/getting-started/"
+                    "url": "https://developers.redhat.com/products/3scale/docs-and-apis"
                 }
             ],
             "match": [
-                "rhel8test"
+                "3scale",
+                "3scale-amp"
+            ]
+        },
+        {
+            "id": "cloudfunctions",
+            "heading": {
+                "text": "Red Hat OpenShift Cloud Functions",
+                "url": "https://developers.redhat.com/products/cloudfunctions/overview"
+            },
+            "details": "Bringing serverless capabilities to Red Hat OpenShift ",
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/cloudfunctions/docs-and-apis"
+                }
+            ],
+            "match": [
+                "cloudfunctions"
             ]
         },
         {
