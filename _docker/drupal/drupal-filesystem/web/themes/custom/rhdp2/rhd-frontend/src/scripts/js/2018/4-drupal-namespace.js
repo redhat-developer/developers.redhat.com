@@ -134,7 +134,7 @@ app.products = {
 };
 
 app.products.downloads = {
-    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-linux-amd64"}
+    "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-linux-amd64"}
 };
 
 /*
