@@ -27,7 +27,7 @@ third_party_settings:
         - field_ics_addevent_id
         - field_ics_subtext
       parent_name: ''
-      weight: 20
+      weight: 6
       format_type: details
       format_settings:
         id: ''
@@ -94,7 +94,7 @@ content:
     region: content
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -102,7 +102,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 0
     region: content
     settings:
       display_label: true

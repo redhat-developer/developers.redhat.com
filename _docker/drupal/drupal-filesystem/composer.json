@@ -57,6 +57,21 @@
                     "composer/installers": "~1.0"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ckeditor/templates",
+                "version": "4.14.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://download.ckeditor.com/templates/releases/templates_4.14.1.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "~1.0"
+                }
+            }
         }
     ],
     "require": {
@@ -64,10 +79,13 @@
         "cweagans/composer-patches": "1.6.5",
         "acquia/lightning": "4.0.5",
         "ckeditor/indentblock": "4.11.4",
+        "ckeditor/templates": "4.14.1",
         "drupal/admin_toolbar": "1.26",
         "drupal/assembly": "1.x-dev#94645cf6617d5f375ba2cc3c060df13c88e75d8b",
         "drupal/asciidoc": "1.2",
         "drupal/ckeditor_indentblock": "1.0-beta1",
+        "drupal/ckeditor_templates": "^1.1",
+        "drupal/ckeditor_templates_ui": "^1.3",
         "drupal/content_moderation_edit_notify": "1.0",
         "drupal/content_moderation_notifications": "3.0-rc2",
         "drupal/editor_advanced_link": "1.4",
@@ -162,7 +180,7 @@
                 "type:drupal-core"
             ],
             "web/libraries/{$name}": [
-              "type:drupal-library",
+                "type:drupal-library",
                 "type:bower-asset",
                 "type:npm-asset"
             ],
@@ -177,6 +195,9 @@
             ],
             "drush/contrib/{$name}": [
                 "type:drupal-drush"
+            ],
+            "web/libraries/ckeditor/plugins/{$name}": [
+                "vendor:ckeditor"
             ]
         },
         "enable-patching": true,

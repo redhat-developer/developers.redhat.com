@@ -4,13 +4,10 @@ namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\assembly\Plugin\AssemblyBuildBase;
-use Drupal\assembly\Plugin\AssemblyBuildInterface;
-use Drupal\node\Entity\Node;
-use Drupal\Core\HttpClient;
 
 /**
- * Displays a list of recent content from Wordpress and Drupal with Disqus comments and related topics
+ * Displays recent content from WP and Drupal with Disqus and related topics.
+ *
  *  @AssemblyBuild(
  *   id = "dynamic_content_list",
  *   types = { "dynamic_content_list" },
@@ -19,12 +16,18 @@ use Drupal\Core\HttpClient;
  */
 class DynamicContentListBuild extends DynamicContentFeedBuild {
 
+  /**
+   * {@inheritdoc}
+   */
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $count = 6;
     $this->getItems($build, $entity, $count, 'dynamic_content_list_item');
     $build['latest_comments'] = $this->getComments();
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function getComments() {
     $config = \Drupal::config('rhd_disqus.disqussettings');
     $shortname = $config->get('rhd_disqus_shortname') ?: FALSE;

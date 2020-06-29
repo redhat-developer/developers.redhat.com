@@ -3,8 +3,10 @@
 namespace Drupal\rhd_assemblies\Plugin\AssemblyBuild;
 
 use Drupal\assembly\Plugin\AssemblyBuildView;
+
 /**
- * Adds video view
+ * Adds video view.
+ *
  *  @AssemblyBuild(
  *   id = "videos",
  *   types = { "videos" },
@@ -12,10 +14,19 @@ use Drupal\assembly\Plugin\AssemblyBuildView;
  * )
  */
 class VideosBuild extends AssemblyBuildView {
+
+  /**
+   * {@inheritdoc}
+   */
   protected function views() {
-    return [ 'videos' => [ 'view' => 'videos_by_category', ] ];
+    return ['videos' => ['view' => 'videos_by_category']];
   }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function argumentMappings() {
-    return [ 'field_tags' => [ 'index' => 0, ] ];
+    return ['field_tags' => ['index' => 0]];
   }
+
 }

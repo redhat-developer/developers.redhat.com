@@ -1,0 +1,23 @@
+uuid: 2674329f-3931-4bcf-812c-f9ec29c532e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - assembly.assembly_type.events_collection
+    - field.storage.assembly.field_card_limit
+  module:
+    - options
+id: assembly.events_collection.field_card_limit
+field_name: field_card_limit
+entity_type: assembly
+bundle: events_collection
+label: 'Limit Results'
+description: 'Only used in card view.'
+required: false
+translatable: false
+default_value:
+  -
+    value: '4'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

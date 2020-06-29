@@ -9,7 +9,8 @@ use Drupal\assembly\Plugin\AssemblyBuildInterface;
 use Drupal\node\Entity\Node;
 
 /**
- * Displays a list of recent content from Wordpress and Drupal
+ * Displays a list of recent content from Wordpress and Drupal.
+ *
  *  @AssemblyBuild(
  *   id = "learning_paths",
  *   types = { "learning_paths" },
@@ -18,15 +19,21 @@ use Drupal\node\Entity\Node;
  */
 class LearningPathsBuild extends AssemblyBuildBase implements AssemblyBuildInterface {
 
+  /**
+   * {@inheritdoc}
+   */
   public function build(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
     $this->getItems($build, 'card');
 
-    // Dunno why I can't just set the #weight property...
+    // Dunno why I can't just set the #weight property.
     $build['field_cta_link']['#weight'] = 10;
     $build['cta'] = $build['field_cta_link'];
     unset($build['field_cta_link']);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function getItems(&$build, $mode) {
     $items = $this->getDrupalNodes();
     if (count($items)) {
@@ -37,6 +44,9 @@ class LearningPathsBuild extends AssemblyBuildBase implements AssemblyBuildInter
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function getDrupalNodes() {
     $query = \Drupal::database()->select('node', 'n');
     $query->fields('n', ['nid']);
@@ -51,4 +61,5 @@ class LearningPathsBuild extends AssemblyBuildBase implements AssemblyBuildInter
     }
     return $nodes;
   }
+
 }

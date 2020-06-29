@@ -5,6 +5,7 @@ dependencies:
   config:
     - assembly.assembly_type.events_collection
     - field.field.assembly.events_collection.field_audience_selection
+    - field.field.assembly.events_collection.field_card_limit
     - field.field.assembly.events_collection.field_display_option
     - field.field.assembly.events_collection.field_drupal_term_filter
     - field.field.assembly.events_collection.field_show_filter
@@ -23,7 +24,13 @@ bundle: events_collection
 mode: default
 content:
   field_audience_selection:
-    weight: 2
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_card_limit:
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -66,7 +73,7 @@ content:
     region: content
   name:
     type: string_textfield
-    weight: 0
+    weight: 2
     region: content
     settings:
       size: 60
@@ -74,7 +81,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 1
+    weight: 0
     region: content
     settings:
       display_label: true
