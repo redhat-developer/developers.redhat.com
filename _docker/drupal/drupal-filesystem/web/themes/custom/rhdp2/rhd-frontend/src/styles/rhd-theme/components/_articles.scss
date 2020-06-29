@@ -127,7 +127,8 @@
       margin: 0;
       padding: 4px 0;
       a {
-        word-break: break-all;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         hyphens: auto;
