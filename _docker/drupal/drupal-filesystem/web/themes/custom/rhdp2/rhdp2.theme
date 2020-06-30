@@ -781,6 +781,22 @@ function rhdp2_preprocess_assembly(&$variables) {
       }
     }
   }
+
+  // Parse URI on Static Item assembly type for use in cards.
+  if ($type == 'static_item') {
+    if (isset($assembly->get('field_url')->getValue()[0]['uri'])) {
+      $uri = $assembly->get('field_url')->getValue()[0]['uri'];
+      if (strpos($uri, 'internal:') !== FALSE) {
+        $uri = str_replace('internal:', '', $uri);
+        $uri = (strpos($uri, '/') === 0) ? $uri : '/' . $uri;
+      }
+      else if(strpos($uri, 'entity:') !== FALSE) {
+        $uri = str_replace('entity:', '', $uri);
+        $uri = (strpos($uri, '/') === 0) ? $uri : '/' . $uri;
+      }
+      $variables['static_uri'] = $uri;
+    }
+  }
 }
 
 /**
