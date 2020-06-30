@@ -13,7 +13,7 @@ export default class RHDPOSDownload extends HTMLElement {
 
     stage_download_url = 'https://developers.stage.redhat.com';
     productDownloads = {
-        "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.11.0-1-minishift-linux-amd64"}
+        "cdk" : {"windowsUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-windows-amd64.exe", "macUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-darwin-amd64", "rhelUrl" : "/download-manager/file/cdk-3.13.0-1-minishift-linux-amd64"}
     };
 
     get url() {
