@@ -782,7 +782,7 @@
             "match": [
                 "codeready workspaces",
                 "workspaces",
-                "browser IDE"
+                "browser ide"
             ]
         },
         {
@@ -798,8 +798,8 @@
             },
             "slots": [],
             "match": [
-                "Visual Studio",
-                "Extensions",
+                "visual studio",
+                "extensions",
                 "vscode"
             ]
         },
@@ -896,9 +896,9 @@
             ],
             "match": [
                 "odo",
-                "OpenShift CLI",
-                "CLI tool",
-                "CLI"
+                "openshift cli",
+                "cli tool",
+                "cli"
             ]
         },
         {
@@ -948,7 +948,7 @@
         {
             "id": "osio",
             "heading": {
-                "text": "Open development services for creating, building and testing container applications.",
+                "text": "OpenShift.io is now Red Hat CodeReady Toolchain",
                 "url": "https://developers.redhat.com/products/codeready-toolchain/overview/"
             },
             "details": "OpenShift.io services can be used separately or together. Today all are available online and some are available for download to a private OpenShift install. As we grow the breadth of the services we will make more of them privately deployable.",
@@ -992,10 +992,10 @@
         {
             "id": "3scale-amp",
             "heading": {
-                "text": "Red Hat Enterprise Linux",
+                "text": "Red Hat 3scale API Management",
                 "url": "https://developers.redhat.com/products/3scale/overview"
             },
-            "details": "The world's leading enterprise Linux platform. Download your developer edition of Red Hat Enterprise Linux 8.",
+            "details": "Application programming interfaces (APIs) deliver fundamental business value in a digital world–from supporting internal innovation and enabling cross-enterprise agility, to creating new products and revenue streams.",
             "slots": [
                 {
                     "icon": "icon_helloworld",
@@ -1068,6 +1068,28 @@
             ],
             "match": [
                 "openshift-new"
+            ]
+        },
+        {
+            "id": "mobileplatform",
+            "heading": {
+                "text": "Red Hat Mobile Application Platform Product Life Cycle",
+                "url": "https://developers.redhat.com/products/mobileplatform/overview/"
+            },
+            "details": "Red Hat offers services for each major release of Red Hat Mobile Application Platform with designated life cycle phases. The life cycle for a major release of Red Hat Mobile Application Platform is divided into two primary phases: the Full Support Phase and the Maintenance Support Phase.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/mobileplatform/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/mobileplatform/getting-started/"
+                }
+            ],
+            "match": [
+                "rhmap","mobile application platform","feedhenry","feed henry","mobile","mobile application","mobile platform","redhat mobile","redhat feedhenry","red hat mobile","red hat feed henry","red hat feedhenry"
             ]
         }
     ]
