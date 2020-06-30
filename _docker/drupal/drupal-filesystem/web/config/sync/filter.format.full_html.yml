@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - asciidoc
+    - blazy
     - editor
     - token_filter
 name: 'Full HTML'
@@ -57,3 +58,14 @@ filters:
       allowed_html: '<em> <strong> <cite> <blockquote cite> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <a href hreflang class="button caret-right"> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p> <h1> <pre> <code class="code-style"> <div class="box callout"> <span class="h1 h2 h3 h4 h5 h6">'
       filter_html_help: true
       filter_html_nofollow: false
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      filter_tags:
+        img: img
+        iframe: iframe
+      media_switch: ''
+      use_data_uri: '0'

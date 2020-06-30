@@ -11,15 +11,17 @@
 ] %}
 
 <div{{ attributes.addClass(classes) }}>
-  {# Embed slideshare or youtube iframe #}
-  {% if is_slideshare %}
-    <iframe src="{{ embed_url }}" width="854" height="480" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
-  {% elseif is_youtube %}
-    <div class="rhd-embeded-content-container">
-      <iframe src="{{ embed_url }}" allowfullscreen></iframe>
-    </div>
-  {% else %}
-    {# show the embedded_content as a hyperlink #}
-    {{- content -}}
-  {% endif %}
+  <div class="pf-l-grid">
+    {# Embed slideshare or youtube iframe #}
+    {% if is_slideshare %}
+      <iframe src="{{ embed_url }}" width="854" height="480" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+    {% elseif is_youtube %}
+      <div class="rhd-embeded-content-container">
+        <iframe src="{{ embed_url }}" allowfullscreen></iframe>
+      </div>
+    {% else %}
+      {# show the embedded_content as a hyperlink #}
+      {{- content -}}
+    {% endif %}
+  </div>
 </div>

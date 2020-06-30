@@ -18,8 +18,10 @@
 {% set language = content.field_programming_language|render|striptags|trim|clean_class %}
 {% spaceless %}
 <div{{ attributes }}>
-  <pre>
-    <code{{create_attribute({'class':[language]})}}>{{ content.field_code['#items'].0.value|trim }}</code>
-  </pre>
+  <div class="assembly--content">
+    <pre>
+      <code{{create_attribute({'class':[language]})}}>{{ content.field_code['#items'].0.value|trim }}</code>
+    </pre>
+  </div>
 </div>
 {% endspaceless %}

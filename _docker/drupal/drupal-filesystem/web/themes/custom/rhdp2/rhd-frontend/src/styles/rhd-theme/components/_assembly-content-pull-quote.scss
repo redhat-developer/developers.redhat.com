@@ -1,0 +1,24 @@
+.assembly-type-content_pull_quote {
+    blockquote {
+        border-top: 3px solid $red;
+        position: relative;
+        float: right;
+        z-index: 99;
+        width: 300px;
+        margin: 18px;
+        padding: 15px;
+        font-size: map-get($rhd-font-size, "med");
+        line-height: 32px;
+        color: $black;
+        border-left: none;
+        &:after {
+            content: "";
+            background: url("/images/icons/quote.svg") 50% 50% no-repeat;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}

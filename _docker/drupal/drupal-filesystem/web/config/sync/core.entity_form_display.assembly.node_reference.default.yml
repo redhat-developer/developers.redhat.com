@@ -19,13 +19,13 @@ bundle: node_reference
 mode: default
 content:
   field_audience_selection:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_node_reference:
-    weight: 1
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -35,14 +35,20 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
 hidden:
   moderation_state: true
   name: true
-  status: true
   user_id: true
   visual_styles: true
