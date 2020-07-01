@@ -1,23 +1,1096 @@
 {
     "features": [
-        {"id": "rhel", "heading": { "text": "Red Hat Enterprise Linux", "url": "https://developers.redhat.com/products/rhel/overview/" }, "details": "Red Hat Enterprise Linux is the industry-leading Linux that provides the foundation for modern applications on next-generation architectures, with support for all major hardware platforms. A no-cost RHEL developer subscription is available.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/rhel/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/rhel/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/rhel/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/rhel/help/"}], "match": ["red hat enterprise","enterprise linux","red hat linux","redhat linux","fedora","rhel","linux","rhel2","rhel2.1","rhel2.2","rhel2.3","rhel2.4","rhel2.5","rhel2.6","rhel2.7","rhel3","rhel3.1","rhel3.2","rhel3.3","rhel3.4","rhel3.5","rhel3.6","rhel3.7","rhel3.8","rhel3.9","rhel4","rhel4.1","rhel4.2","rhel4.3","rhel4.4","rhel4.5","rhel4.6","rhel4.7","rhel4.8","rhel4.9","rhel5","rhel5.1","rhel5.2","rhel5.3","rhel5.4","rhel5.5","rhel5.6","rhel5.7","rhel5.8","rhel5.9","rhel5.10","rhel5.11","rhel6","rhel6.1","rhel6.2","rhel6.3","rhel6.4","rhel6.5","rhel6.6","rhel6.7","rhel7","rhel7.1","rhel7.2","rhel7.3","rhel7.4","rhel7.5","linux2","linux2.1","linux2.2","linux2.3","linux2.4","linux2.5","linux2.6","linux2.7","linux3","linux3.1","linux3.2","linux3.3","linux3.4","linux3.5","linux3.6","linux3.7","linux3.8","linux3.9","linux4","linux4.1","linux4.2","linux4.3","linux4.4","linux4.5","linux4.6","linux4.7","linux4.8","linux4.9","linux5","linux5.1","linux5.2","linux5.3","linux5.4","linux5.5","linux5.6","linux5.7","linux5.8","linux5.9","linux5.10","linux5.11","linux6","linux6.1","linux6.2","linux6.3","linux6.4","linux6.5","linux6.6","linux6.7","linux7","linux7.1","linux7.2","linux7.3","linux7.4","linux7.5","download"]},
-        {"id": "datagrid", "heading": { "text": "Red Hat JBoss Data Grid", "url": "https://developers.redhat.com/products/datagrid/overview/" }, "details": "Data grids are in-memory distributed databases designed for scalability and fast access to large volumes of data, plus additional functionality such as map/reduce, querying, processing for streaming data, and transaction capabilities.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/datagrid/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/datagrid/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/datagrid/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/datagrid/help/"}], "match": ["jdg","data grid","jboss data grid","database","hibernate","infinispan","jgroups"]},
-        {"id": "eap", "heading": { "text": "Red Hat JBoss Enterprise Application Platform", "url": "https://developers.redhat.com/products/eap/overview/" }, "details": "Based on the upstream WildFly Java EE project, Red Hat JBoss Enterprise Application Platform (EAP) provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/eap/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/eap/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/eap/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/eap/help/"}], "match": ["jboss as","application server","eap","jboss","jboss eap","enterprise application platform","application platform","jboss eap 6.4","wildfly","java ee","jee","j2ee"]},
-        {"id": "webserver", "heading": { "text": "Red Hat JBoss Web Server", "url": "https://developers.redhat.com/products/webserver/overview/" }, "details": "Red Hat® JBoss® Web Server is a fully-integrated and certified set of components for the world’s most deployed web server (Apache™ HTTP Server), the top servlet engine (Apache™ Tomcat), load balancers (mod_jk and mod_cluster), and the Tomcat Native library. ", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/webserver/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/webserver/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/webserver/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/webserver/help/"}], "match": ["jws","web server","apache tomcat","tomcat","webserver","http"]},
-        {"id": "rhamt", "heading": { "text": "Red Hat Application Migration Toolkit", "url": "https://developers.redhat.com/products/rhamt/overview/" }, "details": "Based on the upstream Windup project, Red Hat Application Migration Toolkit (RHAMT) is an assembly of open source tools that enables large-scale application migrations and modernizations. ", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/rhamt/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/rhamt/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/rhamt/docs-and-apis/" } ], "match": ["rhamt","migration","migration toolkit","windup"]},
-        {"id": "cdk", "heading": { "text": "Red Hat Container Development Kit", "url": "https://developers.redhat.com/products/cdk/overview/" }, "details": "Linux containers are hot, and Red Hat Container Development Kit provides a pre-built Container Development Environment to set up local versions of Red Hat Enterprise Linux or OpenShift Container Platform 3 on your Windows, MacOS, or Linux systems. ", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/cdk/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/cdk/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/cdk/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/cdk/help/"}], "match": ["container","containers","container developement","cdk","docker","dockerfiles","docker images","images"]},
-        {"id": "developertoolset", "heading": { "text": "Red Hat Developer Toolset", "url": "https://developers.redhat.com/products/developertoolset/overview/" }, "details": "Red Hat Developer Toolset delivers the latest stable versions of GCC (C, C++, and Fortran) GDB, and performance tools like SystemTap, OProfile, Valgrind, and much more. And importantly, compile once (on N) and deploy on N plus N+1 versions.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/developertoolset/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/developertoolset/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/developertoolset/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/developertoolset/help/"}], "match": ["dts","developer toolset","toolset","gcc","c","c++","gdb","oprofile","valgrind","fortran","systemtap","compiler"]},
-        {"id": "devstudio", "heading": { "text": "Red Hat Developer Studio", "url": "https://developers.redhat.com/products/devstudio/overview/" }, "details": "Red Hat Developer Studio (with Eclipse IDE?) for your entire Java EE development lifecycle, including container development (deploy via OpenShift, Red Hat CDK, or Docker); adds Java Server Faces, EJB, Java Persistence API, and Hibernate®, HTML5, more.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/devstudio/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/devstudio/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/devstudio/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/devstudio/help/"}], "match": ["jbds","devstudio","dev studio","eclipse","development","devsuite","dev suite","dev tools","installer","jboss developer studio", "red hat developer studio", "redhat developer studio"]},
-        {"id": "softwarecollections", "heading": { "text": "Red Hat Software Collections", "url": "https://developers.redhat.com/products/softwarecollections/overview/" }, "details": "Red Hat Software Collections (RHSCL) delivers the latest stable technologies for RHEL of programming languages, open source databases, web infrastructure, etc. Updated semi-annually. Most have dockerfiles and/or docker images for RHEL and OpenShift.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/softwarecollections/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/softwarecollections/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/softwarecollections/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/softwarecollections/help/"}], "match": ["scl","software collections","rhscl","python","php","perl","ruby","mongodb","collections","postgresql","mariadb","mysql","nginx","phusion","passenger","varnish","maven"]},
-        {"id": "amq", "heading": { "text": "Red Hat AMQ", "url": "https://developers.redhat.com/products/amq/overview/" }, "details": "Red Hat AMQ (ActiveMQ) provides fast, lightweight, and secure messaging for internet-scale applications. It uses industry-standard message protocols and supports a wide range of programming languages and operating environments.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/amq/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/amq/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/amq/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/amq/help/"}], "match": ["amq","messaging","a-mq","jboss amq","activemq","message queueing", "jboss amq", "red hat jboss amq", "red hat amq", "redhat amq"]},
-        {"id": "datavirt", "heading": { "text": "Red Hat JBoss Data Virtualization", "url": "https://developers.redhat.com/products/datavirt/overview/" }, "details": "JBoss Data Virtualization is a data integration solution that sits in front of multiple data sources and allows them to be treated as a single source, delivering the right data, in the required form, at the right time to any application and/or user.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/datavirt/overview/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/datavirt/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/datavirt/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/datavirt/help/"}], "match": ["jdv","data virt","virtualization","datavirt","modeshape","teiid"]},
-        {"id": "fuse", "heading": { "text": "Red Hat Fuse", "url": "https://developers.redhat.com/products/fuse/overview/" }, "details": "Leveraging Apache Camel, Red Hat Fuse is more than an ESB - it allows developers to build app integration with lightweight and modular routing. It's Event Driven Architecture simplifies complex data process; adds 160+ built-in components.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/fuse/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/fuse/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/fuse/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/fuse/help/"}], "match": ["fuse","jboss fuse","redhat fuse","red hat fuse","apache camel","camel","integration", "null"]},
-        {"id": "bpmsuite", "heading": { "text": "Red Hat Process Automation Manager", "url": "https://developers.redhat.com/products/rhpam/overview/" }, "details": "Red Hat Process Automation Manager is a business process and decision management platform that combines business rules management, business process management (BPM), and complex event processing. Built from Drools, Guvnor, jBPM, OptaPlanner.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/rhpam/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/rhpam/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/rhpam/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/rhpam/help/"}], "match": ["bpm suite","jboss bpm","redhat bpm","red hat bpm","business process management","jboss business","jbossbpm","drools","rules","process automation","process automation manager", "red hat process automation manager", "redhat process automation manager"]},
-        {"id": "brms", "heading": { "text": "Red Hat Decision Manager", "url": "https://developers.redhat.com/products/red-hat-decision-manager/overview/" }, "details": "Red Hat® Decision Manager is a comprehensive platform for business rules management, business resource optimization, and complex event processing (CEP).  Built from Drools, Guvnor, OptaPlanner.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/red-hat-decision-manager/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/red-hat-decision-manager/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/red-hat-decision-manager/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/red-hat-decision-manager/help/"}], "match": ["brms","jbossbrms","business rules management","redhat brms","red hat brms","red hat decision manager","decision manager"]},
-        {"id": "mobileplatform", "heading": { "text": "Red Hat Mobile Application Platform", "url": "https://developers.redhat.com/products/mobileplatform/overview/" }, "details": "Red Hat Mobile Application Platform lets teams create mobile solutions by developing collaboratively, centralizing control of security, and using back-end integration with a range of cloud deployments. Use your preferred tools; optimize via reuse. ", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/mobileplatform/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/mobileplatform/hello-world/" },  { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/mobileplatform/help/"}], "match": ["rhmap","mobile application platform","feedhenry","feed henry","mobile","mobile application","mobile platform","redhat mobile","redhat feedhenry","red hat mobile","red hat feed henry","red hat feedhenry"]},
-        {"id": "openshift", "heading": { "text": "Red Hat OpenShift Container Platform", "url": "https://developers.redhat.com/products/openshift/overview/" }, "details": "Red Hat OpenShift Container Platform is a container application development and hosting platform that automates the tedious management tasks - focus on development instead. Helps you provision, manage, and scale container-based applications utilizing Kubernetes. ", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/openshift/download/" },"slots": [  { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/openshift/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/openshift/help/"}], "match": ["oso","openshift","open shift","redhat openshift","redhat open shift","kubernetes","openshift origin","okd"]},
-        {"id": "openjdk", "heading": { "text": "OpenJDK", "url": "https://developers.redhat.com/products/openjdk/overview/" }, "details": "OpenJDK 8 is a free and open source implementation of the Java Platform, Standard Edition (Java SE). Develop and test in Windows or Linux, and deploy on Red Hat Enterprise Linux or Red Hat OpenShift Container Platform for high performance.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/openjdk/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/openjdk/hello-world/" }  ], "match": ["openjdk","open jdk","openjdk 8","java developement","java","jdk"]},
-        {"id": "dotnet", "heading": { "text": ".NET Core", "url": "https://developers.redhat.com/products/dotnet/overview/" }, "details": "The popular .NET Foundation open source offering is called .NET Core. Write C# code on Linux and deploy anywhere; excellent performance when deploying on Red Hat Enterprise Linux and/or OpenShift Container Platform.", "slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/dotnet/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/dotnet/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/dotnet/help/"}], "match": [".net","dotnet","microsoft",".net core","asp.net","c#","f#"]},
-        {"id": "rhoar", "heading": { "text": "Red Hat OpenShift Application Runtimes", "url": "https://developers.redhat.com/products/rhoar/overview/" }, "details": "Red Hat OpenShift Application Runtimes (RHOAR) Node.js runtime enables you to run Node.js applications and services on OpenShift while providing all the advantages and conveniences of the OpenShift platform such as rolling updates, continuous delivery pipelines, service discovery, and canary deployments.", "button": { "text": "View Downloads", "url": "https://developers.redhat.com/products/rhoar/download/" },"slots": [ { "icon": "icon_helloworld", "text": "Hello World!", "url": "https://developers.redhat.com/products/rhoar/hello-world/" }, { "icon": "icon_docsandapi", "text": "Docs and APIs", "url": "https://developers.redhat.com/products/softwarecollections/docs-and-apis/" }, { "icon": "icon_help", "text": "Help", "url": "https://developers.redhat.com/products/rhoar/help/"}], "match": ["node","node.js","nodejs"]}
+        {
+            "id": "rhel",
+            "heading": {
+                "text": "Red Hat Enterprise Linux",
+                "url": "https://developers.redhat.com/products/rhel/overview/"
+            },
+            "details": "Red Hat Enterprise Linux is the industry-leading Linux that provides the foundation for modern applications on next-generation architectures, with support for all major hardware platforms. A no-cost RHEL developer subscription is available.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhel/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/rhel/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/rhel/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/rhel/help/"
+                }
+            ],
+            "match": [
+                "red hat enterprise",
+                "enterprise linux",
+                "red hat linux",
+                "redhat linux",
+                "fedora",
+                "rhel",
+                "linux",
+                "rhel2",
+                "rhel2.1",
+                "rhel2.2",
+                "rhel2.3",
+                "rhel2.4",
+                "rhel2.5",
+                "rhel2.6",
+                "rhel2.7",
+                "rhel3",
+                "rhel3.1",
+                "rhel3.2",
+                "rhel3.3",
+                "rhel3.4",
+                "rhel3.5",
+                "rhel3.6",
+                "rhel3.7",
+                "rhel3.8",
+                "rhel3.9",
+                "rhel4",
+                "rhel4.1",
+                "rhel4.2",
+                "rhel4.3",
+                "rhel4.4",
+                "rhel4.5",
+                "rhel4.6",
+                "rhel4.7",
+                "rhel4.8",
+                "rhel4.9",
+                "rhel5",
+                "rhel5.1",
+                "rhel5.2",
+                "rhel5.3",
+                "rhel5.4",
+                "rhel5.5",
+                "rhel5.6",
+                "rhel5.7",
+                "rhel5.8",
+                "rhel5.9",
+                "rhel5.10",
+                "rhel5.11",
+                "rhel6",
+                "rhel6.1",
+                "rhel6.2",
+                "rhel6.3",
+                "rhel6.4",
+                "rhel6.5",
+                "rhel6.6",
+                "rhel6.7",
+                "rhel7",
+                "rhel7.1",
+                "rhel7.2",
+                "rhel7.3",
+                "rhel7.4",
+                "rhel7.5",
+                "linux2",
+                "linux2.1",
+                "linux2.2",
+                "linux2.3",
+                "linux2.4",
+                "linux2.5",
+                "linux2.6",
+                "linux2.7",
+                "linux3",
+                "linux3.1",
+                "linux3.2",
+                "linux3.3",
+                "linux3.4",
+                "linux3.5",
+                "linux3.6",
+                "linux3.7",
+                "linux3.8",
+                "linux3.9",
+                "linux4",
+                "linux4.1",
+                "linux4.2",
+                "linux4.3",
+                "linux4.4",
+                "linux4.5",
+                "linux4.6",
+                "linux4.7",
+                "linux4.8",
+                "linux4.9",
+                "linux5",
+                "linux5.1",
+                "linux5.2",
+                "linux5.3",
+                "linux5.4",
+                "linux5.5",
+                "linux5.6",
+                "linux5.7",
+                "linux5.8",
+                "linux5.9",
+                "linux5.10",
+                "linux5.11",
+                "linux6",
+                "linux6.1",
+                "linux6.2",
+                "linux6.3",
+                "linux6.4",
+                "linux6.5",
+                "linux6.6",
+                "linux6.7",
+                "linux7",
+                "linux7.1",
+                "linux7.2",
+                "linux7.3",
+                "linux7.4",
+                "linux7.5",
+                "download"
+            ]
+        },
+        {
+            "id": "datagrid",
+            "heading": {
+                "text": "Red Hat JBoss Data Grid",
+                "url": "https://developers.redhat.com/products/datagrid/overview/"
+            },
+            "details": "Data grids are in-memory distributed databases designed for scalability and fast access to large volumes of data, plus additional functionality such as map/reduce, querying, processing for streaming data, and transaction capabilities.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/datagrid/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/datagrid/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/datagrid/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/datagrid/help/"
+                }
+            ],
+            "match": [
+                "jdg",
+                "data grid",
+                "jboss data grid",
+                "database",
+                "hibernate",
+                "infinispan",
+                "jgroups"
+            ]
+        },
+        {
+            "id": "eap",
+            "heading": {
+                "text": "Red Hat JBoss Enterprise Application Platform",
+                "url": "https://developers.redhat.com/products/eap/overview/"
+            },
+            "details": "An application platform for hosting your apps that provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/eap/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/eap/getting-started/"
+                }
+            ],
+            "match": [
+                "jboss as",
+                "application server",
+                "eap",
+                "jboss",
+                "jboss eap",
+                "enterprise application platform",
+                "application platform",
+                "jboss eap 6.4",
+                "wildfly",
+                "java ee",
+                "jee",
+                "j2ee"
+            ]
+        },
+        {
+            "id": "webserver",
+            "heading": {
+                "text": "Red Hat JBoss Web Server",
+                "url": "https://developers.redhat.com/products/webserver/overview/"
+            },
+            "details": "Red Hat® JBoss® Web Server is a fully-integrated and certified set of components for the world’s most deployed web server (Apache™ HTTP Server), the top servlet engine (Apache™ Tomcat), load balancers (mod_jk and mod_cluster), and the Tomcat Native library. ",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/webserver/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/webserver/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/webserver/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/webserver/help/"
+                }
+            ],
+            "match": [
+                "jws",
+                "web server",
+                "apache tomcat",
+                "tomcat",
+                "webserver",
+                "http"
+            ]
+        },
+        {
+            "id": "rhamt",
+            "heading": {
+                "text": "Red Hat Application Migration Toolkit",
+                "url": "https://developers.redhat.com/products/rhamt/overview/"
+            },
+            "details": "Based on the upstream Windup project, Red Hat Application Migration Toolkit (RHAMT) is an assembly of open source tools that enables large-scale application migrations and modernizations. ",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhamt/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/rhamt/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/rhamt/docs-and-apis/"
+                }
+            ],
+            "match": [
+                "rhamt",
+                "migration",
+                "migration toolkit",
+                "windup"
+            ]
+        },
+        {
+            "id": "cdk",
+            "heading": {
+                "text": "Red Hat Container Development Kit",
+                "url": "https://developers.redhat.com/products/cdk/overview/"
+            },
+            "details": "Linux containers are hot, and Red Hat Container Development Kit provides a pre-built Container Development Environment to set up local versions of Red Hat Enterprise Linux or OpenShift Container Platform 3 on your Windows, MacOS, or Linux systems. ",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/cdk/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/cdk/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/cdk/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/cdk/help/"
+                }
+            ],
+            "match": [
+                "container",
+                "containers",
+                "container development",
+                "cdk",
+                "docker",
+                "dockerfiles",
+                "docker images",
+                "images"
+            ]
+        },
+        {
+            "id": "developertoolset",
+            "heading": {
+                "text": "Red Hat Developer Toolset",
+                "url": "https://developers.redhat.com/products/developertoolset/overview/"
+            },
+            "details": "Red Hat Developer Toolset delivers the latest stable versions of GCC (C, C++, and Fortran) GDB, and performance tools like SystemTap, OProfile, Valgrind, and much more. And importantly, compile once (on N) and deploy on N plus N+1 versions.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/developertoolset/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/developertoolset/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/developertoolset/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/developertoolset/help/"
+                }
+            ],
+            "match": [
+                "dts",
+                "developer toolset",
+                "toolset",
+                "gcc",
+                "c",
+                "c++",
+                "gdb",
+                "oprofile",
+                "valgrind",
+                "fortran",
+                "systemtap",
+                "compiler"
+            ]
+        },
+        {
+            "id": "devstudio",
+            "heading": {
+                "text": "Red Hat Developer Studio",
+                "url": "https://developers.redhat.com/products/devstudio/overview/"
+            },
+            "details": "Red Hat Developer Studio (with Eclipse IDE?) for your entire Java EE development lifecycle, including container development (deploy via OpenShift, Red Hat CDK, or Docker); adds Java Server Faces, EJB, Java Persistence API, and Hibernate®, HTML5, more.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/devstudio/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/devstudio/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/devstudio/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/devstudio/help/"
+                }
+            ],
+            "match": [
+                "jbds",
+                "devstudio",
+                "dev studio",
+                "eclipse",
+                "development",
+                "devsuite",
+                "dev suite",
+                "dev tools",
+                "installer",
+                "jboss developer studio",
+                "red hat developer studio",
+                "redhat developer studio"
+            ]
+        },
+        {
+            "id": "softwarecollections",
+            "heading": {
+                "text": "Red Hat Software Collections",
+                "url": "https://developers.redhat.com/products/softwarecollections/overview/"
+            },
+            "details": "Red Hat Software Collections (RHSCL) delivers the latest stable technologies for RHEL of programming languages, open source databases, web infrastructure, etc. Updated semi-annually. Most have dockerfiles and/or docker images for RHEL and OpenShift.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/softwarecollections/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/softwarecollections/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/softwarecollections/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/softwarecollections/help/"
+                }
+            ],
+            "match": [
+                "scl",
+                "software collections",
+                "rhscl",
+                "python",
+                "php",
+                "perl",
+                "ruby",
+                "mongodb",
+                "collections",
+                "postgresql",
+                "mariadb",
+                "mysql",
+                "nginx",
+                "phusion",
+                "passenger",
+                "varnish",
+                "maven"
+            ]
+        },
+        {
+            "id": "amq",
+            "heading": {
+                "text": "Red Hat AMQ",
+                "url": "https://developers.redhat.com/products/amq/overview/"
+            },
+            "details": "Red Hat AMQ (ActiveMQ) provides fast, lightweight, and secure messaging for internet-scale applications. It uses industry-standard message protocols and supports a wide range of programming languages and operating environments.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/amq/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/amq/getting-started/"
+                }
+            ],
+            "match": [
+                "amq",
+                "messaging",
+                "a-mq",
+                "jboss amq",
+                "activemq",
+                "message queueing",
+                "jboss amq",
+                "red hat jboss amq",
+                "red hat amq",
+                "redhat amq"
+            ]
+        },
+        {
+            "id": "datavirt",
+            "heading": {
+                "text": "Red Hat JBoss Data Virtualization",
+                "url": "https://developers.redhat.com/products/datavirt/overview/"
+            },
+            "details": "JBoss Data Virtualization is a data integration solution that sits in front of multiple data sources and allows them to be treated as a single source, delivering the right data, in the required form, at the right time to any application and/or user.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/datavirt/overview/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/datavirt/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/datavirt/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/datavirt/help/"
+                }
+            ],
+            "match": [
+                "jdv",
+                "data virt",
+                "virtualization",
+                "datavirt",
+                "modeshape",
+                "teiid"
+            ]
+        },
+        {
+            "id": "fuse",
+            "heading": {
+                "text": "Red Hat Fuse",
+                "url": "https://developers.redhat.com/products/fuse/overview"
+            },
+            "details": "Leveraging Apache Camel, Red Hat Fuse is more than an ESB - it allows developers to build app integration with lightweight and modular routing. It's Event Driven Architecture simplifies complex data process; adds 160+ built-in components.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/fuse/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getiting Started",
+                    "url": "https://developers.redhat.com/products/fuse/getting-started"
+                }
+            ],
+            "match": [
+                "fuse",
+                "jboss fuse",
+                "redhat fuse",
+                "red hat fuse",
+                "apache camel",
+                "camel",
+                "integration",
+                "null"
+            ]
+        },
+        {
+            "id": "bpmsuite",
+            "heading": {
+                "text": "Red Hat Process Automation Manager",
+                "url": "https://developers.redhat.com/products/rhpam/overview/"
+            },
+            "details": "Red Hat Process Automation Manager is a business process and decision management platform that combines business rules management, business process management (BPM), and complex event processing. Built from Drools, Guvnor, jBPM, OptaPlanner.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhpam/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/rhpam/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/rhpam/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/rhpam/help/"
+                }
+            ],
+            "match": [
+                "bpm suite",
+                "jboss bpm",
+                "redhat bpm",
+                "red hat bpm",
+                "business process management",
+                "jboss business",
+                "jbossbpm",
+                "drools",
+                "rules",
+                "process automation",
+                "process automation manager",
+                "red hat process automation manager",
+                "redhat process automation manager"
+            ]
+        },
+        {
+            "id": "brms",
+            "heading": {
+                "text": "Red Hat Decision Manager",
+                "url": "https://developers.redhat.com/products/red-hat-decision-manager/overview/"
+            },
+            "details": "Red Hat® Decision Manager is a comprehensive platform for business rules management, business resource optimization, and complex event processing (CEP).  Built from Drools, Guvnor, OptaPlanner.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/red-hat-decision-manager/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/red-hat-decision-manager/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/red-hat-decision-manager/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/red-hat-decision-manager/help/"
+                }
+            ],
+            "match": [
+                "brms",
+                "jbossbrms",
+                "business rules management",
+                "redhat brms",
+                "red hat brms",
+                "red hat decision manager",
+                "decision manager"
+            ]
+        },
+        {
+            "id": "openshift",
+            "heading": {
+                "text": "Red Hat OpenShift Container Platform",
+                "url": "https://developers.redhat.com/products/openshift/overview/"
+            },
+            "details": "Red Hat OpenShift Container Platform is a container application development and hosting platform that automates the tedious management tasks - focus on development instead. Helps you provision, manage, and scale container-based applications utilizing Kubernetes. ",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openshift/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift/getting-started"
+                }
+            ],
+            "match": [
+                "oso",
+                "openshift",
+                "open shift",
+                "redhat openshift",
+                "redhat open shift",
+                "kubernetes",
+                "openshift origin",
+                "okd"
+            ]
+        },
+        {
+            "id": "openjdk",
+            "heading": {
+                "text": "OpenJDK",
+                "url": "https://developers.redhat.com/products/openjdk/overview/"
+            },
+            "details": "OpenJDK 8 is a free and open source implementation of the Java Platform, Standard Edition (Java SE). Develop and test in Windows or Linux, and deploy on Red Hat Enterprise Linux or Red Hat OpenShift Container Platform for high performance.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openjdk/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openjdk/getting-started"
+                }
+            ],
+            "match": [
+                "openjdk",
+                "open jdk",
+                "openjdk 8",
+                "java development",
+                "java",
+                "jdk"
+            ]
+        },
+        {
+            "id": "dotnet",
+            "heading": {
+                "text": ".NET Core",
+                "url": "https://developers.redhat.com/products/dotnet/overview/"
+            },
+            "details": "The popular .NET Foundation open source offering is called .NET Core. Write C# code on Linux and deploy anywhere; excellent performance when deploying on Red Hat Enterprise Linux and/or OpenShift Container Platform.",
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/dotnet/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/dotnet/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/dotnet/help/"
+                }
+            ],
+            "match": [
+                ".net",
+                "dotnet",
+                "microsoft",
+                ".net core",
+                "asp.net",
+                "c#",
+                "f#"
+            ]
+        },
+        {
+            "id": "rhoar",
+            "heading": {
+                "text": "Red Hat OpenShift Application Runtimes",
+                "url": "https://developers.redhat.com/products/rhoar/overview/"
+            },
+            "details": "Red Hat OpenShift Application Runtimes (RHOAR) Node.js runtime enables you to run Node.js applications and services on OpenShift while providing all the advantages and conveniences of the OpenShift platform such as rolling updates, continuous delivery pipelines, service discovery, and canary deployments.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhoar/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Hello World!",
+                    "url": "https://developers.redhat.com/products/rhoar/hello-world/"
+                },
+                {
+                    "icon": "icon_docsandapi",
+                    "text": "Docs and APIs",
+                    "url": "https://developers.redhat.com/products/softwarecollections/docs-and-apis/"
+                },
+                {
+                    "icon": "icon_help",
+                    "text": "Help",
+                    "url": "https://developers.redhat.com/products/rhoar/help/"
+                }
+            ],
+            "match": [
+                "node",
+                "node.js",
+                "nodejs"
+            ]
+        },
+        {
+            "id": "codeready_workspaces",
+            "heading": {
+                "text": "Red Hat CodeReady Workspaces",
+                "url": "https://developers.redhat.com/products/codeready-workspaces/overview/"
+            },
+            "details": "A collaborative Kubernetes-native development solution that delivers OpenShift workspaces and in-browser IDE for rapid cloud application development.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/codeready-workspaces/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/codeready-workspaces/getting-started"
+                }
+            ],
+            "match": [
+                "codeready workspaces",
+                "workspaces",
+                "browser ide"
+            ]
+        },
+        {
+            "id": "vscode_extensions",
+            "heading": {
+                "text": "Visual Studio Code Extensions",
+                "url": "https://developers.redhat.com/products/vscode-extensions/overview"
+            },
+            "details": "Visual Studio Code (also known as VS Code) is a hugely popular, open source code editor for Windows, Linux and macOS. Given this popularity, Red Hat decided to create extensions for VS Code that would allow software developers who are working with Red Hat technologies to use their new favorite development environment all the time in a way that is seamless and enjoyable, without having to switch back and forth between a patchwork of editors and IDEs. We started working on VS Code in 2016 with our Language Support for JavaTM extension, and since then our portfolio has registered over 19 million downloads.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/vscode-extensions/overview"
+            },
+            "slots": [],
+            "match": [
+                "visual studio",
+                "extensions",
+                "vscode"
+            ]
+        },
+        {
+            "id": "redhatamq2",
+            "heading": {
+                "text": "Red Hat AMQ",
+                "url": "https://developers.redhat.com/products/redhatamq2/overview/"
+            },
+            "details": "A lightweight, high-performance, robust messaging platform.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/redhatamq2/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/redhatamq2/getting-started/"
+                }
+            ],
+            "match": [
+                "redhat amq2",
+                "amq2",
+                "rhamq2"
+            ]
+        },
+        {
+            "id": "eap2",
+            "heading": {
+                "text": "Red Hat JBoss Enterprise Application Platform",
+                "url": "https://developers.redhat.com/products/eap2/overview/"
+            },
+            "details": "JBoss Enterprise Application Platform (EAP) is a Java Enterprise Edition (EE) 8 application server. It works with its own integrated development (CodeReady Developer Studio, based on the Apache Eclipse project) and other open source deployment tools. Developers can create and run very complex Java applications that take advantage of the full Java EE software stack.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/eap2/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/eap2/getting-started/"
+                }
+            ],
+            "match": [
+                "redhat eap2",
+                "eap2",
+                "rheap2"
+            ]
+        },
+        {
+            "id": "crc",
+            "heading": {
+                "text": "Red Hat CodeReady Containers",
+                "url": "https://developers.redhat.com/products/codeready-containers/overview"
+            },
+            "details": "OpenShift on your laptop. CodeReady containers gets you up and running with an OpenShift cluster on your local machine in minutes.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/codeready-containers/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/codeready-containers/getting-started/"
+                }
+            ],
+            "match": [
+                "codeready containers",
+                "redhat crc",
+                "crc",
+                "rhcrc"
+            ]
+        },
+        {
+            "id": "crw",
+            "heading": {
+                "text": "odo: OpenShift CLI for Developers",
+                "url": "https://developers.redhat.com/products/odo/overview"
+            },
+            "details": "A CLI tool for developers writing, building, and deploying applications on OpenShift.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/odo/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/odo/getting-started/"
+                }
+            ],
+            "match": [
+                "odo",
+                "openshift cli",
+                "cli tool",
+                "cli"
+            ]
+        },
+        {
+            "id": "rhel",
+            "heading": {
+                "text": "Compilers",
+                "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/overview/"
+            },
+            "details": "Find quick reference materials for GCC, Clang/LLVM, Go, and Rust compilers for Red Hat Enterprise Linux.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/gcc-clang-llvm-go-rust/getting-started"
+                }
+            ],
+            "match": [
+                "gcc-clang-llvm-go-rust"
+            ]
+        },
+        {
+            "id": "rhel",
+            "heading": {
+                "text": "Red Hat Enterprise Linux for SAP Solutions",
+                "url": "https://developers.redhat.com/products/sap/overview"
+            },
+            "details": "Find quick reference materials for GCC, Clang/LLVM, Go, and Rust compilers for Red Hat Enterprise Linux.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/sap/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/sap/hello-world"
+                }
+            ],
+            "match": [
+                "sap"
+            ]
+        },
+        {
+            "id": "osio",
+            "heading": {
+                "text": "OpenShift.io is now Red Hat CodeReady Toolchain",
+                "url": "https://developers.redhat.com/products/codeready-toolchain/overview/"
+            },
+            "details": "OpenShift.io services can be used separately or together. Today all are available online and some are available for download to a private OpenShift install. As we grow the breadth of the services we will make more of them privately deployable.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/codeready-toolchain/download"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/codeready-toolchain/getting-started"
+                }
+            ],
+            "match": [
+                "codeready-toolchain"
+            ]
+        },
+        {
+            "id": "rhel8test",
+            "heading": {
+                "text": "Red Hat Enterprise Linux",
+                "url": "https://developers.redhat.com/products/rhel8test/overview"
+            },
+            "details": "The world's leading enterprise Linux platform. Download your developer edition of Red Hat Enterprise Linux 8.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/rhel8test/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/rhel8test/getting-started/"
+                }
+            ],
+            "match": [
+                "rhel8test"
+            ]
+        },
+        {
+            "id": "3scale-amp",
+            "heading": {
+                "text": "Red Hat 3scale API Management",
+                "url": "https://developers.redhat.com/products/3scale/overview"
+            },
+            "details": "Application programming interfaces (APIs) deliver fundamental business value in a digital world–from supporting internal innovation and enabling cross-enterprise agility, to creating new products and revenue streams.",
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/3scale/docs-and-apis"
+                }
+            ],
+            "match": [
+                "3scale",
+                "3scale-amp"
+            ]
+        },
+        {
+            "id": "cloudfunctions",
+            "heading": {
+                "text": "Red Hat OpenShift Cloud Functions",
+                "url": "https://developers.redhat.com/products/cloudfunctions/overview"
+            },
+            "details": "Bringing serverless capabilities to Red Hat OpenShift ",
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/cloudfunctions/docs-and-apis"
+                }
+            ],
+            "match": [
+                "cloudfunctions"
+            ]
+        },
+        {
+            "id": "crw",
+            "heading": {
+                "text": "Red Hat IDE Extensions for OpenShift",
+                "url": "https://developers.redhat.com/products/openshift-ide-extensions/overview/"
+            },
+            "details": "Red Hat offers extensions for VS Code, IntelliJ that allow developers who work with Red Hat OpenShift to use their preferred development environment without interruption.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openshift-ide-extensions/getting-started/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift-ide-extensions/download/"
+                }
+            ],
+            "match": [
+                "openshift-ide-extensions"
+            ]
+        },
+        {
+            "id": "openshift-new",
+            "heading": {
+                "text": "Red Hat OpenShift Container Platform",
+                "url": "https://developers.redhat.com/products/openshift-new/overview/"
+            },
+            "details": "Everything you need to manage your development lifecycle, including standardized workflows, support for multiple environments, continuous integration, and release management.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/openshift-new/getting-started/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/openshift-new/download/"
+                }
+            ],
+            "match": [
+                "openshift-new"
+            ]
+        },
+        {
+            "id": "mobileplatform",
+            "heading": {
+                "text": "Red Hat Mobile Application Platform Product Life Cycle",
+                "url": "https://developers.redhat.com/products/mobileplatform/overview/"
+            },
+            "details": "Red Hat offers services for each major release of Red Hat Mobile Application Platform with designated life cycle phases. The life cycle for a major release of Red Hat Mobile Application Platform is divided into two primary phases: the Full Support Phase and the Maintenance Support Phase.",
+            "button": {
+                "text": "View Downloads",
+                "url": "https://developers.redhat.com/products/mobileplatform/download/"
+            },
+            "slots": [
+                {
+                    "icon": "icon_helloworld",
+                    "text": "Getting Started",
+                    "url": "https://developers.redhat.com/products/mobileplatform/getting-started/"
+                }
+            ],
+            "match": [
+                "rhmap","mobile application platform","feedhenry","feed henry","mobile","mobile application","mobile platform","redhat mobile","redhat feedhenry","red hat mobile","red hat feed henry","red hat feedhenry"
+            ]
+        }
     ]
 }
