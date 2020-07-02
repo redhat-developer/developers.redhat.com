@@ -56,9 +56,7 @@ export default class RHDPSearchOneBox extends HTMLElement {
     }
 
     slotTemplate = (strings, slot, id) => {
-        return `${slot && slot.url && slot.text ? `<div class="pf-l-flex__item">
-          <a class="pf-c-button" href="${slot.url}?onebox=${id}">${this.getIcon(slot.icon)} &nbsp; ${slot.text}</a>
-        </div>` : ''}`;
+        return `${slot && slot.url && slot.text ? `<div class="pf-l-flex__item"><a class="pf-c-button" href="${slot.url}?onebox=${id}">${this.getIcon(slot.icon)} &nbsp; ${slot.text}</a></div>` : ''}`;
     }
 
     template = (strings, feature) => {
@@ -68,7 +66,7 @@ export default class RHDPSearchOneBox extends HTMLElement {
             <div class="pf-l-flex">
               ${feature.button && feature.button.url && feature.button.text ? `
                 <div class="pf-l-flex__item">
-                    <a href="${feature.button.url}?onebox=${feature.id}" class="pf-c-button pf-m-secondary">${feature.button.text}</a>
+                    <a href="${feature.button.url}?onebox=${feature.id}" class="pf-c-button pf-m-primary">${feature.button.text}</a>
                 </div>` : ''}
               ${feature.slots && feature.slots.length > 0 ? `
               ${feature.slots.map(slot =>  this.slotTemplate`${slot}${feature.id}`).join('')}` : ''}
@@ -140,7 +138,7 @@ export default class RHDPSearchOneBox extends HTMLElement {
             icon_helloworld: '<i class="fas fa-list-ol fa-lg"></i>',
             icon_docsandapi: '<i class="fas fa-file-alt fa-lg"></i>'
         }
-        return icons[name];
+        return name ? icons[name] : '';
     }
 }
 
